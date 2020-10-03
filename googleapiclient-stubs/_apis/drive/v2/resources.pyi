@@ -1,0 +1,802 @@
+import typing
+
+import httplib2  # type: ignore
+import typing_extensions
+
+import googleapiclient.discovery
+import googleapiclient.http  # type: ignore
+
+from .schemas import *
+
+class DriveResource(googleapiclient.discovery.Resource):
+    class AboutResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            includeSubscribed: bool = ...,
+            maxChangeIdCount: str = ...,
+            startChangeId: str = ...,
+            **kwargs: typing.Any
+        ) -> AboutHttpRequest: ...
+    class AppsResource(googleapiclient.discovery.Resource):
+        def get(self, *, appId: str, **kwargs: typing.Any) -> AppHttpRequest: ...
+        def list(
+            self,
+            *,
+            appFilterExtensions: str = ...,
+            appFilterMimeTypes: str = ...,
+            languageCode: str = ...,
+            **kwargs: typing.Any
+        ) -> AppListHttpRequest: ...
+    class ChangesResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            changeId: str,
+            driveId: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            teamDriveId: str = ...,
+            **kwargs: typing.Any
+        ) -> ChangeHttpRequest: ...
+        def getStartPageToken(
+            self,
+            *,
+            driveId: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            teamDriveId: str = ...,
+            **kwargs: typing.Any
+        ) -> StartPageTokenHttpRequest: ...
+        def list(
+            self,
+            *,
+            driveId: str = ...,
+            includeCorpusRemovals: bool = ...,
+            includeDeleted: bool = ...,
+            includeItemsFromAllDrives: bool = ...,
+            includePermissionsForView: str = ...,
+            includeSubscribed: bool = ...,
+            includeTeamDriveItems: bool = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            spaces: str = ...,
+            startChangeId: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            teamDriveId: str = ...,
+            **kwargs: typing.Any
+        ) -> ChangeListHttpRequest: ...
+        def watch(
+            self,
+            *,
+            body: Channel = ...,
+            driveId: str = ...,
+            includeCorpusRemovals: bool = ...,
+            includeDeleted: bool = ...,
+            includeItemsFromAllDrives: bool = ...,
+            includePermissionsForView: str = ...,
+            includeSubscribed: bool = ...,
+            includeTeamDriveItems: bool = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            spaces: str = ...,
+            startChangeId: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            teamDriveId: str = ...,
+            **kwargs: typing.Any
+        ) -> ChannelHttpRequest: ...
+    class ChannelsResource(googleapiclient.discovery.Resource):
+        def stop(
+            self, *, body: Channel = ..., **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+    class ChildrenResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            folderId: str,
+            childId: str,
+            enforceSingleParent: bool = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, folderId: str, childId: str, **kwargs: typing.Any
+        ) -> ChildReferenceHttpRequest: ...
+        def insert(
+            self,
+            *,
+            folderId: str,
+            body: ChildReference = ...,
+            enforceSingleParent: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            **kwargs: typing.Any
+        ) -> ChildReferenceHttpRequest: ...
+        def list(
+            self,
+            *,
+            folderId: str,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            q: str = ...,
+            **kwargs: typing.Any
+        ) -> ChildListHttpRequest: ...
+    class CommentsResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, fileId: str, commentId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            fileId: str,
+            commentId: str,
+            includeDeleted: bool = ...,
+            **kwargs: typing.Any
+        ) -> CommentHttpRequest: ...
+        def insert(
+            self, *, fileId: str, body: Comment = ..., **kwargs: typing.Any
+        ) -> CommentHttpRequest: ...
+        def list(
+            self,
+            *,
+            fileId: str,
+            includeDeleted: bool = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            updatedMin: str = ...,
+            **kwargs: typing.Any
+        ) -> CommentListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            fileId: str,
+            commentId: str,
+            body: Comment = ...,
+            **kwargs: typing.Any
+        ) -> CommentHttpRequest: ...
+        def update(
+            self,
+            *,
+            fileId: str,
+            commentId: str,
+            body: Comment = ...,
+            **kwargs: typing.Any
+        ) -> CommentHttpRequest: ...
+    class DrivesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, driveId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            driveId: str,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> DriveHttpRequest: ...
+        def hide(self, *, driveId: str, **kwargs: typing.Any) -> DriveHttpRequest: ...
+        def insert(
+            self, *, requestId: str, body: Drive = ..., **kwargs: typing.Any
+        ) -> DriveHttpRequest: ...
+        def list(
+            self,
+            *,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            q: str = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> DriveListHttpRequest: ...
+        def unhide(self, *, driveId: str, **kwargs: typing.Any) -> DriveHttpRequest: ...
+        def update(
+            self,
+            *,
+            driveId: str,
+            body: Drive = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> DriveHttpRequest: ...
+    class FilesResource(googleapiclient.discovery.Resource):
+        def copy(
+            self,
+            *,
+            fileId: str,
+            body: File = ...,
+            convert: bool = ...,
+            enforceSingleParent: bool = ...,
+            includePermissionsForView: str = ...,
+            ocr: bool = ...,
+            ocrLanguage: str = ...,
+            pinned: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            timedTextLanguage: str = ...,
+            timedTextTrackName: str = ...,
+            visibility: typing_extensions.Literal["DEFAULT", "PRIVATE"] = ...,
+            **kwargs: typing.Any
+        ) -> FileHttpRequest: ...
+        def delete(
+            self,
+            *,
+            fileId: str,
+            enforceSingleParent: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def emptyTrash(
+            self, *, enforceSingleParent: bool = ..., **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def export(
+            self, *, fileId: str, mimeType: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def generateIds(
+            self, *, maxResults: int = ..., space: str = ..., **kwargs: typing.Any
+        ) -> GeneratedIdsHttpRequest: ...
+        def get(
+            self,
+            *,
+            fileId: str,
+            acknowledgeAbuse: bool = ...,
+            includePermissionsForView: str = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
+            revisionId: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            updateViewedDate: bool = ...,
+            **kwargs: typing.Any
+        ) -> FileHttpRequest: ...
+        def insert(
+            self,
+            *,
+            body: File = ...,
+            convert: bool = ...,
+            enforceSingleParent: bool = ...,
+            includePermissionsForView: str = ...,
+            ocr: bool = ...,
+            ocrLanguage: str = ...,
+            pinned: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            timedTextLanguage: str = ...,
+            timedTextTrackName: str = ...,
+            useContentAsIndexableText: bool = ...,
+            visibility: typing_extensions.Literal["DEFAULT", "PRIVATE"] = ...,
+            **kwargs: typing.Any
+        ) -> FileHttpRequest: ...
+        def list(
+            self,
+            *,
+            corpora: str = ...,
+            corpus: typing_extensions.Literal["DEFAULT", "DOMAIN"] = ...,
+            driveId: str = ...,
+            includeItemsFromAllDrives: bool = ...,
+            includePermissionsForView: str = ...,
+            includeTeamDriveItems: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
+            q: str = ...,
+            spaces: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            teamDriveId: str = ...,
+            **kwargs: typing.Any
+        ) -> FileListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            fileId: str,
+            body: File = ...,
+            addParents: str = ...,
+            convert: bool = ...,
+            enforceSingleParent: bool = ...,
+            includePermissionsForView: str = ...,
+            modifiedDateBehavior: typing_extensions.Literal[
+                "fromBody",
+                "fromBodyIfNeeded",
+                "fromBodyOrNow",
+                "noChange",
+                "now",
+                "nowIfNeeded",
+            ] = ...,
+            newRevision: bool = ...,
+            ocr: bool = ...,
+            ocrLanguage: str = ...,
+            pinned: bool = ...,
+            removeParents: str = ...,
+            setModifiedDate: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            timedTextLanguage: str = ...,
+            timedTextTrackName: str = ...,
+            updateViewedDate: bool = ...,
+            useContentAsIndexableText: bool = ...,
+            **kwargs: typing.Any
+        ) -> FileHttpRequest: ...
+        def touch(
+            self,
+            *,
+            fileId: str,
+            includePermissionsForView: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            **kwargs: typing.Any
+        ) -> FileHttpRequest: ...
+        def trash(
+            self,
+            *,
+            fileId: str,
+            includePermissionsForView: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            **kwargs: typing.Any
+        ) -> FileHttpRequest: ...
+        def untrash(
+            self,
+            *,
+            fileId: str,
+            includePermissionsForView: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            **kwargs: typing.Any
+        ) -> FileHttpRequest: ...
+        def update(
+            self,
+            *,
+            fileId: str,
+            body: File = ...,
+            addParents: str = ...,
+            convert: bool = ...,
+            enforceSingleParent: bool = ...,
+            includePermissionsForView: str = ...,
+            modifiedDateBehavior: typing_extensions.Literal[
+                "fromBody",
+                "fromBodyIfNeeded",
+                "fromBodyOrNow",
+                "noChange",
+                "now",
+                "nowIfNeeded",
+            ] = ...,
+            newRevision: bool = ...,
+            ocr: bool = ...,
+            ocrLanguage: str = ...,
+            pinned: bool = ...,
+            removeParents: str = ...,
+            setModifiedDate: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            timedTextLanguage: str = ...,
+            timedTextTrackName: str = ...,
+            updateViewedDate: bool = ...,
+            useContentAsIndexableText: bool = ...,
+            **kwargs: typing.Any
+        ) -> FileHttpRequest: ...
+        def watch(
+            self,
+            *,
+            fileId: str,
+            body: Channel = ...,
+            acknowledgeAbuse: bool = ...,
+            includePermissionsForView: str = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
+            revisionId: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            updateViewedDate: bool = ...,
+            **kwargs: typing.Any
+        ) -> ChannelHttpRequest: ...
+    class ParentsResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            fileId: str,
+            parentId: str,
+            enforceSingleParent: bool = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, fileId: str, parentId: str, **kwargs: typing.Any
+        ) -> ParentReferenceHttpRequest: ...
+        def insert(
+            self,
+            *,
+            fileId: str,
+            body: ParentReference = ...,
+            enforceSingleParent: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            **kwargs: typing.Any
+        ) -> ParentReferenceHttpRequest: ...
+        def list(
+            self, *, fileId: str, **kwargs: typing.Any
+        ) -> ParentListHttpRequest: ...
+    class PermissionsResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            fileId: str,
+            permissionId: str,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            fileId: str,
+            permissionId: str,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> PermissionHttpRequest: ...
+        def getIdForEmail(
+            self, *, email: str, **kwargs: typing.Any
+        ) -> PermissionIdHttpRequest: ...
+        def insert(
+            self,
+            *,
+            fileId: str,
+            body: Permission = ...,
+            emailMessage: str = ...,
+            enforceSingleParent: bool = ...,
+            moveToNewOwnersRoot: bool = ...,
+            sendNotificationEmails: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> PermissionHttpRequest: ...
+        def list(
+            self,
+            *,
+            fileId: str,
+            includePermissionsForView: str = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> PermissionListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            fileId: str,
+            permissionId: str,
+            body: Permission = ...,
+            removeExpiration: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            transferOwnership: bool = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> PermissionHttpRequest: ...
+        def update(
+            self,
+            *,
+            fileId: str,
+            permissionId: str,
+            body: Permission = ...,
+            removeExpiration: bool = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            transferOwnership: bool = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> PermissionHttpRequest: ...
+    class PropertiesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            fileId: str,
+            propertyKey: str,
+            visibility: str = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            fileId: str,
+            propertyKey: str,
+            visibility: str = ...,
+            **kwargs: typing.Any
+        ) -> PropertyHttpRequest: ...
+        def insert(
+            self, *, fileId: str, body: Property = ..., **kwargs: typing.Any
+        ) -> PropertyHttpRequest: ...
+        def list(
+            self, *, fileId: str, **kwargs: typing.Any
+        ) -> PropertyListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            fileId: str,
+            propertyKey: str,
+            body: Property = ...,
+            visibility: str = ...,
+            **kwargs: typing.Any
+        ) -> PropertyHttpRequest: ...
+        def update(
+            self,
+            *,
+            fileId: str,
+            propertyKey: str,
+            body: Property = ...,
+            visibility: str = ...,
+            **kwargs: typing.Any
+        ) -> PropertyHttpRequest: ...
+    class RepliesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, fileId: str, commentId: str, replyId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            fileId: str,
+            commentId: str,
+            replyId: str,
+            includeDeleted: bool = ...,
+            **kwargs: typing.Any
+        ) -> CommentReplyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            fileId: str,
+            commentId: str,
+            body: CommentReply = ...,
+            **kwargs: typing.Any
+        ) -> CommentReplyHttpRequest: ...
+        def list(
+            self,
+            *,
+            fileId: str,
+            commentId: str,
+            includeDeleted: bool = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> CommentReplyListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            fileId: str,
+            commentId: str,
+            replyId: str,
+            body: CommentReply = ...,
+            **kwargs: typing.Any
+        ) -> CommentReplyHttpRequest: ...
+        def update(
+            self,
+            *,
+            fileId: str,
+            commentId: str,
+            replyId: str,
+            body: CommentReply = ...,
+            **kwargs: typing.Any
+        ) -> CommentReplyHttpRequest: ...
+    class RevisionsResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, fileId: str, revisionId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, fileId: str, revisionId: str, **kwargs: typing.Any
+        ) -> RevisionHttpRequest: ...
+        def list(
+            self,
+            *,
+            fileId: str,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> RevisionListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            fileId: str,
+            revisionId: str,
+            body: Revision = ...,
+            **kwargs: typing.Any
+        ) -> RevisionHttpRequest: ...
+        def update(
+            self,
+            *,
+            fileId: str,
+            revisionId: str,
+            body: Revision = ...,
+            **kwargs: typing.Any
+        ) -> RevisionHttpRequest: ...
+    class TeamdrivesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, teamDriveId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            teamDriveId: str,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> TeamDriveHttpRequest: ...
+        def insert(
+            self, *, requestId: str, body: TeamDrive = ..., **kwargs: typing.Any
+        ) -> TeamDriveHttpRequest: ...
+        def list(
+            self,
+            *,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            q: str = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> TeamDriveListHttpRequest: ...
+        def update(
+            self,
+            *,
+            teamDriveId: str,
+            body: TeamDrive = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> TeamDriveHttpRequest: ...
+    def about(self) -> AboutResource: ...
+    def apps(self) -> AppsResource: ...
+    def changes(self) -> ChangesResource: ...
+    def channels(self) -> ChannelsResource: ...
+    def children(self) -> ChildrenResource: ...
+    def comments(self) -> CommentsResource: ...
+    def drives(self) -> DrivesResource: ...
+    def files(self) -> FilesResource: ...
+    def parents(self) -> ParentsResource: ...
+    def permissions(self) -> PermissionsResource: ...
+    def properties(self) -> PropertiesResource: ...
+    def replies(self) -> RepliesResource: ...
+    def revisions(self) -> RevisionsResource: ...
+    def teamdrives(self) -> TeamdrivesResource: ...
+
+class AboutHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> About: ...
+
+class ChildReferenceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ChildReference: ...
+
+class CommentReplyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CommentReply: ...
+
+class DriveListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> DriveList: ...
+
+class CommentListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CommentList: ...
+
+class ChangeListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ChangeList: ...
+
+class StartPageTokenHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> StartPageToken: ...
+
+class FileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> File: ...
+
+class ChannelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Channel: ...
+
+class FileListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> FileList: ...
+
+class TeamDriveHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TeamDrive: ...
+
+class PropertyListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PropertyList: ...
+
+class TeamDriveListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TeamDriveList: ...
+
+class GeneratedIdsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GeneratedIds: ...
+
+class RevisionListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> RevisionList: ...
+
+class AppListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> AppList: ...
+
+class PermissionListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PermissionList: ...
+
+class PropertyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Property: ...
+
+class CommentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Comment: ...
+
+class ChangeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Change: ...
+
+class PermissionIdHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PermissionId: ...
+
+class DriveHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Drive: ...
+
+class ParentListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ParentList: ...
+
+class RevisionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Revision: ...
+
+class CommentReplyListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CommentReplyList: ...
+
+class PermissionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Permission: ...
+
+class ChildListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ChildList: ...
+
+class AppHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> App: ...
+
+class ParentReferenceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ParentReference: ...

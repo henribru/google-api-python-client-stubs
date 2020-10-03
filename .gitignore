@@ -1,0 +1,9 @@
+*
+!/.gitignore
+!/googleapiclient-stubs/
+!/googleapiclient-stubs/**
+!/apiclient-stubs/
+!/apiclient-stubs/**
+!/pyproject.toml
+!/README.md
+!/LICENSE

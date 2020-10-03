@@ -1,0 +1,53 @@
+import typing
+
+import httplib2  # type: ignore
+import typing_extensions
+
+import googleapiclient.discovery
+import googleapiclient.http  # type: ignore
+
+from .schemas import *
+
+class AnalyticsDataResource(googleapiclient.discovery.Resource):
+    class V1alphaResource(googleapiclient.discovery.Resource):
+        def batchRunReports(
+            self, *, body: BatchRunReportsRequest = ..., **kwargs: typing.Any
+        ) -> BatchRunReportsResponseHttpRequest: ...
+        def batchRunPivotReports(
+            self, *, body: BatchRunPivotReportsRequest = ..., **kwargs: typing.Any
+        ) -> BatchRunPivotReportsResponseHttpRequest: ...
+        def getUniversalMetadata(
+            self, **kwargs: typing.Any
+        ) -> UniversalMetadataHttpRequest: ...
+        def runReport(
+            self, *, body: RunReportRequest = ..., **kwargs: typing.Any
+        ) -> RunReportResponseHttpRequest: ...
+        def runPivotReport(
+            self, *, body: RunPivotReportRequest = ..., **kwargs: typing.Any
+        ) -> RunPivotReportResponseHttpRequest: ...
+    def v1alpha(self) -> V1alphaResource: ...
+
+class UniversalMetadataHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> UniversalMetadata: ...
+
+class BatchRunReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BatchRunReportsResponse: ...
+
+class RunReportResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> RunReportResponse: ...
+
+class BatchRunPivotReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BatchRunPivotReportsResponse: ...
+
+class RunPivotReportResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> RunPivotReportResponse: ...

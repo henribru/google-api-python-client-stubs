@@ -1,0 +1,29 @@
+import typing
+
+import httplib2  # type: ignore
+import typing_extensions
+
+import googleapiclient.discovery
+import googleapiclient.http  # type: ignore
+
+from .schemas import *
+
+class ServiceControlResource(googleapiclient.discovery.Resource):
+    class ServicesResource(googleapiclient.discovery.Resource):
+        def check(
+            self, *, serviceName: str, body: CheckRequest = ..., **kwargs: typing.Any
+        ) -> CheckResponseHttpRequest: ...
+        def report(
+            self, *, serviceName: str, body: ReportRequest = ..., **kwargs: typing.Any
+        ) -> ReportResponseHttpRequest: ...
+    def services(self) -> ServicesResource: ...
+
+class CheckResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CheckResponse: ...
+
+class ReportResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ReportResponse: ...

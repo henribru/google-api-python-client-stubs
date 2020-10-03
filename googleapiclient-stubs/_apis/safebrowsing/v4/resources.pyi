@@ -1,0 +1,79 @@
+import typing
+
+import httplib2  # type: ignore
+import typing_extensions
+
+import googleapiclient.discovery
+import googleapiclient.http  # type: ignore
+
+from .schemas import *
+
+class SafebrowsingResource(googleapiclient.discovery.Resource):
+    class ThreatHitsResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, body: ThreatHit = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+    class ThreatMatchesResource(googleapiclient.discovery.Resource):
+        def find(
+            self, *, body: FindThreatMatchesRequest = ..., **kwargs: typing.Any
+        ) -> FindThreatMatchesResponseHttpRequest: ...
+    class FullHashesResource(googleapiclient.discovery.Resource):
+        def find(
+            self, *, body: FindFullHashesRequest = ..., **kwargs: typing.Any
+        ) -> FindFullHashesResponseHttpRequest: ...
+    class EncodedFullHashesResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            encodedRequest: str,
+            clientId: str = ...,
+            clientVersion: str = ...,
+            **kwargs: typing.Any
+        ) -> FindFullHashesResponseHttpRequest: ...
+    class EncodedUpdatesResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            encodedRequest: str,
+            clientVersion: str = ...,
+            clientId: str = ...,
+            **kwargs: typing.Any
+        ) -> FetchThreatListUpdatesResponseHttpRequest: ...
+    class ThreatListsResource(googleapiclient.discovery.Resource):
+        def list(self, **kwargs: typing.Any) -> ListThreatListsResponseHttpRequest: ...
+    class ThreatListUpdatesResource(googleapiclient.discovery.Resource):
+        def fetch(
+            self, *, body: FetchThreatListUpdatesRequest = ..., **kwargs: typing.Any
+        ) -> FetchThreatListUpdatesResponseHttpRequest: ...
+    def threatHits(self) -> ThreatHitsResource: ...
+    def threatMatches(self) -> ThreatMatchesResource: ...
+    def fullHashes(self) -> FullHashesResource: ...
+    def encodedFullHashes(self) -> EncodedFullHashesResource: ...
+    def encodedUpdates(self) -> EncodedUpdatesResource: ...
+    def threatLists(self) -> ThreatListsResource: ...
+    def threatListUpdates(self) -> ThreatListUpdatesResource: ...
+
+class FetchThreatListUpdatesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> FetchThreatListUpdatesResponse: ...
+
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+class ListThreatListsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListThreatListsResponse: ...
+
+class FindThreatMatchesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> FindThreatMatchesResponse: ...
+
+class FindFullHashesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> FindFullHashesResponse: ...
