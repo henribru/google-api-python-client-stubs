@@ -1,17 +1,18 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class Webfont(typing_extensions.TypedDict, total=False):
-    files: typing.Dict[str, typing.Any]
-    lastModified: str
     category: str
-    version: str
     family: str
-    variants: typing.List[str]
+    files: typing.Dict[str, typing.Any]
     kind: str
+    lastModified: str
     subsets: typing.List[str]
+    variants: typing.List[str]
+    version: str
 
+@typing.type_check_only
 class WebfontList(typing_extensions.TypedDict, total=False):
-    kind: str
     items: typing.List[Webfont]
+    kind: str

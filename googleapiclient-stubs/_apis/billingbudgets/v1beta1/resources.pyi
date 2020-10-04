@@ -7,9 +7,11 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class BillingAccountsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class BudgetsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -17,6 +19,12 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GoogleCloudBillingBudgetsV1beta1CreateBudgetRequest = ...,
                 **kwargs: typing.Any
+            ) -> GoogleCloudBillingBudgetsV1beta1BudgetHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudBillingBudgetsV1beta1BudgetHttpRequest: ...
             def list(
                 self,
@@ -26,9 +34,6 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleProtobufEmptyHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -36,19 +41,10 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudBillingBudgetsV1beta1UpdateBudgetRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudBillingBudgetsV1beta1BudgetHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleCloudBillingBudgetsV1beta1BudgetHttpRequest: ...
         def budgets(self) -> BudgetsResource: ...
     def billingAccounts(self) -> BillingAccountsResource: ...
 
-class GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse: ...
-
+@typing.type_check_only
 class GoogleCloudBillingBudgetsV1beta1BudgetHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -56,6 +52,15 @@ class GoogleCloudBillingBudgetsV1beta1BudgetHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudBillingBudgetsV1beta1Budget: ...
 
+@typing.type_check_only
+class GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse: ...
+
+@typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

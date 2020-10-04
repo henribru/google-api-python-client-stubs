@@ -7,11 +7,24 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: CancelOperationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -21,16 +34,7 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def cancel(
-                    self,
-                    *,
-                    name: str,
-                    body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
+            @typing.type_check_only
             class PipelinesResource(googleapiclient.discovery.Resource):
                 def run(
                     self,
@@ -46,9 +50,9 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                filter: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
             def operations(self) -> OperationsResource: ...
@@ -56,27 +60,32 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListLocationsResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
+    ) -> ListLocationsResponse: ...
 
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Location: ...
 
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListOperationsResponse: ...
+    ) -> Operation: ...

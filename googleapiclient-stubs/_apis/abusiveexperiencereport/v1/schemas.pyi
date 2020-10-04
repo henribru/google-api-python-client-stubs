@@ -1,15 +1,16 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class SiteSummaryResponse(typing_extensions.TypedDict, total=False):
-    reportUrl: str
-    underReview: bool
-    enforcementTime: str
-    lastChangeTime: str
-    filterStatus: typing_extensions.Literal["UNKNOWN", "ON", "OFF", "PAUSED", "PENDING"]
     abusiveStatus: typing_extensions.Literal["UNKNOWN", "PASSING", "FAILING"]
+    enforcementTime: str
+    filterStatus: typing_extensions.Literal["UNKNOWN", "ON", "OFF", "PAUSED", "PENDING"]
+    lastChangeTime: str
+    reportUrl: str
     reviewedSite: str
+    underReview: bool
 
+@typing.type_check_only
 class ViolatingSitesResponse(typing_extensions.TypedDict, total=False):
     violatingSites: typing.List[SiteSummaryResponse]

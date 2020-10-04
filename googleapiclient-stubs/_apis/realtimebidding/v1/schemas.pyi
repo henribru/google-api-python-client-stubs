@@ -1,53 +1,166 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AdTechnologyProviders(typing_extensions.TypedDict, total=False):
+    detectedProviderIds: typing.List[str]
+    hasUnidentifiedProvider: bool
 
+@typing.type_check_only
+class AdvertiserAndBrand(typing_extensions.TypedDict, total=False):
+    advertiserId: str
+    advertiserName: str
+    brandId: str
+    brandName: str
+
+@typing.type_check_only
+class CloseUserListRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Creative(typing_extensions.TypedDict, total=False):
+    accountId: str
+    adChoicesDestinationUrl: str
+    advertiserName: str
+    agencyId: str
+    apiUpdateTime: str
+    creativeFormat: typing_extensions.Literal[
+        "CREATIVE_FORMAT_UNSPECIFIED", "HTML", "VIDEO", "NATIVE"
+    ]
+    creativeId: str
+    creativeServingDecision: CreativeServingDecision
+    dealIds: typing.List[str]
+    declaredAttributes: typing.List[str]
+    declaredClickThroughUrls: typing.List[str]
+    declaredRestrictedCategories: typing.List[str]
+    declaredVendorIds: typing.List[int]
+    html: HtmlContent
+    impressionTrackingUrls: typing.List[str]
+    name: str
+    native: NativeContent
+    restrictedCategories: typing.List[str]
+    version: int
+    video: VideoContent
+
+@typing.type_check_only
+class CreativeServingDecision(typing_extensions.TypedDict, total=False):
+    adTechnologyProviders: AdTechnologyProviders
+    chinaServingStatus: ServingStatus
+    dealsServingStatus: ServingStatus
+    detectedAdvertisers: typing.List[AdvertiserAndBrand]
+    detectedAttributes: typing.List[str]
+    detectedClickThroughUrls: typing.List[str]
+    detectedDomains: typing.List[str]
+    detectedLanguages: typing.List[str]
+    detectedProductCategories: typing.List[int]
+    detectedSensitiveCategories: typing.List[int]
+    detectedVendorIds: typing.List[int]
+    lastStatusUpdate: str
+    openAuctionServingStatus: ServingStatus
+    russiaServingStatus: ServingStatus
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
+class DestinationNotCrawlableEvidence(typing_extensions.TypedDict, total=False):
+    crawlTime: str
+    crawledUrl: str
+    reason: typing_extensions.Literal[
+        "REASON_UNSPECIFIED",
+        "UNREACHABLE_ROBOTS",
+        "TIMEOUT_ROBOTS",
+        "ROBOTED_DENIED",
+        "UNKNOWN",
+    ]
+
+@typing.type_check_only
+class DestinationNotWorkingEvidence(typing_extensions.TypedDict, total=False):
+    dnsError: typing_extensions.Literal[
+        "DNS_ERROR_UNSPECIFIED", "ERROR_DNS", "GOOGLE_CRAWLER_DNS_ISSUE"
+    ]
+    expandedUrl: str
+    httpError: int
+    invalidPage: typing_extensions.Literal[
+        "INVALID_PAGE_UNSPECIFIED", "EMPTY_OR_ERROR_PAGE"
+    ]
+    lastCheckTime: str
+    platform: typing_extensions.Literal[
+        "PLATFORM_UNSPECIFIED", "PERSONAL_COMPUTER", "ANDROID", "IOS"
+    ]
+    redirectionError: typing_extensions.Literal[
+        "REDIRECTION_ERROR_UNSPECIFIED",
+        "TOO_MANY_REDIRECTS",
+        "INVALID_REDIRECT",
+        "EMPTY_REDIRECT",
+        "REDIRECT_ERROR_UNKNOWN",
+    ]
+    urlRejected: typing_extensions.Literal[
+        "URL_REJECTED_UNSPECIFIED",
+        "BAD_REQUEST",
+        "MALFORMED_URL",
+        "URL_REJECTED_UNKNOWN",
+    ]
+
+@typing.type_check_only
+class DestinationUrlEvidence(typing_extensions.TypedDict, total=False):
+    destinationUrl: str
+
+@typing.type_check_only
+class DomainCallEvidence(typing_extensions.TypedDict, total=False):
+    topHttpCallDomains: typing.List[DomainCalls]
+    totalHttpCallCount: int
+
+@typing.type_check_only
+class DomainCalls(typing_extensions.TypedDict, total=False):
+    domain: str
+    httpCallCount: int
+
+@typing.type_check_only
+class DownloadSizeEvidence(typing_extensions.TypedDict, total=False):
+    topUrlDownloadSizeBreakdowns: typing.List[UrlDownloadSize]
+    totalDownloadSizeKb: int
+
+@typing.type_check_only
+class GetRemarketingTagResponse(typing_extensions.TypedDict, total=False):
+    snippet: str
+
+@typing.type_check_only
+class HtmlContent(typing_extensions.TypedDict, total=False):
+    height: int
+    snippet: str
+    width: int
+
+@typing.type_check_only
+class HttpCallEvidence(typing_extensions.TypedDict, total=False):
+    urls: typing.List[str]
+
+@typing.type_check_only
+class HttpCookieEvidence(typing_extensions.TypedDict, total=False):
+    cookieNames: typing.List[str]
+    maxCookieCount: int
+
+@typing.type_check_only
+class Image(typing_extensions.TypedDict, total=False):
+    height: int
+    url: str
+    width: int
+
+@typing.type_check_only
+class ListCreativesResponse(typing_extensions.TypedDict, total=False):
+    creatives: typing.List[Creative]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListUserListsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     userLists: typing.List[UserList]
 
-class DomainCalls(typing_extensions.TypedDict, total=False):
-    httpCallCount: int
-    domain: str
-
-class OpenUserListRequest(typing_extensions.TypedDict, total=False): ...
-
-class AdvertiserAndBrand(typing_extensions.TypedDict, total=False):
-    advertiserId: str
-    advertiserName: str
-    brandName: str
-    brandId: str
-
-class UserList(typing_extensions.TypedDict, total=False):
-    name: str
-    displayName: str
-    description: str
-    urlRestriction: UrlRestriction
-    membershipDurationDays: str
-    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "OPEN", "CLOSED"]
-
-class CreativeServingDecision(typing_extensions.TypedDict, total=False):
-    dealsServingStatus: ServingStatus
-    openAuctionServingStatus: ServingStatus
-    detectedDomains: typing.List[str]
-    detectedAdvertisers: typing.List[AdvertiserAndBrand]
-    detectedClickThroughUrls: typing.List[str]
-    detectedProductCategories: typing.List[int]
-    detectedLanguages: typing.List[str]
-    adTechnologyProviders: AdTechnologyProviders
-    russiaServingStatus: ServingStatus
-    chinaServingStatus: ServingStatus
-    detectedVendorIds: typing.List[int]
-    detectedAttributes: typing.List[str]
-    lastStatusUpdate: str
-    detectedSensitiveCategories: typing.List[int]
-
-class Date(typing_extensions.TypedDict, total=False):
-    day: int
-    year: int
-    month: int
-
+@typing.type_check_only
 class MediaFile(typing_extensions.TypedDict, total=False):
+    bitrate: str
     mimeType: typing_extensions.Literal[
         "VIDEO_MIME_TYPE_UNSPECIFIED",
         "MIME_VIDEO_XFLV",
@@ -68,100 +181,55 @@ class MediaFile(typing_extensions.TypedDict, total=False):
         "MIME_AUDIO_MP3",
         "MIME_AUDIO_OGG",
     ]
-    bitrate: str
 
-class ListCreativesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    creatives: typing.List[Creative]
+@typing.type_check_only
+class NativeContent(typing_extensions.TypedDict, total=False):
+    advertiserName: str
+    appIcon: Image
+    body: str
+    callToAction: str
+    clickLinkUrl: str
+    clickTrackingUrl: str
+    headline: str
+    image: Image
+    logo: Image
+    priceDisplayText: str
+    starRating: float
+    videoUrl: str
 
-class DestinationUrlEvidence(typing_extensions.TypedDict, total=False):
-    destinationUrl: str
+@typing.type_check_only
+class OpenUserListRequest(typing_extensions.TypedDict, total=False): ...
 
-class DestinationNotWorkingEvidence(typing_extensions.TypedDict, total=False):
-    dnsError: typing_extensions.Literal[
-        "DNS_ERROR_UNSPECIFIED", "ERROR_DNS", "GOOGLE_CRAWLER_DNS_ISSUE"
-    ]
-    lastCheckTime: str
-    urlRejected: typing_extensions.Literal[
-        "URL_REJECTED_UNSPECIFIED",
-        "BAD_REQUEST",
-        "MALFORMED_URL",
-        "URL_REJECTED_UNKNOWN",
-    ]
-    redirectionError: typing_extensions.Literal[
-        "REDIRECTION_ERROR_UNSPECIFIED",
-        "TOO_MANY_REDIRECTS",
-        "INVALID_REDIRECT",
-        "EMPTY_REDIRECT",
-        "REDIRECT_ERROR_UNKNOWN",
-    ]
-    platform: typing_extensions.Literal[
-        "PLATFORM_UNSPECIFIED", "PERSONAL_COMPUTER", "ANDROID", "IOS"
-    ]
-    invalidPage: typing_extensions.Literal[
-        "INVALID_PAGE_UNSPECIFIED", "EMPTY_OR_ERROR_PAGE"
-    ]
-    httpError: int
-    expandedUrl: str
+@typing.type_check_only
+class PolicyTopicEntry(typing_extensions.TypedDict, total=False):
+    evidences: typing.List[PolicyTopicEvidence]
+    helpCenterUrl: str
+    policyTopic: str
 
-class HttpCallEvidence(typing_extensions.TypedDict, total=False):
-    urls: typing.List[str]
-
-class HtmlContent(typing_extensions.TypedDict, total=False):
-    snippet: str
-    height: int
-    width: int
-
-class AdTechnologyProviders(typing_extensions.TypedDict, total=False):
-    detectedProviderIds: typing.List[str]
-    hasUnidentifiedProvider: bool
-
+@typing.type_check_only
 class PolicyTopicEvidence(typing_extensions.TypedDict, total=False):
-    downloadSize: DownloadSizeEvidence
-    httpCall: HttpCallEvidence
-    domainCall: DomainCallEvidence
-    httpCookie: HttpCookieEvidence
     destinationNotCrawlable: DestinationNotCrawlableEvidence
     destinationNotWorking: DestinationNotWorkingEvidence
     destinationUrl: DestinationUrlEvidence
+    domainCall: DomainCallEvidence
+    downloadSize: DownloadSizeEvidence
+    httpCall: HttpCallEvidence
+    httpCookie: HttpCookieEvidence
 
-class DownloadSizeEvidence(typing_extensions.TypedDict, total=False):
-    totalDownloadSizeKb: int
-    topUrlDownloadSizeBreakdowns: typing.List[UrlDownloadSize]
-
-class Creative(typing_extensions.TypedDict, total=False):
-    creativeId: str
-    accountId: str
-    apiUpdateTime: str
-    adChoicesDestinationUrl: str
-    restrictedCategories: typing.List[str]
-    creativeServingDecision: CreativeServingDecision
-    html: HtmlContent
-    creativeFormat: typing_extensions.Literal[
-        "CREATIVE_FORMAT_UNSPECIFIED", "HTML", "VIDEO", "NATIVE"
+@typing.type_check_only
+class ServingStatus(typing_extensions.TypedDict, total=False):
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "PENDING_REVIEW", "DISAPPROVED", "APPROVED"
     ]
-    agencyId: str
-    declaredVendorIds: typing.List[int]
-    video: VideoContent
-    native: NativeContent
-    declaredRestrictedCategories: typing.List[str]
-    version: int
-    advertiserName: str
-    declaredAttributes: typing.List[str]
-    impressionTrackingUrls: typing.List[str]
-    declaredClickThroughUrls: typing.List[str]
-    name: str
-    dealIds: typing.List[str]
+    topics: typing.List[PolicyTopicEntry]
 
+@typing.type_check_only
 class UrlDownloadSize(typing_extensions.TypedDict, total=False):
     downloadSizeKb: int
     normalizedUrl: str
 
-class GetRemarketingTagResponse(typing_extensions.TypedDict, total=False):
-    snippet: str
-
+@typing.type_check_only
 class UrlRestriction(typing_extensions.TypedDict, total=False):
-    startDate: Date
     endDate: Date
     restrictionType: typing_extensions.Literal[
         "RESTRICTION_TYPE_UNSPECIFIED",
@@ -174,31 +242,31 @@ class UrlRestriction(typing_extensions.TypedDict, total=False):
         "DOES_NOT_START_WITH",
         "DOES_NOT_END_WITH",
     ]
+    startDate: Date
     url: str
 
-class DestinationNotCrawlableEvidence(typing_extensions.TypedDict, total=False):
-    crawlTime: str
-    reason: typing_extensions.Literal[
-        "REASON_UNSPECIFIED",
-        "UNREACHABLE_ROBOTS",
-        "TIMEOUT_ROBOTS",
-        "ROBOTED_DENIED",
-        "UNKNOWN",
-    ]
-    crawledUrl: str
+@typing.type_check_only
+class UserList(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    membershipDurationDays: str
+    name: str
+    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "OPEN", "CLOSED"]
+    urlRestriction: UrlRestriction
 
-class PolicyTopicEntry(typing_extensions.TypedDict, total=False):
-    helpCenterUrl: str
-    policyTopic: str
-    evidences: typing.List[PolicyTopicEvidence]
-
+@typing.type_check_only
 class VideoContent(typing_extensions.TypedDict, total=False):
-    videoVastXml: str
-    videoUrl: str
     videoMetadata: VideoMetadata
+    videoUrl: str
+    videoVastXml: str
 
+@typing.type_check_only
 class VideoMetadata(typing_extensions.TypedDict, total=False):
     duration: str
+    isValidVast: bool
+    isVpaid: bool
+    mediaFiles: typing.List[MediaFile]
+    skipOffset: str
     vastVersion: typing_extensions.Literal[
         "VAST_VERSION_UNSPECIFIED",
         "VAST_VERSION_1_0",
@@ -206,47 +274,11 @@ class VideoMetadata(typing_extensions.TypedDict, total=False):
         "VAST_VERSION_3_0",
         "VAST_VERSION_4_0",
     ]
-    skipOffset: str
-    isValidVast: bool
-    mediaFiles: typing.List[MediaFile]
-    isVpaid: bool
 
-class ServingStatus(typing_extensions.TypedDict, total=False):
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "PENDING_REVIEW", "DISAPPROVED", "APPROVED"
-    ]
-    topics: typing.List[PolicyTopicEntry]
-
+@typing.type_check_only
 class WatchCreativesRequest(typing_extensions.TypedDict, total=False): ...
-class CloseUserListRequest(typing_extensions.TypedDict, total=False): ...
 
-class Image(typing_extensions.TypedDict, total=False):
-    height: int
-    width: int
-    url: str
-
-class HttpCookieEvidence(typing_extensions.TypedDict, total=False):
-    cookieNames: typing.List[str]
-    maxCookieCount: int
-
-class NativeContent(typing_extensions.TypedDict, total=False):
-    priceDisplayText: str
-    advertiserName: str
-    clickLinkUrl: str
-    appIcon: Image
-    image: Image
-    headline: str
-    logo: Image
-    starRating: float
-    clickTrackingUrl: str
-    videoUrl: str
-    callToAction: str
-    body: str
-
+@typing.type_check_only
 class WatchCreativesResponse(typing_extensions.TypedDict, total=False):
-    topic: str
     subscription: str
-
-class DomainCallEvidence(typing_extensions.TypedDict, total=False):
-    totalHttpCallCount: int
-    topHttpCallDomains: typing.List[DomainCalls]
+    topic: str

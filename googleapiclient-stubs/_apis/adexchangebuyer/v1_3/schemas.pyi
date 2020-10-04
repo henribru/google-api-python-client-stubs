@@ -1,7 +1,7 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     bidderLocation: typing.List[typing.Dict[str, typing.Any]]
     cookieMatchingNid: str
@@ -12,20 +12,24 @@ class Account(typing_extensions.TypedDict, total=False):
     maximumTotalQps: int
     numberActiveCreatives: int
 
+@typing.type_check_only
 class AccountsList(typing_extensions.TypedDict, total=False):
     items: typing.List[Account]
     kind: str
 
+@typing.type_check_only
 class BillingInfo(typing_extensions.TypedDict, total=False):
     accountId: int
     accountName: str
     billingId: typing.List[str]
     kind: str
 
+@typing.type_check_only
 class BillingInfoList(typing_extensions.TypedDict, total=False):
     items: typing.List[BillingInfo]
     kind: str
 
+@typing.type_check_only
 class Budget(typing_extensions.TypedDict, total=False):
     accountId: str
     billingId: str
@@ -34,6 +38,7 @@ class Budget(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
 
+@typing.type_check_only
 class Creative(typing_extensions.TypedDict, total=False):
     HTMLSnippet: str
     accountId: int
@@ -61,11 +66,13 @@ class Creative(typing_extensions.TypedDict, total=False):
     videoURL: str
     width: int
 
+@typing.type_check_only
 class CreativesList(typing_extensions.TypedDict, total=False):
     items: typing.List[Creative]
     kind: str
     nextPageToken: str
 
+@typing.type_check_only
 class DirectDeal(typing_extensions.TypedDict, total=False):
     accountId: int
     advertiser: str
@@ -83,10 +90,12 @@ class DirectDeal(typing_extensions.TypedDict, total=False):
     sellerNetwork: str
     startTime: str
 
+@typing.type_check_only
 class DirectDealsList(typing_extensions.TypedDict, total=False):
     directDeals: typing.List[DirectDeal]
     kind: str
 
+@typing.type_check_only
 class PerformanceReport(typing_extensions.TypedDict, total=False):
     bidRate: float
     bidRequestRate: float
@@ -111,10 +120,12 @@ class PerformanceReport(typing_extensions.TypedDict, total=False):
     timestamp: str
     unsuccessfulRequestRate: float
 
+@typing.type_check_only
 class PerformanceReportList(typing_extensions.TypedDict, total=False):
     kind: str
     performanceReport: typing.List[PerformanceReport]
 
+@typing.type_check_only
 class PretargetingConfig(typing_extensions.TypedDict, total=False):
     billingId: str
     configId: str
@@ -141,6 +152,7 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
     vendorTypes: typing.List[str]
     verticals: typing.List[str]
 
+@typing.type_check_only
 class PretargetingConfigList(typing_extensions.TypedDict, total=False):
     items: typing.List[PretargetingConfig]
     kind: str

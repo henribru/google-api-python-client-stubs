@@ -7,37 +7,14 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class BigQueryReservationResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class CapacityCommitmentsResource(googleapiclient.discovery.Resource):
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: CapacityCommitment = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> CapacityCommitmentHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListCapacityCommitmentsResponseHttpRequest: ...
-                def split(
-                    self,
-                    *,
-                    name: str,
-                    body: SplitCapacityCommitmentRequest = ...,
-                    **kwargs: typing.Any
-                ) -> SplitCapacityCommitmentResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -46,9 +23,20 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     enforceSingleAdminProjectPerOrg: bool = ...,
                     **kwargs: typing.Any
                 ) -> CapacityCommitmentHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> CapacityCommitmentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListCapacityCommitmentsResponseHttpRequest: ...
                 def merge(
                     self,
                     *,
@@ -56,18 +44,25 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     body: MergeCapacityCommitmentsRequest = ...,
                     **kwargs: typing.Any
                 ) -> CapacityCommitmentHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: CapacityCommitment = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> CapacityCommitmentHttpRequest: ...
+                def split(
+                    self,
+                    *,
+                    name: str,
+                    body: SplitCapacityCommitmentRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SplitCapacityCommitmentResponseHttpRequest: ...
+            @typing.type_check_only
             class ReservationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class AssignmentsResource(googleapiclient.discovery.Resource):
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> EmptyHttpRequest: ...
-                    def move(
-                        self,
-                        *,
-                        name: str,
-                        body: MoveAssignmentRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> AssignmentHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -75,25 +70,24 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         body: Assignment = ...,
                         **kwargs: typing.Any
                     ) -> AssignmentHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        pageToken: str = ...,
                         pageSize: int = ...,
+                        pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListAssignmentsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> ReservationHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: Reservation = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> ReservationHttpRequest: ...
+                    def move(
+                        self,
+                        *,
+                        name: str,
+                        body: MoveAssignmentRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> AssignmentHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -102,18 +96,29 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     reservationId: str = ...,
                     **kwargs: typing.Any
                 ) -> ReservationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ReservationHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
                     filter: str = ...,
-                    pageToken: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListReservationsResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Reservation = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> ReservationHttpRequest: ...
                 def assignments(self) -> AssignmentsResource: ...
             def getBiReservation(
                 self, *, name: str, **kwargs: typing.Any
@@ -122,8 +127,8 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageToken: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 query: str = ...,
                 **kwargs: typing.Any
             ) -> SearchAssignmentsResponseHttpRequest: ...
@@ -140,52 +145,62 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class CapacityCommitmentHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CapacityCommitment: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class SplitCapacityCommitmentResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SplitCapacityCommitmentResponse: ...
-
-class ReservationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Reservation: ...
-
-class ListAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListAssignmentsResponse: ...
-
-class SearchAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SearchAssignmentsResponse: ...
-
+@typing.type_check_only
 class AssignmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Assignment: ...
 
+@typing.type_check_only
+class BiReservationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BiReservation: ...
+
+@typing.type_check_only
+class CapacityCommitmentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CapacityCommitment: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class ListAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListAssignmentsResponse: ...
+
+@typing.type_check_only
 class ListCapacityCommitmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListCapacityCommitmentsResponse: ...
 
+@typing.type_check_only
 class ListReservationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListReservationsResponse: ...
 
-class BiReservationHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ReservationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BiReservation: ...
+    ) -> Reservation: ...
+
+@typing.type_check_only
+class SearchAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SearchAssignmentsResponse: ...
+
+@typing.type_check_only
+class SplitCapacityCommitmentResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SplitCapacityCommitmentResponse: ...

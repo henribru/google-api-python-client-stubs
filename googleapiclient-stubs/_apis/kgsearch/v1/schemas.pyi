@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
-SearchResponse = typing_extensions.TypedDict(
-    "SearchResponse",
+AlternativeSearchResponse = typing_extensions.TypedDict(
+    "AlternativeSearchResponse",
     {
-        "@type": typing.Any,
         "@context": typing.Any,
+        "@type": typing.Any,
         "itemListElement": typing.List[typing.Any],
     },
     total=False,
 )
+@typing.type_check_only
+class SearchResponse(AlternativeSearchResponse): ...

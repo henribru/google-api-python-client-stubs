@@ -1,100 +1,89 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AuthorizedCertificate(typing_extensions.TypedDict, total=False):
+    certificateRawData: CertificateRawData
+    displayName: str
+    domainMappingsCount: int
+    domainNames: typing.List[str]
+    expireTime: str
+    id: str
+    managedCertificate: ManagedCertificate
+    name: str
+    visibleDomainMappings: typing.List[str]
 
-class CreateVersionMetadataV1Alpha(typing_extensions.TypedDict, total=False):
-    cloudBuildId: str
+@typing.type_check_only
+class AuthorizedDomain(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
 
-class SslSettings(typing_extensions.TypedDict, total=False):
-    isManagedCertificate: bool
-    certificateId: str
-
-class ListAuthorizedCertificatesResponse(typing_extensions.TypedDict, total=False):
-    certificates: typing.List[AuthorizedCertificate]
-    nextPageToken: str
-
-class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    domains: typing.List[AuthorizedDomain]
-
-class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
-    ephemeralMessage: str
-    insertTime: str
-    createVersionMetadata: CreateVersionMetadataV1Alpha
-    warning: typing.List[str]
-    target: str
-    user: str
-    endTime: str
-    method: str
-
+@typing.type_check_only
 class CertificateRawData(typing_extensions.TypedDict, total=False):
     privateKey: str
     publicCertificate: str
 
-class Status(typing_extensions.TypedDict, total=False):
-    message: str
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
-
-class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
-    createVersionMetadata: CreateVersionMetadataV1Beta
-    method: str
-    warning: typing.List[str]
-    ephemeralMessage: str
-    insertTime: str
-    target: str
-    endTime: str
-    user: str
-
-class ResourceRecord(typing_extensions.TypedDict, total=False):
-    name: str
-    rrdata: str
-    type: typing_extensions.Literal["A", "AAAA", "CNAME"]
-
-class OperationMetadataV1(typing_extensions.TypedDict, total=False):
-    insertTime: str
-    warning: typing.List[str]
-    createVersionMetadata: CreateVersionMetadataV1
-    user: str
-    method: str
-    target: str
-    ephemeralMessage: str
-    endTime: str
-
-class Operation(typing_extensions.TypedDict, total=False):
-    response: typing.Dict[str, typing.Any]
-    name: str
-    metadata: typing.Dict[str, typing.Any]
-    error: Status
-    done: bool
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
+@typing.type_check_only
 class CreateVersionMetadataV1(typing_extensions.TypedDict, total=False):
     cloudBuildId: str
 
-class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    domainMappings: typing.List[DomainMapping]
+@typing.type_check_only
+class CreateVersionMetadataV1Alpha(typing_extensions.TypedDict, total=False):
+    cloudBuildId: str
 
-class Location(typing_extensions.TypedDict, total=False):
-    displayName: str
-    locationId: str
+@typing.type_check_only
+class CreateVersionMetadataV1Beta(typing_extensions.TypedDict, total=False):
+    cloudBuildId: str
+
+@typing.type_check_only
+class DomainMapping(typing_extensions.TypedDict, total=False):
+    id: str
     name: str
-    labels: typing.Dict[str, typing.Any]
-    metadata: typing.Dict[str, typing.Any]
+    resourceRecords: typing.List[ResourceRecord]
+    sslSettings: SslSettings
 
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ListAuthorizedCertificatesResponse(typing_extensions.TypedDict, total=False):
+    certificates: typing.List[AuthorizedCertificate]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
+    domains: typing.List[AuthorizedDomain]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
+    domainMappings: typing.List[DomainMapping]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: typing.List[Operation]
 
-class CreateVersionMetadataV1Beta(typing_extensions.TypedDict, total=False):
-    cloudBuildId: str
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
 
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    locations: typing.List[Location]
+@typing.type_check_only
+class LocationMetadata(typing_extensions.TypedDict, total=False):
+    flexibleEnvironmentAvailable: bool
+    standardEnvironmentAvailable: bool
 
+@typing.type_check_only
 class ManagedCertificate(typing_extensions.TypedDict, total=False):
     lastRenewalTime: str
     status: typing_extensions.Literal[
@@ -108,27 +97,60 @@ class ManagedCertificate(typing_extensions.TypedDict, total=False):
         "FAILED_RETRYING_CAA_CHECKING",
     ]
 
-class AuthorizedCertificate(typing_extensions.TypedDict, total=False):
-    domainNames: typing.List[str]
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
     name: str
-    id: str
-    certificateRawData: CertificateRawData
-    domainMappingsCount: int
-    expireTime: str
-    visibleDomainMappings: typing.List[str]
-    managedCertificate: ManagedCertificate
-    displayName: str
+    response: typing.Dict[str, typing.Any]
 
-class LocationMetadata(typing_extensions.TypedDict, total=False):
-    standardEnvironmentAvailable: bool
-    flexibleEnvironmentAvailable: bool
+@typing.type_check_only
+class OperationMetadataV1(typing_extensions.TypedDict, total=False):
+    createVersionMetadata: CreateVersionMetadataV1
+    endTime: str
+    ephemeralMessage: str
+    insertTime: str
+    method: str
+    target: str
+    user: str
+    warning: typing.List[str]
 
-class DomainMapping(typing_extensions.TypedDict, total=False):
-    resourceRecords: typing.List[ResourceRecord]
+@typing.type_check_only
+class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
+    createVersionMetadata: CreateVersionMetadataV1Alpha
+    endTime: str
+    ephemeralMessage: str
+    insertTime: str
+    method: str
+    target: str
+    user: str
+    warning: typing.List[str]
+
+@typing.type_check_only
+class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
+    createVersionMetadata: CreateVersionMetadataV1Beta
+    endTime: str
+    ephemeralMessage: str
+    insertTime: str
+    method: str
+    target: str
+    user: str
+    warning: typing.List[str]
+
+@typing.type_check_only
+class ResourceRecord(typing_extensions.TypedDict, total=False):
     name: str
-    id: str
-    sslSettings: SslSettings
+    rrdata: str
+    type: typing_extensions.Literal["A", "AAAA", "CNAME"]
 
-class AuthorizedDomain(typing_extensions.TypedDict, total=False):
-    id: str
-    name: str
+@typing.type_check_only
+class SslSettings(typing_extensions.TypedDict, total=False):
+    certificateId: str
+    isManagedCertificate: bool
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str

@@ -1,67 +1,73 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
-    nextPageToken: str
+@typing.type_check_only
+class ExportInstanceRequest(typing_extensions.TypedDict, total=False):
+    outputConfig: OutputConfig
 
+@typing.type_check_only
 class FailoverInstanceRequest(typing_extensions.TypedDict, total=False):
     dataProtectionMode: typing_extensions.Literal[
         "DATA_PROTECTION_MODE_UNSPECIFIED", "LIMITED_DATA_LOSS", "FORCE_DATA_LOSS"
     ]
 
+@typing.type_check_only
+class GcsDestination(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
 class GcsSource(typing_extensions.TypedDict, total=False):
     uri: str
 
+@typing.type_check_only
 class GoogleCloudCommonOperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    statusDetail: str
-    endTime: str
-    target: str
-    createTime: str
-    verb: str
     cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
 
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    locations: typing.List[Location]
+@typing.type_check_only
+class GoogleCloudRedisV1beta1LocationMetadata(typing_extensions.TypedDict, total=False):
+    availableZones: typing.Dict[str, typing.Any]
 
-class ExportInstanceRequest(typing_extensions.TypedDict, total=False):
-    outputConfig: OutputConfig
+@typing.type_check_only
+class GoogleCloudRedisV1beta1ZoneMetadata(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
 class ImportInstanceRequest(typing_extensions.TypedDict, total=False):
     inputConfig: InputConfig
 
-class InstanceAuthString(typing_extensions.TypedDict, total=False):
-    authString: str
+@typing.type_check_only
+class InputConfig(typing_extensions.TypedDict, total=False):
+    gcsSource: GcsSource
 
-class GoogleCloudRedisV1beta1ZoneMetadata(typing_extensions.TypedDict, total=False): ...
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class Location(typing_extensions.TypedDict, total=False):
-    displayName: str
-    metadata: typing.Dict[str, typing.Any]
-    locationId: str
-    name: str
-    labels: typing.Dict[str, typing.Any]
-
-class Operation(typing_extensions.TypedDict, total=False):
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-    error: Status
-    done: bool
-    response: typing.Dict[str, typing.Any]
-
-class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
-    unreachable: typing.List[str]
-    nextPageToken: str
-
-class OutputConfig(typing_extensions.TypedDict, total=False):
-    gcsDestination: GcsDestination
-
+@typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    alternativeLocationId: str
+    authEnabled: bool
+    authorizedNetwork: str
+    connectMode: typing_extensions.Literal[
+        "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
+    ]
+    createTime: str
+    currentLocationId: str
+    displayName: str
+    host: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    memorySizeGb: int
+    name: str
+    persistenceIamIdentity: str
+    port: int
+    redisConfigs: typing.Dict[str, typing.Any]
+    redisVersion: str
+    reservedIpRange: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -73,41 +79,55 @@ class Instance(typing_extensions.TypedDict, total=False):
         "IMPORTING",
         "FAILING_OVER",
     ]
-    name: str
-    port: int
-    authorizedNetwork: str
-    locationId: str
-    displayName: str
-    connectMode: typing_extensions.Literal[
-        "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
-    ]
     statusMessage: str
-    memorySizeGb: int
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "BASIC", "STANDARD_HA"]
-    alternativeLocationId: str
-    redisConfigs: typing.Dict[str, typing.Any]
-    redisVersion: str
-    host: str
+
+@typing.type_check_only
+class InstanceAuthString(typing_extensions.TypedDict, total=False):
+    authString: str
+
+@typing.type_check_only
+class ListInstancesResponse(typing_extensions.TypedDict, total=False):
+    instances: typing.List[Instance]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
     labels: typing.Dict[str, typing.Any]
-    createTime: str
-    authEnabled: bool
-    persistenceIamIdentity: str
-    currentLocationId: str
-    reservedIpRange: str
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
 
-class GoogleCloudRedisV1beta1LocationMetadata(typing_extensions.TypedDict, total=False):
-    availableZones: typing.Dict[str, typing.Any]
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
 
-class InputConfig(typing_extensions.TypedDict, total=False):
-    gcsSource: GcsSource
+@typing.type_check_only
+class OutputConfig(typing_extensions.TypedDict, total=False):
+    gcsDestination: GcsDestination
 
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False):
     redisVersion: str
-
-class GcsDestination(typing_extensions.TypedDict, total=False):
-    uri: str
-
-class Status(typing_extensions.TypedDict, total=False):
-    message: str
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int

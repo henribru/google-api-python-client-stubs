@@ -7,39 +7,13 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class DataflowResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
-        class TemplatesResource(googleapiclient.discovery.Resource):
-            def create(
-                self,
-                *,
-                projectId: str,
-                body: CreateJobFromTemplateRequest = ...,
-                **kwargs: typing.Any
-            ) -> JobHttpRequest: ...
-            def launch(
-                self,
-                *,
-                projectId: str,
-                body: LaunchTemplateParameters = ...,
-                dynamicTemplate_gcsPath: str = ...,
-                location: str = ...,
-                validateOnly: bool = ...,
-                dynamicTemplate_stagingLocation: str = ...,
-                gcsPath: str = ...,
-                **kwargs: typing.Any
-            ) -> LaunchTemplateResponseHttpRequest: ...
-            def get(
-                self,
-                *,
-                projectId: str,
-                gcsPath: str = ...,
-                view: typing_extensions.Literal["METADATA_ONLY"] = ...,
-                location: str = ...,
-                **kwargs: typing.Any
-            ) -> GetTemplateResponseHttpRequest: ...
+        @typing.type_check_only
         class CatalogTemplatesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class TemplateVersionsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -48,26 +22,6 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     body: CreateTemplateVersionRequest = ...,
                     **kwargs: typing.Any
                 ) -> TemplateVersionHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> TemplateVersionHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def tag(
-                self,
-                *,
-                name: str,
-                body: ModifyTemplateVersionTagRequest = ...,
-                **kwargs: typing.Any
-            ) -> ModifyTemplateVersionTagResponseHttpRequest: ...
-            def label(
-                self,
-                *,
-                name: str,
-                body: ModifyTemplateVersionLabelRequest = ...,
-                **kwargs: typing.Any
-            ) -> ModifyTemplateVersionLabelResponseHttpRequest: ...
             def commit(
                 self,
                 *,
@@ -75,66 +29,196 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 body: CommitTemplateVersionRequest = ...,
                 **kwargs: typing.Any
             ) -> TemplateVersionHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> TemplateVersionHttpRequest: ...
+            def label(
+                self,
+                *,
+                name: str,
+                body: ModifyTemplateVersionLabelRequest = ...,
+                **kwargs: typing.Any
+            ) -> ModifyTemplateVersionLabelResponseHttpRequest: ...
+            def tag(
+                self,
+                *,
+                name: str,
+                body: ModifyTemplateVersionTagRequest = ...,
+                **kwargs: typing.Any
+            ) -> ModifyTemplateVersionTagResponseHttpRequest: ...
             def templateVersions(self) -> TemplateVersionsResource: ...
-        class LocationsResource(googleapiclient.discovery.Resource):
-            class SqlResource(googleapiclient.discovery.Resource):
-                def validate(
+        @typing.type_check_only
+        class JobsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DebugResource(googleapiclient.discovery.Resource):
+                def getConfig(
                     self,
                     *,
                     projectId: str,
-                    location: str,
-                    query: str = ...,
+                    jobId: str,
+                    body: GetDebugConfigRequest = ...,
                     **kwargs: typing.Any
-                ) -> ValidateResponseHttpRequest: ...
-            class SnapshotsResource(googleapiclient.discovery.Resource):
+                ) -> GetDebugConfigResponseHttpRequest: ...
+                def sendCapture(
+                    self,
+                    *,
+                    projectId: str,
+                    jobId: str,
+                    body: SendDebugCaptureRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SendDebugCaptureResponseHttpRequest: ...
+            @typing.type_check_only
+            class MessagesResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
                     *,
                     projectId: str,
-                    location: str,
-                    jobId: str = ...,
+                    jobId: str,
+                    endTime: str = ...,
+                    location: str = ...,
+                    minimumImportance: typing_extensions.Literal[
+                        "JOB_MESSAGE_IMPORTANCE_UNKNOWN",
+                        "JOB_MESSAGE_DEBUG",
+                        "JOB_MESSAGE_DETAILED",
+                        "JOB_MESSAGE_BASIC",
+                        "JOB_MESSAGE_WARNING",
+                        "JOB_MESSAGE_ERROR",
+                    ] = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    startTime: str = ...,
                     **kwargs: typing.Any
-                ) -> ListSnapshotsResponseHttpRequest: ...
-                def delete(
+                ) -> ListJobMessagesResponseHttpRequest: ...
+            @typing.type_check_only
+            class WorkItemsResource(googleapiclient.discovery.Resource):
+                def lease(
+                    self,
+                    *,
+                    projectId: str,
+                    jobId: str,
+                    body: LeaseWorkItemRequest = ...,
+                    **kwargs: typing.Any
+                ) -> LeaseWorkItemResponseHttpRequest: ...
+                def reportStatus(
+                    self,
+                    *,
+                    projectId: str,
+                    jobId: str,
+                    body: ReportWorkItemStatusRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ReportWorkItemStatusResponseHttpRequest: ...
+            def aggregated(
+                self,
+                *,
+                projectId: str,
+                filter: typing_extensions.Literal[
+                    "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
+                ] = ...,
+                location: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                view: typing_extensions.Literal[
+                    "JOB_VIEW_UNKNOWN",
+                    "JOB_VIEW_SUMMARY",
+                    "JOB_VIEW_ALL",
+                    "JOB_VIEW_DESCRIPTION",
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> ListJobsResponseHttpRequest: ...
+            def create(
+                self,
+                *,
+                projectId: str,
+                body: Job = ...,
+                location: str = ...,
+                replaceJobId: str = ...,
+                view: typing_extensions.Literal[
+                    "JOB_VIEW_UNKNOWN",
+                    "JOB_VIEW_SUMMARY",
+                    "JOB_VIEW_ALL",
+                    "JOB_VIEW_DESCRIPTION",
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> JobHttpRequest: ...
+            def get(
+                self,
+                *,
+                projectId: str,
+                jobId: str,
+                location: str = ...,
+                view: typing_extensions.Literal[
+                    "JOB_VIEW_UNKNOWN",
+                    "JOB_VIEW_SUMMARY",
+                    "JOB_VIEW_ALL",
+                    "JOB_VIEW_DESCRIPTION",
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> JobHttpRequest: ...
+            def getMetrics(
+                self,
+                *,
+                projectId: str,
+                jobId: str,
+                location: str = ...,
+                startTime: str = ...,
+                **kwargs: typing.Any
+            ) -> JobMetricsHttpRequest: ...
+            def list(
+                self,
+                *,
+                projectId: str,
+                filter: typing_extensions.Literal[
+                    "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
+                ] = ...,
+                location: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                view: typing_extensions.Literal[
+                    "JOB_VIEW_UNKNOWN",
+                    "JOB_VIEW_SUMMARY",
+                    "JOB_VIEW_ALL",
+                    "JOB_VIEW_DESCRIPTION",
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> ListJobsResponseHttpRequest: ...
+            def snapshot(
+                self,
+                *,
+                projectId: str,
+                jobId: str,
+                body: SnapshotJobRequest = ...,
+                **kwargs: typing.Any
+            ) -> SnapshotHttpRequest: ...
+            def update(
+                self,
+                *,
+                projectId: str,
+                jobId: str,
+                body: Job = ...,
+                location: str = ...,
+                **kwargs: typing.Any
+            ) -> JobHttpRequest: ...
+            def debug(self) -> DebugResource: ...
+            def messages(self) -> MessagesResource: ...
+            def workItems(self) -> WorkItemsResource: ...
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class FlexTemplatesResource(googleapiclient.discovery.Resource):
+                def launch(
                     self,
                     *,
                     projectId: str,
                     location: str,
-                    snapshotId: str,
+                    body: LaunchFlexTemplateRequest = ...,
                     **kwargs: typing.Any
-                ) -> DeleteSnapshotResponseHttpRequest: ...
-                def get(
-                    self,
-                    *,
-                    projectId: str,
-                    location: str,
-                    snapshotId: str,
-                    **kwargs: typing.Any
-                ) -> SnapshotHttpRequest: ...
+                ) -> LaunchFlexTemplateResponseHttpRequest: ...
+            @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
-                class SnapshotsResource(googleapiclient.discovery.Resource):
-                    def list(
-                        self,
-                        *,
-                        projectId: str,
-                        location: str,
-                        jobId: str,
-                        **kwargs: typing.Any
-                    ) -> ListSnapshotsResponseHttpRequest: ...
-                class StagesResource(googleapiclient.discovery.Resource):
-                    def getExecutionDetails(
-                        self,
-                        *,
-                        projectId: str,
-                        location: str,
-                        jobId: str,
-                        stageId: str,
-                        startTime: str = ...,
-                        pageToken: str = ...,
-                        endTime: str = ...,
-                        pageSize: int = ...,
-                        **kwargs: typing.Any
-                    ) -> StageExecutionDetailsHttpRequest: ...
+                @typing.type_check_only
                 class DebugResource(googleapiclient.discovery.Resource):
                     def getConfig(
                         self,
@@ -154,6 +238,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         body: SendDebugCaptureRequest = ...,
                         **kwargs: typing.Any
                     ) -> SendDebugCaptureResponseHttpRequest: ...
+                @typing.type_check_only
                 class MessagesResource(googleapiclient.discovery.Resource):
                     def list(
                         self,
@@ -161,8 +246,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         location: str,
                         jobId: str,
-                        pageToken: str = ...,
-                        pageSize: int = ...,
+                        endTime: str = ...,
                         minimumImportance: typing_extensions.Literal[
                             "JOB_MESSAGE_IMPORTANCE_UNKNOWN",
                             "JOB_MESSAGE_DEBUG",
@@ -171,10 +255,37 @@ class DataflowResource(googleapiclient.discovery.Resource):
                             "JOB_MESSAGE_WARNING",
                             "JOB_MESSAGE_ERROR",
                         ] = ...,
-                        endTime: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
                         startTime: str = ...,
                         **kwargs: typing.Any
                     ) -> ListJobMessagesResponseHttpRequest: ...
+                @typing.type_check_only
+                class SnapshotsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        projectId: str,
+                        location: str,
+                        jobId: str,
+                        **kwargs: typing.Any
+                    ) -> ListSnapshotsResponseHttpRequest: ...
+                @typing.type_check_only
+                class StagesResource(googleapiclient.discovery.Resource):
+                    def getExecutionDetails(
+                        self,
+                        *,
+                        projectId: str,
+                        location: str,
+                        jobId: str,
+                        stageId: str,
+                        endTime: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        startTime: str = ...,
+                        **kwargs: typing.Any
+                    ) -> StageExecutionDetailsHttpRequest: ...
+                @typing.type_check_only
                 class WorkItemsResource(googleapiclient.discovery.Resource):
                     def lease(
                         self,
@@ -194,29 +305,6 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         body: ReportWorkItemStatusRequest = ...,
                         **kwargs: typing.Any
                     ) -> ReportWorkItemStatusResponseHttpRequest: ...
-                def get(
-                    self,
-                    *,
-                    projectId: str,
-                    location: str,
-                    jobId: str,
-                    view: typing_extensions.Literal[
-                        "JOB_VIEW_UNKNOWN",
-                        "JOB_VIEW_SUMMARY",
-                        "JOB_VIEW_ALL",
-                        "JOB_VIEW_DESCRIPTION",
-                    ] = ...,
-                    **kwargs: typing.Any
-                ) -> JobHttpRequest: ...
-                def snapshot(
-                    self,
-                    *,
-                    projectId: str,
-                    location: str,
-                    jobId: str,
-                    body: SnapshotJobRequest = ...,
-                    **kwargs: typing.Any
-                ) -> SnapshotHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -232,15 +320,30 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
-                def update(
+                def get(
                     self,
                     *,
                     projectId: str,
                     location: str,
                     jobId: str,
-                    body: Job = ...,
+                    view: typing_extensions.Literal[
+                        "JOB_VIEW_UNKNOWN",
+                        "JOB_VIEW_SUMMARY",
+                        "JOB_VIEW_ALL",
+                        "JOB_VIEW_DESCRIPTION",
+                    ] = ...,
                     **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
+                def getExecutionDetails(
+                    self,
+                    *,
+                    projectId: str,
+                    location: str,
+                    jobId: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> JobExecutionDetailsHttpRequest: ...
                 def getMetrics(
                     self,
                     *,
@@ -250,16 +353,6 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     startTime: str = ...,
                     **kwargs: typing.Any
                 ) -> JobMetricsHttpRequest: ...
-                def getExecutionDetails(
-                    self,
-                    *,
-                    projectId: str,
-                    location: str,
-                    jobId: str,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> JobExecutionDetailsHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -268,8 +361,8 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     filter: typing_extensions.Literal[
                         "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
                     ] = ...,
-                    pageToken: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     view: typing_extensions.Literal[
                         "JOB_VIEW_UNKNOWN",
                         "JOB_VIEW_SUMMARY",
@@ -278,11 +371,66 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ListJobsResponseHttpRequest: ...
-                def snapshots(self) -> SnapshotsResource: ...
-                def stages(self) -> StagesResource: ...
+                def snapshot(
+                    self,
+                    *,
+                    projectId: str,
+                    location: str,
+                    jobId: str,
+                    body: SnapshotJobRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SnapshotHttpRequest: ...
+                def update(
+                    self,
+                    *,
+                    projectId: str,
+                    location: str,
+                    jobId: str,
+                    body: Job = ...,
+                    **kwargs: typing.Any
+                ) -> JobHttpRequest: ...
                 def debug(self) -> DebugResource: ...
                 def messages(self) -> MessagesResource: ...
+                def snapshots(self) -> SnapshotsResource: ...
+                def stages(self) -> StagesResource: ...
                 def workItems(self) -> WorkItemsResource: ...
+            @typing.type_check_only
+            class SnapshotsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self,
+                    *,
+                    projectId: str,
+                    location: str,
+                    snapshotId: str,
+                    **kwargs: typing.Any
+                ) -> DeleteSnapshotResponseHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    projectId: str,
+                    location: str,
+                    snapshotId: str,
+                    **kwargs: typing.Any
+                ) -> SnapshotHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    projectId: str,
+                    location: str,
+                    jobId: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSnapshotsResponseHttpRequest: ...
+            @typing.type_check_only
+            class SqlResource(googleapiclient.discovery.Resource):
+                def validate(
+                    self,
+                    *,
+                    projectId: str,
+                    location: str,
+                    query: str = ...,
+                    **kwargs: typing.Any
+                ) -> ValidateResponseHttpRequest: ...
+            @typing.type_check_only
             class TemplatesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -307,21 +455,12 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     body: LaunchTemplateParameters = ...,
+                    dynamicTemplate_gcsPath: str = ...,
                     dynamicTemplate_stagingLocation: str = ...,
                     gcsPath: str = ...,
-                    dynamicTemplate_gcsPath: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> LaunchTemplateResponseHttpRequest: ...
-            class FlexTemplatesResource(googleapiclient.discovery.Resource):
-                def launch(
-                    self,
-                    *,
-                    projectId: str,
-                    location: str,
-                    body: LaunchFlexTemplateRequest = ...,
-                    **kwargs: typing.Any
-                ) -> LaunchFlexTemplateResponseHttpRequest: ...
             def workerMessages(
                 self,
                 *,
@@ -330,170 +469,12 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 body: SendWorkerMessagesRequest = ...,
                 **kwargs: typing.Any
             ) -> SendWorkerMessagesResponseHttpRequest: ...
-            def sql(self) -> SqlResource: ...
-            def snapshots(self) -> SnapshotsResource: ...
-            def jobs(self) -> JobsResource: ...
-            def templates(self) -> TemplatesResource: ...
             def flexTemplates(self) -> FlexTemplatesResource: ...
-        class TemplateVersionsResource(googleapiclient.discovery.Resource):
-            def list(
-                self,
-                *,
-                parent: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                **kwargs: typing.Any
-            ) -> ListTemplateVersionsResponseHttpRequest: ...
-        class JobsResource(googleapiclient.discovery.Resource):
-            class MessagesResource(googleapiclient.discovery.Resource):
-                def list(
-                    self,
-                    *,
-                    projectId: str,
-                    jobId: str,
-                    location: str = ...,
-                    pageSize: int = ...,
-                    startTime: str = ...,
-                    pageToken: str = ...,
-                    endTime: str = ...,
-                    minimumImportance: typing_extensions.Literal[
-                        "JOB_MESSAGE_IMPORTANCE_UNKNOWN",
-                        "JOB_MESSAGE_DEBUG",
-                        "JOB_MESSAGE_DETAILED",
-                        "JOB_MESSAGE_BASIC",
-                        "JOB_MESSAGE_WARNING",
-                        "JOB_MESSAGE_ERROR",
-                    ] = ...,
-                    **kwargs: typing.Any
-                ) -> ListJobMessagesResponseHttpRequest: ...
-            class WorkItemsResource(googleapiclient.discovery.Resource):
-                def lease(
-                    self,
-                    *,
-                    projectId: str,
-                    jobId: str,
-                    body: LeaseWorkItemRequest = ...,
-                    **kwargs: typing.Any
-                ) -> LeaseWorkItemResponseHttpRequest: ...
-                def reportStatus(
-                    self,
-                    *,
-                    projectId: str,
-                    jobId: str,
-                    body: ReportWorkItemStatusRequest = ...,
-                    **kwargs: typing.Any
-                ) -> ReportWorkItemStatusResponseHttpRequest: ...
-            class DebugResource(googleapiclient.discovery.Resource):
-                def getConfig(
-                    self,
-                    *,
-                    projectId: str,
-                    jobId: str,
-                    body: GetDebugConfigRequest = ...,
-                    **kwargs: typing.Any
-                ) -> GetDebugConfigResponseHttpRequest: ...
-                def sendCapture(
-                    self,
-                    *,
-                    projectId: str,
-                    jobId: str,
-                    body: SendDebugCaptureRequest = ...,
-                    **kwargs: typing.Any
-                ) -> SendDebugCaptureResponseHttpRequest: ...
-            def snapshot(
-                self,
-                *,
-                projectId: str,
-                jobId: str,
-                body: SnapshotJobRequest = ...,
-                **kwargs: typing.Any
-            ) -> SnapshotHttpRequest: ...
-            def list(
-                self,
-                *,
-                projectId: str,
-                location: str = ...,
-                pageToken: str = ...,
-                filter: typing_extensions.Literal[
-                    "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
-                ] = ...,
-                pageSize: int = ...,
-                view: typing_extensions.Literal[
-                    "JOB_VIEW_UNKNOWN",
-                    "JOB_VIEW_SUMMARY",
-                    "JOB_VIEW_ALL",
-                    "JOB_VIEW_DESCRIPTION",
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> ListJobsResponseHttpRequest: ...
-            def create(
-                self,
-                *,
-                projectId: str,
-                body: Job = ...,
-                location: str = ...,
-                replaceJobId: str = ...,
-                view: typing_extensions.Literal[
-                    "JOB_VIEW_UNKNOWN",
-                    "JOB_VIEW_SUMMARY",
-                    "JOB_VIEW_ALL",
-                    "JOB_VIEW_DESCRIPTION",
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> JobHttpRequest: ...
-            def getMetrics(
-                self,
-                *,
-                projectId: str,
-                jobId: str,
-                startTime: str = ...,
-                location: str = ...,
-                **kwargs: typing.Any
-            ) -> JobMetricsHttpRequest: ...
-            def update(
-                self,
-                *,
-                projectId: str,
-                jobId: str,
-                body: Job = ...,
-                location: str = ...,
-                **kwargs: typing.Any
-            ) -> JobHttpRequest: ...
-            def aggregated(
-                self,
-                *,
-                projectId: str,
-                view: typing_extensions.Literal[
-                    "JOB_VIEW_UNKNOWN",
-                    "JOB_VIEW_SUMMARY",
-                    "JOB_VIEW_ALL",
-                    "JOB_VIEW_DESCRIPTION",
-                ] = ...,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                location: str = ...,
-                filter: typing_extensions.Literal[
-                    "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> ListJobsResponseHttpRequest: ...
-            def get(
-                self,
-                *,
-                projectId: str,
-                jobId: str,
-                location: str = ...,
-                view: typing_extensions.Literal[
-                    "JOB_VIEW_UNKNOWN",
-                    "JOB_VIEW_SUMMARY",
-                    "JOB_VIEW_ALL",
-                    "JOB_VIEW_DESCRIPTION",
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> JobHttpRequest: ...
-            def messages(self) -> MessagesResource: ...
-            def workItems(self) -> WorkItemsResource: ...
-            def debug(self) -> DebugResource: ...
+            def jobs(self) -> JobsResource: ...
+            def snapshots(self) -> SnapshotsResource: ...
+            def sql(self) -> SqlResource: ...
+            def templates(self) -> TemplatesResource: ...
+        @typing.type_check_only
         class SnapshotsResource(googleapiclient.discovery.Resource):
             def get(
                 self,
@@ -511,6 +492,54 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 location: str = ...,
                 **kwargs: typing.Any
             ) -> ListSnapshotsResponseHttpRequest: ...
+        @typing.type_check_only
+        class TemplateVersionsResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListTemplateVersionsResponseHttpRequest: ...
+        @typing.type_check_only
+        class TemplatesResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                projectId: str,
+                body: CreateJobFromTemplateRequest = ...,
+                **kwargs: typing.Any
+            ) -> JobHttpRequest: ...
+            def get(
+                self,
+                *,
+                projectId: str,
+                gcsPath: str = ...,
+                location: str = ...,
+                view: typing_extensions.Literal["METADATA_ONLY"] = ...,
+                **kwargs: typing.Any
+            ) -> GetTemplateResponseHttpRequest: ...
+            def launch(
+                self,
+                *,
+                projectId: str,
+                body: LaunchTemplateParameters = ...,
+                dynamicTemplate_gcsPath: str = ...,
+                dynamicTemplate_stagingLocation: str = ...,
+                gcsPath: str = ...,
+                location: str = ...,
+                validateOnly: bool = ...,
+                **kwargs: typing.Any
+            ) -> LaunchTemplateResponseHttpRequest: ...
+        def deleteSnapshots(
+            self,
+            *,
+            projectId: str,
+            location: str = ...,
+            snapshotId: str = ...,
+            **kwargs: typing.Any
+        ) -> DeleteSnapshotResponseHttpRequest: ...
         def workerMessages(
             self,
             *,
@@ -518,133 +547,148 @@ class DataflowResource(googleapiclient.discovery.Resource):
             body: SendWorkerMessagesRequest = ...,
             **kwargs: typing.Any
         ) -> SendWorkerMessagesResponseHttpRequest: ...
-        def deleteSnapshots(
-            self,
-            *,
-            projectId: str,
-            snapshotId: str = ...,
-            location: str = ...,
-            **kwargs: typing.Any
-        ) -> DeleteSnapshotResponseHttpRequest: ...
-        def templates(self) -> TemplatesResource: ...
         def catalogTemplates(self) -> CatalogTemplatesResource: ...
-        def locations(self) -> LocationsResource: ...
-        def templateVersions(self) -> TemplateVersionsResource: ...
         def jobs(self) -> JobsResource: ...
+        def locations(self) -> LocationsResource: ...
         def snapshots(self) -> SnapshotsResource: ...
+        def templateVersions(self) -> TemplateVersionsResource: ...
+        def templates(self) -> TemplatesResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class JobHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Job: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class ReportWorkItemStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ReportWorkItemStatusResponse: ...
-
-class SendWorkerMessagesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SendWorkerMessagesResponse: ...
-
-class ListJobMessagesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListJobMessagesResponse: ...
-
-class ValidateResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ValidateResponse: ...
-
-class GetDebugConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GetDebugConfigResponse: ...
-
-class LaunchTemplateResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> LaunchTemplateResponse: ...
-
-class JobMetricsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> JobMetrics: ...
-
-class TemplateVersionHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TemplateVersion: ...
-
+@typing.type_check_only
 class DeleteSnapshotResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> DeleteSnapshotResponse: ...
 
-class ListTemplateVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListTemplateVersionsResponse: ...
+    ) -> Empty: ...
 
-class LaunchFlexTemplateResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class GetDebugConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> LaunchFlexTemplateResponse: ...
+    ) -> GetDebugConfigResponse: ...
 
-class ModifyTemplateVersionLabelResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ModifyTemplateVersionLabelResponse: ...
-
-class ListSnapshotsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListSnapshotsResponse: ...
-
-class JobExecutionDetailsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> JobExecutionDetails: ...
-
+@typing.type_check_only
 class GetTemplateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GetTemplateResponse: ...
 
-class StageExecutionDetailsHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class JobHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> StageExecutionDetails: ...
+    ) -> Job: ...
 
+@typing.type_check_only
+class JobExecutionDetailsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> JobExecutionDetails: ...
+
+@typing.type_check_only
+class JobMetricsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> JobMetrics: ...
+
+@typing.type_check_only
+class LaunchFlexTemplateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> LaunchFlexTemplateResponse: ...
+
+@typing.type_check_only
+class LaunchTemplateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> LaunchTemplateResponse: ...
+
+@typing.type_check_only
 class LeaseWorkItemResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> LeaseWorkItemResponse: ...
 
-class SnapshotHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListJobMessagesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Snapshot: ...
+    ) -> ListJobMessagesResponse: ...
 
+@typing.type_check_only
 class ListJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListJobsResponse: ...
 
+@typing.type_check_only
+class ListSnapshotsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListSnapshotsResponse: ...
+
+@typing.type_check_only
+class ListTemplateVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListTemplateVersionsResponse: ...
+
+@typing.type_check_only
+class ModifyTemplateVersionLabelResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ModifyTemplateVersionLabelResponse: ...
+
+@typing.type_check_only
+class ModifyTemplateVersionTagResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ModifyTemplateVersionTagResponse: ...
+
+@typing.type_check_only
+class ReportWorkItemStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ReportWorkItemStatusResponse: ...
+
+@typing.type_check_only
 class SendDebugCaptureResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> SendDebugCaptureResponse: ...
 
-class ModifyTemplateVersionTagResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class SendWorkerMessagesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ModifyTemplateVersionTagResponse: ...
+    ) -> SendWorkerMessagesResponse: ...
+
+@typing.type_check_only
+class SnapshotHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Snapshot: ...
+
+@typing.type_check_only
+class StageExecutionDetailsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> StageExecutionDetails: ...
+
+@typing.type_check_only
+class TemplateVersionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TemplateVersion: ...
+
+@typing.type_check_only
+class ValidateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ValidateResponse: ...

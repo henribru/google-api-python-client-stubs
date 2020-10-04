@@ -1,32 +1,211 @@
 import typing
 
 import typing_extensions
-
-class CustomError(typing_extensions.TypedDict, total=False):
-    types: typing.List[str]
-    rules: typing.List[CustomErrorRule]
-
-class ListConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[QuotaOverride]
-    nextPageToken: str
-
-class Mixin(typing_extensions.TypedDict, total=False):
-    root: str
+@typing.type_check_only
+class AdminQuotaPolicy(typing_extensions.TypedDict, total=False):
+    container: str
+    dimensions: typing.Dict[str, typing.Any]
+    metric: str
     name: str
+    policyValue: str
+    unit: str
 
-class GetServiceIdentityResponse(typing_extensions.TypedDict, total=False):
-    identity: ServiceIdentity
-    state: typing_extensions.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
+@typing.type_check_only
+class Api(typing_extensions.TypedDict, total=False):
+    methods: typing.List[Method]
+    mixins: typing.List[Mixin]
+    name: str
+    options: typing.List[Option]
+    sourceContext: SourceContext
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+    version: str
 
+@typing.type_check_only
+class AuthProvider(typing_extensions.TypedDict, total=False):
+    audiences: str
+    authorizationUrl: str
+    id: str
+    issuer: str
+    jwksUri: str
+    jwtLocations: typing.List[JwtLocation]
+
+@typing.type_check_only
+class AuthRequirement(typing_extensions.TypedDict, total=False):
+    audiences: str
+    providerId: str
+
+@typing.type_check_only
+class Authentication(typing_extensions.TypedDict, total=False):
+    providers: typing.List[AuthProvider]
+    rules: typing.List[AuthenticationRule]
+
+@typing.type_check_only
 class AuthenticationRule(typing_extensions.TypedDict, total=False):
-    requirements: typing.List[AuthRequirement]
     allowWithoutCredential: bool
     oauth: OAuthRequirements
+    requirements: typing.List[AuthRequirement]
     selector: str
 
-class Field(typing_extensions.TypedDict, total=False):
-    packed: bool
+@typing.type_check_only
+class Backend(typing_extensions.TypedDict, total=False):
+    rules: typing.List[BackendRule]
+
+@typing.type_check_only
+class BackendRule(typing_extensions.TypedDict, total=False):
+    address: str
+    deadline: float
+    disableAuth: bool
+    jwtAudience: str
+    minDeadline: float
+    operationDeadline: float
+    pathTranslation: typing_extensions.Literal[
+        "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
+    ]
+    protocol: str
+    selector: str
+
+@typing.type_check_only
+class BatchCreateAdminOverridesResponse(typing_extensions.TypedDict, total=False):
+    overrides: typing.List[QuotaOverride]
+
+@typing.type_check_only
+class BatchCreateConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
+    overrides: typing.List[QuotaOverride]
+
+@typing.type_check_only
+class BatchEnableServicesRequest(typing_extensions.TypedDict, total=False):
+    serviceIds: typing.List[str]
+
+@typing.type_check_only
+class BatchEnableServicesResponse(typing_extensions.TypedDict, total=False):
+    failures: typing.List[EnableFailure]
+    services: typing.List[GoogleApiServiceusageV1Service]
+
+@typing.type_check_only
+class Billing(typing_extensions.TypedDict, total=False):
+    consumerDestinations: typing.List[BillingDestination]
+
+@typing.type_check_only
+class BillingDestination(typing_extensions.TypedDict, total=False):
+    metrics: typing.List[str]
+    monitoredResource: str
+
+@typing.type_check_only
+class ConsumerQuotaLimit(typing_extensions.TypedDict, total=False):
+    allowsAdminOverrides: bool
+    isPrecise: bool
+    metric: str
     name: str
+    quotaBuckets: typing.List[QuotaBucket]
+    unit: str
+
+@typing.type_check_only
+class ConsumerQuotaMetric(typing_extensions.TypedDict, total=False):
+    consumerQuotaLimits: typing.List[ConsumerQuotaLimit]
+    displayName: str
+    metric: str
+    name: str
+    unit: str
+
+@typing.type_check_only
+class Context(typing_extensions.TypedDict, total=False):
+    rules: typing.List[ContextRule]
+
+@typing.type_check_only
+class ContextRule(typing_extensions.TypedDict, total=False):
+    allowedRequestExtensions: typing.List[str]
+    allowedResponseExtensions: typing.List[str]
+    provided: typing.List[str]
+    requested: typing.List[str]
+    selector: str
+
+@typing.type_check_only
+class Control(typing_extensions.TypedDict, total=False):
+    environment: str
+
+@typing.type_check_only
+class CustomError(typing_extensions.TypedDict, total=False):
+    rules: typing.List[CustomErrorRule]
+    types: typing.List[str]
+
+@typing.type_check_only
+class CustomErrorRule(typing_extensions.TypedDict, total=False):
+    isErrorType: bool
+    selector: str
+
+@typing.type_check_only
+class CustomHttpPattern(typing_extensions.TypedDict, total=False):
+    kind: str
+    path: str
+
+@typing.type_check_only
+class DisableServiceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DisableServiceResponse(typing_extensions.TypedDict, total=False):
+    service: GoogleApiServiceusageV1Service
+
+@typing.type_check_only
+class Documentation(typing_extensions.TypedDict, total=False):
+    documentationRootUrl: str
+    overview: str
+    pages: typing.List[Page]
+    rules: typing.List[DocumentationRule]
+    serviceRootUrl: str
+    summary: str
+
+@typing.type_check_only
+class DocumentationRule(typing_extensions.TypedDict, total=False):
+    deprecationDescription: str
+    description: str
+    selector: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableFailure(typing_extensions.TypedDict, total=False):
+    errorMessage: str
+    serviceId: str
+
+@typing.type_check_only
+class EnableServiceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableServiceResponse(typing_extensions.TypedDict, total=False):
+    service: GoogleApiServiceusageV1Service
+
+@typing.type_check_only
+class Endpoint(typing_extensions.TypedDict, total=False):
+    aliases: typing.List[str]
+    allowCors: bool
+    name: str
+    target: str
+
+@typing.type_check_only
+class Enum(typing_extensions.TypedDict, total=False):
+    enumvalue: typing.List[EnumValue]
+    name: str
+    options: typing.List[Option]
+    sourceContext: SourceContext
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
+class EnumValue(typing_extensions.TypedDict, total=False):
+    name: str
+    number: int
+    options: typing.List[Option]
+
+@typing.type_check_only
+class Field(typing_extensions.TypedDict, total=False):
+    cardinality: typing_extensions.Literal[
+        "CARDINALITY_UNKNOWN",
+        "CARDINALITY_OPTIONAL",
+        "CARDINALITY_REQUIRED",
+        "CARDINALITY_REPEATED",
+    ]
+    defaultValue: str
+    jsonName: str
     kind: typing_extensions.Literal[
         "TYPE_UNKNOWN",
         "TYPE_DOUBLE",
@@ -48,451 +227,190 @@ class Field(typing_extensions.TypedDict, total=False):
         "TYPE_SINT32",
         "TYPE_SINT64",
     ]
-    cardinality: typing_extensions.Literal[
-        "CARDINALITY_UNKNOWN",
-        "CARDINALITY_OPTIONAL",
-        "CARDINALITY_REQUIRED",
-        "CARDINALITY_REPEATED",
-    ]
-    options: typing.List[Option]
-    oneofIndex: int
+    name: str
     number: int
-    defaultValue: str
+    oneofIndex: int
+    options: typing.List[Option]
+    packed: bool
     typeUrl: str
-    jsonName: str
 
-class DisableServiceResponse(typing_extensions.TypedDict, total=False):
-    service: GoogleApiServiceusageV1Service
+@typing.type_check_only
+class GetServiceIdentityResponse(typing_extensions.TypedDict, total=False):
+    identity: ServiceIdentity
+    state: typing_extensions.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
 
-class QuotaOverride(typing_extensions.TypedDict, total=False):
-    dimensions: typing.Dict[str, typing.Any]
-    overrideValue: str
-    name: str
-    adminOverrideAncestor: str
-    unit: str
-    metric: str
-
-class Enum(typing_extensions.TypedDict, total=False):
-    enumvalue: typing.List[EnumValue]
-    options: typing.List[Option]
-    name: str
-    sourceContext: SourceContext
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    services: typing.List[Service]
-
-class BatchEnableServicesRequest(typing_extensions.TypedDict, total=False):
-    serviceIds: typing.List[str]
-
-class Api(typing_extensions.TypedDict, total=False):
-    options: typing.List[Option]
-    mixins: typing.List[Mixin]
-    sourceContext: SourceContext
-    methods: typing.List[Method]
-    name: str
-    version: str
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-
-class BackendRule(typing_extensions.TypedDict, total=False):
-    operationDeadline: float
-    address: str
-    jwtAudience: str
-    pathTranslation: typing_extensions.Literal[
-        "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
-    ]
-    minDeadline: float
-    protocol: str
-    selector: str
-    disableAuth: bool
-    deadline: float
-
-class ImportConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[QuotaOverride]
-
-class CustomErrorRule(typing_extensions.TypedDict, total=False):
-    isErrorType: bool
-    selector: str
-
-class OverrideInlineSource(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[QuotaOverride]
-
-class SystemParameter(typing_extensions.TypedDict, total=False):
-    urlQueryParameter: str
-    httpHeader: str
-    name: str
-
-class Documentation(typing_extensions.TypedDict, total=False):
-    pages: typing.List[Page]
-    overview: str
-    documentationRootUrl: str
-    serviceRootUrl: str
-    rules: typing.List[DocumentationRule]
-    summary: str
-
-class EnableFailure(typing_extensions.TypedDict, total=False):
-    errorMessage: str
-    serviceId: str
-
-class ImportAdminOverridesResponse(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[QuotaOverride]
-
-class GoogleApiServiceusageV1ServiceConfig(typing_extensions.TypedDict, total=False):
-    name: str
-    authentication: Authentication
-    monitoring: Monitoring
-    apis: typing.List[Api]
-    title: str
-    usage: Usage
-    monitoredResources: typing.List[MonitoredResourceDescriptor]
-    documentation: Documentation
-    quota: Quota
-    endpoints: typing.List[Endpoint]
-
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    resourceNames: typing.List[str]
-
-class DisableServiceRequest(typing_extensions.TypedDict, total=False): ...
-
-class Context(typing_extensions.TypedDict, total=False):
-    rules: typing.List[ContextRule]
-
+@typing.type_check_only
 class GoogleApiService(typing_extensions.TypedDict, total=False):
     apis: typing.List[Api]
-    quota: Quota
-    producerProjectId: str
+    authentication: Authentication
+    backend: Backend
+    billing: Billing
+    configVersion: int
+    context: Context
+    control: Control
+    customError: CustomError
+    documentation: Documentation
+    endpoints: typing.List[Endpoint]
+    enums: typing.List[Enum]
+    http: Http
+    id: str
     logging: Logging
+    logs: typing.List[LogDescriptor]
+    metrics: typing.List[MetricDescriptor]
+    monitoredResources: typing.List[MonitoredResourceDescriptor]
+    monitoring: Monitoring
+    name: str
+    producerProjectId: str
+    quota: Quota
+    sourceInfo: SourceInfo
+    systemParameters: SystemParameters
+    systemTypes: typing.List[Type]
+    title: str
     types: typing.List[Type]
     usage: Usage
-    logs: typing.List[LogDescriptor]
-    endpoints: typing.List[Endpoint]
-    id: str
-    name: str
-    documentation: Documentation
-    control: Control
-    systemTypes: typing.List[Type]
-    authentication: Authentication
-    configVersion: int
-    monitoring: Monitoring
-    monitoredResources: typing.List[MonitoredResourceDescriptor]
-    context: Context
-    customError: CustomError
-    http: Http
-    metrics: typing.List[MetricDescriptor]
-    enums: typing.List[Enum]
-    systemParameters: SystemParameters
-    sourceInfo: SourceInfo
-    billing: Billing
-    backend: Backend
-    title: str
 
-class MetricRule(typing_extensions.TypedDict, total=False):
-    selector: str
-    metricCosts: typing.Dict[str, typing.Any]
-
-class EnableServiceRequest(typing_extensions.TypedDict, total=False): ...
-
-class JwtLocation(typing_extensions.TypedDict, total=False):
-    header: str
-    query: str
-    valuePrefix: str
-
-class Option(typing_extensions.TypedDict, total=False):
-    value: typing.Dict[str, typing.Any]
-    name: str
-
-class EnumValue(typing_extensions.TypedDict, total=False):
-    number: int
-    options: typing.List[Option]
-    name: str
-
-class ListAdminOverridesResponse(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[QuotaOverride]
-    nextPageToken: str
-
-class Control(typing_extensions.TypedDict, total=False):
-    environment: str
-
-class Http(typing.Dict[str, typing.Any]): ...
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class Billing(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[BillingDestination]
-
-class GoogleApiServiceusageV1beta1GetServiceIdentityResponse(
-    typing_extensions.TypedDict, total=False
-):
-    state: typing_extensions.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
-    identity: GoogleApiServiceusageV1beta1ServiceIdentity
-
-class ServiceConfig(typing_extensions.TypedDict, total=False):
-    monitoring: Monitoring
-    authentication: Authentication
-    apis: typing.List[Api]
-    endpoints: typing.List[Endpoint]
-    quota: Quota
-    name: str
-    title: str
-    usage: Usage
-    monitoredResources: typing.List[MonitoredResourceDescriptor]
-    documentation: Documentation
-
-class ImportAdminQuotaPoliciesResponse(typing_extensions.TypedDict, total=False):
-    policies: typing.List[AdminQuotaPolicy]
-
-class SystemParameterRule(typing_extensions.TypedDict, total=False):
-    selector: str
-    parameters: typing.List[SystemParameter]
-
-class Usage(typing_extensions.TypedDict, total=False):
-    producerNotificationChannel: str
-    serviceIdentity: GoogleApiServiceIdentity
-    rules: typing.List[UsageRule]
-    requirements: typing.List[str]
-
-class Monitoring(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[MonitoringDestination]
-    producerDestinations: typing.List[MonitoringDestination]
-
-class Endpoint(typing_extensions.TypedDict, total=False):
-    allowCors: bool
-    aliases: typing.List[str]
-    target: str
-    name: str
-
-class Status(typing_extensions.TypedDict, total=False):
-    code: int
-    message: str
-    details: typing.List[typing.Dict[str, typing.Any]]
-
-class Quota(typing_extensions.TypedDict, total=False):
-    metricRules: typing.List[MetricRule]
-    limits: typing.List[QuotaLimit]
-
-class AuthRequirement(typing_extensions.TypedDict, total=False):
-    audiences: str
-    providerId: str
-
-class ConsumerQuotaLimit(typing_extensions.TypedDict, total=False):
-    quotaBuckets: typing.List[QuotaBucket]
-    isPrecise: bool
-    name: str
-    unit: str
-    allowsAdminOverrides: bool
-    metric: str
-
-class ListConsumerQuotaMetricsResponse(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[ConsumerQuotaMetric]
-    nextPageToken: str
-
-class AuthProvider(typing_extensions.TypedDict, total=False):
-    jwksUri: str
-    id: str
-    issuer: str
-    authorizationUrl: str
-    audiences: str
-    jwtLocations: typing.List[JwtLocation]
-
-class GoogleApiServiceusageV1OperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    resourceNames: typing.List[str]
-
-class MonitoringDestination(typing_extensions.TypedDict, total=False):
-    monitoredResource: str
-    metrics: typing.List[str]
-
-class LogDescriptor(typing_extensions.TypedDict, total=False):
-    description: str
-    displayName: str
-    name: str
-    labels: typing.List[LabelDescriptor]
-
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: typing.List[Operation]
-
-class Logging(typing_extensions.TypedDict, total=False):
-    producerDestinations: typing.List[LoggingDestination]
-    consumerDestinations: typing.List[LoggingDestination]
-
-class BillingDestination(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[str]
-    monitoredResource: str
-
-class BatchCreateAdminOverridesResponse(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[QuotaOverride]
-
-class GoogleApiServiceusageV1beta1ServiceIdentity(
-    typing_extensions.TypedDict, total=False
-):
-    uniqueId: str
-    email: str
-
-class EnableServiceResponse(typing_extensions.TypedDict, total=False):
-    service: GoogleApiServiceusageV1Service
-
-class DocumentationRule(typing_extensions.TypedDict, total=False):
-    description: str
-    deprecationDescription: str
-    selector: str
-
-class LabelDescriptor(typing_extensions.TypedDict, total=False):
-    valueType: typing_extensions.Literal["STRING", "BOOL", "INT64"]
-    key: str
-    description: str
-
-class BatchEnableServicesResponse(typing_extensions.TypedDict, total=False):
-    services: typing.List[GoogleApiServiceusageV1Service]
-    failures: typing.List[EnableFailure]
-
-class AdminQuotaPolicy(typing_extensions.TypedDict, total=False):
-    name: str
-    unit: str
-    metric: str
-    policyValue: str
-    dimensions: typing.Dict[str, typing.Any]
-    container: str
-
-class SystemParameters(typing_extensions.TypedDict, total=False):
-    rules: typing.List[SystemParameterRule]
-
-class SourceInfo(typing_extensions.TypedDict, total=False):
-    sourceFiles: typing.List[typing.Dict[str, typing.Any]]
-
-class Authentication(typing_extensions.TypedDict, total=False):
-    providers: typing.List[AuthProvider]
-    rules: typing.List[AuthenticationRule]
-
-class Type(typing_extensions.TypedDict, total=False):
-    name: str
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-    sourceContext: SourceContext
-    options: typing.List[Option]
-    fields: typing.List[Field]
-    oneofs: typing.List[str]
-
-class BatchCreateConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[QuotaOverride]
-
-class HttpRule(typing.Dict[str, typing.Any]): ...
-
-class ServiceIdentity(typing_extensions.TypedDict, total=False):
-    email: str
-    uniqueId: str
-
-class Method(typing_extensions.TypedDict, total=False):
-    responseStreaming: bool
-    options: typing.List[Option]
-    requestTypeUrl: str
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-    name: str
-    responseTypeUrl: str
-    requestStreaming: bool
-
-class Operation(typing_extensions.TypedDict, total=False):
-    metadata: typing.Dict[str, typing.Any]
-    response: typing.Dict[str, typing.Any]
-    error: Status
-    name: str
-    done: bool
-
-class UsageRule(typing_extensions.TypedDict, total=False):
-    selector: str
-    allowUnregisteredCalls: bool
-    skipServiceControl: bool
-
-class ConsumerQuotaMetric(typing_extensions.TypedDict, total=False):
-    unit: str
-    name: str
-    consumerQuotaLimits: typing.List[ConsumerQuotaLimit]
-    displayName: str
-    metric: str
-
-class QuotaLimit(typing_extensions.TypedDict, total=False):
-    maxLimit: str
-    freeTier: str
-    description: str
-    displayName: str
-    metric: str
-    unit: str
-    duration: str
-    defaultLimit: str
-    name: str
-    values: typing.Dict[str, typing.Any]
-
-class Service(typing.Dict[str, typing.Any]): ...
-class GoogleApiServiceusageV1Service(typing.Dict[str, typing.Any]): ...
-
-class CustomHttpPattern(typing_extensions.TypedDict, total=False):
-    kind: str
-    path: str
-
-class LoggingDestination(typing_extensions.TypedDict, total=False):
-    monitoredResource: str
-    logs: typing.List[str]
-
-class OAuthRequirements(typing_extensions.TypedDict, total=False):
-    canonicalScopes: str
-
-class Backend(typing_extensions.TypedDict, total=False):
-    rules: typing.List[BackendRule]
-
-class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
-    samplePeriod: str
-    launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED",
-        "UNIMPLEMENTED",
-        "PRELAUNCH",
-        "EARLY_ACCESS",
-        "ALPHA",
-        "BETA",
-        "GA",
-        "DEPRECATED",
-    ]
-    ingestDelay: str
-
-class ContextRule(typing_extensions.TypedDict, total=False):
-    allowedRequestExtensions: typing.List[str]
-    selector: str
-    requested: typing.List[str]
-    provided: typing.List[str]
-    allowedResponseExtensions: typing.List[str]
-
-class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
-    name: str
-    launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED",
-        "UNIMPLEMENTED",
-        "PRELAUNCH",
-        "EARLY_ACCESS",
-        "ALPHA",
-        "BETA",
-        "GA",
-        "DEPRECATED",
-    ]
-    type: str
-    description: str
-    labels: typing.List[LabelDescriptor]
-    displayName: str
-
-class Page(typing.Dict[str, typing.Any]): ...
-
+@typing.type_check_only
 class GoogleApiServiceIdentity(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     serviceAccountParent: str
 
-class QuotaBucket(typing_extensions.TypedDict, total=False):
-    effectiveLimit: str
-    adminOverride: QuotaOverride
-    dimensions: typing.Dict[str, typing.Any]
-    producerOverride: QuotaOverride
-    defaultLimit: str
-    consumerOverride: QuotaOverride
+@typing.type_check_only
+class GoogleApiServiceusageV1OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    resourceNames: typing.List[str]
 
+@typing.type_check_only
+class GoogleApiServiceusageV1Service(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleApiServiceusageV1ServiceConfig(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleApiServiceusageV1beta1GetServiceIdentityResponse(
+    typing_extensions.TypedDict, total=False
+):
+    identity: GoogleApiServiceusageV1beta1ServiceIdentity
+    state: typing_extensions.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
+
+@typing.type_check_only
+class GoogleApiServiceusageV1beta1ServiceIdentity(
+    typing_extensions.TypedDict, total=False
+):
+    email: str
+    uniqueId: str
+
+@typing.type_check_only
+class Http(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class HttpRule(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class ImportAdminOverridesResponse(typing_extensions.TypedDict, total=False):
+    overrides: typing.List[QuotaOverride]
+
+@typing.type_check_only
+class ImportAdminQuotaPoliciesResponse(typing_extensions.TypedDict, total=False):
+    policies: typing.List[AdminQuotaPolicy]
+
+@typing.type_check_only
+class ImportConsumerOverridesRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+    inlineSource: OverrideInlineSource
+
+@typing.type_check_only
+class ImportConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
+    overrides: typing.List[QuotaOverride]
+
+@typing.type_check_only
+class JwtLocation(typing_extensions.TypedDict, total=False):
+    header: str
+    query: str
+    valuePrefix: str
+
+@typing.type_check_only
+class LabelDescriptor(typing_extensions.TypedDict, total=False):
+    description: str
+    key: str
+    valueType: typing_extensions.Literal["STRING", "BOOL", "INT64"]
+
+@typing.type_check_only
+class ListAdminOverridesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    overrides: typing.List[QuotaOverride]
+
+@typing.type_check_only
+class ListConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    overrides: typing.List[QuotaOverride]
+
+@typing.type_check_only
+class ListConsumerQuotaMetricsResponse(typing_extensions.TypedDict, total=False):
+    metrics: typing.List[ConsumerQuotaMetric]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class ListServicesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    services: typing.List[Service]
+
+@typing.type_check_only
+class LogDescriptor(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    labels: typing.List[LabelDescriptor]
+    name: str
+
+@typing.type_check_only
+class Logging(typing_extensions.TypedDict, total=False):
+    consumerDestinations: typing.List[LoggingDestination]
+    producerDestinations: typing.List[LoggingDestination]
+
+@typing.type_check_only
+class LoggingDestination(typing_extensions.TypedDict, total=False):
+    logs: typing.List[str]
+    monitoredResource: str
+
+@typing.type_check_only
+class Method(typing_extensions.TypedDict, total=False):
+    name: str
+    options: typing.List[Option]
+    requestStreaming: bool
+    requestTypeUrl: str
+    responseStreaming: bool
+    responseTypeUrl: str
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    labels: typing.List[LabelDescriptor]
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+    ]
+    metadata: MetricDescriptorMetadata
+    metricKind: typing_extensions.Literal[
+        "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
+    ]
+    monitoredResourceTypes: typing.List[str]
+    name: str
+    type: str
+    unit: str
     valueType: typing_extensions.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "BOOL",
@@ -502,8 +420,10 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "DISTRIBUTION",
         "MONEY",
     ]
-    monitoredResourceTypes: typing.List[str]
-    name: str
+
+@typing.type_check_only
+class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
+    ingestDelay: str
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -514,19 +434,168 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "GA",
         "DEPRECATED",
     ]
-    description: str
-    type: str
-    metricKind: typing_extensions.Literal[
-        "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
-    ]
-    metadata: MetricDescriptorMetadata
-    labels: typing.List[LabelDescriptor]
-    unit: str
-    displayName: str
+    samplePeriod: str
 
+@typing.type_check_only
+class MetricRule(typing_extensions.TypedDict, total=False):
+    metricCosts: typing.Dict[str, typing.Any]
+    selector: str
+
+@typing.type_check_only
+class Mixin(typing_extensions.TypedDict, total=False):
+    name: str
+    root: str
+
+@typing.type_check_only
+class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    labels: typing.List[LabelDescriptor]
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+    ]
+    name: str
+    type: str
+
+@typing.type_check_only
+class Monitoring(typing_extensions.TypedDict, total=False):
+    consumerDestinations: typing.List[MonitoringDestination]
+    producerDestinations: typing.List[MonitoringDestination]
+
+@typing.type_check_only
+class MonitoringDestination(typing_extensions.TypedDict, total=False):
+    metrics: typing.List[str]
+    monitoredResource: str
+
+@typing.type_check_only
+class OAuthRequirements(typing_extensions.TypedDict, total=False):
+    canonicalScopes: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    resourceNames: typing.List[str]
+
+@typing.type_check_only
+class Option(typing_extensions.TypedDict, total=False):
+    name: str
+    value: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OverrideInlineSource(typing_extensions.TypedDict, total=False):
+    overrides: typing.List[QuotaOverride]
+
+@typing.type_check_only
+class Page(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class Quota(typing_extensions.TypedDict, total=False):
+    limits: typing.List[QuotaLimit]
+    metricRules: typing.List[MetricRule]
+
+@typing.type_check_only
+class QuotaBucket(typing_extensions.TypedDict, total=False):
+    adminOverride: QuotaOverride
+    consumerOverride: QuotaOverride
+    defaultLimit: str
+    dimensions: typing.Dict[str, typing.Any]
+    effectiveLimit: str
+    producerOverride: QuotaOverride
+
+@typing.type_check_only
+class QuotaLimit(typing_extensions.TypedDict, total=False):
+    defaultLimit: str
+    description: str
+    displayName: str
+    duration: str
+    freeTier: str
+    maxLimit: str
+    metric: str
+    name: str
+    unit: str
+    values: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class QuotaOverride(typing_extensions.TypedDict, total=False):
+    adminOverrideAncestor: str
+    dimensions: typing.Dict[str, typing.Any]
+    metric: str
+    name: str
+    overrideValue: str
+    unit: str
+
+@typing.type_check_only
+class Service(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class ServiceConfig(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class ServiceIdentity(typing_extensions.TypedDict, total=False):
+    email: str
+    uniqueId: str
+
+@typing.type_check_only
 class SourceContext(typing_extensions.TypedDict, total=False):
     fileName: str
 
-class ImportConsumerOverridesRequest(typing_extensions.TypedDict, total=False):
-    inlineSource: OverrideInlineSource
-    force: bool
+@typing.type_check_only
+class SourceInfo(typing_extensions.TypedDict, total=False):
+    sourceFiles: typing.List[typing.Dict[str, typing.Any]]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class SystemParameter(typing_extensions.TypedDict, total=False):
+    httpHeader: str
+    name: str
+    urlQueryParameter: str
+
+@typing.type_check_only
+class SystemParameterRule(typing_extensions.TypedDict, total=False):
+    parameters: typing.List[SystemParameter]
+    selector: str
+
+@typing.type_check_only
+class SystemParameters(typing_extensions.TypedDict, total=False):
+    rules: typing.List[SystemParameterRule]
+
+@typing.type_check_only
+class Type(typing_extensions.TypedDict, total=False):
+    fields: typing.List[Field]
+    name: str
+    oneofs: typing.List[str]
+    options: typing.List[Option]
+    sourceContext: SourceContext
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
+class Usage(typing_extensions.TypedDict, total=False):
+    producerNotificationChannel: str
+    requirements: typing.List[str]
+    rules: typing.List[UsageRule]
+    serviceIdentity: GoogleApiServiceIdentity
+
+@typing.type_check_only
+class UsageRule(typing_extensions.TypedDict, total=False):
+    allowUnregisteredCalls: bool
+    selector: str
+    skipServiceControl: bool

@@ -7,18 +7,16 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class GameServicesResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class GameServerDeploymentsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class ConfigsResource(googleapiclient.discovery.Resource):
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GameServerConfigHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> OperationHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -27,26 +25,22 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         configId: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GameServerConfigHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        pageToken: str = ...,
                         filter: str = ...,
-                        pageSize: int = ...,
                         orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListGameServerConfigsResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -55,53 +49,8 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     deploymentId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    orderBy: str = ...,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListGameServerDeploymentsResponseHttpRequest: ...
-                def previewRollout(
-                    self,
-                    *,
-                    name: str,
-                    body: GameServerDeploymentRollout = ...,
-                    updateMask: str = ...,
-                    previewTime: str = ...,
-                    **kwargs: typing.Any
-                ) -> PreviewGameServerDeploymentRolloutResponseHttpRequest: ...
-                def getRollout(
+                def delete(
                     self, *, name: str, **kwargs: typing.Any
-                ) -> GameServerDeploymentRolloutHttpRequest: ...
-                def updateRollout(
-                    self,
-                    *,
-                    name: str,
-                    body: GameServerDeploymentRollout = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GameServerDeploymentHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GameServerDeployment = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def fetchDeploymentState(
                     self,
@@ -110,6 +59,9 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     body: FetchDeploymentStateRequest = ...,
                     **kwargs: typing.Any
                 ) -> FetchDeploymentStateResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GameServerDeploymentHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -117,7 +69,60 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def getRollout(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GameServerDeploymentRolloutHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListGameServerDeploymentsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GameServerDeployment = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def previewRollout(
+                    self,
+                    *,
+                    name: str,
+                    body: GameServerDeploymentRollout = ...,
+                    previewTime: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> PreviewGameServerDeploymentRolloutResponseHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+                def updateRollout(
+                    self,
+                    *,
+                    name: str,
+                    body: GameServerDeploymentRollout = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def configs(self) -> ConfigsResource: ...
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -126,6 +131,12 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     body: CancelOperationRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -135,43 +146,10 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
+            @typing.type_check_only
             class RealmsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class GameServerClustersResource(googleapiclient.discovery.Resource):
-                    def previewCreate(
-                        self,
-                        *,
-                        parent: str,
-                        body: GameServerCluster = ...,
-                        gameServerClusterId: str = ...,
-                        previewTime: str = ...,
-                        **kwargs: typing.Any
-                    ) -> PreviewCreateGameServerClusterResponseHttpRequest: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GameServerCluster = ...,
-                        updateMask: str = ...,
-                        **kwargs: typing.Any
-                    ) -> OperationHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> OperationHttpRequest: ...
-                    def previewUpdate(
-                        self,
-                        *,
-                        name: str,
-                        body: GameServerCluster = ...,
-                        previewTime: str = ...,
-                        updateMask: str = ...,
-                        **kwargs: typing.Any
-                    ) -> PreviewUpdateGameServerClusterResponseHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -180,9 +158,12 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         gameServerClusterId: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
-                    def previewDelete(
-                        self, *, name: str, previewTime: str = ..., **kwargs: typing.Any
-                    ) -> PreviewDeleteGameServerClusterResponseHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GameServerClusterHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -193,9 +174,67 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListGameServerClustersResponseHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GameServerClusterHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GameServerCluster = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def previewCreate(
+                        self,
+                        *,
+                        parent: str,
+                        body: GameServerCluster = ...,
+                        gameServerClusterId: str = ...,
+                        previewTime: str = ...,
+                        **kwargs: typing.Any
+                    ) -> PreviewCreateGameServerClusterResponseHttpRequest: ...
+                    def previewDelete(
+                        self, *, name: str, previewTime: str = ..., **kwargs: typing.Any
+                    ) -> PreviewDeleteGameServerClusterResponseHttpRequest: ...
+                    def previewUpdate(
+                        self,
+                        *,
+                        name: str,
+                        body: GameServerCluster = ...,
+                        previewTime: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> PreviewUpdateGameServerClusterResponseHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Realm = ...,
+                    realmId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RealmHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListRealmsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Realm = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def previewUpdate(
                     self,
                     *,
@@ -205,75 +244,117 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> PreviewRealmUpdateResponseHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: Realm = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: Realm = ...,
-                    realmId: str = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> RealmHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    orderBy: str = ...,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListRealmsResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
                 def gameServerClusters(self) -> GameServerClustersResource: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> LocationHttpRequest: ...
             def list(
                 self,
                 *,
                 name: str,
                 filter: str = ...,
-                pageSize: int = ...,
                 includeUnrevealedLocations: bool = ...,
+                pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> LocationHttpRequest: ...
             def gameServerDeployments(self) -> GameServerDeploymentsResource: ...
             def operations(self) -> OperationsResource: ...
             def realms(self) -> RealmsResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class GameServerConfigHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GameServerConfig: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class PreviewDeleteGameServerClusterResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
+@typing.type_check_only
+class FetchDeploymentStateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PreviewDeleteGameServerClusterResponse: ...
+    ) -> FetchDeploymentStateResponse: ...
 
+@typing.type_check_only
+class GameServerClusterHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GameServerCluster: ...
+
+@typing.type_check_only
+class GameServerConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GameServerConfig: ...
+
+@typing.type_check_only
+class GameServerDeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GameServerDeployment: ...
+
+@typing.type_check_only
+class GameServerDeploymentRolloutHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GameServerDeploymentRollout: ...
+
+@typing.type_check_only
+class ListGameServerClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListGameServerClustersResponse: ...
+
+@typing.type_check_only
+class ListGameServerConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListGameServerConfigsResponse: ...
+
+@typing.type_check_only
+class ListGameServerDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListGameServerDeploymentsResponse: ...
+
+@typing.type_check_only
+class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListRealmsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListRealmsResponse: ...
+
+@typing.type_check_only
+class LocationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Location: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
 class PreviewCreateGameServerClusterResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -281,38 +362,15 @@ class PreviewCreateGameServerClusterResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> PreviewCreateGameServerClusterResponse: ...
 
-class PreviewUpdateGameServerClusterResponseHttpRequest(
+@typing.type_check_only
+class PreviewDeleteGameServerClusterResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PreviewUpdateGameServerClusterResponse: ...
+    ) -> PreviewDeleteGameServerClusterResponse: ...
 
-class ListRealmsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListRealmsResponse: ...
-
-class RealmHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Realm: ...
-
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
-class ListGameServerClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListGameServerClustersResponse: ...
-
-class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListLocationsResponse: ...
-
+@typing.type_check_only
 class PreviewGameServerDeploymentRolloutResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -320,57 +378,28 @@ class PreviewGameServerDeploymentRolloutResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> PreviewGameServerDeploymentRolloutResponse: ...
 
-class LocationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Location: ...
-
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListOperationsResponse: ...
-
-class ListGameServerConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListGameServerConfigsResponse: ...
-
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
-
-class ListGameServerDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListGameServerDeploymentsResponse: ...
-
-class GameServerDeploymentHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GameServerDeployment: ...
-
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
-
-class GameServerDeploymentRolloutHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GameServerDeploymentRollout: ...
-
-class FetchDeploymentStateResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> FetchDeploymentStateResponse: ...
-
-class GameServerClusterHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GameServerCluster: ...
-
+@typing.type_check_only
 class PreviewRealmUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> PreviewRealmUpdateResponse: ...
+
+@typing.type_check_only
+class PreviewUpdateGameServerClusterResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PreviewUpdateGameServerClusterResponse: ...
+
+@typing.type_check_only
+class RealmHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Realm: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...

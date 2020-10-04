@@ -1,56 +1,131 @@
 import typing
 
 import typing_extensions
-
-class NetworkInfo(typing_extensions.TypedDict, total=False):
-    displayName: str
-    matchedIpRange: str
-    uri: str
-
-class LoadBalancerInfo(typing_extensions.TypedDict, total=False):
-    backendType: typing_extensions.Literal[
-        "BACKEND_TYPE_UNSPECIFIED", "BACKEND_SERVICE", "TARGET_POOL"
+@typing.type_check_only
+class AbortInfo(typing_extensions.TypedDict, total=False):
+    cause: typing_extensions.Literal[
+        "CAUSE_UNSPECIFIED",
+        "UNKNOWN_NETWORK",
+        "UNKNOWN_IP",
+        "UNKNOWN_PROJECT",
+        "PERMISSION_DENIED",
+        "NO_SOURCE_LOCATION",
+        "INVALID_ARGUMENT",
+        "NO_EXTERNAL_IP",
+        "UNINTENDED_DESTINATION",
+        "TRACE_TOO_LONG",
+        "INTERNAL_ERROR",
     ]
-    healthCheckUri: str
-    backends: typing.List[LoadBalancerBackend]
-    loadBalancerType: typing_extensions.Literal[
-        "LOAD_BALANCER_TYPE_UNSPECIFIED",
-        "INTERNAL_TCP_UDP",
-        "NETWORK_TCP_UDP",
-        "HTTP_PROXY",
-        "TCP_PROXY",
-        "SSL_PROXY",
-    ]
-    backendUri: str
+    resourceUri: str
 
+@typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: typing.List[AuditLogConfig]
+    service: str
+
+@typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
     exemptedMembers: typing.List[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
-class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
-    healthCheckAllowingFirewallRules: typing.List[str]
-    healthCheckBlockingFirewallRules: typing.List[str]
-    uri: str
-    displayName: str
-    healthCheckFirewallState: typing_extensions.Literal[
-        "HEALTH_CHECK_FIREWALL_STATE_UNSPECIFIED", "CONFIGURED", "MISCONFIGURED"
-    ]
-
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    service: str
-    auditLogConfigs: typing.List[AuditLogConfig]
-
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    role: str
     members: typing.List[str]
+    role: str
 
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
-    nextPageToken: str
+@typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class ConnectivityTest(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    destination: Endpoint
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    protocol: str
+    reachabilityDetails: ReachabilityDetails
+    relatedProjects: typing.List[str]
+    source: Endpoint
+    updateTime: str
+
+@typing.type_check_only
+class DeliverInfo(typing_extensions.TypedDict, total=False):
+    resourceUri: str
+    target: typing_extensions.Literal[
+        "TARGET_UNSPECIFIED", "INSTANCE", "INTERNET", "GOOGLE_API"
+    ]
+
+@typing.type_check_only
+class DropInfo(typing_extensions.TypedDict, total=False):
+    cause: typing_extensions.Literal[
+        "CAUSE_UNSPECIFIED",
+        "UNKNOWN_EXTERNAL_ADDRESS",
+        "FOREIGN_IP_DISALLOWED",
+        "FIREWALL_RULE",
+        "NO_ROUTE",
+        "ROUTE_BLACKHOLE",
+        "ROUTE_WRONG_NETWORK",
+        "PRIVATE_TRAFFIC_TO_INTERNET",
+        "PRIVATE_GOOGLE_ACCESS_DISALLOWED",
+        "NO_EXTERNAL_ADDRESS",
+        "UNKNOWN_INTERNAL_ADDRESS",
+        "FORWARDING_RULE_MISMATCH",
+        "FORWARDING_RULE_NO_INSTANCES",
+        "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
+        "INSTANCE_NOT_RUNNING",
+        "TRAFFIC_TYPE_BLOCKED",
+        "GKE_MASTER_UNAUTHORIZED_ACCESS",
+    ]
+    resourceUri: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Endpoint(typing_extensions.TypedDict, total=False):
+    instance: str
+    ipAddress: str
+    network: str
+    networkType: typing_extensions.Literal[
+        "NETWORK_TYPE_UNSPECIFIED", "GCP_NETWORK", "NON_GCP_NETWORK"
+    ]
+    port: int
+    projectId: str
+
+@typing.type_check_only
+class EndpointInfo(typing_extensions.TypedDict, total=False):
+    destinationIp: str
+    destinationNetworkUri: str
+    destinationPort: int
+    protocol: str
+    sourceIp: str
+    sourceNetworkUri: str
+    sourcePort: int
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class FirewallInfo(typing_extensions.TypedDict, total=False):
+    action: str
+    direction: str
+    displayName: str
+    networkUri: str
+    priority: int
+    targetServiceAccounts: typing.List[str]
+    targetTags: typing.List[str]
+    uri: str
+
+@typing.type_check_only
 class ForwardInfo(typing_extensions.TypedDict, total=False):
     resourceUri: str
     target: typing_extensions.Literal[
@@ -62,86 +137,180 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
         "IMPORTED_CUSTOM_ROUTE_NEXT_HOP",
     ]
 
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class VpnTunnelInfo(typing_extensions.TypedDict, total=False):
-    networkUri: str
-    sourceGatewayIp: str
-    remoteGateway: str
+@typing.type_check_only
+class ForwardingRuleInfo(typing_extensions.TypedDict, total=False):
     displayName: str
-    region: str
-    routingType: typing_extensions.Literal[
-        "ROUTING_TYPE_UNSPECIFIED", "ROUTE_BASED", "POLICY_BASED", "DYNAMIC"
-    ]
-    sourceGateway: str
+    matchedPortRange: str
+    matchedProtocol: str
+    networkUri: str
+    target: str
     uri: str
-    remoteGatewayIp: str
+    vip: str
 
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
+@typing.type_check_only
+class InstanceInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    externalIp: str
+    interface: str
+    internalIp: str
+    networkTags: typing.List[str]
+    networkUri: str
+    serviceAccount: str
+    uri: str
+
+@typing.type_check_only
+class ListConnectivityTestsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resources: typing.List[ConnectivityTest]
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
     nextPageToken: str
 
-class Operation(typing_extensions.TypedDict, total=False):
-    name: str
-    error: Status
-    response: typing.Dict[str, typing.Any]
-    done: bool
-    metadata: typing.Dict[str, typing.Any]
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
 
+@typing.type_check_only
+class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
+    displayName: str
+    healthCheckAllowingFirewallRules: typing.List[str]
+    healthCheckBlockingFirewallRules: typing.List[str]
+    healthCheckFirewallState: typing_extensions.Literal[
+        "HEALTH_CHECK_FIREWALL_STATE_UNSPECIFIED", "CONFIGURED", "MISCONFIGURED"
+    ]
+    uri: str
+
+@typing.type_check_only
+class LoadBalancerInfo(typing_extensions.TypedDict, total=False):
+    backendType: typing_extensions.Literal[
+        "BACKEND_TYPE_UNSPECIFIED", "BACKEND_SERVICE", "TARGET_POOL"
+    ]
+    backendUri: str
+    backends: typing.List[LoadBalancerBackend]
+    healthCheckUri: str
+    loadBalancerType: typing_extensions.Literal[
+        "LOAD_BALANCER_TYPE_UNSPECIFIED",
+        "INTERNAL_TCP_UDP",
+        "NETWORK_TCP_UDP",
+        "HTTP_PROXY",
+        "TCP_PROXY",
+        "SSL_PROXY",
+    ]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class NetworkInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    matchedIpRange: str
+    uri: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class ReachabilityDetails(typing_extensions.TypedDict, total=False):
+    error: Status
+    result: typing_extensions.Literal[
+        "RESULT_UNSPECIFIED", "REACHABLE", "UNREACHABLE", "AMBIGUOUS", "UNDETERMINED"
+    ]
+    traces: typing.List[Trace]
+    verifyTime: str
+
+@typing.type_check_only
+class RerunConnectivityTestRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RouteInfo(typing_extensions.TypedDict, total=False):
+    destIpRange: str
+    displayName: str
+    instanceTags: typing.List[str]
+    networkUri: str
+    nextHop: str
+    nextHopType: typing_extensions.Literal[
+        "NEXT_HOP_TYPE_UNSPECIFIED",
+        "NEXT_HOP_IP",
+        "NEXT_HOP_INSTANCE",
+        "NEXT_HOP_NETWORK",
+        "NEXT_HOP_PEERING",
+        "NEXT_HOP_INTERCONNECT",
+        "NEXT_HOP_VPN_TUNNEL",
+        "NEXT_HOP_VPN_GATEWAY",
+        "NEXT_HOP_INTERNET_GATEWAY",
+        "NEXT_HOP_BLACKHOLE",
+        "NEXT_HOP_ILB",
+    ]
+    priority: int
+    routeType: typing_extensions.Literal[
+        "ROUTE_TYPE_UNSPECIFIED",
+        "SUBNET",
+        "STATIC",
+        "DYNAMIC",
+        "PEERING_SUBNET",
+        "PEERING_STATIC",
+        "PEERING_DYNAMIC",
+    ]
+    uri: str
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
 
-class InstanceInfo(typing_extensions.TypedDict, total=False):
-    serviceAccount: str
-    interface: str
-    networkTags: typing.List[str]
-    networkUri: str
-    uri: str
-    internalIp: str
-    displayName: str
-    externalIp: str
-
-class Trace(typing_extensions.TypedDict, total=False):
-    endpointInfo: EndpointInfo
-    steps: typing.List[Step]
-
-class DeliverInfo(typing_extensions.TypedDict, total=False):
-    target: typing_extensions.Literal[
-        "TARGET_UNSPECIFIED", "INSTANCE", "INTERNET", "GOOGLE_API"
-    ]
-    resourceUri: str
-
-class RerunConnectivityTestRequest(typing_extensions.TypedDict, total=False): ...
-
-class Policy(typing_extensions.TypedDict, total=False):
-    etag: str
-    version: int
-    bindings: typing.List[Binding]
-    auditConfigs: typing.List[AuditConfig]
-
-class FirewallInfo(typing_extensions.TypedDict, total=False):
-    direction: str
-    targetServiceAccounts: typing.List[str]
-    networkUri: str
-    targetTags: typing.List[str]
-    priority: int
-    action: str
-    displayName: str
-    uri: str
-
+@typing.type_check_only
 class Step(typing_extensions.TypedDict, total=False):
-    endpoint: EndpointInfo
-    causesDrop: bool
-    vpnGateway: VpnGatewayInfo
     abort: AbortInfo
+    causesDrop: bool
     deliver: DeliverInfo
-    drop: DropInfo
     description: str
-    vpnTunnel: VpnTunnelInfo
+    drop: DropInfo
+    endpoint: EndpointInfo
+    firewall: FirewallInfo
+    forward: ForwardInfo
+    forwardingRule: ForwardingRuleInfo
     instance: InstanceInfo
+    loadBalancer: LoadBalancerInfo
+    network: NetworkInfo
+    projectId: str
+    route: RouteInfo
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "START_FROM_INSTANCE",
@@ -165,174 +334,41 @@ class Step(typing_extensions.TypedDict, total=False):
         "ABORT",
         "VIEWER_PERMISSION_MISSING",
     ]
-    network: NetworkInfo
-    loadBalancer: LoadBalancerInfo
-    forwardingRule: ForwardingRuleInfo
-    forward: ForwardInfo
-    firewall: FirewallInfo
-    projectId: str
-    route: RouteInfo
+    vpnGateway: VpnGatewayInfo
+    vpnTunnel: VpnTunnelInfo
 
-class ReachabilityDetails(typing_extensions.TypedDict, total=False):
-    error: Status
-    verifyTime: str
-    traces: typing.List[Trace]
-    result: typing_extensions.Literal[
-        "RESULT_UNSPECIFIED", "REACHABLE", "UNREACHABLE", "AMBIGUOUS", "UNDETERMINED"
-    ]
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
 
-class DropInfo(typing_extensions.TypedDict, total=False):
-    cause: typing_extensions.Literal[
-        "CAUSE_UNSPECIFIED",
-        "UNKNOWN_EXTERNAL_ADDRESS",
-        "FOREIGN_IP_DISALLOWED",
-        "FIREWALL_RULE",
-        "NO_ROUTE",
-        "ROUTE_BLACKHOLE",
-        "ROUTE_WRONG_NETWORK",
-        "PRIVATE_TRAFFIC_TO_INTERNET",
-        "PRIVATE_GOOGLE_ACCESS_DISALLOWED",
-        "NO_EXTERNAL_ADDRESS",
-        "UNKNOWN_INTERNAL_ADDRESS",
-        "FORWARDING_RULE_MISMATCH",
-        "FORWARDING_RULE_NO_INSTANCES",
-        "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
-        "INSTANCE_NOT_RUNNING",
-        "TRAFFIC_TYPE_BLOCKED",
-        "GKE_MASTER_UNAUTHORIZED_ACCESS",
-    ]
-    resourceUri: str
-
-class Location(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-    metadata: typing.Dict[str, typing.Any]
-    displayName: str
-    name: str
-    locationId: str
-
-class Expr(typing_extensions.TypedDict, total=False):
-    location: str
-    title: str
-    expression: str
-    description: str
-
-class VpnGatewayInfo(typing_extensions.TypedDict, total=False):
-    displayName: str
-    networkUri: str
-    vpnTunnelUri: str
-    region: str
-    ipAddress: str
-    uri: str
-
-class ForwardingRuleInfo(typing_extensions.TypedDict, total=False):
-    target: str
-    displayName: str
-    matchedPortRange: str
-    networkUri: str
-    matchedProtocol: str
-    vip: str
-    uri: str
-
-class ConnectivityTest(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-    createTime: str
-    description: str
-    name: str
-    protocol: str
-    source: Endpoint
-    destination: Endpoint
-    reachabilityDetails: ReachabilityDetails
-    displayName: str
-    relatedProjects: typing.List[str]
-    updateTime: str
-
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
-
-class ListConnectivityTestsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    resources: typing.List[ConnectivityTest]
-    unreachable: typing.List[str]
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    cancelRequested: bool
-    verb: str
-    target: str
-    endTime: str
-    statusDetail: str
-    createTime: str
-    apiVersion: str
-
-class RouteInfo(typing_extensions.TypedDict, total=False):
-    displayName: str
-    priority: int
-    nextHop: str
-    routeType: typing_extensions.Literal[
-        "ROUTE_TYPE_UNSPECIFIED",
-        "SUBNET",
-        "STATIC",
-        "DYNAMIC",
-        "PEERING_SUBNET",
-        "PEERING_STATIC",
-        "PEERING_DYNAMIC",
-    ]
-    networkUri: str
-    nextHopType: typing_extensions.Literal[
-        "NEXT_HOP_TYPE_UNSPECIFIED",
-        "NEXT_HOP_IP",
-        "NEXT_HOP_INSTANCE",
-        "NEXT_HOP_NETWORK",
-        "NEXT_HOP_PEERING",
-        "NEXT_HOP_INTERCONNECT",
-        "NEXT_HOP_VPN_TUNNEL",
-        "NEXT_HOP_VPN_GATEWAY",
-        "NEXT_HOP_INTERNET_GATEWAY",
-        "NEXT_HOP_BLACKHOLE",
-        "NEXT_HOP_ILB",
-    ]
-    destIpRange: str
-    uri: str
-    instanceTags: typing.List[str]
-
-class Endpoint(typing_extensions.TypedDict, total=False):
-    port: int
-    ipAddress: str
-    network: str
-    instance: str
-    projectId: str
-    networkType: typing_extensions.Literal[
-        "NETWORK_TYPE_UNSPECIFIED", "GCP_NETWORK", "NON_GCP_NETWORK"
-    ]
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    updateMask: str
-    policy: Policy
-
+@typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
 
-class AbortInfo(typing_extensions.TypedDict, total=False):
-    cause: typing_extensions.Literal[
-        "CAUSE_UNSPECIFIED",
-        "UNKNOWN_NETWORK",
-        "UNKNOWN_IP",
-        "UNKNOWN_PROJECT",
-        "PERMISSION_DENIED",
-        "NO_SOURCE_LOCATION",
-        "INVALID_ARGUMENT",
-        "NO_EXTERNAL_IP",
-        "UNINTENDED_DESTINATION",
-        "TRACE_TOO_LONG",
-        "INTERNAL_ERROR",
-    ]
-    resourceUri: str
+@typing.type_check_only
+class Trace(typing_extensions.TypedDict, total=False):
+    endpointInfo: EndpointInfo
+    steps: typing.List[Step]
 
-class EndpointInfo(typing_extensions.TypedDict, total=False):
-    destinationIp: str
-    sourceNetworkUri: str
-    destinationNetworkUri: str
-    sourcePort: int
-    destinationPort: int
-    sourceIp: str
-    protocol: str
+@typing.type_check_only
+class VpnGatewayInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    ipAddress: str
+    networkUri: str
+    region: str
+    uri: str
+    vpnTunnelUri: str
+
+@typing.type_check_only
+class VpnTunnelInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    networkUri: str
+    region: str
+    remoteGateway: str
+    remoteGatewayIp: str
+    routingType: typing_extensions.Literal[
+        "ROUTING_TYPE_UNSPECIFIED", "ROUTE_BASED", "POLICY_BASED", "DYNAMIC"
+    ]
+    sourceGateway: str
+    sourceGatewayIp: str
+    uri: str

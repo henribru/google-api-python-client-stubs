@@ -1,148 +1,33 @@
 import typing
 
 import typing_extensions
-
-class DetachTrustRequest(typing_extensions.TypedDict, total=False):
-    trust: Trust
-
-class Location(typing_extensions.TypedDict, total=False):
-    name: str
-    labels: typing.Dict[str, typing.Any]
-    displayName: str
-    locationId: str
-    metadata: typing.Dict[str, typing.Any]
-
+@typing.type_check_only
 class AttachTrustRequest(typing_extensions.TypedDict, total=False):
     trust: Trust
 
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
-    message: str
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: typing.List[str]
+    role: str
 
-class ValidateTrustRequest(typing_extensions.TypedDict, total=False):
-    trust: Trust
-
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
+@typing.type_check_only
+class DetachTrustRequest(typing_extensions.TypedDict, total=False):
+    trust: Trust
 
-class GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion(
-    typing_extensions.TypedDict, total=False
-):
-    duration: str
-    sliName: str
-    startTime: str
-    reason: str
-
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    locations: typing.List[Location]
-
-class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    nodeId: str
-    location: str
-    exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
-
-class GoogleCloudManagedidentitiesV1OpMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    requestedCancellation: bool
-    verb: str
-    createTime: str
-    apiVersion: str
-    target: str
-    endTime: str
-
-class ResetAdminPasswordRequest(typing_extensions.TypedDict, total=False): ...
-
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class Trust(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "CREATING",
-        "UPDATING",
-        "DELETING",
-        "CONNECTED",
-        "DISCONNECTED",
-    ]
-    trustDirection: typing_extensions.Literal[
-        "TRUST_DIRECTION_UNSPECIFIED", "INBOUND", "OUTBOUND", "BIDIRECTIONAL"
-    ]
-    lastTrustHeartbeatTime: str
-    targetDnsIpAddresses: typing.List[str]
-    targetDomainName: str
-    stateDescription: str
-    trustHandshakeSecret: str
-    selectiveAuthentication: bool
-    trustType: typing_extensions.Literal["TRUST_TYPE_UNSPECIFIED", "FOREST", "EXTERNAL"]
-    createTime: str
-    updateTime: str
-
-class GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility(
-    typing_extensions.TypedDict, total=False
-):
-    reason: str
-    eligible: bool
-
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
-    nextPageToken: str
-
-class Expr(typing_extensions.TypedDict, total=False):
-    expression: str
-    description: str
-    location: str
-    title: str
-
-class ListDomainsResponse(typing_extensions.TypedDict, total=False):
-    unreachable: typing.List[str]
-    nextPageToken: str
-    domains: typing.List[Domain]
-
-class Policy(typing_extensions.TypedDict, total=False):
-    etag: str
-    bindings: typing.List[Binding]
-    version: int
-
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    endTime: str
-    statusDetail: str
-    cancelRequested: bool
-    verb: str
-    createTime: str
-    apiVersion: str
-    target: str
-
-class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
-    typing_extensions.TypedDict, total=False
-):
-    exclude: bool
-
-class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    eligibility: GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility
-    exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
-    nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
-    tier: str
-
+@typing.type_check_only
 class Domain(typing_extensions.TypedDict, total=False):
-    statusMessage: str
-    authorizedNetworks: typing.List[str]
-    name: str
-    labels: typing.Dict[str, typing.Any]
-    createTime: str
-    reservedIpRange: str
     admin: str
-    locations: typing.List[str]
-    trusts: typing.List[Trust]
+    authorizedNetworks: typing.List[str]
+    createTime: str
     fqdn: str
+    labels: typing.Dict[str, typing.Any]
+    locations: typing.List[str]
+    name: str
+    reservedIpRange: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -153,49 +38,71 @@ class Domain(typing_extensions.TypedDict, total=False):
         "PERFORMING_MAINTENANCE",
         "UNAVAILABLE",
     ]
+    statusMessage: str
+    trusts: typing.List[Trust]
     updateTime: str
 
-class ResetAdminPasswordResponse(typing_extensions.TypedDict, total=False):
-    password: str
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class GoogleCloudManagedidentitiesV1OpMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudManagedidentitiesV1alpha1OpMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    target: str
-    verb: str
     apiVersion: str
     createTime: str
-    requestedCancellation: bool
     endTime: str
+    requestedCancellation: bool
+    target: str
+    verb: str
 
-class ReconfigureTrustRequest(typing_extensions.TypedDict, total=False):
-    targetDnsIpAddresses: typing.List[str]
-    targetDomainName: str
-
-class Operation(typing_extensions.TypedDict, total=False):
-    name: str
-    response: typing.Dict[str, typing.Any]
-    done: bool
-    metadata: typing.Dict[str, typing.Any]
-    error: Status
-
-class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule(
+@typing.type_check_only
+class GoogleCloudManagedidentitiesV1beta1OpMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    canReschedule: bool
-    rolloutManagementPolicy: str
+    apiVersion: str
+    createTime: str
     endTime: str
-    startTime: str
+    requestedCancellation: bool
+    target: str
+    verb: str
 
+@typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
     typing_extensions.TypedDict, total=False
 ):
+    consumerDefinedName: str
+    createTime: str
     labels: typing.Dict[str, typing.Any]
-    maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
-    producerMetadata: typing.Dict[str, typing.Any]
-    name: str
-    maintenanceSchedules: typing.Dict[str, typing.Any]
     maintenancePolicyNames: typing.Dict[str, typing.Any]
+    maintenanceSchedules: typing.Dict[str, typing.Any]
+    maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
+    name: str
+    producerMetadata: typing.Dict[str, typing.Any]
+    provisionedResources: typing.List[
+        GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource
+    ]
+    slmInstanceTemplate: str
+    sloMetadata: GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata
+    softwareVersions: typing.Dict[str, typing.Any]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -205,39 +112,165 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
         "DELETING",
         "ERROR",
     ]
-    updateTime: str
-    consumerDefinedName: str
-    slmInstanceTemplate: str
-    softwareVersions: typing.Dict[str, typing.Any]
-    createTime: str
-    sloMetadata: GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata
-    provisionedResources: typing.List[
-        GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource
-    ]
     tenantProjectId: str
+    updateTime: str
 
+@typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule(
+    typing_extensions.TypedDict, total=False
+):
+    canReschedule: bool
+    endTime: str
+    rolloutManagementPolicy: str
+    startTime: str
+
+@typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
+    typing_extensions.TypedDict, total=False
+):
+    exclude: bool
+
+@typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
+    location: str
+    nodeId: str
+
+@typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource(
     typing_extensions.TypedDict, total=False
 ):
-    resourceUrl: str
     resourceType: str
+    resourceUrl: str
 
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class Binding(typing_extensions.TypedDict, total=False):
-    members: typing.List[str]
-    role: str
-    condition: Expr
-
-class GoogleCloudManagedidentitiesV1beta1OpMetadata(
+@typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility(
     typing_extensions.TypedDict, total=False
 ):
-    verb: str
+    eligible: bool
+    reason: str
+
+@typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion(
+    typing_extensions.TypedDict, total=False
+):
+    duration: str
+    reason: str
+    sliName: str
+    startTime: str
+
+@typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    eligibility: GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility
+    exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
+    nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
+    tier: str
+
+@typing.type_check_only
+class ListDomainsResponse(typing_extensions.TypedDict, total=False):
+    domains: typing.List[Domain]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
     createTime: str
     endTime: str
+    statusDetail: str
     target: str
-    apiVersion: str
-    requestedCancellation: bool
+    verb: str
 
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class ReconfigureTrustRequest(typing_extensions.TypedDict, total=False):
+    targetDnsIpAddresses: typing.List[str]
+    targetDomainName: str
+
+@typing.type_check_only
+class ResetAdminPasswordRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ResetAdminPasswordResponse(typing_extensions.TypedDict, total=False):
+    password: str
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
+
+@typing.type_check_only
+class Trust(typing_extensions.TypedDict, total=False):
+    createTime: str
+    lastTrustHeartbeatTime: str
+    selectiveAuthentication: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "UPDATING",
+        "DELETING",
+        "CONNECTED",
+        "DISCONNECTED",
+    ]
+    stateDescription: str
+    targetDnsIpAddresses: typing.List[str]
+    targetDomainName: str
+    trustDirection: typing_extensions.Literal[
+        "TRUST_DIRECTION_UNSPECIFIED", "INBOUND", "OUTBOUND", "BIDIRECTIONAL"
+    ]
+    trustHandshakeSecret: str
+    trustType: typing_extensions.Literal["TRUST_TYPE_UNSPECIFIED", "FOREST", "EXTERNAL"]
+    updateTime: str
+
+@typing.type_check_only
+class ValidateTrustRequest(typing_extensions.TypedDict, total=False):
+    trust: Trust

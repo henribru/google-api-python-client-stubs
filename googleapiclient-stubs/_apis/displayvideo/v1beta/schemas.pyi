@@ -1,18 +1,20 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class GoogleBytestreamMedia(typing_extensions.TypedDict, total=False):
     resourceName: str
 
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
-    message: str
-
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
     error: Status
-    response: typing.Dict[str, typing.Any]
     metadata: typing.Dict[str, typing.Any]
     name: str
-    done: bool
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str

@@ -7,15 +7,10 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class PlayableLocationsResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class V3Resource(googleapiclient.discovery.Resource):
-        def samplePlayableLocations(
-            self,
-            *,
-            body: GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest = ...,
-            **kwargs: typing.Any
-        ) -> GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponseHttpRequest: ...
         def logImpressions(
             self,
             *,
@@ -28,15 +23,15 @@ class PlayableLocationsResource(googleapiclient.discovery.Resource):
             body: GoogleMapsPlayablelocationsV3LogPlayerReportsRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleMapsPlayablelocationsV3LogPlayerReportsResponseHttpRequest: ...
+        def samplePlayableLocations(
+            self,
+            *,
+            body: GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponseHttpRequest: ...
     def v3(self) -> V3Resource: ...
 
-class GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse: ...
-
+@typing.type_check_only
 class GoogleMapsPlayablelocationsV3LogImpressionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -44,9 +39,18 @@ class GoogleMapsPlayablelocationsV3LogImpressionsResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleMapsPlayablelocationsV3LogImpressionsResponse: ...
 
+@typing.type_check_only
 class GoogleMapsPlayablelocationsV3LogPlayerReportsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleMapsPlayablelocationsV3LogPlayerReportsResponse: ...
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse: ...

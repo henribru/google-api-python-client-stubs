@@ -7,9 +7,23 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class SheetsResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class SpreadsheetsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class DeveloperMetadataResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, spreadsheetId: str, metadataId: int, **kwargs: typing.Any
+            ) -> DeveloperMetadataHttpRequest: ...
+            def search(
+                self,
+                *,
+                spreadsheetId: str,
+                body: SearchDeveloperMetadataRequest = ...,
+                **kwargs: typing.Any
+            ) -> SearchDeveloperMetadataResponseHttpRequest: ...
+        @typing.type_check_only
         class SheetsResource(googleapiclient.discovery.Resource):
             def copyTo(
                 self,
@@ -19,39 +33,29 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 body: CopySheetToAnotherSpreadsheetRequest = ...,
                 **kwargs: typing.Any
             ) -> SheetPropertiesHttpRequest: ...
-        class DeveloperMetadataResource(googleapiclient.discovery.Resource):
-            def search(
-                self,
-                *,
-                spreadsheetId: str,
-                body: SearchDeveloperMetadataRequest = ...,
-                **kwargs: typing.Any
-            ) -> SearchDeveloperMetadataResponseHttpRequest: ...
-            def get(
-                self, *, spreadsheetId: str, metadataId: int, **kwargs: typing.Any
-            ) -> DeveloperMetadataHttpRequest: ...
+        @typing.type_check_only
         class ValuesResource(googleapiclient.discovery.Resource):
-            def batchUpdateByDataFilter(
+            def append(
                 self,
                 *,
                 spreadsheetId: str,
-                body: BatchUpdateValuesByDataFilterRequest = ...,
+                range: str,
+                body: ValueRange = ...,
+                includeValuesInResponse: bool = ...,
+                insertDataOption: typing_extensions.Literal[
+                    "OVERWRITE", "INSERT_ROWS"
+                ] = ...,
+                responseDateTimeRenderOption: typing_extensions.Literal[
+                    "SERIAL_NUMBER", "FORMATTED_STRING"
+                ] = ...,
+                responseValueRenderOption: typing_extensions.Literal[
+                    "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
+                ] = ...,
+                valueInputOption: typing_extensions.Literal[
+                    "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
+                ] = ...,
                 **kwargs: typing.Any
-            ) -> BatchUpdateValuesByDataFilterResponseHttpRequest: ...
-            def batchClearByDataFilter(
-                self,
-                *,
-                spreadsheetId: str,
-                body: BatchClearValuesByDataFilterRequest = ...,
-                **kwargs: typing.Any
-            ) -> BatchClearValuesByDataFilterResponseHttpRequest: ...
-            def batchGetByDataFilter(
-                self,
-                *,
-                spreadsheetId: str,
-                body: BatchGetValuesByDataFilterRequest = ...,
-                **kwargs: typing.Any
-            ) -> BatchGetValuesByDataFilterResponseHttpRequest: ...
+            ) -> AppendValuesResponseHttpRequest: ...
             def batchClear(
                 self,
                 *,
@@ -59,6 +63,36 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 body: BatchClearValuesRequest = ...,
                 **kwargs: typing.Any
             ) -> BatchClearValuesResponseHttpRequest: ...
+            def batchClearByDataFilter(
+                self,
+                *,
+                spreadsheetId: str,
+                body: BatchClearValuesByDataFilterRequest = ...,
+                **kwargs: typing.Any
+            ) -> BatchClearValuesByDataFilterResponseHttpRequest: ...
+            def batchGet(
+                self,
+                *,
+                spreadsheetId: str,
+                dateTimeRenderOption: typing_extensions.Literal[
+                    "SERIAL_NUMBER", "FORMATTED_STRING"
+                ] = ...,
+                majorDimension: typing_extensions.Literal[
+                    "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
+                ] = ...,
+                ranges: typing.Union[str, typing.List[str]] = ...,
+                valueRenderOption: typing_extensions.Literal[
+                    "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> BatchGetValuesResponseHttpRequest: ...
+            def batchGetByDataFilter(
+                self,
+                *,
+                spreadsheetId: str,
+                body: BatchGetValuesByDataFilterRequest = ...,
+                **kwargs: typing.Any
+            ) -> BatchGetValuesByDataFilterResponseHttpRequest: ...
             def batchUpdate(
                 self,
                 *,
@@ -66,77 +100,13 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 body: BatchUpdateValuesRequest = ...,
                 **kwargs: typing.Any
             ) -> BatchUpdateValuesResponseHttpRequest: ...
-            def append(
+            def batchUpdateByDataFilter(
                 self,
                 *,
                 spreadsheetId: str,
-                range: str,
-                body: ValueRange = ...,
-                responseValueRenderOption: typing_extensions.Literal[
-                    "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
-                ] = ...,
-                includeValuesInResponse: bool = ...,
-                responseDateTimeRenderOption: typing_extensions.Literal[
-                    "SERIAL_NUMBER", "FORMATTED_STRING"
-                ] = ...,
-                insertDataOption: typing_extensions.Literal[
-                    "OVERWRITE", "INSERT_ROWS"
-                ] = ...,
-                valueInputOption: typing_extensions.Literal[
-                    "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
-                ] = ...,
+                body: BatchUpdateValuesByDataFilterRequest = ...,
                 **kwargs: typing.Any
-            ) -> AppendValuesResponseHttpRequest: ...
-            def get(
-                self,
-                *,
-                spreadsheetId: str,
-                range: str,
-                majorDimension: typing_extensions.Literal[
-                    "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
-                ] = ...,
-                valueRenderOption: typing_extensions.Literal[
-                    "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
-                ] = ...,
-                dateTimeRenderOption: typing_extensions.Literal[
-                    "SERIAL_NUMBER", "FORMATTED_STRING"
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> ValueRangeHttpRequest: ...
-            def batchGet(
-                self,
-                *,
-                spreadsheetId: str,
-                ranges: typing.Union[str, typing.List[str]] = ...,
-                valueRenderOption: typing_extensions.Literal[
-                    "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
-                ] = ...,
-                majorDimension: typing_extensions.Literal[
-                    "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
-                ] = ...,
-                dateTimeRenderOption: typing_extensions.Literal[
-                    "SERIAL_NUMBER", "FORMATTED_STRING"
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> BatchGetValuesResponseHttpRequest: ...
-            def update(
-                self,
-                *,
-                spreadsheetId: str,
-                range: str,
-                body: ValueRange = ...,
-                responseValueRenderOption: typing_extensions.Literal[
-                    "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
-                ] = ...,
-                responseDateTimeRenderOption: typing_extensions.Literal[
-                    "SERIAL_NUMBER", "FORMATTED_STRING"
-                ] = ...,
-                valueInputOption: typing_extensions.Literal[
-                    "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
-                ] = ...,
-                includeValuesInResponse: bool = ...,
-                **kwargs: typing.Any
-            ) -> UpdateValuesResponseHttpRequest: ...
+            ) -> BatchUpdateValuesByDataFilterResponseHttpRequest: ...
             def clear(
                 self,
                 *,
@@ -145,16 +115,57 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 body: ClearValuesRequest = ...,
                 **kwargs: typing.Any
             ) -> ClearValuesResponseHttpRequest: ...
+            def get(
+                self,
+                *,
+                spreadsheetId: str,
+                range: str,
+                dateTimeRenderOption: typing_extensions.Literal[
+                    "SERIAL_NUMBER", "FORMATTED_STRING"
+                ] = ...,
+                majorDimension: typing_extensions.Literal[
+                    "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
+                ] = ...,
+                valueRenderOption: typing_extensions.Literal[
+                    "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> ValueRangeHttpRequest: ...
+            def update(
+                self,
+                *,
+                spreadsheetId: str,
+                range: str,
+                body: ValueRange = ...,
+                includeValuesInResponse: bool = ...,
+                responseDateTimeRenderOption: typing_extensions.Literal[
+                    "SERIAL_NUMBER", "FORMATTED_STRING"
+                ] = ...,
+                responseValueRenderOption: typing_extensions.Literal[
+                    "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
+                ] = ...,
+                valueInputOption: typing_extensions.Literal[
+                    "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> UpdateValuesResponseHttpRequest: ...
+        def batchUpdate(
+            self,
+            *,
+            spreadsheetId: str,
+            body: BatchUpdateSpreadsheetRequest = ...,
+            **kwargs: typing.Any
+        ) -> BatchUpdateSpreadsheetResponseHttpRequest: ...
+        def create(
+            self, *, body: Spreadsheet = ..., **kwargs: typing.Any
+        ) -> SpreadsheetHttpRequest: ...
         def get(
             self,
             *,
             spreadsheetId: str,
-            ranges: typing.Union[str, typing.List[str]] = ...,
             includeGridData: bool = ...,
+            ranges: typing.Union[str, typing.List[str]] = ...,
             **kwargs: typing.Any
-        ) -> SpreadsheetHttpRequest: ...
-        def create(
-            self, *, body: Spreadsheet = ..., **kwargs: typing.Any
         ) -> SpreadsheetHttpRequest: ...
         def getByDataFilter(
             self,
@@ -163,48 +174,48 @@ class SheetsResource(googleapiclient.discovery.Resource):
             body: GetSpreadsheetByDataFilterRequest = ...,
             **kwargs: typing.Any
         ) -> SpreadsheetHttpRequest: ...
-        def batchUpdate(
-            self,
-            *,
-            spreadsheetId: str,
-            body: BatchUpdateSpreadsheetRequest = ...,
-            **kwargs: typing.Any
-        ) -> BatchUpdateSpreadsheetResponseHttpRequest: ...
-        def sheets(self) -> SheetsResource: ...
         def developerMetadata(self) -> DeveloperMetadataResource: ...
+        def sheets(self) -> SheetsResource: ...
         def values(self) -> ValuesResource: ...
     def spreadsheets(self) -> SpreadsheetsResource: ...
 
-class BatchUpdateValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BatchUpdateValuesResponse: ...
-
-class DeveloperMetadataHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> DeveloperMetadata: ...
-
+@typing.type_check_only
 class AppendValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> AppendValuesResponse: ...
 
-class SheetPropertiesHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SheetProperties: ...
-
-class SearchDeveloperMetadataResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SearchDeveloperMetadataResponse: ...
-
+@typing.type_check_only
 class BatchClearValuesByDataFilterResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BatchClearValuesByDataFilterResponse: ...
 
+@typing.type_check_only
+class BatchClearValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BatchClearValuesResponse: ...
+
+@typing.type_check_only
+class BatchGetValuesByDataFilterResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BatchGetValuesByDataFilterResponse: ...
+
+@typing.type_check_only
+class BatchGetValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BatchGetValuesResponse: ...
+
+@typing.type_check_only
+class BatchUpdateSpreadsheetResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BatchUpdateSpreadsheetResponse: ...
+
+@typing.type_check_only
 class BatchUpdateValuesByDataFilterResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -212,42 +223,50 @@ class BatchUpdateValuesByDataFilterResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BatchUpdateValuesByDataFilterResponse: ...
 
-class UpdateValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class BatchUpdateValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> UpdateValuesResponse: ...
+    ) -> BatchUpdateValuesResponse: ...
 
-class BatchUpdateSpreadsheetResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BatchUpdateSpreadsheetResponse: ...
-
-class ValueRangeHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ValueRange: ...
-
-class BatchClearValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BatchClearValuesResponse: ...
-
-class SpreadsheetHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Spreadsheet: ...
-
+@typing.type_check_only
 class ClearValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ClearValuesResponse: ...
 
-class BatchGetValuesByDataFilterResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class DeveloperMetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BatchGetValuesByDataFilterResponse: ...
+    ) -> DeveloperMetadata: ...
 
-class BatchGetValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class SearchDeveloperMetadataResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BatchGetValuesResponse: ...
+    ) -> SearchDeveloperMetadataResponse: ...
+
+@typing.type_check_only
+class SheetPropertiesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SheetProperties: ...
+
+@typing.type_check_only
+class SpreadsheetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Spreadsheet: ...
+
+@typing.type_check_only
+class UpdateValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> UpdateValuesResponse: ...
+
+@typing.type_check_only
+class ValueRangeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ValueRange: ...

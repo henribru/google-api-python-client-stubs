@@ -1,35 +1,39 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
-class PosixAccount(typing_extensions.TypedDict, total=False):
-    username: str
-    gecos: str
-    shell: str
-    primary: bool
-    systemId: str
-    name: str
-    operatingSystemType: typing_extensions.Literal[
-        "OPERATING_SYSTEM_TYPE_UNSPECIFIED", "LINUX", "WINDOWS"
-    ]
-    uid: str
-    homeDirectory: str
-    accountId: str
-    gid: str
-
-class LoginProfile(typing_extensions.TypedDict, total=False):
-    name: str
-    sshPublicKeys: typing.Dict[str, typing.Any]
-    posixAccounts: typing.List[PosixAccount]
-
+@typing.type_check_only
 class ImportSshPublicKeyResponse(typing_extensions.TypedDict, total=False):
     details: str
     loginProfile: LoginProfile
 
+@typing.type_check_only
+class LoginProfile(typing_extensions.TypedDict, total=False):
+    name: str
+    posixAccounts: typing.List[PosixAccount]
+    sshPublicKeys: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class PosixAccount(typing_extensions.TypedDict, total=False):
+    accountId: str
+    gecos: str
+    gid: str
+    homeDirectory: str
+    name: str
+    operatingSystemType: typing_extensions.Literal[
+        "OPERATING_SYSTEM_TYPE_UNSPECIFIED", "LINUX", "WINDOWS"
+    ]
+    primary: bool
+    shell: str
+    systemId: str
+    uid: str
+    username: str
+
+@typing.type_check_only
 class SshPublicKey(typing_extensions.TypedDict, total=False):
     expirationTimeUsec: str
     fingerprint: str
     key: str
     name: str
-
-class Empty(typing_extensions.TypedDict, total=False): ...

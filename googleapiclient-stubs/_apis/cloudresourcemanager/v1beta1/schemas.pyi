@@ -1,37 +1,49 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class Ancestor(typing_extensions.TypedDict, total=False):
+    resourceId: ResourceId
 
-class ListOrganizationsResponse(typing_extensions.TypedDict, total=False):
-    organizations: typing.List[Organization]
-    nextPageToken: str
+@typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: typing.List[AuditLogConfig]
+    service: str
 
-class ListProjectsResponse(typing_extensions.TypedDict, total=False):
-    projects: typing.List[Project]
-    nextPageToken: str
-
+@typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
     exemptedMembers: typing.List[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
-class GetAncestryResponse(typing_extensions.TypedDict, total=False):
-    ancestor: typing.List[Ancestor]
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
+    condition: Expr
+    members: typing.List[str]
+    role: str
 
-class Organization(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class FolderOperation(typing_extensions.TypedDict, total=False):
+    destinationParent: str
     displayName: str
-    lifecycleState: typing_extensions.Literal[
-        "LIFECYCLE_STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"
+    operationType: typing_extensions.Literal[
+        "OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"
     ]
-    organizationId: str
-    name: str
-    owner: OrganizationOwner
-    creationTime: str
+    sourceParent: str
 
-class OrganizationOwner(typing_extensions.TypedDict, total=False):
-    directoryCustomerId: str
-
+@typing.type_check_only
 class FolderOperationError(typing_extensions.TypedDict, total=False):
     errorMessageId: typing_extensions.Literal[
         "ERROR_TYPE_UNSPECIFIED",
@@ -46,80 +58,91 @@ class FolderOperationError(typing_extensions.TypedDict, total=False):
         "DELETED_FOLDER_HEIGHT_VIOLATION",
     ]
 
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
+@typing.type_check_only
 class GetAncestryRequest(typing_extensions.TypedDict, total=False): ...
 
-class FolderOperation(typing_extensions.TypedDict, total=False):
-    operationType: typing_extensions.Literal[
-        "OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"
-    ]
-    destinationParent: str
-    sourceParent: str
+@typing.type_check_only
+class GetAncestryResponse(typing_extensions.TypedDict, total=False):
+    ancestor: typing.List[Ancestor]
+
+@typing.type_check_only
+class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GetPolicyOptions
+
+@typing.type_check_only
+class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
+
+@typing.type_check_only
+class ListOrganizationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    organizations: typing.List[Organization]
+
+@typing.type_check_only
+class ListProjectsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    projects: typing.List[Project]
+
+@typing.type_check_only
+class Organization(typing_extensions.TypedDict, total=False):
+    creationTime: str
     displayName: str
+    lifecycleState: typing_extensions.Literal[
+        "LIFECYCLE_STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"
+    ]
+    name: str
+    organizationId: str
+    owner: OrganizationOwner
 
-class ResourceId(typing_extensions.TypedDict, total=False):
-    type: str
-    id: str
+@typing.type_check_only
+class OrganizationOwner(typing_extensions.TypedDict, total=False):
+    directoryCustomerId: str
 
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
 class Project(typing_extensions.TypedDict, total=False):
-    parent: ResourceId
+    createTime: str
     labels: typing.Dict[str, typing.Any]
-    projectNumber: str
     lifecycleState: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "ACTIVE",
         "DELETE_REQUESTED",
         "DELETE_IN_PROGRESS",
     ]
-    projectId: str
     name: str
-    createTime: str
+    parent: ResourceId
+    projectId: str
+    projectNumber: str
 
-class Ancestor(typing_extensions.TypedDict, total=False):
-    resourceId: ResourceId
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    updateMask: str
-    policy: Policy
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
-    requestedPolicyVersion: int
-
-class Binding(typing_extensions.TypedDict, total=False):
-    members: typing.List[str]
-    role: str
-    condition: Expr
-    bindingId: str
-
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    options: GetPolicyOptions
-
-class Expr(typing_extensions.TypedDict, total=False):
-    title: str
-    location: str
-    description: str
-    expression: str
-
+@typing.type_check_only
 class ProjectCreationStatus(typing_extensions.TypedDict, total=False):
     createTime: str
     gettable: bool
     ready: bool
 
-class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
-    etag: str
-    version: int
-    auditConfigs: typing.List[AuditConfig]
+@typing.type_check_only
+class ResourceId(typing_extensions.TypedDict, total=False):
+    id: str
+    type: str
 
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
-    service: str
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
 
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
 
+@typing.type_check_only
 class UndeleteProjectRequest(typing_extensions.TypedDict, total=False): ...

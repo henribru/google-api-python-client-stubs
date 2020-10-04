@@ -1,7 +1,7 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class About(typing_extensions.TypedDict, total=False):
     additionalRoleInfo: typing.List[typing.Dict[str, typing.Any]]
     canCreateDrives: bool
@@ -32,6 +32,7 @@ class About(typing_extensions.TypedDict, total=False):
     teamDriveThemes: typing.List[typing.Dict[str, typing.Any]]
     user: User
 
+@typing.type_check_only
 class App(typing_extensions.TypedDict, total=False):
     authorized: bool
     createInFolderTemplate: str
@@ -58,6 +59,7 @@ class App(typing_extensions.TypedDict, total=False):
     supportsOfflineCreate: bool
     useByDefault: bool
 
+@typing.type_check_only
 class AppList(typing_extensions.TypedDict, total=False):
     defaultAppIds: typing.List[str]
     etag: str
@@ -65,6 +67,7 @@ class AppList(typing_extensions.TypedDict, total=False):
     kind: str
     selfLink: str
 
+@typing.type_check_only
 class Change(typing_extensions.TypedDict, total=False):
     changeType: str
     deleted: bool
@@ -80,6 +83,7 @@ class Change(typing_extensions.TypedDict, total=False):
     teamDriveId: str
     type: str
 
+@typing.type_check_only
 class ChangeList(typing_extensions.TypedDict, total=False):
     etag: str
     items: typing.List[Change]
@@ -90,6 +94,7 @@ class ChangeList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
 
+@typing.type_check_only
 class Channel(typing_extensions.TypedDict, total=False):
     address: str
     expiration: str
@@ -102,6 +107,7 @@ class Channel(typing_extensions.TypedDict, total=False):
     token: str
     type: str
 
+@typing.type_check_only
 class ChildList(typing_extensions.TypedDict, total=False):
     etag: str
     items: typing.List[ChildReference]
@@ -110,12 +116,14 @@ class ChildList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
 
+@typing.type_check_only
 class ChildReference(typing_extensions.TypedDict, total=False):
     childLink: str
     id: str
     kind: str
     selfLink: str
 
+@typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
     anchor: str
     author: User
@@ -133,6 +141,7 @@ class Comment(typing_extensions.TypedDict, total=False):
     selfLink: str
     status: str
 
+@typing.type_check_only
 class CommentList(typing_extensions.TypedDict, total=False):
     items: typing.List[Comment]
     kind: str
@@ -140,6 +149,7 @@ class CommentList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
 
+@typing.type_check_only
 class CommentReply(typing_extensions.TypedDict, total=False):
     author: User
     content: str
@@ -151,6 +161,7 @@ class CommentReply(typing_extensions.TypedDict, total=False):
     replyId: str
     verb: str
 
+@typing.type_check_only
 class CommentReplyList(typing_extensions.TypedDict, total=False):
     items: typing.List[CommentReply]
     kind: str
@@ -158,6 +169,7 @@ class CommentReplyList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
 
+@typing.type_check_only
 class ContentRestriction(typing_extensions.TypedDict, total=False):
     readOnly: bool
     reason: str
@@ -165,6 +177,7 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     restrictionDate: str
     type: str
 
+@typing.type_check_only
 class Drive(typing_extensions.TypedDict, total=False):
     backgroundImageFile: typing.Dict[str, typing.Any]
     backgroundImageLink: str
@@ -178,11 +191,13 @@ class Drive(typing_extensions.TypedDict, total=False):
     restrictions: typing.Dict[str, typing.Any]
     themeId: str
 
+@typing.type_check_only
 class DriveList(typing_extensions.TypedDict, total=False):
     items: typing.List[Drive]
     kind: str
     nextPageToken: str
 
+@typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):
     alternateLink: str
     appDataContents: bool
@@ -255,6 +270,7 @@ class File(typing_extensions.TypedDict, total=False):
     webViewLink: str
     writersCanShare: bool
 
+@typing.type_check_only
 class FileList(typing_extensions.TypedDict, total=False):
     etag: str
     incompleteSearch: bool
@@ -264,17 +280,20 @@ class FileList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
 
+@typing.type_check_only
 class GeneratedIds(typing_extensions.TypedDict, total=False):
     ids: typing.List[str]
     kind: str
     space: str
 
+@typing.type_check_only
 class ParentList(typing_extensions.TypedDict, total=False):
     etag: str
     items: typing.List[ParentReference]
     kind: str
     selfLink: str
 
+@typing.type_check_only
 class ParentReference(typing_extensions.TypedDict, total=False):
     id: str
     isRoot: bool
@@ -282,6 +301,7 @@ class ParentReference(typing_extensions.TypedDict, total=False):
     parentLink: str
     selfLink: str
 
+@typing.type_check_only
 class Permission(typing_extensions.TypedDict, total=False):
     additionalRoles: typing.List[str]
     authKey: str
@@ -303,10 +323,12 @@ class Permission(typing_extensions.TypedDict, total=False):
     view: str
     withLink: bool
 
+@typing.type_check_only
 class PermissionId(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
 
+@typing.type_check_only
 class PermissionList(typing_extensions.TypedDict, total=False):
     etag: str
     items: typing.List[Permission]
@@ -314,6 +336,7 @@ class PermissionList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
 
+@typing.type_check_only
 class Property(typing_extensions.TypedDict, total=False):
     etag: str
     key: str
@@ -322,12 +345,14 @@ class Property(typing_extensions.TypedDict, total=False):
     value: str
     visibility: str
 
+@typing.type_check_only
 class PropertyList(typing_extensions.TypedDict, total=False):
     etag: str
     items: typing.List[Property]
     kind: str
     selfLink: str
 
+@typing.type_check_only
 class Revision(typing_extensions.TypedDict, total=False):
     downloadUrl: str
     etag: str
@@ -348,6 +373,7 @@ class Revision(typing_extensions.TypedDict, total=False):
     publishedOutsideDomain: bool
     selfLink: str
 
+@typing.type_check_only
 class RevisionList(typing_extensions.TypedDict, total=False):
     etag: str
     items: typing.List[Revision]
@@ -355,10 +381,12 @@ class RevisionList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
 
+@typing.type_check_only
 class StartPageToken(typing_extensions.TypedDict, total=False):
     kind: str
     startPageToken: str
 
+@typing.type_check_only
 class TeamDrive(typing_extensions.TypedDict, total=False):
     backgroundImageFile: typing.Dict[str, typing.Any]
     backgroundImageLink: str
@@ -371,11 +399,13 @@ class TeamDrive(typing_extensions.TypedDict, total=False):
     restrictions: typing.Dict[str, typing.Any]
     themeId: str
 
+@typing.type_check_only
 class TeamDriveList(typing_extensions.TypedDict, total=False):
     items: typing.List[TeamDrive]
     kind: str
     nextPageToken: str
 
+@typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
     displayName: str
     emailAddress: str

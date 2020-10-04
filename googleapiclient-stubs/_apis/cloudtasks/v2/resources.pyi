@@ -7,30 +7,23 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudTasksResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class QueuesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class TasksResource(googleapiclient.discovery.Resource):
-                    def run(
-                        self,
-                        *,
-                        name: str,
-                        body: RunTaskRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> TaskHttpRequest: ...
-                    def list(
+                    def create(
                         self,
                         *,
                         parent: str,
-                        responseView: typing_extensions.Literal[
-                            "VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
+                        body: CreateTaskRequest = ...,
                         **kwargs: typing.Any
-                    ) -> ListTasksResponseHttpRequest: ...
+                    ) -> TaskHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
@@ -43,49 +36,32 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> TaskHttpRequest: ...
-                    def create(
+                    def list(
                         self,
                         *,
                         parent: str,
-                        body: CreateTaskRequest = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        responseView: typing_extensions.Literal[
+                            "VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> ListTasksResponseHttpRequest: ...
+                    def run(
+                        self,
+                        *,
+                        name: str,
+                        body: RunTaskRequest = ...,
                         **kwargs: typing.Any
                     ) -> TaskHttpRequest: ...
-                def purge(
-                    self,
-                    *,
-                    name: str,
-                    body: PurgeQueueRequest = ...,
-                    **kwargs: typing.Any
-                ) -> QueueHttpRequest: ...
                 def create(
                     self, *, parent: str, body: Queue = ..., **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListQueuesResponseHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
-                ) -> QueueHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: Queue = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -94,6 +70,23 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     body: GetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListQueuesResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Queue = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> QueueHttpRequest: ...
                 def pause(
                     self,
                     *,
@@ -101,16 +94,13 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     body: PauseQueueRequest = ...,
                     **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
-                def testIamPermissions(
+                def purge(
                     self,
                     *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
+                    name: str,
+                    body: PurgeQueueRequest = ...,
                     **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
+                ) -> QueueHttpRequest: ...
                 def resume(
                     self,
                     *,
@@ -118,64 +108,87 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     body: ResumeQueueRequest = ...,
                     **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
                 def tasks(self) -> TasksResource: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> LocationHttpRequest: ...
             def list(
                 self,
                 *,
                 name: str,
-                pageSize: int = ...,
                 filter: str = ...,
+                pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> LocationHttpRequest: ...
             def queues(self) -> QueuesResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListLocationsResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
+@typing.type_check_only
+class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
 class ListQueuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListQueuesResponse: ...
 
-class QueueHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListTasksResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Queue: ...
+    ) -> ListTasksResponse: ...
 
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Location: ...
 
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
-
-class TaskHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Task: ...
-
+@typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Policy: ...
 
-class ListTasksResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class QueueHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListTasksResponse: ...
+    ) -> Queue: ...
+
+@typing.type_check_only
+class TaskHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Task: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...

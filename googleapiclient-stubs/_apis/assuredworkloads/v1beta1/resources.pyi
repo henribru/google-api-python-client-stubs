@@ -7,22 +7,28 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class AssuredworkloadsResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
-            class WorkloadsResource(googleapiclient.discovery.Resource):
-                def patch(
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def list(
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudAssuredworkloadsV1beta1Workload = ...,
-                    updateMask: str = ...,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudAssuredworkloadsV1beta1WorkloadHttpRequest: ...
-                def delete(
-                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
-                ) -> GoogleProtobufEmptyHttpRequest: ...
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+            @typing.type_check_only
+            class WorkloadsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
                     *,
@@ -31,6 +37,12 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     externalId: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudAssuredworkloadsV1beta1WorkloadHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -40,27 +52,20 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudAssuredworkloadsV1beta1WorkloadHttpRequest: ...
-            class OperationsResource(googleapiclient.discovery.Resource):
-                def list(
+                def patch(
                     self,
                     *,
                     name: str,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    filter: str = ...,
+                    body: GoogleCloudAssuredworkloadsV1beta1Workload = ...,
+                    updateMask: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-            def workloads(self) -> WorkloadsResource: ...
+                ) -> GoogleCloudAssuredworkloadsV1beta1WorkloadHttpRequest: ...
             def operations(self) -> OperationsResource: ...
+            def workloads(self) -> WorkloadsResource: ...
         def locations(self) -> LocationsResource: ...
     def organizations(self) -> OrganizationsResource: ...
 
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -68,13 +73,7 @@ class GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse: ...
 
-class GoogleLongrunningListOperationsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleLongrunningListOperationsResponse: ...
-
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1WorkloadHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -82,11 +81,21 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudAssuredworkloadsV1beta1Workload: ...
 
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleLongrunningListOperationsResponse: ...
+
+@typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleLongrunningOperation: ...
 
+@typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

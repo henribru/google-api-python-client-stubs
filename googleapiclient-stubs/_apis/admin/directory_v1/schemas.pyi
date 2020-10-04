@@ -1,590 +1,659 @@
 import typing
 
 import typing_extensions
-
-class UserLanguage(typing_extensions.TypedDict, total=False):
-    customLanguage: str
-    languageCode: str
-
-class Users(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    etag: str
-    trigger_event: str
-    users: typing.List[User]
-    kind: str
-
-class UserPhoto(typing_extensions.TypedDict, total=False):
-    mimeType: str
-    width: int
-    photoData: str
-    primaryEmail: str
-    kind: str
+@typing.type_check_only
+class Alias(typing_extensions.TypedDict, total=False):
+    alias: str
     etag: str
     id: str
-    height: int
-
-class Schema(typing_extensions.TypedDict, total=False):
-    schemaName: str
-    schemaId: str
     kind: str
-    etag: str
-    fields: typing.List[SchemaFieldSpec]
-    displayName: str
+    primaryEmail: str
 
-class UserUndelete(typing_extensions.TypedDict, total=False):
-    orgUnitPath: str
-
-class UserMakeAdmin(typing_extensions.TypedDict, total=False):
-    status: bool
-
-class FeatureInstance(typing_extensions.TypedDict, total=False):
-    feature: Feature
-
-class MobileDevices(typing_extensions.TypedDict, total=False):
-    etag: str
-    mobiledevices: typing.List[MobileDevice]
-    nextPageToken: str
-    kind: str
-
-class VerificationCode(typing_extensions.TypedDict, total=False):
-    verificationCode: str
-    userId: str
-    etag: str
-    kind: str
-
-class UserCustomProperties(typing.Dict[str, typing.Any]): ...
-
-class OrgUnits(typing_extensions.TypedDict, total=False):
-    organizationUnits: typing.List[OrgUnit]
-    etag: str
-    kind: str
-
+@typing.type_check_only
 class Aliases(typing_extensions.TypedDict, total=False):
     aliases: typing.List[typing.Any]
     etag: str
     kind: str
 
-class UserLocation(typing_extensions.TypedDict, total=False):
-    area: str
-    floorName: str
-    type: str
-    deskCode: str
-    customType: str
-    buildingId: str
-    floorSection: str
-
-class CalendarResource(typing_extensions.TypedDict, total=False):
-    floorName: str
-    capacity: int
-    resourceType: str
-    resourceName: str
-    resourceCategory: str
-    buildingId: str
-    resourceId: str
-    floorSection: str
-    featureInstances: typing.Any
-    generatedResourceName: str
-    etags: str
-    kind: str
-    resourceDescription: str
-    userVisibleDescription: str
-    resourceEmail: str
-
-class ChromeOsDevices(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    etag: str
-    kind: str
-    chromeosdevices: typing.List[ChromeOsDevice]
-
-class Groups(typing_extensions.TypedDict, total=False):
-    groups: typing.List[Group]
-    etag: str
-    nextPageToken: str
-    kind: str
-
-class FeatureRename(typing_extensions.TypedDict, total=False):
-    newName: str
-
-class UserKeyword(typing_extensions.TypedDict, total=False):
-    type: str
-    customType: str
-    value: str
-
-class UserRelation(typing_extensions.TypedDict, total=False):
-    value: str
-    customType: str
-    type: str
-
-class UserWebsite(typing_extensions.TypedDict, total=False):
-    primary: bool
-    value: str
-    type: str
-    customType: str
-
-class Member(typing_extensions.TypedDict, total=False):
-    id: str
-    type: str
-    etag: str
-    delivery_settings: str
-    email: str
-    status: str
-    kind: str
-    role: str
-
-class MembersHasMember(typing_extensions.TypedDict, total=False):
-    isMember: bool
-
-class Roles(typing_extensions.TypedDict, total=False):
-    kind: str
-    items: typing.List[Role]
-    nextPageToken: str
-    etag: str
-
-class Role(typing_extensions.TypedDict, total=False):
-    isSuperAdminRole: bool
-    kind: str
-    roleId: str
-    isSystemRole: bool
-    rolePrivileges: typing.List[typing.Dict[str, typing.Any]]
-    roleDescription: str
-    etag: str
-    roleName: str
-
-class Customer(typing_extensions.TypedDict, total=False):
-    customerDomain: str
-    customerCreationTime: str
-    etag: str
-    alternateEmail: str
-    postalAddress: CustomerPostalAddress
-    language: str
-    phoneNumber: str
-    kind: str
-    id: str
-
-class CalendarResources(typing_extensions.TypedDict, total=False):
-    etag: str
-    items: typing.List[CalendarResource]
-    nextPageToken: str
-    kind: str
-
-class User(typing_extensions.TypedDict, total=False):
-    suspensionReason: str
-    posixAccounts: typing.Any
-    recoveryEmail: str
-    isEnforcedIn2Sv: bool
-    phones: typing.Any
-    aliases: typing.List[str]
-    thumbnailPhotoEtag: str
-    relations: typing.Any
-    creationTime: str
-    deletionTime: str
-    recoveryPhone: str
-    languages: typing.Any
-    kind: str
-    keywords: typing.Any
-    ims: typing.Any
-    password: str
-    isDelegatedAdmin: bool
-    nonEditableAliases: typing.List[str]
-    name: UserName
-    archived: bool
-    agreedToTerms: bool
-    organizations: typing.Any
-    websites: typing.Any
-    ipWhitelisted: bool
-    etag: str
-    isAdmin: bool
-    emails: typing.Any
-    orgUnitPath: str
-    primaryEmail: str
-    gender: typing.Any
-    sshPublicKeys: typing.Any
-    customerId: str
-    notes: typing.Any
-    isEnrolledIn2Sv: bool
-    lastLoginTime: str
-    includeInGlobalAddressList: bool
-    hashFunction: str
-    thumbnailPhotoUrl: str
-    isMailboxSetup: bool
-    id: str
-    externalIds: typing.Any
-    suspended: bool
-    customSchemas: typing.Dict[str, typing.Any]
-    changePasswordAtNextLogin: bool
-    locations: typing.Any
-    addresses: typing.Any
-
-class Group(typing_extensions.TypedDict, total=False):
-    name: str
-    nonEditableAliases: typing.List[str]
-    kind: str
-    directMembersCount: str
-    id: str
-    description: str
-    aliases: typing.List[str]
-    email: str
-    adminCreated: bool
-    etag: str
-
-class UserAddress(typing_extensions.TypedDict, total=False):
-    type: str
-    poBox: str
-    countryCode: str
-    country: str
-    extendedAddress: str
-    customType: str
-    formatted: str
-    locality: str
-    sourceIsStructured: bool
-    primary: bool
-    region: str
-    streetAddress: str
-    postalCode: str
-
-class MobileDeviceAction(typing_extensions.TypedDict, total=False):
-    action: str
-
-class UserEmail(typing_extensions.TypedDict, total=False):
-    customType: str
-    address: str
-    primary: bool
-    type: str
-
-class VerificationCodes(typing_extensions.TypedDict, total=False):
-    items: typing.List[VerificationCode]
-    etag: str
-    kind: str
-
-class UserPosixAccount(typing_extensions.TypedDict, total=False):
-    gid: str
-    systemId: str
-    uid: str
-    primary: bool
-    gecos: str
-    accountId: str
-    homeDirectory: str
-    shell: str
-    operatingSystemType: str
-    username: str
-
-class ChromeOsDeviceAction(typing_extensions.TypedDict, total=False):
-    deprovisionReason: str
-    action: str
-
-class ChromeOsDevice(typing_extensions.TypedDict, total=False):
-    bootMode: str
-    kind: str
-    systemRamTotal: str
-    ethernetMacAddress: str
-    manufactureDate: str
-    orgUnitPath: str
-    lastEnrollmentTime: str
-    platformVersion: str
-    status: str
-    recentUsers: typing.List[typing.Dict[str, typing.Any]]
-    diskVolumeReports: typing.List[typing.Dict[str, typing.Any]]
-    systemRamFreeReports: typing.List[typing.Dict[str, typing.Any]]
-    annotatedAssetId: str
-    supportEndDate: str
-    autoUpdateExpiration: str
-    serialNumber: str
-    dockMacAddress: str
-    cpuStatusReports: typing.List[typing.Dict[str, typing.Any]]
-    etag: str
-    activeTimeRanges: typing.List[typing.Dict[str, typing.Any]]
-    lastSync: str
-    orderNumber: str
-    meid: str
-    notes: str
-    willAutoRenew: bool
-    firmwareVersion: str
-    ethernetMacAddress0: str
-    model: str
-    annotatedUser: str
-    annotatedLocation: str
-    osVersion: str
-    deviceId: str
-    tpmVersionInfo: typing.Dict[str, typing.Any]
-    deviceFiles: typing.List[typing.Dict[str, typing.Any]]
-    macAddress: str
-    lastKnownNetwork: typing.List[typing.Dict[str, typing.Any]]
-
-class UserOrganization(typing_extensions.TypedDict, total=False):
-    primary: bool
-    location: str
-    costCenter: str
-    name: str
-    domain: str
-    symbol: str
-    description: str
-    department: str
-    type: str
-    customType: str
-    fullTimeEquivalent: int
-    title: str
-
-class ChromeOsMoveDevicesToOu(typing_extensions.TypedDict, total=False):
-    deviceIds: typing.List[str]
-
+@typing.type_check_only
 class Asp(typing_extensions.TypedDict, total=False):
     codeId: int
-    lastTimeUsed: str
     creationTime: str
-    userKey: str
     etag: str
     kind: str
+    lastTimeUsed: str
     name: str
+    userKey: str
 
-class BuildingCoordinates(typing_extensions.TypedDict, total=False):
-    latitude: float
-    longitude: float
-
-class SchemaFieldSpec(typing_extensions.TypedDict, total=False):
-    displayName: str
-    readAccessType: str
-    fieldName: str
-    numericIndexingSpec: typing.Dict[str, typing.Any]
-    fieldType: str
-    kind: str
-    etag: str
-    indexed: bool
-    fieldId: str
-    multiValued: bool
-
-class UserIm(typing_extensions.TypedDict, total=False):
-    type: str
-    im: str
-    customType: str
-    primary: bool
-    customProtocol: str
-    protocol: str
-
-class UserExternalId(typing_extensions.TypedDict, total=False):
-    customType: str
-    value: str
-    type: str
-
+@typing.type_check_only
 class Asps(typing_extensions.TypedDict, total=False):
     etag: str
     items: typing.List[Asp]
     kind: str
 
-class UserAbout(typing_extensions.TypedDict, total=False):
-    contentType: str
-    value: str
-
-class OrgUnit(typing_extensions.TypedDict, total=False):
-    name: str
-    parentOrgUnitId: str
-    orgUnitId: str
-    kind: str
-    parentOrgUnitPath: str
-    blockInheritance: bool
+@typing.type_check_only
+class Building(typing_extensions.TypedDict, total=False):
+    address: BuildingAddress
+    buildingId: str
+    buildingName: str
+    coordinates: BuildingCoordinates
     description: str
-    orgUnitPath: str
-    etag: str
-
-class CustomerPostalAddress(typing_extensions.TypedDict, total=False):
-    countryCode: str
-    addressLine3: str
-    contactName: str
-    postalCode: str
-    locality: str
-    organizationName: str
-    addressLine2: str
-    region: str
-    addressLine1: str
-
-class MobileDevice(typing_extensions.TypedDict, total=False):
-    brand: str
-    unknownSourcesStatus: bool
-    manufacturer: str
-    resourceId: str
-    imei: str
-    meid: str
-    type: str
-    email: typing.List[str]
-    userAgent: str
-    devicePasswordStatus: str
-    applications: typing.List[typing.Dict[str, typing.Any]]
-    deviceId: str
-    supportsWorkProfile: bool
-    etag: str
-    serialNumber: str
-    kernelVersion: str
-    securityPatchLevel: str
-    adbStatus: bool
-    name: typing.List[str]
-    otherAccountsInfo: typing.List[str]
-    defaultLanguage: str
-    bootloaderVersion: str
-    privilege: str
-    hardware: str
-    basebandVersion: str
-    networkOperator: str
-    encryptionStatus: str
-    deviceCompromisedStatus: str
-    os: str
-    firstSync: str
-    hardwareId: str
-    status: str
-    releaseVersion: str
-    developerOptionsStatus: bool
-    wifiMacAddress: str
-    buildNumber: str
-    model: str
-    kind: str
-    lastSync: str
-    managedAccountIsOnOwnerProfile: bool
-
-class Channel(typing_extensions.TypedDict, total=False):
-    expiration: str
-    payload: bool
-    address: str
-    resourceId: str
-    token: str
-    kind: str
-    params: typing.Dict[str, typing.Any]
-    id: str
-    resourceUri: str
-    type: str
-
-class Features(typing_extensions.TypedDict, total=False):
-    features: typing.List[Feature]
-    nextPageToken: str
-    etag: str
-    kind: str
-
-class DomainAlias(typing_extensions.TypedDict, total=False):
-    parentDomainName: str
-    creationTime: str
-    etag: str
-    kind: str
-    domainAliasName: str
-    verified: bool
-
-class RoleAssignments(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    kind: str
-    items: typing.List[RoleAssignment]
-    etag: str
-
-class UserGender(typing_extensions.TypedDict, total=False):
-    addressMeAs: str
-    customGender: str
-    type: str
-
-class Feature(typing_extensions.TypedDict, total=False):
     etags: str
+    floorNames: typing.List[str]
     kind: str
-    name: str
 
-class Schemas(typing_extensions.TypedDict, total=False):
-    kind: str
-    etag: str
-    schemas: typing.List[Schema]
+@typing.type_check_only
+class BuildingAddress(typing_extensions.TypedDict, total=False):
+    addressLines: typing.List[str]
+    administrativeArea: str
+    languageCode: str
+    locality: str
+    postalCode: str
+    regionCode: str
+    sublocality: str
 
+@typing.type_check_only
+class BuildingCoordinates(typing_extensions.TypedDict, total=False):
+    latitude: float
+    longitude: float
+
+@typing.type_check_only
 class Buildings(typing_extensions.TypedDict, total=False):
     buildings: typing.List[Building]
     etag: str
     kind: str
     nextPageToken: str
 
-class BuildingAddress(typing_extensions.TypedDict, total=False):
-    languageCode: str
-    administrativeArea: str
-    addressLines: typing.List[str]
-    postalCode: str
-    locality: str
-    sublocality: str
-    regionCode: str
-
-class DomainAliases(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class CalendarResource(typing_extensions.TypedDict, total=False):
+    buildingId: str
+    capacity: int
+    etags: str
+    featureInstances: typing.Any
+    floorName: str
+    floorSection: str
+    generatedResourceName: str
     kind: str
+    resourceCategory: str
+    resourceDescription: str
+    resourceEmail: str
+    resourceId: str
+    resourceName: str
+    resourceType: str
+    userVisibleDescription: str
+
+@typing.type_check_only
+class CalendarResources(typing_extensions.TypedDict, total=False):
     etag: str
-    domainAliases: typing.List[DomainAlias]
+    items: typing.List[CalendarResource]
+    kind: str
+    nextPageToken: str
 
-class UserName(typing_extensions.TypedDict, total=False):
-    fullName: str
-    familyName: str
-    givenName: str
-
-class Privilege(typing.Dict[str, typing.Any]): ...
-
-class UserPhone(typing_extensions.TypedDict, total=False):
-    customType: str
-    primary: bool
-    value: str
+@typing.type_check_only
+class Channel(typing_extensions.TypedDict, total=False):
+    address: str
+    expiration: str
+    id: str
+    kind: str
+    params: typing.Dict[str, typing.Any]
+    payload: bool
+    resourceId: str
+    resourceUri: str
+    token: str
     type: str
 
-class RoleAssignment(typing_extensions.TypedDict, total=False):
-    scopeType: str
-    orgUnitId: str
+@typing.type_check_only
+class ChromeOsDevice(typing_extensions.TypedDict, total=False):
+    activeTimeRanges: typing.List[typing.Dict[str, typing.Any]]
+    annotatedAssetId: str
+    annotatedLocation: str
+    annotatedUser: str
+    autoUpdateExpiration: str
+    bootMode: str
+    cpuStatusReports: typing.List[typing.Dict[str, typing.Any]]
+    deviceFiles: typing.List[typing.Dict[str, typing.Any]]
+    deviceId: str
+    diskVolumeReports: typing.List[typing.Dict[str, typing.Any]]
+    dockMacAddress: str
     etag: str
+    ethernetMacAddress: str
+    ethernetMacAddress0: str
+    firmwareVersion: str
     kind: str
-    roleId: str
-    roleAssignmentId: str
-    assignedTo: str
+    lastEnrollmentTime: str
+    lastKnownNetwork: typing.List[typing.Dict[str, typing.Any]]
+    lastSync: str
+    macAddress: str
+    manufactureDate: str
+    meid: str
+    model: str
+    notes: str
+    orderNumber: str
+    orgUnitPath: str
+    osVersion: str
+    platformVersion: str
+    recentUsers: typing.List[typing.Dict[str, typing.Any]]
+    serialNumber: str
+    status: str
+    supportEndDate: str
+    systemRamFreeReports: typing.List[typing.Dict[str, typing.Any]]
+    systemRamTotal: str
+    tpmVersionInfo: typing.Dict[str, typing.Any]
+    willAutoRenew: bool
 
-class Alias(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class ChromeOsDeviceAction(typing_extensions.TypedDict, total=False):
+    action: str
+    deprovisionReason: str
+
+@typing.type_check_only
+class ChromeOsDevices(typing_extensions.TypedDict, total=False):
+    chromeosdevices: typing.List[ChromeOsDevice]
     etag: str
-    primaryEmail: str
     kind: str
-    alias: str
+    nextPageToken: str
+
+@typing.type_check_only
+class ChromeOsMoveDevicesToOu(typing_extensions.TypedDict, total=False):
+    deviceIds: typing.List[str]
+
+@typing.type_check_only
+class Customer(typing_extensions.TypedDict, total=False):
+    alternateEmail: str
+    customerCreationTime: str
+    customerDomain: str
+    etag: str
     id: str
+    kind: str
+    language: str
+    phoneNumber: str
+    postalAddress: CustomerPostalAddress
 
-class Tokens(typing_extensions.TypedDict, total=False):
-    items: typing.List[Token]
+@typing.type_check_only
+class CustomerPostalAddress(typing_extensions.TypedDict, total=False):
+    addressLine1: str
+    addressLine2: str
+    addressLine3: str
+    contactName: str
+    countryCode: str
+    locality: str
+    organizationName: str
+    postalCode: str
+    region: str
+
+@typing.type_check_only
+class DomainAlias(typing_extensions.TypedDict, total=False):
+    creationTime: str
+    domainAliasName: str
+    etag: str
+    kind: str
+    parentDomainName: str
+    verified: bool
+
+@typing.type_check_only
+class DomainAliases(typing_extensions.TypedDict, total=False):
+    domainAliases: typing.List[DomainAlias]
     etag: str
     kind: str
 
-class Privileges(typing_extensions.TypedDict, total=False):
-    kind: str
+@typing.type_check_only
+class Domains(typing_extensions.TypedDict, total=False):
+    creationTime: str
+    domainAliases: typing.List[DomainAlias]
+    domainName: str
     etag: str
-    items: typing.List[Privilege]
+    isPrimary: bool
+    kind: str
+    verified: bool
 
+@typing.type_check_only
+class Domains2(typing_extensions.TypedDict, total=False):
+    domains: typing.List[Domains]
+    etag: str
+    kind: str
+
+@typing.type_check_only
+class Feature(typing_extensions.TypedDict, total=False):
+    etags: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class FeatureInstance(typing_extensions.TypedDict, total=False):
+    feature: Feature
+
+@typing.type_check_only
+class FeatureRename(typing_extensions.TypedDict, total=False):
+    newName: str
+
+@typing.type_check_only
+class Features(typing_extensions.TypedDict, total=False):
+    etag: str
+    features: typing.List[Feature]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class Group(typing_extensions.TypedDict, total=False):
+    adminCreated: bool
+    aliases: typing.List[str]
+    description: str
+    directMembersCount: str
+    email: str
+    etag: str
+    id: str
+    kind: str
+    name: str
+    nonEditableAliases: typing.List[str]
+
+@typing.type_check_only
+class Groups(typing_extensions.TypedDict, total=False):
+    etag: str
+    groups: typing.List[Group]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class Member(typing_extensions.TypedDict, total=False):
+    delivery_settings: str
+    email: str
+    etag: str
+    id: str
+    kind: str
+    role: str
+    status: str
+    type: str
+
+@typing.type_check_only
 class Members(typing_extensions.TypedDict, total=False):
-    kind: str
     etag: str
+    kind: str
     members: typing.List[Member]
     nextPageToken: str
 
-class Domains(typing_extensions.TypedDict, total=False):
-    isPrimary: bool
-    domainAliases: typing.List[DomainAlias]
-    creationTime: str
-    verified: bool
-    domainName: str
+@typing.type_check_only
+class MembersHasMember(typing_extensions.TypedDict, total=False):
+    isMember: bool
+
+@typing.type_check_only
+class MobileDevice(typing_extensions.TypedDict, total=False):
+    adbStatus: bool
+    applications: typing.List[typing.Dict[str, typing.Any]]
+    basebandVersion: str
+    bootloaderVersion: str
+    brand: str
+    buildNumber: str
+    defaultLanguage: str
+    developerOptionsStatus: bool
+    deviceCompromisedStatus: str
+    deviceId: str
+    devicePasswordStatus: str
+    email: typing.List[str]
+    encryptionStatus: str
+    etag: str
+    firstSync: str
+    hardware: str
+    hardwareId: str
+    imei: str
+    kernelVersion: str
+    kind: str
+    lastSync: str
+    managedAccountIsOnOwnerProfile: bool
+    manufacturer: str
+    meid: str
+    model: str
+    name: typing.List[str]
+    networkOperator: str
+    os: str
+    otherAccountsInfo: typing.List[str]
+    privilege: str
+    releaseVersion: str
+    resourceId: str
+    securityPatchLevel: str
+    serialNumber: str
+    status: str
+    supportsWorkProfile: bool
+    type: str
+    unknownSourcesStatus: bool
+    userAgent: str
+    wifiMacAddress: str
+
+@typing.type_check_only
+class MobileDeviceAction(typing_extensions.TypedDict, total=False):
+    action: str
+
+@typing.type_check_only
+class MobileDevices(typing_extensions.TypedDict, total=False):
     etag: str
     kind: str
+    mobiledevices: typing.List[MobileDevice]
+    nextPageToken: str
 
-class Token(typing_extensions.TypedDict, total=False):
-    userKey: str
-    etag: str
-    nativeApp: bool
-    anonymous: bool
-    kind: str
-    clientId: str
-    scopes: typing.List[str]
-    displayText: str
-
-class Building(typing_extensions.TypedDict, total=False):
-    kind: str
-    address: BuildingAddress
-    buildingName: str
-    coordinates: BuildingCoordinates
-    floorNames: typing.List[str]
-    buildingId: str
+@typing.type_check_only
+class OrgUnit(typing_extensions.TypedDict, total=False):
+    blockInheritance: bool
     description: str
-    etags: str
-
-class Domains2(typing_extensions.TypedDict, total=False):
     etag: str
     kind: str
-    domains: typing.List[Domains]
+    name: str
+    orgUnitId: str
+    orgUnitPath: str
+    parentOrgUnitId: str
+    parentOrgUnitPath: str
 
+@typing.type_check_only
+class OrgUnits(typing_extensions.TypedDict, total=False):
+    etag: str
+    kind: str
+    organizationUnits: typing.List[OrgUnit]
+
+@typing.type_check_only
+class Privilege(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class Privileges(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: typing.List[Privilege]
+    kind: str
+
+@typing.type_check_only
+class Role(typing_extensions.TypedDict, total=False):
+    etag: str
+    isSuperAdminRole: bool
+    isSystemRole: bool
+    kind: str
+    roleDescription: str
+    roleId: str
+    roleName: str
+    rolePrivileges: typing.List[typing.Dict[str, typing.Any]]
+
+@typing.type_check_only
+class RoleAssignment(typing_extensions.TypedDict, total=False):
+    assignedTo: str
+    etag: str
+    kind: str
+    orgUnitId: str
+    roleAssignmentId: str
+    roleId: str
+    scopeType: str
+
+@typing.type_check_only
+class RoleAssignments(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: typing.List[RoleAssignment]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class Roles(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: typing.List[Role]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class Schema(typing_extensions.TypedDict, total=False):
+    displayName: str
+    etag: str
+    fields: typing.List[SchemaFieldSpec]
+    kind: str
+    schemaId: str
+    schemaName: str
+
+@typing.type_check_only
+class SchemaFieldSpec(typing_extensions.TypedDict, total=False):
+    displayName: str
+    etag: str
+    fieldId: str
+    fieldName: str
+    fieldType: str
+    indexed: bool
+    kind: str
+    multiValued: bool
+    numericIndexingSpec: typing.Dict[str, typing.Any]
+    readAccessType: str
+
+@typing.type_check_only
+class Schemas(typing_extensions.TypedDict, total=False):
+    etag: str
+    kind: str
+    schemas: typing.List[Schema]
+
+@typing.type_check_only
+class Token(typing_extensions.TypedDict, total=False):
+    anonymous: bool
+    clientId: str
+    displayText: str
+    etag: str
+    kind: str
+    nativeApp: bool
+    scopes: typing.List[str]
+    userKey: str
+
+@typing.type_check_only
+class Tokens(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: typing.List[Token]
+    kind: str
+
+@typing.type_check_only
+class User(typing_extensions.TypedDict, total=False):
+    addresses: typing.Any
+    agreedToTerms: bool
+    aliases: typing.List[str]
+    archived: bool
+    changePasswordAtNextLogin: bool
+    creationTime: str
+    customSchemas: typing.Dict[str, typing.Any]
+    customerId: str
+    deletionTime: str
+    emails: typing.Any
+    etag: str
+    externalIds: typing.Any
+    gender: typing.Any
+    hashFunction: str
+    id: str
+    ims: typing.Any
+    includeInGlobalAddressList: bool
+    ipWhitelisted: bool
+    isAdmin: bool
+    isDelegatedAdmin: bool
+    isEnforcedIn2Sv: bool
+    isEnrolledIn2Sv: bool
+    isMailboxSetup: bool
+    keywords: typing.Any
+    kind: str
+    languages: typing.Any
+    lastLoginTime: str
+    locations: typing.Any
+    name: UserName
+    nonEditableAliases: typing.List[str]
+    notes: typing.Any
+    orgUnitPath: str
+    organizations: typing.Any
+    password: str
+    phones: typing.Any
+    posixAccounts: typing.Any
+    primaryEmail: str
+    recoveryEmail: str
+    recoveryPhone: str
+    relations: typing.Any
+    sshPublicKeys: typing.Any
+    suspended: bool
+    suspensionReason: str
+    thumbnailPhotoEtag: str
+    thumbnailPhotoUrl: str
+    websites: typing.Any
+
+@typing.type_check_only
+class UserAbout(typing_extensions.TypedDict, total=False):
+    contentType: str
+    value: str
+
+@typing.type_check_only
+class UserAddress(typing_extensions.TypedDict, total=False):
+    country: str
+    countryCode: str
+    customType: str
+    extendedAddress: str
+    formatted: str
+    locality: str
+    poBox: str
+    postalCode: str
+    primary: bool
+    region: str
+    sourceIsStructured: bool
+    streetAddress: str
+    type: str
+
+@typing.type_check_only
+class UserCustomProperties(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class UserEmail(typing_extensions.TypedDict, total=False):
+    address: str
+    customType: str
+    primary: bool
+    type: str
+
+@typing.type_check_only
+class UserExternalId(typing_extensions.TypedDict, total=False):
+    customType: str
+    type: str
+    value: str
+
+@typing.type_check_only
+class UserGender(typing_extensions.TypedDict, total=False):
+    addressMeAs: str
+    customGender: str
+    type: str
+
+@typing.type_check_only
+class UserIm(typing_extensions.TypedDict, total=False):
+    customProtocol: str
+    customType: str
+    im: str
+    primary: bool
+    protocol: str
+    type: str
+
+@typing.type_check_only
+class UserKeyword(typing_extensions.TypedDict, total=False):
+    customType: str
+    type: str
+    value: str
+
+@typing.type_check_only
+class UserLanguage(typing_extensions.TypedDict, total=False):
+    customLanguage: str
+    languageCode: str
+
+@typing.type_check_only
+class UserLocation(typing_extensions.TypedDict, total=False):
+    area: str
+    buildingId: str
+    customType: str
+    deskCode: str
+    floorName: str
+    floorSection: str
+    type: str
+
+@typing.type_check_only
+class UserMakeAdmin(typing_extensions.TypedDict, total=False):
+    status: bool
+
+@typing.type_check_only
+class UserName(typing_extensions.TypedDict, total=False):
+    familyName: str
+    fullName: str
+    givenName: str
+
+@typing.type_check_only
+class UserOrganization(typing_extensions.TypedDict, total=False):
+    costCenter: str
+    customType: str
+    department: str
+    description: str
+    domain: str
+    fullTimeEquivalent: int
+    location: str
+    name: str
+    primary: bool
+    symbol: str
+    title: str
+    type: str
+
+@typing.type_check_only
+class UserPhone(typing_extensions.TypedDict, total=False):
+    customType: str
+    primary: bool
+    type: str
+    value: str
+
+@typing.type_check_only
+class UserPhoto(typing_extensions.TypedDict, total=False):
+    etag: str
+    height: int
+    id: str
+    kind: str
+    mimeType: str
+    photoData: str
+    primaryEmail: str
+    width: int
+
+@typing.type_check_only
+class UserPosixAccount(typing_extensions.TypedDict, total=False):
+    accountId: str
+    gecos: str
+    gid: str
+    homeDirectory: str
+    operatingSystemType: str
+    primary: bool
+    shell: str
+    systemId: str
+    uid: str
+    username: str
+
+@typing.type_check_only
+class UserRelation(typing_extensions.TypedDict, total=False):
+    customType: str
+    type: str
+    value: str
+
+@typing.type_check_only
 class UserSshPublicKey(typing_extensions.TypedDict, total=False):
     expirationTimeUsec: str
     fingerprint: str
     key: str
+
+@typing.type_check_only
+class UserUndelete(typing_extensions.TypedDict, total=False):
+    orgUnitPath: str
+
+@typing.type_check_only
+class UserWebsite(typing_extensions.TypedDict, total=False):
+    customType: str
+    primary: bool
+    type: str
+    value: str
+
+@typing.type_check_only
+class Users(typing_extensions.TypedDict, total=False):
+    etag: str
+    kind: str
+    nextPageToken: str
+    trigger_event: str
+    users: typing.List[User]
+
+@typing.type_check_only
+class VerificationCode(typing_extensions.TypedDict, total=False):
+    etag: str
+    kind: str
+    userId: str
+    verificationCode: str
+
+@typing.type_check_only
+class VerificationCodes(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: typing.List[VerificationCode]
+    kind: str

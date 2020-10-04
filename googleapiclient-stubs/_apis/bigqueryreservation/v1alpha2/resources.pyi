@@ -7,10 +7,13 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class BigQueryReservationResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self, *, name: str, **kwargs: typing.Any
@@ -18,7 +21,15 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+            @typing.type_check_only
             class ReservationGrantsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: ReservationGrant = ...,
+                    **kwargs: typing.Any
+                ) -> ReservationGrantHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -30,21 +41,16 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListReservationGrantsResponseHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: ReservationGrant = ...,
-                    **kwargs: typing.Any
-                ) -> ReservationGrantHttpRequest: ...
+            @typing.type_check_only
             class ReservationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class SlotPoolsResource(googleapiclient.discovery.Resource):
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> SlotPoolHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> SlotPoolHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -53,27 +59,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListSlotPoolsResponseHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: Reservation = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> ReservationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    filter: str = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListReservationsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> ReservationHttpRequest: ...
-                def createReservation(
+                def create(
                     self,
                     *,
                     parent: str,
@@ -81,7 +67,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     reservationId: str = ...,
                     **kwargs: typing.Any
                 ) -> ReservationHttpRequest: ...
-                def create(
+                def createReservation(
                     self,
                     *,
                     parent: str,
@@ -92,13 +78,33 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ReservationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListReservationsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Reservation = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> ReservationHttpRequest: ...
                 def slotPools(self) -> SlotPoolsResource: ...
             def searchReservationGrants(
                 self,
                 *,
                 parent: str,
-                pageToken: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 query: str = ...,
                 **kwargs: typing.Any
             ) -> SearchReservationGrantsResponseHttpRequest: ...
@@ -108,47 +114,56 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class ListSlotPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListSlotPoolsResponse: ...
-
-class SlotPoolHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SlotPool: ...
-
-class ReservationGrantHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ReservationGrant: ...
-
-class ReservationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Reservation: ...
-
+@typing.type_check_only
 class ListReservationGrantsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListReservationGrantsResponse: ...
 
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
+@typing.type_check_only
 class ListReservationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListReservationsResponse: ...
 
+@typing.type_check_only
+class ListSlotPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListSlotPoolsResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
+class ReservationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Reservation: ...
+
+@typing.type_check_only
+class ReservationGrantHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ReservationGrant: ...
+
+@typing.type_check_only
 class SearchReservationGrantsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> SearchReservationGrantsResponse: ...
+
+@typing.type_check_only
+class SlotPoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SlotPool: ...

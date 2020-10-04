@@ -1,20 +1,26 @@
 import typing
 
 import typing_extensions
-
-class Dashboard(typing_extensions.TypedDict, total=False):
-    name: str
-    gridLayout: GridLayout
-    etag: str
-    mosaicLayout: MosaicLayout
-    displayName: str
-    rowLayout: RowLayout
-    columnLayout: ColumnLayout
-
-class SpanContext(typing_extensions.TypedDict, total=False):
-    spanName: str
-
+@typing.type_check_only
 class Aggregation(typing_extensions.TypedDict, total=False):
+    alignmentPeriod: str
+    crossSeriesReducer: typing_extensions.Literal[
+        "REDUCE_NONE",
+        "REDUCE_MEAN",
+        "REDUCE_MIN",
+        "REDUCE_MAX",
+        "REDUCE_SUM",
+        "REDUCE_STDDEV",
+        "REDUCE_COUNT",
+        "REDUCE_COUNT_TRUE",
+        "REDUCE_COUNT_FALSE",
+        "REDUCE_FRACTION_TRUE",
+        "REDUCE_PERCENTILE_99",
+        "REDUCE_PERCENTILE_95",
+        "REDUCE_PERCENTILE_50",
+        "REDUCE_PERCENTILE_05",
+    ]
+    groupByFields: typing.List[str]
     perSeriesAligner: typing_extensions.Literal[
         "ALIGN_NONE",
         "ALIGN_DELTA",
@@ -36,30 +42,53 @@ class Aggregation(typing_extensions.TypedDict, total=False):
         "ALIGN_PERCENTILE_05",
         "ALIGN_PERCENT_CHANGE",
     ]
-    groupByFields: typing.List[str]
-    alignmentPeriod: str
-    crossSeriesReducer: typing_extensions.Literal[
-        "REDUCE_NONE",
-        "REDUCE_MEAN",
-        "REDUCE_MIN",
-        "REDUCE_MAX",
-        "REDUCE_SUM",
-        "REDUCE_STDDEV",
-        "REDUCE_COUNT",
-        "REDUCE_COUNT_TRUE",
-        "REDUCE_COUNT_FALSE",
-        "REDUCE_FRACTION_TRUE",
-        "REDUCE_PERCENTILE_99",
-        "REDUCE_PERCENTILE_95",
-        "REDUCE_PERCENTILE_50",
-        "REDUCE_PERCENTILE_05",
-    ]
 
-class Field(typing_extensions.TypedDict, total=False):
-    number: int
-    typeUrl: str
-    jsonName: str
+@typing.type_check_only
+class Axis(typing_extensions.TypedDict, total=False):
+    label: str
+    scale: typing_extensions.Literal["SCALE_UNSPECIFIED", "LINEAR", "LOG10"]
+
+@typing.type_check_only
+class ChartOptions(typing_extensions.TypedDict, total=False):
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "COLOR", "X_RAY", "STATS"]
+
+@typing.type_check_only
+class Column(typing_extensions.TypedDict, total=False):
+    weight: str
+    widgets: typing.List[Widget]
+
+@typing.type_check_only
+class ColumnLayout(typing_extensions.TypedDict, total=False):
+    columns: typing.List[Column]
+
+@typing.type_check_only
+class Dashboard(typing_extensions.TypedDict, total=False):
+    columnLayout: ColumnLayout
+    displayName: str
+    etag: str
+    gridLayout: GridLayout
+    mosaicLayout: MosaicLayout
     name: str
+    rowLayout: RowLayout
+
+@typing.type_check_only
+class DataSet(typing_extensions.TypedDict, total=False):
+    legendTemplate: str
+    minAlignmentPeriod: str
+    plotType: typing_extensions.Literal[
+        "PLOT_TYPE_UNSPECIFIED", "LINE", "STACKED_AREA", "STACKED_BAR", "HEATMAP"
+    ]
+    timeSeriesQuery: TimeSeriesQuery
+
+@typing.type_check_only
+class DroppedLabels(typing_extensions.TypedDict, total=False):
+    label: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Field(typing_extensions.TypedDict, total=False):
     cardinality: typing_extensions.Literal[
         "CARDINALITY_UNKNOWN",
         "CARDINALITY_OPTIONAL",
@@ -67,6 +96,7 @@ class Field(typing_extensions.TypedDict, total=False):
         "CARDINALITY_REPEATED",
     ]
     defaultValue: str
+    jsonName: str
     kind: typing_extensions.Literal[
         "TYPE_UNKNOWN",
         "TYPE_DOUBLE",
@@ -88,107 +118,42 @@ class Field(typing_extensions.TypedDict, total=False):
         "TYPE_SINT32",
         "TYPE_SINT64",
     ]
-    packed: bool
-    options: typing.List[Option]
+    name: str
+    number: int
     oneofIndex: int
+    options: typing.List[Option]
+    packed: bool
+    typeUrl: str
 
-class DataSet(typing_extensions.TypedDict, total=False):
-    plotType: typing_extensions.Literal[
-        "PLOT_TYPE_UNSPECIFIED", "LINE", "STACKED_AREA", "STACKED_BAR", "HEATMAP"
-    ]
-    minAlignmentPeriod: str
-    legendTemplate: str
-    timeSeriesQuery: TimeSeriesQuery
-
+@typing.type_check_only
 class GaugeView(typing_extensions.TypedDict, total=False):
     lowerBound: float
     upperBound: float
 
-class StatisticalTimeSeriesFilter(typing_extensions.TypedDict, total=False):
-    numTimeSeries: int
-    rankingMethod: typing_extensions.Literal[
-        "METHOD_UNSPECIFIED", "METHOD_CLUSTER_OUTLIER"
-    ]
-
-class SparkChartView(typing_extensions.TypedDict, total=False):
-    minAlignmentPeriod: str
-    sparkChartType: typing_extensions.Literal[
-        "SPARK_CHART_TYPE_UNSPECIFIED", "SPARK_LINE", "SPARK_BAR"
-    ]
-
-class ColumnLayout(typing_extensions.TypedDict, total=False):
-    columns: typing.List[Column]
-
-class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    dashboards: typing.List[Dashboard]
-
-class Text(typing_extensions.TypedDict, total=False):
-    format: typing_extensions.Literal["FORMAT_UNSPECIFIED", "MARKDOWN", "RAW"]
-    content: str
-
-class Option(typing_extensions.TypedDict, total=False):
-    value: typing.Dict[str, typing.Any]
-    name: str
-
-class Widget(typing_extensions.TypedDict, total=False):
-    xyChart: XyChart
-    title: str
-    blank: Empty
-    text: Text
-    scorecard: Scorecard
-
-class RowLayout(typing_extensions.TypedDict, total=False):
-    rows: typing.List[Row]
-
-class TimeSeriesFilterRatio(typing_extensions.TypedDict, total=False):
-    denominator: RatioPart
-    numerator: RatioPart
-    secondaryAggregation: Aggregation
-    pickTimeSeriesFilter: PickTimeSeriesFilter
-    statisticalTimeSeriesFilter: StatisticalTimeSeriesFilter
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class SourceContext(typing_extensions.TypedDict, total=False):
-    fileName: str
-
-class ChartOptions(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "COLOR", "X_RAY", "STATS"]
-
-class Column(typing_extensions.TypedDict, total=False):
-    widgets: typing.List[Widget]
-    weight: str
-
-class Tile(typing_extensions.TypedDict, total=False):
-    height: int
-    yPos: int
-    widget: Widget
-    width: int
-    xPos: int
-
-class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
-    timeSeriesQueryLanguage: str
-    timeSeriesFilterRatio: TimeSeriesFilterRatio
-    timeSeriesFilter: TimeSeriesFilter
-    unitOverride: str
-
+@typing.type_check_only
 class GridLayout(typing_extensions.TypedDict, total=False):
     columns: str
     widgets: typing.List[Widget]
 
-class DroppedLabels(typing_extensions.TypedDict, total=False):
-    label: typing.Dict[str, typing.Any]
+@typing.type_check_only
+class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
+    dashboards: typing.List[Dashboard]
+    nextPageToken: str
 
-class RatioPart(typing_extensions.TypedDict, total=False):
-    aggregation: Aggregation
-    filter: str
-
+@typing.type_check_only
 class MosaicLayout(typing_extensions.TypedDict, total=False):
     columns: int
     tiles: typing.List[Tile]
 
+@typing.type_check_only
+class Option(typing_extensions.TypedDict, total=False):
+    name: str
+    value: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
+    direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "TOP", "BOTTOM"]
+    numTimeSeries: int
     rankingMethod: typing_extensions.Literal[
         "METHOD_UNSPECIFIED",
         "METHOD_MEAN",
@@ -197,48 +162,115 @@ class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
         "METHOD_SUM",
         "METHOD_LATEST",
     ]
-    direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "TOP", "BOTTOM"]
-    numTimeSeries: int
 
+@typing.type_check_only
+class RatioPart(typing_extensions.TypedDict, total=False):
+    aggregation: Aggregation
+    filter: str
+
+@typing.type_check_only
+class Row(typing_extensions.TypedDict, total=False):
+    weight: str
+    widgets: typing.List[Widget]
+
+@typing.type_check_only
+class RowLayout(typing_extensions.TypedDict, total=False):
+    rows: typing.List[Row]
+
+@typing.type_check_only
+class Scorecard(typing_extensions.TypedDict, total=False):
+    gaugeView: GaugeView
+    sparkChartView: SparkChartView
+    thresholds: typing.List[Threshold]
+    timeSeriesQuery: TimeSeriesQuery
+
+@typing.type_check_only
+class SourceContext(typing_extensions.TypedDict, total=False):
+    fileName: str
+
+@typing.type_check_only
+class SpanContext(typing_extensions.TypedDict, total=False):
+    spanName: str
+
+@typing.type_check_only
+class SparkChartView(typing_extensions.TypedDict, total=False):
+    minAlignmentPeriod: str
+    sparkChartType: typing_extensions.Literal[
+        "SPARK_CHART_TYPE_UNSPECIFIED", "SPARK_LINE", "SPARK_BAR"
+    ]
+
+@typing.type_check_only
+class StatisticalTimeSeriesFilter(typing_extensions.TypedDict, total=False):
+    numTimeSeries: int
+    rankingMethod: typing_extensions.Literal[
+        "METHOD_UNSPECIFIED", "METHOD_CLUSTER_OUTLIER"
+    ]
+
+@typing.type_check_only
+class Text(typing_extensions.TypedDict, total=False):
+    content: str
+    format: typing_extensions.Literal["FORMAT_UNSPECIFIED", "MARKDOWN", "RAW"]
+
+@typing.type_check_only
 class Threshold(typing_extensions.TypedDict, total=False):
     color: typing_extensions.Literal["COLOR_UNSPECIFIED", "YELLOW", "RED"]
     direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "ABOVE", "BELOW"]
     label: str
     value: float
 
-class Row(typing_extensions.TypedDict, total=False):
-    widgets: typing.List[Widget]
-    weight: str
+@typing.type_check_only
+class Tile(typing_extensions.TypedDict, total=False):
+    height: int
+    widget: Widget
+    width: int
+    xPos: int
+    yPos: int
 
+@typing.type_check_only
 class TimeSeriesFilter(typing_extensions.TypedDict, total=False):
-    filter: str
-    secondaryAggregation: Aggregation
-    pickTimeSeriesFilter: PickTimeSeriesFilter
     aggregation: Aggregation
+    filter: str
+    pickTimeSeriesFilter: PickTimeSeriesFilter
+    secondaryAggregation: Aggregation
     statisticalTimeSeriesFilter: StatisticalTimeSeriesFilter
 
-class Scorecard(typing_extensions.TypedDict, total=False):
-    sparkChartView: SparkChartView
-    thresholds: typing.List[Threshold]
-    timeSeriesQuery: TimeSeriesQuery
-    gaugeView: GaugeView
+@typing.type_check_only
+class TimeSeriesFilterRatio(typing_extensions.TypedDict, total=False):
+    denominator: RatioPart
+    numerator: RatioPart
+    pickTimeSeriesFilter: PickTimeSeriesFilter
+    secondaryAggregation: Aggregation
+    statisticalTimeSeriesFilter: StatisticalTimeSeriesFilter
 
-class XyChart(typing_extensions.TypedDict, total=False):
-    dataSets: typing.List[DataSet]
-    yAxis: Axis
-    xAxis: Axis
-    chartOptions: ChartOptions
-    thresholds: typing.List[Threshold]
-    timeshiftDuration: str
+@typing.type_check_only
+class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
+    timeSeriesFilter: TimeSeriesFilter
+    timeSeriesFilterRatio: TimeSeriesFilterRatio
+    timeSeriesQueryLanguage: str
+    unitOverride: str
 
+@typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
+    fields: typing.List[Field]
     name: str
     oneofs: typing.List[str]
-    fields: typing.List[Field]
-    sourceContext: SourceContext
     options: typing.List[Option]
+    sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
 
-class Axis(typing_extensions.TypedDict, total=False):
-    scale: typing_extensions.Literal["SCALE_UNSPECIFIED", "LINEAR", "LOG10"]
-    label: str
+@typing.type_check_only
+class Widget(typing_extensions.TypedDict, total=False):
+    blank: Empty
+    scorecard: Scorecard
+    text: Text
+    title: str
+    xyChart: XyChart
+
+@typing.type_check_only
+class XyChart(typing_extensions.TypedDict, total=False):
+    chartOptions: ChartOptions
+    dataSets: typing.List[DataSet]
+    thresholds: typing.List[Threshold]
+    timeshiftDuration: str
+    xAxis: Axis
+    yAxis: Axis

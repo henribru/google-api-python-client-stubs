@@ -1,402 +1,84 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AbuseReport(typing_extensions.TypedDict, total=False):
+    abuseTypes: typing.List[AbuseType]
+    description: str
+    relatedEntities: typing.List[RelatedEntity]
+    subject: Entity
 
+@typing.type_check_only
 class AbuseType(typing_extensions.TypedDict, total=False):
     id: str
 
-class ActivityContentDetailsSubscription(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class AccessPolicy(typing_extensions.TypedDict, total=False):
+    allowed: bool
+    exception: typing.List[str]
+
+@typing.type_check_only
+class Activity(typing_extensions.TypedDict, total=False):
+    contentDetails: ActivityContentDetails
+    etag: str
+    id: str
+    kind: str
+    snippet: ActivitySnippet
+
+@typing.type_check_only
+class ActivityContentDetails(typing_extensions.TypedDict, total=False):
+    bulletin: ActivityContentDetailsBulletin
+    channelItem: ActivityContentDetailsChannelItem
+    comment: ActivityContentDetailsComment
+    favorite: ActivityContentDetailsFavorite
+    like: ActivityContentDetailsLike
+    playlistItem: ActivityContentDetailsPlaylistItem
+    promotedItem: ActivityContentDetailsPromotedItem
+    recommendation: ActivityContentDetailsRecommendation
+    social: ActivityContentDetailsSocial
+    subscription: ActivityContentDetailsSubscription
+    upload: ActivityContentDetailsUpload
+
+@typing.type_check_only
+class ActivityContentDetailsBulletin(typing_extensions.TypedDict, total=False):
     resourceId: ResourceId
 
-class VideoPlayer(typing_extensions.TypedDict, total=False):
-    embedHtml: str
-    embedHeight: str
-    embedWidth: str
-
-class SearchResultSnippet(typing_extensions.TypedDict, total=False):
-    liveBroadcastContent: typing_extensions.Literal[
-        "none", "upcoming", "live", "completed"
-    ]
-    channelTitle: str
-    description: str
-    channelId: str
-    publishedAt: str
-    thumbnails: ThumbnailDetails
-    title: str
-
-class SponsorListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    kind: str
-    etag: str
-    tokenPagination: TokenPagination
-    pageInfo: PageInfo
-    visitorId: str
-    items: typing.List[Sponsor]
-    eventId: str
-
-class TokenPagination(typing_extensions.TypedDict, total=False): ...
-
-class SubscriptionListResponse(typing_extensions.TypedDict, total=False):
-    tokenPagination: TokenPagination
-    prevPageToken: str
-    pageInfo: PageInfo
-    etag: str
-    visitorId: str
-    nextPageToken: str
-    items: typing.List[Subscription]
-    kind: str
-    eventId: str
-
-class PlaylistContentDetails(typing_extensions.TypedDict, total=False):
-    itemCount: int
-
-class PlaylistPlayer(typing_extensions.TypedDict, total=False):
-    embedHtml: str
-
-class ChannelConversionPings(typing_extensions.TypedDict, total=False):
-    pings: typing.List[ChannelConversionPing]
-
-class PlaylistItemStatus(typing_extensions.TypedDict, total=False):
-    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
-
-class TestItem(typing_extensions.TypedDict, total=False):
-    id: str
-    gaia: str
-    snippet: TestItemTestItemSnippet
-
-class I18nLanguageListResponse(typing_extensions.TypedDict, total=False):
-    etag: str
-    visitorId: str
-    kind: str
-    items: typing.List[I18nLanguage]
-    eventId: str
-
-class LiveBroadcastStatus(typing_extensions.TypedDict, total=False):
-    liveBroadcastPriority: typing_extensions.Literal[
-        "liveBroadcastPriorityUnspecified", "low", "normal", "high"
-    ]
-    lifeCycleStatus: typing_extensions.Literal[
-        "lifeCycleStatusUnspecified",
-        "created",
-        "ready",
-        "testing",
-        "live",
-        "complete",
-        "revoked",
-        "testStarting",
-        "liveStarting",
-    ]
-    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
-    madeForKids: bool
-    selfDeclaredMadeForKids: bool
-    recordingStatus: typing_extensions.Literal[
-        "liveBroadcastRecordingStatusUnspecified",
-        "notRecording",
-        "recording",
-        "recorded",
-    ]
-
-class VideoStatistics(typing_extensions.TypedDict, total=False):
-    likeCount: str
-    commentCount: str
-    viewCount: str
-    favoriteCount: str
-    dislikeCount: str
-
-class MemberSnippet(typing_extensions.TypedDict, total=False):
-    membershipsDetails: MembershipsDetails
-    creatorChannelId: str
-    memberDetails: ChannelProfileDetails
-
-class Playlist(typing_extensions.TypedDict, total=False):
-    contentDetails: PlaylistContentDetails
-    player: PlaylistPlayer
-    snippet: PlaylistSnippet
-    id: str
-    etag: str
-    localizations: typing.Dict[str, typing.Any]
-    status: PlaylistStatus
-    kind: str
-
-class I18nRegion(typing_extensions.TypedDict, total=False):
-    kind: str
-    snippet: I18nRegionSnippet
-    etag: str
-    id: str
-
-class VideoContentDetails(typing_extensions.TypedDict, total=False):
-    duration: str
-    licensedContent: bool
-    hasCustomThumbnail: bool
-    regionRestriction: VideoContentDetailsRegionRestriction
-    projection: typing_extensions.Literal["rectangular", "360"]
-    caption: typing_extensions.Literal["true", "false"]
-    dimension: str
-    definition: typing_extensions.Literal["sd", "hd"]
-    countryRestriction: AccessPolicy
-    contentRating: ContentRating
-
-class MembershipsLevelListResponse(typing_extensions.TypedDict, total=False):
-    eventId: str
-    etag: str
-    items: typing.List[MembershipsLevel]
-    visitorId: str
-    kind: str
-
-class LiveChatMessageDeletedDetails(typing_extensions.TypedDict, total=False):
-    deletedMessageId: str
-
-class CaptionListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    eventId: str
-    etag: str
-    items: typing.List[Caption]
-    visitorId: str
-
-class VideoMonetizationDetails(typing_extensions.TypedDict, total=False):
-    access: AccessPolicy
-
-class Video(typing_extensions.TypedDict, total=False):
-    recordingDetails: VideoRecordingDetails
-    liveStreamingDetails: VideoLiveStreamingDetails
-    processingDetails: VideoProcessingDetails
-    kind: str
-    etag: str
-    contentDetails: VideoContentDetails
-    player: VideoPlayer
-    id: str
-    localizations: typing.Dict[str, typing.Any]
-    suggestions: VideoSuggestions
-    monetizationDetails: VideoMonetizationDetails
-    ageGating: VideoAgeGating
-    statistics: VideoStatistics
-    fileDetails: VideoFileDetails
-    snippet: VideoSnippet
-    topicDetails: VideoTopicDetails
-    projectDetails: VideoProjectDetails
-    status: VideoStatus
-
-class PlaylistItemSnippet(typing_extensions.TypedDict, total=False):
-    title: str
-    channelTitle: str
+@typing.type_check_only
+class ActivityContentDetailsChannelItem(typing_extensions.TypedDict, total=False):
     resourceId: ResourceId
-    playlistId: str
-    channelId: str
-    thumbnails: ThumbnailDetails
-    description: str
-    publishedAt: str
-    position: int
 
-class MembershipsDetails(typing_extensions.TypedDict, total=False):
-    membershipsDuration: MembershipsDuration
-    highestAccessibleLevel: str
-    accessibleLevels: typing.List[str]
-    highestAccessibleLevelDisplayName: str
-    membershipsDurationAtLevels: typing.List[MembershipsDurationAtLevel]
-
-class PlaylistLocalization(typing_extensions.TypedDict, total=False):
-    title: str
-    description: str
-
-class ChannelToStoreLinkDetails(typing_extensions.TypedDict, total=False):
-    storeUrl: str
-    storeName: str
-
-class VideoCategoryListResponse(typing_extensions.TypedDict, total=False):
-    prevPageToken: str
-    items: typing.List[VideoCategory]
-    etag: str
-    pageInfo: PageInfo
-    eventId: str
-    kind: str
-    nextPageToken: str
-    visitorId: str
-    tokenPagination: TokenPagination
-
-class ThirdPartyLinkSnippet(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["linkUnspecified", "channelToStoreLink"]
-    channelToStoreLink: ChannelToStoreLinkDetails
-
-class VideoStatus(typing_extensions.TypedDict, total=False):
-    license: typing_extensions.Literal["youtube", "creativeCommon"]
-    failureReason: typing_extensions.Literal[
-        "conversion", "invalidFile", "emptyFile", "tooSmall", "codec", "uploadAborted"
-    ]
-    publicStatsViewable: bool
-    uploadStatus: typing_extensions.Literal[
-        "uploaded", "processed", "failed", "rejected", "deleted"
-    ]
-    selfDeclaredMadeForKids: bool
-    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
-    embeddable: bool
-    publishAt: str
-    madeForKids: bool
-    rejectionReason: typing_extensions.Literal[
-        "copyright",
-        "inappropriate",
-        "duplicate",
-        "termsOfUse",
-        "uploaderAccountSuspended",
-        "length",
-        "claim",
-        "uploaderAccountClosed",
-        "trademark",
-        "legal",
-    ]
-
-class ChannelStatus(typing_extensions.TypedDict, total=False):
-    longUploadsStatus: typing_extensions.Literal[
-        "longUploadsUnspecified", "allowed", "eligible", "disallowed"
-    ]
-    selfDeclaredMadeForKids: bool
-    isLinked: bool
-    madeForKids: bool
-    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
-
-class Caption(typing_extensions.TypedDict, total=False):
-    id: str
-    etag: str
-    snippet: CaptionSnippet
-    kind: str
-
-class VideoSnippet(typing_extensions.TypedDict, total=False):
-    title: str
-    categoryId: str
-    tags: typing.List[str]
-    defaultAudioLanguage: str
-    thumbnails: ThumbnailDetails
-    channelTitle: str
-    publishedAt: str
-    defaultLanguage: str
-    liveBroadcastContent: typing_extensions.Literal[
-        "none", "upcoming", "live", "completed"
-    ]
-    channelId: str
-    localized: VideoLocalization
-    description: str
-
-class MembershipsDuration(typing_extensions.TypedDict, total=False):
-    memberTotalDurationMonths: int
-    memberSince: str
-
-class CommentThreadSnippet(typing_extensions.TypedDict, total=False):
-    topLevelComment: Comment
-    channelId: str
-    isPublic: bool
-    canReply: bool
-    videoId: str
-    totalReplyCount: int
-
-class Member(typing_extensions.TypedDict, total=False):
-    etag: str
-    kind: str
-    snippet: MemberSnippet
-
-class LiveStreamContentDetails(typing_extensions.TypedDict, total=False):
-    isReusable: bool
-    closedCaptionsIngestionUrl: str
-
+@typing.type_check_only
 class ActivityContentDetailsComment(typing_extensions.TypedDict, total=False):
     resourceId: ResourceId
 
-class VideoTopicDetails(typing_extensions.TypedDict, total=False):
-    topicCategories: typing.List[str]
-    relevantTopicIds: typing.List[str]
-    topicIds: typing.List[str]
-
-class LiveChatMessageAuthorDetails(typing_extensions.TypedDict, total=False):
-    isVerified: bool
-    isChatSponsor: bool
-    isChatModerator: bool
-    isChatOwner: bool
-    channelId: str
-    profileImageUrl: str
-    channelUrl: str
-    displayName: str
-
-class LiveChatModeratorListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[LiveChatModerator]
-    nextPageToken: str
-    etag: str
-    visitorId: str
-    eventId: str
-    prevPageToken: str
-    tokenPagination: TokenPagination
-    kind: str
-    pageInfo: PageInfo
-
-class ActivityContentDetailsSocial(typing_extensions.TypedDict, total=False):
-    author: str
-    imageUrl: str
+@typing.type_check_only
+class ActivityContentDetailsFavorite(typing_extensions.TypedDict, total=False):
     resourceId: ResourceId
-    referenceUrl: str
-    type: typing_extensions.Literal[
-        "typeUnspecified", "googlePlus", "facebook", "twitter"
-    ]
 
-class LiveBroadcastStatistics(typing_extensions.TypedDict, total=False):
-    totalChatCount: str
+@typing.type_check_only
+class ActivityContentDetailsLike(typing_extensions.TypedDict, total=False):
+    resourceId: ResourceId
 
-class ChannelSectionContentDetails(typing_extensions.TypedDict, total=False):
-    channels: typing.List[str]
-    playlists: typing.List[str]
+@typing.type_check_only
+class ActivityContentDetailsPlaylistItem(typing_extensions.TypedDict, total=False):
+    playlistId: str
+    playlistItemId: str
+    resourceId: ResourceId
 
-class LiveBroadcast(typing_extensions.TypedDict, total=False):
-    id: str
-    kind: str
-    etag: str
-    contentDetails: LiveBroadcastContentDetails
-    statistics: LiveBroadcastStatistics
-    snippet: LiveBroadcastSnippet
-    status: LiveBroadcastStatus
+@typing.type_check_only
+class ActivityContentDetailsPromotedItem(typing_extensions.TypedDict, total=False):
+    adTag: str
+    clickTrackingUrl: str
+    creativeViewUrl: str
+    ctaType: typing_extensions.Literal["ctaTypeUnspecified", "visitAdvertiserSite"]
+    customCtaButtonText: str
+    descriptionText: str
+    destinationUrl: str
+    forecastingUrl: typing.List[str]
+    impressionUrl: typing.List[str]
+    videoId: str
 
-class I18nLanguageSnippet(typing_extensions.TypedDict, total=False):
-    name: str
-    hl: str
-
-class ChannelAuditDetails(typing_extensions.TypedDict, total=False):
-    contentIdClaimsGoodStanding: bool
-    copyrightStrikesGoodStanding: bool
-    communityGuidelinesGoodStanding: bool
-
-class LiveStreamHealthStatus(typing_extensions.TypedDict, total=False):
-    lastUpdateTimeSeconds: str
-    configurationIssues: typing.List[LiveStreamConfigurationIssue]
-    status: typing_extensions.Literal["good", "ok", "bad", "noData", "revoked"]
-
-class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
-    userBannedDetails: LiveChatUserBannedMessageDetails
-    publishedAt: str
-    fanFundingEventDetails: LiveChatFanFundingEventDetails
-    liveChatId: str
-    type: typing_extensions.Literal[
-        "invalidType",
-        "textMessageEvent",
-        "tombstone",
-        "fanFundingEvent",
-        "chatEndedEvent",
-        "sponsorOnlyModeStartedEvent",
-        "sponsorOnlyModeEndedEvent",
-        "newSponsorEvent",
-        "messageDeletedEvent",
-        "messageRetractedEvent",
-        "userBannedEvent",
-        "superChatEvent",
-        "superStickerEvent",
-    ]
-    textMessageDetails: LiveChatTextMessageDetails
-    hasDisplayContent: bool
-    superStickerDetails: LiveChatSuperStickerDetails
-    messageDeletedDetails: LiveChatMessageDeletedDetails
-    messageRetractedDetails: LiveChatMessageRetractedDetails
-    displayMessage: str
-    superChatDetails: LiveChatSuperChatDetails
-    authorChannelId: str
-
-class LiveChatModeratorSnippet(typing_extensions.TypedDict, total=False):
-    moderatorDetails: ChannelProfileDetails
-    liveChatId: str
-
+@typing.type_check_only
 class ActivityContentDetailsRecommendation(typing_extensions.TypedDict, total=False):
     reason: typing_extensions.Literal[
         "reasonUnspecified", "videoFavorited", "videoLiked", "videoWatched"
@@ -404,64 +86,376 @@ class ActivityContentDetailsRecommendation(typing_extensions.TypedDict, total=Fa
     resourceId: ResourceId
     seedResourceId: ResourceId
 
-class VideoSuggestionsTagSuggestion(typing_extensions.TypedDict, total=False):
-    categoryRestricts: typing.List[str]
-    tag: str
+@typing.type_check_only
+class ActivityContentDetailsSocial(typing_extensions.TypedDict, total=False):
+    author: str
+    imageUrl: str
+    referenceUrl: str
+    resourceId: ResourceId
+    type: typing_extensions.Literal[
+        "typeUnspecified", "googlePlus", "facebook", "twitter"
+    ]
 
-class MembershipsLevel(typing_extensions.TypedDict, total=False):
-    snippet: MembershipsLevelSnippet
+@typing.type_check_only
+class ActivityContentDetailsSubscription(typing_extensions.TypedDict, total=False):
+    resourceId: ResourceId
+
+@typing.type_check_only
+class ActivityContentDetailsUpload(typing_extensions.TypedDict, total=False):
+    videoId: str
+
+@typing.type_check_only
+class ActivityListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[Activity]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class ActivitySnippet(typing_extensions.TypedDict, total=False):
+    channelId: str
+    channelTitle: str
+    description: str
+    groupId: str
+    publishedAt: str
+    thumbnails: ThumbnailDetails
+    title: str
+    type: typing_extensions.Literal[
+        "typeUnspecified",
+        "upload",
+        "like",
+        "favorite",
+        "comment",
+        "subscription",
+        "playlistItem",
+        "recommendation",
+        "bulletin",
+        "social",
+        "channelItem",
+        "promotedItem",
+    ]
+
+@typing.type_check_only
+class Caption(typing_extensions.TypedDict, total=False):
+    etag: str
     id: str
+    kind: str
+    snippet: CaptionSnippet
+
+@typing.type_check_only
+class CaptionListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[Caption]
+    kind: str
+    visitorId: str
+
+@typing.type_check_only
+class CaptionSnippet(typing_extensions.TypedDict, total=False):
+    audioTrackType: typing_extensions.Literal[
+        "unknown", "primary", "commentary", "descriptive"
+    ]
+    failureReason: typing_extensions.Literal[
+        "unknownFormat", "unsupportedFormat", "processingFailed"
+    ]
+    isAutoSynced: bool
+    isCC: bool
+    isDraft: bool
+    isEasyReader: bool
+    isLarge: bool
+    language: str
+    lastUpdated: str
+    name: str
+    status: typing_extensions.Literal["serving", "syncing", "failed"]
+    trackKind: typing_extensions.Literal["standard", "ASR", "forced"]
+    videoId: str
+
+@typing.type_check_only
+class CdnSettings(typing_extensions.TypedDict, total=False):
+    format: str
+    frameRate: typing_extensions.Literal["30fps", "60fps", "variable"]
+    ingestionInfo: IngestionInfo
+    ingestionType: typing_extensions.Literal["rtmp", "dash", "webrtc", "hls"]
+    resolution: typing_extensions.Literal[
+        "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p", "variable"
+    ]
+
+@typing.type_check_only
+class Channel(typing_extensions.TypedDict, total=False):
+    auditDetails: ChannelAuditDetails
+    brandingSettings: ChannelBrandingSettings
+    contentDetails: ChannelContentDetails
+    contentOwnerDetails: ChannelContentOwnerDetails
+    conversionPings: ChannelConversionPings
+    etag: str
+    id: str
+    kind: str
+    localizations: typing.Dict[str, typing.Any]
+    snippet: ChannelSnippet
+    statistics: ChannelStatistics
+    status: ChannelStatus
+    topicDetails: ChannelTopicDetails
+
+@typing.type_check_only
+class ChannelAuditDetails(typing_extensions.TypedDict, total=False):
+    communityGuidelinesGoodStanding: bool
+    contentIdClaimsGoodStanding: bool
+    copyrightStrikesGoodStanding: bool
+
+@typing.type_check_only
+class ChannelBannerResource(typing_extensions.TypedDict, total=False):
     etag: str
     kind: str
+    url: str
 
-class VideoAbuseReportReasonSnippet(typing_extensions.TypedDict, total=False):
-    secondaryReasons: typing.List[VideoAbuseReportSecondaryReason]
-    label: str
+@typing.type_check_only
+class ChannelBrandingSettings(typing_extensions.TypedDict, total=False):
+    channel: ChannelSettings
+    hints: typing.List[PropertyValue]
+    image: ImageSettings
+    watch: WatchSettings
 
-class VideoFileDetails(typing_extensions.TypedDict, total=False):
-    videoStreams: typing.List[VideoFileDetailsVideoStream]
-    bitrateBps: str
-    audioStreams: typing.List[VideoFileDetailsAudioStream]
-    fileType: typing_extensions.Literal[
-        "video", "audio", "image", "archive", "document", "project", "other"
-    ]
-    fileSize: str
-    creationTime: str
-    container: str
-    fileName: str
-    durationMs: str
+@typing.type_check_only
+class ChannelContentDetails(typing_extensions.TypedDict, total=False):
+    relatedPlaylists: typing.Dict[str, typing.Any]
 
-class ChannelSettings(typing_extensions.TypedDict, total=False):
-    keywords: str
-    defaultTab: str
-    showRelatedChannels: bool
+@typing.type_check_only
+class ChannelContentOwnerDetails(typing_extensions.TypedDict, total=False):
+    contentOwner: str
+    timeLinked: str
+
+@typing.type_check_only
+class ChannelConversionPing(typing_extensions.TypedDict, total=False):
+    context: typing_extensions.Literal["subscribe", "unsubscribe", "cview"]
+    conversionUrl: str
+
+@typing.type_check_only
+class ChannelConversionPings(typing_extensions.TypedDict, total=False):
+    pings: typing.List[ChannelConversionPing]
+
+@typing.type_check_only
+class ChannelListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[Channel]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class ChannelLocalization(typing_extensions.TypedDict, total=False):
     description: str
-    profileColor: str
-    moderateComments: bool
-    trackingAnalyticsAccountId: str
-    country: str
-    featuredChannelsUrls: typing.List[str]
-    unsubscribedTrailer: str
-    defaultLanguage: str
-    featuredChannelsTitle: str
     title: str
+
+@typing.type_check_only
+class ChannelProfileDetails(typing_extensions.TypedDict, total=False):
+    channelId: str
+    channelUrl: str
+    displayName: str
+    profileImageUrl: str
+
+@typing.type_check_only
+class ChannelSection(typing_extensions.TypedDict, total=False):
+    contentDetails: ChannelSectionContentDetails
+    etag: str
+    id: str
+    kind: str
+    localizations: typing.Dict[str, typing.Any]
+    snippet: ChannelSectionSnippet
+    targeting: ChannelSectionTargeting
+
+@typing.type_check_only
+class ChannelSectionContentDetails(typing_extensions.TypedDict, total=False):
+    channels: typing.List[str]
+    playlists: typing.List[str]
+
+@typing.type_check_only
+class ChannelSectionListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[ChannelSection]
+    kind: str
+    visitorId: str
+
+@typing.type_check_only
+class ChannelSectionLocalization(typing_extensions.TypedDict, total=False):
+    title: str
+
+@typing.type_check_only
+class ChannelSectionSnippet(typing_extensions.TypedDict, total=False):
+    channelId: str
+    defaultLanguage: str
+    localized: ChannelSectionLocalization
+    position: int
+    style: typing_extensions.Literal[
+        "channelsectionStyleUnspecified", "horizontalRow", "verticalList"
+    ]
+    title: str
+    type: typing_extensions.Literal[
+        "channelsectionTypeUnspecified",
+        "singlePlaylist",
+        "multiplePlaylists",
+        "popularUploads",
+        "recentUploads",
+        "likes",
+        "allPlaylists",
+        "likedPlaylists",
+        "recentPosts",
+        "recentActivity",
+        "liveEvents",
+        "upcomingEvents",
+        "completedEvents",
+        "multipleChannels",
+        "postedVideos",
+        "postedPlaylists",
+        "subscriptions",
+    ]
+
+@typing.type_check_only
+class ChannelSectionTargeting(typing_extensions.TypedDict, total=False):
+    countries: typing.List[str]
+    languages: typing.List[str]
+    regions: typing.List[str]
+
+@typing.type_check_only
+class ChannelSettings(typing_extensions.TypedDict, total=False):
+    country: str
+    defaultLanguage: str
+    defaultTab: str
+    description: str
+    featuredChannelsTitle: str
+    featuredChannelsUrls: typing.List[str]
+    keywords: str
+    moderateComments: bool
+    profileColor: str
     showBrowseView: bool
+    showRelatedChannels: bool
+    title: str
+    trackingAnalyticsAccountId: str
+    unsubscribedTrailer: str
 
+@typing.type_check_only
+class ChannelSnippet(typing_extensions.TypedDict, total=False):
+    country: str
+    customUrl: str
+    defaultLanguage: str
+    description: str
+    localized: ChannelLocalization
+    publishedAt: str
+    thumbnails: ThumbnailDetails
+    title: str
+
+@typing.type_check_only
 class ChannelStatistics(typing_extensions.TypedDict, total=False):
-    viewCount: str
-    videoCount: str
-    hiddenSubscriberCount: bool
     commentCount: str
+    hiddenSubscriberCount: bool
     subscriberCount: str
+    videoCount: str
+    viewCount: str
 
-class VideoLiveStreamingDetails(typing_extensions.TypedDict, total=False):
-    scheduledStartTime: str
-    actualStartTime: str
-    actualEndTime: str
-    concurrentViewers: str
-    scheduledEndTime: str
-    activeLiveChatId: str
+@typing.type_check_only
+class ChannelStatus(typing_extensions.TypedDict, total=False):
+    isLinked: bool
+    longUploadsStatus: typing_extensions.Literal[
+        "longUploadsUnspecified", "allowed", "eligible", "disallowed"
+    ]
+    madeForKids: bool
+    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
+    selfDeclaredMadeForKids: bool
 
+@typing.type_check_only
+class ChannelToStoreLinkDetails(typing_extensions.TypedDict, total=False):
+    storeName: str
+    storeUrl: str
+
+@typing.type_check_only
+class ChannelTopicDetails(typing_extensions.TypedDict, total=False):
+    topicCategories: typing.List[str]
+    topicIds: typing.List[str]
+
+@typing.type_check_only
+class Comment(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    kind: str
+    snippet: CommentSnippet
+
+@typing.type_check_only
+class CommentListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[Comment]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class CommentSnippet(typing_extensions.TypedDict, total=False):
+    authorChannelId: CommentSnippetAuthorChannelId
+    authorChannelUrl: str
+    authorDisplayName: str
+    authorProfileImageUrl: str
+    canRate: bool
+    channelId: str
+    likeCount: int
+    moderationStatus: typing_extensions.Literal[
+        "published", "heldForReview", "likelySpam", "rejected"
+    ]
+    parentId: str
+    publishedAt: str
+    textDisplay: str
+    textOriginal: str
+    updatedAt: str
+    videoId: str
+    viewerRating: typing_extensions.Literal["none", "like", "dislike"]
+
+@typing.type_check_only
+class CommentSnippetAuthorChannelId(typing_extensions.TypedDict, total=False):
+    value: str
+
+@typing.type_check_only
+class CommentThread(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    kind: str
+    replies: CommentThreadReplies
+    snippet: CommentThreadSnippet
+
+@typing.type_check_only
+class CommentThreadListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[CommentThread]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class CommentThreadReplies(typing_extensions.TypedDict, total=False):
+    comments: typing.List[Comment]
+
+@typing.type_check_only
+class CommentThreadSnippet(typing_extensions.TypedDict, total=False):
+    canReply: bool
+    channelId: str
+    isPublic: bool
+    topLevelComment: Comment
+    totalReplyCount: int
+    videoId: str
+
+@typing.type_check_only
 class ContentRating(typing_extensions.TypedDict, total=False):
     acbRating: typing_extensions.Literal[
         "acbUnspecified",
@@ -475,21 +469,8 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "acbR18plus",
         "acbUnrated",
     ]
-    fmocRating: typing_extensions.Literal[
-        "fmocUnspecified",
-        "fmocU",
-        "fmoc10",
-        "fmoc12",
-        "fmoc16",
-        "fmoc18",
-        "fmocE",
-        "fmocUnrated",
-    ]
-    fcoRating: typing_extensions.Literal[
-        "fcoUnspecified", "fcoI", "fcoIia", "fcoIib", "fcoIi", "fcoIii", "fcoUnrated"
-    ]
-    nfrcRating: typing_extensions.Literal[
-        "nfrcUnspecified", "nfrcA", "nfrcB", "nfrcC", "nfrcD", "nfrcX", "nfrcUnrated"
+    agcomRating: typing_extensions.Literal[
+        "agcomUnspecified", "agcomT", "agcomVm14", "agcomVm18", "agcomUnrated"
     ]
     anatelRating: typing_extensions.Literal[
         "anatelUnspecified",
@@ -502,6 +483,17 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "anatelA",
         "anatelUnrated",
     ]
+    bbfcRating: typing_extensions.Literal[
+        "bbfcUnspecified",
+        "bbfcU",
+        "bbfcPg",
+        "bbfc12a",
+        "bbfc12",
+        "bbfc15",
+        "bbfc18",
+        "bbfcR18",
+        "bbfcUnrated",
+    ]
     bfvcRating: typing_extensions.Literal[
         "bfvcUnspecified",
         "bfvcG",
@@ -513,20 +505,16 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "bfvcB",
         "bfvcUnrated",
     ]
-    djctqRatingReasons: typing.List[str]
-    nfvcbRating: typing_extensions.Literal[
-        "nfvcbUnspecified",
-        "nfvcbG",
-        "nfvcbPg",
-        "nfvcb12",
-        "nfvcb12a",
-        "nfvcb15",
-        "nfvcb18",
-        "nfvcbRe",
-        "nfvcbUnrated",
-    ]
-    kfcbRating: typing_extensions.Literal[
-        "kfcbUnspecified", "kfcbG", "kfcbPg", "kfcb16plus", "kfcbR", "kfcbUnrated"
+    bmukkRating: typing_extensions.Literal[
+        "bmukkUnspecified",
+        "bmukkAa",
+        "bmukk6",
+        "bmukk8",
+        "bmukk10",
+        "bmukk12",
+        "bmukk14",
+        "bmukk16",
+        "bmukkUnrated",
     ]
     catvRating: typing_extensions.Literal[
         "catvUnspecified",
@@ -539,20 +527,6 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "catvUnrated",
         "catvE",
     ]
-    egfilmRating: typing_extensions.Literal[
-        "egfilmUnspecified", "egfilmGn", "egfilm18", "egfilmBn", "egfilmUnrated"
-    ]
-    icaaRating: typing_extensions.Literal[
-        "icaaUnspecified",
-        "icaaApta",
-        "icaa7",
-        "icaa12",
-        "icaa13",
-        "icaa16",
-        "icaa18",
-        "icaaX",
-        "icaaUnrated",
-    ]
     catvfrRating: typing_extensions.Literal[
         "catvfrUnspecified",
         "catvfrG",
@@ -563,88 +537,64 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "catvfrUnrated",
         "catvfrE",
     ]
-    lsfRating: typing_extensions.Literal[
-        "lsfUnspecified",
-        "lsfSu",
-        "lsfA",
-        "lsfBo",
-        "lsf13",
-        "lsfR",
-        "lsf17",
-        "lsfD",
-        "lsf21",
-        "lsfUnrated",
+    cbfcRating: typing_extensions.Literal[
+        "cbfcUnspecified", "cbfcU", "cbfcUA", "cbfcA", "cbfcS", "cbfcUnrated"
     ]
-    kijkwijzerRating: typing_extensions.Literal[
-        "kijkwijzerUnspecified",
-        "kijkwijzerAl",
-        "kijkwijzer6",
-        "kijkwijzer9",
-        "kijkwijzer12",
-        "kijkwijzer16",
-        "kijkwijzer18",
-        "kijkwijzerUnrated",
+    cccRating: typing_extensions.Literal[
+        "cccUnspecified",
+        "cccTe",
+        "ccc6",
+        "ccc14",
+        "ccc18",
+        "ccc18v",
+        "ccc18s",
+        "cccUnrated",
     ]
-    kmrbRating: typing_extensions.Literal[
-        "kmrbUnspecified",
-        "kmrbAll",
-        "kmrb12plus",
-        "kmrb15plus",
-        "kmrbTeenr",
-        "kmrbR",
-        "kmrbUnrated",
+    cceRating: typing_extensions.Literal[
+        "cceUnspecified",
+        "cceM4",
+        "cceM6",
+        "cceM12",
+        "cceM16",
+        "cceM18",
+        "cceUnrated",
+        "cceM14",
     ]
-    nbcplRating: typing_extensions.Literal[
-        "nbcplUnspecified",
-        "nbcplI",
-        "nbcplIi",
-        "nbcplIii",
-        "nbcplIv",
-        "nbcpl18plus",
-        "nbcplUnrated",
+    chfilmRating: typing_extensions.Literal[
+        "chfilmUnspecified",
+        "chfilm0",
+        "chfilm6",
+        "chfilm12",
+        "chfilm16",
+        "chfilm18",
+        "chfilmUnrated",
     ]
-    resorteviolenciaRating: typing_extensions.Literal[
-        "resorteviolenciaUnspecified",
-        "resorteviolenciaA",
-        "resorteviolenciaB",
-        "resorteviolenciaC",
-        "resorteviolenciaD",
-        "resorteviolenciaE",
-        "resorteviolenciaUnrated",
-    ]
-    mdaRating: typing_extensions.Literal[
-        "mdaUnspecified",
-        "mdaG",
-        "mdaPg",
-        "mdaPg13",
-        "mdaNc16",
-        "mdaM18",
-        "mdaR21",
-        "mdaUnrated",
+    chvrsRating: typing_extensions.Literal[
+        "chvrsUnspecified",
+        "chvrsG",
+        "chvrsPg",
+        "chvrs14a",
+        "chvrs18a",
+        "chvrsR",
+        "chvrsE",
+        "chvrsUnrated",
     ]
     cicfRating: typing_extensions.Literal[
         "cicfUnspecified", "cicfE", "cicfKtEa", "cicfKntEna", "cicfUnrated"
     ]
-    russiaRating: typing_extensions.Literal[
-        "russiaUnspecified",
-        "russia0",
-        "russia6",
-        "russia12",
-        "russia16",
-        "russia18",
-        "russiaUnrated",
+    cnaRating: typing_extensions.Literal[
+        "cnaUnspecified", "cnaAp", "cna12", "cna15", "cna18", "cna18plus", "cnaUnrated"
     ]
-    fcbmRating: typing_extensions.Literal[
-        "fcbmUnspecified",
-        "fcbmU",
-        "fcbmPg13",
-        "fcbmP13",
-        "fcbm18",
-        "fcbm18sx",
-        "fcbm18pa",
-        "fcbm18sg",
-        "fcbm18pl",
-        "fcbmUnrated",
+    cncRating: typing_extensions.Literal[
+        "cncUnspecified",
+        "cncT",
+        "cnc10",
+        "cnc12",
+        "cnc16",
+        "cnc18",
+        "cncE",
+        "cncInterdiction",
+        "cncUnrated",
     ]
     csaRating: typing_extensions.Literal[
         "csaUnspecified",
@@ -656,50 +606,24 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "csaInterdiction",
         "csaUnrated",
     ]
-    mibacRating: typing_extensions.Literal[
-        "mibacUnspecified",
-        "mibacT",
-        "mibacVap",
-        "mibacVm12",
-        "mibacVm14",
-        "mibacVm18",
-        "mibacUnrated",
+    cscfRating: typing_extensions.Literal[
+        "cscfUnspecified",
+        "cscfAl",
+        "cscfA",
+        "cscf6",
+        "cscf9",
+        "cscf12",
+        "cscf16",
+        "cscf18",
+        "cscfUnrated",
     ]
-    fpbRatingReasons: typing.List[str]
-    ilfilmRating: typing_extensions.Literal[
-        "ilfilmUnspecified",
-        "ilfilmAa",
-        "ilfilm12",
-        "ilfilm14",
-        "ilfilm16",
-        "ilfilm18",
-        "ilfilmUnrated",
-    ]
-    bbfcRating: typing_extensions.Literal[
-        "bbfcUnspecified",
-        "bbfcU",
-        "bbfcPg",
-        "bbfc12a",
-        "bbfc12",
-        "bbfc15",
-        "bbfc18",
-        "bbfcR18",
-        "bbfcUnrated",
-    ]
-    ifcoRating: typing_extensions.Literal[
-        "ifcoUnspecified",
-        "ifcoG",
-        "ifcoPg",
-        "ifco12",
-        "ifco12a",
-        "ifco15",
-        "ifco15a",
-        "ifco16",
-        "ifco18",
-        "ifcoUnrated",
-    ]
-    mekuRating: typing_extensions.Literal[
-        "mekuUnspecified", "mekuS", "meku7", "meku12", "meku16", "meku18", "mekuUnrated"
+    czfilmRating: typing_extensions.Literal[
+        "czfilmUnspecified",
+        "czfilmU",
+        "czfilm12",
+        "czfilm14",
+        "czfilm18",
+        "czfilmUnrated",
     ]
     djctqRating: typing_extensions.Literal[
         "djctqUnspecified",
@@ -727,86 +651,18 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "djctq1618",
         "djctqUnrated",
     ]
-    oflcRating: typing_extensions.Literal[
-        "oflcUnspecified",
-        "oflcG",
-        "oflcPg",
-        "oflcM",
-        "oflcR13",
-        "oflcR15",
-        "oflcR16",
-        "oflcR18",
-        "oflcUnrated",
-        "oflcRp13",
-        "oflcRp16",
-        "oflcRp18",
-    ]
-    incaaRating: typing_extensions.Literal[
-        "incaaUnspecified",
-        "incaaAtp",
-        "incaaSam13",
-        "incaaSam16",
-        "incaaSam18",
-        "incaaC",
-        "incaaUnrated",
-    ]
-    ytRating: typing_extensions.Literal["ytUnspecified", "ytAgeRestricted"]
-    nmcRating: typing_extensions.Literal[
-        "nmcUnspecified",
-        "nmcG",
-        "nmcPg",
-        "nmcPg13",
-        "nmcPg15",
-        "nmc15plus",
-        "nmc18plus",
-        "nmc18tc",
-        "nmcUnrated",
-    ]
-    moctwRating: typing_extensions.Literal[
-        "moctwUnspecified",
-        "moctwG",
-        "moctwP",
-        "moctwPg",
-        "moctwR",
-        "moctwUnrated",
-        "moctwR12",
-        "moctwR15",
-    ]
-    pefilmRating: typing_extensions.Literal[
-        "pefilmUnspecified",
-        "pefilmPt",
-        "pefilmPg",
-        "pefilm14",
-        "pefilm18",
-        "pefilmUnrated",
-    ]
-    cnaRating: typing_extensions.Literal[
-        "cnaUnspecified", "cnaAp", "cna12", "cna15", "cna18", "cna18plus", "cnaUnrated"
-    ]
-    cbfcRating: typing_extensions.Literal[
-        "cbfcUnspecified", "cbfcU", "cbfcUA", "cbfcA", "cbfcS", "cbfcUnrated"
-    ]
-    mcstRating: typing_extensions.Literal[
-        "mcstUnspecified",
-        "mcstP",
-        "mcst0",
-        "mcstC13",
-        "mcstC16",
-        "mcst16plus",
-        "mcstC18",
-        "mcstGPg",
-        "mcstUnrated",
-    ]
-    cscfRating: typing_extensions.Literal[
-        "cscfUnspecified",
-        "cscfAl",
-        "cscfA",
-        "cscf6",
-        "cscf9",
-        "cscf12",
-        "cscf16",
-        "cscf18",
-        "cscfUnrated",
+    djctqRatingReasons: typing.List[str]
+    ecbmctRating: typing_extensions.Literal[
+        "ecbmctUnspecified",
+        "ecbmctG",
+        "ecbmct7a",
+        "ecbmct7plus",
+        "ecbmct13a",
+        "ecbmct13plus",
+        "ecbmct15a",
+        "ecbmct15plus",
+        "ecbmct18plus",
+        "ecbmctUnrated",
     ]
     eefilmRating: typing_extensions.Literal[
         "eefilmUnspecified",
@@ -820,114 +676,41 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "eefilmK16",
         "eefilmUnrated",
     ]
-    mpaaRating: typing_extensions.Literal[
-        "mpaaUnspecified",
-        "mpaaG",
-        "mpaaPg",
-        "mpaaPg13",
-        "mpaaR",
-        "mpaaNc17",
-        "mpaaX",
-        "mpaaUnrated",
+    egfilmRating: typing_extensions.Literal[
+        "egfilmUnspecified", "egfilmGn", "egfilm18", "egfilmBn", "egfilmUnrated"
     ]
-    tvpgRating: typing_extensions.Literal[
-        "tvpgUnspecified",
-        "tvpgY",
-        "tvpgY7",
-        "tvpgY7Fv",
-        "tvpgG",
-        "tvpgPg",
-        "pg14",
-        "tvpgMa",
-        "tvpgUnrated",
+    eirinRating: typing_extensions.Literal[
+        "eirinUnspecified",
+        "eirinG",
+        "eirinPg12",
+        "eirinR15plus",
+        "eirinR18plus",
+        "eirinUnrated",
     ]
-    skfilmRating: typing_extensions.Literal[
-        "skfilmUnspecified",
-        "skfilmG",
-        "skfilmP2",
-        "skfilmP5",
-        "skfilmP8",
-        "skfilmUnrated",
+    fcbmRating: typing_extensions.Literal[
+        "fcbmUnspecified",
+        "fcbmU",
+        "fcbmPg13",
+        "fcbmP13",
+        "fcbm18",
+        "fcbm18sx",
+        "fcbm18pa",
+        "fcbm18sg",
+        "fcbm18pl",
+        "fcbmUnrated",
     ]
-    medietilsynetRating: typing_extensions.Literal[
-        "medietilsynetUnspecified",
-        "medietilsynetA",
-        "medietilsynet6",
-        "medietilsynet7",
-        "medietilsynet9",
-        "medietilsynet11",
-        "medietilsynet12",
-        "medietilsynet15",
-        "medietilsynet18",
-        "medietilsynetUnrated",
+    fcoRating: typing_extensions.Literal[
+        "fcoUnspecified", "fcoI", "fcoIia", "fcoIib", "fcoIi", "fcoIii", "fcoUnrated"
     ]
-    rcnofRating: typing_extensions.Literal[
-        "rcnofUnspecified",
-        "rcnofI",
-        "rcnofIi",
-        "rcnofIii",
-        "rcnofIv",
-        "rcnofV",
-        "rcnofVi",
-        "rcnofUnrated",
-    ]
-    nkclvRating: typing_extensions.Literal[
-        "nkclvUnspecified",
-        "nkclvU",
-        "nkclv7plus",
-        "nkclv12plus",
-        "nkclv16plus",
-        "nkclv18plus",
-        "nkclvUnrated",
-    ]
-    rteRating: typing_extensions.Literal[
-        "rteUnspecified", "rteGa", "rteCh", "rtePs", "rteMa", "rteUnrated"
-    ]
-    mocRating: typing_extensions.Literal[
-        "mocUnspecified",
-        "mocE",
-        "mocT",
-        "moc7",
-        "moc12",
-        "moc15",
-        "moc18",
-        "mocX",
-        "mocBanned",
-        "mocUnrated",
-    ]
-    chvrsRating: typing_extensions.Literal[
-        "chvrsUnspecified",
-        "chvrsG",
-        "chvrsPg",
-        "chvrs14a",
-        "chvrs18a",
-        "chvrsR",
-        "chvrsE",
-        "chvrsUnrated",
-    ]
-    mccypRating: typing_extensions.Literal[
-        "mccypUnspecified", "mccypA", "mccyp7", "mccyp11", "mccyp15", "mccypUnrated"
-    ]
-    mpaatRating: typing_extensions.Literal["mpaatUnspecified", "mpaatGb", "mpaatRb"]
-    ecbmctRating: typing_extensions.Literal[
-        "ecbmctUnspecified",
-        "ecbmctG",
-        "ecbmct7a",
-        "ecbmct7plus",
-        "ecbmct13a",
-        "ecbmct13plus",
-        "ecbmct15a",
-        "ecbmct15plus",
-        "ecbmct18plus",
-        "ecbmctUnrated",
-    ]
-    menaMpaaRating: typing_extensions.Literal[
-        "menaMpaaUnspecified",
-        "menaMpaaG",
-        "menaMpaaPg",
-        "menaMpaaPg13",
-        "menaMpaaR",
-        "menaMpaaUnrated",
+    fmocRating: typing_extensions.Literal[
+        "fmocUnspecified",
+        "fmocU",
+        "fmoc10",
+        "fmoc12",
+        "fmoc16",
+        "fmoc18",
+        "fmocE",
+        "fmocUnrated",
     ]
     fpbRating: typing_extensions.Literal[
         "fpbUnspecified",
@@ -943,98 +726,95 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "fpbUnrated",
         "fpb10",
     ]
-    bmukkRating: typing_extensions.Literal[
-        "bmukkUnspecified",
-        "bmukkAa",
-        "bmukk6",
-        "bmukk8",
-        "bmukk10",
-        "bmukk12",
-        "bmukk14",
-        "bmukk16",
-        "bmukkUnrated",
-    ]
-    chfilmRating: typing_extensions.Literal[
-        "chfilmUnspecified",
-        "chfilm0",
-        "chfilm6",
-        "chfilm12",
-        "chfilm16",
-        "chfilm18",
-        "chfilmUnrated",
-    ]
-    cceRating: typing_extensions.Literal[
-        "cceUnspecified",
-        "cceM4",
-        "cceM6",
-        "cceM12",
-        "cceM16",
-        "cceM18",
-        "cceUnrated",
-        "cceM14",
-    ]
-    mtrcbRating: typing_extensions.Literal[
-        "mtrcbUnspecified",
-        "mtrcbG",
-        "mtrcbPg",
-        "mtrcbR13",
-        "mtrcbR16",
-        "mtrcbR18",
-        "mtrcbX",
-        "mtrcbUnrated",
-    ]
-    czfilmRating: typing_extensions.Literal[
-        "czfilmUnspecified",
-        "czfilmU",
-        "czfilm12",
-        "czfilm14",
-        "czfilm18",
-        "czfilmUnrated",
-    ]
-    cccRating: typing_extensions.Literal[
-        "cccUnspecified",
-        "cccTe",
-        "ccc6",
-        "ccc14",
-        "ccc18",
-        "ccc18v",
-        "ccc18s",
-        "cccUnrated",
-    ]
+    fpbRatingReasons: typing.List[str]
     fskRating: typing_extensions.Literal[
         "fskUnspecified", "fsk0", "fsk6", "fsk12", "fsk16", "fsk18", "fskUnrated"
     ]
-    rtcRating: typing_extensions.Literal[
-        "rtcUnspecified",
-        "rtcAa",
-        "rtcA",
-        "rtcB",
-        "rtcB15",
-        "rtcC",
-        "rtcD",
-        "rtcUnrated",
+    grfilmRating: typing_extensions.Literal[
+        "grfilmUnspecified",
+        "grfilmK",
+        "grfilmE",
+        "grfilmK12",
+        "grfilmK13",
+        "grfilmK15",
+        "grfilmK17",
+        "grfilmK18",
+        "grfilmUnrated",
     ]
-    eirinRating: typing_extensions.Literal[
-        "eirinUnspecified",
-        "eirinG",
-        "eirinPg12",
-        "eirinR15plus",
-        "eirinR18plus",
-        "eirinUnrated",
+    icaaRating: typing_extensions.Literal[
+        "icaaUnspecified",
+        "icaaApta",
+        "icaa7",
+        "icaa12",
+        "icaa13",
+        "icaa16",
+        "icaa18",
+        "icaaX",
+        "icaaUnrated",
     ]
-    cncRating: typing_extensions.Literal[
-        "cncUnspecified",
-        "cncT",
-        "cnc10",
-        "cnc12",
-        "cnc16",
-        "cnc18",
-        "cncE",
-        "cncInterdiction",
-        "cncUnrated",
+    ifcoRating: typing_extensions.Literal[
+        "ifcoUnspecified",
+        "ifcoG",
+        "ifcoPg",
+        "ifco12",
+        "ifco12a",
+        "ifco15",
+        "ifco15a",
+        "ifco16",
+        "ifco18",
+        "ifcoUnrated",
     ]
-    smsaRating: typing_extensions.Literal[
-        "smsaUnspecified", "smsaA", "smsa7", "smsa11", "smsa15", "smsaUnrated"
+    ilfilmRating: typing_extensions.Literal[
+        "ilfilmUnspecified",
+        "ilfilmAa",
+        "ilfilm12",
+        "ilfilm14",
+        "ilfilm16",
+        "ilfilm18",
+        "ilfilmUnrated",
+    ]
+    incaaRating: typing_extensions.Literal[
+        "incaaUnspecified",
+        "incaaAtp",
+        "incaaSam13",
+        "incaaSam16",
+        "incaaSam18",
+        "incaaC",
+        "incaaUnrated",
+    ]
+    kfcbRating: typing_extensions.Literal[
+        "kfcbUnspecified", "kfcbG", "kfcbPg", "kfcb16plus", "kfcbR", "kfcbUnrated"
+    ]
+    kijkwijzerRating: typing_extensions.Literal[
+        "kijkwijzerUnspecified",
+        "kijkwijzerAl",
+        "kijkwijzer6",
+        "kijkwijzer9",
+        "kijkwijzer12",
+        "kijkwijzer16",
+        "kijkwijzer18",
+        "kijkwijzerUnrated",
+    ]
+    kmrbRating: typing_extensions.Literal[
+        "kmrbUnspecified",
+        "kmrbAll",
+        "kmrb12plus",
+        "kmrb15plus",
+        "kmrbTeenr",
+        "kmrbR",
+        "kmrbUnrated",
+    ]
+    lsfRating: typing_extensions.Literal[
+        "lsfUnspecified",
+        "lsfSu",
+        "lsfA",
+        "lsfBo",
+        "lsf13",
+        "lsfR",
+        "lsf17",
+        "lsfD",
+        "lsf21",
+        "lsfUnrated",
     ]
     mccaaRating: typing_extensions.Literal[
         "mccaaUnspecified",
@@ -1048,26 +828,104 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "mccaa18",
         "mccaaUnrated",
     ]
-    grfilmRating: typing_extensions.Literal[
-        "grfilmUnspecified",
-        "grfilmK",
-        "grfilmE",
-        "grfilmK12",
-        "grfilmK13",
-        "grfilmK15",
-        "grfilmK17",
-        "grfilmK18",
-        "grfilmUnrated",
+    mccypRating: typing_extensions.Literal[
+        "mccypUnspecified", "mccypA", "mccyp7", "mccyp11", "mccyp15", "mccypUnrated"
     ]
-    smaisRating: typing_extensions.Literal[
-        "smaisUnspecified",
-        "smaisL",
-        "smais7",
-        "smais12",
-        "smais14",
-        "smais16",
-        "smais18",
-        "smaisUnrated",
+    mcstRating: typing_extensions.Literal[
+        "mcstUnspecified",
+        "mcstP",
+        "mcst0",
+        "mcstC13",
+        "mcstC16",
+        "mcst16plus",
+        "mcstC18",
+        "mcstGPg",
+        "mcstUnrated",
+    ]
+    mdaRating: typing_extensions.Literal[
+        "mdaUnspecified",
+        "mdaG",
+        "mdaPg",
+        "mdaPg13",
+        "mdaNc16",
+        "mdaM18",
+        "mdaR21",
+        "mdaUnrated",
+    ]
+    medietilsynetRating: typing_extensions.Literal[
+        "medietilsynetUnspecified",
+        "medietilsynetA",
+        "medietilsynet6",
+        "medietilsynet7",
+        "medietilsynet9",
+        "medietilsynet11",
+        "medietilsynet12",
+        "medietilsynet15",
+        "medietilsynet18",
+        "medietilsynetUnrated",
+    ]
+    mekuRating: typing_extensions.Literal[
+        "mekuUnspecified", "mekuS", "meku7", "meku12", "meku16", "meku18", "mekuUnrated"
+    ]
+    menaMpaaRating: typing_extensions.Literal[
+        "menaMpaaUnspecified",
+        "menaMpaaG",
+        "menaMpaaPg",
+        "menaMpaaPg13",
+        "menaMpaaR",
+        "menaMpaaUnrated",
+    ]
+    mibacRating: typing_extensions.Literal[
+        "mibacUnspecified",
+        "mibacT",
+        "mibacVap",
+        "mibacVm12",
+        "mibacVm14",
+        "mibacVm18",
+        "mibacUnrated",
+    ]
+    mocRating: typing_extensions.Literal[
+        "mocUnspecified",
+        "mocE",
+        "mocT",
+        "moc7",
+        "moc12",
+        "moc15",
+        "moc18",
+        "mocX",
+        "mocBanned",
+        "mocUnrated",
+    ]
+    moctwRating: typing_extensions.Literal[
+        "moctwUnspecified",
+        "moctwG",
+        "moctwP",
+        "moctwPg",
+        "moctwR",
+        "moctwUnrated",
+        "moctwR12",
+        "moctwR15",
+    ]
+    mpaaRating: typing_extensions.Literal[
+        "mpaaUnspecified",
+        "mpaaG",
+        "mpaaPg",
+        "mpaaPg13",
+        "mpaaR",
+        "mpaaNc17",
+        "mpaaX",
+        "mpaaUnrated",
+    ]
+    mpaatRating: typing_extensions.Literal["mpaatUnspecified", "mpaatGb", "mpaatRb"]
+    mtrcbRating: typing_extensions.Literal[
+        "mtrcbUnspecified",
+        "mtrcbG",
+        "mtrcbPg",
+        "mtrcbR13",
+        "mtrcbR16",
+        "mtrcbR18",
+        "mtrcbX",
+        "mtrcbUnrated",
     ]
     nbcRating: typing_extensions.Literal[
         "nbcUnspecified",
@@ -1080,873 +938,512 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "nbcPu",
         "nbcUnrated",
     ]
-    agcomRating: typing_extensions.Literal[
-        "agcomUnspecified", "agcomT", "agcomVm14", "agcomVm18", "agcomUnrated"
+    nbcplRating: typing_extensions.Literal[
+        "nbcplUnspecified",
+        "nbcplI",
+        "nbcplIi",
+        "nbcplIii",
+        "nbcplIv",
+        "nbcpl18plus",
+        "nbcplUnrated",
     ]
+    nfrcRating: typing_extensions.Literal[
+        "nfrcUnspecified", "nfrcA", "nfrcB", "nfrcC", "nfrcD", "nfrcX", "nfrcUnrated"
+    ]
+    nfvcbRating: typing_extensions.Literal[
+        "nfvcbUnspecified",
+        "nfvcbG",
+        "nfvcbPg",
+        "nfvcb12",
+        "nfvcb12a",
+        "nfvcb15",
+        "nfvcb18",
+        "nfvcbRe",
+        "nfvcbUnrated",
+    ]
+    nkclvRating: typing_extensions.Literal[
+        "nkclvUnspecified",
+        "nkclvU",
+        "nkclv7plus",
+        "nkclv12plus",
+        "nkclv16plus",
+        "nkclv18plus",
+        "nkclvUnrated",
+    ]
+    nmcRating: typing_extensions.Literal[
+        "nmcUnspecified",
+        "nmcG",
+        "nmcPg",
+        "nmcPg13",
+        "nmcPg15",
+        "nmc15plus",
+        "nmc18plus",
+        "nmc18tc",
+        "nmcUnrated",
+    ]
+    oflcRating: typing_extensions.Literal[
+        "oflcUnspecified",
+        "oflcG",
+        "oflcPg",
+        "oflcM",
+        "oflcR13",
+        "oflcR15",
+        "oflcR16",
+        "oflcR18",
+        "oflcUnrated",
+        "oflcRp13",
+        "oflcRp16",
+        "oflcRp18",
+    ]
+    pefilmRating: typing_extensions.Literal[
+        "pefilmUnspecified",
+        "pefilmPt",
+        "pefilmPg",
+        "pefilm14",
+        "pefilm18",
+        "pefilmUnrated",
+    ]
+    rcnofRating: typing_extensions.Literal[
+        "rcnofUnspecified",
+        "rcnofI",
+        "rcnofIi",
+        "rcnofIii",
+        "rcnofIv",
+        "rcnofV",
+        "rcnofVi",
+        "rcnofUnrated",
+    ]
+    resorteviolenciaRating: typing_extensions.Literal[
+        "resorteviolenciaUnspecified",
+        "resorteviolenciaA",
+        "resorteviolenciaB",
+        "resorteviolenciaC",
+        "resorteviolenciaD",
+        "resorteviolenciaE",
+        "resorteviolenciaUnrated",
+    ]
+    rtcRating: typing_extensions.Literal[
+        "rtcUnspecified",
+        "rtcAa",
+        "rtcA",
+        "rtcB",
+        "rtcB15",
+        "rtcC",
+        "rtcD",
+        "rtcUnrated",
+    ]
+    rteRating: typing_extensions.Literal[
+        "rteUnspecified", "rteGa", "rteCh", "rtePs", "rteMa", "rteUnrated"
+    ]
+    russiaRating: typing_extensions.Literal[
+        "russiaUnspecified",
+        "russia0",
+        "russia6",
+        "russia12",
+        "russia16",
+        "russia18",
+        "russiaUnrated",
+    ]
+    skfilmRating: typing_extensions.Literal[
+        "skfilmUnspecified",
+        "skfilmG",
+        "skfilmP2",
+        "skfilmP5",
+        "skfilmP8",
+        "skfilmUnrated",
+    ]
+    smaisRating: typing_extensions.Literal[
+        "smaisUnspecified",
+        "smaisL",
+        "smais7",
+        "smais12",
+        "smais14",
+        "smais16",
+        "smais18",
+        "smaisUnrated",
+    ]
+    smsaRating: typing_extensions.Literal[
+        "smsaUnspecified", "smsaA", "smsa7", "smsa11", "smsa15", "smsaUnrated"
+    ]
+    tvpgRating: typing_extensions.Literal[
+        "tvpgUnspecified",
+        "tvpgY",
+        "tvpgY7",
+        "tvpgY7Fv",
+        "tvpgG",
+        "tvpgPg",
+        "pg14",
+        "tvpgMa",
+        "tvpgUnrated",
+    ]
+    ytRating: typing_extensions.Literal["ytUnspecified", "ytAgeRestricted"]
 
-class Thumbnail(typing_extensions.TypedDict, total=False):
-    height: int
+@typing.type_check_only
+class Entity(typing_extensions.TypedDict, total=False):
+    id: str
+    typeId: str
     url: str
-    width: int
 
+@typing.type_check_only
+class GeoPoint(typing_extensions.TypedDict, total=False):
+    altitude: float
+    latitude: float
+    longitude: float
+
+@typing.type_check_only
+class I18nLanguage(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    kind: str
+    snippet: I18nLanguageSnippet
+
+@typing.type_check_only
+class I18nLanguageListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[I18nLanguage]
+    kind: str
+    visitorId: str
+
+@typing.type_check_only
+class I18nLanguageSnippet(typing_extensions.TypedDict, total=False):
+    hl: str
+    name: str
+
+@typing.type_check_only
+class I18nRegion(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    kind: str
+    snippet: I18nRegionSnippet
+
+@typing.type_check_only
+class I18nRegionListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[I18nRegion]
+    kind: str
+    visitorId: str
+
+@typing.type_check_only
+class I18nRegionSnippet(typing_extensions.TypedDict, total=False):
+    gl: str
+    name: str
+
+@typing.type_check_only
+class ImageSettings(typing_extensions.TypedDict, total=False):
+    backgroundImageUrl: LocalizedProperty
+    bannerExternalUrl: str
+    bannerImageUrl: str
+    bannerMobileExtraHdImageUrl: str
+    bannerMobileHdImageUrl: str
+    bannerMobileImageUrl: str
+    bannerMobileLowImageUrl: str
+    bannerMobileMediumHdImageUrl: str
+    bannerTabletExtraHdImageUrl: str
+    bannerTabletHdImageUrl: str
+    bannerTabletImageUrl: str
+    bannerTabletLowImageUrl: str
+    bannerTvHighImageUrl: str
+    bannerTvImageUrl: str
+    bannerTvLowImageUrl: str
+    bannerTvMediumImageUrl: str
+    largeBrandedBannerImageImapScript: LocalizedProperty
+    largeBrandedBannerImageUrl: LocalizedProperty
+    smallBrandedBannerImageImapScript: LocalizedProperty
+    smallBrandedBannerImageUrl: LocalizedProperty
+    trackingImageUrl: str
+    watchIconImageUrl: str
+
+@typing.type_check_only
+class IngestionInfo(typing_extensions.TypedDict, total=False):
+    backupIngestionAddress: str
+    ingestionAddress: str
+    rtmpsBackupIngestionAddress: str
+    rtmpsIngestionAddress: str
+    streamName: str
+
+@typing.type_check_only
+class InvideoBranding(typing_extensions.TypedDict, total=False):
+    imageBytes: str
+    imageUrl: str
+    position: InvideoPosition
+    targetChannelId: str
+    timing: InvideoTiming
+
+@typing.type_check_only
 class InvideoPosition(typing_extensions.TypedDict, total=False):
     cornerPosition: typing_extensions.Literal[
         "topLeft", "topRight", "bottomLeft", "bottomRight"
     ]
     type: typing_extensions.Literal["corner"]
 
-class SuperStickerMetadata(typing_extensions.TypedDict, total=False):
-    altTextLanguage: str
-    stickerId: str
-    altText: str
+@typing.type_check_only
+class InvideoTiming(typing_extensions.TypedDict, total=False):
+    durationMs: str
+    offsetMs: str
+    type: typing_extensions.Literal["offsetFromStart", "offsetFromEnd"]
 
-class ChannelProfileDetails(typing_extensions.TypedDict, total=False):
-    profileImageUrl: str
-    channelUrl: str
-    channelId: str
-    displayName: str
-
-class LiveStreamListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[LiveStream]
-    etag: str
-    visitorId: str
-    pageInfo: PageInfo
-    nextPageToken: str
-    eventId: str
-    prevPageToken: str
-    tokenPagination: TokenPagination
-    kind: str
-
-class Channel(typing_extensions.TypedDict, total=False):
-    topicDetails: ChannelTopicDetails
-    contentOwnerDetails: ChannelContentOwnerDetails
-    statistics: ChannelStatistics
-    brandingSettings: ChannelBrandingSettings
-    etag: str
-    conversionPings: ChannelConversionPings
-    localizations: typing.Dict[str, typing.Any]
-    status: ChannelStatus
-    contentDetails: ChannelContentDetails
-    id: str
-    snippet: ChannelSnippet
-    auditDetails: ChannelAuditDetails
-    kind: str
-
-class ActivityContentDetails(typing_extensions.TypedDict, total=False):
-    subscription: ActivityContentDetailsSubscription
-    upload: ActivityContentDetailsUpload
-    channelItem: ActivityContentDetailsChannelItem
-    like: ActivityContentDetailsLike
-    social: ActivityContentDetailsSocial
-    bulletin: ActivityContentDetailsBulletin
-    favorite: ActivityContentDetailsFavorite
-    comment: ActivityContentDetailsComment
-    recommendation: ActivityContentDetailsRecommendation
-    promotedItem: ActivityContentDetailsPromotedItem
-    playlistItem: ActivityContentDetailsPlaylistItem
-
-class VideoSuggestions(typing_extensions.TypedDict, total=False):
-    processingWarnings: typing.List[str]
-    tagSuggestions: typing.List[VideoSuggestionsTagSuggestion]
-    processingErrors: typing.List[str]
-    editorSuggestions: typing.List[str]
-    processingHints: typing.List[str]
-
-class LiveStreamSnippet(typing_extensions.TypedDict, total=False):
-    isDefaultStream: bool
-    description: str
-    channelId: str
-    title: str
-    publishedAt: str
-
-class RelatedEntity(typing_extensions.TypedDict, total=False):
-    entity: Entity
-
-class ActivityContentDetailsFavorite(typing_extensions.TypedDict, total=False):
-    resourceId: ResourceId
-
-class MemberListResponse(typing_extensions.TypedDict, total=False):
-    eventId: str
-    tokenPagination: TokenPagination
-    visitorId: str
-    items: typing.List[Member]
-    etag: str
-    nextPageToken: str
-    pageInfo: PageInfo
-    kind: str
-
-class ActivityContentDetailsPromotedItem(typing_extensions.TypedDict, total=False):
-    forecastingUrl: typing.List[str]
-    customCtaButtonText: str
-    destinationUrl: str
-    ctaType: typing_extensions.Literal["ctaTypeUnspecified", "visitAdvertiserSite"]
-    creativeViewUrl: str
-    impressionUrl: typing.List[str]
-    videoId: str
-    descriptionText: str
-    adTag: str
-    clickTrackingUrl: str
-
-class LiveChatMessage(typing_extensions.TypedDict, total=False):
-    kind: str
-    authorDetails: LiveChatMessageAuthorDetails
-    etag: str
-    id: str
-    snippet: LiveChatMessageSnippet
-
-class SuperChatEventListResponse(typing_extensions.TypedDict, total=False):
-    tokenPagination: TokenPagination
-    nextPageToken: str
-    visitorId: str
-    pageInfo: PageInfo
-    items: typing.List[SuperChatEvent]
-    eventId: str
-    kind: str
-    etag: str
-
-class ChannelSectionTargeting(typing_extensions.TypedDict, total=False):
-    countries: typing.List[str]
-    regions: typing.List[str]
-    languages: typing.List[str]
-
+@typing.type_check_only
 class LanguageTag(typing_extensions.TypedDict, total=False):
     value: str
 
-class ChannelSectionLocalization(typing_extensions.TypedDict, total=False):
-    title: str
-
-class Comment(typing_extensions.TypedDict, total=False):
-    kind: str
-    etag: str
-    snippet: CommentSnippet
-    id: str
-
-class VideoAbuseReport(typing_extensions.TypedDict, total=False):
-    secondaryReasonId: str
-    reasonId: str
-    videoId: str
-    comments: str
-    language: str
-
-class VideoRecordingDetails(typing_extensions.TypedDict, total=False):
-    location: GeoPoint
-    locationDescription: str
-    recordingDate: str
-
-class VideoFileDetailsAudioStream(typing_extensions.TypedDict, total=False):
-    channelCount: int
-    codec: str
-    vendor: str
-    bitrateBps: str
-
-class VideoContentDetailsRegionRestriction(typing_extensions.TypedDict, total=False):
-    allowed: typing.List[str]
-    blocked: typing.List[str]
-
-class SearchResult(typing_extensions.TypedDict, total=False):
-    snippet: SearchResultSnippet
-    etag: str
-    id: ResourceId
-    kind: str
-
-class IngestionInfo(typing_extensions.TypedDict, total=False):
-    streamName: str
-    rtmpsBackupIngestionAddress: str
-    ingestionAddress: str
-    rtmpsIngestionAddress: str
-    backupIngestionAddress: str
-
-class LiveChatMessageRetractedDetails(typing_extensions.TypedDict, total=False):
-    retractedMessageId: str
-
-class VideoFileDetailsVideoStream(typing_extensions.TypedDict, total=False):
-    vendor: str
-    bitrateBps: str
-    aspectRatio: float
-    heightPixels: int
-    widthPixels: int
-    frameRateFps: float
-    codec: str
-    rotation: typing_extensions.Literal[
-        "none", "clockwise", "upsideDown", "counterClockwise", "other"
-    ]
-
-class LiveChatUserBannedMessageDetails(typing_extensions.TypedDict, total=False):
-    bannedUserDetails: ChannelProfileDetails
-    banDurationSeconds: str
-    banType: typing_extensions.Literal["permanent", "temporary"]
-
-class CommentListResponse(typing_extensions.TypedDict, total=False):
-    tokenPagination: TokenPagination
-    kind: str
-    visitorId: str
-    pageInfo: PageInfo
-    etag: str
-    items: typing.List[Comment]
-    eventId: str
-    nextPageToken: str
-
-class ImageSettings(typing_extensions.TypedDict, total=False):
-    watchIconImageUrl: str
-    backgroundImageUrl: LocalizedProperty
-    bannerTvImageUrl: str
-    bannerTvLowImageUrl: str
-    bannerTabletImageUrl: str
-    smallBrandedBannerImageUrl: LocalizedProperty
-    bannerMobileHdImageUrl: str
-    bannerTabletLowImageUrl: str
-    bannerTabletHdImageUrl: str
-    bannerTabletExtraHdImageUrl: str
-    bannerMobileLowImageUrl: str
-    smallBrandedBannerImageImapScript: LocalizedProperty
-    bannerTvHighImageUrl: str
-    bannerTvMediumImageUrl: str
-    bannerMobileExtraHdImageUrl: str
-    largeBrandedBannerImageImapScript: LocalizedProperty
-    bannerImageUrl: str
-    trackingImageUrl: str
-    largeBrandedBannerImageUrl: LocalizedProperty
-    bannerMobileImageUrl: str
-    bannerExternalUrl: str
-    bannerMobileMediumHdImageUrl: str
-
-class VideoRatingListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[VideoRating]
-    eventId: str
-    visitorId: str
-    etag: str
-    kind: str
-
-class CommentThreadReplies(typing_extensions.TypedDict, total=False):
-    comments: typing.List[Comment]
-
-class SponsorSnippet(typing_extensions.TypedDict, total=False):
-    cumulativeDurationMonths: int
-    sponsorSince: str
-    channelId: str
-    sponsorDetails: ChannelProfileDetails
-
-class PageInfo(typing_extensions.TypedDict, total=False):
-    totalResults: int
-    resultsPerPage: int
-
-class AbuseReport(typing_extensions.TypedDict, total=False):
-    relatedEntities: typing.List[RelatedEntity]
-    description: str
-    subject: Entity
-    abuseTypes: typing.List[AbuseType]
-
-class VideoAbuseReportReasonListResponse(typing_extensions.TypedDict, total=False):
-    etag: str
-    visitorId: str
-    items: typing.List[VideoAbuseReportReason]
-    kind: str
-    eventId: str
-
-class ActivityContentDetailsUpload(typing_extensions.TypedDict, total=False):
-    videoId: str
-
-class InvideoBranding(typing_extensions.TypedDict, total=False):
-    position: InvideoPosition
-    targetChannelId: str
-    imageBytes: str
-    imageUrl: str
-    timing: InvideoTiming
-
-class LiveChatSuperStickerDetails(typing_extensions.TypedDict, total=False):
-    superStickerMetadata: SuperStickerMetadata
-    amountMicros: str
-    amountDisplayString: str
-    tier: int
-    currency: str
-
-class VideoRating(typing_extensions.TypedDict, total=False):
-    rating: typing_extensions.Literal["none", "like", "dislike"]
-    videoId: str
-
-class ChannelContentDetails(typing_extensions.TypedDict, total=False):
-    relatedPlaylists: typing.Dict[str, typing.Any]
-
-class LiveStream(typing_extensions.TypedDict, total=False):
-    snippet: LiveStreamSnippet
-    cdn: CdnSettings
-    contentDetails: LiveStreamContentDetails
-    status: LiveStreamStatus
-    etag: str
-    id: str
-    kind: str
-
-class ChannelBannerResource(typing_extensions.TypedDict, total=False):
-    kind: str
-    url: str
-    etag: str
-
-class ResourceId(typing_extensions.TypedDict, total=False):
-    playlistId: str
-    videoId: str
-    kind: str
-    channelId: str
-
-class CommentSnippet(typing_extensions.TypedDict, total=False):
-    canRate: bool
-    textOriginal: str
-    parentId: str
-    authorDisplayName: str
-    authorChannelId: CommentSnippetAuthorChannelId
-    videoId: str
-    moderationStatus: typing_extensions.Literal[
-        "published", "heldForReview", "likelySpam", "rejected"
-    ]
-    viewerRating: typing_extensions.Literal["none", "like", "dislike"]
-    textDisplay: str
-    authorChannelUrl: str
-    channelId: str
-    authorProfileImageUrl: str
-    publishedAt: str
-    likeCount: int
-    updatedAt: str
-
-class InvideoTiming(typing_extensions.TypedDict, total=False):
-    offsetMs: str
-    type: typing_extensions.Literal["offsetFromStart", "offsetFromEnd"]
-    durationMs: str
-
-class CommentSnippetAuthorChannelId(typing_extensions.TypedDict, total=False):
-    value: str
-
-class LiveChatSuperChatDetails(typing_extensions.TypedDict, total=False):
-    currency: str
-    amountMicros: str
-    userComment: str
-    amountDisplayString: str
-    tier: int
-
-class LocalizedString(typing_extensions.TypedDict, total=False):
-    language: str
-    value: str
-
-class SuperChatEventSnippet(typing_extensions.TypedDict, total=False):
-    currency: str
-    messageType: int
-    isSuperStickerEvent: bool
-    channelId: str
-    commentText: str
-    amountMicros: str
-    displayString: str
-    superStickerMetadata: SuperStickerMetadata
-    supporterDetails: ChannelProfileDetails
-    createdAt: str
-
-class Subscription(typing_extensions.TypedDict, total=False):
-    kind: str
-    subscriberSnippet: SubscriptionSubscriberSnippet
-    snippet: SubscriptionSnippet
-    contentDetails: SubscriptionContentDetails
-    id: str
-    etag: str
-
-class ThirdPartyLink(typing_extensions.TypedDict, total=False):
-    snippet: ThirdPartyLinkSnippet
-    kind: str
-    status: ThirdPartyLinkStatus
-    etag: str
-    linkingToken: str
-
-class PlaylistItemListResponse(typing_extensions.TypedDict, total=False):
-    prevPageToken: str
-    visitorId: str
-    tokenPagination: TokenPagination
-    items: typing.List[PlaylistItem]
-    kind: str
-    pageInfo: PageInfo
-    eventId: str
-    nextPageToken: str
-    etag: str
-
-class LiveChatBanSnippet(typing_extensions.TypedDict, total=False):
-    liveChatId: str
-    type: typing_extensions.Literal[
-        "liveChatBanTypeUnspecified", "permanent", "temporary"
-    ]
-    banDurationSeconds: str
-    bannedUserDetails: ChannelProfileDetails
-
-class ActivityListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    items: typing.List[Activity]
-    eventId: str
-    visitorId: str
-    nextPageToken: str
-    pageInfo: PageInfo
-    prevPageToken: str
-    tokenPagination: TokenPagination
-    etag: str
-
-class ChannelSection(typing_extensions.TypedDict, total=False):
-    kind: str
-    contentDetails: ChannelSectionContentDetails
-    targeting: ChannelSectionTargeting
-    etag: str
-    localizations: typing.Dict[str, typing.Any]
-    id: str
-    snippet: ChannelSectionSnippet
-
-class PlaylistSnippet(typing_extensions.TypedDict, total=False):
-    channelTitle: str
-    description: str
-    channelId: str
-    publishedAt: str
-    tags: typing.List[str]
-    localized: PlaylistLocalization
-    title: str
-    thumbnails: ThumbnailDetails
-    defaultLanguage: str
-
-class LiveStreamStatus(typing_extensions.TypedDict, total=False):
-    healthStatus: LiveStreamHealthStatus
-    streamStatus: typing_extensions.Literal[
-        "created", "ready", "active", "inactive", "error"
-    ]
-
-class VideoProjectDetails(typing_extensions.TypedDict, total=False):
-    tags: typing.List[str]
-
-class ActivityContentDetailsPlaylistItem(typing_extensions.TypedDict, total=False):
-    resourceId: ResourceId
-    playlistItemId: str
-    playlistId: str
-
-class LiveChatBan(typing_extensions.TypedDict, total=False):
-    etag: str
-    kind: str
-    id: str
-    snippet: LiveChatBanSnippet
-
-class ChannelBrandingSettings(typing_extensions.TypedDict, total=False):
-    image: ImageSettings
-    hints: typing.List[PropertyValue]
-    channel: ChannelSettings
-    watch: WatchSettings
-
-class I18nLanguage(typing_extensions.TypedDict, total=False):
-    etag: str
-    kind: str
-    snippet: I18nLanguageSnippet
-    id: str
-
-class MonitorStreamInfo(typing_extensions.TypedDict, total=False):
-    broadcastStreamDelayMs: int
-    enableMonitorStream: bool
-    embedHtml: str
-
-class VideoProcessingDetailsProcessingProgress(
-    typing_extensions.TypedDict, total=False
-):
-    partsProcessed: str
-    partsTotal: str
-    timeLeftMs: str
-
-class ChannelSectionListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[ChannelSection]
-    kind: str
-    visitorId: str
-    eventId: str
-    etag: str
-
-class VideoProcessingDetails(typing_extensions.TypedDict, total=False):
-    editorSuggestionsAvailability: str
-    tagSuggestionsAvailability: str
-    processingProgress: VideoProcessingDetailsProcessingProgress
-    thumbnailsAvailability: str
-    processingIssuesAvailability: str
-    fileDetailsAvailability: str
-    processingFailureReason: typing_extensions.Literal[
-        "uploadFailed", "transcodeFailed", "streamingFailed", "other"
-    ]
-    processingStatus: typing_extensions.Literal[
-        "processing", "succeeded", "failed", "terminated"
-    ]
-
-class LiveBroadcastListResponse(typing_extensions.TypedDict, total=False):
-    prevPageToken: str
-    etag: str
-    nextPageToken: str
-    eventId: str
-    items: typing.List[LiveBroadcast]
-    pageInfo: PageInfo
-    tokenPagination: TokenPagination
-    kind: str
-    visitorId: str
-
-class AccessPolicy(typing_extensions.TypedDict, total=False):
-    exception: typing.List[str]
-    allowed: bool
-
-class PropertyValue(typing_extensions.TypedDict, total=False):
-    property: str
-    value: str
-
-class CdnSettings(typing_extensions.TypedDict, total=False):
-    ingestionInfo: IngestionInfo
-    format: str
-    ingestionType: typing_extensions.Literal["rtmp", "dash", "webrtc", "hls"]
-    frameRate: typing_extensions.Literal["30fps", "60fps", "variable"]
-    resolution: typing_extensions.Literal[
-        "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p", "variable"
-    ]
-
-class ActivitySnippet(typing_extensions.TypedDict, total=False):
-    groupId: str
-    channelId: str
-    thumbnails: ThumbnailDetails
-    channelTitle: str
-    description: str
-    publishedAt: str
-    title: str
-    type: typing_extensions.Literal[
-        "typeUnspecified",
-        "upload",
-        "like",
-        "favorite",
-        "comment",
-        "subscription",
-        "playlistItem",
-        "recommendation",
-        "bulletin",
-        "social",
-        "channelItem",
-        "promotedItem",
-    ]
-
-class LiveChatMessageListResponse(typing_extensions.TypedDict, total=False):
-    visitorId: str
-    items: typing.List[LiveChatMessage]
-    etag: str
-    pageInfo: PageInfo
-    tokenPagination: TokenPagination
-    nextPageToken: str
-    eventId: str
-    kind: str
-    offlineAt: str
-    pollingIntervalMillis: int
-
-class MembershipsLevelSnippet(typing_extensions.TypedDict, total=False):
-    creatorChannelId: str
-    levelDetails: LevelDetails
-
-class I18nRegionListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    eventId: str
-    items: typing.List[I18nRegion]
-    visitorId: str
-    etag: str
-
-class VideoAbuseReportReason(typing_extensions.TypedDict, total=False):
-    etag: str
-    kind: str
-    snippet: VideoAbuseReportReasonSnippet
-    id: str
-
-class ChannelSnippet(typing_extensions.TypedDict, total=False):
-    defaultLanguage: str
-    title: str
-    publishedAt: str
-    customUrl: str
-    localized: ChannelLocalization
-    description: str
-    thumbnails: ThumbnailDetails
-    country: str
-
-class I18nRegionSnippet(typing_extensions.TypedDict, total=False):
-    name: str
-    gl: str
-
-class LiveChatTextMessageDetails(typing_extensions.TypedDict, total=False):
-    messageText: str
-
+@typing.type_check_only
 class LevelDetails(typing_extensions.TypedDict, total=False):
     displayName: str
 
-class ThumbnailSetResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[ThumbnailDetails]
-    visitorId: str
+@typing.type_check_only
+class LiveBroadcast(typing_extensions.TypedDict, total=False):
+    contentDetails: LiveBroadcastContentDetails
     etag: str
-    kind: str
-    eventId: str
-
-class ActivityContentDetailsChannelItem(typing_extensions.TypedDict, total=False):
-    resourceId: ResourceId
-
-class VideoCategorySnippet(typing_extensions.TypedDict, total=False):
-    title: str
-    channelId: str
-    assignable: bool
-
-class PlaylistListResponse(typing_extensions.TypedDict, total=False):
-    prevPageToken: str
-    nextPageToken: str
-    eventId: str
-    kind: str
-    items: typing.List[Playlist]
-    visitorId: str
-    pageInfo: PageInfo
-    tokenPagination: TokenPagination
-    etag: str
-
-class WatchSettings(typing_extensions.TypedDict, total=False):
-    featuredPlaylistId: str
-    textColor: str
-    backgroundColor: str
-
-class Entity(typing_extensions.TypedDict, total=False):
-    url: str
-    typeId: str
-    id: str
-
-class LiveChatFanFundingEventDetails(typing_extensions.TypedDict, total=False):
-    amountDisplayString: str
-    userComment: str
-    currency: str
-    amountMicros: str
-
-class VideoAbuseReportSecondaryReason(typing_extensions.TypedDict, total=False):
-    id: str
-    label: str
-
-class ActivityContentDetailsLike(typing_extensions.TypedDict, total=False):
-    resourceId: ResourceId
-
-class TestItemTestItemSnippet(typing_extensions.TypedDict, total=False): ...
-
-class LocalizedProperty(typing_extensions.TypedDict, total=False):
-    defaultLanguage: LanguageTag
-    localized: typing.List[LocalizedString]
-    default: str
-
-class Sponsor(typing_extensions.TypedDict, total=False):
-    snippet: SponsorSnippet
-    etag: str
-    kind: str
-
-class SearchListResponse(typing_extensions.TypedDict, total=False):
-    etag: str
-    nextPageToken: str
-    kind: str
-    tokenPagination: TokenPagination
-    items: typing.List[SearchResult]
-    regionCode: str
-    visitorId: str
-    pageInfo: PageInfo
-    prevPageToken: str
-    eventId: str
-
-class PlaylistStatus(typing_extensions.TypedDict, total=False):
-    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
-
-class VideoAgeGating(typing_extensions.TypedDict, total=False):
-    restricted: bool
-    alcoholContent: bool
-    videoGameRating: typing_extensions.Literal[
-        "anyone", "m15Plus", "m16Plus", "m17Plus"
-    ]
-
-class CommentThread(typing_extensions.TypedDict, total=False):
-    snippet: CommentThreadSnippet
     id: str
     kind: str
-    replies: CommentThreadReplies
-    etag: str
+    snippet: LiveBroadcastSnippet
+    statistics: LiveBroadcastStatistics
+    status: LiveBroadcastStatus
 
-class Activity(typing_extensions.TypedDict, total=False):
-    id: str
-    etag: str
-    contentDetails: ActivityContentDetails
-    snippet: ActivitySnippet
-    kind: str
-
-class ChannelConversionPing(typing_extensions.TypedDict, total=False):
-    conversionUrl: str
-    context: typing_extensions.Literal["subscribe", "unsubscribe", "cview"]
-
-class GeoPoint(typing_extensions.TypedDict, total=False):
-    latitude: float
-    altitude: float
-    longitude: float
-
+@typing.type_check_only
 class LiveBroadcastContentDetails(typing_extensions.TypedDict, total=False):
-    recordFromStart: bool
-    enableDvr: bool
+    boundStreamId: str
+    boundStreamLastUpdateTimeMs: str
     closedCaptionsType: typing_extensions.Literal[
         "closedCaptionsTypeUnspecified",
         "closedCaptionsDisabled",
         "closedCaptionsHttpPost",
         "closedCaptionsEmbedded",
     ]
-    startWithSlate: bool
-    enableEmbed: bool
-    projection: typing_extensions.Literal[
-        "projectionUnspecified", "rectangular", "360", "mesh"
-    ]
-    enableAutoStop: bool
-    mesh: str
     enableAutoStart: bool
+    enableAutoStop: bool
+    enableClosedCaptions: bool
+    enableContentEncryption: bool
+    enableDvr: bool
+    enableEmbed: bool
     enableLowLatency: bool
     latencyPreference: typing_extensions.Literal[
         "latencyPreferenceUnspecified", "normal", "low", "ultraLow"
     ]
-    enableContentEncryption: bool
+    mesh: str
     monitorStream: MonitorStreamInfo
-    boundStreamId: str
-    boundStreamLastUpdateTimeMs: str
-    enableClosedCaptions: bool
+    projection: typing_extensions.Literal[
+        "projectionUnspecified", "rectangular", "360", "mesh"
+    ]
+    recordFromStart: bool
+    startWithSlate: bool
 
-class SuperChatEvent(typing_extensions.TypedDict, total=False):
-    snippet: SuperChatEventSnippet
-    id: str
-    kind: str
+@typing.type_check_only
+class LiveBroadcastListResponse(typing_extensions.TypedDict, total=False):
     etag: str
+    eventId: str
+    items: typing.List[LiveBroadcast]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
 
-class ChannelContentOwnerDetails(typing_extensions.TypedDict, total=False):
-    contentOwner: str
-    timeLinked: str
-
-class ThumbnailDetails(typing_extensions.TypedDict, total=False):
-    default: Thumbnail
-    high: Thumbnail
-    maxres: Thumbnail
-    standard: Thumbnail
-    medium: Thumbnail
-
-class ChannelTopicDetails(typing_extensions.TypedDict, total=False):
-    topicIds: typing.List[str]
-    topicCategories: typing.List[str]
-
-class ChannelLocalization(typing_extensions.TypedDict, total=False):
-    description: str
-    title: str
-
+@typing.type_check_only
 class LiveBroadcastSnippet(typing_extensions.TypedDict, total=False):
-    liveChatId: str
     actualEndTime: str
-    description: str
-    thumbnails: ThumbnailDetails
-    publishedAt: str
+    actualStartTime: str
     channelId: str
+    description: str
+    isDefaultBroadcast: bool
+    liveChatId: str
+    publishedAt: str
     scheduledEndTime: str
     scheduledStartTime: str
-    title: str
-    isDefaultBroadcast: bool
-    actualStartTime: str
-
-class SubscriptionSnippet(typing_extensions.TypedDict, total=False):
-    description: str
-    publishedAt: str
-    resourceId: ResourceId
     thumbnails: ThumbnailDetails
-    channelId: str
-    channelTitle: str
     title: str
 
-class VideoListResponse(typing_extensions.TypedDict, total=False):
-    tokenPagination: TokenPagination
-    items: typing.List[Video]
-    visitorId: str
-    pageInfo: PageInfo
-    nextPageToken: str
-    kind: str
+@typing.type_check_only
+class LiveBroadcastStatistics(typing_extensions.TypedDict, total=False):
+    totalChatCount: str
+
+@typing.type_check_only
+class LiveBroadcastStatus(typing_extensions.TypedDict, total=False):
+    lifeCycleStatus: typing_extensions.Literal[
+        "lifeCycleStatusUnspecified",
+        "created",
+        "ready",
+        "testing",
+        "live",
+        "complete",
+        "revoked",
+        "testStarting",
+        "liveStarting",
+    ]
+    liveBroadcastPriority: typing_extensions.Literal[
+        "liveBroadcastPriorityUnspecified", "low", "normal", "high"
+    ]
+    madeForKids: bool
+    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
+    recordingStatus: typing_extensions.Literal[
+        "liveBroadcastRecordingStatusUnspecified",
+        "notRecording",
+        "recording",
+        "recorded",
+    ]
+    selfDeclaredMadeForKids: bool
+
+@typing.type_check_only
+class LiveChatBan(typing_extensions.TypedDict, total=False):
     etag: str
-    eventId: str
-    prevPageToken: str
-
-class MembershipsDurationAtLevel(typing_extensions.TypedDict, total=False):
-    memberTotalDurationMonths: int
-    level: str
-    memberSince: str
-
-class VideoCategory(typing_extensions.TypedDict, total=False):
     id: str
-    snippet: VideoCategorySnippet
     kind: str
-    etag: str
+    snippet: LiveChatBanSnippet
 
-class ActivityContentDetailsBulletin(typing_extensions.TypedDict, total=False):
-    resourceId: ResourceId
-
-class ThirdPartyLinkStatus(typing_extensions.TypedDict, total=False):
-    linkStatus: typing_extensions.Literal["unknown", "failed", "pending", "linked"]
-
-class ChannelListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Channel]
-    prevPageToken: str
-    pageInfo: PageInfo
-    nextPageToken: str
-    etag: str
-    kind: str
-    tokenPagination: TokenPagination
-    visitorId: str
-    eventId: str
-
-class CaptionSnippet(typing_extensions.TypedDict, total=False):
-    videoId: str
-    name: str
-    status: typing_extensions.Literal["serving", "syncing", "failed"]
-    isDraft: bool
-    failureReason: typing_extensions.Literal[
-        "unknownFormat", "unsupportedFormat", "processingFailed"
-    ]
-    isEasyReader: bool
-    isCC: bool
-    audioTrackType: typing_extensions.Literal[
-        "unknown", "primary", "commentary", "descriptive"
-    ]
-    isAutoSynced: bool
-    language: str
-    lastUpdated: str
-    trackKind: typing_extensions.Literal["standard", "ASR", "forced"]
-    isLarge: bool
-
-class CommentThreadListResponse(typing_extensions.TypedDict, total=False):
-    eventId: str
-    tokenPagination: TokenPagination
-    etag: str
-    items: typing.List[CommentThread]
-    nextPageToken: str
-    visitorId: str
-    pageInfo: PageInfo
-    kind: str
-
-class ChannelSectionSnippet(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class LiveChatBanSnippet(typing_extensions.TypedDict, total=False):
+    banDurationSeconds: str
+    bannedUserDetails: ChannelProfileDetails
+    liveChatId: str
     type: typing_extensions.Literal[
-        "channelsectionTypeUnspecified",
-        "singlePlaylist",
-        "multiplePlaylists",
-        "popularUploads",
-        "recentUploads",
-        "likes",
-        "allPlaylists",
-        "likedPlaylists",
-        "recentPosts",
-        "recentActivity",
-        "liveEvents",
-        "upcomingEvents",
-        "completedEvents",
-        "multipleChannels",
-        "postedVideos",
-        "postedPlaylists",
-        "subscriptions",
+        "liveChatBanTypeUnspecified", "permanent", "temporary"
     ]
-    localized: ChannelSectionLocalization
-    channelId: str
-    position: int
-    style: typing_extensions.Literal[
-        "channelsectionStyleUnspecified", "horizontalRow", "verticalList"
-    ]
-    title: str
-    defaultLanguage: str
 
+@typing.type_check_only
+class LiveChatFanFundingEventDetails(typing_extensions.TypedDict, total=False):
+    amountDisplayString: str
+    amountMicros: str
+    currency: str
+    userComment: str
+
+@typing.type_check_only
+class LiveChatMessage(typing_extensions.TypedDict, total=False):
+    authorDetails: LiveChatMessageAuthorDetails
+    etag: str
+    id: str
+    kind: str
+    snippet: LiveChatMessageSnippet
+
+@typing.type_check_only
+class LiveChatMessageAuthorDetails(typing_extensions.TypedDict, total=False):
+    channelId: str
+    channelUrl: str
+    displayName: str
+    isChatModerator: bool
+    isChatOwner: bool
+    isChatSponsor: bool
+    isVerified: bool
+    profileImageUrl: str
+
+@typing.type_check_only
+class LiveChatMessageDeletedDetails(typing_extensions.TypedDict, total=False):
+    deletedMessageId: str
+
+@typing.type_check_only
+class LiveChatMessageListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[LiveChatMessage]
+    kind: str
+    nextPageToken: str
+    offlineAt: str
+    pageInfo: PageInfo
+    pollingIntervalMillis: int
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class LiveChatMessageRetractedDetails(typing_extensions.TypedDict, total=False):
+    retractedMessageId: str
+
+@typing.type_check_only
+class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
+    authorChannelId: str
+    displayMessage: str
+    fanFundingEventDetails: LiveChatFanFundingEventDetails
+    hasDisplayContent: bool
+    liveChatId: str
+    messageDeletedDetails: LiveChatMessageDeletedDetails
+    messageRetractedDetails: LiveChatMessageRetractedDetails
+    publishedAt: str
+    superChatDetails: LiveChatSuperChatDetails
+    superStickerDetails: LiveChatSuperStickerDetails
+    textMessageDetails: LiveChatTextMessageDetails
+    type: typing_extensions.Literal[
+        "invalidType",
+        "textMessageEvent",
+        "tombstone",
+        "fanFundingEvent",
+        "chatEndedEvent",
+        "sponsorOnlyModeStartedEvent",
+        "sponsorOnlyModeEndedEvent",
+        "newSponsorEvent",
+        "messageDeletedEvent",
+        "messageRetractedEvent",
+        "userBannedEvent",
+        "superChatEvent",
+        "superStickerEvent",
+    ]
+    userBannedDetails: LiveChatUserBannedMessageDetails
+
+@typing.type_check_only
+class LiveChatModerator(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    kind: str
+    snippet: LiveChatModeratorSnippet
+
+@typing.type_check_only
+class LiveChatModeratorListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[LiveChatModerator]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class LiveChatModeratorSnippet(typing_extensions.TypedDict, total=False):
+    liveChatId: str
+    moderatorDetails: ChannelProfileDetails
+
+@typing.type_check_only
+class LiveChatSuperChatDetails(typing_extensions.TypedDict, total=False):
+    amountDisplayString: str
+    amountMicros: str
+    currency: str
+    tier: int
+    userComment: str
+
+@typing.type_check_only
+class LiveChatSuperStickerDetails(typing_extensions.TypedDict, total=False):
+    amountDisplayString: str
+    amountMicros: str
+    currency: str
+    superStickerMetadata: SuperStickerMetadata
+    tier: int
+
+@typing.type_check_only
+class LiveChatTextMessageDetails(typing_extensions.TypedDict, total=False):
+    messageText: str
+
+@typing.type_check_only
+class LiveChatUserBannedMessageDetails(typing_extensions.TypedDict, total=False):
+    banDurationSeconds: str
+    banType: typing_extensions.Literal["permanent", "temporary"]
+    bannedUserDetails: ChannelProfileDetails
+
+@typing.type_check_only
+class LiveStream(typing_extensions.TypedDict, total=False):
+    cdn: CdnSettings
+    contentDetails: LiveStreamContentDetails
+    etag: str
+    id: str
+    kind: str
+    snippet: LiveStreamSnippet
+    status: LiveStreamStatus
+
+@typing.type_check_only
 class LiveStreamConfigurationIssue(typing_extensions.TypedDict, total=False):
-    reason: str
     description: str
+    reason: str
+    severity: typing_extensions.Literal["info", "warning", "error"]
     type: typing_extensions.Literal[
         "gopSizeOver",
         "gopSizeLong",
@@ -1983,42 +1480,727 @@ class LiveStreamConfigurationIssue(typing_extensions.TypedDict, total=False):
         "videoIngestionStarved",
         "videoIngestionFasterThanRealtime",
     ]
-    severity: typing_extensions.Literal["info", "warning", "error"]
 
-class LiveChatModerator(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class LiveStreamContentDetails(typing_extensions.TypedDict, total=False):
+    closedCaptionsIngestionUrl: str
+    isReusable: bool
+
+@typing.type_check_only
+class LiveStreamHealthStatus(typing_extensions.TypedDict, total=False):
+    configurationIssues: typing.List[LiveStreamConfigurationIssue]
+    lastUpdateTimeSeconds: str
+    status: typing_extensions.Literal["good", "ok", "bad", "noData", "revoked"]
+
+@typing.type_check_only
+class LiveStreamListResponse(typing_extensions.TypedDict, total=False):
     etag: str
+    eventId: str
+    items: typing.List[LiveStream]
     kind: str
-    id: str
-    snippet: LiveChatModeratorSnippet
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
 
-class SubscriptionContentDetails(typing_extensions.TypedDict, total=False):
-    newItemCount: int
-    totalItemCount: int
-    activityType: typing_extensions.Literal[
-        "subscriptionActivityTypeUnspecified", "all", "uploads"
+@typing.type_check_only
+class LiveStreamSnippet(typing_extensions.TypedDict, total=False):
+    channelId: str
+    description: str
+    isDefaultStream: bool
+    publishedAt: str
+    title: str
+
+@typing.type_check_only
+class LiveStreamStatus(typing_extensions.TypedDict, total=False):
+    healthStatus: LiveStreamHealthStatus
+    streamStatus: typing_extensions.Literal[
+        "created", "ready", "active", "inactive", "error"
     ]
 
-class PlaylistItem(typing_extensions.TypedDict, total=False):
-    status: PlaylistItemStatus
+@typing.type_check_only
+class LocalizedProperty(typing_extensions.TypedDict, total=False):
+    default: str
+    defaultLanguage: LanguageTag
+    localized: typing.List[LocalizedString]
+
+@typing.type_check_only
+class LocalizedString(typing_extensions.TypedDict, total=False):
+    language: str
+    value: str
+
+@typing.type_check_only
+class Member(typing_extensions.TypedDict, total=False):
+    etag: str
     kind: str
-    snippet: PlaylistItemSnippet
+    snippet: MemberSnippet
+
+@typing.type_check_only
+class MemberListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[Member]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class MemberSnippet(typing_extensions.TypedDict, total=False):
+    creatorChannelId: str
+    memberDetails: ChannelProfileDetails
+    membershipsDetails: MembershipsDetails
+
+@typing.type_check_only
+class MembershipsDetails(typing_extensions.TypedDict, total=False):
+    accessibleLevels: typing.List[str]
+    highestAccessibleLevel: str
+    highestAccessibleLevelDisplayName: str
+    membershipsDuration: MembershipsDuration
+    membershipsDurationAtLevels: typing.List[MembershipsDurationAtLevel]
+
+@typing.type_check_only
+class MembershipsDuration(typing_extensions.TypedDict, total=False):
+    memberSince: str
+    memberTotalDurationMonths: int
+
+@typing.type_check_only
+class MembershipsDurationAtLevel(typing_extensions.TypedDict, total=False):
+    level: str
+    memberSince: str
+    memberTotalDurationMonths: int
+
+@typing.type_check_only
+class MembershipsLevel(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    kind: str
+    snippet: MembershipsLevelSnippet
+
+@typing.type_check_only
+class MembershipsLevelListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[MembershipsLevel]
+    kind: str
+    visitorId: str
+
+@typing.type_check_only
+class MembershipsLevelSnippet(typing_extensions.TypedDict, total=False):
+    creatorChannelId: str
+    levelDetails: LevelDetails
+
+@typing.type_check_only
+class MonitorStreamInfo(typing_extensions.TypedDict, total=False):
+    broadcastStreamDelayMs: int
+    embedHtml: str
+    enableMonitorStream: bool
+
+@typing.type_check_only
+class PageInfo(typing_extensions.TypedDict, total=False):
+    resultsPerPage: int
+    totalResults: int
+
+@typing.type_check_only
+class Playlist(typing_extensions.TypedDict, total=False):
+    contentDetails: PlaylistContentDetails
+    etag: str
+    id: str
+    kind: str
+    localizations: typing.Dict[str, typing.Any]
+    player: PlaylistPlayer
+    snippet: PlaylistSnippet
+    status: PlaylistStatus
+
+@typing.type_check_only
+class PlaylistContentDetails(typing_extensions.TypedDict, total=False):
+    itemCount: int
+
+@typing.type_check_only
+class PlaylistItem(typing_extensions.TypedDict, total=False):
     contentDetails: PlaylistItemContentDetails
     etag: str
     id: str
+    kind: str
+    snippet: PlaylistItemSnippet
+    status: PlaylistItemStatus
 
+@typing.type_check_only
 class PlaylistItemContentDetails(typing_extensions.TypedDict, total=False):
-    note: str
     endAt: str
-    videoId: str
+    note: str
     startAt: str
+    videoId: str
     videoPublishedAt: str
 
+@typing.type_check_only
+class PlaylistItemListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[PlaylistItem]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class PlaylistItemSnippet(typing_extensions.TypedDict, total=False):
+    channelId: str
+    channelTitle: str
+    description: str
+    playlistId: str
+    position: int
+    publishedAt: str
+    resourceId: ResourceId
+    thumbnails: ThumbnailDetails
+    title: str
+
+@typing.type_check_only
+class PlaylistItemStatus(typing_extensions.TypedDict, total=False):
+    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
+
+@typing.type_check_only
+class PlaylistListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[Playlist]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class PlaylistLocalization(typing_extensions.TypedDict, total=False):
+    description: str
+    title: str
+
+@typing.type_check_only
+class PlaylistPlayer(typing_extensions.TypedDict, total=False):
+    embedHtml: str
+
+@typing.type_check_only
+class PlaylistSnippet(typing_extensions.TypedDict, total=False):
+    channelId: str
+    channelTitle: str
+    defaultLanguage: str
+    description: str
+    localized: PlaylistLocalization
+    publishedAt: str
+    tags: typing.List[str]
+    thumbnails: ThumbnailDetails
+    title: str
+
+@typing.type_check_only
+class PlaylistStatus(typing_extensions.TypedDict, total=False):
+    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
+
+@typing.type_check_only
+class PropertyValue(typing_extensions.TypedDict, total=False):
+    property: str
+    value: str
+
+@typing.type_check_only
+class RelatedEntity(typing_extensions.TypedDict, total=False):
+    entity: Entity
+
+@typing.type_check_only
+class ResourceId(typing_extensions.TypedDict, total=False):
+    channelId: str
+    kind: str
+    playlistId: str
+    videoId: str
+
+@typing.type_check_only
+class SearchListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[SearchResult]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    regionCode: str
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class SearchResult(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: ResourceId
+    kind: str
+    snippet: SearchResultSnippet
+
+@typing.type_check_only
+class SearchResultSnippet(typing_extensions.TypedDict, total=False):
+    channelId: str
+    channelTitle: str
+    description: str
+    liveBroadcastContent: typing_extensions.Literal[
+        "none", "upcoming", "live", "completed"
+    ]
+    publishedAt: str
+    thumbnails: ThumbnailDetails
+    title: str
+
+@typing.type_check_only
+class Sponsor(typing_extensions.TypedDict, total=False):
+    etag: str
+    kind: str
+    snippet: SponsorSnippet
+
+@typing.type_check_only
+class SponsorListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[Sponsor]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class SponsorSnippet(typing_extensions.TypedDict, total=False):
+    channelId: str
+    cumulativeDurationMonths: int
+    sponsorDetails: ChannelProfileDetails
+    sponsorSince: str
+
+@typing.type_check_only
+class Subscription(typing_extensions.TypedDict, total=False):
+    contentDetails: SubscriptionContentDetails
+    etag: str
+    id: str
+    kind: str
+    snippet: SubscriptionSnippet
+    subscriberSnippet: SubscriptionSubscriberSnippet
+
+@typing.type_check_only
+class SubscriptionContentDetails(typing_extensions.TypedDict, total=False):
+    activityType: typing_extensions.Literal[
+        "subscriptionActivityTypeUnspecified", "all", "uploads"
+    ]
+    newItemCount: int
+    totalItemCount: int
+
+@typing.type_check_only
+class SubscriptionListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[Subscription]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class SubscriptionSnippet(typing_extensions.TypedDict, total=False):
+    channelId: str
+    channelTitle: str
+    description: str
+    publishedAt: str
+    resourceId: ResourceId
+    thumbnails: ThumbnailDetails
+    title: str
+
+@typing.type_check_only
+class SubscriptionSubscriberSnippet(typing_extensions.TypedDict, total=False):
+    channelId: str
+    description: str
+    thumbnails: ThumbnailDetails
+    title: str
+
+@typing.type_check_only
+class SuperChatEvent(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    kind: str
+    snippet: SuperChatEventSnippet
+
+@typing.type_check_only
+class SuperChatEventListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[SuperChatEvent]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class SuperChatEventSnippet(typing_extensions.TypedDict, total=False):
+    amountMicros: str
+    channelId: str
+    commentText: str
+    createdAt: str
+    currency: str
+    displayString: str
+    isSuperStickerEvent: bool
+    messageType: int
+    superStickerMetadata: SuperStickerMetadata
+    supporterDetails: ChannelProfileDetails
+
+@typing.type_check_only
+class SuperStickerMetadata(typing_extensions.TypedDict, total=False):
+    altText: str
+    altTextLanguage: str
+    stickerId: str
+
+@typing.type_check_only
+class TestItem(typing_extensions.TypedDict, total=False):
+    gaia: str
+    id: str
+    snippet: TestItemTestItemSnippet
+
+@typing.type_check_only
+class TestItemTestItemSnippet(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ThirdPartyLink(typing_extensions.TypedDict, total=False):
+    etag: str
+    kind: str
+    linkingToken: str
+    snippet: ThirdPartyLinkSnippet
+    status: ThirdPartyLinkStatus
+
+@typing.type_check_only
+class ThirdPartyLinkSnippet(typing_extensions.TypedDict, total=False):
+    channelToStoreLink: ChannelToStoreLinkDetails
+    type: typing_extensions.Literal["linkUnspecified", "channelToStoreLink"]
+
+@typing.type_check_only
+class ThirdPartyLinkStatus(typing_extensions.TypedDict, total=False):
+    linkStatus: typing_extensions.Literal["unknown", "failed", "pending", "linked"]
+
+@typing.type_check_only
+class Thumbnail(typing_extensions.TypedDict, total=False):
+    height: int
+    url: str
+    width: int
+
+@typing.type_check_only
+class ThumbnailDetails(typing_extensions.TypedDict, total=False):
+    default: Thumbnail
+    high: Thumbnail
+    maxres: Thumbnail
+    medium: Thumbnail
+    standard: Thumbnail
+
+@typing.type_check_only
+class ThumbnailSetResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[ThumbnailDetails]
+    kind: str
+    visitorId: str
+
+@typing.type_check_only
+class TokenPagination(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Video(typing_extensions.TypedDict, total=False):
+    ageGating: VideoAgeGating
+    contentDetails: VideoContentDetails
+    etag: str
+    fileDetails: VideoFileDetails
+    id: str
+    kind: str
+    liveStreamingDetails: VideoLiveStreamingDetails
+    localizations: typing.Dict[str, typing.Any]
+    monetizationDetails: VideoMonetizationDetails
+    player: VideoPlayer
+    processingDetails: VideoProcessingDetails
+    projectDetails: VideoProjectDetails
+    recordingDetails: VideoRecordingDetails
+    snippet: VideoSnippet
+    statistics: VideoStatistics
+    status: VideoStatus
+    suggestions: VideoSuggestions
+    topicDetails: VideoTopicDetails
+
+@typing.type_check_only
+class VideoAbuseReport(typing_extensions.TypedDict, total=False):
+    comments: str
+    language: str
+    reasonId: str
+    secondaryReasonId: str
+    videoId: str
+
+@typing.type_check_only
+class VideoAbuseReportReason(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    kind: str
+    snippet: VideoAbuseReportReasonSnippet
+
+@typing.type_check_only
+class VideoAbuseReportReasonListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[VideoAbuseReportReason]
+    kind: str
+    visitorId: str
+
+@typing.type_check_only
+class VideoAbuseReportReasonSnippet(typing_extensions.TypedDict, total=False):
+    label: str
+    secondaryReasons: typing.List[VideoAbuseReportSecondaryReason]
+
+@typing.type_check_only
+class VideoAbuseReportSecondaryReason(typing_extensions.TypedDict, total=False):
+    id: str
+    label: str
+
+@typing.type_check_only
+class VideoAgeGating(typing_extensions.TypedDict, total=False):
+    alcoholContent: bool
+    restricted: bool
+    videoGameRating: typing_extensions.Literal[
+        "anyone", "m15Plus", "m16Plus", "m17Plus"
+    ]
+
+@typing.type_check_only
+class VideoCategory(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    kind: str
+    snippet: VideoCategorySnippet
+
+@typing.type_check_only
+class VideoCategoryListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[VideoCategory]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class VideoCategorySnippet(typing_extensions.TypedDict, total=False):
+    assignable: bool
+    channelId: str
+    title: str
+
+@typing.type_check_only
+class VideoContentDetails(typing_extensions.TypedDict, total=False):
+    caption: typing_extensions.Literal["true", "false"]
+    contentRating: ContentRating
+    countryRestriction: AccessPolicy
+    definition: typing_extensions.Literal["sd", "hd"]
+    dimension: str
+    duration: str
+    hasCustomThumbnail: bool
+    licensedContent: bool
+    projection: typing_extensions.Literal["rectangular", "360"]
+    regionRestriction: VideoContentDetailsRegionRestriction
+
+@typing.type_check_only
+class VideoContentDetailsRegionRestriction(typing_extensions.TypedDict, total=False):
+    allowed: typing.List[str]
+    blocked: typing.List[str]
+
+@typing.type_check_only
+class VideoFileDetails(typing_extensions.TypedDict, total=False):
+    audioStreams: typing.List[VideoFileDetailsAudioStream]
+    bitrateBps: str
+    container: str
+    creationTime: str
+    durationMs: str
+    fileName: str
+    fileSize: str
+    fileType: typing_extensions.Literal[
+        "video", "audio", "image", "archive", "document", "project", "other"
+    ]
+    videoStreams: typing.List[VideoFileDetailsVideoStream]
+
+@typing.type_check_only
+class VideoFileDetailsAudioStream(typing_extensions.TypedDict, total=False):
+    bitrateBps: str
+    channelCount: int
+    codec: str
+    vendor: str
+
+@typing.type_check_only
+class VideoFileDetailsVideoStream(typing_extensions.TypedDict, total=False):
+    aspectRatio: float
+    bitrateBps: str
+    codec: str
+    frameRateFps: float
+    heightPixels: int
+    rotation: typing_extensions.Literal[
+        "none", "clockwise", "upsideDown", "counterClockwise", "other"
+    ]
+    vendor: str
+    widthPixels: int
+
+@typing.type_check_only
+class VideoListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[Video]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+    tokenPagination: TokenPagination
+    visitorId: str
+
+@typing.type_check_only
+class VideoLiveStreamingDetails(typing_extensions.TypedDict, total=False):
+    activeLiveChatId: str
+    actualEndTime: str
+    actualStartTime: str
+    concurrentViewers: str
+    scheduledEndTime: str
+    scheduledStartTime: str
+
+@typing.type_check_only
 class VideoLocalization(typing_extensions.TypedDict, total=False):
     description: str
     title: str
 
-class SubscriptionSubscriberSnippet(typing_extensions.TypedDict, total=False):
-    description: str
-    title: str
-    thumbnails: ThumbnailDetails
+@typing.type_check_only
+class VideoMonetizationDetails(typing_extensions.TypedDict, total=False):
+    access: AccessPolicy
+
+@typing.type_check_only
+class VideoPlayer(typing_extensions.TypedDict, total=False):
+    embedHeight: str
+    embedHtml: str
+    embedWidth: str
+
+@typing.type_check_only
+class VideoProcessingDetails(typing_extensions.TypedDict, total=False):
+    editorSuggestionsAvailability: str
+    fileDetailsAvailability: str
+    processingFailureReason: typing_extensions.Literal[
+        "uploadFailed", "transcodeFailed", "streamingFailed", "other"
+    ]
+    processingIssuesAvailability: str
+    processingProgress: VideoProcessingDetailsProcessingProgress
+    processingStatus: typing_extensions.Literal[
+        "processing", "succeeded", "failed", "terminated"
+    ]
+    tagSuggestionsAvailability: str
+    thumbnailsAvailability: str
+
+@typing.type_check_only
+class VideoProcessingDetailsProcessingProgress(
+    typing_extensions.TypedDict, total=False
+):
+    partsProcessed: str
+    partsTotal: str
+    timeLeftMs: str
+
+@typing.type_check_only
+class VideoProjectDetails(typing_extensions.TypedDict, total=False):
+    tags: typing.List[str]
+
+@typing.type_check_only
+class VideoRating(typing_extensions.TypedDict, total=False):
+    rating: typing_extensions.Literal["none", "like", "dislike"]
+    videoId: str
+
+@typing.type_check_only
+class VideoRatingListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[VideoRating]
+    kind: str
+    visitorId: str
+
+@typing.type_check_only
+class VideoRecordingDetails(typing_extensions.TypedDict, total=False):
+    location: GeoPoint
+    locationDescription: str
+    recordingDate: str
+
+@typing.type_check_only
+class VideoSnippet(typing_extensions.TypedDict, total=False):
+    categoryId: str
     channelId: str
+    channelTitle: str
+    defaultAudioLanguage: str
+    defaultLanguage: str
+    description: str
+    liveBroadcastContent: typing_extensions.Literal[
+        "none", "upcoming", "live", "completed"
+    ]
+    localized: VideoLocalization
+    publishedAt: str
+    tags: typing.List[str]
+    thumbnails: ThumbnailDetails
+    title: str
+
+@typing.type_check_only
+class VideoStatistics(typing_extensions.TypedDict, total=False):
+    commentCount: str
+    dislikeCount: str
+    favoriteCount: str
+    likeCount: str
+    viewCount: str
+
+@typing.type_check_only
+class VideoStatus(typing_extensions.TypedDict, total=False):
+    embeddable: bool
+    failureReason: typing_extensions.Literal[
+        "conversion", "invalidFile", "emptyFile", "tooSmall", "codec", "uploadAborted"
+    ]
+    license: typing_extensions.Literal["youtube", "creativeCommon"]
+    madeForKids: bool
+    privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
+    publicStatsViewable: bool
+    publishAt: str
+    rejectionReason: typing_extensions.Literal[
+        "copyright",
+        "inappropriate",
+        "duplicate",
+        "termsOfUse",
+        "uploaderAccountSuspended",
+        "length",
+        "claim",
+        "uploaderAccountClosed",
+        "trademark",
+        "legal",
+    ]
+    selfDeclaredMadeForKids: bool
+    uploadStatus: typing_extensions.Literal[
+        "uploaded", "processed", "failed", "rejected", "deleted"
+    ]
+
+@typing.type_check_only
+class VideoSuggestions(typing_extensions.TypedDict, total=False):
+    editorSuggestions: typing.List[str]
+    processingErrors: typing.List[str]
+    processingHints: typing.List[str]
+    processingWarnings: typing.List[str]
+    tagSuggestions: typing.List[VideoSuggestionsTagSuggestion]
+
+@typing.type_check_only
+class VideoSuggestionsTagSuggestion(typing_extensions.TypedDict, total=False):
+    categoryRestricts: typing.List[str]
+    tag: str
+
+@typing.type_check_only
+class VideoTopicDetails(typing_extensions.TypedDict, total=False):
+    relevantTopicIds: typing.List[str]
+    topicCategories: typing.List[str]
+    topicIds: typing.List[str]
+
+@typing.type_check_only
+class WatchSettings(typing_extensions.TypedDict, total=False):
+    backgroundColor: str
+    featuredPlaylistId: str
+    textColor: str

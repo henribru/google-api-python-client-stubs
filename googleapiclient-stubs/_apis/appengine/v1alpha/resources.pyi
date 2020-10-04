@@ -7,22 +7,11 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class AppengineResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class AppsResource(googleapiclient.discovery.Resource):
-        class OperationsResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, appsId: str, operationsId: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def list(
-                self,
-                *,
-                appsId: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                filter: str = ...,
-                **kwargs: typing.Any
-            ) -> ListOperationsResponseHttpRequest: ...
+        @typing.type_check_only
         class AuthorizedCertificatesResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -38,6 +27,27 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 authorizedCertificatesId: str,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def get(
+                self,
+                *,
+                appsId: str,
+                authorizedCertificatesId: str,
+                view: typing_extensions.Literal[
+                    "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> AuthorizedCertificateHttpRequest: ...
+            def list(
+                self,
+                *,
+                appsId: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                view: typing_extensions.Literal[
+                    "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -47,27 +57,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> AuthorizedCertificateHttpRequest: ...
-            def get(
-                self,
-                *,
-                appsId: str,
-                authorizedCertificatesId: str,
-                view: typing_extensions.Literal[
-                    "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> AuthorizedCertificateHttpRequest: ...
-            def list(
-                self,
-                *,
-                appsId: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                view: typing_extensions.Literal[
-                    "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
+        @typing.type_check_only
         class AuthorizedDomainsResource(googleapiclient.discovery.Resource):
             def list(
                 self,
@@ -77,20 +67,25 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAuthorizedDomainsResponseHttpRequest: ...
-        class LocationsResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, appsId: str, locationsId: str, **kwargs: typing.Any
-            ) -> LocationHttpRequest: ...
-            def list(
+        @typing.type_check_only
+        class DomainMappingsResource(googleapiclient.discovery.Resource):
+            def create(
                 self,
                 *,
                 appsId: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                filter: str = ...,
+                body: DomainMapping = ...,
+                noManagedCertificate: bool = ...,
+                overrideStrategy: typing_extensions.Literal[
+                    "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
+                ] = ...,
                 **kwargs: typing.Any
-            ) -> ListLocationsResponseHttpRequest: ...
-        class DomainMappingsResource(googleapiclient.discovery.Resource):
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, appsId: str, domainMappingsId: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, appsId: str, domainMappingsId: str, **kwargs: typing.Any
+            ) -> DomainMappingHttpRequest: ...
             def list(
                 self,
                 *,
@@ -99,86 +94,107 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDomainMappingsResponseHttpRequest: ...
-            def create(
-                self,
-                *,
-                appsId: str,
-                body: DomainMapping = ...,
-                overrideStrategy: typing_extensions.Literal[
-                    "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
-                ] = ...,
-                noManagedCertificate: bool = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def get(
-                self, *, appsId: str, domainMappingsId: str, **kwargs: typing.Any
-            ) -> DomainMappingHttpRequest: ...
-            def delete(
-                self, *, appsId: str, domainMappingsId: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
             def patch(
                 self,
                 *,
                 appsId: str,
                 domainMappingsId: str,
                 body: DomainMapping = ...,
-                updateMask: str = ...,
                 noManagedCertificate: bool = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-        def operations(self) -> OperationsResource: ...
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, appsId: str, locationsId: str, **kwargs: typing.Any
+            ) -> LocationHttpRequest: ...
+            def list(
+                self,
+                *,
+                appsId: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListLocationsResponseHttpRequest: ...
+        @typing.type_check_only
+        class OperationsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, appsId: str, operationsId: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def list(
+                self,
+                *,
+                appsId: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListOperationsResponseHttpRequest: ...
         def authorizedCertificates(self) -> AuthorizedCertificatesResource: ...
         def authorizedDomains(self) -> AuthorizedDomainsResource: ...
-        def locations(self) -> LocationsResource: ...
         def domainMappings(self) -> DomainMappingsResource: ...
+        def locations(self) -> LocationsResource: ...
+        def operations(self) -> OperationsResource: ...
     def apps(self) -> AppsResource: ...
 
-class ListAuthorizedDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListAuthorizedDomainsResponse: ...
-
-class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListLocationsResponse: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class LocationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Location: ...
-
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListOperationsResponse: ...
-
+@typing.type_check_only
 class AuthorizedCertificateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> AuthorizedCertificate: ...
 
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
+@typing.type_check_only
 class DomainMappingHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> DomainMapping: ...
 
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class ListAuthorizedCertificatesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListAuthorizedCertificatesResponse: ...
+
+@typing.type_check_only
+class ListAuthorizedDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListAuthorizedDomainsResponse: ...
+
+@typing.type_check_only
 class ListDomainMappingsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListDomainMappingsResponse: ...
 
-class ListAuthorizedCertificatesResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListAuthorizedCertificatesResponse: ...
+    ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class LocationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Location: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...

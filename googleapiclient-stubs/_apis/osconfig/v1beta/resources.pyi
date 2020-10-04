@@ -7,32 +7,79 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class SystemsManagementResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class GuestPoliciesResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GuestPolicy = ...,
+                guestPolicyId: str = ...,
+                **kwargs: typing.Any
+            ) -> GuestPolicyHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GuestPolicyHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListGuestPoliciesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GuestPolicy = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GuestPolicyHttpRequest: ...
+        @typing.type_check_only
+        class PatchDeploymentsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: PatchDeployment = ...,
+                patchDeploymentId: str = ...,
+                **kwargs: typing.Any
+            ) -> PatchDeploymentHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> PatchDeploymentHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListPatchDeploymentsResponseHttpRequest: ...
+        @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class InstanceDetailsResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
                     *,
                     parent: str,
                     filter: str = ...,
-                    pageToken: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                filter: str = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> ListPatchJobsResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> PatchJobHttpRequest: ...
             def cancel(
                 self,
                 *,
@@ -47,39 +94,22 @@ class SystemsManagementResource(googleapiclient.discovery.Resource):
                 body: ExecutePatchJobRequest = ...,
                 **kwargs: typing.Any
             ) -> PatchJobHttpRequest: ...
-            def instanceDetails(self) -> InstanceDetailsResource: ...
-        class GuestPoliciesResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> PatchJobHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageToken: str = ...,
+                filter: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> ListGuestPoliciesResponseHttpRequest: ...
-            def create(
-                self,
-                *,
-                parent: str,
-                body: GuestPolicy = ...,
-                guestPolicyId: str = ...,
-                **kwargs: typing.Any
-            ) -> GuestPolicyHttpRequest: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: GuestPolicy = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> GuestPolicyHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GuestPolicyHttpRequest: ...
+            ) -> ListPatchJobsResponseHttpRequest: ...
+            def instanceDetails(self) -> InstanceDetailsResource: ...
+        @typing.type_check_only
         class ZonesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 def lookupEffectiveGuestPolicy(
                     self,
@@ -89,76 +119,62 @@ class SystemsManagementResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> EffectiveGuestPolicyHttpRequest: ...
             def instances(self) -> InstancesResource: ...
-        class PatchDeploymentsResource(googleapiclient.discovery.Resource):
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> PatchDeploymentHttpRequest: ...
-            def create(
-                self,
-                *,
-                parent: str,
-                body: PatchDeployment = ...,
-                patchDeploymentId: str = ...,
-                **kwargs: typing.Any
-            ) -> PatchDeploymentHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                **kwargs: typing.Any
-            ) -> ListPatchDeploymentsResponseHttpRequest: ...
-        def patchJobs(self) -> PatchJobsResource: ...
         def guestPolicies(self) -> GuestPoliciesResource: ...
-        def zones(self) -> ZonesResource: ...
         def patchDeployments(self) -> PatchDeploymentsResource: ...
+        def patchJobs(self) -> PatchJobsResource: ...
+        def zones(self) -> ZonesResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ListGuestPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListGuestPoliciesResponse: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class ListPatchDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListPatchDeploymentsResponse: ...
-
-class PatchJobHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PatchJob: ...
-
+@typing.type_check_only
 class EffectiveGuestPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> EffectiveGuestPolicy: ...
 
-class PatchDeploymentHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PatchDeployment: ...
+    ) -> Empty: ...
 
+@typing.type_check_only
+class GuestPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GuestPolicy: ...
+
+@typing.type_check_only
+class ListGuestPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListGuestPoliciesResponse: ...
+
+@typing.type_check_only
+class ListPatchDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListPatchDeploymentsResponse: ...
+
+@typing.type_check_only
 class ListPatchJobInstanceDetailsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListPatchJobInstanceDetailsResponse: ...
 
+@typing.type_check_only
 class ListPatchJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListPatchJobsResponse: ...
 
-class GuestPolicyHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class PatchDeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GuestPolicy: ...
+    ) -> PatchDeployment: ...
+
+@typing.type_check_only
+class PatchJobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PatchJob: ...

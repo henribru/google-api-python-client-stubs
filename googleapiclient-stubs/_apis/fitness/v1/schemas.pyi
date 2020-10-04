@@ -1,67 +1,111 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AggregateBucket(typing_extensions.TypedDict, total=False):
+    activity: int
+    dataset: typing.List[Dataset]
+    endTimeMillis: str
+    session: Session
+    startTimeMillis: str
+    type: typing_extensions.Literal[
+        "unknown", "time", "session", "activityType", "activitySegment"
+    ]
 
+@typing.type_check_only
+class AggregateBy(typing_extensions.TypedDict, total=False):
+    dataSourceId: str
+    dataTypeName: str
+
+@typing.type_check_only
+class AggregateRequest(typing_extensions.TypedDict, total=False):
+    aggregateBy: typing.List[AggregateBy]
+    bucketByActivitySegment: BucketByActivity
+    bucketByActivityType: BucketByActivity
+    bucketBySession: BucketBySession
+    bucketByTime: BucketByTime
+    endTimeMillis: str
+    filteredDataQualityStandard: typing.List[str]
+    startTimeMillis: str
+
+@typing.type_check_only
+class AggregateResponse(typing_extensions.TypedDict, total=False):
+    bucket: typing.List[AggregateBucket]
+
+@typing.type_check_only
 class Application(typing_extensions.TypedDict, total=False):
-    version: str
-    packageName: str
-    name: str
     detailsUrl: str
+    name: str
+    packageName: str
+    version: str
 
+@typing.type_check_only
+class BucketByActivity(typing_extensions.TypedDict, total=False):
+    activityDataSourceId: str
+    minDurationMillis: str
+
+@typing.type_check_only
 class BucketBySession(typing_extensions.TypedDict, total=False):
     minDurationMillis: str
 
+@typing.type_check_only
+class BucketByTime(typing_extensions.TypedDict, total=False):
+    durationMillis: str
+    period: BucketByTimePeriod
+
+@typing.type_check_only
+class BucketByTimePeriod(typing_extensions.TypedDict, total=False):
+    timeZoneId: str
+    type: typing_extensions.Literal["day", "week", "month"]
+    value: int
+
+@typing.type_check_only
+class DataPoint(typing_extensions.TypedDict, total=False):
+    computationTimeMillis: str
+    dataTypeName: str
+    endTimeNanos: str
+    modifiedTimeMillis: str
+    originDataSourceId: str
+    rawTimestampNanos: str
+    startTimeNanos: str
+    value: typing.List[Value]
+
+@typing.type_check_only
 class DataSource(typing_extensions.TypedDict, total=False):
-    device: Device
-    dataStreamName: str
     application: Application
-    dataStreamId: str
-    dataType: DataType
-    name: str
     dataQualityStandard: typing.List[str]
+    dataStreamId: str
+    dataStreamName: str
+    dataType: DataType
+    device: Device
+    name: str
     type: typing_extensions.Literal["raw", "derived"]
 
-class MapValue(typing_extensions.TypedDict, total=False):
-    fpVal: float
+@typing.type_check_only
+class DataType(typing_extensions.TypedDict, total=False):
+    field: typing.List[DataTypeField]
+    name: str
 
-class AggregateBy(typing_extensions.TypedDict, total=False):
-    dataTypeName: str
+@typing.type_check_only
+class DataTypeField(typing_extensions.TypedDict, total=False):
+    format: typing_extensions.Literal[
+        "integer", "floatPoint", "string", "map", "integerList", "floatList", "blob"
+    ]
+    name: str
+    optional: bool
+
+@typing.type_check_only
+class Dataset(typing_extensions.TypedDict, total=False):
     dataSourceId: str
-
-class DataPoint(typing_extensions.TypedDict, total=False):
-    rawTimestampNanos: str
-    value: typing.List[Value]
-    dataTypeName: str
-    originDataSourceId: str
-    computationTimeMillis: str
-    modifiedTimeMillis: str
-    startTimeNanos: str
-    endTimeNanos: str
-
-class BucketByActivity(typing_extensions.TypedDict, total=False):
-    minDurationMillis: str
-    activityDataSourceId: str
-
-class ListDataPointChangesResponse(typing_extensions.TypedDict, total=False):
-    deletedDataPoint: typing.List[DataPoint]
-    insertedDataPoint: typing.List[DataPoint]
+    maxEndTimeNs: str
+    minStartTimeNs: str
     nextPageToken: str
-    dataSourceId: str
+    point: typing.List[DataPoint]
 
-class Value(typing_extensions.TypedDict, total=False):
-    fpVal: float
-    stringVal: str
-    intVal: int
-    mapVal: typing.List[ValueMapValEntry]
-
-class ValueMapValEntry(typing_extensions.TypedDict, total=False):
-    key: str
-    value: MapValue
-
+@typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
-    uid: str
-    model: str
     manufacturer: str
+    model: str
     type: typing_extensions.Literal[
         "unknown",
         "phone",
@@ -72,74 +116,51 @@ class Device(typing_extensions.TypedDict, total=False):
         "headMounted",
         "smartDisplay",
     ]
+    uid: str
     version: str
 
-class DataType(typing_extensions.TypedDict, total=False):
-    name: str
-    field: typing.List[DataTypeField]
-
-class AggregateResponse(typing_extensions.TypedDict, total=False):
-    bucket: typing.List[AggregateBucket]
-
-class DataTypeField(typing_extensions.TypedDict, total=False):
-    name: str
-    optional: bool
-    format: typing_extensions.Literal[
-        "integer", "floatPoint", "string", "map", "integerList", "floatList", "blob"
-    ]
-
-class BucketByTimePeriod(typing_extensions.TypedDict, total=False):
-    timeZoneId: str
-    value: int
-    type: typing_extensions.Literal["day", "week", "month"]
-
-class BucketByTime(typing_extensions.TypedDict, total=False):
-    durationMillis: str
-    period: BucketByTimePeriod
-
-class ListSessionsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    session: typing.List[Session]
-    hasMoreData: bool
-    deletedSession: typing.List[Session]
-
-class Dataset(typing_extensions.TypedDict, total=False):
-    point: typing.List[DataPoint]
-    maxEndTimeNs: str
-    nextPageToken: str
+@typing.type_check_only
+class ListDataPointChangesResponse(typing_extensions.TypedDict, total=False):
     dataSourceId: str
-    minStartTimeNs: str
+    deletedDataPoint: typing.List[DataPoint]
+    insertedDataPoint: typing.List[DataPoint]
+    nextPageToken: str
 
+@typing.type_check_only
 class ListDataSourcesResponse(typing_extensions.TypedDict, total=False):
     dataSource: typing.List[DataSource]
 
-class AggregateBucket(typing_extensions.TypedDict, total=False):
-    dataset: typing.List[Dataset]
-    session: Session
-    endTimeMillis: str
-    startTimeMillis: str
-    type: typing_extensions.Literal[
-        "unknown", "time", "session", "activityType", "activitySegment"
-    ]
-    activity: int
+@typing.type_check_only
+class ListSessionsResponse(typing_extensions.TypedDict, total=False):
+    deletedSession: typing.List[Session]
+    hasMoreData: bool
+    nextPageToken: str
+    session: typing.List[Session]
 
+@typing.type_check_only
+class MapValue(typing_extensions.TypedDict, total=False):
+    fpVal: float
+
+@typing.type_check_only
 class Session(typing_extensions.TypedDict, total=False):
-    name: str
-    application: Application
-    endTimeMillis: str
-    startTimeMillis: str
     activeTimeMillis: str
-    modifiedTimeMillis: str
-    id: str
-    description: str
     activityType: int
-
-class AggregateRequest(typing_extensions.TypedDict, total=False):
-    bucketByActivitySegment: BucketByActivity
-    filteredDataQualityStandard: typing.List[str]
-    bucketBySession: BucketBySession
-    startTimeMillis: str
+    application: Application
+    description: str
     endTimeMillis: str
-    bucketByActivityType: BucketByActivity
-    bucketByTime: BucketByTime
-    aggregateBy: typing.List[AggregateBy]
+    id: str
+    modifiedTimeMillis: str
+    name: str
+    startTimeMillis: str
+
+@typing.type_check_only
+class Value(typing_extensions.TypedDict, total=False):
+    fpVal: float
+    intVal: int
+    mapVal: typing.List[ValueMapValEntry]
+    stringVal: str
+
+@typing.type_check_only
+class ValueMapValEntry(typing_extensions.TypedDict, total=False):
+    key: str
+    value: MapValue

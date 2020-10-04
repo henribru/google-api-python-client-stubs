@@ -1,119 +1,64 @@
 import typing
 
 import typing_extensions
-
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: typing.List[Operation]
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    locations: typing.List[Location]
-
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
-
-class Operation(typing_extensions.TypedDict, total=False):
-    error: Status
-    response: typing.Dict[str, typing.Any]
-    done: bool
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
-    message: str
-
-class RestartInstanceRequest(typing_extensions.TypedDict, total=False): ...
-
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
-    nextPageToken: str
-    unreachable: typing.List[str]
-
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    logType: typing_extensions.Literal[
-        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
-    ]
-    exemptedMembers: typing.List[str]
-
-class NetworkConfig(typing_extensions.TypedDict, total=False):
-    network: str
-    ipAllocation: str
-
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    createTime: str
-    statusDetail: str
-    target: str
-    apiVersion: str
-    endTime: str
-    requestedCancellation: bool
-    verb: str
-
-class Location(typing_extensions.TypedDict, total=False):
-    name: str
-    locationId: str
-    labels: typing.Dict[str, typing.Any]
-    metadata: typing.Dict[str, typing.Any]
-    displayName: str
-
+@typing.type_check_only
 class Accelerator(typing_extensions.TypedDict, total=False):
     acceleratorType: typing_extensions.Literal[
         "ACCELERATOR_TYPE_UNSPECIFIED", "CDC", "HEALTHCARE"
     ]
 
-class ListAvailableVersionsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    availableVersions: typing.List[Version]
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-    updateMask: str
-
-class Version(typing_extensions.TypedDict, total=False):
-    versionNumber: str
-    defaultVersion: bool
-    availableFeatures: typing.List[str]
-
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: typing.List[AuditLogConfig]
     service: str
 
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+@typing.type_check_only
+class AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: typing.List[str]
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
 
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
+    condition: Expr
     members: typing.List[str]
     role: str
-    condition: Expr
-    bindingId: str
 
-class Policy(typing_extensions.TypedDict, total=False):
-    etag: str
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
-    version: int
+@typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
+    expression: str
     location: str
     title: str
-    expression: str
 
+@typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
-    enableStackdriverLogging: bool
+    accelerators: typing.List[Accelerator]
+    apiEndpoint: str
+    availableVersion: typing.List[Version]
+    createTime: str
+    dataprocServiceAccount: str
+    description: str
     displayName: str
-    zone: str
+    enableStackdriverLogging: bool
     enableStackdriverMonitoring: bool
-    updateTime: str
-    p4ServiceAccount: str
     gcsBucket: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    networkConfig: NetworkConfig
+    options: typing.Dict[str, typing.Any]
+    p4ServiceAccount: str
+    privateInstance: bool
     serviceAccount: str
+    serviceEndpoint: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -126,21 +71,98 @@ class Instance(typing_extensions.TypedDict, total=False):
         "AUTO_UPDATING",
         "AUTO_UPGRADING",
     ]
-    networkConfig: NetworkConfig
-    labels: typing.Dict[str, typing.Any]
-    name: str
-    accelerators: typing.List[Accelerator]
-    serviceEndpoint: str
-    version: str
-    options: typing.Dict[str, typing.Any]
-    description: str
-    apiEndpoint: str
+    stateMessage: str
+    tenantProjectId: str
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "BASIC", "ENTERPRISE", "DEVELOPER"
     ]
+    updateTime: str
+    version: str
+    zone: str
+
+@typing.type_check_only
+class ListAvailableVersionsResponse(typing_extensions.TypedDict, total=False):
+    availableVersions: typing.List[Version]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInstancesResponse(typing_extensions.TypedDict, total=False):
+    instances: typing.List[Instance]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class NetworkConfig(typing_extensions.TypedDict, total=False):
+    ipAllocation: str
+    network: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
     createTime: str
-    dataprocServiceAccount: str
-    tenantProjectId: str
-    availableVersion: typing.List[Version]
-    privateInstance: bool
-    stateMessage: str
+    endTime: str
+    requestedCancellation: bool
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class RestartInstanceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class Version(typing_extensions.TypedDict, total=False):
+    availableFeatures: typing.List[str]
+    defaultVersion: bool
+    versionNumber: str

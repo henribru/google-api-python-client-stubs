@@ -1,450 +1,490 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class CreateAuthUriResponse(typing_extensions.TypedDict, total=False):
+    allProviders: typing.List[str]
+    authUri: str
+    captchaRequired: bool
+    forExistingProvider: bool
+    kind: str
+    providerId: str
+    registered: bool
+    sessionId: str
+    signinMethods: typing.List[str]
 
+@typing.type_check_only
+class DeleteAccountResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+
+@typing.type_check_only
+class DownloadAccountResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextPageToken: str
+    users: typing.List[UserInfo]
+
+@typing.type_check_only
+class EmailLinkSigninResponse(typing_extensions.TypedDict, total=False):
+    email: str
+    expiresIn: str
+    idToken: str
+    isNewUser: bool
+    kind: str
+    localId: str
+    refreshToken: str
+
+AlternativeEmailTemplate = typing_extensions.TypedDict(
+    "AlternativeEmailTemplate",
+    {
+        "body": str,
+        "format": str,
+        "from": str,
+        "fromDisplayName": str,
+        "replyTo": str,
+        "subject": str,
+    },
+    total=False,
+)
+@typing.type_check_only
+class EmailTemplate(AlternativeEmailTemplate): ...
+
+@typing.type_check_only
+class GetAccountInfoResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    users: typing.List[UserInfo]
+
+@typing.type_check_only
+class GetOobConfirmationCodeResponse(typing_extensions.TypedDict, total=False):
+    email: str
+    kind: str
+    oobCode: str
+
+@typing.type_check_only
+class GetRecaptchaParamResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    recaptchaSiteKey: str
+    recaptchaStoken: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyCreateAuthUriRequest(
+    typing_extensions.TypedDict, total=False
+):
+    appId: str
+    authFlowType: str
+    clientId: str
+    context: str
+    continueUri: str
+    customParameter: typing.Dict[str, typing.Any]
+    hostedDomain: str
+    identifier: str
+    oauthConsumerKey: str
+    oauthScope: str
+    openidRealm: str
+    otaApp: str
+    providerId: str
+    sessionId: str
+    tenantId: str
+    tenantProjectNumber: str
+
+@typing.type_check_only
 class IdentitytoolkitRelyingpartyDeleteAccountRequest(
     typing_extensions.TypedDict, total=False
 ):
-    idToken: str
     delegatedProjectNumber: str
+    idToken: str
     localId: str
 
-class IdentitytoolkitRelyingpartyVerifyCustomTokenRequest(
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyDownloadAccountRequest(
     typing_extensions.TypedDict, total=False
 ):
-    token: str
     delegatedProjectNumber: str
-    returnSecureToken: bool
-    instanceId: str
+    maxResults: int
+    nextPageToken: str
+    targetProjectId: str
 
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyEmailLinkSigninRequest(
+    typing_extensions.TypedDict, total=False
+):
+    email: str
+    idToken: str
+    oobCode: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyGetAccountInfoRequest(
+    typing_extensions.TypedDict, total=False
+):
+    delegatedProjectNumber: str
+    email: typing.List[str]
+    idToken: str
+    localId: typing.List[str]
+    phoneNumber: typing.List[str]
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyGetProjectConfigResponse(
+    typing_extensions.TypedDict, total=False
+):
+    allowPasswordUser: bool
+    apiKey: str
+    authorizedDomains: typing.List[str]
+    changeEmailTemplate: EmailTemplate
+    dynamicLinksDomain: str
+    enableAnonymousUser: bool
+    idpConfig: typing.List[IdpConfig]
+    legacyResetPasswordTemplate: EmailTemplate
+    projectId: str
+    resetPasswordTemplate: EmailTemplate
+    useEmailSending: bool
+    verifyEmailTemplate: EmailTemplate
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyGetPublicKeysResponse(
+    typing.Dict[str, typing.Any]
+): ...
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyResetPasswordRequest(
+    typing_extensions.TypedDict, total=False
+):
+    email: str
+    newPassword: str
+    oldPassword: str
+    oobCode: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartySendVerificationCodeRequest(
+    typing_extensions.TypedDict, total=False
+):
+    iosReceipt: str
+    iosSecret: str
+    phoneNumber: str
+    recaptchaToken: str
+
+@typing.type_check_only
 class IdentitytoolkitRelyingpartySendVerificationCodeResponse(
     typing_extensions.TypedDict, total=False
 ):
     sessionInfo: str
 
-class VerifyAssertionResponse(typing_extensions.TypedDict, total=False):
-    oauthRequestToken: str
-    firstName: str
-    fullName: str
-    federatedId: str
-    providerId: str
-    kind: str
-    oauthExpireIn: int
-    photoUrl: str
-    displayName: str
-    oauthTokenSecret: str
-    appScheme: str
-    oauthAuthorizationCode: str
-    errorMessage: str
-    action: str
-    appInstallationUrl: str
-    oauthAccessToken: str
-    timeZone: str
-    expiresIn: str
-    emailRecycled: bool
-    verifiedProvider: typing.List[str]
-    oauthScope: str
-    nickName: str
-    rawUserInfo: str
-    localId: str
-    lastName: str
-    emailVerified: bool
-    oauthIdToken: str
-    originalEmail: str
-    dateOfBirth: str
-    context: str
-    idToken: str
-    needConfirmation: bool
-    screenName: str
-    inputEmail: str
-    refreshToken: str
-    language: str
-    needEmail: bool
-    email: str
-    isNewUser: bool
-
-class SetAccountInfoResponse(typing_extensions.TypedDict, total=False):
-    displayName: str
-    refreshToken: str
-    newEmail: str
-    email: str
-    passwordHash: str
-    providerUserInfo: typing.List[typing.Dict[str, typing.Any]]
-    kind: str
-    expiresIn: str
-    photoUrl: str
-    idToken: str
-    emailVerified: bool
-    localId: str
-
-class IdentitytoolkitRelyingpartySendVerificationCodeRequest(
-    typing_extensions.TypedDict, total=False
-):
-    iosSecret: str
-    recaptchaToken: str
-    phoneNumber: str
-    iosReceipt: str
-
-class GetOobConfirmationCodeResponse(typing_extensions.TypedDict, total=False):
-    email: str
-    oobCode: str
-    kind: str
-
-class UploadAccountResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    error: typing.List[typing.Dict[str, typing.Any]]
-
-class ResetPasswordResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    requestType: str
-    newEmail: str
-    email: str
-
-class VerifyCustomTokenResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    isNewUser: bool
-    refreshToken: str
-    idToken: str
-    expiresIn: str
-
-class IdentitytoolkitRelyingpartyEmailLinkSigninRequest(
-    typing_extensions.TypedDict, total=False
-):
-    oobCode: str
-    email: str
-    idToken: str
-
-class IdentitytoolkitRelyingpartyGetProjectConfigResponse(
-    typing_extensions.TypedDict, total=False
-):
-    legacyResetPasswordTemplate: EmailTemplate
-    enableAnonymousUser: bool
-    authorizedDomains: typing.List[str]
-    projectId: str
-    apiKey: str
-    useEmailSending: bool
-    allowPasswordUser: bool
-    idpConfig: typing.List[IdpConfig]
-    verifyEmailTemplate: EmailTemplate
-    resetPasswordTemplate: EmailTemplate
-    changeEmailTemplate: EmailTemplate
-    dynamicLinksDomain: str
-
-class IdentitytoolkitRelyingpartySignOutUserResponse(
-    typing_extensions.TypedDict, total=False
-):
-    localId: str
-
-class SignupNewUserResponse(typing_extensions.TypedDict, total=False):
-    refreshToken: str
-    email: str
-    displayName: str
-    localId: str
-    idToken: str
-    kind: str
-    expiresIn: str
-
-class IdentitytoolkitRelyingpartySignOutUserRequest(
-    typing_extensions.TypedDict, total=False
-):
-    localId: str
-    instanceId: str
-
-class IdentitytoolkitRelyingpartySignupNewUserRequest(
-    typing_extensions.TypedDict, total=False
-):
-    tenantId: str
-    captchaResponse: str
-    email: str
-    disabled: bool
-    emailVerified: bool
-    phoneNumber: str
-    localId: str
-    tenantProjectNumber: str
-    instanceId: str
-    password: str
-    captchaChallenge: str
-    photoUrl: str
-    idToken: str
-    displayName: str
-
-class IdentitytoolkitRelyingpartyGetPublicKeysResponse(
-    typing.Dict[str, typing.Any]
-): ...
-
-class IdentitytoolkitRelyingpartyVerifyAssertionRequest(
-    typing_extensions.TypedDict, total=False
-):
-    pendingIdToken: str
-    returnRefreshToken: bool
-    returnIdpCredential: bool
-    idToken: str
-    requestUri: str
-    delegatedProjectNumber: str
-    autoCreate: bool
-    tenantProjectNumber: str
-    sessionId: str
-    instanceId: str
-    postBody: str
-    tenantId: str
-    returnSecureToken: bool
-
-class IdentitytoolkitRelyingpartyGetAccountInfoRequest(
-    typing_extensions.TypedDict, total=False
-):
-    idToken: str
-    email: typing.List[str]
-    localId: typing.List[str]
-    delegatedProjectNumber: str
-    phoneNumber: typing.List[str]
-
+@typing.type_check_only
 class IdentitytoolkitRelyingpartySetAccountInfoRequest(
     typing_extensions.TypedDict, total=False
 ):
-    disableUser: bool
-    upgradeToFederatedLogin: bool
-    returnSecureToken: bool
-    oobCode: str
-    instanceId: str
-    captchaResponse: str
-    phoneNumber: str
-    password: str
     captchaChallenge: str
-    provider: typing.List[str]
+    captchaResponse: str
     createdAt: str
-    deleteAttribute: typing.List[str]
-    localId: str
-    deleteProvider: typing.List[str]
-    photoUrl: str
-    lastLoginAt: str
-    validSince: str
-    delegatedProjectNumber: str
     customAttributes: str
-    idToken: str
+    delegatedProjectNumber: str
+    deleteAttribute: typing.List[str]
+    deleteProvider: typing.List[str]
+    disableUser: bool
+    displayName: str
     email: str
     emailVerified: bool
-    displayName: str
-
-class CreateAuthUriResponse(typing_extensions.TypedDict, total=False):
-    forExistingProvider: bool
-    kind: str
-    providerId: str
-    registered: bool
-    captchaRequired: bool
-    sessionId: str
-    allProviders: typing.List[str]
-    signinMethods: typing.List[str]
-    authUri: str
-
-class Relyingparty(typing_extensions.TypedDict, total=False):
-    androidInstallApp: bool
-    continueUrl: str
-    challenge: str
-    androidPackageName: str
-    userIp: str
-    email: str
-    iOSBundleId: str
-    iOSAppStoreId: str
-    requestType: str
     idToken: str
-    newEmail: str
-    canHandleCodeInApp: bool
-    androidMinimumVersion: str
-    kind: str
-    captchaResp: str
+    instanceId: str
+    lastLoginAt: str
+    localId: str
+    oobCode: str
+    password: str
+    phoneNumber: str
+    photoUrl: str
+    provider: typing.List[str]
+    returnSecureToken: bool
+    upgradeToFederatedLogin: bool
+    validSince: str
 
-class GetRecaptchaParamResponse(typing_extensions.TypedDict, total=False):
-    recaptchaStoken: str
-    recaptchaSiteKey: str
-    kind: str
-
-class IdentitytoolkitRelyingpartyCreateAuthUriRequest(
-    typing_extensions.TypedDict, total=False
-):
-    customParameter: typing.Dict[str, typing.Any]
-    oauthConsumerKey: str
-    identifier: str
-    sessionId: str
-    tenantId: str
-    context: str
-    hostedDomain: str
-    providerId: str
-    otaApp: str
-    oauthScope: str
-    tenantProjectNumber: str
-    authFlowType: str
-    continueUri: str
-    openidRealm: str
-    appId: str
-    clientId: str
-
+@typing.type_check_only
 class IdentitytoolkitRelyingpartySetProjectConfigRequest(
     typing_extensions.TypedDict, total=False
 ):
-    authorizedDomains: typing.List[str]
-    delegatedProjectNumber: str
-    apiKey: str
     allowPasswordUser: bool
-    enableAnonymousUser: bool
-    verifyEmailTemplate: EmailTemplate
-    useEmailSending: bool
+    apiKey: str
+    authorizedDomains: typing.List[str]
     changeEmailTemplate: EmailTemplate
+    delegatedProjectNumber: str
+    enableAnonymousUser: bool
+    idpConfig: typing.List[IdpConfig]
     legacyResetPasswordTemplate: EmailTemplate
     resetPasswordTemplate: EmailTemplate
-    idpConfig: typing.List[IdpConfig]
+    useEmailSending: bool
+    verifyEmailTemplate: EmailTemplate
 
-class IdentitytoolkitRelyingpartyVerifyPasswordRequest(
-    typing_extensions.TypedDict, total=False
-):
-    captchaResponse: str
-    delegatedProjectNumber: str
-    tenantProjectNumber: str
-    password: str
-    email: str
-    idToken: str
-    instanceId: str
-    tenantId: str
-    pendingIdToken: str
-    returnSecureToken: bool
-    captchaChallenge: str
-
-class VerifyPasswordResponse(typing_extensions.TypedDict, total=False):
-    registered: bool
-    oauthExpireIn: int
-    oauthAuthorizationCode: str
-    displayName: str
-    email: str
-    idToken: str
-    refreshToken: str
-    expiresIn: str
-    kind: str
-    photoUrl: str
-    oauthAccessToken: str
-    localId: str
-
-class IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse(
-    typing_extensions.TypedDict, total=False
-):
-    localId: str
-    isNewUser: bool
-    temporaryProofExpiresIn: str
-    verificationProof: str
-    refreshToken: str
-    phoneNumber: str
-    temporaryProof: str
-    expiresIn: str
-    verificationProofExpiresIn: str
-    idToken: str
-
-class GetAccountInfoResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    users: typing.List[UserInfo]
-
-class IdentitytoolkitRelyingpartyUploadAccountRequest(
-    typing_extensions.TypedDict, total=False
-):
-    targetProjectId: str
-    dkLen: int
-    users: typing.List[UserInfo]
-    saltSeparator: str
-    delegatedProjectNumber: str
-    sanityCheck: bool
-    parallelization: int
-    blockSize: int
-    allowOverwrite: bool
-    signerKey: str
-    hashAlgorithm: str
-    rounds: int
-    memoryCost: int
-    cpuMemCost: int
-
-class IdentitytoolkitRelyingpartyDownloadAccountRequest(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    targetProjectId: str
-    delegatedProjectNumber: str
-    maxResults: int
-
-EmailTemplate = typing_extensions.TypedDict(
-    "EmailTemplate",
-    {
-        "format": str,
-        "from": str,
-        "replyTo": str,
-        "subject": str,
-        "fromDisplayName": str,
-        "body": str,
-    },
-    total=False,
-)
-
-class EmailLinkSigninResponse(typing_extensions.TypedDict, total=False):
-    idToken: str
-    refreshToken: str
-    email: str
-    expiresIn: str
-    kind: str
-    isNewUser: bool
-    localId: str
-
-class IdentitytoolkitRelyingpartyResetPasswordRequest(
-    typing_extensions.TypedDict, total=False
-):
-    email: str
-    oobCode: str
-    newPassword: str
-    oldPassword: str
-
-class UserInfo(typing_extensions.TypedDict, total=False):
-    screenName: str
-    customAttributes: str
-    passwordHash: str
-    emailVerified: bool
-    createdAt: str
-    photoUrl: str
-    displayName: str
-    lastLoginAt: str
-    version: int
-    localId: str
-    validSince: str
-    disabled: bool
-    passwordUpdatedAt: float
-    customAuth: bool
-    phoneNumber: str
-    email: str
-    salt: str
-    rawPassword: str
-    providerUserInfo: typing.List[typing.Dict[str, typing.Any]]
-
-class IdpConfig(typing_extensions.TypedDict, total=False):
-    whitelistedAudiences: typing.List[str]
-    experimentPercent: int
-    clientId: str
-    provider: str
-    secret: str
-    enabled: bool
-
-class DeleteAccountResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-
-class IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest(
-    typing_extensions.TypedDict, total=False
-):
-    temporaryProof: str
-    code: str
-    verificationProof: str
-    operation: str
-    sessionInfo: str
-    idToken: str
-    phoneNumber: str
-
+@typing.type_check_only
 class IdentitytoolkitRelyingpartySetProjectConfigResponse(
     typing_extensions.TypedDict, total=False
 ):
     projectId: str
 
-class DownloadAccountResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
+@typing.type_check_only
+class IdentitytoolkitRelyingpartySignOutUserRequest(
+    typing_extensions.TypedDict, total=False
+):
+    instanceId: str
+    localId: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartySignOutUserResponse(
+    typing_extensions.TypedDict, total=False
+):
+    localId: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartySignupNewUserRequest(
+    typing_extensions.TypedDict, total=False
+):
+    captchaChallenge: str
+    captchaResponse: str
+    disabled: bool
+    displayName: str
+    email: str
+    emailVerified: bool
+    idToken: str
+    instanceId: str
+    localId: str
+    password: str
+    phoneNumber: str
+    photoUrl: str
+    tenantId: str
+    tenantProjectNumber: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyUploadAccountRequest(
+    typing_extensions.TypedDict, total=False
+):
+    allowOverwrite: bool
+    blockSize: int
+    cpuMemCost: int
+    delegatedProjectNumber: str
+    dkLen: int
+    hashAlgorithm: str
+    memoryCost: int
+    parallelization: int
+    rounds: int
+    saltSeparator: str
+    sanityCheck: bool
+    signerKey: str
+    targetProjectId: str
     users: typing.List[UserInfo]
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyVerifyAssertionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    autoCreate: bool
+    delegatedProjectNumber: str
+    idToken: str
+    instanceId: str
+    pendingIdToken: str
+    postBody: str
+    requestUri: str
+    returnIdpCredential: bool
+    returnRefreshToken: bool
+    returnSecureToken: bool
+    sessionId: str
+    tenantId: str
+    tenantProjectNumber: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyVerifyCustomTokenRequest(
+    typing_extensions.TypedDict, total=False
+):
+    delegatedProjectNumber: str
+    instanceId: str
+    returnSecureToken: bool
+    token: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyVerifyPasswordRequest(
+    typing_extensions.TypedDict, total=False
+):
+    captchaChallenge: str
+    captchaResponse: str
+    delegatedProjectNumber: str
+    email: str
+    idToken: str
+    instanceId: str
+    password: str
+    pendingIdToken: str
+    returnSecureToken: bool
+    tenantId: str
+    tenantProjectNumber: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest(
+    typing_extensions.TypedDict, total=False
+):
+    code: str
+    idToken: str
+    operation: str
+    phoneNumber: str
+    sessionInfo: str
+    temporaryProof: str
+    verificationProof: str
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse(
+    typing_extensions.TypedDict, total=False
+):
+    expiresIn: str
+    idToken: str
+    isNewUser: bool
+    localId: str
+    phoneNumber: str
+    refreshToken: str
+    temporaryProof: str
+    temporaryProofExpiresIn: str
+    verificationProof: str
+    verificationProofExpiresIn: str
+
+@typing.type_check_only
+class IdpConfig(typing_extensions.TypedDict, total=False):
+    clientId: str
+    enabled: bool
+    experimentPercent: int
+    provider: str
+    secret: str
+    whitelistedAudiences: typing.List[str]
+
+@typing.type_check_only
+class Relyingparty(typing_extensions.TypedDict, total=False):
+    androidInstallApp: bool
+    androidMinimumVersion: str
+    androidPackageName: str
+    canHandleCodeInApp: bool
+    captchaResp: str
+    challenge: str
+    continueUrl: str
+    email: str
+    iOSAppStoreId: str
+    iOSBundleId: str
+    idToken: str
+    kind: str
+    newEmail: str
+    requestType: str
+    userIp: str
+
+@typing.type_check_only
+class ResetPasswordResponse(typing_extensions.TypedDict, total=False):
+    email: str
+    kind: str
+    newEmail: str
+    requestType: str
+
+@typing.type_check_only
+class SetAccountInfoResponse(typing_extensions.TypedDict, total=False):
+    displayName: str
+    email: str
+    emailVerified: bool
+    expiresIn: str
+    idToken: str
+    kind: str
+    localId: str
+    newEmail: str
+    passwordHash: str
+    photoUrl: str
+    providerUserInfo: typing.List[typing.Dict[str, typing.Any]]
+    refreshToken: str
+
+@typing.type_check_only
+class SignupNewUserResponse(typing_extensions.TypedDict, total=False):
+    displayName: str
+    email: str
+    expiresIn: str
+    idToken: str
+    kind: str
+    localId: str
+    refreshToken: str
+
+@typing.type_check_only
+class UploadAccountResponse(typing_extensions.TypedDict, total=False):
+    error: typing.List[typing.Dict[str, typing.Any]]
+    kind: str
+
+@typing.type_check_only
+class UserInfo(typing_extensions.TypedDict, total=False):
+    createdAt: str
+    customAttributes: str
+    customAuth: bool
+    disabled: bool
+    displayName: str
+    email: str
+    emailVerified: bool
+    lastLoginAt: str
+    localId: str
+    passwordHash: str
+    passwordUpdatedAt: float
+    phoneNumber: str
+    photoUrl: str
+    providerUserInfo: typing.List[typing.Dict[str, typing.Any]]
+    rawPassword: str
+    salt: str
+    screenName: str
+    validSince: str
+    version: int
+
+@typing.type_check_only
+class VerifyAssertionResponse(typing_extensions.TypedDict, total=False):
+    action: str
+    appInstallationUrl: str
+    appScheme: str
+    context: str
+    dateOfBirth: str
+    displayName: str
+    email: str
+    emailRecycled: bool
+    emailVerified: bool
+    errorMessage: str
+    expiresIn: str
+    federatedId: str
+    firstName: str
+    fullName: str
+    idToken: str
+    inputEmail: str
+    isNewUser: bool
+    kind: str
+    language: str
+    lastName: str
+    localId: str
+    needConfirmation: bool
+    needEmail: bool
+    nickName: str
+    oauthAccessToken: str
+    oauthAuthorizationCode: str
+    oauthExpireIn: int
+    oauthIdToken: str
+    oauthRequestToken: str
+    oauthScope: str
+    oauthTokenSecret: str
+    originalEmail: str
+    photoUrl: str
+    providerId: str
+    rawUserInfo: str
+    refreshToken: str
+    screenName: str
+    timeZone: str
+    verifiedProvider: typing.List[str]
+
+@typing.type_check_only
+class VerifyCustomTokenResponse(typing_extensions.TypedDict, total=False):
+    expiresIn: str
+    idToken: str
+    isNewUser: bool
+    kind: str
+    refreshToken: str
+
+@typing.type_check_only
+class VerifyPasswordResponse(typing_extensions.TypedDict, total=False):
+    displayName: str
+    email: str
+    expiresIn: str
+    idToken: str
+    kind: str
+    localId: str
+    oauthAccessToken: str
+    oauthAuthorizationCode: str
+    oauthExpireIn: int
+    photoUrl: str
+    refreshToken: str
+    registered: bool

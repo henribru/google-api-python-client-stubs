@@ -1,126 +1,153 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class BatchTranslateTextRequest(typing_extensions.TypedDict, total=False):
+    glossaries: typing.Dict[str, typing.Any]
+    inputConfigs: typing.List[InputConfig]
+    labels: typing.Dict[str, typing.Any]
+    models: typing.Dict[str, typing.Any]
+    outputConfig: OutputConfig
+    sourceLanguageCode: str
+    targetLanguageCodes: typing.List[str]
 
+@typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DetectLanguageRequest(typing_extensions.TypedDict, total=False):
+    content: str
+    labels: typing.Dict[str, typing.Any]
+    mimeType: str
+    model: str
+
+@typing.type_check_only
+class DetectLanguageResponse(typing_extensions.TypedDict, total=False):
+    languages: typing.List[DetectedLanguage]
+
+@typing.type_check_only
+class DetectedLanguage(typing_extensions.TypedDict, total=False):
+    confidence: float
+    languageCode: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GcsDestination(typing_extensions.TypedDict, total=False):
+    outputUriPrefix: str
+
+@typing.type_check_only
+class GcsSource(typing_extensions.TypedDict, total=False):
+    inputUri: str
+
+@typing.type_check_only
+class Glossary(typing_extensions.TypedDict, total=False):
+    endTime: str
+    entryCount: int
+    inputConfig: GlossaryInputConfig
+    languageCodesSet: LanguageCodesSet
+    languagePair: LanguageCodePair
+    name: str
+    submitTime: str
+
+@typing.type_check_only
+class GlossaryInputConfig(typing_extensions.TypedDict, total=False):
+    gcsSource: GcsSource
+
+@typing.type_check_only
+class InputConfig(typing_extensions.TypedDict, total=False):
+    gcsSource: GcsSource
+    mimeType: str
+
+@typing.type_check_only
 class LanguageCodePair(typing_extensions.TypedDict, total=False):
     sourceLanguageCode: str
     targetLanguageCode: str
 
-class TranslateTextRequest(typing_extensions.TypedDict, total=False):
-    targetLanguageCode: str
-    mimeType: str
-    model: str
-    contents: typing.List[str]
-    glossaryConfig: TranslateTextGlossaryConfig
-    labels: typing.Dict[str, typing.Any]
-    sourceLanguageCode: str
-
-class DetectLanguageRequest(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-    model: str
-    mimeType: str
-    content: str
-
-class BatchTranslateTextRequest(typing_extensions.TypedDict, total=False):
-    models: typing.Dict[str, typing.Any]
-    outputConfig: OutputConfig
-    sourceLanguageCode: str
-    labels: typing.Dict[str, typing.Any]
-    glossaries: typing.Dict[str, typing.Any]
-    targetLanguageCodes: typing.List[str]
-    inputConfigs: typing.List[InputConfig]
-
-class GcsSource(typing_extensions.TypedDict, total=False):
-    inputUri: str
-
-class WaitOperationRequest(typing_extensions.TypedDict, total=False):
-    timeout: str
-
-class SupportedLanguage(typing_extensions.TypedDict, total=False):
-    supportSource: bool
-    supportTarget: bool
-    displayName: str
-    languageCode: str
-
-class Translation(typing_extensions.TypedDict, total=False):
-    model: str
-    glossaryConfig: TranslateTextGlossaryConfig
-    detectedLanguageCode: str
-    translatedText: str
-
-class InputConfig(typing_extensions.TypedDict, total=False):
-    mimeType: str
-    gcsSource: GcsSource
-
-class SupportedLanguages(typing_extensions.TypedDict, total=False):
-    languages: typing.List[SupportedLanguage]
-
+@typing.type_check_only
 class LanguageCodesSet(typing_extensions.TypedDict, total=False):
     languageCodes: typing.List[str]
 
+@typing.type_check_only
+class ListGlossariesResponse(typing_extensions.TypedDict, total=False):
+    glossaries: typing.List[Glossary]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
     metadata: typing.Dict[str, typing.Any]
-    response: typing.Dict[str, typing.Any]
     name: str
+    response: typing.Dict[str, typing.Any]
 
-class GlossaryInputConfig(typing_extensions.TypedDict, total=False):
-    gcsSource: GcsSource
-
-class TranslateTextGlossaryConfig(typing_extensions.TypedDict, total=False):
-    ignoreCase: bool
-    glossary: str
-
-class DetectLanguageResponse(typing_extensions.TypedDict, total=False):
-    languages: typing.List[DetectedLanguage]
-
+@typing.type_check_only
 class OutputConfig(typing_extensions.TypedDict, total=False):
     gcsDestination: GcsDestination
 
-class GcsDestination(typing_extensions.TypedDict, total=False):
-    outputUriPrefix: str
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
 
+@typing.type_check_only
+class SupportedLanguage(typing_extensions.TypedDict, total=False):
+    displayName: str
+    languageCode: str
+    supportSource: bool
+    supportTarget: bool
+
+@typing.type_check_only
+class SupportedLanguages(typing_extensions.TypedDict, total=False):
+    languages: typing.List[SupportedLanguage]
+
+@typing.type_check_only
+class TranslateTextGlossaryConfig(typing_extensions.TypedDict, total=False):
+    glossary: str
+    ignoreCase: bool
+
+@typing.type_check_only
+class TranslateTextRequest(typing_extensions.TypedDict, total=False):
+    contents: typing.List[str]
+    glossaryConfig: TranslateTextGlossaryConfig
+    labels: typing.Dict[str, typing.Any]
+    mimeType: str
+    model: str
+    sourceLanguageCode: str
+    targetLanguageCode: str
+
+@typing.type_check_only
 class TranslateTextResponse(typing_extensions.TypedDict, total=False):
     glossaryTranslations: typing.List[Translation]
     translations: typing.List[Translation]
 
-class Status(typing_extensions.TypedDict, total=False):
-    message: str
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
+@typing.type_check_only
+class Translation(typing_extensions.TypedDict, total=False):
+    detectedLanguageCode: str
+    glossaryConfig: TranslateTextGlossaryConfig
+    model: str
+    translatedText: str
 
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    locations: typing.List[Location]
-
-class DetectedLanguage(typing_extensions.TypedDict, total=False):
-    languageCode: str
-    confidence: float
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
-
-class Glossary(typing_extensions.TypedDict, total=False):
-    languageCodesSet: LanguageCodesSet
-    endTime: str
-    submitTime: str
-    languagePair: LanguageCodePair
-    inputConfig: GlossaryInputConfig
-    entryCount: int
-    name: str
-
-class Location(typing_extensions.TypedDict, total=False):
-    locationId: str
-    metadata: typing.Dict[str, typing.Any]
-    labels: typing.Dict[str, typing.Any]
-    name: str
-    displayName: str
-
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
-    nextPageToken: str
-
-class ListGlossariesResponse(typing_extensions.TypedDict, total=False):
-    glossaries: typing.List[Glossary]
-    nextPageToken: str
+@typing.type_check_only
+class WaitOperationRequest(typing_extensions.TypedDict, total=False):
+    timeout: str

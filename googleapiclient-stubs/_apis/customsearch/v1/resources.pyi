@@ -7,62 +7,31 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CustomSearchAPIResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class CseResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class SiterestrictResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                cr: str = ...,
                 c2coff: str = ...,
-                filter: str = ...,
-                googlehost: str = ...,
-                exactTerms: str = ...,
-                highRange: str = ...,
-                safe: typing_extensions.Literal[
-                    "safeUndefined", "active", "high", "medium", "off"
-                ] = ...,
-                num: int = ...,
-                rights: str = ...,
+                cr: str = ...,
                 cx: str = ...,
-                q: str = ...,
-                gl: str = ...,
-                imgType: typing_extensions.Literal[
-                    "imgTypeUndefined",
-                    "clipart",
-                    "face",
-                    "lineart",
-                    "stock",
-                    "photo",
-                    "animated",
-                ] = ...,
-                lowRange: str = ...,
-                imgSize: typing_extensions.Literal[
-                    "imgSizeUndefined",
-                    "HUGE",
-                    "ICON",
-                    "LARGE",
-                    "MEDIUM",
-                    "SMALL",
-                    "XLARGE",
-                    "XXLARGE",
-                ] = ...,
-                searchType: typing_extensions.Literal[
-                    "searchTypeUndefined", "image"
-                ] = ...,
-                siteSearch: str = ...,
-                hl: str = ...,
-                relatedSite: str = ...,
+                dateRestrict: str = ...,
+                exactTerms: str = ...,
                 excludeTerms: str = ...,
-                siteSearchFilter: typing_extensions.Literal[
-                    "siteSearchFilterUndefined", "e", "i"
-                ] = ...,
-                lr: str = ...,
-                linkSite: str = ...,
+                fileType: str = ...,
+                filter: str = ...,
+                gl: str = ...,
+                googlehost: str = ...,
+                highRange: str = ...,
+                hl: str = ...,
                 hq: str = ...,
-                start: int = ...,
-                sort: str = ...,
+                imgColorType: typing_extensions.Literal[
+                    "imgColorTypeUndefined", "mono", "gray", "color", "trans"
+                ] = ...,
                 imgDominantColor: typing_extensions.Literal[
                     "imgDominantColorUndefined",
                     "black",
@@ -78,49 +47,66 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                     "white",
                     "yellow",
                 ] = ...,
-                orTerms: str = ...,
-                fileType: str = ...,
-                dateRestrict: str = ...,
-                imgColorType: typing_extensions.Literal[
-                    "imgColorTypeUndefined", "mono", "gray", "color", "trans"
+                imgSize: typing_extensions.Literal[
+                    "imgSizeUndefined",
+                    "HUGE",
+                    "ICON",
+                    "LARGE",
+                    "MEDIUM",
+                    "SMALL",
+                    "XLARGE",
+                    "XXLARGE",
                 ] = ...,
+                imgType: typing_extensions.Literal[
+                    "imgTypeUndefined",
+                    "clipart",
+                    "face",
+                    "lineart",
+                    "stock",
+                    "photo",
+                    "animated",
+                ] = ...,
+                linkSite: str = ...,
+                lowRange: str = ...,
+                lr: str = ...,
+                num: int = ...,
+                orTerms: str = ...,
+                q: str = ...,
+                relatedSite: str = ...,
+                rights: str = ...,
+                safe: typing_extensions.Literal[
+                    "safeUndefined", "active", "high", "medium", "off"
+                ] = ...,
+                searchType: typing_extensions.Literal[
+                    "searchTypeUndefined", "image"
+                ] = ...,
+                siteSearch: str = ...,
+                siteSearchFilter: typing_extensions.Literal[
+                    "siteSearchFilterUndefined", "e", "i"
+                ] = ...,
+                sort: str = ...,
+                start: int = ...,
                 **kwargs: typing.Any
             ) -> SearchHttpRequest: ...
         def list(
             self,
             *,
-            rights: str = ...,
-            imgType: typing_extensions.Literal[
-                "imgTypeUndefined",
-                "clipart",
-                "face",
-                "lineart",
-                "stock",
-                "photo",
-                "animated",
-            ] = ...,
+            c2coff: str = ...,
+            cr: str = ...,
+            cx: str = ...,
+            dateRestrict: str = ...,
+            exactTerms: str = ...,
+            excludeTerms: str = ...,
+            fileType: str = ...,
+            filter: str = ...,
+            gl: str = ...,
+            googlehost: str = ...,
+            highRange: str = ...,
+            hl: str = ...,
+            hq: str = ...,
             imgColorType: typing_extensions.Literal[
                 "imgColorTypeUndefined", "mono", "gray", "color", "trans"
             ] = ...,
-            gl: str = ...,
-            linkSite: str = ...,
-            highRange: str = ...,
-            filter: str = ...,
-            imgSize: typing_extensions.Literal[
-                "imgSizeUndefined",
-                "HUGE",
-                "ICON",
-                "LARGE",
-                "MEDIUM",
-                "SMALL",
-                "XLARGE",
-                "XXLARGE",
-            ] = ...,
-            siteSearchFilter: typing_extensions.Literal[
-                "siteSearchFilterUndefined", "e", "i"
-            ] = ...,
-            exactTerms: str = ...,
-            lr: str = ...,
             imgDominantColor: typing_extensions.Literal[
                 "imgDominantColorUndefined",
                 "black",
@@ -136,32 +122,49 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                 "white",
                 "yellow",
             ] = ...,
-            fileType: str = ...,
-            dateRestrict: str = ...,
+            imgSize: typing_extensions.Literal[
+                "imgSizeUndefined",
+                "HUGE",
+                "ICON",
+                "LARGE",
+                "MEDIUM",
+                "SMALL",
+                "XLARGE",
+                "XXLARGE",
+            ] = ...,
+            imgType: typing_extensions.Literal[
+                "imgTypeUndefined",
+                "clipart",
+                "face",
+                "lineart",
+                "stock",
+                "photo",
+                "animated",
+            ] = ...,
+            linkSite: str = ...,
+            lowRange: str = ...,
+            lr: str = ...,
             num: int = ...,
-            hl: str = ...,
-            excludeTerms: str = ...,
-            q: str = ...,
-            searchType: typing_extensions.Literal["searchTypeUndefined", "image"] = ...,
-            start: int = ...,
             orTerms: str = ...,
-            cr: str = ...,
-            siteSearch: str = ...,
+            q: str = ...,
+            relatedSite: str = ...,
+            rights: str = ...,
             safe: typing_extensions.Literal[
                 "safeUndefined", "active", "high", "medium", "off"
             ] = ...,
-            relatedSite: str = ...,
-            googlehost: str = ...,
-            c2coff: str = ...,
+            searchType: typing_extensions.Literal["searchTypeUndefined", "image"] = ...,
+            siteSearch: str = ...,
+            siteSearchFilter: typing_extensions.Literal[
+                "siteSearchFilterUndefined", "e", "i"
+            ] = ...,
             sort: str = ...,
-            lowRange: str = ...,
-            cx: str = ...,
-            hq: str = ...,
+            start: int = ...,
             **kwargs: typing.Any
         ) -> SearchHttpRequest: ...
         def siterestrict(self) -> SiterestrictResource: ...
     def cse(self) -> CseResource: ...
 
+@typing.type_check_only
 class SearchHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

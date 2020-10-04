@@ -7,8 +7,9 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
         def get(self, *, id: int, **kwargs: typing.Any) -> AccountHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> AccountsListHttpRequest: ...
@@ -28,11 +29,13 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             confirmUnsafeAccountChange: bool = ...,
             **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
+    @typing.type_check_only
     class BillingInfoResource(googleapiclient.discovery.Resource):
         def get(
             self, *, accountId: int, **kwargs: typing.Any
         ) -> BillingInfoHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> BillingInfoListHttpRequest: ...
+    @typing.type_check_only
     class BudgetResource(googleapiclient.discovery.Resource):
         def get(
             self, *, accountId: str, billingId: str, **kwargs: typing.Any
@@ -53,6 +56,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: Budget = ...,
             **kwargs: typing.Any
         ) -> BudgetHttpRequest: ...
+    @typing.type_check_only
     class CreativesResource(googleapiclient.discovery.Resource):
         def addDeal(
             self,
@@ -94,6 +98,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             dealId: str,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
     class MarketplacedealsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -119,6 +124,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: EditAllOrderDealsRequest = ...,
             **kwargs: typing.Any
         ) -> EditAllOrderDealsResponseHttpRequest: ...
+    @typing.type_check_only
     class MarketplacenotesResource(googleapiclient.discovery.Resource):
         def insert(
             self,
@@ -130,6 +136,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def list(
             self, *, proposalId: str, pqlQuery: str = ..., **kwargs: typing.Any
         ) -> GetOrderNotesResponseHttpRequest: ...
+    @typing.type_check_only
     class MarketplaceprivateauctionResource(googleapiclient.discovery.Resource):
         def updateproposal(
             self,
@@ -138,6 +145,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: UpdatePrivateAuctionProposalRequest = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
     class PerformanceReportResource(googleapiclient.discovery.Resource):
         def list(
             self,
@@ -149,6 +157,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> PerformanceReportListHttpRequest: ...
+    @typing.type_check_only
     class PretargetingConfigResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, accountId: str, configId: str, **kwargs: typing.Any
@@ -182,6 +191,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: PretargetingConfig = ...,
             **kwargs: typing.Any
         ) -> PretargetingConfigHttpRequest: ...
+    @typing.type_check_only
     class ProductsResource(googleapiclient.discovery.Resource):
         def get(
             self, *, productId: str, **kwargs: typing.Any
@@ -189,6 +199,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def search(
             self, *, pqlQuery: str = ..., **kwargs: typing.Any
         ) -> GetOffersResponseHttpRequest: ...
+    @typing.type_check_only
     class ProposalsResource(googleapiclient.discovery.Resource):
         def get(
             self, *, proposalId: str, **kwargs: typing.Any
@@ -234,6 +245,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: Proposal = ...,
             **kwargs: typing.Any
         ) -> ProposalHttpRequest: ...
+    @typing.type_check_only
     class PubprofilesResource(googleapiclient.discovery.Resource):
         def list(
             self, *, accountId: int, **kwargs: typing.Any
@@ -251,71 +263,109 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
     def proposals(self) -> ProposalsResource: ...
     def pubprofiles(self) -> PubprofilesResource: ...
 
-class GetOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GetOrdersResponse: ...
-
-class PerformanceReportListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PerformanceReportList: ...
-
-class AccountsListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AccountsList: ...
-
-class PretargetingConfigListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PretargetingConfigList: ...
-
-class BillingInfoListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BillingInfoList: ...
-
-class CreativeHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Creative: ...
-
-class GetOrderDealsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GetOrderDealsResponse: ...
-
-class BudgetHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Budget: ...
-
-class PretargetingConfigHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PretargetingConfig: ...
-
-class GetOffersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GetOffersResponse: ...
-
+@typing.type_check_only
 class AccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Account: ...
 
-class ProductHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class AccountsListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Product: ...
+    ) -> AccountsList: ...
 
+@typing.type_check_only
+class AddOrderDealsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> AddOrderDealsResponse: ...
+
+@typing.type_check_only
+class AddOrderNotesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> AddOrderNotesResponse: ...
+
+@typing.type_check_only
+class BillingInfoHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BillingInfo: ...
+
+@typing.type_check_only
+class BillingInfoListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BillingInfoList: ...
+
+@typing.type_check_only
+class BudgetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Budget: ...
+
+@typing.type_check_only
+class CreateOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CreateOrdersResponse: ...
+
+@typing.type_check_only
+class CreativeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Creative: ...
+
+@typing.type_check_only
+class CreativeDealIdsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CreativeDealIds: ...
+
+@typing.type_check_only
+class CreativesListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CreativesList: ...
+
+@typing.type_check_only
+class DeleteOrderDealsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> DeleteOrderDealsResponse: ...
+
+@typing.type_check_only
 class EditAllOrderDealsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> EditAllOrderDealsResponse: ...
 
+@typing.type_check_only
+class GetOffersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GetOffersResponse: ...
+
+@typing.type_check_only
+class GetOrderDealsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GetOrderDealsResponse: ...
+
+@typing.type_check_only
+class GetOrderNotesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GetOrderNotesResponse: ...
+
+@typing.type_check_only
+class GetOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GetOrdersResponse: ...
+
+@typing.type_check_only
 class GetPublisherProfilesByAccountIdResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -323,47 +373,32 @@ class GetPublisherProfilesByAccountIdResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GetPublisherProfilesByAccountIdResponse: ...
 
-class AddOrderNotesResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class PerformanceReportListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AddOrderNotesResponse: ...
+    ) -> PerformanceReportList: ...
 
-class CreateOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class PretargetingConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CreateOrdersResponse: ...
+    ) -> PretargetingConfig: ...
 
-class CreativeDealIdsHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class PretargetingConfigListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CreativeDealIds: ...
+    ) -> PretargetingConfigList: ...
 
-class AddOrderDealsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ProductHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AddOrderDealsResponse: ...
+    ) -> Product: ...
 
-class GetOrderNotesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GetOrderNotesResponse: ...
-
-class BillingInfoHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BillingInfo: ...
-
-class DeleteOrderDealsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> DeleteOrderDealsResponse: ...
-
+@typing.type_check_only
 class ProposalHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Proposal: ...
-
-class CreativesListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CreativesList: ...

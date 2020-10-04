@@ -7,8 +7,9 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class StorageResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class BucketAccessControlsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -65,6 +66,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketAccessControlHttpRequest: ...
+    @typing.type_check_only
     class BucketsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -214,10 +216,12 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketHttpRequest: ...
+    @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
     class DefaultObjectAccessControlsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -276,6 +280,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
+    @typing.type_check_only
     class NotificationsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -312,6 +317,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> NotificationsHttpRequest: ...
+    @typing.type_check_only
     class ObjectAccessControlsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -380,6 +386,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
+    @typing.type_check_only
     class ObjectsResource(googleapiclient.discovery.Resource):
         def compose(
             self,
@@ -635,7 +642,9 @@ class StorageResource(googleapiclient.discovery.Resource):
             versions: bool = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class HmacKeysResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -681,6 +690,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 userProject: str = ...,
                 **kwargs: typing.Any
             ) -> HmacKeyMetadataHttpRequest: ...
+        @typing.type_check_only
         class ServiceAccountResource(googleapiclient.discovery.Resource):
             def get(
                 self,
@@ -701,92 +711,110 @@ class StorageResource(googleapiclient.discovery.Resource):
     def objects(self) -> ObjectsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class BucketAccessControlHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BucketAccessControl: ...
-
-class NotificationsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Notifications: ...
-
-class BucketsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Buckets: ...
-
-class ObjectAccessControlsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ObjectAccessControls: ...
-
-class ServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ServiceAccount: ...
-
-class HmacKeyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> HmacKey: ...
-
-class BucketAccessControlsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BucketAccessControls: ...
-
-class ObjectAccessControlHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ObjectAccessControl: ...
-
-class ObjectHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Object: ...
-
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
-
-class NotificationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Notification: ...
-
-class RewriteResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> RewriteResponse: ...
-
-class HmacKeysMetadataHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> HmacKeysMetadata: ...
-
-class HmacKeyMetadataHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> HmacKeyMetadata: ...
-
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
-
-class ChannelHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Channel: ...
-
+@typing.type_check_only
 class BucketHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Bucket: ...
 
+@typing.type_check_only
+class BucketAccessControlHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BucketAccessControl: ...
+
+@typing.type_check_only
+class BucketAccessControlsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BucketAccessControls: ...
+
+@typing.type_check_only
+class BucketsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Buckets: ...
+
+@typing.type_check_only
+class ChannelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Channel: ...
+
+@typing.type_check_only
+class HmacKeyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> HmacKey: ...
+
+@typing.type_check_only
+class HmacKeyMetadataHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> HmacKeyMetadata: ...
+
+@typing.type_check_only
+class HmacKeysMetadataHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> HmacKeysMetadata: ...
+
+@typing.type_check_only
+class NotificationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Notification: ...
+
+@typing.type_check_only
+class NotificationsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Notifications: ...
+
+@typing.type_check_only
+class ObjectHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Object: ...
+
+@typing.type_check_only
+class ObjectAccessControlHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ObjectAccessControl: ...
+
+@typing.type_check_only
+class ObjectAccessControlsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ObjectAccessControls: ...
+
+@typing.type_check_only
 class ObjectsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Objects: ...
+
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
+class RewriteResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> RewriteResponse: ...
+
+@typing.type_check_only
+class ServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ServiceAccount: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...

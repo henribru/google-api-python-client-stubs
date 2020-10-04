@@ -1,379 +1,274 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AcceleratorConfig(typing_extensions.TypedDict, total=False):
+    acceleratorCount: int
+    acceleratorTypeUri: str
 
-class Policy(typing_extensions.TypedDict, total=False):
-    version: int
-    bindings: typing.List[Binding]
-    etag: str
+@typing.type_check_only
+class AutoscalingConfig(typing_extensions.TypedDict, total=False):
+    policyUri: str
 
+@typing.type_check_only
+class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
+    basicAlgorithm: BasicAutoscalingAlgorithm
+    id: str
+    name: str
+    secondaryWorkerConfig: InstanceGroupAutoscalingPolicyConfig
+    workerConfig: InstanceGroupAutoscalingPolicyConfig
+
+@typing.type_check_only
+class BasicAutoscalingAlgorithm(typing_extensions.TypedDict, total=False):
+    cooldownPeriod: str
+    yarnConfig: BasicYarnAutoscalingConfig
+
+@typing.type_check_only
+class BasicYarnAutoscalingConfig(typing_extensions.TypedDict, total=False):
+    gracefulDecommissionTimeout: str
+    scaleDownFactor: float
+    scaleDownMinWorkerFraction: float
+    scaleUpFactor: float
+    scaleUpMinWorkerFraction: float
+
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
+    condition: Expr
+    members: typing.List[str]
+    role: str
+
+@typing.type_check_only
+class CancelJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Cluster(typing_extensions.TypedDict, total=False):
+    clusterName: str
+    clusterUuid: str
+    config: ClusterConfig
+    labels: typing.Dict[str, typing.Any]
+    metrics: ClusterMetrics
+    projectId: str
+    status: ClusterStatus
+    statusHistory: typing.List[ClusterStatus]
+
+@typing.type_check_only
+class ClusterConfig(typing_extensions.TypedDict, total=False):
+    autoscalingConfig: AutoscalingConfig
+    configBucket: str
+    encryptionConfig: EncryptionConfig
+    endpointConfig: EndpointConfig
+    gceClusterConfig: GceClusterConfig
+    initializationActions: typing.List[NodeInitializationAction]
+    lifecycleConfig: LifecycleConfig
+    masterConfig: InstanceGroupConfig
+    secondaryWorkerConfig: InstanceGroupConfig
+    securityConfig: SecurityConfig
+    softwareConfig: SoftwareConfig
+    tempBucket: str
+    workerConfig: InstanceGroupConfig
+
+@typing.type_check_only
+class ClusterMetrics(typing_extensions.TypedDict, total=False):
+    hdfsMetrics: typing.Dict[str, typing.Any]
+    yarnMetrics: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class ClusterOperation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: str
+    operationId: str
+
+@typing.type_check_only
+class ClusterOperationMetadata(typing_extensions.TypedDict, total=False):
+    clusterName: str
+    clusterUuid: str
+    description: str
+    labels: typing.Dict[str, typing.Any]
+    operationType: str
+    status: ClusterOperationStatus
+    statusHistory: typing.List[ClusterOperationStatus]
+    warnings: typing.List[str]
+
+@typing.type_check_only
+class ClusterOperationStatus(typing_extensions.TypedDict, total=False):
+    details: str
+    innerState: str
+    state: typing_extensions.Literal["UNKNOWN", "PENDING", "RUNNING", "DONE"]
+    stateStartTime: str
+
+@typing.type_check_only
+class ClusterSelector(typing_extensions.TypedDict, total=False):
+    clusterLabels: typing.Dict[str, typing.Any]
+    zone: str
+
+@typing.type_check_only
+class ClusterStatus(typing_extensions.TypedDict, total=False):
+    detail: str
+    state: typing_extensions.Literal[
+        "UNKNOWN", "CREATING", "RUNNING", "ERROR", "DELETING", "UPDATING"
+    ]
+    stateStartTime: str
+    substate: typing_extensions.Literal["UNSPECIFIED", "UNHEALTHY", "STALE_STATUS"]
+
+@typing.type_check_only
+class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DiagnoseClusterResults(typing_extensions.TypedDict, total=False):
+    outputUri: str
+
+@typing.type_check_only
 class DiskConfig(typing_extensions.TypedDict, total=False):
     bootDiskSizeGb: int
     bootDiskType: str
     numLocalSsds: int
 
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    gcePdKmsKeyName: str
+
+@typing.type_check_only
 class EndpointConfig(typing_extensions.TypedDict, total=False):
     enableHttpPortAccess: bool
     httpPorts: typing.Dict[str, typing.Any]
 
-class InstanceGroupAutoscalingPolicyConfig(typing_extensions.TypedDict, total=False):
-    minInstances: int
-    maxInstances: int
-    weight: int
-
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class Status(typing_extensions.TypedDict, total=False):
-    code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-
-class Job(typing_extensions.TypedDict, total=False):
-    statusHistory: typing.List[JobStatus]
-    hiveJob: HiveJob
-    sparkJob: SparkJob
-    pigJob: PigJob
-    scheduling: JobScheduling
-    hadoopJob: HadoopJob
-    driverControlFilesUri: str
-    pysparkJob: PySparkJob
-    reference: JobReference
-    driverOutputResourceUri: str
-    yarnApplications: typing.List[YarnApplication]
-    prestoJob: PrestoJob
-    sparkSqlJob: SparkSqlJob
-    placement: JobPlacement
-    sparkRJob: SparkRJob
-    done: bool
-    labels: typing.Dict[str, typing.Any]
-    jobUuid: str
-    status: JobStatus
-
-class ClusterSelector(typing_extensions.TypedDict, total=False):
-    clusterLabels: typing.Dict[str, typing.Any]
-    zone: str
-
-class InstanceGroupConfig(typing_extensions.TypedDict, total=False):
-    machineTypeUri: str
-    instanceNames: typing.List[str]
-    minCpuPlatform: str
-    imageUri: str
-    managedGroupConfig: ManagedGroupConfig
-    instanceReferences: typing.List[InstanceReference]
-    preemptibility: typing_extensions.Literal[
-        "PREEMPTIBILITY_UNSPECIFIED", "NON_PREEMPTIBLE", "PREEMPTIBLE"
-    ]
-    diskConfig: DiskConfig
-    numInstances: int
-    accelerators: typing.List[AcceleratorConfig]
-    isPreemptible: bool
-
-class CancelJobRequest(typing_extensions.TypedDict, total=False): ...
-
-class ListWorkflowTemplatesResponse(typing_extensions.TypedDict, total=False):
-    templates: typing.List[WorkflowTemplate]
-    nextPageToken: str
-
-class LoggingConfig(typing_extensions.TypedDict, total=False):
-    driverLogLevels: typing.Dict[str, typing.Any]
-
-class ValueValidation(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
-
-class SecurityConfig(typing_extensions.TypedDict, total=False):
-    kerberosConfig: KerberosConfig
-
-class JobReference(typing_extensions.TypedDict, total=False):
-    jobId: str
-    projectId: str
-
-class NodeGroupAffinity(typing_extensions.TypedDict, total=False):
-    nodeGroupUri: str
-
-class AcceleratorConfig(typing_extensions.TypedDict, total=False):
-    acceleratorCount: int
-    acceleratorTypeUri: str
-
-class EncryptionConfig(typing_extensions.TypedDict, total=False):
-    gcePdKmsKeyName: str
-
-class WorkflowGraph(typing_extensions.TypedDict, total=False):
-    nodes: typing.List[WorkflowNode]
-
-class OrderedJob(typing_extensions.TypedDict, total=False):
-    sparkRJob: SparkRJob
-    sparkSqlJob: SparkSqlJob
-    stepId: str
-    prerequisiteStepIds: typing.List[str]
-    pysparkJob: PySparkJob
-    prestoJob: PrestoJob
-    hadoopJob: HadoopJob
-    sparkJob: SparkJob
-    hiveJob: HiveJob
-    scheduling: JobScheduling
-    labels: typing.Dict[str, typing.Any]
-    pigJob: PigJob
-
-class PigJob(typing_extensions.TypedDict, total=False):
-    queryList: QueryList
-    continueOnFailure: bool
-    queryFileUri: str
-    jarFileUris: typing.List[str]
-    properties: typing.Dict[str, typing.Any]
-    loggingConfig: LoggingConfig
-    scriptVariables: typing.Dict[str, typing.Any]
-
-class PrestoJob(typing_extensions.TypedDict, total=False):
-    clientTags: typing.List[str]
-    continueOnFailure: bool
-    queryFileUri: str
-    outputFormat: str
-    properties: typing.Dict[str, typing.Any]
-    queryList: QueryList
-    loggingConfig: LoggingConfig
-
-class TemplateParameter(typing_extensions.TypedDict, total=False):
-    validation: ParameterValidation
-    fields: typing.List[str]
-    name: str
-    description: str
-
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: typing.List[Operation]
-
-class BasicYarnAutoscalingConfig(typing_extensions.TypedDict, total=False):
-    scaleDownMinWorkerFraction: float
-    scaleUpFactor: float
-    scaleDownFactor: float
-    scaleUpMinWorkerFraction: float
-    gracefulDecommissionTimeout: str
-
-class ListClustersResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    clusters: typing.List[Cluster]
-
-class ClusterOperationMetadata(typing_extensions.TypedDict, total=False):
-    operationType: str
-    statusHistory: typing.List[ClusterOperationStatus]
-    clusterUuid: str
-    warnings: typing.List[str]
-    description: str
-    clusterName: str
-    status: ClusterOperationStatus
-    labels: typing.Dict[str, typing.Any]
-
-class ClusterConfig(typing_extensions.TypedDict, total=False):
-    configBucket: str
-    lifecycleConfig: LifecycleConfig
-    autoscalingConfig: AutoscalingConfig
-    endpointConfig: EndpointConfig
-    masterConfig: InstanceGroupConfig
-    encryptionConfig: EncryptionConfig
-    gceClusterConfig: GceClusterConfig
-    secondaryWorkerConfig: InstanceGroupConfig
-    workerConfig: InstanceGroupConfig
-    softwareConfig: SoftwareConfig
-    securityConfig: SecurityConfig
-    initializationActions: typing.List[NodeInitializationAction]
-    tempBucket: str
-
-class QueryList(typing_extensions.TypedDict, total=False):
-    queries: typing.List[str]
-
-class ClusterOperationStatus(typing_extensions.TypedDict, total=False):
-    details: str
-    state: typing_extensions.Literal["UNKNOWN", "PENDING", "RUNNING", "DONE"]
-    innerState: str
-    stateStartTime: str
-
-class JobScheduling(typing_extensions.TypedDict, total=False):
-    maxFailuresPerHour: int
-
-class ClusterOperation(typing_extensions.TypedDict, total=False):
-    done: bool
-    operationId: str
-    error: str
-
-class Operation(typing_extensions.TypedDict, total=False):
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-    done: bool
-    response: typing.Dict[str, typing.Any]
-    name: str
-
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    options: GetPolicyOptions
-
-class ManagedGroupConfig(typing_extensions.TypedDict, total=False):
-    instanceGroupManagerName: str
-    instanceTemplateName: str
-
-class SoftwareConfig(typing_extensions.TypedDict, total=False):
-    imageVersion: str
-    properties: typing.Dict[str, typing.Any]
-    optionalComponents: typing.List[str]
-
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
-    requestedPolicyVersion: int
-
-class SubmitJobRequest(typing_extensions.TypedDict, total=False):
-    requestId: str
-    job: Job
-
-class SparkRJob(typing_extensions.TypedDict, total=False):
-    archiveUris: typing.List[str]
-    loggingConfig: LoggingConfig
-    fileUris: typing.List[str]
-    args: typing.List[str]
-    mainRFileUri: str
-    properties: typing.Dict[str, typing.Any]
-
-class ClusterMetrics(typing_extensions.TypedDict, total=False):
-    hdfsMetrics: typing.Dict[str, typing.Any]
-    yarnMetrics: typing.Dict[str, typing.Any]
-
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
-    title: str
     description: str
     expression: str
     location: str
+    title: str
 
-class ListJobsResponse(typing_extensions.TypedDict, total=False):
-    jobs: typing.List[Job]
-    nextPageToken: str
-
-class LifecycleConfig(typing_extensions.TypedDict, total=False):
-    idleDeleteTtl: str
-    autoDeleteTime: str
-    idleStartTime: str
-    autoDeleteTtl: str
-
-class WorkflowNode(typing_extensions.TypedDict, total=False):
-    prerequisiteStepIds: typing.List[str]
-    stepId: str
-    jobId: str
-    state: typing_extensions.Literal[
-        "NODE_STATE_UNSPECIFIED",
-        "BLOCKED",
-        "RUNNABLE",
-        "RUNNING",
-        "COMPLETED",
-        "FAILED",
-    ]
-    error: str
-
-class AutoscalingConfig(typing_extensions.TypedDict, total=False):
-    policyUri: str
-
-class HiveJob(typing_extensions.TypedDict, total=False):
-    continueOnFailure: bool
-    queryFileUri: str
-    queryList: QueryList
-    jarFileUris: typing.List[str]
-    properties: typing.Dict[str, typing.Any]
-    scriptVariables: typing.Dict[str, typing.Any]
-
-class DiagnoseClusterResults(typing_extensions.TypedDict, total=False):
-    outputUri: str
-
-class Cluster(typing_extensions.TypedDict, total=False):
-    clusterUuid: str
-    status: ClusterStatus
-    projectId: str
-    config: ClusterConfig
-    metrics: ClusterMetrics
-    labels: typing.Dict[str, typing.Any]
-    clusterName: str
-    statusHistory: typing.List[ClusterStatus]
-
+@typing.type_check_only
 class GceClusterConfig(typing_extensions.TypedDict, total=False):
+    internalIpOnly: bool
     metadata: typing.Dict[str, typing.Any]
+    networkUri: str
     nodeGroupAffinity: NodeGroupAffinity
-    serviceAccount: str
-    subnetworkUri: str
-    reservationAffinity: ReservationAffinity
-    tags: typing.List[str]
-    zoneUri: str
     privateIpv6GoogleAccess: typing_extensions.Literal[
         "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
         "INHERIT_FROM_SUBNETWORK",
         "OUTBOUND",
         "BIDIRECTIONAL",
     ]
-    internalIpOnly: bool
-    networkUri: str
+    reservationAffinity: ReservationAffinity
+    serviceAccount: str
     serviceAccountScopes: typing.List[str]
+    subnetworkUri: str
+    tags: typing.List[str]
+    zoneUri: str
 
-class JobPlacement(typing_extensions.TypedDict, total=False):
-    clusterUuid: str
-    clusterName: str
+@typing.type_check_only
+class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GetPolicyOptions
 
-class ManagedCluster(typing_extensions.TypedDict, total=False):
-    config: ClusterConfig
-    labels: typing.Dict[str, typing.Any]
-    clusterName: str
+@typing.type_check_only
+class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
 
-class SparkJob(typing_extensions.TypedDict, total=False):
-    args: typing.List[str]
-    jarFileUris: typing.List[str]
-    mainClass: str
-    loggingConfig: LoggingConfig
-    fileUris: typing.List[str]
-    properties: typing.Dict[str, typing.Any]
-    mainJarFileUri: str
+@typing.type_check_only
+class HadoopJob(typing_extensions.TypedDict, total=False):
     archiveUris: typing.List[str]
+    args: typing.List[str]
+    fileUris: typing.List[str]
+    jarFileUris: typing.List[str]
+    loggingConfig: LoggingConfig
+    mainClass: str
+    mainJarFileUri: str
+    properties: typing.Dict[str, typing.Any]
 
-class YarnApplication(typing_extensions.TypedDict, total=False):
-    name: str
-    trackingUrl: str
-    progress: float
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "NEW",
-        "NEW_SAVING",
-        "SUBMITTED",
-        "ACCEPTED",
-        "RUNNING",
-        "FINISHED",
-        "FAILED",
-        "KILLED",
+@typing.type_check_only
+class HiveJob(typing_extensions.TypedDict, total=False):
+    continueOnFailure: bool
+    jarFileUris: typing.List[str]
+    properties: typing.Dict[str, typing.Any]
+    queryFileUri: str
+    queryList: QueryList
+    scriptVariables: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class InstanceGroupAutoscalingPolicyConfig(typing_extensions.TypedDict, total=False):
+    maxInstances: int
+    minInstances: int
+    weight: int
+
+@typing.type_check_only
+class InstanceGroupConfig(typing_extensions.TypedDict, total=False):
+    accelerators: typing.List[AcceleratorConfig]
+    diskConfig: DiskConfig
+    imageUri: str
+    instanceNames: typing.List[str]
+    instanceReferences: typing.List[InstanceReference]
+    isPreemptible: bool
+    machineTypeUri: str
+    managedGroupConfig: ManagedGroupConfig
+    minCpuPlatform: str
+    numInstances: int
+    preemptibility: typing_extensions.Literal[
+        "PREEMPTIBILITY_UNSPECIFIED", "NON_PREEMPTIBLE", "PREEMPTIBLE"
     ]
 
+@typing.type_check_only
 class InstanceReference(typing_extensions.TypedDict, total=False):
-    instanceName: str
     instanceId: str
+    instanceName: str
 
-class RegexValidation(typing_extensions.TypedDict, total=False):
-    regexes: typing.List[str]
-
-class NodeInitializationAction(typing_extensions.TypedDict, total=False):
-    executionTimeout: str
-    executableFile: str
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-
-class WorkflowMetadata(typing_extensions.TypedDict, total=False):
-    graph: WorkflowGraph
-    deleteCluster: ClusterOperation
-    version: int
-    clusterUuid: str
-    template: str
+@typing.type_check_only
+class InstantiateWorkflowTemplateRequest(typing_extensions.TypedDict, total=False):
     parameters: typing.Dict[str, typing.Any]
-    endTime: str
-    startTime: str
-    state: typing_extensions.Literal["UNKNOWN", "PENDING", "RUNNING", "DONE"]
-    createCluster: ClusterOperation
-    clusterName: str
+    requestId: str
+    version: int
 
+@typing.type_check_only
+class Job(typing_extensions.TypedDict, total=False):
+    done: bool
+    driverControlFilesUri: str
+    driverOutputResourceUri: str
+    hadoopJob: HadoopJob
+    hiveJob: HiveJob
+    jobUuid: str
+    labels: typing.Dict[str, typing.Any]
+    pigJob: PigJob
+    placement: JobPlacement
+    prestoJob: PrestoJob
+    pysparkJob: PySparkJob
+    reference: JobReference
+    scheduling: JobScheduling
+    sparkJob: SparkJob
+    sparkRJob: SparkRJob
+    sparkSqlJob: SparkSqlJob
+    status: JobStatus
+    statusHistory: typing.List[JobStatus]
+    yarnApplications: typing.List[YarnApplication]
+
+@typing.type_check_only
+class JobMetadata(typing_extensions.TypedDict, total=False):
+    jobId: str
+    operationType: str
+    startTime: str
+    status: JobStatus
+
+@typing.type_check_only
+class JobPlacement(typing_extensions.TypedDict, total=False):
+    clusterName: str
+    clusterUuid: str
+
+@typing.type_check_only
+class JobReference(typing_extensions.TypedDict, total=False):
+    jobId: str
+    projectId: str
+
+@typing.type_check_only
+class JobScheduling(typing_extensions.TypedDict, total=False):
+    maxFailuresPerHour: int
+
+@typing.type_check_only
 class JobStatus(typing_extensions.TypedDict, total=False):
-    stateStartTime: str
     details: str
-    substate: typing_extensions.Literal[
-        "UNSPECIFIED", "SUBMITTED", "QUEUED", "STALE_STATUS"
-    ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
@@ -386,121 +281,302 @@ class JobStatus(typing_extensions.TypedDict, total=False):
         "ERROR",
         "ATTEMPT_FAILURE",
     ]
+    stateStartTime: str
+    substate: typing_extensions.Literal[
+        "UNSPECIFIED", "SUBMITTED", "QUEUED", "STALE_STATUS"
+    ]
 
-class PySparkJob(typing_extensions.TypedDict, total=False):
-    properties: typing.Dict[str, typing.Any]
-    jarFileUris: typing.List[str]
-    mainPythonFileUri: str
-    pythonFileUris: typing.List[str]
-    args: typing.List[str]
-    archiveUris: typing.List[str]
-    fileUris: typing.List[str]
-    loggingConfig: LoggingConfig
+@typing.type_check_only
+class KerberosConfig(typing_extensions.TypedDict, total=False):
+    crossRealmTrustAdminServer: str
+    crossRealmTrustKdc: str
+    crossRealmTrustRealm: str
+    crossRealmTrustSharedPasswordUri: str
+    enableKerberos: bool
+    kdcDbKeyUri: str
+    keyPasswordUri: str
+    keystorePasswordUri: str
+    keystoreUri: str
+    kmsKeyUri: str
+    realm: str
+    rootPrincipalPasswordUri: str
+    tgtLifetimeHours: int
+    truststorePasswordUri: str
+    truststoreUri: str
 
-class WorkflowTemplate(typing_extensions.TypedDict, total=False):
-    updateTime: str
-    labels: typing.Dict[str, typing.Any]
-    placement: WorkflowTemplatePlacement
-    jobs: typing.List[OrderedJob]
-    createTime: str
-    parameters: typing.List[TemplateParameter]
-    id: str
-    name: str
-    version: int
+@typing.type_check_only
+class LifecycleConfig(typing_extensions.TypedDict, total=False):
+    autoDeleteTime: str
+    autoDeleteTtl: str
+    idleDeleteTtl: str
+    idleStartTime: str
 
-class InstantiateWorkflowTemplateRequest(typing_extensions.TypedDict, total=False):
-    requestId: str
-    parameters: typing.Dict[str, typing.Any]
-    version: int
-
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False): ...
-
-class ParameterValidation(typing_extensions.TypedDict, total=False):
-    regex: RegexValidation
-    values: ValueValidation
-
+@typing.type_check_only
 class ListAutoscalingPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     policies: typing.List[AutoscalingPolicy]
 
-class KerberosConfig(typing_extensions.TypedDict, total=False):
-    enableKerberos: bool
-    kdcDbKeyUri: str
-    crossRealmTrustAdminServer: str
-    crossRealmTrustKdc: str
-    rootPrincipalPasswordUri: str
-    keystorePasswordUri: str
-    truststoreUri: str
-    keystoreUri: str
-    tgtLifetimeHours: int
-    crossRealmTrustSharedPasswordUri: str
-    realm: str
-    keyPasswordUri: str
-    kmsKeyUri: str
-    truststorePasswordUri: str
-    crossRealmTrustRealm: str
+@typing.type_check_only
+class ListClustersResponse(typing_extensions.TypedDict, total=False):
+    clusters: typing.List[Cluster]
+    nextPageToken: str
 
-class Empty(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class ListJobsResponse(typing_extensions.TypedDict, total=False):
+    jobs: typing.List[Job]
+    nextPageToken: str
 
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class ListWorkflowTemplatesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    templates: typing.List[WorkflowTemplate]
+
+@typing.type_check_only
+class LoggingConfig(typing_extensions.TypedDict, total=False):
+    driverLogLevels: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class ManagedCluster(typing_extensions.TypedDict, total=False):
+    clusterName: str
+    config: ClusterConfig
+    labels: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class ManagedGroupConfig(typing_extensions.TypedDict, total=False):
+    instanceGroupManagerName: str
+    instanceTemplateName: str
+
+@typing.type_check_only
+class NodeGroupAffinity(typing_extensions.TypedDict, total=False):
+    nodeGroupUri: str
+
+@typing.type_check_only
+class NodeInitializationAction(typing_extensions.TypedDict, total=False):
+    executableFile: str
+    executionTimeout: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OrderedJob(typing_extensions.TypedDict, total=False):
+    hadoopJob: HadoopJob
+    hiveJob: HiveJob
+    labels: typing.Dict[str, typing.Any]
+    pigJob: PigJob
+    prerequisiteStepIds: typing.List[str]
+    prestoJob: PrestoJob
+    pysparkJob: PySparkJob
+    scheduling: JobScheduling
+    sparkJob: SparkJob
+    sparkRJob: SparkRJob
+    sparkSqlJob: SparkSqlJob
+    stepId: str
+
+@typing.type_check_only
+class ParameterValidation(typing_extensions.TypedDict, total=False):
+    regex: RegexValidation
+    values: ValueValidation
+
+@typing.type_check_only
+class PigJob(typing_extensions.TypedDict, total=False):
+    continueOnFailure: bool
+    jarFileUris: typing.List[str]
+    loggingConfig: LoggingConfig
+    properties: typing.Dict[str, typing.Any]
+    queryFileUri: str
+    queryList: QueryList
+    scriptVariables: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class PrestoJob(typing_extensions.TypedDict, total=False):
+    clientTags: typing.List[str]
+    continueOnFailure: bool
+    loggingConfig: LoggingConfig
+    outputFormat: str
+    properties: typing.Dict[str, typing.Any]
+    queryFileUri: str
+    queryList: QueryList
+
+@typing.type_check_only
+class PySparkJob(typing_extensions.TypedDict, total=False):
+    archiveUris: typing.List[str]
+    args: typing.List[str]
+    fileUris: typing.List[str]
+    jarFileUris: typing.List[str]
+    loggingConfig: LoggingConfig
+    mainPythonFileUri: str
+    properties: typing.Dict[str, typing.Any]
+    pythonFileUris: typing.List[str]
+
+@typing.type_check_only
+class QueryList(typing_extensions.TypedDict, total=False):
+    queries: typing.List[str]
+
+@typing.type_check_only
+class RegexValidation(typing_extensions.TypedDict, total=False):
+    regexes: typing.List[str]
+
+@typing.type_check_only
 class ReservationAffinity(typing_extensions.TypedDict, total=False):
     consumeReservationType: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "NO_RESERVATION", "ANY_RESERVATION", "SPECIFIC_RESERVATION"
     ]
-    values: typing.List[str]
     key: str
+    values: typing.List[str]
 
-class SparkSqlJob(typing_extensions.TypedDict, total=False):
-    queryFileUri: str
-    loggingConfig: LoggingConfig
-    jarFileUris: typing.List[str]
-    scriptVariables: typing.Dict[str, typing.Any]
+@typing.type_check_only
+class SecurityConfig(typing_extensions.TypedDict, total=False):
+    kerberosConfig: KerberosConfig
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+
+@typing.type_check_only
+class SoftwareConfig(typing_extensions.TypedDict, total=False):
+    imageVersion: str
+    optionalComponents: typing.List[str]
     properties: typing.Dict[str, typing.Any]
-    queryList: QueryList
 
-class JobMetadata(typing_extensions.TypedDict, total=False):
-    status: JobStatus
-    operationType: str
-    startTime: str
-    jobId: str
-
-class BasicAutoscalingAlgorithm(typing_extensions.TypedDict, total=False):
-    cooldownPeriod: str
-    yarnConfig: BasicYarnAutoscalingConfig
-
-class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
-    basicAlgorithm: BasicAutoscalingAlgorithm
-    secondaryWorkerConfig: InstanceGroupAutoscalingPolicyConfig
-    name: str
-    workerConfig: InstanceGroupAutoscalingPolicyConfig
-    id: str
-
-class HadoopJob(typing_extensions.TypedDict, total=False):
-    mainClass: str
-    args: typing.List[str]
-    properties: typing.Dict[str, typing.Any]
-    mainJarFileUri: str
-    jarFileUris: typing.List[str]
+@typing.type_check_only
+class SparkJob(typing_extensions.TypedDict, total=False):
     archiveUris: typing.List[str]
-    loggingConfig: LoggingConfig
+    args: typing.List[str]
     fileUris: typing.List[str]
+    jarFileUris: typing.List[str]
+    loggingConfig: LoggingConfig
+    mainClass: str
+    mainJarFileUri: str
+    properties: typing.Dict[str, typing.Any]
 
-class ClusterStatus(typing_extensions.TypedDict, total=False):
-    substate: typing_extensions.Literal["UNSPECIFIED", "UNHEALTHY", "STALE_STATUS"]
-    stateStartTime: str
-    detail: str
+@typing.type_check_only
+class SparkRJob(typing_extensions.TypedDict, total=False):
+    archiveUris: typing.List[str]
+    args: typing.List[str]
+    fileUris: typing.List[str]
+    loggingConfig: LoggingConfig
+    mainRFileUri: str
+    properties: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class SparkSqlJob(typing_extensions.TypedDict, total=False):
+    jarFileUris: typing.List[str]
+    loggingConfig: LoggingConfig
+    properties: typing.Dict[str, typing.Any]
+    queryFileUri: str
+    queryList: QueryList
+    scriptVariables: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class SubmitJobRequest(typing_extensions.TypedDict, total=False):
+    job: Job
+    requestId: str
+
+@typing.type_check_only
+class TemplateParameter(typing_extensions.TypedDict, total=False):
+    description: str
+    fields: typing.List[str]
+    name: str
+    validation: ParameterValidation
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class ValueValidation(typing_extensions.TypedDict, total=False):
+    values: typing.List[str]
+
+@typing.type_check_only
+class WorkflowGraph(typing_extensions.TypedDict, total=False):
+    nodes: typing.List[WorkflowNode]
+
+@typing.type_check_only
+class WorkflowMetadata(typing_extensions.TypedDict, total=False):
+    clusterName: str
+    clusterUuid: str
+    createCluster: ClusterOperation
+    deleteCluster: ClusterOperation
+    endTime: str
+    graph: WorkflowGraph
+    parameters: typing.Dict[str, typing.Any]
+    startTime: str
+    state: typing_extensions.Literal["UNKNOWN", "PENDING", "RUNNING", "DONE"]
+    template: str
+    version: int
+
+@typing.type_check_only
+class WorkflowNode(typing_extensions.TypedDict, total=False):
+    error: str
+    jobId: str
+    prerequisiteStepIds: typing.List[str]
     state: typing_extensions.Literal[
-        "UNKNOWN", "CREATING", "RUNNING", "ERROR", "DELETING", "UPDATING"
+        "NODE_STATE_UNSPECIFIED",
+        "BLOCKED",
+        "RUNNABLE",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED",
     ]
+    stepId: str
 
-class Binding(typing_extensions.TypedDict, total=False):
-    members: typing.List[str]
-    role: str
-    bindingId: str
-    condition: Expr
+@typing.type_check_only
+class WorkflowTemplate(typing_extensions.TypedDict, total=False):
+    createTime: str
+    id: str
+    jobs: typing.List[OrderedJob]
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    parameters: typing.List[TemplateParameter]
+    placement: WorkflowTemplatePlacement
+    updateTime: str
+    version: int
 
+@typing.type_check_only
 class WorkflowTemplatePlacement(typing_extensions.TypedDict, total=False):
-    managedCluster: ManagedCluster
     clusterSelector: ClusterSelector
+    managedCluster: ManagedCluster
+
+@typing.type_check_only
+class YarnApplication(typing_extensions.TypedDict, total=False):
+    name: str
+    progress: float
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "NEW",
+        "NEW_SAVING",
+        "SUBMITTED",
+        "ACCEPTED",
+        "RUNNING",
+        "FINISHED",
+        "FAILED",
+        "KILLED",
+    ]
+    trackingUrl: str

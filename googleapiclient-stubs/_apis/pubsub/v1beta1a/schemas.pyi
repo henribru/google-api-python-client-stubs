@@ -1,83 +1,101 @@
 import typing
 
 import typing_extensions
-
-class PushConfig(typing_extensions.TypedDict, total=False):
-    pushEndpoint: str
-
-class ModifyPushConfigRequest(typing_extensions.TypedDict, total=False):
-    pushConfig: PushConfig
-    subscription: str
-
+@typing.type_check_only
 class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
-    subscription: str
     ackId: typing.List[str]
-
-class PubsubEvent(typing_extensions.TypedDict, total=False):
-    message: PubsubMessage
-    truncated: bool
     subscription: str
-    deleted: bool
 
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class Label(typing_extensions.TypedDict, total=False):
+    key: str
+    numValue: str
+    strValue: str
+
+@typing.type_check_only
 class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     subscription: typing.List[Subscription]
 
-class PublishBatchResponse(typing_extensions.TypedDict, total=False):
-    messageIds: typing.List[str]
-
+@typing.type_check_only
 class ListTopicsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     topic: typing.List[Topic]
 
-class Topic(typing_extensions.TypedDict, total=False):
-    name: str
-
+@typing.type_check_only
 class ModifyAckDeadlineRequest(typing_extensions.TypedDict, total=False):
+    ackDeadlineSeconds: int
     ackId: str
     ackIds: typing.List[str]
-    ackDeadlineSeconds: int
     subscription: str
 
+@typing.type_check_only
+class ModifyPushConfigRequest(typing_extensions.TypedDict, total=False):
+    pushConfig: PushConfig
+    subscription: str
+
+@typing.type_check_only
+class PublishBatchRequest(typing_extensions.TypedDict, total=False):
+    messages: typing.List[PubsubMessage]
+    topic: str
+
+@typing.type_check_only
+class PublishBatchResponse(typing_extensions.TypedDict, total=False):
+    messageIds: typing.List[str]
+
+@typing.type_check_only
+class PublishRequest(typing_extensions.TypedDict, total=False):
+    message: PubsubMessage
+    topic: str
+
+@typing.type_check_only
+class PubsubEvent(typing_extensions.TypedDict, total=False):
+    deleted: bool
+    message: PubsubMessage
+    subscription: str
+    truncated: bool
+
+@typing.type_check_only
 class PubsubMessage(typing_extensions.TypedDict, total=False):
     data: str
-    publishTime: str
     label: typing.List[Label]
     messageId: str
+    publishTime: str
 
-class PublishBatchRequest(typing_extensions.TypedDict, total=False):
-    topic: str
-    messages: typing.List[PubsubMessage]
-
-class PullBatchResponse(typing_extensions.TypedDict, total=False):
-    pullResponses: typing.List[PullResponse]
-
+@typing.type_check_only
 class PullBatchRequest(typing_extensions.TypedDict, total=False):
     maxEvents: int
     returnImmediately: bool
     subscription: str
 
-class PullResponse(typing_extensions.TypedDict, total=False):
-    pubsubEvent: PubsubEvent
-    ackId: str
+@typing.type_check_only
+class PullBatchResponse(typing_extensions.TypedDict, total=False):
+    pullResponses: typing.List[PullResponse]
 
+@typing.type_check_only
 class PullRequest(typing_extensions.TypedDict, total=False):
-    subscription: str
     returnImmediately: bool
+    subscription: str
 
-class Label(typing_extensions.TypedDict, total=False):
-    numValue: str
-    strValue: str
-    key: str
+@typing.type_check_only
+class PullResponse(typing_extensions.TypedDict, total=False):
+    ackId: str
+    pubsubEvent: PubsubEvent
 
+@typing.type_check_only
+class PushConfig(typing_extensions.TypedDict, total=False):
+    pushEndpoint: str
+
+@typing.type_check_only
 class Subscription(typing_extensions.TypedDict, total=False):
-    pushConfig: PushConfig
-    name: str
     ackDeadlineSeconds: int
+    name: str
+    pushConfig: PushConfig
     topic: str
 
-class PublishRequest(typing_extensions.TypedDict, total=False):
-    topic: str
-    message: PubsubMessage
+@typing.type_check_only
+class Topic(typing_extensions.TypedDict, total=False):
+    name: str

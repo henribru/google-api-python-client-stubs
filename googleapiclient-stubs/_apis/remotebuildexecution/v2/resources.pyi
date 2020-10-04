@@ -7,24 +7,9 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def waitExecution(
-            self,
-            *,
-            name: str,
-            body: BuildBazelRemoteExecutionV2WaitExecutionRequest = ...,
-            **kwargs: typing.Any
-        ) -> GoogleLongrunningOperationHttpRequest: ...
-    class ActionsResource(googleapiclient.discovery.Resource):
-        def execute(
-            self,
-            *,
-            instanceName: str,
-            body: BuildBazelRemoteExecutionV2ExecuteRequest = ...,
-            **kwargs: typing.Any
-        ) -> GoogleLongrunningOperationHttpRequest: ...
+    @typing.type_check_only
     class ActionResultsResource(googleapiclient.discovery.Resource):
         def get(
             self,
@@ -32,9 +17,9 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             instanceName: str,
             hash: str,
             sizeBytes: str,
-            inlineStdout: bool = ...,
-            inlineStderr: bool = ...,
             inlineOutputFiles: typing.Union[str, typing.List[str]] = ...,
+            inlineStderr: bool = ...,
+            inlineStdout: bool = ...,
             **kwargs: typing.Any
         ) -> BuildBazelRemoteExecutionV2ActionResultHttpRequest: ...
         def update(
@@ -47,7 +32,24 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             resultsCachePolicy_priority: int = ...,
             **kwargs: typing.Any
         ) -> BuildBazelRemoteExecutionV2ActionResultHttpRequest: ...
+    @typing.type_check_only
+    class ActionsResource(googleapiclient.discovery.Resource):
+        def execute(
+            self,
+            *,
+            instanceName: str,
+            body: BuildBazelRemoteExecutionV2ExecuteRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+    @typing.type_check_only
     class BlobsResource(googleapiclient.discovery.Resource):
+        def batchRead(
+            self,
+            *,
+            instanceName: str,
+            body: BuildBazelRemoteExecutionV2BatchReadBlobsRequest = ...,
+            **kwargs: typing.Any
+        ) -> BuildBazelRemoteExecutionV2BatchReadBlobsResponseHttpRequest: ...
         def batchUpdate(
             self,
             *,
@@ -62,13 +64,6 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             body: BuildBazelRemoteExecutionV2FindMissingBlobsRequest = ...,
             **kwargs: typing.Any
         ) -> BuildBazelRemoteExecutionV2FindMissingBlobsResponseHttpRequest: ...
-        def batchRead(
-            self,
-            *,
-            instanceName: str,
-            body: BuildBazelRemoteExecutionV2BatchReadBlobsRequest = ...,
-            **kwargs: typing.Any
-        ) -> BuildBazelRemoteExecutionV2BatchReadBlobsResponseHttpRequest: ...
         def getTree(
             self,
             *,
@@ -79,30 +74,27 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> BuildBazelRemoteExecutionV2GetTreeResponseHttpRequest: ...
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def waitExecution(
+            self,
+            *,
+            name: str,
+            body: BuildBazelRemoteExecutionV2WaitExecutionRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+    @typing.type_check_only
     class V2Resource(googleapiclient.discovery.Resource):
         def getCapabilities(
             self, *, instanceName: str, **kwargs: typing.Any
         ) -> BuildBazelRemoteExecutionV2ServerCapabilitiesHttpRequest: ...
-    def operations(self) -> OperationsResource: ...
-    def actions(self) -> ActionsResource: ...
     def actionResults(self) -> ActionResultsResource: ...
+    def actions(self) -> ActionsResource: ...
     def blobs(self) -> BlobsResource: ...
+    def operations(self) -> OperationsResource: ...
     def v2(self) -> V2Resource: ...
 
-class BuildBazelRemoteExecutionV2ServerCapabilitiesHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BuildBazelRemoteExecutionV2ServerCapabilities: ...
-
-class BuildBazelRemoteExecutionV2BatchReadBlobsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BuildBazelRemoteExecutionV2BatchReadBlobsResponse: ...
-
+@typing.type_check_only
 class BuildBazelRemoteExecutionV2ActionResultHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -110,13 +102,15 @@ class BuildBazelRemoteExecutionV2ActionResultHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BuildBazelRemoteExecutionV2ActionResult: ...
 
-class BuildBazelRemoteExecutionV2FindMissingBlobsResponseHttpRequest(
+@typing.type_check_only
+class BuildBazelRemoteExecutionV2BatchReadBlobsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BuildBazelRemoteExecutionV2FindMissingBlobsResponse: ...
+    ) -> BuildBazelRemoteExecutionV2BatchReadBlobsResponse: ...
 
+@typing.type_check_only
 class BuildBazelRemoteExecutionV2BatchUpdateBlobsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -124,6 +118,15 @@ class BuildBazelRemoteExecutionV2BatchUpdateBlobsResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse: ...
 
+@typing.type_check_only
+class BuildBazelRemoteExecutionV2FindMissingBlobsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BuildBazelRemoteExecutionV2FindMissingBlobsResponse: ...
+
+@typing.type_check_only
 class BuildBazelRemoteExecutionV2GetTreeResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -131,6 +134,15 @@ class BuildBazelRemoteExecutionV2GetTreeResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BuildBazelRemoteExecutionV2GetTreeResponse: ...
 
+@typing.type_check_only
+class BuildBazelRemoteExecutionV2ServerCapabilitiesHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BuildBazelRemoteExecutionV2ServerCapabilities: ...
+
+@typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

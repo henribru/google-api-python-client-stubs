@@ -7,14 +7,14 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
                 def applyParameters(
                     self,
                     *,
@@ -22,9 +22,6 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     body: ApplyParametersRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> InstanceHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -33,6 +30,22 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     instanceId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InstanceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListInstancesResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -41,16 +54,6 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    orderBy: str = ...,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListInstancesResponseHttpRequest: ...
                 def updateParameters(
                     self,
                     *,
@@ -58,16 +61,8 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     body: UpdateParametersRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
-                def list(
-                    self,
-                    *,
-                    name: str,
-                    filter: str = ...,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListOperationsResponseHttpRequest: ...
                 def cancel(
                     self,
                     *,
@@ -81,54 +76,70 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListOperationsResponseHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> LocationHttpRequest: ...
             def list(
                 self,
                 *,
                 name: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                filter: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> LocationHttpRequest: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListInstancesResponse: ...
-
-class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListLocationsResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
+@typing.type_check_only
 class InstanceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Instance: ...
 
+@typing.type_check_only
+class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListInstancesResponse: ...
+
+@typing.type_check_only
+class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListOperationsResponse: ...
 
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Location: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...

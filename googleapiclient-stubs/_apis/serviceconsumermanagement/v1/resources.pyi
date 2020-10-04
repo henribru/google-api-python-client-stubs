@@ -7,28 +7,34 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            name: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListOperationsResponseHttpRequest: ...
+    @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class TenancyUnitsResource(googleapiclient.discovery.Resource):
-            def list(
+            def addProject(
                 self,
                 *,
                 parent: str,
-                pageSize: int = ...,
-                filter: str = ...,
-                pageToken: str = ...,
+                body: AddTenantProjectRequest = ...,
                 **kwargs: typing.Any
-            ) -> ListTenancyUnitsResponseHttpRequest: ...
-            def attachProject(
-                self,
-                *,
-                name: str,
-                body: AttachTenantProjectRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def applyProjectConfig(
                 self,
@@ -37,32 +43,11 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 body: ApplyTenantProjectConfigRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-            def undeleteProject(
+            def attachProject(
                 self,
                 *,
                 name: str,
-                body: UndeleteTenantProjectRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def addProject(
-                self,
-                *,
-                parent: str,
-                body: AddTenantProjectRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def removeProject(
-                self,
-                *,
-                name: str,
-                body: RemoveTenantProjectRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def deleteProject(
-                self,
-                *,
-                name: str,
-                body: DeleteTenantProjectRequest = ...,
+                body: AttachTenantProjectRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def create(
@@ -72,60 +57,84 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 body: CreateTenancyUnitRequest = ...,
                 **kwargs: typing.Any
             ) -> TenancyUnitHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def deleteProject(
+                self,
+                *,
+                name: str,
+                body: DeleteTenantProjectRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListTenancyUnitsResponseHttpRequest: ...
+            def removeProject(
+                self,
+                *,
+                name: str,
+                body: RemoveTenantProjectRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def undeleteProject(
+                self,
+                *,
+                name: str,
+                body: UndeleteTenantProjectRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
         def search(
             self,
             *,
             parent: str,
+            pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            pageSize: int = ...,
             **kwargs: typing.Any
         ) -> SearchTenancyUnitsResponseHttpRequest: ...
         def tenancyUnits(self) -> TenancyUnitsResource: ...
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
-        def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
-        def list(
-            self,
-            *,
-            name: str,
-            pageSize: int = ...,
-            filter: str = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> ListOperationsResponseHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
-    def services(self) -> ServicesResource: ...
     def operations(self) -> OperationsResource: ...
+    def services(self) -> ServicesResource: ...
 
-class TenancyUnitHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TenancyUnit: ...
-
-class ListTenancyUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListTenancyUnitsResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class SearchTenancyUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SearchTenancyUnitsResponse: ...
+    ) -> ListOperationsResponse: ...
 
+@typing.type_check_only
+class ListTenancyUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListTenancyUnitsResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Operation: ...
 
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class SearchTenancyUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListOperationsResponse: ...
+    ) -> SearchTenancyUnitsResponse: ...
+
+@typing.type_check_only
+class TenancyUnitHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TenancyUnit: ...

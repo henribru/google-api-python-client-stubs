@@ -1,139 +1,160 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class Api(typing_extensions.TypedDict, total=False):
+    operation: str
+    protocol: str
+    service: str
+    version: str
 
-class ReportResponse(typing_extensions.TypedDict, total=False): ...
-
-class Peer(typing_extensions.TypedDict, total=False):
-    principal: str
-    ip: str
-    labels: typing.Dict[str, typing.Any]
-    port: str
-    regionCode: str
-
-class Status(typing_extensions.TypedDict, total=False):
-    message: str
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
-
+@typing.type_check_only
 class AttributeContext(typing_extensions.TypedDict, total=False):
-    extensions: typing.List[typing.Dict[str, typing.Any]]
-    source: Peer
     api: Api
-    response: Response
-    origin: Peer
     destination: Peer
+    extensions: typing.List[typing.Dict[str, typing.Any]]
+    origin: Peer
     request: Request
     resource: Resource
+    response: Response
+    source: Peer
 
-class RequestMetadata(typing_extensions.TypedDict, total=False):
-    destinationAttributes: Peer
-    requestAttributes: Request
-    callerNetwork: str
-    callerSuppliedUserAgent: str
-    callerIp: str
+@typing.type_check_only
+class AuditLog(typing_extensions.TypedDict, total=False):
+    authenticationInfo: AuthenticationInfo
+    authorizationInfo: typing.List[AuthorizationInfo]
+    metadata: typing.Dict[str, typing.Any]
+    methodName: str
+    numResponseItems: str
+    request: typing.Dict[str, typing.Any]
+    requestMetadata: RequestMetadata
+    resourceLocation: ResourceLocation
+    resourceName: str
+    resourceOriginalState: typing.Dict[str, typing.Any]
+    response: typing.Dict[str, typing.Any]
+    serviceData: typing.Dict[str, typing.Any]
+    serviceName: str
+    status: Status
 
-class CheckRequest(typing_extensions.TypedDict, total=False):
-    attributes: AttributeContext
-    serviceConfigId: str
-    resources: typing.List[ResourceInfo]
+@typing.type_check_only
+class Auth(typing_extensions.TypedDict, total=False):
+    accessLevels: typing.List[str]
+    audiences: typing.List[str]
+    claims: typing.Dict[str, typing.Any]
+    presenter: str
+    principal: str
 
+@typing.type_check_only
 class AuthenticationInfo(typing_extensions.TypedDict, total=False):
-    serviceAccountDelegationInfo: typing.List[ServiceAccountDelegationInfo]
     authoritySelector: str
-    principalSubject: str
     principalEmail: str
+    principalSubject: str
+    serviceAccountDelegationInfo: typing.List[ServiceAccountDelegationInfo]
     serviceAccountKeyName: str
     thirdPartyPrincipal: typing.Dict[str, typing.Any]
 
-class Api(typing_extensions.TypedDict, total=False):
-    operation: str
-    service: str
-    version: str
-    protocol: str
-
+@typing.type_check_only
 class AuthorizationInfo(typing_extensions.TypedDict, total=False):
+    granted: bool
     permission: str
     resource: str
-    granted: bool
     resourceAttributes: Resource
 
-class ResourceLocation(typing_extensions.TypedDict, total=False):
-    originalLocations: typing.List[str]
-    currentLocations: typing.List[str]
+@typing.type_check_only
+class CheckRequest(typing_extensions.TypedDict, total=False):
+    attributes: AttributeContext
+    resources: typing.List[ResourceInfo]
+    serviceConfigId: str
 
-class Response(typing_extensions.TypedDict, total=False):
-    size: str
+@typing.type_check_only
+class CheckResponse(typing_extensions.TypedDict, total=False):
     headers: typing.Dict[str, typing.Any]
-    time: str
-    code: str
-
-class Resource(typing_extensions.TypedDict, total=False):
-    service: str
-    labels: typing.Dict[str, typing.Any]
-    type: str
-    name: str
-
-class Request(typing_extensions.TypedDict, total=False):
-    size: str
-    protocol: str
-    host: str
-    auth: Auth
-    time: str
-    reason: str
-    query: str
-    id: str
-    method: str
-    scheme: str
-    path: str
-    headers: typing.Dict[str, typing.Any]
-
-class AuditLog(typing_extensions.TypedDict, total=False):
-    authorizationInfo: typing.List[AuthorizationInfo]
     status: Status
-    resourceLocation: ResourceLocation
-    response: typing.Dict[str, typing.Any]
-    authenticationInfo: AuthenticationInfo
-    methodName: str
-    numResponseItems: str
-    serviceName: str
-    resourceName: str
-    serviceData: typing.Dict[str, typing.Any]
-    resourceOriginalState: typing.Dict[str, typing.Any]
-    requestMetadata: RequestMetadata
-    metadata: typing.Dict[str, typing.Any]
-    request: typing.Dict[str, typing.Any]
 
-class SpanContext(typing_extensions.TypedDict, total=False):
-    spanName: str
-
+@typing.type_check_only
 class FirstPartyPrincipal(typing_extensions.TypedDict, total=False):
-    serviceMetadata: typing.Dict[str, typing.Any]
     principalEmail: str
+    serviceMetadata: typing.Dict[str, typing.Any]
 
-class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
-    firstPartyPrincipal: FirstPartyPrincipal
-    thirdPartyPrincipal: ThirdPartyPrincipal
+@typing.type_check_only
+class Peer(typing_extensions.TypedDict, total=False):
+    ip: str
+    labels: typing.Dict[str, typing.Any]
+    port: str
+    principal: str
+    regionCode: str
 
-class ThirdPartyPrincipal(typing_extensions.TypedDict, total=False):
-    thirdPartyClaims: typing.Dict[str, typing.Any]
-
+@typing.type_check_only
 class ReportRequest(typing_extensions.TypedDict, total=False):
     operations: typing.List[AttributeContext]
     serviceConfigId: str
 
-class Auth(typing_extensions.TypedDict, total=False):
-    principal: str
-    presenter: str
-    claims: typing.Dict[str, typing.Any]
-    accessLevels: typing.List[str]
-    audiences: typing.List[str]
+@typing.type_check_only
+class ReportResponse(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class Request(typing_extensions.TypedDict, total=False):
+    auth: Auth
+    headers: typing.Dict[str, typing.Any]
+    host: str
+    id: str
+    method: str
+    path: str
+    protocol: str
+    query: str
+    reason: str
+    scheme: str
+    size: str
+    time: str
+
+@typing.type_check_only
+class RequestMetadata(typing_extensions.TypedDict, total=False):
+    callerIp: str
+    callerNetwork: str
+    callerSuppliedUserAgent: str
+    destinationAttributes: Peer
+    requestAttributes: Request
+
+@typing.type_check_only
+class Resource(typing_extensions.TypedDict, total=False):
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    service: str
+    type: str
+
+@typing.type_check_only
 class ResourceInfo(typing_extensions.TypedDict, total=False):
     name: str
     permission: str
     type: str
 
-class CheckResponse(typing_extensions.TypedDict, total=False):
-    status: Status
+@typing.type_check_only
+class ResourceLocation(typing_extensions.TypedDict, total=False):
+    currentLocations: typing.List[str]
+    originalLocations: typing.List[str]
+
+@typing.type_check_only
+class Response(typing_extensions.TypedDict, total=False):
+    code: str
     headers: typing.Dict[str, typing.Any]
+    size: str
+    time: str
+
+@typing.type_check_only
+class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
+    firstPartyPrincipal: FirstPartyPrincipal
+    thirdPartyPrincipal: ThirdPartyPrincipal
+
+@typing.type_check_only
+class SpanContext(typing_extensions.TypedDict, total=False):
+    spanName: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class ThirdPartyPrincipal(typing_extensions.TypedDict, total=False):
+    thirdPartyClaims: typing.Dict[str, typing.Any]

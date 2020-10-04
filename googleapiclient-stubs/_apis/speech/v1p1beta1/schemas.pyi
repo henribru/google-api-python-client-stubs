@@ -1,40 +1,73 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class ClassItem(typing_extensions.TypedDict, total=False):
+    value: str
 
-class SpeechRecognitionAlternative(typing_extensions.TypedDict, total=False):
-    words: typing.List[WordInfo]
-    confidence: float
-    transcript: str
+@typing.type_check_only
+class CustomClass(typing_extensions.TypedDict, total=False):
+    customClassId: str
+    items: typing.List[ClassItem]
+    name: str
 
-class SpeechRecognitionResult(typing_extensions.TypedDict, total=False):
-    channelTag: int
-    languageCode: str
-    alternatives: typing.List[SpeechRecognitionAlternative]
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
 
-class LongRunningRecognizeRequest(typing_extensions.TypedDict, total=False):
-    config: RecognitionConfig
-    audio: RecognitionAudio
-
-class SpeakerDiarizationConfig(typing_extensions.TypedDict, total=False):
-    minSpeakerCount: int
-    maxSpeakerCount: int
-    speakerTag: int
-    enableSpeakerDiarization: bool
-
-class WordInfo(typing_extensions.TypedDict, total=False):
-    word: str
-    confidence: float
-    endTime: str
-    speakerTag: int
+@typing.type_check_only
+class LongRunningRecognizeMetadata(typing_extensions.TypedDict, total=False):
+    lastUpdateTime: str
+    progressPercent: int
     startTime: str
+    uri: str
 
+@typing.type_check_only
+class LongRunningRecognizeRequest(typing_extensions.TypedDict, total=False):
+    audio: RecognitionAudio
+    config: RecognitionConfig
+
+@typing.type_check_only
+class LongRunningRecognizeResponse(typing_extensions.TypedDict, total=False):
+    results: typing.List[SpeechRecognitionResult]
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Phrase(typing_extensions.TypedDict, total=False):
+    boost: float
+    value: str
+
+@typing.type_check_only
+class PhraseSet(typing_extensions.TypedDict, total=False):
+    boost: float
+    name: str
+    phrases: typing.List[Phrase]
+
+@typing.type_check_only
+class RecognitionAudio(typing_extensions.TypedDict, total=False):
+    content: str
+    uri: str
+
+@typing.type_check_only
 class RecognitionConfig(typing_extensions.TypedDict, total=False):
-    diarizationConfig: SpeakerDiarizationConfig
     adaptation: SpeechAdaptation
-    enableAutomaticPunctuation: bool
-    useEnhanced: bool
     alternativeLanguageCodes: typing.List[str]
+    audioChannelCount: int
+    diarizationConfig: SpeakerDiarizationConfig
+    diarizationSpeakerCount: int
+    enableAutomaticPunctuation: bool
+    enableSeparateRecognitionPerChannel: bool
+    enableSpeakerDiarization: bool
+    enableWordConfidence: bool
+    enableWordTimeOffsets: bool
     encoding: typing_extensions.Literal[
         "ENCODING_UNSPECIFIED",
         "LINEAR16",
@@ -47,88 +80,19 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
         "MP3",
         "WEBM_OPUS",
     ]
+    languageCode: str
+    maxAlternatives: int
     metadata: RecognitionMetadata
     model: str
-    languageCode: str
-    enableSpeakerDiarization: bool
-    enableWordConfidence: bool
     profanityFilter: bool
-    enableWordTimeOffsets: bool
-    maxAlternatives: int
-    audioChannelCount: int
-    diarizationSpeakerCount: int
-    enableSeparateRecognitionPerChannel: bool
-    speechContexts: typing.List[SpeechContext]
     sampleRateHertz: int
+    speechContexts: typing.List[SpeechContext]
+    useEnhanced: bool
 
-class Phrase(typing_extensions.TypedDict, total=False):
-    value: str
-    boost: float
-
-class RecognizeResponse(typing_extensions.TypedDict, total=False):
-    results: typing.List[SpeechRecognitionResult]
-
-class SpeechAdaptation(typing_extensions.TypedDict, total=False):
-    customClasses: typing.List[CustomClass]
-    phraseSets: typing.List[PhraseSet]
-
-class RecognitionAudio(typing_extensions.TypedDict, total=False):
-    content: str
-    uri: str
-
-class PhraseSet(typing_extensions.TypedDict, total=False):
-    phrases: typing.List[Phrase]
-    name: str
-    boost: float
-
-class SpeechContext(typing_extensions.TypedDict, total=False):
-    boost: float
-    phrases: typing.List[str]
-
-class ClassItem(typing_extensions.TypedDict, total=False):
-    value: str
-
-class RecognizeRequest(typing_extensions.TypedDict, total=False):
-    config: RecognitionConfig
-    audio: RecognitionAudio
-
-class CustomClass(typing_extensions.TypedDict, total=False):
-    customClassId: str
-    name: str
-    items: typing.List[ClassItem]
-
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-    code: int
-
-class LongRunningRecognizeMetadata(typing_extensions.TypedDict, total=False):
-    lastUpdateTime: str
-    startTime: str
-    uri: str
-    progressPercent: int
-
-class LongRunningRecognizeResponse(typing_extensions.TypedDict, total=False):
-    results: typing.List[SpeechRecognitionResult]
-
+@typing.type_check_only
 class RecognitionMetadata(typing_extensions.TypedDict, total=False):
-    obfuscatedId: str
-    recordingDeviceType: typing_extensions.Literal[
-        "RECORDING_DEVICE_TYPE_UNSPECIFIED",
-        "SMARTPHONE",
-        "PC",
-        "PHONE_LINE",
-        "VEHICLE",
-        "OTHER_OUTDOOR_DEVICE",
-        "OTHER_INDOOR_DEVICE",
-    ]
-    industryNaicsCodeOfAudio: int
-    originalMediaType: typing_extensions.Literal[
-        "ORIGINAL_MEDIA_TYPE_UNSPECIFIED", "AUDIO", "VIDEO"
-    ]
     audioTopic: str
-    originalMimeType: str
-    recordingDeviceName: str
+    industryNaicsCodeOfAudio: int
     interactionType: typing_extensions.Literal[
         "INTERACTION_TYPE_UNSPECIFIED",
         "DISCUSSION",
@@ -143,14 +107,70 @@ class RecognitionMetadata(typing_extensions.TypedDict, total=False):
     microphoneDistance: typing_extensions.Literal[
         "MICROPHONE_DISTANCE_UNSPECIFIED", "NEARFIELD", "MIDFIELD", "FARFIELD"
     ]
+    obfuscatedId: str
+    originalMediaType: typing_extensions.Literal[
+        "ORIGINAL_MEDIA_TYPE_UNSPECIFIED", "AUDIO", "VIDEO"
+    ]
+    originalMimeType: str
+    recordingDeviceName: str
+    recordingDeviceType: typing_extensions.Literal[
+        "RECORDING_DEVICE_TYPE_UNSPECIFIED",
+        "SMARTPHONE",
+        "PC",
+        "PHONE_LINE",
+        "VEHICLE",
+        "OTHER_OUTDOOR_DEVICE",
+        "OTHER_INDOOR_DEVICE",
+    ]
 
-class Operation(typing_extensions.TypedDict, total=False):
-    response: typing.Dict[str, typing.Any]
-    metadata: typing.Dict[str, typing.Any]
-    done: bool
-    error: Status
-    name: str
+@typing.type_check_only
+class RecognizeRequest(typing_extensions.TypedDict, total=False):
+    audio: RecognitionAudio
+    config: RecognitionConfig
 
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
-    nextPageToken: str
+@typing.type_check_only
+class RecognizeResponse(typing_extensions.TypedDict, total=False):
+    results: typing.List[SpeechRecognitionResult]
+
+@typing.type_check_only
+class SpeakerDiarizationConfig(typing_extensions.TypedDict, total=False):
+    enableSpeakerDiarization: bool
+    maxSpeakerCount: int
+    minSpeakerCount: int
+    speakerTag: int
+
+@typing.type_check_only
+class SpeechAdaptation(typing_extensions.TypedDict, total=False):
+    customClasses: typing.List[CustomClass]
+    phraseSets: typing.List[PhraseSet]
+
+@typing.type_check_only
+class SpeechContext(typing_extensions.TypedDict, total=False):
+    boost: float
+    phrases: typing.List[str]
+
+@typing.type_check_only
+class SpeechRecognitionAlternative(typing_extensions.TypedDict, total=False):
+    confidence: float
+    transcript: str
+    words: typing.List[WordInfo]
+
+@typing.type_check_only
+class SpeechRecognitionResult(typing_extensions.TypedDict, total=False):
+    alternatives: typing.List[SpeechRecognitionAlternative]
+    channelTag: int
+    languageCode: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class WordInfo(typing_extensions.TypedDict, total=False):
+    confidence: float
+    endTime: str
+    speakerTag: int
+    startTime: str
+    word: str

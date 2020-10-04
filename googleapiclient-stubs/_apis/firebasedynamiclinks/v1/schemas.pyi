@@ -1,105 +1,92 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AnalyticsInfo(typing_extensions.TypedDict, total=False):
+    googlePlayAnalytics: GooglePlayAnalytics
+    itunesConnectAnalytics: ITunesConnectAnalytics
 
-class DynamicLinkStats(typing_extensions.TypedDict, total=False):
-    linkEventStats: typing.List[DynamicLinkEventStat]
+@typing.type_check_only
+class AndroidInfo(typing_extensions.TypedDict, total=False):
+    androidFallbackLink: str
+    androidLink: str
+    androidMinPackageVersionCode: str
+    androidPackageName: str
 
-class GetIosReopenAttributionRequest(typing_extensions.TypedDict, total=False):
-    bundleId: str
+@typing.type_check_only
+class CreateManagedShortLinkRequest(typing_extensions.TypedDict, total=False):
+    dynamicLinkInfo: DynamicLinkInfo
+    longDynamicLink: str
+    name: str
     sdkVersion: str
-    requestedLink: str
+    suffix: Suffix
 
-class SocialMetaTagInfo(typing_extensions.TypedDict, total=False):
-    socialImageLink: str
-    socialDescription: str
-    socialTitle: str
-
-class Suffix(typing_extensions.TypedDict, total=False):
-    option: typing_extensions.Literal[
-        "OPTION_UNSPECIFIED", "UNGUESSABLE", "SHORT", "CUSTOM"
-    ]
-    customSuffix: str
-
-class DeviceInfo(typing_extensions.TypedDict, total=False):
-    timezone: str
-    deviceModelName: str
-    screenResolutionHeight: str
-    languageCodeRaw: str
-    screenResolutionWidth: str
-    languageCodeFromWebview: str
-    languageCode: str
-
+@typing.type_check_only
 class CreateManagedShortLinkResponse(typing_extensions.TypedDict, total=False):
     managedShortLink: ManagedShortLink
     previewLink: str
     warning: typing.List[DynamicLinkWarning]
 
-class IosInfo(typing_extensions.TypedDict, total=False):
-    iosBundleId: str
-    iosCustomScheme: str
-    iosAppStoreId: str
-    iosIpadBundleId: str
-    iosIpadFallbackLink: str
-    iosFallbackLink: str
-    iosMinimumVersion: str
-
-class AnalyticsInfo(typing_extensions.TypedDict, total=False):
-    googlePlayAnalytics: GooglePlayAnalytics
-    itunesConnectAnalytics: ITunesConnectAnalytics
-
-class GooglePlayAnalytics(typing_extensions.TypedDict, total=False):
-    utmCampaign: str
-    utmContent: str
-    utmMedium: str
-    utmTerm: str
-    utmSource: str
-    gclid: str
-
-class NavigationInfo(typing_extensions.TypedDict, total=False):
-    enableForcedRedirect: bool
-
-class ManagedShortLink(typing_extensions.TypedDict, total=False):
-    info: DynamicLinkInfo
-    linkName: str
-    flaggedAttribute: typing.List[str]
-    link: str
-    visibility: typing_extensions.Literal[
-        "UNSPECIFIED_VISIBILITY", "UNARCHIVED", "ARCHIVED", "NEVER_SHOWN"
-    ]
-    creationTime: str
-
+@typing.type_check_only
 class CreateShortDynamicLinkRequest(typing_extensions.TypedDict, total=False):
     dynamicLinkInfo: DynamicLinkInfo
-    sdkVersion: str
     longDynamicLink: str
+    sdkVersion: str
     suffix: Suffix
 
-class AndroidInfo(typing_extensions.TypedDict, total=False):
-    androidLink: str
-    androidFallbackLink: str
-    androidPackageName: str
-    androidMinPackageVersionCode: str
+@typing.type_check_only
+class CreateShortDynamicLinkResponse(typing_extensions.TypedDict, total=False):
+    previewLink: str
+    shortLink: str
+    warning: typing.List[DynamicLinkWarning]
 
-class GetIosPostInstallAttributionRequest(typing_extensions.TypedDict, total=False):
-    device: DeviceInfo
-    retrievalMethod: typing_extensions.Literal[
-        "UNKNOWN_PAYLOAD_RETRIEVAL_METHOD",
-        "IMPLICIT_WEAK_MATCH",
-        "EXPLICIT_WEAK_MATCH",
-        "EXPLICIT_STRONG_AFTER_WEAK_MATCH",
-    ]
-    visualStyle: typing_extensions.Literal[
-        "UNKNOWN_VISUAL_STYLE", "DEFAULT_STYLE", "CUSTOM_STYLE"
-    ]
-    bundleId: str
-    uniqueMatchLinkToCheck: str
-    sdkVersion: str
-    appInstallationTime: str
-    iosVersion: str
+@typing.type_check_only
+class DesktopInfo(typing_extensions.TypedDict, total=False):
+    desktopFallbackLink: str
 
+@typing.type_check_only
+class DeviceInfo(typing_extensions.TypedDict, total=False):
+    deviceModelName: str
+    languageCode: str
+    languageCodeFromWebview: str
+    languageCodeRaw: str
+    screenResolutionHeight: str
+    screenResolutionWidth: str
+    timezone: str
+
+@typing.type_check_only
+class DynamicLinkEventStat(typing_extensions.TypedDict, total=False):
+    count: str
+    event: typing_extensions.Literal[
+        "DYNAMIC_LINK_EVENT_UNSPECIFIED",
+        "CLICK",
+        "REDIRECT",
+        "APP_INSTALL",
+        "APP_FIRST_OPEN",
+        "APP_RE_OPEN",
+    ]
+    platform: typing_extensions.Literal[
+        "DYNAMIC_LINK_PLATFORM_UNSPECIFIED", "ANDROID", "IOS", "DESKTOP", "OTHER"
+    ]
+
+@typing.type_check_only
+class DynamicLinkInfo(typing_extensions.TypedDict, total=False):
+    analyticsInfo: AnalyticsInfo
+    androidInfo: AndroidInfo
+    desktopInfo: DesktopInfo
+    domainUriPrefix: str
+    dynamicLinkDomain: str
+    iosInfo: IosInfo
+    link: str
+    navigationInfo: NavigationInfo
+    socialMetaTagInfo: SocialMetaTagInfo
+
+@typing.type_check_only
+class DynamicLinkStats(typing_extensions.TypedDict, total=False):
+    linkEventStats: typing.List[DynamicLinkEventStat]
+
+@typing.type_check_only
 class DynamicLinkWarning(typing_extensions.TypedDict, total=False):
-    warningDocumentLink: str
     warningCode: typing_extensions.Literal[
         "CODE_UNSPECIFIED",
         "NOT_IN_PROJECT_ANDROID_PACKAGE_NAME",
@@ -131,81 +118,116 @@ class DynamicLinkWarning(typing_extensions.TypedDict, total=False):
         "LINK_WITH_FRAGMENTS",
         "NOT_MATCHING_IOS_BUNDLE_ID_AND_STORE_ID",
     ]
+    warningDocumentLink: str
     warningMessage: str
 
-class DesktopInfo(typing_extensions.TypedDict, total=False):
-    desktopFallbackLink: str
-
-class DynamicLinkEventStat(typing_extensions.TypedDict, total=False):
-    count: str
-    platform: typing_extensions.Literal[
-        "DYNAMIC_LINK_PLATFORM_UNSPECIFIED", "ANDROID", "IOS", "DESKTOP", "OTHER"
+@typing.type_check_only
+class GetIosPostInstallAttributionRequest(typing_extensions.TypedDict, total=False):
+    appInstallationTime: str
+    bundleId: str
+    device: DeviceInfo
+    iosVersion: str
+    retrievalMethod: typing_extensions.Literal[
+        "UNKNOWN_PAYLOAD_RETRIEVAL_METHOD",
+        "IMPLICIT_WEAK_MATCH",
+        "EXPLICIT_WEAK_MATCH",
+        "EXPLICIT_STRONG_AFTER_WEAK_MATCH",
     ]
-    event: typing_extensions.Literal[
-        "DYNAMIC_LINK_EVENT_UNSPECIFIED",
-        "CLICK",
-        "REDIRECT",
-        "APP_INSTALL",
-        "APP_FIRST_OPEN",
-        "APP_RE_OPEN",
-    ]
-
-class CreateShortDynamicLinkResponse(typing_extensions.TypedDict, total=False):
-    previewLink: str
-    shortLink: str
-    warning: typing.List[DynamicLinkWarning]
-
-class DynamicLinkInfo(typing_extensions.TypedDict, total=False):
-    link: str
-    desktopInfo: DesktopInfo
-    socialMetaTagInfo: SocialMetaTagInfo
-    iosInfo: IosInfo
-    analyticsInfo: AnalyticsInfo
-    domainUriPrefix: str
-    dynamicLinkDomain: str
-    androidInfo: AndroidInfo
-    navigationInfo: NavigationInfo
-
-class GetIosReopenAttributionResponse(typing_extensions.TypedDict, total=False):
-    iosMinAppVersion: str
-    resolvedLink: str
-    utmContent: str
-    utmCampaign: str
-    invitationId: str
-    utmTerm: str
-    utmMedium: str
-    utmSource: str
-    deepLink: str
-
-class ITunesConnectAnalytics(typing_extensions.TypedDict, total=False):
-    ct: str
-    pt: str
-    mt: str
-    at: str
-
-class CreateManagedShortLinkRequest(typing_extensions.TypedDict, total=False):
     sdkVersion: str
-    suffix: Suffix
-    name: str
-    dynamicLinkInfo: DynamicLinkInfo
-    longDynamicLink: str
+    uniqueMatchLinkToCheck: str
+    visualStyle: typing_extensions.Literal[
+        "UNKNOWN_VISUAL_STYLE", "DEFAULT_STYLE", "CUSTOM_STYLE"
+    ]
 
+@typing.type_check_only
 class GetIosPostInstallAttributionResponse(typing_extensions.TypedDict, total=False):
-    matchMessage: str
-    requestIpVersion: typing_extensions.Literal["UNKNOWN_IP_VERSION", "IP_V4", "IP_V6"]
-    deepLink: str
-    requestedLink: str
-    fallbackLink: str
-    externalBrowserDestinationLink: str
-    utmCampaign: str
-    utmMedium: str
+    appMinimumVersion: str
     attributionConfidence: typing_extensions.Literal[
         "UNKNOWN_ATTRIBUTION_CONFIDENCE", "WEAK", "DEFAULT", "UNIQUE"
     ]
+    deepLink: str
+    externalBrowserDestinationLink: str
+    fallbackLink: str
     invitationId: str
     isStrongMatchExecutable: bool
-    appMinimumVersion: str
-    utmContent: str
-    utmSource: str
+    matchMessage: str
+    requestIpVersion: typing_extensions.Literal["UNKNOWN_IP_VERSION", "IP_V4", "IP_V6"]
+    requestedLink: str
     resolvedLink: str
+    utmCampaign: str
+    utmContent: str
+    utmMedium: str
+    utmSource: str
     utmTerm: str
+
+@typing.type_check_only
+class GetIosReopenAttributionRequest(typing_extensions.TypedDict, total=False):
+    bundleId: str
+    requestedLink: str
+    sdkVersion: str
+
+@typing.type_check_only
+class GetIosReopenAttributionResponse(typing_extensions.TypedDict, total=False):
+    deepLink: str
+    invitationId: str
+    iosMinAppVersion: str
+    resolvedLink: str
+    utmCampaign: str
+    utmContent: str
+    utmMedium: str
+    utmSource: str
+    utmTerm: str
+
+@typing.type_check_only
+class GooglePlayAnalytics(typing_extensions.TypedDict, total=False):
+    gclid: str
+    utmCampaign: str
+    utmContent: str
+    utmMedium: str
+    utmSource: str
+    utmTerm: str
+
+@typing.type_check_only
+class ITunesConnectAnalytics(typing_extensions.TypedDict, total=False):
+    at: str
+    ct: str
+    mt: str
+    pt: str
+
+@typing.type_check_only
+class IosInfo(typing_extensions.TypedDict, total=False):
+    iosAppStoreId: str
+    iosBundleId: str
+    iosCustomScheme: str
+    iosFallbackLink: str
+    iosIpadBundleId: str
+    iosIpadFallbackLink: str
+    iosMinimumVersion: str
+
+@typing.type_check_only
+class ManagedShortLink(typing_extensions.TypedDict, total=False):
+    creationTime: str
+    flaggedAttribute: typing.List[str]
+    info: DynamicLinkInfo
+    link: str
+    linkName: str
+    visibility: typing_extensions.Literal[
+        "UNSPECIFIED_VISIBILITY", "UNARCHIVED", "ARCHIVED", "NEVER_SHOWN"
+    ]
+
+@typing.type_check_only
+class NavigationInfo(typing_extensions.TypedDict, total=False):
+    enableForcedRedirect: bool
+
+@typing.type_check_only
+class SocialMetaTagInfo(typing_extensions.TypedDict, total=False):
+    socialDescription: str
+    socialImageLink: str
+    socialTitle: str
+
+@typing.type_check_only
+class Suffix(typing_extensions.TypedDict, total=False):
+    customSuffix: str
+    option: typing_extensions.Literal[
+        "OPTION_UNSPECIFIED", "UNGUESSABLE", "SHORT", "CUSTOM"
+    ]

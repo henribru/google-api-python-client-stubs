@@ -7,24 +7,64 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class TasksResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class TasklistsResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, tasklist: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, tasklist: str, **kwargs: typing.Any
+        ) -> TaskListHttpRequest: ...
+        def insert(
+            self, *, body: TaskList = ..., **kwargs: typing.Any
+        ) -> TaskListHttpRequest: ...
+        def list(
+            self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> TaskListsHttpRequest: ...
+        def patch(
+            self, *, tasklist: str, body: TaskList = ..., **kwargs: typing.Any
+        ) -> TaskListHttpRequest: ...
+        def update(
+            self, *, tasklist: str, body: TaskList = ..., **kwargs: typing.Any
+        ) -> TaskListHttpRequest: ...
+    @typing.type_check_only
     class TasksResource(googleapiclient.discovery.Resource):
+        def clear(
+            self, *, tasklist: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def delete(
+            self, *, tasklist: str, task: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, tasklist: str, task: str, **kwargs: typing.Any
+        ) -> TaskHttpRequest: ...
         def insert(
             self,
             *,
             tasklist: str,
             body: Task = ...,
-            previous: str = ...,
             parent: str = ...,
+            previous: str = ...,
             **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
-        def get(
-            self, *, tasklist: str, task: str, **kwargs: typing.Any
-        ) -> TaskHttpRequest: ...
-        def clear(
-            self, *, tasklist: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
+        def list(
+            self,
+            *,
+            tasklist: str,
+            completedMax: str = ...,
+            completedMin: str = ...,
+            dueMax: str = ...,
+            dueMin: str = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            showCompleted: bool = ...,
+            showDeleted: bool = ...,
+            showHidden: bool = ...,
+            updatedMin: str = ...,
+            **kwargs: typing.Any
+        ) -> TasksHttpRequest: ...
         def move(
             self,
             *,
@@ -34,69 +74,35 @@ class TasksResource(googleapiclient.discovery.Resource):
             previous: str = ...,
             **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
-        def delete(
-            self, *, tasklist: str, task: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
         def patch(
             self, *, tasklist: str, task: str, body: Task = ..., **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
         def update(
             self, *, tasklist: str, task: str, body: Task = ..., **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
-        def list(
-            self,
-            *,
-            tasklist: str,
-            pageToken: str = ...,
-            showDeleted: bool = ...,
-            maxResults: int = ...,
-            dueMax: str = ...,
-            completedMin: str = ...,
-            completedMax: str = ...,
-            showCompleted: bool = ...,
-            updatedMin: str = ...,
-            showHidden: bool = ...,
-            dueMin: str = ...,
-            **kwargs: typing.Any
-        ) -> TasksHttpRequest: ...
-    class TasklistsResource(googleapiclient.discovery.Resource):
-        def patch(
-            self, *, tasklist: str, body: TaskList = ..., **kwargs: typing.Any
-        ) -> TaskListHttpRequest: ...
-        def insert(
-            self, *, body: TaskList = ..., **kwargs: typing.Any
-        ) -> TaskListHttpRequest: ...
-        def get(
-            self, *, tasklist: str, **kwargs: typing.Any
-        ) -> TaskListHttpRequest: ...
-        def update(
-            self, *, tasklist: str, body: TaskList = ..., **kwargs: typing.Any
-        ) -> TaskListHttpRequest: ...
-        def list(
-            self, *, pageToken: str = ..., maxResults: int = ..., **kwargs: typing.Any
-        ) -> TaskListsHttpRequest: ...
-        def delete(
-            self, *, tasklist: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-    def tasks(self) -> TasksResource: ...
     def tasklists(self) -> TasklistsResource: ...
+    def tasks(self) -> TasksResource: ...
 
+@typing.type_check_only
 class TaskHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Task: ...
 
-class TasksHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Tasks: ...
-
+@typing.type_check_only
 class TaskListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> TaskList: ...
 
+@typing.type_check_only
 class TaskListsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> TaskLists: ...
+
+@typing.type_check_only
+class TasksHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Tasks: ...

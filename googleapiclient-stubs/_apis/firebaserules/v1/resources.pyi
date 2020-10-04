@@ -7,26 +7,18 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class FirebaseRulesResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class ReleasesResource(googleapiclient.discovery.Resource):
-            def patch(
-                self,
-                *,
-                name: str,
-                body: UpdateReleaseRequest = ...,
-                **kwargs: typing.Any
+            def create(
+                self, *, name: str, body: Release = ..., **kwargs: typing.Any
             ) -> ReleaseHttpRequest: ...
-            def list(
-                self,
-                *,
-                name: str,
-                pageSize: int = ...,
-                filter: str = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> ListReleasesResponseHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> ReleaseHttpRequest: ...
             def getExecutable(
                 self,
@@ -39,17 +31,31 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> GetReleaseExecutableResponseHttpRequest: ...
-            def create(
-                self, *, name: str, body: Release = ..., **kwargs: typing.Any
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListReleasesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: UpdateReleaseRequest = ...,
+                **kwargs: typing.Any
             ) -> ReleaseHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
+        @typing.type_check_only
         class RulesetsResource(googleapiclient.discovery.Resource):
-            def get(self, *, name: str, **kwargs: typing.Any) -> RulesetHttpRequest: ...
+            def create(
+                self, *, name: str, body: Ruleset = ..., **kwargs: typing.Any
+            ) -> RulesetHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> RulesetHttpRequest: ...
             def list(
                 self,
                 *,
@@ -59,9 +65,6 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListRulesetsResponseHttpRequest: ...
-            def create(
-                self, *, name: str, body: Ruleset = ..., **kwargs: typing.Any
-            ) -> RulesetHttpRequest: ...
         def test(
             self, *, name: str, body: TestRulesetRequest = ..., **kwargs: typing.Any
         ) -> TestRulesetResponseHttpRequest: ...
@@ -69,36 +72,43 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
         def rulesets(self) -> RulesetsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class GetReleaseExecutableResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GetReleaseExecutableResponse: ...
-
-class ListRulesetsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListRulesetsResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class RulesetHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class GetReleaseExecutableResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Ruleset: ...
+    ) -> GetReleaseExecutableResponse: ...
 
+@typing.type_check_only
 class ListReleasesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListReleasesResponse: ...
 
+@typing.type_check_only
+class ListRulesetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListRulesetsResponse: ...
+
+@typing.type_check_only
 class ReleaseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Release: ...
 
+@typing.type_check_only
+class RulesetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Ruleset: ...
+
+@typing.type_check_only
 class TestRulesetResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

@@ -1,34 +1,40 @@
 import typing
 
 import typing_extensions
-
-class WebAsset(typing_extensions.TypedDict, total=False):
-    site: str
-
+@typing.type_check_only
 class AndroidAppAsset(typing_extensions.TypedDict, total=False):
     certificate: CertificateInfo
     packageName: str
 
-class CheckResponse(typing_extensions.TypedDict, total=False):
-    errorCode: typing.List[str]
-    maxAge: str
-    debugString: str
-    linked: bool
-
-class Statement(typing_extensions.TypedDict, total=False):
-    relation: str
-    target: Asset
-    source: Asset
-
-class ListResponse(typing_extensions.TypedDict, total=False):
-    statements: typing.List[Statement]
-    debugString: str
-    maxAge: str
-    errorCode: typing.List[str]
-
+@typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     androidApp: AndroidAppAsset
     web: WebAsset
 
+@typing.type_check_only
 class CertificateInfo(typing_extensions.TypedDict, total=False):
     sha256Fingerprint: str
+
+@typing.type_check_only
+class CheckResponse(typing_extensions.TypedDict, total=False):
+    debugString: str
+    errorCode: typing.List[str]
+    linked: bool
+    maxAge: str
+
+@typing.type_check_only
+class ListResponse(typing_extensions.TypedDict, total=False):
+    debugString: str
+    errorCode: typing.List[str]
+    maxAge: str
+    statements: typing.List[Statement]
+
+@typing.type_check_only
+class Statement(typing_extensions.TypedDict, total=False):
+    relation: str
+    source: Asset
+    target: Asset
+
+@typing.type_check_only
+class WebAsset(typing_extensions.TypedDict, total=False):
+    site: str

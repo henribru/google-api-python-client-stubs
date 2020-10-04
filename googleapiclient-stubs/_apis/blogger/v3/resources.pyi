@@ -7,8 +7,119 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class BloggerResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class BlogUserInfosResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, userId: str, blogId: str, maxPosts: int = ..., **kwargs: typing.Any
+        ) -> BlogUserInfoHttpRequest: ...
+    @typing.type_check_only
+    class BlogsResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            blogId: str,
+            maxPosts: int = ...,
+            view: typing_extensions.Literal[
+                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> BlogHttpRequest: ...
+        def getByUrl(
+            self,
+            *,
+            url: str,
+            view: typing_extensions.Literal[
+                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> BlogHttpRequest: ...
+        def listByUser(
+            self,
+            *,
+            userId: str,
+            fetchUserInfo: bool = ...,
+            role: typing.Union[
+                typing_extensions.Literal[
+                    "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+                ],
+                typing.List[
+                    typing_extensions.Literal[
+                        "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+                    ]
+                ],
+            ] = ...,
+            status: typing.Union[
+                typing_extensions.Literal["LIVE", "DELETED"],
+                typing.List[typing_extensions.Literal["LIVE", "DELETED"]],
+            ] = ...,
+            view: typing_extensions.Literal[
+                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> BlogListHttpRequest: ...
+    @typing.type_check_only
+    class CommentsResource(googleapiclient.discovery.Resource):
+        def approve(
+            self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
+        ) -> CommentHttpRequest: ...
+        def delete(
+            self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            blogId: str,
+            postId: str,
+            commentId: str,
+            view: typing_extensions.Literal[
+                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> CommentHttpRequest: ...
+        def list(
+            self,
+            *,
+            blogId: str,
+            postId: str,
+            endDate: str = ...,
+            fetchBodies: bool = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            startDate: str = ...,
+            status: typing_extensions.Literal[
+                "LIVE", "EMPTIED", "PENDING", "SPAM"
+            ] = ...,
+            view: typing_extensions.Literal[
+                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> CommentListHttpRequest: ...
+        def listByBlog(
+            self,
+            *,
+            blogId: str,
+            endDate: str = ...,
+            fetchBodies: bool = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            startDate: str = ...,
+            status: typing.Union[
+                typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"],
+                typing.List[
+                    typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
+                ],
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> CommentListHttpRequest: ...
+        def markAsSpam(
+            self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
+        ) -> CommentHttpRequest: ...
+        def removeContent(
+            self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
+        ) -> CommentHttpRequest: ...
+    @typing.type_check_only
     class PageViewsResource(googleapiclient.discovery.Resource):
         def get(
             self,
@@ -20,6 +131,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> PageviewsHttpRequest: ...
+    @typing.type_check_only
     class PagesResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, blogId: str, pageId: str, **kwargs: typing.Any
@@ -34,6 +146,30 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> PageHttpRequest: ...
+        def insert(
+            self,
+            *,
+            blogId: str,
+            body: Page = ...,
+            isDraft: bool = ...,
+            **kwargs: typing.Any
+        ) -> PageHttpRequest: ...
+        def list(
+            self,
+            *,
+            blogId: str,
+            fetchBodies: bool = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            status: typing.Union[
+                typing_extensions.Literal["LIVE", "DRAFT"],
+                typing.List[typing_extensions.Literal["LIVE", "DRAFT"]],
+            ] = ...,
+            view: typing_extensions.Literal[
+                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> PageListHttpRequest: ...
         def patch(
             self,
             *,
@@ -44,70 +180,24 @@ class BloggerResource(googleapiclient.discovery.Resource):
             revert: bool = ...,
             **kwargs: typing.Any
         ) -> PageHttpRequest: ...
-        def update(
-            self,
-            *,
-            blogId: str,
-            pageId: str,
-            body: Page = ...,
-            revert: bool = ...,
-            publish: bool = ...,
-            **kwargs: typing.Any
-        ) -> PageHttpRequest: ...
-        def list(
-            self,
-            *,
-            blogId: str,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
-            fetchBodies: bool = ...,
-            pageToken: str = ...,
-            maxResults: int = ...,
-            status: typing.Union[
-                typing_extensions.Literal["LIVE", "DRAFT"],
-                typing.List[typing_extensions.Literal["LIVE", "DRAFT"]],
-            ] = ...,
-            **kwargs: typing.Any
-        ) -> PageListHttpRequest: ...
         def publish(
             self, *, blogId: str, pageId: str, **kwargs: typing.Any
         ) -> PageHttpRequest: ...
         def revert(
             self, *, blogId: str, pageId: str, **kwargs: typing.Any
         ) -> PageHttpRequest: ...
-        def insert(
+        def update(
             self,
             *,
             blogId: str,
+            pageId: str,
             body: Page = ...,
-            isDraft: bool = ...,
+            publish: bool = ...,
+            revert: bool = ...,
             **kwargs: typing.Any
         ) -> PageHttpRequest: ...
+    @typing.type_check_only
     class PostUserInfosResource(googleapiclient.discovery.Resource):
-        def list(
-            self,
-            *,
-            userId: str,
-            blogId: str,
-            status: typing.Union[
-                typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"],
-                typing.List[typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]],
-            ] = ...,
-            fetchBodies: bool = ...,
-            startDate: str = ...,
-            endDate: str = ...,
-            orderBy: typing_extensions.Literal[
-                "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
-            ] = ...,
-            pageToken: str = ...,
-            labels: str = ...,
-            maxResults: int = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
-            **kwargs: typing.Any
-        ) -> PostUserInfosListHttpRequest: ...
         def get(
             self,
             *,
@@ -117,89 +207,104 @@ class BloggerResource(googleapiclient.discovery.Resource):
             maxComments: int = ...,
             **kwargs: typing.Any
         ) -> PostUserInfoHttpRequest: ...
-    class CommentsResource(googleapiclient.discovery.Resource):
-        def approve(
-            self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
-        ) -> CommentHttpRequest: ...
-        def removeContent(
-            self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
-        ) -> CommentHttpRequest: ...
         def list(
             self,
             *,
+            userId: str,
             blogId: str,
-            postId: str,
-            maxResults: int = ...,
             endDate: str = ...,
-            status: typing_extensions.Literal[
-                "LIVE", "EMPTIED", "PENDING", "SPAM"
+            fetchBodies: bool = ...,
+            labels: str = ...,
+            maxResults: int = ...,
+            orderBy: typing_extensions.Literal[
+                "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
             ] = ...,
-            startDate: str = ...,
             pageToken: str = ...,
+            startDate: str = ...,
+            status: typing.Union[
+                typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"],
+                typing.List[typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]],
+            ] = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ] = ...,
-            fetchBodies: bool = ...,
             **kwargs: typing.Any
-        ) -> CommentListHttpRequest: ...
+        ) -> PostUserInfosListHttpRequest: ...
+    @typing.type_check_only
+    class PostsResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
+            self, *, blogId: str, postId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-        def listByBlog(
-            self,
-            *,
-            blogId: str,
-            status: typing.Union[
-                typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"],
-                typing.List[
-                    typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
-                ],
-            ] = ...,
-            endDate: str = ...,
-            startDate: str = ...,
-            pageToken: str = ...,
-            fetchBodies: bool = ...,
-            maxResults: int = ...,
-            **kwargs: typing.Any
-        ) -> CommentListHttpRequest: ...
-        def markAsSpam(
-            self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
-        ) -> CommentHttpRequest: ...
         def get(
             self,
             *,
             blogId: str,
             postId: str,
-            commentId: str,
+            fetchBody: bool = ...,
+            fetchImages: bool = ...,
+            maxComments: int = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ] = ...,
             **kwargs: typing.Any
-        ) -> CommentHttpRequest: ...
-    class PostsResource(googleapiclient.discovery.Resource):
+        ) -> PostHttpRequest: ...
+        def getByPath(
+            self,
+            *,
+            blogId: str,
+            path: str,
+            maxComments: int = ...,
+            view: typing_extensions.Literal[
+                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> PostHttpRequest: ...
+        def insert(
+            self,
+            *,
+            blogId: str,
+            body: Post = ...,
+            fetchBody: bool = ...,
+            fetchImages: bool = ...,
+            isDraft: bool = ...,
+            **kwargs: typing.Any
+        ) -> PostHttpRequest: ...
         def list(
             self,
             *,
             blogId: str,
-            fetchImages: bool = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
-            maxResults: int = ...,
-            startDate: str = ...,
             endDate: str = ...,
-            pageToken: str = ...,
             fetchBodies: bool = ...,
+            fetchImages: bool = ...,
+            labels: str = ...,
+            maxResults: int = ...,
             orderBy: typing_extensions.Literal[
                 "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
             ] = ...,
-            labels: str = ...,
+            pageToken: str = ...,
+            startDate: str = ...,
             status: typing.Union[
                 typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"],
                 typing.List[typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]],
             ] = ...,
+            view: typing_extensions.Literal[
+                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+            ] = ...,
             **kwargs: typing.Any
         ) -> PostListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            blogId: str,
+            postId: str,
+            body: Post = ...,
+            fetchBody: bool = ...,
+            fetchImages: bool = ...,
+            maxComments: int = ...,
+            publish: bool = ...,
+            revert: bool = ...,
+            **kwargs: typing.Any
+        ) -> PostHttpRequest: ...
         def publish(
             self,
             *,
@@ -208,58 +313,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             publishDate: str = ...,
             **kwargs: typing.Any
         ) -> PostHttpRequest: ...
-        def delete(
-            self, *, blogId: str, postId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
         def revert(
             self, *, blogId: str, postId: str, **kwargs: typing.Any
-        ) -> PostHttpRequest: ...
-        def update(
-            self,
-            *,
-            blogId: str,
-            postId: str,
-            body: Post = ...,
-            revert: bool = ...,
-            fetchImages: bool = ...,
-            maxComments: int = ...,
-            fetchBody: bool = ...,
-            publish: bool = ...,
-            **kwargs: typing.Any
-        ) -> PostHttpRequest: ...
-        def insert(
-            self,
-            *,
-            blogId: str,
-            body: Post = ...,
-            fetchImages: bool = ...,
-            isDraft: bool = ...,
-            fetchBody: bool = ...,
-            **kwargs: typing.Any
-        ) -> PostHttpRequest: ...
-        def getByPath(
-            self,
-            *,
-            blogId: str,
-            path: str,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
-            maxComments: int = ...,
-            **kwargs: typing.Any
-        ) -> PostHttpRequest: ...
-        def get(
-            self,
-            *,
-            blogId: str,
-            postId: str,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
-            fetchImages: bool = ...,
-            maxComments: int = ...,
-            fetchBody: bool = ...,
-            **kwargs: typing.Any
         ) -> PostHttpRequest: ...
         def search(
             self,
@@ -272,139 +327,105 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> PostListHttpRequest: ...
-        def patch(
+        def update(
             self,
             *,
             blogId: str,
             postId: str,
             body: Post = ...,
-            publish: bool = ...,
-            maxComments: int = ...,
             fetchBody: bool = ...,
             fetchImages: bool = ...,
+            maxComments: int = ...,
+            publish: bool = ...,
             revert: bool = ...,
             **kwargs: typing.Any
         ) -> PostHttpRequest: ...
-    class BlogUserInfosResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, userId: str, blogId: str, maxPosts: int = ..., **kwargs: typing.Any
-        ) -> BlogUserInfoHttpRequest: ...
+    @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def get(self, *, userId: str, **kwargs: typing.Any) -> UserHttpRequest: ...
-    class BlogsResource(googleapiclient.discovery.Resource):
-        def getByUrl(
-            self,
-            *,
-            url: str,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
-            **kwargs: typing.Any
-        ) -> BlogHttpRequest: ...
-        def get(
-            self,
-            *,
-            blogId: str,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
-            maxPosts: int = ...,
-            **kwargs: typing.Any
-        ) -> BlogHttpRequest: ...
-        def listByUser(
-            self,
-            *,
-            userId: str,
-            role: typing.Union[
-                typing_extensions.Literal[
-                    "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-                    ]
-                ],
-            ] = ...,
-            fetchUserInfo: bool = ...,
-            view: typing_extensions.Literal[
-                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-            ] = ...,
-            status: typing.Union[
-                typing_extensions.Literal["LIVE", "DELETED"],
-                typing.List[typing_extensions.Literal["LIVE", "DELETED"]],
-            ] = ...,
-            **kwargs: typing.Any
-        ) -> BlogListHttpRequest: ...
+    def blogUserInfos(self) -> BlogUserInfosResource: ...
+    def blogs(self) -> BlogsResource: ...
+    def comments(self) -> CommentsResource: ...
     def pageViews(self) -> PageViewsResource: ...
     def pages(self) -> PagesResource: ...
     def postUserInfos(self) -> PostUserInfosResource: ...
-    def comments(self) -> CommentsResource: ...
     def posts(self) -> PostsResource: ...
-    def blogUserInfos(self) -> BlogUserInfosResource: ...
     def users(self) -> UsersResource: ...
-    def blogs(self) -> BlogsResource: ...
 
-class BlogListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BlogList: ...
-
-class PageHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Page: ...
-
-class PostUserInfoHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PostUserInfo: ...
-
-class PostHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Post: ...
-
-class PostListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PostList: ...
-
-class PageviewsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Pageviews: ...
-
-class PageListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PageList: ...
-
-class CommentListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CommentList: ...
-
-class PostUserInfosListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PostUserInfosList: ...
-
+@typing.type_check_only
 class BlogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Blog: ...
 
-class UserHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class BlogListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> User: ...
+    ) -> BlogList: ...
 
+@typing.type_check_only
 class BlogUserInfoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BlogUserInfo: ...
 
+@typing.type_check_only
 class CommentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Comment: ...
+
+@typing.type_check_only
+class CommentListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CommentList: ...
+
+@typing.type_check_only
+class PageHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Page: ...
+
+@typing.type_check_only
+class PageListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PageList: ...
+
+@typing.type_check_only
+class PageviewsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Pageviews: ...
+
+@typing.type_check_only
+class PostHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Post: ...
+
+@typing.type_check_only
+class PostListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PostList: ...
+
+@typing.type_check_only
+class PostUserInfoHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PostUserInfo: ...
+
+@typing.type_check_only
+class PostUserInfosListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PostUserInfosList: ...
+
+@typing.type_check_only
+class UserHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> User: ...

@@ -1,7 +1,7 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class Bucket(typing_extensions.TypedDict, total=False):
     acl: typing.List[BucketAccessControl]
     billing: typing.Dict[str, typing.Any]
@@ -31,6 +31,7 @@ class Bucket(typing_extensions.TypedDict, total=False):
     website: typing.Dict[str, typing.Any]
     zoneAffinity: typing.List[str]
 
+@typing.type_check_only
 class BucketAccessControl(typing_extensions.TypedDict, total=False):
     bucket: str
     domain: str
@@ -44,15 +45,18 @@ class BucketAccessControl(typing_extensions.TypedDict, total=False):
     role: str
     selfLink: str
 
+@typing.type_check_only
 class BucketAccessControls(typing_extensions.TypedDict, total=False):
     items: typing.List[BucketAccessControl]
     kind: str
 
+@typing.type_check_only
 class Buckets(typing_extensions.TypedDict, total=False):
     items: typing.List[Bucket]
     kind: str
     nextPageToken: str
 
+@typing.type_check_only
 class Channel(typing_extensions.TypedDict, total=False):
     address: str
     expiration: str
@@ -65,22 +69,26 @@ class Channel(typing_extensions.TypedDict, total=False):
     token: str
     type: str
 
+@typing.type_check_only
 class ComposeRequest(typing_extensions.TypedDict, total=False):
     destination: Object
     kind: str
     sourceObjects: typing.List[typing.Dict[str, typing.Any]]
 
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
+@typing.type_check_only
 class HmacKey(typing_extensions.TypedDict, total=False):
     kind: str
     metadata: HmacKeyMetadata
     secret: str
 
+@typing.type_check_only
 class HmacKeyMetadata(typing_extensions.TypedDict, total=False):
     accessId: str
     etag: str
@@ -93,11 +101,13 @@ class HmacKeyMetadata(typing_extensions.TypedDict, total=False):
     timeCreated: str
     updated: str
 
+@typing.type_check_only
 class HmacKeysMetadata(typing_extensions.TypedDict, total=False):
     items: typing.List[HmacKeyMetadata]
     kind: str
     nextPageToken: str
 
+@typing.type_check_only
 class Notification(typing_extensions.TypedDict, total=False):
     custom_attributes: typing.Dict[str, typing.Any]
     etag: str
@@ -109,10 +119,12 @@ class Notification(typing_extensions.TypedDict, total=False):
     selfLink: str
     topic: str
 
+@typing.type_check_only
 class Notifications(typing_extensions.TypedDict, total=False):
     items: typing.List[Notification]
     kind: str
 
+@typing.type_check_only
 class Object(typing_extensions.TypedDict, total=False):
     acl: typing.List[ObjectAccessControl]
     bucket: str
@@ -147,6 +159,7 @@ class Object(typing_extensions.TypedDict, total=False):
     timeStorageClassUpdated: str
     updated: str
 
+@typing.type_check_only
 class ObjectAccessControl(typing_extensions.TypedDict, total=False):
     bucket: str
     domain: str
@@ -162,16 +175,19 @@ class ObjectAccessControl(typing_extensions.TypedDict, total=False):
     role: str
     selfLink: str
 
+@typing.type_check_only
 class ObjectAccessControls(typing_extensions.TypedDict, total=False):
     items: typing.List[ObjectAccessControl]
     kind: str
 
+@typing.type_check_only
 class Objects(typing_extensions.TypedDict, total=False):
     items: typing.List[Object]
     kind: str
     nextPageToken: str
     prefixes: typing.List[str]
 
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     bindings: typing.List[typing.Dict[str, typing.Any]]
     etag: str
@@ -179,6 +195,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     resourceId: str
     version: int
 
+@typing.type_check_only
 class RewriteResponse(typing_extensions.TypedDict, total=False):
     done: bool
     kind: str
@@ -187,10 +204,12 @@ class RewriteResponse(typing_extensions.TypedDict, total=False):
     rewriteToken: str
     totalBytesRewritten: str
 
+@typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     email_address: str
     kind: str
 
+@typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     kind: str
     permissions: typing.List[str]

@@ -7,21 +7,22 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudIAPResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class V1beta1Resource(googleapiclient.discovery.Resource):
-        def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
         def getIamPolicy(
             self,
             *,
             resource: str,
             body: GetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: SetIamPolicyRequest = ...,
             **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
@@ -33,11 +34,13 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
         ) -> TestIamPermissionsResponseHttpRequest: ...
     def v1beta1(self) -> V1beta1Resource: ...
 
+@typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Policy: ...
 
+@typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

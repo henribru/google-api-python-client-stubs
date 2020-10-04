@@ -7,20 +7,22 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class GroupssettingsResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class GroupsResource(googleapiclient.discovery.Resource):
-        def patch(
-            self, *, groupUniqueId: str, body: Groups = ..., **kwargs: typing.Any
-        ) -> GroupsHttpRequest: ...
         def get(
             self, *, groupUniqueId: str, **kwargs: typing.Any
+        ) -> GroupsHttpRequest: ...
+        def patch(
+            self, *, groupUniqueId: str, body: Groups = ..., **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
         def update(
             self, *, groupUniqueId: str, body: Groups = ..., **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
     def groups(self) -> GroupsResource: ...
 
+@typing.type_check_only
 class GroupsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

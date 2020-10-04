@@ -1,71 +1,80 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AccessLevel(typing_extensions.TypedDict, total=False):
+    basic: BasicLevel
+    custom: CustomLevel
+    description: str
+    name: str
+    title: str
 
-class Condition(typing_extensions.TypedDict, total=False):
-    members: typing.List[str]
-    requiredAccessLevels: typing.List[str]
-    negate: bool
-    ipSubnetworks: typing.List[str]
-    regions: typing.List[str]
-    devicePolicy: DevicePolicy
+@typing.type_check_only
+class AccessPolicy(typing_extensions.TypedDict, total=False):
+    name: str
+    parent: str
+    title: str
 
-class DevicePolicy(typing_extensions.TypedDict, total=False):
-    requireAdminApproval: bool
-    requireCorpOwned: bool
-    osConstraints: typing.List[OsConstraint]
-    allowedEncryptionStatuses: typing.List[str]
-    requireScreenlock: bool
-    allowedDeviceManagementLevels: typing.List[str]
-
-class ServicePerimeterConfig(typing_extensions.TypedDict, total=False):
-    unrestrictedServices: typing.List[str]
-    accessLevels: typing.List[str]
-    restrictedServices: typing.List[str]
-    vpcAccessibleServices: VpcAccessibleServices
-    resources: typing.List[str]
-
+@typing.type_check_only
 class BasicLevel(typing_extensions.TypedDict, total=False):
     combiningFunction: typing_extensions.Literal["AND", "OR"]
     conditions: typing.List[Condition]
 
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
-    message: str
+@typing.type_check_only
+class Condition(typing_extensions.TypedDict, total=False):
+    devicePolicy: DevicePolicy
+    ipSubnetworks: typing.List[str]
+    members: typing.List[str]
+    negate: bool
+    regions: typing.List[str]
+    requiredAccessLevels: typing.List[str]
 
-class AccessPolicy(typing_extensions.TypedDict, total=False):
-    name: str
-    title: str
-    parent: str
-
-class VpcAccessibleServices(typing_extensions.TypedDict, total=False):
-    enableRestriction: bool
-    allowedServices: typing.List[str]
-
-class Expr(typing_extensions.TypedDict, total=False):
-    location: str
-    title: str
-    expression: str
-    description: str
-
+@typing.type_check_only
 class CustomLevel(typing_extensions.TypedDict, total=False):
     expr: Expr
 
-class Operation(typing_extensions.TypedDict, total=False):
-    name: str
-    response: typing.Dict[str, typing.Any]
-    metadata: typing.Dict[str, typing.Any]
-    done: bool
-    error: Status
+@typing.type_check_only
+class DevicePolicy(typing_extensions.TypedDict, total=False):
+    allowedDeviceManagementLevels: typing.List[str]
+    allowedEncryptionStatuses: typing.List[str]
+    osConstraints: typing.List[OsConstraint]
+    requireAdminApproval: bool
+    requireCorpOwned: bool
+    requireScreenlock: bool
 
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class ListAccessLevelsResponse(typing_extensions.TypedDict, total=False):
+    accessLevels: typing.List[AccessLevel]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListAccessPoliciesResponse(typing_extensions.TypedDict, total=False):
     accessPolicies: typing.List[AccessPolicy]
     nextPageToken: str
 
+@typing.type_check_only
+class ListServicePerimetersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    servicePerimeters: typing.List[ServicePerimeter]
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class OsConstraint(typing_extensions.TypedDict, total=False):
     minimumVersion: str
-    requireVerifiedChromeOs: bool
     osType: typing_extensions.Literal[
         "OS_UNSPECIFIED",
         "DESKTOP_MAC",
@@ -75,27 +84,33 @@ class OsConstraint(typing_extensions.TypedDict, total=False):
         "ANDROID",
         "IOS",
     ]
+    requireVerifiedChromeOs: bool
 
+@typing.type_check_only
 class ServicePerimeter(typing_extensions.TypedDict, total=False):
+    description: str
+    name: str
     perimeterType: typing_extensions.Literal[
         "PERIMETER_TYPE_REGULAR", "PERIMETER_TYPE_BRIDGE"
     ]
-    name: str
-    description: str
-    title: str
     status: ServicePerimeterConfig
-
-class ListAccessLevelsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    accessLevels: typing.List[AccessLevel]
-
-class AccessLevel(typing_extensions.TypedDict, total=False):
-    name: str
     title: str
-    custom: CustomLevel
-    description: str
-    basic: BasicLevel
 
-class ListServicePerimetersResponse(typing_extensions.TypedDict, total=False):
-    servicePerimeters: typing.List[ServicePerimeter]
-    nextPageToken: str
+@typing.type_check_only
+class ServicePerimeterConfig(typing_extensions.TypedDict, total=False):
+    accessLevels: typing.List[str]
+    resources: typing.List[str]
+    restrictedServices: typing.List[str]
+    unrestrictedServices: typing.List[str]
+    vpcAccessibleServices: VpcAccessibleServices
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class VpcAccessibleServices(typing_extensions.TypedDict, total=False):
+    allowedServices: typing.List[str]
+    enableRestriction: bool

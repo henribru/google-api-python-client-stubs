@@ -7,10 +7,13 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudTraceResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class TracesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class SpansResource(googleapiclient.discovery.Resource):
                 def createSpan(
                     self, *, name: str, body: Span = ..., **kwargs: typing.Any
@@ -26,12 +29,14 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
         def traces(self) -> TracesResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class SpanHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Span: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
+
+@typing.type_check_only
+class SpanHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Span: ...

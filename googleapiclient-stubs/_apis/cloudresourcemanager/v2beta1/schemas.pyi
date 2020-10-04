@@ -1,98 +1,52 @@
 import typing
 
 import typing_extensions
-
-class SearchFoldersResponse(typing_extensions.TypedDict, total=False):
-    folders: typing.List[Folder]
-    nextPageToken: str
-
-class Expr(typing_extensions.TypedDict, total=False):
-    description: str
-    title: str
-    location: str
-    expression: str
-
-class Operation(typing_extensions.TypedDict, total=False):
-    name: str
-    response: typing.Dict[str, typing.Any]
-    error: Status
-    done: bool
-    metadata: typing.Dict[str, typing.Any]
-
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    options: GetPolicyOptions
-
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class SearchFoldersRequest(typing_extensions.TypedDict, total=False):
-    pageToken: str
-    query: str
-    pageSize: int
-
-class Policy(typing_extensions.TypedDict, total=False):
-    etag: str
-    auditConfigs: typing.List[AuditConfig]
-    version: int
-    bindings: typing.List[Binding]
-
-class Folder(typing_extensions.TypedDict, total=False):
-    displayName: str
-    lifecycleState: typing_extensions.Literal[
-        "LIFECYCLE_STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"
-    ]
-    parent: str
-    name: str
-    createTime: str
-
-class Binding(typing_extensions.TypedDict, total=False):
-    condition: Expr
-    role: str
-    bindingId: str
-    members: typing.List[str]
-
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: typing.List[AuditLogConfig]
     service: str
 
-class ListFoldersResponse(typing_extensions.TypedDict, total=False):
-    folders: typing.List[Folder]
-    nextPageToken: str
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-    updateMask: str
-
-class UndeleteFolderRequest(typing_extensions.TypedDict, total=False): ...
-
-class ProjectCreationStatus(typing_extensions.TypedDict, total=False):
-    ready: bool
-    createTime: str
-    gettable: bool
-
-class FolderOperation(typing_extensions.TypedDict, total=False):
-    operationType: typing_extensions.Literal[
-        "OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"
-    ]
-    destinationParent: str
-    sourceParent: str
-    displayName: str
-
+@typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
     exemptedMembers: typing.List[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
-    requestedPolicyVersion: int
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
+    condition: Expr
+    members: typing.List[str]
+    role: str
 
-class MoveFolderRequest(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class Folder(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    lifecycleState: typing_extensions.Literal[
+        "LIFECYCLE_STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"
+    ]
+    name: str
+    parent: str
+
+@typing.type_check_only
+class FolderOperation(typing_extensions.TypedDict, total=False):
     destinationParent: str
+    displayName: str
+    operationType: typing_extensions.Literal[
+        "OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"
+    ]
+    sourceParent: str
 
+@typing.type_check_only
 class FolderOperationError(typing_extensions.TypedDict, total=False):
     errorMessageId: typing_extensions.Literal[
         "ERROR_TYPE_UNSPECIFIED",
@@ -107,7 +61,73 @@ class FolderOperationError(typing_extensions.TypedDict, total=False):
         "DELETED_FOLDER_HEIGHT_VIOLATION",
     ]
 
+@typing.type_check_only
+class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GetPolicyOptions
+
+@typing.type_check_only
+class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
+
+@typing.type_check_only
+class ListFoldersResponse(typing_extensions.TypedDict, total=False):
+    folders: typing.List[Folder]
+    nextPageToken: str
+
+@typing.type_check_only
+class MoveFolderRequest(typing_extensions.TypedDict, total=False):
+    destinationParent: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class ProjectCreationStatus(typing_extensions.TypedDict, total=False):
+    createTime: str
+    gettable: bool
+    ready: bool
+
+@typing.type_check_only
+class SearchFoldersRequest(typing_extensions.TypedDict, total=False):
+    pageSize: int
+    pageToken: str
+    query: str
+
+@typing.type_check_only
+class SearchFoldersResponse(typing_extensions.TypedDict, total=False):
+    folders: typing.List[Folder]
+    nextPageToken: str
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
     code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class UndeleteFolderRequest(typing_extensions.TypedDict, total=False): ...

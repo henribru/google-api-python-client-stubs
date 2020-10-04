@@ -1,15 +1,14 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class AmpUrl(typing_extensions.TypedDict, total=False):
+    ampUrl: str
     cdnAmpUrl: str
     originalUrl: str
-    ampUrl: str
 
+@typing.type_check_only
 class AmpUrlError(typing_extensions.TypedDict, total=False):
-    originalUrl: str
-    errorMessage: str
     errorCode: typing_extensions.Literal[
         "ERROR_CODE_UNSPECIFIED",
         "INPUT_URL_NOT_FOUND",
@@ -18,11 +17,15 @@ class AmpUrlError(typing_extensions.TypedDict, total=False):
         "URL_IS_VALID_AMP",
         "URL_IS_INVALID_AMP",
     ]
+    errorMessage: str
+    originalUrl: str
 
+@typing.type_check_only
+class BatchGetAmpUrlsRequest(typing_extensions.TypedDict, total=False):
+    lookupStrategy: typing_extensions.Literal["FETCH_LIVE_DOC", "IN_INDEX_DOC"]
+    urls: typing.List[str]
+
+@typing.type_check_only
 class BatchGetAmpUrlsResponse(typing_extensions.TypedDict, total=False):
     ampUrls: typing.List[AmpUrl]
     urlErrors: typing.List[AmpUrlError]
-
-class BatchGetAmpUrlsRequest(typing_extensions.TypedDict, total=False):
-    urls: typing.List[str]
-    lookupStrategy: typing_extensions.Literal["FETCH_LIVE_DOC", "IN_INDEX_DOC"]

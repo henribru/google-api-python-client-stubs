@@ -1,191 +1,160 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class ApiConfigHandler(typing_extensions.TypedDict, total=False):
+    authFailAction: typing_extensions.Literal[
+        "AUTH_FAIL_ACTION_UNSPECIFIED",
+        "AUTH_FAIL_ACTION_REDIRECT",
+        "AUTH_FAIL_ACTION_UNAUTHORIZED",
+    ]
+    login: typing_extensions.Literal[
+        "LOGIN_UNSPECIFIED", "LOGIN_OPTIONAL", "LOGIN_ADMIN", "LOGIN_REQUIRED"
+    ]
+    script: str
+    securityLevel: typing_extensions.Literal[
+        "SECURE_UNSPECIFIED",
+        "SECURE_DEFAULT",
+        "SECURE_NEVER",
+        "SECURE_OPTIONAL",
+        "SECURE_ALWAYS",
+    ]
+    url: str
 
-class Service(typing_extensions.TypedDict, total=False):
-    split: TrafficSplit
-    name: str
-    networkSettings: NetworkSettings
+@typing.type_check_only
+class ApiEndpointHandler(typing_extensions.TypedDict, total=False):
+    scriptPath: str
+
+@typing.type_check_only
+class Application(typing_extensions.TypedDict, total=False):
+    authDomain: str
+    codeBucket: str
+    databaseType: typing_extensions.Literal[
+        "DATABASE_TYPE_UNSPECIFIED",
+        "CLOUD_DATASTORE",
+        "CLOUD_FIRESTORE",
+        "CLOUD_DATASTORE_COMPATIBILITY",
+    ]
+    defaultBucket: str
+    defaultCookieExpiration: str
+    defaultHostname: str
+    dispatchRules: typing.List[UrlDispatchRule]
+    featureSettings: FeatureSettings
+    gcrDomain: str
+    iap: IdentityAwareProxy
     id: str
-
-class TrafficSplit(typing_extensions.TypedDict, total=False):
-    shardBy: typing_extensions.Literal["UNSPECIFIED", "COOKIE", "IP", "RANDOM"]
-    allocations: typing.Dict[str, typing.Any]
-
-class Location(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-    name: str
     locationId: str
-    displayName: str
-    metadata: typing.Dict[str, typing.Any]
-
-class ManualScaling(typing_extensions.TypedDict, total=False):
-    instances: int
-
-class ErrorHandler(typing_extensions.TypedDict, total=False):
-    mimeType: str
-    staticFile: str
-    errorCode: typing_extensions.Literal[
-        "ERROR_CODE_UNSPECIFIED",
-        "ERROR_CODE_DEFAULT",
-        "ERROR_CODE_OVER_QUOTA",
-        "ERROR_CODE_DOS_API_DENIAL",
-        "ERROR_CODE_TIMEOUT",
+    name: str
+    servingStatus: typing_extensions.Literal[
+        "UNSPECIFIED", "SERVING", "USER_DISABLED", "SYSTEM_DISABLED"
     ]
 
+@typing.type_check_only
+class AuthorizedCertificate(typing_extensions.TypedDict, total=False):
+    certificateRawData: CertificateRawData
+    displayName: str
+    domainMappingsCount: int
+    domainNames: typing.List[str]
+    expireTime: str
+    id: str
+    managedCertificate: ManagedCertificate
+    name: str
+    visibleDomainMappings: typing.List[str]
+
+@typing.type_check_only
+class AuthorizedDomain(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+
+@typing.type_check_only
+class AutomaticScaling(typing_extensions.TypedDict, total=False):
+    coolDownPeriod: str
+    cpuUtilization: CpuUtilization
+    diskUtilization: DiskUtilization
+    maxConcurrentRequests: int
+    maxIdleInstances: int
+    maxPendingLatency: str
+    maxTotalInstances: int
+    minIdleInstances: int
+    minPendingLatency: str
+    minTotalInstances: int
+    networkUtilization: NetworkUtilization
+    requestUtilization: RequestUtilization
+    standardSchedulerSettings: StandardSchedulerSettings
+
+@typing.type_check_only
+class BasicScaling(typing_extensions.TypedDict, total=False):
+    idleTimeout: str
+    maxInstances: int
+
+@typing.type_check_only
+class BatchUpdateIngressRulesRequest(typing_extensions.TypedDict, total=False):
+    ingressRules: typing.List[FirewallRule]
+
+@typing.type_check_only
+class BatchUpdateIngressRulesResponse(typing_extensions.TypedDict, total=False):
+    ingressRules: typing.List[FirewallRule]
+
+@typing.type_check_only
+class CertificateRawData(typing_extensions.TypedDict, total=False):
+    privateKey: str
+    publicCertificate: str
+
+@typing.type_check_only
+class CloudBuildOptions(typing_extensions.TypedDict, total=False):
+    appYamlPath: str
+    cloudBuildTimeout: str
+
+@typing.type_check_only
+class ContainerInfo(typing_extensions.TypedDict, total=False):
+    image: str
+
+@typing.type_check_only
+class CpuUtilization(typing_extensions.TypedDict, total=False):
+    aggregationWindowLength: str
+    targetUtilization: float
+
+@typing.type_check_only
+class CreateVersionMetadataV1(typing_extensions.TypedDict, total=False):
+    cloudBuildId: str
+
+@typing.type_check_only
+class CreateVersionMetadataV1Alpha(typing_extensions.TypedDict, total=False):
+    cloudBuildId: str
+
+@typing.type_check_only
+class CreateVersionMetadataV1Beta(typing_extensions.TypedDict, total=False):
+    cloudBuildId: str
+
+@typing.type_check_only
 class DebugInstanceRequest(typing_extensions.TypedDict, total=False):
     sshKey: str
 
-class Network(typing_extensions.TypedDict, total=False):
-    forwardedPorts: typing.List[str]
-    subnetworkName: str
-    instanceTag: str
-    sessionAffinity: bool
-    name: str
-
-class StandardSchedulerSettings(typing_extensions.TypedDict, total=False):
-    targetThroughputUtilization: float
-    minInstances: int
-    targetCpuUtilization: float
-    maxInstances: int
-
-class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
-    domains: typing.List[AuthorizedDomain]
-    nextPageToken: str
-
-class SslSettings(typing_extensions.TypedDict, total=False):
-    pendingManagedCertificateId: str
-    certificateId: str
-    sslManagementType: typing_extensions.Literal[
-        "SSL_MANAGEMENT_TYPE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
-    ]
-
+@typing.type_check_only
 class Deployment(typing_extensions.TypedDict, total=False):
     cloudBuildOptions: CloudBuildOptions
     container: ContainerInfo
     files: typing.Dict[str, typing.Any]
     zip: ZipInfo
 
-class CreateVersionMetadataV1(typing_extensions.TypedDict, total=False):
-    cloudBuildId: str
-
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
-    services: typing.List[Service]
-    nextPageToken: str
-
-class StaticFilesHandler(typing_extensions.TypedDict, total=False):
-    expiration: str
-    uploadPathRegex: str
-    requireMatchingFile: bool
-    httpHeaders: typing.Dict[str, typing.Any]
-    path: str
-    mimeType: str
-    applicationReadable: bool
-
-class Library(typing_extensions.TypedDict, total=False):
-    name: str
-    version: str
-
-class LivenessCheck(typing_extensions.TypedDict, total=False):
-    timeout: str
-    checkInterval: str
-    path: str
-    host: str
-    initialDelay: str
-    failureThreshold: int
-    successThreshold: int
-
-class CertificateRawData(typing_extensions.TypedDict, total=False):
-    publicCertificate: str
-    privateKey: str
-
-class Volume(typing_extensions.TypedDict, total=False):
-    volumeType: str
-    name: str
-    sizeGb: float
-
-class HealthCheck(typing_extensions.TypedDict, total=False):
-    checkInterval: str
-    restartThreshold: int
-    unhealthyThreshold: int
-    host: str
-    healthyThreshold: int
-    disableHealthCheck: bool
-    timeout: str
-
-class OperationMetadataV1(typing_extensions.TypedDict, total=False):
-    method: str
-    warning: typing.List[str]
-    createVersionMetadata: CreateVersionMetadataV1
-    insertTime: str
-    endTime: str
-    user: str
-    target: str
-    ephemeralMessage: str
-
-class RepairApplicationRequest(typing_extensions.TypedDict, total=False): ...
-
-class CpuUtilization(typing_extensions.TypedDict, total=False):
-    targetUtilization: float
-    aggregationWindowLength: str
-
-class AuthorizedDomain(typing_extensions.TypedDict, total=False):
-    id: str
-    name: str
-
-class AutomaticScaling(typing_extensions.TypedDict, total=False):
-    minPendingLatency: str
-    diskUtilization: DiskUtilization
-    coolDownPeriod: str
-    networkUtilization: NetworkUtilization
-    minIdleInstances: int
-    maxTotalInstances: int
-    requestUtilization: RequestUtilization
-    cpuUtilization: CpuUtilization
-    maxConcurrentRequests: int
-    standardSchedulerSettings: StandardSchedulerSettings
-    minTotalInstances: int
-    maxIdleInstances: int
-    maxPendingLatency: str
-
-class ScriptHandler(typing_extensions.TypedDict, total=False):
-    scriptPath: str
-
-class ApiEndpointHandler(typing_extensions.TypedDict, total=False):
-    scriptPath: str
-
+@typing.type_check_only
 class DiskUtilization(typing_extensions.TypedDict, total=False):
-    targetReadOpsPerSecond: int
     targetReadBytesPerSecond: int
+    targetReadOpsPerSecond: int
     targetWriteBytesPerSecond: int
     targetWriteOpsPerSecond: int
 
-class AuthorizedCertificate(typing_extensions.TypedDict, total=False):
-    expireTime: str
+@typing.type_check_only
+class DomainMapping(typing_extensions.TypedDict, total=False):
     id: str
-    visibleDomainMappings: typing.List[str]
-    domainNames: typing.List[str]
-    certificateRawData: CertificateRawData
-    displayName: str
     name: str
-    domainMappingsCount: int
-    managedCertificate: ManagedCertificate
+    resourceRecords: typing.List[ResourceRecord]
+    sslSettings: SslSettings
 
-class UrlDispatchRule(typing_extensions.TypedDict, total=False):
-    domain: str
-    path: str
-    service: str
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
-class BasicScaling(typing_extensions.TypedDict, total=False):
-    maxInstances: int
-    idleTimeout: str
-
-class FirewallRule(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal["UNSPECIFIED_ACTION", "ALLOW", "DENY"]
-    sourceRange: str
-    description: str
-    priority: int
-
+@typing.type_check_only
 class EndpointsApiService(typing_extensions.TypedDict, total=False):
     configId: str
     disableTraceSampling: bool
@@ -194,34 +163,150 @@ class EndpointsApiService(typing_extensions.TypedDict, total=False):
         "UNSPECIFIED_ROLLOUT_STRATEGY", "FIXED", "MANAGED"
     ]
 
-class UrlMap(typing_extensions.TypedDict, total=False):
-    securityLevel: typing_extensions.Literal[
-        "SECURE_UNSPECIFIED",
-        "SECURE_DEFAULT",
-        "SECURE_NEVER",
-        "SECURE_OPTIONAL",
-        "SECURE_ALWAYS",
-    ]
-    redirectHttpResponseCode: typing_extensions.Literal[
-        "REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED",
-        "REDIRECT_HTTP_RESPONSE_CODE_301",
-        "REDIRECT_HTTP_RESPONSE_CODE_302",
-        "REDIRECT_HTTP_RESPONSE_CODE_303",
-        "REDIRECT_HTTP_RESPONSE_CODE_307",
-    ]
-    login: typing_extensions.Literal[
-        "LOGIN_UNSPECIFIED", "LOGIN_OPTIONAL", "LOGIN_ADMIN", "LOGIN_REQUIRED"
-    ]
-    script: ScriptHandler
-    staticFiles: StaticFilesHandler
-    authFailAction: typing_extensions.Literal[
-        "AUTH_FAIL_ACTION_UNSPECIFIED",
-        "AUTH_FAIL_ACTION_REDIRECT",
-        "AUTH_FAIL_ACTION_UNAUTHORIZED",
-    ]
-    apiEndpoint: ApiEndpointHandler
-    urlRegex: str
+@typing.type_check_only
+class Entrypoint(typing_extensions.TypedDict, total=False):
+    shell: str
 
+@typing.type_check_only
+class ErrorHandler(typing_extensions.TypedDict, total=False):
+    errorCode: typing_extensions.Literal[
+        "ERROR_CODE_UNSPECIFIED",
+        "ERROR_CODE_DEFAULT",
+        "ERROR_CODE_OVER_QUOTA",
+        "ERROR_CODE_DOS_API_DENIAL",
+        "ERROR_CODE_TIMEOUT",
+    ]
+    mimeType: str
+    staticFile: str
+
+@typing.type_check_only
+class FeatureSettings(typing_extensions.TypedDict, total=False):
+    splitHealthChecks: bool
+    useContainerOptimizedOs: bool
+
+@typing.type_check_only
+class FileInfo(typing_extensions.TypedDict, total=False):
+    mimeType: str
+    sha1Sum: str
+    sourceUrl: str
+
+@typing.type_check_only
+class FirewallRule(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal["UNSPECIFIED_ACTION", "ALLOW", "DENY"]
+    description: str
+    priority: int
+    sourceRange: str
+
+@typing.type_check_only
+class HealthCheck(typing_extensions.TypedDict, total=False):
+    checkInterval: str
+    disableHealthCheck: bool
+    healthyThreshold: int
+    host: str
+    restartThreshold: int
+    timeout: str
+    unhealthyThreshold: int
+
+@typing.type_check_only
+class IdentityAwareProxy(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    oauth2ClientId: str
+    oauth2ClientSecret: str
+    oauth2ClientSecretSha256: str
+
+@typing.type_check_only
+class Instance(typing_extensions.TypedDict, total=False):
+    appEngineRelease: str
+    availability: typing_extensions.Literal["UNSPECIFIED", "RESIDENT", "DYNAMIC"]
+    averageLatency: int
+    errors: int
+    id: str
+    memoryUsage: str
+    name: str
+    qps: float
+    requests: int
+    startTime: str
+    vmDebugEnabled: bool
+    vmId: str
+    vmIp: str
+    vmName: str
+    vmStatus: str
+    vmZoneName: str
+
+@typing.type_check_only
+class Library(typing_extensions.TypedDict, total=False):
+    name: str
+    version: str
+
+@typing.type_check_only
+class ListAuthorizedCertificatesResponse(typing_extensions.TypedDict, total=False):
+    certificates: typing.List[AuthorizedCertificate]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
+    domains: typing.List[AuthorizedDomain]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
+    domainMappings: typing.List[DomainMapping]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListIngressRulesResponse(typing_extensions.TypedDict, total=False):
+    ingressRules: typing.List[FirewallRule]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInstancesResponse(typing_extensions.TypedDict, total=False):
+    instances: typing.List[Instance]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class ListServicesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    services: typing.List[Service]
+
+@typing.type_check_only
+class ListVersionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    versions: typing.List[Version]
+
+@typing.type_check_only
+class LivenessCheck(typing_extensions.TypedDict, total=False):
+    checkInterval: str
+    failureThreshold: int
+    host: str
+    initialDelay: str
+    path: str
+    successThreshold: int
+    timeout: str
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class LocationMetadata(typing_extensions.TypedDict, total=False):
+    flexibleEnvironmentAvailable: bool
+    standardEnvironmentAvailable: bool
+
+@typing.type_check_only
 class ManagedCertificate(typing_extensions.TypedDict, total=False):
     lastRenewalTime: str
     status: typing_extensions.Literal[
@@ -234,172 +319,19 @@ class ManagedCertificate(typing_extensions.TypedDict, total=False):
         "FAILED_RETRYING_CAA_CHECKING",
     ]
 
-class CreateVersionMetadataV1Alpha(typing_extensions.TypedDict, total=False):
-    cloudBuildId: str
+@typing.type_check_only
+class ManualScaling(typing_extensions.TypedDict, total=False):
+    instances: int
 
-class IdentityAwareProxy(typing_extensions.TypedDict, total=False):
-    oauth2ClientId: str
-    oauth2ClientSecretSha256: str
-    oauth2ClientSecret: str
-    enabled: bool
-
-class ZipInfo(typing_extensions.TypedDict, total=False):
-    filesCount: int
-    sourceUrl: str
-
-class VpcAccessConnector(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Network(typing_extensions.TypedDict, total=False):
+    forwardedPorts: typing.List[str]
+    instanceTag: str
     name: str
+    sessionAffinity: bool
+    subnetworkName: str
 
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class Status(typing_extensions.TypedDict, total=False):
-    code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-
-class CloudBuildOptions(typing_extensions.TypedDict, total=False):
-    cloudBuildTimeout: str
-    appYamlPath: str
-
-class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
-    user: str
-    ephemeralMessage: str
-    target: str
-    endTime: str
-    method: str
-    createVersionMetadata: CreateVersionMetadataV1Alpha
-    warning: typing.List[str]
-    insertTime: str
-
-class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    domainMappings: typing.List[DomainMapping]
-
-class FeatureSettings(typing_extensions.TypedDict, total=False):
-    useContainerOptimizedOs: bool
-    splitHealthChecks: bool
-
-class LocationMetadata(typing_extensions.TypedDict, total=False):
-    flexibleEnvironmentAvailable: bool
-    standardEnvironmentAvailable: bool
-
-class ListVersionsResponse(typing_extensions.TypedDict, total=False):
-    versions: typing.List[Version]
-    nextPageToken: str
-
-class Application(typing_extensions.TypedDict, total=False):
-    featureSettings: FeatureSettings
-    servingStatus: typing_extensions.Literal[
-        "UNSPECIFIED", "SERVING", "USER_DISABLED", "SYSTEM_DISABLED"
-    ]
-    defaultHostname: str
-    defaultBucket: str
-    name: str
-    locationId: str
-    codeBucket: str
-    defaultCookieExpiration: str
-    gcrDomain: str
-    authDomain: str
-    databaseType: typing_extensions.Literal[
-        "DATABASE_TYPE_UNSPECIFIED",
-        "CLOUD_DATASTORE",
-        "CLOUD_FIRESTORE",
-        "CLOUD_DATASTORE_COMPATIBILITY",
-    ]
-    id: str
-    dispatchRules: typing.List[UrlDispatchRule]
-    iap: IdentityAwareProxy
-
-class ResourceRecord(typing_extensions.TypedDict, total=False):
-    name: str
-    rrdata: str
-    type: typing_extensions.Literal["RECORD_TYPE_UNSPECIFIED", "A", "AAAA", "CNAME"]
-
-class CreateVersionMetadataV1Beta(typing_extensions.TypedDict, total=False):
-    cloudBuildId: str
-
-class ListAuthorizedCertificatesResponse(typing_extensions.TypedDict, total=False):
-    certificates: typing.List[AuthorizedCertificate]
-    nextPageToken: str
-
-class Resources(typing_extensions.TypedDict, total=False):
-    memoryGb: float
-    cpu: float
-    diskGb: float
-    volumes: typing.List[Volume]
-    kmsKeyReference: str
-
-class DomainMapping(typing_extensions.TypedDict, total=False):
-    id: str
-    sslSettings: SslSettings
-    name: str
-    resourceRecords: typing.List[ResourceRecord]
-
-class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
-    ephemeralMessage: str
-    createVersionMetadata: CreateVersionMetadataV1Beta
-    user: str
-    warning: typing.List[str]
-    method: str
-    target: str
-    endTime: str
-    insertTime: str
-
-class Version(typing_extensions.TypedDict, total=False):
-    envVariables: typing.Dict[str, typing.Any]
-    env: str
-    runtimeApiVersion: str
-    betaSettings: typing.Dict[str, typing.Any]
-    entrypoint: Entrypoint
-    instanceClass: str
-    createTime: str
-    servingStatus: typing_extensions.Literal[
-        "SERVING_STATUS_UNSPECIFIED", "SERVING", "STOPPED"
-    ]
-    inboundServices: typing.List[str]
-    endpointsApiService: EndpointsApiService
-    id: str
-    resources: Resources
-    runtime: str
-    manualScaling: ManualScaling
-    readinessCheck: ReadinessCheck
-    createdBy: str
-    name: str
-    livenessCheck: LivenessCheck
-    basicScaling: BasicScaling
-    apiConfig: ApiConfigHandler
-    threadsafe: bool
-    buildEnvVariables: typing.Dict[str, typing.Any]
-    diskUsageBytes: str
-    defaultExpiration: str
-    runtimeChannel: str
-    deployment: Deployment
-    runtimeMainExecutablePath: str
-    automaticScaling: AutomaticScaling
-    handlers: typing.List[UrlMap]
-    libraries: typing.List[Library]
-    nobuildFilesRegex: str
-    network: Network
-    versionUrl: str
-    errorHandlers: typing.List[ErrorHandler]
-    vpcAccessConnector: VpcAccessConnector
-    vm: bool
-    healthCheck: HealthCheck
-    zones: typing.List[str]
-
-class NetworkUtilization(typing_extensions.TypedDict, total=False):
-    targetReceivedPacketsPerSecond: int
-    targetSentBytesPerSecond: int
-    targetReceivedBytesPerSecond: int
-    targetSentPacketsPerSecond: int
-
-class Operation(typing_extensions.TypedDict, total=False):
-    done: bool
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-    response: typing.Dict[str, typing.Any]
-    name: str
-
+@typing.type_check_only
 class NetworkSettings(typing_extensions.TypedDict, total=False):
     ingressTrafficAllowed: typing_extensions.Literal[
         "INGRESS_TRAFFIC_ALLOWED_UNSPECIFIED",
@@ -408,71 +340,142 @@ class NetworkSettings(typing_extensions.TypedDict, total=False):
         "INGRESS_TRAFFIC_ALLOWED_INTERNAL_AND_LB",
     ]
 
-class ContainerInfo(typing_extensions.TypedDict, total=False):
-    image: str
+@typing.type_check_only
+class NetworkUtilization(typing_extensions.TypedDict, total=False):
+    targetReceivedBytesPerSecond: int
+    targetReceivedPacketsPerSecond: int
+    targetSentBytesPerSecond: int
+    targetSentPacketsPerSecond: int
 
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
-    nextPageToken: str
-
-class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
-    nextPageToken: str
-
-class Instance(typing_extensions.TypedDict, total=False):
-    startTime: str
-    vmId: str
-    id: str
-    requests: int
-    vmName: str
-    errors: int
-    qps: float
-    appEngineRelease: str
-    vmDebugEnabled: bool
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
     name: str
-    vmStatus: str
-    averageLatency: int
-    vmZoneName: str
-    availability: typing_extensions.Literal["UNSPECIFIED", "RESIDENT", "DYNAMIC"]
-    vmIp: str
-    memoryUsage: str
+    response: typing.Dict[str, typing.Any]
 
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
-    nextPageToken: str
+@typing.type_check_only
+class OperationMetadataV1(typing_extensions.TypedDict, total=False):
+    createVersionMetadata: CreateVersionMetadataV1
+    endTime: str
+    ephemeralMessage: str
+    insertTime: str
+    method: str
+    target: str
+    user: str
+    warning: typing.List[str]
 
+@typing.type_check_only
+class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
+    createVersionMetadata: CreateVersionMetadataV1Alpha
+    endTime: str
+    ephemeralMessage: str
+    insertTime: str
+    method: str
+    target: str
+    user: str
+    warning: typing.List[str]
+
+@typing.type_check_only
+class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
+    createVersionMetadata: CreateVersionMetadataV1Beta
+    endTime: str
+    ephemeralMessage: str
+    insertTime: str
+    method: str
+    target: str
+    user: str
+    warning: typing.List[str]
+
+@typing.type_check_only
 class ReadinessCheck(typing_extensions.TypedDict, total=False):
-    host: str
     appStartTimeout: str
-    successThreshold: int
     checkInterval: str
-    path: str
-    timeout: str
     failureThreshold: int
+    host: str
+    path: str
+    successThreshold: int
+    timeout: str
 
-class Entrypoint(typing_extensions.TypedDict, total=False):
-    shell: str
+@typing.type_check_only
+class RepairApplicationRequest(typing_extensions.TypedDict, total=False): ...
 
-class BatchUpdateIngressRulesResponse(typing_extensions.TypedDict, total=False):
-    ingressRules: typing.List[FirewallRule]
-
-class ListIngressRulesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    ingressRules: typing.List[FirewallRule]
-
-class BatchUpdateIngressRulesRequest(typing_extensions.TypedDict, total=False):
-    ingressRules: typing.List[FirewallRule]
-
+@typing.type_check_only
 class RequestUtilization(typing_extensions.TypedDict, total=False):
     targetConcurrentRequests: int
     targetRequestCountPerSecond: int
 
-class FileInfo(typing_extensions.TypedDict, total=False):
-    sha1Sum: str
-    mimeType: str
-    sourceUrl: str
+@typing.type_check_only
+class ResourceRecord(typing_extensions.TypedDict, total=False):
+    name: str
+    rrdata: str
+    type: typing_extensions.Literal["RECORD_TYPE_UNSPECIFIED", "A", "AAAA", "CNAME"]
 
-class ApiConfigHandler(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Resources(typing_extensions.TypedDict, total=False):
+    cpu: float
+    diskGb: float
+    kmsKeyReference: str
+    memoryGb: float
+    volumes: typing.List[Volume]
+
+@typing.type_check_only
+class ScriptHandler(typing_extensions.TypedDict, total=False):
+    scriptPath: str
+
+@typing.type_check_only
+class Service(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+    networkSettings: NetworkSettings
+    split: TrafficSplit
+
+@typing.type_check_only
+class SslSettings(typing_extensions.TypedDict, total=False):
+    certificateId: str
+    pendingManagedCertificateId: str
+    sslManagementType: typing_extensions.Literal[
+        "SSL_MANAGEMENT_TYPE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
+    ]
+
+@typing.type_check_only
+class StandardSchedulerSettings(typing_extensions.TypedDict, total=False):
+    maxInstances: int
+    minInstances: int
+    targetCpuUtilization: float
+    targetThroughputUtilization: float
+
+@typing.type_check_only
+class StaticFilesHandler(typing_extensions.TypedDict, total=False):
+    applicationReadable: bool
+    expiration: str
+    httpHeaders: typing.Dict[str, typing.Any]
+    mimeType: str
+    path: str
+    requireMatchingFile: bool
+    uploadPathRegex: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class TrafficSplit(typing_extensions.TypedDict, total=False):
+    allocations: typing.Dict[str, typing.Any]
+    shardBy: typing_extensions.Literal["UNSPECIFIED", "COOKIE", "IP", "RANDOM"]
+
+@typing.type_check_only
+class UrlDispatchRule(typing_extensions.TypedDict, total=False):
+    domain: str
+    path: str
+    service: str
+
+@typing.type_check_only
+class UrlMap(typing_extensions.TypedDict, total=False):
+    apiEndpoint: ApiEndpointHandler
     authFailAction: typing_extensions.Literal[
         "AUTH_FAIL_ACTION_UNSPECIFIED",
         "AUTH_FAIL_ACTION_REDIRECT",
@@ -481,6 +484,14 @@ class ApiConfigHandler(typing_extensions.TypedDict, total=False):
     login: typing_extensions.Literal[
         "LOGIN_UNSPECIFIED", "LOGIN_OPTIONAL", "LOGIN_ADMIN", "LOGIN_REQUIRED"
     ]
+    redirectHttpResponseCode: typing_extensions.Literal[
+        "REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED",
+        "REDIRECT_HTTP_RESPONSE_CODE_301",
+        "REDIRECT_HTTP_RESPONSE_CODE_302",
+        "REDIRECT_HTTP_RESPONSE_CODE_303",
+        "REDIRECT_HTTP_RESPONSE_CODE_307",
+    ]
+    script: ScriptHandler
     securityLevel: typing_extensions.Literal[
         "SECURE_UNSPECIFIED",
         "SECURE_DEFAULT",
@@ -488,5 +499,63 @@ class ApiConfigHandler(typing_extensions.TypedDict, total=False):
         "SECURE_OPTIONAL",
         "SECURE_ALWAYS",
     ]
-    script: str
-    url: str
+    staticFiles: StaticFilesHandler
+    urlRegex: str
+
+@typing.type_check_only
+class Version(typing_extensions.TypedDict, total=False):
+    apiConfig: ApiConfigHandler
+    automaticScaling: AutomaticScaling
+    basicScaling: BasicScaling
+    betaSettings: typing.Dict[str, typing.Any]
+    buildEnvVariables: typing.Dict[str, typing.Any]
+    createTime: str
+    createdBy: str
+    defaultExpiration: str
+    deployment: Deployment
+    diskUsageBytes: str
+    endpointsApiService: EndpointsApiService
+    entrypoint: Entrypoint
+    env: str
+    envVariables: typing.Dict[str, typing.Any]
+    errorHandlers: typing.List[ErrorHandler]
+    handlers: typing.List[UrlMap]
+    healthCheck: HealthCheck
+    id: str
+    inboundServices: typing.List[str]
+    instanceClass: str
+    libraries: typing.List[Library]
+    livenessCheck: LivenessCheck
+    manualScaling: ManualScaling
+    name: str
+    network: Network
+    nobuildFilesRegex: str
+    readinessCheck: ReadinessCheck
+    resources: Resources
+    runtime: str
+    runtimeApiVersion: str
+    runtimeChannel: str
+    runtimeMainExecutablePath: str
+    servingStatus: typing_extensions.Literal[
+        "SERVING_STATUS_UNSPECIFIED", "SERVING", "STOPPED"
+    ]
+    threadsafe: bool
+    versionUrl: str
+    vm: bool
+    vpcAccessConnector: VpcAccessConnector
+    zones: typing.List[str]
+
+@typing.type_check_only
+class Volume(typing_extensions.TypedDict, total=False):
+    name: str
+    sizeGb: float
+    volumeType: str
+
+@typing.type_check_only
+class VpcAccessConnector(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class ZipInfo(typing_extensions.TypedDict, total=False):
+    filesCount: int
+    sourceUrl: str

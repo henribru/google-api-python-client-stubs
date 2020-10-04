@@ -7,18 +7,22 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class ScriptResource(googleapiclient.discovery.Resource):
-    class ScriptsResource(googleapiclient.discovery.Resource):
-        def run(
-            self, *, scriptId: str, body: ExecutionRequest = ..., **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class ProcessesResource(googleapiclient.discovery.Resource):
-        def listScriptProcesses(
+        def list(
             self,
             *,
-            scriptId: str = ...,
-            scriptProcessFilter_statuses: typing.Union[
+            pageSize: int = ...,
+            pageToken: str = ...,
+            userProcessFilter_deploymentId: str = ...,
+            userProcessFilter_endTime: str = ...,
+            userProcessFilter_functionName: str = ...,
+            userProcessFilter_projectName: str = ...,
+            userProcessFilter_scriptId: str = ...,
+            userProcessFilter_startTime: str = ...,
+            userProcessFilter_statuses: typing.Union[
                 typing_extensions.Literal[
                     "PROCESS_STATUS_UNSPECIFIED",
                     "RUNNING",
@@ -41,75 +45,6 @@ class ScriptResource(googleapiclient.discovery.Resource):
                         "TIMED_OUT",
                         "UNKNOWN",
                         "DELAYED",
-                    ]
-                ],
-            ] = ...,
-            pageToken: str = ...,
-            scriptProcessFilter_types: typing.Union[
-                typing_extensions.Literal[
-                    "PROCESS_TYPE_UNSPECIFIED",
-                    "ADD_ON",
-                    "EXECUTION_API",
-                    "TIME_DRIVEN",
-                    "TRIGGER",
-                    "WEBAPP",
-                    "EDITOR",
-                    "SIMPLE_TRIGGER",
-                    "MENU",
-                    "BATCH_TASK",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "PROCESS_TYPE_UNSPECIFIED",
-                        "ADD_ON",
-                        "EXECUTION_API",
-                        "TIME_DRIVEN",
-                        "TRIGGER",
-                        "WEBAPP",
-                        "EDITOR",
-                        "SIMPLE_TRIGGER",
-                        "MENU",
-                        "BATCH_TASK",
-                    ]
-                ],
-            ] = ...,
-            scriptProcessFilter_deploymentId: str = ...,
-            scriptProcessFilter_userAccessLevels: typing.Union[
-                typing_extensions.Literal[
-                    "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "USER_ACCESS_LEVEL_UNSPECIFIED",
-                        "NONE",
-                        "READ",
-                        "WRITE",
-                        "OWNER",
-                    ]
-                ],
-            ] = ...,
-            scriptProcessFilter_startTime: str = ...,
-            scriptProcessFilter_functionName: str = ...,
-            pageSize: int = ...,
-            scriptProcessFilter_endTime: str = ...,
-            **kwargs: typing.Any
-        ) -> ListScriptProcessesResponseHttpRequest: ...
-        def list(
-            self,
-            *,
-            userProcessFilter_deploymentId: str = ...,
-            userProcessFilter_scriptId: str = ...,
-            userProcessFilter_userAccessLevels: typing.Union[
-                typing_extensions.Literal[
-                    "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "USER_ACCESS_LEVEL_UNSPECIFIED",
-                        "NONE",
-                        "READ",
-                        "WRITE",
-                        "OWNER",
                     ]
                 ],
             ] = ...,
@@ -141,11 +76,33 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     ]
                 ],
             ] = ...,
+            userProcessFilter_userAccessLevels: typing.Union[
+                typing_extensions.Literal[
+                    "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
+                ],
+                typing.List[
+                    typing_extensions.Literal[
+                        "USER_ACCESS_LEVEL_UNSPECIFIED",
+                        "NONE",
+                        "READ",
+                        "WRITE",
+                        "OWNER",
+                    ]
+                ],
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> ListUserProcessesResponseHttpRequest: ...
+        def listScriptProcesses(
+            self,
+            *,
+            pageSize: int = ...,
             pageToken: str = ...,
-            userProcessFilter_functionName: str = ...,
-            userProcessFilter_startTime: str = ...,
-            userProcessFilter_projectName: str = ...,
-            userProcessFilter_statuses: typing.Union[
+            scriptId: str = ...,
+            scriptProcessFilter_deploymentId: str = ...,
+            scriptProcessFilter_endTime: str = ...,
+            scriptProcessFilter_functionName: str = ...,
+            scriptProcessFilter_startTime: str = ...,
+            scriptProcessFilter_statuses: typing.Union[
                 typing_extensions.Literal[
                     "PROCESS_STATUS_UNSPECIFIED",
                     "RUNNING",
@@ -171,26 +128,75 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     ]
                 ],
             ] = ...,
-            userProcessFilter_endTime: str = ...,
-            pageSize: int = ...,
+            scriptProcessFilter_types: typing.Union[
+                typing_extensions.Literal[
+                    "PROCESS_TYPE_UNSPECIFIED",
+                    "ADD_ON",
+                    "EXECUTION_API",
+                    "TIME_DRIVEN",
+                    "TRIGGER",
+                    "WEBAPP",
+                    "EDITOR",
+                    "SIMPLE_TRIGGER",
+                    "MENU",
+                    "BATCH_TASK",
+                ],
+                typing.List[
+                    typing_extensions.Literal[
+                        "PROCESS_TYPE_UNSPECIFIED",
+                        "ADD_ON",
+                        "EXECUTION_API",
+                        "TIME_DRIVEN",
+                        "TRIGGER",
+                        "WEBAPP",
+                        "EDITOR",
+                        "SIMPLE_TRIGGER",
+                        "MENU",
+                        "BATCH_TASK",
+                    ]
+                ],
+            ] = ...,
+            scriptProcessFilter_userAccessLevels: typing.Union[
+                typing_extensions.Literal[
+                    "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
+                ],
+                typing.List[
+                    typing_extensions.Literal[
+                        "USER_ACCESS_LEVEL_UNSPECIFIED",
+                        "NONE",
+                        "READ",
+                        "WRITE",
+                        "OWNER",
+                    ]
+                ],
+            ] = ...,
             **kwargs: typing.Any
-        ) -> ListUserProcessesResponseHttpRequest: ...
+        ) -> ListScriptProcessesResponseHttpRequest: ...
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class DeploymentsResource(googleapiclient.discovery.Resource):
-            def list(
+            def create(
                 self,
                 *,
                 scriptId: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
+                body: DeploymentConfig = ...,
                 **kwargs: typing.Any
-            ) -> ListDeploymentsResponseHttpRequest: ...
+            ) -> DeploymentHttpRequest: ...
             def delete(
                 self, *, scriptId: str, deploymentId: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, scriptId: str, deploymentId: str, **kwargs: typing.Any
             ) -> DeploymentHttpRequest: ...
+            def list(
+                self,
+                *,
+                scriptId: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListDeploymentsResponseHttpRequest: ...
             def update(
                 self,
                 *,
@@ -199,14 +205,14 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 body: UpdateDeploymentRequest = ...,
                 **kwargs: typing.Any
             ) -> DeploymentHttpRequest: ...
-            def create(
-                self,
-                *,
-                scriptId: str,
-                body: DeploymentConfig = ...,
-                **kwargs: typing.Any
-            ) -> DeploymentHttpRequest: ...
+        @typing.type_check_only
         class VersionsResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, scriptId: str, body: Version = ..., **kwargs: typing.Any
+            ) -> VersionHttpRequest: ...
+            def get(
+                self, *, scriptId: str, versionNumber: int, **kwargs: typing.Any
+            ) -> VersionHttpRequest: ...
             def list(
                 self,
                 *,
@@ -215,12 +221,13 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListVersionsResponseHttpRequest: ...
-            def create(
-                self, *, scriptId: str, body: Version = ..., **kwargs: typing.Any
-            ) -> VersionHttpRequest: ...
-            def get(
-                self, *, scriptId: str, versionNumber: int, **kwargs: typing.Any
-            ) -> VersionHttpRequest: ...
+        def create(
+            self, *, body: CreateProjectRequest = ..., **kwargs: typing.Any
+        ) -> ProjectHttpRequest: ...
+        def get(self, *, scriptId: str, **kwargs: typing.Any) -> ProjectHttpRequest: ...
+        def getContent(
+            self, *, scriptId: str, versionNumber: int = ..., **kwargs: typing.Any
+        ) -> ContentHttpRequest: ...
         def getMetrics(
             self,
             *,
@@ -231,73 +238,82 @@ class ScriptResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> MetricsHttpRequest: ...
-        def getContent(
-            self, *, scriptId: str, versionNumber: int = ..., **kwargs: typing.Any
-        ) -> ContentHttpRequest: ...
-        def get(self, *, scriptId: str, **kwargs: typing.Any) -> ProjectHttpRequest: ...
-        def create(
-            self, *, body: CreateProjectRequest = ..., **kwargs: typing.Any
-        ) -> ProjectHttpRequest: ...
         def updateContent(
             self, *, scriptId: str, body: Content = ..., **kwargs: typing.Any
         ) -> ContentHttpRequest: ...
         def deployments(self) -> DeploymentsResource: ...
         def versions(self) -> VersionsResource: ...
-    def scripts(self) -> ScriptsResource: ...
+    @typing.type_check_only
+    class ScriptsResource(googleapiclient.discovery.Resource):
+        def run(
+            self, *, scriptId: str, body: ExecutionRequest = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
     def processes(self) -> ProcessesResource: ...
     def projects(self) -> ProjectsResource: ...
+    def scripts(self) -> ScriptsResource: ...
 
-class ListScriptProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListScriptProcessesResponse: ...
-
-class ListDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListDeploymentsResponse: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class ListUserProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListUserProcessesResponse: ...
-
-class DeploymentHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Deployment: ...
-
+@typing.type_check_only
 class ContentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Content: ...
 
-class VersionHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class DeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Version: ...
+    ) -> Deployment: ...
 
-class ProjectHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Project: ...
+    ) -> Empty: ...
 
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
+    ) -> ListDeploymentsResponse: ...
 
+@typing.type_check_only
+class ListScriptProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListScriptProcessesResponse: ...
+
+@typing.type_check_only
+class ListUserProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListUserProcessesResponse: ...
+
+@typing.type_check_only
 class ListVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListVersionsResponse: ...
 
+@typing.type_check_only
 class MetricsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Metrics: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
+class ProjectHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Project: ...
+
+@typing.type_check_only
+class VersionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Version: ...

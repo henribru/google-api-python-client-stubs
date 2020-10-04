@@ -1,14 +1,117 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class ArrayValue(typing_extensions.TypedDict, total=False):
+    values: typing.List[Value]
 
-class QueryTarget(typing_extensions.TypedDict, total=False):
-    parent: str
-    structuredQuery: StructuredQuery
+@typing.type_check_only
+class BatchGetDocumentsRequest(typing_extensions.TypedDict, total=False):
+    documents: typing.List[str]
+    mask: DocumentMask
+    newTransaction: TransactionOptions
+    readTime: str
+    transaction: str
 
+@typing.type_check_only
+class BatchGetDocumentsResponse(typing_extensions.TypedDict, total=False):
+    found: Document
+    missing: str
+    readTime: str
+    transaction: str
+
+@typing.type_check_only
+class BatchWriteRequest(typing_extensions.TypedDict, total=False):
+    labels: typing.Dict[str, typing.Any]
+    writes: typing.List[Write]
+
+@typing.type_check_only
+class BatchWriteResponse(typing_extensions.TypedDict, total=False):
+    status: typing.List[Status]
+    writeResults: typing.List[WriteResult]
+
+@typing.type_check_only
+class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
+    options: TransactionOptions
+
+@typing.type_check_only
+class BeginTransactionResponse(typing_extensions.TypedDict, total=False):
+    transaction: str
+
+@typing.type_check_only
+class CollectionSelector(typing_extensions.TypedDict, total=False):
+    allDescendants: bool
+    collectionId: str
+
+@typing.type_check_only
+class CommitRequest(typing_extensions.TypedDict, total=False):
+    transaction: str
+    writes: typing.List[Write]
+
+@typing.type_check_only
+class CommitResponse(typing_extensions.TypedDict, total=False):
+    commitTime: str
+    writeResults: typing.List[WriteResult]
+
+@typing.type_check_only
+class CompositeFilter(typing_extensions.TypedDict, total=False):
+    filters: typing.List[Filter]
+    op: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND"]
+
+@typing.type_check_only
+class Cursor(typing_extensions.TypedDict, total=False):
+    before: bool
+    values: typing.List[Value]
+
+@typing.type_check_only
+class Document(typing_extensions.TypedDict, total=False):
+    createTime: str
+    fields: typing.Dict[str, typing.Any]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class DocumentChange(typing_extensions.TypedDict, total=False):
+    document: Document
+    removedTargetIds: typing.List[int]
+    targetIds: typing.List[int]
+
+@typing.type_check_only
+class DocumentDelete(typing_extensions.TypedDict, total=False):
+    document: str
+    readTime: str
+    removedTargetIds: typing.List[int]
+
+@typing.type_check_only
+class DocumentMask(typing_extensions.TypedDict, total=False):
+    fieldPaths: typing.List[str]
+
+@typing.type_check_only
+class DocumentRemove(typing_extensions.TypedDict, total=False):
+    document: str
+    readTime: str
+    removedTargetIds: typing.List[int]
+
+@typing.type_check_only
+class DocumentTransform(typing_extensions.TypedDict, total=False):
+    document: str
+    fieldTransforms: typing.List[FieldTransform]
+
+@typing.type_check_only
+class DocumentsTarget(typing_extensions.TypedDict, total=False):
+    documents: typing.List[str]
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ExistenceFilter(typing_extensions.TypedDict, total=False):
+    count: int
+    targetId: int
+
+@typing.type_check_only
 class FieldFilter(typing_extensions.TypedDict, total=False):
     field: FieldReference
-    value: Value
     op: typing_extensions.Literal[
         "OPERATOR_UNSPECIFIED",
         "LESS_THAN",
@@ -22,255 +125,24 @@ class FieldFilter(typing_extensions.TypedDict, total=False):
         "ARRAY_CONTAINS_ANY",
         "NOT_IN",
     ]
+    value: Value
 
-class CompositeFilter(typing_extensions.TypedDict, total=False):
-    filters: typing.List[Filter]
-    op: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND"]
-
-class Filter(typing.Dict[str, typing.Any]): ...
-
-class ReadOnly(typing_extensions.TypedDict, total=False):
-    readTime: str
-
-class CommitResponse(typing_extensions.TypedDict, total=False):
-    commitTime: str
-    writeResults: typing.List[WriteResult]
-
-class ExistenceFilter(typing_extensions.TypedDict, total=False):
-    count: int
-    targetId: int
-
-class GoogleFirestoreAdminV1Index(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "READY", "NEEDS_REPAIR"
-    ]
-    name: str
-    fields: typing.List[GoogleFirestoreAdminV1IndexField]
-    queryScope: typing_extensions.Literal[
-        "QUERY_SCOPE_UNSPECIFIED", "COLLECTION", "COLLECTION_GROUP"
-    ]
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class DocumentChange(typing_extensions.TypedDict, total=False):
-    document: Document
-    targetIds: typing.List[int]
-    removedTargetIds: typing.List[int]
-
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    locations: typing.List[Location]
-
-class RunQueryResponse(typing_extensions.TypedDict, total=False):
-    document: Document
-    readTime: str
-    transaction: str
-    skippedResults: int
-
-class GoogleFirestoreAdminV1Progress(typing_extensions.TypedDict, total=False):
-    estimatedWork: str
-    completedWork: str
-
-class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
-    structuredQuery: StructuredQuery
-    pageSize: int
-    partitionCount: str
-    pageToken: str
-
-class WriteRequest(typing_extensions.TypedDict, total=False):
-    streamId: str
-    writes: typing.List[Write]
-    streamToken: str
-    labels: typing.Dict[str, typing.Any]
-
-class GoogleFirestoreAdminV1ImportDocumentsMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    progressDocuments: GoogleFirestoreAdminV1Progress
-    collectionIds: typing.List[str]
-    inputUriPrefix: str
-    startTime: str
-    endTime: str
-    progressBytes: GoogleFirestoreAdminV1Progress
-    operationState: typing_extensions.Literal[
-        "OPERATION_STATE_UNSPECIFIED",
-        "INITIALIZING",
-        "PROCESSING",
-        "CANCELLING",
-        "FINALIZING",
-        "SUCCESSFUL",
-        "FAILED",
-        "CANCELLED",
-    ]
-
-class DocumentsTarget(typing_extensions.TypedDict, total=False):
-    documents: typing.List[str]
-
-class GoogleFirestoreAdminV1Field(typing_extensions.TypedDict, total=False):
-    indexConfig: GoogleFirestoreAdminV1IndexConfig
-    name: str
-
-class BatchGetDocumentsRequest(typing_extensions.TypedDict, total=False):
-    newTransaction: TransactionOptions
-    transaction: str
-    documents: typing.List[str]
-    readTime: str
-    mask: DocumentMask
-
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-    code: int
-
-class UnaryFilter(typing_extensions.TypedDict, total=False):
-    op: typing_extensions.Literal[
-        "OPERATOR_UNSPECIFIED", "IS_NAN", "IS_NULL", "IS_NOT_NAN", "IS_NOT_NULL"
-    ]
-    field: FieldReference
-
-class FieldTransform(typing_extensions.TypedDict, total=False):
-    increment: Value
-    maximum: Value
-    appendMissingElements: ArrayValue
-    minimum: Value
-    setToServerValue: typing_extensions.Literal[
-        "SERVER_VALUE_UNSPECIFIED", "REQUEST_TIME"
-    ]
-    removeAllFromArray: ArrayValue
-    fieldPath: str
-
-class MapValue(typing_extensions.TypedDict, total=False):
-    fields: typing.Dict[str, typing.Any]
-
-class BeginTransactionResponse(typing_extensions.TypedDict, total=False):
-    transaction: str
-
-class GoogleFirestoreAdminV1FieldOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    progressBytes: GoogleFirestoreAdminV1Progress
-    progressDocuments: GoogleFirestoreAdminV1Progress
-    endTime: str
-    indexConfigDeltas: typing.List[GoogleFirestoreAdminV1IndexConfigDelta]
-    field: str
-    state: typing_extensions.Literal[
-        "OPERATION_STATE_UNSPECIFIED",
-        "INITIALIZING",
-        "PROCESSING",
-        "CANCELLING",
-        "FINALIZING",
-        "SUCCESSFUL",
-        "FAILED",
-        "CANCELLED",
-    ]
-    startTime: str
-
-class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
-    options: TransactionOptions
-
+@typing.type_check_only
 class FieldReference(typing_extensions.TypedDict, total=False):
     fieldPath: str
 
-class Value(typing.Dict[str, typing.Any]): ...
+@typing.type_check_only
+class FieldTransform(typing.Dict[str, typing.Any]): ...
 
-class GoogleFirestoreAdminV1IndexField(typing_extensions.TypedDict, total=False):
-    order: typing_extensions.Literal["ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
-    fieldPath: str
-    arrayConfig: typing_extensions.Literal["ARRAY_CONFIG_UNSPECIFIED", "CONTAINS"]
+@typing.type_check_only
+class Filter(typing.Dict[str, typing.Any]): ...
 
-class GoogleFirestoreAdminV1IndexOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    progressDocuments: GoogleFirestoreAdminV1Progress
-    progressBytes: GoogleFirestoreAdminV1Progress
-    startTime: str
-    endTime: str
-    index: str
-    state: typing_extensions.Literal[
-        "OPERATION_STATE_UNSPECIFIED",
-        "INITIALIZING",
-        "PROCESSING",
-        "CANCELLING",
-        "FINALIZING",
-        "SUCCESSFUL",
-        "FAILED",
-        "CANCELLED",
-    ]
-
-class DocumentDelete(typing_extensions.TypedDict, total=False):
-    removedTargetIds: typing.List[int]
-    document: str
-    readTime: str
-
-class CommitRequest(typing_extensions.TypedDict, total=False):
-    transaction: str
-    writes: typing.List[Write]
-
-class PartitionQueryResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    partitions: typing.List[Cursor]
-
-class RollbackRequest(typing_extensions.TypedDict, total=False):
-    transaction: str
-
-class Projection(typing_extensions.TypedDict, total=False):
-    fields: typing.List[FieldReference]
-
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
-    name: str
-    metadata: typing.Dict[str, typing.Any]
-    done: bool
-    error: Status
-    response: typing.Dict[str, typing.Any]
-
-class GoogleFirestoreAdminV1ListFieldsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    fields: typing.List[GoogleFirestoreAdminV1Field]
-
-class WriteResponse(typing_extensions.TypedDict, total=False):
-    streamToken: str
-    streamId: str
-    writeResults: typing.List[WriteResult]
-    commitTime: str
-
-class BatchWriteResponse(typing_extensions.TypedDict, total=False):
-    writeResults: typing.List[WriteResult]
-    status: typing.List[Status]
-
-class GoogleFirestoreAdminV1ImportDocumentsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    collectionIds: typing.List[str]
-    inputUriPrefix: str
-
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
-
-class TransactionOptions(typing_extensions.TypedDict, total=False):
-    readWrite: ReadWrite
-    readOnly: ReadOnly
-
-class ListDocumentsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    documents: typing.List[Document]
-
-class Precondition(typing_extensions.TypedDict, total=False):
-    updateTime: str
-    exists: bool
-
-class ArrayValue(typing.Dict[str, typing.Any]): ...
-
+@typing.type_check_only
 class GoogleFirestoreAdminV1ExportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    progressDocuments: GoogleFirestoreAdminV1Progress
-    startTime: str
-    outputUriPrefix: str
     collectionIds: typing.List[str]
-    progressBytes: GoogleFirestoreAdminV1Progress
+    endTime: str
     operationState: typing_extensions.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "INITIALIZING",
@@ -281,131 +153,332 @@ class GoogleFirestoreAdminV1ExportDocumentsMetadata(
         "FAILED",
         "CANCELLED",
     ]
-    endTime: str
+    outputUriPrefix: str
+    progressBytes: GoogleFirestoreAdminV1Progress
+    progressDocuments: GoogleFirestoreAdminV1Progress
+    startTime: str
 
-class DocumentRemove(typing_extensions.TypedDict, total=False):
-    document: str
-    readTime: str
-    removedTargetIds: typing.List[int]
-
-class DocumentMask(typing_extensions.TypedDict, total=False):
-    fieldPaths: typing.List[str]
-
-class Write(typing.Dict[str, typing.Any]): ...
-
-class Location(typing_extensions.TypedDict, total=False):
-    metadata: typing.Dict[str, typing.Any]
-    labels: typing.Dict[str, typing.Any]
-    name: str
-    locationId: str
-    displayName: str
-
+@typing.type_check_only
 class GoogleFirestoreAdminV1ExportDocumentsRequest(
     typing_extensions.TypedDict, total=False
 ):
     collectionIds: typing.List[str]
     outputUriPrefix: str
 
+@typing.type_check_only
+class GoogleFirestoreAdminV1ExportDocumentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    outputUriPrefix: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1Field(typing_extensions.TypedDict, total=False):
+    indexConfig: GoogleFirestoreAdminV1IndexConfig
+    name: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1FieldOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    field: str
+    indexConfigDeltas: typing.List[GoogleFirestoreAdminV1IndexConfigDelta]
+    progressBytes: GoogleFirestoreAdminV1Progress
+    progressDocuments: GoogleFirestoreAdminV1Progress
+    startTime: str
+    state: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ImportDocumentsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    collectionIds: typing.List[str]
+    endTime: str
+    inputUriPrefix: str
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
+    progressBytes: GoogleFirestoreAdminV1Progress
+    progressDocuments: GoogleFirestoreAdminV1Progress
+    startTime: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ImportDocumentsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    collectionIds: typing.List[str]
+    inputUriPrefix: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1Index(typing_extensions.TypedDict, total=False):
+    fields: typing.List[GoogleFirestoreAdminV1IndexField]
+    name: str
+    queryScope: typing_extensions.Literal[
+        "QUERY_SCOPE_UNSPECIFIED", "COLLECTION", "COLLECTION_GROUP"
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "READY", "NEEDS_REPAIR"
+    ]
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1IndexConfig(typing_extensions.TypedDict, total=False):
-    indexes: typing.List[GoogleFirestoreAdminV1Index]
     ancestorField: str
+    indexes: typing.List[GoogleFirestoreAdminV1Index]
     reverting: bool
     usesAncestorConfig: bool
 
-class DocumentTransform(typing.Dict[str, typing.Any]): ...
+@typing.type_check_only
+class GoogleFirestoreAdminV1IndexConfigDelta(typing_extensions.TypedDict, total=False):
+    changeType: typing_extensions.Literal["CHANGE_TYPE_UNSPECIFIED", "ADD", "REMOVE"]
+    index: GoogleFirestoreAdminV1Index
 
-class TargetChange(typing_extensions.TypedDict, total=False):
-    targetChangeType: typing_extensions.Literal[
-        "NO_CHANGE", "ADD", "REMOVE", "CURRENT", "RESET"
+@typing.type_check_only
+class GoogleFirestoreAdminV1IndexField(typing_extensions.TypedDict, total=False):
+    arrayConfig: typing_extensions.Literal["ARRAY_CONFIG_UNSPECIFIED", "CONTAINS"]
+    fieldPath: str
+    order: typing_extensions.Literal["ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1IndexOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    index: str
+    progressBytes: GoogleFirestoreAdminV1Progress
+    progressDocuments: GoogleFirestoreAdminV1Progress
+    startTime: str
+    state: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
     ]
-    targetIds: typing.List[int]
-    resumeToken: str
-    cause: Status
-    readTime: str
 
+@typing.type_check_only
+class GoogleFirestoreAdminV1ListFieldsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    fields: typing.List[GoogleFirestoreAdminV1Field]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1ListIndexesResponse(
     typing_extensions.TypedDict, total=False
 ):
     indexes: typing.List[GoogleFirestoreAdminV1Index]
     nextPageToken: str
 
+@typing.type_check_only
+class GoogleFirestoreAdminV1LocationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1Progress(typing_extensions.TypedDict, total=False):
+    completedWork: str
+    estimatedWork: str
+
+@typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(
     typing_extensions.TypedDict, total=False
 ): ...
 
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[GoogleLongrunningOperation]
+
+@typing.type_check_only
+class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class LatLng(typing_extensions.TypedDict, total=False):
     latitude: float
     longitude: float
 
+@typing.type_check_only
+class ListCollectionIdsRequest(typing_extensions.TypedDict, total=False):
+    pageSize: int
+    pageToken: str
+
+@typing.type_check_only
 class ListCollectionIdsResponse(typing_extensions.TypedDict, total=False):
     collectionIds: typing.List[str]
     nextPageToken: str
 
+@typing.type_check_only
+class ListDocumentsResponse(typing_extensions.TypedDict, total=False):
+    documents: typing.List[Document]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListenRequest(typing_extensions.TypedDict, total=False):
     addTarget: Target
+    labels: typing.Dict[str, typing.Any]
     removeTarget: int
+
+@typing.type_check_only
+class ListenResponse(typing_extensions.TypedDict, total=False):
+    documentChange: DocumentChange
+    documentDelete: DocumentDelete
+    documentRemove: DocumentRemove
+    filter: ExistenceFilter
+    targetChange: TargetChange
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
     labels: typing.Dict[str, typing.Any]
-
-class BatchWriteRequest(typing_extensions.TypedDict, total=False):
-    writes: typing.List[Write]
-    labels: typing.Dict[str, typing.Any]
-
-class CollectionSelector(typing_extensions.TypedDict, total=False):
-    collectionId: str
-    allDescendants: bool
-
-class Target(typing.Dict[str, typing.Any]): ...
-class StructuredQuery(typing.Dict[str, typing.Any]): ...
-
-class GoogleFirestoreAdminV1IndexConfigDelta(typing_extensions.TypedDict, total=False):
-    changeType: typing_extensions.Literal["CHANGE_TYPE_UNSPECIFIED", "ADD", "REMOVE"]
-    index: GoogleFirestoreAdminV1Index
-
-class GoogleFirestoreAdminV1LocationMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
-class Cursor(typing.Dict[str, typing.Any]): ...
-class WriteResult(typing.Dict[str, typing.Any]): ...
-
-class RunQueryRequest(typing_extensions.TypedDict, total=False):
-    readTime: str
-    newTransaction: TransactionOptions
-    transaction: str
-    structuredQuery: StructuredQuery
-
-class GoogleFirestoreAdminV1ExportDocumentsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    outputUriPrefix: str
-
-class Document(typing_extensions.TypedDict, total=False):
-    createTime: str
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
     name: str
-    updateTime: str
+
+@typing.type_check_only
+class MapValue(typing_extensions.TypedDict, total=False):
     fields: typing.Dict[str, typing.Any]
 
-class BatchGetDocumentsResponse(typing_extensions.TypedDict, total=False):
-    readTime: str
-    missing: str
-    transaction: str
-    found: Document
-
-class ListenResponse(typing_extensions.TypedDict, total=False):
-    documentRemove: DocumentRemove
-    targetChange: TargetChange
-    filter: ExistenceFilter
-    documentDelete: DocumentDelete
-    documentChange: DocumentChange
-
-class ReadWrite(typing_extensions.TypedDict, total=False):
-    retryTransaction: str
-
+@typing.type_check_only
 class Order(typing_extensions.TypedDict, total=False):
     direction: typing_extensions.Literal[
         "DIRECTION_UNSPECIFIED", "ASCENDING", "DESCENDING"
     ]
     field: FieldReference
 
-class ListCollectionIdsRequest(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
     pageSize: int
     pageToken: str
+    partitionCount: str
+    structuredQuery: StructuredQuery
+
+@typing.type_check_only
+class PartitionQueryResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    partitions: typing.List[Cursor]
+
+@typing.type_check_only
+class Precondition(typing_extensions.TypedDict, total=False):
+    exists: bool
+    updateTime: str
+
+@typing.type_check_only
+class Projection(typing_extensions.TypedDict, total=False):
+    fields: typing.List[FieldReference]
+
+@typing.type_check_only
+class QueryTarget(typing_extensions.TypedDict, total=False):
+    parent: str
+    structuredQuery: StructuredQuery
+
+@typing.type_check_only
+class ReadOnly(typing_extensions.TypedDict, total=False):
+    readTime: str
+
+@typing.type_check_only
+class ReadWrite(typing_extensions.TypedDict, total=False):
+    retryTransaction: str
+
+@typing.type_check_only
+class RollbackRequest(typing_extensions.TypedDict, total=False):
+    transaction: str
+
+@typing.type_check_only
+class RunQueryRequest(typing_extensions.TypedDict, total=False):
+    newTransaction: TransactionOptions
+    readTime: str
+    structuredQuery: StructuredQuery
+    transaction: str
+
+@typing.type_check_only
+class RunQueryResponse(typing_extensions.TypedDict, total=False):
+    document: Document
+    readTime: str
+    skippedResults: int
+    transaction: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class StructuredQuery(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class Target(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class TargetChange(typing_extensions.TypedDict, total=False):
+    cause: Status
+    readTime: str
+    resumeToken: str
+    targetChangeType: typing_extensions.Literal[
+        "NO_CHANGE", "ADD", "REMOVE", "CURRENT", "RESET"
+    ]
+    targetIds: typing.List[int]
+
+@typing.type_check_only
+class TransactionOptions(typing_extensions.TypedDict, total=False):
+    readOnly: ReadOnly
+    readWrite: ReadWrite
+
+@typing.type_check_only
+class UnaryFilter(typing_extensions.TypedDict, total=False):
+    field: FieldReference
+    op: typing_extensions.Literal[
+        "OPERATOR_UNSPECIFIED", "IS_NAN", "IS_NULL", "IS_NOT_NAN", "IS_NOT_NULL"
+    ]
+
+@typing.type_check_only
+class Value(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class Write(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class WriteRequest(typing_extensions.TypedDict, total=False):
+    labels: typing.Dict[str, typing.Any]
+    streamId: str
+    streamToken: str
+    writes: typing.List[Write]
+
+@typing.type_check_only
+class WriteResponse(typing_extensions.TypedDict, total=False):
+    commitTime: str
+    streamId: str
+    streamToken: str
+    writeResults: typing.List[WriteResult]
+
+@typing.type_check_only
+class WriteResult(typing.Dict[str, typing.Any]): ...

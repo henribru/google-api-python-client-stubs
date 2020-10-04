@@ -7,39 +7,24 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class FitnessResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
-        class SessionsResource(googleapiclient.discovery.Resource):
-            def update(
-                self,
-                *,
-                userId: str,
-                sessionId: str,
-                body: Session = ...,
-                currentTimeMillis: str = ...,
-                **kwargs: typing.Any
-            ) -> SessionHttpRequest: ...
-            def delete(
-                self,
-                *,
-                userId: str,
-                sessionId: str,
-                currentTimeMillis: str = ...,
-                **kwargs: typing.Any
-            ) -> googleapiclient.http.HttpRequest: ...
-            def list(
-                self,
-                *,
-                userId: str,
-                includeDeleted: bool = ...,
-                startTime: str = ...,
-                pageToken: str = ...,
-                activityType: typing.Union[int, typing.List[int]] = ...,
-                endTime: str = ...,
-                **kwargs: typing.Any
-            ) -> ListSessionsResponseHttpRequest: ...
+        @typing.type_check_only
         class DataSourcesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DataPointChangesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    userId: str,
+                    dataSourceId: str,
+                    limit: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListDataPointChangesResponseHttpRequest: ...
+            @typing.type_check_only
             class DatasetsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self,
@@ -57,8 +42,8 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     userId: str,
                     dataSourceId: str,
                     datasetId: str,
-                    pageToken: str = ...,
                     limit: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> DatasetHttpRequest: ...
                 def patch(
@@ -71,26 +56,8 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     currentTimeMillis: str = ...,
                     **kwargs: typing.Any
                 ) -> DatasetHttpRequest: ...
-            class DataPointChangesResource(googleapiclient.discovery.Resource):
-                def list(
-                    self,
-                    *,
-                    userId: str,
-                    dataSourceId: str,
-                    limit: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListDataPointChangesResponseHttpRequest: ...
             def create(
                 self, *, userId: str, body: DataSource = ..., **kwargs: typing.Any
-            ) -> DataSourceHttpRequest: ...
-            def update(
-                self,
-                *,
-                userId: str,
-                dataSourceId: str,
-                body: DataSource = ...,
-                **kwargs: typing.Any
             ) -> DataSourceHttpRequest: ...
             def delete(
                 self, *, userId: str, dataSourceId: str, **kwargs: typing.Any
@@ -105,48 +72,94 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 dataTypeName: typing.Union[str, typing.List[str]] = ...,
                 **kwargs: typing.Any
             ) -> ListDataSourcesResponseHttpRequest: ...
-            def datasets(self) -> DatasetsResource: ...
+            def update(
+                self,
+                *,
+                userId: str,
+                dataSourceId: str,
+                body: DataSource = ...,
+                **kwargs: typing.Any
+            ) -> DataSourceHttpRequest: ...
             def dataPointChanges(self) -> DataPointChangesResource: ...
+            def datasets(self) -> DatasetsResource: ...
+        @typing.type_check_only
         class DatasetResource(googleapiclient.discovery.Resource):
             def aggregate(
                 self, *, userId: str, body: AggregateRequest = ..., **kwargs: typing.Any
             ) -> AggregateResponseHttpRequest: ...
-        def sessions(self) -> SessionsResource: ...
+        @typing.type_check_only
+        class SessionsResource(googleapiclient.discovery.Resource):
+            def delete(
+                self,
+                *,
+                userId: str,
+                sessionId: str,
+                currentTimeMillis: str = ...,
+                **kwargs: typing.Any
+            ) -> googleapiclient.http.HttpRequest: ...
+            def list(
+                self,
+                *,
+                userId: str,
+                activityType: typing.Union[int, typing.List[int]] = ...,
+                endTime: str = ...,
+                includeDeleted: bool = ...,
+                pageToken: str = ...,
+                startTime: str = ...,
+                **kwargs: typing.Any
+            ) -> ListSessionsResponseHttpRequest: ...
+            def update(
+                self,
+                *,
+                userId: str,
+                sessionId: str,
+                body: Session = ...,
+                currentTimeMillis: str = ...,
+                **kwargs: typing.Any
+            ) -> SessionHttpRequest: ...
         def dataSources(self) -> DataSourcesResource: ...
         def dataset(self) -> DatasetResource: ...
+        def sessions(self) -> SessionsResource: ...
     def users(self) -> UsersResource: ...
 
-class DatasetHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class AggregateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Dataset: ...
+    ) -> AggregateResponse: ...
 
-class SessionHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Session: ...
-
-class ListDataPointChangesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListDataPointChangesResponse: ...
-
-class ListSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListSessionsResponse: ...
-
-class ListDataSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListDataSourcesResponse: ...
-
+@typing.type_check_only
 class DataSourceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> DataSource: ...
 
-class AggregateResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class DatasetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AggregateResponse: ...
+    ) -> Dataset: ...
+
+@typing.type_check_only
+class ListDataPointChangesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListDataPointChangesResponse: ...
+
+@typing.type_check_only
+class ListDataSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListDataSourcesResponse: ...
+
+@typing.type_check_only
+class ListSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListSessionsResponse: ...
+
+@typing.type_check_only
+class SessionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Session: ...

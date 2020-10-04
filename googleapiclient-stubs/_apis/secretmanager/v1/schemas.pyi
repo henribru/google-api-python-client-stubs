@@ -1,129 +1,159 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AccessSecretVersionResponse(typing_extensions.TypedDict, total=False):
+    name: str
+    payload: SecretPayload
 
-class ListSecretsResponse(typing_extensions.TypedDict, total=False):
-    secrets: typing.List[Secret]
-    totalSize: int
-    nextPageToken: str
+@typing.type_check_only
+class AddSecretVersionRequest(typing_extensions.TypedDict, total=False):
+    payload: SecretPayload
 
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+@typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: typing.List[AuditLogConfig]
+    service: str
 
-class DestroySecretVersionRequest(typing_extensions.TypedDict, total=False): ...
-
+@typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
     exemptedMembers: typing.List[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class AddSecretVersionRequest(typing_extensions.TypedDict, total=False):
-    payload: SecretPayload
-
-class Location(typing_extensions.TypedDict, total=False):
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-    displayName: str
-    locationId: str
-    labels: typing.Dict[str, typing.Any]
-
-class Binding(typing_extensions.TypedDict, total=False):
-    role: str
-    members: typing.List[str]
-    bindingId: str
-    condition: Expr
-
-class AccessSecretVersionResponse(typing_extensions.TypedDict, total=False):
-    payload: SecretPayload
-    name: str
-
-class DisableSecretVersionRequest(typing_extensions.TypedDict, total=False): ...
-
-class SecretPayload(typing_extensions.TypedDict, total=False):
-    data: str
-
-class EnableSecretVersionRequest(typing_extensions.TypedDict, total=False): ...
-
-class ReplicationStatus(typing_extensions.TypedDict, total=False):
-    automatic: AutomaticStatus
-    userManaged: UserManagedStatus
-
-class UserManagedStatus(typing_extensions.TypedDict, total=False):
-    replicas: typing.List[ReplicaStatus]
-
+@typing.type_check_only
 class Automatic(typing_extensions.TypedDict, total=False):
     customerManagedEncryption: CustomerManagedEncryption
 
-class Replication(typing_extensions.TypedDict, total=False):
-    userManaged: UserManaged
-    automatic: Automatic
+@typing.type_check_only
+class AutomaticStatus(typing_extensions.TypedDict, total=False):
+    customerManagedEncryption: CustomerManagedEncryptionStatus
 
-class Replica(typing_extensions.TypedDict, total=False):
-    location: str
-    customerManagedEncryption: CustomerManagedEncryption
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
+    condition: Expr
+    members: typing.List[str]
+    role: str
 
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    service: str
-    auditLogConfigs: typing.List[AuditLogConfig]
+@typing.type_check_only
+class CustomerManagedEncryption(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
 
+@typing.type_check_only
 class CustomerManagedEncryptionStatus(typing_extensions.TypedDict, total=False):
     kmsKeyVersionName: str
 
+@typing.type_check_only
+class DestroySecretVersionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DisableSecretVersionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableSecretVersionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: typing.List[Location]
     nextPageToken: str
 
-class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
-    version: int
-    etag: str
-    auditConfigs: typing.List[AuditConfig]
-
-class UserManaged(typing_extensions.TypedDict, total=False):
-    replicas: typing.List[Replica]
-
-class AutomaticStatus(typing_extensions.TypedDict, total=False):
-    customerManagedEncryption: CustomerManagedEncryptionStatus
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    updateMask: str
-    policy: Policy
-
-class ReplicaStatus(typing_extensions.TypedDict, total=False):
-    location: str
-    customerManagedEncryption: CustomerManagedEncryptionStatus
-
+@typing.type_check_only
 class ListSecretVersionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
     totalSize: int
     versions: typing.List[SecretVersion]
+
+@typing.type_check_only
+class ListSecretsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
+    secrets: typing.List[Secret]
+    totalSize: int
 
-class CustomerManagedEncryption(typing_extensions.TypedDict, total=False):
-    kmsKeyName: str
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
 
-class Expr(typing_extensions.TypedDict, total=False):
-    description: str
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class Replica(typing_extensions.TypedDict, total=False):
+    customerManagedEncryption: CustomerManagedEncryption
     location: str
-    expression: str
-    title: str
 
-class Empty(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class ReplicaStatus(typing_extensions.TypedDict, total=False):
+    customerManagedEncryption: CustomerManagedEncryptionStatus
+    location: str
 
+@typing.type_check_only
+class Replication(typing_extensions.TypedDict, total=False):
+    automatic: Automatic
+    userManaged: UserManaged
+
+@typing.type_check_only
+class ReplicationStatus(typing_extensions.TypedDict, total=False):
+    automatic: AutomaticStatus
+    userManaged: UserManagedStatus
+
+@typing.type_check_only
+class Secret(typing_extensions.TypedDict, total=False):
+    createTime: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    replication: Replication
+
+@typing.type_check_only
+class SecretPayload(typing_extensions.TypedDict, total=False):
+    data: str
+
+@typing.type_check_only
 class SecretVersion(typing_extensions.TypedDict, total=False):
-    replicationStatus: ReplicationStatus
     createTime: str
     destroyTime: str
+    name: str
+    replicationStatus: ReplicationStatus
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ENABLED", "DISABLED", "DESTROYED"
     ]
-    name: str
 
-class Secret(typing_extensions.TypedDict, total=False):
-    createTime: str
-    replication: Replication
-    name: str
-    labels: typing.Dict[str, typing.Any]
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class UserManaged(typing_extensions.TypedDict, total=False):
+    replicas: typing.List[Replica]
+
+@typing.type_check_only
+class UserManagedStatus(typing_extensions.TypedDict, total=False):
+    replicas: typing.List[ReplicaStatus]

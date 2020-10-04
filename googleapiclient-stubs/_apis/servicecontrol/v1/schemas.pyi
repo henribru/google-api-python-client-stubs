@@ -1,10 +1,76 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class AllocateInfo(typing_extensions.TypedDict, total=False):
     unusedArguments: typing.List[str]
 
+@typing.type_check_only
+class AllocateQuotaRequest(typing_extensions.TypedDict, total=False):
+    allocateOperation: QuotaOperation
+    serviceConfigId: str
+
+@typing.type_check_only
+class AllocateQuotaResponse(typing_extensions.TypedDict, total=False):
+    allocateErrors: typing.List[QuotaError]
+    allocateInfo: AllocateInfo
+    operationId: str
+    quotaMetrics: typing.List[MetricValueSet]
+    serviceConfigId: str
+
+@typing.type_check_only
+class AttributeValue(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    intValue: str
+    stringValue: TruncatableString
+
+@typing.type_check_only
+class Attributes(typing_extensions.TypedDict, total=False):
+    attributeMap: typing.Dict[str, typing.Any]
+    droppedAttributesCount: int
+
+@typing.type_check_only
+class AuditLog(typing_extensions.TypedDict, total=False):
+    authenticationInfo: AuthenticationInfo
+    authorizationInfo: typing.List[AuthorizationInfo]
+    metadata: typing.Dict[str, typing.Any]
+    methodName: str
+    numResponseItems: str
+    request: typing.Dict[str, typing.Any]
+    requestMetadata: RequestMetadata
+    resourceLocation: ResourceLocation
+    resourceName: str
+    resourceOriginalState: typing.Dict[str, typing.Any]
+    response: typing.Dict[str, typing.Any]
+    serviceData: typing.Dict[str, typing.Any]
+    serviceName: str
+    status: Status
+
+@typing.type_check_only
+class Auth(typing_extensions.TypedDict, total=False):
+    accessLevels: typing.List[str]
+    audiences: typing.List[str]
+    claims: typing.Dict[str, typing.Any]
+    presenter: str
+    principal: str
+
+@typing.type_check_only
+class AuthenticationInfo(typing_extensions.TypedDict, total=False):
+    authoritySelector: str
+    principalEmail: str
+    principalSubject: str
+    serviceAccountDelegationInfo: typing.List[ServiceAccountDelegationInfo]
+    serviceAccountKeyName: str
+    thirdPartyPrincipal: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class AuthorizationInfo(typing_extensions.TypedDict, total=False):
+    granted: bool
+    permission: str
+    resource: str
+    resourceAttributes: Resource
+
+@typing.type_check_only
 class CheckError(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "ERROR_CODE_UNSPECIFIED",
@@ -44,128 +110,188 @@ class CheckError(typing_extensions.TypedDict, total=False):
         "SECURITY_POLICY_BACKEND_UNAVAILABLE",
         "LOCATION_POLICY_BACKEND_UNAVAILABLE",
     ]
-    subject: str
     detail: str
     status: Status
+    subject: str
 
-class CheckRequest(typing_extensions.TypedDict, total=False):
-    skipActivationCheck: bool
-    requestProjectSettings: bool
-    operation: Operation
-    serviceConfigId: str
-
-class AllocateQuotaResponse(typing_extensions.TypedDict, total=False):
-    serviceConfigId: str
-    allocateInfo: AllocateInfo
-    allocateErrors: typing.List[QuotaError]
-    operationId: str
-    quotaMetrics: typing.List[MetricValueSet]
-
-class LogEntrySourceLocation(typing_extensions.TypedDict, total=False):
-    function: str
-    line: str
-    file: str
-
+@typing.type_check_only
 class CheckInfo(typing_extensions.TypedDict, total=False):
     consumerInfo: ConsumerInfo
     unusedArguments: typing.List[str]
 
-class AllocateQuotaRequest(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class CheckRequest(typing_extensions.TypedDict, total=False):
+    operation: Operation
+    requestProjectSettings: bool
     serviceConfigId: str
-    allocateOperation: QuotaOperation
+    skipActivationCheck: bool
 
-class Peer(typing_extensions.TypedDict, total=False):
-    ip: str
-    regionCode: str
-    principal: str
-    labels: typing.Dict[str, typing.Any]
-    port: str
-
-class MetricValue(typing_extensions.TypedDict, total=False):
-    startTime: str
-    moneyValue: Money
-    stringValue: str
-    labels: typing.Dict[str, typing.Any]
-    int64Value: str
-    boolValue: bool
-    endTime: str
-    distributionValue: Distribution
-    doubleValue: float
-
-class Attributes(typing_extensions.TypedDict, total=False):
-    droppedAttributesCount: int
-    attributeMap: typing.Dict[str, typing.Any]
-
-class AuditLog(typing_extensions.TypedDict, total=False):
-    response: typing.Dict[str, typing.Any]
-    methodName: str
-    serviceData: typing.Dict[str, typing.Any]
-    status: Status
-    metadata: typing.Dict[str, typing.Any]
-    requestMetadata: RequestMetadata
-    resourceLocation: ResourceLocation
-    serviceName: str
-    request: typing.Dict[str, typing.Any]
-    authenticationInfo: AuthenticationInfo
-    numResponseItems: str
-    authorizationInfo: typing.List[AuthorizationInfo]
-    resourceName: str
-    resourceOriginalState: typing.Dict[str, typing.Any]
-
-class TruncatableString(typing_extensions.TypedDict, total=False):
-    value: str
-    truncatedByteCount: int
-
-class ThirdPartyPrincipal(typing_extensions.TypedDict, total=False):
-    thirdPartyClaims: typing.Dict[str, typing.Any]
-
-class ReportInfo(typing_extensions.TypedDict, total=False):
-    quotaInfo: QuotaInfo
+@typing.type_check_only
+class CheckResponse(typing_extensions.TypedDict, total=False):
+    checkErrors: typing.List[CheckError]
+    checkInfo: CheckInfo
     operationId: str
+    quotaInfo: QuotaInfo
+    serviceConfigId: str
+    serviceRolloutId: str
 
-class RequestMetadata(typing_extensions.TypedDict, total=False):
-    callerNetwork: str
-    callerIp: str
-    requestAttributes: Request
-    callerSuppliedUserAgent: str
-    destinationAttributes: Peer
+@typing.type_check_only
+class ConsumerInfo(typing_extensions.TypedDict, total=False):
+    consumerNumber: str
+    projectNumber: str
+    type: typing_extensions.Literal[
+        "CONSUMER_TYPE_UNSPECIFIED",
+        "PROJECT",
+        "FOLDER",
+        "ORGANIZATION",
+        "SERVICE_SPECIFIC",
+    ]
 
+@typing.type_check_only
+class Distribution(typing_extensions.TypedDict, total=False):
+    bucketCounts: typing.List[str]
+    count: str
+    exemplars: typing.List[Exemplar]
+    explicitBuckets: ExplicitBuckets
+    exponentialBuckets: ExponentialBuckets
+    linearBuckets: LinearBuckets
+    maximum: float
+    mean: float
+    minimum: float
+    sumOfSquaredDeviation: float
+
+@typing.type_check_only
+class Exemplar(typing_extensions.TypedDict, total=False):
+    attachments: typing.List[typing.Dict[str, typing.Any]]
+    timestamp: str
+    value: float
+
+@typing.type_check_only
+class ExplicitBuckets(typing_extensions.TypedDict, total=False):
+    bounds: typing.List[float]
+
+@typing.type_check_only
+class ExponentialBuckets(typing_extensions.TypedDict, total=False):
+    growthFactor: float
+    numFiniteBuckets: int
+    scale: float
+
+@typing.type_check_only
+class FirstPartyPrincipal(typing_extensions.TypedDict, total=False):
+    principalEmail: str
+    serviceMetadata: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class HttpRequest(typing_extensions.TypedDict, total=False):
-    protocol: str
-    latency: str
-    serverIp: str
-    cacheHit: bool
     cacheFillBytes: str
-    responseSize: str
+    cacheHit: bool
+    cacheLookup: bool
+    cacheValidatedWithOriginServer: bool
+    latency: str
+    protocol: str
+    referer: str
     remoteIp: str
     requestMethod: str
-    cacheValidatedWithOriginServer: bool
-    cacheLookup: bool
-    requestUrl: str
-    status: int
-    referer: str
     requestSize: str
+    requestUrl: str
+    responseSize: str
+    serverIp: str
+    status: int
     userAgent: str
 
-class SpanContext(typing_extensions.TypedDict, total=False):
-    spanName: str
+@typing.type_check_only
+class LinearBuckets(typing_extensions.TypedDict, total=False):
+    numFiniteBuckets: int
+    offset: float
+    width: float
 
-class AuthorizationInfo(typing_extensions.TypedDict, total=False):
-    permission: str
-    granted: bool
-    resourceAttributes: Resource
-    resource: str
+@typing.type_check_only
+class LogEntry(typing_extensions.TypedDict, total=False):
+    httpRequest: HttpRequest
+    insertId: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    operation: LogEntryOperation
+    protoPayload: typing.Dict[str, typing.Any]
+    severity: typing_extensions.Literal[
+        "DEFAULT",
+        "DEBUG",
+        "INFO",
+        "NOTICE",
+        "WARNING",
+        "ERROR",
+        "CRITICAL",
+        "ALERT",
+        "EMERGENCY",
+    ]
+    sourceLocation: LogEntrySourceLocation
+    structPayload: typing.Dict[str, typing.Any]
+    textPayload: str
+    timestamp: str
+    trace: str
 
-class ReportResponse(typing_extensions.TypedDict, total=False):
-    serviceRolloutId: str
-    reportInfos: typing.List[ReportInfo]
-    reportErrors: typing.List[ReportError]
-    serviceConfigId: str
+@typing.type_check_only
+class LogEntryOperation(typing_extensions.TypedDict, total=False):
+    first: bool
+    id: str
+    last: bool
+    producer: str
 
+@typing.type_check_only
+class LogEntrySourceLocation(typing_extensions.TypedDict, total=False):
+    file: str
+    function: str
+    line: str
+
+@typing.type_check_only
+class MetricValue(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    distributionValue: Distribution
+    doubleValue: float
+    endTime: str
+    int64Value: str
+    labels: typing.Dict[str, typing.Any]
+    moneyValue: Money
+    startTime: str
+    stringValue: str
+
+@typing.type_check_only
 class MetricValueSet(typing_extensions.TypedDict, total=False):
-    metricValues: typing.List[MetricValue]
     metricName: str
+    metricValues: typing.List[MetricValue]
 
+@typing.type_check_only
+class Money(typing_extensions.TypedDict, total=False):
+    currencyCode: str
+    nanos: int
+    units: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    consumerId: str
+    endTime: str
+    extensions: typing.List[typing.Dict[str, typing.Any]]
+    importance: typing_extensions.Literal["LOW", "HIGH", "DEBUG"]
+    labels: typing.Dict[str, typing.Any]
+    logEntries: typing.List[LogEntry]
+    metricValueSets: typing.List[MetricValueSet]
+    operationId: str
+    operationName: str
+    quotaProperties: QuotaProperties
+    resources: typing.List[ResourceInfo]
+    startTime: str
+    traceSpans: typing.List[TraceSpan]
+    userLabels: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Peer(typing_extensions.TypedDict, total=False):
+    ip: str
+    labels: typing.Dict[str, typing.Any]
+    port: str
+    principal: str
+    regionCode: str
+
+@typing.type_check_only
 class QuotaError(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -186,181 +312,19 @@ class QuotaError(typing_extensions.TypedDict, total=False):
     description: str
     subject: str
 
-class ReportError(typing_extensions.TypedDict, total=False):
-    operationId: str
-    status: Status
-
-class Operation(typing_extensions.TypedDict, total=False):
-    importance: typing_extensions.Literal["LOW", "HIGH", "DEBUG"]
-    operationId: str
-    userLabels: typing.Dict[str, typing.Any]
-    consumerId: str
-    logEntries: typing.List[LogEntry]
-    extensions: typing.List[typing.Dict[str, typing.Any]]
-    startTime: str
-    operationName: str
-    metricValueSets: typing.List[MetricValueSet]
-    resources: typing.List[ResourceInfo]
-    traceSpans: typing.List[TraceSpan]
-    quotaProperties: QuotaProperties
-    endTime: str
-    labels: typing.Dict[str, typing.Any]
-
-class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
-    firstPartyPrincipal: FirstPartyPrincipal
-    thirdPartyPrincipal: ThirdPartyPrincipal
-
-class CheckResponse(typing_extensions.TypedDict, total=False):
-    serviceRolloutId: str
-    serviceConfigId: str
-    checkErrors: typing.List[CheckError]
-    quotaInfo: QuotaInfo
-    checkInfo: CheckInfo
-    operationId: str
-
-class ReportRequest(typing_extensions.TypedDict, total=False):
-    serviceConfigId: str
-    operations: typing.List[Operation]
-
-class LogEntryOperation(typing_extensions.TypedDict, total=False):
-    last: bool
-    first: bool
-    producer: str
-    id: str
-
-class ConsumerInfo(typing_extensions.TypedDict, total=False):
-    consumerNumber: str
-    projectNumber: str
-    type: typing_extensions.Literal[
-        "CONSUMER_TYPE_UNSPECIFIED",
-        "PROJECT",
-        "FOLDER",
-        "ORGANIZATION",
-        "SERVICE_SPECIFIC",
-    ]
-
-class ResourceInfo(typing_extensions.TypedDict, total=False):
-    resourceContainer: str
-    resourceName: str
-    resourceLocation: str
-
-class TraceSpan(typing_extensions.TypedDict, total=False):
-    parentSpanId: str
-    status: Status
-    endTime: str
-    childSpanCount: int
-    name: str
-    attributes: Attributes
-    displayName: TruncatableString
-    sameProcessAsParentSpan: bool
-    startTime: str
-    spanKind: typing_extensions.Literal[
-        "SPAN_KIND_UNSPECIFIED", "INTERNAL", "SERVER", "CLIENT", "PRODUCER", "CONSUMER"
-    ]
-    spanId: str
-
-class Exemplar(typing_extensions.TypedDict, total=False):
-    value: float
-    attachments: typing.List[typing.Dict[str, typing.Any]]
-    timestamp: str
-
+@typing.type_check_only
 class QuotaInfo(typing_extensions.TypedDict, total=False):
+    limitExceeded: typing.List[str]
     quotaConsumed: typing.Dict[str, typing.Any]
     quotaMetrics: typing.List[MetricValueSet]
-    limitExceeded: typing.List[str]
 
-class Money(typing_extensions.TypedDict, total=False):
-    nanos: int
-    currencyCode: str
-    units: str
-
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-    code: int
-
-class LinearBuckets(typing_extensions.TypedDict, total=False):
-    numFiniteBuckets: int
-    width: float
-    offset: float
-
-class LogEntry(typing_extensions.TypedDict, total=False):
-    textPayload: str
-    name: str
-    structPayload: typing.Dict[str, typing.Any]
-    insertId: str
-    timestamp: str
-    severity: typing_extensions.Literal[
-        "DEFAULT",
-        "DEBUG",
-        "INFO",
-        "NOTICE",
-        "WARNING",
-        "ERROR",
-        "CRITICAL",
-        "ALERT",
-        "EMERGENCY",
-    ]
-    trace: str
-    operation: LogEntryOperation
-    protoPayload: typing.Dict[str, typing.Any]
-    httpRequest: HttpRequest
-    sourceLocation: LogEntrySourceLocation
-    labels: typing.Dict[str, typing.Any]
-
-class Request(typing_extensions.TypedDict, total=False):
-    host: str
-    scheme: str
-    time: str
-    protocol: str
-    auth: Auth
-    headers: typing.Dict[str, typing.Any]
-    id: str
-    reason: str
-    method: str
-    size: str
-    query: str
-    path: str
-
-class AuthenticationInfo(typing_extensions.TypedDict, total=False):
-    authoritySelector: str
-    principalSubject: str
-    principalEmail: str
-    thirdPartyPrincipal: typing.Dict[str, typing.Any]
-    serviceAccountDelegationInfo: typing.List[ServiceAccountDelegationInfo]
-    serviceAccountKeyName: str
-
-class Resource(typing_extensions.TypedDict, total=False):
-    service: str
-    type: str
-    labels: typing.Dict[str, typing.Any]
-    name: str
-
-class QuotaProperties(typing_extensions.TypedDict, total=False):
-    quotaMode: typing_extensions.Literal[
-        "ACQUIRE", "ACQUIRE_BEST_EFFORT", "CHECK", "RELEASE"
-    ]
-
-class ResourceLocation(typing_extensions.TypedDict, total=False):
-    currentLocations: typing.List[str]
-    originalLocations: typing.List[str]
-
-class Distribution(typing_extensions.TypedDict, total=False):
-    explicitBuckets: ExplicitBuckets
-    sumOfSquaredDeviation: float
-    exemplars: typing.List[Exemplar]
-    count: str
-    linearBuckets: LinearBuckets
-    maximum: float
-    exponentialBuckets: ExponentialBuckets
-    minimum: float
-    mean: float
-    bucketCounts: typing.List[str]
-
+@typing.type_check_only
 class QuotaOperation(typing_extensions.TypedDict, total=False):
-    operationId: str
     consumerId: str
+    labels: typing.Dict[str, typing.Any]
     methodName: str
+    operationId: str
+    quotaMetrics: typing.List[MetricValueSet]
     quotaMode: typing_extensions.Literal[
         "UNSPECIFIED",
         "NORMAL",
@@ -369,29 +333,112 @@ class QuotaOperation(typing_extensions.TypedDict, total=False):
         "QUERY_ONLY",
         "ADJUST_ONLY",
     ]
+
+@typing.type_check_only
+class QuotaProperties(typing_extensions.TypedDict, total=False):
+    quotaMode: typing_extensions.Literal[
+        "ACQUIRE", "ACQUIRE_BEST_EFFORT", "CHECK", "RELEASE"
+    ]
+
+@typing.type_check_only
+class ReportError(typing_extensions.TypedDict, total=False):
+    operationId: str
+    status: Status
+
+@typing.type_check_only
+class ReportInfo(typing_extensions.TypedDict, total=False):
+    operationId: str
+    quotaInfo: QuotaInfo
+
+@typing.type_check_only
+class ReportRequest(typing_extensions.TypedDict, total=False):
+    operations: typing.List[Operation]
+    serviceConfigId: str
+
+@typing.type_check_only
+class ReportResponse(typing_extensions.TypedDict, total=False):
+    reportErrors: typing.List[ReportError]
+    reportInfos: typing.List[ReportInfo]
+    serviceConfigId: str
+    serviceRolloutId: str
+
+@typing.type_check_only
+class Request(typing_extensions.TypedDict, total=False):
+    auth: Auth
+    headers: typing.Dict[str, typing.Any]
+    host: str
+    id: str
+    method: str
+    path: str
+    protocol: str
+    query: str
+    reason: str
+    scheme: str
+    size: str
+    time: str
+
+@typing.type_check_only
+class RequestMetadata(typing_extensions.TypedDict, total=False):
+    callerIp: str
+    callerNetwork: str
+    callerSuppliedUserAgent: str
+    destinationAttributes: Peer
+    requestAttributes: Request
+
+@typing.type_check_only
+class Resource(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
-    quotaMetrics: typing.List[MetricValueSet]
+    name: str
+    service: str
+    type: str
 
-class Auth(typing_extensions.TypedDict, total=False):
-    accessLevels: typing.List[str]
-    principal: str
-    presenter: str
-    audiences: typing.List[str]
-    claims: typing.Dict[str, typing.Any]
+@typing.type_check_only
+class ResourceInfo(typing_extensions.TypedDict, total=False):
+    resourceContainer: str
+    resourceLocation: str
+    resourceName: str
 
-class AttributeValue(typing_extensions.TypedDict, total=False):
-    boolValue: bool
-    stringValue: TruncatableString
-    intValue: str
+@typing.type_check_only
+class ResourceLocation(typing_extensions.TypedDict, total=False):
+    currentLocations: typing.List[str]
+    originalLocations: typing.List[str]
 
-class ExplicitBuckets(typing_extensions.TypedDict, total=False):
-    bounds: typing.List[float]
+@typing.type_check_only
+class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
+    firstPartyPrincipal: FirstPartyPrincipal
+    thirdPartyPrincipal: ThirdPartyPrincipal
 
-class FirstPartyPrincipal(typing_extensions.TypedDict, total=False):
-    serviceMetadata: typing.Dict[str, typing.Any]
-    principalEmail: str
+@typing.type_check_only
+class SpanContext(typing_extensions.TypedDict, total=False):
+    spanName: str
 
-class ExponentialBuckets(typing_extensions.TypedDict, total=False):
-    scale: float
-    growthFactor: float
-    numFiniteBuckets: int
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class ThirdPartyPrincipal(typing_extensions.TypedDict, total=False):
+    thirdPartyClaims: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class TraceSpan(typing_extensions.TypedDict, total=False):
+    attributes: Attributes
+    childSpanCount: int
+    displayName: TruncatableString
+    endTime: str
+    name: str
+    parentSpanId: str
+    sameProcessAsParentSpan: bool
+    spanId: str
+    spanKind: typing_extensions.Literal[
+        "SPAN_KIND_UNSPECIFIED", "INTERNAL", "SERVER", "CLIENT", "PRODUCER", "CONSUMER"
+    ]
+    startTime: str
+    status: Status
+
+@typing.type_check_only
+class TruncatableString(typing_extensions.TypedDict, total=False):
+    truncatedByteCount: int
+    value: str

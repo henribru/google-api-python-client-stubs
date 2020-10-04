@@ -7,10 +7,23 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudOSLoginResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class ProjectsResource(googleapiclient.discovery.Resource):
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+        @typing.type_check_only
         class SshPublicKeysResource(googleapiclient.discovery.Resource):
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SshPublicKeyHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -19,16 +32,6 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> SshPublicKeyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> SshPublicKeyHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-        class ProjectsResource(googleapiclient.discovery.Resource):
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
         def getLoginProfile(
             self,
             *,
@@ -45,26 +48,30 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             projectId: str = ...,
             **kwargs: typing.Any
         ) -> ImportSshPublicKeyResponseHttpRequest: ...
-        def sshPublicKeys(self) -> SshPublicKeysResource: ...
         def projects(self) -> ProjectsResource: ...
+        def sshPublicKeys(self) -> SshPublicKeysResource: ...
     def users(self) -> UsersResource: ...
 
-class SshPublicKeyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SshPublicKey: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
+@typing.type_check_only
+class ImportSshPublicKeyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ImportSshPublicKeyResponse: ...
+
+@typing.type_check_only
 class LoginProfileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> LoginProfile: ...
 
-class ImportSshPublicKeyResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class SshPublicKeyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ImportSshPublicKeyResponse: ...
+    ) -> SshPublicKey: ...

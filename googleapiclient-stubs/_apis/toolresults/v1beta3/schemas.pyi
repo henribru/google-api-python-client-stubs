@@ -1,179 +1,344 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class ANR(typing_extensions.TypedDict, total=False):
+    stackTrace: StackTrace
 
-class ToolOutputReference(typing_extensions.TypedDict, total=False):
-    output: FileReference
-    testCase: TestCaseReference
-    creationTime: Timestamp
+@typing.type_check_only
+class AndroidAppInfo(typing_extensions.TypedDict, total=False):
+    name: str
+    packageName: str
+    versionCode: str
+    versionName: str
 
-class StepSummary(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class AndroidInstrumentationTest(typing_extensions.TypedDict, total=False):
+    testPackageId: str
+    testRunnerClass: str
+    testTargets: typing.List[str]
+    useOrchestrator: bool
 
-class ListScreenshotClustersResponse(typing_extensions.TypedDict, total=False):
-    clusters: typing.List[ScreenshotCluster]
+@typing.type_check_only
+class AndroidRoboTest(typing_extensions.TypedDict, total=False):
+    appInitialActivity: str
+    bootstrapPackageId: str
+    bootstrapRunnerClass: str
+    maxDepth: int
+    maxSteps: int
 
-class InAppPurchasesFound(typing_extensions.TypedDict, total=False):
-    inAppPurchasesFlowsStarted: int
-    inAppPurchasesFlowsExplored: int
+@typing.type_check_only
+class AndroidTest(typing_extensions.TypedDict, total=False):
+    androidAppInfo: AndroidAppInfo
+    androidInstrumentationTest: AndroidInstrumentationTest
+    androidRoboTest: AndroidRoboTest
+    androidTestLoop: AndroidTestLoop
+    testTimeout: Duration
 
-class GraphicsStats(typing_extensions.TypedDict, total=False):
-    slowUiThreadCount: str
-    slowDrawCount: str
-    buckets: typing.List[GraphicsStatsBucket]
-    p90Millis: str
-    p99Millis: str
-    missedVsyncCount: str
-    totalFrames: str
-    p50Millis: str
-    jankyFrames: str
-    slowBitmapUploadCount: str
-    highInputLatencyCount: str
-    p95Millis: str
+@typing.type_check_only
+class AndroidTestLoop(typing_extensions.TypedDict, total=False): ...
 
-class InconclusiveDetail(typing_extensions.TypedDict, total=False):
-    infrastructureFailure: bool
-    hasErrorLogs: bool
-    abortedByUser: bool
+@typing.type_check_only
+class Any(typing_extensions.TypedDict, total=False):
+    typeUrl: str
+    value: str
 
-class SuggestionClusterProto(typing_extensions.TypedDict, total=False):
-    suggestions: typing.List[SuggestionProto]
-    category: typing_extensions.Literal[
-        "unknownCategory",
-        "contentLabeling",
-        "touchTargetSize",
-        "lowContrast",
-        "implementation",
+@typing.type_check_only
+class AppStartTime(typing_extensions.TypedDict, total=False):
+    fullyDrawnTime: Duration
+    initialDisplayTime: Duration
+
+@typing.type_check_only
+class AvailableDeepLinks(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class BasicPerfSampleSeries(typing_extensions.TypedDict, total=False):
+    perfMetricType: typing_extensions.Literal[
+        "perfMetricTypeUnspecified", "memory", "cpu", "network", "graphics"
+    ]
+    perfUnit: typing_extensions.Literal[
+        "perfUnitUnspecified",
+        "kibibyte",
+        "percent",
+        "bytesPerSecond",
+        "framesPerSecond",
+        "byte",
+    ]
+    sampleSeriesLabel: typing_extensions.Literal[
+        "sampleSeriesTypeUnspecified",
+        "memoryRssPrivate",
+        "memoryRssShared",
+        "memoryRssTotal",
+        "memoryTotal",
+        "cpuUser",
+        "cpuKernel",
+        "cpuTotal",
+        "ntBytesTransferred",
+        "ntBytesReceived",
+        "networkSent",
+        "networkReceived",
+        "graphicsFrameRate",
     ]
 
-class MultiStep(typing_extensions.TypedDict, total=False):
-    primaryStep: PrimaryStep
-    primaryStepId: str
-    multistepNumber: int
+@typing.type_check_only
+class BatchCreatePerfSamplesRequest(typing_extensions.TypedDict, total=False):
+    perfSamples: typing.List[PerfSample]
 
+@typing.type_check_only
+class BatchCreatePerfSamplesResponse(typing_extensions.TypedDict, total=False):
+    perfSamples: typing.List[PerfSample]
+
+@typing.type_check_only
 class BlankScreen(typing_extensions.TypedDict, total=False):
     screenId: str
 
-class IosRoboTest(typing_extensions.TypedDict, total=False): ...
-
-class Duration(typing_extensions.TypedDict, total=False):
-    nanos: int
-    seconds: str
-
-class PerfMetricsSummary(typing_extensions.TypedDict, total=False):
-    stepId: str
-    projectId: str
-    perfEnvironment: PerfEnvironment
-    executionId: str
-    graphicsStats: GraphicsStats
-    perfMetrics: typing.List[str]
-    historyId: str
-    appStartTime: AppStartTime
-
+@typing.type_check_only
 class CPUInfo(typing_extensions.TypedDict, total=False):
     cpuProcessor: str
     cpuSpeedInGhz: float
     numberOfCores: int
 
-class ListStepAccessibilityClustersResponse(typing_extensions.TypedDict, total=False):
-    clusters: typing.List[SuggestionClusterProto]
-    name: str
+@typing.type_check_only
+class CrashDialogError(typing_extensions.TypedDict, total=False):
+    crashPackage: str
 
-class NonSdkApiInsight(typing_extensions.TypedDict, total=False):
-    pendingGoogleUpdateInsight: PendingGoogleUpdateInsight
-    exampleTraceMessages: typing.List[str]
-    upgradeInsight: UpgradeInsight
-    matcherId: str
-
-class BatchCreatePerfSamplesRequest(typing_extensions.TypedDict, total=False):
-    perfSamples: typing.List[PerfSample]
-
-class StepLabelsEntry(typing_extensions.TypedDict, total=False):
-    key: str
-    value: str
-
-class SuccessDetail(typing_extensions.TypedDict, total=False):
-    otherNativeCrash: bool
-
-class PrimaryStep(typing_extensions.TypedDict, total=False):
-    individualOutcome: typing.List[IndividualOutcome]
-    rollUp: typing_extensions.Literal[
-        "unset", "success", "failure", "inconclusive", "skipped", "flaky"
-    ]
-
-class IndividualOutcome(typing_extensions.TypedDict, total=False):
-    multistepNumber: int
-    stepId: str
-    runDuration: Duration
-    outcomeSummary: typing_extensions.Literal[
-        "unset", "success", "failure", "inconclusive", "skipped", "flaky"
-    ]
-
-class Timestamp(typing_extensions.TypedDict, total=False):
-    seconds: str
+@typing.type_check_only
+class Duration(typing_extensions.TypedDict, total=False):
     nanos: int
+    seconds: str
 
+@typing.type_check_only
+class EncounteredLoginScreen(typing_extensions.TypedDict, total=False):
+    distinctScreens: int
+    screenIds: typing.List[str]
+
+@typing.type_check_only
 class EncounteredNonAndroidUiWidgetScreen(typing_extensions.TypedDict, total=False):
     distinctScreens: int
     screenIds: typing.List[str]
 
-class ResultsStorage(typing_extensions.TypedDict, total=False):
-    resultsStoragePath: FileReference
-    xunitXmlFile: FileReference
+@typing.type_check_only
+class Environment(typing_extensions.TypedDict, total=False):
+    completionTime: Timestamp
+    creationTime: Timestamp
+    dimensionValue: typing.List[EnvironmentDimensionValueEntry]
+    displayName: str
+    environmentId: str
+    environmentResult: MergedResult
+    executionId: str
+    historyId: str
+    projectId: str
+    resultsStorage: ResultsStorage
+    shardSummaries: typing.List[ShardSummary]
 
-class TestCaseReference(typing_extensions.TypedDict, total=False):
-    className: str
-    name: str
-    testSuiteName: str
-
-class UIElementTooDeep(typing_extensions.TypedDict, total=False):
-    screenId: str
-    screenStateId: str
-    depth: int
-
-class ListPerfSamplesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    perfSamples: typing.List[PerfSample]
-
-class UsedRoboDirective(typing_extensions.TypedDict, total=False):
-    resourceName: str
-
+@typing.type_check_only
 class EnvironmentDimensionValueEntry(typing_extensions.TypedDict, total=False):
     key: str
     value: str
 
+@typing.type_check_only
+class Execution(typing_extensions.TypedDict, total=False):
+    completionTime: Timestamp
+    creationTime: Timestamp
+    dimensionDefinitions: typing.List[MatrixDimensionDefinition]
+    executionId: str
+    outcome: Outcome
+    specification: Specification
+    state: typing_extensions.Literal[
+        "unknownState", "pending", "inProgress", "complete"
+    ]
+    testExecutionMatrixId: str
+
+@typing.type_check_only
+class FailedToInstall(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FailureDetail(typing_extensions.TypedDict, total=False):
+    crashed: bool
+    deviceOutOfMemory: bool
+    failedRoboscript: bool
+    notInstalled: bool
+    otherNativeCrash: bool
+    timedOut: bool
+    unableToCrawl: bool
+
+@typing.type_check_only
+class FatalException(typing_extensions.TypedDict, total=False):
+    stackTrace: StackTrace
+
+@typing.type_check_only
+class FileReference(typing_extensions.TypedDict, total=False):
+    fileUri: str
+
+@typing.type_check_only
+class GraphicsStats(typing_extensions.TypedDict, total=False):
+    buckets: typing.List[GraphicsStatsBucket]
+    highInputLatencyCount: str
+    jankyFrames: str
+    missedVsyncCount: str
+    p50Millis: str
+    p90Millis: str
+    p95Millis: str
+    p99Millis: str
+    slowBitmapUploadCount: str
+    slowDrawCount: str
+    slowUiThreadCount: str
+    totalFrames: str
+
+@typing.type_check_only
+class GraphicsStatsBucket(typing_extensions.TypedDict, total=False):
+    frameCount: str
+    renderMillis: str
+
+@typing.type_check_only
+class History(typing_extensions.TypedDict, total=False):
+    displayName: str
+    historyId: str
+    name: str
+    testPlatform: typing_extensions.Literal["unknownPlatform", "android", "ios"]
+
+@typing.type_check_only
+class Image(typing_extensions.TypedDict, total=False):
+    error: Status
+    sourceImage: ToolOutputReference
+    stepId: str
+    thumbnail: Thumbnail
+
+@typing.type_check_only
+class InAppPurchasesFound(typing_extensions.TypedDict, total=False):
+    inAppPurchasesFlowsExplored: int
+    inAppPurchasesFlowsStarted: int
+
+@typing.type_check_only
+class InconclusiveDetail(typing_extensions.TypedDict, total=False):
+    abortedByUser: bool
+    hasErrorLogs: bool
+    infrastructureFailure: bool
+
+@typing.type_check_only
+class IndividualOutcome(typing_extensions.TypedDict, total=False):
+    multistepNumber: int
+    outcomeSummary: typing_extensions.Literal[
+        "unset", "success", "failure", "inconclusive", "skipped", "flaky"
+    ]
+    runDuration: Duration
+    stepId: str
+
+@typing.type_check_only
 class InsufficientCoverage(typing_extensions.TypedDict, total=False): ...
 
-class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    environments: typing.List[Environment]
-    projectId: str
-    executionId: str
-    historyId: str
+@typing.type_check_only
+class IosAppCrashed(typing_extensions.TypedDict, total=False):
+    stackTrace: StackTrace
 
-class IosXcTest(typing_extensions.TypedDict, total=False):
-    xcodeVersion: str
+@typing.type_check_only
+class IosAppInfo(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class IosRoboTest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class IosTest(typing_extensions.TypedDict, total=False):
+    iosAppInfo: IosAppInfo
+    iosRoboTest: IosRoboTest
+    iosTestLoop: IosTestLoop
+    iosXcTest: IosXcTest
+    testTimeout: Duration
+
+@typing.type_check_only
+class IosTestLoop(typing_extensions.TypedDict, total=False):
     bundleId: str
 
-class Screen(typing_extensions.TypedDict, total=False):
-    locale: str
-    version: str
-    fileReference: str
-    model: str
+@typing.type_check_only
+class IosXcTest(typing_extensions.TypedDict, total=False):
+    bundleId: str
+    xcodeVersion: str
 
-class TestCase(typing_extensions.TypedDict, total=False):
-    startTime: Timestamp
-    stackTraces: typing.List[StackTrace]
-    testCaseReference: TestCaseReference
-    testCaseId: str
-    status: typing_extensions.Literal["passed", "failed", "error", "skipped", "flaky"]
-    endTime: Timestamp
-    toolOutputs: typing.List[ToolOutputReference]
-    elapsedTime: Duration
-    skippedMessage: str
+@typing.type_check_only
+class LauncherActivityNotFound(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
+    environments: typing.List[Environment]
+    executionId: str
+    historyId: str
+    nextPageToken: str
+    projectId: str
+
+@typing.type_check_only
+class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
+    executions: typing.List[Execution]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListHistoriesResponse(typing_extensions.TypedDict, total=False):
+    histories: typing.List[History]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListPerfSampleSeriesResponse(typing_extensions.TypedDict, total=False):
+    perfSampleSeries: typing.List[PerfSampleSeries]
+
+@typing.type_check_only
+class ListPerfSamplesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    perfSamples: typing.List[PerfSample]
+
+@typing.type_check_only
+class ListScreenshotClustersResponse(typing_extensions.TypedDict, total=False):
+    clusters: typing.List[ScreenshotCluster]
+
+@typing.type_check_only
+class ListStepAccessibilityClustersResponse(typing_extensions.TypedDict, total=False):
+    clusters: typing.List[SuggestionClusterProto]
+    name: str
+
+@typing.type_check_only
+class ListStepThumbnailsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    thumbnails: typing.List[Image]
+
+@typing.type_check_only
+class ListStepsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    steps: typing.List[Step]
+
+@typing.type_check_only
+class ListTestCasesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    testCases: typing.List[TestCase]
+
+@typing.type_check_only
+class MatrixDimensionDefinition(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class MemoryInfo(typing_extensions.TypedDict, total=False):
+    memoryCapInKibibyte: str
+    memoryTotalInKibibyte: str
+
+@typing.type_check_only
+class MergedResult(typing_extensions.TypedDict, total=False):
+    outcome: Outcome
+    state: typing_extensions.Literal[
+        "unknownState", "pending", "inProgress", "complete"
+    ]
+    testSuiteOverviews: typing.List[TestSuiteOverview]
+
+@typing.type_check_only
+class MultiStep(typing_extensions.TypedDict, total=False):
+    multistepNumber: int
+    primaryStep: PrimaryStep
+    primaryStepId: str
+
+@typing.type_check_only
+class NativeCrash(typing_extensions.TypedDict, total=False):
+    stackTrace: StackTrace
+
+@typing.type_check_only
 class NonSdkApi(typing_extensions.TypedDict, total=False):
-    exampleStackTraces: typing.List[str]
     apiSignature: str
+    exampleStackTraces: typing.List[str]
     insights: typing.List[NonSdkApiInsight]
     invocationCount: int
     list: typing_extensions.Literal[
@@ -187,224 +352,257 @@ class NonSdkApi(typing_extensions.TypedDict, total=False):
         "GREY_MAX_R",
     ]
 
-class LauncherActivityNotFound(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class NonSdkApiInsight(typing_extensions.TypedDict, total=False):
+    exampleTraceMessages: typing.List[str]
+    matcherId: str
+    pendingGoogleUpdateInsight: PendingGoogleUpdateInsight
+    upgradeInsight: UpgradeInsight
 
-class IosAppInfo(typing_extensions.TypedDict, total=False):
-    name: str
-
-class AndroidTest(typing_extensions.TypedDict, total=False):
-    testTimeout: Duration
-    androidAppInfo: AndroidAppInfo
-    androidInstrumentationTest: AndroidInstrumentationTest
-    androidTestLoop: AndroidTestLoop
-    androidRoboTest: AndroidRoboTest
-
-class FailedToInstall(typing_extensions.TypedDict, total=False): ...
-
-class MemoryInfo(typing_extensions.TypedDict, total=False):
-    memoryCapInKibibyte: str
-    memoryTotalInKibibyte: str
-
-class Specification(typing_extensions.TypedDict, total=False):
-    iosTest: IosTest
-    androidTest: AndroidTest
-
-class TestExecutionStep(typing_extensions.TypedDict, total=False):
-    testTiming: TestTiming
-    testIssues: typing.List[TestIssue]
-    toolExecution: ToolExecution
-    testSuiteOverviews: typing.List[TestSuiteOverview]
-
-class PerformedMonkeyActions(typing_extensions.TypedDict, total=False):
-    totalActions: int
-
-class NativeCrash(typing_extensions.TypedDict, total=False):
-    stackTrace: StackTrace
-
-class PerfSample(typing_extensions.TypedDict, total=False):
-    sampleTime: Timestamp
-    value: float
-
-class PerfEnvironment(typing_extensions.TypedDict, total=False):
-    memoryInfo: MemoryInfo
-    cpuInfo: CPUInfo
-
-class ListPerfSampleSeriesResponse(typing_extensions.TypedDict, total=False):
-    perfSampleSeries: typing.List[PerfSampleSeries]
-
-class OverlappingUIElements(typing_extensions.TypedDict, total=False):
-    resourceName: typing.List[str]
-    screenId: str
-
-class PublishXunitXmlFilesRequest(typing_extensions.TypedDict, total=False):
-    xunitXmlFiles: typing.List[FileReference]
-
-class ToolExecutionStep(typing_extensions.TypedDict, total=False):
-    toolExecution: ToolExecution
-
-class BatchCreatePerfSamplesResponse(typing_extensions.TypedDict, total=False):
-    perfSamples: typing.List[PerfSample]
-
-class SuggestionProto(typing_extensions.TypedDict, total=False):
-    longMessage: SafeHtmlProto
-    resourceName: str
-    region: RegionProto
-    title: str
-    screenId: str
-    secondaryPriority: float
-    shortMessage: SafeHtmlProto
-    pseudoResourceId: str
-    helpUrl: str
-    priority: typing_extensions.Literal["unknownPriority", "error", "warning", "info"]
-
-class UnusedRoboDirective(typing_extensions.TypedDict, total=False):
-    resourceName: str
-
-class Step(typing_extensions.TypedDict, total=False):
-    description: str
-    name: str
-    state: typing_extensions.Literal[
-        "unknownState", "pending", "inProgress", "complete"
-    ]
-    outcome: Outcome
-    labels: typing.List[StepLabelsEntry]
-    stepId: str
-    multiStep: MultiStep
-    deviceUsageDuration: Duration
-    hasImages: bool
-    toolExecutionStep: ToolExecutionStep
-    creationTime: Timestamp
-    testExecutionStep: TestExecutionStep
-    completionTime: Timestamp
-    dimensionValue: typing.List[StepDimensionValueEntry]
-    runDuration: Duration
-
-class Execution(typing_extensions.TypedDict, total=False):
-    outcome: Outcome
-    specification: Specification
-    state: typing_extensions.Literal[
-        "unknownState", "pending", "inProgress", "complete"
-    ]
-    creationTime: Timestamp
-    executionId: str
-    dimensionDefinitions: typing.List[MatrixDimensionDefinition]
-    testExecutionMatrixId: str
-    completionTime: Timestamp
-
-class MatrixDimensionDefinition(typing_extensions.TypedDict, total=False): ...
-
-class ListStepsResponse(typing_extensions.TypedDict, total=False):
-    steps: typing.List[Step]
-    nextPageToken: str
-
-class RoboScriptExecution(typing_extensions.TypedDict, total=False):
-    successfulActions: int
-    totalActions: int
-
-class EncounteredLoginScreen(typing_extensions.TypedDict, total=False):
-    distinctScreens: int
-    screenIds: typing.List[str]
-
-class ProjectSettings(typing_extensions.TypedDict, total=False):
-    name: str
-    defaultBucket: str
-
-class Any(typing_extensions.TypedDict, total=False):
-    value: str
-    typeUrl: str
-
-class PerfSampleSeries(typing_extensions.TypedDict, total=False):
-    sampleSeriesId: str
-    historyId: str
-    basicPerfSampleSeries: BasicPerfSampleSeries
-    executionId: str
-    stepId: str
-    projectId: str
-
-class PerformedGoogleLogin(typing_extensions.TypedDict, total=False): ...
-
-class RegionProto(typing_extensions.TypedDict, total=False):
-    topPx: int
-    widthPx: int
-    leftPx: int
-    heightPx: int
-
-class UsedRoboIgnoreDirective(typing_extensions.TypedDict, total=False):
-    resourceName: str
-
-class FileReference(typing_extensions.TypedDict, total=False):
-    fileUri: str
-
-class StackTrace(typing_extensions.TypedDict, total=False):
-    exception: str
-
-class AndroidTestLoop(typing_extensions.TypedDict, total=False): ...
-
-class AndroidInstrumentationTest(typing_extensions.TypedDict, total=False):
-    testTargets: typing.List[str]
-    useOrchestrator: bool
-    testPackageId: str
-    testRunnerClass: str
-
-class StartActivityNotFound(typing_extensions.TypedDict, total=False):
-    action: str
-    uri: str
-
-class MergedResult(typing_extensions.TypedDict, total=False):
-    outcome: Outcome
-    testSuiteOverviews: typing.List[TestSuiteOverview]
-    state: typing_extensions.Literal[
-        "unknownState", "pending", "inProgress", "complete"
-    ]
-
-class ListTestCasesResponse(typing_extensions.TypedDict, total=False):
-    testCases: typing.List[TestCase]
-    nextPageToken: str
-
-class StepDimensionValueEntry(typing_extensions.TypedDict, total=False):
-    key: str
-    value: str
-
-class UpgradeInsight(typing_extensions.TypedDict, total=False):
-    packageName: str
-    upgradeToVersion: str
-
+@typing.type_check_only
 class NonSdkApiUsageViolation(typing_extensions.TypedDict, total=False):
     apiSignatures: typing.List[str]
     uniqueApis: int
 
-class TestSuiteOverview(typing_extensions.TypedDict, total=False):
-    errorCount: int
-    skippedCount: int
-    elapsedTime: Duration
-    totalCount: int
-    flakyCount: int
+@typing.type_check_only
+class NonSdkApiUsageViolationReport(typing_extensions.TypedDict, total=False):
+    exampleApis: typing.List[NonSdkApi]
+    minSdkVersion: int
+    targetSdkVersion: int
+    uniqueApis: int
+
+@typing.type_check_only
+class Outcome(typing_extensions.TypedDict, total=False):
+    failureDetail: FailureDetail
+    inconclusiveDetail: InconclusiveDetail
+    skippedDetail: SkippedDetail
+    successDetail: SuccessDetail
+    summary: typing_extensions.Literal[
+        "unset", "success", "failure", "inconclusive", "skipped", "flaky"
+    ]
+
+@typing.type_check_only
+class OverlappingUIElements(typing_extensions.TypedDict, total=False):
+    resourceName: typing.List[str]
+    screenId: str
+
+@typing.type_check_only
+class PendingGoogleUpdateInsight(typing_extensions.TypedDict, total=False):
+    nameOfGoogleLibrary: str
+
+@typing.type_check_only
+class PerfEnvironment(typing_extensions.TypedDict, total=False):
+    cpuInfo: CPUInfo
+    memoryInfo: MemoryInfo
+
+@typing.type_check_only
+class PerfMetricsSummary(typing_extensions.TypedDict, total=False):
+    appStartTime: AppStartTime
+    executionId: str
+    graphicsStats: GraphicsStats
+    historyId: str
+    perfEnvironment: PerfEnvironment
+    perfMetrics: typing.List[str]
+    projectId: str
+    stepId: str
+
+@typing.type_check_only
+class PerfSample(typing_extensions.TypedDict, total=False):
+    sampleTime: Timestamp
+    value: float
+
+@typing.type_check_only
+class PerfSampleSeries(typing_extensions.TypedDict, total=False):
+    basicPerfSampleSeries: BasicPerfSampleSeries
+    executionId: str
+    historyId: str
+    projectId: str
+    sampleSeriesId: str
+    stepId: str
+
+@typing.type_check_only
+class PerformedGoogleLogin(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PerformedMonkeyActions(typing_extensions.TypedDict, total=False):
+    totalActions: int
+
+@typing.type_check_only
+class PrimaryStep(typing_extensions.TypedDict, total=False):
+    individualOutcome: typing.List[IndividualOutcome]
+    rollUp: typing_extensions.Literal[
+        "unset", "success", "failure", "inconclusive", "skipped", "flaky"
+    ]
+
+@typing.type_check_only
+class ProjectSettings(typing_extensions.TypedDict, total=False):
+    defaultBucket: str
     name: str
-    xmlSource: FileReference
-    failureCount: int
 
-class FailureDetail(typing_extensions.TypedDict, total=False):
-    deviceOutOfMemory: bool
-    notInstalled: bool
-    failedRoboscript: bool
+@typing.type_check_only
+class PublishXunitXmlFilesRequest(typing_extensions.TypedDict, total=False):
+    xunitXmlFiles: typing.List[FileReference]
+
+@typing.type_check_only
+class RegionProto(typing_extensions.TypedDict, total=False):
+    heightPx: int
+    leftPx: int
+    topPx: int
+    widthPx: int
+
+@typing.type_check_only
+class ResultsStorage(typing_extensions.TypedDict, total=False):
+    resultsStoragePath: FileReference
+    xunitXmlFile: FileReference
+
+@typing.type_check_only
+class RoboScriptExecution(typing_extensions.TypedDict, total=False):
+    successfulActions: int
+    totalActions: int
+
+@typing.type_check_only
+class SafeHtmlProto(typing_extensions.TypedDict, total=False):
+    privateDoNotAccessOrElseSafeHtmlWrappedValue: str
+
+@typing.type_check_only
+class Screen(typing_extensions.TypedDict, total=False):
+    fileReference: str
+    locale: str
+    model: str
+    version: str
+
+@typing.type_check_only
+class ScreenshotCluster(typing_extensions.TypedDict, total=False):
+    activity: str
+    clusterId: str
+    keyScreen: Screen
+    screens: typing.List[Screen]
+
+@typing.type_check_only
+class ShardSummary(typing_extensions.TypedDict, total=False):
+    runs: typing.List[StepSummary]
+    shardResult: MergedResult
+
+@typing.type_check_only
+class SkippedDetail(typing_extensions.TypedDict, total=False):
+    incompatibleAppVersion: bool
+    incompatibleArchitecture: bool
+    incompatibleDevice: bool
+
+@typing.type_check_only
+class Specification(typing_extensions.TypedDict, total=False):
+    androidTest: AndroidTest
+    iosTest: IosTest
+
+@typing.type_check_only
+class StackTrace(typing_extensions.TypedDict, total=False):
+    exception: str
+
+@typing.type_check_only
+class StartActivityNotFound(typing_extensions.TypedDict, total=False):
+    action: str
+    uri: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class Step(typing_extensions.TypedDict, total=False):
+    completionTime: Timestamp
+    creationTime: Timestamp
+    description: str
+    deviceUsageDuration: Duration
+    dimensionValue: typing.List[StepDimensionValueEntry]
+    hasImages: bool
+    labels: typing.List[StepLabelsEntry]
+    multiStep: MultiStep
+    name: str
+    outcome: Outcome
+    runDuration: Duration
+    state: typing_extensions.Literal[
+        "unknownState", "pending", "inProgress", "complete"
+    ]
+    stepId: str
+    testExecutionStep: TestExecutionStep
+    toolExecutionStep: ToolExecutionStep
+
+@typing.type_check_only
+class StepDimensionValueEntry(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
+class StepLabelsEntry(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
+class StepSummary(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SuccessDetail(typing_extensions.TypedDict, total=False):
     otherNativeCrash: bool
-    timedOut: bool
-    crashed: bool
-    unableToCrawl: bool
 
-class AndroidRoboTest(typing_extensions.TypedDict, total=False):
-    bootstrapRunnerClass: str
-    maxSteps: int
-    appInitialActivity: str
-    maxDepth: int
-    bootstrapPackageId: str
+@typing.type_check_only
+class SuggestionClusterProto(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal[
+        "unknownCategory",
+        "contentLabeling",
+        "touchTargetSize",
+        "lowContrast",
+        "implementation",
+    ]
+    suggestions: typing.List[SuggestionProto]
 
+@typing.type_check_only
+class SuggestionProto(typing_extensions.TypedDict, total=False):
+    helpUrl: str
+    longMessage: SafeHtmlProto
+    priority: typing_extensions.Literal["unknownPriority", "error", "warning", "info"]
+    pseudoResourceId: str
+    region: RegionProto
+    resourceName: str
+    screenId: str
+    secondaryPriority: float
+    shortMessage: SafeHtmlProto
+    title: str
+
+@typing.type_check_only
+class TestCase(typing_extensions.TypedDict, total=False):
+    elapsedTime: Duration
+    endTime: Timestamp
+    skippedMessage: str
+    stackTraces: typing.List[StackTrace]
+    startTime: Timestamp
+    status: typing_extensions.Literal["passed", "failed", "error", "skipped", "flaky"]
+    testCaseId: str
+    testCaseReference: TestCaseReference
+    toolOutputs: typing.List[ToolOutputReference]
+
+@typing.type_check_only
+class TestCaseReference(typing_extensions.TypedDict, total=False):
+    className: str
+    name: str
+    testSuiteName: str
+
+@typing.type_check_only
+class TestExecutionStep(typing_extensions.TypedDict, total=False):
+    testIssues: typing.List[TestIssue]
+    testSuiteOverviews: typing.List[TestSuiteOverview]
+    testTiming: TestTiming
+    toolExecution: ToolExecution
+
+@typing.type_check_only
 class TestIssue(typing_extensions.TypedDict, total=False):
-    stackTrace: StackTrace
+    category: typing_extensions.Literal["unspecifiedCategory", "common", "robo"]
+    errorMessage: str
     severity: typing_extensions.Literal[
         "unspecifiedSeverity", "info", "suggestion", "warning", "severe"
     ]
-    category: typing_extensions.Literal["unspecifiedCategory", "common", "robo"]
+    stackTrace: StackTrace
     type: typing_extensions.Literal[
         "unspecifiedType",
         "fatalException",
@@ -437,168 +635,77 @@ class TestIssue(typing_extensions.TypedDict, total=False):
         "unityException",
     ]
     warning: Any
-    errorMessage: str
 
-class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    executions: typing.List[Execution]
-
-class Environment(typing_extensions.TypedDict, total=False):
-    completionTime: Timestamp
-    executionId: str
-    dimensionValue: typing.List[EnvironmentDimensionValueEntry]
-    projectId: str
-    resultsStorage: ResultsStorage
-    environmentId: str
-    historyId: str
-    displayName: str
-    creationTime: Timestamp
-    environmentResult: MergedResult
-    shardSummaries: typing.List[ShardSummary]
-
-class ToolExecution(typing_extensions.TypedDict, total=False):
-    commandLineArguments: typing.List[str]
-    toolOutputs: typing.List[ToolOutputReference]
-    toolLogs: typing.List[FileReference]
-    exitCode: ToolExitCode
-
-class GraphicsStatsBucket(typing_extensions.TypedDict, total=False):
-    renderMillis: str
-    frameCount: str
-
-class SkippedDetail(typing_extensions.TypedDict, total=False):
-    incompatibleAppVersion: bool
-    incompatibleArchitecture: bool
-    incompatibleDevice: bool
-
-class Status(typing_extensions.TypedDict, total=False):
-    message: str
-    code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
-
-class AndroidAppInfo(typing_extensions.TypedDict, total=False):
-    versionName: str
+@typing.type_check_only
+class TestSuiteOverview(typing_extensions.TypedDict, total=False):
+    elapsedTime: Duration
+    errorCount: int
+    failureCount: int
+    flakyCount: int
     name: str
-    versionCode: str
-    packageName: str
+    skippedCount: int
+    totalCount: int
+    xmlSource: FileReference
 
-class ListStepThumbnailsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    thumbnails: typing.List[Image]
-
-class ShardSummary(typing_extensions.TypedDict, total=False):
-    runs: typing.List[StepSummary]
-    shardResult: MergedResult
-
-class ScreenshotCluster(typing_extensions.TypedDict, total=False):
-    activity: str
-    clusterId: str
-    screens: typing.List[Screen]
-    keyScreen: Screen
-
-class Outcome(typing_extensions.TypedDict, total=False):
-    summary: typing_extensions.Literal[
-        "unset", "success", "failure", "inconclusive", "skipped", "flaky"
-    ]
-    successDetail: SuccessDetail
-    failureDetail: FailureDetail
-    skippedDetail: SkippedDetail
-    inconclusiveDetail: InconclusiveDetail
-
-class ANR(typing_extensions.TypedDict, total=False):
-    stackTrace: StackTrace
-
-class ToolExitCode(typing_extensions.TypedDict, total=False):
-    number: int
-
-class IosTestLoop(typing_extensions.TypedDict, total=False):
-    bundleId: str
-
-class FatalException(typing_extensions.TypedDict, total=False):
-    stackTrace: StackTrace
-
+@typing.type_check_only
 class TestTiming(typing_extensions.TypedDict, total=False):
     testProcessDuration: Duration
 
-class SafeHtmlProto(typing_extensions.TypedDict, total=False):
-    privateDoNotAccessOrElseSafeHtmlWrappedValue: str
-
-class UnspecifiedWarning(typing_extensions.TypedDict, total=False): ...
-
-class PendingGoogleUpdateInsight(typing_extensions.TypedDict, total=False):
-    nameOfGoogleLibrary: str
-
-class NonSdkApiUsageViolationReport(typing_extensions.TypedDict, total=False):
-    uniqueApis: int
-    targetSdkVersion: int
-    minSdkVersion: int
-    exampleApis: typing.List[NonSdkApi]
-
+@typing.type_check_only
 class Thumbnail(typing_extensions.TypedDict, total=False):
     contentType: str
-    widthPx: int
-    heightPx: int
     data: str
+    heightPx: int
+    widthPx: int
 
-class History(typing_extensions.TypedDict, total=False):
-    historyId: str
-    name: str
-    testPlatform: typing_extensions.Literal["unknownPlatform", "android", "ios"]
-    displayName: str
+@typing.type_check_only
+class Timestamp(typing_extensions.TypedDict, total=False):
+    nanos: int
+    seconds: str
 
-class Image(typing_extensions.TypedDict, total=False):
-    stepId: str
-    sourceImage: ToolOutputReference
-    thumbnail: Thumbnail
-    error: Status
+@typing.type_check_only
+class ToolExecution(typing_extensions.TypedDict, total=False):
+    commandLineArguments: typing.List[str]
+    exitCode: ToolExitCode
+    toolLogs: typing.List[FileReference]
+    toolOutputs: typing.List[ToolOutputReference]
 
-class ListHistoriesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    histories: typing.List[History]
+@typing.type_check_only
+class ToolExecutionStep(typing_extensions.TypedDict, total=False):
+    toolExecution: ToolExecution
 
-class IosTest(typing_extensions.TypedDict, total=False):
-    testTimeout: Duration
-    iosTestLoop: IosTestLoop
-    iosRoboTest: IosRoboTest
-    iosAppInfo: IosAppInfo
-    iosXcTest: IosXcTest
+@typing.type_check_only
+class ToolExitCode(typing_extensions.TypedDict, total=False):
+    number: int
 
-class AvailableDeepLinks(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class ToolOutputReference(typing_extensions.TypedDict, total=False):
+    creationTime: Timestamp
+    output: FileReference
+    testCase: TestCaseReference
 
-class CrashDialogError(typing_extensions.TypedDict, total=False):
-    crashPackage: str
+@typing.type_check_only
+class UIElementTooDeep(typing_extensions.TypedDict, total=False):
+    depth: int
+    screenId: str
+    screenStateId: str
 
-class IosAppCrashed(typing_extensions.TypedDict, total=False):
-    stackTrace: StackTrace
+@typing.type_check_only
+class UnspecifiedWarning(typing_extensions.TypedDict, total=False): ...
 
-class BasicPerfSampleSeries(typing_extensions.TypedDict, total=False):
-    perfMetricType: typing_extensions.Literal[
-        "perfMetricTypeUnspecified", "memory", "cpu", "network", "graphics"
-    ]
-    sampleSeriesLabel: typing_extensions.Literal[
-        "sampleSeriesTypeUnspecified",
-        "memoryRssPrivate",
-        "memoryRssShared",
-        "memoryRssTotal",
-        "memoryTotal",
-        "cpuUser",
-        "cpuKernel",
-        "cpuTotal",
-        "ntBytesTransferred",
-        "ntBytesReceived",
-        "networkSent",
-        "networkReceived",
-        "graphicsFrameRate",
-    ]
-    perfUnit: typing_extensions.Literal[
-        "perfUnitUnspecified",
-        "kibibyte",
-        "percent",
-        "bytesPerSecond",
-        "framesPerSecond",
-        "byte",
-    ]
+@typing.type_check_only
+class UnusedRoboDirective(typing_extensions.TypedDict, total=False):
+    resourceName: str
 
-class AppStartTime(typing_extensions.TypedDict, total=False):
-    fullyDrawnTime: Duration
-    initialDisplayTime: Duration
+@typing.type_check_only
+class UpgradeInsight(typing_extensions.TypedDict, total=False):
+    packageName: str
+    upgradeToVersion: str
+
+@typing.type_check_only
+class UsedRoboDirective(typing_extensions.TypedDict, total=False):
+    resourceName: str
+
+@typing.type_check_only
+class UsedRoboIgnoreDirective(typing_extensions.TypedDict, total=False):
+    resourceName: str

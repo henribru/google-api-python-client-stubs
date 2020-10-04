@@ -7,8 +7,41 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class SpeechResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            name: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListOperationsResponseHttpRequest: ...
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListOperationsResponseHttpRequest: ...
+            def operations(self) -> OperationsResource: ...
+        def locations(self) -> LocationsResource: ...
+    @typing.type_check_only
     class SpeechResource(googleapiclient.discovery.Resource):
         def longrunningrecognize(
             self, *, body: LongRunningRecognizeRequest = ..., **kwargs: typing.Any
@@ -16,49 +49,24 @@ class SpeechResource(googleapiclient.discovery.Resource):
         def recognize(
             self, *, body: RecognizeRequest = ..., **kwargs: typing.Any
         ) -> RecognizeResponseHttpRequest: ...
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            pageSize: int = ...,
-            filter: str = ...,
-            pageToken: str = ...,
-            name: str = ...,
-            **kwargs: typing.Any
-        ) -> ListOperationsResponseHttpRequest: ...
-    class ProjectsResource(googleapiclient.discovery.Resource):
-        class LocationsResource(googleapiclient.discovery.Resource):
-            class OperationsResource(googleapiclient.discovery.Resource):
-                def list(
-                    self,
-                    *,
-                    name: str,
-                    filter: str = ...,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListOperationsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-            def operations(self) -> OperationsResource: ...
-        def locations(self) -> LocationsResource: ...
-    def speech(self) -> SpeechResource: ...
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
+    def speech(self) -> SpeechResource: ...
 
-class RecognizeResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> RecognizeResponse: ...
+    ) -> ListOperationsResponse: ...
 
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Operation: ...
 
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class RecognizeResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListOperationsResponse: ...
+    ) -> RecognizeResponse: ...

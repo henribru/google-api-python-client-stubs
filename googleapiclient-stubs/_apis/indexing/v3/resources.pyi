@@ -7,8 +7,9 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class IndexingResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class UrlNotificationsResource(googleapiclient.discovery.Resource):
         def getMetadata(
             self, *, url: str = ..., **kwargs: typing.Any
@@ -18,11 +19,13 @@ class IndexingResource(googleapiclient.discovery.Resource):
         ) -> PublishUrlNotificationResponseHttpRequest: ...
     def urlNotifications(self) -> UrlNotificationsResource: ...
 
+@typing.type_check_only
 class PublishUrlNotificationResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> PublishUrlNotificationResponse: ...
 
+@typing.type_check_only
 class UrlNotificationMetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

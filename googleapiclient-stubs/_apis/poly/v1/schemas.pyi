@@ -1,83 +1,90 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class Asset(typing_extensions.TypedDict, total=False):
+    authorName: str
+    createTime: str
+    description: str
+    displayName: str
+    formats: typing.List[Format]
+    isCurated: bool
+    license: typing_extensions.Literal[
+        "UNKNOWN", "CREATIVE_COMMONS_BY", "ALL_RIGHTS_RESERVED"
+    ]
+    metadata: str
+    name: str
+    presentationParams: PresentationParams
+    remixInfo: RemixInfo
+    thumbnail: File
+    updateTime: str
+    visibility: typing_extensions.Literal[
+        "VISIBILITY_UNSPECIFIED", "PRIVATE", "UNLISTED", "PUBLIC"
+    ]
 
+@typing.type_check_only
+class AssetImportMessage(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "NO_IMPORTABLE_FILE",
+        "EMPTY_MODEL",
+        "OBJ_PARSE_ERROR",
+        "EXPIRED",
+        "IMAGE_ERROR",
+        "EXTRA_FILES_WITH_ARCHIVE",
+        "DEFAULT_MATERIALS",
+        "FATAL_ERROR",
+        "INVALID_ELEMENT_TYPE",
+    ]
+    filePath: str
+    imageError: ImageError
+    objParseError: ObjParseError
+
+@typing.type_check_only
+class File(typing_extensions.TypedDict, total=False):
+    contentType: str
+    relativePath: str
+    url: str
+
+@typing.type_check_only
+class Format(typing_extensions.TypedDict, total=False):
+    formatComplexity: FormatComplexity
+    formatType: str
+    resources: typing.List[File]
+    root: File
+
+@typing.type_check_only
 class FormatComplexity(typing_extensions.TypedDict, total=False):
     lodHint: int
     triangleCount: str
 
-class Quaternion(typing_extensions.TypedDict, total=False):
-    z: float
-    w: float
-    x: float
-    y: float
-
+@typing.type_check_only
 class ImageError(typing_extensions.TypedDict, total=False):
-    filePath: str
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED", "INVALID_IMAGE", "IMAGE_TOO_BIG", "WRONG_IMAGE_TYPE"
     ]
+    filePath: str
 
-class UserAsset(typing_extensions.TypedDict, total=False):
-    asset: Asset
-
-class ListUserAssetsResponse(typing_extensions.TypedDict, total=False):
-    userAssets: typing.List[UserAsset]
-    nextPageToken: str
-    totalSize: int
-
-class Asset(typing_extensions.TypedDict, total=False):
-    updateTime: str
-    metadata: str
-    name: str
-    license: typing_extensions.Literal[
-        "UNKNOWN", "CREATIVE_COMMONS_BY", "ALL_RIGHTS_RESERVED"
-    ]
-    visibility: typing_extensions.Literal[
-        "VISIBILITY_UNSPECIFIED", "PRIVATE", "UNLISTED", "PUBLIC"
-    ]
-    displayName: str
-    remixInfo: RemixInfo
-    thumbnail: File
-    authorName: str
-    presentationParams: PresentationParams
-    description: str
-    createTime: str
-    formats: typing.List[Format]
-    isCurated: bool
-
-class File(typing_extensions.TypedDict, total=False):
-    contentType: str
-    url: str
-    relativePath: str
-
-class PresentationParams(typing_extensions.TypedDict, total=False):
-    backgroundColor: str
-    colorSpace: typing_extensions.Literal["UNKNOWN", "LINEAR", "GAMMA"]
-    orientingRotation: Quaternion
-
-class Format(typing_extensions.TypedDict, total=False):
-    formatType: str
-    root: File
-    formatComplexity: FormatComplexity
-    resources: typing.List[File]
-
-class RemixInfo(typing_extensions.TypedDict, total=False):
-    sourceAsset: typing.List[str]
-
-class ListLikedAssetsResponse(typing_extensions.TypedDict, total=False):
-    assets: typing.List[Asset]
-    nextPageToken: str
-    totalSize: int
-
+@typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
     assets: typing.List[Asset]
     nextPageToken: str
     totalSize: int
 
+@typing.type_check_only
+class ListLikedAssetsResponse(typing_extensions.TypedDict, total=False):
+    assets: typing.List[Asset]
+    nextPageToken: str
+    totalSize: int
+
+@typing.type_check_only
+class ListUserAssetsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    totalSize: int
+    userAssets: typing.List[UserAsset]
+
+@typing.type_check_only
 class ObjParseError(typing_extensions.TypedDict, total=False):
-    filePath: str
-    lineNumber: int
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED",
         "INCONSISTENT_VERTEX_REFS",
@@ -106,29 +113,36 @@ class ObjParseError(typing_extensions.TypedDict, total=False):
         "LINE_TOO_LONG",
         "INVALID_FILE_PATH",
     ]
-    line: str
     endIndex: int
+    filePath: str
+    line: str
+    lineNumber: int
     startIndex: int
 
-class AssetImportMessage(typing_extensions.TypedDict, total=False):
-    imageError: ImageError
-    objParseError: ObjParseError
-    filePath: str
-    code: typing_extensions.Literal[
-        "CODE_UNSPECIFIED",
-        "NO_IMPORTABLE_FILE",
-        "EMPTY_MODEL",
-        "OBJ_PARSE_ERROR",
-        "EXPIRED",
-        "IMAGE_ERROR",
-        "EXTRA_FILES_WITH_ARCHIVE",
-        "DEFAULT_MATERIALS",
-        "FATAL_ERROR",
-        "INVALID_ELEMENT_TYPE",
-    ]
+@typing.type_check_only
+class PresentationParams(typing_extensions.TypedDict, total=False):
+    backgroundColor: str
+    colorSpace: typing_extensions.Literal["UNKNOWN", "LINEAR", "GAMMA"]
+    orientingRotation: Quaternion
 
+@typing.type_check_only
+class Quaternion(typing_extensions.TypedDict, total=False):
+    w: float
+    x: float
+    y: float
+    z: float
+
+@typing.type_check_only
+class RemixInfo(typing_extensions.TypedDict, total=False):
+    sourceAsset: typing.List[str]
+
+@typing.type_check_only
 class StartAssetImportResponse(typing_extensions.TypedDict, total=False):
     assetId: str
     assetImportId: str
     assetImportMessages: typing.List[AssetImportMessage]
     publishUrl: str
+
+@typing.type_check_only
+class UserAsset(typing_extensions.TypedDict, total=False):
+    asset: Asset

@@ -7,36 +7,42 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudDebuggerResource(googleapiclient.discovery.Resource):
-    class DebuggerResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class ControllerResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class DebuggeesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class BreakpointsResource(googleapiclient.discovery.Resource):
-                def set(
-                    self,
-                    *,
-                    debuggeeId: str,
-                    body: Breakpoint = ...,
-                    clientVersion: str = ...,
-                    canaryOption: typing_extensions.Literal[
-                        "CANARY_OPTION_UNSPECIFIED",
-                        "CANARY_OPTION_TRY_ENABLE",
-                        "CANARY_OPTION_TRY_DISABLE",
-                    ] = ...,
-                    **kwargs: typing.Any
-                ) -> SetBreakpointResponseHttpRequest: ...
                 def list(
                     self,
                     *,
                     debuggeeId: str,
-                    clientVersion: str = ...,
-                    includeInactive: bool = ...,
-                    stripResults: bool = ...,
-                    includeAllUsers: bool = ...,
+                    agentId: str = ...,
+                    successOnTimeout: bool = ...,
                     waitToken: str = ...,
-                    action_value: typing_extensions.Literal["CAPTURE", "LOG"] = ...,
                     **kwargs: typing.Any
-                ) -> ListBreakpointsResponseHttpRequest: ...
+                ) -> ListActiveBreakpointsResponseHttpRequest: ...
+                def update(
+                    self,
+                    *,
+                    debuggeeId: str,
+                    id: str,
+                    body: UpdateActiveBreakpointRequest = ...,
+                    **kwargs: typing.Any
+                ) -> UpdateActiveBreakpointResponseHttpRequest: ...
+            def register(
+                self, *, body: RegisterDebuggeeRequest = ..., **kwargs: typing.Any
+            ) -> RegisterDebuggeeResponseHttpRequest: ...
+            def breakpoints(self) -> BreakpointsResource: ...
+        def debuggees(self) -> DebuggeesResource: ...
+    @typing.type_check_only
+    class DebuggerResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class DebuggeesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class BreakpointsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self,
                     *,
@@ -53,79 +59,87 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     clientVersion: str = ...,
                     **kwargs: typing.Any
                 ) -> GetBreakpointResponseHttpRequest: ...
-            def list(
-                self,
-                *,
-                project: str = ...,
-                clientVersion: str = ...,
-                includeInactive: bool = ...,
-                **kwargs: typing.Any
-            ) -> ListDebuggeesResponseHttpRequest: ...
-            def breakpoints(self) -> BreakpointsResource: ...
-        def debuggees(self) -> DebuggeesResource: ...
-    class ControllerResource(googleapiclient.discovery.Resource):
-        class DebuggeesResource(googleapiclient.discovery.Resource):
-            class BreakpointsResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
                     *,
                     debuggeeId: str,
+                    action_value: typing_extensions.Literal["CAPTURE", "LOG"] = ...,
+                    clientVersion: str = ...,
+                    includeAllUsers: bool = ...,
+                    includeInactive: bool = ...,
+                    stripResults: bool = ...,
                     waitToken: str = ...,
-                    agentId: str = ...,
-                    successOnTimeout: bool = ...,
                     **kwargs: typing.Any
-                ) -> ListActiveBreakpointsResponseHttpRequest: ...
-                def update(
+                ) -> ListBreakpointsResponseHttpRequest: ...
+                def set(
                     self,
                     *,
                     debuggeeId: str,
-                    id: str,
-                    body: UpdateActiveBreakpointRequest = ...,
+                    body: Breakpoint = ...,
+                    canaryOption: typing_extensions.Literal[
+                        "CANARY_OPTION_UNSPECIFIED",
+                        "CANARY_OPTION_TRY_ENABLE",
+                        "CANARY_OPTION_TRY_DISABLE",
+                    ] = ...,
+                    clientVersion: str = ...,
                     **kwargs: typing.Any
-                ) -> UpdateActiveBreakpointResponseHttpRequest: ...
-            def register(
-                self, *, body: RegisterDebuggeeRequest = ..., **kwargs: typing.Any
-            ) -> RegisterDebuggeeResponseHttpRequest: ...
+                ) -> SetBreakpointResponseHttpRequest: ...
+            def list(
+                self,
+                *,
+                clientVersion: str = ...,
+                includeInactive: bool = ...,
+                project: str = ...,
+                **kwargs: typing.Any
+            ) -> ListDebuggeesResponseHttpRequest: ...
             def breakpoints(self) -> BreakpointsResource: ...
         def debuggees(self) -> DebuggeesResource: ...
-    def debugger(self) -> DebuggerResource: ...
     def controller(self) -> ControllerResource: ...
+    def debugger(self) -> DebuggerResource: ...
 
-class ListBreakpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListBreakpointsResponse: ...
-
-class ListDebuggeesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListDebuggeesResponse: ...
-
-class RegisterDebuggeeResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> RegisterDebuggeeResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class ListActiveBreakpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListActiveBreakpointsResponse: ...
-
+@typing.type_check_only
 class GetBreakpointResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GetBreakpointResponse: ...
 
+@typing.type_check_only
+class ListActiveBreakpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListActiveBreakpointsResponse: ...
+
+@typing.type_check_only
+class ListBreakpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListBreakpointsResponse: ...
+
+@typing.type_check_only
+class ListDebuggeesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListDebuggeesResponse: ...
+
+@typing.type_check_only
+class RegisterDebuggeeResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> RegisterDebuggeeResponse: ...
+
+@typing.type_check_only
 class SetBreakpointResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> SetBreakpointResponse: ...
 
+@typing.type_check_only
 class UpdateActiveBreakpointResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

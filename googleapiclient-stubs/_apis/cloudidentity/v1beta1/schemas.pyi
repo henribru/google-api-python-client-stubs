@@ -1,94 +1,8 @@
 import typing
 
 import typing_extensions
-
-class Group(typing_extensions.TypedDict, total=False):
-    groupKey: EntityKey
-    dynamicGroupMetadata: DynamicGroupMetadata
-    createTime: str
-    updateTime: str
-    description: str
-    parent: str
-    displayName: str
-    name: str
-    additionalGroupKeys: typing.List[EntityKey]
-    labels: typing.Dict[str, typing.Any]
-
-class Operation(typing_extensions.TypedDict, total=False):
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-    done: bool
-    response: typing.Dict[str, typing.Any]
-
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-    code: int
-
-class EntityKey(typing_extensions.TypedDict, total=False):
-    namespace: str
-    id: str
-
-class WipeDeviceResponse(typing_extensions.TypedDict, total=False):
-    device: Device
-
-class TransitiveMembershipRole(typing_extensions.TypedDict, total=False):
-    role: str
-
-class LookupGroupNameResponse(typing_extensions.TypedDict, total=False):
-    name: str
-
-class WipeDeviceUserResponse(typing_extensions.TypedDict, total=False):
-    deviceUser: DeviceUser
-
-class BlockDeviceUserRequest(typing_extensions.TypedDict, total=False):
-    customer: str
-
-class UpdateMembershipRolesParams(typing_extensions.TypedDict, total=False):
-    membershipRole: MembershipRole
-    fieldMask: str
-
-class GetMembershipGraphResponse(typing_extensions.TypedDict, total=False):
-    groups: typing.List[Group]
-    adjacencyList: typing.List[MembershipAdjacencyList]
-
-class GoogleAppsCloudidentityDevicesV1ClientState(
-    typing_extensions.TypedDict, total=False
-):
-    complianceState: typing_extensions.Literal[
-        "COMPLIANCE_STATE_UNSPECIFIED", "COMPLIANT", "NON_COMPLIANT"
-    ]
-    etag: str
-    ownerType: typing_extensions.Literal[
-        "OWNER_TYPE_UNSPECIFIED", "OWNER_TYPE_CUSTOMER", "OWNER_TYPE_PARTNER"
-    ]
-    managed: typing_extensions.Literal[
-        "MANAGED_STATE_UNSPECIFIED", "MANAGED", "UNMANAGED"
-    ]
-    assetTags: typing.List[str]
-    healthScore: typing_extensions.Literal[
-        "HEALTH_SCORE_UNSPECIFIED", "VERY_POOR", "POOR", "NEUTRAL", "GOOD", "VERY_GOOD"
-    ]
-    createTime: str
-    name: str
-    lastUpdateTime: str
-    keyValuePairs: typing.Dict[str, typing.Any]
-    customId: str
-    scoreReason: str
-
-class GoogleAppsCloudidentityDevicesV1WipeDeviceResponse(
-    typing_extensions.TypedDict, total=False
-):
-    device: GoogleAppsCloudidentityDevicesV1Device
-
-class ModifyMembershipRolesResponse(typing_extensions.TypedDict, total=False):
-    membership: Membership
-
-class GoogleAppsCloudidentityDevicesV1AndroidAttributes(
-    typing_extensions.TypedDict, total=False
-):
-    supportsWorkProfile: bool
+@typing.type_check_only
+class AndroidAttributes(typing_extensions.TypedDict, total=False):
     enabledUnknownSources: bool
     ownerProfileAccount: bool
     ownershipPrivilege: typing_extensions.Literal[
@@ -97,33 +11,144 @@ class GoogleAppsCloudidentityDevicesV1AndroidAttributes(
         "PROFILE_OWNER",
         "DEVICE_OWNER",
     ]
+    supportsWorkProfile: bool
 
-class GroupRelation(typing_extensions.TypedDict, total=False):
-    group: str
-    labels: typing.Dict[str, typing.Any]
-    relationType: typing_extensions.Literal[
-        "RELATION_TYPE_UNSPECIFIED", "DIRECT", "INDIRECT", "DIRECT_AND_INDIRECT"
+@typing.type_check_only
+class ApproveDeviceUserRequest(typing_extensions.TypedDict, total=False):
+    customer: str
+
+@typing.type_check_only
+class ApproveDeviceUserResponse(typing_extensions.TypedDict, total=False):
+    deviceUser: DeviceUser
+
+@typing.type_check_only
+class BlockDeviceUserRequest(typing_extensions.TypedDict, total=False):
+    customer: str
+
+@typing.type_check_only
+class BlockDeviceUserResponse(typing_extensions.TypedDict, total=False):
+    deviceUser: DeviceUser
+
+@typing.type_check_only
+class CancelWipeDeviceRequest(typing_extensions.TypedDict, total=False):
+    customer: str
+
+@typing.type_check_only
+class CancelWipeDeviceResponse(typing_extensions.TypedDict, total=False):
+    device: Device
+
+@typing.type_check_only
+class CancelWipeDeviceUserRequest(typing_extensions.TypedDict, total=False):
+    customer: str
+
+@typing.type_check_only
+class CancelWipeDeviceUserResponse(typing_extensions.TypedDict, total=False):
+    deviceUser: DeviceUser
+
+@typing.type_check_only
+class CheckTransitiveMembershipResponse(typing_extensions.TypedDict, total=False):
+    hasMembership: bool
+
+@typing.type_check_only
+class ClientState(typing_extensions.TypedDict, total=False):
+    assetTags: typing.List[str]
+    complianceState: typing_extensions.Literal[
+        "COMPLIANCE_STATE_UNSPECIFIED", "COMPLIANT", "NON_COMPLIANT"
     ]
-    displayName: str
-    roles: typing.List[TransitiveMembershipRole]
-    groupKey: EntityKey
-
-class GoogleAppsCloudidentityDevicesV1DeviceUser(
-    typing_extensions.TypedDict, total=False
-):
+    createTime: str
+    customId: str
+    etag: str
+    healthScore: typing_extensions.Literal[
+        "HEALTH_SCORE_UNSPECIFIED", "VERY_POOR", "POOR", "NEUTRAL", "GOOD", "VERY_GOOD"
+    ]
+    keyValuePairs: typing.Dict[str, typing.Any]
+    lastUpdateTime: str
+    managed: typing_extensions.Literal[
+        "MANAGED_STATE_UNSPECIFIED", "MANAGED", "UNMANAGED"
+    ]
     name: str
-    languageCode: str
-    userEmail: str
-    passwordState: typing_extensions.Literal[
-        "PASSWORD_STATE_UNSPECIFIED", "PASSWORD_SET", "PASSWORD_NOT_SET"
+    ownerType: typing_extensions.Literal[
+        "OWNER_TYPE_UNSPECIFIED", "OWNER_TYPE_CUSTOMER", "OWNER_TYPE_PARTNER"
     ]
+    scoreReason: str
+
+@typing.type_check_only
+class CreateDeviceRequest(typing_extensions.TypedDict, total=False):
+    customer: str
+    device: Device
+
+@typing.type_check_only
+class CustomAttributeValue(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    numberValue: float
+    stringValue: str
+
+@typing.type_check_only
+class Device(typing_extensions.TypedDict, total=False):
+    androidSpecificAttributes: AndroidAttributes
+    assetTag: str
+    basebandVersion: str
+    bootloaderVersion: str
+    brand: str
+    buildNumber: str
+    compromisedState: typing_extensions.Literal[
+        "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "UNCOMPROMISED"
+    ]
+    createTime: str
+    deviceType: typing_extensions.Literal[
+        "DEVICE_TYPE_UNSPECIFIED",
+        "ANDROID",
+        "IOS",
+        "GOOGLE_SYNC",
+        "WINDOWS",
+        "MAC_OS",
+        "LINUX",
+        "CHROME_OS",
+    ]
+    enabledDeveloperOptions: bool
+    enabledUsbDebugging: bool
+    encryptionState: typing_extensions.Literal[
+        "ENCRYPTION_STATE_UNSPECIFIED",
+        "UNSUPPORTED_BY_DEVICE",
+        "ENCRYPTED",
+        "NOT_ENCRYPTED",
+    ]
+    imei: str
+    kernelVersion: str
+    lastSyncTime: str
+    managementState: typing_extensions.Literal[
+        "MANAGEMENT_STATE_UNSPECIFIED",
+        "APPROVED",
+        "BLOCKED",
+        "PENDING",
+        "UNPROVISIONED",
+        "WIPING",
+        "WIPED",
+    ]
+    manufacturer: str
+    meid: str
+    model: str
+    name: str
+    networkOperator: str
+    osVersion: str
+    otherAccounts: typing.List[str]
+    ownerType: typing_extensions.Literal[
+        "DEVICE_OWNERSHIP_UNSPECIFIED", "COMPANY", "BYOD"
+    ]
+    releaseVersion: str
+    securityPatchTime: str
+    serialNumber: str
+    wifiMacAddresses: typing.List[str]
+
+@typing.type_check_only
+class DeviceUser(typing_extensions.TypedDict, total=False):
     compromisedState: typing_extensions.Literal[
         "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "NOT_COMPROMISED"
     ]
-    userAgent: str
-    lastSyncTime: str
     createTime: str
     firstSyncTime: str
+    languageCode: str
+    lastSyncTime: str
     managementState: typing_extensions.Literal[
         "MANAGEMENT_STATE_UNSPECIFIED",
         "WIPING",
@@ -133,88 +158,127 @@ class GoogleAppsCloudidentityDevicesV1DeviceUser(
         "PENDING_APPROVAL",
         "UNENROLLED",
     ]
-
-class AndroidAttributes(typing_extensions.TypedDict, total=False):
-    ownershipPrivilege: typing_extensions.Literal[
-        "OWNERSHIP_PRIVILEGE_UNSPECIFIED",
-        "DEVICE_ADMINISTRATOR",
-        "PROFILE_OWNER",
-        "DEVICE_OWNER",
+    name: str
+    passwordState: typing_extensions.Literal[
+        "PASSWORD_STATE_UNSPECIFIED", "PASSWORD_SET", "PASSWORD_NOT_SET"
     ]
-    ownerProfileAccount: bool
-    enabledUnknownSources: bool
-    supportsWorkProfile: bool
+    userAgent: str
+    userEmail: str
 
-class CreateDeviceRequest(typing_extensions.TypedDict, total=False):
-    device: Device
-    customer: str
+@typing.type_check_only
+class DynamicGroupMetadata(typing_extensions.TypedDict, total=False):
+    queries: typing.List[DynamicGroupQuery]
+    status: DynamicGroupStatus
 
-class ApproveDeviceUserRequest(typing_extensions.TypedDict, total=False):
-    customer: str
+@typing.type_check_only
+class DynamicGroupQuery(typing_extensions.TypedDict, total=False):
+    query: str
+    resourceType: typing_extensions.Literal["RESOURCE_TYPE_UNSPECIFIED", "USER"]
 
-class GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse(
-    typing_extensions.TypedDict, total=False
-):
-    deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
-
-class WipeDeviceUserRequest(typing_extensions.TypedDict, total=False):
-    customer: str
-
-class WipeDeviceRequest(typing_extensions.TypedDict, total=False):
-    customer: str
-
-class ListClientStatesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    clientStates: typing.List[ClientState]
-
-class MemberRelation(typing_extensions.TypedDict, total=False):
-    relationType: typing_extensions.Literal[
-        "RELATION_TYPE_UNSPECIFIED", "DIRECT", "INDIRECT", "DIRECT_AND_INDIRECT"
-    ]
-    preferredMemberKey: typing.List[EntityKey]
-    roles: typing.List[TransitiveMembershipRole]
-    member: str
-
-class SearchGroupsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    groups: typing.List[Group]
-
-class ListGroupsResponse(typing_extensions.TypedDict, total=False):
-    groups: typing.List[Group]
-    nextPageToken: str
-
-class ListDeviceUsersResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    deviceUsers: typing.List[DeviceUser]
-
-class ApproveDeviceUserResponse(typing_extensions.TypedDict, total=False):
-    deviceUser: DeviceUser
-
-class CancelWipeDeviceResponse(typing_extensions.TypedDict, total=False):
-    device: Device
-
-class CheckTransitiveMembershipResponse(typing_extensions.TypedDict, total=False):
-    hasMembership: bool
-
+@typing.type_check_only
 class DynamicGroupStatus(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "UP_TO_DATE", "UPDATING_MEMBERSHIPS"
     ]
     statusTime: str
 
-class Device(typing_extensions.TypedDict, total=False):
-    enabledUsbDebugging: bool
-    meid: str
-    assetTag: str
-    model: str
+@typing.type_check_only
+class EntityKey(typing_extensions.TypedDict, total=False):
+    id: str
+    namespace: str
+
+@typing.type_check_only
+class ExpiryDetail(typing_extensions.TypedDict, total=False):
+    expireTime: str
+
+@typing.type_check_only
+class GetMembershipGraphResponse(typing_extensions.TypedDict, total=False):
+    adjacencyList: typing.List[MembershipAdjacencyList]
+    groups: typing.List[Group]
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1AndroidAttributes(
+    typing_extensions.TypedDict, total=False
+):
+    enabledUnknownSources: bool
+    ownerProfileAccount: bool
+    ownershipPrivilege: typing_extensions.Literal[
+        "OWNERSHIP_PRIVILEGE_UNSPECIFIED",
+        "DEVICE_ADMINISTRATOR",
+        "PROFILE_OWNER",
+        "DEVICE_OWNER",
+    ]
+    supportsWorkProfile: bool
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1ApproveDeviceUserResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceResponse(
+    typing_extensions.TypedDict, total=False
+):
+    device: GoogleAppsCloudidentityDevicesV1Device
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1ClientState(
+    typing_extensions.TypedDict, total=False
+):
+    assetTags: typing.List[str]
+    complianceState: typing_extensions.Literal[
+        "COMPLIANCE_STATE_UNSPECIFIED", "COMPLIANT", "NON_COMPLIANT"
+    ]
     createTime: str
-    imei: str
-    brand: str
-    manufacturer: str
-    networkOperator: str
-    bootloaderVersion: str
+    customId: str
+    etag: str
+    healthScore: typing_extensions.Literal[
+        "HEALTH_SCORE_UNSPECIFIED", "VERY_POOR", "POOR", "NEUTRAL", "GOOD", "VERY_GOOD"
+    ]
+    keyValuePairs: typing.Dict[str, typing.Any]
+    lastUpdateTime: str
+    managed: typing_extensions.Literal[
+        "MANAGED_STATE_UNSPECIFIED", "MANAGED", "UNMANAGED"
+    ]
     name: str
+    ownerType: typing_extensions.Literal[
+        "OWNER_TYPE_UNSPECIFIED", "OWNER_TYPE_CUSTOMER", "OWNER_TYPE_PARTNER"
+    ]
+    scoreReason: str
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CustomAttributeValue(
+    typing_extensions.TypedDict, total=False
+):
+    boolValue: bool
+    numberValue: float
+    stringValue: str
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1Device(typing_extensions.TypedDict, total=False):
+    androidSpecificAttributes: GoogleAppsCloudidentityDevicesV1AndroidAttributes
+    assetTag: str
     basebandVersion: str
+    bootloaderVersion: str
+    brand: str
+    buildNumber: str
+    compromisedState: typing_extensions.Literal[
+        "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "UNCOMPROMISED"
+    ]
+    createTime: str
     deviceType: typing_extensions.Literal[
         "DEVICE_TYPE_UNSPECIFIED",
         "ANDROID",
@@ -225,12 +289,17 @@ class Device(typing_extensions.TypedDict, total=False):
         "LINUX",
         "CHROME_OS",
     ]
-    buildNumber: str
-    lastSyncTime: str
-    serialNumber: str
-    compromisedState: typing_extensions.Literal[
-        "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "UNCOMPROMISED"
+    enabledDeveloperOptions: bool
+    enabledUsbDebugging: bool
+    encryptionState: typing_extensions.Literal[
+        "ENCRYPTION_STATE_UNSPECIFIED",
+        "UNSUPPORTED_BY_DEVICE",
+        "ENCRYPTED",
+        "NOT_ENCRYPTED",
     ]
+    imei: str
+    kernelVersion: str
+    lastSyncTime: str
     managementState: typing_extensions.Literal[
         "MANAGEMENT_STATE_UNSPECIFIED",
         "APPROVED",
@@ -240,122 +309,31 @@ class Device(typing_extensions.TypedDict, total=False):
         "WIPING",
         "WIPED",
     ]
-    securityPatchTime: str
-    kernelVersion: str
-    androidSpecificAttributes: AndroidAttributes
+    manufacturer: str
+    meid: str
+    model: str
+    name: str
+    networkOperator: str
+    osVersion: str
+    otherAccounts: typing.List[str]
     ownerType: typing_extensions.Literal[
         "DEVICE_OWNERSHIP_UNSPECIFIED", "COMPANY", "BYOD"
     ]
     releaseVersion: str
-    osVersion: str
-    encryptionState: typing_extensions.Literal[
-        "ENCRYPTION_STATE_UNSPECIFIED",
-        "UNSUPPORTED_BY_DEVICE",
-        "ENCRYPTED",
-        "NOT_ENCRYPTED",
-    ]
-    enabledDeveloperOptions: bool
-    otherAccounts: typing.List[str]
+    securityPatchTime: str
+    serialNumber: str
     wifiMacAddresses: typing.List[str]
 
-class CancelWipeDeviceUserResponse(typing_extensions.TypedDict, total=False):
-    deviceUser: DeviceUser
-
-class CustomAttributeValue(typing_extensions.TypedDict, total=False):
-    numberValue: float
-    stringValue: str
-    boolValue: bool
-
-class SearchTransitiveMembershipsResponse(typing_extensions.TypedDict, total=False):
-    memberships: typing.List[MemberRelation]
-    nextPageToken: str
-
-class LookupMembershipNameResponse(typing_extensions.TypedDict, total=False):
-    name: str
-
-class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceResponse(
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1DeviceUser(
     typing_extensions.TypedDict, total=False
 ):
-    device: GoogleAppsCloudidentityDevicesV1Device
-
-class CancelWipeDeviceRequest(typing_extensions.TypedDict, total=False):
-    customer: str
-
-class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
-    memberships: typing.List[Membership]
-    nextPageToken: str
-
-class ClientState(typing_extensions.TypedDict, total=False):
-    name: str
-    etag: str
-    assetTags: typing.List[str]
-    keyValuePairs: typing.Dict[str, typing.Any]
-    ownerType: typing_extensions.Literal[
-        "OWNER_TYPE_UNSPECIFIED", "OWNER_TYPE_CUSTOMER", "OWNER_TYPE_PARTNER"
-    ]
-    lastUpdateTime: str
-    scoreReason: str
-    customId: str
-    healthScore: typing_extensions.Literal[
-        "HEALTH_SCORE_UNSPECIFIED", "VERY_POOR", "POOR", "NEUTRAL", "GOOD", "VERY_GOOD"
+    compromisedState: typing_extensions.Literal[
+        "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "NOT_COMPROMISED"
     ]
     createTime: str
-    complianceState: typing_extensions.Literal[
-        "COMPLIANCE_STATE_UNSPECIFIED", "COMPLIANT", "NON_COMPLIANT"
-    ]
-    managed: typing_extensions.Literal[
-        "MANAGED_STATE_UNSPECIFIED", "MANAGED", "UNMANAGED"
-    ]
-
-class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserResponse(
-    typing_extensions.TypedDict, total=False
-):
-    deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
-
-class LookupSelfDeviceUsersResponse(typing_extensions.TypedDict, total=False):
-    names: typing.List[str]
-    customer: str
-    nextPageToken: str
-
-class MembershipRole(typing_extensions.TypedDict, total=False):
-    expiryDetail: ExpiryDetail
-    name: str
-
-class ExpiryDetail(typing_extensions.TypedDict, total=False):
-    expireTime: str
-
-class GoogleAppsCloudidentityDevicesV1ApproveDeviceUserResponse(
-    typing_extensions.TypedDict, total=False
-):
-    deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
-
-class GoogleAppsCloudidentityDevicesV1WipeDeviceUserResponse(
-    typing_extensions.TypedDict, total=False
-):
-    deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
-
-class ListDevicesResponse(typing_extensions.TypedDict, total=False):
-    devices: typing.List[Device]
-    nextPageToken: str
-
-class MembershipAdjacencyList(typing_extensions.TypedDict, total=False):
-    group: str
-    edges: typing.List[Membership]
-
-class BlockDeviceUserResponse(typing_extensions.TypedDict, total=False):
-    deviceUser: DeviceUser
-
-class GoogleAppsCloudidentityDevicesV1CustomAttributeValue(
-    typing_extensions.TypedDict, total=False
-):
-    stringValue: str
-    numberValue: float
-    boolValue: bool
-
-class DeviceUser(typing_extensions.TypedDict, total=False):
-    passwordState: typing_extensions.Literal[
-        "PASSWORD_STATE_UNSPECIFIED", "PASSWORD_SET", "PASSWORD_NOT_SET"
-    ]
+    firstSyncTime: str
+    languageCode: str
     lastSyncTime: str
     managementState: typing_extensions.Literal[
         "MANAGEMENT_STATE_UNSPECIFIED",
@@ -366,99 +344,179 @@ class DeviceUser(typing_extensions.TypedDict, total=False):
         "PENDING_APPROVAL",
         "UNENROLLED",
     ]
-    createTime: str
     name: str
-    compromisedState: typing_extensions.Literal[
-        "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "NOT_COMPROMISED"
+    passwordState: typing_extensions.Literal[
+        "PASSWORD_STATE_UNSPECIFIED", "PASSWORD_SET", "PASSWORD_NOT_SET"
     ]
-    languageCode: str
-    firstSyncTime: str
-    userEmail: str
     userAgent: str
+    userEmail: str
 
-class CancelWipeDeviceUserRequest(typing_extensions.TypedDict, total=False):
-    customer: str
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1WipeDeviceResponse(
+    typing_extensions.TypedDict, total=False
+):
+    device: GoogleAppsCloudidentityDevicesV1Device
 
-class DynamicGroupQuery(typing_extensions.TypedDict, total=False):
-    query: str
-    resourceType: typing_extensions.Literal["RESOURCE_TYPE_UNSPECIFIED", "USER"]
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1WipeDeviceUserResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
 
-class Membership(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Group(typing_extensions.TypedDict, total=False):
+    additionalGroupKeys: typing.List[EntityKey]
+    createTime: str
+    description: str
+    displayName: str
+    dynamicGroupMetadata: DynamicGroupMetadata
+    groupKey: EntityKey
+    labels: typing.Dict[str, typing.Any]
     name: str
+    parent: str
+    updateTime: str
+
+@typing.type_check_only
+class GroupRelation(typing_extensions.TypedDict, total=False):
+    displayName: str
+    group: str
+    groupKey: EntityKey
+    labels: typing.Dict[str, typing.Any]
+    relationType: typing_extensions.Literal[
+        "RELATION_TYPE_UNSPECIFIED", "DIRECT", "INDIRECT", "DIRECT_AND_INDIRECT"
+    ]
+    roles: typing.List[TransitiveMembershipRole]
+
+@typing.type_check_only
+class ListClientStatesResponse(typing_extensions.TypedDict, total=False):
+    clientStates: typing.List[ClientState]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListDeviceUsersResponse(typing_extensions.TypedDict, total=False):
+    deviceUsers: typing.List[DeviceUser]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListDevicesResponse(typing_extensions.TypedDict, total=False):
+    devices: typing.List[Device]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListGroupsResponse(typing_extensions.TypedDict, total=False):
+    groups: typing.List[Group]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
+    memberships: typing.List[Membership]
+    nextPageToken: str
+
+@typing.type_check_only
+class LookupGroupNameResponse(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class LookupMembershipNameResponse(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class LookupSelfDeviceUsersResponse(typing_extensions.TypedDict, total=False):
+    customer: str
+    names: typing.List[str]
+    nextPageToken: str
+
+@typing.type_check_only
+class MemberRelation(typing_extensions.TypedDict, total=False):
+    member: str
+    preferredMemberKey: typing.List[EntityKey]
+    relationType: typing_extensions.Literal[
+        "RELATION_TYPE_UNSPECIFIED", "DIRECT", "INDIRECT", "DIRECT_AND_INDIRECT"
+    ]
+    roles: typing.List[TransitiveMembershipRole]
+
+@typing.type_check_only
+class Membership(typing_extensions.TypedDict, total=False):
+    createTime: str
+    memberKey: EntityKey
+    name: str
+    preferredMemberKey: EntityKey
+    roles: typing.List[MembershipRole]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "USER", "SERVICE_ACCOUNT", "GROUP", "OTHER"
     ]
-    createTime: str
     updateTime: str
-    memberKey: EntityKey
-    roles: typing.List[MembershipRole]
-    preferredMemberKey: EntityKey
 
-class DynamicGroupMetadata(typing_extensions.TypedDict, total=False):
-    queries: typing.List[DynamicGroupQuery]
-    status: DynamicGroupStatus
+@typing.type_check_only
+class MembershipAdjacencyList(typing_extensions.TypedDict, total=False):
+    edges: typing.List[Membership]
+    group: str
 
-class SearchTransitiveGroupsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    memberships: typing.List[GroupRelation]
-
-class GoogleAppsCloudidentityDevicesV1Device(typing_extensions.TypedDict, total=False):
-    assetTag: str
-    compromisedState: typing_extensions.Literal[
-        "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "UNCOMPROMISED"
-    ]
-    deviceType: typing_extensions.Literal[
-        "DEVICE_TYPE_UNSPECIFIED",
-        "ANDROID",
-        "IOS",
-        "GOOGLE_SYNC",
-        "WINDOWS",
-        "MAC_OS",
-        "LINUX",
-        "CHROME_OS",
-    ]
-    lastSyncTime: str
-    createTime: str
-    kernelVersion: str
-    basebandVersion: str
-    wifiMacAddresses: typing.List[str]
-    securityPatchTime: str
-    managementState: typing_extensions.Literal[
-        "MANAGEMENT_STATE_UNSPECIFIED",
-        "APPROVED",
-        "BLOCKED",
-        "PENDING",
-        "UNPROVISIONED",
-        "WIPING",
-        "WIPED",
-    ]
-    brand: str
-    ownerType: typing_extensions.Literal[
-        "DEVICE_OWNERSHIP_UNSPECIFIED", "COMPANY", "BYOD"
-    ]
-    androidSpecificAttributes: GoogleAppsCloudidentityDevicesV1AndroidAttributes
-    osVersion: str
-    enabledDeveloperOptions: bool
-    buildNumber: str
-    enabledUsbDebugging: bool
+@typing.type_check_only
+class MembershipRole(typing_extensions.TypedDict, total=False):
+    expiryDetail: ExpiryDetail
     name: str
-    manufacturer: str
-    model: str
-    meid: str
-    imei: str
-    bootloaderVersion: str
-    releaseVersion: str
-    encryptionState: typing_extensions.Literal[
-        "ENCRYPTION_STATE_UNSPECIFIED",
-        "UNSUPPORTED_BY_DEVICE",
-        "ENCRYPTED",
-        "NOT_ENCRYPTED",
-    ]
-    serialNumber: str
-    networkOperator: str
-    otherAccounts: typing.List[str]
 
+@typing.type_check_only
 class ModifyMembershipRolesRequest(typing_extensions.TypedDict, total=False):
+    addRoles: typing.List[MembershipRole]
     removeRoles: typing.List[str]
     updateRolesParams: typing.List[UpdateMembershipRolesParams]
-    addRoles: typing.List[MembershipRole]
+
+@typing.type_check_only
+class ModifyMembershipRolesResponse(typing_extensions.TypedDict, total=False):
+    membership: Membership
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class SearchGroupsResponse(typing_extensions.TypedDict, total=False):
+    groups: typing.List[Group]
+    nextPageToken: str
+
+@typing.type_check_only
+class SearchTransitiveGroupsResponse(typing_extensions.TypedDict, total=False):
+    memberships: typing.List[GroupRelation]
+    nextPageToken: str
+
+@typing.type_check_only
+class SearchTransitiveMembershipsResponse(typing_extensions.TypedDict, total=False):
+    memberships: typing.List[MemberRelation]
+    nextPageToken: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class TransitiveMembershipRole(typing_extensions.TypedDict, total=False):
+    role: str
+
+@typing.type_check_only
+class UpdateMembershipRolesParams(typing_extensions.TypedDict, total=False):
+    fieldMask: str
+    membershipRole: MembershipRole
+
+@typing.type_check_only
+class WipeDeviceRequest(typing_extensions.TypedDict, total=False):
+    customer: str
+
+@typing.type_check_only
+class WipeDeviceResponse(typing_extensions.TypedDict, total=False):
+    device: Device
+
+@typing.type_check_only
+class WipeDeviceUserRequest(typing_extensions.TypedDict, total=False):
+    customer: str
+
+@typing.type_check_only
+class WipeDeviceUserResponse(typing_extensions.TypedDict, total=False):
+    deviceUser: DeviceUser

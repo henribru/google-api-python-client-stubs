@@ -7,14 +7,27 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudIdentityResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class DevicesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class DeviceUsersResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class ClientStatesResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, customer: str = ..., **kwargs: typing.Any
                 ) -> GoogleAppsCloudidentityDevicesV1ClientStateHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    customer: str = ...,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -24,62 +37,6 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    orderBy: str = ...,
-                    filter: str = ...,
-                    customer: str = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest: ...
-            def cancelWipe(
-                self,
-                *,
-                name: str,
-                body: GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def lookup(
-                self,
-                *,
-                parent: str,
-                pageToken: str = ...,
-                androidId: str = ...,
-                rawResourceId: str = ...,
-                pageSize: int = ...,
-                userId: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                customer: str = ...,
-                pageToken: str = ...,
-                orderBy: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponseHttpRequest: ...
-            def block(
-                self,
-                *,
-                name: str,
-                body: GoogleAppsCloudidentityDevicesV1BlockDeviceUserRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def delete(
-                self, *, name: str, customer: str = ..., **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def wipe(
-                self,
-                *,
-                name: str,
-                body: GoogleAppsCloudidentityDevicesV1WipeDeviceUserRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
             def approve(
                 self,
                 *,
@@ -87,43 +44,56 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 body: GoogleAppsCloudidentityDevicesV1ApproveDeviceUserRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+            def block(
+                self,
+                *,
+                name: str,
+                body: GoogleAppsCloudidentityDevicesV1BlockDeviceUserRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def cancelWipe(
+                self,
+                *,
+                name: str,
+                body: GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, customer: str = ..., **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def get(
                 self, *, name: str, customer: str = ..., **kwargs: typing.Any
             ) -> GoogleAppsCloudidentityDevicesV1DeviceUserHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                customer: str = ...,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponseHttpRequest: ...
+            def lookup(
+                self,
+                *,
+                parent: str,
+                androidId: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                rawResourceId: str = ...,
+                userId: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest: ...
+            def wipe(
+                self,
+                *,
+                name: str,
+                body: GoogleAppsCloudidentityDevicesV1WipeDeviceUserRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def clientStates(self) -> ClientStatesResource: ...
-        def delete(
-            self, *, name: str, customer: str = ..., **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def wipe(
-            self,
-            *,
-            name: str,
-            body: GoogleAppsCloudidentityDevicesV1WipeDeviceRequest = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            view: typing_extensions.Literal[
-                "VIEW_UNSPECIFIED", "COMPANY_INVENTORY", "USER_ASSIGNED_DEVICES"
-            ] = ...,
-            customer: str = ...,
-            pageToken: str = ...,
-            orderBy: str = ...,
-            pageSize: int = ...,
-            filter: str = ...,
-            **kwargs: typing.Any
-        ) -> GoogleAppsCloudidentityDevicesV1ListDevicesResponseHttpRequest: ...
-        def get(
-            self, *, name: str, customer: str = ..., **kwargs: typing.Any
-        ) -> GoogleAppsCloudidentityDevicesV1DeviceHttpRequest: ...
-        def create(
-            self,
-            *,
-            body: GoogleAppsCloudidentityDevicesV1Device = ...,
-            customer: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
         def cancelWipe(
             self,
             *,
@@ -131,20 +101,72 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             body: GoogleAppsCloudidentityDevicesV1CancelWipeDeviceRequest = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def create(
+            self,
+            *,
+            body: GoogleAppsCloudidentityDevicesV1Device = ...,
+            customer: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, name: str, customer: str = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, name: str, customer: str = ..., **kwargs: typing.Any
+        ) -> GoogleAppsCloudidentityDevicesV1DeviceHttpRequest: ...
+        def list(
+            self,
+            *,
+            customer: str = ...,
+            filter: str = ...,
+            orderBy: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            view: typing_extensions.Literal[
+                "VIEW_UNSPECIFIED", "COMPANY_INVENTORY", "USER_ASSIGNED_DEVICES"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAppsCloudidentityDevicesV1ListDevicesResponseHttpRequest: ...
+        def wipe(
+            self,
+            *,
+            name: str,
+            body: GoogleAppsCloudidentityDevicesV1WipeDeviceRequest = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def deviceUsers(self) -> DeviceUsersResource: ...
+    @typing.type_check_only
     class GroupsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class MembershipsResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: Membership = ..., **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> MembershipHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
+                pageSize: int = ...,
                 pageToken: str = ...,
                 view: typing_extensions.Literal[
                     "VIEW_UNSPECIFIED", "BASIC", "FULL"
                 ] = ...,
-                pageSize: int = ...,
                 **kwargs: typing.Any
             ) -> ListMembershipsResponseHttpRequest: ...
+            def lookup(
+                self,
+                *,
+                parent: str,
+                memberKey_id: str = ...,
+                memberKey_namespace: str = ...,
+                **kwargs: typing.Any
+            ) -> LookupMembershipNameResponseHttpRequest: ...
             def modifyMembershipRoles(
                 self,
                 *,
@@ -152,23 +174,6 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 body: ModifyMembershipRolesRequest = ...,
                 **kwargs: typing.Any
             ) -> ModifyMembershipRolesResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> MembershipHttpRequest: ...
-            def create(
-                self, *, parent: str, body: Membership = ..., **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def lookup(
-                self,
-                *,
-                parent: str,
-                memberKey_namespace: str = ...,
-                memberKey_id: str = ...,
-                **kwargs: typing.Any
-            ) -> LookupMembershipNameResponseHttpRequest: ...
         def create(
             self,
             *,
@@ -181,15 +186,23 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, name: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-        def search(
+        def get(self, *, name: str, **kwargs: typing.Any) -> GroupHttpRequest: ...
+        def list(
             self,
             *,
-            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
-            pageToken: str = ...,
-            query: str = ...,
             pageSize: int = ...,
+            pageToken: str = ...,
+            parent: str = ...,
+            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
             **kwargs: typing.Any
-        ) -> SearchGroupsResponseHttpRequest: ...
+        ) -> ListGroupsResponseHttpRequest: ...
+        def lookup(
+            self,
+            *,
+            groupKey_id: str = ...,
+            groupKey_namespace: str = ...,
+            **kwargs: typing.Any
+        ) -> LookupGroupNameResponseHttpRequest: ...
         def patch(
             self,
             *,
@@ -198,68 +211,20 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-        def lookup(
+        def search(
             self,
             *,
-            groupKey_id: str = ...,
-            groupKey_namespace: str = ...,
-            **kwargs: typing.Any
-        ) -> LookupGroupNameResponseHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> GroupHttpRequest: ...
-        def list(
-            self,
-            *,
-            parent: str = ...,
-            pageToken: str = ...,
-            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
             pageSize: int = ...,
+            pageToken: str = ...,
+            query: str = ...,
+            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
             **kwargs: typing.Any
-        ) -> ListGroupsResponseHttpRequest: ...
+        ) -> SearchGroupsResponseHttpRequest: ...
         def memberships(self) -> MembershipsResource: ...
     def devices(self) -> DevicesResource: ...
     def groups(self) -> GroupsResource: ...
 
-class GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleAppsCloudidentityDevicesV1ListClientStatesResponse: ...
-
-class GoogleAppsCloudidentityDevicesV1ListDevicesResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleAppsCloudidentityDevicesV1ListDevicesResponse: ...
-
-class MembershipHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Membership: ...
-
-class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListMembershipsResponse: ...
-
-class GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse: ...
-
-class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListGroupsResponse: ...
-
-class LookupGroupNameResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> LookupGroupNameResponse: ...
-
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1ClientStateHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -267,13 +232,7 @@ class GoogleAppsCloudidentityDevicesV1ClientStateHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleAppsCloudidentityDevicesV1ClientState: ...
 
-class GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse: ...
-
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1DeviceHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -281,21 +240,7 @@ class GoogleAppsCloudidentityDevicesV1DeviceHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleAppsCloudidentityDevicesV1Device: ...
 
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
-class GroupHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Group: ...
-
-class SearchGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SearchGroupsResponse: ...
-
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1DeviceUserHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -303,12 +248,88 @@ class GoogleAppsCloudidentityDevicesV1DeviceUserHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleAppsCloudidentityDevicesV1DeviceUser: ...
 
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleAppsCloudidentityDevicesV1ListClientStatesResponse: ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse: ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1ListDevicesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleAppsCloudidentityDevicesV1ListDevicesResponse: ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse: ...
+
+@typing.type_check_only
+class GroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Group: ...
+
+@typing.type_check_only
+class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListGroupsResponse: ...
+
+@typing.type_check_only
+class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListMembershipsResponse: ...
+
+@typing.type_check_only
+class LookupGroupNameResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> LookupGroupNameResponse: ...
+
+@typing.type_check_only
 class LookupMembershipNameResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> LookupMembershipNameResponse: ...
 
+@typing.type_check_only
+class MembershipHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Membership: ...
+
+@typing.type_check_only
 class ModifyMembershipRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ModifyMembershipRolesResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
+class SearchGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SearchGroupsResponse: ...

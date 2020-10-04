@@ -7,9 +7,11 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class SystemsManagementResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class PatchDeploymentsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -29,11 +31,13 @@ class SystemsManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageToken: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListPatchDeploymentsResponseHttpRequest: ...
+        @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class InstanceDetailsResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
@@ -44,9 +48,6 @@ class SystemsManagementResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> PatchJobHttpRequest: ...
             def cancel(
                 self,
                 *,
@@ -54,15 +55,6 @@ class SystemsManagementResource(googleapiclient.discovery.Resource):
                 body: CancelPatchJobRequest = ...,
                 **kwargs: typing.Any
             ) -> PatchJobHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageToken: str = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                **kwargs: typing.Any
-            ) -> ListPatchJobsResponseHttpRequest: ...
             def execute(
                 self,
                 *,
@@ -70,37 +62,55 @@ class SystemsManagementResource(googleapiclient.discovery.Resource):
                 body: ExecutePatchJobRequest = ...,
                 **kwargs: typing.Any
             ) -> PatchJobHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> PatchJobHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListPatchJobsResponseHttpRequest: ...
             def instanceDetails(self) -> InstanceDetailsResource: ...
         def patchDeployments(self) -> PatchDeploymentsResource: ...
         def patchJobs(self) -> PatchJobsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ListPatchJobInstanceDetailsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListPatchJobInstanceDetailsResponse: ...
-
-class ListPatchJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListPatchJobsResponse: ...
-
-class ListPatchDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListPatchDeploymentsResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class PatchJobHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListPatchDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PatchJob: ...
+    ) -> ListPatchDeploymentsResponse: ...
 
+@typing.type_check_only
+class ListPatchJobInstanceDetailsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListPatchJobInstanceDetailsResponse: ...
+
+@typing.type_check_only
+class ListPatchJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListPatchJobsResponse: ...
+
+@typing.type_check_only
 class PatchDeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> PatchDeployment: ...
+
+@typing.type_check_only
+class PatchJobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PatchJob: ...

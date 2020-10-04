@@ -1,79 +1,38 @@
 import typing
 
 import typing_extensions
-
-class WebpushConfig(typing_extensions.TypedDict, total=False):
-    fcmOptions: WebpushFcmOptions
-    headers: typing.Dict[str, typing.Any]
+@typing.type_check_only
+class AndroidConfig(typing_extensions.TypedDict, total=False):
+    collapseKey: str
     data: typing.Dict[str, typing.Any]
-    notification: typing.Dict[str, typing.Any]
+    directBootOk: bool
+    fcmOptions: AndroidFcmOptions
+    notification: AndroidNotification
+    priority: typing_extensions.Literal["NORMAL", "HIGH"]
+    restrictedPackageName: str
+    ttl: str
 
-class ApnsFcmOptions(typing_extensions.TypedDict, total=False):
-    image: str
+@typing.type_check_only
+class AndroidFcmOptions(typing_extensions.TypedDict, total=False):
     analyticsLabel: str
 
-class FcmOptions(typing_extensions.TypedDict, total=False):
-    analyticsLabel: str
-
-class Color(typing_extensions.TypedDict, total=False):
-    red: float
-    green: float
-    blue: float
-    alpha: float
-
-class Message(typing_extensions.TypedDict, total=False):
-    topic: str
-    condition: str
-    apns: ApnsConfig
-    webpush: WebpushConfig
-    name: str
-    fcmOptions: FcmOptions
-    notification: Notification
-    data: typing.Dict[str, typing.Any]
-    android: AndroidConfig
-    token: str
-
-class LightSettings(typing_extensions.TypedDict, total=False):
-    lightOffDuration: str
-    lightOnDuration: str
-    color: Color
-
-class ApnsConfig(typing_extensions.TypedDict, total=False):
-    headers: typing.Dict[str, typing.Any]
-    fcmOptions: ApnsFcmOptions
-    payload: typing.Dict[str, typing.Any]
-
-class WebpushFcmOptions(typing_extensions.TypedDict, total=False):
-    analyticsLabel: str
-    link: str
-
+@typing.type_check_only
 class AndroidNotification(typing_extensions.TypedDict, total=False):
+    body: str
+    bodyLocArgs: typing.List[str]
     bodyLocKey: str
     channelId: str
-    lightSettings: LightSettings
-    titleLocArgs: typing.List[str]
     clickAction: str
-    localOnly: bool
-    defaultVibrateTimings: bool
-    title: str
-    bodyLocArgs: typing.List[str]
-    image: str
-    vibrateTimings: typing.List[str]
-    icon: str
-    eventTime: str
-    body: str
-    sound: str
-    sticky: bool
-    ticker: str
-    titleLocKey: str
     color: str
-    notificationCount: int
-    visibility: typing_extensions.Literal[
-        "VISIBILITY_UNSPECIFIED", "PRIVATE", "PUBLIC", "SECRET"
-    ]
-    defaultSound: bool
     defaultLightSettings: bool
-    tag: str
+    defaultSound: bool
+    defaultVibrateTimings: bool
+    eventTime: str
+    icon: str
+    image: str
+    lightSettings: LightSettings
+    localOnly: bool
+    notificationCount: int
     notificationPriority: typing_extensions.Literal[
         "PRIORITY_UNSPECIFIED",
         "PRIORITY_MIN",
@@ -82,25 +41,78 @@ class AndroidNotification(typing_extensions.TypedDict, total=False):
         "PRIORITY_HIGH",
         "PRIORITY_MAX",
     ]
+    sound: str
+    sticky: bool
+    tag: str
+    ticker: str
+    title: str
+    titleLocArgs: typing.List[str]
+    titleLocKey: str
+    vibrateTimings: typing.List[str]
+    visibility: typing_extensions.Literal[
+        "VISIBILITY_UNSPECIFIED", "PRIVATE", "PUBLIC", "SECRET"
+    ]
 
-class AndroidFcmOptions(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class ApnsConfig(typing_extensions.TypedDict, total=False):
+    fcmOptions: ApnsFcmOptions
+    headers: typing.Dict[str, typing.Any]
+    payload: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class ApnsFcmOptions(typing_extensions.TypedDict, total=False):
+    analyticsLabel: str
+    image: str
+
+@typing.type_check_only
+class Color(typing_extensions.TypedDict, total=False):
+    alpha: float
+    blue: float
+    green: float
+    red: float
+
+@typing.type_check_only
+class FcmOptions(typing_extensions.TypedDict, total=False):
     analyticsLabel: str
 
+@typing.type_check_only
+class LightSettings(typing_extensions.TypedDict, total=False):
+    color: Color
+    lightOffDuration: str
+    lightOnDuration: str
+
+@typing.type_check_only
+class Message(typing_extensions.TypedDict, total=False):
+    android: AndroidConfig
+    apns: ApnsConfig
+    condition: str
+    data: typing.Dict[str, typing.Any]
+    fcmOptions: FcmOptions
+    name: str
+    notification: Notification
+    token: str
+    topic: str
+    webpush: WebpushConfig
+
+@typing.type_check_only
+class Notification(typing_extensions.TypedDict, total=False):
+    body: str
+    image: str
+    title: str
+
+@typing.type_check_only
 class SendMessageRequest(typing_extensions.TypedDict, total=False):
     message: Message
     validateOnly: bool
 
-class AndroidConfig(typing_extensions.TypedDict, total=False):
-    restrictedPackageName: str
+@typing.type_check_only
+class WebpushConfig(typing_extensions.TypedDict, total=False):
     data: typing.Dict[str, typing.Any]
-    priority: typing_extensions.Literal["NORMAL", "HIGH"]
-    ttl: str
-    notification: AndroidNotification
-    collapseKey: str
-    directBootOk: bool
-    fcmOptions: AndroidFcmOptions
+    fcmOptions: WebpushFcmOptions
+    headers: typing.Dict[str, typing.Any]
+    notification: typing.Dict[str, typing.Any]
 
-class Notification(typing_extensions.TypedDict, total=False):
-    title: str
-    body: str
-    image: str
+@typing.type_check_only
+class WebpushFcmOptions(typing_extensions.TypedDict, total=False):
+    analyticsLabel: str
+    link: str

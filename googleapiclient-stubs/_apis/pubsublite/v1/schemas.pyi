@@ -1,56 +1,29 @@
 import typing
 
 import typing_extensions
-
-class Topic(typing_extensions.TypedDict, total=False):
-    partitionConfig: PartitionConfig
-    name: str
-    retentionConfig: RetentionConfig
-
-class ComputeMessageStatsRequest(typing_extensions.TypedDict, total=False):
-    endCursor: Cursor
-    startCursor: Cursor
-    partition: str
-
-class ListTopicSubscriptionsResponse(typing_extensions.TypedDict, total=False):
-    subscriptions: typing.List[str]
-    nextPageToken: str
-
-class RetentionConfig(typing_extensions.TypedDict, total=False):
-    perPartitionBytes: str
-    period: str
-
-class TopicPartitions(typing_extensions.TypedDict, total=False):
-    partitionCount: str
-
-class ListPartitionCursorsResponse(typing_extensions.TypedDict, total=False):
-    partitionCursors: typing.List[PartitionCursor]
-    nextPageToken: str
-
-class PartitionCursor(typing_extensions.TypedDict, total=False):
-    cursor: Cursor
-    partition: str
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class PartitionConfig(typing_extensions.TypedDict, total=False):
-    count: str
-    scale: int
-    capacity: Capacity
-
-class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    subscriptions: typing.List[Subscription]
-
-class Subscription(typing_extensions.TypedDict, total=False):
-    name: str
-    deliveryConfig: DeliveryConfig
-    topic: str
-
+@typing.type_check_only
 class Capacity(typing_extensions.TypedDict, total=False):
     publishMibPerSec: int
     subscribeMibPerSec: int
 
+@typing.type_check_only
+class ComputeMessageStatsRequest(typing_extensions.TypedDict, total=False):
+    endCursor: Cursor
+    partition: str
+    startCursor: Cursor
+
+@typing.type_check_only
+class ComputeMessageStatsResponse(typing_extensions.TypedDict, total=False):
+    messageBytes: str
+    messageCount: str
+    minimumEventTime: str
+    minimumPublishTime: str
+
+@typing.type_check_only
+class Cursor(typing_extensions.TypedDict, total=False):
+    offset: str
+
+@typing.type_check_only
 class DeliveryConfig(typing_extensions.TypedDict, total=False):
     deliveryRequirement: typing_extensions.Literal[
         "DELIVERY_REQUIREMENT_UNSPECIFIED",
@@ -58,15 +31,57 @@ class DeliveryConfig(typing_extensions.TypedDict, total=False):
         "DELIVER_AFTER_STORED",
     ]
 
-class ListTopicsResponse(typing_extensions.TypedDict, total=False):
-    topics: typing.List[Topic]
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ListPartitionCursorsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
+    partitionCursors: typing.List[PartitionCursor]
 
-class ComputeMessageStatsResponse(typing_extensions.TypedDict, total=False):
-    minimumPublishTime: str
-    messageBytes: str
-    minimumEventTime: str
-    messageCount: str
+@typing.type_check_only
+class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    subscriptions: typing.List[Subscription]
 
-class Cursor(typing_extensions.TypedDict, total=False):
-    offset: str
+@typing.type_check_only
+class ListTopicSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    subscriptions: typing.List[str]
+
+@typing.type_check_only
+class ListTopicsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    topics: typing.List[Topic]
+
+@typing.type_check_only
+class PartitionConfig(typing_extensions.TypedDict, total=False):
+    capacity: Capacity
+    count: str
+    scale: int
+
+@typing.type_check_only
+class PartitionCursor(typing_extensions.TypedDict, total=False):
+    cursor: Cursor
+    partition: str
+
+@typing.type_check_only
+class RetentionConfig(typing_extensions.TypedDict, total=False):
+    perPartitionBytes: str
+    period: str
+
+@typing.type_check_only
+class Subscription(typing_extensions.TypedDict, total=False):
+    deliveryConfig: DeliveryConfig
+    name: str
+    topic: str
+
+@typing.type_check_only
+class Topic(typing_extensions.TypedDict, total=False):
+    name: str
+    partitionConfig: PartitionConfig
+    retentionConfig: RetentionConfig
+
+@typing.type_check_only
+class TopicPartitions(typing_extensions.TypedDict, total=False):
+    partitionCount: str

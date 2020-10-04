@@ -1,82 +1,43 @@
 import typing
 
 import typing_extensions
-
-class ReportStatus(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal["RUNNING", "DONE", "FAILED"]
-    finishTimeMs: str
-    format: typing_extensions.Literal["CSV", "EXCEL_CSV", "XLSX"]
-    failure: ReportFailure
-
-class ReportFailure(typing_extensions.TypedDict, total=False):
-    errorCode: typing_extensions.Literal[
-        "AUTHENTICATION_ERROR",
-        "UNAUTHORIZED_API_ACCESS",
-        "SERVER_ERROR",
-        "VALIDATION_ERROR",
-        "REPORTING_FATAL_ERROR",
-        "REPORTING_TRANSIENT_ERROR",
-        "REPORTING_IMCOMPATIBLE_METRICS",
-        "REPORTING_ILLEGAL_FILENAME",
-        "REPORTING_QUERY_NOT_FOUND",
-        "REPORTING_BUCKET_NOT_FOUND",
-        "REPORTING_CREATE_BUCKET_FAILED",
-        "REPORTING_DELETE_BUCKET_FAILED",
-        "REPORTING_UPDATE_BUCKET_PERMISSION_FAILED",
-        "REPORTING_WRITE_BUCKET_OBJECT_FAILED",
-        "DEPRECATED_REPORTING_INVALID_QUERY",
-        "REPORTING_INVALID_QUERY_TOO_MANY_UNFILTERED_LARGE_GROUP_BYS",
-        "REPORTING_INVALID_QUERY_TITLE_MISSING",
-        "REPORTING_INVALID_QUERY_MISSING_PARTNER_AND_ADVERTISER_FILTERS",
+@typing.type_check_only
+class DownloadLineItemsRequest(typing_extensions.TypedDict, total=False):
+    fileSpec: typing_extensions.Literal["EWF"]
+    filterIds: typing.List[str]
+    filterType: typing_extensions.Literal[
+        "ADVERTISER_ID", "INSERTION_ORDER_ID", "LINE_ITEM_ID"
     ]
+    format: typing_extensions.Literal["CSV"]
 
-class ReportMetadata(typing_extensions.TypedDict, total=False):
-    status: ReportStatus
-    googleCloudStoragePath: str
-    reportDataEndTimeMs: str
-    reportDataStartTimeMs: str
+@typing.type_check_only
+class DownloadLineItemsResponse(typing_extensions.TypedDict, total=False):
+    lineItems: str
 
-class QueryMetadata(typing_extensions.TypedDict, total=False):
-    title: str
-    googleCloudStoragePathForLatestReport: str
-    sendNotification: bool
-    running: bool
-    shareEmailAddress: typing.List[str]
-    dataRange: typing_extensions.Literal[
-        "CUSTOM_DATES",
-        "CURRENT_DAY",
-        "PREVIOUS_DAY",
-        "WEEK_TO_DATE",
-        "MONTH_TO_DATE",
-        "QUARTER_TO_DATE",
-        "YEAR_TO_DATE",
-        "PREVIOUS_WEEK",
-        "PREVIOUS_HALF_MONTH",
-        "PREVIOUS_MONTH",
-        "PREVIOUS_QUARTER",
-        "PREVIOUS_YEAR",
-        "LAST_7_DAYS",
-        "LAST_30_DAYS",
-        "LAST_90_DAYS",
-        "LAST_365_DAYS",
-        "ALL_TIME",
-        "LAST_14_DAYS",
-        "TYPE_NOT_SUPPORTED",
+@typing.type_check_only
+class DownloadRequest(typing_extensions.TypedDict, total=False):
+    fileTypes: typing.List[str]
+    filterIds: typing.List[str]
+    filterType: typing_extensions.Literal[
+        "ADVERTISER_ID",
+        "INSERTION_ORDER_ID",
+        "LINE_ITEM_ID",
+        "CAMPAIGN_ID",
+        "INVENTORY_SOURCE_ID",
+        "PARTNER_ID",
     ]
-    latestReportRunTimeMs: str
-    locale: str
-    reportCount: int
-    format: typing_extensions.Literal["CSV", "EXCEL_CSV", "XLSX"]
-    googleDrivePathForLatestReport: str
+    version: str
 
-class ReportKey(typing_extensions.TypedDict, total=False):
-    reportId: str
-    queryId: str
+@typing.type_check_only
+class DownloadResponse(typing_extensions.TypedDict, total=False):
+    adGroups: str
+    ads: str
+    campaigns: str
+    insertionOrders: str
+    inventorySources: str
+    lineItems: str
 
-class ListQueriesResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    queries: typing.List[Query]
-
+@typing.type_check_only
 class FilterPair(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "FILTER_UNKNOWN",
@@ -199,79 +160,22 @@ class FilterPair(typing_extensions.TypedDict, total=False):
     ]
     value: str
 
-class UploadLineItemsRequest(typing_extensions.TypedDict, total=False):
-    format: typing_extensions.Literal["CSV"]
-    dryRun: bool
-    lineItems: str
+@typing.type_check_only
+class ListQueriesResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    queries: typing.List[Query]
 
-class UploadLineItemsResponse(typing_extensions.TypedDict, total=False):
-    uploadStatus: UploadStatus
+@typing.type_check_only
+class ListReportsResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    reports: typing.List[Report]
 
-class RunQueryRequest(typing_extensions.TypedDict, total=False):
-    reportDataStartTimeMs: str
-    dataRange: typing_extensions.Literal[
-        "CUSTOM_DATES",
-        "CURRENT_DAY",
-        "PREVIOUS_DAY",
-        "WEEK_TO_DATE",
-        "MONTH_TO_DATE",
-        "QUARTER_TO_DATE",
-        "YEAR_TO_DATE",
-        "PREVIOUS_WEEK",
-        "PREVIOUS_HALF_MONTH",
-        "PREVIOUS_MONTH",
-        "PREVIOUS_QUARTER",
-        "PREVIOUS_YEAR",
-        "LAST_7_DAYS",
-        "LAST_30_DAYS",
-        "LAST_90_DAYS",
-        "LAST_365_DAYS",
-        "ALL_TIME",
-        "LAST_14_DAYS",
-        "TYPE_NOT_SUPPORTED",
-    ]
-    timezoneCode: str
-    reportDataEndTimeMs: str
-
-class QuerySchedule(typing_extensions.TypedDict, total=False):
-    nextRunMinuteOfDay: int
-    frequency: typing_extensions.Literal[
-        "ONE_TIME", "DAILY", "WEEKLY", "SEMI_MONTHLY", "MONTHLY", "QUARTERLY"
-    ]
-    endTimeMs: str
-    nextRunTimezoneCode: str
-
-class UploadStatus(typing_extensions.TypedDict, total=False):
-    rowStatus: typing.List[RowStatus]
-    errors: typing.List[str]
-
-class DownloadRequest(typing_extensions.TypedDict, total=False):
-    filterType: typing_extensions.Literal[
-        "ADVERTISER_ID",
-        "INSERTION_ORDER_ID",
-        "LINE_ITEM_ID",
-        "CAMPAIGN_ID",
-        "INVENTORY_SOURCE_ID",
-        "PARTNER_ID",
-    ]
-    filterIds: typing.List[str]
-    fileTypes: typing.List[str]
-    version: str
-
-class Report(typing_extensions.TypedDict, total=False):
-    metadata: ReportMetadata
-    key: ReportKey
-    params: Parameters
-
-class DownloadResponse(typing_extensions.TypedDict, total=False):
-    inventorySources: str
-    lineItems: str
-    adGroups: str
-    insertionOrders: str
-    campaigns: str
-    ads: str
-
+@typing.type_check_only
 class Parameters(typing_extensions.TypedDict, total=False):
+    filters: typing.List[FilterPair]
+    groupBys: typing.List[str]
+    includeInviteData: bool
+    metrics: typing.List[str]
     type: typing_extensions.Literal[
         "TYPE_GENERAL",
         "TYPE_AUDIENCE_PERFORMANCE",
@@ -306,40 +210,156 @@ class Parameters(typing_extensions.TypedDict, total=False):
         "TYPE_REACH_AUDIENCE",
         "TYPE_LINEAR_TV_SEARCH_LIFT",
     ]
-    includeInviteData: bool
-    metrics: typing.List[str]
-    groupBys: typing.List[str]
-    filters: typing.List[FilterPair]
 
-class DownloadLineItemsRequest(typing_extensions.TypedDict, total=False):
-    format: typing_extensions.Literal["CSV"]
-    filterIds: typing.List[str]
-    filterType: typing_extensions.Literal[
-        "ADVERTISER_ID", "INSERTION_ORDER_ID", "LINE_ITEM_ID"
-    ]
-    fileSpec: typing_extensions.Literal["EWF"]
-
-class ListReportsResponse(typing_extensions.TypedDict, total=False):
-    reports: typing.List[Report]
-    kind: str
-
-class DownloadLineItemsResponse(typing_extensions.TypedDict, total=False):
-    lineItems: str
-
+@typing.type_check_only
 class Query(typing_extensions.TypedDict, total=False):
-    reportDataEndTimeMs: str
-    queryId: str
-    timezoneCode: str
-    reportDataStartTimeMs: str
-    params: Parameters
     kind: str
-    schedule: QuerySchedule
     metadata: QueryMetadata
+    params: Parameters
+    queryId: str
+    reportDataEndTimeMs: str
+    reportDataStartTimeMs: str
+    schedule: QuerySchedule
+    timezoneCode: str
 
+@typing.type_check_only
+class QueryMetadata(typing_extensions.TypedDict, total=False):
+    dataRange: typing_extensions.Literal[
+        "CUSTOM_DATES",
+        "CURRENT_DAY",
+        "PREVIOUS_DAY",
+        "WEEK_TO_DATE",
+        "MONTH_TO_DATE",
+        "QUARTER_TO_DATE",
+        "YEAR_TO_DATE",
+        "PREVIOUS_WEEK",
+        "PREVIOUS_HALF_MONTH",
+        "PREVIOUS_MONTH",
+        "PREVIOUS_QUARTER",
+        "PREVIOUS_YEAR",
+        "LAST_7_DAYS",
+        "LAST_30_DAYS",
+        "LAST_90_DAYS",
+        "LAST_365_DAYS",
+        "ALL_TIME",
+        "LAST_14_DAYS",
+        "TYPE_NOT_SUPPORTED",
+    ]
+    format: typing_extensions.Literal["CSV", "EXCEL_CSV", "XLSX"]
+    googleCloudStoragePathForLatestReport: str
+    googleDrivePathForLatestReport: str
+    latestReportRunTimeMs: str
+    locale: str
+    reportCount: int
+    running: bool
+    sendNotification: bool
+    shareEmailAddress: typing.List[str]
+    title: str
+
+@typing.type_check_only
+class QuerySchedule(typing_extensions.TypedDict, total=False):
+    endTimeMs: str
+    frequency: typing_extensions.Literal[
+        "ONE_TIME", "DAILY", "WEEKLY", "SEMI_MONTHLY", "MONTHLY", "QUARTERLY"
+    ]
+    nextRunMinuteOfDay: int
+    nextRunTimezoneCode: str
+
+@typing.type_check_only
+class Report(typing_extensions.TypedDict, total=False):
+    key: ReportKey
+    metadata: ReportMetadata
+    params: Parameters
+
+@typing.type_check_only
+class ReportFailure(typing_extensions.TypedDict, total=False):
+    errorCode: typing_extensions.Literal[
+        "AUTHENTICATION_ERROR",
+        "UNAUTHORIZED_API_ACCESS",
+        "SERVER_ERROR",
+        "VALIDATION_ERROR",
+        "REPORTING_FATAL_ERROR",
+        "REPORTING_TRANSIENT_ERROR",
+        "REPORTING_IMCOMPATIBLE_METRICS",
+        "REPORTING_ILLEGAL_FILENAME",
+        "REPORTING_QUERY_NOT_FOUND",
+        "REPORTING_BUCKET_NOT_FOUND",
+        "REPORTING_CREATE_BUCKET_FAILED",
+        "REPORTING_DELETE_BUCKET_FAILED",
+        "REPORTING_UPDATE_BUCKET_PERMISSION_FAILED",
+        "REPORTING_WRITE_BUCKET_OBJECT_FAILED",
+        "DEPRECATED_REPORTING_INVALID_QUERY",
+        "REPORTING_INVALID_QUERY_TOO_MANY_UNFILTERED_LARGE_GROUP_BYS",
+        "REPORTING_INVALID_QUERY_TITLE_MISSING",
+        "REPORTING_INVALID_QUERY_MISSING_PARTNER_AND_ADVERTISER_FILTERS",
+    ]
+
+@typing.type_check_only
+class ReportKey(typing_extensions.TypedDict, total=False):
+    queryId: str
+    reportId: str
+
+@typing.type_check_only
+class ReportMetadata(typing_extensions.TypedDict, total=False):
+    googleCloudStoragePath: str
+    reportDataEndTimeMs: str
+    reportDataStartTimeMs: str
+    status: ReportStatus
+
+@typing.type_check_only
+class ReportStatus(typing_extensions.TypedDict, total=False):
+    failure: ReportFailure
+    finishTimeMs: str
+    format: typing_extensions.Literal["CSV", "EXCEL_CSV", "XLSX"]
+    state: typing_extensions.Literal["RUNNING", "DONE", "FAILED"]
+
+@typing.type_check_only
 class RowStatus(typing_extensions.TypedDict, total=False):
     changed: bool
-    persisted: bool
-    entityName: str
     entityId: str
+    entityName: str
     errors: typing.List[str]
+    persisted: bool
     rowNumber: int
+
+@typing.type_check_only
+class RunQueryRequest(typing_extensions.TypedDict, total=False):
+    dataRange: typing_extensions.Literal[
+        "CUSTOM_DATES",
+        "CURRENT_DAY",
+        "PREVIOUS_DAY",
+        "WEEK_TO_DATE",
+        "MONTH_TO_DATE",
+        "QUARTER_TO_DATE",
+        "YEAR_TO_DATE",
+        "PREVIOUS_WEEK",
+        "PREVIOUS_HALF_MONTH",
+        "PREVIOUS_MONTH",
+        "PREVIOUS_QUARTER",
+        "PREVIOUS_YEAR",
+        "LAST_7_DAYS",
+        "LAST_30_DAYS",
+        "LAST_90_DAYS",
+        "LAST_365_DAYS",
+        "ALL_TIME",
+        "LAST_14_DAYS",
+        "TYPE_NOT_SUPPORTED",
+    ]
+    reportDataEndTimeMs: str
+    reportDataStartTimeMs: str
+    timezoneCode: str
+
+@typing.type_check_only
+class UploadLineItemsRequest(typing_extensions.TypedDict, total=False):
+    dryRun: bool
+    format: typing_extensions.Literal["CSV"]
+    lineItems: str
+
+@typing.type_check_only
+class UploadLineItemsResponse(typing_extensions.TypedDict, total=False):
+    uploadStatus: UploadStatus
+
+@typing.type_check_only
+class UploadStatus(typing_extensions.TypedDict, total=False):
+    errors: typing.List[str]
+    rowStatus: typing.List[RowStatus]

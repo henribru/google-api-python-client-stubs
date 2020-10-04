@@ -7,21 +7,14 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudIAPResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class BrandsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class IdentityAwareProxyClientsResource(googleapiclient.discovery.Resource):
-                def resetSecret(
-                    self,
-                    *,
-                    name: str,
-                    body: ResetIdentityAwareProxyClientSecretRequest = ...,
-                    **kwargs: typing.Any
-                ) -> IdentityAwareProxyClientHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> IdentityAwareProxyClientHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -32,6 +25,9 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> IdentityAwareProxyClientHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -40,18 +36,33 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListIdentityAwareProxyClientsResponseHttpRequest: ...
+                def resetSecret(
+                    self,
+                    *,
+                    name: str,
+                    body: ResetIdentityAwareProxyClientSecretRequest = ...,
+                    **kwargs: typing.Any
+                ) -> IdentityAwareProxyClientHttpRequest: ...
             def create(
                 self, *, parent: str, body: Brand = ..., **kwargs: typing.Any
             ) -> BrandHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> BrandHttpRequest: ...
             def list(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> ListBrandsResponseHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> BrandHttpRequest: ...
             def identityAwareProxyClients(
                 self,
             ) -> IdentityAwareProxyClientsResource: ...
         def brands(self) -> BrandsResource: ...
+    @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def getIapSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> IapSettingsHttpRequest: ...
@@ -77,16 +88,40 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> IapSettingsHttpRequest: ...
-        def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
     def v1(self) -> V1Resource: ...
 
+@typing.type_check_only
+class BrandHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Brand: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class IapSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> IapSettings: ...
+
+@typing.type_check_only
+class IdentityAwareProxyClientHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> IdentityAwareProxyClient: ...
+
+@typing.type_check_only
+class ListBrandsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListBrandsResponse: ...
+
+@typing.type_check_only
 class ListIdentityAwareProxyClientsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -94,36 +129,13 @@ class ListIdentityAwareProxyClientsResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListIdentityAwareProxyClientsResponse: ...
 
-class BrandHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Brand: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
+@typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Policy: ...
 
-class IapSettingsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> IapSettings: ...
-
-class ListBrandsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListBrandsResponse: ...
-
-class IdentityAwareProxyClientHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> IdentityAwareProxyClient: ...
-
+@typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

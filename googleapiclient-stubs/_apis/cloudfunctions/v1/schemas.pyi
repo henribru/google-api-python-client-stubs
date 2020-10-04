@@ -1,138 +1,59 @@
 import typing
 
 import typing_extensions
-
-class Operation(typing_extensions.TypedDict, total=False):
-    response: typing.Dict[str, typing.Any]
-    name: str
-    done: bool
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-
-class Retry(typing_extensions.TypedDict, total=False): ...
-
-class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
-    uploadUrl: str
-
-class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
-    etag: str
-    auditConfigs: typing.List[AuditConfig]
-    version: int
-
-class GenerateUploadUrlRequest(typing_extensions.TypedDict, total=False): ...
-
-class Binding(typing_extensions.TypedDict, total=False):
-    role: str
-    condition: Expr
-    members: typing.List[str]
-
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    service: str
     auditLogConfigs: typing.List[AuditLogConfig]
-
-class FailurePolicy(typing_extensions.TypedDict, total=False):
-    retry: Retry
-
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
-    nextPageToken: str
-
-class SourceRepository(typing_extensions.TypedDict, total=False):
-    deployedUrl: str
-    url: str
-
-class HttpsTrigger(typing_extensions.TypedDict, total=False):
-    url: str
-
-class CallFunctionRequest(typing_extensions.TypedDict, total=False):
-    data: str
-
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
-    nextPageToken: str
-
-class OperationMetadataV1(typing_extensions.TypedDict, total=False):
-    target: str
-    buildId: str
-    updateTime: str
-    versionId: str
-    type: typing_extensions.Literal[
-        "OPERATION_UNSPECIFIED", "CREATE_FUNCTION", "UPDATE_FUNCTION", "DELETE_FUNCTION"
-    ]
-    request: typing.Dict[str, typing.Any]
-
-class Expr(typing_extensions.TypedDict, total=False):
-    location: str
-    title: str
-    description: str
-    expression: str
-
-class Location(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-    displayName: str
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-    locationId: str
-
-class ListFunctionsResponse(typing_extensions.TypedDict, total=False):
-    unreachable: typing.List[str]
-    nextPageToken: str
-    functions: typing.List[CloudFunction]
-
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class EventTrigger(typing_extensions.TypedDict, total=False):
-    failurePolicy: FailurePolicy
-    resource: str
     service: str
-    eventType: str
 
-class GenerateDownloadUrlResponse(typing_extensions.TypedDict, total=False):
-    downloadUrl: str
-
+@typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: typing.List[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
-    exemptedMembers: typing.List[str]
 
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    updateMask: str
-    policy: Policy
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: typing.List[str]
+    role: str
 
-class GenerateDownloadUrlRequest(typing_extensions.TypedDict, total=False):
-    versionId: str
+@typing.type_check_only
+class CallFunctionRequest(typing_extensions.TypedDict, total=False):
+    data: str
 
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
-    message: str
+@typing.type_check_only
+class CallFunctionResponse(typing_extensions.TypedDict, total=False):
+    error: str
+    executionId: str
+    result: str
 
+@typing.type_check_only
 class CloudFunction(typing_extensions.TypedDict, total=False):
-    runtime: str
-    buildId: str
     availableMemoryMb: int
-    entryPoint: str
-    updateTime: str
-    serviceAccountEmail: str
-    eventTrigger: EventTrigger
-    vpcConnector: str
     buildEnvironmentVariables: typing.Dict[str, typing.Any]
-    sourceRepository: SourceRepository
+    buildId: str
+    description: str
+    entryPoint: str
+    environmentVariables: typing.Dict[str, typing.Any]
+    eventTrigger: EventTrigger
+    httpsTrigger: HttpsTrigger
     ingressSettings: typing_extensions.Literal[
         "INGRESS_SETTINGS_UNSPECIFIED",
         "ALLOW_ALL",
         "ALLOW_INTERNAL_ONLY",
         "ALLOW_INTERNAL_AND_GCLB",
     ]
-    sourceUploadUrl: str
-    network: str
+    labels: typing.Dict[str, typing.Any]
     maxInstances: int
+    name: str
+    network: str
+    runtime: str
+    serviceAccountEmail: str
+    sourceArchiveUrl: str
+    sourceRepository: SourceRepository
+    sourceUploadUrl: str
     status: typing_extensions.Literal[
         "CLOUD_FUNCTION_STATUS_UNSPECIFIED",
         "ACTIVE",
@@ -142,20 +63,125 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
         "UNKNOWN",
     ]
     timeout: str
-    description: str
-    sourceArchiveUrl: str
-    labels: typing.Dict[str, typing.Any]
-    httpsTrigger: HttpsTrigger
+    updateTime: str
+    versionId: str
+    vpcConnector: str
     vpcConnectorEgressSettings: typing_extensions.Literal[
         "VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED",
         "PRIVATE_RANGES_ONLY",
         "ALL_TRAFFIC",
     ]
-    environmentVariables: typing.Dict[str, typing.Any]
-    name: str
+
+@typing.type_check_only
+class EventTrigger(typing_extensions.TypedDict, total=False):
+    eventType: str
+    failurePolicy: FailurePolicy
+    resource: str
+    service: str
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class FailurePolicy(typing_extensions.TypedDict, total=False):
+    retry: Retry
+
+@typing.type_check_only
+class GenerateDownloadUrlRequest(typing_extensions.TypedDict, total=False):
     versionId: str
 
-class CallFunctionResponse(typing_extensions.TypedDict, total=False):
-    executionId: str
-    error: str
-    result: str
+@typing.type_check_only
+class GenerateDownloadUrlResponse(typing_extensions.TypedDict, total=False):
+    downloadUrl: str
+
+@typing.type_check_only
+class GenerateUploadUrlRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
+    uploadUrl: str
+
+@typing.type_check_only
+class HttpsTrigger(typing_extensions.TypedDict, total=False):
+    url: str
+
+@typing.type_check_only
+class ListFunctionsResponse(typing_extensions.TypedDict, total=False):
+    functions: typing.List[CloudFunction]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadataV1(typing_extensions.TypedDict, total=False):
+    buildId: str
+    request: typing.Dict[str, typing.Any]
+    target: str
+    type: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "CREATE_FUNCTION", "UPDATE_FUNCTION", "DELETE_FUNCTION"
+    ]
+    updateTime: str
+    versionId: str
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class Retry(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
+class SourceRepository(typing_extensions.TypedDict, total=False):
+    deployedUrl: str
+    url: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]

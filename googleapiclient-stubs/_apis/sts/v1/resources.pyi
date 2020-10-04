@@ -7,8 +7,9 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def token(
             self,
@@ -18,6 +19,7 @@ class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
         ) -> GoogleIdentityStsV1ExchangeTokenResponseHttpRequest: ...
     def v1(self) -> V1Resource: ...
 
+@typing.type_check_only
 class GoogleIdentityStsV1ExchangeTokenResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):

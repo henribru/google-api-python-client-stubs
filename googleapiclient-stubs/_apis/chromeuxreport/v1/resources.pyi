@@ -7,14 +7,16 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class ChromeUXReportResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class RecordsResource(googleapiclient.discovery.Resource):
         def queryRecord(
             self, *, body: QueryRequest = ..., **kwargs: typing.Any
         ) -> QueryResponseHttpRequest: ...
     def records(self) -> RecordsResource: ...
 
+@typing.type_check_only
 class QueryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

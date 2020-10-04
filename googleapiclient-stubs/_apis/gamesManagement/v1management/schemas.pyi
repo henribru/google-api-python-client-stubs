@@ -1,72 +1,84 @@
 import typing
 
 import typing_extensions
-
-class PlayerScoreResetResponse(typing_extensions.TypedDict, total=False):
-    resetScoreTimeSpans: typing.List[str]
-    kind: str
-    definitionId: str
-
-class ProfileSettings(typing_extensions.TypedDict, total=False):
-    kind: str
-    profileVisible: bool
-
-class AchievementResetResponse(typing_extensions.TypedDict, total=False):
-    currentState: str
-    kind: str
-    updateOccurred: bool
-    definitionId: str
-
-class ScoresResetMultipleForAllRequest(typing_extensions.TypedDict, total=False):
-    leaderboard_ids: typing.List[str]
-    kind: str
-
+@typing.type_check_only
 class AchievementResetAllResponse(typing_extensions.TypedDict, total=False):
     kind: str
     results: typing.List[AchievementResetResponse]
 
-class GamesPlayerExperienceInfoResource(typing_extensions.TypedDict, total=False):
-    currentLevel: GamesPlayerLevelResource
-    nextLevel: GamesPlayerLevelResource
-    lastLevelUpTimestampMillis: str
-    currentExperiencePoints: str
+@typing.type_check_only
+class AchievementResetMultipleForAllRequest(typing_extensions.TypedDict, total=False):
+    achievement_ids: typing.List[str]
+    kind: str
 
+@typing.type_check_only
+class AchievementResetResponse(typing_extensions.TypedDict, total=False):
+    currentState: str
+    definitionId: str
+    kind: str
+    updateOccurred: bool
+
+@typing.type_check_only
 class EventsResetMultipleForAllRequest(typing_extensions.TypedDict, total=False):
     event_ids: typing.List[str]
     kind: str
 
-class Player(typing_extensions.TypedDict, total=False):
-    bannerUrlLandscape: str
-    avatarImageUrl: str
-    title: str
-    kind: str
-    bannerUrlPortrait: str
-    originalPlayerId: str
-    profileSettings: ProfileSettings
-    experienceInfo: GamesPlayerExperienceInfoResource
-    playerId: str
-    displayName: str
-    name: typing.Dict[str, typing.Any]
+@typing.type_check_only
+class GamesPlayerExperienceInfoResource(typing_extensions.TypedDict, total=False):
+    currentExperiencePoints: str
+    currentLevel: GamesPlayerLevelResource
+    lastLevelUpTimestampMillis: str
+    nextLevel: GamesPlayerLevelResource
 
+@typing.type_check_only
 class GamesPlayerLevelResource(typing_extensions.TypedDict, total=False):
-    minExperiencePoints: str
     level: int
     maxExperiencePoints: str
+    minExperiencePoints: str
 
+@typing.type_check_only
+class HiddenPlayer(typing_extensions.TypedDict, total=False):
+    hiddenTimeMillis: str
+    kind: str
+    player: Player
+
+@typing.type_check_only
+class HiddenPlayerList(typing_extensions.TypedDict, total=False):
+    items: typing.List[HiddenPlayer]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class Player(typing_extensions.TypedDict, total=False):
+    avatarImageUrl: str
+    bannerUrlLandscape: str
+    bannerUrlPortrait: str
+    displayName: str
+    experienceInfo: GamesPlayerExperienceInfoResource
+    kind: str
+    name: typing.Dict[str, typing.Any]
+    originalPlayerId: str
+    playerId: str
+    profileSettings: ProfileSettings
+    title: str
+
+@typing.type_check_only
 class PlayerScoreResetAllResponse(typing_extensions.TypedDict, total=False):
     kind: str
     results: typing.List[PlayerScoreResetResponse]
 
-class HiddenPlayer(typing_extensions.TypedDict, total=False):
-    hiddenTimeMillis: str
-    player: Player
+@typing.type_check_only
+class PlayerScoreResetResponse(typing_extensions.TypedDict, total=False):
+    definitionId: str
     kind: str
+    resetScoreTimeSpans: typing.List[str]
 
-class HiddenPlayerList(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
+@typing.type_check_only
+class ProfileSettings(typing_extensions.TypedDict, total=False):
     kind: str
-    items: typing.List[HiddenPlayer]
+    profileVisible: bool
 
-class AchievementResetMultipleForAllRequest(typing_extensions.TypedDict, total=False):
-    achievement_ids: typing.List[str]
+@typing.type_check_only
+class ScoresResetMultipleForAllRequest(typing_extensions.TypedDict, total=False):
     kind: str
+    leaderboard_ids: typing.List[str]

@@ -7,9 +7,11 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudProfilerResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class ProfilesResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -17,6 +19,9 @@ class CloudProfilerResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: CreateProfileRequest = ...,
                 **kwargs: typing.Any
+            ) -> ProfileHttpRequest: ...
+            def createOffline(
+                self, *, parent: str, body: Profile = ..., **kwargs: typing.Any
             ) -> ProfileHttpRequest: ...
             def patch(
                 self,
@@ -26,12 +31,10 @@ class CloudProfilerResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> ProfileHttpRequest: ...
-            def createOffline(
-                self, *, parent: str, body: Profile = ..., **kwargs: typing.Any
-            ) -> ProfileHttpRequest: ...
         def profiles(self) -> ProfilesResource: ...
     def projects(self) -> ProjectsResource: ...
 
+@typing.type_check_only
 class ProfileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

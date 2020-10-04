@@ -1,35 +1,42 @@
 import typing
 
 import typing_extensions
-
-class Expr(typing_extensions.TypedDict, total=False):
-    location: str
-    expression: str
-    description: str
-    title: str
-
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
-    requestedPolicyVersion: int
-
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
-    bindingId: str
 
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GetPolicyOptions
+
+@typing.type_check_only
+class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    version: int
     bindings: typing.List[Binding]
     etag: str
+    version: int
 
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
 
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
 
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    options: GetPolicyOptions
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]

@@ -7,12 +7,14 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class TexttospeechResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class TextResource(googleapiclient.discovery.Resource):
         def synthesize(
             self, *, body: SynthesizeSpeechRequest = ..., **kwargs: typing.Any
         ) -> SynthesizeSpeechResponseHttpRequest: ...
+    @typing.type_check_only
     class VoicesResource(googleapiclient.discovery.Resource):
         def list(
             self, *, languageCode: str = ..., **kwargs: typing.Any
@@ -20,11 +22,13 @@ class TexttospeechResource(googleapiclient.discovery.Resource):
     def text(self) -> TextResource: ...
     def voices(self) -> VoicesResource: ...
 
+@typing.type_check_only
 class ListVoicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListVoicesResponse: ...
 
+@typing.type_check_only
 class SynthesizeSpeechResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

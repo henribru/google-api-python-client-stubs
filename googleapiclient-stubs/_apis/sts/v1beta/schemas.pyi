@@ -1,22 +1,23 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class GoogleIdentityStsV1betaExchangeTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
-    requestedTokenType: str
-    subjectTokenType: str
-    scope: str
-    options: str
-    grantType: str
     audience: str
+    grantType: str
+    options: str
+    requestedTokenType: str
+    scope: str
     subjectToken: str
+    subjectTokenType: str
 
+@typing.type_check_only
 class GoogleIdentityStsV1betaExchangeTokenResponse(
     typing_extensions.TypedDict, total=False
 ):
+    access_token: str
+    expires_in: int
     issued_token_type: str
     token_type: str
-    expires_in: int
-    access_token: str

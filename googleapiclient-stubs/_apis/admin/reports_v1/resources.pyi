@@ -7,55 +7,47 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class ReportsResource(googleapiclient.discovery.Resource):
-    class UserUsageReportResource(googleapiclient.discovery.Resource):
-        def get(
+    @typing.type_check_only
+    class ActivitiesResource(googleapiclient.discovery.Resource):
+        def list(
             self,
             *,
             userKey: str,
-            date: str,
-            parameters: str = ...,
-            maxResults: int = ...,
-            filters: str = ...,
+            applicationName: typing_extensions.Literal[
+                "application_name_undefined",
+                "access_transparency",
+                "admin",
+                "calendar",
+                "chat",
+                "drive",
+                "gcp",
+                "gplus",
+                "groups",
+                "groups_enterprise",
+                "jamboard",
+                "login",
+                "meet",
+                "mobile",
+                "rules",
+                "saml",
+                "token",
+                "user_accounts",
+                "context_aware_access",
+                "chrome",
+            ],
+            actorIpAddress: str = ...,
             customerId: str = ...,
-            pageToken: str = ...,
+            endTime: str = ...,
+            eventName: str = ...,
+            filters: str = ...,
+            maxResults: int = ...,
             orgUnitID: str = ...,
-            **kwargs: typing.Any
-        ) -> UsageReportsHttpRequest: ...
-    class ChannelsResource(googleapiclient.discovery.Resource):
-        def stop(
-            self, *, body: Channel = ..., **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-    class CustomerUsageReportsResource(googleapiclient.discovery.Resource):
-        def get(
-            self,
-            *,
-            date: str,
-            parameters: str = ...,
             pageToken: str = ...,
-            customerId: str = ...,
+            startTime: str = ...,
             **kwargs: typing.Any
-        ) -> UsageReportsHttpRequest: ...
-    class EntityUsageReportsResource(googleapiclient.discovery.Resource):
-        def get(
-            self,
-            *,
-            entityType: typing_extensions.Literal[
-                "entity_type_undefined", "gplus_communities"
-            ],
-            entityKey: typing_extensions.Literal[
-                "entityKeyUndefined", "all", "entityKey"
-            ],
-            date: str,
-            pageToken: str = ...,
-            parameters: str = ...,
-            customerId: str = ...,
-            filters: str = ...,
-            maxResults: int = ...,
-            **kwargs: typing.Any
-        ) -> UsageReportsHttpRequest: ...
-    class ActivitiesResource(googleapiclient.discovery.Resource):
+        ) -> ActivitiesHttpRequest: ...
         def watch(
             self,
             *,
@@ -84,69 +76,85 @@ class ReportsResource(googleapiclient.discovery.Resource):
             ],
             body: Channel = ...,
             actorIpAddress: str = ...,
-            endTime: str = ...,
-            filters: str = ...,
-            pageToken: str = ...,
-            orgUnitID: str = ...,
-            startTime: str = ...,
-            eventName: str = ...,
             customerId: str = ...,
+            endTime: str = ...,
+            eventName: str = ...,
+            filters: str = ...,
             maxResults: int = ...,
+            orgUnitID: str = ...,
+            pageToken: str = ...,
+            startTime: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
-        def list(
+    @typing.type_check_only
+    class ChannelsResource(googleapiclient.discovery.Resource):
+        def stop(
+            self, *, body: Channel = ..., **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
+    class CustomerUsageReportsResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            date: str,
+            customerId: str = ...,
+            pageToken: str = ...,
+            parameters: str = ...,
+            **kwargs: typing.Any
+        ) -> UsageReportsHttpRequest: ...
+    @typing.type_check_only
+    class EntityUsageReportsResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            entityType: typing_extensions.Literal[
+                "entity_type_undefined", "gplus_communities"
+            ],
+            entityKey: typing_extensions.Literal[
+                "entityKeyUndefined", "all", "entityKey"
+            ],
+            date: str,
+            customerId: str = ...,
+            filters: str = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            parameters: str = ...,
+            **kwargs: typing.Any
+        ) -> UsageReportsHttpRequest: ...
+    @typing.type_check_only
+    class UserUsageReportResource(googleapiclient.discovery.Resource):
+        def get(
             self,
             *,
             userKey: str,
-            applicationName: typing_extensions.Literal[
-                "application_name_undefined",
-                "access_transparency",
-                "admin",
-                "calendar",
-                "chat",
-                "drive",
-                "gcp",
-                "gplus",
-                "groups",
-                "groups_enterprise",
-                "jamboard",
-                "login",
-                "meet",
-                "mobile",
-                "rules",
-                "saml",
-                "token",
-                "user_accounts",
-                "context_aware_access",
-                "chrome",
-            ],
-            eventName: str = ...,
-            pageToken: str = ...,
-            startTime: str = ...,
-            orgUnitID: str = ...,
-            actorIpAddress: str = ...,
-            filters: str = ...,
+            date: str,
             customerId: str = ...,
+            filters: str = ...,
             maxResults: int = ...,
-            endTime: str = ...,
+            orgUnitID: str = ...,
+            pageToken: str = ...,
+            parameters: str = ...,
             **kwargs: typing.Any
-        ) -> ActivitiesHttpRequest: ...
-    def userUsageReport(self) -> UserUsageReportResource: ...
+        ) -> UsageReportsHttpRequest: ...
+    def activities(self) -> ActivitiesResource: ...
     def channels(self) -> ChannelsResource: ...
     def customerUsageReports(self) -> CustomerUsageReportsResource: ...
     def entityUsageReports(self) -> EntityUsageReportsResource: ...
-    def activities(self) -> ActivitiesResource: ...
+    def userUsageReport(self) -> UserUsageReportResource: ...
 
+@typing.type_check_only
 class ActivitiesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Activities: ...
 
+@typing.type_check_only
 class ChannelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Channel: ...
 
+@typing.type_check_only
 class UsageReportsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

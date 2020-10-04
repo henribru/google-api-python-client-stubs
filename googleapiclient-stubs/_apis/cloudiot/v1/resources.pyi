@@ -7,52 +7,17 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudIotResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class RegistriesResource(googleapiclient.discovery.Resource):
-                class GroupsResource(googleapiclient.discovery.Resource):
-                    class DevicesResource(googleapiclient.discovery.Resource):
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            pageToken: str = ...,
-                            deviceIds: typing.Union[str, typing.List[str]] = ...,
-                            fieldMask: str = ...,
-                            gatewayListOptions_associationsDeviceId: str = ...,
-                            gatewayListOptions_gatewayType: typing_extensions.Literal[
-                                "GATEWAY_TYPE_UNSPECIFIED", "GATEWAY", "NON_GATEWAY"
-                            ] = ...,
-                            pageSize: int = ...,
-                            deviceNumIds: typing.Union[str, typing.List[str]] = ...,
-                            gatewayListOptions_associationsGatewayId: str = ...,
-                            **kwargs: typing.Any
-                        ) -> ListDevicesResponseHttpRequest: ...
-                    def setIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> PolicyHttpRequest: ...
-                    def testIamPermissions(
-                        self,
-                        *,
-                        resource: str,
-                        body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> TestIamPermissionsResponseHttpRequest: ...
-                    def getIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: GetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> PolicyHttpRequest: ...
-                    def devices(self) -> DevicesResource: ...
+                @typing.type_check_only
                 class DevicesResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
                     class ConfigVersionsResource(googleapiclient.discovery.Resource):
                         def list(
                             self,
@@ -61,6 +26,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             numVersions: int = ...,
                             **kwargs: typing.Any
                         ) -> ListDeviceConfigVersionsResponseHttpRequest: ...
+                    @typing.type_check_only
                     class StatesResource(googleapiclient.discovery.Resource):
                         def list(
                             self,
@@ -69,15 +35,38 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             numStates: int = ...,
                             **kwargs: typing.Any
                         ) -> ListDeviceStatesResponseHttpRequest: ...
-                    def get(
-                        self, *, name: str, fieldMask: str = ..., **kwargs: typing.Any
-                    ) -> DeviceHttpRequest: ...
                     def create(
                         self, *, parent: str, body: Device = ..., **kwargs: typing.Any
                     ) -> DeviceHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, fieldMask: str = ..., **kwargs: typing.Any
+                    ) -> DeviceHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        deviceIds: typing.Union[str, typing.List[str]] = ...,
+                        deviceNumIds: typing.Union[str, typing.List[str]] = ...,
+                        fieldMask: str = ...,
+                        gatewayListOptions_associationsDeviceId: str = ...,
+                        gatewayListOptions_associationsGatewayId: str = ...,
+                        gatewayListOptions_gatewayType: typing_extensions.Literal[
+                            "GATEWAY_TYPE_UNSPECIFIED", "GATEWAY", "NON_GATEWAY"
+                        ] = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListDevicesResponseHttpRequest: ...
+                    def modifyCloudToDeviceConfig(
+                        self,
+                        *,
+                        name: str,
+                        body: ModifyCloudToDeviceConfigRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> DeviceConfigHttpRequest: ...
                     def patch(
                         self,
                         *,
@@ -93,31 +82,50 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                         body: SendCommandToDeviceRequest = ...,
                         **kwargs: typing.Any
                     ) -> SendCommandToDeviceResponseHttpRequest: ...
-                    def modifyCloudToDeviceConfig(
-                        self,
-                        *,
-                        name: str,
-                        body: ModifyCloudToDeviceConfigRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> DeviceConfigHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        gatewayListOptions_associationsGatewayId: str = ...,
-                        pageSize: int = ...,
-                        deviceNumIds: typing.Union[str, typing.List[str]] = ...,
-                        gatewayListOptions_gatewayType: typing_extensions.Literal[
-                            "GATEWAY_TYPE_UNSPECIFIED", "GATEWAY", "NON_GATEWAY"
-                        ] = ...,
-                        deviceIds: typing.Union[str, typing.List[str]] = ...,
-                        fieldMask: str = ...,
-                        pageToken: str = ...,
-                        gatewayListOptions_associationsDeviceId: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ListDevicesResponseHttpRequest: ...
                     def configVersions(self) -> ConfigVersionsResource: ...
                     def states(self) -> StatesResource: ...
+                @typing.type_check_only
+                class GroupsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class DevicesResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            deviceIds: typing.Union[str, typing.List[str]] = ...,
+                            deviceNumIds: typing.Union[str, typing.List[str]] = ...,
+                            fieldMask: str = ...,
+                            gatewayListOptions_associationsDeviceId: str = ...,
+                            gatewayListOptions_associationsGatewayId: str = ...,
+                            gatewayListOptions_gatewayType: typing_extensions.Literal[
+                                "GATEWAY_TYPE_UNSPECIFIED", "GATEWAY", "NON_GATEWAY"
+                            ] = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListDevicesResponseHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def devices(self) -> DevicesResource: ...
                 def bindDeviceToGateway(
                     self,
                     *,
@@ -125,9 +133,6 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                     body: BindDeviceToGatewayRequest = ...,
                     **kwargs: typing.Any
                 ) -> BindDeviceToGatewayResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -135,28 +140,12 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                     body: DeviceRegistry = ...,
                     **kwargs: typing.Any
                 ) -> DeviceRegistryHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListDeviceRegistriesResponseHttpRequest: ...
-                def unbindDeviceFromGateway(
-                    self,
-                    *,
-                    parent: str,
-                    body: UnbindDeviceFromGatewayRequest = ...,
-                    **kwargs: typing.Any
-                ) -> UnbindDeviceFromGatewayResponseHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DeviceRegistryHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -164,9 +153,14 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                     body: GetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> DeviceRegistryHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListDeviceRegistriesResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -182,73 +176,100 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
-                def groups(self) -> GroupsResource: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+                def unbindDeviceFromGateway(
+                    self,
+                    *,
+                    parent: str,
+                    body: UnbindDeviceFromGatewayRequest = ...,
+                    **kwargs: typing.Any
+                ) -> UnbindDeviceFromGatewayResponseHttpRequest: ...
                 def devices(self) -> DevicesResource: ...
+                def groups(self) -> GroupsResource: ...
             def registries(self) -> RegistriesResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class ListDeviceConfigVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListDeviceConfigVersionsResponse: ...
-
-class SendCommandToDeviceResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SendCommandToDeviceResponse: ...
-
-class DeviceRegistryHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> DeviceRegistry: ...
-
+@typing.type_check_only
 class BindDeviceToGatewayResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BindDeviceToGatewayResponse: ...
 
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
-
-class UnbindDeviceFromGatewayResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> UnbindDeviceFromGatewayResponse: ...
-
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
-
-class ListDeviceRegistriesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListDeviceRegistriesResponse: ...
-
-class ListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListDevicesResponse: ...
-
+@typing.type_check_only
 class DeviceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Device: ...
 
+@typing.type_check_only
 class DeviceConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> DeviceConfig: ...
 
+@typing.type_check_only
+class DeviceRegistryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> DeviceRegistry: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class ListDeviceConfigVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListDeviceConfigVersionsResponse: ...
+
+@typing.type_check_only
+class ListDeviceRegistriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListDeviceRegistriesResponse: ...
+
+@typing.type_check_only
 class ListDeviceStatesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListDeviceStatesResponse: ...
+
+@typing.type_check_only
+class ListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListDevicesResponse: ...
+
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
+class SendCommandToDeviceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SendCommandToDeviceResponse: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class UnbindDeviceFromGatewayResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> UnbindDeviceFromGatewayResponse: ...

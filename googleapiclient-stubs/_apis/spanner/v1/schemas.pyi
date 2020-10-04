@@ -1,389 +1,467 @@
 import typing
 
 import typing_extensions
-
-class ResultSetStats(typing_extensions.TypedDict, total=False):
-    rowCountLowerBound: str
-    rowCountExact: str
-    queryStats: typing.Dict[str, typing.Any]
-    queryPlan: QueryPlan
-
-class Delete(typing_extensions.TypedDict, total=False):
-    table: str
-    keySet: KeySet
-
-class ResultSet(typing_extensions.TypedDict, total=False):
-    rows: typing.List[list]
-    metadata: ResultSetMetadata
-    stats: ResultSetStats
-
-class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
-    options: TransactionOptions
-
-class Session(typing_extensions.TypedDict, total=False):
-    name: str
-    labels: typing.Dict[str, typing.Any]
-    approximateLastUseTime: str
-    createTime: str
-
-class Type(typing.Dict[str, typing.Any]): ...
-
-class Instance(typing_extensions.TypedDict, total=False):
-    name: str
-    displayName: str
-    config: str
-    labels: typing.Dict[str, typing.Any]
-    endpointUris: typing.List[str]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
-    nodeCount: int
-
-class KeySet(typing_extensions.TypedDict, total=False):
-    keys: typing.List[list]
-    ranges: typing.List[KeyRange]
-    all: bool
-
-class ListSessionsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    sessions: typing.List[Session]
-
-class RollbackRequest(typing_extensions.TypedDict, total=False):
-    transactionId: str
-
-class ReadWrite(typing_extensions.TypedDict, total=False): ...
-
-class Write(typing_extensions.TypedDict, total=False):
-    table: str
-    columns: typing.List[str]
-    values: typing.List[list]
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-
+@typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
-    expireTime: str
-    sizeBytes: str
     createTime: str
+    database: str
+    expireTime: str
     name: str
     referencingDatabases: typing.List[str]
+    sizeBytes: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
-    database: str
 
+@typing.type_check_only
 class BackupInfo(typing_extensions.TypedDict, total=False):
     backup: str
-    sourceDatabase: str
     createTime: str
+    sourceDatabase: str
 
-class PartitionOptions(typing_extensions.TypedDict, total=False):
-    maxPartitions: str
-    partitionSizeBytes: str
-
+@typing.type_check_only
 class BatchCreateSessionsRequest(typing_extensions.TypedDict, total=False):
     sessionCount: int
     sessionTemplate: Session
 
-class ReplicaInfo(typing_extensions.TypedDict, total=False):
-    location: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "READ_WRITE", "READ_ONLY", "WITNESS"
-    ]
-    defaultLeaderLocation: bool
+@typing.type_check_only
+class BatchCreateSessionsResponse(typing_extensions.TypedDict, total=False):
+    session: typing.List[Session]
 
-class UpdateDatabaseDdlRequest(typing_extensions.TypedDict, total=False):
-    operationId: str
-    statements: typing.List[str]
+@typing.type_check_only
+class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
+    options: TransactionOptions
 
-class Statement(typing_extensions.TypedDict, total=False):
-    paramTypes: typing.Dict[str, typing.Any]
-    sql: str
-    params: typing.Dict[str, typing.Any]
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
+    condition: Expr
+    members: typing.List[str]
+    role: str
 
-class ListInstanceConfigsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    instanceConfigs: typing.List[InstanceConfig]
-
-class TransactionSelector(typing_extensions.TypedDict, total=False):
-    singleUse: TransactionOptions
-    begin: TransactionOptions
-    id: str
-
-class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
-    progress: OperationProgress
-    name: str
-    database: str
-    cancelTime: str
-
-class CreateSessionRequest(typing_extensions.TypedDict, total=False):
-    session: Session
-
-class CreateInstanceRequest(typing_extensions.TypedDict, total=False):
-    instance: Instance
-    instanceId: str
-
-class CommitResponse(typing_extensions.TypedDict, total=False):
-    commitTimestamp: str
-
-class UpdateInstanceRequest(typing_extensions.TypedDict, total=False):
-    fieldMask: str
-    instance: Instance
-
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: typing.List[Operation]
-
+@typing.type_check_only
 class ChildLink(typing_extensions.TypedDict, total=False):
-    type: str
     childIndex: int
+    type: str
     variable: str
 
-class ListBackupsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    backups: typing.List[Backup]
-
-class InstanceConfig(typing_extensions.TypedDict, total=False):
-    name: str
-    replicas: typing.List[ReplicaInfo]
-    displayName: str
-
-class OptimizeRestoredDatabaseMetadata(typing_extensions.TypedDict, total=False):
-    progress: OperationProgress
-    name: str
-
-class Field(typing_extensions.TypedDict, total=False):
-    name: str
-    type: Type
-
-class ListDatabasesResponse(typing_extensions.TypedDict, total=False):
-    databases: typing.List[Database]
-    nextPageToken: str
-
-class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):
-    endTime: str
-    startTime: str
-    cancelTime: str
-    instance: Instance
-
-class GetDatabaseDdlResponse(typing_extensions.TypedDict, total=False):
-    statements: typing.List[str]
-
-class Status(typing_extensions.TypedDict, total=False):
-    code: int
-    message: str
-    details: typing.List[typing.Dict[str, typing.Any]]
-
-class ExecuteBatchDmlResponse(typing_extensions.TypedDict, total=False):
-    resultSets: typing.List[ResultSet]
-    status: Status
-
-class Database(typing_extensions.TypedDict, total=False):
-    name: str
-    createTime: str
-    restoreInfo: RestoreInfo
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "READY", "READY_OPTIMIZING"
-    ]
-
-class PartitionedDml(typing_extensions.TypedDict, total=False): ...
-class ResultSetMetadata(typing.Dict[str, typing.Any]): ...
-
-class CreateDatabaseRequest(typing_extensions.TypedDict, total=False):
-    extraStatements: typing.List[str]
-    createStatement: str
-
-class TransactionOptions(typing_extensions.TypedDict, total=False):
-    readOnly: ReadOnly
-    readWrite: ReadWrite
-    partitionedDml: PartitionedDml
-
-class ReadRequest(typing_extensions.TypedDict, total=False):
-    keySet: KeySet
-    table: str
-    columns: typing.List[str]
-    index: str
-    partitionToken: str
-    transaction: TransactionSelector
-    resumeToken: str
-    limit: str
-
-class Mutation(typing_extensions.TypedDict, total=False):
-    insertOrUpdate: Write
-    delete: Delete
-    replace: Write
-    insert: Write
-    update: Write
-
-class RestoreDatabaseMetadata(typing_extensions.TypedDict, total=False):
-    name: str
-    cancelTime: str
-    progress: OperationProgress
-    backupInfo: BackupInfo
-    optimizeDatabaseOperationName: str
-    sourceType: typing_extensions.Literal["TYPE_UNSPECIFIED", "BACKUP"]
-
-class Operation(typing_extensions.TypedDict, total=False):
-    done: bool
-    response: typing.Dict[str, typing.Any]
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-
-class PartialResultSet(typing_extensions.TypedDict, total=False):
-    stats: ResultSetStats
-    chunkedValue: bool
-    metadata: ResultSetMetadata
-    resumeToken: str
-    values: typing.List[typing.Any]
-
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    options: GetPolicyOptions
-
-class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
-    nextPageToken: str
-
-class Binding(typing_extensions.TypedDict, total=False):
-    condition: Expr
-    role: str
-    bindingId: str
-    members: typing.List[str]
-
+@typing.type_check_only
 class CommitRequest(typing_extensions.TypedDict, total=False):
     mutations: typing.List[Mutation]
     singleUseTransaction: TransactionOptions
     transactionId: str
 
-class Transaction(typing_extensions.TypedDict, total=False):
-    id: str
-    readTimestamp: str
+@typing.type_check_only
+class CommitResponse(typing_extensions.TypedDict, total=False):
+    commitTimestamp: str
 
+@typing.type_check_only
+class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    database: str
+    name: str
+    progress: OperationProgress
+
+@typing.type_check_only
+class CreateDatabaseMetadata(typing_extensions.TypedDict, total=False):
+    database: str
+
+@typing.type_check_only
+class CreateDatabaseRequest(typing_extensions.TypedDict, total=False):
+    createStatement: str
+    extraStatements: typing.List[str]
+
+@typing.type_check_only
+class CreateInstanceMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    endTime: str
+    instance: Instance
+    startTime: str
+
+@typing.type_check_only
+class CreateInstanceRequest(typing_extensions.TypedDict, total=False):
+    instance: Instance
+    instanceId: str
+
+@typing.type_check_only
+class CreateSessionRequest(typing_extensions.TypedDict, total=False):
+    session: Session
+
+@typing.type_check_only
+class Database(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    restoreInfo: RestoreInfo
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "READY", "READY_OPTIMIZING"
+    ]
+
+@typing.type_check_only
+class Delete(typing_extensions.TypedDict, total=False):
+    keySet: KeySet
+    table: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class ExecuteBatchDmlRequest(typing_extensions.TypedDict, total=False):
+    seqno: str
+    statements: typing.List[Statement]
+    transaction: TransactionSelector
+
+@typing.type_check_only
+class ExecuteBatchDmlResponse(typing_extensions.TypedDict, total=False):
+    resultSets: typing.List[ResultSet]
+    status: Status
+
+@typing.type_check_only
+class ExecuteSqlRequest(typing_extensions.TypedDict, total=False):
+    paramTypes: typing.Dict[str, typing.Any]
+    params: typing.Dict[str, typing.Any]
+    partitionToken: str
+    queryMode: typing_extensions.Literal["NORMAL", "PLAN", "PROFILE"]
+    queryOptions: QueryOptions
+    resumeToken: str
+    seqno: str
+    sql: str
+    transaction: TransactionSelector
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
     location: str
     title: str
-    expression: str
-    description: str
 
+@typing.type_check_only
+class Field(typing_extensions.TypedDict, total=False):
+    name: str
+    type: Type
+
+@typing.type_check_only
+class GetDatabaseDdlResponse(typing_extensions.TypedDict, total=False):
+    statements: typing.List[str]
+
+@typing.type_check_only
+class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GetPolicyOptions
+
+@typing.type_check_only
+class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
+
+@typing.type_check_only
+class Instance(typing_extensions.TypedDict, total=False):
+    config: str
+    displayName: str
+    endpointUris: typing.List[str]
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    nodeCount: int
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
+
+@typing.type_check_only
+class InstanceConfig(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+    replicas: typing.List[ReplicaInfo]
+
+@typing.type_check_only
+class KeyRange(typing_extensions.TypedDict, total=False):
+    endClosed: typing.List[typing.Any]
+    endOpen: typing.List[typing.Any]
+    startClosed: typing.List[typing.Any]
+    startOpen: typing.List[typing.Any]
+
+@typing.type_check_only
+class KeySet(typing_extensions.TypedDict, total=False):
+    all: bool
+    keys: typing.List[list]
+    ranges: typing.List[KeyRange]
+
+@typing.type_check_only
 class ListBackupOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: typing.List[Operation]
 
-class ExecuteSqlRequest(typing_extensions.TypedDict, total=False):
-    queryOptions: QueryOptions
-    partitionToken: str
-    params: typing.Dict[str, typing.Any]
-    seqno: str
-    paramTypes: typing.Dict[str, typing.Any]
-    sql: str
-    transaction: TransactionSelector
-    queryMode: typing_extensions.Literal["NORMAL", "PLAN", "PROFILE"]
-    resumeToken: str
+@typing.type_check_only
+class ListBackupsResponse(typing_extensions.TypedDict, total=False):
+    backups: typing.List[Backup]
+    nextPageToken: str
 
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
-    requestedPolicyVersion: int
+@typing.type_check_only
+class ListDatabaseOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
 
-class PartitionReadRequest(typing_extensions.TypedDict, total=False):
-    index: str
-    keySet: KeySet
-    columns: typing.List[str]
-    transaction: TransactionSelector
-    partitionOptions: PartitionOptions
-    table: str
+@typing.type_check_only
+class ListDatabasesResponse(typing_extensions.TypedDict, total=False):
+    databases: typing.List[Database]
+    nextPageToken: str
 
-class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
-    transaction: TransactionSelector
-    sql: str
-    paramTypes: typing.Dict[str, typing.Any]
-    params: typing.Dict[str, typing.Any]
-    partitionOptions: PartitionOptions
+@typing.type_check_only
+class ListInstanceConfigsResponse(typing_extensions.TypedDict, total=False):
+    instanceConfigs: typing.List[InstanceConfig]
+    nextPageToken: str
 
-class PlanNode(typing_extensions.TypedDict, total=False):
-    childLinks: typing.List[ChildLink]
-    displayName: str
-    kind: typing_extensions.Literal["KIND_UNSPECIFIED", "RELATIONAL", "SCALAR"]
-    shortRepresentation: ShortRepresentation
-    executionStats: typing.Dict[str, typing.Any]
-    index: int
+@typing.type_check_only
+class ListInstancesResponse(typing_extensions.TypedDict, total=False):
+    instances: typing.List[Instance]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class ListSessionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sessions: typing.List[Session]
+
+@typing.type_check_only
+class Mutation(typing_extensions.TypedDict, total=False):
+    delete: Delete
+    insert: Write
+    insertOrUpdate: Write
+    replace: Write
+    update: Write
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
     metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
 
-class QueryPlan(typing_extensions.TypedDict, total=False):
-    planNodes: typing.List[PlanNode]
-
+@typing.type_check_only
 class OperationProgress(typing_extensions.TypedDict, total=False):
-    startTime: str
     endTime: str
     progressPercent: int
+    startTime: str
 
+@typing.type_check_only
+class OptimizeRestoredDatabaseMetadata(typing_extensions.TypedDict, total=False):
+    name: str
+    progress: OperationProgress
+
+@typing.type_check_only
+class PartialResultSet(typing_extensions.TypedDict, total=False):
+    chunkedValue: bool
+    metadata: ResultSetMetadata
+    resumeToken: str
+    stats: ResultSetStats
+    values: typing.List[typing.Any]
+
+@typing.type_check_only
+class Partition(typing_extensions.TypedDict, total=False):
+    partitionToken: str
+
+@typing.type_check_only
+class PartitionOptions(typing_extensions.TypedDict, total=False):
+    maxPartitions: str
+    partitionSizeBytes: str
+
+@typing.type_check_only
+class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
+    paramTypes: typing.Dict[str, typing.Any]
+    params: typing.Dict[str, typing.Any]
+    partitionOptions: PartitionOptions
+    sql: str
+    transaction: TransactionSelector
+
+@typing.type_check_only
+class PartitionReadRequest(typing_extensions.TypedDict, total=False):
+    columns: typing.List[str]
+    index: str
+    keySet: KeySet
+    partitionOptions: PartitionOptions
+    table: str
+    transaction: TransactionSelector
+
+@typing.type_check_only
 class PartitionResponse(typing_extensions.TypedDict, total=False):
     partitions: typing.List[Partition]
     transaction: Transaction
 
-class ListDatabaseOperationsResponse(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
-    nextPageToken: str
+@typing.type_check_only
+class PartitionedDml(typing_extensions.TypedDict, total=False): ...
 
-class CreateInstanceMetadata(typing_extensions.TypedDict, total=False):
-    startTime: str
-    instance: Instance
-    endTime: str
-    cancelTime: str
+@typing.type_check_only
+class PlanNode(typing_extensions.TypedDict, total=False):
+    childLinks: typing.List[ChildLink]
+    displayName: str
+    executionStats: typing.Dict[str, typing.Any]
+    index: int
+    kind: typing_extensions.Literal["KIND_UNSPECIFIED", "RELATIONAL", "SCALAR"]
+    metadata: typing.Dict[str, typing.Any]
+    shortRepresentation: ShortRepresentation
 
-class CreateDatabaseMetadata(typing_extensions.TypedDict, total=False):
-    database: str
-
-class ShortRepresentation(typing_extensions.TypedDict, total=False):
-    subqueries: typing.Dict[str, typing.Any]
-    description: str
-
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     bindings: typing.List[Binding]
     etag: str
     version: int
 
+@typing.type_check_only
+class QueryOptions(typing_extensions.TypedDict, total=False):
+    optimizerVersion: str
+
+@typing.type_check_only
+class QueryPlan(typing_extensions.TypedDict, total=False):
+    planNodes: typing.List[PlanNode]
+
+@typing.type_check_only
+class ReadOnly(typing_extensions.TypedDict, total=False):
+    exactStaleness: str
+    maxStaleness: str
+    minReadTimestamp: str
+    readTimestamp: str
+    returnReadTimestamp: bool
+    strong: bool
+
+@typing.type_check_only
+class ReadRequest(typing_extensions.TypedDict, total=False):
+    columns: typing.List[str]
+    index: str
+    keySet: KeySet
+    limit: str
+    partitionToken: str
+    resumeToken: str
+    table: str
+    transaction: TransactionSelector
+
+@typing.type_check_only
+class ReadWrite(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ReplicaInfo(typing_extensions.TypedDict, total=False):
+    defaultLeaderLocation: bool
+    location: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "READ_WRITE", "READ_ONLY", "WITNESS"
+    ]
+
+@typing.type_check_only
+class RestoreDatabaseMetadata(typing_extensions.TypedDict, total=False):
+    backupInfo: BackupInfo
+    cancelTime: str
+    name: str
+    optimizeDatabaseOperationName: str
+    progress: OperationProgress
+    sourceType: typing_extensions.Literal["TYPE_UNSPECIFIED", "BACKUP"]
+
+@typing.type_check_only
+class RestoreDatabaseRequest(typing_extensions.TypedDict, total=False):
+    backup: str
+    databaseId: str
+
+@typing.type_check_only
+class RestoreInfo(typing_extensions.TypedDict, total=False):
+    backupInfo: BackupInfo
+    sourceType: typing_extensions.Literal["TYPE_UNSPECIFIED", "BACKUP"]
+
+@typing.type_check_only
+class ResultSet(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class ResultSetMetadata(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class ResultSetStats(typing_extensions.TypedDict, total=False):
+    queryPlan: QueryPlan
+    queryStats: typing.Dict[str, typing.Any]
+    rowCountExact: str
+    rowCountLowerBound: str
+
+@typing.type_check_only
+class RollbackRequest(typing_extensions.TypedDict, total=False):
+    transactionId: str
+
+@typing.type_check_only
+class Session(typing_extensions.TypedDict, total=False):
+    approximateLastUseTime: str
+    createTime: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+
+@typing.type_check_only
+class ShortRepresentation(typing_extensions.TypedDict, total=False):
+    description: str
+    subqueries: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Statement(typing_extensions.TypedDict, total=False):
+    paramTypes: typing.Dict[str, typing.Any]
+    params: typing.Dict[str, typing.Any]
+    sql: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class StructType(typing.Dict[str, typing.Any]): ...
 
-class Partition(typing_extensions.TypedDict, total=False):
-    partitionToken: str
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
 
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class Transaction(typing_extensions.TypedDict, total=False):
+    id: str
+    readTimestamp: str
+
+@typing.type_check_only
+class TransactionOptions(typing_extensions.TypedDict, total=False):
+    partitionedDml: PartitionedDml
+    readOnly: ReadOnly
+    readWrite: ReadWrite
+
+@typing.type_check_only
+class TransactionSelector(typing_extensions.TypedDict, total=False):
+    begin: TransactionOptions
+    id: str
+    singleUse: TransactionOptions
+
+@typing.type_check_only
+class Type(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
 class UpdateDatabaseDdlMetadata(typing_extensions.TypedDict, total=False):
     commitTimestamps: typing.List[str]
     database: str
     statements: typing.List[str]
 
-class BatchCreateSessionsResponse(typing_extensions.TypedDict, total=False):
-    session: typing.List[Session]
+@typing.type_check_only
+class UpdateDatabaseDdlRequest(typing_extensions.TypedDict, total=False):
+    operationId: str
+    statements: typing.List[str]
 
-class RestoreInfo(typing_extensions.TypedDict, total=False):
-    backupInfo: BackupInfo
-    sourceType: typing_extensions.Literal["TYPE_UNSPECIFIED", "BACKUP"]
+@typing.type_check_only
+class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    endTime: str
+    instance: Instance
+    startTime: str
 
-class QueryOptions(typing_extensions.TypedDict, total=False):
-    optimizerVersion: str
+@typing.type_check_only
+class UpdateInstanceRequest(typing_extensions.TypedDict, total=False):
+    fieldMask: str
+    instance: Instance
 
-class ExecuteBatchDmlRequest(typing_extensions.TypedDict, total=False):
-    seqno: str
-    transaction: TransactionSelector
-    statements: typing.List[Statement]
-
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class KeyRange(typing_extensions.TypedDict, total=False):
-    endClosed: typing.List[typing.Any]
-    startClosed: typing.List[typing.Any]
-    endOpen: typing.List[typing.Any]
-    startOpen: typing.List[typing.Any]
-
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class ReadOnly(typing_extensions.TypedDict, total=False):
-    maxStaleness: str
-    readTimestamp: str
-    minReadTimestamp: str
-    exactStaleness: str
-    returnReadTimestamp: bool
-    strong: bool
-
-class RestoreDatabaseRequest(typing_extensions.TypedDict, total=False):
-    databaseId: str
-    backup: str
+@typing.type_check_only
+class Write(typing_extensions.TypedDict, total=False):
+    columns: typing.List[str]
+    table: str
+    values: typing.List[list]

@@ -7,17 +7,14 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class InstancesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class WorkerpoolsResource(googleapiclient.discovery.Resource):
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPoolHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -25,6 +22,15 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
                     body: GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateWorkerPoolRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPoolHttpRequest: ...
+                def list(
+                    self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -32,9 +38,6 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
                     body: GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
-                def list(
-                    self, *, parent: str, filter: str = ..., **kwargs: typing.Any
-                ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -42,26 +45,27 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
                 body: GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstanceHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstanceHttpRequest: ...
+            def list(
+                self, *, parent: str, **kwargs: typing.Any
+            ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponseHttpRequest: ...
             def patch(
                 self,
                 *,
                 name: str,
                 body: GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance = ...,
+                loggingEnabled: bool = ...,
                 name1: str = ...,
                 updateMask: str = ...,
-                loggingEnabled: bool = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
-            def list(
-                self, *, parent: str, **kwargs: typing.Any
-            ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponseHttpRequest: ...
             def workerpools(self) -> WorkerpoolsResource: ...
+        @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -70,13 +74,15 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
         def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponseHttpRequest(
+@typing.type_check_only
+class GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstanceHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse: ...
+    ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance: ...
 
+@typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -84,6 +90,15 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponseHttpReq
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse: ...
 
+@typing.type_check_only
+class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse: ...
+
+@typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPoolHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -91,14 +106,8 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPoolHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool: ...
 
+@typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleLongrunningOperation: ...
-
-class GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstanceHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance: ...

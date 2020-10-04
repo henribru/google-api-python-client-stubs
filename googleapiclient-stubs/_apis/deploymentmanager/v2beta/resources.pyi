@@ -7,8 +7,172 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class DeploymentManagerV2BetaResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class CompositeTypesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, project: str, compositeType: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, compositeType: str, **kwargs: typing.Any
+        ) -> CompositeTypeHttpRequest: ...
+        def insert(
+            self, *, project: str, body: CompositeType = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> CompositeTypesListResponseHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            compositeType: str,
+            body: CompositeType = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            compositeType: str,
+            body: CompositeType = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
+    class DeploymentsResource(googleapiclient.discovery.Resource):
+        def cancelPreview(
+            self,
+            *,
+            project: str,
+            deployment: str,
+            body: DeploymentsCancelPreviewRequest = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            deployment: str,
+            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, deployment: str, **kwargs: typing.Any
+        ) -> DeploymentHttpRequest: ...
+        def getIamPolicy(
+            self, *, project: str, resource: str, **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            body: Deployment = ...,
+            createPolicy: typing_extensions.Literal[
+                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
+            ] = ...,
+            preview: bool = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> DeploymentsListResponseHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            deployment: str,
+            body: Deployment = ...,
+            createPolicy: typing_extensions.Literal[
+                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
+            ] = ...,
+            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            preview: bool = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def stop(
+            self,
+            *,
+            project: str,
+            deployment: str,
+            body: DeploymentsStopRequest = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            deployment: str,
+            body: Deployment = ...,
+            createPolicy: typing_extensions.Literal[
+                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
+            ] = ...,
+            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            preview: bool = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
+    class ManifestsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, deployment: str, manifest: str, **kwargs: typing.Any
+        ) -> ManifestHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            deployment: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ManifestsListResponseHttpRequest: ...
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, operation: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationsListResponseHttpRequest: ...
+    @typing.type_check_only
     class ResourcesResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, deployment: str, resource: str, **kwargs: typing.Any
@@ -20,11 +184,24 @@ class DeploymentManagerV2BetaResource(googleapiclient.discovery.Resource):
             deployment: str,
             filter: str = ...,
             maxResults: int = ...,
-            pageToken: str = ...,
             orderBy: str = ...,
+            pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ResourcesListResponseHttpRequest: ...
-    class CompositeTypesResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class TypeProvidersResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, project: str, typeProvider: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, typeProvider: str, **kwargs: typing.Any
+        ) -> TypeProviderHttpRequest: ...
+        def getType(
+            self, *, project: str, typeProvider: str, type: str, **kwargs: typing.Any
+        ) -> TypeInfoHttpRequest: ...
+        def insert(
+            self, *, project: str, body: TypeProvider = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def list(
             self,
             *,
@@ -34,32 +211,35 @@ class DeploymentManagerV2BetaResource(googleapiclient.discovery.Resource):
             orderBy: str = ...,
             pageToken: str = ...,
             **kwargs: typing.Any
-        ) -> CompositeTypesListResponseHttpRequest: ...
-        def update(
+        ) -> TypeProvidersListResponseHttpRequest: ...
+        def listTypes(
             self,
             *,
             project: str,
-            compositeType: str,
-            body: CompositeType = ...,
+            typeProvider: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
             **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def get(
-            self, *, project: str, compositeType: str, **kwargs: typing.Any
-        ) -> CompositeTypeHttpRequest: ...
-        def insert(
-            self, *, project: str, body: CompositeType = ..., **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
+        ) -> TypeProvidersListTypesResponseHttpRequest: ...
         def patch(
             self,
             *,
             project: str,
-            compositeType: str,
-            body: CompositeType = ...,
+            typeProvider: str,
+            body: TypeProvider = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-        def delete(
-            self, *, project: str, compositeType: str, **kwargs: typing.Any
+        def update(
+            self,
+            *,
+            project: str,
+            typeProvider: str,
+            body: TypeProvider = ...,
+            **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class TypesResource(googleapiclient.discovery.Resource):
         def list(
             self,
@@ -71,268 +251,112 @@ class DeploymentManagerV2BetaResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> TypesListResponseHttpRequest: ...
-    class TypeProvidersResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, project: str, typeProvider: str, **kwargs: typing.Any
-        ) -> TypeProviderHttpRequest: ...
-        def update(
-            self,
-            *,
-            project: str,
-            typeProvider: str,
-            body: TypeProvider = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def insert(
-            self, *, project: str, body: TypeProvider = ..., **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def listTypes(
-            self,
-            *,
-            project: str,
-            typeProvider: str,
-            filter: str = ...,
-            pageToken: str = ...,
-            orderBy: str = ...,
-            maxResults: int = ...,
-            **kwargs: typing.Any
-        ) -> TypeProvidersListTypesResponseHttpRequest: ...
-        def getType(
-            self, *, project: str, typeProvider: str, type: str, **kwargs: typing.Any
-        ) -> TypeInfoHttpRequest: ...
-        def delete(
-            self, *, project: str, typeProvider: str, **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def patch(
-            self,
-            *,
-            project: str,
-            typeProvider: str,
-            body: TypeProvider = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            project: str,
-            pageToken: str = ...,
-            filter: str = ...,
-            orderBy: str = ...,
-            maxResults: int = ...,
-            **kwargs: typing.Any
-        ) -> TypeProvidersListResponseHttpRequest: ...
-    class ManifestsResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, project: str, deployment: str, manifest: str, **kwargs: typing.Any
-        ) -> ManifestHttpRequest: ...
-        def list(
-            self,
-            *,
-            project: str,
-            deployment: str,
-            orderBy: str = ...,
-            maxResults: int = ...,
-            filter: str = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> ManifestsListResponseHttpRequest: ...
-    class DeploymentsResource(googleapiclient.discovery.Resource):
-        def getIamPolicy(
-            self, *, project: str, resource: str, **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
-        def get(
-            self, *, project: str, deployment: str, **kwargs: typing.Any
-        ) -> DeploymentHttpRequest: ...
-        def update(
-            self,
-            *,
-            project: str,
-            deployment: str,
-            body: Deployment = ...,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
-            preview: bool = ...,
-            createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
-            ] = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def insert(
-            self,
-            *,
-            project: str,
-            body: Deployment = ...,
-            preview: bool = ...,
-            createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
-            ] = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def delete(
-            self,
-            *,
-            project: str,
-            deployment: str,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def cancelPreview(
-            self,
-            *,
-            project: str,
-            deployment: str,
-            body: DeploymentsCancelPreviewRequest = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            project: str,
-            orderBy: str = ...,
-            pageToken: str = ...,
-            maxResults: int = ...,
-            filter: str = ...,
-            **kwargs: typing.Any
-        ) -> DeploymentsListResponseHttpRequest: ...
-        def testIamPermissions(
-            self,
-            *,
-            project: str,
-            resource: str,
-            body: TestPermissionsRequest = ...,
-            **kwargs: typing.Any
-        ) -> TestPermissionsResponseHttpRequest: ...
-        def patch(
-            self,
-            *,
-            project: str,
-            deployment: str,
-            body: Deployment = ...,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
-            createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
-            ] = ...,
-            preview: bool = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def stop(
-            self,
-            *,
-            project: str,
-            deployment: str,
-            body: DeploymentsStopRequest = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def setIamPolicy(
-            self,
-            *,
-            project: str,
-            resource: str,
-            body: GlobalSetPolicyRequest = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, project: str, operation: str, **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            project: str,
-            filter: str = ...,
-            pageToken: str = ...,
-            orderBy: str = ...,
-            maxResults: int = ...,
-            **kwargs: typing.Any
-        ) -> OperationsListResponseHttpRequest: ...
-    def resources(self) -> ResourcesResource: ...
     def compositeTypes(self) -> CompositeTypesResource: ...
-    def types(self) -> TypesResource: ...
-    def typeProviders(self) -> TypeProvidersResource: ...
-    def manifests(self) -> ManifestsResource: ...
     def deployments(self) -> DeploymentsResource: ...
+    def manifests(self) -> ManifestsResource: ...
     def operations(self) -> OperationsResource: ...
+    def resources(self) -> ResourcesResource: ...
+    def typeProviders(self) -> TypeProvidersResource: ...
+    def types(self) -> TypesResource: ...
 
-class TypeInfoHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class CompositeTypeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TypeInfo: ...
+    ) -> CompositeType: ...
 
-class TestPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestPermissionsResponse: ...
-
-class TypeProvidersListTypesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TypeProvidersListTypesResponse: ...
-
-class ManifestHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Manifest: ...
-
-class TypesListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TypesListResponse: ...
-
-class DeploymentsListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> DeploymentsListResponse: ...
-
+@typing.type_check_only
 class CompositeTypesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> CompositeTypesListResponse: ...
 
+@typing.type_check_only
 class DeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Deployment: ...
 
-class OperationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class DeploymentsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> OperationsListResponse: ...
+    ) -> DeploymentsListResponse: ...
 
-class ResourcesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ManifestHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ResourcesListResponse: ...
+    ) -> Manifest: ...
 
+@typing.type_check_only
 class ManifestsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ManifestsListResponse: ...
 
-class TypeProviderHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TypeProvider: ...
-
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
-
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Operation: ...
 
-class TypeProvidersListResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class OperationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TypeProvidersListResponse: ...
+    ) -> OperationsListResponse: ...
 
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
 class ResourceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Resource: ...
 
-class CompositeTypeHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ResourcesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CompositeType: ...
+    ) -> ResourcesListResponse: ...
+
+@typing.type_check_only
+class TestPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestPermissionsResponse: ...
+
+@typing.type_check_only
+class TypeInfoHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TypeInfo: ...
+
+@typing.type_check_only
+class TypeProviderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TypeProvider: ...
+
+@typing.type_check_only
+class TypeProvidersListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TypeProvidersListResponse: ...
+
+@typing.type_check_only
+class TypeProvidersListTypesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TypeProvidersListTypesResponse: ...
+
+@typing.type_check_only
+class TypesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TypesListResponse: ...

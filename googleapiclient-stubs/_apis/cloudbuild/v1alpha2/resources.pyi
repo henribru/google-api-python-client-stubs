@@ -7,10 +7,13 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudBuildResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -23,10 +26,8 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
+        @typing.type_check_only
         class WorkerPoolsResource(googleapiclient.discovery.Resource):
-            def list(
-                self, *, parent: str, **kwargs: typing.Any
-            ) -> ListWorkerPoolsResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -38,6 +39,12 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> WorkerPoolHttpRequest: ...
+            def list(
+                self, *, parent: str, **kwargs: typing.Any
+            ) -> ListWorkerPoolsResponseHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -46,29 +53,30 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> WorkerPoolHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> WorkerPoolHttpRequest: ...
         def locations(self) -> LocationsResource: ...
         def workerPools(self) -> WorkerPoolsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ListWorkerPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListWorkerPoolsResponse: ...
-
-class WorkerPoolHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> WorkerPool: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
+@typing.type_check_only
+class ListWorkerPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListWorkerPoolsResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Operation: ...
+
+@typing.type_check_only
+class WorkerPoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> WorkerPool: ...

@@ -7,33 +7,42 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class DataprocResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
-            class WorkflowTemplatesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AutoscalingPoliciesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AutoscalingPolicy = ...,
+                    **kwargs: typing.Any
+                ) -> AutoscalingPolicyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AutoscalingPolicyHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageToken: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> ListWorkflowTemplatesResponseHttpRequest: ...
-                def update(
-                    self,
-                    *,
-                    name: str,
-                    body: WorkflowTemplate = ...,
-                    **kwargs: typing.Any
-                ) -> WorkflowTemplateHttpRequest: ...
-                def instantiate(
-                    self,
-                    *,
-                    name: str,
-                    body: InstantiateWorkflowTemplateRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
+                ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -48,6 +57,42 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def update(
+                    self,
+                    *,
+                    name: str,
+                    body: AutoscalingPolicy = ...,
+                    **kwargs: typing.Any
+                ) -> AutoscalingPolicyHttpRequest: ...
+            @typing.type_check_only
+            class WorkflowTemplatesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: WorkflowTemplate = ...,
+                    **kwargs: typing.Any
+                ) -> WorkflowTemplateHttpRequest: ...
+                def delete(
+                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                ) -> WorkflowTemplateHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def instantiate(
+                    self,
+                    *,
+                    name: str,
+                    body: InstantiateWorkflowTemplateRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def instantiateInline(
                     self,
                     *,
@@ -56,86 +101,53 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def get(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
-                ) -> WorkflowTemplateHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def create(
+                def list(
                     self,
                     *,
                     parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListWorkflowTemplatesResponseHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+                def update(
+                    self,
+                    *,
+                    name: str,
                     body: WorkflowTemplate = ...,
                     **kwargs: typing.Any
                 ) -> WorkflowTemplateHttpRequest: ...
-                def delete(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-            class AutoscalingPoliciesResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: AutoscalingPolicy = ...,
-                    **kwargs: typing.Any
-                ) -> AutoscalingPolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> AutoscalingPolicyHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def update(
-                    self,
-                    *,
-                    name: str,
-                    body: AutoscalingPolicy = ...,
-                    **kwargs: typing.Any
-                ) -> AutoscalingPolicyHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-            def workflowTemplates(self) -> WorkflowTemplatesResource: ...
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...
+            def workflowTemplates(self) -> WorkflowTemplatesResource: ...
+        @typing.type_check_only
         class RegionsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class AutoscalingPoliciesResource(googleapiclient.discovery.Resource):
-                def update(
+                def create(
                     self,
                     *,
-                    name: str,
+                    parent: str,
                     body: AutoscalingPolicy = ...,
                     **kwargs: typing.Any
+                ) -> AutoscalingPolicyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
                 ) -> AutoscalingPolicyHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -144,9 +156,6 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: GetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> AutoscalingPolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -155,16 +164,6 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -172,43 +171,103 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: AutoscalingPolicy = ...,
-                    **kwargs: typing.Any
-                ) -> AutoscalingPolicyHttpRequest: ...
-            class JobsResource(googleapiclient.discovery.Resource):
-                def getIamPolicy(
+                def testIamPermissions(
                     self,
                     *,
                     resource: str,
-                    body: GetIamPolicyRequest = ...,
+                    body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def submitAsOperation(
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+                def update(
+                    self,
+                    *,
+                    name: str,
+                    body: AutoscalingPolicy = ...,
+                    **kwargs: typing.Any
+                ) -> AutoscalingPolicyHttpRequest: ...
+            @typing.type_check_only
+            class ClustersResource(googleapiclient.discovery.Resource):
+                def create(
                     self,
                     *,
                     projectId: str,
                     region: str,
-                    body: SubmitJobRequest = ...,
+                    body: Cluster = ...,
+                    requestId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    clusterName: str,
+                    clusterUuid: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def diagnose(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    clusterName: str,
+                    body: DiagnoseClusterRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    clusterName: str,
+                    **kwargs: typing.Any
+                ) -> ClusterHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
                     projectId: str,
                     region: str,
-                    pageToken: str = ...,
-                    clusterName: str = ...,
-                    pageSize: int = ...,
-                    jobStateMatcher: typing_extensions.Literal[
-                        "ALL", "ACTIVE", "NON_ACTIVE"
-                    ] = ...,
                     filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> ListJobsResponseHttpRequest: ...
+                ) -> ListClustersResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    clusterName: str,
+                    body: Cluster = ...,
+                    gracefulDecommissionTimeout: str = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+            @typing.type_check_only
+            class JobsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
                     *,
@@ -218,12 +277,51 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: CancelJobRequest = ...,
                     **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    jobId: str,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self,
                     *,
                     projectId: str,
                     region: str,
                     jobId: str,
+                    **kwargs: typing.Any
+                ) -> JobHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    clusterName: str = ...,
+                    filter: str = ...,
+                    jobStateMatcher: typing_extensions.Literal[
+                        "ALL", "ACTIVE", "NON_ACTIVE"
+                    ] = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListJobsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    jobId: str,
+                    body: Job = ...,
+                    updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
                 def setIamPolicy(
@@ -241,16 +339,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: SubmitJobRequest = ...,
                     **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
-                def patch(
+                def submitAsOperation(
                     self,
                     *,
                     projectId: str,
                     region: str,
-                    jobId: str,
-                    body: Job = ...,
-                    updateMask: str = ...,
+                    body: SubmitJobRequest = ...,
                     **kwargs: typing.Any
-                ) -> JobHttpRequest: ...
+                ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -258,32 +354,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
-                def delete(
-                    self,
-                    *,
-                    projectId: str,
-                    region: str,
-                    jobId: str,
-                    **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -301,74 +376,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    filter: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
-            class ClustersResource(googleapiclient.discovery.Resource):
-                def delete(
-                    self,
-                    *,
-                    projectId: str,
-                    region: str,
-                    clusterName: str,
-                    requestId: str = ...,
-                    clusterUuid: str = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def diagnose(
-                    self,
-                    *,
-                    projectId: str,
-                    region: str,
-                    clusterName: str,
-                    body: DiagnoseClusterRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def get(
-                    self,
-                    *,
-                    projectId: str,
-                    region: str,
-                    clusterName: str,
-                    **kwargs: typing.Any
-                ) -> ClusterHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    projectId: str,
-                    region: str,
-                    clusterName: str,
-                    body: Cluster = ...,
-                    gracefulDecommissionTimeout: str = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    projectId: str,
-                    region: str,
-                    body: Cluster = ...,
-                    requestId: str = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -376,17 +388,35 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
-                def list(
+                def testIamPermissions(
                     self,
                     *,
-                    projectId: str,
-                    region: str,
-                    pageToken: str = ...,
-                    filter: str = ...,
-                    pageSize: int = ...,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
-                ) -> ListClustersResponseHttpRequest: ...
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+            @typing.type_check_only
             class WorkflowTemplatesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: WorkflowTemplate = ...,
+                    **kwargs: typing.Any
+                ) -> WorkflowTemplateHttpRequest: ...
+                def delete(
+                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, version: int = ..., **kwargs: typing.Any
+                ) -> WorkflowTemplateHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
                 def instantiate(
                     self,
                     *,
@@ -394,33 +424,6 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: InstantiateWorkflowTemplateRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def get(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
-                ) -> WorkflowTemplateHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def update(
-                    self,
-                    *,
-                    name: str,
-                    body: WorkflowTemplate = ...,
-                    **kwargs: typing.Any
-                ) -> WorkflowTemplateHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, version: int = ..., **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
                 def instantiateInline(
                     self,
                     *,
@@ -433,94 +436,114 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    pageToken: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListWorkflowTemplatesResponseHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: WorkflowTemplate = ...,
-                    **kwargs: typing.Any
-                ) -> WorkflowTemplateHttpRequest: ...
-                def getIamPolicy(
+                def setIamPolicy(
                     self,
                     *,
                     resource: str,
-                    body: GetIamPolicyRequest = ...,
+                    body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+                def update(
+                    self,
+                    *,
+                    name: str,
+                    body: WorkflowTemplate = ...,
+                    **kwargs: typing.Any
+                ) -> WorkflowTemplateHttpRequest: ...
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...
+            def clusters(self) -> ClustersResource: ...
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
-            def clusters(self) -> ClustersResource: ...
             def workflowTemplates(self) -> WorkflowTemplatesResource: ...
         def locations(self) -> LocationsResource: ...
         def regions(self) -> RegionsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class JobHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Job: ...
-
-class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListClustersResponse: ...
-
-class ClusterHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Cluster: ...
-
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListOperationsResponse: ...
-
+@typing.type_check_only
 class AutoscalingPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> AutoscalingPolicy: ...
 
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ClusterHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
+    ) -> Cluster: ...
 
-class ListJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListJobsResponse: ...
+    ) -> Empty: ...
 
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class JobHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
+    ) -> Job: ...
 
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
-class WorkflowTemplateHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> WorkflowTemplate: ...
-
+@typing.type_check_only
 class ListAutoscalingPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListAutoscalingPoliciesResponse: ...
 
+@typing.type_check_only
+class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListClustersResponse: ...
+
+@typing.type_check_only
+class ListJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListJobsResponse: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
 class ListWorkflowTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListWorkflowTemplatesResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class WorkflowTemplateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> WorkflowTemplate: ...

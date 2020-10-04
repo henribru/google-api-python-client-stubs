@@ -1,68 +1,31 @@
 import typing
 
 import typing_extensions
-
-class ViolatingResource(typing_extensions.TypedDict, total=False):
-    contentType: str
-    resourceUrl: str
-
-class ScanConfig(typing_extensions.TypedDict, total=False):
-    schedule: Schedule
-    maxQps: int
-    userAgent: typing_extensions.Literal[
-        "USER_AGENT_UNSPECIFIED", "CHROME_LINUX", "CHROME_ANDROID", "SAFARI_IPHONE"
-    ]
-    name: str
-    latestRun: ScanRun
-    blacklistPatterns: typing.List[str]
-    authentication: Authentication
-    targetPlatforms: typing.List[str]
-    displayName: str
-    startingUrls: typing.List[str]
-
+@typing.type_check_only
 class Authentication(typing_extensions.TypedDict, total=False):
-    googleAccount: GoogleAccount
     customAccount: CustomAccount
+    googleAccount: GoogleAccount
 
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class ListScanConfigsResponse(typing_extensions.TypedDict, total=False):
-    scanConfigs: typing.List[ScanConfig]
-    nextPageToken: str
-
-class Xss(typing_extensions.TypedDict, total=False):
-    errorMessage: str
-    stackTraces: typing.List[str]
-
-class ListFindingTypeStatsResponse(typing_extensions.TypedDict, total=False):
-    findingTypeStats: typing.List[FindingTypeStats]
-
-class VulnerableParameters(typing_extensions.TypedDict, total=False):
-    parameterNames: typing.List[str]
-
+@typing.type_check_only
 class CrawledUrl(typing_extensions.TypedDict, total=False):
     body: str
-    url: str
     httpMethod: str
+    url: str
 
+@typing.type_check_only
 class CustomAccount(typing_extensions.TypedDict, total=False):
-    username: str
-    password: str
     loginUrl: str
+    password: str
+    username: str
 
-class ListCrawledUrlsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    crawledUrls: typing.List[CrawledUrl]
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
-class Schedule(typing_extensions.TypedDict, total=False):
-    intervalDurationDays: int
-    scheduleTime: str
-
-class ListFindingsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    findings: typing.List[Finding]
-
-class FindingTypeStats(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Finding(typing_extensions.TypedDict, total=False):
+    body: str
+    description: str
+    finalUrl: str
     findingType: typing_extensions.Literal[
         "FINDING_TYPE_UNSPECIFIED",
         "MIXED_CONTENT",
@@ -77,74 +40,133 @@ class FindingTypeStats(typing_extensions.TypedDict, total=False):
         "MISSPELLED_SECURITY_HEADER_NAME",
         "MISMATCHING_SECURITY_HEADER_VALUES",
     ]
-    findingCount: int
-
-class StartScanRunRequest(typing_extensions.TypedDict, total=False): ...
-
-class VulnerableHeaders(typing_extensions.TypedDict, total=False):
-    headers: typing.List[Header]
-    missingHeaders: typing.List[Header]
-
-class StopScanRunRequest(typing_extensions.TypedDict, total=False): ...
-
-class ScanRun(typing_extensions.TypedDict, total=False):
-    executionState: typing_extensions.Literal[
-        "EXECUTION_STATE_UNSPECIFIED", "QUEUED", "SCANNING", "FINISHED"
-    ]
-    startTime: str
-    progressPercent: int
-    resultState: typing_extensions.Literal[
-        "RESULT_STATE_UNSPECIFIED", "SUCCESS", "ERROR", "KILLED"
-    ]
+    frameUrl: str
+    fuzzedUrl: str
+    httpMethod: str
     name: str
-    hasVulnerabilities: bool
-    urlsCrawledCount: str
-    endTime: str
-    urlsTestedCount: str
+    outdatedLibrary: OutdatedLibrary
+    reproductionUrl: str
+    trackingId: str
+    violatingResource: ViolatingResource
+    vulnerableHeaders: VulnerableHeaders
+    vulnerableParameters: VulnerableParameters
+    xss: Xss
 
+@typing.type_check_only
+class FindingTypeStats(typing_extensions.TypedDict, total=False):
+    findingCount: int
+    findingType: typing_extensions.Literal[
+        "FINDING_TYPE_UNSPECIFIED",
+        "MIXED_CONTENT",
+        "OUTDATED_LIBRARY",
+        "ROSETTA_FLASH",
+        "XSS_CALLBACK",
+        "XSS_ERROR",
+        "CLEAR_TEXT_PASSWORD",
+        "INVALID_CONTENT_TYPE",
+        "XSS_ANGULAR_CALLBACK",
+        "INVALID_HEADER",
+        "MISSPELLED_SECURITY_HEADER_NAME",
+        "MISMATCHING_SECURITY_HEADER_VALUES",
+    ]
+
+@typing.type_check_only
+class GoogleAccount(typing_extensions.TypedDict, total=False):
+    password: str
+    username: str
+
+@typing.type_check_only
+class Header(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
+
+@typing.type_check_only
+class ListCrawledUrlsResponse(typing_extensions.TypedDict, total=False):
+    crawledUrls: typing.List[CrawledUrl]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListFindingTypeStatsResponse(typing_extensions.TypedDict, total=False):
+    findingTypeStats: typing.List[FindingTypeStats]
+
+@typing.type_check_only
+class ListFindingsResponse(typing_extensions.TypedDict, total=False):
+    findings: typing.List[Finding]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListScanConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    scanConfigs: typing.List[ScanConfig]
+
+@typing.type_check_only
+class ListScanRunsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    scanRuns: typing.List[ScanRun]
+
+@typing.type_check_only
 class OutdatedLibrary(typing_extensions.TypedDict, total=False):
     learnMoreUrls: typing.List[str]
     libraryName: str
     version: str
 
-class ListScanRunsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    scanRuns: typing.List[ScanRun]
-
-class GoogleAccount(typing_extensions.TypedDict, total=False):
-    username: str
-    password: str
-
-class Header(typing_extensions.TypedDict, total=False):
-    value: str
+@typing.type_check_only
+class ScanConfig(typing_extensions.TypedDict, total=False):
+    authentication: Authentication
+    blacklistPatterns: typing.List[str]
+    displayName: str
+    latestRun: ScanRun
+    maxQps: int
     name: str
-
-class Finding(typing_extensions.TypedDict, total=False):
-    outdatedLibrary: OutdatedLibrary
-    fuzzedUrl: str
-    description: str
-    name: str
-    vulnerableHeaders: VulnerableHeaders
-    trackingId: str
-    xss: Xss
-    violatingResource: ViolatingResource
-    finalUrl: str
-    vulnerableParameters: VulnerableParameters
-    reproductionUrl: str
-    findingType: typing_extensions.Literal[
-        "FINDING_TYPE_UNSPECIFIED",
-        "MIXED_CONTENT",
-        "OUTDATED_LIBRARY",
-        "ROSETTA_FLASH",
-        "XSS_CALLBACK",
-        "XSS_ERROR",
-        "CLEAR_TEXT_PASSWORD",
-        "INVALID_CONTENT_TYPE",
-        "XSS_ANGULAR_CALLBACK",
-        "INVALID_HEADER",
-        "MISSPELLED_SECURITY_HEADER_NAME",
-        "MISMATCHING_SECURITY_HEADER_VALUES",
+    schedule: Schedule
+    startingUrls: typing.List[str]
+    targetPlatforms: typing.List[str]
+    userAgent: typing_extensions.Literal[
+        "USER_AGENT_UNSPECIFIED", "CHROME_LINUX", "CHROME_ANDROID", "SAFARI_IPHONE"
     ]
-    body: str
-    frameUrl: str
-    httpMethod: str
+
+@typing.type_check_only
+class ScanRun(typing_extensions.TypedDict, total=False):
+    endTime: str
+    executionState: typing_extensions.Literal[
+        "EXECUTION_STATE_UNSPECIFIED", "QUEUED", "SCANNING", "FINISHED"
+    ]
+    hasVulnerabilities: bool
+    name: str
+    progressPercent: int
+    resultState: typing_extensions.Literal[
+        "RESULT_STATE_UNSPECIFIED", "SUCCESS", "ERROR", "KILLED"
+    ]
+    startTime: str
+    urlsCrawledCount: str
+    urlsTestedCount: str
+
+@typing.type_check_only
+class Schedule(typing_extensions.TypedDict, total=False):
+    intervalDurationDays: int
+    scheduleTime: str
+
+@typing.type_check_only
+class StartScanRunRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class StopScanRunRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ViolatingResource(typing_extensions.TypedDict, total=False):
+    contentType: str
+    resourceUrl: str
+
+@typing.type_check_only
+class VulnerableHeaders(typing_extensions.TypedDict, total=False):
+    headers: typing.List[Header]
+    missingHeaders: typing.List[Header]
+
+@typing.type_check_only
+class VulnerableParameters(typing_extensions.TypedDict, total=False):
+    parameterNames: typing.List[str]
+
+@typing.type_check_only
+class Xss(typing_extensions.TypedDict, total=False):
+    errorMessage: str
+    stackTraces: typing.List[str]

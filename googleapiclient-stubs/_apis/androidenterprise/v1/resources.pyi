@@ -7,132 +7,31 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
-    class PermissionsResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, permissionId: str, language: str = ..., **kwargs: typing.Any
-        ) -> PermissionHttpRequest: ...
-    class ServiceaccountkeysResource(googleapiclient.discovery.Resource):
-        def list(
-            self, *, enterpriseId: str, **kwargs: typing.Any
-        ) -> ServiceAccountKeysListResponseHttpRequest: ...
-        def insert(
-            self,
-            *,
-            enterpriseId: str,
-            body: ServiceAccountKey = ...,
-            **kwargs: typing.Any
-        ) -> ServiceAccountKeyHttpRequest: ...
-        def delete(
-            self, *, enterpriseId: str, keyId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-    class StorelayoutclustersResource(googleapiclient.discovery.Resource):
-        def get(
-            self,
-            *,
-            enterpriseId: str,
-            pageId: str,
-            clusterId: str,
-            **kwargs: typing.Any
-        ) -> StoreClusterHttpRequest: ...
-        def list(
-            self, *, enterpriseId: str, pageId: str, **kwargs: typing.Any
-        ) -> StoreLayoutClustersListResponseHttpRequest: ...
-        def delete(
-            self,
-            *,
-            enterpriseId: str,
-            pageId: str,
-            clusterId: str,
-            **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def update(
-            self,
-            *,
-            enterpriseId: str,
-            pageId: str,
-            clusterId: str,
-            body: StoreCluster = ...,
-            **kwargs: typing.Any
-        ) -> StoreClusterHttpRequest: ...
-        def insert(
-            self,
-            *,
-            enterpriseId: str,
-            pageId: str,
-            body: StoreCluster = ...,
-            **kwargs: typing.Any
-        ) -> StoreClusterHttpRequest: ...
-    class ManagedconfigurationsfordeviceResource(googleapiclient.discovery.Resource):
-        def list(
-            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
-        ) -> ManagedConfigurationsForDeviceListResponseHttpRequest: ...
-        def get(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            deviceId: str,
-            managedConfigurationForDeviceId: str,
-            **kwargs: typing.Any
-        ) -> ManagedConfigurationHttpRequest: ...
-        def delete(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            deviceId: str,
-            managedConfigurationForDeviceId: str,
-            **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def update(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            deviceId: str,
-            managedConfigurationForDeviceId: str,
-            body: ManagedConfiguration = ...,
-            **kwargs: typing.Any
-        ) -> ManagedConfigurationHttpRequest: ...
-    class InstallsResource(googleapiclient.discovery.Resource):
-        def list(
-            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
-        ) -> InstallsListResponseHttpRequest: ...
-        def delete(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            deviceId: str,
-            installId: str,
-            **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def update(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            deviceId: str,
-            installId: str,
-            body: Install = ...,
-            **kwargs: typing.Any
-        ) -> InstallHttpRequest: ...
-        def get(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            deviceId: str,
-            installId: str,
-            **kwargs: typing.Any
-        ) -> InstallHttpRequest: ...
-    class GrouplicenseusersResource(googleapiclient.discovery.Resource):
-        def list(
-            self, *, enterpriseId: str, groupLicenseId: str, **kwargs: typing.Any
-        ) -> GroupLicenseUsersListResponseHttpRequest: ...
+    @typing.type_check_only
     class DevicesResource(googleapiclient.discovery.Resource):
+        def forceReportUpload(
+            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
+        ) -> DeviceHttpRequest: ...
+        def getState(
+            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
+        ) -> DeviceStateHttpRequest: ...
+        def list(
+            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
+        ) -> DevicesListResponseHttpRequest: ...
+        def setState(
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            deviceId: str,
+            body: DeviceState = ...,
+            **kwargs: typing.Any
+        ) -> DeviceStateHttpRequest: ...
         def update(
             self,
             *,
@@ -143,39 +42,17 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> DeviceHttpRequest: ...
-        def setState(
+    @typing.type_check_only
+    class EnterprisesResource(googleapiclient.discovery.Resource):
+        def acknowledgeNotificationSet(
+            self, *, notificationSetId: str = ..., **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def completeSignup(
             self,
             *,
-            enterpriseId: str,
-            userId: str,
-            deviceId: str,
-            body: DeviceState = ...,
+            completionToken: str = ...,
+            enterpriseToken: str = ...,
             **kwargs: typing.Any
-        ) -> DeviceStateHttpRequest: ...
-        def getState(
-            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
-        ) -> DeviceStateHttpRequest: ...
-        def get(
-            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
-        ) -> DeviceHttpRequest: ...
-        def list(
-            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
-        ) -> DevicesListResponseHttpRequest: ...
-        def forceReportUpload(
-            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-    class EnterprisesResource(googleapiclient.discovery.Resource):
-        def list(
-            self, *, domain: str, **kwargs: typing.Any
-        ) -> EnterprisesListResponseHttpRequest: ...
-        def get(
-            self, *, enterpriseId: str, **kwargs: typing.Any
-        ) -> EnterpriseHttpRequest: ...
-        def sendTestPushNotification(
-            self, *, enterpriseId: str, **kwargs: typing.Any
-        ) -> EnterprisesSendTestPushNotificationResponseHttpRequest: ...
-        def enroll(
-            self, *, token: str, body: Enterprise = ..., **kwargs: typing.Any
         ) -> EnterpriseHttpRequest: ...
         def createWebToken(
             self,
@@ -184,6 +61,15 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: AdministratorWebTokenSpec = ...,
             **kwargs: typing.Any
         ) -> AdministratorWebTokenHttpRequest: ...
+        def enroll(
+            self, *, token: str, body: Enterprise = ..., **kwargs: typing.Any
+        ) -> EnterpriseHttpRequest: ...
+        def generateSignupUrl(
+            self, *, callbackUrl: str = ..., **kwargs: typing.Any
+        ) -> SignupInfoHttpRequest: ...
+        def get(
+            self, *, enterpriseId: str, **kwargs: typing.Any
+        ) -> EnterpriseHttpRequest: ...
         def getServiceAccount(
             self,
             *,
@@ -191,6 +77,23 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             keyType: typing_extensions.Literal["googleCredentials", "pkcs12"] = ...,
             **kwargs: typing.Any
         ) -> ServiceAccountHttpRequest: ...
+        def getStoreLayout(
+            self, *, enterpriseId: str, **kwargs: typing.Any
+        ) -> StoreLayoutHttpRequest: ...
+        def list(
+            self, *, domain: str, **kwargs: typing.Any
+        ) -> EnterprisesListResponseHttpRequest: ...
+        def pullNotificationSet(
+            self,
+            *,
+            requestMode: typing_extensions.Literal[
+                "waitForNotifications", "returnImmediately"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> NotificationSetHttpRequest: ...
+        def sendTestPushNotification(
+            self, *, enterpriseId: str, **kwargs: typing.Any
+        ) -> EnterprisesSendTestPushNotificationResponseHttpRequest: ...
         def setAccount(
             self,
             *,
@@ -201,37 +104,11 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         def setStoreLayout(
             self, *, enterpriseId: str, body: StoreLayout = ..., **kwargs: typing.Any
         ) -> StoreLayoutHttpRequest: ...
-        def pullNotificationSet(
-            self,
-            *,
-            requestMode: typing_extensions.Literal[
-                "waitForNotifications", "returnImmediately"
-            ] = ...,
-            **kwargs: typing.Any
-        ) -> NotificationSetHttpRequest: ...
-        def generateSignupUrl(
-            self, *, callbackUrl: str = ..., **kwargs: typing.Any
-        ) -> SignupInfoHttpRequest: ...
         def unenroll(
             self, *, enterpriseId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-        def acknowledgeNotificationSet(
-            self, *, notificationSetId: str = ..., **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def getStoreLayout(
-            self, *, enterpriseId: str, **kwargs: typing.Any
-        ) -> StoreLayoutHttpRequest: ...
-        def completeSignup(
-            self,
-            *,
-            completionToken: str = ...,
-            enterpriseToken: str = ...,
-            **kwargs: typing.Any
-        ) -> EnterpriseHttpRequest: ...
+    @typing.type_check_only
     class EntitlementsResource(googleapiclient.discovery.Resource):
-        def list(
-            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
-        ) -> EntitlementsListResponseHttpRequest: ...
         def delete(
             self,
             *,
@@ -248,6 +125,9 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             entitlementId: str,
             **kwargs: typing.Any
         ) -> EntitlementHttpRequest: ...
+        def list(
+            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
+        ) -> EntitlementsListResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -258,38 +138,127 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             install: bool = ...,
             **kwargs: typing.Any
         ) -> EntitlementHttpRequest: ...
-    class ManagedconfigurationssettingsResource(googleapiclient.discovery.Resource):
-        def list(
-            self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
-        ) -> ManagedConfigurationsSettingsListResponseHttpRequest: ...
-    class WebappsResource(googleapiclient.discovery.Resource):
-        def delete(
-            self, *, enterpriseId: str, webAppId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
+    class GrouplicensesResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, enterpriseId: str, groupLicenseId: str, **kwargs: typing.Any
+        ) -> GroupLicenseHttpRequest: ...
         def list(
             self, *, enterpriseId: str, **kwargs: typing.Any
-        ) -> WebAppsListResponseHttpRequest: ...
-        def insert(
-            self, *, enterpriseId: str, body: WebApp = ..., **kwargs: typing.Any
-        ) -> WebAppHttpRequest: ...
+        ) -> GroupLicensesListResponseHttpRequest: ...
+    @typing.type_check_only
+    class GrouplicenseusersResource(googleapiclient.discovery.Resource):
+        def list(
+            self, *, enterpriseId: str, groupLicenseId: str, **kwargs: typing.Any
+        ) -> GroupLicenseUsersListResponseHttpRequest: ...
+    @typing.type_check_only
+    class InstallsResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            deviceId: str,
+            installId: str,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
         def get(
-            self, *, enterpriseId: str, webAppId: str, **kwargs: typing.Any
-        ) -> WebAppHttpRequest: ...
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            deviceId: str,
+            installId: str,
+            **kwargs: typing.Any
+        ) -> InstallHttpRequest: ...
+        def list(
+            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
+        ) -> InstallsListResponseHttpRequest: ...
         def update(
             self,
             *,
             enterpriseId: str,
-            webAppId: str,
-            body: WebApp = ...,
+            userId: str,
+            deviceId: str,
+            installId: str,
+            body: Install = ...,
             **kwargs: typing.Any
-        ) -> WebAppHttpRequest: ...
-    class ProductsResource(googleapiclient.discovery.Resource):
-        def getPermissions(
-            self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
-        ) -> ProductPermissionsHttpRequest: ...
-        def unapprove(
-            self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
+        ) -> InstallHttpRequest: ...
+    @typing.type_check_only
+    class ManagedconfigurationsfordeviceResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            deviceId: str,
+            managedConfigurationForDeviceId: str,
+            **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            deviceId: str,
+            managedConfigurationForDeviceId: str,
+            **kwargs: typing.Any
+        ) -> ManagedConfigurationHttpRequest: ...
+        def list(
+            self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
+        ) -> ManagedConfigurationsForDeviceListResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            deviceId: str,
+            managedConfigurationForDeviceId: str,
+            body: ManagedConfiguration = ...,
+            **kwargs: typing.Any
+        ) -> ManagedConfigurationHttpRequest: ...
+    @typing.type_check_only
+    class ManagedconfigurationsforuserResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            managedConfigurationForUserId: str,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            managedConfigurationForUserId: str,
+            **kwargs: typing.Any
+        ) -> ManagedConfigurationHttpRequest: ...
+        def list(
+            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
+        ) -> ManagedConfigurationsForUserListResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            managedConfigurationForUserId: str,
+            body: ManagedConfiguration = ...,
+            **kwargs: typing.Any
+        ) -> ManagedConfigurationHttpRequest: ...
+    @typing.type_check_only
+    class ManagedconfigurationssettingsResource(googleapiclient.discovery.Resource):
+        def list(
+            self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
+        ) -> ManagedConfigurationsSettingsListResponseHttpRequest: ...
+    @typing.type_check_only
+    class PermissionsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, permissionId: str, language: str = ..., **kwargs: typing.Any
+        ) -> PermissionHttpRequest: ...
+    @typing.type_check_only
+    class ProductsResource(googleapiclient.discovery.Resource):
         def approve(
             self,
             *,
@@ -298,25 +267,6 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: ProductsApproveRequest = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-        def getAppRestrictionsSchema(
-            self,
-            *,
-            enterpriseId: str,
-            productId: str,
-            language: str = ...,
-            **kwargs: typing.Any
-        ) -> AppRestrictionsSchemaHttpRequest: ...
-        def list(
-            self,
-            *,
-            enterpriseId: str,
-            maxResults: int = ...,
-            query: str = ...,
-            approved: bool = ...,
-            token: str = ...,
-            language: str = ...,
-            **kwargs: typing.Any
-        ) -> ProductsListResponseHttpRequest: ...
         def generateApprovalUrl(
             self,
             *,
@@ -333,15 +283,136 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             language: str = ...,
             **kwargs: typing.Any
         ) -> ProductHttpRequest: ...
+        def getAppRestrictionsSchema(
+            self,
+            *,
+            enterpriseId: str,
+            productId: str,
+            language: str = ...,
+            **kwargs: typing.Any
+        ) -> AppRestrictionsSchemaHttpRequest: ...
+        def getPermissions(
+            self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
+        ) -> ProductPermissionsHttpRequest: ...
+        def list(
+            self,
+            *,
+            enterpriseId: str,
+            approved: bool = ...,
+            language: str = ...,
+            maxResults: int = ...,
+            query: str = ...,
+            token: str = ...,
+            **kwargs: typing.Any
+        ) -> ProductsListResponseHttpRequest: ...
+        def unapprove(
+            self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
+    class ServiceaccountkeysResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, enterpriseId: str, keyId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def insert(
+            self,
+            *,
+            enterpriseId: str,
+            body: ServiceAccountKey = ...,
+            **kwargs: typing.Any
+        ) -> ServiceAccountKeyHttpRequest: ...
+        def list(
+            self, *, enterpriseId: str, **kwargs: typing.Any
+        ) -> ServiceAccountKeysListResponseHttpRequest: ...
+    @typing.type_check_only
+    class StorelayoutclustersResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            enterpriseId: str,
+            pageId: str,
+            clusterId: str,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            enterpriseId: str,
+            pageId: str,
+            clusterId: str,
+            **kwargs: typing.Any
+        ) -> StoreClusterHttpRequest: ...
+        def insert(
+            self,
+            *,
+            enterpriseId: str,
+            pageId: str,
+            body: StoreCluster = ...,
+            **kwargs: typing.Any
+        ) -> StoreClusterHttpRequest: ...
+        def list(
+            self, *, enterpriseId: str, pageId: str, **kwargs: typing.Any
+        ) -> StoreLayoutClustersListResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            enterpriseId: str,
+            pageId: str,
+            clusterId: str,
+            body: StoreCluster = ...,
+            **kwargs: typing.Any
+        ) -> StoreClusterHttpRequest: ...
+    @typing.type_check_only
+    class StorelayoutpagesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, enterpriseId: str, pageId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, enterpriseId: str, pageId: str, **kwargs: typing.Any
+        ) -> StorePageHttpRequest: ...
+        def insert(
+            self, *, enterpriseId: str, body: StorePage = ..., **kwargs: typing.Any
+        ) -> StorePageHttpRequest: ...
+        def list(
+            self, *, enterpriseId: str, **kwargs: typing.Any
+        ) -> StoreLayoutPagesListResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            enterpriseId: str,
+            pageId: str,
+            body: StorePage = ...,
+            **kwargs: typing.Any
+        ) -> StorePageHttpRequest: ...
+    @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def generateAuthenticationToken(
+            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
+        ) -> AuthenticationTokenHttpRequest: ...
+        def get(
+            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
+        ) -> UserHttpRequest: ...
+        def getAvailableProductSet(
+            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
+        ) -> ProductSetHttpRequest: ...
+        def insert(
+            self, *, enterpriseId: str, body: User = ..., **kwargs: typing.Any
+        ) -> UserHttpRequest: ...
+        def list(
+            self, *, enterpriseId: str, email: str, **kwargs: typing.Any
+        ) -> UsersListResponseHttpRequest: ...
         def revokeDeviceAccess(
             self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-        def getAvailableProductSet(
-            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
+        def setAvailableProductSet(
+            self,
+            *,
+            enterpriseId: str,
+            userId: str,
+            body: ProductSet = ...,
+            **kwargs: typing.Any
         ) -> ProductSetHttpRequest: ...
         def update(
             self,
@@ -351,161 +422,104 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: User = ...,
             **kwargs: typing.Any
         ) -> UserHttpRequest: ...
-        def setAvailableProductSet(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            body: ProductSet = ...,
-            **kwargs: typing.Any
-        ) -> ProductSetHttpRequest: ...
+    @typing.type_check_only
+    class WebappsResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, enterpriseId: str, webAppId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, enterpriseId: str, webAppId: str, **kwargs: typing.Any
+        ) -> WebAppHttpRequest: ...
         def insert(
-            self, *, enterpriseId: str, body: User = ..., **kwargs: typing.Any
-        ) -> UserHttpRequest: ...
-        def get(
-            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
-        ) -> UserHttpRequest: ...
-        def generateAuthenticationToken(
-            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
-        ) -> AuthenticationTokenHttpRequest: ...
-        def list(
-            self, *, enterpriseId: str, email: str, **kwargs: typing.Any
-        ) -> UsersListResponseHttpRequest: ...
-    class GrouplicensesResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, enterpriseId: str, groupLicenseId: str, **kwargs: typing.Any
-        ) -> GroupLicenseHttpRequest: ...
+            self, *, enterpriseId: str, body: WebApp = ..., **kwargs: typing.Any
+        ) -> WebAppHttpRequest: ...
         def list(
             self, *, enterpriseId: str, **kwargs: typing.Any
-        ) -> GroupLicensesListResponseHttpRequest: ...
-    class ManagedconfigurationsforuserResource(googleapiclient.discovery.Resource):
+        ) -> WebAppsListResponseHttpRequest: ...
         def update(
             self,
             *,
             enterpriseId: str,
-            userId: str,
-            managedConfigurationForUserId: str,
-            body: ManagedConfiguration = ...,
+            webAppId: str,
+            body: WebApp = ...,
             **kwargs: typing.Any
-        ) -> ManagedConfigurationHttpRequest: ...
-        def get(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            managedConfigurationForUserId: str,
-            **kwargs: typing.Any
-        ) -> ManagedConfigurationHttpRequest: ...
-        def delete(
-            self,
-            *,
-            enterpriseId: str,
-            userId: str,
-            managedConfigurationForUserId: str,
-            **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def list(
-            self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
-        ) -> ManagedConfigurationsForUserListResponseHttpRequest: ...
-    class StorelayoutpagesResource(googleapiclient.discovery.Resource):
-        def insert(
-            self, *, enterpriseId: str, body: StorePage = ..., **kwargs: typing.Any
-        ) -> StorePageHttpRequest: ...
-        def update(
-            self,
-            *,
-            enterpriseId: str,
-            pageId: str,
-            body: StorePage = ...,
-            **kwargs: typing.Any
-        ) -> StorePageHttpRequest: ...
-        def delete(
-            self, *, enterpriseId: str, pageId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def list(
-            self, *, enterpriseId: str, **kwargs: typing.Any
-        ) -> StoreLayoutPagesListResponseHttpRequest: ...
-        def get(
-            self, *, enterpriseId: str, pageId: str, **kwargs: typing.Any
-        ) -> StorePageHttpRequest: ...
-    def permissions(self) -> PermissionsResource: ...
-    def serviceaccountkeys(self) -> ServiceaccountkeysResource: ...
-    def storelayoutclusters(self) -> StorelayoutclustersResource: ...
-    def managedconfigurationsfordevice(
-        self,
-    ) -> ManagedconfigurationsfordeviceResource: ...
-    def installs(self) -> InstallsResource: ...
-    def grouplicenseusers(self) -> GrouplicenseusersResource: ...
+        ) -> WebAppHttpRequest: ...
     def devices(self) -> DevicesResource: ...
     def enterprises(self) -> EnterprisesResource: ...
     def entitlements(self) -> EntitlementsResource: ...
+    def grouplicenses(self) -> GrouplicensesResource: ...
+    def grouplicenseusers(self) -> GrouplicenseusersResource: ...
+    def installs(self) -> InstallsResource: ...
+    def managedconfigurationsfordevice(
+        self,
+    ) -> ManagedconfigurationsfordeviceResource: ...
+    def managedconfigurationsforuser(self) -> ManagedconfigurationsforuserResource: ...
     def managedconfigurationssettings(
         self,
     ) -> ManagedconfigurationssettingsResource: ...
-    def webapps(self) -> WebappsResource: ...
+    def permissions(self) -> PermissionsResource: ...
     def products(self) -> ProductsResource: ...
-    def users(self) -> UsersResource: ...
-    def grouplicenses(self) -> GrouplicensesResource: ...
-    def managedconfigurationsforuser(self) -> ManagedconfigurationsforuserResource: ...
+    def serviceaccountkeys(self) -> ServiceaccountkeysResource: ...
+    def storelayoutclusters(self) -> StorelayoutclustersResource: ...
     def storelayoutpages(self) -> StorelayoutpagesResource: ...
+    def users(self) -> UsersResource: ...
+    def webapps(self) -> WebappsResource: ...
 
-class GroupLicenseUsersListResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class AdministratorWebTokenHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GroupLicenseUsersListResponse: ...
+    ) -> AdministratorWebToken: ...
 
-class WebAppHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class AppRestrictionsSchemaHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> WebApp: ...
+    ) -> AppRestrictionsSchema: ...
 
-class EnterpriseAccountHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class AuthenticationTokenHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> EnterpriseAccount: ...
+    ) -> AuthenticationToken: ...
 
-class EnterpriseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class DeviceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Enterprise: ...
+    ) -> Device: ...
 
-class InstallHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Install: ...
-
-class ServiceAccountKeysListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ServiceAccountKeysListResponse: ...
-
-class DevicesListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> DevicesListResponse: ...
-
-class ProductPermissionsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ProductPermissions: ...
-
-class ManagedConfigurationsForUserListResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ManagedConfigurationsForUserListResponse: ...
-
+@typing.type_check_only
 class DeviceStateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> DeviceState: ...
 
-class GroupLicensesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class DevicesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GroupLicensesListResponse: ...
+    ) -> DevicesListResponse: ...
 
+@typing.type_check_only
+class EnterpriseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Enterprise: ...
+
+@typing.type_check_only
+class EnterpriseAccountHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> EnterpriseAccount: ...
+
+@typing.type_check_only
+class EnterprisesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> EnterprisesListResponse: ...
+
+@typing.type_check_only
 class EnterprisesSendTestPushNotificationResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -513,98 +527,55 @@ class EnterprisesSendTestPushNotificationResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> EnterprisesSendTestPushNotificationResponse: ...
 
+@typing.type_check_only
 class EntitlementHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Entitlement: ...
 
-class AppRestrictionsSchemaHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class EntitlementsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AppRestrictionsSchema: ...
+    ) -> EntitlementsListResponse: ...
 
-class StoreClusterHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> StoreCluster: ...
-
-class AdministratorWebTokenHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AdministratorWebToken: ...
-
-class PermissionHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Permission: ...
-
+@typing.type_check_only
 class GroupLicenseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GroupLicense: ...
 
-class ManagedConfigurationsSettingsListResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
+@typing.type_check_only
+class GroupLicenseUsersListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ManagedConfigurationsSettingsListResponse: ...
+    ) -> GroupLicenseUsersListResponse: ...
 
-class AuthenticationTokenHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class GroupLicensesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AuthenticationToken: ...
+    ) -> GroupLicensesListResponse: ...
 
+@typing.type_check_only
+class InstallHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Install: ...
+
+@typing.type_check_only
 class InstallsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> InstallsListResponse: ...
 
-class UsersListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> UsersListResponse: ...
-
-class DeviceHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Device: ...
-
-class StorePageHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> StorePage: ...
-
+@typing.type_check_only
 class ManagedConfigurationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ManagedConfiguration: ...
 
-class StoreLayoutPagesListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> StoreLayoutPagesListResponse: ...
-
-class ServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ServiceAccount: ...
-
-class NotificationSetHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> NotificationSet: ...
-
-class ProductSetHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ProductSet: ...
-
-class ServiceAccountKeyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ServiceAccountKey: ...
-
+@typing.type_check_only
 class ManagedConfigurationsForDeviceListResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -612,52 +583,138 @@ class ManagedConfigurationsForDeviceListResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ManagedConfigurationsForDeviceListResponse: ...
 
+@typing.type_check_only
+class ManagedConfigurationsForUserListResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ManagedConfigurationsForUserListResponse: ...
+
+@typing.type_check_only
+class ManagedConfigurationsSettingsListResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ManagedConfigurationsSettingsListResponse: ...
+
+@typing.type_check_only
+class NotificationSetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> NotificationSet: ...
+
+@typing.type_check_only
+class PermissionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Permission: ...
+
+@typing.type_check_only
 class ProductHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Product: ...
 
-class SignupInfoHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ProductPermissionsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SignupInfo: ...
+    ) -> ProductPermissions: ...
 
-class EnterprisesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ProductSetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> EnterprisesListResponse: ...
+    ) -> ProductSet: ...
 
-class ProductsListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ProductsListResponse: ...
-
-class StoreLayoutHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> StoreLayout: ...
-
+@typing.type_check_only
 class ProductsGenerateApprovalUrlResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ProductsGenerateApprovalUrlResponse: ...
 
-class WebAppsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ProductsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> WebAppsListResponse: ...
+    ) -> ProductsListResponse: ...
 
-class EntitlementsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> EntitlementsListResponse: ...
+    ) -> ServiceAccount: ...
 
+@typing.type_check_only
+class ServiceAccountKeyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ServiceAccountKey: ...
+
+@typing.type_check_only
+class ServiceAccountKeysListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ServiceAccountKeysListResponse: ...
+
+@typing.type_check_only
+class SignupInfoHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SignupInfo: ...
+
+@typing.type_check_only
+class StoreClusterHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> StoreCluster: ...
+
+@typing.type_check_only
+class StoreLayoutHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> StoreLayout: ...
+
+@typing.type_check_only
+class StoreLayoutClustersListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> StoreLayoutClustersListResponse: ...
+
+@typing.type_check_only
+class StoreLayoutPagesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> StoreLayoutPagesListResponse: ...
+
+@typing.type_check_only
+class StorePageHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> StorePage: ...
+
+@typing.type_check_only
 class UserHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> User: ...
 
-class StoreLayoutClustersListResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class UsersListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> StoreLayoutClustersListResponse: ...
+    ) -> UsersListResponse: ...
+
+@typing.type_check_only
+class WebAppHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> WebApp: ...
+
+@typing.type_check_only
+class WebAppsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> WebAppsListResponse: ...

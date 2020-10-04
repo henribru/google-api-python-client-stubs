@@ -1,216 +1,247 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class Change(typing_extensions.TypedDict, total=False):
+    additions: typing.List[ResourceRecordSet]
+    deletions: typing.List[ResourceRecordSet]
+    id: str
+    isServing: bool
+    kind: str
+    startTime: str
+    status: typing_extensions.Literal["pending", "done"]
 
+@typing.type_check_only
+class ChangesListResponse(typing_extensions.TypedDict, total=False):
+    changes: typing.List[Change]
+    header: ResponseHeader
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class DnsKey(typing_extensions.TypedDict, total=False):
+    algorithm: typing_extensions.Literal[
+        "rsasha1", "rsasha256", "rsasha512", "ecdsap256sha256", "ecdsap384sha384"
+    ]
+    creationTime: str
+    description: str
+    digests: typing.List[DnsKeyDigest]
+    id: str
+    isActive: bool
+    keyLength: int
+    keyTag: int
+    kind: str
+    publicKey: str
+    type: typing_extensions.Literal["keySigning", "zoneSigning"]
+
+@typing.type_check_only
+class DnsKeyDigest(typing_extensions.TypedDict, total=False):
+    digest: str
+    type: typing_extensions.Literal["sha1", "sha256", "sha384"]
+
+@typing.type_check_only
+class DnsKeySpec(typing_extensions.TypedDict, total=False):
+    algorithm: typing_extensions.Literal[
+        "rsasha1", "rsasha256", "rsasha512", "ecdsap256sha256", "ecdsap384sha384"
+    ]
+    keyLength: int
+    keyType: typing_extensions.Literal["keySigning", "zoneSigning"]
+    kind: str
+
+@typing.type_check_only
+class DnsKeysListResponse(typing_extensions.TypedDict, total=False):
+    dnsKeys: typing.List[DnsKey]
+    header: ResponseHeader
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class ManagedZone(typing_extensions.TypedDict, total=False):
+    creationTime: str
+    description: str
+    dnsName: str
+    dnssecConfig: ManagedZoneDnsSecConfig
+    forwardingConfig: ManagedZoneForwardingConfig
+    id: str
+    kind: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    nameServerSet: str
+    nameServers: typing.List[str]
+    peeringConfig: ManagedZonePeeringConfig
+    privateVisibilityConfig: ManagedZonePrivateVisibilityConfig
+    reverseLookupConfig: ManagedZoneReverseLookupConfig
+    visibility: typing_extensions.Literal["public", "private"]
+
+@typing.type_check_only
+class ManagedZoneDnsSecConfig(typing_extensions.TypedDict, total=False):
+    defaultKeySpecs: typing.List[DnsKeySpec]
+    kind: str
+    nonExistence: typing_extensions.Literal["nsec", "nsec3"]
+    state: typing_extensions.Literal["off", "on", "transfer"]
+
+@typing.type_check_only
+class ManagedZoneForwardingConfig(typing_extensions.TypedDict, total=False):
+    kind: str
+    targetNameServers: typing.List[ManagedZoneForwardingConfigNameServerTarget]
+
+@typing.type_check_only
 class ManagedZoneForwardingConfigNameServerTarget(
     typing_extensions.TypedDict, total=False
 ):
+    forwardingPath: typing_extensions.Literal["default", "private"]
     ipv4Address: str
     kind: str
-    forwardingPath: typing_extensions.Literal["default", "private"]
 
-class PoliciesUpdateResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class ManagedZoneOperationsListResponse(typing_extensions.TypedDict, total=False):
     header: ResponseHeader
-    policy: Policy
-
-class OperationDnsKeyContext(typing_extensions.TypedDict, total=False):
-    newValue: DnsKey
-    oldValue: DnsKey
-
-class Project(typing_extensions.TypedDict, total=False):
-    quota: Quota
     kind: str
-    id: str
-    number: str
+    nextPageToken: str
+    operations: typing.List[Operation]
 
+@typing.type_check_only
 class ManagedZonePeeringConfig(typing_extensions.TypedDict, total=False):
     kind: str
     targetNetwork: ManagedZonePeeringConfigTargetNetwork
 
-class Change(typing_extensions.TypedDict, total=False):
-    status: typing_extensions.Literal["pending", "done"]
+@typing.type_check_only
+class ManagedZonePeeringConfigTargetNetwork(typing_extensions.TypedDict, total=False):
+    deactivateTime: str
     kind: str
-    startTime: str
-    isServing: bool
-    additions: typing.List[ResourceRecordSet]
-    id: str
-    deletions: typing.List[ResourceRecordSet]
+    networkUrl: str
 
-class ManagedZonesListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    managedZones: typing.List[ManagedZone]
+@typing.type_check_only
+class ManagedZonePrivateVisibilityConfig(typing_extensions.TypedDict, total=False):
     kind: str
-    header: ResponseHeader
+    networks: typing.List[ManagedZonePrivateVisibilityConfigNetwork]
 
+@typing.type_check_only
 class ManagedZonePrivateVisibilityConfigNetwork(
     typing_extensions.TypedDict, total=False
 ):
     kind: str
     networkUrl: str
 
-class ManagedZonePrivateVisibilityConfig(typing_extensions.TypedDict, total=False):
-    networks: typing.List[ManagedZonePrivateVisibilityConfigNetwork]
+@typing.type_check_only
+class ManagedZoneReverseLookupConfig(typing_extensions.TypedDict, total=False):
     kind: str
 
-class PoliciesPatchResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class ManagedZonesListResponse(typing_extensions.TypedDict, total=False):
     header: ResponseHeader
-    policy: Policy
+    kind: str
+    managedZones: typing.List[ManagedZone]
+    nextPageToken: str
 
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    dnsKeyContext: OperationDnsKeyContext
+    id: str
+    kind: str
+    startTime: str
+    status: typing_extensions.Literal["pending", "done"]
+    type: str
+    user: str
+    zoneContext: OperationManagedZoneContext
+
+@typing.type_check_only
+class OperationDnsKeyContext(typing_extensions.TypedDict, total=False):
+    newValue: DnsKey
+    oldValue: DnsKey
+
+@typing.type_check_only
+class OperationManagedZoneContext(typing_extensions.TypedDict, total=False):
+    newValue: ManagedZone
+    oldValue: ManagedZone
+
+@typing.type_check_only
 class PoliciesListResponse(typing_extensions.TypedDict, total=False):
     header: ResponseHeader
     kind: str
     nextPageToken: str
     policies: typing.List[Policy]
 
-class PolicyAlternativeNameServerConfig(typing_extensions.TypedDict, total=False):
-    targetNameServers: typing.List[PolicyAlternativeNameServerConfigTargetNameServer]
-    kind: str
-
-class ManagedZoneDnsSecConfig(typing_extensions.TypedDict, total=False):
-    defaultKeySpecs: typing.List[DnsKeySpec]
-    state: typing_extensions.Literal["off", "on", "transfer"]
-    nonExistence: typing_extensions.Literal["nsec", "nsec3"]
-    kind: str
-
-class ManagedZoneReverseLookupConfig(typing_extensions.TypedDict, total=False):
-    kind: str
-
-class ChangesListResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class PoliciesPatchResponse(typing_extensions.TypedDict, total=False):
     header: ResponseHeader
-    changes: typing.List[Change]
-    nextPageToken: str
-    kind: str
+    policy: Policy
 
-class ResponseHeader(typing_extensions.TypedDict, total=False):
-    operationId: str
-
-class ManagedZoneForwardingConfig(typing_extensions.TypedDict, total=False):
-    targetNameServers: typing.List[ManagedZoneForwardingConfigNameServerTarget]
-    kind: str
-
-class ManagedZonePeeringConfigTargetNetwork(typing_extensions.TypedDict, total=False):
-    networkUrl: str
-    kind: str
-    deactivateTime: str
-
-class DnsKeysListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
+@typing.type_check_only
+class PoliciesUpdateResponse(typing_extensions.TypedDict, total=False):
     header: ResponseHeader
-    dnsKeys: typing.List[DnsKey]
-    nextPageToken: str
+    policy: Policy
 
-class Quota(typing_extensions.TypedDict, total=False):
-    policies: int
-    networksPerPolicy: int
-    managedZonesPerNetwork: int
-    resourceRecordsPerRrset: int
-    rrsetDeletionsPerChange: int
-    networksPerManagedZone: int
-    rrsetsPerManagedZone: int
-    totalRrdataSizePerChange: int
-    rrsetAdditionsPerChange: int
-    targetNameServersPerManagedZone: int
-    targetNameServersPerPolicy: int
-    whitelistedKeySpecs: typing.List[DnsKeySpec]
-    dnsKeysPerManagedZone: int
-    kind: str
-    managedZones: int
-
-class Operation(typing_extensions.TypedDict, total=False):
-    dnsKeyContext: OperationDnsKeyContext
-    type: str
-    kind: str
-    zoneContext: OperationManagedZoneContext
-    user: str
-    status: typing_extensions.Literal["pending", "done"]
-    startTime: str
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    alternativeNameServerConfig: PolicyAlternativeNameServerConfig
+    description: str
+    enableInboundForwarding: bool
+    enableLogging: bool
     id: str
-
-class ResourceRecordSetsListResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
-    nextPageToken: str
     kind: str
-    rrsets: typing.List[ResourceRecordSet]
+    name: str
+    networks: typing.List[PolicyNetwork]
 
+@typing.type_check_only
+class PolicyAlternativeNameServerConfig(typing_extensions.TypedDict, total=False):
+    kind: str
+    targetNameServers: typing.List[PolicyAlternativeNameServerConfigTargetNameServer]
+
+@typing.type_check_only
+class PolicyAlternativeNameServerConfigTargetNameServer(
+    typing_extensions.TypedDict, total=False
+):
+    forwardingPath: typing_extensions.Literal["default", "private"]
+    ipv4Address: str
+    kind: str
+
+@typing.type_check_only
 class PolicyNetwork(typing_extensions.TypedDict, total=False):
     kind: str
     networkUrl: str
 
-class ManagedZoneOperationsListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    header: ResponseHeader
-    kind: str
-    operations: typing.List[Operation]
-
-class DnsKeySpec(typing_extensions.TypedDict, total=False):
-    kind: str
-    keyLength: int
-    algorithm: typing_extensions.Literal[
-        "rsasha1", "rsasha256", "rsasha512", "ecdsap256sha256", "ecdsap384sha384"
-    ]
-    keyType: typing_extensions.Literal["keySigning", "zoneSigning"]
-
-class OperationManagedZoneContext(typing_extensions.TypedDict, total=False):
-    oldValue: ManagedZone
-    newValue: ManagedZone
-
-class Policy(typing_extensions.TypedDict, total=False):
-    enableInboundForwarding: bool
-    kind: str
-    description: str
-    enableLogging: bool
-    networks: typing.List[PolicyNetwork]
-    name: str
-    alternativeNameServerConfig: PolicyAlternativeNameServerConfig
-    id: str
-
-class DnsKeyDigest(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["sha1", "sha256", "sha384"]
-    digest: str
-
-class DnsKey(typing_extensions.TypedDict, total=False):
-    kind: str
-    isActive: bool
-    algorithm: typing_extensions.Literal[
-        "rsasha1", "rsasha256", "rsasha512", "ecdsap256sha256", "ecdsap384sha384"
-    ]
-    publicKey: str
-    keyTag: int
-    creationTime: str
-    id: str
-    digests: typing.List[DnsKeyDigest]
-    keyLength: int
-    description: str
-    type: typing_extensions.Literal["keySigning", "zoneSigning"]
-
-class ManagedZone(typing_extensions.TypedDict, total=False):
-    visibility: typing_extensions.Literal["public", "private"]
-    forwardingConfig: ManagedZoneForwardingConfig
-    nameServers: typing.List[str]
-    name: str
-    peeringConfig: ManagedZonePeeringConfig
-    privateVisibilityConfig: ManagedZonePrivateVisibilityConfig
-    dnssecConfig: ManagedZoneDnsSecConfig
+@typing.type_check_only
+class Project(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
-    reverseLookupConfig: ManagedZoneReverseLookupConfig
-    nameServerSet: str
-    dnsName: str
-    labels: typing.Dict[str, typing.Any]
-    creationTime: str
-    description: str
+    number: str
+    quota: Quota
 
+@typing.type_check_only
+class Quota(typing_extensions.TypedDict, total=False):
+    dnsKeysPerManagedZone: int
+    kind: str
+    managedZones: int
+    managedZonesPerNetwork: int
+    networksPerManagedZone: int
+    networksPerPolicy: int
+    policies: int
+    resourceRecordsPerRrset: int
+    rrsetAdditionsPerChange: int
+    rrsetDeletionsPerChange: int
+    rrsetsPerManagedZone: int
+    targetNameServersPerManagedZone: int
+    targetNameServersPerPolicy: int
+    totalRrdataSizePerChange: int
+    whitelistedKeySpecs: typing.List[DnsKeySpec]
+
+@typing.type_check_only
 class ResourceRecordSet(typing_extensions.TypedDict, total=False):
+    kind: str
+    name: str
     rrdatas: typing.List[str]
     signatureRrdatas: typing.List[str]
     ttl: int
-    kind: str
-    name: str
     type: str
 
-class PolicyAlternativeNameServerConfigTargetNameServer(
-    typing_extensions.TypedDict, total=False
-):
-    ipv4Address: str
-    forwardingPath: typing_extensions.Literal["default", "private"]
+@typing.type_check_only
+class ResourceRecordSetsListResponse(typing_extensions.TypedDict, total=False):
+    header: ResponseHeader
     kind: str
+    nextPageToken: str
+    rrsets: typing.List[ResourceRecordSet]
+
+@typing.type_check_only
+class ResponseHeader(typing_extensions.TypedDict, total=False):
+    operationId: str

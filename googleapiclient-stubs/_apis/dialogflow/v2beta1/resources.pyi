@@ -7,24 +7,21 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class DialogflowResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class AgentResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class EntityTypesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class EntitiesResource(googleapiclient.discovery.Resource):
                     def batchCreate(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def batchUpdate(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def batchDelete(
@@ -34,6 +31,27 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def batchUpdate(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1BatchUpdateEntitiesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                def batchDelete(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def batchUpdate(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -42,80 +60,130 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     languageCode: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1EntityTypeHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
                 def get(
                     self, *, name: str, languageCode: str = ..., **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1EntityTypeHttpRequest: ...
-                def batchUpdate(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
+                    languageCode: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    languageCode: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest: ...
-                def batchDelete(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudDialogflowV2beta1EntityType = ...,
-                    updateMask: str = ...,
                     languageCode: str = ...,
+                    updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1EntityTypeHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleProtobufEmptyHttpRequest: ...
                 def entities(self) -> EntitiesResource: ...
-            class IntentsResource(googleapiclient.discovery.Resource):
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudDialogflowV2beta1Intent = ...,
-                    updateMask: str = ...,
-                    intentView: typing_extensions.Literal[
-                        "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
-                    ] = ...,
-                    languageCode: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
-                def get(
-                    self,
-                    *,
-                    name: str,
-                    languageCode: str = ...,
-                    intentView: typing_extensions.Literal[
-                        "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
-                    ] = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
+            @typing.type_check_only
+            class EnvironmentsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class UsersResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class SessionsResource(googleapiclient.discovery.Resource):
+                        @typing.type_check_only
+                        class ContextsResource(googleapiclient.discovery.Resource):
+                            def create(
+                                self,
+                                *,
+                                parent: str,
+                                body: GoogleCloudDialogflowV2beta1Context = ...,
+                                **kwargs: typing.Any
+                            ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                            def delete(
+                                self, *, name: str, **kwargs: typing.Any
+                            ) -> GoogleProtobufEmptyHttpRequest: ...
+                            def get(
+                                self, *, name: str, **kwargs: typing.Any
+                            ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                            def list(
+                                self,
+                                *,
+                                parent: str,
+                                pageSize: int = ...,
+                                pageToken: str = ...,
+                                **kwargs: typing.Any
+                            ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
+                            def patch(
+                                self,
+                                *,
+                                name: str,
+                                body: GoogleCloudDialogflowV2beta1Context = ...,
+                                updateMask: str = ...,
+                                **kwargs: typing.Any
+                            ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                        @typing.type_check_only
+                        class EntityTypesResource(googleapiclient.discovery.Resource):
+                            def create(
+                                self,
+                                *,
+                                parent: str,
+                                body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
+                                **kwargs: typing.Any
+                            ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                            def delete(
+                                self, *, name: str, **kwargs: typing.Any
+                            ) -> GoogleProtobufEmptyHttpRequest: ...
+                            def get(
+                                self, *, name: str, **kwargs: typing.Any
+                            ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                            def list(
+                                self,
+                                *,
+                                parent: str,
+                                pageSize: int = ...,
+                                pageToken: str = ...,
+                                **kwargs: typing.Any
+                            ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
+                            def patch(
+                                self,
+                                *,
+                                name: str,
+                                body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
+                                updateMask: str = ...,
+                                **kwargs: typing.Any
+                            ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                        def deleteContexts(
+                            self, *, parent: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def detectIntent(
+                            self,
+                            *,
+                            session: str,
+                            body: GoogleCloudDialogflowV2beta1DetectIntentRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest: ...
+                        def contexts(self) -> ContextsResource: ...
+                        def entityTypes(self) -> EntityTypesResource: ...
+                    def sessions(self) -> SessionsResource: ...
                 def list(
                     self,
                     *,
                     parent: str,
                     pageSize: int = ...,
-                    languageCode: str = ...,
                     pageToken: str = ...,
-                    intentView: typing_extensions.Literal[
-                        "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
-                    ] = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest: ...
+                ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest: ...
+                def users(self) -> UsersResource: ...
+            @typing.type_check_only
+            class IntentsResource(googleapiclient.discovery.Resource):
+                def batchDelete(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def batchUpdate(
                     self,
                     *,
@@ -137,91 +205,57 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
-                def batchDelete(
+                def get(
+                    self,
+                    *,
+                    name: str,
+                    intentView: typing_extensions.Literal[
+                        "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                    ] = ...,
+                    languageCode: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
+                def list(
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest = ...,
+                    intentView: typing_extensions.Literal[
+                        "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                    ] = ...,
+                    languageCode: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-            class SessionsResource(googleapiclient.discovery.Resource):
-                class EntityTypesResource(googleapiclient.discovery.Resource):
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
-                        updateMask: str = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleProtobufEmptyHttpRequest: ...
-                class ContextsResource(googleapiclient.discovery.Resource):
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDialogflowV2beta1Context = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleProtobufEmptyHttpRequest: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDialogflowV2beta1Context = ...,
-                        updateMask: str = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageToken: str = ...,
-                        pageSize: int = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
-                def detectIntent(
+                ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest: ...
+                def patch(
                     self,
                     *,
-                    session: str,
-                    body: GoogleCloudDialogflowV2beta1DetectIntentRequest = ...,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1Intent = ...,
+                    intentView: typing_extensions.Literal[
+                        "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                    ] = ...,
+                    languageCode: str = ...,
+                    updateMask: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest: ...
-                def deleteContexts(
-                    self, *, parent: str, **kwargs: typing.Any
-                ) -> GoogleProtobufEmptyHttpRequest: ...
-                def entityTypes(self) -> EntityTypesResource: ...
-                def contexts(self) -> ContextsResource: ...
+                ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
+            @typing.type_check_only
             class KnowledgeBasesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class DocumentsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1Document = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1DocumentHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -230,13 +264,6 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest: ...
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDialogflowV2beta1Document = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def patch(
                         self,
                         *,
@@ -245,9 +272,6 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1DocumentHttpRequest: ...
                     def reload(
                         self,
                         *,
@@ -255,6 +279,16 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowV2beta1ReloadDocumentRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1KnowledgeBase = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
+                def delete(
+                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
@@ -266,16 +300,6 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
-                ) -> GoogleProtobufEmptyHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDialogflowV2beta1KnowledgeBase = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -285,101 +309,92 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
                 def documents(self) -> DocumentsResource: ...
-            class EnvironmentsResource(googleapiclient.discovery.Resource):
-                class UsersResource(googleapiclient.discovery.Resource):
-                    class SessionsResource(googleapiclient.discovery.Resource):
-                        class EntityTypesResource(googleapiclient.discovery.Resource):
-                            def list(
-                                self,
-                                *,
-                                parent: str,
-                                pageToken: str = ...,
-                                pageSize: int = ...,
-                                **kwargs: typing.Any
-                            ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
-                            def get(
-                                self, *, name: str, **kwargs: typing.Any
-                            ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                            def create(
-                                self,
-                                *,
-                                parent: str,
-                                body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
-                                **kwargs: typing.Any
-                            ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                            def delete(
-                                self, *, name: str, **kwargs: typing.Any
-                            ) -> GoogleProtobufEmptyHttpRequest: ...
-                            def patch(
-                                self,
-                                *,
-                                name: str,
-                                body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
-                                updateMask: str = ...,
-                                **kwargs: typing.Any
-                            ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                        class ContextsResource(googleapiclient.discovery.Resource):
-                            def list(
-                                self,
-                                *,
-                                parent: str,
-                                pageToken: str = ...,
-                                pageSize: int = ...,
-                                **kwargs: typing.Any
-                            ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
-                            def create(
-                                self,
-                                *,
-                                parent: str,
-                                body: GoogleCloudDialogflowV2beta1Context = ...,
-                                **kwargs: typing.Any
-                            ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
-                            def delete(
-                                self, *, name: str, **kwargs: typing.Any
-                            ) -> GoogleProtobufEmptyHttpRequest: ...
-                            def get(
-                                self, *, name: str, **kwargs: typing.Any
-                            ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
-                            def patch(
-                                self,
-                                *,
-                                name: str,
-                                body: GoogleCloudDialogflowV2beta1Context = ...,
-                                updateMask: str = ...,
-                                **kwargs: typing.Any
-                            ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
-                        def deleteContexts(
-                            self, *, parent: str, **kwargs: typing.Any
-                        ) -> GoogleProtobufEmptyHttpRequest: ...
-                        def detectIntent(
-                            self,
-                            *,
-                            session: str,
-                            body: GoogleCloudDialogflowV2beta1DetectIntentRequest = ...,
-                            **kwargs: typing.Any
-                        ) -> GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest: ...
-                        def entityTypes(self) -> EntityTypesResource: ...
-                        def contexts(self) -> ContextsResource: ...
-                    def sessions(self) -> SessionsResource: ...
-                def list(
+            @typing.type_check_only
+            class SessionsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ContextsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1Context = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowV2beta1Context = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                @typing.type_check_only
+                class EntityTypesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                def deleteContexts(
+                    self, *, parent: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def detectIntent(
                     self,
                     *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
+                    session: str,
+                    body: GoogleCloudDialogflowV2beta1DetectIntentRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest: ...
-                def users(self) -> UsersResource: ...
-            def getFulfillment(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleCloudDialogflowV2beta1FulfillmentHttpRequest: ...
-            def restore(
+                ) -> GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest: ...
+                def contexts(self) -> ContextsResource: ...
+                def entityTypes(self) -> EntityTypesResource: ...
+            def export(
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudDialogflowV2beta1RestoreAgentRequest = ...,
+                body: GoogleCloudDialogflowV2beta1ExportAgentRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
+            def getFulfillment(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1FulfillmentHttpRequest: ...
             def getValidationResult(
                 self, *, parent: str, languageCode: str = ..., **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1ValidationResultHttpRequest: ...
@@ -390,11 +405,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudDialogflowV2beta1ImportAgentRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
-            def export(
+            def restore(
                 self,
                 *,
                 parent: str,
-                body: GoogleCloudDialogflowV2beta1ExportAgentRequest = ...,
+                body: GoogleCloudDialogflowV2beta1RestoreAgentRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def search(
@@ -421,26 +436,100 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1FulfillmentHttpRequest: ...
             def entityTypes(self) -> EntityTypesResource: ...
-            def intents(self) -> IntentsResource: ...
-            def sessions(self) -> SessionsResource: ...
-            def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def environments(self) -> EnvironmentsResource: ...
+            def intents(self) -> IntentsResource: ...
+            def knowledgeBases(self) -> KnowledgeBasesResource: ...
+            def sessions(self) -> SessionsResource: ...
+        @typing.type_check_only
+        class KnowledgeBasesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DocumentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1Document = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1DocumentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1Document = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def reload(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1ReloadDocumentRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudDialogflowV2beta1KnowledgeBase = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
+            def delete(
+                self, *, name: str, force: bool = ..., **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDialogflowV2beta1KnowledgeBase = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
+            def documents(self) -> DocumentsResource: ...
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class AgentResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class EntityTypesResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
                     class EntitiesResource(googleapiclient.discovery.Resource):
-                        def batchDelete(
-                            self,
-                            *,
-                            parent: str,
-                            body: GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest = ...,
-                            **kwargs: typing.Any
-                        ) -> GoogleLongrunningOperationHttpRequest: ...
                         def batchCreate(
                             self,
                             *,
                             parent: str,
                             body: GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def batchDelete(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowV2beta1BatchDeleteEntitiesRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def batchUpdate(
@@ -457,6 +546,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowV2beta1BatchDeleteEntityTypesRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def batchUpdate(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -473,15 +569,6 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1EntityTypeHttpRequest: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDialogflowV2beta1EntityType = ...,
-                        languageCode: str = ...,
-                        updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1EntityTypeHttpRequest: ...
                     def list(
@@ -493,186 +580,37 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest: ...
-                    def batchUpdate(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def entities(self) -> EntitiesResource: ...
-                class IntentsResource(googleapiclient.discovery.Resource):
-                    def batchDelete(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleProtobufEmptyHttpRequest: ...
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDialogflowV2beta1Intent = ...,
-                        intentView: typing_extensions.Literal[
-                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
-                        ] = ...,
-                        languageCode: str = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        languageCode: str = ...,
-                        pageToken: str = ...,
-                        intentView: typing_extensions.Literal[
-                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
-                        ] = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest: ...
                     def patch(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudDialogflowV2beta1Intent = ...,
+                        body: GoogleCloudDialogflowV2beta1EntityType = ...,
+                        languageCode: str = ...,
                         updateMask: str = ...,
-                        languageCode: str = ...,
-                        intentView: typing_extensions.Literal[
-                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
-                        ] = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
-                    def get(
-                        self,
-                        *,
-                        name: str,
-                        languageCode: str = ...,
-                        intentView: typing_extensions.Literal[
-                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
-                        ] = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
-                    def batchUpdate(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
-                class SessionsResource(googleapiclient.discovery.Resource):
-                    class EntityTypesResource(googleapiclient.discovery.Resource):
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> GoogleProtobufEmptyHttpRequest: ...
-                        def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
-                            updateMask: str = ...,
-                            **kwargs: typing.Any
-                        ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                        def create(
-                            self,
-                            *,
-                            parent: str,
-                            body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
-                            **kwargs: typing.Any
-                        ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                        def get(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            pageToken: str = ...,
-                            pageSize: int = ...,
-                            **kwargs: typing.Any
-                        ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
-                    class ContextsResource(googleapiclient.discovery.Resource):
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            pageToken: str = ...,
-                            pageSize: int = ...,
-                            **kwargs: typing.Any
-                        ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
-                        def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: GoogleCloudDialogflowV2beta1Context = ...,
-                            updateMask: str = ...,
-                            **kwargs: typing.Any
-                        ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
-                        def create(
-                            self,
-                            *,
-                            parent: str,
-                            body: GoogleCloudDialogflowV2beta1Context = ...,
-                            **kwargs: typing.Any
-                        ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
-                        def get(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> GoogleProtobufEmptyHttpRequest: ...
-                    def deleteContexts(
-                        self, *, parent: str, **kwargs: typing.Any
-                    ) -> GoogleProtobufEmptyHttpRequest: ...
-                    def detectIntent(
-                        self,
-                        *,
-                        session: str,
-                        body: GoogleCloudDialogflowV2beta1DetectIntentRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest: ...
-                    def entityTypes(self) -> EntityTypesResource: ...
-                    def contexts(self) -> ContextsResource: ...
+                    ) -> GoogleCloudDialogflowV2beta1EntityTypeHttpRequest: ...
+                    def entities(self) -> EntitiesResource: ...
+                @typing.type_check_only
                 class EnvironmentsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
                     class UsersResource(googleapiclient.discovery.Resource):
+                        @typing.type_check_only
                         class SessionsResource(googleapiclient.discovery.Resource):
-                            class EntityTypesResource(
-                                googleapiclient.discovery.Resource
-                            ):
-                                def get(
-                                    self, *, name: str, **kwargs: typing.Any
-                                ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                                def list(
-                                    self,
-                                    *,
-                                    parent: str,
-                                    pageSize: int = ...,
-                                    pageToken: str = ...,
-                                    **kwargs: typing.Any
-                                ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
-                                def delete(
-                                    self, *, name: str, **kwargs: typing.Any
-                                ) -> GoogleProtobufEmptyHttpRequest: ...
+                            @typing.type_check_only
+                            class ContextsResource(googleapiclient.discovery.Resource):
                                 def create(
                                     self,
                                     *,
                                     parent: str,
-                                    body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
+                                    body: GoogleCloudDialogflowV2beta1Context = ...,
                                     **kwargs: typing.Any
-                                ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                                def patch(
-                                    self,
-                                    *,
-                                    name: str,
-                                    body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
-                                    updateMask: str = ...,
-                                    **kwargs: typing.Any
-                                ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
-                            class ContextsResource(googleapiclient.discovery.Resource):
+                                ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                                def delete(
+                                    self, *, name: str, **kwargs: typing.Any
+                                ) -> GoogleProtobufEmptyHttpRequest: ...
+                                def get(
+                                    self, *, name: str, **kwargs: typing.Any
+                                ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
                                 def list(
                                     self,
                                     *,
@@ -689,19 +627,39 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                     updateMask: str = ...,
                                     **kwargs: typing.Any
                                 ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                            @typing.type_check_only
+                            class EntityTypesResource(
+                                googleapiclient.discovery.Resource
+                            ):
                                 def create(
                                     self,
                                     *,
                                     parent: str,
-                                    body: GoogleCloudDialogflowV2beta1Context = ...,
+                                    body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
                                     **kwargs: typing.Any
-                                ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                                ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
                                 def delete(
                                     self, *, name: str, **kwargs: typing.Any
                                 ) -> GoogleProtobufEmptyHttpRequest: ...
                                 def get(
                                     self, *, name: str, **kwargs: typing.Any
-                                ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                                ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                                def list(
+                                    self,
+                                    *,
+                                    parent: str,
+                                    pageSize: int = ...,
+                                    pageToken: str = ...,
+                                    **kwargs: typing.Any
+                                ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
+                                def patch(
+                                    self,
+                                    *,
+                                    name: str,
+                                    body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
+                                    updateMask: str = ...,
+                                    **kwargs: typing.Any
+                                ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
                             def deleteContexts(
                                 self, *, parent: str, **kwargs: typing.Any
                             ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -712,44 +670,171 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                 body: GoogleCloudDialogflowV2beta1DetectIntentRequest = ...,
                                 **kwargs: typing.Any
                             ) -> GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest: ...
-                            def entityTypes(self) -> EntityTypesResource: ...
                             def contexts(self) -> ContextsResource: ...
+                            def entityTypes(self) -> EntityTypesResource: ...
                         def sessions(self) -> SessionsResource: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        pageToken: str = ...,
                         pageSize: int = ...,
+                        pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest: ...
                     def users(self) -> UsersResource: ...
+                @typing.type_check_only
+                class IntentsResource(googleapiclient.discovery.Resource):
+                    def batchDelete(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1BatchDeleteIntentsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def batchUpdate(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1BatchUpdateIntentsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1Intent = ...,
+                        intentView: typing_extensions.Literal[
+                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                        ] = ...,
+                        languageCode: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self,
+                        *,
+                        name: str,
+                        intentView: typing_extensions.Literal[
+                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                        ] = ...,
+                        languageCode: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        intentView: typing_extensions.Literal[
+                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                        ] = ...,
+                        languageCode: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowV2beta1Intent = ...,
+                        intentView: typing_extensions.Literal[
+                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                        ] = ...,
+                        languageCode: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1IntentHttpRequest: ...
+                @typing.type_check_only
+                class SessionsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class ContextsResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowV2beta1Context = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudDialogflowV2beta1Context = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1ContextHttpRequest: ...
+                    @typing.type_check_only
+                    class EntityTypesResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudDialogflowV2beta1SessionEntityType = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest: ...
+                    def deleteContexts(
+                        self, *, parent: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def detectIntent(
+                        self,
+                        *,
+                        session: str,
+                        body: GoogleCloudDialogflowV2beta1DetectIntentRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest: ...
+                    def contexts(self) -> ContextsResource: ...
+                    def entityTypes(self) -> EntityTypesResource: ...
+                def export(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1ExportAgentRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def getFulfillment(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1FulfillmentHttpRequest: ...
                 def getValidationResult(
                     self, *, parent: str, languageCode: str = ..., **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ValidationResultHttpRequest: ...
-                def search(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest: ...
-                def updateFulfillment(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudDialogflowV2beta1Fulfillment = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1FulfillmentHttpRequest: ...
-                def train(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDialogflowV2beta1TrainAgentRequest = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def import_(
                     self,
                     *,
@@ -764,36 +849,50 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDialogflowV2beta1RestoreAgentRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
-                def getFulfillment(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1FulfillmentHttpRequest: ...
-                def export(
+                def search(
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudDialogflowV2beta1ExportAgentRequest = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest: ...
+                def train(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1TrainAgentRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def updateFulfillment(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1Fulfillment = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1FulfillmentHttpRequest: ...
                 def entityTypes(self) -> EntityTypesResource: ...
+                def environments(self) -> EnvironmentsResource: ...
                 def intents(self) -> IntentsResource: ...
                 def sessions(self) -> SessionsResource: ...
-                def environments(self) -> EnvironmentsResource: ...
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def list(
                     self,
                     *,
                     name: str,
                     filter: str = ...,
-                    pageToken: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def cancel(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleProtobufEmptyHttpRequest: ...
             def deleteAgent(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -810,6 +909,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudDialogflowV2beta1AgentHttpRequest: ...
             def agent(self) -> AgentResource: ...
             def operations(self) -> OperationsResource: ...
+        @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
                 self, *, name: str, **kwargs: typing.Any
@@ -821,79 +921,14 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                filter: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
-        class KnowledgeBasesResource(googleapiclient.discovery.Resource):
-            class DocumentsResource(googleapiclient.discovery.Resource):
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1DocumentHttpRequest: ...
-                def reload(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudDialogflowV2beta1ReloadDocumentRequest = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDialogflowV2beta1Document = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudDialogflowV2beta1Document = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
-            def delete(
-                self, *, name: str, force: bool = ..., **kwargs: typing.Any
-            ) -> GoogleProtobufEmptyHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest: ...
-            def create(
-                self,
-                *,
-                parent: str,
-                body: GoogleCloudDialogflowV2beta1KnowledgeBase = ...,
-                **kwargs: typing.Any
-            ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: GoogleCloudDialogflowV2beta1KnowledgeBase = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
-            def documents(self) -> DocumentsResource: ...
+        def deleteAgent(
+            self, *, parent: str, **kwargs: typing.Any
+        ) -> GoogleProtobufEmptyHttpRequest: ...
         def getAgent(
             self, *, parent: str, **kwargs: typing.Any
         ) -> GoogleCloudDialogflowV2beta1AgentHttpRequest: ...
@@ -905,94 +940,25 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudDialogflowV2beta1AgentHttpRequest: ...
-        def deleteAgent(
-            self, *, parent: str, **kwargs: typing.Any
-        ) -> GoogleProtobufEmptyHttpRequest: ...
         def agent(self) -> AgentResource: ...
+        def knowledgeBases(self) -> KnowledgeBasesResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
-        def knowledgeBases(self) -> KnowledgeBasesResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class GoogleCloudDialogflowV2beta1FulfillmentHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1Fulfillment: ...
-
-class GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1ListContextsResponse: ...
-
-class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleProtobufEmpty: ...
-
-class GoogleCloudDialogflowV2beta1ValidationResultHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1ValidationResult: ...
-
-class GoogleCloudDialogflowV2beta1ContextHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1Context: ...
-
-class GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1SessionEntityType: ...
-
-class GoogleCloudDialogflowV2beta1IntentHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1Intent: ...
-
-class GoogleCloudDialogflowV2beta1DocumentHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1Document: ...
-
-class GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1SearchAgentsResponse: ...
-
-class GoogleLongrunningListOperationsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleLongrunningListOperationsResponse: ...
-
-class GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponse: ...
-
-class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleLongrunningOperation: ...
-
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1AgentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudDialogflowV2beta1Agent: ...
 
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ContextHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1Context: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1000,27 +966,13 @@ class GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudDialogflowV2beta1DetectIntentResponse: ...
 
-class GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1DocumentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponse: ...
+    ) -> GoogleCloudDialogflowV2beta1Document: ...
 
-class GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1KnowledgeBase: ...
-
-class GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse: ...
-
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1EntityTypeHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1028,13 +980,45 @@ class GoogleCloudDialogflowV2beta1EntityTypeHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudDialogflowV2beta1EntityType: ...
 
-class GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest(
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1FulfillmentHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse: ...
+    ) -> GoogleCloudDialogflowV2beta1Fulfillment: ...
 
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1IntentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1Intent: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1KnowledgeBase: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1ListContextsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1042,9 +1026,78 @@ class GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudDialogflowV2beta1ListEntityTypesResponse: ...
 
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudDialogflowV2beta1ListIntentsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1SearchAgentsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1SessionEntityType: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ValidationResultHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudDialogflowV2beta1ValidationResult: ...
+
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleLongrunningListOperationsResponse: ...
+
+@typing.type_check_only
+class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleLongrunningOperation: ...
+
+@typing.type_check_only
+class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleProtobufEmpty: ...

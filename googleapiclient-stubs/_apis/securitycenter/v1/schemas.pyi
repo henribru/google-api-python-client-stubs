@@ -1,51 +1,143 @@
 import typing
 
 import typing_extensions
-
-class Resource(typing_extensions.TypedDict, total=False):
-    projectDisplayName: str
-    projectName: str
-    name: str
-    parentDisplayName: str
-    parentName: str
-
-class Finding(typing_extensions.TypedDict, total=False):
-    eventTime: str
-    category: str
-    securityMarks: SecurityMarks
-    externalUri: str
-    sourceProperties: typing.Dict[str, typing.Any]
-    parent: str
-    resourceName: str
+@typing.type_check_only
+class Asset(typing_extensions.TypedDict, total=False):
     createTime: str
+    iamPolicy: IamPolicy
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    resourceProperties: typing.Dict[str, typing.Any]
+    securityCenterProperties: SecurityCenterProperties
+    securityMarks: SecurityMarks
+    updateTime: str
 
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+@typing.type_check_only
+class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
+    inclusionMode: typing_extensions.Literal[
+        "INCLUSION_MODE_UNSPECIFIED", "INCLUDE_ONLY", "EXCLUDE"
+    ]
+    projectIds: typing.List[str]
 
+@typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: typing.List[AuditLogConfig]
+    service: str
+
+@typing.type_check_only
+class AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: typing.List[str]
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    role: str
     condition: Expr
     members: typing.List[str]
+    role: str
 
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class Finding(typing_extensions.TypedDict, total=False):
+    category: str
+    createTime: str
+    eventTime: str
+    externalUri: str
+    name: str
+    parent: str
+    resourceName: str
+    securityMarks: SecurityMarks
+    sourceProperties: typing.Dict[str, typing.Any]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+
+@typing.type_check_only
+class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GetPolicyOptions
+
+@typing.type_check_only
+class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1NotificationMessage(
+    typing_extensions.TypedDict, total=False
+):
+    finding: Finding
+    notificationConfigName: str
+    resource: GoogleCloudSecuritycenterV1Resource
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
+    name: str
+    parent: str
+    parentDisplayName: str
+    project: str
+    projectDisplayName: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(
+    typing_extensions.TypedDict, total=False
+):
+    duration: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1beta1RunAssetDiscoveryResponse(
+    typing_extensions.TypedDict, total=False
+):
+    duration: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1p1beta1Finding(
+    typing_extensions.TypedDict, total=False
+):
+    category: str
+    createTime: str
+    eventTime: str
+    externalUri: str
+    name: str
+    parent: str
+    resourceName: str
+    securityMarks: GoogleCloudSecuritycenterV1p1beta1SecurityMarks
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+    sourceProperties: typing.Dict[str, typing.Any]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV1p1beta1NotificationMessage(
     typing_extensions.TypedDict, total=False
 ):
-    notificationConfigName: str
     finding: GoogleCloudSecuritycenterV1p1beta1Finding
+    notificationConfigName: str
     resource: GoogleCloudSecuritycenterV1p1beta1Resource
 
-class ListNotificationConfigsResponse(typing_extensions.TypedDict, total=False):
-    notificationConfigs: typing.List[NotificationConfig]
-    nextPageToken: str
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1p1beta1Resource(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    parent: str
+    parentDisplayName: str
+    project: str
+    projectDisplayName: str
 
-class ListAssetsResult(typing_extensions.TypedDict, total=False):
-    asset: Asset
-    stateChange: typing_extensions.Literal["UNUSED", "ADDED", "REMOVED", "ACTIVE"]
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
+@typing.type_check_only
 class GoogleCloudSecuritycenterV1p1beta1RunAssetDiscoveryResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -54,228 +146,182 @@ class GoogleCloudSecuritycenterV1p1beta1RunAssetDiscoveryResponse(
         "STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"
     ]
 
-class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1p1beta1SecurityMarks(
     typing_extensions.TypedDict, total=False
 ):
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"
-    ]
-    duration: str
-
-class Policy(typing_extensions.TypedDict, total=False):
-    version: int
-    auditConfigs: typing.List[AuditConfig]
-    etag: str
-    bindings: typing.List[Binding]
-
-class SecurityCenterProperties(typing_extensions.TypedDict, total=False):
-    resourceDisplayName: str
-    resourceType: str
-    resourceParentDisplayName: str
-    resourceName: str
-    resourceProjectDisplayName: str
-    resourceProject: str
-    resourceParent: str
-    resourceOwners: typing.List[str]
-
-class ListSourcesResponse(typing_extensions.TypedDict, total=False):
-    sources: typing.List[Source]
-    nextPageToken: str
-
-class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
-    inclusionMode: typing_extensions.Literal[
-        "INCLUSION_MODE_UNSPECIFIED", "INCLUDE_ONLY", "EXCLUDE"
-    ]
-    projectIds: typing.List[str]
-
-class GroupFindingsRequest(typing_extensions.TypedDict, total=False):
-    filter: str
-    compareDuration: str
-    readTime: str
-    pageToken: str
-    pageSize: int
-    groupBy: str
-
-class ListAssetsResponse(typing_extensions.TypedDict, total=False):
-    listAssetsResults: typing.List[ListAssetsResult]
-    totalSize: int
-    readTime: str
-    nextPageToken: str
-
-class SetFindingStateRequest(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
-    startTime: str
-
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
-    requestedPolicyVersion: int
-
-class Expr(typing_extensions.TypedDict, total=False):
-    expression: str
-    location: str
-    description: str
-    title: str
-
-class SecurityMarks(typing_extensions.TypedDict, total=False):
-    name: str
     marks: typing.Dict[str, typing.Any]
-
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
-    nextPageToken: str
-
-class ListFindingsResult(typing_extensions.TypedDict, total=False):
-    finding: Finding
-    stateChange: typing_extensions.Literal[
-        "UNUSED", "CHANGED", "UNCHANGED", "ADDED", "REMOVED"
-    ]
-    resource: Resource
-
-class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
-    project: str
-    parentDisplayName: str
-    parent: str
-    projectDisplayName: str
     name: str
 
-class StreamingConfig(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class GroupAssetsRequest(typing_extensions.TypedDict, total=False):
+    compareDuration: str
     filter: str
-
-class GoogleCloudSecuritycenterV1p1beta1Finding(
-    typing_extensions.TypedDict, total=False
-):
-    externalUri: str
-    securityMarks: GoogleCloudSecuritycenterV1p1beta1SecurityMarks
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
-    ]
-    name: str
-    sourceProperties: typing.Dict[str, typing.Any]
-    eventTime: str
-    parent: str
-    createTime: str
-    category: str
-    resourceName: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
-
-class GroupFindingsResponse(typing_extensions.TypedDict, total=False):
+    groupBy: str
+    pageSize: int
+    pageToken: str
     readTime: str
-    nextPageToken: str
+
+@typing.type_check_only
+class GroupAssetsResponse(typing_extensions.TypedDict, total=False):
     groupByResults: typing.List[GroupResult]
+    nextPageToken: str
+    readTime: str
     totalSize: int
 
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    service: str
-    auditLogConfigs: typing.List[AuditLogConfig]
+@typing.type_check_only
+class GroupFindingsRequest(typing_extensions.TypedDict, total=False):
+    compareDuration: str
+    filter: str
+    groupBy: str
+    pageSize: int
+    pageToken: str
+    readTime: str
 
+@typing.type_check_only
+class GroupFindingsResponse(typing_extensions.TypedDict, total=False):
+    groupByResults: typing.List[GroupResult]
+    nextPageToken: str
+    readTime: str
+    totalSize: int
+
+@typing.type_check_only
 class GroupResult(typing_extensions.TypedDict, total=False):
     count: str
     properties: typing.Dict[str, typing.Any]
 
-class Source(typing_extensions.TypedDict, total=False):
-    name: str
-    description: str
-    displayName: str
-
-class GroupAssetsRequest(typing_extensions.TypedDict, total=False):
-    groupBy: str
-    readTime: str
-    filter: str
-    compareDuration: str
-    pageToken: str
-    pageSize: int
-
-class OrganizationSettings(typing_extensions.TypedDict, total=False):
-    enableAssetDiscovery: bool
-    name: str
-    assetDiscoveryConfig: AssetDiscoveryConfig
-
-class NotificationConfig(typing_extensions.TypedDict, total=False):
-    serviceAccount: str
-    description: str
-    streamingConfig: StreamingConfig
-    name: str
-    pubsubTopic: str
-
-class GoogleCloudSecuritycenterV1beta1RunAssetDiscoveryResponse(
-    typing_extensions.TypedDict, total=False
-):
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"
-    ]
-    duration: str
-
-class GoogleCloudSecuritycenterV1NotificationMessage(
-    typing_extensions.TypedDict, total=False
-):
-    resource: GoogleCloudSecuritycenterV1Resource
-    finding: Finding
-    notificationConfigName: str
-
-class Asset(typing_extensions.TypedDict, total=False):
-    resourceProperties: typing.Dict[str, typing.Any]
-    updateTime: str
-    securityCenterProperties: SecurityCenterProperties
-    iamPolicy: IamPolicy
-    name: str
-    createTime: str
-    securityMarks: SecurityMarks
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    updateMask: str
-    policy: Policy
-
-class GoogleCloudSecuritycenterV1p1beta1SecurityMarks(
-    typing_extensions.TypedDict, total=False
-):
-    name: str
-    marks: typing.Dict[str, typing.Any]
-
-class GoogleCloudSecuritycenterV1p1beta1Resource(
-    typing_extensions.TypedDict, total=False
-):
-    projectDisplayName: str
-    parentDisplayName: str
-    name: str
-    parent: str
-    project: str
-
-class ListFindingsResponse(typing_extensions.TypedDict, total=False):
-    totalSize: int
-    readTime: str
-    listFindingsResults: typing.List[ListFindingsResult]
-    nextPageToken: str
-
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
-    logType: typing_extensions.Literal[
-        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
-    ]
-
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    options: GetPolicyOptions
-
-class Operation(typing_extensions.TypedDict, total=False):
-    response: typing.Dict[str, typing.Any]
-    done: bool
-    name: str
-    metadata: typing.Dict[str, typing.Any]
-    error: Status
-
-class Status(typing_extensions.TypedDict, total=False):
-    message: str
-    code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
-
-class GroupAssetsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    readTime: str
-    groupByResults: typing.List[GroupResult]
-    totalSize: int
-
+@typing.type_check_only
 class IamPolicy(typing_extensions.TypedDict, total=False):
     policyBlob: str
 
+@typing.type_check_only
+class ListAssetsResponse(typing_extensions.TypedDict, total=False):
+    listAssetsResults: typing.List[ListAssetsResult]
+    nextPageToken: str
+    readTime: str
+    totalSize: int
+
+@typing.type_check_only
+class ListAssetsResult(typing_extensions.TypedDict, total=False):
+    asset: Asset
+    stateChange: typing_extensions.Literal["UNUSED", "ADDED", "REMOVED", "ACTIVE"]
+
+@typing.type_check_only
+class ListFindingsResponse(typing_extensions.TypedDict, total=False):
+    listFindingsResults: typing.List[ListFindingsResult]
+    nextPageToken: str
+    readTime: str
+    totalSize: int
+
+@typing.type_check_only
+class ListFindingsResult(typing_extensions.TypedDict, total=False):
+    finding: Finding
+    resource: Resource
+    stateChange: typing_extensions.Literal[
+        "UNUSED", "CHANGED", "UNCHANGED", "ADDED", "REMOVED"
+    ]
+
+@typing.type_check_only
+class ListNotificationConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    notificationConfigs: typing.List[NotificationConfig]
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class ListSourcesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sources: typing.List[Source]
+
+@typing.type_check_only
+class NotificationConfig(typing_extensions.TypedDict, total=False):
+    description: str
+    name: str
+    pubsubTopic: str
+    serviceAccount: str
+    streamingConfig: StreamingConfig
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OrganizationSettings(typing_extensions.TypedDict, total=False):
+    assetDiscoveryConfig: AssetDiscoveryConfig
+    enableAssetDiscovery: bool
+    name: str
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class Resource(typing_extensions.TypedDict, total=False):
+    name: str
+    parentDisplayName: str
+    parentName: str
+    projectDisplayName: str
+    projectName: str
+
+@typing.type_check_only
 class RunAssetDiscoveryRequest(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class SecurityCenterProperties(typing_extensions.TypedDict, total=False):
+    resourceDisplayName: str
+    resourceName: str
+    resourceOwners: typing.List[str]
+    resourceParent: str
+    resourceParentDisplayName: str
+    resourceProject: str
+    resourceProjectDisplayName: str
+    resourceType: str
+
+@typing.type_check_only
+class SecurityMarks(typing_extensions.TypedDict, total=False):
+    marks: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class SetFindingStateRequest(typing_extensions.TypedDict, total=False):
+    startTime: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
+class Source(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    name: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class StreamingConfig(typing_extensions.TypedDict, total=False):
+    filter: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]

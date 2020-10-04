@@ -1,7 +1,7 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class About(typing_extensions.TypedDict, total=False):
     appInstalled: bool
     canCreateDrives: bool
@@ -17,6 +17,7 @@ class About(typing_extensions.TypedDict, total=False):
     teamDriveThemes: typing.List[typing.Dict[str, typing.Any]]
     user: User
 
+@typing.type_check_only
 class Change(typing_extensions.TypedDict, total=False):
     changeType: str
     drive: Drive
@@ -30,12 +31,14 @@ class Change(typing_extensions.TypedDict, total=False):
     time: str
     type: str
 
+@typing.type_check_only
 class ChangeList(typing_extensions.TypedDict, total=False):
     changes: typing.List[Change]
     kind: str
     newStartPageToken: str
     nextPageToken: str
 
+@typing.type_check_only
 class Channel(typing_extensions.TypedDict, total=False):
     address: str
     expiration: str
@@ -48,6 +51,7 @@ class Channel(typing_extensions.TypedDict, total=False):
     token: str
     type: str
 
+@typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
     anchor: str
     author: User
@@ -62,11 +66,13 @@ class Comment(typing_extensions.TypedDict, total=False):
     replies: typing.List[Reply]
     resolved: bool
 
+@typing.type_check_only
 class CommentList(typing_extensions.TypedDict, total=False):
     comments: typing.List[Comment]
     kind: str
     nextPageToken: str
 
+@typing.type_check_only
 class ContentRestriction(typing_extensions.TypedDict, total=False):
     readOnly: bool
     reason: str
@@ -74,6 +80,7 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     restrictionTime: str
     type: str
 
+@typing.type_check_only
 class Drive(typing_extensions.TypedDict, total=False):
     backgroundImageFile: typing.Dict[str, typing.Any]
     backgroundImageLink: str
@@ -87,11 +94,13 @@ class Drive(typing_extensions.TypedDict, total=False):
     restrictions: typing.Dict[str, typing.Any]
     themeId: str
 
+@typing.type_check_only
 class DriveList(typing_extensions.TypedDict, total=False):
     drives: typing.List[Drive]
     kind: str
     nextPageToken: str
 
+@typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):
     appProperties: typing.Dict[str, typing.Any]
     capabilities: typing.Dict[str, typing.Any]
@@ -151,17 +160,20 @@ class File(typing_extensions.TypedDict, total=False):
     webViewLink: str
     writersCanShare: bool
 
+@typing.type_check_only
 class FileList(typing_extensions.TypedDict, total=False):
     files: typing.List[File]
     incompleteSearch: bool
     kind: str
     nextPageToken: str
 
+@typing.type_check_only
 class GeneratedIds(typing_extensions.TypedDict, total=False):
     ids: typing.List[str]
     kind: str
     space: str
 
+@typing.type_check_only
 class Permission(typing_extensions.TypedDict, total=False):
     allowFileDiscovery: bool
     deleted: bool
@@ -178,11 +190,13 @@ class Permission(typing_extensions.TypedDict, total=False):
     type: str
     view: str
 
+@typing.type_check_only
 class PermissionList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     permissions: typing.List[Permission]
 
+@typing.type_check_only
 class Reply(typing_extensions.TypedDict, total=False):
     action: str
     author: User
@@ -194,11 +208,13 @@ class Reply(typing_extensions.TypedDict, total=False):
     kind: str
     modifiedTime: str
 
+@typing.type_check_only
 class ReplyList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     replies: typing.List[Reply]
 
+@typing.type_check_only
 class Revision(typing_extensions.TypedDict, total=False):
     exportLinks: typing.Dict[str, typing.Any]
     id: str
@@ -215,15 +231,18 @@ class Revision(typing_extensions.TypedDict, total=False):
     publishedOutsideDomain: bool
     size: str
 
+@typing.type_check_only
 class RevisionList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     revisions: typing.List[Revision]
 
+@typing.type_check_only
 class StartPageToken(typing_extensions.TypedDict, total=False):
     kind: str
     startPageToken: str
 
+@typing.type_check_only
 class TeamDrive(typing_extensions.TypedDict, total=False):
     backgroundImageFile: typing.Dict[str, typing.Any]
     backgroundImageLink: str
@@ -236,11 +255,13 @@ class TeamDrive(typing_extensions.TypedDict, total=False):
     restrictions: typing.Dict[str, typing.Any]
     themeId: str
 
+@typing.type_check_only
 class TeamDriveList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     teamDrives: typing.List[TeamDrive]
 
+@typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
     displayName: str
     emailAddress: str

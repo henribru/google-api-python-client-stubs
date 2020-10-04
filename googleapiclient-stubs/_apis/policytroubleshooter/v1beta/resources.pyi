@@ -7,8 +7,9 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class PolicyTroubleshooterResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class IamResource(googleapiclient.discovery.Resource):
         def troubleshoot(
             self,
@@ -18,6 +19,7 @@ class PolicyTroubleshooterResource(googleapiclient.discovery.Resource):
         ) -> GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponseHttpRequest: ...
     def iam(self) -> IamResource: ...
 
+@typing.type_check_only
 class GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):

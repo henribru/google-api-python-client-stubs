@@ -1,40 +1,43 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class Task(typing_extensions.TypedDict, total=False):
-    title: str
-    position: str
-    selfLink: str
-    updated: str
-    hidden: bool
-    parent: str
-    id: str
-    etag: str
-    notes: str
-    due: str
-    kind: str
-    links: typing.List[typing.Dict[str, typing.Any]]
-    status: str
     completed: str
     deleted: bool
-
-class TaskList(typing_extensions.TypedDict, total=False):
+    due: str
+    etag: str
+    hidden: bool
+    id: str
     kind: str
+    links: typing.List[typing.Dict[str, typing.Any]]
+    notes: str
+    parent: str
+    position: str
+    selfLink: str
+    status: str
+    title: str
+    updated: str
+
+@typing.type_check_only
+class TaskList(typing_extensions.TypedDict, total=False):
     etag: str
     id: str
-    updated: str
-    title: str
-    selfLink: str
-
-class Tasks(typing_extensions.TypedDict, total=False):
     kind: str
-    nextPageToken: str
-    etag: str
-    items: typing.List[Task]
+    selfLink: str
+    title: str
+    updated: str
 
+@typing.type_check_only
 class TaskLists(typing_extensions.TypedDict, total=False):
     etag: str
-    kind: str
     items: typing.List[TaskList]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class Tasks(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: typing.List[Task]
+    kind: str
     nextPageToken: str

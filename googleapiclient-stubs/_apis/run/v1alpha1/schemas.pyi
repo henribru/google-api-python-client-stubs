@@ -1,464 +1,174 @@
 import typing
 
 import typing_extensions
-
-class ListConfigurationsResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    items: typing.List[Configuration]
-    unreachable: typing.List[str]
-    metadata: ListMeta
-    apiVersion: str
-
-class ServiceSpecRunLatest(typing_extensions.TypedDict, total=False):
-    configuration: ConfigurationSpec
-
-class ListCloudSchedulerSourcesResponse(typing_extensions.TypedDict, total=False):
-    metadata: ListMeta
-    apiVersion: str
-    kind: str
-    unreachable: typing.List[str]
-    items: typing.List[CloudSchedulerSource]
-
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
-    metadata: ListMeta
-    items: typing.List[Service]
-    apiVersion: str
-    kind: str
-    unreachable: typing.List[str]
-
-class ContainerPort(typing_extensions.TypedDict, total=False):
-    containerPort: int
-    hostIP: str
-    name: str
-    hostPort: int
-    protocol: str
-
-class TriggerCondition(typing_extensions.TypedDict, total=False):
-    type: str
-    lastTransitionTime: str
-    status: str
-    reason: str
-    message: str
-    severity: str
-
-class Handler(typing_extensions.TypedDict, total=False):
-    tcpSocket: TCPSocketAction
-    httpGet: HTTPGetAction
-    exec: ExecAction
-
-class RevisionSpec(typing_extensions.TypedDict, total=False):
-    container: Container
-    concurrencyModel: str
-    volumes: typing.List[Volume]
-    timeoutSeconds: int
-    containers: typing.List[Container]
-    generation: int
-    servingState: typing_extensions.Literal[
-        "REVISION_SERVING_STATE_UNSPECIFIED", "ACTIVE", "RESERVE", "RETIRED"
-    ]
-    serviceAccountName: str
-    containerConcurrency: int
-
-class OwnerReference(typing_extensions.TypedDict, total=False):
-    uid: str
-    controller: bool
-    blockOwnerDeletion: bool
-    apiVersion: str
-    kind: str
-    name: str
-
-class RevisionStatus(typing_extensions.TypedDict, total=False):
-    serviceName: str
-    imageDigest: str
-    observedGeneration: int
-    conditions: typing.List[RevisionCondition]
-    logUrl: str
-
-class Destination(typing_extensions.TypedDict, total=False):
-    uri: str
-    ref: ObjectReference
-
-class CloudStorageSourceStatus(typing_extensions.TypedDict, total=False):
-    sinkUri: str
-    conditions: typing.List[Condition]
-    observedGeneration: int
-
-class Revision(typing_extensions.TypedDict, total=False):
-    kind: str
-    apiVersion: str
-    metadata: ObjectMeta
-    status: RevisionStatus
-    spec: RevisionSpec
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class ServiceStatus(typing_extensions.TypedDict, total=False):
-    latestReadyRevisionName: str
-    latestCreatedRevisionName: str
-    domain: str
-    traffic: typing.List[TrafficTarget]
+@typing.type_check_only
+class Addressable(typing_extensions.TypedDict, total=False):
+    hostname: str
     url: str
-    conditions: typing.List[ServiceCondition]
-    observedGeneration: int
-    address: Addressable
 
-class ConfigMapEnvSource(typing_extensions.TypedDict, total=False):
-    optional: bool
-    localObjectReference: LocalObjectReference
-    name: str
+@typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: typing.List[AuditLogConfig]
+    service: str
 
-class TrafficTarget(typing_extensions.TypedDict, total=False):
-    revisionName: str
-    percent: int
-    tag: str
-    name: str
-    url: str
-    latestRevision: bool
-    configurationName: str
-
-class CloudSchedulerSourceSpec(typing_extensions.TypedDict, total=False):
-    location: str
-    ceOverrides: CloudEventOverrides
-    project: str
-    pubsubSecret: SecretKeySelector
-    schedule: str
-    data: str
-    secret: SecretKeySelector
-    sink: Destination
-
-class ConfigMapKeySelector(typing_extensions.TypedDict, total=False):
-    key: str
-    localObjectReference: LocalObjectReference
-    name: str
-    optional: bool
-
-class ResourceRecord(typing_extensions.TypedDict, total=False):
-    name: str
-    type: typing_extensions.Literal["RECORD_TYPE_UNSPECIFIED", "A", "AAAA", "CNAME"]
-    rrdata: str
-
-class DomainMappingSpec(typing_extensions.TypedDict, total=False):
-    certificateMode: typing_extensions.Literal[
-        "CERTIFICATE_MODE_UNSPECIFIED", "NONE", "AUTOMATIC"
-    ]
-    routeName: str
-    forceOverride: bool
-
-class Trigger(typing_extensions.TypedDict, total=False):
-    metadata: ObjectMeta
-    kind: str
-    status: TriggerStatus
-    spec: TriggerSpec
-    apiVersion: str
-
-class Expr(typing_extensions.TypedDict, total=False):
-    location: str
-    title: str
-    description: str
-    expression: str
-
-class SecurityContext(typing_extensions.TypedDict, total=False):
-    allowPrivilegeEscalation: bool
-    seLinuxOptions: SELinuxOptions
-    runAsGroup: int
-    privileged: bool
-    capabilities: Capabilities
-    runAsNonRoot: bool
-    readOnlyRootFilesystem: bool
-    runAsUser: int
-
-class CloudSchedulerSourceStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[Condition]
-    sinkUri: str
-    observedGeneration: int
-
-class ServiceSpecPinnedType(typing_extensions.TypedDict, total=False):
-    revisionName: str
-    configuration: ConfigurationSpec
-
-class EnvVarSource(typing_extensions.TypedDict, total=False):
-    secretKeyRef: SecretKeySelector
-    configMapKeyRef: ConfigMapKeySelector
-
-class ResourceRequirements(typing_extensions.TypedDict, total=False):
-    limits: typing.Dict[str, typing.Any]
-    requests: typing.Dict[str, typing.Any]
-    requestsInMap: typing.Dict[str, typing.Any]
-    limitsInMap: typing.Dict[str, typing.Any]
-
-class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    version: int
-    bindings: typing.List[Binding]
-    etag: str
-
-class ServiceSpecManualType(typing_extensions.TypedDict, total=False): ...
-
-class ObjectMeta(typing_extensions.TypedDict, total=False):
-    creationTimestamp: str
-    deletionTimestamp: str
-    deletionGracePeriodSeconds: int
-    annotations: typing.Dict[str, typing.Any]
-    labels: typing.Dict[str, typing.Any]
-    finalizers: typing.List[str]
-    clusterName: str
-    generation: int
-    selfLink: str
-    uid: str
-    resourceVersion: str
-    namespace: str
-    generateName: str
-    name: str
-    ownerReferences: typing.List[OwnerReference]
-
-class HTTPHeader(typing_extensions.TypedDict, total=False):
-    name: str
-    value: str
-
+@typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
     exemptedMembers: typing.List[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
-class SecretVolumeSource(typing_extensions.TypedDict, total=False):
-    secretName: str
-    optional: bool
-    defaultMode: int
-    items: typing.List[KeyToPath]
+@typing.type_check_only
+class AuthorizedDomain(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
 
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: typing.List[str]
+    role: str
+
+@typing.type_check_only
+class Capabilities(typing_extensions.TypedDict, total=False):
+    add: typing.List[str]
+    drop: typing.List[str]
+
+@typing.type_check_only
+class CloudAuditLogsSource(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: CloudAuditLogsSourceSpec
+    status: CloudAuditLogsSourceStatus
+
+@typing.type_check_only
+class CloudAuditLogsSourceSpec(typing_extensions.TypedDict, total=False):
+    ceOverrides: CloudEventOverrides
+    methodName: str
+    resourceName: str
+    serviceAccountName: str
+    serviceName: str
+    sink: Destination
+
+@typing.type_check_only
+class CloudAuditLogsSourceStatus(typing_extensions.TypedDict, total=False):
+    conditions: typing.List[Condition]
+    observedGeneration: int
+    sinkUri: str
+
+@typing.type_check_only
+class CloudEventOverrides(typing_extensions.TypedDict, total=False):
+    extensions: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class CloudPubSubSource(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: CloudPubSubSourceSpec
+    status: CloudPubSubSourceStatus
+
+@typing.type_check_only
+class CloudPubSubSourceSpec(typing_extensions.TypedDict, total=False):
+    ackDeadline: str
+    ceOverrides: CloudEventOverrides
+    project: str
+    pubsubSecret: SecretKeySelector
+    retainAckedMessages: bool
+    retentionDuration: str
+    secret: SecretKeySelector
+    sink: Destination
+    topic: str
+
+@typing.type_check_only
 class CloudPubSubSourceStatus(typing_extensions.TypedDict, total=False):
     conditions: typing.List[Condition]
     observedGeneration: int
     sinkUri: str
 
-class Route(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class CloudSchedulerSource(typing_extensions.TypedDict, total=False):
+    apiVersion: str
     kind: str
     metadata: ObjectMeta
-    apiVersion: str
-    spec: RouteSpec
-    status: RouteStatus
+    spec: CloudSchedulerSourceSpec
+    status: CloudSchedulerSourceStatus
 
-class DomainMappingStatus(typing_extensions.TypedDict, total=False):
-    resourceRecords: typing.List[ResourceRecord]
-    conditions: typing.List[DomainMappingCondition]
-    mappedRouteName: str
-    url: str
-    observedGeneration: int
-
-class RouteStatus(typing_extensions.TypedDict, total=False):
-    observedGeneration: int
-    domainInternal: str
-    domain: str
-    address: Addressable
-    url: str
-    conditions: typing.List[RouteCondition]
-    traffic: typing.List[TrafficTarget]
-
-class ConfigurationCondition(typing_extensions.TypedDict, total=False):
-    severity: str
-    status: str
-    type: str
-    reason: str
-    lastTransitionTime: str
-    message: str
-
-class LocalObjectReference(typing_extensions.TypedDict, total=False):
-    name: str
-
-class CloudStorageSourceSpec(typing_extensions.TypedDict, total=False):
-    serviceAccountName: str
+@typing.type_check_only
+class CloudSchedulerSourceSpec(typing_extensions.TypedDict, total=False):
     ceOverrides: CloudEventOverrides
-    pubsubSecret: SecretKeySelector
+    data: str
+    location: str
     project: str
-    eventTypes: typing.List[str]
-    sink: Destination
+    pubsubSecret: SecretKeySelector
+    schedule: str
     secret: SecretKeySelector
+    sink: Destination
+
+@typing.type_check_only
+class CloudSchedulerSourceStatus(typing_extensions.TypedDict, total=False):
+    conditions: typing.List[Condition]
+    observedGeneration: int
+    sinkUri: str
+
+@typing.type_check_only
+class CloudStorageSource(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: CloudStorageSourceSpec
+    status: CloudStorageSourceStatus
+
+@typing.type_check_only
+class CloudStorageSourceSpec(typing_extensions.TypedDict, total=False):
+    bucket: str
+    ceOverrides: CloudEventOverrides
+    eventTypes: typing.List[str]
     objectNamePrefix: str
     payloadFormat: str
-    bucket: str
+    project: str
+    pubsubSecret: SecretKeySelector
+    secret: SecretKeySelector
+    serviceAccountName: str
+    sink: Destination
 
-class ConfigurationStatus(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class CloudStorageSourceStatus(typing_extensions.TypedDict, total=False):
+    conditions: typing.List[Condition]
     observedGeneration: int
-    latestReadyRevisionName: str
-    conditions: typing.List[ConfigurationCondition]
-    latestCreatedRevisionName: str
+    sinkUri: str
 
-class ConfigMapVolumeSource(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Condition(typing_extensions.TypedDict, total=False):
+    lastTransitionTime: str
+    message: str
+    reason: str
+    severity: str
+    status: str
+    type: str
+
+@typing.type_check_only
+class ConfigMapEnvSource(typing_extensions.TypedDict, total=False):
+    localObjectReference: LocalObjectReference
     name: str
+    optional: bool
+
+@typing.type_check_only
+class ConfigMapKeySelector(typing_extensions.TypedDict, total=False):
+    key: str
+    localObjectReference: LocalObjectReference
+    name: str
+    optional: bool
+
+@typing.type_check_only
+class ConfigMapVolumeSource(typing_extensions.TypedDict, total=False):
     defaultMode: int
     items: typing.List[KeyToPath]
+    name: str
     optional: bool
 
-class SecretKeySelector(typing_extensions.TypedDict, total=False):
-    optional: bool
-    name: str
-    localObjectReference: LocalObjectReference
-    key: str
-
-class ServiceSpecReleaseType(typing_extensions.TypedDict, total=False):
-    rolloutPercent: int
-    revisions: typing.List[str]
-    configuration: ConfigurationSpec
-
-class ListCloudAuditLogsSourcesResponse(typing_extensions.TypedDict, total=False):
-    unreachable: typing.List[str]
-    apiVersion: str
-    kind: str
-    metadata: ListMeta
-    items: typing.List[CloudAuditLogsSource]
-
-class TriggerSpec(typing_extensions.TypedDict, total=False):
-    subscriber: Destination
-    broker: str
-    filter: TriggerFilter
-
-class RouteCondition(typing_extensions.TypedDict, total=False):
-    type: str
-    status: str
-    severity: str
-    reason: str
-    message: str
-    lastTransitionTime: str
-
-class Volume(typing_extensions.TypedDict, total=False):
-    name: str
-    configMap: ConfigMapVolumeSource
-    secret: SecretVolumeSource
-
-class ExecAction(typing_extensions.TypedDict, total=False):
-    command: typing.List[str]
-
-class CloudPubSubSource(typing_extensions.TypedDict, total=False):
-    status: CloudPubSubSourceStatus
-    kind: str
-    apiVersion: str
-    metadata: ObjectMeta
-    spec: CloudPubSubSourceSpec
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-    updateMask: str
-
-class Capabilities(typing_extensions.TypedDict, total=False):
-    add: typing.List[str]
-    drop: typing.List[str]
-
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
-    service: str
-
-class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    domains: typing.List[AuthorizedDomain]
-
-class VolumeMount(typing_extensions.TypedDict, total=False):
-    name: str
-    readOnly: bool
-    subPath: str
-    mountPropagation: str
-    mountPath: str
-
-class ServiceSpec(typing_extensions.TypedDict, total=False):
-    pinned: ServiceSpecPinnedType
-    release: ServiceSpecReleaseType
-    runLatest: ServiceSpecRunLatest
-    generation: int
-    traffic: typing.List[TrafficTarget]
-    manual: ServiceSpecManualType
-    template: RevisionTemplate
-
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    locations: typing.List[Location]
-
-class CloudStorageSource(typing_extensions.TypedDict, total=False):
-    status: CloudStorageSourceStatus
-    apiVersion: str
-    kind: str
-    spec: CloudStorageSourceSpec
-    metadata: ObjectMeta
-
-class TriggerFilter(typing_extensions.TypedDict, total=False):
-    attributes: typing.Dict[str, typing.Any]
-
-class AuthorizedDomain(typing_extensions.TypedDict, total=False):
-    name: str
-    id: str
-
-class IntOrString(typing_extensions.TypedDict, total=False):
-    type: int
-    strVal: str
-    intVal: int
-
-class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[DomainMapping]
-    unreachable: typing.List[str]
-    kind: str
-    metadata: ListMeta
-    apiVersion: str
-
-class Lifecycle(typing_extensions.TypedDict, total=False):
-    postStart: Handler
-    preStop: Handler
-
-class ListRoutesResponse(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    unreachable: typing.List[str]
-    items: typing.List[Route]
-    kind: str
-    metadata: ListMeta
-
-class TriggerStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[TriggerCondition]
-    subscriberUri: str
-    observedGeneration: int
-
-class Location(typing_extensions.TypedDict, total=False):
-    locationId: str
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-    displayName: str
-    labels: typing.Dict[str, typing.Any]
-
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class RouteSpec(typing_extensions.TypedDict, total=False):
-    traffic: typing.List[TrafficTarget]
-    generation: int
-
-class KeyToPath(typing_extensions.TypedDict, total=False):
-    key: str
-    mode: int
-    path: str
-
-class RevisionTemplate(typing_extensions.TypedDict, total=False):
-    metadata: ObjectMeta
-    spec: RevisionSpec
-
-class Quantity(typing_extensions.TypedDict, total=False):
-    string: str
-
-class ListTriggersResponse(typing_extensions.TypedDict, total=False):
-    unreachable: typing.List[str]
-    apiVersion: str
-    items: typing.List[Trigger]
-    kind: str
-    metadata: ListMeta
-
-class EnvVar(typing_extensions.TypedDict, total=False):
-    name: str
-    value: str
-    valueFrom: EnvVarSource
-
-class HTTPGetAction(typing_extensions.TypedDict, total=False):
-    host: str
-    httpHeaders: typing.List[HTTPHeader]
-    path: str
-    port: IntOrString
-    scheme: str
-
+@typing.type_check_only
 class Configuration(typing_extensions.TypedDict, total=False):
     apiVersion: str
     kind: str
@@ -466,201 +176,595 @@ class Configuration(typing_extensions.TypedDict, total=False):
     spec: ConfigurationSpec
     status: ConfigurationStatus
 
-class TCPSocketAction(typing_extensions.TypedDict, total=False):
-    port: IntOrString
+@typing.type_check_only
+class ConfigurationCondition(typing_extensions.TypedDict, total=False):
+    lastTransitionTime: str
+    message: str
+    reason: str
+    severity: str
+    status: str
+    type: str
+
+@typing.type_check_only
+class ConfigurationSpec(typing_extensions.TypedDict, total=False):
+    generation: int
+    revisionTemplate: RevisionTemplate
+    template: RevisionTemplate
+
+@typing.type_check_only
+class ConfigurationStatus(typing_extensions.TypedDict, total=False):
+    conditions: typing.List[ConfigurationCondition]
+    latestCreatedRevisionName: str
+    latestReadyRevisionName: str
+    observedGeneration: int
+
+@typing.type_check_only
+class Container(typing_extensions.TypedDict, total=False):
+    args: typing.List[str]
+    command: typing.List[str]
+    env: typing.List[EnvVar]
+    envFrom: typing.List[EnvFromSource]
+    image: str
+    imagePullPolicy: str
+    lifecycle: Lifecycle
+    livenessProbe: Probe
+    name: str
+    ports: typing.List[ContainerPort]
+    readinessProbe: Probe
+    resources: ResourceRequirements
+    securityContext: SecurityContext
+    stdin: bool
+    stdinOnce: bool
+    terminationMessagePath: str
+    terminationMessagePolicy: str
+    tty: bool
+    volumeDevices: typing.List[VolumeDevice]
+    volumeMounts: typing.List[VolumeMount]
+    workingDir: str
+
+@typing.type_check_only
+class ContainerPort(typing_extensions.TypedDict, total=False):
+    containerPort: int
+    hostIP: str
+    hostPort: int
+    name: str
+    protocol: str
+
+@typing.type_check_only
+class Destination(typing_extensions.TypedDict, total=False):
+    ref: ObjectReference
+    uri: str
+
+@typing.type_check_only
+class DomainMapping(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: DomainMappingSpec
+    status: DomainMappingStatus
+
+@typing.type_check_only
+class DomainMappingCondition(typing_extensions.TypedDict, total=False):
+    lastTransitionTime: str
+    message: str
+    reason: str
+    severity: str
+    status: str
+    type: str
+
+@typing.type_check_only
+class DomainMappingSpec(typing_extensions.TypedDict, total=False):
+    certificateMode: typing_extensions.Literal[
+        "CERTIFICATE_MODE_UNSPECIFIED", "NONE", "AUTOMATIC"
+    ]
+    forceOverride: bool
+    routeName: str
+
+@typing.type_check_only
+class DomainMappingStatus(typing_extensions.TypedDict, total=False):
+    conditions: typing.List[DomainMappingCondition]
+    mappedRouteName: str
+    observedGeneration: int
+    resourceRecords: typing.List[ResourceRecord]
+    url: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnvFromSource(typing_extensions.TypedDict, total=False):
+    configMapRef: ConfigMapEnvSource
+    prefix: str
+    secretRef: SecretEnvSource
+
+@typing.type_check_only
+class EnvVar(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
+    valueFrom: EnvVarSource
+
+@typing.type_check_only
+class EnvVarSource(typing_extensions.TypedDict, total=False):
+    configMapKeyRef: ConfigMapKeySelector
+    secretKeyRef: SecretKeySelector
+
+@typing.type_check_only
+class ExecAction(typing_extensions.TypedDict, total=False):
+    command: typing.List[str]
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class HTTPGetAction(typing_extensions.TypedDict, total=False):
     host: str
+    httpHeaders: typing.List[HTTPHeader]
+    path: str
+    port: IntOrString
+    scheme: str
 
-class RevisionCondition(typing_extensions.TypedDict, total=False):
-    status: str
-    severity: str
-    type: str
-    message: str
-    lastTransitionTime: str
-    reason: str
+@typing.type_check_only
+class HTTPHeader(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
 
-class Condition(typing_extensions.TypedDict, total=False):
-    severity: str
-    type: str
-    status: str
-    reason: str
-    message: str
-    lastTransitionTime: str
+@typing.type_check_only
+class Handler(typing_extensions.TypedDict, total=False):
+    exec: ExecAction
+    httpGet: HTTPGetAction
+    tcpSocket: TCPSocketAction
 
-class CloudAuditLogsSourceSpec(typing_extensions.TypedDict, total=False):
-    serviceAccountName: str
-    ceOverrides: CloudEventOverrides
-    methodName: str
-    sink: Destination
-    resourceName: str
-    serviceName: str
+@typing.type_check_only
+class IntOrString(typing_extensions.TypedDict, total=False):
+    intVal: int
+    strVal: str
+    type: int
 
-class CloudPubSubSourceSpec(typing_extensions.TypedDict, total=False):
-    sink: Destination
-    pubsubSecret: SecretKeySelector
-    ceOverrides: CloudEventOverrides
-    ackDeadline: str
-    topic: str
-    project: str
-    secret: SecretKeySelector
-    retainAckedMessages: bool
-    retentionDuration: str
+@typing.type_check_only
+class KeyToPath(typing_extensions.TypedDict, total=False):
+    key: str
+    mode: int
+    path: str
 
-class ServiceCondition(typing_extensions.TypedDict, total=False):
-    lastTransitionTime: str
-    reason: str
-    message: str
-    severity: str
-    status: str
-    type: str
+@typing.type_check_only
+class Lifecycle(typing_extensions.TypedDict, total=False):
+    postStart: Handler
+    preStop: Handler
 
-class ListCloudStorageSourcesResponse(typing_extensions.TypedDict, total=False):
-    unreachable: typing.List[str]
+@typing.type_check_only
+class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
+    domains: typing.List[AuthorizedDomain]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListCloudAuditLogsSourcesResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: typing.List[CloudAuditLogsSource]
     kind: str
     metadata: ListMeta
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListCloudPubSubSourcesResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: typing.List[CloudPubSubSource]
+    kind: str
+    metadata: ListMeta
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListCloudSchedulerSourcesResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: typing.List[CloudSchedulerSource]
+    kind: str
+    metadata: ListMeta
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListCloudStorageSourcesResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
     items: typing.List[CloudStorageSource]
+    kind: str
+    metadata: ListMeta
+    unreachable: typing.List[str]
 
-ListMeta = typing_extensions.TypedDict(
-    "ListMeta",
+@typing.type_check_only
+class ListConfigurationsResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: typing.List[Configuration]
+    kind: str
+    metadata: ListMeta
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: typing.List[DomainMapping]
+    kind: str
+    metadata: ListMeta
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+AlternativeListMeta = typing_extensions.TypedDict(
+    "AlternativeListMeta",
     {
         "continue": str,
-        "selfLink": str,
         "resourceVersion": str,
+        "selfLink": str,
     },
     total=False,
 )
+@typing.type_check_only
+class ListMeta(AlternativeListMeta): ...
 
-class EnvFromSource(typing_extensions.TypedDict, total=False):
-    configMapRef: ConfigMapEnvSource
-    secretRef: SecretEnvSource
-    prefix: str
-
-class ConfigurationSpec(typing_extensions.TypedDict, total=False):
-    revisionTemplate: RevisionTemplate
-    template: RevisionTemplate
-    generation: int
-
-class CloudEventOverrides(typing_extensions.TypedDict, total=False):
-    extensions: typing.Dict[str, typing.Any]
-
-class VolumeDevice(typing_extensions.TypedDict, total=False):
-    name: str
-    devicePath: str
-
-class CloudAuditLogsSource(typing_extensions.TypedDict, total=False):
-    spec: CloudAuditLogsSourceSpec
+@typing.type_check_only
+class ListRevisionsResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: typing.List[Revision]
     kind: str
-    status: CloudAuditLogsSourceStatus
-    metadata: ObjectMeta
-    apiVersion: str
-
-class ListCloudPubSubSourcesResponse(typing_extensions.TypedDict, total=False):
-    unreachable: typing.List[str]
-    apiVersion: str
-    items: typing.List[CloudPubSubSource]
     metadata: ListMeta
-    kind: str
+    unreachable: typing.List[str]
 
-class Container(typing_extensions.TypedDict, total=False):
-    workingDir: str
-    lifecycle: Lifecycle
-    terminationMessagePath: str
-    volumeMounts: typing.List[VolumeMount]
-    livenessProbe: Probe
-    name: str
-    args: typing.List[str]
-    resources: ResourceRequirements
-    terminationMessagePolicy: str
-    imagePullPolicy: str
-    volumeDevices: typing.List[VolumeDevice]
-    readinessProbe: Probe
-    image: str
-    envFrom: typing.List[EnvFromSource]
-    command: typing.List[str]
-    ports: typing.List[ContainerPort]
-    tty: bool
-    securityContext: SecurityContext
-    stdinOnce: bool
-    stdin: bool
-    env: typing.List[EnvVar]
-
-class CloudSchedulerSource(typing_extensions.TypedDict, total=False):
-    metadata: ObjectMeta
-    status: CloudSchedulerSourceStatus
+@typing.type_check_only
+class ListRoutesResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    spec: CloudSchedulerSourceSpec
+    items: typing.List[Route]
     kind: str
+    metadata: ListMeta
+    unreachable: typing.List[str]
 
-class SELinuxOptions(typing_extensions.TypedDict, total=False):
-    user: str
-    role: str
-    type: str
-    level: str
+@typing.type_check_only
+class ListServicesResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: typing.List[Service]
+    kind: str
+    metadata: ListMeta
+    unreachable: typing.List[str]
 
-class Binding(typing_extensions.TypedDict, total=False):
-    members: typing.List[str]
-    condition: Expr
-    role: str
+@typing.type_check_only
+class ListTriggersResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: typing.List[Trigger]
+    kind: str
+    metadata: ListMeta
+    unreachable: typing.List[str]
 
-class DomainMappingCondition(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class LocalObjectReference(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class ObjectMeta(typing_extensions.TypedDict, total=False):
+    annotations: typing.Dict[str, typing.Any]
+    clusterName: str
+    creationTimestamp: str
+    deletionGracePeriodSeconds: int
+    deletionTimestamp: str
+    finalizers: typing.List[str]
+    generateName: str
+    generation: int
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    namespace: str
+    ownerReferences: typing.List[OwnerReference]
+    resourceVersion: str
+    selfLink: str
+    uid: str
+
+@typing.type_check_only
+class ObjectReference(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    fieldPath: str
+    kind: str
+    name: str
+    namespace: str
+    resourceVersion: str
+    uid: str
+
+@typing.type_check_only
+class OwnerReference(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    blockOwnerDeletion: bool
+    controller: bool
+    kind: str
+    name: str
+    uid: str
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class Probe(typing_extensions.TypedDict, total=False):
+    failureThreshold: int
+    handler: Handler
+    initialDelaySeconds: int
+    periodSeconds: int
+    successThreshold: int
+    timeoutSeconds: int
+
+@typing.type_check_only
+class Quantity(typing_extensions.TypedDict, total=False):
+    string: str
+
+@typing.type_check_only
+class ResourceRecord(typing_extensions.TypedDict, total=False):
+    name: str
+    rrdata: str
+    type: typing_extensions.Literal["RECORD_TYPE_UNSPECIFIED", "A", "AAAA", "CNAME"]
+
+@typing.type_check_only
+class ResourceRequirements(typing_extensions.TypedDict, total=False):
+    limits: typing.Dict[str, typing.Any]
+    limitsInMap: typing.Dict[str, typing.Any]
+    requests: typing.Dict[str, typing.Any]
+    requestsInMap: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Revision(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: RevisionSpec
+    status: RevisionStatus
+
+@typing.type_check_only
+class RevisionCondition(typing_extensions.TypedDict, total=False):
+    lastTransitionTime: str
+    message: str
+    reason: str
+    severity: str
     status: str
     type: str
-    message: str
-    severity: str
+
+@typing.type_check_only
+class RevisionSpec(typing_extensions.TypedDict, total=False):
+    concurrencyModel: str
+    container: Container
+    containerConcurrency: int
+    containers: typing.List[Container]
+    generation: int
+    serviceAccountName: str
+    servingState: typing_extensions.Literal[
+        "REVISION_SERVING_STATE_UNSPECIFIED", "ACTIVE", "RESERVE", "RETIRED"
+    ]
+    timeoutSeconds: int
+    volumes: typing.List[Volume]
+
+@typing.type_check_only
+class RevisionStatus(typing_extensions.TypedDict, total=False):
+    conditions: typing.List[RevisionCondition]
+    imageDigest: str
+    logUrl: str
+    observedGeneration: int
+    serviceName: str
+
+@typing.type_check_only
+class RevisionTemplate(typing_extensions.TypedDict, total=False):
+    metadata: ObjectMeta
+    spec: RevisionSpec
+
+@typing.type_check_only
+class Route(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: RouteSpec
+    status: RouteStatus
+
+@typing.type_check_only
+class RouteCondition(typing_extensions.TypedDict, total=False):
     lastTransitionTime: str
+    message: str
     reason: str
+    severity: str
+    status: str
+    type: str
 
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+@typing.type_check_only
+class RouteSpec(typing_extensions.TypedDict, total=False):
+    generation: int
+    traffic: typing.List[TrafficTarget]
 
+@typing.type_check_only
+class RouteStatus(typing_extensions.TypedDict, total=False):
+    address: Addressable
+    conditions: typing.List[RouteCondition]
+    domain: str
+    domainInternal: str
+    observedGeneration: int
+    traffic: typing.List[TrafficTarget]
+    url: str
+
+@typing.type_check_only
+class SELinuxOptions(typing_extensions.TypedDict, total=False):
+    level: str
+    role: str
+    type: str
+    user: str
+
+@typing.type_check_only
 class SecretEnvSource(typing_extensions.TypedDict, total=False):
     localObjectReference: LocalObjectReference
     name: str
     optional: bool
 
-class ObjectReference(typing_extensions.TypedDict, total=False):
-    namespace: str
+@typing.type_check_only
+class SecretKeySelector(typing_extensions.TypedDict, total=False):
+    key: str
+    localObjectReference: LocalObjectReference
     name: str
-    apiVersion: str
-    uid: str
-    kind: str
-    resourceVersion: str
-    fieldPath: str
+    optional: bool
 
-class ListRevisionsResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Revision]
-    apiVersion: str
-    unreachable: typing.List[str]
-    metadata: ListMeta
-    kind: str
+@typing.type_check_only
+class SecretVolumeSource(typing_extensions.TypedDict, total=False):
+    defaultMode: int
+    items: typing.List[KeyToPath]
+    optional: bool
+    secretName: str
 
-class Probe(typing_extensions.TypedDict, total=False):
-    handler: Handler
-    initialDelaySeconds: int
-    failureThreshold: int
-    successThreshold: int
-    timeoutSeconds: int
-    periodSeconds: int
+@typing.type_check_only
+class SecurityContext(typing_extensions.TypedDict, total=False):
+    allowPrivilegeEscalation: bool
+    capabilities: Capabilities
+    privileged: bool
+    readOnlyRootFilesystem: bool
+    runAsGroup: int
+    runAsNonRoot: bool
+    runAsUser: int
+    seLinuxOptions: SELinuxOptions
 
-class CloudAuditLogsSourceStatus(typing_extensions.TypedDict, total=False):
-    observedGeneration: int
-    conditions: typing.List[Condition]
-    sinkUri: str
-
+@typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
-    kind: str
-    status: ServiceStatus
-    spec: ServiceSpec
     apiVersion: str
+    kind: str
     metadata: ObjectMeta
+    spec: ServiceSpec
+    status: ServiceStatus
 
-class Addressable(typing_extensions.TypedDict, total=False):
-    hostname: str
+@typing.type_check_only
+class ServiceCondition(typing_extensions.TypedDict, total=False):
+    lastTransitionTime: str
+    message: str
+    reason: str
+    severity: str
+    status: str
+    type: str
+
+@typing.type_check_only
+class ServiceSpec(typing_extensions.TypedDict, total=False):
+    generation: int
+    manual: ServiceSpecManualType
+    pinned: ServiceSpecPinnedType
+    release: ServiceSpecReleaseType
+    runLatest: ServiceSpecRunLatest
+    template: RevisionTemplate
+    traffic: typing.List[TrafficTarget]
+
+@typing.type_check_only
+class ServiceSpecManualType(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ServiceSpecPinnedType(typing_extensions.TypedDict, total=False):
+    configuration: ConfigurationSpec
+    revisionName: str
+
+@typing.type_check_only
+class ServiceSpecReleaseType(typing_extensions.TypedDict, total=False):
+    configuration: ConfigurationSpec
+    revisions: typing.List[str]
+    rolloutPercent: int
+
+@typing.type_check_only
+class ServiceSpecRunLatest(typing_extensions.TypedDict, total=False):
+    configuration: ConfigurationSpec
+
+@typing.type_check_only
+class ServiceStatus(typing_extensions.TypedDict, total=False):
+    address: Addressable
+    conditions: typing.List[ServiceCondition]
+    domain: str
+    latestCreatedRevisionName: str
+    latestReadyRevisionName: str
+    observedGeneration: int
+    traffic: typing.List[TrafficTarget]
     url: str
 
-class DomainMapping(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
+class TCPSocketAction(typing_extensions.TypedDict, total=False):
+    host: str
+    port: IntOrString
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TrafficTarget(typing_extensions.TypedDict, total=False):
+    configurationName: str
+    latestRevision: bool
+    name: str
+    percent: int
+    revisionName: str
+    tag: str
+    url: str
+
+@typing.type_check_only
+class Trigger(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    metadata: ObjectMeta
     kind: str
-    spec: DomainMappingSpec
-    status: DomainMappingStatus
+    metadata: ObjectMeta
+    spec: TriggerSpec
+    status: TriggerStatus
+
+@typing.type_check_only
+class TriggerCondition(typing_extensions.TypedDict, total=False):
+    lastTransitionTime: str
+    message: str
+    reason: str
+    severity: str
+    status: str
+    type: str
+
+@typing.type_check_only
+class TriggerFilter(typing_extensions.TypedDict, total=False):
+    attributes: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class TriggerSpec(typing_extensions.TypedDict, total=False):
+    broker: str
+    filter: TriggerFilter
+    subscriber: Destination
+
+@typing.type_check_only
+class TriggerStatus(typing_extensions.TypedDict, total=False):
+    conditions: typing.List[TriggerCondition]
+    observedGeneration: int
+    subscriberUri: str
+
+@typing.type_check_only
+class Volume(typing_extensions.TypedDict, total=False):
+    configMap: ConfigMapVolumeSource
+    name: str
+    secret: SecretVolumeSource
+
+@typing.type_check_only
+class VolumeDevice(typing_extensions.TypedDict, total=False):
+    devicePath: str
+    name: str
+
+@typing.type_check_only
+class VolumeMount(typing_extensions.TypedDict, total=False):
+    mountPath: str
+    mountPropagation: str
+    name: str
+    readOnly: bool
+    subPath: str

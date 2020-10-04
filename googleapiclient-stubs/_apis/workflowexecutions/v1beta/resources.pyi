@@ -7,30 +7,21 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class WorkflowsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class ExecutionsResource(googleapiclient.discovery.Resource):
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        view: typing_extensions.Literal[
-                            "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ListExecutionsResponseHttpRequest: ...
-                    def get(
+                    def cancel(
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
-                            "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ] = ...,
+                        body: CancelExecutionRequest = ...,
                         **kwargs: typing.Any
                     ) -> ExecutionHttpRequest: ...
                     def create(
@@ -40,24 +31,39 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         body: Execution = ...,
                         **kwargs: typing.Any
                     ) -> ExecutionHttpRequest: ...
-                    def cancel(
+                    def get(
                         self,
                         *,
                         name: str,
-                        body: CancelExecutionRequest = ...,
+                        view: typing_extensions.Literal[
+                            "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        ] = ...,
                         **kwargs: typing.Any
                     ) -> ExecutionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> ListExecutionsResponseHttpRequest: ...
                 def executions(self) -> ExecutionsResource: ...
             def workflows(self) -> WorkflowsResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ListExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListExecutionsResponse: ...
-
+@typing.type_check_only
 class ExecutionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Execution: ...
+
+@typing.type_check_only
+class ListExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListExecutionsResponse: ...

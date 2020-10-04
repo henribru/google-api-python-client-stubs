@@ -7,10 +7,12 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class DriveResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class AboutResource(googleapiclient.discovery.Resource):
         def get(self, **kwargs: typing.Any) -> AboutHttpRequest: ...
+    @typing.type_check_only
     class ChangesResource(googleapiclient.discovery.Resource):
         def getStartPageToken(
             self,
@@ -58,10 +60,12 @@ class DriveResource(googleapiclient.discovery.Resource):
             teamDriveId: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+    @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
     class CommentsResource(googleapiclient.discovery.Resource):
         def create(
             self, *, fileId: str, body: Comment = ..., **kwargs: typing.Any
@@ -95,6 +99,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             body: Comment = ...,
             **kwargs: typing.Any
         ) -> CommentHttpRequest: ...
+    @typing.type_check_only
     class DrivesResource(googleapiclient.discovery.Resource):
         def create(
             self, *, requestId: str, body: Drive = ..., **kwargs: typing.Any
@@ -128,6 +133,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             useDomainAdminAccess: bool = ...,
             **kwargs: typing.Any
         ) -> DriveHttpRequest: ...
+    @typing.type_check_only
     class FilesResource(googleapiclient.discovery.Resource):
         def copy(
             self,
@@ -231,6 +237,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             supportsTeamDrives: bool = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+    @typing.type_check_only
     class PermissionsResource(googleapiclient.discovery.Resource):
         def create(
             self,
@@ -292,6 +299,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             useDomainAdminAccess: bool = ...,
             **kwargs: typing.Any
         ) -> PermissionHttpRequest: ...
+    @typing.type_check_only
     class RepliesResource(googleapiclient.discovery.Resource):
         def create(
             self,
@@ -332,6 +340,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             body: Reply = ...,
             **kwargs: typing.Any
         ) -> ReplyHttpRequest: ...
+    @typing.type_check_only
     class RevisionsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, fileId: str, revisionId: str, **kwargs: typing.Any
@@ -360,6 +369,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             body: Revision = ...,
             **kwargs: typing.Any
         ) -> RevisionHttpRequest: ...
+    @typing.type_check_only
     class TeamdrivesResource(googleapiclient.discovery.Resource):
         def create(
             self, *, requestId: str, body: TeamDrive = ..., **kwargs: typing.Any
@@ -402,97 +412,116 @@ class DriveResource(googleapiclient.discovery.Resource):
     def revisions(self) -> RevisionsResource: ...
     def teamdrives(self) -> TeamdrivesResource: ...
 
+@typing.type_check_only
 class AboutHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> About: ...
 
-class DriveListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> DriveList: ...
-
-class CommentListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CommentList: ...
-
+@typing.type_check_only
 class ChangeListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ChangeList: ...
 
-class StartPageTokenHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> StartPageToken: ...
-
-class FileHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> File: ...
-
+@typing.type_check_only
 class ChannelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Channel: ...
 
-class FileListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> FileList: ...
-
-class TeamDriveHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TeamDrive: ...
-
-class TeamDriveListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TeamDriveList: ...
-
-class GeneratedIdsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GeneratedIds: ...
-
-class RevisionListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> RevisionList: ...
-
-class PermissionListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PermissionList: ...
-
+@typing.type_check_only
 class CommentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Comment: ...
 
+@typing.type_check_only
+class CommentListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CommentList: ...
+
+@typing.type_check_only
 class DriveHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Drive: ...
 
-class RevisionHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class DriveListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Revision: ...
+    ) -> DriveList: ...
 
+@typing.type_check_only
+class FileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> File: ...
+
+@typing.type_check_only
+class FileListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> FileList: ...
+
+@typing.type_check_only
+class GeneratedIdsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GeneratedIds: ...
+
+@typing.type_check_only
+class PermissionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Permission: ...
+
+@typing.type_check_only
+class PermissionListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PermissionList: ...
+
+@typing.type_check_only
 class ReplyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Reply: ...
 
+@typing.type_check_only
 class ReplyListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ReplyList: ...
 
-class PermissionHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class RevisionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Permission: ...
+    ) -> Revision: ...
+
+@typing.type_check_only
+class RevisionListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> RevisionList: ...
+
+@typing.type_check_only
+class StartPageTokenHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> StartPageToken: ...
+
+@typing.type_check_only
+class TeamDriveHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TeamDrive: ...
+
+@typing.type_check_only
+class TeamDriveListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TeamDriveList: ...

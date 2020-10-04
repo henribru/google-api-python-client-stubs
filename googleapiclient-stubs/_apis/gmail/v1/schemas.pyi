@@ -1,233 +1,273 @@
 import typing
 
 import typing_extensions
-
-class MessagePart(typing.Dict[str, typing.Any]): ...
-
-class SmtpMsa(typing_extensions.TypedDict, total=False):
-    username: str
-    password: str
-    securityMode: typing_extensions.Literal[
-        "securityModeUnspecified", "none", "ssl", "starttls"
-    ]
-    host: str
-    port: int
-
-class ImapSettings(typing_extensions.TypedDict, total=False):
-    enabled: bool
-    maxFolderSize: int
-    autoExpunge: bool
-    expungeBehavior: typing_extensions.Literal[
-        "expungeBehaviorUnspecified", "archive", "trash", "deleteForever"
-    ]
-
-class MessagePartHeader(typing_extensions.TypedDict, total=False):
-    name: str
-    value: str
-
-class ModifyThreadRequest(typing_extensions.TypedDict, total=False):
-    addLabelIds: typing.List[str]
-    removeLabelIds: typing.List[str]
-
-class MessagePartBody(typing_extensions.TypedDict, total=False):
-    data: str
-    size: int
-    attachmentId: str
-
-class HistoryMessageAdded(typing_extensions.TypedDict, total=False):
-    message: Message
-
-class SendAs(typing_extensions.TypedDict, total=False):
-    replyToAddress: str
-    signature: str
-    smtpMsa: SmtpMsa
-    isDefault: bool
-    sendAsEmail: str
-    displayName: str
-    isPrimary: bool
-    treatAsAlias: bool
-    verificationStatus: typing_extensions.Literal[
-        "verificationStatusUnspecified", "accepted", "pending"
-    ]
-
-class ListForwardingAddressesResponse(typing_extensions.TypedDict, total=False):
-    forwardingAddresses: typing.List[ForwardingAddress]
-
-class Draft(typing_extensions.TypedDict, total=False):
-    id: str
-    message: Message
-
-class HistoryLabelAdded(typing_extensions.TypedDict, total=False):
-    labelIds: typing.List[str]
-    message: Message
-
-class ListDraftsResponse(typing_extensions.TypedDict, total=False):
-    resultSizeEstimate: int
-    nextPageToken: str
-    drafts: typing.List[Draft]
-
-class Label(typing_extensions.TypedDict, total=False):
-    threadsTotal: int
-    messagesTotal: int
-    messageListVisibility: typing_extensions.Literal["show", "hide"]
-    id: str
-    type: typing_extensions.Literal["system", "user"]
-    name: str
-    color: LabelColor
-    labelListVisibility: typing_extensions.Literal[
-        "labelShow", "labelShowIfUnread", "labelHide"
-    ]
-    messagesUnread: int
-    threadsUnread: int
-
-class Message(typing.Dict[str, typing.Any]): ...
-
-class ListThreadsResponse(typing_extensions.TypedDict, total=False):
-    resultSizeEstimate: int
-    nextPageToken: str
-    threads: typing.List[Thread]
-
-class Delegate(typing_extensions.TypedDict, total=False):
-    verificationStatus: typing_extensions.Literal[
-        "verificationStatusUnspecified", "accepted", "pending", "rejected", "expired"
-    ]
-    delegateEmail: str
-
-class SmimeInfo(typing_extensions.TypedDict, total=False):
-    id: str
-    encryptedKeyPassword: str
-    expiration: str
-    issuerCn: str
-    pkcs12: str
-    isDefault: bool
-    pem: str
-
-class VacationSettings(typing_extensions.TypedDict, total=False):
-    startTime: str
-    endTime: str
-    restrictToContacts: bool
-    responseBodyPlainText: str
-    responseSubject: str
-    responseBodyHtml: str
-    restrictToDomain: bool
-    enableAutoReply: bool
-
-class Filter(typing_extensions.TypedDict, total=False):
-    criteria: FilterCriteria
-    id: str
-    action: FilterAction
-
+@typing.type_check_only
 class AutoForwarding(typing_extensions.TypedDict, total=False):
-    enabled: bool
     disposition: typing_extensions.Literal[
         "dispositionUnspecified", "leaveInInbox", "archive", "trash", "markRead"
     ]
     emailAddress: str
+    enabled: bool
 
-class BatchModifyMessagesRequest(typing_extensions.TypedDict, total=False):
-    addLabelIds: typing.List[str]
-    removeLabelIds: typing.List[str]
-    ids: typing.List[str]
-
+@typing.type_check_only
 class BatchDeleteMessagesRequest(typing_extensions.TypedDict, total=False):
     ids: typing.List[str]
 
-class ListSmimeInfoResponse(typing_extensions.TypedDict, total=False):
-    smimeInfo: typing.List[SmimeInfo]
+@typing.type_check_only
+class BatchModifyMessagesRequest(typing_extensions.TypedDict, total=False):
+    addLabelIds: typing.List[str]
+    ids: typing.List[str]
+    removeLabelIds: typing.List[str]
 
-FilterCriteria = typing_extensions.TypedDict(
-    "FilterCriteria",
+@typing.type_check_only
+class Delegate(typing_extensions.TypedDict, total=False):
+    delegateEmail: str
+    verificationStatus: typing_extensions.Literal[
+        "verificationStatusUnspecified", "accepted", "pending", "rejected", "expired"
+    ]
+
+@typing.type_check_only
+class Draft(typing_extensions.TypedDict, total=False):
+    id: str
+    message: Message
+
+@typing.type_check_only
+class Filter(typing_extensions.TypedDict, total=False):
+    action: FilterAction
+    criteria: FilterCriteria
+    id: str
+
+@typing.type_check_only
+class FilterAction(typing_extensions.TypedDict, total=False):
+    addLabelIds: typing.List[str]
+    forward: str
+    removeLabelIds: typing.List[str]
+
+AlternativeFilterCriteria = typing_extensions.TypedDict(
+    "AlternativeFilterCriteria",
     {
-        "from": str,
         "excludeChats": bool,
-        "size": int,
+        "from": str,
         "hasAttachment": bool,
+        "negatedQuery": str,
         "query": str,
+        "size": int,
+        "sizeComparison": typing_extensions.Literal["unspecified", "smaller", "larger"],
         "subject": str,
         "to": str,
-        "sizeComparison": typing_extensions.Literal["unspecified", "smaller", "larger"],
-        "negatedQuery": str,
     },
     total=False,
 )
+@typing.type_check_only
+class FilterCriteria(AlternativeFilterCriteria): ...
 
-class History(typing_extensions.TypedDict, total=False):
-    id: str
-    messagesDeleted: typing.List[HistoryMessageDeleted]
-    labelsAdded: typing.List[HistoryLabelAdded]
-    messagesAdded: typing.List[HistoryMessageAdded]
-    messages: typing.List[Message]
-    labelsRemoved: typing.List[HistoryLabelRemoved]
-
-class FilterAction(typing_extensions.TypedDict, total=False):
-    removeLabelIds: typing.List[str]
-    forward: str
-    addLabelIds: typing.List[str]
-
-class ListDelegatesResponse(typing_extensions.TypedDict, total=False):
-    delegates: typing.List[Delegate]
-
+@typing.type_check_only
 class ForwardingAddress(typing_extensions.TypedDict, total=False):
     forwardingEmail: str
     verificationStatus: typing_extensions.Literal[
         "verificationStatusUnspecified", "accepted", "pending"
     ]
 
-class Thread(typing.Dict[str, typing.Any]): ...
+@typing.type_check_only
+class History(typing_extensions.TypedDict, total=False):
+    id: str
+    labelsAdded: typing.List[HistoryLabelAdded]
+    labelsRemoved: typing.List[HistoryLabelRemoved]
+    messages: typing.List[Message]
+    messagesAdded: typing.List[HistoryMessageAdded]
+    messagesDeleted: typing.List[HistoryMessageDeleted]
 
-class ListLabelsResponse(typing_extensions.TypedDict, total=False):
-    labels: typing.List[Label]
+@typing.type_check_only
+class HistoryLabelAdded(typing.Dict[str, typing.Any]): ...
 
+@typing.type_check_only
 class HistoryLabelRemoved(typing.Dict[str, typing.Any]): ...
 
-class WatchRequest(typing_extensions.TypedDict, total=False):
-    topicName: str
-    labelFilterAction: typing_extensions.Literal["include", "exclude"]
-    labelIds: typing.List[str]
+@typing.type_check_only
+class HistoryMessageAdded(typing.Dict[str, typing.Any]): ...
 
-class ListFiltersResponse(typing_extensions.TypedDict, total=False):
-    filter: typing.List[Filter]
+@typing.type_check_only
+class HistoryMessageDeleted(typing.Dict[str, typing.Any]): ...
 
-class ModifyMessageRequest(typing_extensions.TypedDict, total=False):
-    removeLabelIds: typing.List[str]
-    addLabelIds: typing.List[str]
+@typing.type_check_only
+class ImapSettings(typing_extensions.TypedDict, total=False):
+    autoExpunge: bool
+    enabled: bool
+    expungeBehavior: typing_extensions.Literal[
+        "expungeBehaviorUnspecified", "archive", "trash", "deleteForever"
+    ]
+    maxFolderSize: int
 
-class WatchResponse(typing_extensions.TypedDict, total=False):
-    expiration: str
-    historyId: str
-
-class Profile(typing_extensions.TypedDict, total=False):
-    threadsTotal: int
+@typing.type_check_only
+class Label(typing_extensions.TypedDict, total=False):
+    color: LabelColor
+    id: str
+    labelListVisibility: typing_extensions.Literal[
+        "labelShow", "labelShowIfUnread", "labelHide"
+    ]
+    messageListVisibility: typing_extensions.Literal["show", "hide"]
     messagesTotal: int
-    emailAddress: str
-    historyId: str
+    messagesUnread: int
+    name: str
+    threadsTotal: int
+    threadsUnread: int
+    type: typing_extensions.Literal["system", "user"]
 
+@typing.type_check_only
+class LabelColor(typing_extensions.TypedDict, total=False):
+    backgroundColor: str
+    textColor: str
+
+@typing.type_check_only
 class LanguageSettings(typing_extensions.TypedDict, total=False):
     displayLanguage: str
 
-class HistoryMessageDeleted(typing.Dict[str, typing.Any]): ...
+@typing.type_check_only
+class ListDelegatesResponse(typing_extensions.TypedDict, total=False):
+    delegates: typing.List[Delegate]
 
-class ListSendAsResponse(typing_extensions.TypedDict, total=False):
-    sendAs: typing.List[SendAs]
+@typing.type_check_only
+class ListDraftsResponse(typing_extensions.TypedDict, total=False):
+    drafts: typing.List[Draft]
+    nextPageToken: str
+    resultSizeEstimate: int
 
+@typing.type_check_only
+class ListFiltersResponse(typing_extensions.TypedDict, total=False):
+    filter: typing.List[Filter]
+
+@typing.type_check_only
+class ListForwardingAddressesResponse(typing_extensions.TypedDict, total=False):
+    forwardingAddresses: typing.List[ForwardingAddress]
+
+@typing.type_check_only
+class ListHistoryResponse(typing_extensions.TypedDict, total=False):
+    history: typing.List[History]
+    historyId: str
+    nextPageToken: str
+
+@typing.type_check_only
+class ListLabelsResponse(typing_extensions.TypedDict, total=False):
+    labels: typing.List[Label]
+
+@typing.type_check_only
 class ListMessagesResponse(typing_extensions.TypedDict, total=False):
     messages: typing.List[Message]
     nextPageToken: str
     resultSizeEstimate: int
 
-class LabelColor(typing_extensions.TypedDict, total=False):
-    textColor: str
-    backgroundColor: str
+@typing.type_check_only
+class ListSendAsResponse(typing_extensions.TypedDict, total=False):
+    sendAs: typing.List[SendAs]
 
+@typing.type_check_only
+class ListSmimeInfoResponse(typing_extensions.TypedDict, total=False):
+    smimeInfo: typing.List[SmimeInfo]
+
+@typing.type_check_only
+class ListThreadsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resultSizeEstimate: int
+    threads: typing.List[Thread]
+
+@typing.type_check_only
+class Message(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class MessagePart(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class MessagePartBody(typing_extensions.TypedDict, total=False):
+    attachmentId: str
+    data: str
+    size: int
+
+@typing.type_check_only
+class MessagePartHeader(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
+
+@typing.type_check_only
+class ModifyMessageRequest(typing_extensions.TypedDict, total=False):
+    addLabelIds: typing.List[str]
+    removeLabelIds: typing.List[str]
+
+@typing.type_check_only
+class ModifyThreadRequest(typing_extensions.TypedDict, total=False):
+    addLabelIds: typing.List[str]
+    removeLabelIds: typing.List[str]
+
+@typing.type_check_only
 class PopSettings(typing_extensions.TypedDict, total=False):
-    disposition: typing_extensions.Literal[
-        "dispositionUnspecified", "leaveInInbox", "archive", "trash", "markRead"
-    ]
     accessWindow: typing_extensions.Literal[
         "accessWindowUnspecified", "disabled", "fromNowOn", "allMail"
     ]
+    disposition: typing_extensions.Literal[
+        "dispositionUnspecified", "leaveInInbox", "archive", "trash", "markRead"
+    ]
 
-class ListHistoryResponse(typing_extensions.TypedDict, total=False):
-    history: typing.List[History]
-    nextPageToken: str
+@typing.type_check_only
+class Profile(typing_extensions.TypedDict, total=False):
+    emailAddress: str
+    historyId: str
+    messagesTotal: int
+    threadsTotal: int
+
+@typing.type_check_only
+class SendAs(typing_extensions.TypedDict, total=False):
+    displayName: str
+    isDefault: bool
+    isPrimary: bool
+    replyToAddress: str
+    sendAsEmail: str
+    signature: str
+    smtpMsa: SmtpMsa
+    treatAsAlias: bool
+    verificationStatus: typing_extensions.Literal[
+        "verificationStatusUnspecified", "accepted", "pending"
+    ]
+
+@typing.type_check_only
+class SmimeInfo(typing_extensions.TypedDict, total=False):
+    encryptedKeyPassword: str
+    expiration: str
+    id: str
+    isDefault: bool
+    issuerCn: str
+    pem: str
+    pkcs12: str
+
+@typing.type_check_only
+class SmtpMsa(typing_extensions.TypedDict, total=False):
+    host: str
+    password: str
+    port: int
+    securityMode: typing_extensions.Literal[
+        "securityModeUnspecified", "none", "ssl", "starttls"
+    ]
+    username: str
+
+@typing.type_check_only
+class Thread(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class VacationSettings(typing_extensions.TypedDict, total=False):
+    enableAutoReply: bool
+    endTime: str
+    responseBodyHtml: str
+    responseBodyPlainText: str
+    responseSubject: str
+    restrictToContacts: bool
+    restrictToDomain: bool
+    startTime: str
+
+@typing.type_check_only
+class WatchRequest(typing_extensions.TypedDict, total=False):
+    labelFilterAction: typing_extensions.Literal["include", "exclude"]
+    labelIds: typing.List[str]
+    topicName: str
+
+@typing.type_check_only
+class WatchResponse(typing_extensions.TypedDict, total=False):
+    expiration: str
     historyId: str

@@ -1,31 +1,69 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class ArtifactObjects(typing_extensions.TypedDict, total=False):
+    location: str
+    paths: typing.List[str]
+    timing: TimeSpan
 
-class ListBuildsResponse(typing_extensions.TypedDict, total=False):
-    builds: typing.List[Build]
-    nextPageToken: str
+@typing.type_check_only
+class ArtifactResult(typing_extensions.TypedDict, total=False):
+    fileHash: typing.List[FileHashes]
+    location: str
 
-class NotifierConfig(typing_extensions.TypedDict, total=False):
-    spec: NotifierSpec
-    apiVersion: str
-    metadata: NotifierMetadata
-    kind: str
+@typing.type_check_only
+class Artifacts(typing_extensions.TypedDict, total=False):
+    images: typing.List[str]
+    objects: ArtifactObjects
 
-class TimeSpan(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Build(typing_extensions.TypedDict, total=False):
+    artifacts: Artifacts
+    buildTriggerId: str
+    createTime: str
+    finishTime: str
+    id: str
+    images: typing.List[str]
+    logUrl: str
+    logsBucket: str
+    name: str
+    options: BuildOptions
+    projectId: str
+    queueTtl: str
+    results: Results
+    secrets: typing.List[Secret]
+    serviceAccount: str
+    source: Source
+    sourceProvenance: SourceProvenance
     startTime: str
-    endTime: str
-
-class BuildOptions(typing_extensions.TypedDict, total=False):
-    secretEnv: typing.List[str]
-    machineType: typing_extensions.Literal[
-        "UNSPECIFIED", "N1_HIGHCPU_8", "N1_HIGHCPU_32"
+    status: typing_extensions.Literal[
+        "STATUS_UNKNOWN",
+        "QUEUED",
+        "WORKING",
+        "SUCCESS",
+        "FAILURE",
+        "INTERNAL_ERROR",
+        "TIMEOUT",
+        "CANCELLED",
+        "EXPIRED",
     ]
+    statusDetail: str
+    steps: typing.List[BuildStep]
+    substitutions: typing.Dict[str, typing.Any]
+    tags: typing.List[str]
+    timeout: str
+    timing: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
+    build: Build
+
+@typing.type_check_only
+class BuildOptions(typing_extensions.TypedDict, total=False):
     diskSizeGb: str
-    requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
-    substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
+    dynamicSubstitutions: bool
     env: typing.List[str]
-    volumes: typing.List[Volume]
     logStreamingOption: typing_extensions.Literal[
         "STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"
     ]
@@ -37,74 +75,26 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
         "CLOUD_LOGGING_ONLY",
         "NONE",
     ]
-    workerPool: str
-    dynamicSubstitutions: bool
-    sourceProvenanceHash: typing.List[str]
-
-class Artifacts(typing_extensions.TypedDict, total=False):
-    objects: ArtifactObjects
-    images: typing.List[str]
-
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
-
-class NotifierSpec(typing_extensions.TypedDict, total=False):
-    notification: Notification
-    secrets: typing.List[NotifierSecret]
-
-class SlackDelivery(typing_extensions.TypedDict, total=False):
-    webhookUri: NotifierSecretRef
-
-class Build(typing_extensions.TypedDict, total=False):
-    secrets: typing.List[Secret]
-    images: typing.List[str]
-    statusDetail: str
-    timeout: str
-    projectId: str
-    startTime: str
-    results: Results
-    queueTtl: str
-    logsBucket: str
-    status: typing_extensions.Literal[
-        "STATUS_UNKNOWN",
-        "QUEUED",
-        "WORKING",
-        "SUCCESS",
-        "FAILURE",
-        "INTERNAL_ERROR",
-        "TIMEOUT",
-        "CANCELLED",
-        "EXPIRED",
+    machineType: typing_extensions.Literal[
+        "UNSPECIFIED", "N1_HIGHCPU_8", "N1_HIGHCPU_32"
     ]
-    name: str
-    substitutions: typing.Dict[str, typing.Any]
-    options: BuildOptions
-    createTime: str
-    steps: typing.List[BuildStep]
-    source: Source
-    serviceAccount: str
-    id: str
-    finishTime: str
-    logUrl: str
-    sourceProvenance: SourceProvenance
-    timing: typing.Dict[str, typing.Any]
-    artifacts: Artifacts
-    tags: typing.List[str]
-    buildTriggerId: str
+    requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
+    secretEnv: typing.List[str]
+    sourceProvenanceHash: typing.List[str]
+    substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
+    volumes: typing.List[Volume]
+    workerPool: str
 
-class Results(typing_extensions.TypedDict, total=False):
-    images: typing.List[BuiltImage]
-    artifactManifest: str
-    numArtifacts: str
-    buildStepImages: typing.List[str]
-    buildStepOutputs: typing.List[str]
-    artifactTiming: TimeSpan
-
-class NotifierSecret(typing_extensions.TypedDict, total=False):
-    value: str
-    name: str
-
+@typing.type_check_only
 class BuildStep(typing_extensions.TypedDict, total=False):
+    args: typing.List[str]
+    dir: str
+    entrypoint: str
     env: typing.List[str]
+    id: str
+    name: str
+    pullTiming: TimeSpan
+    secretEnv: typing.List[str]
     status: typing_extensions.Literal[
         "STATUS_UNKNOWN",
         "QUEUED",
@@ -118,72 +108,117 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     ]
     timeout: str
     timing: TimeSpan
-    pullTiming: TimeSpan
-    secretEnv: typing.List[str]
-    entrypoint: str
-    args: typing.List[str]
-    dir: str
     volumes: typing.List[Volume]
-    name: str
     waitFor: typing.List[str]
+
+@typing.type_check_only
+class BuildTrigger(typing_extensions.TypedDict, total=False):
+    build: Build
+    createTime: str
+    description: str
+    disabled: bool
+    filename: str
+    github: GitHubEventsConfig
     id: str
-
-class PushFilter(typing_extensions.TypedDict, total=False):
-    branch: str
-    invertRegex: bool
-    tag: str
-
-class Operation(typing_extensions.TypedDict, total=False):
-    done: bool
-    metadata: typing.Dict[str, typing.Any]
+    ignoredFiles: typing.List[str]
+    includedFiles: typing.List[str]
     name: str
-    response: typing.Dict[str, typing.Any]
-    error: Status
+    substitutions: typing.Dict[str, typing.Any]
+    tags: typing.List[str]
+    triggerTemplate: RepoSource
 
-class NotifierMetadata(typing_extensions.TypedDict, total=False):
-    notifier: str
+@typing.type_check_only
+class BuiltImage(typing_extensions.TypedDict, total=False):
+    digest: str
     name: str
+    pushTiming: TimeSpan
 
-class Source(typing_extensions.TypedDict, total=False):
-    repoSource: RepoSource
-    storageSource: StorageSource
-
-class GitHubEventsConfig(typing_extensions.TypedDict, total=False):
-    name: str
-    pullRequest: PullRequestFilter
-    push: PushFilter
-    installationId: str
-    owner: str
-
+@typing.type_check_only
 class CancelBuildRequest(typing_extensions.TypedDict, total=False):
-    projectId: str
-    name: str
     id: str
+    name: str
+    projectId: str
 
-class StorageSource(typing_extensions.TypedDict, total=False):
-    object: str
-    generation: str
-    bucket: str
+@typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-    code: int
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: typing.List[Hash]
 
-class ArtifactResult(typing_extensions.TypedDict, total=False):
-    location: str
-    fileHash: typing.List[FileHashes]
+@typing.type_check_only
+class GitHubEventsConfig(typing_extensions.TypedDict, total=False):
+    installationId: str
+    name: str
+    owner: str
+    pullRequest: PullRequestFilter
+    push: PushFilter
 
+@typing.type_check_only
+class HTTPDelivery(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
+class Hash(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal["NONE", "SHA256", "MD5"]
+    value: str
+
+@typing.type_check_only
+class ListBuildTriggersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    triggers: typing.List[BuildTrigger]
+
+@typing.type_check_only
+class ListBuildsResponse(typing_extensions.TypedDict, total=False):
+    builds: typing.List[Build]
+    nextPageToken: str
+
+@typing.type_check_only
 class Notification(typing_extensions.TypedDict, total=False):
-    structDelivery: typing.Dict[str, typing.Any]
-    httpDelivery: HTTPDelivery
     filter: str
+    httpDelivery: HTTPDelivery
     slackDelivery: SlackDelivery
     smtpDelivery: SMTPDelivery
+    structDelivery: typing.Dict[str, typing.Any]
 
+@typing.type_check_only
+class NotifierConfig(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: NotifierMetadata
+    spec: NotifierSpec
+
+@typing.type_check_only
+class NotifierMetadata(typing_extensions.TypedDict, total=False):
+    name: str
+    notifier: str
+
+@typing.type_check_only
+class NotifierSecret(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
+
+@typing.type_check_only
+class NotifierSecretRef(typing_extensions.TypedDict, total=False):
+    secretRef: str
+
+@typing.type_check_only
+class NotifierSpec(typing_extensions.TypedDict, total=False):
+    notification: Notification
+    secrets: typing.List[NotifierSecret]
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class PullRequestFilter(typing_extensions.TypedDict, total=False):
     branch: str
     commentControl: typing_extensions.Literal[
@@ -193,82 +228,85 @@ class PullRequestFilter(typing_extensions.TypedDict, total=False):
     ]
     invertRegex: bool
 
-class Volume(typing_extensions.TypedDict, total=False):
-    path: str
-    name: str
+@typing.type_check_only
+class PushFilter(typing_extensions.TypedDict, total=False):
+    branch: str
+    invertRegex: bool
+    tag: str
 
-class BuildTrigger(typing_extensions.TypedDict, total=False):
-    triggerTemplate: RepoSource
-    build: Build
-    disabled: bool
-    name: str
-    description: str
-    ignoredFiles: typing.List[str]
-    github: GitHubEventsConfig
-    includedFiles: typing.List[str]
-    id: str
-    tags: typing.List[str]
-    filename: str
+@typing.type_check_only
+class RepoSource(typing_extensions.TypedDict, total=False):
+    branchName: str
+    commitSha: str
+    dir: str
+    invertRegex: bool
+    projectId: str
+    repoName: str
     substitutions: typing.Dict[str, typing.Any]
-    createTime: str
+    tagName: str
 
+@typing.type_check_only
+class Results(typing_extensions.TypedDict, total=False):
+    artifactManifest: str
+    artifactTiming: TimeSpan
+    buildStepImages: typing.List[str]
+    buildStepOutputs: typing.List[str]
+    images: typing.List[BuiltImage]
+    numArtifacts: str
+
+@typing.type_check_only
+class RetryBuildRequest(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+    projectId: str
+
+@typing.type_check_only
+class SMTPDelivery(typing_extensions.TypedDict, total=False):
+    fromAddress: str
+    password: NotifierSecretRef
+    port: str
+    recipientAddresses: typing.List[str]
+    senderAddress: str
+    server: str
+
+@typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     secretEnv: typing.Dict[str, typing.Any]
 
-class SMTPDelivery(typing_extensions.TypedDict, total=False):
-    server: str
-    fromAddress: str
-    password: NotifierSecretRef
-    recipientAddresses: typing.List[str]
-    senderAddress: str
-    port: str
+@typing.type_check_only
+class SlackDelivery(typing_extensions.TypedDict, total=False):
+    webhookUri: NotifierSecretRef
 
-class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
-    build: Build
+@typing.type_check_only
+class Source(typing_extensions.TypedDict, total=False):
+    repoSource: RepoSource
+    storageSource: StorageSource
 
-class ListBuildTriggersResponse(typing_extensions.TypedDict, total=False):
-    triggers: typing.List[BuildTrigger]
-    nextPageToken: str
-
-class RetryBuildRequest(typing_extensions.TypedDict, total=False):
-    name: str
-    projectId: str
-    id: str
-
-class BuiltImage(typing_extensions.TypedDict, total=False):
-    name: str
-    pushTiming: TimeSpan
-    digest: str
-
-class ArtifactObjects(typing_extensions.TypedDict, total=False):
-    location: str
-    paths: typing.List[str]
-    timing: TimeSpan
-
-class Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5"]
-    value: str
-
-class HTTPDelivery(typing_extensions.TypedDict, total=False):
-    uri: str
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class RepoSource(typing_extensions.TypedDict, total=False):
-    dir: str
-    substitutions: typing.Dict[str, typing.Any]
-    commitSha: str
-    invertRegex: bool
-    branchName: str
-    projectId: str
-    tagName: str
-    repoName: str
-
+@typing.type_check_only
 class SourceProvenance(typing_extensions.TypedDict, total=False):
-    resolvedRepoSource: RepoSource
     fileHashes: typing.Dict[str, typing.Any]
+    resolvedRepoSource: RepoSource
     resolvedStorageSource: StorageSource
 
-class NotifierSecretRef(typing_extensions.TypedDict, total=False):
-    secretRef: str
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class StorageSource(typing_extensions.TypedDict, total=False):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
+class TimeSpan(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
+class Volume(typing_extensions.TypedDict, total=False):
+    name: str
+    path: str

@@ -7,12 +7,28 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class RecommenderResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class InsightTypesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class InsightsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRecommenderV1beta1InsightHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRecommenderV1beta1ListInsightsResponseHttpRequest: ...
                     def markAccepted(
                         self,
                         *,
@@ -20,26 +36,28 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1InsightHttpRequest: ...
+                def insights(self) -> InsightsResource: ...
+            @typing.type_check_only
+            class RecommendersResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RecommendationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        pageToken: str = ...,
-                        pageSize: int = ...,
                         filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudRecommenderV1beta1ListInsightsResponseHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleCloudRecommenderV1beta1InsightHttpRequest: ...
-                def insights(self) -> InsightsResource: ...
-            class RecommendersResource(googleapiclient.discovery.Resource):
-                class RecommendationsResource(googleapiclient.discovery.Resource):
-                    def markSucceeded(
+                    ) -> GoogleCloudRecommenderV1beta1ListRecommendationsResponseHttpRequest: ...
+                    def markClaimed(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest = ...,
+                        body: GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
                     def markFailed(
@@ -49,38 +67,34 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkRecommendationFailedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
-                    def markClaimed(
+                    def markSucceeded(
                         self,
                         *,
                         name: str,
-                        body: GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest = ...,
+                        body: GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        filter: str = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudRecommenderV1beta1ListRecommendationsResponseHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
             def insightTypes(self) -> InsightTypesResource: ...
             def recommenders(self) -> RecommendersResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class GoogleCloudRecommenderV1beta1RecommendationHttpRequest(
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1InsightHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudRecommenderV1beta1Insight: ...
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1ListInsightsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudRecommenderV1beta1Recommendation: ...
+    ) -> GoogleCloudRecommenderV1beta1ListInsightsResponse: ...
 
+@typing.type_check_only
 class GoogleCloudRecommenderV1beta1ListRecommendationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -88,14 +102,10 @@ class GoogleCloudRecommenderV1beta1ListRecommendationsResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudRecommenderV1beta1ListRecommendationsResponse: ...
 
-class GoogleCloudRecommenderV1beta1InsightHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudRecommenderV1beta1Insight: ...
-
-class GoogleCloudRecommenderV1beta1ListInsightsResponseHttpRequest(
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1RecommendationHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudRecommenderV1beta1ListInsightsResponse: ...
+    ) -> GoogleCloudRecommenderV1beta1Recommendation: ...

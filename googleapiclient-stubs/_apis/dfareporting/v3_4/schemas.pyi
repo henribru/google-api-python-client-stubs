@@ -1,66 +1,135 @@
 import typing
 
 import typing_extensions
-
-class PostalCode(typing_extensions.TypedDict, total=False):
-    countryCode: str
-    countryDartId: str
-    id: str
-    code: str
-    kind: str
-
-class PlacementsGenerateTagsResponse(typing_extensions.TypedDict, total=False):
-    placementTags: typing.List[PlacementTag]
-    kind: str
-
-class City(typing_extensions.TypedDict, total=False):
-    dartId: str
-    kind: str
-    countryDartId: str
-    metroDmaId: str
-    metroCode: str
-    regionDartId: str
-    regionCode: str
-    name: str
-    countryCode: str
-
-class EventTag(typing_extensions.TypedDict, total=False):
-    siteFilterType: typing_extensions.Literal["WHITELIST", "BLACKLIST"]
-    accountId: str
-    excludeFromAdxRequests: bool
-    sslCompliant: bool
-    status: typing_extensions.Literal["ENABLED", "DISABLED"]
-    enabledByDefault: bool
-    campaignId: str
-    name: str
-    siteIds: typing.List[str]
-    id: str
-    subaccountId: str
-    url: str
-    advertiserIdDimensionValue: DimensionValue
-    type: typing_extensions.Literal[
-        "IMPRESSION_IMAGE_EVENT_TAG",
-        "IMPRESSION_JAVASCRIPT_EVENT_TAG",
-        "CLICK_THROUGH_EVENT_TAG",
+@typing.type_check_only
+class Account(typing_extensions.TypedDict, total=False):
+    accountPermissionIds: typing.List[str]
+    accountProfile: typing_extensions.Literal[
+        "ACCOUNT_PROFILE_BASIC", "ACCOUNT_PROFILE_STANDARD"
     ]
-    advertiserId: str
-    urlEscapeLevels: int
-    campaignIdDimensionValue: DimensionValue
+    active: bool
+    activeAdsLimitTier: typing_extensions.Literal[
+        "ACTIVE_ADS_TIER_40K",
+        "ACTIVE_ADS_TIER_75K",
+        "ACTIVE_ADS_TIER_100K",
+        "ACTIVE_ADS_TIER_200K",
+        "ACTIVE_ADS_TIER_300K",
+        "ACTIVE_ADS_TIER_500K",
+        "ACTIVE_ADS_TIER_750K",
+        "ACTIVE_ADS_TIER_1M",
+    ]
+    activeViewOptOut: bool
+    availablePermissionIds: typing.List[str]
+    countryId: str
+    currencyId: str
+    defaultCreativeSizeId: str
+    description: str
+    id: str
+    kind: str
+    locale: str
+    maximumImageSize: str
+    name: str
+    nielsenOcrEnabled: bool
+    reportsConfiguration: ReportsConfiguration
+    shareReportsWithTwitter: bool
+    teaserSizeLimit: str
+
+@typing.type_check_only
+class AccountActiveAdSummary(typing_extensions.TypedDict, total=False):
+    accountId: str
+    activeAds: str
+    activeAdsLimitTier: typing_extensions.Literal[
+        "ACTIVE_ADS_TIER_40K",
+        "ACTIVE_ADS_TIER_75K",
+        "ACTIVE_ADS_TIER_100K",
+        "ACTIVE_ADS_TIER_200K",
+        "ACTIVE_ADS_TIER_300K",
+        "ACTIVE_ADS_TIER_500K",
+        "ACTIVE_ADS_TIER_750K",
+        "ACTIVE_ADS_TIER_1M",
+    ]
+    availableAds: str
     kind: str
 
-class Placement(typing_extensions.TypedDict, total=False):
-    primary: bool
-    placementGroupId: str
-    campaignId: str
-    keyName: str
-    externalId: str
-    kind: str
-    pricingSchedule: PricingSchedule
-    archived: bool
-    paymentApproved: bool
+@typing.type_check_only
+class AccountPermission(typing_extensions.TypedDict, total=False):
+    accountProfiles: typing.List[str]
     id: str
-    idDimensionValue: DimensionValue
+    kind: str
+    level: typing_extensions.Literal["USER", "ADMINISTRATOR"]
+    name: str
+    permissionGroupId: str
+
+@typing.type_check_only
+class AccountPermissionGroup(typing_extensions.TypedDict, total=False):
+    id: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class AccountPermissionGroupsListResponse(typing_extensions.TypedDict, total=False):
+    accountPermissionGroups: typing.List[AccountPermissionGroup]
+    kind: str
+
+@typing.type_check_only
+class AccountPermissionsListResponse(typing_extensions.TypedDict, total=False):
+    accountPermissions: typing.List[AccountPermission]
+    kind: str
+
+@typing.type_check_only
+class AccountUserProfile(typing_extensions.TypedDict, total=False):
+    accountId: str
+    active: bool
+    advertiserFilter: ObjectFilter
+    campaignFilter: ObjectFilter
+    comments: str
+    email: str
+    id: str
+    kind: str
+    locale: str
+    name: str
+    siteFilter: ObjectFilter
+    subaccountId: str
+    traffickerType: typing_extensions.Literal[
+        "INTERNAL_NON_TRAFFICKER", "INTERNAL_TRAFFICKER", "EXTERNAL_TRAFFICKER"
+    ]
+    userAccessType: typing_extensions.Literal[
+        "NORMAL_USER", "SUPER_USER", "INTERNAL_ADMINISTRATOR", "READ_ONLY_SUPER_USER"
+    ]
+    userRoleFilter: ObjectFilter
+    userRoleId: str
+
+@typing.type_check_only
+class AccountUserProfilesListResponse(typing_extensions.TypedDict, total=False):
+    accountUserProfiles: typing.List[AccountUserProfile]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class AccountsListResponse(typing_extensions.TypedDict, total=False):
+    accounts: typing.List[Account]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class Activities(typing_extensions.TypedDict, total=False):
+    filters: typing.List[DimensionValue]
+    kind: str
+    metricNames: typing.List[str]
+
+@typing.type_check_only
+class Ad(typing_extensions.TypedDict, total=False):
+    accountId: str
+    active: bool
     advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    archived: bool
+    audienceSegmentId: str
+    campaignId: str
+    campaignIdDimensionValue: DimensionValue
+    clickThroughUrl: ClickThroughUrl
+    clickThroughUrlSuffixProperties: ClickThroughUrlSuffixProperties
+    comments: str
     compatibility: typing_extensions.Literal[
         "DISPLAY",
         "DISPLAY_INTERSTITIAL",
@@ -69,180 +138,467 @@ class Placement(typing_extensions.TypedDict, total=False):
         "IN_STREAM_VIDEO",
         "IN_STREAM_AUDIO",
     ]
-    siteIdDimensionValue: DimensionValue
-    subaccountId: str
-    lookbackConfiguration: LookbackConfiguration
-    size: Size
-    advertiserIdDimensionValue: DimensionValue
-    videoActiveViewOptOut: bool
-    directorySiteIdDimensionValue: DimensionValue
-    placementStrategyId: str
-    paymentSource: typing_extensions.Literal[
-        "PLACEMENT_AGENCY_PAID", "PLACEMENT_PUBLISHER_PAID"
-    ]
-    vpaidAdapterChoice: typing_extensions.Literal["DEFAULT", "FLASH", "HTML5", "BOTH"]
-    contentCategoryId: str
-    name: str
     createInfo: LastModifiedInfo
-    siteId: str
-    sslRequired: bool
-    status: typing_extensions.Literal[
-        "PENDING_REVIEW",
-        "PAYMENT_ACCEPTED",
-        "PAYMENT_REJECTED",
-        "ACKNOWLEDGE_REJECTION",
-        "ACKNOWLEDGE_ACCEPTANCE",
-        "DRAFT",
-    ]
-    videoSettings: VideoSettings
-    tagSetting: TagSetting
-    placementGroupIdDimensionValue: DimensionValue
-    publisherUpdateInfo: LastModifiedInfo
-    directorySiteId: str
-    adBlockingOptOut: bool
-    accountId: str
-    lastModifiedInfo: LastModifiedInfo
-    additionalSizes: typing.List[Size]
-    comment: str
-    tagFormats: typing.List[str]
-    campaignIdDimensionValue: DimensionValue
-
-class ConnectionType(typing_extensions.TypedDict, total=False):
-    name: str
-    kind: str
+    creativeGroupAssignments: typing.List[CreativeGroupAssignment]
+    creativeRotation: CreativeRotation
+    dayPartTargeting: DayPartTargeting
+    defaultClickThroughEventTagProperties: DefaultClickThroughEventTagProperties
+    deliverySchedule: DeliverySchedule
+    dynamicClickTracker: bool
+    endTime: str
+    eventTagOverrides: typing.List[EventTagOverride]
+    geoTargeting: GeoTargeting
     id: str
+    idDimensionValue: DimensionValue
+    keyValueTargetingExpression: KeyValueTargetingExpression
+    kind: str
+    languageTargeting: LanguageTargeting
+    lastModifiedInfo: LastModifiedInfo
+    name: str
+    placementAssignments: typing.List[PlacementAssignment]
+    remarketingListExpression: ListTargetingExpression
+    size: Size
+    sslCompliant: bool
+    sslRequired: bool
+    startTime: str
+    subaccountId: str
+    targetingTemplateId: str
+    technologyTargeting: TechnologyTargeting
+    type: typing_extensions.Literal[
+        "AD_SERVING_STANDARD_AD",
+        "AD_SERVING_DEFAULT_AD",
+        "AD_SERVING_CLICK_TRACKER",
+        "AD_SERVING_TRACKING",
+        "AD_SERVING_BRAND_SAFE_AD",
+    ]
 
-class CrossDimensionReachReportCompatibleFields(
+@typing.type_check_only
+class AdBlockingConfiguration(typing_extensions.TypedDict, total=False):
+    clickThroughUrl: str
+    creativeBundleId: str
+    enabled: bool
+    overrideClickThroughUrl: bool
+
+@typing.type_check_only
+class AdSlot(typing_extensions.TypedDict, total=False):
+    comment: str
+    compatibility: typing_extensions.Literal[
+        "DISPLAY",
+        "DISPLAY_INTERSTITIAL",
+        "APP",
+        "APP_INTERSTITIAL",
+        "IN_STREAM_VIDEO",
+        "IN_STREAM_AUDIO",
+    ]
+    height: str
+    linkedPlacementId: str
+    name: str
+    paymentSourceType: typing_extensions.Literal[
+        "PLANNING_PAYMENT_SOURCE_TYPE_AGENCY_PAID",
+        "PLANNING_PAYMENT_SOURCE_TYPE_PUBLISHER_PAID",
+    ]
+    primary: bool
+    width: str
+
+@typing.type_check_only
+class AdsListResponse(typing_extensions.TypedDict, total=False):
+    ads: typing.List[Ad]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class Advertiser(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserGroupId: str
+    clickThroughUrlSuffix: str
+    defaultClickThroughEventTagId: str
+    defaultEmail: str
+    floodlightConfigurationId: str
+    floodlightConfigurationIdDimensionValue: DimensionValue
+    id: str
+    idDimensionValue: DimensionValue
+    kind: str
+    name: str
+    originalFloodlightConfigurationId: str
+    status: typing_extensions.Literal["APPROVED", "ON_HOLD"]
+    subaccountId: str
+    suspended: bool
+
+@typing.type_check_only
+class AdvertiserGroup(typing_extensions.TypedDict, total=False):
+    accountId: str
+    id: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class AdvertiserGroupsListResponse(typing_extensions.TypedDict, total=False):
+    advertiserGroups: typing.List[AdvertiserGroup]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class AdvertiserLandingPagesListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    landingPages: typing.List[LandingPage]
+    nextPageToken: str
+
+@typing.type_check_only
+class AdvertisersListResponse(typing_extensions.TypedDict, total=False):
+    advertisers: typing.List[Advertiser]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class AudienceSegment(typing_extensions.TypedDict, total=False):
+    allocation: int
+    id: str
+    name: str
+
+@typing.type_check_only
+class AudienceSegmentGroup(typing_extensions.TypedDict, total=False):
+    audienceSegments: typing.List[AudienceSegment]
+    id: str
+    name: str
+
+@typing.type_check_only
+class Browser(typing_extensions.TypedDict, total=False):
+    browserVersionId: str
+    dartId: str
+    kind: str
+    majorVersion: str
+    minorVersion: str
+    name: str
+
+@typing.type_check_only
+class BrowsersListResponse(typing_extensions.TypedDict, total=False):
+    browsers: typing.List[Browser]
+    kind: str
+
+@typing.type_check_only
+class Campaign(typing_extensions.TypedDict, total=False):
+    accountId: str
+    adBlockingConfiguration: AdBlockingConfiguration
+    additionalCreativeOptimizationConfigurations: typing.List[
+        CreativeOptimizationConfiguration
+    ]
+    advertiserGroupId: str
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    archived: bool
+    audienceSegmentGroups: typing.List[AudienceSegmentGroup]
+    billingInvoiceCode: str
+    clickThroughUrlSuffixProperties: ClickThroughUrlSuffixProperties
+    comment: str
+    createInfo: LastModifiedInfo
+    creativeGroupIds: typing.List[str]
+    creativeOptimizationConfiguration: CreativeOptimizationConfiguration
+    defaultClickThroughEventTagProperties: DefaultClickThroughEventTagProperties
+    defaultLandingPageId: str
+    endDate: str
+    eventTagOverrides: typing.List[EventTagOverride]
+    externalId: str
+    id: str
+    idDimensionValue: DimensionValue
+    kind: str
+    lastModifiedInfo: LastModifiedInfo
+    name: str
+    nielsenOcrEnabled: bool
+    startDate: str
+    subaccountId: str
+    traffickerEmails: typing.List[str]
+
+@typing.type_check_only
+class CampaignCreativeAssociation(typing_extensions.TypedDict, total=False):
+    creativeId: str
+    kind: str
+
+@typing.type_check_only
+class CampaignCreativeAssociationsListResponse(
     typing_extensions.TypedDict, total=False
 ):
+    campaignCreativeAssociations: typing.List[CampaignCreativeAssociation]
     kind: str
-    breakdown: typing.List[Dimension]
-    dimensionFilters: typing.List[Dimension]
-    overlapMetrics: typing.List[Metric]
-    metrics: typing.List[Metric]
+    nextPageToken: str
 
-class VideoOffset(typing_extensions.TypedDict, total=False):
-    offsetSeconds: int
-    offsetPercentage: int
+@typing.type_check_only
+class CampaignManagerIds(typing_extensions.TypedDict, total=False):
+    adId: str
+    campaignId: str
+    creativeId: str
+    kind: str
+    placementId: str
+    siteId: str
 
-class SiteTranscodeSetting(typing_extensions.TypedDict, total=False):
-    enabledVideoFormats: typing.List[int]
+@typing.type_check_only
+class CampaignsListResponse(typing_extensions.TypedDict, total=False):
+    campaigns: typing.List[Campaign]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class ChangeLog(typing_extensions.TypedDict, total=False):
+    accountId: str
+    action: str
+    changeTime: str
+    fieldName: str
+    id: str
+    kind: str
+    newValue: str
+    objectId: str
+    objectType: str
+    oldValue: str
+    subaccountId: str
+    transactionId: str
+    userProfileId: str
+    userProfileName: str
+
+@typing.type_check_only
+class ChangeLogsListResponse(typing_extensions.TypedDict, total=False):
+    changeLogs: typing.List[ChangeLog]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class ChannelGrouping(typing_extensions.TypedDict, total=False):
+    fallbackName: str
+    kind: str
+    name: str
+    rules: typing.List[ChannelGroupingRule]
+
+@typing.type_check_only
+class ChannelGroupingRule(typing_extensions.TypedDict, total=False):
+    disjunctiveMatchStatements: typing.List[DisjunctiveMatchStatement]
+    kind: str
+    name: str
+
+@typing.type_check_only
+class CitiesListResponse(typing_extensions.TypedDict, total=False):
+    cities: typing.List[City]
     kind: str
 
-class PricingSchedulePricingPeriod(typing_extensions.TypedDict, total=False):
-    units: str
-    endDate: str
-    startDate: str
-    rateOrCostNanos: str
-    pricingComment: str
+@typing.type_check_only
+class City(typing_extensions.TypedDict, total=False):
+    countryCode: str
+    countryDartId: str
+    dartId: str
+    kind: str
+    metroCode: str
+    metroDmaId: str
+    name: str
+    regionCode: str
+    regionDartId: str
 
-class OrderContact(typing_extensions.TypedDict, total=False):
-    contactType: typing_extensions.Literal[
-        "PLANNING_ORDER_CONTACT_BUYER_CONTACT",
-        "PLANNING_ORDER_CONTACT_BUYER_BILLING_CONTACT",
-        "PLANNING_ORDER_CONTACT_SELLER_CONTACT",
-    ]
-    signatureUserProfileId: str
-    contactTitle: str
-    contactName: str
-    contactInfo: str
+@typing.type_check_only
+class ClickTag(typing_extensions.TypedDict, total=False):
+    clickThroughUrl: CreativeClickThroughUrl
+    eventName: str
+    name: str
 
+@typing.type_check_only
+class ClickThroughUrl(typing_extensions.TypedDict, total=False):
+    computedClickThroughUrl: str
+    customClickThroughUrl: str
+    defaultLandingPage: bool
+    landingPageId: str
+
+@typing.type_check_only
+class ClickThroughUrlSuffixProperties(typing_extensions.TypedDict, total=False):
+    clickThroughUrlSuffix: str
+    overrideInheritedSuffix: bool
+
+@typing.type_check_only
+class CompanionClickThroughOverride(typing_extensions.TypedDict, total=False):
+    clickThroughUrl: ClickThroughUrl
+    creativeId: str
+
+@typing.type_check_only
+class CompanionSetting(typing_extensions.TypedDict, total=False):
+    companionsDisabled: bool
+    enabledSizes: typing.List[Size]
+    imageOnly: bool
+    kind: str
+
+@typing.type_check_only
+class CompatibleFields(typing_extensions.TypedDict, total=False):
+    crossDimensionReachReportCompatibleFields: CrossDimensionReachReportCompatibleFields
+    floodlightReportCompatibleFields: FloodlightReportCompatibleFields
+    kind: str
+    pathAttributionReportCompatibleFields: PathReportCompatibleFields
+    pathReportCompatibleFields: PathReportCompatibleFields
+    pathToConversionReportCompatibleFields: PathToConversionReportCompatibleFields
+    reachReportCompatibleFields: ReachReportCompatibleFields
+    reportCompatibleFields: ReportCompatibleFields
+
+@typing.type_check_only
+class ConnectionType(typing_extensions.TypedDict, total=False):
+    id: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class ConnectionTypesListResponse(typing_extensions.TypedDict, total=False):
+    connectionTypes: typing.List[ConnectionType]
+    kind: str
+
+@typing.type_check_only
+class ContentCategoriesListResponse(typing_extensions.TypedDict, total=False):
+    contentCategories: typing.List[ContentCategory]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class ContentCategory(typing_extensions.TypedDict, total=False):
+    accountId: str
+    id: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class Conversion(typing_extensions.TypedDict, total=False):
+    childDirectedTreatment: bool
+    customVariables: typing.List[CustomFloodlightVariable]
+    dclid: str
+    encryptedUserId: str
+    encryptedUserIdCandidates: typing.List[str]
+    floodlightActivityId: str
+    floodlightConfigurationId: str
+    gclid: str
+    kind: str
+    limitAdTracking: bool
+    matchId: str
+    mobileDeviceId: str
+    nonPersonalizedAd: bool
+    ordinal: str
+    quantity: str
+    timestampMicros: str
+    treatmentForUnderage: bool
+    value: float
+
+@typing.type_check_only
 class ConversionError(typing_extensions.TypedDict, total=False):
-    kind: str
     code: typing_extensions.Literal[
         "INVALID_ARGUMENT", "INTERNAL", "PERMISSION_DENIED", "NOT_FOUND"
     ]
+    kind: str
     message: str
 
-class LanguageTargeting(typing_extensions.TypedDict, total=False):
-    languages: typing.List[Language]
-
-class Activities(typing_extensions.TypedDict, total=False):
-    metricNames: typing.List[str]
+@typing.type_check_only
+class ConversionStatus(typing_extensions.TypedDict, total=False):
+    conversion: Conversion
+    errors: typing.List[ConversionError]
     kind: str
-    filters: typing.List[DimensionValue]
 
-class DynamicTargetingKey(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class ConversionsBatchInsertRequest(typing_extensions.TypedDict, total=False):
+    conversions: typing.List[Conversion]
+    encryptionInfo: EncryptionInfo
     kind: str
-    objectId: str
+
+@typing.type_check_only
+class ConversionsBatchInsertResponse(typing_extensions.TypedDict, total=False):
+    hasFailures: bool
+    kind: str
+    status: typing.List[ConversionStatus]
+
+@typing.type_check_only
+class ConversionsBatchUpdateRequest(typing_extensions.TypedDict, total=False):
+    conversions: typing.List[Conversion]
+    encryptionInfo: EncryptionInfo
+    kind: str
+
+@typing.type_check_only
+class ConversionsBatchUpdateResponse(typing_extensions.TypedDict, total=False):
+    hasFailures: bool
+    kind: str
+    status: typing.List[ConversionStatus]
+
+@typing.type_check_only
+class CountriesListResponse(typing_extensions.TypedDict, total=False):
+    countries: typing.List[Country]
+    kind: str
+
+@typing.type_check_only
+class Country(typing_extensions.TypedDict, total=False):
+    countryCode: str
+    dartId: str
+    kind: str
     name: str
-    objectType: typing_extensions.Literal[
-        "OBJECT_ADVERTISER", "OBJECT_AD", "OBJECT_CREATIVE", "OBJECT_PLACEMENT"
-    ]
+    sslEnabled: bool
 
-class UserRolePermissionGroup(typing_extensions.TypedDict, total=False):
-    kind: str
-    name: str
-    id: str
-
-class RemarketingList(typing_extensions.TypedDict, total=False):
-    name: str
-    kind: str
-    lifeSpan: str
-    listPopulationRule: ListPopulationRule
-    id: str
-    advertiserId: str
-    accountId: str
-    subaccountId: str
-    active: bool
-    listSource: typing_extensions.Literal[
-        "REMARKETING_LIST_SOURCE_OTHER",
-        "REMARKETING_LIST_SOURCE_ADX",
-        "REMARKETING_LIST_SOURCE_DFP",
-        "REMARKETING_LIST_SOURCE_XFP",
-        "REMARKETING_LIST_SOURCE_DFA",
-        "REMARKETING_LIST_SOURCE_GA",
-        "REMARKETING_LIST_SOURCE_YOUTUBE",
-        "REMARKETING_LIST_SOURCE_DBM",
-        "REMARKETING_LIST_SOURCE_GPLUS",
-        "REMARKETING_LIST_SOURCE_DMP",
-        "REMARKETING_LIST_SOURCE_PLAY_STORE",
-    ]
-    listSize: str
-    advertiserIdDimensionValue: DimensionValue
-    description: str
-
-class FloodlightActivityPublisherDynamicTag(typing_extensions.TypedDict, total=False):
-    siteId: str
-    directorySiteId: str
-    clickThrough: bool
-    siteIdDimensionValue: DimensionValue
-    dynamicTag: FloodlightActivityDynamicTag
-    viewThrough: bool
-
-class MetrosListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    metros: typing.List[Metro]
-
-class FsCommand(typing_extensions.TypedDict, total=False):
-    left: int
-    windowHeight: int
-    windowWidth: int
-    top: int
-    positionOption: typing_extensions.Literal[
-        "CENTERED", "DISTANCE_FROM_TOP_LEFT_CORNER"
-    ]
-
+@typing.type_check_only
 class Creative(typing_extensions.TypedDict, total=False):
-    backupImageReportingLabel: str
+    accountId: str
+    active: bool
+    adParameters: str
     adTagKeys: typing.List[str]
-    skippable: bool
-    counterCustomEvents: typing.List[CreativeCustomEvent]
+    additionalSizes: typing.List[Size]
+    advertiserId: str
+    allowScriptAccess: bool
+    archived: bool
     artworkType: typing_extensions.Literal[
         "ARTWORK_TYPE_FLASH",
         "ARTWORK_TYPE_HTML5",
         "ARTWORK_TYPE_MIXED",
         "ARTWORK_TYPE_IMAGE",
     ]
-    universalAdId: UniversalAdId
-    redirectUrl: str
-    skipOffset: VideoOffset
+    authoringSource: typing_extensions.Literal[
+        "CREATIVE_AUTHORING_SOURCE_DCM",
+        "CREATIVE_AUTHORING_SOURCE_DBM",
+        "CREATIVE_AUTHORING_SOURCE_STUDIO",
+    ]
+    authoringTool: typing_extensions.Literal["NINJA", "SWIFFY"]
+    autoAdvanceImages: bool
+    backgroundColor: str
+    backupImageClickThroughUrl: CreativeClickThroughUrl
+    backupImageFeatures: typing.List[str]
+    backupImageReportingLabel: str
+    backupImageTargetWindow: TargetWindow
     clickTags: typing.List[ClickTag]
-    allowScriptAccess: bool
-    latestTraffickedCreativeId: str
-    size: Size
     commercialId: str
+    companionCreatives: typing.List[str]
+    compatibility: typing.List[str]
+    convertFlashToHtml5: bool
+    counterCustomEvents: typing.List[CreativeCustomEvent]
+    creativeAssetSelection: CreativeAssetSelection
+    creativeAssets: typing.List[CreativeAsset]
+    creativeFieldAssignments: typing.List[CreativeFieldAssignment]
+    customKeyValues: typing.List[str]
+    dynamicAssetSelection: bool
+    exitCustomEvents: typing.List[CreativeCustomEvent]
+    fsCommand: FsCommand
+    htmlCode: str
+    htmlCodeLocked: bool
+    id: str
+    idDimensionValue: DimensionValue
+    kind: str
+    lastModifiedInfo: LastModifiedInfo
+    latestTraffickedCreativeId: str
+    mediaDescription: str
+    mediaDuration: float
+    name: str
+    obaIcon: ObaIcon
+    overrideCss: str
+    progressOffset: VideoOffset
+    redirectUrl: str
+    renderingId: str
+    renderingIdDimensionValue: DimensionValue
+    requiredFlashPluginVersion: str
+    requiredFlashVersion: int
+    size: Size
+    skipOffset: VideoOffset
+    skippable: bool
     sslCompliant: bool
+    sslOverride: bool
+    studioAdvertiserId: str
+    studioCreativeId: str
+    studioTraffickedCreativeId: str
+    subaccountId: str
+    thirdPartyBackupImageImpressionsUrl: str
+    thirdPartyRichMediaImpressionsUrl: str
+    thirdPartyUrls: typing.List[ThirdPartyTrackingUrl]
+    timerCustomEvents: typing.List[CreativeCustomEvent]
+    totalFileSize: str
     type: typing_extensions.Literal[
         "IMAGE",
         "DISPLAY_REDIRECT",
@@ -270,763 +626,38 @@ class Creative(typing_extensions.TypedDict, total=False):
         "BRAND_SAFE_DEFAULT_INSTREAM_VIDEO",
         "INSTREAM_AUDIO",
     ]
-    renderingIdDimensionValue: DimensionValue
-    creativeAssetSelection: CreativeAssetSelection
-    autoAdvanceImages: bool
-    exitCustomEvents: typing.List[CreativeCustomEvent]
-    thirdPartyUrls: typing.List[ThirdPartyTrackingUrl]
-    lastModifiedInfo: LastModifiedInfo
-    accountId: str
-    studioAdvertiserId: str
-    backupImageFeatures: typing.List[str]
-    thirdPartyBackupImageImpressionsUrl: str
-    additionalSizes: typing.List[Size]
-    mediaDuration: float
-    htmlCodeLocked: bool
-    studioCreativeId: str
-    mediaDescription: str
+    universalAdId: UniversalAdId
     version: int
-    sslOverride: bool
-    thirdPartyRichMediaImpressionsUrl: str
-    companionCreatives: typing.List[str]
-    authoringSource: typing_extensions.Literal[
-        "CREATIVE_AUTHORING_SOURCE_DCM",
-        "CREATIVE_AUTHORING_SOURCE_DBM",
-        "CREATIVE_AUTHORING_SOURCE_STUDIO",
-    ]
-    fsCommand: FsCommand
-    progressOffset: VideoOffset
-    requiredFlashVersion: int
-    backupImageTargetWindow: TargetWindow
-    backupImageClickThroughUrl: CreativeClickThroughUrl
-    htmlCode: str
-    kind: str
-    id: str
-    dynamicAssetSelection: bool
-    backgroundColor: str
-    compatibility: typing.List[str]
-    name: str
-    overrideCss: str
-    adParameters: str
-    timerCustomEvents: typing.List[CreativeCustomEvent]
-    creativeAssets: typing.List[CreativeAsset]
-    authoringTool: typing_extensions.Literal["NINJA", "SWIFFY"]
-    active: bool
-    advertiserId: str
-    customKeyValues: typing.List[str]
-    convertFlashToHtml5: bool
-    subaccountId: str
-    studioTraffickedCreativeId: str
-    requiredFlashPluginVersion: str
-    obaIcon: ObaIcon
-    totalFileSize: str
-    creativeFieldAssignments: typing.List[CreativeFieldAssignment]
-    idDimensionValue: DimensionValue
-    archived: bool
-    renderingId: str
 
-class SiteSettings(typing_extensions.TypedDict, total=False):
-    disableNewCookie: bool
-    adBlockingOptOut: bool
-    activeViewOptOut: bool
-    tagSetting: TagSetting
-    vpaidAdapterChoiceTemplate: typing_extensions.Literal[
-        "DEFAULT", "FLASH", "HTML5", "BOTH"
-    ]
-    videoActiveViewOptOutTemplate: bool
-
-class DimensionFilter(typing_extensions.TypedDict, total=False):
-    kind: str
-    dimensionName: str
-    value: str
-
-class ReachReportCompatibleFields(typing_extensions.TypedDict, total=False):
-    kind: str
-    pivotedActivityMetrics: typing.List[Metric]
-    metrics: typing.List[Metric]
-    reachByFrequencyMetrics: typing.List[Metric]
-    dimensionFilters: typing.List[Dimension]
-    dimensions: typing.List[Dimension]
-
-class ContentCategoriesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    contentCategories: typing.List[ContentCategory]
-
-class DirectorySitesListResponse(typing_extensions.TypedDict, total=False):
-    directorySites: typing.List[DirectorySite]
-    nextPageToken: str
-    kind: str
-
-class SiteCompanionSetting(typing_extensions.TypedDict, total=False):
-    imageOnly: bool
-    kind: str
-    enabledSizes: typing.List[Size]
-    companionsDisabled: bool
-
-class CampaignCreativeAssociationsListResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    campaignCreativeAssociations: typing.List[CampaignCreativeAssociation]
-    kind: str
-
-class UserRolesListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    kind: str
-    userRoles: typing.List[UserRole]
-
-class AdsListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    kind: str
-    ads: typing.List[Ad]
-
-class CreativeFieldValue(typing_extensions.TypedDict, total=False):
-    value: str
-    kind: str
-    id: str
-
-class UniversalAdId(typing_extensions.TypedDict, total=False):
-    registry: typing_extensions.Literal["OTHER", "AD_ID_OFFICIAL", "CLEARCAST", "DCM"]
-    value: str
-
-class ProjectsListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    projects: typing.List[Project]
-    kind: str
-
-class PlatformTypesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    platformTypes: typing.List[PlatformType]
-
-class FloodlightReportCompatibleFields(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[Dimension]
-    metrics: typing.List[Metric]
-    dimensionFilters: typing.List[Dimension]
-    kind: str
-
-class ListPopulationClause(typing_extensions.TypedDict, total=False):
-    terms: typing.List[ListPopulationTerm]
-
-class GeoTargeting(typing_extensions.TypedDict, total=False):
-    countries: typing.List[Country]
-    cities: typing.List[City]
-    postalCodes: typing.List[PostalCode]
-    excludeCountries: bool
-    regions: typing.List[Region]
-    metros: typing.List[Metro]
-
-class ReportsConfiguration(typing_extensions.TypedDict, total=False):
-    exposureToConversionEnabled: bool
-    lookbackConfiguration: LookbackConfiguration
-    reportGenerationTimeZoneId: str
-
-class ClickThroughUrlSuffixProperties(typing_extensions.TypedDict, total=False):
-    overrideInheritedSuffix: bool
-    clickThroughUrlSuffix: str
-
-class Site(typing_extensions.TypedDict, total=False):
-    id: str
-    subaccountId: str
-    accountId: str
-    siteSettings: SiteSettings
-    approved: bool
-    directorySiteId: str
-    videoSettings: SiteVideoSettings
-    keyName: str
-    idDimensionValue: DimensionValue
-    name: str
-    siteContacts: typing.List[SiteContact]
-    directorySiteIdDimensionValue: DimensionValue
-    kind: str
-
-class LanguagesListResponse(typing_extensions.TypedDict, total=False):
-    languages: typing.List[Language]
-    kind: str
-
-class AdvertiserGroupsListResponse(typing_extensions.TypedDict, total=False):
-    advertiserGroups: typing.List[AdvertiserGroup]
-    kind: str
-    nextPageToken: str
-
-class OrderDocument(typing_extensions.TypedDict, total=False):
-    approvedByUserProfileIds: typing.List[str]
-    lastSentTime: str
-    cancelled: bool
-    advertiserId: str
-    amendedOrderDocumentId: str
-    subaccountId: str
-    title: str
-    effectiveDate: str
-    accountId: str
-    projectId: str
-    kind: str
-    lastSentRecipients: typing.List[str]
-    id: str
-    orderId: str
-    type: typing_extensions.Literal[
-        "PLANNING_ORDER_TYPE_INSERTION_ORDER", "PLANNING_ORDER_TYPE_CHANGE_ORDER"
-    ]
-    createdInfo: LastModifiedInfo
-    signed: bool
-
-class ConversionsBatchInsertResponse(typing_extensions.TypedDict, total=False):
-    hasFailures: bool
-    kind: str
-    status: typing.List[ConversionStatus]
-
-class ChangeLog(typing_extensions.TypedDict, total=False):
-    action: str
-    transactionId: str
-    kind: str
-    subaccountId: str
-    objectId: str
-    userProfileId: str
-    oldValue: str
-    userProfileName: str
-    accountId: str
-    changeTime: str
-    id: str
-    objectType: str
-    newValue: str
-    fieldName: str
-
-class Ad(typing_extensions.TypedDict, total=False):
-    targetingTemplateId: str
-    size: Size
-    kind: str
-    comments: str
-    advertiserId: str
-    active: bool
-    name: str
-    audienceSegmentId: str
-    campaignIdDimensionValue: DimensionValue
-    keyValueTargetingExpression: KeyValueTargetingExpression
-    placementAssignments: typing.List[PlacementAssignment]
-    campaignId: str
-    eventTagOverrides: typing.List[EventTagOverride]
-    defaultClickThroughEventTagProperties: DefaultClickThroughEventTagProperties
-    id: str
-    creativeGroupAssignments: typing.List[CreativeGroupAssignment]
-    clickThroughUrl: ClickThroughUrl
-    sslCompliant: bool
-    endTime: str
-    dynamicClickTracker: bool
-    geoTargeting: GeoTargeting
-    deliverySchedule: DeliverySchedule
-    sslRequired: bool
-    dayPartTargeting: DayPartTargeting
-    clickThroughUrlSuffixProperties: ClickThroughUrlSuffixProperties
-    idDimensionValue: DimensionValue
-    type: typing_extensions.Literal[
-        "AD_SERVING_STANDARD_AD",
-        "AD_SERVING_DEFAULT_AD",
-        "AD_SERVING_CLICK_TRACKER",
-        "AD_SERVING_TRACKING",
-        "AD_SERVING_BRAND_SAFE_AD",
-    ]
-    subaccountId: str
-    lastModifiedInfo: LastModifiedInfo
-    technologyTargeting: TechnologyTargeting
-    createInfo: LastModifiedInfo
-    creativeRotation: CreativeRotation
-    startTime: str
-    accountId: str
-    remarketingListExpression: ListTargetingExpression
-    languageTargeting: LanguageTargeting
-    compatibility: typing_extensions.Literal[
-        "DISPLAY",
-        "DISPLAY_INTERSTITIAL",
-        "APP",
-        "APP_INTERSTITIAL",
-        "IN_STREAM_VIDEO",
-        "IN_STREAM_AUDIO",
-    ]
-    archived: bool
-    advertiserIdDimensionValue: DimensionValue
-
-class FloodlightActivitiesGenerateTagResponse(typing_extensions.TypedDict, total=False):
-    globalSiteTagGlobalSnippet: str
-    floodlightActivityTag: str
-    kind: str
-
-class CreativeGroup(typing_extensions.TypedDict, total=False):
-    subaccountId: str
-    accountId: str
-    advertiserId: str
-    kind: str
-    advertiserIdDimensionValue: DimensionValue
-    name: str
-    id: str
-    groupNumber: int
-
-class ObaIcon(typing_extensions.TypedDict, total=False):
-    yPosition: str
-    resourceUrl: str
-    iconClickTrackingUrl: str
-    size: Size
-    program: str
-    iconViewTrackingUrl: str
-    iconClickThroughUrl: str
-    xPosition: str
-
-class CreativeAssetId(typing_extensions.TypedDict, total=False):
-    name: str
-    type: typing_extensions.Literal[
-        "IMAGE", "FLASH", "VIDEO", "HTML", "HTML_IMAGE", "AUDIO"
-    ]
-
-class UserProfileList(typing_extensions.TypedDict, total=False):
-    kind: str
-    items: typing.List[UserProfile]
-    etag: str
-
-class SubaccountsListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    kind: str
-    subaccounts: typing.List[Subaccount]
-
-class AccountsListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    accounts: typing.List[Account]
-    nextPageToken: str
-
-class Pricing(typing_extensions.TypedDict, total=False):
-    pricingType: typing_extensions.Literal[
-        "PLANNING_PLACEMENT_PRICING_TYPE_IMPRESSIONS",
-        "PLANNING_PLACEMENT_PRICING_TYPE_CPM",
-        "PLANNING_PLACEMENT_PRICING_TYPE_CLICKS",
-        "PLANNING_PLACEMENT_PRICING_TYPE_CPC",
-        "PLANNING_PLACEMENT_PRICING_TYPE_CPA",
-        "PLANNING_PLACEMENT_PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
-        "PLANNING_PLACEMENT_PRICING_TYPE_FLAT_RATE_CLICKS",
-        "PLANNING_PLACEMENT_PRICING_TYPE_CPM_ACTIVEVIEW",
-    ]
-    groupType: typing_extensions.Literal[
-        "PLANNING_PLACEMENT_GROUP_TYPE_PACKAGE",
-        "PLANNING_PLACEMENT_GROUP_TYPE_ROADBLOCK",
-    ]
-    capCostType: typing_extensions.Literal[
-        "PLANNING_PLACEMENT_CAP_COST_TYPE_NONE",
-        "PLANNING_PLACEMENT_CAP_COST_TYPE_MONTHLY",
-        "PLANNING_PLACEMENT_CAP_COST_TYPE_CUMULATIVE",
-    ]
-    flights: typing.List[Flight]
-    endDate: str
-    startDate: str
-
-class ConversionStatus(typing_extensions.TypedDict, total=False):
-    errors: typing.List[ConversionError]
-    kind: str
-    conversion: Conversion
-
-class CitiesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    cities: typing.List[City]
-
-class CreativeAssignment(typing_extensions.TypedDict, total=False):
-    endTime: str
-    richMediaExitOverrides: typing.List[RichMediaExitOverride]
-    startTime: str
-    sequence: int
-    companionCreativeOverrides: typing.List[CompanionClickThroughOverride]
-    sslCompliant: bool
-    clickThroughUrl: ClickThroughUrl
-    active: bool
-    creativeIdDimensionValue: DimensionValue
-    applyEventTags: bool
-    weight: int
-    creativeId: str
-    creativeGroupAssignments: typing.List[CreativeGroupAssignment]
-
-class Size(typing_extensions.TypedDict, total=False):
-    iab: bool
-    kind: str
-    id: str
-    height: int
-    width: int
-
-class ListPopulationTerm(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
-        "CUSTOM_VARIABLE_TERM", "LIST_MEMBERSHIP_TERM", "REFERRER_TERM"
-    ]
-    negation: bool
-    operator: typing_extensions.Literal[
-        "NUM_EQUALS",
-        "NUM_LESS_THAN",
-        "NUM_LESS_THAN_EQUAL",
-        "NUM_GREATER_THAN",
-        "NUM_GREATER_THAN_EQUAL",
-        "STRING_EQUALS",
-        "STRING_CONTAINS",
-    ]
-    variableFriendlyName: str
-    variableName: str
-    remarketingListId: str
-    contains: bool
-    value: str
-
-class CustomVariable(typing_extensions.TypedDict, total=False):
-    kind: str
-    index: str
-    value: str
-
-class RichMediaExitOverride(typing_extensions.TypedDict, total=False):
-    clickThroughUrl: ClickThroughUrl
-    enabled: bool
-    exitId: str
-
-class VideoFormatsListResponse(typing_extensions.TypedDict, total=False):
-    videoFormats: typing.List[VideoFormat]
-    kind: str
-
-class PlacementAssignment(typing_extensions.TypedDict, total=False):
-    placementIdDimensionValue: DimensionValue
-    active: bool
-    placementId: str
-    sslRequired: bool
-
-class AccountPermissionGroup(typing_extensions.TypedDict, total=False):
-    id: str
-    name: str
-    kind: str
-
-class SortedDimension(typing_extensions.TypedDict, total=False):
-    sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"]
-    name: str
-    kind: str
-
-class CreativesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    creatives: typing.List[Creative]
-    nextPageToken: str
-
-class FloodlightActivityGroup(typing_extensions.TypedDict, total=False):
-    floodlightConfigurationIdDimensionValue: DimensionValue
-    name: str
-    subaccountId: str
-    advertiserIdDimensionValue: DimensionValue
-    id: str
-    idDimensionValue: DimensionValue
-    advertiserId: str
-    floodlightConfigurationId: str
-    accountId: str
-    tagString: str
-    type: typing_extensions.Literal["COUNTER", "SALE"]
-    kind: str
-
-class MobileApp(typing_extensions.TypedDict, total=False):
-    kind: str
-    directory: typing_extensions.Literal[
-        "UNKNOWN", "APPLE_APP_STORE", "GOOGLE_PLAY_STORE"
-    ]
-    publisherName: str
-    title: str
-    id: str
-
-class EventTagOverride(typing_extensions.TypedDict, total=False):
-    id: str
-    enabled: bool
-
-class TargetWindow(typing_extensions.TypedDict, total=False):
-    customHtml: str
-    targetWindowOption: typing_extensions.Literal[
-        "NEW_WINDOW", "CURRENT_WINDOW", "CUSTOM"
-    ]
-
-class KeyValueTargetingExpression(typing_extensions.TypedDict, total=False):
-    expression: str
-
-class BrowsersListResponse(typing_extensions.TypedDict, total=False):
-    browsers: typing.List[Browser]
-    kind: str
-
-class DeliverySchedule(typing_extensions.TypedDict, total=False):
-    hardCutoff: bool
-    priority: typing_extensions.Literal[
-        "AD_PRIORITY_01",
-        "AD_PRIORITY_02",
-        "AD_PRIORITY_03",
-        "AD_PRIORITY_04",
-        "AD_PRIORITY_05",
-        "AD_PRIORITY_06",
-        "AD_PRIORITY_07",
-        "AD_PRIORITY_08",
-        "AD_PRIORITY_09",
-        "AD_PRIORITY_10",
-        "AD_PRIORITY_11",
-        "AD_PRIORITY_12",
-        "AD_PRIORITY_13",
-        "AD_PRIORITY_14",
-        "AD_PRIORITY_15",
-        "AD_PRIORITY_16",
-    ]
-    frequencyCap: FrequencyCap
-    impressionRatio: str
-
-class CustomEvent(typing_extensions.TypedDict, total=False):
-    floodlightConfigurationId: str
-    annotateClickEvent: CustomEventClickAnnotation
-    eventType: typing_extensions.Literal["UNKNOWN", "INSERT", "ANNOTATE"]
-    kind: str
-    timestampMicros: str
-    annotateImpressionEvent: CustomEventImpressionAnnotation
-    ordinal: str
-    customVariables: typing.List[CustomVariable]
-    insertEvent: CustomEventInsert
-
-class PlacementGroupsListResponse(typing_extensions.TypedDict, total=False):
-    placementGroups: typing.List[PlacementGroup]
-    nextPageToken: str
-    kind: str
-
-class OperatingSystem(typing_extensions.TypedDict, total=False):
-    kind: str
-    desktop: bool
-    dartId: str
-    mobile: bool
-    name: str
-
-class Rule(typing_extensions.TypedDict, total=False):
-    name: str
-    targetingTemplateId: str
-    assetId: str
-
-class DimensionValue(typing_extensions.TypedDict, total=False):
-    etag: str
-    kind: str
-    value: str
-    dimensionName: str
-    matchType: typing_extensions.Literal[
-        "EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"
-    ]
-    id: str
-
-class OffsetPosition(typing_extensions.TypedDict, total=False):
-    top: int
-    left: int
-
-class Flight(typing_extensions.TypedDict, total=False):
-    units: str
-    rateOrCost: str
-    startDate: str
-    endDate: str
-
-class Region(typing_extensions.TypedDict, total=False):
-    kind: str
-    countryCode: str
-    countryDartId: str
-    regionCode: str
-    name: str
-    dartId: str
-
-class UserRolePermissionGroupsListResponse(typing_extensions.TypedDict, total=False):
-    userRolePermissionGroups: typing.List[UserRolePermissionGroup]
-    kind: str
-
-class PlacementStrategiesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    placementStrategies: typing.List[PlacementStrategy]
-    nextPageToken: str
-
-class CreativeClickThroughUrl(typing_extensions.TypedDict, total=False):
-    customClickThroughUrl: str
-    computedClickThroughUrl: str
-    landingPageId: str
-
-class FloodlightActivitiesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    floodlightActivities: typing.List[FloodlightActivity]
-
-class Country(typing_extensions.TypedDict, total=False):
-    sslEnabled: bool
-    countryCode: str
-    dartId: str
-    kind: str
-    name: str
-
-class DayPartTargeting(typing_extensions.TypedDict, total=False):
-    daysOfWeek: typing.List[str]
-    hoursOfDay: typing.List[int]
-    userLocalTime: bool
-
-class CreativeFieldAssignment(typing_extensions.TypedDict, total=False):
-    creativeFieldValueId: str
-    creativeFieldId: str
-
-class FloodlightConfigurationsListResponse(typing_extensions.TypedDict, total=False):
-    floodlightConfigurations: typing.List[FloodlightConfiguration]
-    kind: str
-
-class CreativeFieldsListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    kind: str
-    creativeFields: typing.List[CreativeField]
-
-class SiteVideoSettings(typing_extensions.TypedDict, total=False):
-    skippableSettings: SiteSkippableSetting
-    obaSettings: ObaIcon
-    transcodeSettings: SiteTranscodeSetting
-    obaEnabled: bool
-    kind: str
-    companionSettings: SiteCompanionSetting
-    orientation: typing_extensions.Literal["ANY", "LANDSCAPE", "PORTRAIT"]
-
-class CreativeFieldValuesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    creativeFieldValues: typing.List[CreativeFieldValue]
-    nextPageToken: str
-
-class Campaign(typing_extensions.TypedDict, total=False):
-    audienceSegmentGroups: typing.List[AudienceSegmentGroup]
-    startDate: str
-    adBlockingConfiguration: AdBlockingConfiguration
-    creativeOptimizationConfiguration: CreativeOptimizationConfiguration
-    archived: bool
-    endDate: str
-    traffickerEmails: typing.List[str]
-    accountId: str
-    additionalCreativeOptimizationConfigurations: typing.List[
-        CreativeOptimizationConfiguration
-    ]
-    externalId: str
-    comment: str
-    advertiserId: str
-    eventTagOverrides: typing.List[EventTagOverride]
-    kind: str
-    name: str
-    createInfo: LastModifiedInfo
-    clickThroughUrlSuffixProperties: ClickThroughUrlSuffixProperties
-    subaccountId: str
-    idDimensionValue: DimensionValue
-    advertiserIdDimensionValue: DimensionValue
-    defaultLandingPageId: str
-    lastModifiedInfo: LastModifiedInfo
-    advertiserGroupId: str
-    nielsenOcrEnabled: bool
-    creativeGroupIds: typing.List[str]
-    id: str
-    billingInvoiceCode: str
-    defaultClickThroughEventTagProperties: DefaultClickThroughEventTagProperties
-
-class CreativeOptimizationConfiguration(typing_extensions.TypedDict, total=False):
-    id: str
-    optimizationModel: typing_extensions.Literal[
-        "CLICK",
-        "POST_CLICK",
-        "POST_IMPRESSION",
-        "POST_CLICK_AND_IMPRESSION",
-        "VIDEO_COMPLETION",
-    ]
-    optimizationActivitys: typing.List[OptimizationActivity]
-    name: str
-
-class CreativeRotation(typing_extensions.TypedDict, total=False):
-    creativeAssignments: typing.List[CreativeAssignment]
-    creativeOptimizationConfigurationId: str
-    weightCalculationStrategy: typing_extensions.Literal[
-        "WEIGHT_STRATEGY_EQUAL",
-        "WEIGHT_STRATEGY_CUSTOM",
-        "WEIGHT_STRATEGY_HIGHEST_CTR",
-        "WEIGHT_STRATEGY_OPTIMIZED",
-    ]
-    type: typing_extensions.Literal[
-        "CREATIVE_ROTATION_TYPE_SEQUENTIAL", "CREATIVE_ROTATION_TYPE_RANDOM"
-    ]
-
-class FloodlightActivity(typing_extensions.TypedDict, total=False):
-    floodlightActivityGroupName: str
-    subaccountId: str
-    idDimensionValue: DimensionValue
-    tagFormat: typing_extensions.Literal["HTML", "XHTML"]
-    accountId: str
-    floodlightActivityGroupTagString: str
-    floodlightActivityGroupId: str
-    kind: str
-    attributionEnabled: bool
-    sslRequired: bool
-    floodlightTagType: typing_extensions.Literal["IFRAME", "IMAGE", "GLOBAL_SITE_TAG"]
-    secure: bool
-    sslCompliant: bool
-    advertiserIdDimensionValue: DimensionValue
-    countingMethod: typing_extensions.Literal[
-        "STANDARD_COUNTING",
-        "UNIQUE_COUNTING",
-        "SESSION_COUNTING",
-        "TRANSACTIONS_COUNTING",
-        "ITEMS_SOLD_COUNTING",
-    ]
-    cacheBustingType: typing_extensions.Literal[
-        "JAVASCRIPT", "ACTIVE_SERVER_PAGE", "JSP", "PHP", "COLD_FUSION"
-    ]
-    defaultTags: typing.List[FloodlightActivityDynamicTag]
-    expectedUrl: str
-    notes: str
-    floodlightActivityGroupType: typing_extensions.Literal["COUNTER", "SALE"]
-    tagString: str
-    floodlightConfigurationId: str
-    id: str
-    status: typing_extensions.Literal[
-        "ACTIVE", "ARCHIVED_AND_DISABLED", "ARCHIVED", "DISABLED_POLICY"
-    ]
-    name: str
-    floodlightConfigurationIdDimensionValue: DimensionValue
-    userDefinedVariableTypes: typing.List[str]
-    publisherTags: typing.List[FloodlightActivityPublisherDynamicTag]
-    advertiserId: str
-
-class Order(typing_extensions.TypedDict, total=False):
-    buyerOrganizationName: str
-    termsAndConditions: str
-    kind: str
-    buyerInvoiceId: str
-    contacts: typing.List[OrderContact]
-    advertiserId: str
-    accountId: str
-    approverUserProfileIds: typing.List[str]
-    name: str
-    notes: str
-    comments: str
-    planningTermId: str
-    subaccountId: str
-    lastModifiedInfo: LastModifiedInfo
-    sellerOrganizationName: str
-    id: str
-    siteNames: typing.List[str]
-    sellerOrderId: str
-    siteId: typing.List[str]
-    projectId: str
-
-class DirectorySite(typing_extensions.TypedDict, total=False):
-    url: str
-    idDimensionValue: DimensionValue
-    settings: DirectorySiteSettings
-    kind: str
-    inpageTagFormats: typing.List[str]
-    id: str
-    name: str
-    interstitialTagFormats: typing.List[str]
-
-class Metric(typing_extensions.TypedDict, total=False):
-    kind: str
-    name: str
-
+@typing.type_check_only
 class CreativeAsset(typing_extensions.TypedDict, total=False):
-    positionTopUnit: typing_extensions.Literal[
-        "OFFSET_UNIT_PIXEL", "OFFSET_UNIT_PERCENT", "OFFSET_UNIT_PIXEL_FROM_CENTER"
+    actionScript3: bool
+    active: bool
+    additionalSizes: typing.List[Size]
+    alignment: typing_extensions.Literal[
+        "ALIGNMENT_TOP", "ALIGNMENT_RIGHT", "ALIGNMENT_BOTTOM", "ALIGNMENT_LEFT"
     ]
+    artworkType: typing_extensions.Literal[
+        "ARTWORK_TYPE_FLASH",
+        "ARTWORK_TYPE_HTML5",
+        "ARTWORK_TYPE_MIXED",
+        "ARTWORK_TYPE_IMAGE",
+    ]
+    assetIdentifier: CreativeAssetId
+    audioBitRate: int
+    audioSampleRate: int
+    backupImageExit: CreativeCustomEvent
+    bitRate: int
     childAssetType: typing_extensions.Literal[
         "CHILD_ASSET_TYPE_FLASH",
         "CHILD_ASSET_TYPE_VIDEO",
         "CHILD_ASSET_TYPE_IMAGE",
         "CHILD_ASSET_TYPE_DATA",
     ]
+    collapsedSize: Size
+    companionCreativeIds: typing.List[str]
+    customStartTimeValue: int
     detectedFeatures: typing.List[str]
-    hideSelectionBoxes: bool
-    additionalSizes: typing.List[Size]
-    audioBitRate: int
-    assetIdentifier: CreativeAssetId
     displayType: typing_extensions.Literal[
         "ASSET_DISPLAY_TYPE_INPAGE",
         "ASSET_DISPLAY_TYPE_FLOATING",
@@ -1039,43 +670,37 @@ class CreativeAsset(typing_extensions.TypedDict, total=False):
         "ASSET_DISPLAY_TYPE_VPAID_NON_LINEAR",
         "ASSET_DISPLAY_TYPE_BACKDROP",
     ]
-    zipFilename: str
-    artworkType: typing_extensions.Literal[
-        "ARTWORK_TYPE_FLASH",
-        "ARTWORK_TYPE_HTML5",
-        "ARTWORK_TYPE_MIXED",
-        "ARTWORK_TYPE_IMAGE",
-    ]
-    streamingServingUrl: str
-    idDimensionValue: DimensionValue
-    zipFilesize: str
-    size: Size
-    audioSampleRate: int
-    id: str
-    zIndex: int
-    mimeType: str
-    alignment: typing_extensions.Literal[
-        "ALIGNMENT_TOP", "ALIGNMENT_RIGHT", "ALIGNMENT_BOTTOM", "ALIGNMENT_LEFT"
-    ]
-    fileSize: str
     duration: int
+    durationType: typing_extensions.Literal[
+        "ASSET_DURATION_TYPE_AUTO",
+        "ASSET_DURATION_TYPE_NONE",
+        "ASSET_DURATION_TYPE_CUSTOM",
+    ]
+    expandedDimension: Size
+    fileSize: str
+    flashVersion: int
+    frameRate: float
+    hideFlashObjects: bool
+    hideSelectionBoxes: bool
+    horizontallyLocked: bool
+    id: str
+    idDimensionValue: DimensionValue
+    mediaDuration: float
+    mimeType: str
+    offset: OffsetPosition
+    orientation: typing_extensions.Literal["LANDSCAPE", "PORTRAIT", "SQUARE"]
+    originalBackup: bool
+    politeLoad: bool
+    position: OffsetPosition
     positionLeftUnit: typing_extensions.Literal[
         "OFFSET_UNIT_PIXEL", "OFFSET_UNIT_PERCENT", "OFFSET_UNIT_PIXEL_FROM_CENTER"
     ]
-    active: bool
-    backupImageExit: CreativeCustomEvent
-    startTimeType: typing_extensions.Literal[
-        "ASSET_START_TIME_TYPE_NONE", "ASSET_START_TIME_TYPE_CUSTOM"
+    positionTopUnit: typing_extensions.Literal[
+        "OFFSET_UNIT_PIXEL", "OFFSET_UNIT_PERCENT", "OFFSET_UNIT_PIXEL_FROM_CENTER"
     ]
-    windowMode: typing_extensions.Literal["OPAQUE", "WINDOW", "TRANSPARENT"]
-    verticallyLocked: bool
-    offset: OffsetPosition
-    originalBackup: bool
-    orientation: typing_extensions.Literal["LANDSCAPE", "PORTRAIT", "SQUARE"]
-    horizontallyLocked: bool
-    hideFlashObjects: bool
-    frameRate: float
     progressiveServingUrl: str
+    pushdown: bool
+    pushdownDuration: float
     role: typing_extensions.Literal[
         "PRIMARY",
         "BACKUP_IMAGE",
@@ -1088,67 +713,248 @@ class CreativeAsset(typing_extensions.TypedDict, total=False):
         "PARENT_AUDIO",
         "TRANSCODED_AUDIO",
     ]
-    expandedDimension: Size
-    customStartTimeValue: int
-    flashVersion: int
-    politeLoad: bool
-    transparency: bool
-    actionScript3: bool
-    companionCreativeIds: typing.List[str]
+    size: Size
     sslCompliant: bool
-    mediaDuration: float
-    pushdown: bool
-    pushdownDuration: float
-    durationType: typing_extensions.Literal[
-        "ASSET_DURATION_TYPE_AUTO",
-        "ASSET_DURATION_TYPE_NONE",
-        "ASSET_DURATION_TYPE_CUSTOM",
+    startTimeType: typing_extensions.Literal[
+        "ASSET_START_TIME_TYPE_NONE", "ASSET_START_TIME_TYPE_CUSTOM"
     ]
-    collapsedSize: Size
-    bitRate: int
-    position: OffsetPosition
+    streamingServingUrl: str
+    transparency: bool
+    verticallyLocked: bool
+    windowMode: typing_extensions.Literal["OPAQUE", "WINDOW", "TRANSPARENT"]
+    zIndex: int
+    zipFilename: str
+    zipFilesize: str
 
-class CustomEventsBatchInsertResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class CreativeAssetId(typing_extensions.TypedDict, total=False):
+    name: str
+    type: typing_extensions.Literal[
+        "IMAGE", "FLASH", "VIDEO", "HTML", "HTML_IMAGE", "AUDIO"
+    ]
+
+@typing.type_check_only
+class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
+    assetIdentifier: CreativeAssetId
+    clickTags: typing.List[ClickTag]
+    counterCustomEvents: typing.List[CreativeCustomEvent]
+    detectedFeatures: typing.List[str]
+    exitCustomEvents: typing.List[CreativeCustomEvent]
+    id: str
+    idDimensionValue: DimensionValue
     kind: str
-    hasFailures: bool
-    status: typing.List[CustomEventStatus]
+    richMedia: bool
+    timerCustomEvents: typing.List[CreativeCustomEvent]
+    warnedValidationRules: typing.List[str]
 
-class AdvertiserLandingPagesListResponse(typing_extensions.TypedDict, total=False):
-    landingPages: typing.List[LandingPage]
+@typing.type_check_only
+class CreativeAssetSelection(typing_extensions.TypedDict, total=False):
+    defaultAssetId: str
+    rules: typing.List[Rule]
+
+@typing.type_check_only
+class CreativeAssignment(typing_extensions.TypedDict, total=False):
+    active: bool
+    applyEventTags: bool
+    clickThroughUrl: ClickThroughUrl
+    companionCreativeOverrides: typing.List[CompanionClickThroughOverride]
+    creativeGroupAssignments: typing.List[CreativeGroupAssignment]
+    creativeId: str
+    creativeIdDimensionValue: DimensionValue
+    endTime: str
+    richMediaExitOverrides: typing.List[RichMediaExitOverride]
+    sequence: int
+    sslCompliant: bool
+    startTime: str
+    weight: int
+
+@typing.type_check_only
+class CreativeClickThroughUrl(typing_extensions.TypedDict, total=False):
+    computedClickThroughUrl: str
+    customClickThroughUrl: str
+    landingPageId: str
+
+@typing.type_check_only
+class CreativeCustomEvent(typing_extensions.TypedDict, total=False):
+    advertiserCustomEventId: str
+    advertiserCustomEventName: str
+    advertiserCustomEventType: typing_extensions.Literal[
+        "ADVERTISER_EVENT_TIMER", "ADVERTISER_EVENT_EXIT", "ADVERTISER_EVENT_COUNTER"
+    ]
+    artworkLabel: str
+    artworkType: typing_extensions.Literal[
+        "ARTWORK_TYPE_FLASH",
+        "ARTWORK_TYPE_HTML5",
+        "ARTWORK_TYPE_MIXED",
+        "ARTWORK_TYPE_IMAGE",
+    ]
+    exitClickThroughUrl: CreativeClickThroughUrl
+    id: str
+    popupWindowProperties: PopupWindowProperties
+    targetType: typing_extensions.Literal[
+        "TARGET_BLANK", "TARGET_TOP", "TARGET_SELF", "TARGET_PARENT", "TARGET_POPUP"
+    ]
+    videoReportingId: str
+
+@typing.type_check_only
+class CreativeField(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    id: str
+    kind: str
+    name: str
+    subaccountId: str
+
+@typing.type_check_only
+class CreativeFieldAssignment(typing_extensions.TypedDict, total=False):
+    creativeFieldId: str
+    creativeFieldValueId: str
+
+@typing.type_check_only
+class CreativeFieldValue(typing_extensions.TypedDict, total=False):
+    id: str
+    kind: str
+    value: str
+
+@typing.type_check_only
+class CreativeFieldValuesListResponse(typing_extensions.TypedDict, total=False):
+    creativeFieldValues: typing.List[CreativeFieldValue]
     kind: str
     nextPageToken: str
 
+@typing.type_check_only
+class CreativeFieldsListResponse(typing_extensions.TypedDict, total=False):
+    creativeFields: typing.List[CreativeField]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class CreativeGroup(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    groupNumber: int
+    id: str
+    kind: str
+    name: str
+    subaccountId: str
+
+@typing.type_check_only
+class CreativeGroupAssignment(typing_extensions.TypedDict, total=False):
+    creativeGroupId: str
+    creativeGroupNumber: typing_extensions.Literal[
+        "CREATIVE_GROUP_ONE", "CREATIVE_GROUP_TWO"
+    ]
+
+@typing.type_check_only
+class CreativeGroupsListResponse(typing_extensions.TypedDict, total=False):
+    creativeGroups: typing.List[CreativeGroup]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class CreativeOptimizationConfiguration(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+    optimizationActivitys: typing.List[OptimizationActivity]
+    optimizationModel: typing_extensions.Literal[
+        "CLICK",
+        "POST_CLICK",
+        "POST_IMPRESSION",
+        "POST_CLICK_AND_IMPRESSION",
+        "VIDEO_COMPLETION",
+    ]
+
+@typing.type_check_only
+class CreativeRotation(typing_extensions.TypedDict, total=False):
+    creativeAssignments: typing.List[CreativeAssignment]
+    creativeOptimizationConfigurationId: str
+    type: typing_extensions.Literal[
+        "CREATIVE_ROTATION_TYPE_SEQUENTIAL", "CREATIVE_ROTATION_TYPE_RANDOM"
+    ]
+    weightCalculationStrategy: typing_extensions.Literal[
+        "WEIGHT_STRATEGY_EQUAL",
+        "WEIGHT_STRATEGY_CUSTOM",
+        "WEIGHT_STRATEGY_HIGHEST_CTR",
+        "WEIGHT_STRATEGY_OPTIMIZED",
+    ]
+
+@typing.type_check_only
+class CreativesListResponse(typing_extensions.TypedDict, total=False):
+    creatives: typing.List[Creative]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class CrossDimensionReachReportCompatibleFields(
+    typing_extensions.TypedDict, total=False
+):
+    breakdown: typing.List[Dimension]
+    dimensionFilters: typing.List[Dimension]
+    kind: str
+    metrics: typing.List[Metric]
+    overlapMetrics: typing.List[Metric]
+
+@typing.type_check_only
+class CustomEvent(typing_extensions.TypedDict, total=False):
+    annotateClickEvent: CustomEventClickAnnotation
+    annotateImpressionEvent: CustomEventImpressionAnnotation
+    customVariables: typing.List[CustomVariable]
+    eventType: typing_extensions.Literal["UNKNOWN", "INSERT", "ANNOTATE"]
+    floodlightConfigurationId: str
+    insertEvent: CustomEventInsert
+    kind: str
+    ordinal: str
+    timestampMicros: str
+
+@typing.type_check_only
+class CustomEventClickAnnotation(typing_extensions.TypedDict, total=False):
+    gclid: str
+    kind: str
+
+@typing.type_check_only
+class CustomEventError(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "UNKNOWN", "INVALID_ARGUMENT", "INTERNAL", "PERMISSION_DENIED", "NOT_FOUND"
+    ]
+    kind: str
+    message: str
+
+@typing.type_check_only
 class CustomEventImpressionAnnotation(typing_extensions.TypedDict, total=False):
     kind: str
     pathImpressionId: str
 
-class ThirdPartyTrackingUrl(typing_extensions.TypedDict, total=False):
-    url: str
-    thirdPartyUrlType: typing_extensions.Literal[
-        "IMPRESSION",
-        "CLICK_TRACKING",
-        "VIDEO_START",
-        "VIDEO_FIRST_QUARTILE",
-        "VIDEO_MIDPOINT",
-        "VIDEO_THIRD_QUARTILE",
-        "VIDEO_COMPLETE",
-        "VIDEO_MUTE",
-        "VIDEO_PAUSE",
-        "VIDEO_REWIND",
-        "VIDEO_FULLSCREEN",
-        "VIDEO_STOP",
-        "VIDEO_CUSTOM",
-        "SURVEY",
-        "RICH_MEDIA_IMPRESSION",
-        "RICH_MEDIA_RM_IMPRESSION",
-        "RICH_MEDIA_BACKUP_IMPRESSION",
-        "VIDEO_SKIP",
-        "VIDEO_PROGRESS",
-    ]
+@typing.type_check_only
+class CustomEventInsert(typing_extensions.TypedDict, total=False):
+    cmDimensions: CampaignManagerIds
+    dv3Dimensions: DV3Ids
+    insertEventType: typing_extensions.Literal["UNKNOWN", "IMPRESSION", "CLICK"]
+    kind: str
+    matchId: str
+    mobileDeviceId: str
 
+@typing.type_check_only
+class CustomEventStatus(typing_extensions.TypedDict, total=False):
+    customEvent: CustomEvent
+    errors: typing.List[CustomEventError]
+    kind: str
+
+@typing.type_check_only
+class CustomEventsBatchInsertRequest(typing_extensions.TypedDict, total=False):
+    customEvents: typing.List[CustomEvent]
+    kind: str
+
+@typing.type_check_only
+class CustomEventsBatchInsertResponse(typing_extensions.TypedDict, total=False):
+    hasFailures: bool
+    kind: str
+    status: typing.List[CustomEventStatus]
+
+@typing.type_check_only
 class CustomFloodlightVariable(typing_extensions.TypedDict, total=False):
     kind: str
-    value: str
     type: typing_extensions.Literal[
         "U1",
         "U2",
@@ -1251,119 +1057,1055 @@ class CustomFloodlightVariable(typing_extensions.TypedDict, total=False):
         "U99",
         "U100",
     ]
+    value: str
 
-class FrequencyCap(typing_extensions.TypedDict, total=False):
-    impressions: str
-    duration: str
-
-class UserRolePermissionsListResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class CustomRichMediaEvents(typing_extensions.TypedDict, total=False):
+    filteredEventIds: typing.List[DimensionValue]
     kind: str
-    userRolePermissions: typing.List[UserRolePermission]
 
-class PlatformType(typing_extensions.TypedDict, total=False):
-    name: str
+@typing.type_check_only
+class CustomVariable(typing_extensions.TypedDict, total=False):
+    index: str
+    kind: str
+    value: str
+
+@typing.type_check_only
+class CustomViewabilityMetric(typing_extensions.TypedDict, total=False):
+    configuration: CustomViewabilityMetricConfiguration
     id: str
-    kind: str
-
-class Browser(typing_extensions.TypedDict, total=False):
-    dartId: str
     name: str
-    majorVersion: str
-    browserVersionId: str
-    kind: str
-    minorVersion: str
 
-class Report(typing_extensions.TypedDict, total=False):
-    ownerProfileId: str
-    lastModifiedTime: str
-    etag: str
-    id: str
-    kind: str
-    accountId: str
-    pathAttributionCriteria: typing.Dict[str, typing.Any]
-    crossDimensionReachCriteria: typing.Dict[str, typing.Any]
-    subAccountId: str
-    name: str
-    delivery: typing.Dict[str, typing.Any]
-    pathCriteria: typing.Dict[str, typing.Any]
-    reachCriteria: typing.Dict[str, typing.Any]
-    format: typing_extensions.Literal["CSV", "EXCEL"]
-    schedule: typing.Dict[str, typing.Any]
-    floodlightCriteria: typing.Dict[str, typing.Any]
-    fileName: str
-    pathToConversionCriteria: typing.Dict[str, typing.Any]
-    criteria: typing.Dict[str, typing.Any]
-    type: typing_extensions.Literal[
-        "STANDARD",
-        "REACH",
-        "PATH_TO_CONVERSION",
-        "CROSS_DIMENSION_REACH",
-        "FLOODLIGHT",
-        "PATH",
-        "PATH_ATTRIBUTION",
-    ]
+@typing.type_check_only
+class CustomViewabilityMetricConfiguration(typing_extensions.TypedDict, total=False):
+    audible: bool
+    timeMillis: int
+    timePercent: int
+    viewabilityPercent: int
 
-class DimensionValueRequest(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class DV3Ids(typing_extensions.TypedDict, total=False):
+    dvCampaignId: str
+    dvCreativeId: str
+    dvInsertionOrderId: str
+    dvLineItemId: str
+    dvSiteId: str
+    kind: str
+
+@typing.type_check_only
+class DateRange(typing_extensions.TypedDict, total=False):
     endDate: str
     kind: str
+    relativeDateRange: typing_extensions.Literal[
+        "TODAY",
+        "YESTERDAY",
+        "WEEK_TO_DATE",
+        "MONTH_TO_DATE",
+        "QUARTER_TO_DATE",
+        "YEAR_TO_DATE",
+        "PREVIOUS_WEEK",
+        "PREVIOUS_MONTH",
+        "PREVIOUS_QUARTER",
+        "PREVIOUS_YEAR",
+        "LAST_7_DAYS",
+        "LAST_30_DAYS",
+        "LAST_90_DAYS",
+        "LAST_365_DAYS",
+        "LAST_24_MONTHS",
+        "LAST_14_DAYS",
+        "LAST_60_DAYS",
+    ]
     startDate: str
-    filters: typing.List[DimensionFilter]
-    dimensionName: str
 
-class CampaignCreativeAssociation(typing_extensions.TypedDict, total=False):
-    creativeId: str
+@typing.type_check_only
+class DayPartTargeting(typing_extensions.TypedDict, total=False):
+    daysOfWeek: typing.List[str]
+    hoursOfDay: typing.List[int]
+    userLocalTime: bool
+
+@typing.type_check_only
+class DeepLink(typing_extensions.TypedDict, total=False):
+    appUrl: str
+    fallbackUrl: str
     kind: str
+    mobileApp: MobileApp
+    remarketingListIds: typing.List[str]
 
-class TranscodeSetting(typing_extensions.TypedDict, total=False):
-    enabledVideoFormats: typing.List[int]
+@typing.type_check_only
+class DefaultClickThroughEventTagProperties(typing_extensions.TypedDict, total=False):
+    defaultClickThroughEventTagId: str
+    overrideInheritedEventTag: bool
+
+@typing.type_check_only
+class DeliverySchedule(typing_extensions.TypedDict, total=False):
+    frequencyCap: FrequencyCap
+    hardCutoff: bool
+    impressionRatio: str
+    priority: typing_extensions.Literal[
+        "AD_PRIORITY_01",
+        "AD_PRIORITY_02",
+        "AD_PRIORITY_03",
+        "AD_PRIORITY_04",
+        "AD_PRIORITY_05",
+        "AD_PRIORITY_06",
+        "AD_PRIORITY_07",
+        "AD_PRIORITY_08",
+        "AD_PRIORITY_09",
+        "AD_PRIORITY_10",
+        "AD_PRIORITY_11",
+        "AD_PRIORITY_12",
+        "AD_PRIORITY_13",
+        "AD_PRIORITY_14",
+        "AD_PRIORITY_15",
+        "AD_PRIORITY_16",
+    ]
+
+@typing.type_check_only
+class DfpSettings(typing_extensions.TypedDict, total=False):
+    dfpNetworkCode: str
+    dfpNetworkName: str
+    programmaticPlacementAccepted: bool
+    pubPaidPlacementAccepted: bool
+    publisherPortalOnly: bool
+
+@typing.type_check_only
+class Dimension(typing_extensions.TypedDict, total=False):
     kind: str
-
-class PostalCodesListResponse(typing_extensions.TypedDict, total=False):
-    postalCodes: typing.List[PostalCode]
-    kind: str
-
-class Language(typing_extensions.TypedDict, total=False):
-    id: str
     name: str
-    languageCode: str
-    kind: str
 
-class ConversionsBatchUpdateResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class DimensionFilter(typing_extensions.TypedDict, total=False):
+    dimensionName: str
     kind: str
-    status: typing.List[ConversionStatus]
-    hasFailures: bool
+    value: str
 
-class MobileCarriersListResponse(typing_extensions.TypedDict, total=False):
-    mobileCarriers: typing.List[MobileCarrier]
+@typing.type_check_only
+class DimensionValue(typing_extensions.TypedDict, total=False):
+    dimensionName: str
+    etag: str
+    id: str
     kind: str
+    matchType: typing_extensions.Literal[
+        "EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"
+    ]
+    value: str
 
+@typing.type_check_only
 class DimensionValueList(typing_extensions.TypedDict, total=False):
     etag: str
-    nextPageToken: str
-    kind: str
     items: typing.List[DimensionValue]
+    kind: str
+    nextPageToken: str
 
-class OperatingSystemVersionsListResponse(typing_extensions.TypedDict, total=False):
-    operatingSystemVersions: typing.List[OperatingSystemVersion]
+@typing.type_check_only
+class DimensionValueRequest(typing_extensions.TypedDict, total=False):
+    dimensionName: str
+    endDate: str
+    filters: typing.List[DimensionFilter]
+    kind: str
+    startDate: str
+
+@typing.type_check_only
+class DirectorySite(typing_extensions.TypedDict, total=False):
+    id: str
+    idDimensionValue: DimensionValue
+    inpageTagFormats: typing.List[str]
+    interstitialTagFormats: typing.List[str]
+    kind: str
+    name: str
+    settings: DirectorySiteSettings
+    url: str
+
+@typing.type_check_only
+class DirectorySiteSettings(typing_extensions.TypedDict, total=False):
+    activeViewOptOut: bool
+    dfpSettings: DfpSettings
+    instreamVideoPlacementAccepted: bool
+    interstitialPlacementAccepted: bool
+
+@typing.type_check_only
+class DirectorySitesListResponse(typing_extensions.TypedDict, total=False):
+    directorySites: typing.List[DirectorySite]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class DisjunctiveMatchStatement(typing_extensions.TypedDict, total=False):
+    eventFilters: typing.List[EventFilter]
     kind: str
 
-class ListTargetingExpression(typing_extensions.TypedDict, total=False):
-    expression: str
+@typing.type_check_only
+class DynamicTargetingKey(typing_extensions.TypedDict, total=False):
+    kind: str
+    name: str
+    objectId: str
+    objectType: typing_extensions.Literal[
+        "OBJECT_ADVERTISER", "OBJECT_AD", "OBJECT_CREATIVE", "OBJECT_PLACEMENT"
+    ]
 
+@typing.type_check_only
+class DynamicTargetingKeysListResponse(typing_extensions.TypedDict, total=False):
+    dynamicTargetingKeys: typing.List[DynamicTargetingKey]
+    kind: str
+
+@typing.type_check_only
+class EncryptionInfo(typing_extensions.TypedDict, total=False):
+    encryptionEntityId: str
+    encryptionEntityType: typing_extensions.Literal[
+        "ENCRYPTION_ENTITY_TYPE_UNKNOWN",
+        "DCM_ACCOUNT",
+        "DCM_ADVERTISER",
+        "DBM_PARTNER",
+        "DBM_ADVERTISER",
+        "ADWORDS_CUSTOMER",
+        "DFP_NETWORK_CODE",
+    ]
+    encryptionSource: typing_extensions.Literal[
+        "ENCRYPTION_SCOPE_UNKNOWN", "AD_SERVING", "DATA_TRANSFER"
+    ]
+    kind: str
+
+@typing.type_check_only
+class EventFilter(typing_extensions.TypedDict, total=False):
+    dimensionFilter: PathReportDimensionValue
+    kind: str
+
+@typing.type_check_only
+class EventTag(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    campaignId: str
+    campaignIdDimensionValue: DimensionValue
+    enabledByDefault: bool
+    excludeFromAdxRequests: bool
+    id: str
+    kind: str
+    name: str
+    siteFilterType: typing_extensions.Literal["WHITELIST", "BLACKLIST"]
+    siteIds: typing.List[str]
+    sslCompliant: bool
+    status: typing_extensions.Literal["ENABLED", "DISABLED"]
+    subaccountId: str
+    type: typing_extensions.Literal[
+        "IMPRESSION_IMAGE_EVENT_TAG",
+        "IMPRESSION_JAVASCRIPT_EVENT_TAG",
+        "CLICK_THROUGH_EVENT_TAG",
+    ]
+    url: str
+    urlEscapeLevels: int
+
+@typing.type_check_only
+class EventTagOverride(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    id: str
+
+@typing.type_check_only
+class EventTagsListResponse(typing_extensions.TypedDict, total=False):
+    eventTags: typing.List[EventTag]
+    kind: str
+
+@typing.type_check_only
+class File(typing_extensions.TypedDict, total=False):
+    dateRange: DateRange
+    etag: str
+    fileName: str
+    format: typing_extensions.Literal["CSV", "EXCEL"]
+    id: str
+    kind: str
+    lastModifiedTime: str
+    reportId: str
+    status: typing_extensions.Literal[
+        "PROCESSING", "REPORT_AVAILABLE", "FAILED", "CANCELLED"
+    ]
+    urls: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class FileList(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: typing.List[File]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class Flight(typing_extensions.TypedDict, total=False):
+    endDate: str
+    rateOrCost: str
+    startDate: str
+    units: str
+
+@typing.type_check_only
+class FloodlightActivitiesGenerateTagResponse(typing_extensions.TypedDict, total=False):
+    floodlightActivityTag: str
+    globalSiteTagGlobalSnippet: str
+    kind: str
+
+@typing.type_check_only
+class FloodlightActivitiesListResponse(typing_extensions.TypedDict, total=False):
+    floodlightActivities: typing.List[FloodlightActivity]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class FloodlightActivity(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    attributionEnabled: bool
+    cacheBustingType: typing_extensions.Literal[
+        "JAVASCRIPT", "ACTIVE_SERVER_PAGE", "JSP", "PHP", "COLD_FUSION"
+    ]
+    countingMethod: typing_extensions.Literal[
+        "STANDARD_COUNTING",
+        "UNIQUE_COUNTING",
+        "SESSION_COUNTING",
+        "TRANSACTIONS_COUNTING",
+        "ITEMS_SOLD_COUNTING",
+    ]
+    defaultTags: typing.List[FloodlightActivityDynamicTag]
+    expectedUrl: str
+    floodlightActivityGroupId: str
+    floodlightActivityGroupName: str
+    floodlightActivityGroupTagString: str
+    floodlightActivityGroupType: typing_extensions.Literal["COUNTER", "SALE"]
+    floodlightConfigurationId: str
+    floodlightConfigurationIdDimensionValue: DimensionValue
+    floodlightTagType: typing_extensions.Literal["IFRAME", "IMAGE", "GLOBAL_SITE_TAG"]
+    id: str
+    idDimensionValue: DimensionValue
+    kind: str
+    name: str
+    notes: str
+    publisherTags: typing.List[FloodlightActivityPublisherDynamicTag]
+    secure: bool
+    sslCompliant: bool
+    sslRequired: bool
+    status: typing_extensions.Literal[
+        "ACTIVE", "ARCHIVED_AND_DISABLED", "ARCHIVED", "DISABLED_POLICY"
+    ]
+    subaccountId: str
+    tagFormat: typing_extensions.Literal["HTML", "XHTML"]
+    tagString: str
+    userDefinedVariableTypes: typing.List[str]
+
+@typing.type_check_only
 class FloodlightActivityDynamicTag(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     tag: str
 
-class TargetableRemarketingList(typing_extensions.TypedDict, total=False):
-    advertiserIdDimensionValue: DimensionValue
-    advertiserId: str
-    name: str
-    lifeSpan: str
-    id: str
-    active: bool
-    kind: str
+@typing.type_check_only
+class FloodlightActivityGroup(typing_extensions.TypedDict, total=False):
     accountId: str
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    floodlightConfigurationId: str
+    floodlightConfigurationIdDimensionValue: DimensionValue
+    id: str
+    idDimensionValue: DimensionValue
+    kind: str
+    name: str
+    subaccountId: str
+    tagString: str
+    type: typing_extensions.Literal["COUNTER", "SALE"]
+
+@typing.type_check_only
+class FloodlightActivityGroupsListResponse(typing_extensions.TypedDict, total=False):
+    floodlightActivityGroups: typing.List[FloodlightActivityGroup]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class FloodlightActivityPublisherDynamicTag(typing_extensions.TypedDict, total=False):
+    clickThrough: bool
+    directorySiteId: str
+    dynamicTag: FloodlightActivityDynamicTag
+    siteId: str
+    siteIdDimensionValue: DimensionValue
+    viewThrough: bool
+
+@typing.type_check_only
+class FloodlightConfiguration(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    analyticsDataSharingEnabled: bool
+    customViewabilityMetric: CustomViewabilityMetric
+    exposureToConversionEnabled: bool
+    firstDayOfWeek: typing_extensions.Literal["MONDAY", "SUNDAY"]
+    id: str
+    idDimensionValue: DimensionValue
+    inAppAttributionTrackingEnabled: bool
+    kind: str
+    lookbackConfiguration: LookbackConfiguration
+    naturalSearchConversionAttributionOption: typing_extensions.Literal[
+        "EXCLUDE_NATURAL_SEARCH_CONVERSION_ATTRIBUTION",
+        "INCLUDE_NATURAL_SEARCH_CONVERSION_ATTRIBUTION",
+        "INCLUDE_NATURAL_SEARCH_TIERED_CONVERSION_ATTRIBUTION",
+    ]
+    omnitureSettings: OmnitureSettings
+    subaccountId: str
+    tagSettings: TagSettings
+    thirdPartyAuthenticationTokens: typing.List[ThirdPartyAuthenticationToken]
+    userDefinedVariableConfigurations: typing.List[UserDefinedVariableConfiguration]
+
+@typing.type_check_only
+class FloodlightConfigurationsListResponse(typing_extensions.TypedDict, total=False):
+    floodlightConfigurations: typing.List[FloodlightConfiguration]
+    kind: str
+
+@typing.type_check_only
+class FloodlightReportCompatibleFields(typing_extensions.TypedDict, total=False):
+    dimensionFilters: typing.List[Dimension]
+    dimensions: typing.List[Dimension]
+    kind: str
+    metrics: typing.List[Metric]
+
+@typing.type_check_only
+class FrequencyCap(typing_extensions.TypedDict, total=False):
+    duration: str
+    impressions: str
+
+@typing.type_check_only
+class FsCommand(typing_extensions.TypedDict, total=False):
+    left: int
+    positionOption: typing_extensions.Literal[
+        "CENTERED", "DISTANCE_FROM_TOP_LEFT_CORNER"
+    ]
+    top: int
+    windowHeight: int
+    windowWidth: int
+
+@typing.type_check_only
+class GeoTargeting(typing_extensions.TypedDict, total=False):
+    cities: typing.List[City]
+    countries: typing.List[Country]
+    excludeCountries: bool
+    metros: typing.List[Metro]
+    postalCodes: typing.List[PostalCode]
+    regions: typing.List[Region]
+
+@typing.type_check_only
+class InventoryItem(typing_extensions.TypedDict, total=False):
+    accountId: str
+    adSlots: typing.List[AdSlot]
+    advertiserId: str
+    contentCategoryId: str
+    estimatedClickThroughRate: str
+    estimatedConversionRate: str
+    id: str
+    inPlan: bool
+    kind: str
+    lastModifiedInfo: LastModifiedInfo
+    name: str
+    negotiationChannelId: str
+    orderId: str
+    placementStrategyId: str
+    pricing: Pricing
+    projectId: str
+    rfpId: str
+    siteId: str
+    subaccountId: str
+    type: typing_extensions.Literal[
+        "PLANNING_PLACEMENT_TYPE_REGULAR", "PLANNING_PLACEMENT_TYPE_CREDIT"
+    ]
+
+@typing.type_check_only
+class InventoryItemsListResponse(typing_extensions.TypedDict, total=False):
+    inventoryItems: typing.List[InventoryItem]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class KeyValueTargetingExpression(typing_extensions.TypedDict, total=False):
+    expression: str
+
+@typing.type_check_only
+class LandingPage(typing_extensions.TypedDict, total=False):
+    advertiserId: str
+    archived: bool
+    deepLinks: typing.List[DeepLink]
+    id: str
+    kind: str
+    name: str
+    url: str
+
+@typing.type_check_only
+class Language(typing_extensions.TypedDict, total=False):
+    id: str
+    kind: str
+    languageCode: str
+    name: str
+
+@typing.type_check_only
+class LanguageTargeting(typing_extensions.TypedDict, total=False):
+    languages: typing.List[Language]
+
+@typing.type_check_only
+class LanguagesListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    languages: typing.List[Language]
+
+@typing.type_check_only
+class LastModifiedInfo(typing_extensions.TypedDict, total=False):
+    time: str
+
+@typing.type_check_only
+class ListPopulationClause(typing_extensions.TypedDict, total=False):
+    terms: typing.List[ListPopulationTerm]
+
+@typing.type_check_only
+class ListPopulationRule(typing_extensions.TypedDict, total=False):
+    floodlightActivityId: str
+    floodlightActivityName: str
+    listPopulationClauses: typing.List[ListPopulationClause]
+
+@typing.type_check_only
+class ListPopulationTerm(typing_extensions.TypedDict, total=False):
+    contains: bool
+    negation: bool
+    operator: typing_extensions.Literal[
+        "NUM_EQUALS",
+        "NUM_LESS_THAN",
+        "NUM_LESS_THAN_EQUAL",
+        "NUM_GREATER_THAN",
+        "NUM_GREATER_THAN_EQUAL",
+        "STRING_EQUALS",
+        "STRING_CONTAINS",
+    ]
+    remarketingListId: str
+    type: typing_extensions.Literal[
+        "CUSTOM_VARIABLE_TERM", "LIST_MEMBERSHIP_TERM", "REFERRER_TERM"
+    ]
+    value: str
+    variableFriendlyName: str
+    variableName: str
+
+@typing.type_check_only
+class ListTargetingExpression(typing_extensions.TypedDict, total=False):
+    expression: str
+
+@typing.type_check_only
+class LookbackConfiguration(typing_extensions.TypedDict, total=False):
+    clickDuration: int
+    postImpressionActivitiesDuration: int
+
+@typing.type_check_only
+class Metric(typing_extensions.TypedDict, total=False):
+    kind: str
+    name: str
+
+@typing.type_check_only
+class Metro(typing_extensions.TypedDict, total=False):
+    countryCode: str
+    countryDartId: str
+    dartId: str
+    dmaId: str
+    kind: str
+    metroCode: str
+    name: str
+
+@typing.type_check_only
+class MetrosListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    metros: typing.List[Metro]
+
+@typing.type_check_only
+class MobileApp(typing_extensions.TypedDict, total=False):
+    directory: typing_extensions.Literal[
+        "UNKNOWN", "APPLE_APP_STORE", "GOOGLE_PLAY_STORE"
+    ]
+    id: str
+    kind: str
+    publisherName: str
+    title: str
+
+@typing.type_check_only
+class MobileAppsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    mobileApps: typing.List[MobileApp]
+    nextPageToken: str
+
+@typing.type_check_only
+class MobileCarrier(typing_extensions.TypedDict, total=False):
+    countryCode: str
+    countryDartId: str
+    id: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class MobileCarriersListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    mobileCarriers: typing.List[MobileCarrier]
+
+@typing.type_check_only
+class ObaIcon(typing_extensions.TypedDict, total=False):
+    iconClickThroughUrl: str
+    iconClickTrackingUrl: str
+    iconViewTrackingUrl: str
+    program: str
+    resourceUrl: str
+    size: Size
+    xPosition: str
+    yPosition: str
+
+@typing.type_check_only
+class ObjectFilter(typing_extensions.TypedDict, total=False):
+    kind: str
+    objectIds: typing.List[str]
+    status: typing_extensions.Literal["NONE", "ASSIGNED", "ALL"]
+
+@typing.type_check_only
+class OffsetPosition(typing_extensions.TypedDict, total=False):
+    left: int
+    top: int
+
+@typing.type_check_only
+class OmnitureSettings(typing_extensions.TypedDict, total=False):
+    omnitureCostDataEnabled: bool
+    omnitureIntegrationEnabled: bool
+
+@typing.type_check_only
+class OperatingSystem(typing_extensions.TypedDict, total=False):
+    dartId: str
+    desktop: bool
+    kind: str
+    mobile: bool
+    name: str
+
+@typing.type_check_only
+class OperatingSystemVersion(typing_extensions.TypedDict, total=False):
+    id: str
+    kind: str
+    majorVersion: str
+    minorVersion: str
+    name: str
+    operatingSystem: OperatingSystem
+
+@typing.type_check_only
+class OperatingSystemVersionsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    operatingSystemVersions: typing.List[OperatingSystemVersion]
+
+@typing.type_check_only
+class OperatingSystemsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    operatingSystems: typing.List[OperatingSystem]
+
+@typing.type_check_only
+class OptimizationActivity(typing_extensions.TypedDict, total=False):
+    floodlightActivityId: str
+    floodlightActivityIdDimensionValue: DimensionValue
+    weight: int
+
+@typing.type_check_only
+class Order(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    approverUserProfileIds: typing.List[str]
+    buyerInvoiceId: str
+    buyerOrganizationName: str
+    comments: str
+    contacts: typing.List[OrderContact]
+    id: str
+    kind: str
+    lastModifiedInfo: LastModifiedInfo
+    name: str
+    notes: str
+    planningTermId: str
+    projectId: str
+    sellerOrderId: str
+    sellerOrganizationName: str
+    siteId: typing.List[str]
+    siteNames: typing.List[str]
+    subaccountId: str
+    termsAndConditions: str
+
+@typing.type_check_only
+class OrderContact(typing_extensions.TypedDict, total=False):
+    contactInfo: str
+    contactName: str
+    contactTitle: str
+    contactType: typing_extensions.Literal[
+        "PLANNING_ORDER_CONTACT_BUYER_CONTACT",
+        "PLANNING_ORDER_CONTACT_BUYER_BILLING_CONTACT",
+        "PLANNING_ORDER_CONTACT_SELLER_CONTACT",
+    ]
+    signatureUserProfileId: str
+
+@typing.type_check_only
+class OrderDocument(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    amendedOrderDocumentId: str
+    approvedByUserProfileIds: typing.List[str]
+    cancelled: bool
+    createdInfo: LastModifiedInfo
+    effectiveDate: str
+    id: str
+    kind: str
+    lastSentRecipients: typing.List[str]
+    lastSentTime: str
+    orderId: str
+    projectId: str
+    signed: bool
+    subaccountId: str
+    title: str
+    type: typing_extensions.Literal[
+        "PLANNING_ORDER_TYPE_INSERTION_ORDER", "PLANNING_ORDER_TYPE_CHANGE_ORDER"
+    ]
+
+@typing.type_check_only
+class OrderDocumentsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextPageToken: str
+    orderDocuments: typing.List[OrderDocument]
+
+@typing.type_check_only
+class OrdersListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextPageToken: str
+    orders: typing.List[Order]
+
+@typing.type_check_only
+class PathFilter(typing_extensions.TypedDict, total=False):
+    eventFilters: typing.List[EventFilter]
+    kind: str
+    pathMatchPosition: typing_extensions.Literal[
+        "PATH_MATCH_POSITION_UNSPECIFIED", "ANY", "FIRST", "LAST"
+    ]
+
+@typing.type_check_only
+class PathReportCompatibleFields(typing_extensions.TypedDict, total=False):
+    channelGroupings: typing.List[Dimension]
+    dimensions: typing.List[Dimension]
+    kind: str
+    metrics: typing.List[Metric]
+    pathFilters: typing.List[Dimension]
+
+@typing.type_check_only
+class PathReportDimensionValue(typing_extensions.TypedDict, total=False):
+    dimensionName: str
+    ids: typing.List[str]
+    kind: str
+    matchType: typing_extensions.Literal[
+        "EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"
+    ]
+    values: typing.List[str]
+
+@typing.type_check_only
+class PathToConversionReportCompatibleFields(typing_extensions.TypedDict, total=False):
+    conversionDimensions: typing.List[Dimension]
+    customFloodlightVariables: typing.List[Dimension]
+    kind: str
+    metrics: typing.List[Metric]
+    perInteractionDimensions: typing.List[Dimension]
+
+@typing.type_check_only
+class Placement(typing_extensions.TypedDict, total=False):
+    accountId: str
+    adBlockingOptOut: bool
+    additionalSizes: typing.List[Size]
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    archived: bool
+    campaignId: str
+    campaignIdDimensionValue: DimensionValue
+    comment: str
+    compatibility: typing_extensions.Literal[
+        "DISPLAY",
+        "DISPLAY_INTERSTITIAL",
+        "APP",
+        "APP_INTERSTITIAL",
+        "IN_STREAM_VIDEO",
+        "IN_STREAM_AUDIO",
+    ]
+    contentCategoryId: str
+    createInfo: LastModifiedInfo
+    directorySiteId: str
+    directorySiteIdDimensionValue: DimensionValue
+    externalId: str
+    id: str
+    idDimensionValue: DimensionValue
+    keyName: str
+    kind: str
+    lastModifiedInfo: LastModifiedInfo
+    lookbackConfiguration: LookbackConfiguration
+    name: str
+    paymentApproved: bool
+    paymentSource: typing_extensions.Literal[
+        "PLACEMENT_AGENCY_PAID", "PLACEMENT_PUBLISHER_PAID"
+    ]
+    placementGroupId: str
+    placementGroupIdDimensionValue: DimensionValue
+    placementStrategyId: str
+    pricingSchedule: PricingSchedule
+    primary: bool
+    publisherUpdateInfo: LastModifiedInfo
+    siteId: str
+    siteIdDimensionValue: DimensionValue
+    size: Size
+    sslRequired: bool
+    status: typing_extensions.Literal[
+        "PENDING_REVIEW",
+        "PAYMENT_ACCEPTED",
+        "PAYMENT_REJECTED",
+        "ACKNOWLEDGE_REJECTION",
+        "ACKNOWLEDGE_ACCEPTANCE",
+        "DRAFT",
+    ]
+    subaccountId: str
+    tagFormats: typing.List[str]
+    tagSetting: TagSetting
+    videoActiveViewOptOut: bool
+    videoSettings: VideoSettings
+    vpaidAdapterChoice: typing_extensions.Literal["DEFAULT", "FLASH", "HTML5", "BOTH"]
+
+@typing.type_check_only
+class PlacementAssignment(typing_extensions.TypedDict, total=False):
+    active: bool
+    placementId: str
+    placementIdDimensionValue: DimensionValue
+    sslRequired: bool
+
+@typing.type_check_only
+class PlacementGroup(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    archived: bool
+    campaignId: str
+    campaignIdDimensionValue: DimensionValue
+    childPlacementIds: typing.List[str]
+    comment: str
+    contentCategoryId: str
+    createInfo: LastModifiedInfo
+    directorySiteId: str
+    directorySiteIdDimensionValue: DimensionValue
+    externalId: str
+    id: str
+    idDimensionValue: DimensionValue
+    kind: str
+    lastModifiedInfo: LastModifiedInfo
+    name: str
+    placementGroupType: typing_extensions.Literal[
+        "PLACEMENT_PACKAGE", "PLACEMENT_ROADBLOCK"
+    ]
+    placementStrategyId: str
+    pricingSchedule: PricingSchedule
+    primaryPlacementId: str
+    primaryPlacementIdDimensionValue: DimensionValue
+    siteId: str
+    siteIdDimensionValue: DimensionValue
+    subaccountId: str
+
+@typing.type_check_only
+class PlacementGroupsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextPageToken: str
+    placementGroups: typing.List[PlacementGroup]
+
+@typing.type_check_only
+class PlacementStrategiesListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextPageToken: str
+    placementStrategies: typing.List[PlacementStrategy]
+
+@typing.type_check_only
+class PlacementStrategy(typing_extensions.TypedDict, total=False):
+    accountId: str
+    id: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class PlacementTag(typing_extensions.TypedDict, total=False):
+    placementId: str
+    tagDatas: typing.List[TagData]
+
+@typing.type_check_only
+class PlacementsGenerateTagsResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    placementTags: typing.List[PlacementTag]
+
+@typing.type_check_only
+class PlacementsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextPageToken: str
+    placements: typing.List[Placement]
+
+@typing.type_check_only
+class PlatformType(typing_extensions.TypedDict, total=False):
+    id: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class PlatformTypesListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    platformTypes: typing.List[PlatformType]
+
+@typing.type_check_only
+class PopupWindowProperties(typing_extensions.TypedDict, total=False):
+    dimension: Size
+    offset: OffsetPosition
+    positionType: typing_extensions.Literal["CENTER", "COORDINATES"]
+    showAddressBar: bool
+    showMenuBar: bool
+    showScrollBar: bool
+    showStatusBar: bool
+    showToolBar: bool
+    title: str
+
+@typing.type_check_only
+class PostalCode(typing_extensions.TypedDict, total=False):
+    code: str
+    countryCode: str
+    countryDartId: str
+    id: str
+    kind: str
+
+@typing.type_check_only
+class PostalCodesListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    postalCodes: typing.List[PostalCode]
+
+@typing.type_check_only
+class Pricing(typing_extensions.TypedDict, total=False):
+    capCostType: typing_extensions.Literal[
+        "PLANNING_PLACEMENT_CAP_COST_TYPE_NONE",
+        "PLANNING_PLACEMENT_CAP_COST_TYPE_MONTHLY",
+        "PLANNING_PLACEMENT_CAP_COST_TYPE_CUMULATIVE",
+    ]
+    endDate: str
+    flights: typing.List[Flight]
+    groupType: typing_extensions.Literal[
+        "PLANNING_PLACEMENT_GROUP_TYPE_PACKAGE",
+        "PLANNING_PLACEMENT_GROUP_TYPE_ROADBLOCK",
+    ]
+    pricingType: typing_extensions.Literal[
+        "PLANNING_PLACEMENT_PRICING_TYPE_IMPRESSIONS",
+        "PLANNING_PLACEMENT_PRICING_TYPE_CPM",
+        "PLANNING_PLACEMENT_PRICING_TYPE_CLICKS",
+        "PLANNING_PLACEMENT_PRICING_TYPE_CPC",
+        "PLANNING_PLACEMENT_PRICING_TYPE_CPA",
+        "PLANNING_PLACEMENT_PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
+        "PLANNING_PLACEMENT_PRICING_TYPE_FLAT_RATE_CLICKS",
+        "PLANNING_PLACEMENT_PRICING_TYPE_CPM_ACTIVEVIEW",
+    ]
+    startDate: str
+
+@typing.type_check_only
+class PricingSchedule(typing_extensions.TypedDict, total=False):
+    capCostOption: typing_extensions.Literal[
+        "CAP_COST_NONE", "CAP_COST_MONTHLY", "CAP_COST_CUMULATIVE"
+    ]
+    endDate: str
+    flighted: bool
+    floodlightActivityId: str
+    pricingPeriods: typing.List[PricingSchedulePricingPeriod]
+    pricingType: typing_extensions.Literal[
+        "PRICING_TYPE_CPM",
+        "PRICING_TYPE_CPC",
+        "PRICING_TYPE_CPA",
+        "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
+        "PRICING_TYPE_FLAT_RATE_CLICKS",
+        "PRICING_TYPE_CPM_ACTIVEVIEW",
+    ]
+    startDate: str
+    testingStartDate: str
+
+@typing.type_check_only
+class PricingSchedulePricingPeriod(typing_extensions.TypedDict, total=False):
+    endDate: str
+    pricingComment: str
+    rateOrCostNanos: str
+    startDate: str
+    units: str
+
+@typing.type_check_only
+class Project(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    audienceAgeGroup: typing_extensions.Literal[
+        "PLANNING_AUDIENCE_AGE_18_24",
+        "PLANNING_AUDIENCE_AGE_25_34",
+        "PLANNING_AUDIENCE_AGE_35_44",
+        "PLANNING_AUDIENCE_AGE_45_54",
+        "PLANNING_AUDIENCE_AGE_55_64",
+        "PLANNING_AUDIENCE_AGE_65_OR_MORE",
+        "PLANNING_AUDIENCE_AGE_UNKNOWN",
+    ]
+    audienceGender: typing_extensions.Literal[
+        "PLANNING_AUDIENCE_GENDER_MALE", "PLANNING_AUDIENCE_GENDER_FEMALE"
+    ]
+    budget: str
+    clientBillingCode: str
+    clientName: str
+    endDate: str
+    id: str
+    kind: str
+    lastModifiedInfo: LastModifiedInfo
+    name: str
+    overview: str
+    startDate: str
+    subaccountId: str
+    targetClicks: str
+    targetConversions: str
+    targetCpaNanos: str
+    targetCpcNanos: str
+    targetCpmActiveViewNanos: str
+    targetCpmNanos: str
+    targetImpressions: str
+
+@typing.type_check_only
+class ProjectsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextPageToken: str
+    projects: typing.List[Project]
+
+@typing.type_check_only
+class ReachReportCompatibleFields(typing_extensions.TypedDict, total=False):
+    dimensionFilters: typing.List[Dimension]
+    dimensions: typing.List[Dimension]
+    kind: str
+    metrics: typing.List[Metric]
+    pivotedActivityMetrics: typing.List[Metric]
+    reachByFrequencyMetrics: typing.List[Metric]
+
+@typing.type_check_only
+class Recipient(typing_extensions.TypedDict, total=False):
+    deliveryType: typing_extensions.Literal["LINK", "ATTACHMENT"]
+    email: str
+    kind: str
+
+@typing.type_check_only
+class Region(typing_extensions.TypedDict, total=False):
+    countryCode: str
+    countryDartId: str
+    dartId: str
+    kind: str
+    name: str
+    regionCode: str
+
+@typing.type_check_only
+class RegionsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    regions: typing.List[Region]
+
+@typing.type_check_only
+class RemarketingList(typing_extensions.TypedDict, total=False):
+    accountId: str
+    active: bool
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    description: str
+    id: str
+    kind: str
+    lifeSpan: str
+    listPopulationRule: ListPopulationRule
+    listSize: str
     listSource: typing_extensions.Literal[
         "REMARKETING_LIST_SOURCE_OTHER",
         "REMARKETING_LIST_SOURCE_ADX",
@@ -1377,115 +2119,204 @@ class TargetableRemarketingList(typing_extensions.TypedDict, total=False):
         "REMARKETING_LIST_SOURCE_DMP",
         "REMARKETING_LIST_SOURCE_PLAY_STORE",
     ]
-    subaccountId: str
-    description: str
-    listSize: str
-
-class CustomRichMediaEvents(typing_extensions.TypedDict, total=False):
-    filteredEventIds: typing.List[DimensionValue]
-    kind: str
-
-class MobileCarrier(typing_extensions.TypedDict, total=False):
-    id: str
-    countryCode: str
-    countryDartId: str
     name: str
-    kind: str
+    subaccountId: str
 
-class TargetableRemarketingListsListResponse(typing_extensions.TypedDict, total=False):
-    targetableRemarketingLists: typing.List[TargetableRemarketingList]
+@typing.type_check_only
+class RemarketingListShare(typing_extensions.TypedDict, total=False):
+    kind: str
+    remarketingListId: str
+    sharedAccountIds: typing.List[str]
+    sharedAdvertiserIds: typing.List[str]
+
+@typing.type_check_only
+class RemarketingListsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
     nextPageToken: str
-    kind: str
+    remarketingLists: typing.List[RemarketingList]
 
-class File(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Report(typing_extensions.TypedDict, total=False):
+    accountId: str
+    criteria: typing.Dict[str, typing.Any]
+    crossDimensionReachCriteria: typing.Dict[str, typing.Any]
+    delivery: typing.Dict[str, typing.Any]
     etag: str
-    status: typing_extensions.Literal[
-        "PROCESSING", "REPORT_AVAILABLE", "FAILED", "CANCELLED"
-    ]
-    lastModifiedTime: str
-    reportId: str
-    dateRange: DateRange
-    id: str
-    kind: str
-    urls: typing.Dict[str, typing.Any]
     fileName: str
+    floodlightCriteria: typing.Dict[str, typing.Any]
     format: typing_extensions.Literal["CSV", "EXCEL"]
-
-class ContentCategory(typing_extensions.TypedDict, total=False):
     id: str
-    name: str
     kind: str
-    accountId: str
-
-class ThirdPartyAuthenticationToken(typing_extensions.TypedDict, total=False):
+    lastModifiedTime: str
     name: str
-    value: str
-
-class InventoryItem(typing_extensions.TypedDict, total=False):
+    ownerProfileId: str
+    pathAttributionCriteria: typing.Dict[str, typing.Any]
+    pathCriteria: typing.Dict[str, typing.Any]
+    pathToConversionCriteria: typing.Dict[str, typing.Any]
+    reachCriteria: typing.Dict[str, typing.Any]
+    schedule: typing.Dict[str, typing.Any]
+    subAccountId: str
     type: typing_extensions.Literal[
-        "PLANNING_PLACEMENT_TYPE_REGULAR", "PLANNING_PLACEMENT_TYPE_CREDIT"
+        "STANDARD",
+        "REACH",
+        "PATH_TO_CONVERSION",
+        "CROSS_DIMENSION_REACH",
+        "FLOODLIGHT",
+        "PATH",
+        "PATH_ATTRIBUTION",
     ]
-    kind: str
-    projectId: str
-    negotiationChannelId: str
-    orderId: str
-    estimatedClickThroughRate: str
-    id: str
-    advertiserId: str
-    estimatedConversionRate: str
-    adSlots: typing.List[AdSlot]
-    rfpId: str
-    accountId: str
-    placementStrategyId: str
-    contentCategoryId: str
-    pricing: Pricing
-    lastModifiedInfo: LastModifiedInfo
-    siteId: str
-    inPlan: bool
-    subaccountId: str
-    name: str
 
-class ChannelGroupingRule(typing_extensions.TypedDict, total=False):
-    disjunctiveMatchStatements: typing.List[DisjunctiveMatchStatement]
-    name: str
+@typing.type_check_only
+class ReportCompatibleFields(typing_extensions.TypedDict, total=False):
+    dimensionFilters: typing.List[Dimension]
+    dimensions: typing.List[Dimension]
     kind: str
+    metrics: typing.List[Metric]
+    pivotedActivityMetrics: typing.List[Metric]
 
-class DV3Ids(typing_extensions.TypedDict, total=False):
-    dvLineItemId: str
-    dvSiteId: str
+@typing.type_check_only
+class ReportList(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: typing.List[Report]
     kind: str
-    dvInsertionOrderId: str
-    dvCampaignId: str
-    dvCreativeId: str
-
-class ChangeLogsListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    changeLogs: typing.List[ChangeLog]
+
+@typing.type_check_only
+class ReportsConfiguration(typing_extensions.TypedDict, total=False):
+    exposureToConversionEnabled: bool
+    lookbackConfiguration: LookbackConfiguration
+    reportGenerationTimeZoneId: str
+
+@typing.type_check_only
+class RichMediaExitOverride(typing_extensions.TypedDict, total=False):
+    clickThroughUrl: ClickThroughUrl
+    enabled: bool
+    exitId: str
+
+@typing.type_check_only
+class Rule(typing_extensions.TypedDict, total=False):
+    assetId: str
+    name: str
+    targetingTemplateId: str
+
+@typing.type_check_only
+class Site(typing_extensions.TypedDict, total=False):
+    accountId: str
+    approved: bool
+    directorySiteId: str
+    directorySiteIdDimensionValue: DimensionValue
+    id: str
+    idDimensionValue: DimensionValue
+    keyName: str
+    kind: str
+    name: str
+    siteContacts: typing.List[SiteContact]
+    siteSettings: SiteSettings
+    subaccountId: str
+    videoSettings: SiteVideoSettings
+
+@typing.type_check_only
+class SiteCompanionSetting(typing_extensions.TypedDict, total=False):
+    companionsDisabled: bool
+    enabledSizes: typing.List[Size]
+    imageOnly: bool
     kind: str
 
-class PricingSchedule(typing_extensions.TypedDict, total=False):
-    capCostOption: typing_extensions.Literal[
-        "CAP_COST_NONE", "CAP_COST_MONTHLY", "CAP_COST_CUMULATIVE"
-    ]
-    testingStartDate: str
-    pricingPeriods: typing.List[PricingSchedulePricingPeriod]
-    pricingType: typing_extensions.Literal[
-        "PRICING_TYPE_CPM",
-        "PRICING_TYPE_CPC",
-        "PRICING_TYPE_CPA",
-        "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
-        "PRICING_TYPE_FLAT_RATE_CLICKS",
-        "PRICING_TYPE_CPM_ACTIVEVIEW",
-    ]
-    flighted: bool
-    endDate: str
-    floodlightActivityId: str
-    startDate: str
+@typing.type_check_only
+class SiteContact(typing_extensions.TypedDict, total=False):
+    address: str
+    contactType: typing_extensions.Literal["SALES_PERSON", "TRAFFICKER"]
+    email: str
+    firstName: str
+    id: str
+    lastName: str
+    phone: str
+    title: str
 
+@typing.type_check_only
+class SiteSettings(typing_extensions.TypedDict, total=False):
+    activeViewOptOut: bool
+    adBlockingOptOut: bool
+    disableNewCookie: bool
+    tagSetting: TagSetting
+    videoActiveViewOptOutTemplate: bool
+    vpaidAdapterChoiceTemplate: typing_extensions.Literal[
+        "DEFAULT", "FLASH", "HTML5", "BOTH"
+    ]
+
+@typing.type_check_only
+class SiteSkippableSetting(typing_extensions.TypedDict, total=False):
+    kind: str
+    progressOffset: VideoOffset
+    skipOffset: VideoOffset
+    skippable: bool
+
+@typing.type_check_only
+class SiteTranscodeSetting(typing_extensions.TypedDict, total=False):
+    enabledVideoFormats: typing.List[int]
+    kind: str
+
+@typing.type_check_only
+class SiteVideoSettings(typing_extensions.TypedDict, total=False):
+    companionSettings: SiteCompanionSetting
+    kind: str
+    obaEnabled: bool
+    obaSettings: ObaIcon
+    orientation: typing_extensions.Literal["ANY", "LANDSCAPE", "PORTRAIT"]
+    skippableSettings: SiteSkippableSetting
+    transcodeSettings: SiteTranscodeSetting
+
+@typing.type_check_only
+class SitesListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextPageToken: str
+    sites: typing.List[Site]
+
+@typing.type_check_only
+class Size(typing_extensions.TypedDict, total=False):
+    height: int
+    iab: bool
+    id: str
+    kind: str
+    width: int
+
+@typing.type_check_only
+class SizesListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    sizes: typing.List[Size]
+
+@typing.type_check_only
+class SkippableSetting(typing_extensions.TypedDict, total=False):
+    kind: str
+    progressOffset: VideoOffset
+    skipOffset: VideoOffset
+    skippable: bool
+
+@typing.type_check_only
+class SortedDimension(typing_extensions.TypedDict, total=False):
+    kind: str
+    name: str
+    sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"]
+
+@typing.type_check_only
+class Subaccount(typing_extensions.TypedDict, total=False):
+    accountId: str
+    availablePermissionIds: typing.List[str]
+    id: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class SubaccountsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextPageToken: str
+    subaccounts: typing.List[Subaccount]
+
+@typing.type_check_only
 class TagData(typing_extensions.TypedDict, total=False):
+    adId: str
     clickTag: str
     creativeId: str
-    impressionTag: str
     format: typing_extensions.Literal[
         "PLACEMENT_TAG_STANDARD",
         "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
@@ -1507,667 +2338,138 @@ class TagData(typing_extensions.TypedDict, total=False):
         "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
         "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
     ]
-    adId: str
+    impressionTag: str
 
-class CreativeAssetSelection(typing_extensions.TypedDict, total=False):
-    rules: typing.List[Rule]
-    defaultAssetId: str
-
-class Metro(typing_extensions.TypedDict, total=False):
-    kind: str
-    dartId: str
-    metroCode: str
-    countryDartId: str
-    countryCode: str
-    name: str
-    dmaId: str
-
-class AccountActiveAdSummary(typing_extensions.TypedDict, total=False):
-    kind: str
-    availableAds: str
-    activeAdsLimitTier: typing_extensions.Literal[
-        "ACTIVE_ADS_TIER_40K",
-        "ACTIVE_ADS_TIER_75K",
-        "ACTIVE_ADS_TIER_100K",
-        "ACTIVE_ADS_TIER_200K",
-        "ACTIVE_ADS_TIER_300K",
-        "ACTIVE_ADS_TIER_500K",
-        "ACTIVE_ADS_TIER_750K",
-        "ACTIVE_ADS_TIER_1M",
-    ]
-    accountId: str
-    activeAds: str
-
-class ChannelGrouping(typing_extensions.TypedDict, total=False):
-    kind: str
-    fallbackName: str
-    rules: typing.List[ChannelGroupingRule]
-    name: str
-
-class Account(typing_extensions.TypedDict, total=False):
-    kind: str
-    description: str
-    teaserSizeLimit: str
-    currencyId: str
-    availablePermissionIds: typing.List[str]
-    reportsConfiguration: ReportsConfiguration
-    defaultCreativeSizeId: str
-    accountProfile: typing_extensions.Literal[
-        "ACCOUNT_PROFILE_BASIC", "ACCOUNT_PROFILE_STANDARD"
-    ]
-    locale: str
-    activeViewOptOut: bool
-    name: str
-    shareReportsWithTwitter: bool
-    countryId: str
-    maximumImageSize: str
-    nielsenOcrEnabled: bool
-    activeAdsLimitTier: typing_extensions.Literal[
-        "ACTIVE_ADS_TIER_40K",
-        "ACTIVE_ADS_TIER_75K",
-        "ACTIVE_ADS_TIER_100K",
-        "ACTIVE_ADS_TIER_200K",
-        "ACTIVE_ADS_TIER_300K",
-        "ACTIVE_ADS_TIER_500K",
-        "ACTIVE_ADS_TIER_750K",
-        "ACTIVE_ADS_TIER_1M",
-    ]
-    id: str
-    active: bool
-    accountPermissionIds: typing.List[str]
-
-class AccountPermissionsListResponse(typing_extensions.TypedDict, total=False):
-    accountPermissions: typing.List[AccountPermission]
-    kind: str
-
-class TechnologyTargeting(typing_extensions.TypedDict, total=False):
-    browsers: typing.List[Browser]
-    operatingSystemVersions: typing.List[OperatingSystemVersion]
-    mobileCarriers: typing.List[MobileCarrier]
-    platformTypes: typing.List[PlatformType]
-    operatingSystems: typing.List[OperatingSystem]
-    connectionTypes: typing.List[ConnectionType]
-
-class Recipient(typing_extensions.TypedDict, total=False):
-    deliveryType: typing_extensions.Literal["LINK", "ATTACHMENT"]
-    kind: str
-    email: str
-
-class UserRolePermission(typing_extensions.TypedDict, total=False):
-    permissionGroupId: str
-    availability: typing_extensions.Literal[
-        "NOT_AVAILABLE_BY_DEFAULT",
-        "ACCOUNT_BY_DEFAULT",
-        "SUBACCOUNT_AND_ACCOUNT_BY_DEFAULT",
-        "ACCOUNT_ALWAYS",
-        "SUBACCOUNT_AND_ACCOUNT_ALWAYS",
-    ]
-    name: str
-    kind: str
-    id: str
-
-class DirectorySiteSettings(typing_extensions.TypedDict, total=False):
-    dfpSettings: DfpSettings
-    activeViewOptOut: bool
-    interstitialPlacementAccepted: bool
-    instreamVideoPlacementAccepted: bool
-
+@typing.type_check_only
 class TagSetting(typing_extensions.TypedDict, total=False):
-    includeClickThroughUrls: bool
     additionalKeyValues: str
+    includeClickThroughUrls: bool
+    includeClickTracking: bool
     keywordOption: typing_extensions.Literal[
         "PLACEHOLDER_WITH_LIST_OF_KEYWORDS",
         "IGNORE",
         "GENERATE_SEPARATE_TAG_FOR_EACH_KEYWORD",
     ]
-    includeClickTracking: bool
 
-class CustomViewabilityMetric(typing_extensions.TypedDict, total=False):
-    name: str
-    configuration: CustomViewabilityMetricConfiguration
-    id: str
-
-class SitesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    sites: typing.List[Site]
-    nextPageToken: str
-
-class CustomEventsBatchInsertRequest(typing_extensions.TypedDict, total=False):
-    kind: str
-    customEvents: typing.List[CustomEvent]
-
-class RemarketingListShare(typing_extensions.TypedDict, total=False):
-    remarketingListId: str
-    sharedAccountIds: typing.List[str]
-    sharedAdvertiserIds: typing.List[str]
-    kind: str
-
-class OperatingSystemVersion(typing_extensions.TypedDict, total=False):
-    majorVersion: str
-    name: str
-    operatingSystem: OperatingSystem
-    kind: str
-    id: str
-    minorVersion: str
-
-class CustomEventClickAnnotation(typing_extensions.TypedDict, total=False):
-    kind: str
-    gclid: str
-
-class ReportCompatibleFields(typing_extensions.TypedDict, total=False):
-    pivotedActivityMetrics: typing.List[Metric]
-    dimensions: typing.List[Dimension]
-    kind: str
-    metrics: typing.List[Metric]
-    dimensionFilters: typing.List[Dimension]
-
-class AdvertiserGroup(typing_extensions.TypedDict, total=False):
-    id: str
-    accountId: str
-    kind: str
-    name: str
-
-class CampaignManagerIds(typing_extensions.TypedDict, total=False):
-    siteId: str
-    adId: str
-    campaignId: str
-    kind: str
-    placementId: str
-    creativeId: str
-
+@typing.type_check_only
 class TagSettings(typing_extensions.TypedDict, total=False):
     dynamicTagEnabled: bool
     imageTagEnabled: bool
 
-class SkippableSetting(typing_extensions.TypedDict, total=False):
-    skippable: bool
-    skipOffset: VideoOffset
-    kind: str
-    progressOffset: VideoOffset
-
-class DeepLink(typing_extensions.TypedDict, total=False):
-    appUrl: str
-    remarketingListIds: typing.List[str]
-    fallbackUrl: str
-    mobileApp: MobileApp
-    kind: str
-
-class LookbackConfiguration(typing_extensions.TypedDict, total=False):
-    postImpressionActivitiesDuration: int
-    clickDuration: int
-
-class AdSlot(typing_extensions.TypedDict, total=False):
-    paymentSourceType: typing_extensions.Literal[
-        "PLANNING_PAYMENT_SOURCE_TYPE_AGENCY_PAID",
-        "PLANNING_PAYMENT_SOURCE_TYPE_PUBLISHER_PAID",
+@typing.type_check_only
+class TargetWindow(typing_extensions.TypedDict, total=False):
+    customHtml: str
+    targetWindowOption: typing_extensions.Literal[
+        "NEW_WINDOW", "CURRENT_WINDOW", "CUSTOM"
     ]
-    primary: bool
-    compatibility: typing_extensions.Literal[
-        "DISPLAY",
-        "DISPLAY_INTERSTITIAL",
-        "APP",
-        "APP_INTERSTITIAL",
-        "IN_STREAM_VIDEO",
-        "IN_STREAM_AUDIO",
-    ]
-    linkedPlacementId: str
-    width: str
-    name: str
-    comment: str
-    height: str
 
-class DynamicTargetingKeysListResponse(typing_extensions.TypedDict, total=False):
-    dynamicTargetingKeys: typing.List[DynamicTargetingKey]
-    kind: str
-
-class FloodlightConfiguration(typing_extensions.TypedDict, total=False):
-    advertiserId: str
-    customViewabilityMetric: CustomViewabilityMetric
-    idDimensionValue: DimensionValue
+@typing.type_check_only
+class TargetableRemarketingList(typing_extensions.TypedDict, total=False):
     accountId: str
-    omnitureSettings: OmnitureSettings
-    thirdPartyAuthenticationTokens: typing.List[ThirdPartyAuthenticationToken]
-    lookbackConfiguration: LookbackConfiguration
-    analyticsDataSharingEnabled: bool
-    userDefinedVariableConfigurations: typing.List[UserDefinedVariableConfiguration]
-    kind: str
-    naturalSearchConversionAttributionOption: typing_extensions.Literal[
-        "EXCLUDE_NATURAL_SEARCH_CONVERSION_ATTRIBUTION",
-        "INCLUDE_NATURAL_SEARCH_CONVERSION_ATTRIBUTION",
-        "INCLUDE_NATURAL_SEARCH_TIERED_CONVERSION_ATTRIBUTION",
-    ]
-    subaccountId: str
-    exposureToConversionEnabled: bool
-    advertiserIdDimensionValue: DimensionValue
-    id: str
-    inAppAttributionTrackingEnabled: bool
-    firstDayOfWeek: typing_extensions.Literal["MONDAY", "SUNDAY"]
-    tagSettings: TagSettings
-
-class Project(typing_extensions.TypedDict, total=False):
-    id: str
-    subaccountId: str
-    audienceAgeGroup: typing_extensions.Literal[
-        "PLANNING_AUDIENCE_AGE_18_24",
-        "PLANNING_AUDIENCE_AGE_25_34",
-        "PLANNING_AUDIENCE_AGE_35_44",
-        "PLANNING_AUDIENCE_AGE_45_54",
-        "PLANNING_AUDIENCE_AGE_55_64",
-        "PLANNING_AUDIENCE_AGE_65_OR_MORE",
-        "PLANNING_AUDIENCE_AGE_UNKNOWN",
-    ]
-    targetClicks: str
-    targetImpressions: str
-    endDate: str
-    audienceGender: typing_extensions.Literal[
-        "PLANNING_AUDIENCE_GENDER_MALE", "PLANNING_AUDIENCE_GENDER_FEMALE"
-    ]
-    startDate: str
-    accountId: str
-    targetCpmActiveViewNanos: str
-    targetCpaNanos: str
-    clientBillingCode: str
-    name: str
-    budget: str
-    kind: str
-    lastModifiedInfo: LastModifiedInfo
-    clientName: str
-    advertiserId: str
-    targetConversions: str
-    targetCpcNanos: str
-    targetCpmNanos: str
-    overview: str
-
-class Advertiser(typing_extensions.TypedDict, total=False):
-    suspended: bool
-    subaccountId: str
-    kind: str
-    clickThroughUrlSuffix: str
-    name: str
-    status: typing_extensions.Literal["APPROVED", "ON_HOLD"]
-    defaultEmail: str
-    id: str
-    accountId: str
-    defaultClickThroughEventTagId: str
-    idDimensionValue: DimensionValue
-    originalFloodlightConfigurationId: str
-    advertiserGroupId: str
-    floodlightConfigurationIdDimensionValue: DimensionValue
-    floodlightConfigurationId: str
-
-class Conversion(typing_extensions.TypedDict, total=False):
-    childDirectedTreatment: bool
-    floodlightActivityId: str
-    encryptedUserId: str
-    floodlightConfigurationId: str
-    matchId: str
-    timestampMicros: str
-    nonPersonalizedAd: bool
-    kind: str
-    treatmentForUnderage: bool
-    limitAdTracking: bool
-    ordinal: str
-    gclid: str
-    quantity: str
-    encryptedUserIdCandidates: typing.List[str]
-    customVariables: typing.List[CustomFloodlightVariable]
-    value: float
-    mobileDeviceId: str
-    dclid: str
-
-class Dimension(typing_extensions.TypedDict, total=False):
-    name: str
-    kind: str
-
-class PathFilter(typing_extensions.TypedDict, total=False):
-    kind: str
-    pathMatchPosition: typing_extensions.Literal[
-        "PATH_MATCH_POSITION_UNSPECIFIED", "ANY", "FIRST", "LAST"
-    ]
-    eventFilters: typing.List[EventFilter]
-
-class ReportList(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    items: typing.List[Report]
-    etag: str
-    kind: str
-
-class OrdersListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    orders: typing.List[Order]
-
-class ListPopulationRule(typing_extensions.TypedDict, total=False):
-    floodlightActivityName: str
-    listPopulationClauses: typing.List[ListPopulationClause]
-    floodlightActivityId: str
-
-class AudienceSegmentGroup(typing_extensions.TypedDict, total=False):
-    id: str
-    audienceSegments: typing.List[AudienceSegment]
-    name: str
-
-class PlacementStrategy(typing_extensions.TypedDict, total=False):
-    accountId: str
-    kind: str
-    name: str
-    id: str
-
-class FloodlightActivityGroupsListResponse(typing_extensions.TypedDict, total=False):
-    floodlightActivityGroups: typing.List[FloodlightActivityGroup]
-    kind: str
-    nextPageToken: str
-
-class ConnectionTypesListResponse(typing_extensions.TypedDict, total=False):
-    connectionTypes: typing.List[ConnectionType]
-    kind: str
-
-class CountriesListResponse(typing_extensions.TypedDict, total=False):
-    countries: typing.List[Country]
-    kind: str
-
-class EventFilter(typing_extensions.TypedDict, total=False):
-    kind: str
-    dimensionFilter: PathReportDimensionValue
-
-class ObjectFilter(typing_extensions.TypedDict, total=False):
-    status: typing_extensions.Literal["NONE", "ASSIGNED", "ALL"]
-    objectIds: typing.List[str]
-    kind: str
-
-class VideoSettings(typing_extensions.TypedDict, total=False):
-    orientation: typing_extensions.Literal["ANY", "LANDSCAPE", "PORTRAIT"]
-    obaEnabled: bool
-    transcodeSettings: TranscodeSetting
-    skippableSettings: SkippableSetting
-    obaSettings: ObaIcon
-    kind: str
-    companionSettings: CompanionSetting
-
-class EventTagsListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    eventTags: typing.List[EventTag]
-
-class CampaignsListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    campaigns: typing.List[Campaign]
-    kind: str
-
-class AdBlockingConfiguration(typing_extensions.TypedDict, total=False):
-    creativeBundleId: str
-    clickThroughUrl: str
-    enabled: bool
-    overrideClickThroughUrl: bool
-
-class CustomEventInsert(typing_extensions.TypedDict, total=False):
-    matchId: str
-    cmDimensions: CampaignManagerIds
-    insertEventType: typing_extensions.Literal["UNKNOWN", "IMPRESSION", "CLICK"]
-    dv3Dimensions: DV3Ids
-    mobileDeviceId: str
-    kind: str
-
-class CreativeGroupAssignment(typing_extensions.TypedDict, total=False):
-    creativeGroupId: str
-    creativeGroupNumber: typing_extensions.Literal[
-        "CREATIVE_GROUP_ONE", "CREATIVE_GROUP_TWO"
-    ]
-
-class PathReportCompatibleFields(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[Dimension]
-    pathFilters: typing.List[Dimension]
-    channelGroupings: typing.List[Dimension]
-    kind: str
-    metrics: typing.List[Metric]
-
-class SiteSkippableSetting(typing_extensions.TypedDict, total=False):
-    skipOffset: VideoOffset
-    progressOffset: VideoOffset
-    skippable: bool
-    kind: str
-
-class SiteContact(typing_extensions.TypedDict, total=False):
-    address: str
-    email: str
-    phone: str
-    title: str
-    id: str
-    lastName: str
-    contactType: typing_extensions.Literal["SALES_PERSON", "TRAFFICKER"]
-    firstName: str
-
-class CreativeField(typing_extensions.TypedDict, total=False):
-    name: str
-    id: str
+    active: bool
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
-    accountId: str
+    description: str
+    id: str
     kind: str
+    lifeSpan: str
+    listSize: str
+    listSource: typing_extensions.Literal[
+        "REMARKETING_LIST_SOURCE_OTHER",
+        "REMARKETING_LIST_SOURCE_ADX",
+        "REMARKETING_LIST_SOURCE_DFP",
+        "REMARKETING_LIST_SOURCE_XFP",
+        "REMARKETING_LIST_SOURCE_DFA",
+        "REMARKETING_LIST_SOURCE_GA",
+        "REMARKETING_LIST_SOURCE_YOUTUBE",
+        "REMARKETING_LIST_SOURCE_DBM",
+        "REMARKETING_LIST_SOURCE_GPLUS",
+        "REMARKETING_LIST_SOURCE_DMP",
+        "REMARKETING_LIST_SOURCE_PLAY_STORE",
+    ]
+    name: str
     subaccountId: str
 
-class CustomViewabilityMetricConfiguration(typing_extensions.TypedDict, total=False):
-    timePercent: int
-    viewabilityPercent: int
-    timeMillis: int
-    audible: bool
-
-class ConversionsBatchInsertRequest(typing_extensions.TypedDict, total=False):
-    conversions: typing.List[Conversion]
+@typing.type_check_only
+class TargetableRemarketingListsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    encryptionInfo: EncryptionInfo
+    nextPageToken: str
+    targetableRemarketingLists: typing.List[TargetableRemarketingList]
 
-class OperatingSystemsListResponse(typing_extensions.TypedDict, total=False):
-    operatingSystems: typing.List[OperatingSystem]
+@typing.type_check_only
+class TargetingTemplate(typing_extensions.TypedDict, total=False):
+    accountId: str
+    advertiserId: str
+    advertiserIdDimensionValue: DimensionValue
+    dayPartTargeting: DayPartTargeting
+    geoTargeting: GeoTargeting
+    id: str
+    keyValueTargetingExpression: KeyValueTargetingExpression
     kind: str
+    languageTargeting: LanguageTargeting
+    listTargetingExpression: ListTargetingExpression
+    name: str
+    subaccountId: str
+    technologyTargeting: TechnologyTargeting
 
+@typing.type_check_only
 class TargetingTemplatesListResponse(typing_extensions.TypedDict, total=False):
     kind: str
+    nextPageToken: str
     targetingTemplates: typing.List[TargetingTemplate]
-    nextPageToken: str
 
-class AdvertisersListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    advertisers: typing.List[Advertiser]
-    kind: str
+@typing.type_check_only
+class TechnologyTargeting(typing_extensions.TypedDict, total=False):
+    browsers: typing.List[Browser]
+    connectionTypes: typing.List[ConnectionType]
+    mobileCarriers: typing.List[MobileCarrier]
+    operatingSystemVersions: typing.List[OperatingSystemVersion]
+    operatingSystems: typing.List[OperatingSystem]
+    platformTypes: typing.List[PlatformType]
 
-class AccountUserProfile(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class ThirdPartyAuthenticationToken(typing_extensions.TypedDict, total=False):
     name: str
-    accountId: str
-    kind: str
-    subaccountId: str
-    active: bool
-    userRoleFilter: ObjectFilter
-    advertiserFilter: ObjectFilter
-    email: str
-    id: str
-    traffickerType: typing_extensions.Literal[
-        "INTERNAL_NON_TRAFFICKER", "INTERNAL_TRAFFICKER", "EXTERNAL_TRAFFICKER"
+    value: str
+
+@typing.type_check_only
+class ThirdPartyTrackingUrl(typing_extensions.TypedDict, total=False):
+    thirdPartyUrlType: typing_extensions.Literal[
+        "IMPRESSION",
+        "CLICK_TRACKING",
+        "VIDEO_START",
+        "VIDEO_FIRST_QUARTILE",
+        "VIDEO_MIDPOINT",
+        "VIDEO_THIRD_QUARTILE",
+        "VIDEO_COMPLETE",
+        "VIDEO_MUTE",
+        "VIDEO_PAUSE",
+        "VIDEO_REWIND",
+        "VIDEO_FULLSCREEN",
+        "VIDEO_STOP",
+        "VIDEO_CUSTOM",
+        "SURVEY",
+        "RICH_MEDIA_IMPRESSION",
+        "RICH_MEDIA_RM_IMPRESSION",
+        "RICH_MEDIA_BACKUP_IMPRESSION",
+        "VIDEO_SKIP",
+        "VIDEO_PROGRESS",
     ]
-    userAccessType: typing_extensions.Literal[
-        "NORMAL_USER", "SUPER_USER", "INTERNAL_ADMINISTRATOR", "READ_ONLY_SUPER_USER"
-    ]
-    locale: str
-    siteFilter: ObjectFilter
-    campaignFilter: ObjectFilter
-    userRoleId: str
-    comments: str
-
-class AccountUserProfilesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    accountUserProfiles: typing.List[AccountUserProfile]
-    nextPageToken: str
-
-class DefaultClickThroughEventTagProperties(typing_extensions.TypedDict, total=False):
-    overrideInheritedEventTag: bool
-    defaultClickThroughEventTagId: str
-
-class FileList(typing_extensions.TypedDict, total=False):
-    kind: str
-    etag: str
-    items: typing.List[File]
-    nextPageToken: str
-
-class CreativeGroupsListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    creativeGroups: typing.List[CreativeGroup]
-    nextPageToken: str
-
-class PlacementsListResponse(typing_extensions.TypedDict, total=False):
-    placements: typing.List[Placement]
-    nextPageToken: str
-    kind: str
-
-class AccountPermission(typing_extensions.TypedDict, total=False):
-    name: str
-    kind: str
-    permissionGroupId: str
-    accountProfiles: typing.List[str]
-    level: typing_extensions.Literal["USER", "ADMINISTRATOR"]
-    id: str
-
-class MobileAppsListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    mobileApps: typing.List[MobileApp]
-    kind: str
-
-class OrderDocumentsListResponse(typing_extensions.TypedDict, total=False):
-    orderDocuments: typing.List[OrderDocument]
-    nextPageToken: str
-    kind: str
-
-class CompanionClickThroughOverride(typing_extensions.TypedDict, total=False):
-    creativeId: str
-    clickThroughUrl: ClickThroughUrl
-
-class ClickThroughUrl(typing_extensions.TypedDict, total=False):
-    defaultLandingPage: bool
-    computedClickThroughUrl: str
-    customClickThroughUrl: str
-    landingPageId: str
-
-class PathReportDimensionValue(typing_extensions.TypedDict, total=False):
-    dimensionName: str
-    matchType: typing_extensions.Literal[
-        "EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"
-    ]
-    values: typing.List[str]
-    kind: str
-    ids: typing.List[str]
-
-class CreativeCustomEvent(typing_extensions.TypedDict, total=False):
-    exitClickThroughUrl: CreativeClickThroughUrl
-    id: str
-    popupWindowProperties: PopupWindowProperties
-    videoReportingId: str
-    artworkLabel: str
-    advertiserCustomEventType: typing_extensions.Literal[
-        "ADVERTISER_EVENT_TIMER", "ADVERTISER_EVENT_EXIT", "ADVERTISER_EVENT_COUNTER"
-    ]
-    targetType: typing_extensions.Literal[
-        "TARGET_BLANK", "TARGET_TOP", "TARGET_SELF", "TARGET_PARENT", "TARGET_POPUP"
-    ]
-    artworkType: typing_extensions.Literal[
-        "ARTWORK_TYPE_FLASH",
-        "ARTWORK_TYPE_HTML5",
-        "ARTWORK_TYPE_MIXED",
-        "ARTWORK_TYPE_IMAGE",
-    ]
-    advertiserCustomEventName: str
-    advertiserCustomEventId: str
-
-class UserProfile(typing_extensions.TypedDict, total=False):
-    subAccountId: str
-    subAccountName: str
-    accountId: str
-    accountName: str
-    kind: str
-    profileId: str
-    etag: str
-    userName: str
-
-class AccountPermissionGroupsListResponse(typing_extensions.TypedDict, total=False):
-    accountPermissionGroups: typing.List[AccountPermissionGroup]
-    kind: str
-
-class RemarketingListsListResponse(typing_extensions.TypedDict, total=False):
-    remarketingLists: typing.List[RemarketingList]
-    nextPageToken: str
-    kind: str
-
-class OptimizationActivity(typing_extensions.TypedDict, total=False):
-    weight: int
-    floodlightActivityId: str
-    floodlightActivityIdDimensionValue: DimensionValue
-
-class CustomEventStatus(typing_extensions.TypedDict, total=False):
-    kind: str
-    errors: typing.List[CustomEventError]
-    customEvent: CustomEvent
-
-class VideoFormat(typing_extensions.TypedDict, total=False):
-    fileType: typing_extensions.Literal["FLV", "THREEGPP", "MP4", "WEBM", "M3U8"]
-    kind: str
-    targetBitRate: int
-    id: int
-    resolution: Size
-
-class PlacementGroup(typing_extensions.TypedDict, total=False):
-    kind: str
-    contentCategoryId: str
-    siteId: str
-    directorySiteId: str
-    accountId: str
-    siteIdDimensionValue: DimensionValue
-    name: str
-    advertiserId: str
-    subaccountId: str
-    advertiserIdDimensionValue: DimensionValue
-    idDimensionValue: DimensionValue
-    directorySiteIdDimensionValue: DimensionValue
-    campaignId: str
-    createInfo: LastModifiedInfo
-    placementGroupType: typing_extensions.Literal[
-        "PLACEMENT_PACKAGE", "PLACEMENT_ROADBLOCK"
-    ]
-    primaryPlacementId: str
-    primaryPlacementIdDimensionValue: DimensionValue
-    pricingSchedule: PricingSchedule
-    id: str
-    lastModifiedInfo: LastModifiedInfo
-    placementStrategyId: str
-    campaignIdDimensionValue: DimensionValue
-    comment: str
-    archived: bool
-    childPlacementIds: typing.List[str]
-    externalId: str
-
-class OmnitureSettings(typing_extensions.TypedDict, total=False):
-    omnitureIntegrationEnabled: bool
-    omnitureCostDataEnabled: bool
-
-class LandingPage(typing_extensions.TypedDict, total=False):
     url: str
-    archived: bool
-    advertiserId: str
-    kind: str
-    name: str
-    deepLinks: typing.List[DeepLink]
-    id: str
 
-class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
-    timerCustomEvents: typing.List[CreativeCustomEvent]
+@typing.type_check_only
+class TranscodeSetting(typing_extensions.TypedDict, total=False):
+    enabledVideoFormats: typing.List[int]
     kind: str
-    id: str
-    assetIdentifier: CreativeAssetId
-    idDimensionValue: DimensionValue
-    warnedValidationRules: typing.List[str]
-    richMedia: bool
-    exitCustomEvents: typing.List[CreativeCustomEvent]
-    detectedFeatures: typing.List[str]
-    clickTags: typing.List[ClickTag]
-    counterCustomEvents: typing.List[CreativeCustomEvent]
 
+@typing.type_check_only
+class UniversalAdId(typing_extensions.TypedDict, total=False):
+    registry: typing_extensions.Literal["OTHER", "AD_ID_OFFICIAL", "CLEARCAST", "DCM"]
+    value: str
+
+@typing.type_check_only
 class UserDefinedVariableConfiguration(typing_extensions.TypedDict, total=False):
+    dataType: typing_extensions.Literal["STRING", "NUMBER"]
     reportName: str
     variableType: typing_extensions.Literal[
         "U1",
@@ -2271,163 +2573,95 @@ class UserDefinedVariableConfiguration(typing_extensions.TypedDict, total=False)
         "U99",
         "U100",
     ]
-    dataType: typing_extensions.Literal["STRING", "NUMBER"]
 
-class Subaccount(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class UserProfile(typing_extensions.TypedDict, total=False):
     accountId: str
-    name: str
-    id: str
-    availablePermissionIds: typing.List[str]
+    accountName: str
+    etag: str
+    kind: str
+    profileId: str
+    subAccountId: str
+    subAccountName: str
+    userName: str
+
+@typing.type_check_only
+class UserProfileList(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: typing.List[UserProfile]
     kind: str
 
-class TargetingTemplate(typing_extensions.TypedDict, total=False):
-    listTargetingExpression: ListTargetingExpression
-    accountId: str
-    languageTargeting: LanguageTargeting
-    advertiserId: str
-    subaccountId: str
-    geoTargeting: GeoTargeting
-    dayPartTargeting: DayPartTargeting
-    kind: str
-    name: str
-    keyValueTargetingExpression: KeyValueTargetingExpression
-    advertiserIdDimensionValue: DimensionValue
-    technologyTargeting: TechnologyTargeting
-    id: str
-
+@typing.type_check_only
 class UserRole(typing_extensions.TypedDict, total=False):
     accountId: str
     defaultUserRole: bool
+    id: str
+    kind: str
     name: str
     parentUserRoleId: str
-    id: str
-    subaccountId: str
-    kind: str
     permissions: typing.List[UserRolePermission]
+    subaccountId: str
 
-class CompanionSetting(typing_extensions.TypedDict, total=False):
-    imageOnly: bool
-    companionsDisabled: bool
-    kind: str
-    enabledSizes: typing.List[Size]
-
-class PathToConversionReportCompatibleFields(typing_extensions.TypedDict, total=False):
-    kind: str
-    customFloodlightVariables: typing.List[Dimension]
-    perInteractionDimensions: typing.List[Dimension]
-    metrics: typing.List[Metric]
-    conversionDimensions: typing.List[Dimension]
-
-class ClickTag(typing_extensions.TypedDict, total=False):
-    name: str
-    eventName: str
-    clickThroughUrl: CreativeClickThroughUrl
-
-class ConversionsBatchUpdateRequest(typing_extensions.TypedDict, total=False):
-    encryptionInfo: EncryptionInfo
-    kind: str
-    conversions: typing.List[Conversion]
-
-class SizesListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    sizes: typing.List[Size]
-
-class PlacementTag(typing_extensions.TypedDict, total=False):
-    placementId: str
-    tagDatas: typing.List[TagData]
-
-class RegionsListResponse(typing_extensions.TypedDict, total=False):
-    regions: typing.List[Region]
-    kind: str
-
-class CompatibleFields(typing_extensions.TypedDict, total=False):
-    reportCompatibleFields: ReportCompatibleFields
-    crossDimensionReachReportCompatibleFields: CrossDimensionReachReportCompatibleFields
-    pathReportCompatibleFields: PathReportCompatibleFields
-    kind: str
-    reachReportCompatibleFields: ReachReportCompatibleFields
-    floodlightReportCompatibleFields: FloodlightReportCompatibleFields
-    pathToConversionReportCompatibleFields: PathToConversionReportCompatibleFields
-    pathAttributionReportCompatibleFields: PathReportCompatibleFields
-
-class CustomEventError(typing_extensions.TypedDict, total=False):
-    kind: str
-    message: str
-    code: typing_extensions.Literal[
-        "UNKNOWN", "INVALID_ARGUMENT", "INTERNAL", "PERMISSION_DENIED", "NOT_FOUND"
+@typing.type_check_only
+class UserRolePermission(typing_extensions.TypedDict, total=False):
+    availability: typing_extensions.Literal[
+        "NOT_AVAILABLE_BY_DEFAULT",
+        "ACCOUNT_BY_DEFAULT",
+        "SUBACCOUNT_AND_ACCOUNT_BY_DEFAULT",
+        "ACCOUNT_ALWAYS",
+        "SUBACCOUNT_AND_ACCOUNT_ALWAYS",
     ]
-
-class DfpSettings(typing_extensions.TypedDict, total=False):
-    programmaticPlacementAccepted: bool
-    pubPaidPlacementAccepted: bool
-    dfpNetworkCode: str
-    publisherPortalOnly: bool
-    dfpNetworkName: str
-
-class DisjunctiveMatchStatement(typing_extensions.TypedDict, total=False):
-    eventFilters: typing.List[EventFilter]
-    kind: str
-
-class LastModifiedInfo(typing_extensions.TypedDict, total=False):
-    time: str
-
-class PopupWindowProperties(typing_extensions.TypedDict, total=False):
-    title: str
-    showScrollBar: bool
-    positionType: typing_extensions.Literal["CENTER", "COORDINATES"]
-    showAddressBar: bool
-    dimension: Size
-    showStatusBar: bool
-    offset: OffsetPosition
-    showMenuBar: bool
-    showToolBar: bool
-
-class DateRange(typing_extensions.TypedDict, total=False):
-    kind: str
-    startDate: str
-    endDate: str
-    relativeDateRange: typing_extensions.Literal[
-        "TODAY",
-        "YESTERDAY",
-        "WEEK_TO_DATE",
-        "MONTH_TO_DATE",
-        "QUARTER_TO_DATE",
-        "YEAR_TO_DATE",
-        "PREVIOUS_WEEK",
-        "PREVIOUS_MONTH",
-        "PREVIOUS_QUARTER",
-        "PREVIOUS_YEAR",
-        "LAST_7_DAYS",
-        "LAST_30_DAYS",
-        "LAST_90_DAYS",
-        "LAST_365_DAYS",
-        "LAST_24_MONTHS",
-        "LAST_14_DAYS",
-        "LAST_60_DAYS",
-    ]
-
-class AudienceSegment(typing_extensions.TypedDict, total=False):
-    name: str
     id: str
-    allocation: int
-
-class EncryptionInfo(typing_extensions.TypedDict, total=False):
-    encryptionSource: typing_extensions.Literal[
-        "ENCRYPTION_SCOPE_UNKNOWN", "AD_SERVING", "DATA_TRANSFER"
-    ]
-    encryptionEntityType: typing_extensions.Literal[
-        "ENCRYPTION_ENTITY_TYPE_UNKNOWN",
-        "DCM_ACCOUNT",
-        "DCM_ADVERTISER",
-        "DBM_PARTNER",
-        "DBM_ADVERTISER",
-        "ADWORDS_CUSTOMER",
-        "DFP_NETWORK_CODE",
-    ]
     kind: str
-    encryptionEntityId: str
+    name: str
+    permissionGroupId: str
 
-class InventoryItemsListResponse(typing_extensions.TypedDict, total=False):
-    inventoryItems: typing.List[InventoryItem]
+@typing.type_check_only
+class UserRolePermissionGroup(typing_extensions.TypedDict, total=False):
+    id: str
+    kind: str
+    name: str
+
+@typing.type_check_only
+class UserRolePermissionGroupsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    userRolePermissionGroups: typing.List[UserRolePermissionGroup]
+
+@typing.type_check_only
+class UserRolePermissionsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    userRolePermissions: typing.List[UserRolePermission]
+
+@typing.type_check_only
+class UserRolesListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
     nextPageToken: str
+    userRoles: typing.List[UserRole]
+
+@typing.type_check_only
+class VideoFormat(typing_extensions.TypedDict, total=False):
+    fileType: typing_extensions.Literal["FLV", "THREEGPP", "MP4", "WEBM", "M3U8"]
+    id: int
     kind: str
+    resolution: Size
+    targetBitRate: int
+
+@typing.type_check_only
+class VideoFormatsListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    videoFormats: typing.List[VideoFormat]
+
+@typing.type_check_only
+class VideoOffset(typing_extensions.TypedDict, total=False):
+    offsetPercentage: int
+    offsetSeconds: int
+
+@typing.type_check_only
+class VideoSettings(typing_extensions.TypedDict, total=False):
+    companionSettings: CompanionSetting
+    kind: str
+    obaEnabled: bool
+    obaSettings: ObaIcon
+    orientation: typing_extensions.Literal["ANY", "LANDSCAPE", "PORTRAIT"]
+    skippableSettings: SkippableSetting
+    transcodeSettings: TranscodeSetting

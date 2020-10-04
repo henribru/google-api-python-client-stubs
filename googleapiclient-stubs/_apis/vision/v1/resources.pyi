@@ -7,8 +7,17 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class VisionResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class FilesResource(googleapiclient.discovery.Resource):
+        def annotate(
+            self, *, body: BatchAnnotateFilesRequest = ..., **kwargs: typing.Any
+        ) -> BatchAnnotateFilesResponseHttpRequest: ...
+        def asyncBatchAnnotate(
+            self, *, body: AsyncBatchAnnotateFilesRequest = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class ImagesResource(googleapiclient.discovery.Resource):
         def annotate(
             self, *, body: BatchAnnotateImagesRequest = ..., **kwargs: typing.Any
@@ -16,7 +25,33 @@ class VisionResource(googleapiclient.discovery.Resource):
         def asyncBatchAnnotate(
             self, *, body: AsyncBatchAnnotateImagesRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+    @typing.type_check_only
+    class LocationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class OperationsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+        def operations(self) -> OperationsResource: ...
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            name: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListOperationsResponseHttpRequest: ...
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class FilesResource(googleapiclient.discovery.Resource):
             def annotate(
                 self,
@@ -32,14 +67,8 @@ class VisionResource(googleapiclient.discovery.Resource):
                 body: AsyncBatchAnnotateFilesRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+        @typing.type_check_only
         class ImagesResource(googleapiclient.discovery.Resource):
-            def asyncBatchAnnotate(
-                self,
-                *,
-                parent: str,
-                body: AsyncBatchAnnotateImagesRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
             def annotate(
                 self,
                 *,
@@ -47,92 +76,17 @@ class VisionResource(googleapiclient.discovery.Resource):
                 body: BatchAnnotateImagesRequest = ...,
                 **kwargs: typing.Any
             ) -> BatchAnnotateImagesResponseHttpRequest: ...
+            def asyncBatchAnnotate(
+                self,
+                *,
+                parent: str,
+                body: AsyncBatchAnnotateImagesRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
-            class ProductsResource(googleapiclient.discovery.Resource):
-                class ReferenceImagesResource(googleapiclient.discovery.Resource):
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ListReferenceImagesResponseHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> EmptyHttpRequest: ...
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: ReferenceImage = ...,
-                        referenceImageId: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ReferenceImageHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> ReferenceImageHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: Product = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> ProductHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> ProductHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: Product = ...,
-                    productId: str = ...,
-                    **kwargs: typing.Any
-                ) -> ProductHttpRequest: ...
-                def purge(
-                    self,
-                    *,
-                    parent: str,
-                    body: PurgeProductsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListProductsResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def referenceImages(self) -> ReferenceImagesResource: ...
-            class ImagesResource(googleapiclient.discovery.Resource):
-                def asyncBatchAnnotate(
-                    self,
-                    *,
-                    parent: str,
-                    body: AsyncBatchAnnotateImagesRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def annotate(
-                    self,
-                    *,
-                    parent: str,
-                    body: BatchAnnotateImagesRequest = ...,
-                    **kwargs: typing.Any
-                ) -> BatchAnnotateImagesResponseHttpRequest: ...
+            @typing.type_check_only
             class FilesResource(googleapiclient.discovery.Resource):
-                def asyncBatchAnnotate(
-                    self,
-                    *,
-                    parent: str,
-                    body: AsyncBatchAnnotateFilesRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
                 def annotate(
                     self,
                     *,
@@ -140,7 +94,37 @@ class VisionResource(googleapiclient.discovery.Resource):
                     body: BatchAnnotateFilesRequest = ...,
                     **kwargs: typing.Any
                 ) -> BatchAnnotateFilesResponseHttpRequest: ...
+                def asyncBatchAnnotate(
+                    self,
+                    *,
+                    parent: str,
+                    body: AsyncBatchAnnotateFilesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+            @typing.type_check_only
+            class ImagesResource(googleapiclient.discovery.Resource):
+                def annotate(
+                    self,
+                    *,
+                    parent: str,
+                    body: BatchAnnotateImagesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> BatchAnnotateImagesResponseHttpRequest: ...
+                def asyncBatchAnnotate(
+                    self,
+                    *,
+                    parent: str,
+                    body: AsyncBatchAnnotateImagesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+            @typing.type_check_only
             class ProductSetsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class ProductsResource(googleapiclient.discovery.Resource):
                     def list(
                         self,
@@ -150,6 +134,13 @@ class VisionResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListProductsInProductSetResponseHttpRequest: ...
+                def addProduct(
+                    self,
+                    *,
+                    name: str,
+                    body: AddProductToProductSetRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -158,6 +149,12 @@ class VisionResource(googleapiclient.discovery.Resource):
                     productSetId: str = ...,
                     **kwargs: typing.Any
                 ) -> ProductSetHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ProductSetHttpRequest: ...
                 def import_(
                     self,
                     *,
@@ -165,20 +162,6 @@ class VisionResource(googleapiclient.discovery.Resource):
                     body: ImportProductSetsRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def removeProduct(
-                    self,
-                    *,
-                    name: str,
-                    body: RemoveProductFromProductSetRequest = ...,
-                    **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def addProduct(
-                    self,
-                    *,
-                    name: str,
-                    body: AddProductToProductSetRequest = ...,
-                    **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -187,12 +170,6 @@ class VisionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListProductSetsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> ProductSetHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -201,16 +178,84 @@ class VisionResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> ProductSetHttpRequest: ...
+                def removeProduct(
+                    self,
+                    *,
+                    name: str,
+                    body: RemoveProductFromProductSetRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def products(self) -> ProductsResource: ...
-            class OperationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ProductsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ReferenceImagesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: ReferenceImage = ...,
+                        referenceImageId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ReferenceImageHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ReferenceImageHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListReferenceImagesResponseHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Product = ...,
+                    productId: str = ...,
+                    **kwargs: typing.Any
+                ) -> ProductHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
+                ) -> ProductHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListProductsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Product = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> ProductHttpRequest: ...
+                def purge(
+                    self,
+                    *,
+                    parent: str,
+                    body: PurgeProductsRequest = ...,
+                    **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-            def products(self) -> ProductsResource: ...
-            def images(self) -> ImagesResource: ...
+                def referenceImages(self) -> ReferenceImagesResource: ...
             def files(self) -> FilesResource: ...
-            def productSets(self) -> ProductSetsResource: ...
+            def images(self) -> ImagesResource: ...
             def operations(self) -> OperationsResource: ...
+            def productSets(self) -> ProductSetsResource: ...
+            def products(self) -> ProductsResource: ...
+        @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -219,95 +264,79 @@ class VisionResource(googleapiclient.discovery.Resource):
         def images(self) -> ImagesResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
-        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
-        def list(
-            self,
-            *,
-            name: str,
-            pageToken: str = ...,
-            filter: str = ...,
-            pageSize: int = ...,
-            **kwargs: typing.Any
-        ) -> ListOperationsResponseHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
-    class FilesResource(googleapiclient.discovery.Resource):
-        def asyncBatchAnnotate(
-            self, *, body: AsyncBatchAnnotateFilesRequest = ..., **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def annotate(
-            self, *, body: BatchAnnotateFilesRequest = ..., **kwargs: typing.Any
-        ) -> BatchAnnotateFilesResponseHttpRequest: ...
-    class LocationsResource(googleapiclient.discovery.Resource):
-        class OperationsResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-        def operations(self) -> OperationsResource: ...
-    def images(self) -> ImagesResource: ...
-    def projects(self) -> ProjectsResource: ...
-    def operations(self) -> OperationsResource: ...
     def files(self) -> FilesResource: ...
+    def images(self) -> ImagesResource: ...
     def locations(self) -> LocationsResource: ...
+    def operations(self) -> OperationsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
-class BatchAnnotateImagesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BatchAnnotateImagesResponse: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class ProductSetHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ProductSet: ...
-
-class ListProductsInProductSetResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListProductsInProductSetResponse: ...
-
-class ListProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListProductsResponse: ...
-
+@typing.type_check_only
 class BatchAnnotateFilesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BatchAnnotateFilesResponse: ...
 
-class ListProductSetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class BatchAnnotateImagesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListProductSetsResponse: ...
+    ) -> BatchAnnotateImagesResponse: ...
 
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListOperationsResponse: ...
 
-class ProductHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListProductSetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Product: ...
+    ) -> ListProductSetsResponse: ...
 
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListProductsInProductSetResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
+    ) -> ListProductsInProductSetResponse: ...
 
+@typing.type_check_only
+class ListProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListProductsResponse: ...
+
+@typing.type_check_only
 class ListReferenceImagesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListReferenceImagesResponse: ...
 
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
+class ProductHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Product: ...
+
+@typing.type_check_only
+class ProductSetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ProductSet: ...
+
+@typing.type_check_only
 class ReferenceImageHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

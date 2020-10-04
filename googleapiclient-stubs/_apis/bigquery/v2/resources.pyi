@@ -7,22 +7,10 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class BigqueryResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class DatasetsResource(googleapiclient.discovery.Resource):
-        def list(
-            self,
-            *,
-            projectId: str,
-            maxResults: int = ...,
-            filter: str = ...,
-            all: bool = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> DatasetListHttpRequest: ...
-        def get(
-            self, *, projectId: str, datasetId: str, **kwargs: typing.Any
-        ) -> DatasetHttpRequest: ...
         def delete(
             self,
             *,
@@ -31,8 +19,29 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             deleteContents: bool = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, projectId: str, datasetId: str, **kwargs: typing.Any
+        ) -> DatasetHttpRequest: ...
         def insert(
             self, *, projectId: str, body: Dataset = ..., **kwargs: typing.Any
+        ) -> DatasetHttpRequest: ...
+        def list(
+            self,
+            *,
+            projectId: str,
+            all: bool = ...,
+            filter: str = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> DatasetListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            body: Dataset = ...,
+            **kwargs: typing.Any
         ) -> DatasetHttpRequest: ...
         def update(
             self,
@@ -42,58 +51,8 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             body: Dataset = ...,
             **kwargs: typing.Any
         ) -> DatasetHttpRequest: ...
-        def patch(
-            self,
-            *,
-            projectId: str,
-            datasetId: str,
-            body: Dataset = ...,
-            **kwargs: typing.Any
-        ) -> DatasetHttpRequest: ...
+    @typing.type_check_only
     class JobsResource(googleapiclient.discovery.Resource):
-        def query(
-            self, *, projectId: str, body: QueryRequest = ..., **kwargs: typing.Any
-        ) -> QueryResponseHttpRequest: ...
-        def get(
-            self,
-            *,
-            projectId: str,
-            jobId: str,
-            location: str = ...,
-            **kwargs: typing.Any
-        ) -> JobHttpRequest: ...
-        def list(
-            self,
-            *,
-            projectId: str,
-            maxResults: int = ...,
-            allUsers: bool = ...,
-            maxCreationTime: str = ...,
-            minCreationTime: str = ...,
-            parentJobId: str = ...,
-            projection: typing_extensions.Literal["full", "minimal"] = ...,
-            stateFilter: typing.Union[
-                typing_extensions.Literal["done", "pending", "running"],
-                typing.List[typing_extensions.Literal["done", "pending", "running"]],
-            ] = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> JobListHttpRequest: ...
-        def insert(
-            self, *, projectId: str, body: Job = ..., **kwargs: typing.Any
-        ) -> JobHttpRequest: ...
-        def getQueryResults(
-            self,
-            *,
-            projectId: str,
-            jobId: str,
-            startIndex: str = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            location: str = ...,
-            timeoutMs: int = ...,
-            **kwargs: typing.Any
-        ) -> GetQueryResultsResponseHttpRequest: ...
         def cancel(
             self,
             *,
@@ -102,66 +61,57 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             location: str = ...,
             **kwargs: typing.Any
         ) -> JobCancelResponseHttpRequest: ...
-    class TablesResource(googleapiclient.discovery.Resource):
-        def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
-        def update(
-            self,
-            *,
-            projectId: str,
-            datasetId: str,
-            tableId: str,
-            body: Table = ...,
-            **kwargs: typing.Any
-        ) -> TableHttpRequest: ...
-        def patch(
-            self,
-            *,
-            projectId: str,
-            datasetId: str,
-            tableId: str,
-            body: Table = ...,
-            **kwargs: typing.Any
-        ) -> TableHttpRequest: ...
-        def insert(
-            self,
-            *,
-            projectId: str,
-            datasetId: str,
-            body: Table = ...,
-            **kwargs: typing.Any
-        ) -> TableHttpRequest: ...
-        def getIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
         def get(
             self,
             *,
             projectId: str,
-            datasetId: str,
-            tableId: str,
-            selectedFields: str = ...,
+            jobId: str,
+            location: str = ...,
             **kwargs: typing.Any
-        ) -> TableHttpRequest: ...
-        def testIamPermissions(
+        ) -> JobHttpRequest: ...
+        def getQueryResults(
             self,
             *,
-            resource: str,
-            body: TestIamPermissionsRequest = ...,
+            projectId: str,
+            jobId: str,
+            location: str = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            startIndex: str = ...,
+            timeoutMs: int = ...,
             **kwargs: typing.Any
-        ) -> TestIamPermissionsResponseHttpRequest: ...
+        ) -> GetQueryResultsResponseHttpRequest: ...
+        def insert(
+            self, *, projectId: str, body: Job = ..., **kwargs: typing.Any
+        ) -> JobHttpRequest: ...
+        def list(
+            self,
+            *,
+            projectId: str,
+            allUsers: bool = ...,
+            maxCreationTime: str = ...,
+            maxResults: int = ...,
+            minCreationTime: str = ...,
+            pageToken: str = ...,
+            parentJobId: str = ...,
+            projection: typing_extensions.Literal["full", "minimal"] = ...,
+            stateFilter: typing.Union[
+                typing_extensions.Literal["done", "pending", "running"],
+                typing.List[typing_extensions.Literal["done", "pending", "running"]],
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> JobListHttpRequest: ...
+        def query(
+            self, *, projectId: str, body: QueryRequest = ..., **kwargs: typing.Any
+        ) -> QueryResponseHttpRequest: ...
+    @typing.type_check_only
+    class ModelsResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, projectId: str, datasetId: str, tableId: str, **kwargs: typing.Any
+            self, *, projectId: str, datasetId: str, modelId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, projectId: str, datasetId: str, modelId: str, **kwargs: typing.Any
+        ) -> ModelHttpRequest: ...
         def list(
             self,
             *,
@@ -170,11 +120,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             **kwargs: typing.Any
-        ) -> TableListHttpRequest: ...
-    class ModelsResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, projectId: str, datasetId: str, modelId: str, **kwargs: typing.Any
-        ) -> ModelHttpRequest: ...
+        ) -> ListModelsResponseHttpRequest: ...
         def patch(
             self,
             *,
@@ -184,28 +130,16 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             body: Model = ...,
             **kwargs: typing.Any
         ) -> ModelHttpRequest: ...
-        def delete(
-            self, *, projectId: str, datasetId: str, modelId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        def getServiceAccount(
+            self, *, projectId: str, **kwargs: typing.Any
+        ) -> GetServiceAccountResponseHttpRequest: ...
         def list(
-            self,
-            *,
-            projectId: str,
-            datasetId: str,
-            pageToken: str = ...,
-            maxResults: int = ...,
-            **kwargs: typing.Any
-        ) -> ListModelsResponseHttpRequest: ...
+            self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> ProjectListHttpRequest: ...
+    @typing.type_check_only
     class RoutinesResource(googleapiclient.discovery.Resource):
-        def update(
-            self,
-            *,
-            projectId: str,
-            datasetId: str,
-            routineId: str,
-            body: Routine = ...,
-            **kwargs: typing.Any
-        ) -> RoutineHttpRequest: ...
         def delete(
             self,
             *,
@@ -214,17 +148,6 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             routineId: str,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-        def list(
-            self,
-            *,
-            projectId: str,
-            datasetId: str,
-            readMask: str = ...,
-            pageToken: str = ...,
-            maxResults: int = ...,
-            filter: str = ...,
-            **kwargs: typing.Any
-        ) -> ListRoutinesResponseHttpRequest: ...
         def get(
             self,
             *,
@@ -242,26 +165,28 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             body: Routine = ...,
             **kwargs: typing.Any
         ) -> RoutineHttpRequest: ...
-    class ProjectsResource(googleapiclient.discovery.Resource):
-        def list(
-            self, *, pageToken: str = ..., maxResults: int = ..., **kwargs: typing.Any
-        ) -> ProjectListHttpRequest: ...
-        def getServiceAccount(
-            self, *, projectId: str, **kwargs: typing.Any
-        ) -> GetServiceAccountResponseHttpRequest: ...
-    class TabledataResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
             projectId: str,
             datasetId: str,
-            tableId: str,
-            pageToken: str = ...,
-            startIndex: str = ...,
-            selectedFields: str = ...,
+            filter: str = ...,
             maxResults: int = ...,
+            pageToken: str = ...,
+            readMask: str = ...,
             **kwargs: typing.Any
-        ) -> TableDataListHttpRequest: ...
+        ) -> ListRoutinesResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            routineId: str,
+            body: Routine = ...,
+            **kwargs: typing.Any
+        ) -> RoutineHttpRequest: ...
+    @typing.type_check_only
+    class TabledataResource(googleapiclient.discovery.Resource):
         def insertAll(
             self,
             *,
@@ -271,105 +196,206 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             body: TableDataInsertAllRequest = ...,
             **kwargs: typing.Any
         ) -> TableDataInsertAllResponseHttpRequest: ...
+        def list(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            selectedFields: str = ...,
+            startIndex: str = ...,
+            **kwargs: typing.Any
+        ) -> TableDataListHttpRequest: ...
+    @typing.type_check_only
+    class TablesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, projectId: str, datasetId: str, tableId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            selectedFields: str = ...,
+            **kwargs: typing.Any
+        ) -> TableHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            body: Table = ...,
+            **kwargs: typing.Any
+        ) -> TableHttpRequest: ...
+        def list(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> TableListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            body: Table = ...,
+            **kwargs: typing.Any
+        ) -> TableHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: SetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            resource: str,
+            body: TestIamPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestIamPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            body: Table = ...,
+            **kwargs: typing.Any
+        ) -> TableHttpRequest: ...
     def datasets(self) -> DatasetsResource: ...
     def jobs(self) -> JobsResource: ...
-    def tables(self) -> TablesResource: ...
     def models(self) -> ModelsResource: ...
-    def routines(self) -> RoutinesResource: ...
     def projects(self) -> ProjectsResource: ...
+    def routines(self) -> RoutinesResource: ...
     def tabledata(self) -> TabledataResource: ...
+    def tables(self) -> TablesResource: ...
 
-class JobHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Job: ...
-
-class JobCancelResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> JobCancelResponse: ...
-
-class ListModelsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListModelsResponse: ...
-
-class JobListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> JobList: ...
-
-class QueryResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> QueryResponse: ...
-
+@typing.type_check_only
 class DatasetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Dataset: ...
 
-class TableHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class DatasetListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Table: ...
+    ) -> DatasetList: ...
 
-class RoutineHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Routine: ...
-
-class ProjectListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ProjectList: ...
-
-class ListRoutinesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListRoutinesResponse: ...
-
+@typing.type_check_only
 class GetQueryResultsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GetQueryResultsResponse: ...
 
-class TableDataListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TableDataList: ...
-
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
-
-class ModelHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Model: ...
-
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
-
-class TableListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TableList: ...
-
-class TableDataInsertAllResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TableDataInsertAllResponse: ...
-
+@typing.type_check_only
 class GetServiceAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GetServiceAccountResponse: ...
 
-class DatasetListHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class JobHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> DatasetList: ...
+    ) -> Job: ...
+
+@typing.type_check_only
+class JobCancelResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> JobCancelResponse: ...
+
+@typing.type_check_only
+class JobListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> JobList: ...
+
+@typing.type_check_only
+class ListModelsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListModelsResponse: ...
+
+@typing.type_check_only
+class ListRoutinesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListRoutinesResponse: ...
+
+@typing.type_check_only
+class ModelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Model: ...
+
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
+class ProjectListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ProjectList: ...
+
+@typing.type_check_only
+class QueryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> QueryResponse: ...
+
+@typing.type_check_only
+class RoutineHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Routine: ...
+
+@typing.type_check_only
+class TableHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Table: ...
+
+@typing.type_check_only
+class TableDataInsertAllResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TableDataInsertAllResponse: ...
+
+@typing.type_check_only
+class TableDataListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TableDataList: ...
+
+@typing.type_check_only
+class TableListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TableList: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...

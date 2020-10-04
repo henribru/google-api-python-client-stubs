@@ -7,37 +7,18 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class ServiceDirectoryResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class NamespacesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class ServicesResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
                     class EndpointsResource(googleapiclient.discovery.Resource):
-                        def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: Endpoint = ...,
-                            updateMask: str = ...,
-                            **kwargs: typing.Any
-                        ) -> EndpointHttpRequest: ...
-                        def get(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> EndpointHttpRequest: ...
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> EmptyHttpRequest: ...
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            orderBy: str = ...,
-                            pageToken: str = ...,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            **kwargs: typing.Any
-                        ) -> ListEndpointsResponseHttpRequest: ...
                         def create(
                             self,
                             *,
@@ -46,41 +27,30 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                             endpointId: str = ...,
                             **kwargs: typing.Any
                         ) -> EndpointHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> ServiceHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        orderBy: str = ...,
-                        pageToken: str = ...,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        **kwargs: typing.Any
-                    ) -> ListServicesResponseHttpRequest: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: Service = ...,
-                        updateMask: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ServiceHttpRequest: ...
-                    def setIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> PolicyHttpRequest: ...
-                    def getIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: GetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> PolicyHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> EmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> EndpointHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListEndpointsResponseHttpRequest: ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: Endpoint = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any
+                        ) -> EndpointHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -92,6 +62,34 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ServiceHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListServicesResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Service = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ServiceHttpRequest: ...
                     def resolve(
                         self,
                         *,
@@ -99,6 +97,13 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         body: ResolveServiceRequest = ...,
                         **kwargs: typing.Any
                     ) -> ResolveServiceResponseHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
@@ -107,37 +112,6 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def endpoints(self) -> EndpointsResource: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    filter: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListNamespacesResponseHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -152,6 +126,23 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> NamespaceHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListNamespacesResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -160,79 +151,105 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> NamespaceHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
                 def services(self) -> ServicesResource: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> LocationHttpRequest: ...
             def list(
                 self,
                 *,
                 name: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
                 filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> LocationHttpRequest: ...
             def namespaces(self) -> NamespacesResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ResolveServiceResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ResolveServiceResponse: ...
-
-class ListServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListServicesResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListLocationsResponse: ...
-
-class ListEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListEndpointsResponse: ...
-
-class LocationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Location: ...
-
+@typing.type_check_only
 class EndpointHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Endpoint: ...
 
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
+    ) -> ListEndpointsResponse: ...
 
+@typing.type_check_only
+class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
 class ListNamespacesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListNamespacesResponse: ...
 
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
+    ) -> ListServicesResponse: ...
 
+@typing.type_check_only
+class LocationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Location: ...
+
+@typing.type_check_only
 class NamespaceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Namespace: ...
 
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
+class ResolveServiceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ResolveServiceResponse: ...
+
+@typing.type_check_only
 class ServiceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Service: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...

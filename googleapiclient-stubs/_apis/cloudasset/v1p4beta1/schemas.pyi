@@ -1,23 +1,48 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AccessSelector(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+    roles: typing.List[str]
 
-class IamPolicyAnalysisResult(typing_extensions.TypedDict, total=False):
-    iamBinding: Binding
+@typing.type_check_only
+class AnalyzeIamPolicyResponse(typing_extensions.TypedDict, total=False):
     fullyExplored: bool
-    attachedResourceFullName: str
-    identityList: GoogleCloudAssetV1p4beta1IdentityList
-    accessControlLists: typing.List[GoogleCloudAssetV1p4beta1AccessControlList]
+    mainAnalysis: IamPolicyAnalysis
+    nonCriticalErrors: typing.List[GoogleCloudAssetV1p4beta1AnalysisState]
+    serviceAccountImpersonationAnalysis: typing.List[IamPolicyAnalysis]
 
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: typing.List[str]
+    role: str
+
+@typing.type_check_only
+class ExportIamPolicyAnalysisRequest(typing_extensions.TypedDict, total=False):
+    analysisQuery: IamPolicyAnalysisQuery
+    options: Options
+    outputConfig: IamPolicyAnalysisOutputConfig
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class GcsDestination(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
 class GoogleCloudAssetV1p4beta1Access(typing_extensions.TypedDict, total=False):
     analysisState: GoogleCloudAssetV1p4beta1AnalysisState
-    role: str
     permission: str
+    role: str
 
-class GoogleCloudAssetV1p4beta1Identity(typing_extensions.TypedDict, total=False):
-    analysisState: GoogleCloudAssetV1p4beta1AnalysisState
-    name: str
-
+@typing.type_check_only
 class GoogleCloudAssetV1p4beta1AccessControlList(
     typing_extensions.TypedDict, total=False
 ):
@@ -25,44 +50,7 @@ class GoogleCloudAssetV1p4beta1AccessControlList(
     resourceEdges: typing.List[GoogleCloudAssetV1p4beta1Edge]
     resources: typing.List[GoogleCloudAssetV1p4beta1Resource]
 
-class Options(typing_extensions.TypedDict, total=False):
-    expandRoles: bool
-    outputResourceEdges: bool
-    expandGroups: bool
-    outputGroupEdges: bool
-    expandResources: bool
-    analyzeServiceAccountImpersonation: bool
-
-class Status(typing_extensions.TypedDict, total=False):
-    message: str
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
-
-class GoogleCloudAssetV1p4beta1Resource(typing_extensions.TypedDict, total=False):
-    analysisState: GoogleCloudAssetV1p4beta1AnalysisState
-    fullResourceName: str
-
-class AccessSelector(typing_extensions.TypedDict, total=False):
-    roles: typing.List[str]
-    permissions: typing.List[str]
-
-class IamPolicyAnalysisOutputConfig(typing_extensions.TypedDict, total=False):
-    gcsDestination: GcsDestination
-
-class IdentitySelector(typing_extensions.TypedDict, total=False):
-    identity: str
-
-class IamPolicyAnalysis(typing_extensions.TypedDict, total=False):
-    fullyExplored: bool
-    analysisQuery: IamPolicyAnalysisQuery
-    analysisResults: typing.List[IamPolicyAnalysisResult]
-
-class IamPolicyAnalysisQuery(typing_extensions.TypedDict, total=False):
-    identitySelector: IdentitySelector
-    parent: str
-    accessSelector: AccessSelector
-    resourceSelector: ResourceSelector
-
+@typing.type_check_only
 class GoogleCloudAssetV1p4beta1AnalysisState(typing_extensions.TypedDict, total=False):
     cause: str
     code: typing_extensions.Literal[
@@ -85,45 +73,78 @@ class GoogleCloudAssetV1p4beta1AnalysisState(typing_extensions.TypedDict, total=
         "DATA_LOSS",
     ]
 
-class GcsDestination(typing_extensions.TypedDict, total=False):
-    uri: str
+@typing.type_check_only
+class GoogleCloudAssetV1p4beta1Edge(typing_extensions.TypedDict, total=False):
+    sourceNode: str
+    targetNode: str
 
+@typing.type_check_only
+class GoogleCloudAssetV1p4beta1Identity(typing_extensions.TypedDict, total=False):
+    analysisState: GoogleCloudAssetV1p4beta1AnalysisState
+    name: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1p4beta1IdentityList(typing_extensions.TypedDict, total=False):
+    groupEdges: typing.List[GoogleCloudAssetV1p4beta1Edge]
+    identities: typing.List[GoogleCloudAssetV1p4beta1Identity]
+
+@typing.type_check_only
+class GoogleCloudAssetV1p4beta1Resource(typing_extensions.TypedDict, total=False):
+    analysisState: GoogleCloudAssetV1p4beta1AnalysisState
+    fullResourceName: str
+
+@typing.type_check_only
+class IamPolicyAnalysis(typing_extensions.TypedDict, total=False):
+    analysisQuery: IamPolicyAnalysisQuery
+    analysisResults: typing.List[IamPolicyAnalysisResult]
+    fullyExplored: bool
+
+@typing.type_check_only
+class IamPolicyAnalysisOutputConfig(typing_extensions.TypedDict, total=False):
+    gcsDestination: GcsDestination
+
+@typing.type_check_only
+class IamPolicyAnalysisQuery(typing_extensions.TypedDict, total=False):
+    accessSelector: AccessSelector
+    identitySelector: IdentitySelector
+    parent: str
+    resourceSelector: ResourceSelector
+
+@typing.type_check_only
+class IamPolicyAnalysisResult(typing_extensions.TypedDict, total=False):
+    accessControlLists: typing.List[GoogleCloudAssetV1p4beta1AccessControlList]
+    attachedResourceFullName: str
+    fullyExplored: bool
+    iamBinding: Binding
+    identityList: GoogleCloudAssetV1p4beta1IdentityList
+
+@typing.type_check_only
+class IdentitySelector(typing_extensions.TypedDict, total=False):
+    identity: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Options(typing_extensions.TypedDict, total=False):
+    analyzeServiceAccountImpersonation: bool
+    expandGroups: bool
+    expandResources: bool
+    expandRoles: bool
+    outputGroupEdges: bool
+    outputResourceEdges: bool
+
+@typing.type_check_only
 class ResourceSelector(typing_extensions.TypedDict, total=False):
     fullResourceName: str
 
-class GoogleCloudAssetV1p4beta1Edge(typing_extensions.TypedDict, total=False):
-    targetNode: str
-    sourceNode: str
-
-class Binding(typing_extensions.TypedDict, total=False):
-    condition: Expr
-    members: typing.List[str]
-    role: str
-
-class ExportIamPolicyAnalysisRequest(typing_extensions.TypedDict, total=False):
-    analysisQuery: IamPolicyAnalysisQuery
-    options: Options
-    outputConfig: IamPolicyAnalysisOutputConfig
-
-class Expr(typing_extensions.TypedDict, total=False):
-    title: str
-    description: str
-    location: str
-    expression: str
-
-class Operation(typing_extensions.TypedDict, total=False):
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-    done: bool
-    response: typing.Dict[str, typing.Any]
-    name: str
-
-class GoogleCloudAssetV1p4beta1IdentityList(typing_extensions.TypedDict, total=False):
-    identities: typing.List[GoogleCloudAssetV1p4beta1Identity]
-    groupEdges: typing.List[GoogleCloudAssetV1p4beta1Edge]
-
-class AnalyzeIamPolicyResponse(typing_extensions.TypedDict, total=False):
-    mainAnalysis: IamPolicyAnalysis
-    nonCriticalErrors: typing.List[GoogleCloudAssetV1p4beta1AnalysisState]
-    serviceAccountImpersonationAnalysis: typing.List[IamPolicyAnalysis]
-    fullyExplored: bool
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str

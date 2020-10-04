@@ -7,10 +7,13 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class ContainerAnalysisResource(googleapiclient.discovery.Resource):
-    class ProvidersResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class NotesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class OccurrencesResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
@@ -21,21 +24,19 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListNoteOccurrencesResponseHttpRequest: ...
+            def create(
+                self,
+                *,
+                parent: str,
+                body: Note = ...,
+                name: str = ...,
+                noteId: str = ...,
+                **kwargs: typing.Any
+            ) -> NoteHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> NoteHttpRequest: ...
-            def testIamPermissions(
-                self,
-                *,
-                resource: str,
-                body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
-            ) -> TestIamPermissionsResponseHttpRequest: ...
-            def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
-            ) -> PolicyHttpRequest: ...
             def getIamPolicy(
                 self,
                 *,
@@ -43,18 +44,16 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: GetIamPolicyRequest = ...,
                 **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
-            def create(
+            def list(
                 self,
                 *,
-                name: str,
-                body: Note = ...,
-                noteId: str = ...,
-                parent: str = ...,
+                parent: str,
+                filter: str = ...,
+                name: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> NoteHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
+            ) -> ListNotesResponseHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -63,20 +62,13 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> NoteHttpRequest: ...
-            def list(
+            def setIamPolicy(
                 self,
                 *,
-                name: str,
-                parent: str = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                resource: str,
+                body: SetIamPolicyRequest = ...,
                 **kwargs: typing.Any
-            ) -> ListNotesResponseHttpRequest: ...
-            def occurrences(self) -> OccurrencesResource: ...
-        def notes(self) -> NotesResource: ...
-    class ProjectsResource(googleapiclient.discovery.Resource):
-        class OccurrencesResource(googleapiclient.discovery.Resource):
+            ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
@@ -84,6 +76,23 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
+            def occurrences(self) -> OccurrencesResource: ...
+        @typing.type_check_only
+        class OccurrencesResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: Occurrence = ...,
+                name: str = ...,
+                **kwargs: typing.Any
+            ) -> OccurrenceHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OccurrenceHttpRequest: ...
             def getIamPolicy(
                 self,
                 *,
@@ -91,6 +100,9 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: GetIamPolicyRequest = ...,
                 **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
+            def getNotes(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> NoteHttpRequest: ...
             def getVulnerabilitySummary(
                 self, *, parent: str, filter: str = ..., **kwargs: typing.Any
             ) -> GetVulnzOccurrencesSummaryResponseHttpRequest: ...
@@ -98,9 +110,6 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                name: str = ...,
                 filter: str = ...,
                 kind: typing_extensions.Literal[
                     "KIND_UNSPECIFIED",
@@ -113,31 +122,17 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     "ATTESTATION_AUTHORITY",
                     "UPGRADE",
                 ] = ...,
+                name: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOccurrencesResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> OccurrenceHttpRequest: ...
             def patch(
                 self,
                 *,
                 name: str,
                 body: Occurrence = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> OccurrenceHttpRequest: ...
-            def getNotes(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> NoteHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def create(
-                self,
-                *,
-                parent: str,
-                body: Occurrence = ...,
-                name: str = ...,
                 **kwargs: typing.Any
             ) -> OccurrenceHttpRequest: ...
             def setIamPolicy(
@@ -147,6 +142,14 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: SetIamPolicyRequest = ...,
                 **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
+            def testIamPermissions(
+                self,
+                *,
+                resource: str,
+                body: TestIamPermissionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> TestIamPermissionsResponseHttpRequest: ...
+        @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -162,41 +165,83 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: UpdateOperationRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+        @typing.type_check_only
+        class ScanConfigsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> ScanConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListScanConfigsResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: ScanConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> ScanConfigHttpRequest: ...
+        def notes(self) -> NotesResource: ...
+        def occurrences(self) -> OccurrencesResource: ...
+        def operations(self) -> OperationsResource: ...
+        def scanConfigs(self) -> ScanConfigsResource: ...
+    @typing.type_check_only
+    class ProvidersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class NotesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class OccurrencesResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
                     *,
                     name: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    filter: str = ...,
                     **kwargs: typing.Any
                 ) -> ListNoteOccurrencesResponseHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                filter: str = ...,
-                pageToken: str = ...,
-                name: str = ...,
-                **kwargs: typing.Any
-            ) -> ListNotesResponseHttpRequest: ...
-            def testIamPermissions(
-                self,
-                *,
-                resource: str,
-                body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
-            ) -> TestIamPermissionsResponseHttpRequest: ...
             def create(
                 self,
                 *,
-                parent: str,
+                name: str,
                 body: Note = ...,
-                name: str = ...,
                 noteId: str = ...,
+                parent: str = ...,
+                **kwargs: typing.Any
+            ) -> NoteHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> NoteHttpRequest: ...
+            def getIamPolicy(
+                self,
+                *,
+                resource: str,
+                body: GetIamPolicyRequest = ...,
+                **kwargs: typing.Any
+            ) -> PolicyHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                parent: str = ...,
+                **kwargs: typing.Any
+            ) -> ListNotesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Note = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> NoteHttpRequest: ...
             def setIamPolicy(
@@ -206,110 +251,86 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: SetIamPolicyRequest = ...,
                 **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def getIamPolicy(
+            def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: GetIamPolicyRequest = ...,
+                body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
-            ) -> PolicyHttpRequest: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: Note = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> NoteHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> NoteHttpRequest: ...
+            ) -> TestIamPermissionsResponseHttpRequest: ...
             def occurrences(self) -> OccurrencesResource: ...
-        class ScanConfigsResource(googleapiclient.discovery.Resource):
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                filter: str = ...,
-                **kwargs: typing.Any
-            ) -> ListScanConfigsResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> ScanConfigHttpRequest: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: ScanConfig = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> ScanConfigHttpRequest: ...
-        def occurrences(self) -> OccurrencesResource: ...
-        def operations(self) -> OperationsResource: ...
         def notes(self) -> NotesResource: ...
-        def scanConfigs(self) -> ScanConfigsResource: ...
-    def providers(self) -> ProvidersResource: ...
     def projects(self) -> ProjectsResource: ...
+    def providers(self) -> ProvidersResource: ...
 
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class NoteHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Note: ...
-
-class ListScanConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListScanConfigsResponse: ...
-
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
-class OccurrenceHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Occurrence: ...
-
+@typing.type_check_only
 class GetVulnzOccurrencesSummaryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GetVulnzOccurrencesSummaryResponse: ...
 
-class ScanConfigHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ScanConfig: ...
-
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
-
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
-
+@typing.type_check_only
 class ListNoteOccurrencesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListNoteOccurrencesResponse: ...
 
+@typing.type_check_only
 class ListNotesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListNotesResponse: ...
 
+@typing.type_check_only
 class ListOccurrencesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListOccurrencesResponse: ...
+
+@typing.type_check_only
+class ListScanConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListScanConfigsResponse: ...
+
+@typing.type_check_only
+class NoteHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Note: ...
+
+@typing.type_check_only
+class OccurrenceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Occurrence: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
+class ScanConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ScanConfig: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...

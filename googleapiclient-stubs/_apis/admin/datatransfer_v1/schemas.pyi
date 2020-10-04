@@ -1,41 +1,46 @@
 import typing
 
 import typing_extensions
-
-class DataTransfersListResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    dataTransfers: typing.List[DataTransfer]
+@typing.type_check_only
+class Application(typing_extensions.TypedDict, total=False):
     etag: str
+    id: str
     kind: str
+    name: str
+    transferParams: typing.List[ApplicationTransferParam]
 
+@typing.type_check_only
 class ApplicationDataTransfer(typing_extensions.TypedDict, total=False):
     applicationId: str
-    applicationTransferStatus: str
     applicationTransferParams: typing.List[ApplicationTransferParam]
+    applicationTransferStatus: str
 
+@typing.type_check_only
 class ApplicationTransferParam(typing_extensions.TypedDict, total=False):
     key: str
     value: typing.List[str]
 
-class Application(typing_extensions.TypedDict, total=False):
-    kind: str
-    etag: str
-    id: str
-    transferParams: typing.List[ApplicationTransferParam]
-    name: str
-
+@typing.type_check_only
 class ApplicationsListResponse(typing_extensions.TypedDict, total=False):
-    etag: str
-    nextPageToken: str
     applications: typing.List[Application]
-    kind: str
-
-class DataTransfer(typing_extensions.TypedDict, total=False):
-    newOwnerUserId: str
     etag: str
-    applicationDataTransfers: typing.List[ApplicationDataTransfer]
-    overallTransferStatusCode: str
     kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class DataTransfer(typing_extensions.TypedDict, total=False):
+    applicationDataTransfers: typing.List[ApplicationDataTransfer]
+    etag: str
     id: str
+    kind: str
+    newOwnerUserId: str
     oldOwnerUserId: str
+    overallTransferStatusCode: str
     requestTime: str
+
+@typing.type_check_only
+class DataTransfersListResponse(typing_extensions.TypedDict, total=False):
+    dataTransfers: typing.List[DataTransfer]
+    etag: str
+    kind: str
+    nextPageToken: str

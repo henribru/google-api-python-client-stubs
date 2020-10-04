@@ -1,147 +1,232 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AddDnsRecordSetMetadata(typing_extensions.TypedDict, total=False): ...
 
-class BackendRule(typing_extensions.TypedDict, total=False):
-    disableAuth: bool
-    minDeadline: float
-    address: str
-    pathTranslation: typing_extensions.Literal[
-        "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
-    ]
-    operationDeadline: float
-    jwtAudience: str
-    deadline: float
-    selector: str
-    protocol: str
+@typing.type_check_only
+class AddDnsRecordSetRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    dnsRecordSet: DnsRecordSet
+    zone: str
 
-class RangeReservation(typing_extensions.TypedDict, total=False):
-    secondaryRangeIpPrefixLengths: typing.List[int]
-    ipPrefixLength: int
+@typing.type_check_only
+class AddDnsZoneMetadata(typing_extensions.TypedDict, total=False): ...
 
-class PolicyBinding(typing_extensions.TypedDict, total=False):
-    role: str
-    member: str
+@typing.type_check_only
+class AddDnsZoneRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    dnsSuffix: str
+    name: str
 
-class RemoveDnsZoneMetadata(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class AddDnsZoneResponse(typing_extensions.TypedDict, total=False):
+    consumerPeeringZone: DnsZone
+    producerPrivateZone: DnsZone
 
-class QuotaLimit(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class AddRolesMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AddRolesRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    policyBinding: typing.List[PolicyBinding]
+
+@typing.type_check_only
+class AddRolesResponse(typing_extensions.TypedDict, total=False):
+    policyBinding: typing.List[PolicyBinding]
+
+@typing.type_check_only
+class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
+    consumer: str
+    consumerNetwork: str
     description: str
-    unit: str
-    metric: str
-    freeTier: str
-    maxLimit: str
-    name: str
-    values: typing.Dict[str, typing.Any]
-    defaultLimit: str
-    displayName: str
-    duration: str
+    ipPrefixLength: int
+    region: str
+    requestedAddress: str
+    subnetwork: str
+    subnetworkUsers: typing.List[str]
 
-class Operation(typing_extensions.TypedDict, total=False):
-    name: str
-    done: bool
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-    response: typing.Dict[str, typing.Any]
-
+@typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
     methods: typing.List[Method]
-    sourceContext: SourceContext
     mixins: typing.List[Mixin]
-    options: typing.List[Option]
     name: str
-    version: str
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-
-class LabelDescriptor(typing_extensions.TypedDict, total=False):
-    description: str
-    valueType: typing_extensions.Literal["STRING", "BOOL", "INT64"]
-    key: str
-
-class Type(typing_extensions.TypedDict, total=False):
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
     options: typing.List[Option]
-    fields: typing.List[Field]
     sourceContext: SourceContext
-    name: str
-    oneofs: typing.List[str]
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+    version: str
 
-class ValidateConsumerConfigResponse(typing_extensions.TypedDict, total=False):
-    isValid: bool
-    validationError: typing_extensions.Literal[
-        "VALIDATION_ERROR_UNSPECIFIED",
-        "VALIDATION_NOT_REQUESTED",
-        "SERVICE_NETWORKING_NOT_ENABLED",
-        "NETWORK_NOT_FOUND",
-        "NETWORK_NOT_PEERED",
-        "NETWORK_PEERING_DELETED",
-        "NETWORK_NOT_IN_CONSUMERS_PROJECT",
-        "NETWORK_NOT_IN_CONSUMERS_HOST_PROJECT",
-        "HOST_PROJECT_NOT_FOUND",
-        "CONSUMER_PROJECT_NOT_SERVICE_PROJECT",
-        "RANGES_EXHAUSTED",
-        "RANGES_NOT_RESERVED",
-        "RANGES_DELETED_LATER",
-        "COMPUTE_API_NOT_ENABLED",
-    ]
+@typing.type_check_only
+class AuthProvider(typing_extensions.TypedDict, total=False):
+    audiences: str
+    authorizationUrl: str
+    id: str
+    issuer: str
+    jwksUri: str
+    jwtLocations: typing.List[JwtLocation]
 
-class DnsZone(typing_extensions.TypedDict, total=False):
-    name: str
-    dnsSuffix: str
-
-class CustomError(typing_extensions.TypedDict, total=False):
-    types: typing.List[str]
-    rules: typing.List[CustomErrorRule]
-
-class SourceContext(typing_extensions.TypedDict, total=False):
-    fileName: str
-
-class SystemParameterRule(typing_extensions.TypedDict, total=False):
-    selector: str
-    parameters: typing.List[SystemParameter]
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class UpdateDnsRecordSetRequest(typing_extensions.TypedDict, total=False):
-    consumerNetwork: str
-    zone: str
-    newDnsRecordSet: DnsRecordSet
-    existingDnsRecordSet: DnsRecordSet
-
-class PeeredDnsDomain(typing_extensions.TypedDict, total=False):
-    name: str
-    dnsSuffix: str
-
-class Page(typing.Dict[str, typing.Any]): ...
-
-class GoogleCloudServicenetworkingV1betaSubnetwork(
-    typing_extensions.TypedDict, total=False
-):
-    network: str
-    name: str
-    ipCidrRange: str
-    outsideAllocation: bool
-
-class Route(typing_extensions.TypedDict, total=False):
-    destRange: str
-    network: str
-    nextHopGateway: str
-    name: str
-
-class MonitoringDestination(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[str]
-    monitoredResource: str
-
+@typing.type_check_only
 class AuthRequirement(typing_extensions.TypedDict, total=False):
     audiences: str
     providerId: str
 
-class Field(typing_extensions.TypedDict, total=False):
-    typeUrl: str
+@typing.type_check_only
+class Authentication(typing_extensions.TypedDict, total=False):
+    providers: typing.List[AuthProvider]
+    rules: typing.List[AuthenticationRule]
+
+@typing.type_check_only
+class AuthenticationRule(typing_extensions.TypedDict, total=False):
+    allowWithoutCredential: bool
+    oauth: OAuthRequirements
+    requirements: typing.List[AuthRequirement]
+    selector: str
+
+@typing.type_check_only
+class Backend(typing_extensions.TypedDict, total=False):
+    rules: typing.List[BackendRule]
+
+@typing.type_check_only
+class BackendRule(typing_extensions.TypedDict, total=False):
+    address: str
+    deadline: float
+    disableAuth: bool
+    jwtAudience: str
+    minDeadline: float
+    operationDeadline: float
+    pathTranslation: typing_extensions.Literal[
+        "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
+    ]
+    protocol: str
+    selector: str
+
+@typing.type_check_only
+class Billing(typing_extensions.TypedDict, total=False):
+    consumerDestinations: typing.List[BillingDestination]
+
+@typing.type_check_only
+class BillingDestination(typing_extensions.TypedDict, total=False):
+    metrics: typing.List[str]
+    monitoredResource: str
+
+@typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Connection(typing_extensions.TypedDict, total=False):
+    network: str
+    peering: str
+    reservedPeeringRanges: typing.List[str]
+    service: str
+
+@typing.type_check_only
+class ConsumerProject(typing_extensions.TypedDict, total=False):
+    projectNum: str
+
+@typing.type_check_only
+class Context(typing_extensions.TypedDict, total=False):
+    rules: typing.List[ContextRule]
+
+@typing.type_check_only
+class ContextRule(typing_extensions.TypedDict, total=False):
+    allowedRequestExtensions: typing.List[str]
+    allowedResponseExtensions: typing.List[str]
+    provided: typing.List[str]
+    requested: typing.List[str]
+    selector: str
+
+@typing.type_check_only
+class Control(typing_extensions.TypedDict, total=False):
+    environment: str
+
+@typing.type_check_only
+class CustomError(typing_extensions.TypedDict, total=False):
+    rules: typing.List[CustomErrorRule]
+    types: typing.List[str]
+
+@typing.type_check_only
+class CustomErrorRule(typing_extensions.TypedDict, total=False):
+    isErrorType: bool
+    selector: str
+
+@typing.type_check_only
+class CustomHttpPattern(typing_extensions.TypedDict, total=False):
+    kind: str
+    path: str
+
+@typing.type_check_only
+class DeletePeeredDnsDomainMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DisableVpcServiceControlsRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+
+@typing.type_check_only
+class DnsRecordSet(typing_extensions.TypedDict, total=False):
+    data: typing.List[str]
+    domain: str
+    ttl: str
+    type: str
+
+@typing.type_check_only
+class DnsZone(typing_extensions.TypedDict, total=False):
+    dnsSuffix: str
+    name: str
+
+@typing.type_check_only
+class Documentation(typing_extensions.TypedDict, total=False):
+    documentationRootUrl: str
+    overview: str
+    pages: typing.List[Page]
+    rules: typing.List[DocumentationRule]
+    serviceRootUrl: str
+    summary: str
+
+@typing.type_check_only
+class DocumentationRule(typing_extensions.TypedDict, total=False):
+    deprecationDescription: str
+    description: str
+    selector: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableVpcServiceControlsRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+
+@typing.type_check_only
+class Endpoint(typing_extensions.TypedDict, total=False):
+    aliases: typing.List[str]
+    allowCors: bool
+    name: str
+    target: str
+
+@typing.type_check_only
+class Enum(typing_extensions.TypedDict, total=False):
+    enumvalue: typing.List[EnumValue]
+    name: str
+    options: typing.List[Option]
+    sourceContext: SourceContext
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
+class EnumValue(typing_extensions.TypedDict, total=False):
     name: str
     number: int
+    options: typing.List[Option]
+
+@typing.type_check_only
+class Field(typing_extensions.TypedDict, total=False):
+    cardinality: typing_extensions.Literal[
+        "CARDINALITY_UNKNOWN",
+        "CARDINALITY_OPTIONAL",
+        "CARDINALITY_REQUIRED",
+        "CARDINALITY_REPEATED",
+    ]
+    defaultValue: str
     jsonName: str
-    packed: bool
     kind: typing_extensions.Literal[
         "TYPE_UNKNOWN",
         "TYPE_DOUBLE",
@@ -163,254 +248,87 @@ class Field(typing_extensions.TypedDict, total=False):
         "TYPE_SINT32",
         "TYPE_SINT64",
     ]
-    defaultValue: str
+    name: str
+    number: int
     oneofIndex: int
     options: typing.List[Option]
-    cardinality: typing_extensions.Literal[
-        "CARDINALITY_UNKNOWN",
-        "CARDINALITY_OPTIONAL",
-        "CARDINALITY_REQUIRED",
-        "CARDINALITY_REPEATED",
-    ]
+    packed: bool
+    typeUrl: str
 
-class RemoveDnsRecordSetRequest(typing_extensions.TypedDict, total=False):
-    dnsRecordSet: DnsRecordSet
-    zone: str
-    consumerNetwork: str
-
-class SystemParameter(typing_extensions.TypedDict, total=False):
-    urlQueryParameter: str
-    httpHeader: str
-    name: str
-
-class AuthProvider(typing_extensions.TypedDict, total=False):
-    authorizationUrl: str
-    jwtLocations: typing.List[JwtLocation]
-    audiences: str
-    id: str
-    jwksUri: str
-    issuer: str
-
-class LoggingDestination(typing_extensions.TypedDict, total=False):
-    monitoredResource: str
-    logs: typing.List[str]
-
-class SearchRangeRequest(typing_extensions.TypedDict, total=False):
-    network: str
-    ipPrefixLength: int
-
-class RemoveDnsRecordSetResponse(typing_extensions.TypedDict, total=False): ...
-
-class Backend(typing_extensions.TypedDict, total=False):
-    rules: typing.List[BackendRule]
-
-class AddRolesRequest(typing_extensions.TypedDict, total=False):
-    policyBinding: typing.List[PolicyBinding]
-    consumerNetwork: str
-
-class Subnetwork(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class GoogleCloudServicenetworkingV1betaSubnetwork(
+    typing_extensions.TypedDict, total=False
+):
     ipCidrRange: str
-    network: str
     name: str
+    network: str
     outsideAllocation: bool
 
-class RemoveDnsZoneRequest(typing_extensions.TypedDict, total=False):
-    name: str
-    consumerNetwork: str
-
-class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
-    connections: typing.List[Connection]
-
-class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
-    description: str
-    type: str
-    name: str
-    labels: typing.List[LabelDescriptor]
-    launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED",
-        "UNIMPLEMENTED",
-        "PRELAUNCH",
-        "EARLY_ACCESS",
-        "ALPHA",
-        "BETA",
-        "GA",
-        "DEPRECATED",
-    ]
-    displayName: str
-
-class ValidateConsumerConfigRequest(typing_extensions.TypedDict, total=False):
-    consumerNetwork: str
-    consumerProject: ConsumerProject
-    rangeReservation: RangeReservation
-    validateNetwork: bool
-
-class AddDnsRecordSetRequest(typing_extensions.TypedDict, total=False):
-    zone: str
-    dnsRecordSet: DnsRecordSet
-    consumerNetwork: str
-
-class DisableVpcServiceControlsRequest(typing_extensions.TypedDict, total=False):
-    consumerNetwork: str
-
-class Status(typing_extensions.TypedDict, total=False):
-    code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-
-class Endpoint(typing_extensions.TypedDict, total=False):
-    name: str
-    target: str
-    allowCors: bool
-    aliases: typing.List[str]
-
-class EnableVpcServiceControlsRequest(typing_extensions.TypedDict, total=False):
-    consumerNetwork: str
-
+@typing.type_check_only
 class Http(typing_extensions.TypedDict, total=False):
     fullyDecodeReservedExpansion: bool
     rules: typing.List[HttpRule]
 
-class Range(typing_extensions.TypedDict, total=False):
-    network: str
-    ipCidrRange: str
+@typing.type_check_only
+class HttpRule(typing.Dict[str, typing.Any]): ...
 
-class SystemParameters(typing_extensions.TypedDict, total=False):
-    rules: typing.List[SystemParameterRule]
+@typing.type_check_only
+class JwtLocation(typing_extensions.TypedDict, total=False):
+    header: str
+    query: str
+    valuePrefix: str
 
-class Logging(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[LoggingDestination]
-    producerDestinations: typing.List[LoggingDestination]
+@typing.type_check_only
+class LabelDescriptor(typing_extensions.TypedDict, total=False):
+    description: str
+    key: str
+    valueType: typing_extensions.Literal["STRING", "BOOL", "INT64"]
 
-class BillingDestination(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[str]
-    monitoredResource: str
+@typing.type_check_only
+class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
+    connections: typing.List[Connection]
 
-class Method(typing_extensions.TypedDict, total=False):
-    requestStreaming: bool
-    name: str
-    responseStreaming: bool
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-    requestTypeUrl: str
-    responseTypeUrl: str
-    options: typing.List[Option]
-
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: typing.List[Operation]
 
-class ServiceIdentity(typing_extensions.TypedDict, total=False):
-    serviceAccountParent: str
-    description: str
-    displayName: str
-
-class Enum(typing_extensions.TypedDict, total=False):
-    options: typing.List[Option]
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-    enumvalue: typing.List[EnumValue]
-    sourceContext: SourceContext
-    name: str
-
-class Billing(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[BillingDestination]
-
-class Monitoring(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[MonitoringDestination]
-    producerDestinations: typing.List[MonitoringDestination]
-
-class UsageRule(typing_extensions.TypedDict, total=False):
-    skipServiceControl: bool
-    allowUnregisteredCalls: bool
-    selector: str
-
-class JwtLocation(typing_extensions.TypedDict, total=False):
-    valuePrefix: str
-    header: str
-    query: str
-
-class ConsumerProject(typing_extensions.TypedDict, total=False):
-    projectNum: str
-
-class RemoveDnsZoneResponse(typing_extensions.TypedDict, total=False): ...
-class UpdateDnsRecordSetMetadata(typing_extensions.TypedDict, total=False): ...
-
-class Documentation(typing_extensions.TypedDict, total=False):
-    rules: typing.List[DocumentationRule]
-    summary: str
-    serviceRootUrl: str
-    overview: str
-    pages: typing.List[Page]
-    documentationRootUrl: str
-
-class DnsRecordSet(typing_extensions.TypedDict, total=False):
-    type: str
-    domain: str
-    ttl: str
-    data: typing.List[str]
-
-class Quota(typing_extensions.TypedDict, total=False):
-    metricRules: typing.List[MetricRule]
-    limits: typing.List[QuotaLimit]
-
-class PeeredDnsDomainMetadata(typing_extensions.TypedDict, total=False): ...
-class AddDnsRecordSetMetadata(typing_extensions.TypedDict, total=False): ...
-
-class LogDescriptor(typing_extensions.TypedDict, total=False):
-    description: str
-    displayName: str
-    name: str
-    labels: typing.List[LabelDescriptor]
-
-class MetricRule(typing_extensions.TypedDict, total=False):
-    selector: str
-    metricCosts: typing.Dict[str, typing.Any]
-
-class EnumValue(typing_extensions.TypedDict, total=False):
-    number: int
-    options: typing.List[Option]
-    name: str
-
-class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
-    description: str
-    subnetwork: str
-    region: str
-    consumer: str
-    ipPrefixLength: int
-    subnetworkUsers: typing.List[str]
-    requestedAddress: str
-    consumerNetwork: str
-
-class HttpRule(typing.Dict[str, typing.Any]): ...
-class RemoveDnsRecordSetMetadata(typing_extensions.TypedDict, total=False): ...
-
-class AddRolesResponse(typing_extensions.TypedDict, total=False):
-    policyBinding: typing.List[PolicyBinding]
-
-class AddDnsZoneRequest(typing_extensions.TypedDict, total=False):
-    dnsSuffix: str
-    name: str
-    consumerNetwork: str
-
-class CustomErrorRule(typing_extensions.TypedDict, total=False):
-    isErrorType: bool
-    selector: str
-
-class Authentication(typing_extensions.TypedDict, total=False):
-    providers: typing.List[AuthProvider]
-    rules: typing.List[AuthenticationRule]
-
-class Usage(typing_extensions.TypedDict, total=False):
-    producerNotificationChannel: str
-    serviceIdentity: ServiceIdentity
-    requirements: typing.List[str]
-    rules: typing.List[UsageRule]
-
+@typing.type_check_only
 class ListPeeredDnsDomainsResponse(typing_extensions.TypedDict, total=False):
     peeredDnsDomains: typing.List[PeeredDnsDomain]
 
-class SourceInfo(typing_extensions.TypedDict, total=False):
-    sourceFiles: typing.List[typing.Dict[str, typing.Any]]
+@typing.type_check_only
+class LogDescriptor(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    labels: typing.List[LabelDescriptor]
+    name: str
 
+@typing.type_check_only
+class Logging(typing_extensions.TypedDict, total=False):
+    consumerDestinations: typing.List[LoggingDestination]
+    producerDestinations: typing.List[LoggingDestination]
+
+@typing.type_check_only
+class LoggingDestination(typing_extensions.TypedDict, total=False):
+    logs: typing.List[str]
+    monitoredResource: str
+
+@typing.type_check_only
+class Method(typing_extensions.TypedDict, total=False):
+    name: str
+    options: typing.List[Option]
+    requestStreaming: bool
+    requestTypeUrl: str
+    responseStreaming: bool
+    responseTypeUrl: str
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    labels: typing.List[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -421,6 +339,14 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "GA",
         "DEPRECATED",
     ]
+    metadata: MetricDescriptorMetadata
+    metricKind: typing_extensions.Literal[
+        "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
+    ]
+    monitoredResourceTypes: typing.List[str]
+    name: str
+    type: str
+    unit: str
     valueType: typing_extensions.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "BOOL",
@@ -430,84 +356,10 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "DISTRIBUTION",
         "MONEY",
     ]
-    unit: str
-    metricKind: typing_extensions.Literal[
-        "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
-    ]
-    name: str
-    monitoredResourceTypes: typing.List[str]
-    labels: typing.List[LabelDescriptor]
-    displayName: str
-    description: str
-    metadata: MetricDescriptorMetadata
-    type: str
 
-class AddDnsZoneResponse(typing_extensions.TypedDict, total=False):
-    consumerPeeringZone: DnsZone
-    producerPrivateZone: DnsZone
-
-class Option(typing_extensions.TypedDict, total=False):
-    name: str
-    value: typing.Dict[str, typing.Any]
-
-class Control(typing_extensions.TypedDict, total=False):
-    environment: str
-
-class CustomHttpPattern(typing_extensions.TypedDict, total=False):
-    kind: str
-    path: str
-
-class Connection(typing_extensions.TypedDict, total=False):
-    network: str
-    reservedPeeringRanges: typing.List[str]
-    service: str
-    peering: str
-
-class Service(typing_extensions.TypedDict, total=False):
-    logs: typing.List[LogDescriptor]
-    usage: Usage
-    billing: Billing
-    monitoredResources: typing.List[MonitoredResourceDescriptor]
-    sourceInfo: SourceInfo
-    types: typing.List[Type]
-    name: str
-    authentication: Authentication
-    logging: Logging
-    control: Control
-    monitoring: Monitoring
-    apis: typing.List[Api]
-    producerProjectId: str
-    backend: Backend
-    systemTypes: typing.List[Type]
-    context: Context
-    http: Http
-    customError: CustomError
-    id: str
-    endpoints: typing.List[Endpoint]
-    metrics: typing.List[MetricDescriptor]
-    enums: typing.List[Enum]
-    title: str
-    documentation: Documentation
-    configVersion: int
-    quota: Quota
-    systemParameters: SystemParameters
-
-class AddDnsZoneMetadata(typing_extensions.TypedDict, total=False): ...
-class AddRolesMetadata(typing_extensions.TypedDict, total=False): ...
-
-class AuthenticationRule(typing_extensions.TypedDict, total=False):
-    requirements: typing.List[AuthRequirement]
-    allowWithoutCredential: bool
-    oauth: OAuthRequirements
-    selector: str
-
-class DeletePeeredDnsDomainMetadata(typing_extensions.TypedDict, total=False): ...
-
-class Mixin(typing_extensions.TypedDict, total=False):
-    root: str
-    name: str
-
+@typing.type_check_only
 class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
+    ingestDelay: str
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -518,25 +370,269 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
         "GA",
         "DEPRECATED",
     ]
-    ingestDelay: str
     samplePeriod: str
 
+@typing.type_check_only
+class MetricRule(typing_extensions.TypedDict, total=False):
+    metricCosts: typing.Dict[str, typing.Any]
+    selector: str
+
+@typing.type_check_only
+class Mixin(typing_extensions.TypedDict, total=False):
+    name: str
+    root: str
+
+@typing.type_check_only
+class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    labels: typing.List[LabelDescriptor]
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+    ]
+    name: str
+    type: str
+
+@typing.type_check_only
+class Monitoring(typing_extensions.TypedDict, total=False):
+    consumerDestinations: typing.List[MonitoringDestination]
+    producerDestinations: typing.List[MonitoringDestination]
+
+@typing.type_check_only
+class MonitoringDestination(typing_extensions.TypedDict, total=False):
+    metrics: typing.List[str]
+    monitoredResource: str
+
+@typing.type_check_only
 class OAuthRequirements(typing_extensions.TypedDict, total=False):
     canonicalScopes: str
 
-class ContextRule(typing_extensions.TypedDict, total=False):
-    allowedResponseExtensions: typing.List[str]
-    allowedRequestExtensions: typing.List[str]
-    requested: typing.List[str]
-    provided: typing.List[str]
-    selector: str
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
 
-class Context(typing_extensions.TypedDict, total=False):
-    rules: typing.List[ContextRule]
+@typing.type_check_only
+class Option(typing_extensions.TypedDict, total=False):
+    name: str
+    value: typing.Dict[str, typing.Any]
 
-class DocumentationRule(typing_extensions.TypedDict, total=False):
-    deprecationDescription: str
+@typing.type_check_only
+class Page(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class PeeredDnsDomain(typing_extensions.TypedDict, total=False):
+    dnsSuffix: str
+    name: str
+
+@typing.type_check_only
+class PeeredDnsDomainMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PolicyBinding(typing_extensions.TypedDict, total=False):
+    member: str
+    role: str
+
+@typing.type_check_only
+class Quota(typing_extensions.TypedDict, total=False):
+    limits: typing.List[QuotaLimit]
+    metricRules: typing.List[MetricRule]
+
+@typing.type_check_only
+class QuotaLimit(typing_extensions.TypedDict, total=False):
+    defaultLimit: str
     description: str
+    displayName: str
+    duration: str
+    freeTier: str
+    maxLimit: str
+    metric: str
+    name: str
+    unit: str
+    values: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Range(typing_extensions.TypedDict, total=False):
+    ipCidrRange: str
+    network: str
+
+@typing.type_check_only
+class RangeReservation(typing_extensions.TypedDict, total=False):
+    ipPrefixLength: int
+    secondaryRangeIpPrefixLengths: typing.List[int]
+
+@typing.type_check_only
+class RemoveDnsRecordSetMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RemoveDnsRecordSetRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    dnsRecordSet: DnsRecordSet
+    zone: str
+
+@typing.type_check_only
+class RemoveDnsRecordSetResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RemoveDnsZoneMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RemoveDnsZoneRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    name: str
+
+@typing.type_check_only
+class RemoveDnsZoneResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Route(typing_extensions.TypedDict, total=False):
+    destRange: str
+    name: str
+    network: str
+    nextHopGateway: str
+
+@typing.type_check_only
+class SearchRangeRequest(typing_extensions.TypedDict, total=False):
+    ipPrefixLength: int
+    network: str
+
+@typing.type_check_only
+class Service(typing_extensions.TypedDict, total=False):
+    apis: typing.List[Api]
+    authentication: Authentication
+    backend: Backend
+    billing: Billing
+    configVersion: int
+    context: Context
+    control: Control
+    customError: CustomError
+    documentation: Documentation
+    endpoints: typing.List[Endpoint]
+    enums: typing.List[Enum]
+    http: Http
+    id: str
+    logging: Logging
+    logs: typing.List[LogDescriptor]
+    metrics: typing.List[MetricDescriptor]
+    monitoredResources: typing.List[MonitoredResourceDescriptor]
+    monitoring: Monitoring
+    name: str
+    producerProjectId: str
+    quota: Quota
+    sourceInfo: SourceInfo
+    systemParameters: SystemParameters
+    systemTypes: typing.List[Type]
+    title: str
+    types: typing.List[Type]
+    usage: Usage
+
+@typing.type_check_only
+class ServiceIdentity(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    serviceAccountParent: str
+
+@typing.type_check_only
+class SourceContext(typing_extensions.TypedDict, total=False):
+    fileName: str
+
+@typing.type_check_only
+class SourceInfo(typing_extensions.TypedDict, total=False):
+    sourceFiles: typing.List[typing.Dict[str, typing.Any]]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class Subnetwork(typing_extensions.TypedDict, total=False):
+    ipCidrRange: str
+    name: str
+    network: str
+    outsideAllocation: bool
+
+@typing.type_check_only
+class SystemParameter(typing_extensions.TypedDict, total=False):
+    httpHeader: str
+    name: str
+    urlQueryParameter: str
+
+@typing.type_check_only
+class SystemParameterRule(typing_extensions.TypedDict, total=False):
+    parameters: typing.List[SystemParameter]
     selector: str
 
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class SystemParameters(typing_extensions.TypedDict, total=False):
+    rules: typing.List[SystemParameterRule]
+
+@typing.type_check_only
+class Type(typing_extensions.TypedDict, total=False):
+    fields: typing.List[Field]
+    name: str
+    oneofs: typing.List[str]
+    options: typing.List[Option]
+    sourceContext: SourceContext
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
+class UpdateDnsRecordSetMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateDnsRecordSetRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    existingDnsRecordSet: DnsRecordSet
+    newDnsRecordSet: DnsRecordSet
+    zone: str
+
+@typing.type_check_only
+class Usage(typing_extensions.TypedDict, total=False):
+    producerNotificationChannel: str
+    requirements: typing.List[str]
+    rules: typing.List[UsageRule]
+    serviceIdentity: ServiceIdentity
+
+@typing.type_check_only
+class UsageRule(typing_extensions.TypedDict, total=False):
+    allowUnregisteredCalls: bool
+    selector: str
+    skipServiceControl: bool
+
+@typing.type_check_only
+class ValidateConsumerConfigRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    consumerProject: ConsumerProject
+    rangeReservation: RangeReservation
+    validateNetwork: bool
+
+@typing.type_check_only
+class ValidateConsumerConfigResponse(typing_extensions.TypedDict, total=False):
+    isValid: bool
+    validationError: typing_extensions.Literal[
+        "VALIDATION_ERROR_UNSPECIFIED",
+        "VALIDATION_NOT_REQUESTED",
+        "SERVICE_NETWORKING_NOT_ENABLED",
+        "NETWORK_NOT_FOUND",
+        "NETWORK_NOT_PEERED",
+        "NETWORK_PEERING_DELETED",
+        "NETWORK_NOT_IN_CONSUMERS_PROJECT",
+        "NETWORK_NOT_IN_CONSUMERS_HOST_PROJECT",
+        "HOST_PROJECT_NOT_FOUND",
+        "CONSUMER_PROJECT_NOT_SERVICE_PROJECT",
+        "RANGES_EXHAUSTED",
+        "RANGES_NOT_RESERVED",
+        "RANGES_DELETED_LATER",
+        "COMPUTE_API_NOT_ENABLED",
+    ]

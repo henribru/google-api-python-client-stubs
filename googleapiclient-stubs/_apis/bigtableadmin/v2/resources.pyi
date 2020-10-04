@@ -7,17 +7,20 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class BigtableAdminResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class ProjectsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
                     *,
                     name: str,
-                    pageSize: int = ...,
                     filter: str = ...,
+                    pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
@@ -26,8 +29,11 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class InstancesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class AppProfilesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -38,12 +44,18 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     ignoreWarnings: bool = ...,
                     **kwargs: typing.Any
                 ) -> AppProfileHttpRequest: ...
+                def delete(
+                    self, *, name: str, ignoreWarnings: bool = ..., **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AppProfileHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageToken: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAppProfilesResponseHttpRequest: ...
                 def patch(
@@ -55,108 +67,9 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def delete(
-                    self, *, name: str, ignoreWarnings: bool = ..., **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> AppProfileHttpRequest: ...
-            class TablesResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: CreateTableRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TableHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def get(
-                    self,
-                    *,
-                    name: str,
-                    view: typing_extensions.Literal[
-                        "VIEW_UNSPECIFIED",
-                        "NAME_ONLY",
-                        "SCHEMA_VIEW",
-                        "REPLICATION_VIEW",
-                        "FULL",
-                    ] = ...,
-                    **kwargs: typing.Any
-                ) -> TableHttpRequest: ...
-                def generateConsistencyToken(
-                    self,
-                    *,
-                    name: str,
-                    body: GenerateConsistencyTokenRequest = ...,
-                    **kwargs: typing.Any
-                ) -> GenerateConsistencyTokenResponseHttpRequest: ...
-                def restore(
-                    self,
-                    *,
-                    parent: str,
-                    body: RestoreTableRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def dropRowRange(
-                    self,
-                    *,
-                    name: str,
-                    body: DropRowRangeRequest = ...,
-                    **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def checkConsistency(
-                    self,
-                    *,
-                    name: str,
-                    body: CheckConsistencyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> CheckConsistencyResponseHttpRequest: ...
-                def modifyColumnFamilies(
-                    self,
-                    *,
-                    name: str,
-                    body: ModifyColumnFamiliesRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TableHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    view: typing_extensions.Literal[
-                        "VIEW_UNSPECIFIED",
-                        "NAME_ONLY",
-                        "SCHEMA_VIEW",
-                        "REPLICATION_VIEW",
-                        "FULL",
-                    ] = ...,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListTablesResponseHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
+            @typing.type_check_only
             class ClustersResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class BackupsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -166,6 +79,12 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         backupId: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> BackupHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -173,34 +92,14 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         body: GetIamPolicyRequest = ...,
                         **kwargs: typing.Any
                     ) -> PolicyHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> BackupHttpRequest: ...
-                    def testIamPermissions(
-                        self,
-                        *,
-                        resource: str,
-                        body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> TestIamPermissionsResponseHttpRequest: ...
-                    def setIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> PolicyHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> EmptyHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
-                        pageSize: int = ...,
                         filter: str = ...,
-                        pageToken: str = ...,
                         orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListBackupsResponseHttpRequest: ...
                     def patch(
@@ -211,12 +110,20 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> BackupHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> ClusterHttpRequest: ...
-                def list(
-                    self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
-                ) -> ListClustersResponseHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -228,27 +135,112 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ClusterHttpRequest: ...
+                def list(
+                    self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
+                ) -> ListClustersResponseHttpRequest: ...
                 def update(
                     self, *, name: str, body: Cluster = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> InstanceHttpRequest: ...
-            def testIamPermissions(
-                self,
-                *,
-                resource: str,
-                body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
-            ) -> TestIamPermissionsResponseHttpRequest: ...
-            def getIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any
-            ) -> PolicyHttpRequest: ...
+            @typing.type_check_only
+            class TablesResource(googleapiclient.discovery.Resource):
+                def checkConsistency(
+                    self,
+                    *,
+                    name: str,
+                    body: CheckConsistencyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> CheckConsistencyResponseHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: CreateTableRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TableHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def dropRowRange(
+                    self,
+                    *,
+                    name: str,
+                    body: DropRowRangeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def generateConsistencyToken(
+                    self,
+                    *,
+                    name: str,
+                    body: GenerateConsistencyTokenRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GenerateConsistencyTokenResponseHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    name: str,
+                    view: typing_extensions.Literal[
+                        "VIEW_UNSPECIFIED",
+                        "NAME_ONLY",
+                        "SCHEMA_VIEW",
+                        "REPLICATION_VIEW",
+                        "FULL",
+                    ] = ...,
+                    **kwargs: typing.Any
+                ) -> TableHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    view: typing_extensions.Literal[
+                        "VIEW_UNSPECIFIED",
+                        "NAME_ONLY",
+                        "SCHEMA_VIEW",
+                        "REPLICATION_VIEW",
+                        "FULL",
+                    ] = ...,
+                    **kwargs: typing.Any
+                ) -> ListTablesResponseHttpRequest: ...
+                def modifyColumnFamilies(
+                    self,
+                    *,
+                    name: str,
+                    body: ModifyColumnFamiliesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TableHttpRequest: ...
+                def restore(
+                    self,
+                    *,
+                    parent: str,
+                    body: RestoreTableRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -256,6 +248,22 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 body: CreateInstanceRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> InstanceHttpRequest: ...
+            def getIamPolicy(
+                self,
+                *,
+                resource: str,
+                body: GetIamPolicyRequest = ...,
+                **kwargs: typing.Any
+            ) -> PolicyHttpRequest: ...
+            def list(
+                self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
+            ) -> ListInstancesResponseHttpRequest: ...
             def partialUpdateInstance(
                 self,
                 *,
@@ -264,9 +272,6 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-            def list(
-                self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
-            ) -> ListInstancesResponseHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
@@ -274,15 +279,20 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 body: SetIamPolicyRequest = ...,
                 **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
+            def testIamPermissions(
+                self,
+                *,
+                resource: str,
+                body: TestIamPermissionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> TestIamPermissionsResponseHttpRequest: ...
             def update(
                 self, *, name: str, body: Instance = ..., **kwargs: typing.Any
             ) -> InstanceHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
             def appProfiles(self) -> AppProfilesResource: ...
-            def tables(self) -> TablesResource: ...
             def clusters(self) -> ClustersResource: ...
+            def tables(self) -> TablesResource: ...
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -292,8 +302,8 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 filter: str = ...,
-                pageToken: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
         def instances(self) -> InstancesResource: ...
@@ -301,97 +311,116 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListClustersResponse: ...
-
-class InstanceHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Instance: ...
-
-class ListAppProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListAppProfilesResponse: ...
-
-class TableHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Table: ...
-
-class CheckConsistencyResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CheckConsistencyResponse: ...
-
-class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListBackupsResponse: ...
-
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
-class GenerateConsistencyTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GenerateConsistencyTokenResponse: ...
-
-class ClusterHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Cluster: ...
-
-class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListInstancesResponse: ...
-
-class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListLocationsResponse: ...
-
-class LocationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Location: ...
-
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListOperationsResponse: ...
-
-class ListTablesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListTablesResponse: ...
-
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
-
+@typing.type_check_only
 class AppProfileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> AppProfile: ...
 
+@typing.type_check_only
+class BackupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Backup: ...
+
+@typing.type_check_only
+class CheckConsistencyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CheckConsistencyResponse: ...
+
+@typing.type_check_only
+class ClusterHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Cluster: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class GenerateConsistencyTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GenerateConsistencyTokenResponse: ...
+
+@typing.type_check_only
+class InstanceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Instance: ...
+
+@typing.type_check_only
+class ListAppProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListAppProfilesResponse: ...
+
+@typing.type_check_only
+class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListBackupsResponse: ...
+
+@typing.type_check_only
+class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListClustersResponse: ...
+
+@typing.type_check_only
+class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListInstancesResponse: ...
+
+@typing.type_check_only
+class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListTablesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListTablesResponse: ...
+
+@typing.type_check_only
+class LocationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Location: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Policy: ...
 
-class BackupHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class TableHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Backup: ...
+    ) -> Table: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...

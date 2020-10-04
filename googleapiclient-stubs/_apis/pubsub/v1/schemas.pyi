@@ -1,160 +1,196 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
+    ackIds: typing.List[str]
 
-class RetryPolicy(typing_extensions.TypedDict, total=False):
-    minimumBackoff: str
-    maximumBackoff: str
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
+    condition: Expr
+    members: typing.List[str]
+    role: str
 
-class Topic(typing_extensions.TypedDict, total=False):
-    kmsKeyName: str
-    name: str
-    labels: typing.Dict[str, typing.Any]
-    messageStoragePolicy: MessageStoragePolicy
-
-class DetachSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
-
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
+@typing.type_check_only
 class CreateSnapshotRequest(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     subscription: str
 
-class UpdateSnapshotRequest(typing_extensions.TypedDict, total=False):
-    snapshot: Snapshot
-    updateMask: str
-
-class PublishResponse(typing_extensions.TypedDict, total=False):
-    messageIds: typing.List[str]
-
-class OidcToken(typing_extensions.TypedDict, total=False):
-    serviceAccountEmail: str
-    audience: str
-
-class PushConfig(typing_extensions.TypedDict, total=False):
-    oidcToken: OidcToken
-    attributes: typing.Dict[str, typing.Any]
-    pushEndpoint: str
-
-class ListTopicSnapshotsResponse(typing_extensions.TypedDict, total=False):
-    snapshots: typing.List[str]
-    nextPageToken: str
-
-class MessageStoragePolicy(typing_extensions.TypedDict, total=False):
-    allowedPersistenceRegions: typing.List[str]
-
-class Binding(typing_extensions.TypedDict, total=False):
-    members: typing.List[str]
-    condition: Expr
-    bindingId: str
-    role: str
-
-class PublishRequest(typing_extensions.TypedDict, total=False):
-    messages: typing.List[PubsubMessage]
-
+@typing.type_check_only
 class DeadLetterPolicy(typing_extensions.TypedDict, total=False):
     deadLetterTopic: str
     maxDeliveryAttempts: int
 
-class Expr(typing_extensions.TypedDict, total=False):
-    location: str
-    expression: str
-    title: str
-    description: str
+@typing.type_check_only
+class DetachSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
 
-class PullRequest(typing_extensions.TypedDict, total=False):
-    returnImmediately: bool
-    maxMessages: int
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
-class ModifyPushConfigRequest(typing_extensions.TypedDict, total=False):
-    pushConfig: PushConfig
-
-class ReceivedMessage(typing_extensions.TypedDict, total=False):
-    message: PubsubMessage
-    ackId: str
-    deliveryAttempt: int
-
-class SeekResponse(typing_extensions.TypedDict, total=False): ...
-
-class Policy(typing_extensions.TypedDict, total=False):
-    version: int
-    bindings: typing.List[Binding]
-    etag: str
-
-class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
-    ackIds: typing.List[str]
-
-class PubsubMessage(typing_extensions.TypedDict, total=False):
-    publishTime: str
-    data: str
-    orderingKey: str
-    messageId: str
-    attributes: typing.Dict[str, typing.Any]
-
-class UpdateTopicRequest(typing_extensions.TypedDict, total=False):
-    updateMask: str
-    topic: Topic
-
+@typing.type_check_only
 class ExpirationPolicy(typing_extensions.TypedDict, total=False):
     ttl: str
 
-class UpdateSubscriptionRequest(typing_extensions.TypedDict, total=False):
-    subscription: Subscription
-    updateMask: str
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
 
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class SeekRequest(typing_extensions.TypedDict, total=False):
-    snapshot: str
-    time: str
-
-class ModifyAckDeadlineRequest(typing_extensions.TypedDict, total=False):
-    ackIds: typing.List[str]
-    ackDeadlineSeconds: int
-
-class PullResponse(typing_extensions.TypedDict, total=False):
-    receivedMessages: typing.List[ReceivedMessage]
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-
+@typing.type_check_only
 class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     snapshots: typing.List[Snapshot]
 
-class Subscription(typing_extensions.TypedDict, total=False):
-    deadLetterPolicy: DeadLetterPolicy
-    labels: typing.Dict[str, typing.Any]
-    enableMessageOrdering: bool
-    pushConfig: PushConfig
-    retainAckedMessages: bool
-    retryPolicy: RetryPolicy
-    name: str
-    filter: str
-    ackDeadlineSeconds: int
-    messageRetentionDuration: str
-    expirationPolicy: ExpirationPolicy
-    detached: bool
-    topic: str
+@typing.type_check_only
+class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    subscriptions: typing.List[Subscription]
 
+@typing.type_check_only
+class ListTopicSnapshotsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    snapshots: typing.List[str]
+
+@typing.type_check_only
 class ListTopicSubscriptionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     subscriptions: typing.List[str]
 
+@typing.type_check_only
+class ListTopicsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    topics: typing.List[Topic]
+
+@typing.type_check_only
+class MessageStoragePolicy(typing_extensions.TypedDict, total=False):
+    allowedPersistenceRegions: typing.List[str]
+
+@typing.type_check_only
+class ModifyAckDeadlineRequest(typing_extensions.TypedDict, total=False):
+    ackDeadlineSeconds: int
+    ackIds: typing.List[str]
+
+@typing.type_check_only
+class ModifyPushConfigRequest(typing_extensions.TypedDict, total=False):
+    pushConfig: PushConfig
+
+@typing.type_check_only
+class OidcToken(typing_extensions.TypedDict, total=False):
+    audience: str
+    serviceAccountEmail: str
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class PublishRequest(typing_extensions.TypedDict, total=False):
+    messages: typing.List[PubsubMessage]
+
+@typing.type_check_only
+class PublishResponse(typing_extensions.TypedDict, total=False):
+    messageIds: typing.List[str]
+
+@typing.type_check_only
+class PubsubMessage(typing_extensions.TypedDict, total=False):
+    attributes: typing.Dict[str, typing.Any]
+    data: str
+    messageId: str
+    orderingKey: str
+    publishTime: str
+
+@typing.type_check_only
+class PullRequest(typing_extensions.TypedDict, total=False):
+    maxMessages: int
+    returnImmediately: bool
+
+@typing.type_check_only
+class PullResponse(typing_extensions.TypedDict, total=False):
+    receivedMessages: typing.List[ReceivedMessage]
+
+@typing.type_check_only
+class PushConfig(typing_extensions.TypedDict, total=False):
+    attributes: typing.Dict[str, typing.Any]
+    oidcToken: OidcToken
+    pushEndpoint: str
+
+@typing.type_check_only
+class ReceivedMessage(typing_extensions.TypedDict, total=False):
+    ackId: str
+    deliveryAttempt: int
+    message: PubsubMessage
+
+@typing.type_check_only
+class RetryPolicy(typing_extensions.TypedDict, total=False):
+    maximumBackoff: str
+    minimumBackoff: str
+
+@typing.type_check_only
+class SeekRequest(typing_extensions.TypedDict, total=False):
+    snapshot: str
+    time: str
+
+@typing.type_check_only
+class SeekResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+
+@typing.type_check_only
 class Snapshot(typing_extensions.TypedDict, total=False):
-    name: str
-    topic: str
     expireTime: str
     labels: typing.Dict[str, typing.Any]
+    name: str
+    topic: str
 
-class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
-    subscriptions: typing.List[Subscription]
-    nextPageToken: str
+@typing.type_check_only
+class Subscription(typing_extensions.TypedDict, total=False):
+    ackDeadlineSeconds: int
+    deadLetterPolicy: DeadLetterPolicy
+    detached: bool
+    enableMessageOrdering: bool
+    expirationPolicy: ExpirationPolicy
+    filter: str
+    labels: typing.Dict[str, typing.Any]
+    messageRetentionDuration: str
+    name: str
+    pushConfig: PushConfig
+    retainAckedMessages: bool
+    retryPolicy: RetryPolicy
+    topic: str
 
-class ListTopicsResponse(typing_extensions.TypedDict, total=False):
-    topics: typing.List[Topic]
-    nextPageToken: str
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class Topic(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+    labels: typing.Dict[str, typing.Any]
+    messageStoragePolicy: MessageStoragePolicy
+    name: str
+
+@typing.type_check_only
+class UpdateSnapshotRequest(typing_extensions.TypedDict, total=False):
+    snapshot: Snapshot
+    updateMask: str
+
+@typing.type_check_only
+class UpdateSubscriptionRequest(typing_extensions.TypedDict, total=False):
+    subscription: Subscription
+    updateMask: str
+
+@typing.type_check_only
+class UpdateTopicRequest(typing_extensions.TypedDict, total=False):
+    topic: Topic
+    updateMask: str

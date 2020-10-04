@@ -7,40 +7,64 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudBuildResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
-        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def cancel(
             self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class BuildsResource(googleapiclient.discovery.Resource):
+            def cancel(
+                self,
+                *,
+                projectId: str,
+                id: str,
+                body: CancelBuildRequest = ...,
+                **kwargs: typing.Any
+            ) -> BuildHttpRequest: ...
+            def create(
+                self,
+                *,
+                projectId: str,
+                body: Build = ...,
+                parent: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, projectId: str, id: str, name: str = ..., **kwargs: typing.Any
+            ) -> BuildHttpRequest: ...
+            def list(
+                self,
+                *,
+                projectId: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                parent: str = ...,
+                **kwargs: typing.Any
+            ) -> ListBuildsResponseHttpRequest: ...
+            def retry(
+                self,
+                *,
+                projectId: str,
+                id: str,
+                body: RetryBuildRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
-            class OperationsResource(googleapiclient.discovery.Resource):
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
+            @typing.type_check_only
+            class BuildsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
                     *,
                     name: str,
-                    body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-            class BuildsResource(googleapiclient.discovery.Resource):
-                def retry(
-                    self,
-                    *,
-                    name: str,
-                    body: RetryBuildRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def get(
-                    self,
-                    *,
-                    name: str,
-                    id: str = ...,
-                    projectId: str = ...,
+                    body: CancelBuildRequest = ...,
                     **kwargs: typing.Any
                 ) -> BuildHttpRequest: ...
                 def create(
@@ -51,29 +75,64 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     projectId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    name: str,
+                    id: str = ...,
+                    projectId: str = ...,
+                    **kwargs: typing.Any
+                ) -> BuildHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageToken: str = ...,
                     filter: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     projectId: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBuildsResponseHttpRequest: ...
+                def retry(
+                    self,
+                    *,
+                    name: str,
+                    body: RetryBuildRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
                     *,
                     name: str,
-                    body: CancelBuildRequest = ...,
+                    body: CancelOperationRequest = ...,
                     **kwargs: typing.Any
-                ) -> BuildHttpRequest: ...
-            def operations(self) -> OperationsResource: ...
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
             def builds(self) -> BuildsResource: ...
+            def operations(self) -> OperationsResource: ...
+        @typing.type_check_only
         class TriggersResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, projectId: str, body: BuildTrigger = ..., **kwargs: typing.Any
             ) -> BuildTriggerHttpRequest: ...
+            def delete(
+                self, *, projectId: str, triggerId: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, projectId: str, triggerId: str, **kwargs: typing.Any
+            ) -> BuildTriggerHttpRequest: ...
+            def list(
+                self,
+                *,
+                projectId: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListBuildTriggersResponseHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -82,9 +141,6 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 body: BuildTrigger = ...,
                 **kwargs: typing.Any
             ) -> BuildTriggerHttpRequest: ...
-            def delete(
-                self, *, projectId: str, triggerId: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
             def run(
                 self,
                 *,
@@ -93,86 +149,43 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 body: RepoSource = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-            def get(
-                self, *, projectId: str, triggerId: str, **kwargs: typing.Any
-            ) -> BuildTriggerHttpRequest: ...
-            def list(
-                self,
-                *,
-                projectId: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                **kwargs: typing.Any
-            ) -> ListBuildTriggersResponseHttpRequest: ...
-        class BuildsResource(googleapiclient.discovery.Resource):
-            def create(
-                self,
-                *,
-                projectId: str,
-                body: Build = ...,
-                parent: str = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def retry(
-                self,
-                *,
-                projectId: str,
-                id: str,
-                body: RetryBuildRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def cancel(
-                self,
-                *,
-                projectId: str,
-                id: str,
-                body: CancelBuildRequest = ...,
-                **kwargs: typing.Any
-            ) -> BuildHttpRequest: ...
-            def get(
-                self, *, projectId: str, id: str, name: str = ..., **kwargs: typing.Any
-            ) -> BuildHttpRequest: ...
-            def list(
-                self,
-                *,
-                projectId: str,
-                pageSize: int = ...,
-                filter: str = ...,
-                parent: str = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> ListBuildsResponseHttpRequest: ...
+        def builds(self) -> BuildsResource: ...
         def locations(self) -> LocationsResource: ...
         def triggers(self) -> TriggersResource: ...
-        def builds(self) -> BuildsResource: ...
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class ListBuildTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListBuildTriggersResponse: ...
-
-class ListBuildsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListBuildsResponse: ...
-
-class BuildTriggerHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BuildTrigger: ...
-
+@typing.type_check_only
 class BuildHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Build: ...
 
+@typing.type_check_only
+class BuildTriggerHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> BuildTrigger: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class ListBuildTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListBuildTriggersResponse: ...
+
+@typing.type_check_only
+class ListBuildsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListBuildsResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

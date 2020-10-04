@@ -7,10 +7,89 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class CustomersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class ConfigurationsResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: Configuration = ..., **kwargs: typing.Any
+            ) -> ConfigurationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> ConfigurationHttpRequest: ...
+            def list(
+                self, *, parent: str, **kwargs: typing.Any
+            ) -> CustomerListConfigurationsResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Configuration = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> ConfigurationHttpRequest: ...
+        @typing.type_check_only
+        class DevicesResource(googleapiclient.discovery.Resource):
+            def applyConfiguration(
+                self,
+                *,
+                parent: str,
+                body: CustomerApplyConfigurationRequest = ...,
+                **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: str = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> CustomerListDevicesResponseHttpRequest: ...
+            def removeConfiguration(
+                self,
+                *,
+                parent: str,
+                body: CustomerRemoveConfigurationRequest = ...,
+                **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def unclaim(
+                self,
+                *,
+                parent: str,
+                body: CustomerUnclaimDeviceRequest = ...,
+                **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+        @typing.type_check_only
+        class DpcsResource(googleapiclient.discovery.Resource):
+            def list(
+                self, *, parent: str, **kwargs: typing.Any
+            ) -> CustomerListDpcsResponseHttpRequest: ...
+        def list(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> CustomerListCustomersResponseHttpRequest: ...
+        def configurations(self) -> ConfigurationsResource: ...
+        def devices(self) -> DevicesResource: ...
+        def dpcs(self) -> DpcsResource: ...
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class PartnersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class CustomersResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: CreateCustomerRequest = ...,
+                **kwargs: typing.Any
+            ) -> CompanyHttpRequest: ...
             def list(
                 self,
                 *,
@@ -19,34 +98,20 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListCustomersResponseHttpRequest: ...
-            def create(
+        @typing.type_check_only
+        class DevicesResource(googleapiclient.discovery.Resource):
+            def claim(
                 self,
                 *,
-                parent: str,
-                body: CreateCustomerRequest = ...,
+                partnerId: str,
+                body: ClaimDeviceRequest = ...,
                 **kwargs: typing.Any
-            ) -> CompanyHttpRequest: ...
-        class DevicesResource(googleapiclient.discovery.Resource):
-            def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
+            ) -> ClaimDeviceResponseHttpRequest: ...
             def claimAsync(
                 self,
                 *,
                 partnerId: str,
                 body: ClaimDevicesRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def unclaimAsync(
-                self,
-                *,
-                partnerId: str,
-                body: UnclaimDevicesRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def updateMetadataAsync(
-                self,
-                *,
-                partnerId: str,
-                body: UpdateDeviceMetadataInBatchRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def findByIdentifier(
@@ -56,6 +121,14 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 body: FindDevicesByDeviceIdentifierRequest = ...,
                 **kwargs: typing.Any
             ) -> FindDevicesByDeviceIdentifierResponseHttpRequest: ...
+            def findByOwner(
+                self,
+                *,
+                partnerId: str,
+                body: FindDevicesByOwnerRequest = ...,
+                **kwargs: typing.Any
+            ) -> FindDevicesByOwnerResponseHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
             def metadata(
                 self,
                 *,
@@ -71,141 +144,109 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 body: UnclaimDeviceRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
-            def claim(
+            def unclaimAsync(
                 self,
                 *,
                 partnerId: str,
-                body: ClaimDeviceRequest = ...,
+                body: UnclaimDevicesRequest = ...,
                 **kwargs: typing.Any
-            ) -> ClaimDeviceResponseHttpRequest: ...
-            def findByOwner(
+            ) -> OperationHttpRequest: ...
+            def updateMetadataAsync(
                 self,
                 *,
                 partnerId: str,
-                body: FindDevicesByOwnerRequest = ...,
+                body: UpdateDeviceMetadataInBatchRequest = ...,
                 **kwargs: typing.Any
-            ) -> FindDevicesByOwnerResponseHttpRequest: ...
+            ) -> OperationHttpRequest: ...
+        @typing.type_check_only
         class VendorsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class CustomersResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageToken: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListVendorCustomersResponseHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageToken: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListVendorsResponseHttpRequest: ...
             def customers(self) -> CustomersResource: ...
         def customers(self) -> CustomersResource: ...
         def devices(self) -> DevicesResource: ...
         def vendors(self) -> VendorsResource: ...
-    class CustomersResource(googleapiclient.discovery.Resource):
-        class DpcsResource(googleapiclient.discovery.Resource):
-            def list(
-                self, *, parent: str, **kwargs: typing.Any
-            ) -> CustomerListDpcsResponseHttpRequest: ...
-        class DevicesResource(googleapiclient.discovery.Resource):
-            def applyConfiguration(
-                self,
-                *,
-                parent: str,
-                body: CustomerApplyConfigurationRequest = ...,
-                **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
-            def unclaim(
-                self,
-                *,
-                parent: str,
-                body: CustomerUnclaimDeviceRequest = ...,
-                **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageToken: str = ...,
-                pageSize: str = ...,
-                **kwargs: typing.Any
-            ) -> CustomerListDevicesResponseHttpRequest: ...
-            def removeConfiguration(
-                self,
-                *,
-                parent: str,
-                body: CustomerRemoveConfigurationRequest = ...,
-                **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-        class ConfigurationsResource(googleapiclient.discovery.Resource):
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> ConfigurationHttpRequest: ...
-            def create(
-                self, *, parent: str, body: Configuration = ..., **kwargs: typing.Any
-            ) -> ConfigurationHttpRequest: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: Configuration = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> ConfigurationHttpRequest: ...
-            def list(
-                self, *, parent: str, **kwargs: typing.Any
-            ) -> CustomerListConfigurationsResponseHttpRequest: ...
-        def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
-        ) -> CustomerListCustomersResponseHttpRequest: ...
-        def dpcs(self) -> DpcsResource: ...
-        def devices(self) -> DevicesResource: ...
-        def configurations(self) -> ConfigurationsResource: ...
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
-    def partners(self) -> PartnersResource: ...
     def customers(self) -> CustomersResource: ...
     def operations(self) -> OperationsResource: ...
+    def partners(self) -> PartnersResource: ...
 
-class ConfigurationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Configuration: ...
-
-class CustomerListConfigurationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CustomerListConfigurationsResponse: ...
-
-class CustomerListCustomersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CustomerListCustomersResponse: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
+@typing.type_check_only
 class ClaimDeviceResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ClaimDeviceResponse: ...
 
+@typing.type_check_only
+class CompanyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Company: ...
+
+@typing.type_check_only
+class ConfigurationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Configuration: ...
+
+@typing.type_check_only
+class CustomerListConfigurationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CustomerListConfigurationsResponse: ...
+
+@typing.type_check_only
+class CustomerListCustomersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CustomerListCustomersResponse: ...
+
+@typing.type_check_only
 class CustomerListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> CustomerListDevicesResponse: ...
 
+@typing.type_check_only
+class CustomerListDpcsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CustomerListDpcsResponse: ...
+
+@typing.type_check_only
+class DeviceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Device: ...
+
+@typing.type_check_only
+class DeviceMetadataHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> DeviceMetadata: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
 class FindDevicesByDeviceIdentifierResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -213,47 +254,32 @@ class FindDevicesByDeviceIdentifierResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> FindDevicesByDeviceIdentifierResponse: ...
 
-class CustomerListDpcsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CustomerListDpcsResponse: ...
-
-class DeviceMetadataHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> DeviceMetadata: ...
-
+@typing.type_check_only
 class FindDevicesByOwnerResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> FindDevicesByOwnerResponse: ...
 
-class CompanyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Company: ...
-
-class ListVendorsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListVendorsResponse: ...
-
-class ListVendorCustomersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListVendorCustomersResponse: ...
-
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
+@typing.type_check_only
 class ListCustomersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListCustomersResponse: ...
 
-class DeviceHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListVendorCustomersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Device: ...
+    ) -> ListVendorCustomersResponse: ...
+
+@typing.type_check_only
+class ListVendorsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListVendorsResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...

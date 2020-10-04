@@ -7,20 +7,17 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class AccessContextManagerResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class AccessPoliciesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class AccessLevelsResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: AccessLevel = ..., **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: AccessLevel = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(
                 self,
@@ -31,8 +28,24 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> AccessLevelHttpRequest: ...
-            def create(
-                self, *, parent: str, body: AccessLevel = ..., **kwargs: typing.Any
+            def list(
+                self,
+                *,
+                parent: str,
+                accessLevelFormat: typing_extensions.Literal[
+                    "LEVEL_FORMAT_UNSPECIFIED", "AS_DEFINED", "CEL"
+                ] = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListAccessLevelsResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: AccessLevel = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def replaceAll(
                 self,
@@ -41,21 +54,32 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 body: ReplaceAccessLevelsRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+        @typing.type_check_only
+        class ServicePerimetersResource(googleapiclient.discovery.Resource):
+            def commit(
+                self,
+                *,
+                parent: str,
+                body: CommitServicePerimetersRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def create(
+                self, *, parent: str, body: ServicePerimeter = ..., **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> ServicePerimeterHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
                 pageSize: int = ...,
-                accessLevelFormat: typing_extensions.Literal[
-                    "LEVEL_FORMAT_UNSPECIFIED", "AS_DEFINED", "CEL"
-                ] = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> ListAccessLevelsResponseHttpRequest: ...
-        class ServicePerimetersResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> ServicePerimeterHttpRequest: ...
+            ) -> ListServicePerimetersResponseHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -64,27 +88,6 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-            def create(
-                self, *, parent: str, body: ServicePerimeter = ..., **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def commit(
-                self,
-                *,
-                parent: str,
-                body: CommitServicePerimetersRequest = ...,
-                **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                **kwargs: typing.Any
-            ) -> ListServicePerimetersResponseHttpRequest: ...
             def replaceAll(
                 self,
                 *,
@@ -92,15 +95,21 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 body: ReplaceServicePerimetersRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+        def create(
+            self, *, body: AccessPolicy = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> AccessPolicyHttpRequest: ...
         def list(
             self,
             *,
-            parent: str = ...,
-            pageToken: str = ...,
             pageSize: int = ...,
+            pageToken: str = ...,
+            parent: str = ...,
             **kwargs: typing.Any
         ) -> ListAccessPoliciesResponseHttpRequest: ...
         def patch(
@@ -111,34 +120,28 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-        def create(
-            self, *, body: AccessPolicy = ..., **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def get(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> AccessPolicyHttpRequest: ...
         def accessLevels(self) -> AccessLevelsResource: ...
         def servicePerimeters(self) -> ServicePerimetersResource: ...
+    @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def list(
             self,
             *,
             name: str,
             filter: str = ...,
-            pageToken: str = ...,
             pageSize: int = ...,
+            pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
-        def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class GcpUserAccessBindingsResource(googleapiclient.discovery.Resource):
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
             def create(
                 self,
                 *,
@@ -146,6 +149,12 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 body: GcpUserAccessBinding = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GcpUserAccessBindingHttpRequest: ...
             def list(
                 self,
                 *,
@@ -154,9 +163,6 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListGcpUserAccessBindingsResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GcpUserAccessBindingHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -170,57 +176,68 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
     def operations(self) -> OperationsResource: ...
     def organizations(self) -> OrganizationsResource: ...
 
-class ListAccessPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListAccessPoliciesResponse: ...
-
+@typing.type_check_only
 class AccessLevelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> AccessLevel: ...
 
-class ListServicePerimetersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListServicePerimetersResponse: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class ListAccessLevelsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListAccessLevelsResponse: ...
-
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListOperationsResponse: ...
-
-class GcpUserAccessBindingHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GcpUserAccessBinding: ...
-
-class ServicePerimeterHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ServicePerimeter: ...
-
+@typing.type_check_only
 class AccessPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> AccessPolicy: ...
 
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class GcpUserAccessBindingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GcpUserAccessBinding: ...
+
+@typing.type_check_only
+class ListAccessLevelsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListAccessLevelsResponse: ...
+
+@typing.type_check_only
+class ListAccessPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListAccessPoliciesResponse: ...
+
+@typing.type_check_only
+class ListGcpUserAccessBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListGcpUserAccessBindingsResponse: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListServicePerimetersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListServicePerimetersResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Operation: ...
 
-class ListGcpUserAccessBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ServicePerimeterHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListGcpUserAccessBindingsResponse: ...
+    ) -> ServicePerimeter: ...

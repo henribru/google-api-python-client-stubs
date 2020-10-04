@@ -7,37 +7,20 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class StoragetransferResource(googleapiclient.discovery.Resource):
-    class TransferOperationsResource(googleapiclient.discovery.Resource):
-        def list(
-            self,
-            *,
-            name: str,
-            pageToken: str = ...,
-            pageSize: int = ...,
-            filter: str = ...,
-            **kwargs: typing.Any
-        ) -> ListOperationsResponseHttpRequest: ...
-        def cancel(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
-        def pause(
-            self,
-            *,
-            name: str,
-            body: PauseTransferOperationRequest = ...,
-            **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
-        def resume(
-            self,
-            *,
-            name: str,
-            body: ResumeTransferOperationRequest = ...,
-            **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
+    @typing.type_check_only
+    class GoogleServiceAccountsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, projectId: str, **kwargs: typing.Any
+        ) -> GoogleServiceAccountHttpRequest: ...
+    @typing.type_check_only
     class TransferJobsResource(googleapiclient.discovery.Resource):
         def create(
             self, *, body: TransferJob = ..., **kwargs: typing.Any
+        ) -> TransferJobHttpRequest: ...
+        def get(
+            self, *, jobName: str, projectId: str = ..., **kwargs: typing.Any
         ) -> TransferJobHttpRequest: ...
         def list(
             self,
@@ -54,43 +37,69 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             body: UpdateTransferJobRequest = ...,
             **kwargs: typing.Any
         ) -> TransferJobHttpRequest: ...
-        def get(
-            self, *, jobName: str, projectId: str = ..., **kwargs: typing.Any
-        ) -> TransferJobHttpRequest: ...
-    class GoogleServiceAccountsResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, projectId: str, **kwargs: typing.Any
-        ) -> GoogleServiceAccountHttpRequest: ...
-    def transferOperations(self) -> TransferOperationsResource: ...
-    def transferJobs(self) -> TransferJobsResource: ...
+    @typing.type_check_only
+    class TransferOperationsResource(googleapiclient.discovery.Resource):
+        def cancel(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            name: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListOperationsResponseHttpRequest: ...
+        def pause(
+            self,
+            *,
+            name: str,
+            body: PauseTransferOperationRequest = ...,
+            **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+        def resume(
+            self,
+            *,
+            name: str,
+            body: ResumeTransferOperationRequest = ...,
+            **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
     def googleServiceAccounts(self) -> GoogleServiceAccountsResource: ...
+    def transferJobs(self) -> TransferJobsResource: ...
+    def transferOperations(self) -> TransferOperationsResource: ...
 
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class GoogleServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
+    ) -> GoogleServiceAccount: ...
 
-class TransferJobHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TransferJob: ...
-
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListOperationsResponse: ...
 
+@typing.type_check_only
 class ListTransferJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListTransferJobsResponse: ...
 
-class GoogleServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleServiceAccount: ...
+    ) -> Operation: ...
+
+@typing.type_check_only
+class TransferJobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TransferJob: ...

@@ -7,8 +7,9 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class WebmastersResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class SearchanalyticsResource(googleapiclient.discovery.Resource):
         def query(
             self,
@@ -17,6 +18,7 @@ class WebmastersResource(googleapiclient.discovery.Resource):
             body: SearchAnalyticsQueryRequest = ...,
             **kwargs: typing.Any
         ) -> SearchAnalyticsQueryResponseHttpRequest: ...
+    @typing.type_check_only
     class SitemapsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, siteUrl: str, feedpath: str, **kwargs: typing.Any
@@ -30,6 +32,7 @@ class WebmastersResource(googleapiclient.discovery.Resource):
         def submit(
             self, *, siteUrl: str, feedpath: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
     class SitesResource(googleapiclient.discovery.Resource):
         def add(
             self, *, siteUrl: str, **kwargs: typing.Any
@@ -43,26 +46,31 @@ class WebmastersResource(googleapiclient.discovery.Resource):
     def sitemaps(self) -> SitemapsResource: ...
     def sites(self) -> SitesResource: ...
 
-class WmxSiteHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> WmxSite: ...
-
+@typing.type_check_only
 class SearchAnalyticsQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> SearchAnalyticsQueryResponse: ...
 
-class SitesListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SitesListResponse: ...
-
+@typing.type_check_only
 class SitemapsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> SitemapsListResponse: ...
 
+@typing.type_check_only
+class SitesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SitesListResponse: ...
+
+@typing.type_check_only
+class WmxSiteHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> WmxSite: ...
+
+@typing.type_check_only
 class WmxSitemapHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

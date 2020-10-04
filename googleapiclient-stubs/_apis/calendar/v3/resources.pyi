@@ -7,24 +7,10 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CalendarResource(googleapiclient.discovery.Resource):
-    class FreebusyResource(googleapiclient.discovery.Resource):
-        def query(
-            self, *, body: FreeBusyRequest = ..., **kwargs: typing.Any
-        ) -> FreeBusyResponseHttpRequest: ...
+    @typing.type_check_only
     class AclResource(googleapiclient.discovery.Resource):
-        def watch(
-            self,
-            *,
-            calendarId: str,
-            body: Channel = ...,
-            showDeleted: bool = ...,
-            pageToken: str = ...,
-            maxResults: int = ...,
-            syncToken: str = ...,
-            **kwargs: typing.Any
-        ) -> ChannelHttpRequest: ...
         def delete(
             self, *, calendarId: str, ruleId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -45,19 +31,10 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            syncToken: str = ...,
             showDeleted: bool = ...,
+            syncToken: str = ...,
             **kwargs: typing.Any
         ) -> AclHttpRequest: ...
-        def update(
-            self,
-            *,
-            calendarId: str,
-            ruleId: str,
-            body: AclRule = ...,
-            sendNotifications: bool = ...,
-            **kwargs: typing.Any
-        ) -> AclRuleHttpRequest: ...
         def patch(
             self,
             *,
@@ -67,108 +44,193 @@ class CalendarResource(googleapiclient.discovery.Resource):
             sendNotifications: bool = ...,
             **kwargs: typing.Any
         ) -> AclRuleHttpRequest: ...
-    class SettingsResource(googleapiclient.discovery.Resource):
+        def update(
+            self,
+            *,
+            calendarId: str,
+            ruleId: str,
+            body: AclRule = ...,
+            sendNotifications: bool = ...,
+            **kwargs: typing.Any
+        ) -> AclRuleHttpRequest: ...
+        def watch(
+            self,
+            *,
+            calendarId: str,
+            body: Channel = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            showDeleted: bool = ...,
+            syncToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ChannelHttpRequest: ...
+    @typing.type_check_only
+    class CalendarListResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, calendarId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, calendarId: str, **kwargs: typing.Any
+        ) -> CalendarListEntryHttpRequest: ...
+        def insert(
+            self,
+            *,
+            body: CalendarListEntry = ...,
+            colorRgbFormat: bool = ...,
+            **kwargs: typing.Any
+        ) -> CalendarListEntryHttpRequest: ...
+        def list(
+            self,
+            *,
+            maxResults: int = ...,
+            minAccessRole: typing_extensions.Literal[
+                "freeBusyReader", "owner", "reader", "writer"
+            ] = ...,
+            pageToken: str = ...,
+            showDeleted: bool = ...,
+            showHidden: bool = ...,
+            syncToken: str = ...,
+            **kwargs: typing.Any
+        ) -> CalendarListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            calendarId: str,
+            body: CalendarListEntry = ...,
+            colorRgbFormat: bool = ...,
+            **kwargs: typing.Any
+        ) -> CalendarListEntryHttpRequest: ...
+        def update(
+            self,
+            *,
+            calendarId: str,
+            body: CalendarListEntry = ...,
+            colorRgbFormat: bool = ...,
+            **kwargs: typing.Any
+        ) -> CalendarListEntryHttpRequest: ...
         def watch(
             self,
             *,
             body: Channel = ...,
-            syncToken: str = ...,
             maxResults: int = ...,
+            minAccessRole: typing_extensions.Literal[
+                "freeBusyReader", "owner", "reader", "writer"
+            ] = ...,
             pageToken: str = ...,
+            showDeleted: bool = ...,
+            showHidden: bool = ...,
+            syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
-        def get(self, *, setting: str, **kwargs: typing.Any) -> SettingHttpRequest: ...
-        def list(
-            self,
-            *,
-            pageToken: str = ...,
-            maxResults: int = ...,
-            syncToken: str = ...,
-            **kwargs: typing.Any
-        ) -> SettingsHttpRequest: ...
+    @typing.type_check_only
+    class CalendarsResource(googleapiclient.discovery.Resource):
+        def clear(
+            self, *, calendarId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def delete(
+            self, *, calendarId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, calendarId: str, **kwargs: typing.Any
+        ) -> CalendarHttpRequest: ...
+        def insert(
+            self, *, body: Calendar = ..., **kwargs: typing.Any
+        ) -> CalendarHttpRequest: ...
+        def patch(
+            self, *, calendarId: str, body: Calendar = ..., **kwargs: typing.Any
+        ) -> CalendarHttpRequest: ...
+        def update(
+            self, *, calendarId: str, body: Calendar = ..., **kwargs: typing.Any
+        ) -> CalendarHttpRequest: ...
+    @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-    class CalendarListResource(googleapiclient.discovery.Resource):
-        def watch(
+    @typing.type_check_only
+    class ColorsResource(googleapiclient.discovery.Resource):
+        def get(self, **kwargs: typing.Any) -> ColorsHttpRequest: ...
+    @typing.type_check_only
+    class EventsResource(googleapiclient.discovery.Resource):
+        def delete(
             self,
             *,
-            body: Channel = ...,
-            maxResults: int = ...,
-            syncToken: str = ...,
-            showDeleted: bool = ...,
-            minAccessRole: typing_extensions.Literal[
-                "freeBusyReader", "owner", "reader", "writer"
-            ] = ...,
-            showHidden: bool = ...,
-            pageToken: str = ...,
+            calendarId: str,
+            eventId: str,
+            sendNotifications: bool = ...,
+            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"] = ...,
             **kwargs: typing.Any
-        ) -> ChannelHttpRequest: ...
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            calendarId: str,
+            eventId: str,
+            alwaysIncludeEmail: bool = ...,
+            maxAttendees: int = ...,
+            timeZone: str = ...,
+            **kwargs: typing.Any
+        ) -> EventHttpRequest: ...
+        def import_(
+            self,
+            *,
+            calendarId: str,
+            body: Event = ...,
+            conferenceDataVersion: int = ...,
+            supportsAttachments: bool = ...,
+            **kwargs: typing.Any
+        ) -> EventHttpRequest: ...
         def insert(
             self,
             *,
-            body: CalendarListEntry = ...,
-            colorRgbFormat: bool = ...,
+            calendarId: str,
+            body: Event = ...,
+            conferenceDataVersion: int = ...,
+            maxAttendees: int = ...,
+            sendNotifications: bool = ...,
+            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"] = ...,
+            supportsAttachments: bool = ...,
             **kwargs: typing.Any
-        ) -> CalendarListEntryHttpRequest: ...
-        def delete(
-            self, *, calendarId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
+        ) -> EventHttpRequest: ...
+        def instances(
+            self,
+            *,
+            calendarId: str,
+            eventId: str,
+            alwaysIncludeEmail: bool = ...,
+            maxAttendees: int = ...,
+            maxResults: int = ...,
+            originalStart: str = ...,
+            pageToken: str = ...,
+            showDeleted: bool = ...,
+            timeMax: str = ...,
+            timeMin: str = ...,
+            timeZone: str = ...,
+            **kwargs: typing.Any
+        ) -> EventsHttpRequest: ...
         def list(
             self,
             *,
+            calendarId: str,
+            alwaysIncludeEmail: bool = ...,
+            iCalUID: str = ...,
+            maxAttendees: int = ...,
             maxResults: int = ...,
-            syncToken: str = ...,
-            showDeleted: bool = ...,
+            orderBy: typing_extensions.Literal["startTime", "updated"] = ...,
             pageToken: str = ...,
-            minAccessRole: typing_extensions.Literal[
-                "freeBusyReader", "owner", "reader", "writer"
-            ] = ...,
-            showHidden: bool = ...,
+            privateExtendedProperty: typing.Union[str, typing.List[str]] = ...,
+            q: str = ...,
+            sharedExtendedProperty: typing.Union[str, typing.List[str]] = ...,
+            showDeleted: bool = ...,
+            showHiddenInvitations: bool = ...,
+            singleEvents: bool = ...,
+            syncToken: str = ...,
+            timeMax: str = ...,
+            timeMin: str = ...,
+            timeZone: str = ...,
+            updatedMin: str = ...,
             **kwargs: typing.Any
-        ) -> CalendarListHttpRequest: ...
-        def update(
-            self,
-            *,
-            calendarId: str,
-            body: CalendarListEntry = ...,
-            colorRgbFormat: bool = ...,
-            **kwargs: typing.Any
-        ) -> CalendarListEntryHttpRequest: ...
-        def patch(
-            self,
-            *,
-            calendarId: str,
-            body: CalendarListEntry = ...,
-            colorRgbFormat: bool = ...,
-            **kwargs: typing.Any
-        ) -> CalendarListEntryHttpRequest: ...
-        def get(
-            self, *, calendarId: str, **kwargs: typing.Any
-        ) -> CalendarListEntryHttpRequest: ...
-    class CalendarsResource(googleapiclient.discovery.Resource):
-        def insert(
-            self, *, body: Calendar = ..., **kwargs: typing.Any
-        ) -> CalendarHttpRequest: ...
-        def update(
-            self, *, calendarId: str, body: Calendar = ..., **kwargs: typing.Any
-        ) -> CalendarHttpRequest: ...
-        def clear(
-            self, *, calendarId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def patch(
-            self, *, calendarId: str, body: Calendar = ..., **kwargs: typing.Any
-        ) -> CalendarHttpRequest: ...
-        def delete(
-            self, *, calendarId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def get(
-            self, *, calendarId: str, **kwargs: typing.Any
-        ) -> CalendarHttpRequest: ...
-    class ColorsResource(googleapiclient.discovery.Resource):
-        def get(self, **kwargs: typing.Any) -> ColorsHttpRequest: ...
-    class EventsResource(googleapiclient.discovery.Resource):
+        ) -> EventsHttpRequest: ...
         def move(
             self,
             *,
@@ -185,97 +247,14 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             eventId: str,
             body: Event = ...,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"] = ...,
-            conferenceDataVersion: int = ...,
-            supportsAttachments: bool = ...,
-            sendNotifications: bool = ...,
-            maxAttendees: int = ...,
             alwaysIncludeEmail: bool = ...,
-            **kwargs: typing.Any
-        ) -> EventHttpRequest: ...
-        def insert(
-            self,
-            *,
-            calendarId: str,
-            body: Event = ...,
-            supportsAttachments: bool = ...,
-            sendNotifications: bool = ...,
             conferenceDataVersion: int = ...,
             maxAttendees: int = ...,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"] = ...,
-            **kwargs: typing.Any
-        ) -> EventHttpRequest: ...
-        def instances(
-            self,
-            *,
-            calendarId: str,
-            eventId: str,
-            showDeleted: bool = ...,
-            originalStart: str = ...,
-            maxResults: int = ...,
-            timeMax: str = ...,
-            timeZone: str = ...,
-            pageToken: str = ...,
-            maxAttendees: int = ...,
-            timeMin: str = ...,
-            alwaysIncludeEmail: bool = ...,
-            **kwargs: typing.Any
-        ) -> EventsHttpRequest: ...
-        def delete(
-            self,
-            *,
-            calendarId: str,
-            eventId: str,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"] = ...,
             sendNotifications: bool = ...,
-            **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def import_(
-            self,
-            *,
-            calendarId: str,
-            body: Event = ...,
-            conferenceDataVersion: int = ...,
+            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"] = ...,
             supportsAttachments: bool = ...,
             **kwargs: typing.Any
         ) -> EventHttpRequest: ...
-        def update(
-            self,
-            *,
-            calendarId: str,
-            eventId: str,
-            body: Event = ...,
-            sendNotifications: bool = ...,
-            supportsAttachments: bool = ...,
-            alwaysIncludeEmail: bool = ...,
-            maxAttendees: int = ...,
-            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"] = ...,
-            conferenceDataVersion: int = ...,
-            **kwargs: typing.Any
-        ) -> EventHttpRequest: ...
-        def list(
-            self,
-            *,
-            calendarId: str,
-            maxAttendees: int = ...,
-            timeZone: str = ...,
-            timeMin: str = ...,
-            syncToken: str = ...,
-            showDeleted: bool = ...,
-            showHiddenInvitations: bool = ...,
-            iCalUID: str = ...,
-            updatedMin: str = ...,
-            timeMax: str = ...,
-            maxResults: int = ...,
-            q: str = ...,
-            privateExtendedProperty: typing.Union[str, typing.List[str]] = ...,
-            pageToken: str = ...,
-            singleEvents: bool = ...,
-            sharedExtendedProperty: typing.Union[str, typing.List[str]] = ...,
-            alwaysIncludeEmail: bool = ...,
-            orderBy: typing_extensions.Literal["startTime", "updated"] = ...,
-            **kwargs: typing.Any
-        ) -> EventsHttpRequest: ...
         def quickAdd(
             self,
             *,
@@ -285,14 +264,18 @@ class CalendarResource(googleapiclient.discovery.Resource):
             sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"] = ...,
             **kwargs: typing.Any
         ) -> EventHttpRequest: ...
-        def get(
+        def update(
             self,
             *,
             calendarId: str,
             eventId: str,
-            maxAttendees: int = ...,
+            body: Event = ...,
             alwaysIncludeEmail: bool = ...,
-            timeZone: str = ...,
+            conferenceDataVersion: int = ...,
+            maxAttendees: int = ...,
+            sendNotifications: bool = ...,
+            sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"] = ...,
+            supportsAttachments: bool = ...,
             **kwargs: typing.Any
         ) -> EventHttpRequest: ...
         def watch(
@@ -300,90 +283,127 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             calendarId: str,
             body: Channel = ...,
-            maxResults: int = ...,
-            syncToken: str = ...,
             alwaysIncludeEmail: bool = ...,
-            timeZone: str = ...,
-            timeMin: str = ...,
-            privateExtendedProperty: typing.Union[str, typing.List[str]] = ...,
-            orderBy: typing_extensions.Literal["startTime", "updated"] = ...,
-            sharedExtendedProperty: typing.Union[str, typing.List[str]] = ...,
-            pageToken: str = ...,
-            singleEvents: bool = ...,
-            showDeleted: bool = ...,
             iCalUID: str = ...,
-            timeMax: str = ...,
-            updatedMin: str = ...,
-            showHiddenInvitations: bool = ...,
-            q: str = ...,
             maxAttendees: int = ...,
+            maxResults: int = ...,
+            orderBy: typing_extensions.Literal["startTime", "updated"] = ...,
+            pageToken: str = ...,
+            privateExtendedProperty: typing.Union[str, typing.List[str]] = ...,
+            q: str = ...,
+            sharedExtendedProperty: typing.Union[str, typing.List[str]] = ...,
+            showDeleted: bool = ...,
+            showHiddenInvitations: bool = ...,
+            singleEvents: bool = ...,
+            syncToken: str = ...,
+            timeMax: str = ...,
+            timeMin: str = ...,
+            timeZone: str = ...,
+            updatedMin: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
-    def freebusy(self) -> FreebusyResource: ...
+    @typing.type_check_only
+    class FreebusyResource(googleapiclient.discovery.Resource):
+        def query(
+            self, *, body: FreeBusyRequest = ..., **kwargs: typing.Any
+        ) -> FreeBusyResponseHttpRequest: ...
+    @typing.type_check_only
+    class SettingsResource(googleapiclient.discovery.Resource):
+        def get(self, *, setting: str, **kwargs: typing.Any) -> SettingHttpRequest: ...
+        def list(
+            self,
+            *,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            syncToken: str = ...,
+            **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
+        def watch(
+            self,
+            *,
+            body: Channel = ...,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            syncToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ChannelHttpRequest: ...
     def acl(self) -> AclResource: ...
-    def settings(self) -> SettingsResource: ...
-    def channels(self) -> ChannelsResource: ...
     def calendarList(self) -> CalendarListResource: ...
     def calendars(self) -> CalendarsResource: ...
+    def channels(self) -> ChannelsResource: ...
     def colors(self) -> ColorsResource: ...
     def events(self) -> EventsResource: ...
+    def freebusy(self) -> FreebusyResource: ...
+    def settings(self) -> SettingsResource: ...
 
-class CalendarListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CalendarList: ...
-
-class ColorsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Colors: ...
-
-class FreeBusyResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> FreeBusyResponse: ...
-
-class EventHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Event: ...
-
-class ChannelHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Channel: ...
-
-class SettingsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Settings: ...
-
-class AclRuleHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AclRule: ...
-
-class SettingHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Setting: ...
-
+@typing.type_check_only
 class AclHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Acl: ...
 
-class EventsHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class AclRuleHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Events: ...
+    ) -> AclRule: ...
 
+@typing.type_check_only
 class CalendarHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Calendar: ...
 
+@typing.type_check_only
+class CalendarListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CalendarList: ...
+
+@typing.type_check_only
 class CalendarListEntryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> CalendarListEntry: ...
+
+@typing.type_check_only
+class ChannelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Channel: ...
+
+@typing.type_check_only
+class ColorsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Colors: ...
+
+@typing.type_check_only
+class EventHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Event: ...
+
+@typing.type_check_only
+class EventsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Events: ...
+
+@typing.type_check_only
+class FreeBusyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> FreeBusyResponse: ...
+
+@typing.type_check_only
+class SettingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Setting: ...
+
+@typing.type_check_only
+class SettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Settings: ...

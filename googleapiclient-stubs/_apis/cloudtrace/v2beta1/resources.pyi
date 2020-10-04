@@ -7,21 +7,29 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudTraceResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class TraceSinksResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: TraceSink = ..., **kwargs: typing.Any
+            ) -> TraceSinkHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> TraceSinkHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageToken: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTraceSinksResponseHttpRequest: ...
-            def create(
-                self, *, parent: str, body: TraceSink = ..., **kwargs: typing.Any
-            ) -> TraceSinkHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -30,26 +38,23 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> TraceSinkHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> TraceSinkHttpRequest: ...
         def traceSinks(self) -> TraceSinksResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class TraceSinkHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TraceSink: ...
+    ) -> Empty: ...
 
+@typing.type_check_only
 class ListTraceSinksResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListTraceSinksResponse: ...
 
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class TraceSinkHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
+    ) -> TraceSink: ...

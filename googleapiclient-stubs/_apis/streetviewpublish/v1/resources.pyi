@@ -7,24 +7,14 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class StreetViewPublishResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class PhotoResource(googleapiclient.discovery.Resource):
-        def startUpload(
-            self, *, body: Empty = ..., **kwargs: typing.Any
-        ) -> UploadRefHttpRequest: ...
-        def delete(self, *, photoId: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
-        def update(
-            self,
-            *,
-            id: str,
-            body: Photo = ...,
-            updateMask: str = ...,
-            **kwargs: typing.Any
-        ) -> PhotoHttpRequest: ...
         def create(
             self, *, body: Photo = ..., **kwargs: typing.Any
         ) -> PhotoHttpRequest: ...
+        def delete(self, *, photoId: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(
             self,
             *,
@@ -33,65 +23,84 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
             **kwargs: typing.Any
         ) -> PhotoHttpRequest: ...
+        def startUpload(
+            self, *, body: Empty = ..., **kwargs: typing.Any
+        ) -> UploadRefHttpRequest: ...
+        def update(
+            self,
+            *,
+            id: str,
+            body: Photo = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> PhotoHttpRequest: ...
+    @typing.type_check_only
     class PhotosResource(googleapiclient.discovery.Resource):
-        def batchUpdate(
-            self, *, body: BatchUpdatePhotosRequest = ..., **kwargs: typing.Any
-        ) -> BatchUpdatePhotosResponseHttpRequest: ...
+        def batchDelete(
+            self, *, body: BatchDeletePhotosRequest = ..., **kwargs: typing.Any
+        ) -> BatchDeletePhotosResponseHttpRequest: ...
         def batchGet(
             self,
             *,
-            photoIds: typing.Union[str, typing.List[str]] = ...,
             languageCode: str = ...,
+            photoIds: typing.Union[str, typing.List[str]] = ...,
             view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
             **kwargs: typing.Any
         ) -> BatchGetPhotosResponseHttpRequest: ...
+        def batchUpdate(
+            self, *, body: BatchUpdatePhotosRequest = ..., **kwargs: typing.Any
+        ) -> BatchUpdatePhotosResponseHttpRequest: ...
         def list(
             self,
             *,
             filter: str = ...,
             languageCode: str = ...,
-            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
-            pageToken: str = ...,
             pageSize: int = ...,
+            pageToken: str = ...,
+            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
             **kwargs: typing.Any
         ) -> ListPhotosResponseHttpRequest: ...
-        def batchDelete(
-            self, *, body: BatchDeletePhotosRequest = ..., **kwargs: typing.Any
-        ) -> BatchDeletePhotosResponseHttpRequest: ...
     def photo(self) -> PhotoResource: ...
     def photos(self) -> PhotosResource: ...
 
+@typing.type_check_only
 class BatchDeletePhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BatchDeletePhotosResponse: ...
 
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class UploadRefHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> UploadRef: ...
-
+@typing.type_check_only
 class BatchGetPhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BatchGetPhotosResponse: ...
 
+@typing.type_check_only
 class BatchUpdatePhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BatchUpdatePhotosResponse: ...
 
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
 class ListPhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListPhotosResponse: ...
 
+@typing.type_check_only
 class PhotoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Photo: ...
+
+@typing.type_check_only
+class UploadRefHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> UploadRef: ...

@@ -7,10 +7,15 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class SlidesResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class PresentationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class PagesResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, presentationId: str, pageObjectId: str, **kwargs: typing.Any
+            ) -> PageHttpRequest: ...
             def getThumbnail(
                 self,
                 *,
@@ -22,15 +27,6 @@ class SlidesResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ThumbnailHttpRequest: ...
-            def get(
-                self, *, presentationId: str, pageObjectId: str, **kwargs: typing.Any
-            ) -> PageHttpRequest: ...
-        def get(
-            self, *, presentationId: str, **kwargs: typing.Any
-        ) -> PresentationHttpRequest: ...
-        def create(
-            self, *, body: Presentation = ..., **kwargs: typing.Any
-        ) -> PresentationHttpRequest: ...
         def batchUpdate(
             self,
             *,
@@ -38,25 +34,35 @@ class SlidesResource(googleapiclient.discovery.Resource):
             body: BatchUpdatePresentationRequest = ...,
             **kwargs: typing.Any
         ) -> BatchUpdatePresentationResponseHttpRequest: ...
+        def create(
+            self, *, body: Presentation = ..., **kwargs: typing.Any
+        ) -> PresentationHttpRequest: ...
+        def get(
+            self, *, presentationId: str, **kwargs: typing.Any
+        ) -> PresentationHttpRequest: ...
         def pages(self) -> PagesResource: ...
     def presentations(self) -> PresentationsResource: ...
 
-class ThumbnailHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class BatchUpdatePresentationResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Thumbnail: ...
+    ) -> BatchUpdatePresentationResponse: ...
 
+@typing.type_check_only
 class PageHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Page: ...
 
+@typing.type_check_only
 class PresentationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Presentation: ...
 
-class BatchUpdatePresentationResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ThumbnailHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> BatchUpdatePresentationResponse: ...
+    ) -> Thumbnail: ...

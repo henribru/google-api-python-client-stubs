@@ -7,22 +7,46 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class FactCheckToolsResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ClaimsResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            offset: int = ...,
-            reviewPublisherSiteFilter: str = ...,
-            query: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
             languageCode: str = ...,
             maxAgeDays: int = ...,
+            offset: int = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            query: str = ...,
+            reviewPublisherSiteFilter: str = ...,
             **kwargs: typing.Any
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest: ...
+    @typing.type_check_only
     class PagesResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
+            **kwargs: typing.Any
+        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleProtobufEmptyHttpRequest: ...
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest: ...
+        def list(
+            self,
+            *,
+            offset: int = ...,
+            organization: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            url: str = ...,
+            **kwargs: typing.Any
+        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -30,38 +54,10 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
             **kwargs: typing.Any
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest: ...
-        def get(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest: ...
-        def create(
-            self,
-            *,
-            body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
-            **kwargs: typing.Any
-        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest: ...
-        def list(
-            self,
-            *,
-            url: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            offset: int = ...,
-            organization: str = ...,
-            **kwargs: typing.Any
-        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest: ...
-        def delete(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> GoogleProtobufEmptyHttpRequest: ...
     def claims(self) -> ClaimsResource: ...
     def pages(self) -> PagesResource: ...
 
-class GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse: ...
-
+@typing.type_check_only
 class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -69,6 +65,7 @@ class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage: ...
 
+@typing.type_check_only
 class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -76,6 +73,15 @@ class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttp
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse: ...
 
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse: ...
+
+@typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

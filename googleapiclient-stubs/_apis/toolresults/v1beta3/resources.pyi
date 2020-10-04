@@ -7,13 +7,73 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class ToolResultsResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class HistoriesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class ExecutionsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ClustersResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self,
+                        *,
+                        projectId: str,
+                        historyId: str,
+                        executionId: str,
+                        clusterId: str,
+                        **kwargs: typing.Any
+                    ) -> ScreenshotClusterHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        projectId: str,
+                        historyId: str,
+                        executionId: str,
+                        **kwargs: typing.Any
+                    ) -> ListScreenshotClustersResponseHttpRequest: ...
+                @typing.type_check_only
+                class EnvironmentsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self,
+                        *,
+                        projectId: str,
+                        historyId: str,
+                        executionId: str,
+                        environmentId: str,
+                        **kwargs: typing.Any
+                    ) -> EnvironmentHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        projectId: str,
+                        historyId: str,
+                        executionId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListEnvironmentsResponseHttpRequest: ...
+                @typing.type_check_only
                 class StepsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class PerfMetricsSummaryResource(
+                        googleapiclient.discovery.Resource
+                    ):
+                        def create(
+                            self,
+                            *,
+                            projectId: str,
+                            historyId: str,
+                            executionId: str,
+                            stepId: str,
+                            body: PerfMetricsSummary = ...,
+                            **kwargs: typing.Any
+                        ) -> PerfMetricsSummaryHttpRequest: ...
+                    @typing.type_check_only
                     class PerfSampleSeriesResource(googleapiclient.discovery.Resource):
+                        @typing.type_check_only
                         class SamplesResource(googleapiclient.discovery.Resource):
                             def batchCreate(
                                 self,
@@ -34,10 +94,20 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                 executionId: str,
                                 stepId: str,
                                 sampleSeriesId: str,
-                                pageToken: str = ...,
                                 pageSize: int = ...,
+                                pageToken: str = ...,
                                 **kwargs: typing.Any
                             ) -> ListPerfSamplesResponseHttpRequest: ...
+                        def create(
+                            self,
+                            *,
+                            projectId: str,
+                            historyId: str,
+                            executionId: str,
+                            stepId: str,
+                            body: PerfSampleSeries = ...,
+                            **kwargs: typing.Any
+                        ) -> PerfSampleSeriesHttpRequest: ...
                         def get(
                             self,
                             *,
@@ -75,17 +145,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             ] = ...,
                             **kwargs: typing.Any
                         ) -> ListPerfSampleSeriesResponseHttpRequest: ...
-                        def create(
-                            self,
-                            *,
-                            projectId: str,
-                            historyId: str,
-                            executionId: str,
-                            stepId: str,
-                            body: PerfSampleSeries = ...,
-                            **kwargs: typing.Any
-                        ) -> PerfSampleSeriesHttpRequest: ...
                         def samples(self) -> SamplesResource: ...
+                    @typing.type_check_only
                     class TestCasesResource(googleapiclient.discovery.Resource):
                         def get(
                             self,
@@ -108,6 +169,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListTestCasesResponseHttpRequest: ...
+                    @typing.type_check_only
                     class ThumbnailsResource(googleapiclient.discovery.Resource):
                         def list(
                             self,
@@ -120,19 +182,9 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListStepThumbnailsResponseHttpRequest: ...
-                    class PerfMetricsSummaryResource(
-                        googleapiclient.discovery.Resource
-                    ):
-                        def create(
-                            self,
-                            *,
-                            projectId: str,
-                            historyId: str,
-                            executionId: str,
-                            stepId: str,
-                            body: PerfMetricsSummary = ...,
-                            **kwargs: typing.Any
-                        ) -> PerfMetricsSummaryHttpRequest: ...
+                    def accessibilityClusters(
+                        self, *, name: str, locale: str = ..., **kwargs: typing.Any
+                    ) -> ListStepAccessibilityClustersResponseHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -143,27 +195,6 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         requestId: str = ...,
                         **kwargs: typing.Any
                     ) -> StepHttpRequest: ...
-                    def patch(
-                        self,
-                        *,
-                        projectId: str,
-                        historyId: str,
-                        executionId: str,
-                        stepId: str,
-                        body: Step = ...,
-                        requestId: str = ...,
-                        **kwargs: typing.Any
-                    ) -> StepHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        projectId: str,
-                        historyId: str,
-                        executionId: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ListStepsResponseHttpRequest: ...
                     def get(
                         self,
                         *,
@@ -182,9 +213,27 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         stepId: str,
                         **kwargs: typing.Any
                     ) -> PerfMetricsSummaryHttpRequest: ...
-                    def accessibilityClusters(
-                        self, *, name: str, locale: str = ..., **kwargs: typing.Any
-                    ) -> ListStepAccessibilityClustersResponseHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        projectId: str,
+                        historyId: str,
+                        executionId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListStepsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        projectId: str,
+                        historyId: str,
+                        executionId: str,
+                        stepId: str,
+                        body: Step = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> StepHttpRequest: ...
                     def publishXunitXmlFiles(
                         self,
                         *,
@@ -195,56 +244,25 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         body: PublishXunitXmlFilesRequest = ...,
                         **kwargs: typing.Any
                     ) -> StepHttpRequest: ...
+                    def perfMetricsSummary(self) -> PerfMetricsSummaryResource: ...
                     def perfSampleSeries(self) -> PerfSampleSeriesResource: ...
                     def testCases(self) -> TestCasesResource: ...
                     def thumbnails(self) -> ThumbnailsResource: ...
-                    def perfMetricsSummary(self) -> PerfMetricsSummaryResource: ...
-                class ClustersResource(googleapiclient.discovery.Resource):
-                    def list(
-                        self,
-                        *,
-                        projectId: str,
-                        historyId: str,
-                        executionId: str,
-                        **kwargs: typing.Any
-                    ) -> ListScreenshotClustersResponseHttpRequest: ...
-                    def get(
-                        self,
-                        *,
-                        projectId: str,
-                        historyId: str,
-                        executionId: str,
-                        clusterId: str,
-                        **kwargs: typing.Any
-                    ) -> ScreenshotClusterHttpRequest: ...
-                class EnvironmentsResource(googleapiclient.discovery.Resource):
-                    def get(
-                        self,
-                        *,
-                        projectId: str,
-                        historyId: str,
-                        executionId: str,
-                        environmentId: str,
-                        **kwargs: typing.Any
-                    ) -> EnvironmentHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        projectId: str,
-                        historyId: str,
-                        executionId: str,
-                        pageToken: str = ...,
-                        pageSize: int = ...,
-                        **kwargs: typing.Any
-                    ) -> ListEnvironmentsResponseHttpRequest: ...
-                def patch(
+                def create(
+                    self,
+                    *,
+                    projectId: str,
+                    historyId: str,
+                    body: Execution = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> ExecutionHttpRequest: ...
+                def get(
                     self,
                     *,
                     projectId: str,
                     historyId: str,
                     executionId: str,
-                    body: Execution = ...,
-                    requestId: str = ...,
                     **kwargs: typing.Any
                 ) -> ExecutionHttpRequest: ...
                 def list(
@@ -256,38 +274,19 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListExecutionsResponseHttpRequest: ...
-                def get(
+                def patch(
                     self,
                     *,
                     projectId: str,
                     historyId: str,
                     executionId: str,
-                    **kwargs: typing.Any
-                ) -> ExecutionHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    projectId: str,
-                    historyId: str,
                     body: Execution = ...,
                     requestId: str = ...,
                     **kwargs: typing.Any
                 ) -> ExecutionHttpRequest: ...
-                def steps(self) -> StepsResource: ...
                 def clusters(self) -> ClustersResource: ...
                 def environments(self) -> EnvironmentsResource: ...
-            def get(
-                self, *, projectId: str, historyId: str, **kwargs: typing.Any
-            ) -> HistoryHttpRequest: ...
-            def list(
-                self,
-                *,
-                projectId: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                filterByName: str = ...,
-                **kwargs: typing.Any
-            ) -> ListHistoriesResponseHttpRequest: ...
+                def steps(self) -> StepsResource: ...
             def create(
                 self,
                 *,
@@ -296,6 +295,18 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                 requestId: str = ...,
                 **kwargs: typing.Any
             ) -> HistoryHttpRequest: ...
+            def get(
+                self, *, projectId: str, historyId: str, **kwargs: typing.Any
+            ) -> HistoryHttpRequest: ...
+            def list(
+                self,
+                *,
+                projectId: str,
+                filterByName: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListHistoriesResponseHttpRequest: ...
             def executions(self) -> ExecutionsResource: ...
         def getSettings(
             self, *, projectId: str, **kwargs: typing.Any
@@ -306,91 +317,67 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
         def histories(self) -> HistoriesResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ListEnvironmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListEnvironmentsResponse: ...
-
-class HistoryHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> History: ...
-
-class ScreenshotClusterHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ScreenshotCluster: ...
-
-class ListPerfSampleSeriesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListPerfSampleSeriesResponse: ...
-
+@typing.type_check_only
 class BatchCreatePerfSamplesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BatchCreatePerfSamplesResponse: ...
 
-class ListScreenshotClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListScreenshotClustersResponse: ...
-
-class PerfSampleSeriesHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> PerfSampleSeries: ...
-
-class ProjectSettingsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ProjectSettings: ...
-
+@typing.type_check_only
 class EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Environment: ...
 
-class ListStepsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListStepsResponse: ...
-
-class ListStepThumbnailsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListStepThumbnailsResponse: ...
-
+@typing.type_check_only
 class ExecutionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Execution: ...
 
-class ListTestCasesResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class HistoryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListTestCasesResponse: ...
+    ) -> History: ...
 
+@typing.type_check_only
+class ListEnvironmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListEnvironmentsResponse: ...
+
+@typing.type_check_only
+class ListExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListExecutionsResponse: ...
+
+@typing.type_check_only
 class ListHistoriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListHistoriesResponse: ...
 
+@typing.type_check_only
+class ListPerfSampleSeriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListPerfSampleSeriesResponse: ...
+
+@typing.type_check_only
 class ListPerfSamplesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListPerfSamplesResponse: ...
 
-class StepHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListScreenshotClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Step: ...
+    ) -> ListScreenshotClustersResponse: ...
 
-class TestCaseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestCase: ...
-
+@typing.type_check_only
 class ListStepAccessibilityClustersResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -398,12 +385,56 @@ class ListStepAccessibilityClustersResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListStepAccessibilityClustersResponse: ...
 
-class ListExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class ListStepThumbnailsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListExecutionsResponse: ...
+    ) -> ListStepThumbnailsResponse: ...
 
+@typing.type_check_only
+class ListStepsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListStepsResponse: ...
+
+@typing.type_check_only
+class ListTestCasesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListTestCasesResponse: ...
+
+@typing.type_check_only
 class PerfMetricsSummaryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> PerfMetricsSummary: ...
+
+@typing.type_check_only
+class PerfSampleSeriesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> PerfSampleSeries: ...
+
+@typing.type_check_only
+class ProjectSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ProjectSettings: ...
+
+@typing.type_check_only
+class ScreenshotClusterHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ScreenshotCluster: ...
+
+@typing.type_check_only
+class StepHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Step: ...
+
+@typing.type_check_only
+class TestCaseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestCase: ...

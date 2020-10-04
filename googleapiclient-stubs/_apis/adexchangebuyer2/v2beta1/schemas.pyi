@@ -1,19 +1,212 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AbsoluteDateRange(typing_extensions.TypedDict, total=False):
+    endDate: Date
+    startDate: Date
 
-class AppContext(typing_extensions.TypedDict, total=False):
-    appTypes: typing.List[str]
+@typing.type_check_only
+class AcceptProposalRequest(typing_extensions.TypedDict, total=False):
+    proposalRevision: str
 
+@typing.type_check_only
+class AdSize(typing_extensions.TypedDict, total=False):
+    height: str
+    sizeType: typing_extensions.Literal[
+        "SIZE_TYPE_UNSPECIFIED", "PIXEL", "INTERSTITIAL", "NATIVE", "FLUID"
+    ]
+    width: str
+
+@typing.type_check_only
+class AdTechnologyProviders(typing_extensions.TypedDict, total=False):
+    detectedProviderIds: typing.List[str]
+    hasUnidentifiedProvider: bool
+
+@typing.type_check_only
 class AddDealAssociationRequest(typing_extensions.TypedDict, total=False):
     association: CreativeDealAssociation
 
+@typing.type_check_only
+class AddNoteRequest(typing_extensions.TypedDict, total=False):
+    note: Note
+
+@typing.type_check_only
+class AppContext(typing_extensions.TypedDict, total=False):
+    appTypes: typing.List[str]
+
+@typing.type_check_only
+class AuctionContext(typing_extensions.TypedDict, total=False):
+    auctionTypes: typing.List[str]
+
+@typing.type_check_only
+class BidMetricsRow(typing_extensions.TypedDict, total=False):
+    bids: MetricValue
+    bidsInAuction: MetricValue
+    billedImpressions: MetricValue
+    impressionsWon: MetricValue
+    measurableImpressions: MetricValue
+    reachedQueries: MetricValue
+    rowDimensions: RowDimensions
+    viewableImpressions: MetricValue
+
+@typing.type_check_only
+class BidResponseWithoutBidsStatusRow(typing_extensions.TypedDict, total=False):
+    impressionCount: MetricValue
+    rowDimensions: RowDimensions
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "RESPONSES_WITHOUT_BIDS",
+        "RESPONSES_WITHOUT_BIDS_FOR_ACCOUNT",
+        "RESPONSES_WITHOUT_BIDS_FOR_DEAL",
+    ]
+
+@typing.type_check_only
+class Buyer(typing_extensions.TypedDict, total=False):
+    accountId: str
+
+@typing.type_check_only
+class CalloutStatusRow(typing_extensions.TypedDict, total=False):
+    calloutStatusId: int
+    impressionCount: MetricValue
+    rowDimensions: RowDimensions
+
+@typing.type_check_only
+class CancelNegotiationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Client(typing_extensions.TypedDict, total=False):
+    clientAccountId: str
+    clientName: str
+    entityId: str
+    entityName: str
+    entityType: typing_extensions.Literal[
+        "ENTITY_TYPE_UNSPECIFIED",
+        "ADVERTISER",
+        "BRAND",
+        "AGENCY",
+        "ENTITY_TYPE_UNCLASSIFIED",
+    ]
+    partnerClientId: str
+    role: typing_extensions.Literal[
+        "CLIENT_ROLE_UNSPECIFIED",
+        "CLIENT_DEAL_VIEWER",
+        "CLIENT_DEAL_NEGOTIATOR",
+        "CLIENT_DEAL_APPROVER",
+    ]
+    status: typing_extensions.Literal["CLIENT_STATUS_UNSPECIFIED", "DISABLED", "ACTIVE"]
+    visibleToSeller: bool
+
+@typing.type_check_only
+class ClientUser(typing_extensions.TypedDict, total=False):
+    clientAccountId: str
+    email: str
+    status: typing_extensions.Literal[
+        "USER_STATUS_UNSPECIFIED", "PENDING", "ACTIVE", "DISABLED"
+    ]
+    userId: str
+
+@typing.type_check_only
+class ClientUserInvitation(typing_extensions.TypedDict, total=False):
+    clientAccountId: str
+    email: str
+    invitationId: str
+
+@typing.type_check_only
+class CompleteSetupRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ContactInformation(typing_extensions.TypedDict, total=False):
+    email: str
+    name: str
+
+@typing.type_check_only
+class Correction(typing_extensions.TypedDict, total=False):
+    contexts: typing.List[ServingContext]
+    details: typing.List[str]
+    type: typing_extensions.Literal[
+        "CORRECTION_TYPE_UNSPECIFIED",
+        "VENDOR_IDS_ADDED",
+        "SSL_ATTRIBUTE_REMOVED",
+        "FLASH_FREE_ATTRIBUTE_REMOVED",
+        "FLASH_FREE_ATTRIBUTE_ADDED",
+        "REQUIRED_ATTRIBUTE_ADDED",
+        "REQUIRED_VENDOR_ADDED",
+        "SSL_ATTRIBUTE_ADDED",
+        "IN_BANNER_VIDEO_ATTRIBUTE_ADDED",
+        "MRAID_ATTRIBUTE_ADDED",
+        "FLASH_ATTRIBUTE_REMOVED",
+        "VIDEO_IN_SNIPPET_ATTRIBUTE_ADDED",
+    ]
+
+@typing.type_check_only
+class Creative(typing_extensions.TypedDict, total=False):
+    accountId: str
+    adChoicesDestinationUrl: str
+    adTechnologyProviders: AdTechnologyProviders
+    advertiserName: str
+    agencyId: str
+    apiUpdateTime: str
+    attributes: typing.List[str]
+    clickThroughUrls: typing.List[str]
+    corrections: typing.List[Correction]
+    creativeId: str
+    dealsStatus: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "NOT_CHECKED",
+        "CONDITIONALLY_APPROVED",
+        "APPROVED",
+        "DISAPPROVED",
+        "PENDING_REVIEW",
+        "STATUS_TYPE_UNSPECIFIED",
+    ]
+    declaredClickThroughUrls: typing.List[str]
+    detectedAdvertiserIds: typing.List[str]
+    detectedDomains: typing.List[str]
+    detectedLanguages: typing.List[str]
+    detectedProductCategories: typing.List[int]
+    detectedSensitiveCategories: typing.List[int]
+    html: HtmlContent
+    impressionTrackingUrls: typing.List[str]
+    native: NativeContent
+    openAuctionStatus: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "NOT_CHECKED",
+        "CONDITIONALLY_APPROVED",
+        "APPROVED",
+        "DISAPPROVED",
+        "PENDING_REVIEW",
+        "STATUS_TYPE_UNSPECIFIED",
+    ]
+    restrictedCategories: typing.List[str]
+    servingRestrictions: typing.List[ServingRestriction]
+    vendorIds: typing.List[int]
+    version: int
+    video: VideoContent
+
+@typing.type_check_only
+class CreativeDealAssociation(typing_extensions.TypedDict, total=False):
+    accountId: str
+    creativeId: str
+    dealsId: str
+
+@typing.type_check_only
+class CreativeRestrictions(typing_extensions.TypedDict, total=False):
+    creativeFormat: typing_extensions.Literal[
+        "CREATIVE_FORMAT_UNSPECIFIED", "DISPLAY", "VIDEO"
+    ]
+    creativeSpecifications: typing.List[CreativeSpecification]
+    skippableAdType: typing_extensions.Literal[
+        "SKIPPABLE_AD_TYPE_UNSPECIFIED", "SKIPPABLE", "INSTREAM_SELECT", "NOT_SKIPPABLE"
+    ]
+
+@typing.type_check_only
 class CreativeSize(typing_extensions.TypedDict, total=False):
+    allowedFormats: typing.List[str]
+    companionSizes: typing.List[Size]
     creativeSizeType: typing_extensions.Literal[
         "CREATIVE_SIZE_TYPE_UNSPECIFIED", "REGULAR", "INTERSTITIAL", "VIDEO", "NATIVE"
     ]
-    companionSizes: typing.List[Size]
-    size: Size
     nativeTemplate: typing_extensions.Literal[
         "UNKNOWN_NATIVE_TEMPLATE",
         "NATIVE_CONTENT_AD",
@@ -21,35 +214,138 @@ class CreativeSize(typing_extensions.TypedDict, total=False):
         "NATIVE_VIDEO_CONTENT_AD",
         "NATIVE_VIDEO_APP_INSTALL_AD",
     ]
-    allowedFormats: typing.List[str]
+    size: Size
     skippableAdType: typing_extensions.Literal[
         "SKIPPABLE_AD_TYPE_UNSPECIFIED", "GENERIC", "INSTREAM_SELECT", "NOT_SKIPPABLE"
     ]
 
-class FirstPartyMobileApplicationTargeting(typing_extensions.TypedDict, total=False):
-    excludedAppIds: typing.List[str]
-    targetedAppIds: typing.List[str]
+@typing.type_check_only
+class CreativeSpecification(typing_extensions.TypedDict, total=False):
+    creativeCompanionSizes: typing.List[AdSize]
+    creativeSize: AdSize
 
-class Product(typing_extensions.TypedDict, total=False):
-    updateTime: str
-    creatorContacts: typing.List[ContactInformation]
-    seller: Seller
+@typing.type_check_only
+class CreativeStatusRow(typing_extensions.TypedDict, total=False):
+    bidCount: MetricValue
+    creativeStatusId: int
+    rowDimensions: RowDimensions
+
+@typing.type_check_only
+class CriteriaTargeting(typing_extensions.TypedDict, total=False):
+    excludedCriteriaIds: typing.List[str]
+    targetedCriteriaIds: typing.List[str]
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
+class DayPart(typing_extensions.TypedDict, total=False):
+    dayOfWeek: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    endTime: TimeOfDay
+    startTime: TimeOfDay
+
+@typing.type_check_only
+class DayPartTargeting(typing_extensions.TypedDict, total=False):
+    dayParts: typing.List[DayPart]
+    timeZoneType: typing_extensions.Literal[
+        "TIME_ZONE_SOURCE_UNSPECIFIED", "PUBLISHER", "USER"
+    ]
+
+@typing.type_check_only
+class Deal(typing_extensions.TypedDict, total=False):
+    availableEndTime: str
+    availableStartTime: str
+    buyerPrivateData: PrivateData
+    createProductId: str
+    createProductRevision: str
+    createTime: str
+    creativePreApprovalPolicy: typing_extensions.Literal[
+        "CREATIVE_PRE_APPROVAL_POLICY_UNSPECIFIED",
+        "SELLER_PRE_APPROVAL_REQUIRED",
+        "SELLER_PRE_APPROVAL_NOT_REQUIRED",
+    ]
+    creativeRestrictions: CreativeRestrictions
+    creativeSafeFrameCompatibility: typing_extensions.Literal[
+        "CREATIVE_SAFE_FRAME_COMPATIBILITY_UNSPECIFIED", "COMPATIBLE", "INCOMPATIBLE"
+    ]
+    dealId: str
+    dealServingMetadata: DealServingMetadata
+    dealTerms: DealTerms
+    deliveryControl: DeliveryControl
+    description: str
+    displayName: str
+    externalDealId: str
+    isSetupComplete: bool
+    programmaticCreativeSource: typing_extensions.Literal[
+        "PROGRAMMATIC_CREATIVE_SOURCE_UNSPECIFIED", "ADVERTISER", "PUBLISHER"
+    ]
+    proposalId: str
+    sellerContacts: typing.List[ContactInformation]
     syndicationProduct: typing_extensions.Literal[
         "SYNDICATION_PRODUCT_UNSPECIFIED", "CONTENT", "MOBILE", "VIDEO", "GAMES"
     ]
-    productId: str
-    productRevision: str
-    hasCreatorSignedOff: bool
-    displayName: str
-    availableStartTime: str
-    availableEndTime: str
+    targeting: MarketplaceTargeting
     targetingCriterion: typing.List[TargetingCriteria]
+    updateTime: str
     webPropertyCode: str
-    publisherProfileId: str
-    terms: DealTerms
-    createTime: str
 
+@typing.type_check_only
+class DealPauseStatus(typing_extensions.TypedDict, total=False):
+    buyerPauseReason: str
+    firstPausedBy: typing_extensions.Literal[
+        "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
+    ]
+    hasBuyerPaused: bool
+    hasSellerPaused: bool
+    sellerPauseReason: str
+
+@typing.type_check_only
+class DealServingMetadata(typing_extensions.TypedDict, total=False):
+    dealPauseStatus: DealPauseStatus
+
+@typing.type_check_only
+class DealTerms(typing_extensions.TypedDict, total=False):
+    brandingType: typing_extensions.Literal[
+        "BRANDING_TYPE_UNSPECIFIED", "BRANDED", "SEMI_TRANSPARENT"
+    ]
+    description: str
+    estimatedGrossSpend: Price
+    estimatedImpressionsPerDay: str
+    guaranteedFixedPriceTerms: GuaranteedFixedPriceTerms
+    nonGuaranteedAuctionTerms: NonGuaranteedAuctionTerms
+    nonGuaranteedFixedPriceTerms: NonGuaranteedFixedPriceTerms
+    sellerTimeZone: str
+
+@typing.type_check_only
+class DeliveryControl(typing_extensions.TypedDict, total=False):
+    creativeBlockingLevel: typing_extensions.Literal[
+        "CREATIVE_BLOCKING_LEVEL_UNSPECIFIED",
+        "PUBLISHER_BLOCKING_RULES",
+        "ADX_POLICY_BLOCKING_ONLY",
+    ]
+    deliveryRateType: typing_extensions.Literal[
+        "DELIVERY_RATE_TYPE_UNSPECIFIED",
+        "EVENLY",
+        "FRONT_LOADED",
+        "AS_FAST_AS_POSSIBLE",
+    ]
+    frequencyCaps: typing.List[FrequencyCap]
+
+@typing.type_check_only
 class Disapproval(typing_extensions.TypedDict, total=False):
+    details: typing.List[str]
     reason: typing_extensions.Literal[
         "LENGTH_OF_IMAGE_ANIMATION",
         "BROKEN_URL",
@@ -154,283 +450,138 @@ class Disapproval(typing_extensions.TypedDict, total=False):
         "BAIL_BONDS",
         "EXPERIMENTAL_MEDICAL_TREATMENT",
     ]
-    details: typing.List[str]
 
-class Price(typing_extensions.TypedDict, total=False):
-    pricingType: typing_extensions.Literal[
-        "PRICING_TYPE_UNSPECIFIED", "COST_PER_MILLE", "COST_PER_DAY"
-    ]
-    amount: Money
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
-class ListFilterSetsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    filterSets: typing.List[FilterSet]
-
-class ListClientsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    clients: typing.List[Client]
-
-class CreativeDealAssociation(typing_extensions.TypedDict, total=False):
-    accountId: str
-    dealsId: str
+@typing.type_check_only
+class FilterSet(typing_extensions.TypedDict, total=False):
+    absoluteDateRange: AbsoluteDateRange
+    breakdownDimensions: typing.List[str]
     creativeId: str
+    dealId: str
+    environment: typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "WEB", "APP"]
+    format: typing_extensions.Literal[
+        "FORMAT_UNSPECIFIED",
+        "NATIVE_DISPLAY",
+        "NATIVE_VIDEO",
+        "NON_NATIVE_DISPLAY",
+        "NON_NATIVE_VIDEO",
+    ]
+    formats: typing.List[str]
+    name: str
+    platforms: typing.List[str]
+    publisherIdentifiers: typing.List[str]
+    realtimeTimeRange: RealtimeTimeRange
+    relativeDateRange: RelativeDateRange
+    sellerNetworkIds: typing.List[int]
+    timeSeriesGranularity: typing_extensions.Literal[
+        "TIME_SERIES_GRANULARITY_UNSPECIFIED", "HOURLY", "DAILY"
+    ]
 
-class CalloutStatusRow(typing_extensions.TypedDict, total=False):
-    calloutStatusId: int
-    impressionCount: MetricValue
+@typing.type_check_only
+class FilteredBidCreativeRow(typing_extensions.TypedDict, total=False):
+    bidCount: MetricValue
+    creativeId: str
     rowDimensions: RowDimensions
 
-class ListBidMetricsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    bidMetricsRows: typing.List[BidMetricsRow]
+@typing.type_check_only
+class FilteredBidDetailRow(typing_extensions.TypedDict, total=False):
+    bidCount: MetricValue
+    detail: str
+    detailId: int
+    rowDimensions: RowDimensions
 
-class ListPublisherProfilesResponse(typing_extensions.TypedDict, total=False):
-    publisherProfiles: typing.List[PublisherProfile]
-    nextPageToken: str
+@typing.type_check_only
+class FirstPartyMobileApplicationTargeting(typing_extensions.TypedDict, total=False):
+    excludedAppIds: typing.List[str]
+    targetedAppIds: typing.List[str]
 
-class TargetingValue(typing_extensions.TypedDict, total=False):
-    stringValue: str
-    longValue: str
-    dayPartTargetingValue: DayPartTargeting
-    creativeSizeValue: CreativeSize
-
-class Note(typing_extensions.TypedDict, total=False):
-    proposalRevision: str
-    createTime: str
-    note: str
-    noteId: str
-    creatorRole: typing_extensions.Literal[
-        "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
+@typing.type_check_only
+class FrequencyCap(typing_extensions.TypedDict, total=False):
+    maxImpressions: int
+    numTimeUnits: int
+    timeUnitType: typing_extensions.Literal[
+        "TIME_UNIT_TYPE_UNSPECIFIED",
+        "MINUTE",
+        "HOUR",
+        "DAY",
+        "WEEK",
+        "MONTH",
+        "LIFETIME",
     ]
 
-class Size(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class GuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
+    fixedPrices: typing.List[PricePerBuyer]
+    guaranteedImpressions: str
+    guaranteedLooks: str
+    minimumDailyLooks: str
+
+@typing.type_check_only
+class HtmlContent(typing_extensions.TypedDict, total=False):
     height: int
+    snippet: str
     width: int
 
-class FilteredBidDetailRow(typing_extensions.TypedDict, total=False):
-    detail: str
+@typing.type_check_only
+class Image(typing_extensions.TypedDict, total=False):
+    height: int
+    url: str
+    width: int
+
+@typing.type_check_only
+class ImpressionMetricsRow(typing_extensions.TypedDict, total=False):
+    availableImpressions: MetricValue
+    bidRequests: MetricValue
+    inventoryMatches: MetricValue
+    responsesWithBids: MetricValue
     rowDimensions: RowDimensions
-    detailId: int
-    bidCount: MetricValue
+    successfulResponses: MetricValue
 
-class Money(typing_extensions.TypedDict, total=False):
-    currencyCode: str
-    nanos: int
-    units: str
+@typing.type_check_only
+class InventorySizeTargeting(typing_extensions.TypedDict, total=False):
+    excludedInventorySizes: typing.List[AdSize]
+    targetedInventorySizes: typing.List[AdSize]
 
-class RemoveDealAssociationRequest(typing_extensions.TypedDict, total=False):
-    association: CreativeDealAssociation
-
-class SecurityContext(typing_extensions.TypedDict, total=False):
-    securities: typing.List[str]
-
-class TechnologyTargeting(typing_extensions.TypedDict, total=False):
-    deviceCategoryTargeting: CriteriaTargeting
-    operatingSystemTargeting: OperatingSystemTargeting
-    deviceCapabilityTargeting: CriteriaTargeting
-
-class AddNoteRequest(typing_extensions.TypedDict, total=False):
-    note: Note
-
-class TimeInterval(typing_extensions.TypedDict, total=False):
-    startTime: str
-    endTime: str
-
-class Date(typing_extensions.TypedDict, total=False):
-    day: int
-    month: int
-    year: int
-
-class Correction(typing_extensions.TypedDict, total=False):
-    details: typing.List[str]
-    contexts: typing.List[ServingContext]
-    type: typing_extensions.Literal[
-        "CORRECTION_TYPE_UNSPECIFIED",
-        "VENDOR_IDS_ADDED",
-        "SSL_ATTRIBUTE_REMOVED",
-        "FLASH_FREE_ATTRIBUTE_REMOVED",
-        "FLASH_FREE_ATTRIBUTE_ADDED",
-        "REQUIRED_ATTRIBUTE_ADDED",
-        "REQUIRED_VENDOR_ADDED",
-        "SSL_ATTRIBUTE_ADDED",
-        "IN_BANNER_VIDEO_ATTRIBUTE_ADDED",
-        "MRAID_ATTRIBUTE_ADDED",
-        "FLASH_ATTRIBUTE_REMOVED",
-        "VIDEO_IN_SNIPPET_ATTRIBUTE_ADDED",
-    ]
-
-class MarketplaceTargeting(typing_extensions.TypedDict, total=False):
-    placementTargeting: PlacementTargeting
-    inventorySizeTargeting: InventorySizeTargeting
-    geoTargeting: CriteriaTargeting
-    technologyTargeting: TechnologyTargeting
-    videoTargeting: VideoTargeting
-
-class PrivateData(typing_extensions.TypedDict, total=False):
-    referenceId: str
-
-class AuctionContext(typing_extensions.TypedDict, total=False):
-    auctionTypes: typing.List[str]
-
-class MobileApplicationTargeting(typing_extensions.TypedDict, total=False):
-    firstPartyTargeting: FirstPartyMobileApplicationTargeting
-
-class VideoContent(typing_extensions.TypedDict, total=False):
-    videoUrl: str
-    videoVastXml: str
-
-class ListProposalsResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class ListBidMetricsResponse(typing_extensions.TypedDict, total=False):
+    bidMetricsRows: typing.List[BidMetricsRow]
     nextPageToken: str
-    proposals: typing.List[Proposal]
 
-class CancelNegotiationRequest(typing_extensions.TypedDict, total=False): ...
-
-class FilteredBidCreativeRow(typing_extensions.TypedDict, total=False):
-    rowDimensions: RowDimensions
-    creativeId: str
-    bidCount: MetricValue
-
-class ServingRestriction(typing_extensions.TypedDict, total=False):
-    disapproval: Disapproval
-    disapprovalReasons: typing.List[Disapproval]
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "DISAPPROVAL", "PENDING_REVIEW"
-    ]
-    contexts: typing.List[ServingContext]
-
-class ListLosingBidsResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class ListBidResponseErrorsResponse(typing_extensions.TypedDict, total=False):
+    calloutStatusRows: typing.List[CalloutStatusRow]
     nextPageToken: str
-    creativeStatusRows: typing.List[CreativeStatusRow]
 
-class VideoTargeting(typing_extensions.TypedDict, total=False):
-    targetedPositionTypes: typing.List[str]
-    excludedPositionTypes: typing.List[str]
+@typing.type_check_only
+class ListBidResponsesWithoutBidsResponse(typing_extensions.TypedDict, total=False):
+    bidResponseWithoutBidsStatusRows: typing.List[BidResponseWithoutBidsStatusRow]
+    nextPageToken: str
 
-class Buyer(typing_extensions.TypedDict, total=False):
-    accountId: str
-
-class RelativeDateRange(typing_extensions.TypedDict, total=False):
-    durationDays: int
-    offsetDays: int
-
-class DealServingMetadata(typing_extensions.TypedDict, total=False):
-    dealPauseStatus: DealPauseStatus
-
-class Creative(typing_extensions.TypedDict, total=False):
-    accountId: str
-    creativeId: str
-    detectedSensitiveCategories: typing.List[int]
-    restrictedCategories: typing.List[str]
-    dealsStatus: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED",
-        "NOT_CHECKED",
-        "CONDITIONALLY_APPROVED",
-        "APPROVED",
-        "DISAPPROVED",
-        "PENDING_REVIEW",
-        "STATUS_TYPE_UNSPECIFIED",
-    ]
-    openAuctionStatus: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED",
-        "NOT_CHECKED",
-        "CONDITIONALLY_APPROVED",
-        "APPROVED",
-        "DISAPPROVED",
-        "PENDING_REVIEW",
-        "STATUS_TYPE_UNSPECIFIED",
-    ]
-    advertiserName: str
-    detectedLanguages: typing.List[str]
-    vendorIds: typing.List[int]
-    impressionTrackingUrls: typing.List[str]
-    detectedDomains: typing.List[str]
-    clickThroughUrls: typing.List[str]
-    detectedAdvertiserIds: typing.List[str]
-    declaredClickThroughUrls: typing.List[str]
-    html: HtmlContent
-    adChoicesDestinationUrl: str
-    native: NativeContent
-    agencyId: str
-    apiUpdateTime: str
-    adTechnologyProviders: AdTechnologyProviders
-    attributes: typing.List[str]
-    version: int
-    corrections: typing.List[Correction]
-    detectedProductCategories: typing.List[int]
-    servingRestrictions: typing.List[ServingRestriction]
-    video: VideoContent
-
+@typing.type_check_only
 class ListClientUserInvitationsResponse(typing_extensions.TypedDict, total=False):
     invitations: typing.List[ClientUserInvitation]
     nextPageToken: str
 
-class PauseProposalRequest(typing_extensions.TypedDict, total=False):
-    reason: str
+@typing.type_check_only
+class ListClientUsersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    users: typing.List[ClientUser]
 
-class DayPart(typing_extensions.TypedDict, total=False):
-    endTime: TimeOfDay
-    dayOfWeek: typing_extensions.Literal[
-        "DAY_OF_WEEK_UNSPECIFIED",
-        "MONDAY",
-        "TUESDAY",
-        "WEDNESDAY",
-        "THURSDAY",
-        "FRIDAY",
-        "SATURDAY",
-        "SUNDAY",
-    ]
-    startTime: TimeOfDay
+@typing.type_check_only
+class ListClientsResponse(typing_extensions.TypedDict, total=False):
+    clients: typing.List[Client]
+    nextPageToken: str
 
-class ServingContext(typing_extensions.TypedDict, total=False):
-    all: typing_extensions.Literal["SIMPLE_CONTEXT"]
-    securityType: SecurityContext
-    location: LocationContext
-    platform: PlatformContext
-    appType: AppContext
-    auctionType: AuctionContext
+@typing.type_check_only
+class ListCreativeStatusBreakdownByCreativeResponse(
+    typing_extensions.TypedDict, total=False
+):
+    filteredBidCreativeRows: typing.List[FilteredBidCreativeRow]
+    nextPageToken: str
 
-class PlacementTargeting(typing_extensions.TypedDict, total=False):
-    urlTargeting: UrlTargeting
-    mobileApplicationTargeting: MobileApplicationTargeting
-
-class InventorySizeTargeting(typing_extensions.TypedDict, total=False):
-    targetedInventorySizes: typing.List[AdSize]
-    excludedInventorySizes: typing.List[AdSize]
-
-class RealtimeTimeRange(typing_extensions.TypedDict, total=False):
-    startTimestamp: str
-
-class AcceptProposalRequest(typing_extensions.TypedDict, total=False):
-    proposalRevision: str
-
-class DealPauseStatus(typing_extensions.TypedDict, total=False):
-    firstPausedBy: typing_extensions.Literal[
-        "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
-    ]
-    buyerPauseReason: str
-    hasBuyerPaused: bool
-    hasSellerPaused: bool
-    sellerPauseReason: str
-
-class BidMetricsRow(typing_extensions.TypedDict, total=False):
-    impressionsWon: MetricValue
-    viewableImpressions: MetricValue
-    bidsInAuction: MetricValue
-    reachedQueries: MetricValue
-    billedImpressions: MetricValue
-    bids: MetricValue
-    measurableImpressions: MetricValue
-    rowDimensions: RowDimensions
-
-class CreativeRestrictions(typing_extensions.TypedDict, total=False):
-    creativeSpecifications: typing.List[CreativeSpecification]
-    skippableAdType: typing_extensions.Literal[
-        "SKIPPABLE_AD_TYPE_UNSPECIFIED", "SKIPPABLE", "INSTREAM_SELECT", "NOT_SKIPPABLE"
-    ]
-    creativeFormat: typing_extensions.Literal[
-        "CREATIVE_FORMAT_UNSPECIFIED", "DISPLAY", "VIDEO"
-    ]
-
+@typing.type_check_only
 class ListCreativeStatusBreakdownByDetailResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -446,87 +597,107 @@ class ListCreativeStatusBreakdownByDetailResponse(
     filteredBidDetailRows: typing.List[FilteredBidDetailRow]
     nextPageToken: str
 
-class NativeContent(typing_extensions.TypedDict, total=False):
-    body: str
-    videoUrl: str
-    appIcon: Image
-    starRating: float
-    clickLinkUrl: str
-    logo: Image
-    advertiserName: str
-    storeUrl: str
-    headline: str
-    clickTrackingUrl: str
-    image: Image
-    callToAction: str
-    priceDisplayText: str
-
-class AdSize(typing_extensions.TypedDict, total=False):
-    height: str
-    width: str
-    sizeType: typing_extensions.Literal[
-        "SIZE_TYPE_UNSPECIFIED", "PIXEL", "INTERSTITIAL", "NATIVE", "FLUID"
-    ]
-
-class ListBidResponsesWithoutBidsResponse(typing_extensions.TypedDict, total=False):
-    bidResponseWithoutBidsStatusRows: typing.List[BidResponseWithoutBidsStatusRow]
+@typing.type_check_only
+class ListCreativesResponse(typing_extensions.TypedDict, total=False):
+    creatives: typing.List[Creative]
     nextPageToken: str
 
-class TimeOfDay(typing_extensions.TypedDict, total=False):
-    hours: int
+@typing.type_check_only
+class ListDealAssociationsResponse(typing_extensions.TypedDict, total=False):
+    associations: typing.List[CreativeDealAssociation]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListFilterSetsResponse(typing_extensions.TypedDict, total=False):
+    filterSets: typing.List[FilterSet]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListFilteredBidRequestsResponse(typing_extensions.TypedDict, total=False):
+    calloutStatusRows: typing.List[CalloutStatusRow]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListFilteredBidsResponse(typing_extensions.TypedDict, total=False):
+    creativeStatusRows: typing.List[CreativeStatusRow]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListImpressionMetricsResponse(typing_extensions.TypedDict, total=False):
+    impressionMetricsRows: typing.List[ImpressionMetricsRow]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListLosingBidsResponse(typing_extensions.TypedDict, total=False):
+    creativeStatusRows: typing.List[CreativeStatusRow]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListNonBillableWinningBidsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    nonBillableWinningBidStatusRows: typing.List[NonBillableWinningBidStatusRow]
+
+@typing.type_check_only
+class ListProductsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    products: typing.List[Product]
+
+@typing.type_check_only
+class ListProposalsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    proposals: typing.List[Proposal]
+
+@typing.type_check_only
+class ListPublisherProfilesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    publisherProfiles: typing.List[PublisherProfile]
+
+@typing.type_check_only
+class LocationContext(typing_extensions.TypedDict, total=False):
+    geoCriteriaIds: typing.List[int]
+
+@typing.type_check_only
+class MarketplaceTargeting(typing_extensions.TypedDict, total=False):
+    geoTargeting: CriteriaTargeting
+    inventorySizeTargeting: InventorySizeTargeting
+    placementTargeting: PlacementTargeting
+    technologyTargeting: TechnologyTargeting
+    videoTargeting: VideoTargeting
+
+@typing.type_check_only
+class MetricValue(typing_extensions.TypedDict, total=False):
+    value: str
+    variance: str
+
+@typing.type_check_only
+class MobileApplicationTargeting(typing_extensions.TypedDict, total=False):
+    firstPartyTargeting: FirstPartyMobileApplicationTargeting
+
+@typing.type_check_only
+class Money(typing_extensions.TypedDict, total=False):
+    currencyCode: str
     nanos: int
-    minutes: int
-    seconds: int
+    units: str
 
-class PricePerBuyer(typing_extensions.TypedDict, total=False):
-    price: Price
-    buyer: Buyer
-    advertiserIds: typing.List[str]
+@typing.type_check_only
+class NativeContent(typing_extensions.TypedDict, total=False):
+    advertiserName: str
+    appIcon: Image
+    body: str
+    callToAction: str
+    clickLinkUrl: str
+    clickTrackingUrl: str
+    headline: str
+    image: Image
+    logo: Image
+    priceDisplayText: str
+    starRating: float
+    storeUrl: str
+    videoUrl: str
 
-class OperatingSystemTargeting(typing_extensions.TypedDict, total=False):
-    operatingSystemCriteria: CriteriaTargeting
-    operatingSystemVersionCriteria: CriteriaTargeting
-
-class UrlTargeting(typing_extensions.TypedDict, total=False):
-    excludedUrls: typing.List[str]
-    targetedUrls: typing.List[str]
-
-class ClientUser(typing_extensions.TypedDict, total=False):
-    userId: str
-    email: str
-    status: typing_extensions.Literal[
-        "USER_STATUS_UNSPECIFIED", "PENDING", "ACTIVE", "DISABLED"
-    ]
-    clientAccountId: str
-
-class ClientUserInvitation(typing_extensions.TypedDict, total=False):
-    invitationId: str
-    clientAccountId: str
-    email: str
-
-class Client(typing_extensions.TypedDict, total=False):
-    entityType: typing_extensions.Literal[
-        "ENTITY_TYPE_UNSPECIFIED",
-        "ADVERTISER",
-        "BRAND",
-        "AGENCY",
-        "ENTITY_TYPE_UNCLASSIFIED",
-    ]
-    partnerClientId: str
-    visibleToSeller: bool
-    entityId: str
-    status: typing_extensions.Literal["CLIENT_STATUS_UNSPECIFIED", "DISABLED", "ACTIVE"]
-    entityName: str
-    role: typing_extensions.Literal[
-        "CLIENT_ROLE_UNSPECIFIED",
-        "CLIENT_DEAL_VIEWER",
-        "CLIENT_DEAL_NEGOTIATOR",
-        "CLIENT_DEAL_APPROVER",
-    ]
-    clientAccountId: str
-    clientName: str
-
+@typing.type_check_only
 class NonBillableWinningBidStatusRow(typing_extensions.TypedDict, total=False):
+    bidCount: MetricValue
     rowDimensions: RowDimensions
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -535,246 +706,100 @@ class NonBillableWinningBidStatusRow(typing_extensions.TypedDict, total=False):
         "FATAL_VAST_ERROR",
         "LOST_IN_MEDIATION",
     ]
-    bidCount: MetricValue
 
-class AdTechnologyProviders(typing_extensions.TypedDict, total=False):
-    hasUnidentifiedProvider: bool
-    detectedProviderIds: typing.List[str]
+@typing.type_check_only
+class NonGuaranteedAuctionTerms(typing_extensions.TypedDict, total=False):
+    autoOptimizePrivateAuction: bool
+    reservePricesPerBuyer: typing.List[PricePerBuyer]
 
-class DayPartTargeting(typing_extensions.TypedDict, total=False):
-    dayParts: typing.List[DayPart]
-    timeZoneType: typing_extensions.Literal[
-        "TIME_ZONE_SOURCE_UNSPECIFIED", "PUBLISHER", "USER"
-    ]
-
-class StopWatchingCreativeRequest(typing_extensions.TypedDict, total=False): ...
-
-class WatchCreativeRequest(typing_extensions.TypedDict, total=False):
-    topic: str
-
-class ImpressionMetricsRow(typing_extensions.TypedDict, total=False):
-    successfulResponses: MetricValue
-    inventoryMatches: MetricValue
-    responsesWithBids: MetricValue
-    rowDimensions: RowDimensions
-    bidRequests: MetricValue
-    availableImpressions: MetricValue
-
-class CreativeSpecification(typing_extensions.TypedDict, total=False):
-    creativeSize: AdSize
-    creativeCompanionSizes: typing.List[AdSize]
-
-class GuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
-    guaranteedLooks: str
-    guaranteedImpressions: str
-    minimumDailyLooks: str
-    fixedPrices: typing.List[PricePerBuyer]
-
-class AbsoluteDateRange(typing_extensions.TypedDict, total=False):
-    startDate: Date
-    endDate: Date
-
-class LocationContext(typing_extensions.TypedDict, total=False):
-    geoCriteriaIds: typing.List[int]
-
-class ListCreativesResponse(typing_extensions.TypedDict, total=False):
-    creatives: typing.List[Creative]
-    nextPageToken: str
-
-class DeliveryControl(typing_extensions.TypedDict, total=False):
-    creativeBlockingLevel: typing_extensions.Literal[
-        "CREATIVE_BLOCKING_LEVEL_UNSPECIFIED",
-        "PUBLISHER_BLOCKING_RULES",
-        "ADX_POLICY_BLOCKING_ONLY",
-    ]
-    frequencyCaps: typing.List[FrequencyCap]
-    deliveryRateType: typing_extensions.Literal[
-        "DELIVERY_RATE_TYPE_UNSPECIFIED",
-        "EVENLY",
-        "FRONT_LOADED",
-        "AS_FAST_AS_POSSIBLE",
-    ]
-
-class CompleteSetupRequest(typing_extensions.TypedDict, total=False): ...
-
-class ListProductsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    products: typing.List[Product]
-
-class ListBidResponseErrorsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    calloutStatusRows: typing.List[CalloutStatusRow]
-
-class TargetingCriteria(typing_extensions.TypedDict, total=False):
-    inclusions: typing.List[TargetingValue]
-    exclusions: typing.List[TargetingValue]
-    key: str
-
-class FilterSet(typing_extensions.TypedDict, total=False):
-    sellerNetworkIds: typing.List[int]
-    absoluteDateRange: AbsoluteDateRange
-    name: str
-    relativeDateRange: RelativeDateRange
-    dealId: str
-    formats: typing.List[str]
-    environment: typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "WEB", "APP"]
-    realtimeTimeRange: RealtimeTimeRange
-    timeSeriesGranularity: typing_extensions.Literal[
-        "TIME_SERIES_GRANULARITY_UNSPECIFIED", "HOURLY", "DAILY"
-    ]
-    publisherIdentifiers: typing.List[str]
-    platforms: typing.List[str]
-    creativeId: str
-    breakdownDimensions: typing.List[str]
-    format: typing_extensions.Literal[
-        "FORMAT_UNSPECIFIED",
-        "NATIVE_DISPLAY",
-        "NATIVE_VIDEO",
-        "NON_NATIVE_DISPLAY",
-        "NON_NATIVE_VIDEO",
-    ]
-
-class PublisherProfile(typing_extensions.TypedDict, total=False):
-    topHeadlines: typing.List[str]
-    programmaticDealsContact: str
-    seller: Seller
-    isParent: bool
-    logoUrl: str
-    rateCardInfoUrl: str
-    domains: typing.List[str]
-    googlePlusUrl: str
-    buyerPitchStatement: str
-    directDealsContact: str
-    overview: str
-    samplePageUrl: str
-    mediaKitUrl: str
-    publisherProfileId: str
-    audienceDescription: str
-    displayName: str
-
-class Deal(typing_extensions.TypedDict, total=False):
-    displayName: str
-    description: str
-    programmaticCreativeSource: typing_extensions.Literal[
-        "PROGRAMMATIC_CREATIVE_SOURCE_UNSPECIFIED", "ADVERTISER", "PUBLISHER"
-    ]
-    availableEndTime: str
-    proposalId: str
-    sellerContacts: typing.List[ContactInformation]
-    externalDealId: str
-    availableStartTime: str
-    creativeRestrictions: CreativeRestrictions
-    createTime: str
-    buyerPrivateData: PrivateData
-    creativeSafeFrameCompatibility: typing_extensions.Literal[
-        "CREATIVE_SAFE_FRAME_COMPATIBILITY_UNSPECIFIED", "COMPATIBLE", "INCOMPATIBLE"
-    ]
-    createProductRevision: str
-    dealServingMetadata: DealServingMetadata
-    syndicationProduct: typing_extensions.Literal[
-        "SYNDICATION_PRODUCT_UNSPECIFIED", "CONTENT", "MOBILE", "VIDEO", "GAMES"
-    ]
-    updateTime: str
-    dealTerms: DealTerms
-    creativePreApprovalPolicy: typing_extensions.Literal[
-        "CREATIVE_PRE_APPROVAL_POLICY_UNSPECIFIED",
-        "SELLER_PRE_APPROVAL_REQUIRED",
-        "SELLER_PRE_APPROVAL_NOT_REQUIRED",
-    ]
-    targetingCriterion: typing.List[TargetingCriteria]
-    webPropertyCode: str
-    createProductId: str
-    isSetupComplete: bool
-    dealId: str
-    targeting: MarketplaceTargeting
-    deliveryControl: DeliveryControl
-
-class ListClientUsersResponse(typing_extensions.TypedDict, total=False):
-    users: typing.List[ClientUser]
-    nextPageToken: str
-
-class BidResponseWithoutBidsStatusRow(typing_extensions.TypedDict, total=False):
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED",
-        "RESPONSES_WITHOUT_BIDS",
-        "RESPONSES_WITHOUT_BIDS_FOR_ACCOUNT",
-        "RESPONSES_WITHOUT_BIDS_FOR_DEAL",
-    ]
-    impressionCount: MetricValue
-    rowDimensions: RowDimensions
-
-class Image(typing_extensions.TypedDict, total=False):
-    url: str
-    height: int
-    width: int
-
-class RowDimensions(typing_extensions.TypedDict, total=False):
-    timeInterval: TimeInterval
-    publisherIdentifier: str
-
-class ResumeProposalRequest(typing_extensions.TypedDict, total=False): ...
-
+@typing.type_check_only
 class NonGuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
     fixedPrices: typing.List[PricePerBuyer]
 
-class DealTerms(typing_extensions.TypedDict, total=False):
-    estimatedGrossSpend: Price
-    sellerTimeZone: str
-    brandingType: typing_extensions.Literal[
-        "BRANDING_TYPE_UNSPECIFIED", "BRANDED", "SEMI_TRANSPARENT"
+@typing.type_check_only
+class Note(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creatorRole: typing_extensions.Literal[
+        "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
     ]
-    nonGuaranteedAuctionTerms: NonGuaranteedAuctionTerms
-    nonGuaranteedFixedPriceTerms: NonGuaranteedFixedPriceTerms
-    estimatedImpressionsPerDay: str
-    description: str
-    guaranteedFixedPriceTerms: GuaranteedFixedPriceTerms
+    note: str
+    noteId: str
+    proposalRevision: str
 
-class ListDealAssociationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    associations: typing.List[CreativeDealAssociation]
+@typing.type_check_only
+class OperatingSystemTargeting(typing_extensions.TypedDict, total=False):
+    operatingSystemCriteria: CriteriaTargeting
+    operatingSystemVersionCriteria: CriteriaTargeting
 
-class FrequencyCap(typing_extensions.TypedDict, total=False):
-    maxImpressions: int
-    timeUnitType: typing_extensions.Literal[
-        "TIME_UNIT_TYPE_UNSPECIFIED",
-        "MINUTE",
-        "HOUR",
-        "DAY",
-        "WEEK",
-        "MONTH",
-        "LIFETIME",
-    ]
-    numTimeUnits: int
+@typing.type_check_only
+class PauseProposalRequest(typing_extensions.TypedDict, total=False):
+    reason: str
 
+@typing.type_check_only
+class PlacementTargeting(typing_extensions.TypedDict, total=False):
+    mobileApplicationTargeting: MobileApplicationTargeting
+    urlTargeting: UrlTargeting
+
+@typing.type_check_only
 class PlatformContext(typing_extensions.TypedDict, total=False):
     platforms: typing.List[str]
 
-class ListImpressionMetricsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    impressionMetricsRows: typing.List[ImpressionMetricsRow]
+@typing.type_check_only
+class Price(typing_extensions.TypedDict, total=False):
+    amount: Money
+    pricingType: typing_extensions.Literal[
+        "PRICING_TYPE_UNSPECIFIED", "COST_PER_MILLE", "COST_PER_DAY"
+    ]
 
-class MetricValue(typing_extensions.TypedDict, total=False):
-    variance: str
-    value: str
+@typing.type_check_only
+class PricePerBuyer(typing_extensions.TypedDict, total=False):
+    advertiserIds: typing.List[str]
+    buyer: Buyer
+    price: Price
 
+@typing.type_check_only
+class PrivateData(typing_extensions.TypedDict, total=False):
+    referenceId: str
+
+@typing.type_check_only
+class Product(typing_extensions.TypedDict, total=False):
+    availableEndTime: str
+    availableStartTime: str
+    createTime: str
+    creatorContacts: typing.List[ContactInformation]
+    displayName: str
+    hasCreatorSignedOff: bool
+    productId: str
+    productRevision: str
+    publisherProfileId: str
+    seller: Seller
+    syndicationProduct: typing_extensions.Literal[
+        "SYNDICATION_PRODUCT_UNSPECIFIED", "CONTENT", "MOBILE", "VIDEO", "GAMES"
+    ]
+    targetingCriterion: typing.List[TargetingCriteria]
+    terms: DealTerms
+    updateTime: str
+    webPropertyCode: str
+
+@typing.type_check_only
 class Proposal(typing_extensions.TypedDict, total=False):
+    billedBuyer: Buyer
+    buyer: Buyer
+    buyerContacts: typing.List[ContactInformation]
     buyerPrivateData: PrivateData
-    proposalId: str
+    deals: typing.List[Deal]
+    displayName: str
+    isRenegotiating: bool
     isSetupComplete: bool
+    lastUpdaterOrCommentorRole: typing_extensions.Literal[
+        "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
+    ]
+    notes: typing.List[Note]
     originatorRole: typing_extensions.Literal[
         "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
     ]
-    displayName: str
-    buyer: Buyer
-    isRenegotiating: bool
-    deals: typing.List[Deal]
-    billedBuyer: Buyer
-    seller: Seller
-    notes: typing.List[Note]
-    buyerContacts: typing.List[ContactInformation]
     privateAuctionId: str
-    updateTime: str
-    sellerContacts: typing.List[ContactInformation]
+    proposalId: str
     proposalRevision: str
     proposalState: typing_extensions.Literal[
         "PROPOSAL_STATE_UNSPECIFIED",
@@ -784,52 +809,131 @@ class Proposal(typing_extensions.TypedDict, total=False):
         "CANCELED",
         "FINALIZED",
     ]
-    lastUpdaterOrCommentorRole: typing_extensions.Literal[
-        "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
-    ]
+    seller: Seller
+    sellerContacts: typing.List[ContactInformation]
+    updateTime: str
 
-class Empty(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class PublisherProfile(typing_extensions.TypedDict, total=False):
+    audienceDescription: str
+    buyerPitchStatement: str
+    directDealsContact: str
+    displayName: str
+    domains: typing.List[str]
+    googlePlusUrl: str
+    isParent: bool
+    logoUrl: str
+    mediaKitUrl: str
+    overview: str
+    programmaticDealsContact: str
+    publisherProfileId: str
+    rateCardInfoUrl: str
+    samplePageUrl: str
+    seller: Seller
+    topHeadlines: typing.List[str]
 
-class CriteriaTargeting(typing_extensions.TypedDict, total=False):
-    excludedCriteriaIds: typing.List[str]
-    targetedCriteriaIds: typing.List[str]
+@typing.type_check_only
+class RealtimeTimeRange(typing_extensions.TypedDict, total=False):
+    startTimestamp: str
 
-class ListNonBillableWinningBidsResponse(typing_extensions.TypedDict, total=False):
-    nonBillableWinningBidStatusRows: typing.List[NonBillableWinningBidStatusRow]
-    nextPageToken: str
+@typing.type_check_only
+class RelativeDateRange(typing_extensions.TypedDict, total=False):
+    durationDays: int
+    offsetDays: int
 
-class ListFilteredBidsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    creativeStatusRows: typing.List[CreativeStatusRow]
+@typing.type_check_only
+class RemoveDealAssociationRequest(typing_extensions.TypedDict, total=False):
+    association: CreativeDealAssociation
 
-class HtmlContent(typing_extensions.TypedDict, total=False):
-    width: int
-    snippet: str
-    height: int
+@typing.type_check_only
+class ResumeProposalRequest(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class RowDimensions(typing_extensions.TypedDict, total=False):
+    publisherIdentifier: str
+    timeInterval: TimeInterval
+
+@typing.type_check_only
+class SecurityContext(typing_extensions.TypedDict, total=False):
+    securities: typing.List[str]
+
+@typing.type_check_only
 class Seller(typing_extensions.TypedDict, total=False):
     accountId: str
     subAccountId: str
 
-class ContactInformation(typing_extensions.TypedDict, total=False):
-    email: str
-    name: str
+@typing.type_check_only
+class ServingContext(typing_extensions.TypedDict, total=False):
+    all: typing_extensions.Literal["SIMPLE_CONTEXT"]
+    appType: AppContext
+    auctionType: AuctionContext
+    location: LocationContext
+    platform: PlatformContext
+    securityType: SecurityContext
 
-class NonGuaranteedAuctionTerms(typing_extensions.TypedDict, total=False):
-    reservePricesPerBuyer: typing.List[PricePerBuyer]
-    autoOptimizePrivateAuction: bool
+@typing.type_check_only
+class ServingRestriction(typing_extensions.TypedDict, total=False):
+    contexts: typing.List[ServingContext]
+    disapproval: Disapproval
+    disapprovalReasons: typing.List[Disapproval]
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "DISAPPROVAL", "PENDING_REVIEW"
+    ]
 
-class ListFilteredBidRequestsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    calloutStatusRows: typing.List[CalloutStatusRow]
+@typing.type_check_only
+class Size(typing_extensions.TypedDict, total=False):
+    height: int
+    width: int
 
-class CreativeStatusRow(typing_extensions.TypedDict, total=False):
-    rowDimensions: RowDimensions
-    creativeStatusId: int
-    bidCount: MetricValue
+@typing.type_check_only
+class StopWatchingCreativeRequest(typing_extensions.TypedDict, total=False): ...
 
-class ListCreativeStatusBreakdownByCreativeResponse(
-    typing_extensions.TypedDict, total=False
-):
-    filteredBidCreativeRows: typing.List[FilteredBidCreativeRow]
-    nextPageToken: str
+@typing.type_check_only
+class TargetingCriteria(typing_extensions.TypedDict, total=False):
+    exclusions: typing.List[TargetingValue]
+    inclusions: typing.List[TargetingValue]
+    key: str
+
+@typing.type_check_only
+class TargetingValue(typing_extensions.TypedDict, total=False):
+    creativeSizeValue: CreativeSize
+    dayPartTargetingValue: DayPartTargeting
+    longValue: str
+    stringValue: str
+
+@typing.type_check_only
+class TechnologyTargeting(typing_extensions.TypedDict, total=False):
+    deviceCapabilityTargeting: CriteriaTargeting
+    deviceCategoryTargeting: CriteriaTargeting
+    operatingSystemTargeting: OperatingSystemTargeting
+
+@typing.type_check_only
+class TimeInterval(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
+
+@typing.type_check_only
+class UrlTargeting(typing_extensions.TypedDict, total=False):
+    excludedUrls: typing.List[str]
+    targetedUrls: typing.List[str]
+
+@typing.type_check_only
+class VideoContent(typing_extensions.TypedDict, total=False):
+    videoUrl: str
+    videoVastXml: str
+
+@typing.type_check_only
+class VideoTargeting(typing_extensions.TypedDict, total=False):
+    excludedPositionTypes: typing.List[str]
+    targetedPositionTypes: typing.List[str]
+
+@typing.type_check_only
+class WatchCreativeRequest(typing_extensions.TypedDict, total=False):
+    topic: str

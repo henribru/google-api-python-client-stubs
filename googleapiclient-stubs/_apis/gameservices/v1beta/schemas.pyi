@@ -1,13 +1,49 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: typing.List[AuditLogConfig]
+    exemptedMembers: typing.List[str]
+    service: str
 
-class PreviewCreateGameServerClusterResponse(typing_extensions.TypedDict, total=False):
-    targetState: TargetState
-    etag: str
+@typing.type_check_only
+class AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: typing.List[str]
+    ignoreChildExemptions: bool
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
 
+@typing.type_check_only
+class AuthorizationLoggingOptions(typing_extensions.TypedDict, total=False):
+    permissionType: typing_extensions.Literal[
+        "PERMISSION_TYPE_UNSPECIFIED",
+        "ADMIN_READ",
+        "ADMIN_WRITE",
+        "DATA_READ",
+        "DATA_WRITE",
+    ]
+
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
+    condition: Expr
+    members: typing.List[str]
+    role: str
+
+@typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudAuditOptions(typing_extensions.TypedDict, total=False):
+    authorizationLoggingOptions: AuthorizationLoggingOptions
+    logName: typing_extensions.Literal[
+        "UNSPECIFIED_LOG_NAME", "ADMIN_ACTIVITY", "DATA_ACCESS"
+    ]
+
+@typing.type_check_only
 class Condition(typing_extensions.TypedDict, total=False):
-    sys: typing_extensions.Literal["NO_ATTR", "REGION", "SERVICE", "NAME", "IP"]
     iam: typing_extensions.Literal[
         "NO_ATTR",
         "AUTHORITY",
@@ -22,240 +58,202 @@ class Condition(typing_extensions.TypedDict, total=False):
         "NO_OP", "EQUALS", "NOT_EQUALS", "IN", "NOT_IN", "DISCHARGED"
     ]
     svc: str
+    sys: typing_extensions.Literal["NO_ATTR", "REGION", "SERVICE", "NAME", "IP"]
     values: typing.List[str]
 
-class CloudAuditOptions(typing_extensions.TypedDict, total=False):
-    logName: typing_extensions.Literal[
-        "UNSPECIFIED_LOG_NAME", "ADMIN_ACTIVITY", "DATA_ACCESS"
-    ]
-    authorizationLoggingOptions: AuthorizationLoggingOptions
+@typing.type_check_only
+class CounterOptions(typing_extensions.TypedDict, total=False):
+    customFields: typing.List[CustomField]
+    field: str
+    metric: str
 
-class GameServerCluster(typing_extensions.TypedDict, total=False):
-    createTime: str
-    etag: str
-    updateTime: str
-    description: str
-    name: str
-    labels: typing.Dict[str, typing.Any]
-    connectionInfo: GameServerClusterConnectionInfo
-
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class TargetState(typing_extensions.TypedDict, total=False):
-    details: typing.List[TargetDetails]
-
-class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
-    members: typing.List[str]
-    condition: Expr
-    role: str
-
+@typing.type_check_only
 class CustomField(typing_extensions.TypedDict, total=False):
-    value: str
     name: str
+    value: str
 
-class Expr(typing_extensions.TypedDict, total=False):
-    description: str
-    location: str
-    title: str
-    expression: str
+@typing.type_check_only
+class DataAccessOptions(typing_extensions.TypedDict, total=False):
+    logMode: typing_extensions.Literal["LOG_MODE_UNSPECIFIED", "LOG_FAIL_CLOSED"]
 
-class DeployedFleet(typing_extensions.TypedDict, total=False):
-    status: DeployedFleetStatus
-    specSource: SpecSource
-    fleet: str
-    fleetSpec: str
-
-class LabelSelector(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-
-class DeployedFleetAutoscaler(typing_extensions.TypedDict, total=False):
-    fleetAutoscalerSpec: str
-    autoscaler: str
-    specSource: SpecSource
-
-class TargetFleetDetails(typing_extensions.TypedDict, total=False):
-    fleet: TargetFleet
-    autoscaler: TargetFleetAutoscaler
-
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
+@typing.type_check_only
 class DeployedClusterState(typing_extensions.TypedDict, total=False):
     cluster: str
     fleetDetails: typing.List[DeployedFleetDetails]
 
-class PreviewDeleteGameServerClusterResponse(typing_extensions.TypedDict, total=False):
-    etag: str
-    targetState: TargetState
+@typing.type_check_only
+class DeployedFleet(typing_extensions.TypedDict, total=False):
+    fleet: str
+    fleetSpec: str
+    specSource: SpecSource
+    status: DeployedFleetStatus
 
-class DataAccessOptions(typing_extensions.TypedDict, total=False):
-    logMode: typing_extensions.Literal["LOG_MODE_UNSPECIFIED", "LOG_FAIL_CLOSED"]
-
-class TargetFleet(typing_extensions.TypedDict, total=False):
-    name: str
+@typing.type_check_only
+class DeployedFleetAutoscaler(typing_extensions.TypedDict, total=False):
+    autoscaler: str
+    fleetAutoscalerSpec: str
     specSource: SpecSource
 
-class RealmSelector(typing_extensions.TypedDict, total=False):
-    realms: typing.List[str]
+@typing.type_check_only
+class DeployedFleetDetails(typing_extensions.TypedDict, total=False):
+    deployedAutoscaler: DeployedFleetAutoscaler
+    deployedFleet: DeployedFleet
 
-class CounterOptions(typing_extensions.TypedDict, total=False):
-    field: str
-    customFields: typing.List[CustomField]
-    metric: str
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class ListGameServerConfigsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    unreachable: typing.List[str]
-    gameServerConfigs: typing.List[GameServerConfig]
-
-class AuthorizationLoggingOptions(typing_extensions.TypedDict, total=False):
-    permissionType: typing_extensions.Literal[
-        "PERMISSION_TYPE_UNSPECIFIED",
-        "ADMIN_READ",
-        "ADMIN_WRITE",
-        "DATA_READ",
-        "DATA_WRITE",
-    ]
-
-class GameServerClusterConnectionInfo(typing_extensions.TypedDict, total=False):
-    namespace: str
-    gkeClusterReference: GkeClusterReference
-
-class Location(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-    name: str
-    metadata: typing.Dict[str, typing.Any]
-    displayName: str
-    locationId: str
-
-class PreviewUpdateGameServerClusterResponse(typing_extensions.TypedDict, total=False):
-    targetState: TargetState
-    etag: str
-
-class Operation(typing_extensions.TypedDict, total=False):
-    done: bool
-    name: str
-    metadata: typing.Dict[str, typing.Any]
-    response: typing.Dict[str, typing.Any]
-    error: Status
-
-class SpecSource(typing_extensions.TypedDict, total=False):
-    gameServerConfigName: str
-    name: str
-
-class Policy(typing_extensions.TypedDict, total=False):
-    iamOwned: bool
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
-    rules: typing.List[Rule]
-    etag: str
-    version: int
-
+@typing.type_check_only
 class DeployedFleetStatus(typing_extensions.TypedDict, total=False):
-    reservedReplicas: str
     allocatedReplicas: str
     readyReplicas: str
     replicas: str
+    reservedReplicas: str
 
-class Status(typing_extensions.TypedDict, total=False):
-    message: str
-    code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
-class DeployedFleetDetails(typing_extensions.TypedDict, total=False):
-    deployedFleet: DeployedFleet
-    deployedAutoscaler: DeployedFleetAutoscaler
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
 
-class ScalingConfig(typing_extensions.TypedDict, total=False):
-    fleetAutoscalerSpec: str
-    schedules: typing.List[Schedule]
-    selectors: typing.List[LabelSelector]
-    name: str
+@typing.type_check_only
+class FetchDeploymentStateRequest(typing_extensions.TypedDict, total=False): ...
 
-class TargetDetails(typing_extensions.TypedDict, total=False):
-    gameServerDeploymentName: str
-    gameServerClusterName: str
-    fleetDetails: typing.List[TargetFleetDetails]
-
-class PreviewGameServerDeploymentRolloutResponse(
-    typing_extensions.TypedDict, total=False
-):
+@typing.type_check_only
+class FetchDeploymentStateResponse(typing_extensions.TypedDict, total=False):
+    clusterState: typing.List[DeployedClusterState]
     unavailable: typing.List[str]
-    etag: str
-    targetState: TargetState
 
-class GameServerConfig(typing_extensions.TypedDict, total=False):
-    updateTime: str
-    createTime: str
-    name: str
-    fleetConfigs: typing.List[FleetConfig]
-    scalingConfigs: typing.List[ScalingConfig]
-    labels: typing.Dict[str, typing.Any]
-    description: str
-
-class GameServerDeploymentRollout(typing_extensions.TypedDict, total=False):
-    gameServerConfigOverrides: typing.List[GameServerConfigOverride]
-    defaultGameServerConfig: str
-    createTime: str
-    etag: str
-    updateTime: str
-    name: str
-
-class ListRealmsResponse(typing_extensions.TypedDict, total=False):
-    realms: typing.List[Realm]
-    unreachable: typing.List[str]
-    nextPageToken: str
-
-class GameServerDeployment(typing_extensions.TypedDict, total=False):
-    updateTime: str
-    labels: typing.Dict[str, typing.Any]
-    name: str
-    description: str
-    etag: str
-    createTime: str
-
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: typing.List[Operation]
-
+@typing.type_check_only
 class FleetConfig(typing_extensions.TypedDict, total=False):
-    name: str
     fleetSpec: str
+    name: str
 
+@typing.type_check_only
+class GameServerCluster(typing_extensions.TypedDict, total=False):
+    connectionInfo: GameServerClusterConnectionInfo
+    createTime: str
+    description: str
+    etag: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GameServerClusterConnectionInfo(typing_extensions.TypedDict, total=False):
+    gkeClusterReference: GkeClusterReference
+    namespace: str
+
+@typing.type_check_only
+class GameServerConfig(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    fleetConfigs: typing.List[FleetConfig]
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    scalingConfigs: typing.List[ScalingConfig]
+    updateTime: str
+
+@typing.type_check_only
+class GameServerConfigOverride(typing_extensions.TypedDict, total=False):
+    configVersion: str
+    realmsSelector: RealmSelector
+
+@typing.type_check_only
+class GameServerDeployment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    etag: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GameServerDeploymentRollout(typing_extensions.TypedDict, total=False):
+    createTime: str
+    defaultGameServerConfig: str
+    etag: str
+    gameServerConfigOverrides: typing.List[GameServerConfigOverride]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GkeClusterReference(typing_extensions.TypedDict, total=False):
+    cluster: str
+
+@typing.type_check_only
+class LabelSelector(typing_extensions.TypedDict, total=False):
+    labels: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class ListGameServerClustersResponse(typing_extensions.TypedDict, total=False):
+    gameServerClusters: typing.List[GameServerCluster]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListGameServerConfigsResponse(typing_extensions.TypedDict, total=False):
+    gameServerConfigs: typing.List[GameServerConfig]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListGameServerDeploymentsResponse(typing_extensions.TypedDict, total=False):
+    gameServerDeployments: typing.List[GameServerDeployment]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: typing.List[Location]
     nextPageToken: str
 
-class Realm(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class ListRealmsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    realms: typing.List[Realm]
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
     labels: typing.Dict[str, typing.Any]
-    description: str
-    timeZone: str
-    updateTime: str
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
     name: str
-    etag: str
+
+@typing.type_check_only
+class LogConfig(typing_extensions.TypedDict, total=False):
+    cloudAudit: CloudAuditOptions
+    counter: CounterOptions
+    dataAccess: DataAccessOptions
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
     createTime: str
+    endTime: str
+    operationStatus: typing.Dict[str, typing.Any]
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    unreachable: typing.List[str]
+    verb: str
 
-class PreviewRealmUpdateResponse(typing_extensions.TypedDict, total=False):
-    etag: str
-    targetState: TargetState
-
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
-    ignoreChildExemptions: bool
-    logType: typing_extensions.Literal[
-        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
-    ]
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    updateMask: str
-    policy: Policy
-
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
-
+@typing.type_check_only
 class OperationStatus(typing_extensions.TypedDict, total=False):
     done: bool
     errorCode: typing_extensions.Literal[
@@ -266,72 +264,134 @@ class OperationStatus(typing_extensions.TypedDict, total=False):
     ]
     errorMessage: str
 
-class ListGameServerDeploymentsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    unreachable: typing.List[str]
-    gameServerDeployments: typing.List[GameServerDeployment]
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    iamOwned: bool
+    rules: typing.List[Rule]
+    version: int
 
-class GkeClusterReference(typing_extensions.TypedDict, total=False):
-    cluster: str
+@typing.type_check_only
+class PreviewCreateGameServerClusterResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    targetState: TargetState
 
+@typing.type_check_only
+class PreviewDeleteGameServerClusterResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    targetState: TargetState
+
+@typing.type_check_only
+class PreviewGameServerDeploymentRolloutResponse(
+    typing_extensions.TypedDict, total=False
+):
+    etag: str
+    targetState: TargetState
+    unavailable: typing.List[str]
+
+@typing.type_check_only
+class PreviewRealmUpdateResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    targetState: TargetState
+
+@typing.type_check_only
+class PreviewUpdateGameServerClusterResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    targetState: TargetState
+
+@typing.type_check_only
+class Realm(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    etag: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    timeZone: str
+    updateTime: str
+
+@typing.type_check_only
+class RealmSelector(typing_extensions.TypedDict, total=False):
+    realms: typing.List[str]
+
+AlternativeRule = typing_extensions.TypedDict(
+    "AlternativeRule",
+    {
+        "action": typing_extensions.Literal[
+            "NO_ACTION", "ALLOW", "ALLOW_WITH_LOG", "DENY", "DENY_WITH_LOG", "LOG"
+        ],
+        "conditions": typing.List[Condition],
+        "description": str,
+        "in": typing.List[str],
+        "logConfig": typing.List[LogConfig],
+        "notIn": typing.List[str],
+        "permissions": typing.List[str],
+    },
+    total=False,
+)
+@typing.type_check_only
+class Rule(AlternativeRule): ...
+
+@typing.type_check_only
+class ScalingConfig(typing_extensions.TypedDict, total=False):
+    fleetAutoscalerSpec: str
+    name: str
+    schedules: typing.List[Schedule]
+    selectors: typing.List[LabelSelector]
+
+@typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
     cronJobDuration: str
     cronSpec: str
     endTime: str
     startTime: str
 
-class FetchDeploymentStateRequest(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
 
-class ListGameServerClustersResponse(typing_extensions.TypedDict, total=False):
-    unreachable: typing.List[str]
-    gameServerClusters: typing.List[GameServerCluster]
-    nextPageToken: str
-
-Rule = typing_extensions.TypedDict(
-    "Rule",
-    {
-        "description": str,
-        "in": typing.List[str],
-        "permissions": typing.List[str],
-        "conditions": typing.List[Condition],
-        "action": typing_extensions.Literal[
-            "NO_ACTION", "ALLOW", "ALLOW_WITH_LOG", "DENY", "DENY_WITH_LOG", "LOG"
-        ],
-        "logConfig": typing.List[LogConfig],
-        "notIn": typing.List[str],
-    },
-    total=False,
-)
-
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    createTime: str
-    verb: str
-    apiVersion: str
-    endTime: str
-    operationStatus: typing.Dict[str, typing.Any]
-    requestedCancellation: bool
-    target: str
-    statusMessage: str
-    unreachable: typing.List[str]
-
-class FetchDeploymentStateResponse(typing_extensions.TypedDict, total=False):
-    clusterState: typing.List[DeployedClusterState]
-    unavailable: typing.List[str]
-
-class TargetFleetAutoscaler(typing_extensions.TypedDict, total=False):
-    specSource: SpecSource
+@typing.type_check_only
+class SpecSource(typing_extensions.TypedDict, total=False):
+    gameServerConfigName: str
     name: str
 
-class LogConfig(typing_extensions.TypedDict, total=False):
-    counter: CounterOptions
-    dataAccess: DataAccessOptions
-    cloudAudit: CloudAuditOptions
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
 
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    service: str
-    auditLogConfigs: typing.List[AuditLogConfig]
-    exemptedMembers: typing.List[str]
+@typing.type_check_only
+class TargetDetails(typing_extensions.TypedDict, total=False):
+    fleetDetails: typing.List[TargetFleetDetails]
+    gameServerClusterName: str
+    gameServerDeploymentName: str
 
-class GameServerConfigOverride(typing_extensions.TypedDict, total=False):
-    configVersion: str
-    realmsSelector: RealmSelector
+@typing.type_check_only
+class TargetFleet(typing_extensions.TypedDict, total=False):
+    name: str
+    specSource: SpecSource
+
+@typing.type_check_only
+class TargetFleetAutoscaler(typing_extensions.TypedDict, total=False):
+    name: str
+    specSource: SpecSource
+
+@typing.type_check_only
+class TargetFleetDetails(typing_extensions.TypedDict, total=False):
+    autoscaler: TargetFleetAutoscaler
+    fleet: TargetFleet
+
+@typing.type_check_only
+class TargetState(typing_extensions.TypedDict, total=False):
+    details: typing.List[TargetDetails]
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]

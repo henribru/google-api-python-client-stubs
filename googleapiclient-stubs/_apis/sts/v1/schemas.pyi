@@ -1,18 +1,19 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class GoogleIdentityStsV1ExchangeTokenRequest(typing_extensions.TypedDict, total=False):
-    options: str
-    subjectToken: str
     grantType: str
-    subjectTokenType: str
+    options: str
     requestedTokenType: str
+    subjectToken: str
+    subjectTokenType: str
 
+@typing.type_check_only
 class GoogleIdentityStsV1ExchangeTokenResponse(
     typing_extensions.TypedDict, total=False
 ):
-    token_type: str
     access_token: str
-    issued_token_type: str
     expires_in: int
+    issued_token_type: str
+    token_type: str

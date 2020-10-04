@@ -7,19 +7,13 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class PagespeedInsightsResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class PagespeedapiResource(googleapiclient.discovery.Resource):
         def runpagespeed(
             self,
             *,
-            utm_source: str = ...,
-            locale: str = ...,
-            strategy: typing_extensions.Literal[
-                "STRATEGY_UNSPECIFIED", "DESKTOP", "MOBILE"
-            ] = ...,
-            utm_campaign: str = ...,
-            url: str = ...,
             captchaToken: str = ...,
             category: typing.Union[
                 typing_extensions.Literal[
@@ -41,10 +35,18 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
                     ]
                 ],
             ] = ...,
+            locale: str = ...,
+            strategy: typing_extensions.Literal[
+                "STRATEGY_UNSPECIFIED", "DESKTOP", "MOBILE"
+            ] = ...,
+            url: str = ...,
+            utm_campaign: str = ...,
+            utm_source: str = ...,
             **kwargs: typing.Any
         ) -> PagespeedApiPagespeedResponseV5HttpRequest: ...
     def pagespeedapi(self) -> PagespeedapiResource: ...
 
+@typing.type_check_only
 class PagespeedApiPagespeedResponseV5HttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

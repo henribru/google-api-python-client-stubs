@@ -1,37 +1,31 @@
 import typing
 
 import typing_extensions
-
-class SegmentInfo(typing_extensions.TypedDict, total=False):
-    roadInfo: RoadInfo
-
-class Line(typing_extensions.TypedDict, total=False):
-    zOrder: int
+@typing.type_check_only
+class Area(typing_extensions.TypedDict, total=False):
+    hasExternalEdges: bool
+    internalEdges: typing.List[int]
+    loopBreaks: typing.List[int]
+    triangleIndices: typing.List[int]
+    type: typing_extensions.Literal[
+        "TRIANGLE_FAN", "INDEXED_TRIANGLES", "TRIANGLE_STRIP"
+    ]
     vertexOffsets: Vertex2DList
+    zOrder: int
 
+@typing.type_check_only
 class ExtrudedArea(typing_extensions.TypedDict, total=False):
-    minZ: int
     area: Area
     maxZ: int
+    minZ: int
 
-class TileCoordinates(typing_extensions.TypedDict, total=False):
-    zoom: int
-    y: int
-    x: int
-
-class ModeledVolume(typing_extensions.TypedDict, total=False):
-    strips: typing.List[TriangleStrip]
-    vertexOffsets: Vertex3DList
-
-class ProviderInfo(typing_extensions.TypedDict, total=False):
-    description: str
-
+@typing.type_check_only
 class Feature(typing_extensions.TypedDict, total=False):
+    displayName: str
+    geometry: Geometry
     placeId: str
     relations: typing.List[Relation]
-    displayName: str
     segmentInfo: SegmentInfo
-    geometry: Geometry
     type: typing_extensions.Literal[
         "FEATURE_TYPE_UNSPECIFIED",
         "STRUCTURE",
@@ -64,67 +58,91 @@ class Feature(typing_extensions.TypedDict, total=False):
         "WATER",
     ]
 
-class TriangleStrip(typing_extensions.TypedDict, total=False):
-    vertexIndices: typing.List[int]
-
-class Row(typing_extensions.TypedDict, total=False):
-    altitudeDiffs: typing.List[int]
-
-class Geometry(typing_extensions.TypedDict, total=False):
-    lines: typing.List[Line]
-    modeledVolumes: typing.List[ModeledVolume]
-    extrudedAreas: typing.List[ExtrudedArea]
-    areas: typing.List[Area]
-
-class Area(typing_extensions.TypedDict, total=False):
-    loopBreaks: typing.List[int]
-    internalEdges: typing.List[int]
-    type: typing_extensions.Literal[
-        "TRIANGLE_FAN", "INDEXED_TRIANGLES", "TRIANGLE_STRIP"
-    ]
-    triangleIndices: typing.List[int]
-    zOrder: int
-    hasExternalEdges: bool
-    vertexOffsets: Vertex2DList
-
+@typing.type_check_only
 class FeatureTile(typing_extensions.TypedDict, total=False):
+    coordinates: TileCoordinates
     features: typing.List[Feature]
     name: str
-    versionId: str
-    coordinates: TileCoordinates
     providers: typing.List[ProviderInfo]
     status: typing_extensions.Literal["STATUS_OK", "STATUS_OK_DATA_UNCHANGED"]
+    versionId: str
 
-class Vertex2DList(typing_extensions.TypedDict, total=False):
-    xOffsets: typing.List[int]
-    yOffsets: typing.List[int]
-
+@typing.type_check_only
 class FirstDerivativeElevationGrid(typing_extensions.TypedDict, total=False):
     altitudeMultiplier: float
     rows: typing.List[Row]
 
+@typing.type_check_only
+class Geometry(typing_extensions.TypedDict, total=False):
+    areas: typing.List[Area]
+    extrudedAreas: typing.List[ExtrudedArea]
+    lines: typing.List[Line]
+    modeledVolumes: typing.List[ModeledVolume]
+
+@typing.type_check_only
+class Line(typing_extensions.TypedDict, total=False):
+    vertexOffsets: Vertex2DList
+    zOrder: int
+
+@typing.type_check_only
+class ModeledVolume(typing_extensions.TypedDict, total=False):
+    strips: typing.List[TriangleStrip]
+    vertexOffsets: Vertex3DList
+
+@typing.type_check_only
+class ProviderInfo(typing_extensions.TypedDict, total=False):
+    description: str
+
+@typing.type_check_only
 class Relation(typing_extensions.TypedDict, total=False):
     relatedFeatureIndex: int
     relationType: typing_extensions.Literal[
         "RELATION_TYPE_UNSPECIFIED", "OCCUPIES", "PRIMARILY_OCCUPIED_BY"
     ]
 
+@typing.type_check_only
+class RoadInfo(typing_extensions.TypedDict, total=False):
+    isPrivate: bool
+
+@typing.type_check_only
+class Row(typing_extensions.TypedDict, total=False):
+    altitudeDiffs: typing.List[int]
+
+@typing.type_check_only
+class SecondDerivativeElevationGrid(typing_extensions.TypedDict, total=False):
+    altitudeMultiplier: float
+    columnCount: int
+    encodedData: str
+    rowCount: int
+
+@typing.type_check_only
+class SegmentInfo(typing_extensions.TypedDict, total=False):
+    roadInfo: RoadInfo
+
+@typing.type_check_only
 class TerrainTile(typing_extensions.TypedDict, total=False):
     coordinates: TileCoordinates
     firstDerivative: FirstDerivativeElevationGrid
     name: str
     secondDerivative: SecondDerivativeElevationGrid
 
-class RoadInfo(typing_extensions.TypedDict, total=False):
-    isPrivate: bool
+@typing.type_check_only
+class TileCoordinates(typing_extensions.TypedDict, total=False):
+    x: int
+    y: int
+    zoom: int
 
-class SecondDerivativeElevationGrid(typing_extensions.TypedDict, total=False):
-    rowCount: int
-    encodedData: str
-    altitudeMultiplier: float
-    columnCount: int
+@typing.type_check_only
+class TriangleStrip(typing_extensions.TypedDict, total=False):
+    vertexIndices: typing.List[int]
 
-class Vertex3DList(typing_extensions.TypedDict, total=False):
-    zOffsets: typing.List[int]
-    yOffsets: typing.List[int]
+@typing.type_check_only
+class Vertex2DList(typing_extensions.TypedDict, total=False):
     xOffsets: typing.List[int]
+    yOffsets: typing.List[int]
+
+@typing.type_check_only
+class Vertex3DList(typing_extensions.TypedDict, total=False):
+    xOffsets: typing.List[int]
+    yOffsets: typing.List[int]
+    zOffsets: typing.List[int]

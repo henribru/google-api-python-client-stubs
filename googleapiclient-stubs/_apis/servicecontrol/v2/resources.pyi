@@ -7,8 +7,9 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class ServiceControlResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         def check(
             self, *, serviceName: str, body: CheckRequest = ..., **kwargs: typing.Any
@@ -18,11 +19,13 @@ class ServiceControlResource(googleapiclient.discovery.Resource):
         ) -> ReportResponseHttpRequest: ...
     def services(self) -> ServicesResource: ...
 
+@typing.type_check_only
 class CheckResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> CheckResponse: ...
 
+@typing.type_check_only
 class ReportResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

@@ -1,45 +1,58 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class AliasContext(typing_extensions.TypedDict, total=False):
+    kind: typing_extensions.Literal["ANY", "FIXED", "MOVABLE", "OTHER"]
+    name: str
 
-class ProjectRepoId(typing_extensions.TypedDict, total=False):
-    repoName: str
-    projectId: str
+@typing.type_check_only
+class Breakpoint(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal["CAPTURE", "LOG"]
+    canaryExpireTime: str
+    condition: str
+    createTime: str
+    evaluatedExpressions: typing.List[Variable]
+    expressions: typing.List[str]
+    finalTime: str
+    id: str
+    isFinalState: bool
+    labels: typing.Dict[str, typing.Any]
+    location: SourceLocation
+    logLevel: typing_extensions.Literal["INFO", "WARNING", "ERROR"]
+    logMessageFormat: str
+    stackFrames: typing.List[StackFrame]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "STATE_CANARY_PENDING_AGENTS",
+        "STATE_CANARY_ACTIVE",
+        "STATE_ROLLING_TO_ALL",
+        "STATE_IS_FINAL",
+    ]
+    status: StatusMessage
+    userEmail: str
+    variableTable: typing.List[Variable]
 
+@typing.type_check_only
 class CloudRepoSourceContext(typing_extensions.TypedDict, total=False):
     aliasContext: AliasContext
     aliasName: str
+    repoId: RepoId
     revisionId: str
+
+@typing.type_check_only
+class CloudWorkspaceId(typing_extensions.TypedDict, total=False):
+    name: str
     repoId: RepoId
 
-class FormatMessage(typing_extensions.TypedDict, total=False):
-    format: str
-    parameters: typing.List[str]
-
-class UpdateActiveBreakpointResponse(typing_extensions.TypedDict, total=False): ...
-
-class SourceLocation(typing_extensions.TypedDict, total=False):
-    column: int
-    path: str
-    line: int
-
-class GitSourceContext(typing_extensions.TypedDict, total=False):
-    url: str
-    revisionId: str
-
-class SetBreakpointResponse(typing_extensions.TypedDict, total=False):
-    breakpoint: Breakpoint
-
+@typing.type_check_only
 class CloudWorkspaceSourceContext(typing_extensions.TypedDict, total=False):
-    workspaceId: CloudWorkspaceId
     snapshotId: str
+    workspaceId: CloudWorkspaceId
 
-class GetBreakpointResponse(typing_extensions.TypedDict, total=False):
-    breakpoint: Breakpoint
-
+@typing.type_check_only
 class Debuggee(typing_extensions.TypedDict, total=False):
-    isDisabled: bool
-    description: str
+    agentVersion: str
     canaryMode: typing_extensions.Literal[
         "CANARY_MODE_UNSPECIFIED",
         "CANARY_MODE_ALWAYS_ENABLED",
@@ -47,43 +60,105 @@ class Debuggee(typing_extensions.TypedDict, total=False):
         "CANARY_MODE_DEFAULT_ENABLED",
         "CANARY_MODE_DEFAULT_DISABLED",
     ]
-    project: str
-    uniquifier: str
-    isInactive: bool
-    status: StatusMessage
-    labels: typing.Dict[str, typing.Any]
+    description: str
     extSourceContexts: typing.List[ExtendedSourceContext]
-    sourceContexts: typing.List[SourceContext]
     id: str
-    agentVersion: str
+    isDisabled: bool
+    isInactive: bool
+    labels: typing.Dict[str, typing.Any]
+    project: str
+    sourceContexts: typing.List[SourceContext]
+    status: StatusMessage
+    uniquifier: str
 
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
-class RegisterDebuggeeRequest(typing_extensions.TypedDict, total=False):
-    debuggee: Debuggee
-
-class ListDebuggeesResponse(typing_extensions.TypedDict, total=False):
-    debuggees: typing.List[Debuggee]
-
-class Variable(typing.Dict[str, typing.Any]): ...
-
-class RegisterDebuggeeResponse(typing_extensions.TypedDict, total=False):
-    agentId: str
-    debuggee: Debuggee
-
+@typing.type_check_only
 class ExtendedSourceContext(typing_extensions.TypedDict, total=False):
     context: SourceContext
     labels: typing.Dict[str, typing.Any]
 
-class CloudWorkspaceId(typing_extensions.TypedDict, total=False):
-    name: str
-    repoId: RepoId
+@typing.type_check_only
+class FormatMessage(typing_extensions.TypedDict, total=False):
+    format: str
+    parameters: typing.List[str]
 
-class AliasContext(typing_extensions.TypedDict, total=False):
-    name: str
-    kind: typing_extensions.Literal["ANY", "FIXED", "MOVABLE", "OTHER"]
+@typing.type_check_only
+class GerritSourceContext(typing_extensions.TypedDict, total=False):
+    aliasContext: AliasContext
+    aliasName: str
+    gerritProject: str
+    hostUri: str
+    revisionId: str
 
+@typing.type_check_only
+class GetBreakpointResponse(typing_extensions.TypedDict, total=False):
+    breakpoint: Breakpoint
+
+@typing.type_check_only
+class GitSourceContext(typing_extensions.TypedDict, total=False):
+    revisionId: str
+    url: str
+
+@typing.type_check_only
+class ListActiveBreakpointsResponse(typing_extensions.TypedDict, total=False):
+    breakpoints: typing.List[Breakpoint]
+    nextWaitToken: str
+    waitExpired: bool
+
+@typing.type_check_only
+class ListBreakpointsResponse(typing_extensions.TypedDict, total=False):
+    breakpoints: typing.List[Breakpoint]
+    nextWaitToken: str
+
+@typing.type_check_only
+class ListDebuggeesResponse(typing_extensions.TypedDict, total=False):
+    debuggees: typing.List[Debuggee]
+
+@typing.type_check_only
+class ProjectRepoId(typing_extensions.TypedDict, total=False):
+    projectId: str
+    repoName: str
+
+@typing.type_check_only
+class RegisterDebuggeeRequest(typing_extensions.TypedDict, total=False):
+    debuggee: Debuggee
+
+@typing.type_check_only
+class RegisterDebuggeeResponse(typing_extensions.TypedDict, total=False):
+    agentId: str
+    debuggee: Debuggee
+
+@typing.type_check_only
+class RepoId(typing_extensions.TypedDict, total=False):
+    projectRepoId: ProjectRepoId
+    uid: str
+
+@typing.type_check_only
+class SetBreakpointResponse(typing_extensions.TypedDict, total=False):
+    breakpoint: Breakpoint
+
+@typing.type_check_only
+class SourceContext(typing_extensions.TypedDict, total=False):
+    cloudRepo: CloudRepoSourceContext
+    cloudWorkspace: CloudWorkspaceSourceContext
+    gerrit: GerritSourceContext
+    git: GitSourceContext
+
+@typing.type_check_only
+class SourceLocation(typing_extensions.TypedDict, total=False):
+    column: int
+    line: int
+    path: str
+
+@typing.type_check_only
+class StackFrame(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
 class StatusMessage(typing_extensions.TypedDict, total=False):
+    description: FormatMessage
+    isError: bool
     refersTo: typing_extensions.Literal[
         "UNSPECIFIED",
         "BREAKPOINT_SOURCE_LOCATION",
@@ -94,42 +169,13 @@ class StatusMessage(typing_extensions.TypedDict, total=False):
         "VARIABLE_NAME",
         "VARIABLE_VALUE",
     ]
-    isError: bool
-    description: FormatMessage
 
-class ListBreakpointsResponse(typing_extensions.TypedDict, total=False):
-    nextWaitToken: str
-    breakpoints: typing.List[Breakpoint]
-
+@typing.type_check_only
 class UpdateActiveBreakpointRequest(typing_extensions.TypedDict, total=False):
     breakpoint: Breakpoint
 
-class GerritSourceContext(typing_extensions.TypedDict, total=False):
-    revisionId: str
-    aliasContext: AliasContext
-    gerritProject: str
-    aliasName: str
-    hostUri: str
+@typing.type_check_only
+class UpdateActiveBreakpointResponse(typing_extensions.TypedDict, total=False): ...
 
-class SourceContext(typing_extensions.TypedDict, total=False):
-    gerrit: GerritSourceContext
-    git: GitSourceContext
-    cloudWorkspace: CloudWorkspaceSourceContext
-    cloudRepo: CloudRepoSourceContext
-
-class ListActiveBreakpointsResponse(typing_extensions.TypedDict, total=False):
-    nextWaitToken: str
-    breakpoints: typing.List[Breakpoint]
-    waitExpired: bool
-
-class RepoId(typing_extensions.TypedDict, total=False):
-    projectRepoId: ProjectRepoId
-    uid: str
-
-class StackFrame(typing_extensions.TypedDict, total=False):
-    locals: typing.List[Variable]
-    location: SourceLocation
-    function: str
-    arguments: typing.List[Variable]
-
-class Breakpoint(typing.Dict[str, typing.Any]): ...
+@typing.type_check_only
+class Variable(typing.Dict[str, typing.Any]): ...

@@ -1,13 +1,149 @@
 import typing
 
 import typing_extensions
-
-class Field(typing_extensions.TypedDict, total=False):
-    oneofIndex: int
-    number: int
+@typing.type_check_only
+class Api(typing_extensions.TypedDict, total=False):
+    methods: typing.List[Method]
+    mixins: typing.List[Mixin]
     name: str
-    packed: bool
     options: typing.List[Option]
+    sourceContext: SourceContext
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+    version: str
+
+@typing.type_check_only
+class AuthProvider(typing_extensions.TypedDict, total=False):
+    audiences: str
+    authorizationUrl: str
+    id: str
+    issuer: str
+    jwksUri: str
+    jwtLocations: typing.List[JwtLocation]
+
+@typing.type_check_only
+class AuthRequirement(typing_extensions.TypedDict, total=False):
+    audiences: str
+    providerId: str
+
+@typing.type_check_only
+class Authentication(typing_extensions.TypedDict, total=False):
+    providers: typing.List[AuthProvider]
+    rules: typing.List[AuthenticationRule]
+
+@typing.type_check_only
+class AuthenticationRule(typing_extensions.TypedDict, total=False):
+    allowWithoutCredential: bool
+    oauth: OAuthRequirements
+    requirements: typing.List[AuthRequirement]
+    selector: str
+
+@typing.type_check_only
+class Backend(typing_extensions.TypedDict, total=False):
+    rules: typing.List[BackendRule]
+
+@typing.type_check_only
+class BackendRule(typing_extensions.TypedDict, total=False):
+    address: str
+    deadline: float
+    disableAuth: bool
+    jwtAudience: str
+    minDeadline: float
+    operationDeadline: float
+    pathTranslation: typing_extensions.Literal[
+        "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
+    ]
+    protocol: str
+    selector: str
+
+@typing.type_check_only
+class Billing(typing_extensions.TypedDict, total=False):
+    consumerDestinations: typing.List[BillingDestination]
+
+@typing.type_check_only
+class BillingDestination(typing_extensions.TypedDict, total=False):
+    metrics: typing.List[str]
+    monitoredResource: str
+
+@typing.type_check_only
+class Context(typing_extensions.TypedDict, total=False):
+    rules: typing.List[ContextRule]
+
+@typing.type_check_only
+class ContextRule(typing_extensions.TypedDict, total=False):
+    allowedRequestExtensions: typing.List[str]
+    allowedResponseExtensions: typing.List[str]
+    provided: typing.List[str]
+    requested: typing.List[str]
+    selector: str
+
+@typing.type_check_only
+class Control(typing_extensions.TypedDict, total=False):
+    environment: str
+
+@typing.type_check_only
+class CustomError(typing_extensions.TypedDict, total=False):
+    rules: typing.List[CustomErrorRule]
+    types: typing.List[str]
+
+@typing.type_check_only
+class CustomErrorRule(typing_extensions.TypedDict, total=False):
+    isErrorType: bool
+    selector: str
+
+@typing.type_check_only
+class CustomHttpPattern(typing_extensions.TypedDict, total=False):
+    kind: str
+    path: str
+
+@typing.type_check_only
+class Documentation(typing_extensions.TypedDict, total=False):
+    documentationRootUrl: str
+    overview: str
+    pages: typing.List[Page]
+    rules: typing.List[DocumentationRule]
+    serviceRootUrl: str
+    summary: str
+
+@typing.type_check_only
+class DocumentationRule(typing_extensions.TypedDict, total=False):
+    deprecationDescription: str
+    description: str
+    selector: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Endpoint(typing_extensions.TypedDict, total=False):
+    aliases: typing.List[str]
+    allowCors: bool
+    name: str
+    target: str
+
+@typing.type_check_only
+class Enum(typing_extensions.TypedDict, total=False):
+    enumvalue: typing.List[EnumValue]
+    name: str
+    options: typing.List[Option]
+    sourceContext: SourceContext
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
+class EnumValue(typing_extensions.TypedDict, total=False):
+    name: str
+    number: int
+    options: typing.List[Option]
+
+@typing.type_check_only
+class Field(typing_extensions.TypedDict, total=False):
+    cardinality: typing_extensions.Literal[
+        "CARDINALITY_UNKNOWN",
+        "CARDINALITY_OPTIONAL",
+        "CARDINALITY_REQUIRED",
+        "CARDINALITY_REPEATED",
+    ]
+    defaultValue: str
+    jsonName: str
     kind: typing_extensions.Literal[
         "TYPE_UNKNOWN",
         "TYPE_DOUBLE",
@@ -29,186 +165,65 @@ class Field(typing_extensions.TypedDict, total=False):
         "TYPE_SINT32",
         "TYPE_SINT64",
     ]
-    jsonName: str
-    cardinality: typing_extensions.Literal[
-        "CARDINALITY_UNKNOWN",
-        "CARDINALITY_OPTIONAL",
-        "CARDINALITY_REQUIRED",
-        "CARDINALITY_REPEATED",
-    ]
-    typeUrl: str
-    defaultValue: str
-
-class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
-    launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED",
-        "UNIMPLEMENTED",
-        "PRELAUNCH",
-        "EARLY_ACCESS",
-        "ALPHA",
-        "BETA",
-        "GA",
-        "DEPRECATED",
-    ]
-    labels: typing.List[LabelDescriptor]
-    description: str
-    displayName: str
     name: str
-    type: str
-
-class Usage(typing_extensions.TypedDict, total=False):
-    requirements: typing.List[str]
-    producerNotificationChannel: str
-    rules: typing.List[UsageRule]
-    serviceIdentity: ServiceIdentity
-
-class Billing(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[BillingDestination]
-
-class V1beta1DefaultIdentity(typing_extensions.TypedDict, total=False):
-    email: str
-    uniqueId: str
-    name: str
-
-class CustomHttpPattern(typing_extensions.TypedDict, total=False):
-    path: str
-    kind: str
-
-class SystemParameters(typing_extensions.TypedDict, total=False):
-    rules: typing.List[SystemParameterRule]
-
-class Authentication(typing_extensions.TypedDict, total=False):
-    rules: typing.List[AuthenticationRule]
-    providers: typing.List[AuthProvider]
-
-class Api(typing_extensions.TypedDict, total=False):
-    methods: typing.List[Method]
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-    version: str
-    mixins: typing.List[Mixin]
-    sourceContext: SourceContext
+    number: int
+    oneofIndex: int
     options: typing.List[Option]
-    name: str
+    packed: bool
+    typeUrl: str
 
-class V1Beta1ImportProducerQuotaPoliciesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    policies: typing.List[V1Beta1ProducerQuotaPolicy]
+@typing.type_check_only
+class Http(typing_extensions.TypedDict, total=False):
+    fullyDecodeReservedExpansion: bool
+    rules: typing.List[HttpRule]
 
-class V1Beta1GenerateServiceIdentityResponse(typing_extensions.TypedDict, total=False):
-    identity: V1Beta1ServiceIdentity
+@typing.type_check_only
+class HttpRule(typing.Dict[str, typing.Any]): ...
 
+@typing.type_check_only
+class JwtLocation(typing_extensions.TypedDict, total=False):
+    header: str
+    query: str
+    valuePrefix: str
+
+@typing.type_check_only
 class LabelDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     key: str
     valueType: typing_extensions.Literal["STRING", "BOOL", "INT64"]
 
-class V1beta1DisableConsumerResponse(typing_extensions.TypedDict, total=False): ...
-
-class Context(typing_extensions.TypedDict, total=False):
-    rules: typing.List[ContextRule]
-
-class V1Beta1ConsumerQuotaMetric(typing_extensions.TypedDict, total=False):
-    metric: str
-    name: str
-    displayName: str
-    unit: str
-    consumerQuotaLimits: typing.List[V1Beta1ConsumerQuotaLimit]
-
-class Backend(typing_extensions.TypedDict, total=False):
-    rules: typing.List[BackendRule]
-
-class SystemParameter(typing_extensions.TypedDict, total=False):
-    httpHeader: str
-    urlQueryParameter: str
-    name: str
-
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class Monitoring(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[MonitoringDestination]
-    producerDestinations: typing.List[MonitoringDestination]
-
-class V1Beta1RefreshConsumerResponse(typing_extensions.TypedDict, total=False): ...
-class V1Beta1EnableConsumerResponse(typing_extensions.TypedDict, total=False): ...
-
-class Quota(typing_extensions.TypedDict, total=False):
-    metricRules: typing.List[MetricRule]
-    limits: typing.List[QuotaLimit]
-
-class V1Beta1QuotaOverride(typing_extensions.TypedDict, total=False):
-    name: str
-    metric: str
-    dimensions: typing.Dict[str, typing.Any]
-    unit: str
-    adminOverrideAncestor: str
-    overrideValue: str
-
-class OAuthRequirements(typing_extensions.TypedDict, total=False):
-    canonicalScopes: str
-
-class V1Beta1QuotaBucket(typing_extensions.TypedDict, total=False):
-    effectiveLimit: str
-    producerOverride: V1Beta1QuotaOverride
-    consumerOverride: V1Beta1QuotaOverride
-    defaultLimit: str
-    adminOverride: V1Beta1QuotaOverride
-    dimensions: typing.Dict[str, typing.Any]
-
-class Documentation(typing_extensions.TypedDict, total=False):
-    summary: str
-    documentationRootUrl: str
-    pages: typing.List[Page]
-    rules: typing.List[DocumentationRule]
-    serviceRootUrl: str
-    overview: str
-
-class ServiceIdentity(typing_extensions.TypedDict, total=False):
-    displayName: str
+@typing.type_check_only
+class LogDescriptor(typing_extensions.TypedDict, total=False):
     description: str
-    serviceAccountParent: str
+    displayName: str
+    labels: typing.List[LabelDescriptor]
+    name: str
 
+@typing.type_check_only
+class Logging(typing_extensions.TypedDict, total=False):
+    consumerDestinations: typing.List[LoggingDestination]
+    producerDestinations: typing.List[LoggingDestination]
+
+@typing.type_check_only
+class LoggingDestination(typing_extensions.TypedDict, total=False):
+    logs: typing.List[str]
+    monitoredResource: str
+
+@typing.type_check_only
 class Method(typing_extensions.TypedDict, total=False):
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-    requestTypeUrl: str
-    requestStreaming: bool
-    responseStreaming: bool
     name: str
     options: typing.List[Option]
+    requestStreaming: bool
+    requestTypeUrl: str
+    responseStreaming: bool
     responseTypeUrl: str
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
 
-class Endpoint(typing_extensions.TypedDict, total=False):
-    aliases: typing.List[str]
-    allowCors: bool
-    name: str
-    target: str
-
-class V1beta1GenerateServiceAccountResponse(typing_extensions.TypedDict, total=False):
-    account: V1beta1ServiceAccount
-
-class ContextRule(typing_extensions.TypedDict, total=False):
-    allowedRequestExtensions: typing.List[str]
-    selector: str
-    requested: typing.List[str]
-    allowedResponseExtensions: typing.List[str]
-    provided: typing.List[str]
-
-class V1beta1RefreshConsumerResponse(typing_extensions.TypedDict, total=False): ...
-
-class V1Beta1ServiceIdentity(typing_extensions.TypedDict, total=False):
-    email: str
-    tag: str
-    uniqueId: str
-    name: str
-
-class Http(typing_extensions.TypedDict, total=False):
-    fullyDecodeReservedExpansion: bool
-    rules: typing.List[HttpRule]
-
+@typing.type_check_only
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
-    unit: str
-    monitoredResourceTypes: typing.List[str]
-    type: str
+    description: str
+    displayName: str
+    labels: typing.List[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -219,9 +234,14 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "GA",
         "DEPRECATED",
     ]
-    name: str
-    displayName: str
     metadata: MetricDescriptorMetadata
+    metricKind: typing_extensions.Literal[
+        "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
+    ]
+    monitoredResourceTypes: typing.List[str]
+    name: str
+    type: str
+    unit: str
     valueType: typing_extensions.Literal[
         "VALUE_TYPE_UNSPECIFIED",
         "BOOL",
@@ -231,63 +251,300 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
         "DISTRIBUTION",
         "MONEY",
     ]
-    metricKind: typing_extensions.Literal[
-        "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
+
+@typing.type_check_only
+class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
+    ingestDelay: str
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
     ]
-    description: str
-    labels: typing.List[LabelDescriptor]
+    samplePeriod: str
 
-class SourceContext(typing_extensions.TypedDict, total=False):
-    fileName: str
-
-class AuthenticationRule(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class MetricRule(typing_extensions.TypedDict, total=False):
+    metricCosts: typing.Dict[str, typing.Any]
     selector: str
-    oauth: OAuthRequirements
-    allowWithoutCredential: bool
-    requirements: typing.List[AuthRequirement]
 
-class AuthProvider(typing_extensions.TypedDict, total=False):
-    issuer: str
-    authorizationUrl: str
-    jwksUri: str
-    audiences: str
-    id: str
-    jwtLocations: typing.List[JwtLocation]
-
-class V1Beta1ProducerQuotaPolicy(typing_extensions.TypedDict, total=False):
-    unit: str
-    container: str
+@typing.type_check_only
+class Mixin(typing_extensions.TypedDict, total=False):
     name: str
-    dimensions: typing.Dict[str, typing.Any]
-    metric: str
-    policyValue: str
+    root: str
 
-class V1Beta1ImportProducerOverridesRequest(typing_extensions.TypedDict, total=False):
-    inlineSource: V1Beta1OverrideInlineSource
-    force: bool
-
-class Page(typing.Dict[str, typing.Any]): ...
-
-class V1beta1AddVisibilityLabelsResponse(typing_extensions.TypedDict, total=False):
-    labels: typing.List[str]
-
-class V1Beta1OverrideInlineSource(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[V1Beta1QuotaOverride]
-
-class V1Beta1DisableConsumerResponse(typing_extensions.TypedDict, total=False): ...
-
-class Type(typing_extensions.TypedDict, total=False):
-    oneofs: typing.List[str]
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-    fields: typing.List[Field]
+@typing.type_check_only
+class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    labels: typing.List[LabelDescriptor]
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+    ]
     name: str
-    sourceContext: SourceContext
-    options: typing.List[Option]
+    type: str
 
-class BillingDestination(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Monitoring(typing_extensions.TypedDict, total=False):
+    consumerDestinations: typing.List[MonitoringDestination]
+    producerDestinations: typing.List[MonitoringDestination]
+
+@typing.type_check_only
+class MonitoringDestination(typing_extensions.TypedDict, total=False):
     metrics: typing.List[str]
     monitoredResource: str
 
+@typing.type_check_only
+class OAuthRequirements(typing_extensions.TypedDict, total=False):
+    canonicalScopes: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Option(typing_extensions.TypedDict, total=False):
+    name: str
+    value: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Page(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class Quota(typing_extensions.TypedDict, total=False):
+    limits: typing.List[QuotaLimit]
+    metricRules: typing.List[MetricRule]
+
+@typing.type_check_only
+class QuotaLimit(typing_extensions.TypedDict, total=False):
+    defaultLimit: str
+    description: str
+    displayName: str
+    duration: str
+    freeTier: str
+    maxLimit: str
+    metric: str
+    name: str
+    unit: str
+    values: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Service(typing_extensions.TypedDict, total=False):
+    apis: typing.List[Api]
+    authentication: Authentication
+    backend: Backend
+    billing: Billing
+    configVersion: int
+    context: Context
+    control: Control
+    customError: CustomError
+    documentation: Documentation
+    endpoints: typing.List[Endpoint]
+    enums: typing.List[Enum]
+    http: Http
+    id: str
+    logging: Logging
+    logs: typing.List[LogDescriptor]
+    metrics: typing.List[MetricDescriptor]
+    monitoredResources: typing.List[MonitoredResourceDescriptor]
+    monitoring: Monitoring
+    name: str
+    producerProjectId: str
+    quota: Quota
+    sourceInfo: SourceInfo
+    systemParameters: SystemParameters
+    systemTypes: typing.List[Type]
+    title: str
+    types: typing.List[Type]
+    usage: Usage
+
+@typing.type_check_only
+class ServiceIdentity(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    serviceAccountParent: str
+
+@typing.type_check_only
+class SourceContext(typing_extensions.TypedDict, total=False):
+    fileName: str
+
+@typing.type_check_only
+class SourceInfo(typing_extensions.TypedDict, total=False):
+    sourceFiles: typing.List[typing.Dict[str, typing.Any]]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class SystemParameter(typing_extensions.TypedDict, total=False):
+    httpHeader: str
+    name: str
+    urlQueryParameter: str
+
+@typing.type_check_only
+class SystemParameterRule(typing_extensions.TypedDict, total=False):
+    parameters: typing.List[SystemParameter]
+    selector: str
+
+@typing.type_check_only
+class SystemParameters(typing_extensions.TypedDict, total=False):
+    rules: typing.List[SystemParameterRule]
+
+@typing.type_check_only
+class Type(typing_extensions.TypedDict, total=False):
+    fields: typing.List[Field]
+    name: str
+    oneofs: typing.List[str]
+    options: typing.List[Option]
+    sourceContext: SourceContext
+    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
+class Usage(typing_extensions.TypedDict, total=False):
+    producerNotificationChannel: str
+    requirements: typing.List[str]
+    rules: typing.List[UsageRule]
+    serviceIdentity: ServiceIdentity
+
+@typing.type_check_only
+class UsageRule(typing_extensions.TypedDict, total=False):
+    allowUnregisteredCalls: bool
+    selector: str
+    skipServiceControl: bool
+
+@typing.type_check_only
+class V1Beta1BatchCreateProducerOverridesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    overrides: typing.List[V1Beta1QuotaOverride]
+
+@typing.type_check_only
+class V1Beta1ConsumerQuotaLimit(typing_extensions.TypedDict, total=False):
+    isPrecise: bool
+    metric: str
+    name: str
+    quotaBuckets: typing.List[V1Beta1QuotaBucket]
+    unit: str
+
+@typing.type_check_only
+class V1Beta1ConsumerQuotaMetric(typing_extensions.TypedDict, total=False):
+    consumerQuotaLimits: typing.List[V1Beta1ConsumerQuotaLimit]
+    displayName: str
+    metric: str
+    name: str
+    unit: str
+
+@typing.type_check_only
+class V1Beta1DisableConsumerResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class V1Beta1EnableConsumerResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class V1Beta1GenerateServiceIdentityResponse(typing_extensions.TypedDict, total=False):
+    identity: V1Beta1ServiceIdentity
+
+@typing.type_check_only
+class V1Beta1ImportProducerOverridesRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+    inlineSource: V1Beta1OverrideInlineSource
+
+@typing.type_check_only
+class V1Beta1ImportProducerOverridesResponse(typing_extensions.TypedDict, total=False):
+    overrides: typing.List[V1Beta1QuotaOverride]
+
+@typing.type_check_only
+class V1Beta1ImportProducerQuotaPoliciesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    policies: typing.List[V1Beta1ProducerQuotaPolicy]
+
+@typing.type_check_only
+class V1Beta1ListConsumerQuotaMetricsResponse(typing_extensions.TypedDict, total=False):
+    metrics: typing.List[V1Beta1ConsumerQuotaMetric]
+    nextPageToken: str
+
+@typing.type_check_only
+class V1Beta1ListProducerOverridesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    overrides: typing.List[V1Beta1QuotaOverride]
+
+@typing.type_check_only
+class V1Beta1OverrideInlineSource(typing_extensions.TypedDict, total=False):
+    overrides: typing.List[V1Beta1QuotaOverride]
+
+@typing.type_check_only
+class V1Beta1ProducerQuotaPolicy(typing_extensions.TypedDict, total=False):
+    container: str
+    dimensions: typing.Dict[str, typing.Any]
+    metric: str
+    name: str
+    policyValue: str
+    unit: str
+
+@typing.type_check_only
+class V1Beta1QuotaBucket(typing_extensions.TypedDict, total=False):
+    adminOverride: V1Beta1QuotaOverride
+    consumerOverride: V1Beta1QuotaOverride
+    defaultLimit: str
+    dimensions: typing.Dict[str, typing.Any]
+    effectiveLimit: str
+    producerOverride: V1Beta1QuotaOverride
+
+@typing.type_check_only
+class V1Beta1QuotaOverride(typing_extensions.TypedDict, total=False):
+    adminOverrideAncestor: str
+    dimensions: typing.Dict[str, typing.Any]
+    metric: str
+    name: str
+    overrideValue: str
+    unit: str
+
+@typing.type_check_only
+class V1Beta1RefreshConsumerResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class V1Beta1ServiceIdentity(typing_extensions.TypedDict, total=False):
+    email: str
+    name: str
+    tag: str
+    uniqueId: str
+
+@typing.type_check_only
+class V1beta1AddVisibilityLabelsResponse(typing_extensions.TypedDict, total=False):
+    labels: typing.List[str]
+
+@typing.type_check_only
+class V1beta1DefaultIdentity(typing_extensions.TypedDict, total=False):
+    email: str
+    name: str
+    uniqueId: str
+
+@typing.type_check_only
+class V1beta1DisableConsumerResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class V1beta1EnableConsumerResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class V1beta1GenerateDefaultIdentityResponse(typing_extensions.TypedDict, total=False):
     attachStatus: typing_extensions.Literal[
         "ATTACH_STATUS_UNSPECIFIED",
@@ -299,198 +556,21 @@ class V1beta1GenerateDefaultIdentityResponse(typing_extensions.TypedDict, total=
     identity: V1beta1DefaultIdentity
     role: str
 
-class DocumentationRule(typing_extensions.TypedDict, total=False):
-    selector: str
-    deprecationDescription: str
-    description: str
+@typing.type_check_only
+class V1beta1GenerateServiceAccountResponse(typing_extensions.TypedDict, total=False):
+    account: V1beta1ServiceAccount
 
-class SystemParameterRule(typing_extensions.TypedDict, total=False):
-    parameters: typing.List[SystemParameter]
-    selector: str
+@typing.type_check_only
+class V1beta1RefreshConsumerResponse(typing_extensions.TypedDict, total=False): ...
 
-class SourceInfo(typing_extensions.TypedDict, total=False):
-    sourceFiles: typing.List[typing.Dict[str, typing.Any]]
-
-class Service(typing_extensions.TypedDict, total=False):
-    control: Control
-    customError: CustomError
-    context: Context
-    metrics: typing.List[MetricDescriptor]
-    enums: typing.List[Enum]
-    configVersion: int
-    id: str
-    producerProjectId: str
-    apis: typing.List[Api]
-    systemParameters: SystemParameters
-    name: str
-    http: Http
-    usage: Usage
-    title: str
-    systemTypes: typing.List[Type]
-    authentication: Authentication
-    quota: Quota
-    endpoints: typing.List[Endpoint]
-    backend: Backend
-    logging: Logging
-    logs: typing.List[LogDescriptor]
-    types: typing.List[Type]
-    documentation: Documentation
-    monitoredResources: typing.List[MonitoredResourceDescriptor]
-    sourceInfo: SourceInfo
-    monitoring: Monitoring
-    billing: Billing
-
-class Enum(typing_extensions.TypedDict, total=False):
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
-    enumvalue: typing.List[EnumValue]
-    options: typing.List[Option]
-    name: str
-    sourceContext: SourceContext
-
-class JwtLocation(typing_extensions.TypedDict, total=False):
-    query: str
-    valuePrefix: str
-    header: str
-
-class CustomErrorRule(typing_extensions.TypedDict, total=False):
-    selector: str
-    isErrorType: bool
-
-class CustomError(typing_extensions.TypedDict, total=False):
-    rules: typing.List[CustomErrorRule]
-    types: typing.List[str]
-
-class LogDescriptor(typing_extensions.TypedDict, total=False):
-    description: str
-    name: str
-    labels: typing.List[LabelDescriptor]
-    displayName: str
-
-class Logging(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[LoggingDestination]
-    producerDestinations: typing.List[LoggingDestination]
-
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    code: int
-    message: str
-
-class V1Beta1ListConsumerQuotaMetricsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    metrics: typing.List[V1Beta1ConsumerQuotaMetric]
-
-class EnumValue(typing_extensions.TypedDict, total=False):
-    number: int
-    options: typing.List[Option]
-    name: str
-
-class MetricRule(typing_extensions.TypedDict, total=False):
-    selector: str
-    metricCosts: typing.Dict[str, typing.Any]
-
-class AuthRequirement(typing_extensions.TypedDict, total=False):
-    audiences: str
-    providerId: str
-
-class Operation(typing_extensions.TypedDict, total=False):
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-    response: typing.Dict[str, typing.Any]
-    done: bool
-    error: Status
-
+@typing.type_check_only
 class V1beta1RemoveVisibilityLabelsResponse(typing_extensions.TypedDict, total=False):
     labels: typing.List[str]
 
-class MonitoringDestination(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[str]
-    monitoredResource: str
-
-class HttpRule(typing.Dict[str, typing.Any]): ...
-
-class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
-    ingestDelay: str
-    samplePeriod: str
-    launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED",
-        "UNIMPLEMENTED",
-        "PRELAUNCH",
-        "EARLY_ACCESS",
-        "ALPHA",
-        "BETA",
-        "GA",
-        "DEPRECATED",
-    ]
-
-class V1Beta1ImportProducerOverridesResponse(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[V1Beta1QuotaOverride]
-
-class QuotaLimit(typing_extensions.TypedDict, total=False):
-    displayName: str
-    values: typing.Dict[str, typing.Any]
-    metric: str
-    duration: str
-    freeTier: str
-    unit: str
-    defaultLimit: str
-    description: str
-    maxLimit: str
-    name: str
-
-class V1Beta1ConsumerQuotaLimit(typing_extensions.TypedDict, total=False):
-    quotaBuckets: typing.List[V1Beta1QuotaBucket]
-    unit: str
-    isPrecise: bool
-    metric: str
-    name: str
-
-class V1beta1EnableConsumerResponse(typing_extensions.TypedDict, total=False): ...
-
-class BackendRule(typing_extensions.TypedDict, total=False):
-    deadline: float
-    disableAuth: bool
-    selector: str
-    protocol: str
-    operationDeadline: float
-    minDeadline: float
-    jwtAudience: str
-    address: str
-    pathTranslation: typing_extensions.Literal[
-        "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
-    ]
-
-class Control(typing_extensions.TypedDict, total=False):
-    environment: str
-
+@typing.type_check_only
 class V1beta1ServiceAccount(typing_extensions.TypedDict, total=False):
+    email: str
+    iamAccountName: str
+    name: str
     tag: str
     uniqueId: str
-    email: str
-    name: str
-    iamAccountName: str
-
-class UsageRule(typing_extensions.TypedDict, total=False):
-    selector: str
-    allowUnregisteredCalls: bool
-    skipServiceControl: bool
-
-class Option(typing_extensions.TypedDict, total=False):
-    name: str
-    value: typing.Dict[str, typing.Any]
-
-class LoggingDestination(typing_extensions.TypedDict, total=False):
-    monitoredResource: str
-    logs: typing.List[str]
-
-class V1Beta1ListProducerOverridesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    overrides: typing.List[V1Beta1QuotaOverride]
-
-class Mixin(typing_extensions.TypedDict, total=False):
-    root: str
-    name: str
-
-class V1Beta1BatchCreateProducerOverridesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    overrides: typing.List[V1Beta1QuotaOverride]

@@ -7,17 +7,14 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class FirebaseMLResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class ModelsResource(googleapiclient.discovery.Resource):
-            def patch(
-                self,
-                *,
-                name: str,
-                body: Model = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
+            def create(
+                self, *, parent: str, body: Model = ..., **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -32,9 +29,15 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListModelsResponseHttpRequest: ...
-            def create(
-                self, *, parent: str, body: Model = ..., **kwargs: typing.Any
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Model = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+        @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -43,21 +46,25 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
         def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
-class ListModelsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListModelsResponse: ...
-
-class ModelHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Model: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
+@typing.type_check_only
+class ListModelsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListModelsResponse: ...
+
+@typing.type_check_only
+class ModelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Model: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

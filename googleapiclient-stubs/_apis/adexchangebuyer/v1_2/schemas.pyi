@@ -1,7 +1,7 @@
 import typing
 
 import typing_extensions
-
+@typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     bidderLocation: typing.List[typing.Dict[str, typing.Any]]
     cookieMatchingNid: str
@@ -12,10 +12,12 @@ class Account(typing_extensions.TypedDict, total=False):
     maximumTotalQps: int
     numberActiveCreatives: int
 
+@typing.type_check_only
 class AccountsList(typing_extensions.TypedDict, total=False):
     items: typing.List[Account]
     kind: str
 
+@typing.type_check_only
 class Creative(typing_extensions.TypedDict, total=False):
     HTMLSnippet: str
     accountId: int
@@ -41,6 +43,7 @@ class Creative(typing_extensions.TypedDict, total=False):
     videoURL: str
     width: int
 
+@typing.type_check_only
 class CreativesList(typing_extensions.TypedDict, total=False):
     items: typing.List[Creative]
     kind: str

@@ -7,10 +7,32 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class ManufacturerCenterResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class ProductsResource(googleapiclient.discovery.Resource):
+            def delete(
+                self, *, parent: str, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self,
+                *,
+                parent: str,
+                name: str,
+                include: typing.Union[
+                    typing_extensions.Literal[
+                        "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
+                    ],
+                    typing.List[
+                        typing_extensions.Literal[
+                            "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
+                        ]
+                    ],
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> ProductHttpRequest: ...
             def list(
                 self,
                 *,
@@ -37,39 +59,22 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 body: Attributes = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
-            def delete(
-                self, *, parent: str, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def get(
-                self,
-                *,
-                parent: str,
-                name: str,
-                include: typing.Union[
-                    typing_extensions.Literal[
-                        "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
-                        ]
-                    ],
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> ProductHttpRequest: ...
         def products(self) -> ProductsResource: ...
     def accounts(self) -> AccountsResource: ...
 
-class ListProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListProductsResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
+@typing.type_check_only
+class ListProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListProductsResponse: ...
+
+@typing.type_check_only
 class ProductHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

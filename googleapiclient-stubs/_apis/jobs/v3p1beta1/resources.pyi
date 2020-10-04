@@ -7,13 +7,20 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
-        class OperationsResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
+        @typing.type_check_only
+        class ClientEventsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: CreateClientEventRequest = ...,
+                **kwargs: typing.Any
+            ) -> ClientEventHttpRequest: ...
+        @typing.type_check_only
         class CompaniesResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -22,6 +29,19 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 body: CreateCompanyRequest = ...,
                 **kwargs: typing.Any
             ) -> CompanyHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> CompanyHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                requireOpenJobs: bool = ...,
+                **kwargs: typing.Any
+            ) -> ListCompaniesResponseHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -29,20 +49,38 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 body: UpdateCompanyRequest = ...,
                 **kwargs: typing.Any
             ) -> CompanyHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> CompanyHttpRequest: ...
+        @typing.type_check_only
+        class JobsResource(googleapiclient.discovery.Resource):
+            def batchDelete(
+                self,
+                *,
+                parent: str,
+                body: BatchDeleteJobsRequest = ...,
+                **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def create(
+                self, *, parent: str, body: CreateJobRequest = ..., **kwargs: typing.Any
+            ) -> JobHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
+                jobView: typing_extensions.Literal[
+                    "JOB_VIEW_UNSPECIFIED",
+                    "JOB_VIEW_ID_ONLY",
+                    "JOB_VIEW_MINIMAL",
+                    "JOB_VIEW_SMALL",
+                    "JOB_VIEW_FULL",
+                ] = ...,
                 pageSize: int = ...,
-                requireOpenJobs: bool = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> ListCompaniesResponseHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-        class JobsResource(googleapiclient.discovery.Resource):
+            ) -> ListJobsResponseHttpRequest: ...
             def patch(
                 self, *, name: str, body: UpdateJobRequest = ..., **kwargs: typing.Any
             ) -> JobHttpRequest: ...
@@ -53,32 +91,6 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 body: SearchJobsRequest = ...,
                 **kwargs: typing.Any
             ) -> SearchJobsResponseHttpRequest: ...
-            def batchDelete(
-                self,
-                *,
-                parent: str,
-                body: BatchDeleteJobsRequest = ...,
-                **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                jobView: typing_extensions.Literal[
-                    "JOB_VIEW_UNSPECIFIED",
-                    "JOB_VIEW_ID_ONLY",
-                    "JOB_VIEW_MINIMAL",
-                    "JOB_VIEW_SMALL",
-                    "JOB_VIEW_FULL",
-                ] = ...,
-                pageToken: str = ...,
-                filter: str = ...,
-                pageSize: int = ...,
-                **kwargs: typing.Any
-            ) -> ListJobsResponseHttpRequest: ...
-            def create(
-                self, *, parent: str, body: CreateJobRequest = ..., **kwargs: typing.Any
-            ) -> JobHttpRequest: ...
             def searchForAlert(
                 self,
                 *,
@@ -86,82 +98,84 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 body: SearchJobsRequest = ...,
                 **kwargs: typing.Any
             ) -> SearchJobsResponseHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
-            def delete(
+        @typing.type_check_only
+        class OperationsResource(googleapiclient.discovery.Resource):
+            def get(
                 self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-        class ClientEventsResource(googleapiclient.discovery.Resource):
-            def create(
-                self,
-                *,
-                parent: str,
-                body: CreateClientEventRequest = ...,
-                **kwargs: typing.Any
-            ) -> ClientEventHttpRequest: ...
+            ) -> OperationHttpRequest: ...
         def complete(
             self,
             *,
             name: str,
-            query: str = ...,
-            type: typing_extensions.Literal[
-                "COMPLETION_TYPE_UNSPECIFIED", "JOB_TITLE", "COMPANY_NAME", "COMBINED"
-            ] = ...,
-            languageCodes: typing.Union[str, typing.List[str]] = ...,
+            companyName: str = ...,
             languageCode: str = ...,
+            languageCodes: typing.Union[str, typing.List[str]] = ...,
+            pageSize: int = ...,
+            query: str = ...,
             scope: typing_extensions.Literal[
                 "COMPLETION_SCOPE_UNSPECIFIED", "TENANT", "PUBLIC"
             ] = ...,
-            pageSize: int = ...,
-            companyName: str = ...,
+            type: typing_extensions.Literal[
+                "COMPLETION_TYPE_UNSPECIFIED", "JOB_TITLE", "COMPANY_NAME", "COMBINED"
+            ] = ...,
             **kwargs: typing.Any
         ) -> CompleteQueryResponseHttpRequest: ...
-        def operations(self) -> OperationsResource: ...
+        def clientEvents(self) -> ClientEventsResource: ...
         def companies(self) -> CompaniesResource: ...
         def jobs(self) -> JobsResource: ...
-        def clientEvents(self) -> ClientEventsResource: ...
+        def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
+@typing.type_check_only
 class ClientEventHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ClientEvent: ...
 
-class ListCompaniesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListCompaniesResponse: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class JobHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Job: ...
-
-class SearchJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SearchJobsResponse: ...
-
-class ListJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListJobsResponse: ...
-
+@typing.type_check_only
 class CompanyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Company: ...
 
+@typing.type_check_only
+class CompleteQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CompleteQueryResponse: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class JobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Job: ...
+
+@typing.type_check_only
+class ListCompaniesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListCompaniesResponse: ...
+
+@typing.type_check_only
+class ListJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListJobsResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Operation: ...
 
-class CompleteQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class SearchJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CompleteQueryResponse: ...
+    ) -> SearchJobsResponse: ...

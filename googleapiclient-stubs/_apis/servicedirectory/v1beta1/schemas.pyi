@@ -1,82 +1,100 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
+    condition: Expr
+    members: typing.List[str]
+    role: str
 
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    locations: typing.List[Location]
-
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
-class Location(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Endpoint(typing_extensions.TypedDict, total=False):
+    address: str
     metadata: typing.Dict[str, typing.Any]
-    displayName: str
-    labels: typing.Dict[str, typing.Any]
-    locationId: str
     name: str
+    port: int
 
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    services: typing.List[Service]
-
-class ListEndpointsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    endpoints: typing.List[Endpoint]
-
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
+    description: str
     expression: str
     location: str
     title: str
-    description: str
 
+@typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     options: GetPolicyOptions
 
-class Binding(typing_extensions.TypedDict, total=False):
-    members: typing.List[str]
-    role: str
-    bindingId: str
-    condition: Expr
-
-class Endpoint(typing_extensions.TypedDict, total=False):
-    address: str
-    name: str
-    port: int
-    metadata: typing.Dict[str, typing.Any]
-
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-
-class ResolveServiceRequest(typing_extensions.TypedDict, total=False):
-    maxEndpoints: int
-    endpointFilter: str
-
+@typing.type_check_only
 class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-
-class Service(typing_extensions.TypedDict, total=False):
-    name: str
+@typing.type_check_only
+class ListEndpointsResponse(typing_extensions.TypedDict, total=False):
     endpoints: typing.List[Endpoint]
-    metadata: typing.Dict[str, typing.Any]
+    nextPageToken: str
 
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
 
-class Namespace(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-    name: str
-
-class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
-    version: int
-    etag: str
-
+@typing.type_check_only
 class ListNamespacesResponse(typing_extensions.TypedDict, total=False):
     namespaces: typing.List[Namespace]
     nextPageToken: str
 
+@typing.type_check_only
+class ListServicesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    services: typing.List[Service]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class Namespace(typing_extensions.TypedDict, total=False):
+    labels: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class ResolveServiceRequest(typing_extensions.TypedDict, total=False):
+    endpointFilter: str
+    maxEndpoints: int
+
+@typing.type_check_only
 class ResolveServiceResponse(typing_extensions.TypedDict, total=False):
     service: Service
+
+@typing.type_check_only
+class Service(typing_extensions.TypedDict, total=False):
+    endpoints: typing.List[Endpoint]
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]

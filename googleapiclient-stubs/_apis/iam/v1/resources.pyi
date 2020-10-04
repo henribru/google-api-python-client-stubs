@@ -7,29 +7,25 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class IamResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class IamPoliciesResource(googleapiclient.discovery.Resource):
-        def queryAuditableServices(
-            self, *, body: QueryAuditableServicesRequest = ..., **kwargs: typing.Any
-        ) -> QueryAuditableServicesResponseHttpRequest: ...
         def lintPolicy(
             self, *, body: LintPolicyRequest = ..., **kwargs: typing.Any
         ) -> LintPolicyResponseHttpRequest: ...
-    class ProjectsResource(googleapiclient.discovery.Resource):
+        def queryAuditableServices(
+            self, *, body: QueryAuditableServicesRequest = ..., **kwargs: typing.Any
+        ) -> QueryAuditableServicesResponseHttpRequest: ...
+    @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class RolesResource(googleapiclient.discovery.Resource):
             def create(
                 self,
                 *,
                 parent: str,
                 body: CreateRoleRequest = ...,
-                **kwargs: typing.Any
-            ) -> RoleHttpRequest: ...
-            def undelete(
-                self,
-                *,
-                name: str,
-                body: UndeleteRoleRequest = ...,
                 **kwargs: typing.Any
             ) -> RoleHttpRequest: ...
             def delete(
@@ -40,10 +36,10 @@ class IamResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                view: typing_extensions.Literal["BASIC", "FULL"] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 showDeleted: bool = ...,
+                view: typing_extensions.Literal["BASIC", "FULL"] = ...,
                 **kwargs: typing.Any
             ) -> ListRolesResponseHttpRequest: ...
             def patch(
@@ -54,8 +50,73 @@ class IamResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> RoleHttpRequest: ...
+            def undelete(
+                self,
+                *,
+                name: str,
+                body: UndeleteRoleRequest = ...,
+                **kwargs: typing.Any
+            ) -> RoleHttpRequest: ...
+        def roles(self) -> RolesResource: ...
+    @typing.type_check_only
+    class PermissionsResource(googleapiclient.discovery.Resource):
+        def queryTestablePermissions(
+            self, *, body: QueryTestablePermissionsRequest = ..., **kwargs: typing.Any
+        ) -> QueryTestablePermissionsResponseHttpRequest: ...
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class RolesResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: CreateRoleRequest = ...,
+                **kwargs: typing.Any
+            ) -> RoleHttpRequest: ...
+            def delete(
+                self, *, name: str, etag: str = ..., **kwargs: typing.Any
+            ) -> RoleHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> RoleHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                showDeleted: bool = ...,
+                view: typing_extensions.Literal["BASIC", "FULL"] = ...,
+                **kwargs: typing.Any
+            ) -> ListRolesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Role = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> RoleHttpRequest: ...
+            def undelete(
+                self,
+                *,
+                name: str,
+                body: UndeleteRoleRequest = ...,
+                **kwargs: typing.Any
+            ) -> RoleHttpRequest: ...
+        @typing.type_check_only
         class ServiceAccountsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class KeysResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    name: str,
+                    body: CreateServiceAccountKeyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ServiceAccountKeyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self,
                     *,
@@ -65,23 +126,6 @@ class IamResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ServiceAccountKeyHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    name: str,
-                    body: CreateServiceAccountKeyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> ServiceAccountKeyHttpRequest: ...
-                def upload(
-                    self,
-                    *,
-                    name: str,
-                    body: UploadServiceAccountKeyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> ServiceAccountKeyHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -98,6 +142,13 @@ class IamResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ListServiceAccountKeysResponseHttpRequest: ...
+                def upload(
+                    self,
+                    *,
+                    name: str,
+                    body: UploadServiceAccountKeyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ServiceAccountKeyHttpRequest: ...
             def create(
                 self,
                 *,
@@ -105,13 +156,9 @@ class IamResource(googleapiclient.discovery.Resource):
                 body: CreateServiceAccountRequest = ...,
                 **kwargs: typing.Any
             ) -> ServiceAccountHttpRequest: ...
-            def testIamPermissions(
-                self,
-                *,
-                resource: str,
-                body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
-            ) -> TestIamPermissionsResponseHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
             def disable(
                 self,
                 *,
@@ -119,41 +166,6 @@ class IamResource(googleapiclient.discovery.Resource):
                 body: DisableServiceAccountRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
-            def undelete(
-                self,
-                *,
-                name: str,
-                body: UndeleteServiceAccountRequest = ...,
-                **kwargs: typing.Any
-            ) -> UndeleteServiceAccountResponseHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> ServiceAccountHttpRequest: ...
-            def signJwt(
-                self, *, name: str, body: SignJwtRequest = ..., **kwargs: typing.Any
-            ) -> SignJwtResponseHttpRequest: ...
-            def getIamPolicy(
-                self,
-                *,
-                resource: str,
-                options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
-            ) -> PolicyHttpRequest: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: PatchServiceAccountRequest = ...,
-                **kwargs: typing.Any
-            ) -> ServiceAccountHttpRequest: ...
-            def list(
-                self,
-                *,
-                name: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                **kwargs: typing.Any
-            ) -> ListServiceAccountsResponseHttpRequest: ...
             def enable(
                 self,
                 *,
@@ -161,12 +173,31 @@ class IamResource(googleapiclient.discovery.Resource):
                 body: EnableServiceAccountRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
-            def update(
-                self, *, name: str, body: ServiceAccount = ..., **kwargs: typing.Any
+            def get(
+                self, *, name: str, **kwargs: typing.Any
             ) -> ServiceAccountHttpRequest: ...
-            def signBlob(
-                self, *, name: str, body: SignBlobRequest = ..., **kwargs: typing.Any
-            ) -> SignBlobResponseHttpRequest: ...
+            def getIamPolicy(
+                self,
+                *,
+                resource: str,
+                options_requestedPolicyVersion: int = ...,
+                **kwargs: typing.Any
+            ) -> PolicyHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListServiceAccountsResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: PatchServiceAccountRequest = ...,
+                **kwargs: typing.Any
+            ) -> ServiceAccountHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
@@ -174,151 +205,145 @@ class IamResource(googleapiclient.discovery.Resource):
                 body: SetIamPolicyRequest = ...,
                 **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def keys(self) -> KeysResource: ...
-        def roles(self) -> RolesResource: ...
-        def serviceAccounts(self) -> ServiceAccountsResource: ...
-    class OrganizationsResource(googleapiclient.discovery.Resource):
-        class RolesResource(googleapiclient.discovery.Resource):
-            def delete(
-                self, *, name: str, etag: str = ..., **kwargs: typing.Any
-            ) -> RoleHttpRequest: ...
-            def list(
+            def signBlob(
+                self, *, name: str, body: SignBlobRequest = ..., **kwargs: typing.Any
+            ) -> SignBlobResponseHttpRequest: ...
+            def signJwt(
+                self, *, name: str, body: SignJwtRequest = ..., **kwargs: typing.Any
+            ) -> SignJwtResponseHttpRequest: ...
+            def testIamPermissions(
                 self,
                 *,
-                parent: str,
-                view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-                showDeleted: bool = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
+                resource: str,
+                body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
-            ) -> ListRolesResponseHttpRequest: ...
+            ) -> TestIamPermissionsResponseHttpRequest: ...
             def undelete(
                 self,
                 *,
                 name: str,
-                body: UndeleteRoleRequest = ...,
+                body: UndeleteServiceAccountRequest = ...,
                 **kwargs: typing.Any
-            ) -> RoleHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> RoleHttpRequest: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: Role = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> RoleHttpRequest: ...
-            def create(
-                self,
-                *,
-                parent: str,
-                body: CreateRoleRequest = ...,
-                **kwargs: typing.Any
-            ) -> RoleHttpRequest: ...
+            ) -> UndeleteServiceAccountResponseHttpRequest: ...
+            def update(
+                self, *, name: str, body: ServiceAccount = ..., **kwargs: typing.Any
+            ) -> ServiceAccountHttpRequest: ...
+            def keys(self) -> KeysResource: ...
         def roles(self) -> RolesResource: ...
+        def serviceAccounts(self) -> ServiceAccountsResource: ...
+    @typing.type_check_only
     class RolesResource(googleapiclient.discovery.Resource):
+        def get(self, *, name: str, **kwargs: typing.Any) -> RoleHttpRequest: ...
         def list(
             self,
             *,
+            pageSize: int = ...,
             pageToken: str = ...,
             parent: str = ...,
-            view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-            pageSize: int = ...,
             showDeleted: bool = ...,
+            view: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> ListRolesResponseHttpRequest: ...
         def queryGrantableRoles(
             self, *, body: QueryGrantableRolesRequest = ..., **kwargs: typing.Any
         ) -> QueryGrantableRolesResponseHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> RoleHttpRequest: ...
-    class PermissionsResource(googleapiclient.discovery.Resource):
-        def queryTestablePermissions(
-            self, *, body: QueryTestablePermissionsRequest = ..., **kwargs: typing.Any
-        ) -> QueryTestablePermissionsResponseHttpRequest: ...
     def iamPolicies(self) -> IamPoliciesResource: ...
-    def projects(self) -> ProjectsResource: ...
     def organizations(self) -> OrganizationsResource: ...
-    def roles(self) -> RolesResource: ...
     def permissions(self) -> PermissionsResource: ...
+    def projects(self) -> ProjectsResource: ...
+    def roles(self) -> RolesResource: ...
 
-class QueryGrantableRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> QueryGrantableRolesResponse: ...
-
-class LintPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> LintPolicyResponse: ...
-
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Empty: ...
 
-class RoleHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class LintPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Role: ...
+    ) -> LintPolicyResponse: ...
 
-class ServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ServiceAccount: ...
-
+@typing.type_check_only
 class ListRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListRolesResponse: ...
 
-class QueryAuditableServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> QueryAuditableServicesResponse: ...
-
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
-
-class ServiceAccountKeyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ServiceAccountKey: ...
-
-class SignJwtResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SignJwtResponse: ...
-
+@typing.type_check_only
 class ListServiceAccountKeysResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListServiceAccountKeysResponse: ...
 
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
-
+@typing.type_check_only
 class ListServiceAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListServiceAccountsResponse: ...
 
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
+class QueryAuditableServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> QueryAuditableServicesResponse: ...
+
+@typing.type_check_only
+class QueryGrantableRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> QueryGrantableRolesResponse: ...
+
+@typing.type_check_only
 class QueryTestablePermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> QueryTestablePermissionsResponse: ...
 
+@typing.type_check_only
+class RoleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Role: ...
+
+@typing.type_check_only
+class ServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ServiceAccount: ...
+
+@typing.type_check_only
+class ServiceAccountKeyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ServiceAccountKey: ...
+
+@typing.type_check_only
 class SignBlobResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> SignBlobResponse: ...
 
+@typing.type_check_only
+class SignJwtResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SignJwtResponse: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
 class UndeleteServiceAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

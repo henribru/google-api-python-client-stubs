@@ -7,79 +7,34 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class AdSenseHostResource(googleapiclient.discovery.Resource):
-    class ReportsResource(googleapiclient.discovery.Resource):
-        def generate(
-            self,
-            *,
-            startDate: str,
-            endDate: str,
-            sort: typing.Union[str, typing.List[str]] = ...,
-            dimension: typing.Union[str, typing.List[str]] = ...,
-            locale: str = ...,
-            metric: typing.Union[str, typing.List[str]] = ...,
-            startIndex: int = ...,
-            maxResults: int = ...,
-            filter: typing.Union[str, typing.List[str]] = ...,
-            **kwargs: typing.Any
-        ) -> ReportHttpRequest: ...
-    class CustomchannelsResource(googleapiclient.discovery.Resource):
-        def update(
-            self, *, adClientId: str, body: CustomChannel = ..., **kwargs: typing.Any
-        ) -> CustomChannelHttpRequest: ...
-        def get(
-            self, *, adClientId: str, customChannelId: str, **kwargs: typing.Any
-        ) -> CustomChannelHttpRequest: ...
-        def delete(
-            self, *, adClientId: str, customChannelId: str, **kwargs: typing.Any
-        ) -> CustomChannelHttpRequest: ...
-        def patch(
-            self,
-            *,
-            adClientId: str,
-            customChannelId: str,
-            body: CustomChannel = ...,
-            **kwargs: typing.Any
-        ) -> CustomChannelHttpRequest: ...
-        def list(
-            self,
-            *,
-            adClientId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> CustomChannelsHttpRequest: ...
-        def insert(
-            self, *, adClientId: str, body: CustomChannel = ..., **kwargs: typing.Any
-        ) -> CustomChannelHttpRequest: ...
+    @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
-        class ReportsResource(googleapiclient.discovery.Resource):
-            def generate(
+        @typing.type_check_only
+        class AdclientsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, accountId: str, adClientId: str, **kwargs: typing.Any
+            ) -> AdClientHttpRequest: ...
+            def list(
                 self,
                 *,
                 accountId: str,
-                startDate: str,
-                endDate: str,
-                filter: typing.Union[str, typing.List[str]] = ...,
-                sort: typing.Union[str, typing.List[str]] = ...,
                 maxResults: int = ...,
-                dimension: typing.Union[str, typing.List[str]] = ...,
-                locale: str = ...,
-                metric: typing.Union[str, typing.List[str]] = ...,
-                startIndex: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> ReportHttpRequest: ...
+            ) -> AdClientsHttpRequest: ...
+        @typing.type_check_only
         class AdunitsResource(googleapiclient.discovery.Resource):
-            def update(
+            def delete(
                 self,
                 *,
                 accountId: str,
                 adClientId: str,
-                body: AdUnit = ...,
+                adUnitId: str,
                 **kwargs: typing.Any
             ) -> AdUnitHttpRequest: ...
-            def delete(
+            def get(
                 self,
                 *,
                 accountId: str,
@@ -96,6 +51,24 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 hostCustomChannelId: typing.Union[str, typing.List[str]] = ...,
                 **kwargs: typing.Any
             ) -> AdCodeHttpRequest: ...
+            def insert(
+                self,
+                *,
+                accountId: str,
+                adClientId: str,
+                body: AdUnit = ...,
+                **kwargs: typing.Any
+            ) -> AdUnitHttpRequest: ...
+            def list(
+                self,
+                *,
+                accountId: str,
+                adClientId: str,
+                includeInactive: bool = ...,
+                maxResults: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> AdUnitsHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -105,25 +78,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 body: AdUnit = ...,
                 **kwargs: typing.Any
             ) -> AdUnitHttpRequest: ...
-            def list(
-                self,
-                *,
-                accountId: str,
-                adClientId: str,
-                maxResults: int = ...,
-                pageToken: str = ...,
-                includeInactive: bool = ...,
-                **kwargs: typing.Any
-            ) -> AdUnitsHttpRequest: ...
-            def get(
-                self,
-                *,
-                accountId: str,
-                adClientId: str,
-                adUnitId: str,
-                **kwargs: typing.Any
-            ) -> AdUnitHttpRequest: ...
-            def insert(
+            def update(
                 self,
                 *,
                 accountId: str,
@@ -131,18 +86,23 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 body: AdUnit = ...,
                 **kwargs: typing.Any
             ) -> AdUnitHttpRequest: ...
-        class AdclientsResource(googleapiclient.discovery.Resource):
-            def list(
+        @typing.type_check_only
+        class ReportsResource(googleapiclient.discovery.Resource):
+            def generate(
                 self,
                 *,
                 accountId: str,
+                startDate: str,
+                endDate: str,
+                dimension: typing.Union[str, typing.List[str]] = ...,
+                filter: typing.Union[str, typing.List[str]] = ...,
+                locale: str = ...,
                 maxResults: int = ...,
-                pageToken: str = ...,
+                metric: typing.Union[str, typing.List[str]] = ...,
+                sort: typing.Union[str, typing.List[str]] = ...,
+                startIndex: int = ...,
                 **kwargs: typing.Any
-            ) -> AdClientsHttpRequest: ...
-            def get(
-                self, *, accountId: str, adClientId: str, **kwargs: typing.Any
-            ) -> AdClientHttpRequest: ...
+            ) -> ReportHttpRequest: ...
         def get(
             self, *, accountId: str, **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
@@ -152,13 +112,19 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             filterAdClientId: typing.Union[str, typing.List[str]],
             **kwargs: typing.Any
         ) -> AccountsHttpRequest: ...
-        def reports(self) -> ReportsResource: ...
-        def adunits(self) -> AdunitsResource: ...
         def adclients(self) -> AdclientsResource: ...
+        def adunits(self) -> AdunitsResource: ...
+        def reports(self) -> ReportsResource: ...
+    @typing.type_check_only
+    class AdclientsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, adClientId: str, **kwargs: typing.Any
+        ) -> AdClientHttpRequest: ...
+        def list(
+            self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> AdClientsHttpRequest: ...
+    @typing.type_check_only
     class AssociationsessionsResource(googleapiclient.discovery.Resource):
-        def verify(
-            self, *, token: str, **kwargs: typing.Any
-        ) -> AssociationSessionHttpRequest: ...
         def start(
             self,
             *,
@@ -169,11 +135,61 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 ],
             ],
             websiteUrl: str,
+            callbackUrl: str = ...,
             userLocale: str = ...,
             websiteLocale: str = ...,
-            callbackUrl: str = ...,
             **kwargs: typing.Any
         ) -> AssociationSessionHttpRequest: ...
+        def verify(
+            self, *, token: str, **kwargs: typing.Any
+        ) -> AssociationSessionHttpRequest: ...
+    @typing.type_check_only
+    class CustomchannelsResource(googleapiclient.discovery.Resource):
+        def delete(
+            self, *, adClientId: str, customChannelId: str, **kwargs: typing.Any
+        ) -> CustomChannelHttpRequest: ...
+        def get(
+            self, *, adClientId: str, customChannelId: str, **kwargs: typing.Any
+        ) -> CustomChannelHttpRequest: ...
+        def insert(
+            self, *, adClientId: str, body: CustomChannel = ..., **kwargs: typing.Any
+        ) -> CustomChannelHttpRequest: ...
+        def list(
+            self,
+            *,
+            adClientId: str,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> CustomChannelsHttpRequest: ...
+        def patch(
+            self,
+            *,
+            adClientId: str,
+            customChannelId: str,
+            body: CustomChannel = ...,
+            **kwargs: typing.Any
+        ) -> CustomChannelHttpRequest: ...
+        def update(
+            self, *, adClientId: str, body: CustomChannel = ..., **kwargs: typing.Any
+        ) -> CustomChannelHttpRequest: ...
+    @typing.type_check_only
+    class ReportsResource(googleapiclient.discovery.Resource):
+        def generate(
+            self,
+            *,
+            startDate: str,
+            endDate: str,
+            dimension: typing.Union[str, typing.List[str]] = ...,
+            filter: typing.Union[str, typing.List[str]] = ...,
+            locale: str = ...,
+            maxResults: int = ...,
+            metric: typing.Union[str, typing.List[str]] = ...,
+            sort: typing.Union[str, typing.List[str]] = ...,
+            startIndex: int = ...,
+            **kwargs: typing.Any
+        ) -> ReportHttpRequest: ...
+    @typing.type_check_only
     class UrlchannelsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, adClientId: str, urlChannelId: str, **kwargs: typing.Any
@@ -189,80 +205,86 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> UrlChannelsHttpRequest: ...
-    class AdclientsResource(googleapiclient.discovery.Resource):
-        def list(
-            self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
-        ) -> AdClientsHttpRequest: ...
-        def get(
-            self, *, adClientId: str, **kwargs: typing.Any
-        ) -> AdClientHttpRequest: ...
-    def reports(self) -> ReportsResource: ...
-    def customchannels(self) -> CustomchannelsResource: ...
     def accounts(self) -> AccountsResource: ...
-    def associationsessions(self) -> AssociationsessionsResource: ...
-    def urlchannels(self) -> UrlchannelsResource: ...
     def adclients(self) -> AdclientsResource: ...
+    def associationsessions(self) -> AssociationsessionsResource: ...
+    def customchannels(self) -> CustomchannelsResource: ...
+    def reports(self) -> ReportsResource: ...
+    def urlchannels(self) -> UrlchannelsResource: ...
 
-class AccountsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Accounts: ...
-
-class AdClientsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AdClients: ...
-
-class AdClientHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AdClient: ...
-
-class AssociationSessionHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AssociationSession: ...
-
-class AdUnitsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AdUnits: ...
-
-class ReportHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Report: ...
-
-class UrlChannelHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> UrlChannel: ...
-
-class AdUnitHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AdUnit: ...
-
-class CustomChannelHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CustomChannel: ...
-
-class CustomChannelsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CustomChannels: ...
-
-class AdCodeHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> AdCode: ...
-
+@typing.type_check_only
 class AccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Account: ...
 
+@typing.type_check_only
+class AccountsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Accounts: ...
+
+@typing.type_check_only
+class AdClientHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> AdClient: ...
+
+@typing.type_check_only
+class AdClientsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> AdClients: ...
+
+@typing.type_check_only
+class AdCodeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> AdCode: ...
+
+@typing.type_check_only
+class AdUnitHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> AdUnit: ...
+
+@typing.type_check_only
+class AdUnitsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> AdUnits: ...
+
+@typing.type_check_only
+class AssociationSessionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> AssociationSession: ...
+
+@typing.type_check_only
+class CustomChannelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CustomChannel: ...
+
+@typing.type_check_only
+class CustomChannelsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> CustomChannels: ...
+
+@typing.type_check_only
+class ReportHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Report: ...
+
+@typing.type_check_only
+class UrlChannelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> UrlChannel: ...
+
+@typing.type_check_only
 class UrlChannelsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

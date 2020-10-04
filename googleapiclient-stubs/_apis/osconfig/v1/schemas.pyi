@@ -1,113 +1,134 @@
 import typing
 
 import typing_extensions
-
-class TimeOfDay(typing_extensions.TypedDict, total=False):
-    seconds: int
-    nanos: int
-    hours: int
-    minutes: int
-
-class WeeklySchedule(typing_extensions.TypedDict, total=False):
-    dayOfWeek: typing_extensions.Literal[
-        "DAY_OF_WEEK_UNSPECIFIED",
-        "MONDAY",
-        "TUESDAY",
-        "WEDNESDAY",
-        "THURSDAY",
-        "FRIDAY",
-        "SATURDAY",
-        "SUNDAY",
-    ]
-
-class OneTimeSchedule(typing_extensions.TypedDict, total=False):
-    executeTime: str
-
-class PatchJobInstanceDetailsSummary(typing_extensions.TypedDict, total=False):
-    noAgentDetectedInstanceCount: str
-    prePatchStepInstanceCount: str
-    pendingInstanceCount: str
-    inactiveInstanceCount: str
-    startedInstanceCount: str
-    downloadingPatchesInstanceCount: str
-    failedInstanceCount: str
-    rebootingInstanceCount: str
-    timedOutInstanceCount: str
-    succeededInstanceCount: str
-    postPatchStepInstanceCount: str
-    succeededRebootRequiredInstanceCount: str
-    ackedInstanceCount: str
-    applyingPatchesInstanceCount: str
-    notifiedInstanceCount: str
-
-class PatchDeployment(typing_extensions.TypedDict, total=False):
-    createTime: str
-    patchConfig: PatchConfig
-    lastExecuteTime: str
-    description: str
-    instanceFilter: PatchInstanceFilter
-    rollout: PatchRollout
-    updateTime: str
-    name: str
-    duration: str
-    oneTimeSchedule: OneTimeSchedule
-    recurringSchedule: RecurringSchedule
-
-class YumSettings(typing_extensions.TypedDict, total=False):
-    exclusivePackages: typing.List[str]
-    excludes: typing.List[str]
-    minimal: bool
-    security: bool
-
-class GcsObject(typing_extensions.TypedDict, total=False):
-    generationNumber: str
-    object: str
-    bucket: str
-
-class ListPatchJobInstanceDetailsResponse(typing_extensions.TypedDict, total=False):
-    patchJobInstanceDetails: typing.List[PatchJobInstanceDetails]
-    nextPageToken: str
-
-class ZypperSettings(typing_extensions.TypedDict, total=False):
-    excludes: typing.List[str]
-    exclusivePatches: typing.List[str]
-    severities: typing.List[str]
-    withUpdate: bool
-    withOptional: bool
-    categories: typing.List[str]
-
+@typing.type_check_only
 class AptSettings(typing_extensions.TypedDict, total=False):
     excludes: typing.List[str]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DIST", "UPGRADE"]
     exclusivePackages: typing.List[str]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DIST", "UPGRADE"]
 
-class PatchInstanceFilter(typing_extensions.TypedDict, total=False):
-    zones: typing.List[str]
-    instanceNamePrefixes: typing.List[str]
-    all: bool
-    instances: typing.List[str]
-    groupLabels: typing.List[PatchInstanceFilterGroupLabel]
+@typing.type_check_only
+class CancelPatchJobRequest(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ExecStep(typing_extensions.TypedDict, total=False):
+    linuxExecStepConfig: ExecStepConfig
+    windowsExecStepConfig: ExecStepConfig
+
+@typing.type_check_only
 class ExecStepConfig(typing_extensions.TypedDict, total=False):
+    allowedSuccessCodes: typing.List[int]
+    gcsObject: GcsObject
     interpreter: typing_extensions.Literal[
         "INTERPRETER_UNSPECIFIED", "SHELL", "POWERSHELL"
     ]
-    gcsObject: GcsObject
-    allowedSuccessCodes: typing.List[int]
     localPath: str
 
-class PatchJob(typing_extensions.TypedDict, total=False):
-    displayName: str
-    patchConfig: PatchConfig
+@typing.type_check_only
+class ExecutePatchJobRequest(typing_extensions.TypedDict, total=False):
     description: str
-    name: str
-    errorMessage: str
-    updateTime: str
-    percentComplete: float
-    instanceDetailsSummary: PatchJobInstanceDetailsSummary
+    displayName: str
+    dryRun: bool
     duration: str
-    rollout: PatchRollout
     instanceFilter: PatchInstanceFilter
+    patchConfig: PatchConfig
+    rollout: PatchRollout
+
+@typing.type_check_only
+class FixedOrPercent(typing_extensions.TypedDict, total=False):
+    fixed: int
+    percent: int
+
+@typing.type_check_only
+class GcsObject(typing_extensions.TypedDict, total=False):
+    bucket: str
+    generationNumber: str
+    object: str
+
+@typing.type_check_only
+class GooSettings(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ListPatchDeploymentsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    patchDeployments: typing.List[PatchDeployment]
+
+@typing.type_check_only
+class ListPatchJobInstanceDetailsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    patchJobInstanceDetails: typing.List[PatchJobInstanceDetails]
+
+@typing.type_check_only
+class ListPatchJobsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    patchJobs: typing.List[PatchJob]
+
+@typing.type_check_only
+class MonthlySchedule(typing_extensions.TypedDict, total=False):
+    monthDay: int
+    weekDayOfMonth: WeekDayOfMonth
+
+@typing.type_check_only
+class OneTimeSchedule(typing_extensions.TypedDict, total=False):
+    executeTime: str
+
+@typing.type_check_only
+class PatchConfig(typing_extensions.TypedDict, total=False):
+    apt: AptSettings
+    goo: GooSettings
+    postStep: ExecStep
+    preStep: ExecStep
+    rebootConfig: typing_extensions.Literal[
+        "REBOOT_CONFIG_UNSPECIFIED", "DEFAULT", "ALWAYS", "NEVER"
+    ]
+    windowsUpdate: WindowsUpdateSettings
+    yum: YumSettings
+    zypper: ZypperSettings
+
+@typing.type_check_only
+class PatchDeployment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    duration: str
+    instanceFilter: PatchInstanceFilter
+    lastExecuteTime: str
+    name: str
+    oneTimeSchedule: OneTimeSchedule
+    patchConfig: PatchConfig
+    recurringSchedule: RecurringSchedule
+    rollout: PatchRollout
+    updateTime: str
+
+@typing.type_check_only
+class PatchInstanceFilter(typing_extensions.TypedDict, total=False):
+    all: bool
+    groupLabels: typing.List[PatchInstanceFilterGroupLabel]
+    instanceNamePrefixes: typing.List[str]
+    instances: typing.List[str]
+    zones: typing.List[str]
+
+@typing.type_check_only
+class PatchInstanceFilterGroupLabel(typing_extensions.TypedDict, total=False):
+    labels: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class PatchJob(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    dryRun: bool
+    duration: str
+    errorMessage: str
+    instanceDetailsSummary: PatchJobInstanceDetailsSummary
+    instanceFilter: PatchInstanceFilter
+    name: str
+    patchConfig: PatchConfig
+    patchDeployment: str
+    percentComplete: float
+    rollout: PatchRollout
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "STARTED",
@@ -118,74 +139,13 @@ class PatchJob(typing_extensions.TypedDict, total=False):
         "CANCELED",
         "TIMED_OUT",
     ]
-    patchDeployment: str
-    dryRun: bool
-    createTime: str
+    updateTime: str
 
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class RecurringSchedule(typing_extensions.TypedDict, total=False):
-    weekly: WeeklySchedule
-    frequency: typing_extensions.Literal["FREQUENCY_UNSPECIFIED", "WEEKLY", "MONTHLY"]
-    startTime: str
-    nextExecuteTime: str
-    lastExecuteTime: str
-    monthly: MonthlySchedule
-    endTime: str
-    timeZone: TimeZone
-    timeOfDay: TimeOfDay
-
-class PatchConfig(typing_extensions.TypedDict, total=False):
-    preStep: ExecStep
-    windowsUpdate: WindowsUpdateSettings
-    goo: GooSettings
-    yum: YumSettings
-    postStep: ExecStep
-    apt: AptSettings
-    zypper: ZypperSettings
-    rebootConfig: typing_extensions.Literal[
-        "REBOOT_CONFIG_UNSPECIFIED", "DEFAULT", "ALWAYS", "NEVER"
-    ]
-
-class WindowsUpdateSettings(typing_extensions.TypedDict, total=False):
-    exclusivePatches: typing.List[str]
-    classifications: typing.List[str]
-    excludes: typing.List[str]
-
-class TimeZone(typing_extensions.TypedDict, total=False):
-    version: str
-    id: str
-
-class GooSettings(typing_extensions.TypedDict, total=False): ...
-
-class ListPatchJobsResponse(typing_extensions.TypedDict, total=False):
-    patchJobs: typing.List[PatchJob]
-    nextPageToken: str
-
-class ExecStep(typing_extensions.TypedDict, total=False):
-    windowsExecStepConfig: ExecStepConfig
-    linuxExecStepConfig: ExecStepConfig
-
-class PatchInstanceFilterGroupLabel(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-
-class CancelPatchJobRequest(typing_extensions.TypedDict, total=False): ...
-
-class PatchRollout(typing_extensions.TypedDict, total=False):
-    disruptionBudget: FixedOrPercent
-    mode: typing_extensions.Literal[
-        "MODE_UNSPECIFIED", "ZONE_BY_ZONE", "CONCURRENT_ZONES"
-    ]
-
-class ListPatchDeploymentsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    patchDeployments: typing.List[PatchDeployment]
-
-class MonthlySchedule(typing_extensions.TypedDict, total=False):
-    monthDay: int
-    weekDayOfMonth: WeekDayOfMonth
-
+@typing.type_check_only
 class PatchJobInstanceDetails(typing_extensions.TypedDict, total=False):
+    attemptCount: str
+    failureReason: str
+    instanceSystemId: str
     name: str
     state: typing_extensions.Literal[
         "PATCH_STATE_UNSPECIFIED",
@@ -205,12 +165,72 @@ class PatchJobInstanceDetails(typing_extensions.TypedDict, total=False):
         "RUNNING_POST_PATCH_STEP",
         "NO_AGENT_DETECTED",
     ]
-    instanceSystemId: str
-    attemptCount: str
-    failureReason: str
 
+@typing.type_check_only
+class PatchJobInstanceDetailsSummary(typing_extensions.TypedDict, total=False):
+    ackedInstanceCount: str
+    applyingPatchesInstanceCount: str
+    downloadingPatchesInstanceCount: str
+    failedInstanceCount: str
+    inactiveInstanceCount: str
+    noAgentDetectedInstanceCount: str
+    notifiedInstanceCount: str
+    pendingInstanceCount: str
+    postPatchStepInstanceCount: str
+    prePatchStepInstanceCount: str
+    rebootingInstanceCount: str
+    startedInstanceCount: str
+    succeededInstanceCount: str
+    succeededRebootRequiredInstanceCount: str
+    timedOutInstanceCount: str
+
+@typing.type_check_only
+class PatchRollout(typing_extensions.TypedDict, total=False):
+    disruptionBudget: FixedOrPercent
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "ZONE_BY_ZONE", "CONCURRENT_ZONES"
+    ]
+
+@typing.type_check_only
+class RecurringSchedule(typing_extensions.TypedDict, total=False):
+    endTime: str
+    frequency: typing_extensions.Literal["FREQUENCY_UNSPECIFIED", "WEEKLY", "MONTHLY"]
+    lastExecuteTime: str
+    monthly: MonthlySchedule
+    nextExecuteTime: str
+    startTime: str
+    timeOfDay: TimeOfDay
+    timeZone: TimeZone
+    weekly: WeeklySchedule
+
+@typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
+
+@typing.type_check_only
+class TimeZone(typing_extensions.TypedDict, total=False):
+    id: str
+    version: str
+
+@typing.type_check_only
 class WeekDayOfMonth(typing_extensions.TypedDict, total=False):
+    dayOfWeek: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
     weekOrdinal: int
+
+@typing.type_check_only
+class WeeklySchedule(typing_extensions.TypedDict, total=False):
     dayOfWeek: typing_extensions.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
@@ -222,15 +242,24 @@ class WeekDayOfMonth(typing_extensions.TypedDict, total=False):
         "SUNDAY",
     ]
 
-class FixedOrPercent(typing_extensions.TypedDict, total=False):
-    percent: int
-    fixed: int
+@typing.type_check_only
+class WindowsUpdateSettings(typing_extensions.TypedDict, total=False):
+    classifications: typing.List[str]
+    excludes: typing.List[str]
+    exclusivePatches: typing.List[str]
 
-class ExecutePatchJobRequest(typing_extensions.TypedDict, total=False):
-    rollout: PatchRollout
-    dryRun: bool
-    description: str
-    displayName: str
-    duration: str
-    patchConfig: PatchConfig
-    instanceFilter: PatchInstanceFilter
+@typing.type_check_only
+class YumSettings(typing_extensions.TypedDict, total=False):
+    excludes: typing.List[str]
+    exclusivePackages: typing.List[str]
+    minimal: bool
+    security: bool
+
+@typing.type_check_only
+class ZypperSettings(typing_extensions.TypedDict, total=False):
+    categories: typing.List[str]
+    excludes: typing.List[str]
+    exclusivePatches: typing.List[str]
+    severities: typing.List[str]
+    withOptional: bool
+    withUpdate: bool

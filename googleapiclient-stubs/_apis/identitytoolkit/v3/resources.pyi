@@ -7,9 +7,16 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class IdentityToolkitResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class RelyingpartyResource(googleapiclient.discovery.Resource):
+        def createAuthUri(
+            self,
+            *,
+            body: IdentitytoolkitRelyingpartyCreateAuthUriRequest = ...,
+            **kwargs: typing.Any
+        ) -> CreateAuthUriResponseHttpRequest: ...
         def deleteAccount(
             self,
             *,
@@ -22,87 +29,88 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             body: IdentitytoolkitRelyingpartyDownloadAccountRequest = ...,
             **kwargs: typing.Any
         ) -> DownloadAccountResponseHttpRequest: ...
-        def setProjectConfig(
-            self,
-            *,
-            body: IdentitytoolkitRelyingpartySetProjectConfigRequest = ...,
-            **kwargs: typing.Any
-        ) -> IdentitytoolkitRelyingpartySetProjectConfigResponseHttpRequest: ...
-        def getOobConfirmationCode(
-            self, *, body: Relyingparty = ..., **kwargs: typing.Any
-        ) -> GetOobConfirmationCodeResponseHttpRequest: ...
-        def getRecaptchaParam(
-            self, **kwargs: typing.Any
-        ) -> GetRecaptchaParamResponseHttpRequest: ...
-        def verifyCustomToken(
-            self,
-            *,
-            body: IdentitytoolkitRelyingpartyVerifyCustomTokenRequest = ...,
-            **kwargs: typing.Any
-        ) -> VerifyCustomTokenResponseHttpRequest: ...
-        def getPublicKeys(
-            self, **kwargs: typing.Any
-        ) -> IdentitytoolkitRelyingpartyGetPublicKeysResponseHttpRequest: ...
-        def verifyAssertion(
-            self,
-            *,
-            body: IdentitytoolkitRelyingpartyVerifyAssertionRequest = ...,
-            **kwargs: typing.Any
-        ) -> VerifyAssertionResponseHttpRequest: ...
         def emailLinkSignin(
             self,
             *,
             body: IdentitytoolkitRelyingpartyEmailLinkSigninRequest = ...,
             **kwargs: typing.Any
         ) -> EmailLinkSigninResponseHttpRequest: ...
-        def uploadAccount(
-            self,
-            *,
-            body: IdentitytoolkitRelyingpartyUploadAccountRequest = ...,
-            **kwargs: typing.Any
-        ) -> UploadAccountResponseHttpRequest: ...
-        def signupNewUser(
-            self,
-            *,
-            body: IdentitytoolkitRelyingpartySignupNewUserRequest = ...,
-            **kwargs: typing.Any
-        ) -> SignupNewUserResponseHttpRequest: ...
-        def createAuthUri(
-            self,
-            *,
-            body: IdentitytoolkitRelyingpartyCreateAuthUriRequest = ...,
-            **kwargs: typing.Any
-        ) -> CreateAuthUriResponseHttpRequest: ...
-        def signOutUser(
-            self,
-            *,
-            body: IdentitytoolkitRelyingpartySignOutUserRequest = ...,
-            **kwargs: typing.Any
-        ) -> IdentitytoolkitRelyingpartySignOutUserResponseHttpRequest: ...
-        def setAccountInfo(
-            self,
-            *,
-            body: IdentitytoolkitRelyingpartySetAccountInfoRequest = ...,
-            **kwargs: typing.Any
-        ) -> SetAccountInfoResponseHttpRequest: ...
-        def sendVerificationCode(
-            self,
-            *,
-            body: IdentitytoolkitRelyingpartySendVerificationCodeRequest = ...,
-            **kwargs: typing.Any
-        ) -> IdentitytoolkitRelyingpartySendVerificationCodeResponseHttpRequest: ...
         def getAccountInfo(
             self,
             *,
             body: IdentitytoolkitRelyingpartyGetAccountInfoRequest = ...,
             **kwargs: typing.Any
         ) -> GetAccountInfoResponseHttpRequest: ...
+        def getOobConfirmationCode(
+            self, *, body: Relyingparty = ..., **kwargs: typing.Any
+        ) -> GetOobConfirmationCodeResponseHttpRequest: ...
+        def getProjectConfig(
+            self,
+            *,
+            delegatedProjectNumber: str = ...,
+            projectNumber: str = ...,
+            **kwargs: typing.Any
+        ) -> IdentitytoolkitRelyingpartyGetProjectConfigResponseHttpRequest: ...
+        def getPublicKeys(
+            self, **kwargs: typing.Any
+        ) -> IdentitytoolkitRelyingpartyGetPublicKeysResponseHttpRequest: ...
+        def getRecaptchaParam(
+            self, **kwargs: typing.Any
+        ) -> GetRecaptchaParamResponseHttpRequest: ...
         def resetPassword(
             self,
             *,
             body: IdentitytoolkitRelyingpartyResetPasswordRequest = ...,
             **kwargs: typing.Any
         ) -> ResetPasswordResponseHttpRequest: ...
+        def sendVerificationCode(
+            self,
+            *,
+            body: IdentitytoolkitRelyingpartySendVerificationCodeRequest = ...,
+            **kwargs: typing.Any
+        ) -> IdentitytoolkitRelyingpartySendVerificationCodeResponseHttpRequest: ...
+        def setAccountInfo(
+            self,
+            *,
+            body: IdentitytoolkitRelyingpartySetAccountInfoRequest = ...,
+            **kwargs: typing.Any
+        ) -> SetAccountInfoResponseHttpRequest: ...
+        def setProjectConfig(
+            self,
+            *,
+            body: IdentitytoolkitRelyingpartySetProjectConfigRequest = ...,
+            **kwargs: typing.Any
+        ) -> IdentitytoolkitRelyingpartySetProjectConfigResponseHttpRequest: ...
+        def signOutUser(
+            self,
+            *,
+            body: IdentitytoolkitRelyingpartySignOutUserRequest = ...,
+            **kwargs: typing.Any
+        ) -> IdentitytoolkitRelyingpartySignOutUserResponseHttpRequest: ...
+        def signupNewUser(
+            self,
+            *,
+            body: IdentitytoolkitRelyingpartySignupNewUserRequest = ...,
+            **kwargs: typing.Any
+        ) -> SignupNewUserResponseHttpRequest: ...
+        def uploadAccount(
+            self,
+            *,
+            body: IdentitytoolkitRelyingpartyUploadAccountRequest = ...,
+            **kwargs: typing.Any
+        ) -> UploadAccountResponseHttpRequest: ...
+        def verifyAssertion(
+            self,
+            *,
+            body: IdentitytoolkitRelyingpartyVerifyAssertionRequest = ...,
+            **kwargs: typing.Any
+        ) -> VerifyAssertionResponseHttpRequest: ...
+        def verifyCustomToken(
+            self,
+            *,
+            body: IdentitytoolkitRelyingpartyVerifyCustomTokenRequest = ...,
+            **kwargs: typing.Any
+        ) -> VerifyCustomTokenResponseHttpRequest: ...
         def verifyPassword(
             self,
             *,
@@ -115,25 +123,51 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             body: IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest = ...,
             **kwargs: typing.Any
         ) -> IdentitytoolkitRelyingpartyVerifyPhoneNumberResponseHttpRequest: ...
-        def getProjectConfig(
-            self,
-            *,
-            projectNumber: str = ...,
-            delegatedProjectNumber: str = ...,
-            **kwargs: typing.Any
-        ) -> IdentitytoolkitRelyingpartyGetProjectConfigResponseHttpRequest: ...
     def relyingparty(self) -> RelyingpartyResource: ...
 
-class ResetPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class CreateAuthUriResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ResetPasswordResponse: ...
+    ) -> CreateAuthUriResponse: ...
 
+@typing.type_check_only
 class DeleteAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> DeleteAccountResponse: ...
 
+@typing.type_check_only
+class DownloadAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> DownloadAccountResponse: ...
+
+@typing.type_check_only
+class EmailLinkSigninResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> EmailLinkSigninResponse: ...
+
+@typing.type_check_only
+class GetAccountInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GetAccountInfoResponse: ...
+
+@typing.type_check_only
+class GetOobConfirmationCodeResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GetOobConfirmationCodeResponse: ...
+
+@typing.type_check_only
+class GetRecaptchaParamResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GetRecaptchaParamResponse: ...
+
+@typing.type_check_only
 class IdentitytoolkitRelyingpartyGetProjectConfigResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -141,55 +175,7 @@ class IdentitytoolkitRelyingpartyGetProjectConfigResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> IdentitytoolkitRelyingpartyGetProjectConfigResponse: ...
 
-class IdentitytoolkitRelyingpartySignOutUserResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> IdentitytoolkitRelyingpartySignOutUserResponse: ...
-
-class IdentitytoolkitRelyingpartyVerifyPhoneNumberResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse: ...
-
-class DownloadAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> DownloadAccountResponse: ...
-
-class GetAccountInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GetAccountInfoResponse: ...
-
-class UploadAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> UploadAccountResponse: ...
-
-class VerifyPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> VerifyPasswordResponse: ...
-
-class GetOobConfirmationCodeResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GetOobConfirmationCodeResponse: ...
-
-class EmailLinkSigninResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> EmailLinkSigninResponse: ...
-
-class VerifyCustomTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> VerifyCustomTokenResponse: ...
-
+@typing.type_check_only
 class IdentitytoolkitRelyingpartyGetPublicKeysResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -197,16 +183,7 @@ class IdentitytoolkitRelyingpartyGetPublicKeysResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> IdentitytoolkitRelyingpartyGetPublicKeysResponse: ...
 
-class CreateAuthUriResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> CreateAuthUriResponse: ...
-
-class SetAccountInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> SetAccountInfoResponse: ...
-
+@typing.type_check_only
 class IdentitytoolkitRelyingpartySendVerificationCodeResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -214,6 +191,7 @@ class IdentitytoolkitRelyingpartySendVerificationCodeResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> IdentitytoolkitRelyingpartySendVerificationCodeResponse: ...
 
+@typing.type_check_only
 class IdentitytoolkitRelyingpartySetProjectConfigResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -221,17 +199,60 @@ class IdentitytoolkitRelyingpartySetProjectConfigResponseHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> IdentitytoolkitRelyingpartySetProjectConfigResponse: ...
 
+@typing.type_check_only
+class IdentitytoolkitRelyingpartySignOutUserResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> IdentitytoolkitRelyingpartySignOutUserResponse: ...
+
+@typing.type_check_only
+class IdentitytoolkitRelyingpartyVerifyPhoneNumberResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse: ...
+
+@typing.type_check_only
+class ResetPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ResetPasswordResponse: ...
+
+@typing.type_check_only
+class SetAccountInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SetAccountInfoResponse: ...
+
+@typing.type_check_only
 class SignupNewUserResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> SignupNewUserResponse: ...
 
-class GetRecaptchaParamResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class UploadAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GetRecaptchaParamResponse: ...
+    ) -> UploadAccountResponse: ...
 
+@typing.type_check_only
 class VerifyAssertionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> VerifyAssertionResponse: ...
+
+@typing.type_check_only
+class VerifyCustomTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> VerifyCustomTokenResponse: ...
+
+@typing.type_check_only
+class VerifyPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> VerifyPasswordResponse: ...

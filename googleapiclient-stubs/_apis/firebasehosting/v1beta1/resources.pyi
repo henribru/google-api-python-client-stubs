@@ -7,19 +7,92 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class FirebaseHostingResource(googleapiclient.discovery.Resource):
-    class SitesResource(googleapiclient.discovery.Resource):
-        class ChannelsResource(googleapiclient.discovery.Resource):
-            class ReleasesResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class OperationsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+        @typing.type_check_only
+        class SitesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ChannelsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ReleasesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Release = ...,
+                        versionName: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ReleaseHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListReleasesResponseHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Channel = ...,
+                    channelId: str = ...,
+                    **kwargs: typing.Any
+                ) -> ChannelHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ChannelHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
-                    pageToken: str = ...,
                     pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> ListReleasesResponseHttpRequest: ...
+                ) -> ListChannelsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Channel = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> ChannelHttpRequest: ...
+                def releases(self) -> ReleasesResource: ...
+            @typing.type_check_only
+            class DomainsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self, *, parent: str, body: Domain = ..., **kwargs: typing.Any
+                ) -> DomainHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DomainHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListDomainsResponseHttpRequest: ...
+                def update(
+                    self, *, name: str, body: Domain = ..., **kwargs: typing.Any
+                ) -> DomainHttpRequest: ...
+            @typing.type_check_only
+            class ReleasesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
                     *,
@@ -28,14 +101,112 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     versionName: str = ...,
                     **kwargs: typing.Any
                 ) -> ReleaseHttpRequest: ...
-            def patch(
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListReleasesResponseHttpRequest: ...
+            @typing.type_check_only
+            class VersionsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class FilesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        status: typing_extensions.Literal[
+                            "STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> ListVersionFilesResponseHttpRequest: ...
+                def clone(
+                    self,
+                    *,
+                    parent: str,
+                    body: CloneVersionRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Version = ...,
+                    sizeBytes: str = ...,
+                    versionId: str = ...,
+                    **kwargs: typing.Any
+                ) -> VersionHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListVersionsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Version = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> VersionHttpRequest: ...
+                def populateFiles(
+                    self,
+                    *,
+                    parent: str,
+                    body: PopulateVersionFilesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PopulateVersionFilesResponseHttpRequest: ...
+                def files(self) -> FilesResource: ...
+            def getConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SiteConfigHttpRequest: ...
+            def updateConfig(
                 self,
                 *,
                 name: str,
-                body: Channel = ...,
+                body: SiteConfig = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
-            ) -> ChannelHttpRequest: ...
+            ) -> SiteConfigHttpRequest: ...
+            def channels(self) -> ChannelsResource: ...
+            def domains(self) -> DomainsResource: ...
+            def releases(self) -> ReleasesResource: ...
+            def versions(self) -> VersionsResource: ...
+        def operations(self) -> OperationsResource: ...
+        def sites(self) -> SitesResource: ...
+    @typing.type_check_only
+    class SitesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class ChannelsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ReleasesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Release = ...,
+                    versionName: str = ...,
+                    **kwargs: typing.Any
+                ) -> ReleaseHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListReleasesResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -44,39 +215,36 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 channelId: str = ...,
                 **kwargs: typing.Any
             ) -> ChannelHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> ChannelHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageToken: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListChannelsResponseHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Channel = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> ChannelHttpRequest: ...
             def releases(self) -> ReleasesResource: ...
+        @typing.type_check_only
         class DomainsResource(googleapiclient.discovery.Resource):
-            def update(
-                self, *, name: str, body: Domain = ..., **kwargs: typing.Any
-            ) -> DomainHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> DomainHttpRequest: ...
             def create(
                 self, *, parent: str, body: Domain = ..., **kwargs: typing.Any
             ) -> DomainHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageToken: str = ...,
-                pageSize: int = ...,
-                **kwargs: typing.Any
-            ) -> ListDomainsResponseHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
-        class ReleasesResource(googleapiclient.discovery.Resource):
+            def get(self, *, name: str, **kwargs: typing.Any) -> DomainHttpRequest: ...
             def list(
                 self,
                 *,
@@ -84,7 +252,12 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> ListReleasesResponseHttpRequest: ...
+            ) -> ListDomainsResponseHttpRequest: ...
+            def update(
+                self, *, name: str, body: Domain = ..., **kwargs: typing.Any
+            ) -> DomainHttpRequest: ...
+        @typing.type_check_only
+        class ReleasesResource(googleapiclient.discovery.Resource):
             def create(
                 self,
                 *,
@@ -93,17 +266,27 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 versionName: str = ...,
                 **kwargs: typing.Any
             ) -> ReleaseHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListReleasesResponseHttpRequest: ...
+        @typing.type_check_only
         class VersionsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class FilesResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
                     *,
                     parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
                     status: typing_extensions.Literal[
                         "STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"
                     ] = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListVersionFilesResponseHttpRequest: ...
             def clone(
@@ -122,14 +305,6 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 versionId: str = ...,
                 **kwargs: typing.Any
             ) -> VersionHttpRequest: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: Version = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> VersionHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
@@ -138,10 +313,18 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 filter: str = ...,
-                pageToken: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListVersionsResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Version = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> VersionHttpRequest: ...
             def populateFiles(
                 self,
                 *,
@@ -150,6 +333,9 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> PopulateVersionFilesResponseHttpRequest: ...
             def files(self) -> FilesResource: ...
+        def getConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SiteConfigHttpRequest: ...
         def updateConfig(
             self,
             *,
@@ -158,244 +344,87 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> SiteConfigHttpRequest: ...
-        def getConfig(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> SiteConfigHttpRequest: ...
         def channels(self) -> ChannelsResource: ...
         def domains(self) -> DomainsResource: ...
         def releases(self) -> ReleasesResource: ...
         def versions(self) -> VersionsResource: ...
-    class ProjectsResource(googleapiclient.discovery.Resource):
-        class SitesResource(googleapiclient.discovery.Resource):
-            class ReleasesResource(googleapiclient.discovery.Resource):
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListReleasesResponseHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: Release = ...,
-                    versionName: str = ...,
-                    **kwargs: typing.Any
-                ) -> ReleaseHttpRequest: ...
-            class ChannelsResource(googleapiclient.discovery.Resource):
-                class ReleasesResource(googleapiclient.discovery.Resource):
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: Release = ...,
-                        versionName: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ReleaseHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageToken: str = ...,
-                        pageSize: int = ...,
-                        **kwargs: typing.Any
-                    ) -> ListReleasesResponseHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: Channel = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> ChannelHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> ChannelHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListChannelsResponseHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: Channel = ...,
-                    channelId: str = ...,
-                    **kwargs: typing.Any
-                ) -> ChannelHttpRequest: ...
-                def releases(self) -> ReleasesResource: ...
-            class DomainsResource(googleapiclient.discovery.Resource):
-                def update(
-                    self, *, name: str, body: Domain = ..., **kwargs: typing.Any
-                ) -> DomainHttpRequest: ...
-                def create(
-                    self, *, parent: str, body: Domain = ..., **kwargs: typing.Any
-                ) -> DomainHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageToken: str = ...,
-                    pageSize: int = ...,
-                    **kwargs: typing.Any
-                ) -> ListDomainsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> DomainHttpRequest: ...
-            class VersionsResource(googleapiclient.discovery.Resource):
-                class FilesResource(googleapiclient.discovery.Resource):
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        status: typing_extensions.Literal[
-                            "STATUS_UNSPECIFIED", "EXPECTED", "ACTIVE"
-                        ] = ...,
-                        **kwargs: typing.Any
-                    ) -> ListVersionFilesResponseHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: Version = ...,
-                    sizeBytes: str = ...,
-                    versionId: str = ...,
-                    **kwargs: typing.Any
-                ) -> VersionHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    filter: str = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListVersionsResponseHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def populateFiles(
-                    self,
-                    *,
-                    parent: str,
-                    body: PopulateVersionFilesRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PopulateVersionFilesResponseHttpRequest: ...
-                def clone(
-                    self,
-                    *,
-                    parent: str,
-                    body: CloneVersionRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: Version = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> VersionHttpRequest: ...
-                def files(self) -> FilesResource: ...
-            def updateConfig(
-                self,
-                *,
-                name: str,
-                body: SiteConfig = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> SiteConfigHttpRequest: ...
-            def getConfig(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> SiteConfigHttpRequest: ...
-            def releases(self) -> ReleasesResource: ...
-            def channels(self) -> ChannelsResource: ...
-            def domains(self) -> DomainsResource: ...
-            def versions(self) -> VersionsResource: ...
-        class OperationsResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-        def sites(self) -> SitesResource: ...
-        def operations(self) -> OperationsResource: ...
-    def sites(self) -> SitesResource: ...
     def projects(self) -> ProjectsResource: ...
+    def sites(self) -> SitesResource: ...
 
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class DomainHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Domain: ...
-
-class ListChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListChannelsResponse: ...
-
-class ListVersionFilesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListVersionFilesResponse: ...
-
+@typing.type_check_only
 class ChannelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> Channel: ...
 
+@typing.type_check_only
+class DomainHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Domain: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class ListChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListChannelsResponse: ...
+
+@typing.type_check_only
 class ListDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListDomainsResponse: ...
 
-class VersionHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Version: ...
-
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
-class ReleaseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Release: ...
-
+@typing.type_check_only
 class ListReleasesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListReleasesResponse: ...
 
+@typing.type_check_only
+class ListVersionFilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListVersionFilesResponse: ...
+
+@typing.type_check_only
+class ListVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListVersionsResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
 class PopulateVersionFilesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> PopulateVersionFilesResponse: ...
 
+@typing.type_check_only
+class ReleaseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Release: ...
+
+@typing.type_check_only
 class SiteConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> SiteConfig: ...
 
-class ListVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+@typing.type_check_only
+class VersionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListVersionsResponse: ...
+    ) -> Version: ...

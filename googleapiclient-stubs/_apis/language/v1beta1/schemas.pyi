@@ -1,170 +1,55 @@
 import typing
 
 import typing_extensions
-
-class AnalyzeSyntaxRequest(typing_extensions.TypedDict, total=False):
-    encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
-    document: Document
-
-class AnalyzeSentimentResponse(typing_extensions.TypedDict, total=False):
-    language: str
-    documentSentiment: Sentiment
-    sentences: typing.List[Sentence]
-
-class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
-    language: str
-    entities: typing.List[Entity]
-
-class AnalyzeSentimentRequest(typing_extensions.TypedDict, total=False):
-    document: Document
-    encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
-
-class Token(typing_extensions.TypedDict, total=False):
-    text: TextSpan
-    dependencyEdge: DependencyEdge
-    lemma: str
-    partOfSpeech: PartOfSpeech
-
-class Entity(typing_extensions.TypedDict, total=False):
-    name: str
-    mentions: typing.List[EntityMention]
-    salience: float
-    metadata: typing.Dict[str, typing.Any]
-    type: typing_extensions.Literal[
-        "UNKNOWN",
-        "PERSON",
-        "LOCATION",
-        "ORGANIZATION",
-        "EVENT",
-        "WORK_OF_ART",
-        "CONSUMER_GOOD",
-        "OTHER",
-    ]
-
-class AnnotateTextResponse(typing_extensions.TypedDict, total=False):
-    language: str
-    entities: typing.List[Entity]
-    sentences: typing.List[Sentence]
-    tokens: typing.List[Token]
-    documentSentiment: Sentiment
-
+@typing.type_check_only
 class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
     document: Document
     encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
 
-class Document(typing_extensions.TypedDict, total=False):
-    gcsContentUri: str
-    content: str
+@typing.type_check_only
+class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
+    entities: typing.List[Entity]
     language: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PLAIN_TEXT", "HTML"]
 
-class Features(typing_extensions.TypedDict, total=False):
-    extractEntities: bool
-    extractDocumentSentiment: bool
-    extractSyntax: bool
+@typing.type_check_only
+class AnalyzeSentimentRequest(typing_extensions.TypedDict, total=False):
+    document: Document
+    encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
 
-class PartOfSpeech(typing_extensions.TypedDict, total=False):
-    reciprocity: typing_extensions.Literal[
-        "RECIPROCITY_UNKNOWN", "RECIPROCAL", "NON_RECIPROCAL"
-    ]
-    case: typing_extensions.Literal[
-        "CASE_UNKNOWN",
-        "ACCUSATIVE",
-        "ADVERBIAL",
-        "COMPLEMENTIVE",
-        "DATIVE",
-        "GENITIVE",
-        "INSTRUMENTAL",
-        "LOCATIVE",
-        "NOMINATIVE",
-        "OBLIQUE",
-        "PARTITIVE",
-        "PREPOSITIONAL",
-        "REFLEXIVE_CASE",
-        "RELATIVE_CASE",
-        "VOCATIVE",
-    ]
-    aspect: typing_extensions.Literal[
-        "ASPECT_UNKNOWN", "PERFECTIVE", "IMPERFECTIVE", "PROGRESSIVE"
-    ]
-    gender: typing_extensions.Literal[
-        "GENDER_UNKNOWN", "FEMININE", "MASCULINE", "NEUTER"
-    ]
-    proper: typing_extensions.Literal["PROPER_UNKNOWN", "PROPER", "NOT_PROPER"]
-    form: typing_extensions.Literal[
-        "FORM_UNKNOWN",
-        "ADNOMIAL",
-        "AUXILIARY",
-        "COMPLEMENTIZER",
-        "FINAL_ENDING",
-        "GERUND",
-        "REALIS",
-        "IRREALIS",
-        "SHORT",
-        "LONG",
-        "ORDER",
-        "SPECIFIC",
-    ]
-    number: typing_extensions.Literal["NUMBER_UNKNOWN", "SINGULAR", "PLURAL", "DUAL"]
-    tense: typing_extensions.Literal[
-        "TENSE_UNKNOWN",
-        "CONDITIONAL_TENSE",
-        "FUTURE",
-        "PAST",
-        "PRESENT",
-        "IMPERFECT",
-        "PLUPERFECT",
-    ]
-    person: typing_extensions.Literal[
-        "PERSON_UNKNOWN", "FIRST", "SECOND", "THIRD", "REFLEXIVE_PERSON"
-    ]
-    voice: typing_extensions.Literal["VOICE_UNKNOWN", "ACTIVE", "CAUSATIVE", "PASSIVE"]
-    mood: typing_extensions.Literal[
-        "MOOD_UNKNOWN",
-        "CONDITIONAL_MOOD",
-        "IMPERATIVE",
-        "INDICATIVE",
-        "INTERROGATIVE",
-        "JUSSIVE",
-        "SUBJUNCTIVE",
-    ]
-    tag: typing_extensions.Literal[
-        "UNKNOWN",
-        "ADJ",
-        "ADP",
-        "ADV",
-        "CONJ",
-        "DET",
-        "NOUN",
-        "NUM",
-        "PRON",
-        "PRT",
-        "PUNCT",
-        "VERB",
-        "X",
-        "AFFIX",
-    ]
+@typing.type_check_only
+class AnalyzeSentimentResponse(typing_extensions.TypedDict, total=False):
+    documentSentiment: Sentiment
+    language: str
+    sentences: typing.List[Sentence]
 
+@typing.type_check_only
+class AnalyzeSyntaxRequest(typing_extensions.TypedDict, total=False):
+    document: Document
+    encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
+
+@typing.type_check_only
+class AnalyzeSyntaxResponse(typing_extensions.TypedDict, total=False):
+    language: str
+    sentences: typing.List[Sentence]
+    tokens: typing.List[Token]
+
+@typing.type_check_only
 class AnnotateTextRequest(typing_extensions.TypedDict, total=False):
     document: Document
     encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
     features: Features
 
-class Status(typing_extensions.TypedDict, total=False):
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-    code: int
+@typing.type_check_only
+class AnnotateTextResponse(typing_extensions.TypedDict, total=False):
+    documentSentiment: Sentiment
+    entities: typing.List[Entity]
+    language: str
+    sentences: typing.List[Sentence]
+    tokens: typing.List[Token]
 
-class Sentiment(typing_extensions.TypedDict, total=False):
-    score: float
-    polarity: float
-    magnitude: float
-
-class EntityMention(typing_extensions.TypedDict, total=False):
-    text: TextSpan
-    type: typing_extensions.Literal["TYPE_UNKNOWN", "PROPER", "COMMON"]
-
+@typing.type_check_only
 class DependencyEdge(typing_extensions.TypedDict, total=False):
+    headTokenIndex: int
     label: typing_extensions.Literal[
         "UNKNOWN",
         "ABBREV",
@@ -250,17 +135,150 @@ class DependencyEdge(typing_extensions.TypedDict, total=False):
         "MES",
         "NCOMP",
     ]
-    headTokenIndex: int
 
-class AnalyzeSyntaxResponse(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Document(typing_extensions.TypedDict, total=False):
+    content: str
+    gcsContentUri: str
     language: str
-    tokens: typing.List[Token]
-    sentences: typing.List[Sentence]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PLAIN_TEXT", "HTML"]
 
+@typing.type_check_only
+class Entity(typing_extensions.TypedDict, total=False):
+    mentions: typing.List[EntityMention]
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    salience: float
+    type: typing_extensions.Literal[
+        "UNKNOWN",
+        "PERSON",
+        "LOCATION",
+        "ORGANIZATION",
+        "EVENT",
+        "WORK_OF_ART",
+        "CONSUMER_GOOD",
+        "OTHER",
+    ]
+
+@typing.type_check_only
+class EntityMention(typing_extensions.TypedDict, total=False):
+    text: TextSpan
+    type: typing_extensions.Literal["TYPE_UNKNOWN", "PROPER", "COMMON"]
+
+@typing.type_check_only
+class Features(typing_extensions.TypedDict, total=False):
+    extractDocumentSentiment: bool
+    extractEntities: bool
+    extractSyntax: bool
+
+@typing.type_check_only
+class PartOfSpeech(typing_extensions.TypedDict, total=False):
+    aspect: typing_extensions.Literal[
+        "ASPECT_UNKNOWN", "PERFECTIVE", "IMPERFECTIVE", "PROGRESSIVE"
+    ]
+    case: typing_extensions.Literal[
+        "CASE_UNKNOWN",
+        "ACCUSATIVE",
+        "ADVERBIAL",
+        "COMPLEMENTIVE",
+        "DATIVE",
+        "GENITIVE",
+        "INSTRUMENTAL",
+        "LOCATIVE",
+        "NOMINATIVE",
+        "OBLIQUE",
+        "PARTITIVE",
+        "PREPOSITIONAL",
+        "REFLEXIVE_CASE",
+        "RELATIVE_CASE",
+        "VOCATIVE",
+    ]
+    form: typing_extensions.Literal[
+        "FORM_UNKNOWN",
+        "ADNOMIAL",
+        "AUXILIARY",
+        "COMPLEMENTIZER",
+        "FINAL_ENDING",
+        "GERUND",
+        "REALIS",
+        "IRREALIS",
+        "SHORT",
+        "LONG",
+        "ORDER",
+        "SPECIFIC",
+    ]
+    gender: typing_extensions.Literal[
+        "GENDER_UNKNOWN", "FEMININE", "MASCULINE", "NEUTER"
+    ]
+    mood: typing_extensions.Literal[
+        "MOOD_UNKNOWN",
+        "CONDITIONAL_MOOD",
+        "IMPERATIVE",
+        "INDICATIVE",
+        "INTERROGATIVE",
+        "JUSSIVE",
+        "SUBJUNCTIVE",
+    ]
+    number: typing_extensions.Literal["NUMBER_UNKNOWN", "SINGULAR", "PLURAL", "DUAL"]
+    person: typing_extensions.Literal[
+        "PERSON_UNKNOWN", "FIRST", "SECOND", "THIRD", "REFLEXIVE_PERSON"
+    ]
+    proper: typing_extensions.Literal["PROPER_UNKNOWN", "PROPER", "NOT_PROPER"]
+    reciprocity: typing_extensions.Literal[
+        "RECIPROCITY_UNKNOWN", "RECIPROCAL", "NON_RECIPROCAL"
+    ]
+    tag: typing_extensions.Literal[
+        "UNKNOWN",
+        "ADJ",
+        "ADP",
+        "ADV",
+        "CONJ",
+        "DET",
+        "NOUN",
+        "NUM",
+        "PRON",
+        "PRT",
+        "PUNCT",
+        "VERB",
+        "X",
+        "AFFIX",
+    ]
+    tense: typing_extensions.Literal[
+        "TENSE_UNKNOWN",
+        "CONDITIONAL_TENSE",
+        "FUTURE",
+        "PAST",
+        "PRESENT",
+        "IMPERFECT",
+        "PLUPERFECT",
+    ]
+    voice: typing_extensions.Literal["VOICE_UNKNOWN", "ACTIVE", "CAUSATIVE", "PASSIVE"]
+
+@typing.type_check_only
+class Sentence(typing_extensions.TypedDict, total=False):
+    sentiment: Sentiment
+    text: TextSpan
+
+@typing.type_check_only
+class Sentiment(typing_extensions.TypedDict, total=False):
+    magnitude: float
+    polarity: float
+    score: float
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class TextSpan(typing_extensions.TypedDict, total=False):
     beginOffset: int
     content: str
 
-class Sentence(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class Token(typing_extensions.TypedDict, total=False):
+    dependencyEdge: DependencyEdge
+    lemma: str
+    partOfSpeech: PartOfSpeech
     text: TextSpan
-    sentiment: Sentiment

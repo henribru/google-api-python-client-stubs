@@ -1,91 +1,101 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1Claim(
+    typing_extensions.TypedDict, total=False
+):
+    claimDate: str
+    claimReview: typing.List[GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview]
+    claimant: str
+    text: str
 
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor(
+    typing_extensions.TypedDict, total=False
+):
+    imageUrl: str
+    jobTitle: str
+    name: str
+    sameAs: str
 
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating(
+    typing_extensions.TypedDict, total=False
+):
+    bestRating: int
+    imageUrl: str
+    ratingExplanation: str
+    ratingValue: int
+    textualRating: str
+    worstRating: int
+
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview(
+    typing_extensions.TypedDict, total=False
+):
+    languageCode: str
+    publisher: GoogleFactcheckingFactchecktoolsV1alpha1Publisher
+    reviewDate: str
+    textualRating: str
+    title: str
+    url: str
+
+@typing.type_check_only
 class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor(
     typing_extensions.TypedDict, total=False
 ):
     imageUrl: str
     name: str
 
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup(
+    typing_extensions.TypedDict, total=False
+):
+    claimAppearances: typing.List[str]
+    claimAuthor: GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor
+    claimDate: str
+    claimFirstAppearance: str
+    claimLocation: str
+    claimReviewed: str
+    rating: GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating
+    url: str
+
+@typing.type_check_only
 class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage(
     typing_extensions.TypedDict, total=False
 ):
     claimReviewAuthor: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor
-    versionId: str
-    publishDate: str
-    pageUrl: str
-    name: str
     claimReviewMarkups: typing.List[
         GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup
     ]
-
-class GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating(
-    typing_extensions.TypedDict, total=False
-):
-    ratingValue: int
-    imageUrl: str
-    bestRating: int
-    ratingExplanation: str
-    textualRating: str
-    worstRating: int
-
-class GoogleFactcheckingFactchecktoolsV1alpha1Publisher(
-    typing_extensions.TypedDict, total=False
-):
-    site: str
     name: str
+    pageUrl: str
+    publishDate: str
+    versionId: str
 
-class GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor(
-    typing_extensions.TypedDict, total=False
-):
-    sameAs: str
-    imageUrl: str
-    name: str
-    jobTitle: str
-
-class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview(
-    typing_extensions.TypedDict, total=False
-):
-    textualRating: str
-    title: str
-    languageCode: str
-    publisher: GoogleFactcheckingFactchecktoolsV1alpha1Publisher
-    url: str
-    reviewDate: str
-
-class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup(
-    typing_extensions.TypedDict, total=False
-):
-    rating: GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating
-    claimFirstAppearance: str
-    url: str
-    claimDate: str
-    claimAppearances: typing.List[str]
-    claimLocation: str
-    claimAuthor: GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor
-    claimReviewed: str
-
-class GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    claimReviewMarkupPages: typing.List[
-        GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-    ]
-
+@typing.type_check_only
 class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse(
     typing_extensions.TypedDict, total=False
 ):
-    nextPageToken: str
     claims: typing.List[GoogleFactcheckingFactchecktoolsV1alpha1Claim]
+    nextPageToken: str
 
-class GoogleFactcheckingFactchecktoolsV1alpha1Claim(
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    text: str
-    claimant: str
-    claimReview: typing.List[GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview]
-    claimDate: str
+    claimReviewMarkupPages: typing.List[
+        GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1Publisher(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    site: str
+
+@typing.type_check_only
+class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

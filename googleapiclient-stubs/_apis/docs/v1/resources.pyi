@@ -7,9 +7,20 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class DocsResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class DocumentsResource(googleapiclient.discovery.Resource):
+        def batchUpdate(
+            self,
+            *,
+            documentId: str,
+            body: BatchUpdateDocumentRequest = ...,
+            **kwargs: typing.Any
+        ) -> BatchUpdateDocumentResponseHttpRequest: ...
+        def create(
+            self, *, body: Document = ..., **kwargs: typing.Any
+        ) -> DocumentHttpRequest: ...
         def get(
             self,
             *,
@@ -22,23 +33,15 @@ class DocsResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> DocumentHttpRequest: ...
-        def create(
-            self, *, body: Document = ..., **kwargs: typing.Any
-        ) -> DocumentHttpRequest: ...
-        def batchUpdate(
-            self,
-            *,
-            documentId: str,
-            body: BatchUpdateDocumentRequest = ...,
-            **kwargs: typing.Any
-        ) -> BatchUpdateDocumentResponseHttpRequest: ...
     def documents(self) -> DocumentsResource: ...
 
+@typing.type_check_only
 class BatchUpdateDocumentResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BatchUpdateDocumentResponse: ...
 
+@typing.type_check_only
 class DocumentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

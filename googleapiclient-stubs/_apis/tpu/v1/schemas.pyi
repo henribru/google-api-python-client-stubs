@@ -1,84 +1,60 @@
 import typing
 
 import typing_extensions
-
-class Operation(typing_extensions.TypedDict, total=False):
-    response: typing.Dict[str, typing.Any]
-    error: Status
-    done: bool
+@typing.type_check_only
+class AcceleratorType(typing_extensions.TypedDict, total=False):
     name: str
-    metadata: typing.Dict[str, typing.Any]
+    type: str
 
-class Symptom(typing_extensions.TypedDict, total=False):
-    details: str
-    symptomType: typing_extensions.Literal[
-        "SYMPTOM_TYPE_UNSPECIFIED",
-        "LOW_MEMORY",
-        "OUT_OF_MEMORY",
-        "EXECUTE_TIMED_OUT",
-        "MESH_BUILD_FAIL",
-        "HBM_OUT_OF_MEMORY",
-    ]
-    createTime: str
-    workerId: str
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
+@typing.type_check_only
+class ListAcceleratorTypesResponse(typing_extensions.TypedDict, total=False):
+    acceleratorTypes: typing.List[AcceleratorType]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: typing.List[Location]
     nextPageToken: str
 
-class SchedulingConfig(typing_extensions.TypedDict, total=False):
-    preemptible: bool
-    reserved: bool
+@typing.type_check_only
+class ListNodesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    nodes: typing.List[Node]
+    unreachable: typing.List[str]
 
-class StartNodeRequest(typing_extensions.TypedDict, total=False): ...
-
-class Location(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-    name: str
-    displayName: str
-    locationId: str
-    metadata: typing.Dict[str, typing.Any]
-
-class ReimageNodeRequest(typing_extensions.TypedDict, total=False):
-    tensorflowVersion: str
-
-class NetworkEndpoint(typing_extensions.TypedDict, total=False):
-    ipAddress: str
-    port: int
-
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    createTime: str
-    endTime: str
-    apiVersion: str
-    target: str
-    verb: str
-    statusDetail: str
-    cancelRequested: bool
-
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: typing.List[Operation]
 
-class Status(typing_extensions.TypedDict, total=False):
-    code: int
-    message: str
-    details: typing.List[typing.Dict[str, typing.Any]]
+@typing.type_check_only
+class ListTensorFlowVersionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    tensorflowVersions: typing.List[TensorFlowVersion]
+    unreachable: typing.List[str]
 
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-class TensorFlowVersion(typing_extensions.TypedDict, total=False):
-    name: str
-    version: str
-
-class Node(typing_extensions.TypedDict, total=False):
-    network: str
-    schedulingConfig: SchedulingConfig
-    useServiceNetworking: bool
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
     labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class NetworkEndpoint(typing_extensions.TypedDict, total=False):
+    ipAddress: str
+    port: int
+
+@typing.type_check_only
+class Node(typing_extensions.TypedDict, total=False):
     acceleratorType: str
     cidrBlock: str
-    tensorflowVersion: str
-    name: str
+    createTime: str
     description: str
     health: typing_extensions.Literal[
         "HEALTH_UNSPECIFIED",
@@ -88,6 +64,15 @@ class Node(typing_extensions.TypedDict, total=False):
         "UNHEALTHY_TENSORFLOW",
         "UNHEALTHY_MAINTENANCE",
     ]
+    healthDescription: str
+    ipAddress: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    network: str
+    networkEndpoints: typing.List[NetworkEndpoint]
+    port: str
+    schedulingConfig: SchedulingConfig
+    serviceAccount: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -105,31 +90,64 @@ class Node(typing_extensions.TypedDict, total=False):
         "HIDDEN",
         "UNHIDING",
     ]
-    networkEndpoints: typing.List[NetworkEndpoint]
-    serviceAccount: str
-    port: str
-    createTime: str
-    ipAddress: str
     symptoms: typing.List[Symptom]
-    healthDescription: str
+    tensorflowVersion: str
+    useServiceNetworking: bool
 
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class ReimageNodeRequest(typing_extensions.TypedDict, total=False):
+    tensorflowVersion: str
+
+@typing.type_check_only
+class SchedulingConfig(typing_extensions.TypedDict, total=False):
+    preemptible: bool
+    reserved: bool
+
+@typing.type_check_only
+class StartNodeRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class StopNodeRequest(typing_extensions.TypedDict, total=False): ...
 
-class ListTensorFlowVersionsResponse(typing_extensions.TypedDict, total=False):
-    tensorflowVersions: typing.List[TensorFlowVersion]
-    unreachable: typing.List[str]
-    nextPageToken: str
+@typing.type_check_only
+class Symptom(typing_extensions.TypedDict, total=False):
+    createTime: str
+    details: str
+    symptomType: typing_extensions.Literal[
+        "SYMPTOM_TYPE_UNSPECIFIED",
+        "LOW_MEMORY",
+        "OUT_OF_MEMORY",
+        "EXECUTE_TIMED_OUT",
+        "MESH_BUILD_FAIL",
+        "HBM_OUT_OF_MEMORY",
+    ]
+    workerId: str
 
-class AcceleratorType(typing_extensions.TypedDict, total=False):
+@typing.type_check_only
+class TensorFlowVersion(typing_extensions.TypedDict, total=False):
     name: str
-    type: str
-
-class ListAcceleratorTypesResponse(typing_extensions.TypedDict, total=False):
-    acceleratorTypes: typing.List[AcceleratorType]
-    unreachable: typing.List[str]
-    nextPageToken: str
-
-class ListNodesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    nodes: typing.List[Node]
-    unreachable: typing.List[str]
+    version: str

@@ -7,8 +7,9 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class VideosResource(googleapiclient.discovery.Resource):
         def annotate(
             self,
@@ -18,6 +19,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
         ) -> GoogleLongrunning_OperationHttpRequest: ...
     def videos(self) -> VideosResource: ...
 
+@typing.type_check_only
 class GoogleLongrunning_OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...

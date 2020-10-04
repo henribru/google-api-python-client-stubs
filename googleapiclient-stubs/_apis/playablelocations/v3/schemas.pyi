@@ -1,74 +1,120 @@
 import typing
 
 import typing_extensions
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3Impression(typing_extensions.TypedDict, total=False):
+    gameObjectType: int
+    impressionType: typing_extensions.Literal[
+        "IMPRESSION_TYPE_UNSPECIFIED", "PRESENTED", "INTERACTED"
+    ]
+    locationName: str
 
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3LogImpressionsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    clientInfo: GoogleMapsUnityClientInfo
+    impressions: typing.List[GoogleMapsPlayablelocationsV3Impression]
+    requestId: str
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3LogImpressionsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3LogPlayerReportsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    clientInfo: GoogleMapsUnityClientInfo
+    playerReports: typing.List[GoogleMapsPlayablelocationsV3PlayerReport]
+    requestId: str
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3LogPlayerReportsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3PlayerReport(
+    typing_extensions.TypedDict, total=False
+):
+    languageCode: str
+    locationName: str
+    reasonDetails: str
+    reasons: typing.List[str]
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3SampleAreaFilter(
+    typing_extensions.TypedDict, total=False
+):
+    s2CellId: str
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3SampleCriterion(
+    typing_extensions.TypedDict, total=False
+):
+    fieldsToReturn: str
+    filter: GoogleMapsPlayablelocationsV3SampleFilter
+    gameObjectType: int
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3SampleFilter(
+    typing_extensions.TypedDict, total=False
+):
+    includedTypes: typing.List[str]
+    maxLocationCount: int
+    spacing: GoogleMapsPlayablelocationsV3SampleSpacingOptions
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3SamplePlayableLocation(
+    typing_extensions.TypedDict, total=False
+):
+    centerPoint: GoogleTypeLatLng
+    name: str
+    placeId: str
+    plusCode: str
+    snappedPoint: GoogleTypeLatLng
+    types: typing.List[str]
+
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3SamplePlayableLocationList(
+    typing_extensions.TypedDict, total=False
+):
+    locations: typing.List[GoogleMapsPlayablelocationsV3SamplePlayableLocation]
+
+@typing.type_check_only
 class GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest(
     typing_extensions.TypedDict, total=False
 ):
     areaFilter: GoogleMapsPlayablelocationsV3SampleAreaFilter
     criteria: typing.List[GoogleMapsPlayablelocationsV3SampleCriterion]
 
-class GoogleMapsPlayablelocationsV3PlayerReport(
-    typing_extensions.TypedDict, total=False
-):
-    locationName: str
-    reasons: typing.List[str]
-    reasonDetails: str
-    languageCode: str
-
-class GoogleMapsPlayablelocationsV3SamplePlayableLocation(
-    typing_extensions.TypedDict, total=False
-):
-    types: typing.List[str]
-    placeId: str
-    snappedPoint: GoogleTypeLatLng
-    centerPoint: GoogleTypeLatLng
-    plusCode: str
-    name: str
-
-class GoogleMapsPlayablelocationsV3SampleFilter(
-    typing_extensions.TypedDict, total=False
-):
-    includedTypes: typing.List[str]
-    spacing: GoogleMapsPlayablelocationsV3SampleSpacingOptions
-    maxLocationCount: int
-
-class GoogleMapsPlayablelocationsV3SamplePlayableLocationList(
-    typing_extensions.TypedDict, total=False
-):
-    locations: typing.List[GoogleMapsPlayablelocationsV3SamplePlayableLocation]
-
+@typing.type_check_only
 class GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse(
     typing_extensions.TypedDict, total=False
 ):
     locationsPerGameObjectType: typing.Dict[str, typing.Any]
     ttl: str
 
-class GoogleMapsPlayablelocationsV3Impression(typing_extensions.TypedDict, total=False):
-    impressionType: typing_extensions.Literal[
-        "IMPRESSION_TYPE_UNSPECIFIED", "PRESENTED", "INTERACTED"
-    ]
-    locationName: str
-    gameObjectType: int
-
-class GoogleTypeLatLng(typing_extensions.TypedDict, total=False):
-    latitude: float
-    longitude: float
-
-class GoogleMapsPlayablelocationsV3LogPlayerReportsResponse(
-    typing_extensions.TypedDict, total=False
-): ...
-
-class GoogleMapsPlayablelocationsV3LogImpressionsRequest(
+@typing.type_check_only
+class GoogleMapsPlayablelocationsV3SampleSpacingOptions(
     typing_extensions.TypedDict, total=False
 ):
-    clientInfo: GoogleMapsUnityClientInfo
-    requestId: str
-    impressions: typing.List[GoogleMapsPlayablelocationsV3Impression]
+    minSpacingMeters: float
+    pointType: typing_extensions.Literal[
+        "POINT_TYPE_UNSPECIFIED", "CENTER_POINT", "SNAPPED_POINT"
+    ]
 
+@typing.type_check_only
 class GoogleMapsUnityClientInfo(typing_extensions.TypedDict, total=False):
-    applicationId: str
     apiClient: str
+    applicationId: str
+    applicationVersion: str
+    deviceModel: str
+    languageCode: str
+    operatingSystem: str
+    operatingSystemBuild: str
     platform: typing_extensions.Literal[
         "PLATFORM_UNSPECIFIED",
         "EDITOR",
@@ -79,39 +125,8 @@ class GoogleMapsUnityClientInfo(typing_extensions.TypedDict, total=False):
         "IOS",
         "WEB_GL",
     ]
-    operatingSystemBuild: str
-    languageCode: str
-    applicationVersion: str
-    deviceModel: str
-    operatingSystem: str
 
-class GoogleMapsPlayablelocationsV3SampleSpacingOptions(
-    typing_extensions.TypedDict, total=False
-):
-    pointType: typing_extensions.Literal[
-        "POINT_TYPE_UNSPECIFIED", "CENTER_POINT", "SNAPPED_POINT"
-    ]
-    minSpacingMeters: float
-
-class GoogleMapsPlayablelocationsV3SampleCriterion(
-    typing_extensions.TypedDict, total=False
-):
-    fieldsToReturn: str
-    gameObjectType: int
-    filter: GoogleMapsPlayablelocationsV3SampleFilter
-
-class GoogleMapsPlayablelocationsV3SampleAreaFilter(
-    typing_extensions.TypedDict, total=False
-):
-    s2CellId: str
-
-class GoogleMapsPlayablelocationsV3LogPlayerReportsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    playerReports: typing.List[GoogleMapsPlayablelocationsV3PlayerReport]
-    clientInfo: GoogleMapsUnityClientInfo
-    requestId: str
-
-class GoogleMapsPlayablelocationsV3LogImpressionsResponse(
-    typing_extensions.TypedDict, total=False
-): ...
+@typing.type_check_only
+class GoogleTypeLatLng(typing_extensions.TypedDict, total=False):
+    latitude: float
+    longitude: float

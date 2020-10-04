@@ -7,10 +7,32 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
-
+@typing.type_check_only
 class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
+    @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
         class AssetsResource(googleapiclient.discovery.Resource):
+            def group(
+                self,
+                *,
+                parent: str,
+                body: GroupAssetsRequest = ...,
+                **kwargs: typing.Any
+            ) -> GroupAssetsResponseHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                compareDuration: str = ...,
+                fieldMask: str = ...,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                readTime: str = ...,
+                **kwargs: typing.Any
+            ) -> ListAssetsResponseHttpRequest: ...
             def runDiscovery(
                 self,
                 *,
@@ -23,30 +45,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudSecuritycenterV1beta1SecurityMarks = ...,
-                updateMask: str = ...,
                 startTime: str = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudSecuritycenterV1beta1SecurityMarksHttpRequest: ...
-            def group(
-                self,
-                *,
-                parent: str,
-                body: GroupAssetsRequest = ...,
-                **kwargs: typing.Any
-            ) -> GroupAssetsResponseHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                filter: str = ...,
-                compareDuration: str = ...,
-                pageToken: str = ...,
-                fieldMask: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                readTime: str = ...,
-                **kwargs: typing.Any
-            ) -> ListAssetsResponseHttpRequest: ...
+        @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
                 self,
@@ -55,6 +58,12 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: CancelOperationRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def list(
                 self,
                 *,
@@ -64,14 +73,18 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOperationsResponseHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
+        @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
             class FindingsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudSecuritycenterV1beta1Finding = ...,
+                    findingId: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1beta1FindingHttpRequest: ...
                 def group(
                     self,
                     *,
@@ -79,6 +92,26 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     body: GroupFindingsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GroupFindingsResponseHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    fieldMask: str = ...,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    readTime: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFindingsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudSecuritycenterV1beta1Finding = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1beta1FindingHttpRequest: ...
                 def setState(
                     self,
                     *,
@@ -95,50 +128,25 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudSecuritycenterV1beta1SecurityMarksHttpRequest: ...
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudSecuritycenterV1beta1Finding = ...,
-                    findingId: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudSecuritycenterV1beta1FindingHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudSecuritycenterV1beta1Finding = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudSecuritycenterV1beta1FindingHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    filter: str = ...,
-                    readTime: str = ...,
-                    pageToken: str = ...,
-                    fieldMask: str = ...,
-                    orderBy: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListFindingsResponseHttpRequest: ...
+            def create(
+                self, *, parent: str, body: Source = ..., **kwargs: typing.Any
+            ) -> SourceHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> SourceHttpRequest: ...
+            def getIamPolicy(
+                self,
+                *,
+                resource: str,
+                body: GetIamPolicyRequest = ...,
+                **kwargs: typing.Any
+            ) -> PolicyHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                pageToken: str = ...,
                 pageSize: int = ...,
+                pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSourcesResponseHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> SourceHttpRequest: ...
-            def testIamPermissions(
-                self,
-                *,
-                resource: str,
-                body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
-            ) -> TestIamPermissionsResponseHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -154,16 +162,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: SetIamPolicyRequest = ...,
                 **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
-            def create(
-                self, *, parent: str, body: Source = ..., **kwargs: typing.Any
-            ) -> SourceHttpRequest: ...
-            def getIamPolicy(
+            def testIamPermissions(
                 self,
                 *,
                 resource: str,
-                body: GetIamPolicyRequest = ...,
+                body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
-            ) -> PolicyHttpRequest: ...
+            ) -> TestIamPermissionsResponseHttpRequest: ...
             def findings(self) -> FindingsResource: ...
         def getOrganizationSettings(
             self, *, name: str, **kwargs: typing.Any
@@ -181,6 +186,21 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def sources(self) -> SourcesResource: ...
     def organizations(self) -> OrganizationsResource: ...
 
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Empty: ...
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1beta1FindingHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudSecuritycenterV1beta1Finding: ...
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV1beta1SecurityMarksHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -188,69 +208,68 @@ class GoogleCloudSecuritycenterV1beta1SecurityMarksHttpRequest(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudSecuritycenterV1beta1SecurityMarks: ...
 
-class ListFindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListFindingsResponse: ...
-
-class GroupFindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GroupFindingsResponse: ...
-
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Empty: ...
-
-class OrganizationSettingsHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> OrganizationSettings: ...
-
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListOperationsResponse: ...
-
-class SourceHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Source: ...
-
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> TestIamPermissionsResponse: ...
-
-class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListAssetsResponse: ...
-
-class ListSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> ListSourcesResponse: ...
-
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Policy: ...
-
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> Operation: ...
-
+@typing.type_check_only
 class GroupAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GroupAssetsResponse: ...
 
-class GoogleCloudSecuritycenterV1beta1FindingHttpRequest(
-    googleapiclient.http.HttpRequest
-):
+@typing.type_check_only
+class GroupFindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
-    ) -> GoogleCloudSecuritycenterV1beta1Finding: ...
+    ) -> GroupFindingsResponse: ...
+
+@typing.type_check_only
+class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListAssetsResponse: ...
+
+@typing.type_check_only
+class ListFindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListFindingsResponse: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListSourcesResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
+
+@typing.type_check_only
+class OrganizationSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> OrganizationSettings: ...
+
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Policy: ...
+
+@typing.type_check_only
+class SourceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Source: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> TestIamPermissionsResponse: ...
