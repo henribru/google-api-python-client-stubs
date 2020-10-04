@@ -34,8 +34,9 @@ classes and [TypedDicts](https://docs.python.org/3/library/typing.html#typing.Ty
 that don't exist in the actual library, only in the stub files. This means you *cannot* use any of these types at runtime, it *will* cause your code to crash.
 If you rely solely on type inference, this is not an issue, but as soon as you want to explicitly
 annotate a variable, argument or return type in your code with one of these types, you must follow these rules:
-1. Put `from __future__ import annotations` at the top of your file. This ensures that annotations are not evaluated at runtime. 
-This is only supported in 3.7 and up, so for earlier version of Python you need to stick to type inference.
+1. Either put `from __future__ import annotations` at the top of your file or surround the annotations with quotes. 
+This ensures that Python doesn't attempt to evaluate the types at runtime. 
+Note that the import is only supported in Python 3.7 and above.
 2. Only import the types inside an `if typing.TYPE_CHECKING` block. This ensures that the imports are only evaluated during
 type checking. Note that any type not available at runtime is located under the `googleapiclient._apis` package. 
 For example, `SheetsResource` should be imported from `googleapiclient._apis.sheets.v4.resources`.
