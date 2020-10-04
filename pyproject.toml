@@ -5,6 +5,7 @@ description = "Type stubs for google-api-python-client"
 authors = ["Henrik Bruådal <henrik.bruasdal@gmail.com>"]
 readme = "README.md"
 license = "Apache-2.0"
+repository = "https://github.com/henribru/google-api-python-client-stubs"
 packages = [
     { include = "googleapiclient-stubs" },
     { include = "apiclient-stubs" },
