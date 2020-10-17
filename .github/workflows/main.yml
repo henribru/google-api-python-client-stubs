@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run Black
+        run: poetry run black --check googleapiclient-stubs apiclient-stubs
+
+      - name: Run isort
+        run: poetry run isort --check-only googleapiclient-stubs apiclient-stubs
+
+      - name: Run Mypy
+        run: |
+          mv googleapiclient-stubs googleapiclient
+          mv apiclient-stubs apiclient
+          poetry run mypy googleapiclient apiclient
