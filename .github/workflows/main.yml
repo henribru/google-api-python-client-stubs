@@ -2,10 +2,12 @@ name: CI
 
 on:
   push:
+    branches:
+      - master
   pull_request:
 
 jobs:
-  lint:
+  black:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,14 +18,84 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
 
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-dependencies
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+            ${{ runner.os }}-
+
       - name: Install dependencies
         run: poetry install
+
+      - name: Register problem matcher
+        run: echo "::add-matcher::.github/workflows/matchers/black.json"
 
       - name: Run Black
         run: poetry run black --check --diff googleapiclient-stubs apiclient-stubs
 
+  isort:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-dependencies
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Register problem matcher
+        run: echo "::add-matcher::.github/workflows/matchers/isort.json"
+
       - name: Run isort
         run: poetry run isort --check-only --diff googleapiclient-stubs apiclient-stubs
+
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-dependencies
+        with:
+          path: ~/.cache/pypoetry
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Register problem matchers
+        run: echo "::add-matcher::.github/workflows/matchers/mypy.json"
 
       - name: Run Mypy
         run: |

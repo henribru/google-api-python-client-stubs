@@ -1,0 +1,14 @@
+{
+  "problemMatcher": [
+    {
+      "owner": "isort",
+      "pattern": [
+        {
+          "regexp": "^ERROR: .+?((googleapiclient-stubs|apiclient-stubs)/.+) (Imports are incorrectly sorted and/or formatted.)$",
+          "file": 1,
+          "message": 3
+        }
+      ]
+    }
+  ]
+}
