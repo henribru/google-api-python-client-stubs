@@ -182,6 +182,59 @@ class CustomerPostalAddress(typing_extensions.TypedDict, total=False):
     region: str
 
 @typing.type_check_only
+class DirectoryChromeosdevicesCommand(typing_extensions.TypedDict, total=False):
+    commandExpireTime: str
+    commandId: str
+    commandResult: DirectoryChromeosdevicesCommandResult
+    issueTime: str
+    payload: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "EXPIRED",
+        "CANCELLED",
+        "SENT_TO_CLIENT",
+        "ACKED_BY_CLIENT",
+        "EXECUTED_BY_CLIENT",
+    ]
+    type: typing_extensions.Literal[
+        "COMMAND_TYPE_UNSPECIFIED",
+        "REBOOT",
+        "TAKE_A_SCREENSHOT",
+        "SET_VOLUME",
+        "WIPE_USERS",
+        "REMOTE_POWERWASH",
+    ]
+
+@typing.type_check_only
+class DirectoryChromeosdevicesCommandResult(typing_extensions.TypedDict, total=False):
+    errorMessage: str
+    executeTime: str
+    result: typing_extensions.Literal[
+        "COMMAND_RESULT_TYPE_UNSPECIFIED", "IGNORED", "FAILURE", "SUCCESS"
+    ]
+
+@typing.type_check_only
+class DirectoryChromeosdevicesIssueCommandRequest(
+    typing_extensions.TypedDict, total=False
+):
+    commandType: typing_extensions.Literal[
+        "COMMAND_TYPE_UNSPECIFIED",
+        "REBOOT",
+        "TAKE_A_SCREENSHOT",
+        "SET_VOLUME",
+        "WIPE_USERS",
+        "REMOTE_POWERWASH",
+    ]
+    payload: str
+
+@typing.type_check_only
+class DirectoryChromeosdevicesIssueCommandResponse(
+    typing_extensions.TypedDict, total=False
+):
+    commandId: str
+
+@typing.type_check_only
 class DomainAlias(typing_extensions.TypedDict, total=False):
     creationTime: str
     domainAliasName: str

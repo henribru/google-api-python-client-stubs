@@ -222,6 +222,7 @@ class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
     containerVersionId: str
     deleted: bool
     name: str
+    numClients: str
     numCustomTemplates: str
     numMacros: str
     numRules: str
@@ -267,6 +268,7 @@ class Entity(typing_extensions.TypedDict, total=False):
     changeStatus: typing_extensions.Literal[
         "changeStatusUnspecified", "none", "added", "deleted", "updated"
     ]
+    client: Client
     folder: Folder
     tag: Tag
     trigger: Trigger

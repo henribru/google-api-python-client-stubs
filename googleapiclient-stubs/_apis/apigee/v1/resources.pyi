@@ -1022,6 +1022,34 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudApigeeV1ListSharedFlowsResponseHttpRequest: ...
             def deployments(self) -> DeploymentsResource: ...
             def revisions(self) -> RevisionsResource: ...
+        @typing.type_check_only
+        class SitesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ApicategoriesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudApigeeV1ApiCategoryData = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ApiCategoryHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ApiResponseWrapperHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ApiCategoryHttpRequest: ...
+                def list(
+                    self, *, parent: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ListApiCategoriesResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1ApiCategoryData = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ApiCategoryHttpRequest: ...
+            def apicategories(self) -> ApicategoriesResource: ...
         def create(
             self,
             *,
@@ -1033,7 +1061,13 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleCloudApigeeV1OrganizationHttpRequest: ...
         def getDeployedIngressConfig(
-            self, *, name: str, **kwargs: typing.Any
+            self,
+            *,
+            name: str,
+            view: typing_extensions.Literal[
+                "INGRESS_CONFIG_VIEW_UNSPECIFIED", "BASIC", "FULL"
+            ] = ...,
+            **kwargs: typing.Any
         ) -> GoogleCloudApigeeV1IngressConfigHttpRequest: ...
         def getSyncAuthorization(
             self,
@@ -1072,8 +1106,19 @@ class ApigeeResource(googleapiclient.discovery.Resource):
         def operations(self) -> OperationsResource: ...
         def reports(self) -> ReportsResource: ...
         def sharedflows(self) -> SharedflowsResource: ...
+        def sites(self) -> SitesResource: ...
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        def provisionOrganization(
+            self,
+            *,
+            project: str,
+            body: GoogleCloudApigeeV1ProvisionOrganizationRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
     def hybrid(self) -> HybridResource: ...
     def organizations(self) -> OrganizationsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
@@ -1086,6 +1131,12 @@ class GoogleCloudApigeeV1AliasHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudApigeeV1Alias: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiCategoryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudApigeeV1ApiCategory: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProductHttpRequest(googleapiclient.http.HttpRequest):
@@ -1104,6 +1155,14 @@ class GoogleCloudApigeeV1ApiProxyRevisionHttpRequest(googleapiclient.http.HttpRe
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudApigeeV1ApiProxyRevision: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiResponseWrapperHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudApigeeV1ApiResponseWrapper: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1AppHttpRequest(googleapiclient.http.HttpRequest):
@@ -1270,6 +1329,14 @@ class GoogleCloudApigeeV1KeystoreHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> GoogleCloudApigeeV1Keystore: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListApiCategoriesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> GoogleCloudApigeeV1ListApiCategoriesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListApiProductsResponseHttpRequest(

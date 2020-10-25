@@ -3,7 +3,6 @@ import typing
 import typing_extensions
 @typing.type_check_only
 class GoogleHomeEnterpriseSdmV1Device(typing_extensions.TypedDict, total=False):
-    assignee: str
     name: str
     parentRelations: typing.List[GoogleHomeEnterpriseSdmV1ParentRelation]
     traits: typing.Dict[str, typing.Any]

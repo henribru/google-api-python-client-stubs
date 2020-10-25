@@ -34,22 +34,6 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
-            class CorporaResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class OperationsResource(googleapiclient.discovery.Resource):
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleLongrunning_OperationHttpRequest: ...
-                def operations(self) -> OperationsResource: ...
-            @typing.type_check_only
-            class CorpuraResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class OperationsResource(googleapiclient.discovery.Resource):
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleLongrunning_OperationHttpRequest: ...
-                def operations(self) -> OperationsResource: ...
-            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -73,8 +57,6 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunning_ListOperationsResponseHttpRequest: ...
-            def corpora(self) -> CorporaResource: ...
-            def corpura(self) -> CorpuraResource: ...
             def operations(self) -> OperationsResource: ...
         def locations(self) -> LocationsResource: ...
     @typing.type_check_only

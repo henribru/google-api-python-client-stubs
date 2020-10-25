@@ -492,6 +492,7 @@ class TargetingValue(typing_extensions.TypedDict, total=False):
     demogAgeCriteriaValue: TargetingValueDemogAgeCriteria
     demogGenderCriteriaValue: TargetingValueDemogGenderCriteria
     longValue: str
+    requestPlatformTargetingValue: TargetingValueRequestPlatformTargeting
     stringValue: str
 
 @typing.type_check_only
@@ -523,6 +524,10 @@ class TargetingValueDemogAgeCriteria(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TargetingValueDemogGenderCriteria(typing_extensions.TypedDict, total=False):
     demogGenderCriteriaIds: typing.List[str]
+
+@typing.type_check_only
+class TargetingValueRequestPlatformTargeting(typing_extensions.TypedDict, total=False):
+    requestPlatforms: typing.List[str]
 
 @typing.type_check_only
 class TargetingValueSize(typing_extensions.TypedDict, total=False):

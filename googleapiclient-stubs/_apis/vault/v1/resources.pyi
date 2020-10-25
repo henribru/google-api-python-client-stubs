@@ -132,6 +132,13 @@ class VaultResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> MatterPermissionHttpRequest: ...
         def close(self, *, matterId: str, body: CloseMatterRequest = ..., **kwargs: typing.Any) -> CloseMatterResponseHttpRequest: ...  # type: ignore
+        def count(
+            self,
+            *,
+            matterId: str,
+            body: CountArtifactsRequest = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def create(
             self, *, body: Matter = ..., **kwargs: typing.Any
         ) -> MatterHttpRequest: ...
@@ -185,7 +192,20 @@ class VaultResource(googleapiclient.discovery.Resource):
         def savedQueries(self) -> SavedQueriesResource: ...
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            name: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListOperationsResponseHttpRequest: ...
     def matters(self) -> MattersResource: ...
     def operations(self) -> OperationsResource: ...
 
@@ -250,6 +270,12 @@ class ListMattersResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListMattersResponse: ...
 
 @typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
 class ListSavedQueriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
@@ -266,6 +292,12 @@ class MatterPermissionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> MatterPermission: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Operation: ...
 
 @typing.type_check_only
 class RemoveHeldAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):

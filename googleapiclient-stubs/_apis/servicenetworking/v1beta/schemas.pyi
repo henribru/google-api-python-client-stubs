@@ -101,6 +101,22 @@ class Connection(typing_extensions.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
+class ConsumerConfig(typing_extensions.TypedDict, total=False):
+    consumerExportCustomRoutes: bool
+    consumerExportSubnetRoutesWithPublicIp: bool
+    consumerImportCustomRoutes: bool
+    consumerImportSubnetRoutesWithPublicIp: bool
+    producerExportCustomRoutes: bool
+    producerExportSubnetRoutesWithPublicIp: bool
+    producerImportCustomRoutes: bool
+    producerImportSubnetRoutesWithPublicIp: bool
+    producerNetwork: str
+    reservedRanges: typing.List[str]
+
+@typing.type_check_only
+class ConsumerConfigMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Context(typing_extensions.TypedDict, total=False):
     rules: typing.List[ContextRule]
 
@@ -447,6 +463,11 @@ class SearchRangeRequest(typing_extensions.TypedDict, total=False):
     network: str
 
 @typing.type_check_only
+class SecondaryIpRange(typing_extensions.TypedDict, total=False):
+    ipCidrRange: str
+    rangeName: str
+
+@typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
     apis: typing.List[Api]
     authentication: Authentication
@@ -477,12 +498,6 @@ class Service(typing_extensions.TypedDict, total=False):
     usage: Usage
 
 @typing.type_check_only
-class ServiceIdentity(typing_extensions.TypedDict, total=False):
-    description: str
-    displayName: str
-    serviceAccountParent: str
-
-@typing.type_check_only
 class SourceContext(typing_extensions.TypedDict, total=False):
     fileName: str
 
@@ -502,6 +517,7 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     outsideAllocation: bool
+    secondaryIpRanges: typing.List[SecondaryIpRange]
 
 @typing.type_check_only
 class SystemParameter(typing_extensions.TypedDict, total=False):
@@ -535,7 +551,6 @@ class Usage(typing_extensions.TypedDict, total=False):
     producerNotificationChannel: str
     requirements: typing.List[str]
     rules: typing.List[UsageRule]
-    serviceIdentity: ServiceIdentity
 
 @typing.type_check_only
 class UsageRule(typing_extensions.TypedDict, total=False):

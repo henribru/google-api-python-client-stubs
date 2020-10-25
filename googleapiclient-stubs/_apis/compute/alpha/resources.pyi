@@ -532,6 +532,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: TestPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            zone: str,
+            disk: str,
+            body: Disk = ...,
+            paths: typing.Union[str, typing.List[str]] = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class ExternalVpnGatewaysResource(googleapiclient.discovery.Resource):
         def delete(

@@ -310,6 +310,7 @@ class QuotaError(typing_extensions.TypedDict, total=False):
         "QUOTA_SYSTEM_UNAVAILABLE",
     ]
     description: str
+    status: Status
     subject: str
 
 @typing.type_check_only
@@ -391,6 +392,7 @@ class Resource(typing_extensions.TypedDict, total=False):
     name: str
     service: str
     type: str
+    uid: str
 
 @typing.type_check_only
 class ResourceInfo(typing_extensions.TypedDict, total=False):
@@ -406,6 +408,7 @@ class ResourceLocation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
     firstPartyPrincipal: FirstPartyPrincipal
+    principalSubject: str
     thirdPartyPrincipal: ThirdPartyPrincipal
 
 @typing.type_check_only

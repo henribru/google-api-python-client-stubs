@@ -112,6 +112,8 @@ class GoogleCloudMlV1__AddTrialMeasurementRequest(
 
 @typing.type_check_only
 class GoogleCloudMlV1__AutoScaling(typing_extensions.TypedDict, total=False):
+    maxNodes: int
+    metrics: typing.List[GoogleCloudMlV1__MetricSpec]
     minNodes: int
 
 @typing.type_check_only
@@ -313,6 +315,13 @@ class GoogleCloudMlV1__Measurement(typing_extensions.TypedDict, total=False):
     elapsedTime: str
     metrics: typing.List[GoogleCloudMlV1_Measurement_Metric]
     stepCount: str
+
+@typing.type_check_only
+class GoogleCloudMlV1__MetricSpec(typing_extensions.TypedDict, total=False):
+    name: typing_extensions.Literal[
+        "METRIC_NAME_UNSPECIFIED", "CPU_USAGE", "GPU_DUTY_CYCLE"
+    ]
+    target: int
 
 @typing.type_check_only
 class GoogleCloudMlV1__Model(typing_extensions.TypedDict, total=False):

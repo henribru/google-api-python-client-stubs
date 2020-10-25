@@ -181,23 +181,13 @@ class DeidentifyDicomStoreRequest(typing_extensions.TypedDict, total=False):
     filterConfig: DicomFilterConfig
 
 @typing.type_check_only
-class DeidentifyErrorDetails(typing_extensions.TypedDict, total=False):
-    failureResourceCount: str
-    failureStoreCount: str
-    successResourceCount: str
-    successStoreCount: str
-
-@typing.type_check_only
 class DeidentifyFhirStoreRequest(typing_extensions.TypedDict, total=False):
     config: DeidentifyConfig
     destinationStore: str
     resourceFilter: FhirFilter
 
 @typing.type_check_only
-class DeidentifySummary(typing_extensions.TypedDict, total=False):
-    failureResourceCount: str
-    successResourceCount: str
-    successStoreCount: str
+class DeidentifySummary(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Detail(typing_extensions.TypedDict, total=False):
@@ -242,14 +232,9 @@ class EvaluateAnnotationStoreRequest(typing_extensions.TypedDict, total=False):
     goldenInfoTypeMapping: typing.Dict[str, typing.Any]
     goldenStore: str
     infoTypeConfig: InfoTypeConfig
-    name: str
 
 @typing.type_check_only
-class EvaluateAnnotationStoreResponse(typing_extensions.TypedDict, total=False):
-    evalStore: str
-    goldenCount: str
-    goldenStore: str
-    matchedCount: str
+class EvaluateAnnotationStoreResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EvaluateUserConsentsRequest(typing_extensions.TypedDict, total=False):
@@ -269,21 +254,12 @@ class EvaluateUserConsentsResponse(typing_extensions.TypedDict, total=False):
     results: typing.List[Result]
 
 @typing.type_check_only
-class ExportAnnotationsErrorDetails(typing_extensions.TypedDict, total=False):
-    annotationStore: str
-    errorCount: str
-    successCount: str
-
-@typing.type_check_only
 class ExportAnnotationsRequest(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination
     gcsDestination: GoogleCloudHealthcareV1beta1AnnotationGcsDestination
-    name: str
 
 @typing.type_check_only
-class ExportAnnotationsResponse(typing_extensions.TypedDict, total=False):
-    annotationStore: str
-    successCount: str
+class ExportAnnotationsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ExportDicomDataRequest(typing_extensions.TypedDict, total=False):
@@ -294,9 +270,15 @@ class ExportDicomDataRequest(typing_extensions.TypedDict, total=False):
 class ExportDicomDataResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExportMessagesRequest(typing_extensions.TypedDict, total=False):
+    endTime: str
+    gcsDestination: GcsDestination
+    startTime: str
+
+@typing.type_check_only
 class ExportResourcesRequest(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1beta1FhirBigQueryDestination
-    gcsDestination: GoogleCloudHealthcareV1beta1FhirRestGcsDestination
+    gcsDestination: GoogleCloudHealthcareV1beta1FhirGcsDestination
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -352,6 +334,21 @@ class Finding(typing_extensions.TypedDict, total=False):
     start: str
 
 @typing.type_check_only
+class GcsDestination(typing_extensions.TypedDict, total=False):
+    contentStructure: typing_extensions.Literal[
+        "CONTENT_STRUCTURE_UNSPECIFIED", "MESSAGE_JSON"
+    ]
+    messageView: typing_extensions.Literal[
+        "MESSAGE_VIEW_UNSPECIFIED",
+        "RAW_ONLY",
+        "PARSED_ONLY",
+        "FULL",
+        "SCHEMATIZED_ONLY",
+        "BASIC",
+    ]
+    uriPrefix: str
+
+@typing.type_check_only
 class GcsSource(typing_extensions.TypedDict, total=False):
     uri: str
 
@@ -362,6 +359,9 @@ class GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination(
     force: bool
     schemaType: typing_extensions.Literal["SCHEMA_TYPE_UNSPECIFIED", "SIMPLE"]
     tableUri: str
+    writeDisposition: typing_extensions.Literal[
+        "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
+    ]
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1beta1AnnotationGcsDestination(
@@ -391,15 +391,12 @@ class GoogleCloudHealthcareV1beta1ConsentPolicy(
 @typing.type_check_only
 class GoogleCloudHealthcareV1beta1DeidentifyDeidentifyDicomStoreSummary(
     typing_extensions.TypedDict, total=False
-):
-    failureResourceCount: str
-    successResourceCount: str
+): ...
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1beta1DeidentifyDeidentifyFhirStoreSummary(
     typing_extensions.TypedDict, total=False
-):
-    successResourceCount: str
+): ...
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1beta1DicomBigQueryDestination(
@@ -407,6 +404,9 @@ class GoogleCloudHealthcareV1beta1DicomBigQueryDestination(
 ):
     force: bool
     tableUri: str
+    writeDisposition: typing_extensions.Literal[
+        "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
+    ]
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1beta1DicomGcsDestination(
@@ -434,6 +434,31 @@ class GoogleCloudHealthcareV1beta1FhirBigQueryDestination(
     datasetUri: str
     force: bool
     schemaConfig: SchemaConfig
+    writeDisposition: typing_extensions.Literal[
+        "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
+    ]
+
+@typing.type_check_only
+class GoogleCloudHealthcareV1beta1FhirExportResourcesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudHealthcareV1beta1FhirGcsDestination(
+    typing_extensions.TypedDict, total=False
+):
+    uriPrefix: str
+
+@typing.type_check_only
+class GoogleCloudHealthcareV1beta1FhirGcsSource(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudHealthcareV1beta1FhirImportResourcesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1beta1FhirRestExportResourcesErrorDetails(
@@ -450,18 +475,6 @@ class GoogleCloudHealthcareV1beta1FhirRestExportResourcesResponse(
 ):
     fhirStore: str
     resourceCount: str
-
-@typing.type_check_only
-class GoogleCloudHealthcareV1beta1FhirRestGcsDestination(
-    typing_extensions.TypedDict, total=False
-):
-    uriPrefix: str
-
-@typing.type_check_only
-class GoogleCloudHealthcareV1beta1FhirRestGcsSource(
-    typing_extensions.TypedDict, total=False
-):
-    uri: str
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1beta1FhirRestImportResourcesErrorDetails(
@@ -534,20 +547,11 @@ class ImageConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ImportAnnotationsErrorDetails(typing_extensions.TypedDict, total=False):
-    annotationStore: str
-    errorCount: str
-    successCount: str
-
-@typing.type_check_only
 class ImportAnnotationsRequest(typing_extensions.TypedDict, total=False):
     gcsSource: GoogleCloudHealthcareV1beta1AnnotationGcsSource
-    name: str
 
 @typing.type_check_only
-class ImportAnnotationsResponse(typing_extensions.TypedDict, total=False):
-    annotationStore: str
-    successCount: str
+class ImportAnnotationsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ImportDicomDataErrorDetails(typing_extensions.TypedDict, total=False):
@@ -576,7 +580,7 @@ class ImportResourcesRequest(typing_extensions.TypedDict, total=False):
         "BUNDLE_PRETTY",
         "RESOURCE_PRETTY",
     ]
-    gcsSource: GoogleCloudHealthcareV1beta1FhirRestGcsSource
+    gcsSource: GoogleCloudHealthcareV1beta1FhirGcsSource
 
 @typing.type_check_only
 class InfoTypeConfig(typing_extensions.TypedDict, total=False):

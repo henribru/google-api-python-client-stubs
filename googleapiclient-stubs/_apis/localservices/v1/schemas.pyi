@@ -6,6 +6,7 @@ class GoogleAdsHomeservicesLocalservicesV1AccountReport(
     typing_extensions.TypedDict, total=False
 ):
     accountId: str
+    aggregatorInfo: GoogleAdsHomeservicesLocalservicesV1AggregatorInfo
     averageFiveStarRating: float
     averageWeeklyBudget: float
     businessName: str

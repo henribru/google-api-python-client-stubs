@@ -434,12 +434,6 @@ class ServiceAccountConfig(typing_extensions.TypedDict, total=False):
     tenantProjectRoles: typing.List[str]
 
 @typing.type_check_only
-class ServiceIdentity(typing_extensions.TypedDict, total=False):
-    description: str
-    displayName: str
-    serviceAccountParent: str
-
-@typing.type_check_only
 class SourceContext(typing_extensions.TypedDict, total=False):
     fileName: str
 
@@ -520,7 +514,6 @@ class Usage(typing_extensions.TypedDict, total=False):
     producerNotificationChannel: str
     requirements: typing.List[str]
     rules: typing.List[UsageRule]
-    serviceIdentity: ServiceIdentity
 
 @typing.type_check_only
 class UsageRule(typing_extensions.TypedDict, total=False):

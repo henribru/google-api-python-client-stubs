@@ -45,7 +45,6 @@ class Contest(typing_extensions.TypedDict, total=False):
     candidates: typing.List[Candidate]
     district: ElectoralDistrict
     electorateSpecifications: str
-    id: str
     level: typing.List[str]
     numberElected: str
     numberVotingFor: str
@@ -149,7 +148,6 @@ class Official(typing_extensions.TypedDict, total=False):
 class PollingLocation(typing_extensions.TypedDict, total=False):
     address: SimpleAddressType
     endDate: str
-    id: str
     latitude: float
     longitude: float
     name: str

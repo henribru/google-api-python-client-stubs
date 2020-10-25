@@ -141,7 +141,6 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                 *,
                 name: str,
                 filter: str = ...,
-                includeUnrevealedLocations: bool = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any

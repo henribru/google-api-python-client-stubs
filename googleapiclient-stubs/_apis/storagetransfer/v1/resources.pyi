@@ -20,12 +20,12 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             self, *, body: TransferJob = ..., **kwargs: typing.Any
         ) -> TransferJobHttpRequest: ...
         def get(
-            self, *, jobName: str, projectId: str = ..., **kwargs: typing.Any
+            self, *, jobName: str, projectId: str, **kwargs: typing.Any
         ) -> TransferJobHttpRequest: ...
         def list(
             self,
             *,
-            filter: str = ...,
+            filter: str,
             pageSize: int = ...,
             pageToken: str = ...,
             **kwargs: typing.Any
@@ -39,13 +39,15 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
         ) -> TransferJobHttpRequest: ...
     @typing.type_check_only
     class TransferOperationsResource(googleapiclient.discovery.Resource):
-        def cancel(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def cancel(
+            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def list(
             self,
             *,
             name: str,
-            filter: str = ...,
+            filter: str,
             pageSize: int = ...,
             pageToken: str = ...,
             **kwargs: typing.Any

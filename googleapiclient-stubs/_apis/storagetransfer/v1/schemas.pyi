@@ -22,6 +22,9 @@ class AzureCredentials(typing_extensions.TypedDict, total=False):
     sasToken: str
 
 @typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
@@ -156,6 +159,7 @@ class TransferJob(typing_extensions.TypedDict, total=False):
     deletionTime: str
     description: str
     lastModificationTime: str
+    latestOperationName: str
     name: str
     notificationConfig: NotificationConfig
     projectId: str

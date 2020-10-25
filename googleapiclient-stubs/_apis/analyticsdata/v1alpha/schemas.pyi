@@ -124,6 +124,12 @@ class InListFilter(typing_extensions.TypedDict, total=False):
     values: typing.List[str]
 
 @typing.type_check_only
+class Metadata(typing_extensions.TypedDict, total=False):
+    dimensions: typing.List[DimensionMetadata]
+    metrics: typing.List[MetricMetadata]
+    name: str
+
+@typing.type_check_only
 class Metric(typing_extensions.TypedDict, total=False):
     expression: str
     invisible: bool
@@ -137,7 +143,15 @@ class MetricHeader(typing_extensions.TypedDict, total=False):
         "TYPE_INTEGER",
         "TYPE_FLOAT",
         "TYPE_SECONDS",
+        "TYPE_MILLISECONDS",
+        "TYPE_MINUTES",
+        "TYPE_HOURS",
+        "TYPE_STANDARD",
         "TYPE_CURRENCY",
+        "TYPE_FEET",
+        "TYPE_MILES",
+        "TYPE_METERS",
+        "TYPE_KILOMETERS",
     ]
 
 @typing.type_check_only
@@ -151,7 +165,15 @@ class MetricMetadata(typing_extensions.TypedDict, total=False):
         "TYPE_INTEGER",
         "TYPE_FLOAT",
         "TYPE_SECONDS",
+        "TYPE_MILLISECONDS",
+        "TYPE_MINUTES",
+        "TYPE_HOURS",
+        "TYPE_STANDARD",
         "TYPE_CURRENCY",
+        "TYPE_FEET",
+        "TYPE_MILES",
+        "TYPE_METERS",
+        "TYPE_KILOMETERS",
     ]
     uiName: str
 

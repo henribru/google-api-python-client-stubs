@@ -2,6 +2,150 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3PageInfo(typing_extensions.TypedDict, total=False):
+    currentPage: str
+    formInfo: GoogleCloudDialogflowCxV3PageInfoFormInfo
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3PageInfoFormInfo(
+    typing_extensions.TypedDict, total=False
+):
+    parameterInfo: typing.List[GoogleCloudDialogflowCxV3PageInfoFormInfoParameterInfo]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3PageInfoFormInfoParameterInfo(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    justCollected: bool
+    required: bool
+    state: typing_extensions.Literal[
+        "PARAMETER_STATE_UNSPECIFIED", "EMPTY", "INVALID", "FILLED"
+    ]
+    value: typing.Any
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessage(
+    typing_extensions.TypedDict, total=False
+):
+    conversationSuccess: GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess
+    endInteraction: GoogleCloudDialogflowCxV3ResponseMessageEndInteraction
+    liveAgentHandoff: GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff
+    mixedAudio: GoogleCloudDialogflowCxV3ResponseMessageMixedAudio
+    outputAudioText: GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText
+    payload: typing.Dict[str, typing.Any]
+    playAudio: GoogleCloudDialogflowCxV3ResponseMessagePlayAudio
+    text: GoogleCloudDialogflowCxV3ResponseMessageText
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess(
+    typing_extensions.TypedDict, total=False
+):
+    metadata: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessageEndInteraction(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff(
+    typing_extensions.TypedDict, total=False
+):
+    metadata: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessageMixedAudio(
+    typing_extensions.TypedDict, total=False
+):
+    segments: typing.List[GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment(
+    typing_extensions.TypedDict, total=False
+):
+    allowPlaybackInterruption: bool
+    audio: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText(
+    typing_extensions.TypedDict, total=False
+):
+    allowPlaybackInterruption: bool
+    ssml: str
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessagePlayAudio(
+    typing_extensions.TypedDict, total=False
+):
+    allowPlaybackInterruption: bool
+    audioUri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessageText(
+    typing_extensions.TypedDict, total=False
+):
+    allowPlaybackInterruption: bool
+    text: typing.List[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3SessionInfo(typing_extensions.TypedDict, total=False):
+    parameters: typing.Dict[str, typing.Any]
+    session: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total=False):
+    detectIntentResponseId: str
+    fulfillmentInfo: GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo
+    intentInfo: GoogleCloudDialogflowCxV3WebhookRequestIntentInfo
+    messages: typing.List[GoogleCloudDialogflowCxV3ResponseMessage]
+    pageInfo: GoogleCloudDialogflowCxV3PageInfo
+    payload: typing.Dict[str, typing.Any]
+    sessionInfo: GoogleCloudDialogflowCxV3SessionInfo
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo(
+    typing_extensions.TypedDict, total=False
+):
+    tag: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3WebhookRequestIntentInfo(
+    typing_extensions.TypedDict, total=False
+):
+    lastMatchedIntent: str
+    parameters: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3WebhookRequestIntentInfoIntentParameterValue(
+    typing_extensions.TypedDict, total=False
+):
+    originalValue: str
+    resolvedValue: typing.Any
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3WebhookResponse(
+    typing_extensions.TypedDict, total=False
+):
+    fulfillmentResponse: GoogleCloudDialogflowCxV3WebhookResponseFulfillmentResponse
+    pageInfo: GoogleCloudDialogflowCxV3PageInfo
+    payload: typing.Dict[str, typing.Any]
+    sessionInfo: GoogleCloudDialogflowCxV3SessionInfo
+    targetFlow: str
+    targetPage: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3WebhookResponseFulfillmentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    mergeBehavior: typing_extensions.Literal[
+        "MERGE_BEHAVIOR_UNSPECIFIED", "APPEND", "REPLACE"
+    ]
+    messages: typing.List[GoogleCloudDialogflowCxV3ResponseMessage]
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -13,12 +157,6 @@ class GoogleCloudDialogflowCxV3beta1ExportAgentResponse(
 ):
     agentContent: str
     agentUri: str
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1ImportAgentResponse(
-    typing_extensions.TypedDict, total=False
-):
-    agent: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1PageInfo(typing_extensions.TypedDict, total=False):
@@ -949,26 +1087,6 @@ class GoogleCloudDialogflowV2WebhookResponse(typing_extensions.TypedDict, total=
     source: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowV2beta1AnnotatedConversationDataset(
-    typing_extensions.TypedDict, total=False
-):
-    completedExampleCount: str
-    createTime: str
-    description: str
-    displayName: str
-    exampleCount: str
-    name: str
-    questionTypeName: str
-
-@typing.type_check_only
-class GoogleCloudDialogflowV2beta1AutoApproveSmartMessagingEntriesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    disabledCount: int
-    enabledCount: int
-    unreviewedCount: int
-
-@typing.type_check_only
 class GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1473,12 +1591,6 @@ class GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata(
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "RUNNING", "DONE"]
 
 @typing.type_check_only
-class GoogleCloudDialogflowV2beta1LabelConversationResponse(
-    typing_extensions.TypedDict, total=False
-):
-    annotatedConversationDataset: GoogleCloudDialogflowV2beta1AnnotatedConversationDataset
-
-@typing.type_check_only
 class GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1552,46 +1664,9 @@ class GoogleCloudDialogflowV2beta1WebhookResponse(
     source: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowV3alpha1CreateVersionOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    version: str
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1ExportAgentResponse(
-    typing_extensions.TypedDict, total=False
-):
-    agentContent: str
-    agentUri: str
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1ExportTestCasesMetadata(
+class GoogleCloudDialogflowV3alpha1RunTestCaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1ExportTestCasesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    content: str
-    gcsUri: str
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1ImportAgentResponse(
-    typing_extensions.TypedDict, total=False
-):
-    agent: str
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1ImportTestCasesMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1ImportTestCasesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    names: typing.List[str]
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):

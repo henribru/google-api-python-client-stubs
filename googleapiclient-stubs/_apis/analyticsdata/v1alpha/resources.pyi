@@ -10,6 +10,11 @@ from .schemas import *
 @typing.type_check_only
 class AnalyticsDataResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class PropertiesResource(googleapiclient.discovery.Resource):
+        def getMetadata(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> MetadataHttpRequest: ...
+    @typing.type_check_only
     class V1alphaResource(googleapiclient.discovery.Resource):
         def batchRunPivotReports(
             self, *, body: BatchRunPivotReportsRequest = ..., **kwargs: typing.Any
@@ -26,6 +31,7 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
         def runReport(
             self, *, body: RunReportRequest = ..., **kwargs: typing.Any
         ) -> RunReportResponseHttpRequest: ...
+    def properties(self) -> PropertiesResource: ...
     def v1alpha(self) -> V1alphaResource: ...
 
 @typing.type_check_only
@@ -39,6 +45,12 @@ class BatchRunReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> BatchRunReportsResponse: ...
+
+@typing.type_check_only
+class MetadataHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> Metadata: ...
 
 @typing.type_check_only
 class RunPivotReportResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -281,6 +281,7 @@ class JobReference(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class JobScheduling(typing_extensions.TypedDict, total=False):
     maxFailuresPerHour: int
+    maxFailuresTotal: int
 
 @typing.type_check_only
 class JobStatus(typing_extensions.TypedDict, total=False):

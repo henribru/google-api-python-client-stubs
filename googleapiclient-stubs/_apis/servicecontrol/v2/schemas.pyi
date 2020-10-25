@@ -121,6 +121,7 @@ class Resource(typing_extensions.TypedDict, total=False):
     name: str
     service: str
     type: str
+    uid: str
 
 @typing.type_check_only
 class ResourceInfo(typing_extensions.TypedDict, total=False):
@@ -143,6 +144,7 @@ class Response(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
     firstPartyPrincipal: FirstPartyPrincipal
+    principalSubject: str
     thirdPartyPrincipal: ThirdPartyPrincipal
 
 @typing.type_check_only

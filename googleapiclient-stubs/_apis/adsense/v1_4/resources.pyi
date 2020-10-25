@@ -14,7 +14,12 @@ class AdSenseResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AdclientsResource(googleapiclient.discovery.Resource):
             def getAdCode(
-                self, *, accountId: str, adClientId: str, **kwargs: typing.Any
+                self,
+                *,
+                accountId: str,
+                adClientId: str,
+                tagPartner: str = ...,
+                **kwargs: typing.Any
             ) -> AdCodeHttpRequest: ...
             def list(
                 self,

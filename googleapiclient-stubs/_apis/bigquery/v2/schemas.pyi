@@ -305,6 +305,11 @@ class ExplainQueryStep(typing_extensions.TypedDict, total=False):
     substeps: typing.List[str]
 
 @typing.type_check_only
+class Explanation(typing_extensions.TypedDict, total=False):
+    attribution: float
+    featureName: str
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -359,6 +364,11 @@ class GetQueryResultsResponse(typing_extensions.TypedDict, total=False):
 class GetServiceAccountResponse(typing_extensions.TypedDict, total=False):
     email: str
     kind: str
+
+@typing.type_check_only
+class GlobalExplanation(typing_extensions.TypedDict, total=False):
+    classLabel: str
+    explanations: typing.List[Explanation]
 
 @typing.type_check_only
 class GoogleSheetsOptions(typing_extensions.TypedDict, total=False):
@@ -483,6 +493,11 @@ class ListModelsResponse(typing_extensions.TypedDict, total=False):
 class ListRoutinesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     routines: typing.List[Routine]
+
+@typing.type_check_only
+class ListRowAccessPoliciesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rowAccessPolicies: typing.List[RowAccessPolicy]
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
@@ -616,6 +631,14 @@ class RoutineReference(typing_extensions.TypedDict, total=False):
 class Row(typing_extensions.TypedDict, total=False):
     actualLabel: str
     entries: typing.List[Entry]
+
+@typing.type_check_only
+class RowAccessPolicy(typing_extensions.TypedDict, total=False):
+    creationTime: str
+    etag: str
+    filterPredicate: str
+    lastModifiedTime: str
+    rowAccessPolicyReference: RowAccessPolicyReference
 
 @typing.type_check_only
 class RowAccessPolicyReference(typing_extensions.TypedDict, total=False):
@@ -914,6 +937,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
 class TrainingRun(typing_extensions.TypedDict, total=False):
     dataSplitResult: DataSplitResult
     evaluationMetrics: EvaluationMetrics
+    globalExplanations: typing.List[GlobalExplanation]
     results: typing.List[IterationResult]
     startTime: str
     trainingOptions: TrainingOptions

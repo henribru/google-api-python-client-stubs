@@ -19,6 +19,21 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
             class GlobalResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class DomainsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class SqlIntegrationsResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> SQLIntegrationHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListSQLIntegrationsResponseHttpRequest: ...
                     def attachTrust(
                         self,
                         *,
@@ -107,6 +122,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: ValidateTrustRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def sqlIntegrations(self) -> SqlIntegrationsResource: ...
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def cancel(
@@ -141,7 +157,6 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                 *,
                 name: str,
                 filter: str = ...,
-                includeUnrevealedLocations: bool = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
@@ -181,6 +196,12 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListSQLIntegrationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListSQLIntegrationsResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
@@ -203,6 +224,12 @@ class ResetAdminPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ResetAdminPasswordResponse: ...
+
+@typing.type_check_only
+class SQLIntegrationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> SQLIntegration: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

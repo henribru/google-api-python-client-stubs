@@ -54,6 +54,13 @@ class AccountIdentifier(typing_extensions.TypedDict, total=False):
     merchantId: str
 
 @typing.type_check_only
+class AccountLabel(typing_extensions.TypedDict, total=False):
+    accountId: str
+    description: str
+    labelId: str
+    name: str
+
+@typing.type_check_only
 class AccountStatus(typing_extensions.TypedDict, total=False):
     accountId: str
     accountLevelIssues: typing.List[AccountStatusAccountLevelIssue]
@@ -286,6 +293,15 @@ class CarriersCarrier(typing_extensions.TypedDict, total=False):
     services: typing.List[str]
 
 @typing.type_check_only
+class Css(typing_extensions.TypedDict, total=False):
+    cssDomainId: str
+    cssGroupId: str
+    displayName: str
+    fullName: str
+    homepageUri: str
+    labelIds: typing.List[str]
+
+@typing.type_check_only
 class CustomAttribute(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
@@ -504,6 +520,10 @@ class InvoiceSummaryAdditionalChargeSummary(typing_extensions.TypedDict, total=F
     type: str
 
 @typing.type_check_only
+class LabelIds(typing_extensions.TypedDict, total=False):
+    labelIds: typing.List[str]
+
+@typing.type_check_only
 class LiaAboutPageSettings(typing_extensions.TypedDict, total=False):
     status: str
     url: str
@@ -621,6 +641,21 @@ class LinkService(typing_extensions.TypedDict, total=False):
 class LinkedAccount(typing_extensions.TypedDict, total=False):
     linkedAccountId: str
     services: typing.List[LinkService]
+
+@typing.type_check_only
+class ListAccountLabelsResponse(typing_extensions.TypedDict, total=False):
+    accountLabels: typing.List[AccountLabel]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListCssesResponse(typing_extensions.TypedDict, total=False):
+    csses: typing.List[Css]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListRepricingRulesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    repricingRules: typing.List[RepricingRule]
 
 @typing.type_check_only
 class LocalInventory(typing_extensions.TypedDict, total=False):
@@ -1023,6 +1058,24 @@ class OrderreturnsAcknowledgeRequest(typing_extensions.TypedDict, total=False):
 class OrderreturnsAcknowledgeResponse(typing_extensions.TypedDict, total=False):
     executionStatus: str
     kind: str
+
+@typing.type_check_only
+class OrderreturnsCreateOrderReturnRequest(typing_extensions.TypedDict, total=False):
+    lineItems: typing.List[OrderreturnsLineItem]
+    operationId: str
+    orderId: str
+    returnMethodType: str
+
+@typing.type_check_only
+class OrderreturnsCreateOrderReturnResponse(typing_extensions.TypedDict, total=False):
+    executionStatus: str
+    kind: str
+    orderReturn: MerchantOrderReturn
+
+@typing.type_check_only
+class OrderreturnsLineItem(typing_extensions.TypedDict, total=False):
+    lineItemId: str
+    quantity: int
 
 @typing.type_check_only
 class OrderreturnsListResponse(typing_extensions.TypedDict, total=False):
@@ -1739,6 +1792,60 @@ class RegionalinventoryCustomBatchResponse(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class RegionalinventoryCustomBatchResponseEntry(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class RepricingRule(typing_extensions.TypedDict, total=False):
+    countryCode: str
+    effectiveTimePeriod: RepricingRuleEffectiveTime
+    eligibleOfferMatcher: RepricingRuleEligibleOfferMatcher
+    languageCode: str
+    merchantId: str
+    paused: bool
+    restriction: RepricingRuleRestriction
+    ruleId: str
+    title: str
+    type: typing_extensions.Literal[
+        "REPRICING_RULE_TYPE_UNSPECIFIED", "TYPE_WIN_BUY_BOX"
+    ]
+
+@typing.type_check_only
+class RepricingRuleEffectiveTime(typing_extensions.TypedDict, total=False):
+    fixedTimePeriods: typing.List[RepricingRuleEffectiveTimeFixedTimePeriod]
+
+@typing.type_check_only
+class RepricingRuleEffectiveTimeFixedTimePeriod(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
+class RepricingRuleEligibleOfferMatcher(typing_extensions.TypedDict, total=False):
+    brandMatcher: RepricingRuleEligibleOfferMatcherStringMatcher
+    itemGroupIdMatcher: RepricingRuleEligibleOfferMatcherStringMatcher
+    matcherOption: typing_extensions.Literal[
+        "MATCHER_OPTION_UNSPECIFIED",
+        "MATCHER_OPTION_CUSTOM_FILTER",
+        "MATCHER_OPTION_USE_FEED_ATTRIBUTE",
+        "MATCHER_OPTION_ALL_PRODUCTS",
+    ]
+    offerIdMatcher: RepricingRuleEligibleOfferMatcherStringMatcher
+
+@typing.type_check_only
+class RepricingRuleEligibleOfferMatcherStringMatcher(
+    typing_extensions.TypedDict, total=False
+):
+    strAttributes: typing.List[str]
+
+@typing.type_check_only
+class RepricingRuleRestriction(typing_extensions.TypedDict, total=False):
+    floor: RepricingRuleRestrictionBoundary
+    useAutoPricingMinPrice: bool
+
+@typing.type_check_only
+class RepricingRuleRestrictionBoundary(typing_extensions.TypedDict, total=False):
+    percentageDelta: int
+    priceDelta: str
 
 @typing.type_check_only
 class ReturnAddress(typing_extensions.TypedDict, total=False):

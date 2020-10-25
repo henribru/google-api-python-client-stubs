@@ -253,7 +253,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            gmbEmail: str,
+            gmbEmail: str = ...,
             **kwargs: typing.Any
         ) -> LiasettingsRequestGmbAccessResponseHttpRequest: ...
         def requestinventoryverification(
@@ -264,10 +264,10 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            contactEmail: str,
-            contactName: str,
-            country: str,
-            language: str,
+            contactEmail: str = ...,
+            contactName: str = ...,
+            country: str = ...,
+            language: str = ...,
             **kwargs: typing.Any
         ) -> LiasettingsSetInventoryVerificationContactResponseHttpRequest: ...
         def setposdataprovider(
@@ -275,7 +275,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            country: str,
+            country: str = ...,
             posDataProviderId: str = ...,
             posExternalAccountId: str = ...,
             **kwargs: typing.Any
@@ -313,8 +313,8 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            disbursementStartDate: str,
             disbursementEndDate: str = ...,
+            disbursementStartDate: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             **kwargs: typing.Any
@@ -324,10 +324,10 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             disbursementId: str,
-            transactionStartDate: str,
             maxResults: int = ...,
             pageToken: str = ...,
             transactionEndDate: str = ...,
+            transactionStartDate: str = ...,
             **kwargs: typing.Any
         ) -> OrderreportsListTransactionsResponseHttpRequest: ...
     @typing.type_check_only
@@ -343,7 +343,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             createdStartDate: str = ...,
             maxResults: int = ...,
             orderBy: typing_extensions.Literal[
-                "returnCreationTimeAsc", "returnCreationTimeDesc"
+                "RETURN_CREATION_TIME_DESC", "RETURN_CREATION_TIME_ASC"
             ] = ...,
             pageToken: str = ...,
             **kwargs: typing.Any
@@ -414,7 +414,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             templateName: typing_extensions.Literal[
-                "template1", "template1a", "template1b", "template2", "template3"
+                "TEMPLATE1", "TEMPLATE2", "TEMPLATE1A", "TEMPLATE1B", "TEMPLATE3"
             ],
             country: str = ...,
             **kwargs: typing.Any
@@ -439,31 +439,31 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             placedDateStart: str = ...,
             statuses: typing.Union[
                 typing_extensions.Literal[
-                    "active",
-                    "canceled",
-                    "completed",
-                    "delivered",
-                    "inProgress",
-                    "partiallyDelivered",
-                    "partiallyReturned",
-                    "partiallyShipped",
-                    "pendingShipment",
-                    "returned",
-                    "shipped",
+                    "ACTIVE",
+                    "COMPLETED",
+                    "CANCELED",
+                    "IN_PROGRESS",
+                    "PENDING_SHIPMENT",
+                    "PARTIALLY_SHIPPED",
+                    "SHIPPED",
+                    "PARTIALLY_DELIVERED",
+                    "DELIVERED",
+                    "PARTIALLY_RETURNED",
+                    "RETURNED",
                 ],
                 typing.List[
                     typing_extensions.Literal[
-                        "active",
-                        "canceled",
-                        "completed",
-                        "delivered",
-                        "inProgress",
-                        "partiallyDelivered",
-                        "partiallyReturned",
-                        "partiallyShipped",
-                        "pendingShipment",
-                        "returned",
-                        "shipped",
+                        "ACTIVE",
+                        "COMPLETED",
+                        "CANCELED",
+                        "IN_PROGRESS",
+                        "PENDING_SHIPMENT",
+                        "PARTIALLY_SHIPPED",
+                        "SHIPPED",
+                        "PARTIALLY_DELIVERED",
+                        "DELIVERED",
+                        "PARTIALLY_RETURNED",
+                        "RETURNED",
                     ]
                 ],
             ] = ...,

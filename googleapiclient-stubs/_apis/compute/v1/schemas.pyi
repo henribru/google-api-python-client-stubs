@@ -1312,6 +1312,9 @@ class Instance(typing_extensions.TypedDict, total=False):
     kind: str
     labelFingerprint: str
     labels: typing.Dict[str, typing.Any]
+    lastStartTimestamp: str
+    lastStopTimestamp: str
+    lastSuspendedTimestamp: str
     machineType: str
     metadata: Metadata
     minCpuPlatform: str

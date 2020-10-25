@@ -135,7 +135,11 @@ class Command(typing_extensions.TypedDict, total=False):
     newPassword: str
     resetPasswordFlags: typing.List[str]
     type: typing_extensions.Literal[
-        "COMMAND_TYPE_UNSPECIFIED", "LOCK", "RESET_PASSWORD", "REBOOT"
+        "COMMAND_TYPE_UNSPECIFIED",
+        "LOCK",
+        "RESET_PASSWORD",
+        "REBOOT",
+        "RELINQUISH_OWNERSHIP",
     ]
     userName: str
 

@@ -42,6 +42,21 @@ class GoogleCloudApigeeV1AliasRevisionConfig(typing_extensions.TypedDict, total=
     type: typing_extensions.Literal["ALIAS_TYPE_UNSPECIFIED", "CERT", "KEY_CERT"]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ApiCategory(typing_extensions.TypedDict, total=False):
+    data: GoogleCloudApigeeV1ApiCategoryData
+    errorCode: str
+    message: str
+    requestId: str
+    status: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiCategoryData(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+    siteId: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
     apiResources: typing.List[str]
     approvalType: str
@@ -95,6 +110,13 @@ class GoogleCloudApigeeV1ApiProxyRevision(typing_extensions.TypedDict, total=Fal
     targets: typing.List[str]
     teams: typing.List[str]
     type: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiResponseWrapper(typing_extensions.TypedDict, total=False):
+    errorCode: str
+    message: str
+    requestId: str
+    status: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1App(typing_extensions.TypedDict, total=False):
@@ -503,6 +525,9 @@ class GoogleCloudApigeeV1Instance(typing_extensions.TypedDict, total=False):
     location: str
     name: str
     port: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
+    ]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1InstanceAttachment(typing_extensions.TypedDict, total=False):
@@ -557,6 +582,16 @@ class GoogleCloudApigeeV1Keystore(typing_extensions.TypedDict, total=False):
 class GoogleCloudApigeeV1KeystoreConfig(typing_extensions.TypedDict, total=False):
     aliases: typing.List[GoogleCloudApigeeV1AliasRevisionConfig]
     name: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListApiCategoriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    data: typing.List[GoogleCloudApigeeV1ApiCategoryData]
+    errorCode: str
+    message: str
+    requestId: str
+    status: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListApiProductsResponse(
@@ -788,6 +823,14 @@ class GoogleCloudApigeeV1Property(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ProvisionOrganizationRequest(
+    typing_extensions.TypedDict, total=False
+):
+    analyticsRegion: str
+    authorizedNetwork: str
+    runtimeLocation: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1Query(typing_extensions.TypedDict, total=False):
     csvDelimiter: str
     dimensions: typing.List[str]
@@ -897,7 +940,10 @@ class GoogleCloudApigeeV1RevisionStatus(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleCloudApigeeV1RoutingRule(typing_extensions.TypedDict, total=False):
     basepath: str
+    envGroupRevision: str
     environment: str
+    receiver: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1RuntimeTraceConfig(typing_extensions.TypedDict, total=False):
@@ -924,22 +970,8 @@ class GoogleCloudApigeeV1RuntimeTraceConfigOverride(
 class GoogleCloudApigeeV1RuntimeTraceSamplingConfig(
     typing_extensions.TypedDict, total=False
 ):
-    errorSources: typing.List[str]
-    responseCodeRanges: typing.List[
-        GoogleCloudApigeeV1RuntimeTraceSamplingConfigResponseCodeRange
-    ]
-    responseCodes: typing.List[int]
-    sampler: typing_extensions.Literal[
-        "SAMPLER_UNSPECIFIED", "OFF", "ON", "PROBABILITY"
-    ]
+    sampler: typing_extensions.Literal["SAMPLER_UNSPECIFIED", "OFF", "PROBABILITY"]
     samplingRate: float
-
-@typing.type_check_only
-class GoogleCloudApigeeV1RuntimeTraceSamplingConfigResponseCodeRange(
-    typing_extensions.TypedDict, total=False
-):
-    firstResponseCode: int
-    lastResponseCode: int
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Schema(typing_extensions.TypedDict, total=False):

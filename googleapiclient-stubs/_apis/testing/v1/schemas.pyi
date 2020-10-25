@@ -228,6 +228,12 @@ class IosDeviceCatalog(typing_extensions.TypedDict, total=False):
     xcodeVersions: typing.List[XcodeVersion]
 
 @typing.type_check_only
+class IosDeviceFile(typing_extensions.TypedDict, total=False):
+    bundleId: str
+    content: FileReference
+    devicePath: str
+
+@typing.type_check_only
 class IosDeviceList(typing_extensions.TypedDict, total=False):
     iosDevices: typing.List[IosDevice]
 
@@ -260,6 +266,8 @@ class IosTestLoop(typing_extensions.TypedDict, total=False):
 class IosTestSetup(typing_extensions.TypedDict, total=False):
     additionalIpas: typing.List[FileReference]
     networkProfile: str
+    pullDirectories: typing.List[IosDeviceFile]
+    pushFiles: typing.List[IosDeviceFile]
 
 @typing.type_check_only
 class IosVersion(typing_extensions.TypedDict, total=False):
@@ -405,6 +413,7 @@ class TestExecution(typing_extensions.TypedDict, total=False):
 class TestMatrix(typing_extensions.TypedDict, total=False):
     clientInfo: ClientInfo
     environmentMatrix: EnvironmentMatrix
+    failFast: bool
     flakyTestAttempts: int
     invalidMatrixDetails: typing_extensions.Literal[
         "INVALID_MATRIX_DETAILS_UNSPECIFIED",

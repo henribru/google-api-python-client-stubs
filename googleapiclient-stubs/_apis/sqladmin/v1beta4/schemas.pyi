@@ -150,7 +150,9 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     replicaConfiguration: ReplicaConfiguration
     replicaNames: typing.List[str]
     rootPassword: str
+    satisfiesPzs: bool
     scheduledMaintenance: SqlScheduledMaintenance
+    secondaryGceZone: str
     selfLink: str
     serverCaCert: SslCert
     serviceAccountEmailAddress: str
@@ -332,6 +334,7 @@ class IpMapping(typing_extensions.TypedDict, total=False):
 class LocationPreference(typing_extensions.TypedDict, total=False):
     followGaeApplication: str
     kind: str
+    secondaryZone: str
     zone: str
 
 @typing.type_check_only
@@ -535,6 +538,7 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "INVALID_DB_PARAM",
         "UNSUPPORTED_GTID_MODE",
         "SQLSERVER_AGENT_NOT_RUNNING",
+        "UNSUPPORTED_TABLE_DEFINITION",
     ]
 
 @typing.type_check_only

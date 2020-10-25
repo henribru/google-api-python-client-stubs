@@ -68,14 +68,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def evaluate(
                         self,
                         *,
-                        evalStore: str,
+                        name: str,
                         body: EvaluateAnnotationStoreRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def export(
                         self,
                         *,
-                        annotationStore: str,
+                        name: str,
                         body: ExportAnnotationsRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
@@ -92,7 +92,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def import_(
                         self,
                         *,
-                        annotationStore: str,
+                        name: str,
                         body: ImportAnnotationsRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
@@ -431,7 +431,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                 parent: str,
                                 dicomWebPath: str,
                                 **kwargs: typing.Any
-                            ) -> EmptyHttpRequest: ...
+                            ) -> OperationHttpRequest: ...
                             def retrieveMetadata(
                                 self,
                                 *,
@@ -460,7 +460,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             parent: str,
                             dicomWebPath: str,
                             **kwargs: typing.Any
-                        ) -> EmptyHttpRequest: ...
+                        ) -> OperationHttpRequest: ...
                         def retrieveMetadata(
                             self,
                             *,
@@ -855,6 +855,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        name: str,
+                        body: ExportMessagesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> Hl7V2StoreHttpRequest: ...

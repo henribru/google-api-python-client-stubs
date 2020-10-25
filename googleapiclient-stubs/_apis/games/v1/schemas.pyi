@@ -447,6 +447,21 @@ class ProfileSettings(typing_extensions.TypedDict, total=False):
     profileVisible: bool
 
 @typing.type_check_only
+class ResolveSnapshotHeadRequest(typing_extensions.TypedDict, total=False):
+    resolutionPolicy: typing_extensions.Literal[
+        "RESOLUTION_POLICY_UNSPECIFIED",
+        "USE_HEAD",
+        "LONGEST_PLAYTIME",
+        "MOST_RECENTLY_MODIFIED",
+        "HIGHEST_PROGRESS",
+        "NO_AUTOMATIC_RESOLUTION",
+    ]
+
+@typing.type_check_only
+class ResolveSnapshotHeadResponse(typing_extensions.TypedDict, total=False):
+    snapshot: SnapshotExtended
+
+@typing.type_check_only
 class RevisionCheckResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
     kind: str
@@ -477,6 +492,29 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     uniqueName: str
 
 @typing.type_check_only
+class SnapshotCoverImageResource(typing_extensions.TypedDict, total=False):
+    contentHash: str
+    downloadUrl: str
+    height: int
+    mimeType: str
+    resourceId: str
+    width: int
+
+@typing.type_check_only
+class SnapshotDataResource(typing_extensions.TypedDict, total=False):
+    contentHash: str
+    downloadUrl: str
+    resourceId: str
+    size: str
+
+@typing.type_check_only
+class SnapshotExtended(typing_extensions.TypedDict, total=False):
+    conflictingRevisions: typing.List[SnapshotRevision]
+    hasConflictingRevisions: bool
+    headRevision: SnapshotRevision
+    name: str
+
+@typing.type_check_only
 class SnapshotImage(typing_extensions.TypedDict, total=False):
     height: int
     kind: str
@@ -489,6 +527,22 @@ class SnapshotListResponse(typing_extensions.TypedDict, total=False):
     items: typing.List[Snapshot]
     kind: str
     nextPageToken: str
+
+@typing.type_check_only
+class SnapshotMetadata(typing_extensions.TypedDict, total=False):
+    description: str
+    deviceName: str
+    duration: str
+    lastModifyTime: str
+    progressValue: str
+    title: str
+
+@typing.type_check_only
+class SnapshotRevision(typing_extensions.TypedDict, total=False):
+    blob: SnapshotDataResource
+    coverImage: SnapshotCoverImageResource
+    id: str
+    metadata: SnapshotMetadata
 
 @typing.type_check_only
 class StatsResponse(typing_extensions.TypedDict, total=False):

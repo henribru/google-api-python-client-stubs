@@ -186,6 +186,18 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> RoutineHttpRequest: ...
     @typing.type_check_only
+    class RowAccessPoliciesResource(googleapiclient.discovery.Resource):
+        def list(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListRowAccessPoliciesResponseHttpRequest: ...
+    @typing.type_check_only
     class TabledataResource(googleapiclient.discovery.Resource):
         def insertAll(
             self,
@@ -283,6 +295,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
     def models(self) -> ModelsResource: ...
     def projects(self) -> ProjectsResource: ...
     def routines(self) -> RoutinesResource: ...
+    def rowAccessPolicies(self) -> RowAccessPoliciesResource: ...
     def tabledata(self) -> TabledataResource: ...
     def tables(self) -> TablesResource: ...
 
@@ -339,6 +352,12 @@ class ListRoutinesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
     ) -> ListRoutinesResponse: ...
+
+@typing.type_check_only
+class ListRowAccessPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+    ) -> ListRowAccessPoliciesResponse: ...
 
 @typing.type_check_only
 class ModelHttpRequest(googleapiclient.http.HttpRequest):

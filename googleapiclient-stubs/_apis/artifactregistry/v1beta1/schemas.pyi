@@ -39,6 +39,7 @@ class GoogleDevtoolsArtifactregistryV1alpha1GcsSource(
     typing_extensions.TypedDict, total=False
 ):
     uris: typing.List[str]
+    useWildcards: bool
 
 @typing.type_check_only
 class GoogleDevtoolsArtifactregistryV1alpha1ImportArtifactsResponse(
@@ -129,9 +130,7 @@ class Policy(typing_extensions.TypedDict, total=False):
 class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
-    format: typing_extensions.Literal[
-        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "APT"
-    ]
+    format: typing_extensions.Literal["FORMAT_UNSPECIFIED", "DOCKER"]
     kmsKeyName: str
     labels: typing.Dict[str, typing.Any]
     name: str

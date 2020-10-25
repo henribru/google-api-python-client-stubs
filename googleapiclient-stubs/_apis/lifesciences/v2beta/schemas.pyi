@@ -77,6 +77,10 @@ class Event(typing_extensions.TypedDict, total=False):
     workerReleased: WorkerReleasedEvent
 
 @typing.type_check_only
+class ExistingDisk(typing_extensions.TypedDict, total=False):
+    disk: str
+
+@typing.type_check_only
 class FailedEvent(typing_extensions.TypedDict, total=False):
     cause: str
     code: typing_extensions.Literal[
@@ -147,6 +151,12 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class PersistentDisk(typing_extensions.TypedDict, total=False):
+    sizeGb: int
+    sourceImage: str
+    type: str
+
+@typing.type_check_only
 class Pipeline(typing_extensions.TypedDict, total=False):
     actions: typing.List[Action]
     environment: typing.Dict[str, typing.Any]
@@ -211,6 +221,13 @@ class VirtualMachine(typing_extensions.TypedDict, total=False):
     nvidiaDriverVersion: str
     preemptible: bool
     serviceAccount: ServiceAccount
+    volumes: typing.List[Volume]
+
+@typing.type_check_only
+class Volume(typing_extensions.TypedDict, total=False):
+    existingDisk: ExistingDisk
+    persistentDisk: PersistentDisk
+    volume: str
 
 @typing.type_check_only
 class WorkerAssignedEvent(typing_extensions.TypedDict, total=False):

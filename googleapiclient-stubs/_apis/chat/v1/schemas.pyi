@@ -269,6 +269,7 @@ class Thread(typing_extensions.TypedDict, total=False):
 class User(typing_extensions.TypedDict, total=False):
     displayName: str
     domainId: str
+    isAnonymous: bool
     name: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "HUMAN", "BOT"]
 

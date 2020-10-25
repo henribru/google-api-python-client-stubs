@@ -37,6 +37,7 @@ import googleapiclient._apis.apigee.v1.resources
 import googleapiclient._apis.appengine.v1.resources
 import googleapiclient._apis.appengine.v1alpha.resources
 import googleapiclient._apis.appengine.v1beta.resources
+import googleapiclient._apis.area120tables.v1alpha1.resources
 import googleapiclient._apis.artifactregistry.v1beta1.resources
 import googleapiclient._apis.assuredworkloads.v1beta1.resources
 import googleapiclient._apis.bigquery.v2.resources
@@ -47,6 +48,7 @@ import googleapiclient._apis.bigqueryreservation.v1alpha2.resources
 import googleapiclient._apis.bigqueryreservation.v1beta1.resources
 import googleapiclient._apis.bigtableadmin.v1.resources
 import googleapiclient._apis.bigtableadmin.v2.resources
+import googleapiclient._apis.billingbudgets.v1.resources
 import googleapiclient._apis.billingbudgets.v1beta1.resources
 import googleapiclient._apis.binaryauthorization.v1.resources
 import googleapiclient._apis.binaryauthorization.v1beta1.resources
@@ -130,6 +132,9 @@ import googleapiclient._apis.dns.v1.resources
 import googleapiclient._apis.dns.v1beta2.resources
 import googleapiclient._apis.docs.v1.resources
 import googleapiclient._apis.documentai.v1beta2.resources
+import googleapiclient._apis.documentai.v1beta3.resources
+import googleapiclient._apis.domains.v1alpha2.resources
+import googleapiclient._apis.domains.v1beta1.resources
 import googleapiclient._apis.domainsrdap.v1.resources
 import googleapiclient._apis.doubleclickbidmanager.v1.resources
 import googleapiclient._apis.doubleclickbidmanager.v1_1.resources
@@ -137,6 +142,7 @@ import googleapiclient._apis.doubleclicksearch.v2.resources
 import googleapiclient._apis.drive.v2.resources
 import googleapiclient._apis.drive.v3.resources
 import googleapiclient._apis.driveactivity.v2.resources
+import googleapiclient._apis.eventarc.v1beta1.resources
 import googleapiclient._apis.factchecktools.v1alpha1.resources
 import googleapiclient._apis.fcm.v1.resources
 import googleapiclient._apis.file.v1.resources
@@ -195,6 +201,7 @@ import googleapiclient._apis.monitoring.v1.resources
 import googleapiclient._apis.monitoring.v3.resources
 import googleapiclient._apis.networkmanagement.v1.resources
 import googleapiclient._apis.networkmanagement.v1beta1.resources
+import googleapiclient._apis.oauth2.v2.resources
 import googleapiclient._apis.osconfig.v1.resources
 import googleapiclient._apis.osconfig.v1beta.resources
 import googleapiclient._apis.oslogin.v1.resources
@@ -227,7 +234,6 @@ import googleapiclient._apis.run.v1alpha1.resources
 import googleapiclient._apis.run.v1beta1.resources
 import googleapiclient._apis.runtimeconfig.v1.resources
 import googleapiclient._apis.runtimeconfig.v1beta1.resources
-import googleapiclient._apis.safebrowsing.v4.resources
 import googleapiclient._apis.sasportal.v1alpha1.resources
 import googleapiclient._apis.script.v1.resources
 import googleapiclient._apis.searchconsole.v1.resources
@@ -905,6 +911,25 @@ def build(
 ) -> googleapiclient._apis.appengine.v1.resources.AppengineResource: ...
 @overload
 def build(
+    serviceName: Literal["area120tables"],
+    version: Literal["v1alpha1"],
+    http: Optional[httplib2.Http] = ...,
+    discoveryServiceUrl: str = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+) -> googleapiclient._apis.area120tables.v1alpha1.resources.Area120TablesResource: ...
+@overload
+def build(
     serviceName: Literal["artifactregistry"],
     version: Literal["v1beta1"],
     http: Optional[httplib2.Http] = ...,
@@ -1093,6 +1118,25 @@ def build(
     adc_key_path: Optional[str] = ...,
     num_retries: int = ...,
 ) -> googleapiclient._apis.bigtableadmin.v2.resources.BigtableAdminResource: ...
+@overload
+def build(
+    serviceName: Literal["billingbudgets"],
+    version: Literal["v1"],
+    http: Optional[httplib2.Http] = ...,
+    discoveryServiceUrl: str = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+) -> googleapiclient._apis.billingbudgets.v1.resources.CloudBillingBudgetResource: ...
 @overload
 def build(
     serviceName: Literal["billingbudgets"],
@@ -2672,6 +2716,63 @@ def build(
 ) -> googleapiclient._apis.documentai.v1beta2.resources.DocumentResource: ...
 @overload
 def build(
+    serviceName: Literal["documentai"],
+    version: Literal["v1beta3"],
+    http: Optional[httplib2.Http] = ...,
+    discoveryServiceUrl: str = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+) -> googleapiclient._apis.documentai.v1beta3.resources.DocumentResource: ...
+@overload
+def build(
+    serviceName: Literal["domains"],
+    version: Literal["v1alpha2"],
+    http: Optional[httplib2.Http] = ...,
+    discoveryServiceUrl: str = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+) -> googleapiclient._apis.domains.v1alpha2.resources.CloudDomainsResource: ...
+@overload
+def build(
+    serviceName: Literal["domains"],
+    version: Literal["v1beta1"],
+    http: Optional[httplib2.Http] = ...,
+    discoveryServiceUrl: str = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+) -> googleapiclient._apis.domains.v1beta1.resources.CloudDomainsResource: ...
+@overload
+def build(
     serviceName: Literal["domainsrdap"],
     version: Literal["v1"],
     http: Optional[httplib2.Http] = ...,
@@ -2803,6 +2904,25 @@ def build(
     adc_key_path: Optional[str] = ...,
     num_retries: int = ...,
 ) -> googleapiclient._apis.driveactivity.v2.resources.DriveActivityResource: ...
+@overload
+def build(
+    serviceName: Literal["eventarc"],
+    version: Literal["v1beta1"],
+    http: Optional[httplib2.Http] = ...,
+    discoveryServiceUrl: str = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+) -> googleapiclient._apis.eventarc.v1beta1.resources.EventarcResource: ...
 @overload
 def build(
     serviceName: Literal["factchecktools"],
@@ -3907,6 +4027,25 @@ def build(
 ) -> googleapiclient._apis.networkmanagement.v1beta1.resources.NetworkManagementResource: ...
 @overload
 def build(
+    serviceName: Literal["oauth2"],
+    version: Literal["v2"],
+    http: Optional[httplib2.Http] = ...,
+    discoveryServiceUrl: str = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+) -> googleapiclient._apis.oauth2.v2.resources.Oauth2Resource: ...
+@overload
+def build(
     serviceName: Literal["osconfig"],
     version: Literal["v1beta"],
     http: Optional[httplib2.Http] = ...,
@@ -3923,7 +4062,7 @@ def build(
     adc_cert_path: Optional[str] = ...,
     adc_key_path: Optional[str] = ...,
     num_retries: int = ...,
-) -> googleapiclient._apis.osconfig.v1beta.resources.SystemsManagementResource: ...
+) -> googleapiclient._apis.osconfig.v1beta.resources.OSConfigResource: ...
 @overload
 def build(
     serviceName: Literal["osconfig"],
@@ -3942,7 +4081,7 @@ def build(
     adc_cert_path: Optional[str] = ...,
     adc_key_path: Optional[str] = ...,
     num_retries: int = ...,
-) -> googleapiclient._apis.osconfig.v1.resources.SystemsManagementResource: ...
+) -> googleapiclient._apis.osconfig.v1.resources.OSConfigResource: ...
 @overload
 def build(
     serviceName: Literal["oslogin"],
@@ -4513,25 +4652,6 @@ def build(
     adc_key_path: Optional[str] = ...,
     num_retries: int = ...,
 ) -> googleapiclient._apis.runtimeconfig.v1beta1.resources.CloudRuntimeConfigResource: ...
-@overload
-def build(
-    serviceName: Literal["safebrowsing"],
-    version: Literal["v4"],
-    http: Optional[httplib2.Http] = ...,
-    discoveryServiceUrl: str = ...,
-    developerKey: Optional[str] = ...,
-    model: Optional[Model] = ...,
-    requestBuilder: HttpRequest = ...,
-    credentials: Optional[
-        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
-    ] = ...,
-    cache_discovery: bool = ...,
-    cache: Optional[Cache] = ...,
-    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
-    adc_cert_path: Optional[str] = ...,
-    adc_key_path: Optional[str] = ...,
-    num_retries: int = ...,
-) -> googleapiclient._apis.safebrowsing.v4.resources.SafebrowsingResource: ...
 @overload
 def build(
     serviceName: Literal["sasportal"],

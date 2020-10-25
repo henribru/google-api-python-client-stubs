@@ -30,9 +30,6 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                view: typing_extensions.Literal[
-                    "DEVICE_DETAILS_VIEW_UNSPECIFIED", "DEVICE_CONSOLE_VIEW"
-                ] = ...,
                 **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1ListDevicesResponseHttpRequest: ...
         @typing.type_check_only

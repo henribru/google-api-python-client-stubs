@@ -2,6 +2,23 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class AccountCount(typing_extensions.TypedDict, total=False):
+    account: UserInfo
+    count: str
+
+@typing.type_check_only
+class AccountCountError(typing_extensions.TypedDict, total=False):
+    account: UserInfo
+    errorType: typing_extensions.Literal[
+        "ERROR_TYPE_UNSPECIFIED",
+        "WILDCARD_TOO_BROAD",
+        "TOO_MANY_TERMS",
+        "LOCATION_UNAVAILABLE",
+        "UNKNOWN",
+        "DEADLINE_EXCEEDED",
+    ]
+
+@typing.type_check_only
 class AccountInfo(typing_extensions.TypedDict, total=False):
     emails: typing.List[str]
 
@@ -24,6 +41,9 @@ class AddMatterPermissionsRequest(typing_extensions.TypedDict, total=False):
     ccMe: bool
     matterPermission: MatterPermission
     sendEmails: bool
+
+@typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CloseMatterRequest(typing_extensions.TypedDict, total=False): ...
@@ -49,6 +69,26 @@ class CorpusQuery(typing_extensions.TypedDict, total=False):
     groupsQuery: HeldGroupsQuery
     hangoutsChatQuery: HeldHangoutsChatQuery
     mailQuery: HeldMailQuery
+
+@typing.type_check_only
+class CountArtifactsMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    matterId: str
+    query: Query
+    startTime: str
+
+@typing.type_check_only
+class CountArtifactsRequest(typing_extensions.TypedDict, total=False):
+    query: Query
+    view: typing_extensions.Literal[
+        "COUNT_RESULT_VIEW_UNSPECIFIED", "TOTAL_COUNT", "ALL"
+    ]
+
+@typing.type_check_only
+class CountArtifactsResponse(typing_extensions.TypedDict, total=False):
+    groupsCountResult: GroupsCountResult
+    mailCountResult: MailCountResult
+    totalCount: str
 
 @typing.type_check_only
 class DriveExportOptions(typing_extensions.TypedDict, total=False):
@@ -93,6 +133,14 @@ class ExportStats(typing_extensions.TypedDict, total=False):
     exportedArtifactCount: str
     sizeInBytes: str
     totalArtifactCount: str
+
+@typing.type_check_only
+class GroupsCountResult(typing_extensions.TypedDict, total=False):
+    accountCountErrors: typing.List[AccountCountError]
+    accountCounts: typing.List[AccountCount]
+    matchingAccountsCount: str
+    nonQueryableAccounts: typing.List[str]
+    queriedAccountsCount: str
 
 @typing.type_check_only
 class GroupsExportOptions(typing_extensions.TypedDict, total=False):
@@ -176,9 +224,22 @@ class ListMattersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
 class ListSavedQueriesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     savedQueries: typing.List[SavedQuery]
+
+@typing.type_check_only
+class MailCountResult(typing_extensions.TypedDict, total=False):
+    accountCountErrors: typing.List[AccountCountError]
+    accountCounts: typing.List[AccountCount]
+    matchingAccountsCount: str
+    nonQueryableAccounts: typing.List[str]
+    queriedAccountsCount: str
 
 @typing.type_check_only
 class MailExportOptions(typing_extensions.TypedDict, total=False):
@@ -201,6 +262,14 @@ class Matter(typing_extensions.TypedDict, total=False):
 class MatterPermission(typing_extensions.TypedDict, total=False):
     accountId: str
     role: typing_extensions.Literal["ROLE_UNSPECIFIED", "COLLABORATOR", "OWNER"]
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class OrgUnitInfo(typing_extensions.TypedDict, total=False):

@@ -8,7 +8,7 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 @typing.type_check_only
-class SystemsManagementResource(googleapiclient.discovery.Resource):
+class OSConfigResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only

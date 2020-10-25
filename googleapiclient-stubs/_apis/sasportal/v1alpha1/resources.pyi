@@ -112,6 +112,31 @@ class SasportalResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class NodesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class DevicesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SasPortalDevice = ...,
+                    **kwargs: typing.Any
+                ) -> SasPortalDeviceHttpRequest: ...
+                def createSigned(
+                    self,
+                    *,
+                    parent: str,
+                    body: SasPortalCreateSignedDeviceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SasPortalDeviceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> SasPortalListDevicesResponseHttpRequest: ...
+            @typing.type_check_only
             class NodesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -160,6 +185,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> SasPortalNodeHttpRequest: ...
+            def devices(self) -> DevicesResource: ...
             def nodes(self) -> NodesResource: ...
         def get(
             self, *, name: str, **kwargs: typing.Any

@@ -264,12 +264,6 @@ class GoogleApiService(typing_extensions.TypedDict, total=False):
     usage: Usage
 
 @typing.type_check_only
-class GoogleApiServiceIdentity(typing_extensions.TypedDict, total=False):
-    description: str
-    displayName: str
-    serviceAccountParent: str
-
-@typing.type_check_only
 class GoogleApiServiceusageV1OperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -547,7 +541,6 @@ class Usage(typing_extensions.TypedDict, total=False):
     producerNotificationChannel: str
     requirements: typing.List[str]
     rules: typing.List[UsageRule]
-    serviceIdentity: GoogleApiServiceIdentity
 
 @typing.type_check_only
 class UsageRule(typing_extensions.TypedDict, total=False):

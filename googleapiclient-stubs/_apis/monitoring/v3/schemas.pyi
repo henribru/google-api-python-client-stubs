@@ -129,6 +129,7 @@ class CollectdValueError(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Condition(typing_extensions.TypedDict, total=False):
     conditionAbsent: MetricAbsence
+    conditionMonitoringQueryLanguage: MonitoringQueryLanguageCondition
     conditionThreshold: MetricThreshold
     displayName: str
     name: str
@@ -511,6 +512,12 @@ class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
 class MonitoredResourceMetadata(typing_extensions.TypedDict, total=False):
     systemLabels: typing.Dict[str, typing.Any]
     userLabels: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class MonitoringQueryLanguageCondition(typing_extensions.TypedDict, total=False):
+    duration: str
+    query: str
+    trigger: Trigger
 
 @typing.type_check_only
 class MutationRecord(typing_extensions.TypedDict, total=False):

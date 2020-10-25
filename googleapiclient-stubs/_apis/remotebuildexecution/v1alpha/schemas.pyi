@@ -194,6 +194,7 @@ class GoogleDevtoolsRemotebuildbotCommandEvents(
     typing_extensions.TypedDict, total=False
 ):
     dockerCacheHit: bool
+    dockerImageName: str
     inputCacheMiss: float
     numErrors: str
     numWarnings: str

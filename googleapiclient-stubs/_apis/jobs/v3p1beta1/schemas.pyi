@@ -222,6 +222,186 @@ class DeviceInfo(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleCloudTalentV4BatchCreateJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    jobResults: typing.List[GoogleCloudTalentV4JobResult]
+
+@typing.type_check_only
+class GoogleCloudTalentV4BatchDeleteJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    jobResults: typing.List[GoogleCloudTalentV4JobResult]
+
+@typing.type_check_only
+class GoogleCloudTalentV4BatchOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    failureCount: int
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLING",
+        "CANCELLED",
+    ]
+    stateDescription: str
+    successCount: int
+    totalCount: int
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudTalentV4BatchUpdateJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    jobResults: typing.List[GoogleCloudTalentV4JobResult]
+
+@typing.type_check_only
+class GoogleCloudTalentV4CompensationInfo(typing_extensions.TypedDict, total=False):
+    annualizedBaseCompensationRange: GoogleCloudTalentV4CompensationInfoCompensationRange
+    annualizedTotalCompensationRange: GoogleCloudTalentV4CompensationInfoCompensationRange
+    entries: typing.List[GoogleCloudTalentV4CompensationInfoCompensationEntry]
+
+@typing.type_check_only
+class GoogleCloudTalentV4CompensationInfoCompensationEntry(
+    typing_extensions.TypedDict, total=False
+):
+    amount: Money
+    description: str
+    expectedUnitsPerYear: float
+    range: GoogleCloudTalentV4CompensationInfoCompensationRange
+    type: typing_extensions.Literal[
+        "COMPENSATION_TYPE_UNSPECIFIED",
+        "BASE",
+        "BONUS",
+        "SIGNING_BONUS",
+        "EQUITY",
+        "PROFIT_SHARING",
+        "COMMISSIONS",
+        "TIPS",
+        "OTHER_COMPENSATION_TYPE",
+    ]
+    unit: typing_extensions.Literal[
+        "COMPENSATION_UNIT_UNSPECIFIED",
+        "HOURLY",
+        "DAILY",
+        "WEEKLY",
+        "MONTHLY",
+        "YEARLY",
+        "ONE_TIME",
+        "OTHER_COMPENSATION_UNIT",
+    ]
+
+@typing.type_check_only
+class GoogleCloudTalentV4CompensationInfoCompensationRange(
+    typing_extensions.TypedDict, total=False
+):
+    maxCompensation: Money
+    minCompensation: Money
+
+@typing.type_check_only
+class GoogleCloudTalentV4CustomAttribute(typing_extensions.TypedDict, total=False):
+    filterable: bool
+    keywordSearchable: bool
+    longValues: typing.List[str]
+    stringValues: typing.List[str]
+
+@typing.type_check_only
+class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
+    addresses: typing.List[str]
+    applicationInfo: GoogleCloudTalentV4JobApplicationInfo
+    company: str
+    companyDisplayName: str
+    compensationInfo: GoogleCloudTalentV4CompensationInfo
+    customAttributes: typing.Dict[str, typing.Any]
+    degreeTypes: typing.List[str]
+    department: str
+    derivedInfo: GoogleCloudTalentV4JobDerivedInfo
+    description: str
+    employmentTypes: typing.List[str]
+    incentives: str
+    jobBenefits: typing.List[str]
+    jobEndTime: str
+    jobLevel: typing_extensions.Literal[
+        "JOB_LEVEL_UNSPECIFIED",
+        "ENTRY_LEVEL",
+        "EXPERIENCED",
+        "MANAGER",
+        "DIRECTOR",
+        "EXECUTIVE",
+    ]
+    jobStartTime: str
+    languageCode: str
+    name: str
+    postingCreateTime: str
+    postingExpireTime: str
+    postingPublishTime: str
+    postingRegion: typing_extensions.Literal[
+        "POSTING_REGION_UNSPECIFIED", "ADMINISTRATIVE_AREA", "NATION", "TELECOMMUTE"
+    ]
+    postingUpdateTime: str
+    processingOptions: GoogleCloudTalentV4JobProcessingOptions
+    promotionValue: int
+    qualifications: str
+    requisitionId: str
+    responsibilities: str
+    title: str
+    visibility: typing_extensions.Literal[
+        "VISIBILITY_UNSPECIFIED",
+        "ACCOUNT_ONLY",
+        "SHARED_WITH_GOOGLE",
+        "SHARED_WITH_PUBLIC",
+    ]
+
+@typing.type_check_only
+class GoogleCloudTalentV4JobApplicationInfo(typing_extensions.TypedDict, total=False):
+    emails: typing.List[str]
+    instruction: str
+    uris: typing.List[str]
+
+@typing.type_check_only
+class GoogleCloudTalentV4JobDerivedInfo(typing_extensions.TypedDict, total=False):
+    jobCategories: typing.List[str]
+    locations: typing.List[GoogleCloudTalentV4Location]
+
+@typing.type_check_only
+class GoogleCloudTalentV4JobProcessingOptions(typing_extensions.TypedDict, total=False):
+    disableStreetAddressResolution: bool
+    htmlSanitization: typing_extensions.Literal[
+        "HTML_SANITIZATION_UNSPECIFIED",
+        "HTML_SANITIZATION_DISABLED",
+        "SIMPLE_FORMATTING_ONLY",
+    ]
+
+@typing.type_check_only
+class GoogleCloudTalentV4JobResult(typing_extensions.TypedDict, total=False):
+    job: GoogleCloudTalentV4Job
+    status: Status
+
+@typing.type_check_only
+class GoogleCloudTalentV4Location(typing_extensions.TypedDict, total=False):
+    latLng: LatLng
+    locationType: typing_extensions.Literal[
+        "LOCATION_TYPE_UNSPECIFIED",
+        "COUNTRY",
+        "ADMINISTRATIVE_AREA",
+        "SUB_ADMINISTRATIVE_AREA",
+        "LOCALITY",
+        "POSTAL_CODE",
+        "SUB_LOCALITY",
+        "SUB_LOCALITY_1",
+        "SUB_LOCALITY_2",
+        "NEIGHBORHOOD",
+        "STREET_ADDRESS",
+    ]
+    postalAddress: PostalAddress
+    radiusMiles: float
+
+@typing.type_check_only
 class HistogramFacets(typing_extensions.TypedDict, total=False):
     compensationHistogramFacets: typing.List[CompensationHistogramRequest]
     customAttributeHistogramFacets: typing.List[CustomAttributeHistogramRequest]

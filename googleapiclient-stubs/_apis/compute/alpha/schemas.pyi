@@ -45,6 +45,8 @@ class AcceleratorTypesScopedList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccessConfig(typing_extensions.TypedDict, total=False):
+    externalIpv6: str
+    externalIpv6PrefixLength: int
     kind: str
     name: str
     natIP: str
@@ -53,7 +55,7 @@ class AccessConfig(typing_extensions.TypedDict, total=False):
     publicPtrDomainName: str
     setPublicDns: bool
     setPublicPtr: bool
-    type: typing_extensions.Literal["ONE_TO_ONE_NAT"]
+    type: typing_extensions.Literal["DIRECT_IPV6", "ONE_TO_ONE_NAT"]
 
 @typing.type_check_only
 class Address(typing_extensions.TypedDict, total=False):
@@ -141,6 +143,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties(
     locationHint: str
     machineType: str
     maintenanceFreezeDurationHours: int
+    maintenanceInterval: typing_extensions.Literal["PERIODIC"]
     minCpuPlatform: str
 
 @typing.type_check_only
@@ -167,6 +170,7 @@ class AttachedDisk(typing_extensions.TypedDict, total=False):
     shieldedInstanceInitialState: InitialStateConfig
     source: str
     type: typing_extensions.Literal["PERSISTENT", "SCRATCH"]
+    userLicenses: typing.List[str]
 
 @typing.type_check_only
 class AttachedDiskInitializeParams(typing_extensions.TypedDict, total=False):
@@ -875,6 +879,7 @@ class Disk(typing_extensions.TypedDict, total=False):
     ]
     storageType: typing_extensions.Literal["HDD", "SSD"]
     type: str
+    userLicenses: typing.List[str]
     users: typing.List[str]
     zone: str
 
@@ -1133,6 +1138,7 @@ class FirewallPolicyRule(typing_extensions.TypedDict, total=False):
     priority: int
     ruleTupleCount: int
     targetResources: typing.List[str]
+    targetSecureLabels: typing.List[str]
     targetServiceAccounts: typing.List[str]
 
 @typing.type_check_only
@@ -1140,6 +1146,7 @@ class FirewallPolicyRuleMatcher(typing_extensions.TypedDict, total=False):
     destIpRanges: typing.List[str]
     layer4Configs: typing.List[FirewallPolicyRuleMatcherLayer4Config]
     srcIpRanges: typing.List[str]
+    srcSecureLabels: typing.List[str]
 
 @typing.type_check_only
 class FirewallPolicyRuleMatcherLayer4Config(typing_extensions.TypedDict, total=False):
@@ -2953,12 +2960,18 @@ class NetworkInterface(typing_extensions.TypedDict, total=False):
     accessConfigs: typing.List[AccessConfig]
     aliasIpRanges: typing.List[AliasIpRange]
     fingerprint: str
+    internalIpv6PrefixLength: int
+    ipv6AccessConfigs: typing.List[AccessConfig]
     ipv6Address: str
     kind: str
     name: str
     network: str
     networkIP: str
+    nicType: typing_extensions.Literal["GVNIC", "UNSPECIFIED_NIC_TYPE", "VIRTIO_NET"]
     queueCount: int
+    stackType: typing_extensions.Literal[
+        "IPV4_IPV6", "IPV4_ONLY", "UNSPECIFIED_STACK_TYPE"
+    ]
     subnetwork: str
 
 @typing.type_check_only
@@ -4250,6 +4263,7 @@ class Router(typing_extensions.TypedDict, total=False):
     bgpPeers: typing.List[RouterBgpPeer]
     creationTimestamp: str
     description: str
+    encryptedInterconnectRouter: bool
     id: str
     interfaces: typing.List[RouterInterface]
     kind: str
@@ -4299,6 +4313,7 @@ class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     name: str
     peerAsn: int
     peerIpAddress: str
+    routerApplianceInstance: str
 
 @typing.type_check_only
 class RouterBgpPeerBfd(typing_extensions.TypedDict, total=False):
@@ -4321,6 +4336,9 @@ class RouterInterface(typing_extensions.TypedDict, total=False):
         "MANAGED_BY_ATTACHMENT", "MANAGED_BY_USER"
     ]
     name: str
+    privateIpAddress: str
+    redundantInterface: str
+    subnetwork: str
 
 @typing.type_check_only
 class RouterList(typing_extensions.TypedDict, total=False):
@@ -4486,6 +4504,7 @@ class Scheduling(typing_extensions.TypedDict, total=False):
     latencyTolerant: bool
     locationHint: str
     maintenanceFreezeDurationHours: int
+    maintenanceInterval: typing_extensions.Literal["PERIODIC"]
     minNodeCpus: int
     nodeAffinities: typing.List[SchedulingNodeAffinity]
     onHostMaintenance: typing_extensions.Literal["MIGRATE", "TERMINATE"]
@@ -4922,11 +4941,15 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
     description: str
     enableFlowLogs: bool
     enablePrivateV6Access: bool
+    externalIpv6Prefix: str
     fingerprint: str
     flowSampling: float
     gatewayAddress: str
     id: str
     ipCidrRange: str
+    ipv6AccessType: typing_extensions.Literal[
+        "EXTERNAL", "INTERNAL", "UNSPECIFIED_IPV6_ACCESS_TYPE"
+    ]
     ipv6CidrRange: str
     kind: str
     logConfig: SubnetworkLogConfig
@@ -4953,6 +4976,9 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
     secondaryIpRanges: typing.List[SubnetworkSecondaryRange]
     selfLink: str
     selfLinkWithId: str
+    stackType: typing_extensions.Literal[
+        "IPV4_IPV6", "IPV4_ONLY", "UNSPECIFIED_STACK_TYPE"
+    ]
     state: typing_extensions.Literal["DRAINING", "READY"]
 
 @typing.type_check_only
@@ -5124,6 +5150,7 @@ class TargetHttpsProxy(typing_extensions.TypedDict, total=False):
     certificateMap: str
     creationTimestamp: str
     description: str
+    httpFilters: typing.List[str]
     id: str
     kind: str
     name: str

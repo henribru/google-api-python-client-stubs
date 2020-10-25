@@ -2,11 +2,6 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
-class AdTechnologyProviders(typing_extensions.TypedDict, total=False):
-    detectedProviderIds: typing.List[str]
-    hasUnidentifiedProvider: bool
-
-@typing.type_check_only
 class AdvertiserAndBrand(typing_extensions.TypedDict, total=False):
     advertiserId: str
     advertiserName: str
@@ -43,9 +38,8 @@ class Creative(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreativeServingDecision(typing_extensions.TypedDict, total=False):
-    adTechnologyProviders: AdTechnologyProviders
-    chinaServingStatus: ServingStatus
-    dealsServingStatus: ServingStatus
+    chinaPolicyCompliance: PolicyCompliance
+    dealsPolicyCompliance: PolicyCompliance
     detectedAdvertisers: typing.List[AdvertiserAndBrand]
     detectedAttributes: typing.List[str]
     detectedClickThroughUrls: typing.List[str]
@@ -55,8 +49,9 @@ class CreativeServingDecision(typing_extensions.TypedDict, total=False):
     detectedSensitiveCategories: typing.List[int]
     detectedVendorIds: typing.List[int]
     lastStatusUpdate: str
-    openAuctionServingStatus: ServingStatus
-    russiaServingStatus: ServingStatus
+    networkPolicyCompliance: PolicyCompliance
+    platformPolicyCompliance: PolicyCompliance
+    russiaPolicyCompliance: PolicyCompliance
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -201,6 +196,13 @@ class NativeContent(typing_extensions.TypedDict, total=False):
 class OpenUserListRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class PolicyCompliance(typing_extensions.TypedDict, total=False):
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "PENDING_REVIEW", "DISAPPROVED", "APPROVED"
+    ]
+    topics: typing.List[PolicyTopicEntry]
+
+@typing.type_check_only
 class PolicyTopicEntry(typing_extensions.TypedDict, total=False):
     evidences: typing.List[PolicyTopicEvidence]
     helpCenterUrl: str
@@ -215,13 +217,6 @@ class PolicyTopicEvidence(typing_extensions.TypedDict, total=False):
     downloadSize: DownloadSizeEvidence
     httpCall: HttpCallEvidence
     httpCookie: HttpCookieEvidence
-
-@typing.type_check_only
-class ServingStatus(typing_extensions.TypedDict, total=False):
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "PENDING_REVIEW", "DISAPPROVED", "APPROVED"
-    ]
-    topics: typing.List[PolicyTopicEntry]
 
 @typing.type_check_only
 class UrlDownloadSize(typing_extensions.TypedDict, total=False):

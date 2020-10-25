@@ -7,6 +7,7 @@ class AttachTrustRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -21,7 +22,6 @@ class DetachTrustRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Domain(typing_extensions.TypedDict, total=False):
     admin: str
-    auditLogsEnabled: bool
     authorizedNetworks: typing.List[str]
     createTime: str
     fqdn: str
@@ -188,6 +188,12 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: typing.List[Operation]
 
 @typing.type_check_only
+class ListSQLIntegrationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sqlIntegrations: typing.List[SQLIntegration]
+    unreachable: typing.List[str]
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: typing.Dict[str, typing.Any]
@@ -230,6 +236,16 @@ class ResetAdminPasswordRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ResetAdminPasswordResponse(typing_extensions.TypedDict, total=False):
     password: str
+
+@typing.type_check_only
+class SQLIntegration(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    sqlInstance: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "DELETING", "READY"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
