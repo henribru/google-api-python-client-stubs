@@ -255,65 +255,109 @@ class ScriptResource(googleapiclient.discovery.Resource):
 @typing.type_check_only
 class ContentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Content: ...
 
 @typing.type_check_only
 class DeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Deployment: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Empty: ...
 
 @typing.type_check_only
 class ListDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListDeploymentsResponse: ...
 
 @typing.type_check_only
 class ListScriptProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListScriptProcessesResponse: ...
 
 @typing.type_check_only
 class ListUserProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListUserProcessesResponse: ...
 
 @typing.type_check_only
 class ListVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListVersionsResponse: ...
 
 @typing.type_check_only
 class MetricsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Metrics: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Operation: ...
 
 @typing.type_check_only
 class ProjectHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Project: ...
 
 @typing.type_check_only
 class VersionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Version: ...

@@ -212,107 +212,179 @@ class VaultResource(googleapiclient.discovery.Resource):
 @typing.type_check_only
 class AddHeldAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> AddHeldAccountsResponse: ...
 
 @typing.type_check_only
 class CloseMatterResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> CloseMatterResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Empty: ...
 
 @typing.type_check_only
 class ExportHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Export: ...
 
 @typing.type_check_only
 class HeldAccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> HeldAccount: ...
 
 @typing.type_check_only
 class HoldHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Hold: ...
 
 @typing.type_check_only
 class ListExportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListExportsResponse: ...
 
 @typing.type_check_only
 class ListHeldAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListHeldAccountsResponse: ...
 
 @typing.type_check_only
 class ListHoldsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListHoldsResponse: ...
 
 @typing.type_check_only
 class ListMattersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListMattersResponse: ...
 
 @typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
 class ListSavedQueriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListSavedQueriesResponse: ...
 
 @typing.type_check_only
 class MatterHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Matter: ...
 
 @typing.type_check_only
 class MatterPermissionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> MatterPermission: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Operation: ...
 
 @typing.type_check_only
 class RemoveHeldAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> RemoveHeldAccountsResponse: ...
 
 @typing.type_check_only
 class ReopenMatterResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ReopenMatterResponse: ...
 
 @typing.type_check_only
 class SavedQueryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> SavedQuery: ...

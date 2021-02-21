@@ -229,7 +229,11 @@ class GoogleAppsCloudidentityDevicesV1ClientStateHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleAppsCloudidentityDevicesV1ClientState: ...
 
 @typing.type_check_only
@@ -237,7 +241,11 @@ class GoogleAppsCloudidentityDevicesV1DeviceHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleAppsCloudidentityDevicesV1Device: ...
 
 @typing.type_check_only
@@ -245,7 +253,11 @@ class GoogleAppsCloudidentityDevicesV1DeviceUserHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleAppsCloudidentityDevicesV1DeviceUser: ...
 
 @typing.type_check_only
@@ -253,7 +265,11 @@ class GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleAppsCloudidentityDevicesV1ListClientStatesResponse: ...
 
 @typing.type_check_only
@@ -261,7 +277,11 @@ class GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse: ...
 
 @typing.type_check_only
@@ -269,7 +289,11 @@ class GoogleAppsCloudidentityDevicesV1ListDevicesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleAppsCloudidentityDevicesV1ListDevicesResponse: ...
 
 @typing.type_check_only
@@ -277,59 +301,99 @@ class GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse: ...
 
 @typing.type_check_only
 class GroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Group: ...
 
 @typing.type_check_only
 class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListGroupsResponse: ...
 
 @typing.type_check_only
 class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListMembershipsResponse: ...
 
 @typing.type_check_only
 class LookupGroupNameResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> LookupGroupNameResponse: ...
 
 @typing.type_check_only
 class LookupMembershipNameResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> LookupMembershipNameResponse: ...
 
 @typing.type_check_only
 class MembershipHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Membership: ...
 
 @typing.type_check_only
 class ModifyMembershipRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ModifyMembershipRolesResponse: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> Operation: ...
 
 @typing.type_check_only
 class SearchGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> SearchGroupsResponse: ...

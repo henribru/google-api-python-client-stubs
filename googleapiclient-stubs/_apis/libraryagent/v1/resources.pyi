@@ -42,7 +42,11 @@ class LibraryagentResource(googleapiclient.discovery.Resource):
 @typing.type_check_only
 class GoogleExampleLibraryagentV1BookHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleExampleLibraryagentV1Book: ...
 
 @typing.type_check_only
@@ -50,7 +54,11 @@ class GoogleExampleLibraryagentV1ListBooksResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleExampleLibraryagentV1ListBooksResponse: ...
 
 @typing.type_check_only
@@ -58,11 +66,19 @@ class GoogleExampleLibraryagentV1ListShelvesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleExampleLibraryagentV1ListShelvesResponse: ...
 
 @typing.type_check_only
 class GoogleExampleLibraryagentV1ShelfHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleExampleLibraryagentV1Shelf: ...

@@ -195,7 +195,11 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
 @typing.type_check_only
 class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleApiHttpBody: ...
 
 @typing.type_check_only
@@ -203,7 +207,11 @@ class GoogleCloudRecommendationengineV1beta1CatalogHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommendationengineV1beta1Catalog: ...
 
 @typing.type_check_only
@@ -211,7 +219,11 @@ class GoogleCloudRecommendationengineV1beta1CatalogItemHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommendationengineV1beta1CatalogItem: ...
 
 @typing.type_check_only
@@ -219,7 +231,11 @@ class GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse: ...
 
 @typing.type_check_only
@@ -227,7 +243,11 @@ class GoogleCloudRecommendationengineV1beta1ListCatalogsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommendationengineV1beta1ListCatalogsResponse: ...
 
 @typing.type_check_only
@@ -235,7 +255,11 @@ class GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsRes
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse: ...
 
 @typing.type_check_only
@@ -243,7 +267,11 @@ class GoogleCloudRecommendationengineV1beta1ListUserEventsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommendationengineV1beta1ListUserEventsResponse: ...
 
 @typing.type_check_only
@@ -251,7 +279,11 @@ class GoogleCloudRecommendationengineV1beta1PredictResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommendationengineV1beta1PredictResponse: ...
 
 @typing.type_check_only
@@ -259,7 +291,11 @@ class GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistrationHttpRequ
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration: ...
 
 @typing.type_check_only
@@ -267,7 +303,11 @@ class GoogleCloudRecommendationengineV1beta1UserEventHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommendationengineV1beta1UserEvent: ...
 
 @typing.type_check_only
@@ -275,17 +315,29 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

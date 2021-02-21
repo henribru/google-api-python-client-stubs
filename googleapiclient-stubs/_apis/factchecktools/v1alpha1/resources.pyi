@@ -62,7 +62,11 @@ class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage: ...
 
 @typing.type_check_only
@@ -70,7 +74,11 @@ class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttp
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse: ...
 
 @typing.type_check_only
@@ -78,11 +86,19 @@ class GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

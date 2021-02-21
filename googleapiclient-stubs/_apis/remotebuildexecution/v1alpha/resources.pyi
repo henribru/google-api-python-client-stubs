@@ -79,7 +79,11 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstanceHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance: ...
 
 @typing.type_check_only
@@ -87,7 +91,11 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponseHttpReq
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse: ...
 
 @typing.type_check_only
@@ -95,7 +103,11 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponseHttpR
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse: ...
 
 @typing.type_check_only
@@ -103,11 +115,19 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPoolHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleLongrunningOperation: ...

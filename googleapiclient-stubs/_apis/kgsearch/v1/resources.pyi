@@ -28,5 +28,9 @@ class KgsearchResource(googleapiclient.discovery.Resource):
 @typing.type_check_only
 class SearchResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> SearchResponse: ...

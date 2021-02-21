@@ -303,7 +303,7 @@ import googleapiclient._apis.youtubeAnalytics.v1.resources
 import googleapiclient._apis.youtubeAnalytics.v2.resources
 import googleapiclient._apis.youtubereporting.v1.resources
 from googleapiclient.discovery_cache.base import Cache
-from googleapiclient.http import HttpRequest
+from googleapiclient.http import HttpMock, HttpRequest
 from googleapiclient.model import Model
 
 class _BytesGenerator(BytesGenerator): ...
@@ -343,7 +343,7 @@ class Resource:
 def build(
     serviceName: Literal["abusiveexperiencereport"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -362,7 +362,7 @@ def build(
 def build(
     serviceName: Literal["acceleratedmobilepageurl"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -381,7 +381,7 @@ def build(
 def build(
     serviceName: Literal["accessapproval"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -400,7 +400,7 @@ def build(
 def build(
     serviceName: Literal["accesscontextmanager"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -419,7 +419,7 @@ def build(
 def build(
     serviceName: Literal["accesscontextmanager"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -438,7 +438,7 @@ def build(
 def build(
     serviceName: Literal["adexchangebuyer"],
     version: Literal["v1_2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -457,7 +457,7 @@ def build(
 def build(
     serviceName: Literal["adexchangebuyer"],
     version: Literal["v1_3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -476,7 +476,7 @@ def build(
 def build(
     serviceName: Literal["adexchangebuyer"],
     version: Literal["v1_4"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -495,7 +495,7 @@ def build(
 def build(
     serviceName: Literal["adexchangebuyer2"],
     version: Literal["v2beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -514,7 +514,7 @@ def build(
 def build(
     serviceName: Literal["adexperiencereport"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -533,7 +533,7 @@ def build(
 def build(
     serviceName: Literal["admin"],
     version: Literal["datatransfer_v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -552,7 +552,7 @@ def build(
 def build(
     serviceName: Literal["admin"],
     version: Literal["directory_v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -571,7 +571,7 @@ def build(
 def build(
     serviceName: Literal["admin"],
     version: Literal["reports_v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -590,7 +590,7 @@ def build(
 def build(
     serviceName: Literal["admob"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -609,7 +609,7 @@ def build(
 def build(
     serviceName: Literal["adsense"],
     version: Literal["v1_4"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -628,7 +628,7 @@ def build(
 def build(
     serviceName: Literal["adsensehost"],
     version: Literal["v4_1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -647,7 +647,7 @@ def build(
 def build(
     serviceName: Literal["alertcenter"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -666,7 +666,7 @@ def build(
 def build(
     serviceName: Literal["analytics"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -685,7 +685,7 @@ def build(
 def build(
     serviceName: Literal["analyticsadmin"],
     version: Literal["v1alpha"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -704,7 +704,7 @@ def build(
 def build(
     serviceName: Literal["analyticsdata"],
     version: Literal["v1alpha"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -723,7 +723,7 @@ def build(
 def build(
     serviceName: Literal["analyticsreporting"],
     version: Literal["v4"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -742,7 +742,7 @@ def build(
 def build(
     serviceName: Literal["androiddeviceprovisioning"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -761,7 +761,7 @@ def build(
 def build(
     serviceName: Literal["androidenterprise"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -780,7 +780,7 @@ def build(
 def build(
     serviceName: Literal["androidmanagement"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -799,7 +799,7 @@ def build(
 def build(
     serviceName: Literal["androidpublisher"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -818,7 +818,7 @@ def build(
 def build(
     serviceName: Literal["apigateway"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -837,7 +837,7 @@ def build(
 def build(
     serviceName: Literal["apigee"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -856,7 +856,7 @@ def build(
 def build(
     serviceName: Literal["appengine"],
     version: Literal["v1alpha"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -875,7 +875,7 @@ def build(
 def build(
     serviceName: Literal["appengine"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -894,7 +894,7 @@ def build(
 def build(
     serviceName: Literal["appengine"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -913,7 +913,7 @@ def build(
 def build(
     serviceName: Literal["area120tables"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -932,7 +932,7 @@ def build(
 def build(
     serviceName: Literal["artifactregistry"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -951,7 +951,7 @@ def build(
 def build(
     serviceName: Literal["assuredworkloads"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -970,7 +970,7 @@ def build(
 def build(
     serviceName: Literal["bigquery"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -989,7 +989,7 @@ def build(
 def build(
     serviceName: Literal["bigqueryconnection"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1008,7 +1008,7 @@ def build(
 def build(
     serviceName: Literal["bigquerydatatransfer"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1027,7 +1027,7 @@ def build(
 def build(
     serviceName: Literal["bigqueryreservation"],
     version: Literal["v1alpha2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1046,7 +1046,7 @@ def build(
 def build(
     serviceName: Literal["bigqueryreservation"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1065,7 +1065,7 @@ def build(
 def build(
     serviceName: Literal["bigqueryreservation"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1084,7 +1084,7 @@ def build(
 def build(
     serviceName: Literal["bigtableadmin"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1103,7 +1103,7 @@ def build(
 def build(
     serviceName: Literal["bigtableadmin"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1122,7 +1122,7 @@ def build(
 def build(
     serviceName: Literal["billingbudgets"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1141,7 +1141,7 @@ def build(
 def build(
     serviceName: Literal["billingbudgets"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1160,7 +1160,7 @@ def build(
 def build(
     serviceName: Literal["binaryauthorization"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1179,7 +1179,7 @@ def build(
 def build(
     serviceName: Literal["binaryauthorization"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1198,7 +1198,7 @@ def build(
 def build(
     serviceName: Literal["blogger"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1217,7 +1217,7 @@ def build(
 def build(
     serviceName: Literal["blogger"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1236,7 +1236,7 @@ def build(
 def build(
     serviceName: Literal["books"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1255,7 +1255,7 @@ def build(
 def build(
     serviceName: Literal["calendar"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1274,7 +1274,7 @@ def build(
 def build(
     serviceName: Literal["chat"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1293,7 +1293,7 @@ def build(
 def build(
     serviceName: Literal["chromeuxreport"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1312,7 +1312,7 @@ def build(
 def build(
     serviceName: Literal["civicinfo"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1331,7 +1331,7 @@ def build(
 def build(
     serviceName: Literal["classroom"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1350,7 +1350,7 @@ def build(
 def build(
     serviceName: Literal["cloudasset"],
     version: Literal["v1p1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1369,7 +1369,7 @@ def build(
 def build(
     serviceName: Literal["cloudasset"],
     version: Literal["v1p4beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1388,7 +1388,7 @@ def build(
 def build(
     serviceName: Literal["cloudasset"],
     version: Literal["v1p5beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1407,7 +1407,7 @@ def build(
 def build(
     serviceName: Literal["cloudasset"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1426,7 +1426,7 @@ def build(
 def build(
     serviceName: Literal["cloudasset"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1445,7 +1445,7 @@ def build(
 def build(
     serviceName: Literal["cloudbilling"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1464,7 +1464,7 @@ def build(
 def build(
     serviceName: Literal["cloudbuild"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1483,7 +1483,7 @@ def build(
 def build(
     serviceName: Literal["cloudbuild"],
     version: Literal["v1alpha2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1502,7 +1502,7 @@ def build(
 def build(
     serviceName: Literal["cloudbuild"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1521,7 +1521,7 @@ def build(
 def build(
     serviceName: Literal["clouddebugger"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1540,7 +1540,7 @@ def build(
 def build(
     serviceName: Literal["clouderrorreporting"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1559,7 +1559,7 @@ def build(
 def build(
     serviceName: Literal["cloudfunctions"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1578,7 +1578,7 @@ def build(
 def build(
     serviceName: Literal["cloudidentity"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1597,7 +1597,7 @@ def build(
 def build(
     serviceName: Literal["cloudidentity"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1616,7 +1616,7 @@ def build(
 def build(
     serviceName: Literal["cloudiot"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1635,7 +1635,7 @@ def build(
 def build(
     serviceName: Literal["cloudkms"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1654,7 +1654,7 @@ def build(
 def build(
     serviceName: Literal["cloudprofiler"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1673,7 +1673,7 @@ def build(
 def build(
     serviceName: Literal["cloudresourcemanager"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1692,7 +1692,7 @@ def build(
 def build(
     serviceName: Literal["cloudresourcemanager"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1711,7 +1711,7 @@ def build(
 def build(
     serviceName: Literal["cloudresourcemanager"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1730,7 +1730,7 @@ def build(
 def build(
     serviceName: Literal["cloudresourcemanager"],
     version: Literal["v2beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1749,7 +1749,7 @@ def build(
 def build(
     serviceName: Literal["cloudscheduler"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1768,7 +1768,7 @@ def build(
 def build(
     serviceName: Literal["cloudscheduler"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1787,7 +1787,7 @@ def build(
 def build(
     serviceName: Literal["cloudsearch"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1806,7 +1806,7 @@ def build(
 def build(
     serviceName: Literal["cloudshell"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1825,7 +1825,7 @@ def build(
 def build(
     serviceName: Literal["cloudshell"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1844,7 +1844,7 @@ def build(
 def build(
     serviceName: Literal["cloudtasks"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1863,7 +1863,7 @@ def build(
 def build(
     serviceName: Literal["cloudtasks"],
     version: Literal["v2beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1882,7 +1882,7 @@ def build(
 def build(
     serviceName: Literal["cloudtasks"],
     version: Literal["v2beta3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1901,7 +1901,7 @@ def build(
 def build(
     serviceName: Literal["cloudtrace"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1920,7 +1920,7 @@ def build(
 def build(
     serviceName: Literal["cloudtrace"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1939,7 +1939,7 @@ def build(
 def build(
     serviceName: Literal["cloudtrace"],
     version: Literal["v2beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1958,7 +1958,7 @@ def build(
 def build(
     serviceName: Literal["composer"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1977,7 +1977,7 @@ def build(
 def build(
     serviceName: Literal["composer"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -1996,7 +1996,7 @@ def build(
 def build(
     serviceName: Literal["compute"],
     version: Literal["alpha"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2015,7 +2015,7 @@ def build(
 def build(
     serviceName: Literal["compute"],
     version: Literal["beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2034,7 +2034,7 @@ def build(
 def build(
     serviceName: Literal["compute"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2053,7 +2053,7 @@ def build(
 def build(
     serviceName: Literal["container"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2072,7 +2072,7 @@ def build(
 def build(
     serviceName: Literal["container"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2091,7 +2091,7 @@ def build(
 def build(
     serviceName: Literal["containeranalysis"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2110,7 +2110,7 @@ def build(
 def build(
     serviceName: Literal["containeranalysis"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2129,7 +2129,7 @@ def build(
 def build(
     serviceName: Literal["content"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2148,7 +2148,7 @@ def build(
 def build(
     serviceName: Literal["content"],
     version: Literal["v2_1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2167,7 +2167,7 @@ def build(
 def build(
     serviceName: Literal["customsearch"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2186,7 +2186,7 @@ def build(
 def build(
     serviceName: Literal["datacatalog"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2205,7 +2205,7 @@ def build(
 def build(
     serviceName: Literal["dataflow"],
     version: Literal["v1b3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2224,7 +2224,7 @@ def build(
 def build(
     serviceName: Literal["datafusion"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2243,7 +2243,7 @@ def build(
 def build(
     serviceName: Literal["datafusion"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2262,7 +2262,7 @@ def build(
 def build(
     serviceName: Literal["dataproc"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2281,7 +2281,7 @@ def build(
 def build(
     serviceName: Literal["dataproc"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2300,7 +2300,7 @@ def build(
 def build(
     serviceName: Literal["datastore"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2319,7 +2319,7 @@ def build(
 def build(
     serviceName: Literal["datastore"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2338,7 +2338,7 @@ def build(
 def build(
     serviceName: Literal["datastore"],
     version: Literal["v1beta3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2357,7 +2357,7 @@ def build(
 def build(
     serviceName: Literal["deploymentmanager"],
     version: Literal["alpha"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2376,7 +2376,7 @@ def build(
 def build(
     serviceName: Literal["deploymentmanager"],
     version: Literal["v2beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2395,7 +2395,7 @@ def build(
 def build(
     serviceName: Literal["deploymentmanager"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2414,7 +2414,7 @@ def build(
 def build(
     serviceName: Literal["dfareporting"],
     version: Literal["v3_3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2433,7 +2433,7 @@ def build(
 def build(
     serviceName: Literal["dfareporting"],
     version: Literal["v3_4"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2452,7 +2452,7 @@ def build(
 def build(
     serviceName: Literal["dialogflow"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2471,7 +2471,7 @@ def build(
 def build(
     serviceName: Literal["dialogflow"],
     version: Literal["v2beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2490,7 +2490,7 @@ def build(
 def build(
     serviceName: Literal["dialogflow"],
     version: Literal["v3beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2509,7 +2509,7 @@ def build(
 def build(
     serviceName: Literal["digitalassetlinks"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2528,7 +2528,7 @@ def build(
 def build(
     serviceName: Literal["discovery"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2547,7 +2547,7 @@ def build(
 def build(
     serviceName: Literal["displayvideo"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2566,7 +2566,7 @@ def build(
 def build(
     serviceName: Literal["displayvideo"],
     version: Literal["v1dev"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2585,7 +2585,7 @@ def build(
 def build(
     serviceName: Literal["displayvideo"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2604,7 +2604,7 @@ def build(
 def build(
     serviceName: Literal["displayvideo"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2623,7 +2623,7 @@ def build(
 def build(
     serviceName: Literal["dlp"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2642,7 +2642,7 @@ def build(
 def build(
     serviceName: Literal["dns"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2661,7 +2661,7 @@ def build(
 def build(
     serviceName: Literal["dns"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2680,7 +2680,7 @@ def build(
 def build(
     serviceName: Literal["docs"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2699,7 +2699,7 @@ def build(
 def build(
     serviceName: Literal["documentai"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2718,7 +2718,7 @@ def build(
 def build(
     serviceName: Literal["documentai"],
     version: Literal["v1beta3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2737,7 +2737,7 @@ def build(
 def build(
     serviceName: Literal["domains"],
     version: Literal["v1alpha2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2756,7 +2756,7 @@ def build(
 def build(
     serviceName: Literal["domains"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2775,7 +2775,7 @@ def build(
 def build(
     serviceName: Literal["domainsrdap"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2794,7 +2794,7 @@ def build(
 def build(
     serviceName: Literal["doubleclickbidmanager"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2813,7 +2813,7 @@ def build(
 def build(
     serviceName: Literal["doubleclickbidmanager"],
     version: Literal["v1_1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2832,7 +2832,7 @@ def build(
 def build(
     serviceName: Literal["doubleclicksearch"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2851,7 +2851,7 @@ def build(
 def build(
     serviceName: Literal["drive"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2870,7 +2870,7 @@ def build(
 def build(
     serviceName: Literal["drive"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2889,7 +2889,7 @@ def build(
 def build(
     serviceName: Literal["driveactivity"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2908,7 +2908,7 @@ def build(
 def build(
     serviceName: Literal["eventarc"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2927,7 +2927,7 @@ def build(
 def build(
     serviceName: Literal["factchecktools"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2946,7 +2946,7 @@ def build(
 def build(
     serviceName: Literal["fcm"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2965,7 +2965,7 @@ def build(
 def build(
     serviceName: Literal["file"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -2984,7 +2984,7 @@ def build(
 def build(
     serviceName: Literal["file"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3003,7 +3003,7 @@ def build(
 def build(
     serviceName: Literal["firebase"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3022,7 +3022,7 @@ def build(
 def build(
     serviceName: Literal["firebasedynamiclinks"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3041,7 +3041,7 @@ def build(
 def build(
     serviceName: Literal["firebasehosting"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3060,7 +3060,7 @@ def build(
 def build(
     serviceName: Literal["firebasehosting"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3079,7 +3079,7 @@ def build(
 def build(
     serviceName: Literal["firebaseml"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3098,7 +3098,7 @@ def build(
 def build(
     serviceName: Literal["firebaseml"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3117,7 +3117,7 @@ def build(
 def build(
     serviceName: Literal["firebaserules"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3136,7 +3136,7 @@ def build(
 def build(
     serviceName: Literal["firestore"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3155,7 +3155,7 @@ def build(
 def build(
     serviceName: Literal["firestore"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3174,7 +3174,7 @@ def build(
 def build(
     serviceName: Literal["firestore"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3193,7 +3193,7 @@ def build(
 def build(
     serviceName: Literal["fitness"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3212,7 +3212,7 @@ def build(
 def build(
     serviceName: Literal["games"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3231,7 +3231,7 @@ def build(
 def build(
     serviceName: Literal["gamesConfiguration"],
     version: Literal["v1configuration"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3250,7 +3250,7 @@ def build(
 def build(
     serviceName: Literal["gamesManagement"],
     version: Literal["v1management"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3269,7 +3269,7 @@ def build(
 def build(
     serviceName: Literal["gameservices"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3288,7 +3288,7 @@ def build(
 def build(
     serviceName: Literal["gameservices"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3307,7 +3307,7 @@ def build(
 def build(
     serviceName: Literal["genomics"],
     version: Literal["v1alpha2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3326,7 +3326,7 @@ def build(
 def build(
     serviceName: Literal["genomics"],
     version: Literal["v2alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3345,7 +3345,7 @@ def build(
 def build(
     serviceName: Literal["genomics"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3364,7 +3364,7 @@ def build(
 def build(
     serviceName: Literal["gmail"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3383,7 +3383,7 @@ def build(
 def build(
     serviceName: Literal["gmailpostmastertools"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3402,7 +3402,7 @@ def build(
 def build(
     serviceName: Literal["groupsmigration"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3421,7 +3421,7 @@ def build(
 def build(
     serviceName: Literal["groupssettings"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3440,7 +3440,7 @@ def build(
 def build(
     serviceName: Literal["healthcare"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3459,7 +3459,7 @@ def build(
 def build(
     serviceName: Literal["healthcare"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3478,7 +3478,7 @@ def build(
 def build(
     serviceName: Literal["homegraph"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3497,7 +3497,7 @@ def build(
 def build(
     serviceName: Literal["iam"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3516,7 +3516,7 @@ def build(
 def build(
     serviceName: Literal["iamcredentials"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3535,7 +3535,7 @@ def build(
 def build(
     serviceName: Literal["iap"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3554,7 +3554,7 @@ def build(
 def build(
     serviceName: Literal["iap"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3573,7 +3573,7 @@ def build(
 def build(
     serviceName: Literal["identitytoolkit"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3592,7 +3592,7 @@ def build(
 def build(
     serviceName: Literal["indexing"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3611,7 +3611,7 @@ def build(
 def build(
     serviceName: Literal["jobs"],
     version: Literal["v3p1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3630,7 +3630,7 @@ def build(
 def build(
     serviceName: Literal["jobs"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3649,7 +3649,7 @@ def build(
 def build(
     serviceName: Literal["jobs"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3668,7 +3668,7 @@ def build(
 def build(
     serviceName: Literal["kgsearch"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3687,7 +3687,7 @@ def build(
 def build(
     serviceName: Literal["language"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3706,7 +3706,7 @@ def build(
 def build(
     serviceName: Literal["language"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3725,7 +3725,7 @@ def build(
 def build(
     serviceName: Literal["language"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3744,7 +3744,7 @@ def build(
 def build(
     serviceName: Literal["libraryagent"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3763,7 +3763,7 @@ def build(
 def build(
     serviceName: Literal["licensing"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3782,7 +3782,7 @@ def build(
 def build(
     serviceName: Literal["lifesciences"],
     version: Literal["v2beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3801,7 +3801,7 @@ def build(
 def build(
     serviceName: Literal["localservices"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3820,7 +3820,7 @@ def build(
 def build(
     serviceName: Literal["logging"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3839,7 +3839,7 @@ def build(
 def build(
     serviceName: Literal["managedidentities"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3858,7 +3858,7 @@ def build(
 def build(
     serviceName: Literal["managedidentities"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3877,7 +3877,7 @@ def build(
 def build(
     serviceName: Literal["managedidentities"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3896,7 +3896,7 @@ def build(
 def build(
     serviceName: Literal["manufacturers"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3915,7 +3915,7 @@ def build(
 def build(
     serviceName: Literal["memcache"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3934,7 +3934,7 @@ def build(
 def build(
     serviceName: Literal["ml"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3953,7 +3953,7 @@ def build(
 def build(
     serviceName: Literal["monitoring"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3972,7 +3972,7 @@ def build(
 def build(
     serviceName: Literal["monitoring"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -3991,7 +3991,7 @@ def build(
 def build(
     serviceName: Literal["networkmanagement"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4010,7 +4010,7 @@ def build(
 def build(
     serviceName: Literal["networkmanagement"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4029,7 +4029,7 @@ def build(
 def build(
     serviceName: Literal["oauth2"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4048,7 +4048,7 @@ def build(
 def build(
     serviceName: Literal["osconfig"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4067,7 +4067,7 @@ def build(
 def build(
     serviceName: Literal["osconfig"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4086,7 +4086,7 @@ def build(
 def build(
     serviceName: Literal["oslogin"],
     version: Literal["v1alpha"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4105,7 +4105,7 @@ def build(
 def build(
     serviceName: Literal["oslogin"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4124,7 +4124,7 @@ def build(
 def build(
     serviceName: Literal["oslogin"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4143,7 +4143,7 @@ def build(
 def build(
     serviceName: Literal["pagespeedonline"],
     version: Literal["v5"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4162,7 +4162,7 @@ def build(
 def build(
     serviceName: Literal["people"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4181,7 +4181,7 @@ def build(
 def build(
     serviceName: Literal["playablelocations"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4200,7 +4200,7 @@ def build(
 def build(
     serviceName: Literal["playcustomapp"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4219,7 +4219,7 @@ def build(
 def build(
     serviceName: Literal["policytroubleshooter"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4238,7 +4238,7 @@ def build(
 def build(
     serviceName: Literal["policytroubleshooter"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4257,7 +4257,7 @@ def build(
 def build(
     serviceName: Literal["poly"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4276,7 +4276,7 @@ def build(
 def build(
     serviceName: Literal["prod_tt_sasportal"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4295,7 +4295,7 @@ def build(
 def build(
     serviceName: Literal["pubsub"],
     version: Literal["v1beta1a"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4314,7 +4314,7 @@ def build(
 def build(
     serviceName: Literal["pubsub"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4333,7 +4333,7 @@ def build(
 def build(
     serviceName: Literal["pubsub"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4352,7 +4352,7 @@ def build(
 def build(
     serviceName: Literal["pubsublite"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4371,7 +4371,7 @@ def build(
 def build(
     serviceName: Literal["realtimebidding"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4390,7 +4390,7 @@ def build(
 def build(
     serviceName: Literal["recommendationengine"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4409,7 +4409,7 @@ def build(
 def build(
     serviceName: Literal["recommender"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4428,7 +4428,7 @@ def build(
 def build(
     serviceName: Literal["recommender"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4447,7 +4447,7 @@ def build(
 def build(
     serviceName: Literal["redis"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4466,7 +4466,7 @@ def build(
 def build(
     serviceName: Literal["redis"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4485,7 +4485,7 @@ def build(
 def build(
     serviceName: Literal["remotebuildexecution"],
     version: Literal["v1alpha"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4504,7 +4504,7 @@ def build(
 def build(
     serviceName: Literal["remotebuildexecution"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4523,7 +4523,7 @@ def build(
 def build(
     serviceName: Literal["remotebuildexecution"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4542,7 +4542,7 @@ def build(
 def build(
     serviceName: Literal["reseller"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4561,7 +4561,7 @@ def build(
 def build(
     serviceName: Literal["run"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4580,7 +4580,7 @@ def build(
 def build(
     serviceName: Literal["run"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4599,7 +4599,7 @@ def build(
 def build(
     serviceName: Literal["run"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4618,7 +4618,7 @@ def build(
 def build(
     serviceName: Literal["runtimeconfig"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4637,7 +4637,7 @@ def build(
 def build(
     serviceName: Literal["runtimeconfig"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4656,7 +4656,7 @@ def build(
 def build(
     serviceName: Literal["sasportal"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4675,7 +4675,7 @@ def build(
 def build(
     serviceName: Literal["script"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4694,7 +4694,7 @@ def build(
 def build(
     serviceName: Literal["searchconsole"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4713,7 +4713,7 @@ def build(
 def build(
     serviceName: Literal["secretmanager"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4732,7 +4732,7 @@ def build(
 def build(
     serviceName: Literal["secretmanager"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4751,7 +4751,7 @@ def build(
 def build(
     serviceName: Literal["securitycenter"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4770,7 +4770,7 @@ def build(
 def build(
     serviceName: Literal["securitycenter"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4789,7 +4789,7 @@ def build(
 def build(
     serviceName: Literal["securitycenter"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4808,7 +4808,7 @@ def build(
 def build(
     serviceName: Literal["serviceconsumermanagement"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4827,7 +4827,7 @@ def build(
 def build(
     serviceName: Literal["serviceconsumermanagement"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4846,7 +4846,7 @@ def build(
 def build(
     serviceName: Literal["servicecontrol"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4865,7 +4865,7 @@ def build(
 def build(
     serviceName: Literal["servicecontrol"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4884,7 +4884,7 @@ def build(
 def build(
     serviceName: Literal["servicedirectory"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4903,7 +4903,7 @@ def build(
 def build(
     serviceName: Literal["servicemanagement"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4922,7 +4922,7 @@ def build(
 def build(
     serviceName: Literal["servicenetworking"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4941,7 +4941,7 @@ def build(
 def build(
     serviceName: Literal["servicenetworking"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4960,7 +4960,7 @@ def build(
 def build(
     serviceName: Literal["serviceusage"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4979,7 +4979,7 @@ def build(
 def build(
     serviceName: Literal["serviceusage"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -4998,7 +4998,7 @@ def build(
 def build(
     serviceName: Literal["sheets"],
     version: Literal["v4"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5017,7 +5017,7 @@ def build(
 def build(
     serviceName: Literal["siteVerification"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5036,7 +5036,7 @@ def build(
 def build(
     serviceName: Literal["slides"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5055,7 +5055,7 @@ def build(
 def build(
     serviceName: Literal["smartdevicemanagement"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5074,7 +5074,7 @@ def build(
 def build(
     serviceName: Literal["sourcerepo"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5093,7 +5093,7 @@ def build(
 def build(
     serviceName: Literal["spanner"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5112,7 +5112,7 @@ def build(
 def build(
     serviceName: Literal["speech"],
     version: Literal["v1p1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5131,7 +5131,7 @@ def build(
 def build(
     serviceName: Literal["speech"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5150,7 +5150,7 @@ def build(
 def build(
     serviceName: Literal["speech"],
     version: Literal["v2beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5169,7 +5169,7 @@ def build(
 def build(
     serviceName: Literal["sqladmin"],
     version: Literal["v1beta4"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5188,7 +5188,7 @@ def build(
 def build(
     serviceName: Literal["storage"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5207,7 +5207,7 @@ def build(
 def build(
     serviceName: Literal["storagetransfer"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5226,7 +5226,7 @@ def build(
 def build(
     serviceName: Literal["streetviewpublish"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5245,7 +5245,7 @@ def build(
 def build(
     serviceName: Literal["sts"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5264,7 +5264,7 @@ def build(
 def build(
     serviceName: Literal["sts"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5283,7 +5283,7 @@ def build(
 def build(
     serviceName: Literal["tagmanager"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5302,7 +5302,7 @@ def build(
 def build(
     serviceName: Literal["tagmanager"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5321,7 +5321,7 @@ def build(
 def build(
     serviceName: Literal["tasks"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5340,7 +5340,7 @@ def build(
 def build(
     serviceName: Literal["testing"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5359,7 +5359,7 @@ def build(
 def build(
     serviceName: Literal["texttospeech"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5378,7 +5378,7 @@ def build(
 def build(
     serviceName: Literal["texttospeech"],
     version: Literal["v1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5397,7 +5397,7 @@ def build(
 def build(
     serviceName: Literal["toolresults"],
     version: Literal["v1beta3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5416,7 +5416,7 @@ def build(
 def build(
     serviceName: Literal["tpu"],
     version: Literal["v1alpha1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5435,7 +5435,7 @@ def build(
 def build(
     serviceName: Literal["tpu"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5454,7 +5454,7 @@ def build(
 def build(
     serviceName: Literal["trafficdirector"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5473,7 +5473,7 @@ def build(
 def build(
     serviceName: Literal["translate"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5492,7 +5492,7 @@ def build(
 def build(
     serviceName: Literal["translate"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5511,7 +5511,7 @@ def build(
 def build(
     serviceName: Literal["translate"],
     version: Literal["v3beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5530,7 +5530,7 @@ def build(
 def build(
     serviceName: Literal["vault"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5549,7 +5549,7 @@ def build(
 def build(
     serviceName: Literal["vectortile"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5568,7 +5568,7 @@ def build(
 def build(
     serviceName: Literal["verifiedaccess"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5587,7 +5587,7 @@ def build(
 def build(
     serviceName: Literal["videointelligence"],
     version: Literal["v1p1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5606,7 +5606,7 @@ def build(
 def build(
     serviceName: Literal["videointelligence"],
     version: Literal["v1p2beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5625,7 +5625,7 @@ def build(
 def build(
     serviceName: Literal["videointelligence"],
     version: Literal["v1p3beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5644,7 +5644,7 @@ def build(
 def build(
     serviceName: Literal["videointelligence"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5663,7 +5663,7 @@ def build(
 def build(
     serviceName: Literal["videointelligence"],
     version: Literal["v1beta2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5682,7 +5682,7 @@ def build(
 def build(
     serviceName: Literal["vision"],
     version: Literal["v1p1beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5701,7 +5701,7 @@ def build(
 def build(
     serviceName: Literal["vision"],
     version: Literal["v1p2beta1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5720,7 +5720,7 @@ def build(
 def build(
     serviceName: Literal["vision"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5739,7 +5739,7 @@ def build(
 def build(
     serviceName: Literal["webfonts"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5758,7 +5758,7 @@ def build(
 def build(
     serviceName: Literal["webmasters"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5777,7 +5777,7 @@ def build(
 def build(
     serviceName: Literal["websecurityscanner"],
     version: Literal["v1alpha"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5796,7 +5796,7 @@ def build(
 def build(
     serviceName: Literal["websecurityscanner"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5815,7 +5815,7 @@ def build(
 def build(
     serviceName: Literal["websecurityscanner"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5834,7 +5834,7 @@ def build(
 def build(
     serviceName: Literal["workflowexecutions"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5853,7 +5853,7 @@ def build(
 def build(
     serviceName: Literal["workflows"],
     version: Literal["v1beta"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5872,7 +5872,7 @@ def build(
 def build(
     serviceName: Literal["youtube"],
     version: Literal["v3"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5891,7 +5891,7 @@ def build(
 def build(
     serviceName: Literal["youtubeAnalytics"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5910,7 +5910,7 @@ def build(
 def build(
     serviceName: Literal["youtubeAnalytics"],
     version: Literal["v2"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5929,7 +5929,7 @@ def build(
 def build(
     serviceName: Literal["youtubereporting"],
     version: Literal["v1"],
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,
@@ -5948,7 +5948,7 @@ def build(
 def build(
     serviceName: str,
     version: str,
-    http: Optional[httplib2.Http] = ...,
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: str = ...,
     developerKey: Optional[str] = ...,
     model: Optional[Model] = ...,

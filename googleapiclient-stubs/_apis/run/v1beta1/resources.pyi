@@ -63,7 +63,11 @@ class CloudRunResource(googleapiclient.discovery.Resource):
 @typing.type_check_only
 class CustomResourceDefinitionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> CustomResourceDefinition: ...
 
 @typing.type_check_only
@@ -71,5 +75,9 @@ class ListCustomResourceDefinitionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> ListCustomResourceDefinitionsResponse: ...

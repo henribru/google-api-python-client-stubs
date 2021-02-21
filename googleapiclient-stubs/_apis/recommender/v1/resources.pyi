@@ -83,7 +83,11 @@ class RecommenderResource(googleapiclient.discovery.Resource):
 @typing.type_check_only
 class GoogleCloudRecommenderV1InsightHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1Insight: ...
 
 @typing.type_check_only
@@ -91,7 +95,11 @@ class GoogleCloudRecommenderV1ListInsightsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1ListInsightsResponse: ...
 
 @typing.type_check_only
@@ -99,7 +107,11 @@ class GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1ListRecommendationsResponse: ...
 
 @typing.type_check_only
@@ -107,5 +119,9 @@ class GoogleCloudRecommenderV1RecommendationHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
-        self, http: typing.Optional[httplib2.Http] = ..., num_retries: int = ...
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1Recommendation: ...
