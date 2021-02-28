@@ -19,13 +19,18 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                     self, *, parent: str, body: Job = ..., **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    legacyAppEngineCron: bool = ...,
+                    **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
+                    legacyAppEngineCron: bool = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any

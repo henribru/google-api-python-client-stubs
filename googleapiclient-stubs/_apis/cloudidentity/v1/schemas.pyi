@@ -2,9 +2,39 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class CheckTransitiveMembershipResponse(typing_extensions.TypedDict, total=False):
+    hasMembership: bool
+
+@typing.type_check_only
+class DynamicGroupMetadata(typing_extensions.TypedDict, total=False):
+    queries: typing.List[DynamicGroupQuery]
+    status: DynamicGroupStatus
+
+@typing.type_check_only
+class DynamicGroupQuery(typing_extensions.TypedDict, total=False):
+    query: str
+    resourceType: typing_extensions.Literal["RESOURCE_TYPE_UNSPECIFIED", "USER"]
+
+@typing.type_check_only
+class DynamicGroupStatus(typing_extensions.TypedDict, total=False):
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "UP_TO_DATE", "UPDATING_MEMBERSHIPS"
+    ]
+    statusTime: str
+
+@typing.type_check_only
 class EntityKey(typing_extensions.TypedDict, total=False):
     id: str
     namespace: str
+
+@typing.type_check_only
+class ExpiryDetail(typing_extensions.TypedDict, total=False):
+    expireTime: str
+
+@typing.type_check_only
+class GetMembershipGraphResponse(typing_extensions.TypedDict, total=False):
+    adjacencyList: typing.List[MembershipAdjacencyList]
+    groups: typing.List[Group]
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1AndroidAttributes(
@@ -243,11 +273,23 @@ class Group(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
+    dynamicGroupMetadata: DynamicGroupMetadata
     groupKey: EntityKey
     labels: typing.Dict[str, typing.Any]
     name: str
     parent: str
     updateTime: str
+
+@typing.type_check_only
+class GroupRelation(typing_extensions.TypedDict, total=False):
+    displayName: str
+    group: str
+    groupKey: EntityKey
+    labels: typing.Dict[str, typing.Any]
+    relationType: typing_extensions.Literal[
+        "RELATION_TYPE_UNSPECIFIED", "DIRECT", "INDIRECT", "DIRECT_AND_INDIRECT"
+    ]
+    roles: typing.List[TransitiveMembershipRole]
 
 @typing.type_check_only
 class ListGroupsResponse(typing_extensions.TypedDict, total=False):
@@ -268,6 +310,15 @@ class LookupMembershipNameResponse(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MemberRelation(typing_extensions.TypedDict, total=False):
+    member: str
+    preferredMemberKey: typing.List[EntityKey]
+    relationType: typing_extensions.Literal[
+        "RELATION_TYPE_UNSPECIFIED", "DIRECT", "INDIRECT", "DIRECT_AND_INDIRECT"
+    ]
+    roles: typing.List[TransitiveMembershipRole]
+
+@typing.type_check_only
 class Membership(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
@@ -279,13 +330,20 @@ class Membership(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class MembershipAdjacencyList(typing_extensions.TypedDict, total=False):
+    edges: typing.List[Membership]
+    group: str
+
+@typing.type_check_only
 class MembershipRole(typing_extensions.TypedDict, total=False):
+    expiryDetail: ExpiryDetail
     name: str
 
 @typing.type_check_only
 class ModifyMembershipRolesRequest(typing_extensions.TypedDict, total=False):
     addRoles: typing.List[MembershipRole]
     removeRoles: typing.List[str]
+    updateRolesParams: typing.List[UpdateMembershipRolesParams]
 
 @typing.type_check_only
 class ModifyMembershipRolesResponse(typing_extensions.TypedDict, total=False):
@@ -305,7 +363,35 @@ class SearchGroupsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class SearchTransitiveGroupsResponse(typing_extensions.TypedDict, total=False):
+    memberships: typing.List[GroupRelation]
+    nextPageToken: str
+
+@typing.type_check_only
+class SearchTransitiveMembershipsResponse(typing_extensions.TypedDict, total=False):
+    memberships: typing.List[MemberRelation]
+    nextPageToken: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TransitiveMembershipRole(typing_extensions.TypedDict, total=False):
+    role: str
+
+@typing.type_check_only
+class UpdateMembershipRolesParams(typing_extensions.TypedDict, total=False):
+    fieldMask: str
+    membershipRole: MembershipRole
+
+@typing.type_check_only
+class UserInvitation(typing_extensions.TypedDict, total=False):
+    mailsSentCount: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_YET_SENT", "INVITED", "ACCEPTED", "DECLINED"
+    ]
+    updateTime: str

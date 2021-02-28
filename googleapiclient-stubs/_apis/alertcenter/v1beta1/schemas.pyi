@@ -157,6 +157,7 @@ class GoogleOperations(typing_extensions.TypedDict, total=False):
     affectedUserEmails: typing.List[str]
     attachmentData: Attachment
     description: str
+    header: str
     title: str
 
 @typing.type_check_only

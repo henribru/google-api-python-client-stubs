@@ -67,8 +67,8 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            videoId: str,
             part: typing.Union[str, typing.List[str]],
+            videoId: str,
             id: typing.Union[str, typing.List[str]] = ...,
             onBehalfOf: str = ...,
             onBehalfOfContentOwner: str = ...,
@@ -267,18 +267,6 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             streamId: str = ...,
             **kwargs: typing.Any
         ) -> LiveBroadcastHttpRequest: ...
-        def control(
-            self,
-            *,
-            id: str,
-            part: typing.Union[str, typing.List[str]],
-            displaySlate: bool = ...,
-            offsetTimeMs: str = ...,
-            onBehalfOfContentOwner: str = ...,
-            onBehalfOfContentOwnerChannel: str = ...,
-            walltime: str = ...,
-            **kwargs: typing.Any
-        ) -> LiveBroadcastHttpRequest: ...
         def delete(
             self,
             *,
@@ -321,10 +309,10 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def transition(
             self,
             *,
-            id: str,
             broadcastStatus: typing_extensions.Literal[
                 "statusUnspecified", "testing", "live", "complete"
             ],
+            id: str,
             part: typing.Union[str, typing.List[str]],
             onBehalfOfContentOwner: str = ...,
             onBehalfOfContentOwnerChannel: str = ...,
@@ -589,19 +577,6 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> SearchListResponseHttpRequest: ...
     @typing.type_check_only
-    class SponsorsResource(googleapiclient.discovery.Resource):
-        def list(
-            self,
-            *,
-            part: typing.Union[str, typing.List[str]],
-            filter: typing_extensions.Literal[
-                "sponsorFilterUnknown", "newest", "all"
-            ] = ...,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> SponsorListResponseHttpRequest: ...
-    @typing.type_check_only
     class SubscriptionsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, id: str, **kwargs: typing.Any
@@ -816,7 +791,6 @@ class YouTubeResource(googleapiclient.discovery.Resource):
     def playlistItems(self) -> PlaylistItemsResource: ...
     def playlists(self) -> PlaylistsResource: ...
     def search(self) -> SearchResource: ...
-    def sponsors(self) -> SponsorsResource: ...
     def subscriptions(self) -> SubscriptionsResource: ...
     def superChatEvents(self) -> SuperChatEventsResource: ...
     def tests(self) -> TestsResource: ...
@@ -1136,16 +1110,6 @@ class SearchListResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> SearchListResponse: ...
-
-@typing.type_check_only
-class SponsorListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> SponsorListResponse: ...
 
 @typing.type_check_only
 class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):

@@ -16,6 +16,29 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DatasetsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class ConsentStoresResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+                @typing.type_check_only
                 class DicomStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class StudiesResource(googleapiclient.discovery.Resource):
@@ -301,6 +324,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             body: SearchResourcesRequest = ...,
                             **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
+                        def search_type(
+                            self,
+                            *,
+                            parent: str,
+                            resourceType: str,
+                            body: SearchResourcesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
                         def update(
                             self,
                             *,
@@ -576,6 +607,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def consentStores(self) -> ConsentStoresResource: ...
                 def dicomStores(self) -> DicomStoresResource: ...
                 def fhirStores(self) -> FhirStoresResource: ...
                 def hl7V2Stores(self) -> Hl7V2StoresResource: ...

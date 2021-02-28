@@ -143,6 +143,7 @@ class Client(typing_extensions.TypedDict, total=False):
     containerId: str
     fingerprint: str
     name: str
+    notes: str
     parameter: typing.List[Parameter]
     parentFolderId: str
     path: str
@@ -391,10 +392,26 @@ class ListZonesResponse(typing_extensions.TypedDict, total=False):
     zone: typing.List[Zone]
 
 @typing.type_check_only
-class MergeConflict(typing.Dict[str, typing.Any]): ...
+class MergeConflict(typing_extensions.TypedDict, total=False):
+    entityInBaseVersion: Entity
+    entityInWorkspace: Entity
 
 @typing.type_check_only
-class Parameter(typing.Dict[str, typing.Any]): ...
+class Parameter(typing_extensions.TypedDict, total=False):
+    key: str
+    list: typing.List[Parameter]
+    map: typing.List[Parameter]
+    type: typing_extensions.Literal[
+        "typeUnspecified",
+        "template",
+        "integer",
+        "boolean",
+        "list",
+        "map",
+        "triggerReference",
+        "tagReference",
+    ]
+    value: str
 
 @typing.type_check_only
 class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
@@ -451,7 +468,35 @@ class SyncWorkspaceResponse(typing_extensions.TypedDict, total=False):
     syncStatus: SyncStatus
 
 @typing.type_check_only
-class Tag(typing.Dict[str, typing.Any]): ...
+class Tag(typing_extensions.TypedDict, total=False):
+    accountId: str
+    blockingRuleId: typing.List[str]
+    blockingTriggerId: typing.List[str]
+    containerId: str
+    fingerprint: str
+    firingRuleId: typing.List[str]
+    firingTriggerId: typing.List[str]
+    liveOnly: bool
+    monitoringMetadata: Parameter
+    monitoringMetadataTagNameKey: str
+    name: str
+    notes: str
+    parameter: typing.List[Parameter]
+    parentFolderId: str
+    path: str
+    paused: bool
+    priority: Parameter
+    scheduleEndMs: str
+    scheduleStartMs: str
+    setupTag: typing.List[SetupTag]
+    tagFiringOption: typing_extensions.Literal[
+        "tagFiringOptionUnspecified", "unlimited", "oncePerEvent", "oncePerLoad"
+    ]
+    tagId: str
+    tagManagerUrl: str
+    teardownTag: typing.List[TeardownTag]
+    type: str
+    workspaceId: str
 
 @typing.type_check_only
 class TeardownTag(typing_extensions.TypedDict, total=False):
@@ -459,7 +504,72 @@ class TeardownTag(typing_extensions.TypedDict, total=False):
     tagName: str
 
 @typing.type_check_only
-class Trigger(typing.Dict[str, typing.Any]): ...
+class Trigger(typing_extensions.TypedDict, total=False):
+    accountId: str
+    autoEventFilter: typing.List[Condition]
+    checkValidation: Parameter
+    containerId: str
+    continuousTimeMinMilliseconds: Parameter
+    customEventFilter: typing.List[Condition]
+    eventName: Parameter
+    filter: typing.List[Condition]
+    fingerprint: str
+    horizontalScrollPercentageList: Parameter
+    interval: Parameter
+    intervalSeconds: Parameter
+    limit: Parameter
+    maxTimerLengthSeconds: Parameter
+    name: str
+    notes: str
+    parameter: typing.List[Parameter]
+    parentFolderId: str
+    path: str
+    selector: Parameter
+    tagManagerUrl: str
+    totalTimeMinMilliseconds: Parameter
+    triggerId: str
+    type: typing_extensions.Literal[
+        "eventTypeUnspecified",
+        "pageview",
+        "domReady",
+        "windowLoaded",
+        "customEvent",
+        "triggerGroup",
+        "always",
+        "firebaseAppException",
+        "firebaseAppUpdate",
+        "firebaseCampaign",
+        "firebaseFirstOpen",
+        "firebaseInAppPurchase",
+        "firebaseNotificationDismiss",
+        "firebaseNotificationForeground",
+        "firebaseNotificationOpen",
+        "firebaseNotificationReceive",
+        "firebaseOsUpdate",
+        "firebaseSessionStart",
+        "firebaseUserEngagement",
+        "formSubmission",
+        "click",
+        "linkClick",
+        "jsError",
+        "historyChange",
+        "timer",
+        "ampClick",
+        "ampTimer",
+        "ampScroll",
+        "ampVisibility",
+        "youTubeVideo",
+        "scrollDepth",
+        "elementVisibility",
+    ]
+    uniqueTriggerId: Parameter
+    verticalScrollPercentageList: Parameter
+    visibilitySelector: Parameter
+    visiblePercentageMax: Parameter
+    visiblePercentageMin: Parameter
+    waitForTags: Parameter
+    waitForTagsTimeout: Parameter
+    workspaceId: str
 
 @typing.type_check_only
 class UserPermission(typing_extensions.TypedDict, total=False):
@@ -470,10 +580,32 @@ class UserPermission(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class Variable(typing.Dict[str, typing.Any]): ...
+class Variable(typing_extensions.TypedDict, total=False):
+    accountId: str
+    containerId: str
+    disablingTriggerId: typing.List[str]
+    enablingTriggerId: typing.List[str]
+    fingerprint: str
+    formatValue: VariableFormatValue
+    name: str
+    notes: str
+    parameter: typing.List[Parameter]
+    parentFolderId: str
+    path: str
+    scheduleEndMs: str
+    scheduleStartMs: str
+    tagManagerUrl: str
+    type: str
+    variableId: str
+    workspaceId: str
 
 @typing.type_check_only
-class VariableFormatValue(typing.Dict[str, typing.Any]): ...
+class VariableFormatValue(typing_extensions.TypedDict, total=False):
+    caseConversionType: typing_extensions.Literal["none", "lowercase", "uppercase"]
+    convertFalseToValue: Parameter
+    convertNullToValue: Parameter
+    convertTrueToValue: Parameter
+    convertUndefinedToValue: Parameter
 
 @typing.type_check_only
 class Workspace(typing_extensions.TypedDict, total=False):
@@ -487,10 +619,24 @@ class Workspace(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class Zone(typing.Dict[str, typing.Any]): ...
+class Zone(typing_extensions.TypedDict, total=False):
+    accountId: str
+    boundary: ZoneBoundary
+    childContainer: typing.List[ZoneChildContainer]
+    containerId: str
+    fingerprint: str
+    name: str
+    notes: str
+    path: str
+    tagManagerUrl: str
+    typeRestriction: ZoneTypeRestriction
+    workspaceId: str
+    zoneId: str
 
 @typing.type_check_only
-class ZoneBoundary(typing.Dict[str, typing.Any]): ...
+class ZoneBoundary(typing_extensions.TypedDict, total=False):
+    condition: typing.List[Condition]
+    customEvaluationTriggerId: typing.List[str]
 
 @typing.type_check_only
 class ZoneChildContainer(typing_extensions.TypedDict, total=False):

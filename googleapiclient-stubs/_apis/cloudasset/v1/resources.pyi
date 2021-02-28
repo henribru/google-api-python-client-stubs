@@ -27,6 +27,34 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
+        def analyzeIamPolicy(
+            self,
+            *,
+            scope: str,
+            analysisQuery_accessSelector_permissions: typing.Union[
+                str, typing.List[str]
+            ] = ...,
+            analysisQuery_accessSelector_roles: typing.Union[
+                str, typing.List[str]
+            ] = ...,
+            analysisQuery_identitySelector_identity: str = ...,
+            analysisQuery_options_analyzeServiceAccountImpersonation: bool = ...,
+            analysisQuery_options_expandGroups: bool = ...,
+            analysisQuery_options_expandResources: bool = ...,
+            analysisQuery_options_expandRoles: bool = ...,
+            analysisQuery_options_outputGroupEdges: bool = ...,
+            analysisQuery_options_outputResourceEdges: bool = ...,
+            analysisQuery_resourceSelector_fullResourceName: str = ...,
+            executionTimeout: str = ...,
+            **kwargs: typing.Any
+        ) -> AnalyzeIamPolicyResponseHttpRequest: ...
+        def analyzeIamPolicyLongrunning(
+            self,
+            *,
+            scope: str,
+            body: AnalyzeIamPolicyLongrunningRequest = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def batchGetAssetsHistory(
             self,
             *,
@@ -38,6 +66,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
                 "IAM_POLICY",
                 "ORG_POLICY",
                 "ACCESS_POLICY",
+                "OS_INVENTORY",
             ] = ...,
             readTimeWindow_endTime: str = ...,
             readTimeWindow_startTime: str = ...,
@@ -69,6 +98,16 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
     def feeds(self) -> FeedsResource: ...
     def operations(self) -> OperationsResource: ...
     def v1(self) -> V1Resource: ...
+
+@typing.type_check_only
+class AnalyzeIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> AnalyzeIamPolicyResponse: ...
 
 @typing.type_check_only
 class BatchGetAssetsHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):

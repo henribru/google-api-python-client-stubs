@@ -244,7 +244,12 @@ class Instance(typing_extensions.TypedDict, total=False):
     vmId: str
     vmIp: str
     vmLiveness: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "UNKNOWN", "HEALTHY", "UNHEALTHY", "DRAINING", "TIMEOUT"
+        "LIVENESS_STATE_UNSPECIFIED",
+        "UNKNOWN",
+        "HEALTHY",
+        "UNHEALTHY",
+        "DRAINING",
+        "TIMEOUT",
     ]
     vmName: str
     vmStatus: str
@@ -321,6 +326,7 @@ class Location(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
     flexibleEnvironmentAvailable: bool
+    searchApiAvailable: bool
     standardEnvironmentAvailable: bool
 
 @typing.type_check_only
@@ -520,6 +526,7 @@ class UrlMap(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
     apiConfig: ApiConfigHandler
+    appEngineApis: bool
     automaticScaling: AutomaticScaling
     basicScaling: BasicScaling
     betaSettings: typing.Dict[str, typing.Any]

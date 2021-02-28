@@ -1,0 +1,317 @@
+import typing
+
+import typing_extensions
+@typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: typing.List[AuditLogConfig]
+    service: str
+
+@typing.type_check_only
+class AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: typing.List[str]
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
+
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: typing.List[str]
+    role: str
+
+@typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudSqlConnectionProfile(typing_extensions.TypedDict, total=False):
+    cloudSqlId: str
+    privateIp: str
+    publicIp: str
+    settings: CloudSqlSettings
+
+@typing.type_check_only
+class CloudSqlSettings(typing_extensions.TypedDict, total=False):
+    activationPolicy: typing_extensions.Literal[
+        "SQL_ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER"
+    ]
+    autoStorageIncrease: bool
+    dataDiskSizeGb: str
+    dataDiskType: typing_extensions.Literal[
+        "SQL_DATA_DISK_TYPE_UNSPECIFIED", "PD_SSD", "PD_HDD"
+    ]
+    databaseFlags: typing.Dict[str, typing.Any]
+    databaseVersion: typing_extensions.Literal[
+        "SQL_DATABASE_VERSION_UNSPECIFIED", "MYSQL_5_6", "MYSQL_5_7", "MYSQL_8_0"
+    ]
+    ipConfig: SqlIpConfig
+    rootPassword: str
+    rootPasswordSet: bool
+    sourceId: str
+    storageAutoResizeLimit: str
+    tier: str
+    userLabels: typing.Dict[str, typing.Any]
+    zone: str
+
+@typing.type_check_only
+class ConnectionProfile(typing_extensions.TypedDict, total=False):
+    cloudsql: CloudSqlConnectionProfile
+    createTime: str
+    displayName: str
+    error: Status
+    labels: typing.Dict[str, typing.Any]
+    mysql: MySqlConnectionProfile
+    name: str
+    provider: typing_extensions.Literal[
+        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS"
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "DRAFT",
+        "CREATING",
+        "READY",
+        "UPDATING",
+        "DELETING",
+        "DELETED",
+        "FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class DatabaseType(typing_extensions.TypedDict, total=False):
+    engine: typing_extensions.Literal["DATABASE_ENGINE_UNSPECIFIED", "MYSQL"]
+    provider: typing_extensions.Literal[
+        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS"
+    ]
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class GenerateSshScriptRequest(typing_extensions.TypedDict, total=False):
+    vm: str
+    vmCreationConfig: VmCreationConfig
+    vmPort: int
+    vmSelectionConfig: VmSelectionConfig
+
+@typing.type_check_only
+class GoogleCloudClouddmsV1beta1OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class ListConnectionProfilesResponse(typing_extensions.TypedDict, total=False):
+    connectionProfiles: typing.List[ConnectionProfile]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListMigrationJobsResponse(typing_extensions.TypedDict, total=False):
+    migrationJobs: typing.List[MigrationJob]
+    nextPageToken: str
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class MigrationJob(typing_extensions.TypedDict, total=False):
+    createTime: str
+    destination: str
+    destinationDatabase: DatabaseType
+    displayName: str
+    dumpPath: str
+    duration: str
+    endTime: str
+    error: Status
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    phase: typing_extensions.Literal[
+        "PHASE_UNSPECIFIED",
+        "FULL_DUMP",
+        "CDC",
+        "PROMOTE_IN_PROGRESS",
+        "WAITING_FOR_SOURCE_WRITES_TO_STOP",
+        "PREPARING_THE_DUMP",
+    ]
+    reverseSshConnectivity: ReverseSshConnectivity
+    source: str
+    sourceDatabase: DatabaseType
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "MAINTENANCE",
+        "DRAFT",
+        "CREATING",
+        "NOT_STARTED",
+        "RUNNING",
+        "FAILED",
+        "COMPLETED",
+        "DELETING",
+        "STOPPING",
+        "STOPPED",
+        "DELETED",
+        "UPDATING",
+        "STARTING",
+        "RESTARTING",
+        "RESUMING",
+    ]
+    staticIpConnectivity: StaticIpConnectivity
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ONE_TIME", "CONTINUOUS"]
+    updateTime: str
+    vpcPeeringConnectivity: VpcPeeringConnectivity
+
+@typing.type_check_only
+class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
+    errorCode: typing_extensions.Literal[
+        "ERROR_CODE_UNSPECIFIED",
+        "CONNECTION_FAILURE",
+        "AUTHENTICATION_FAILURE",
+        "INVALID_CONNECTION_PROFILE_CONFIG",
+        "VERSION_INCOMPATIBILITY",
+        "CONNECTION_PROFILE_TYPES_INCOMPATIBILITY",
+        "UNSUPPORTED_GTID_MODE",
+        "UNSUPPORTED_DEFINER",
+    ]
+    errorDetailMessage: str
+    errorMessage: str
+
+@typing.type_check_only
+class MySqlConnectionProfile(typing_extensions.TypedDict, total=False):
+    cloudSqlId: str
+    host: str
+    password: str
+    passwordSet: bool
+    port: int
+    ssl: SslConfig
+    username: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: typing.List[AuditConfig]
+    bindings: typing.List[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class PromoteMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RestartMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ResumeMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ReverseSshConnectivity(typing_extensions.TypedDict, total=False):
+    vm: str
+    vmIp: str
+    vmPort: int
+    vpc: str
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
+class SqlAclEntry(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    label: str
+    ttl: str
+    value: str
+
+@typing.type_check_only
+class SqlIpConfig(typing_extensions.TypedDict, total=False):
+    authorizedNetworks: typing.List[SqlAclEntry]
+    enableIpv4: bool
+    privateNetwork: str
+    requireSsl: bool
+
+@typing.type_check_only
+class SshScript(typing_extensions.TypedDict, total=False):
+    script: str
+
+@typing.type_check_only
+class SslConfig(typing_extensions.TypedDict, total=False):
+    caCertificate: str
+    clientCertificate: str
+    clientKey: str
+    type: typing_extensions.Literal[
+        "SSL_TYPE_UNSPECIFIED", "SERVER_ONLY", "SERVER_CLIENT"
+    ]
+
+@typing.type_check_only
+class StartMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class StaticIpConnectivity(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class StopMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+
+@typing.type_check_only
+class VerifyMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class VmCreationConfig(typing_extensions.TypedDict, total=False):
+    subnet: str
+    vmMachineType: str
+    vmZone: str
+
+@typing.type_check_only
+class VmSelectionConfig(typing_extensions.TypedDict, total=False):
+    vmZone: str
+
+@typing.type_check_only
+class VpcPeeringConnectivity(typing_extensions.TypedDict, total=False):
+    vpc: str

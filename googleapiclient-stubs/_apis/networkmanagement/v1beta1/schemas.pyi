@@ -32,6 +32,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
+    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -187,6 +188,15 @@ class InstanceInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class LatencyDistribution(typing_extensions.TypedDict, total=False):
+    latencyPercentiles: typing.List[LatencyPercentile]
+
+@typing.type_check_only
+class LatencyPercentile(typing_extensions.TypedDict, total=False):
+    latencyMicros: str
+    percent: int
+
+@typing.type_check_only
 class ListConnectivityTestsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: typing.List[ConnectivityTest]
@@ -275,6 +285,7 @@ class ProbingDetails(typing_extensions.TypedDict, total=False):
     ]
     endpointInfo: EndpointInfo
     error: Status
+    probingLatency: LatencyDistribution
     result: typing_extensions.Literal[
         "PROBING_RESULT_UNSPECIFIED",
         "REACHABLE",

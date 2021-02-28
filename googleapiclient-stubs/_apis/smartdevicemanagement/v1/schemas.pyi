@@ -55,12 +55,4 @@ class GoogleHomeEnterpriseSdmV1Room(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleHomeEnterpriseSdmV1Structure(typing_extensions.TypedDict, total=False):
     name: str
-    parentRelations: typing.List[GoogleHomeEnterpriseSdmV1StructureParentRelation]
     traits: typing.Dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleHomeEnterpriseSdmV1StructureParentRelation(
-    typing_extensions.TypedDict, total=False
-):
-    displayName: str
-    parent: str

@@ -7,14 +7,6 @@ class SasPortalAssignment(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
-class SasPortalBulkCreateDeviceRequest(typing_extensions.TypedDict, total=False):
-    csv: str
-
-@typing.type_check_only
-class SasPortalBulkCreateDeviceResponse(typing_extensions.TypedDict, total=False):
-    devices: typing.List[SasPortalDevice]
-
-@typing.type_check_only
 class SasPortalCreateSignedDeviceRequest(typing_extensions.TypedDict, total=False):
     encodedDevice: str
     installerId: str
@@ -26,11 +18,22 @@ class SasPortalCustomer(typing_extensions.TypedDict, total=False):
     sasUserIds: typing.List[str]
 
 @typing.type_check_only
+class SasPortalDeployment(typing_extensions.TypedDict, total=False):
+    allowedBillingModes: typing.List[str]
+    defaultBillingMode: typing_extensions.Literal[
+        "BILLING_MODE_UNSPECIFIED", "MOBILE", "FIXED_WIRELESS"
+    ]
+    displayName: str
+    name: str
+    sasUserIds: typing.List[str]
+
+@typing.type_check_only
 class SasPortalDevice(typing_extensions.TypedDict, total=False):
     activeConfig: SasPortalDeviceConfig
     deviceMetadata: SasPortalDeviceMetadata
     displayName: str
     fccId: str
+    grantRangeAllowlists: typing.List[SasPortalFrequencyRange]
     grants: typing.List[SasPortalDeviceGrant]
     name: str
     preloadedConfig: SasPortalDeviceConfig
@@ -148,6 +151,11 @@ class SasPortalInstallationParams(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SasPortalListCustomersResponse(typing_extensions.TypedDict, total=False):
     customers: typing.List[SasPortalCustomer]
+    nextPageToken: str
+
+@typing.type_check_only
+class SasPortalListDeploymentsResponse(typing_extensions.TypedDict, total=False):
+    deployments: typing.List[SasPortalDeployment]
     nextPageToken: str
 
 @typing.type_check_only

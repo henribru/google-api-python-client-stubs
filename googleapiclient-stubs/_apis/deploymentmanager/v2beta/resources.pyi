@@ -8,7 +8,7 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 @typing.type_check_only
-class DeploymentManagerV2BetaResource(googleapiclient.discovery.Resource):
+class DeploymentManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class CompositeTypesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -61,14 +61,19 @@ class DeploymentManagerV2BetaResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             deployment: str,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
             self, *, project: str, deployment: str, **kwargs: typing.Any
         ) -> DeploymentHttpRequest: ...
         def getIamPolicy(
-            self, *, project: str, resource: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def insert(
             self,
@@ -76,7 +81,7 @@ class DeploymentManagerV2BetaResource(googleapiclient.discovery.Resource):
             project: str,
             body: Deployment = ...,
             createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
+                "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
             preview: bool = ...,
             **kwargs: typing.Any
@@ -98,9 +103,9 @@ class DeploymentManagerV2BetaResource(googleapiclient.discovery.Resource):
             deployment: str,
             body: Deployment = ...,
             createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
+                "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             preview: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -135,9 +140,9 @@ class DeploymentManagerV2BetaResource(googleapiclient.discovery.Resource):
             deployment: str,
             body: Deployment = ...,
             createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
+                "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             preview: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...

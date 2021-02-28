@@ -10,10 +10,68 @@ from .schemas import *
 @typing.type_check_only
 class HangoutsChatResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class DmsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class ConversationsResource(googleapiclient.discovery.Resource):
+            def messages(
+                self,
+                *,
+                parent: str,
+                body: Message = ...,
+                threadKey: str = ...,
+                **kwargs: typing.Any
+            ) -> MessageHttpRequest: ...
+        def messages(
+            self,
+            *,
+            parent: str,
+            body: Message = ...,
+            threadKey: str = ...,
+            **kwargs: typing.Any
+        ) -> MessageHttpRequest: ...
+        def webhooks(
+            self,
+            *,
+            parent: str,
+            body: Message = ...,
+            threadKey: str = ...,
+            **kwargs: typing.Any
+        ) -> MessageHttpRequest: ...
+        def conversations(self) -> ConversationsResource: ...
+    @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
         ) -> MediaHttpRequest: ...
+    @typing.type_check_only
+    class RoomsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class ConversationsResource(googleapiclient.discovery.Resource):
+            def messages(
+                self,
+                *,
+                parent: str,
+                body: Message = ...,
+                threadKey: str = ...,
+                **kwargs: typing.Any
+            ) -> MessageHttpRequest: ...
+        def messages(
+            self,
+            *,
+            parent: str,
+            body: Message = ...,
+            threadKey: str = ...,
+            **kwargs: typing.Any
+        ) -> MessageHttpRequest: ...
+        def webhooks(
+            self,
+            *,
+            parent: str,
+            body: Message = ...,
+            threadKey: str = ...,
+            **kwargs: typing.Any
+        ) -> MessageHttpRequest: ...
+        def conversations(self) -> ConversationsResource: ...
     @typing.type_check_only
     class SpacesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -61,9 +119,19 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListSpacesResponseHttpRequest: ...
+        def webhooks(
+            self,
+            *,
+            parent: str,
+            body: Message = ...,
+            threadKey: str = ...,
+            **kwargs: typing.Any
+        ) -> MessageHttpRequest: ...
         def members(self) -> MembersResource: ...
         def messages(self) -> MessagesResource: ...
+    def dms(self) -> DmsResource: ...
     def media(self) -> MediaResource: ...
+    def rooms(self) -> RoomsResource: ...
     def spaces(self) -> SpacesResource: ...
 
 @typing.type_check_only

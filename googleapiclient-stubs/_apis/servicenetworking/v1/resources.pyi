@@ -104,6 +104,16 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                         def list(
                             self, *, parent: str, **kwargs: typing.Any
                         ) -> ListPeeredDnsDomainsResponseHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ConsumerConfigHttpRequest: ...
+                    def updateConsumerConfig(
+                        self,
+                        *,
+                        parent: str,
+                        body: UpdateConsumerConfigRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def peeredDnsDomains(self) -> PeeredDnsDomainsResource: ...
                 def networks(self) -> NetworksResource: ...
             def global_(self) -> GlobalResource: ...
@@ -146,6 +156,16 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
         def roles(self) -> RolesResource: ...
     def operations(self) -> OperationsResource: ...
     def services(self) -> ServicesResource: ...
+
+@typing.type_check_only
+class ConsumerConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ConsumerConfig: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

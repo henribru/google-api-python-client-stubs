@@ -3,6 +3,7 @@ import typing
 import typing_extensions
 @typing.type_check_only
 class Area(typing_extensions.TypedDict, total=False):
+    basemapZOrder: BasemapZOrder
     hasExternalEdges: bool
     internalEdges: typing.List[int]
     loopBreaks: typing.List[int]
@@ -12,6 +13,12 @@ class Area(typing_extensions.TypedDict, total=False):
     ]
     vertexOffsets: Vertex2DList
     zOrder: int
+
+@typing.type_check_only
+class BasemapZOrder(typing_extensions.TypedDict, total=False):
+    zGrade: int
+    zPlane: int
+    zWithinGrade: int
 
 @typing.type_check_only
 class ExtrudedArea(typing_extensions.TypedDict, total=False):
@@ -81,6 +88,7 @@ class Geometry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Line(typing_extensions.TypedDict, total=False):
+    basemapZOrder: BasemapZOrder
     vertexOffsets: Vertex2DList
     zOrder: int
 

@@ -35,120 +35,6 @@ class Capabilities(typing_extensions.TypedDict, total=False):
     drop: typing.List[str]
 
 @typing.type_check_only
-class CloudAuditLogsSource(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    kind: str
-    metadata: ObjectMeta
-    spec: CloudAuditLogsSourceSpec
-    status: CloudAuditLogsSourceStatus
-
-@typing.type_check_only
-class CloudAuditLogsSourceSpec(typing_extensions.TypedDict, total=False):
-    ceOverrides: CloudEventOverrides
-    methodName: str
-    resourceName: str
-    serviceAccountName: str
-    serviceName: str
-    sink: Destination
-
-@typing.type_check_only
-class CloudAuditLogsSourceStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[Condition]
-    observedGeneration: int
-    sinkUri: str
-
-@typing.type_check_only
-class CloudEventOverrides(typing_extensions.TypedDict, total=False):
-    extensions: typing.Dict[str, typing.Any]
-
-@typing.type_check_only
-class CloudPubSubSource(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    kind: str
-    metadata: ObjectMeta
-    spec: CloudPubSubSourceSpec
-    status: CloudPubSubSourceStatus
-
-@typing.type_check_only
-class CloudPubSubSourceSpec(typing_extensions.TypedDict, total=False):
-    ackDeadline: str
-    ceOverrides: CloudEventOverrides
-    project: str
-    pubsubSecret: SecretKeySelector
-    retainAckedMessages: bool
-    retentionDuration: str
-    secret: SecretKeySelector
-    sink: Destination
-    topic: str
-
-@typing.type_check_only
-class CloudPubSubSourceStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[Condition]
-    observedGeneration: int
-    sinkUri: str
-
-@typing.type_check_only
-class CloudSchedulerSource(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    kind: str
-    metadata: ObjectMeta
-    spec: CloudSchedulerSourceSpec
-    status: CloudSchedulerSourceStatus
-
-@typing.type_check_only
-class CloudSchedulerSourceSpec(typing_extensions.TypedDict, total=False):
-    ceOverrides: CloudEventOverrides
-    data: str
-    location: str
-    project: str
-    pubsubSecret: SecretKeySelector
-    schedule: str
-    secret: SecretKeySelector
-    sink: Destination
-
-@typing.type_check_only
-class CloudSchedulerSourceStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[Condition]
-    observedGeneration: int
-    sinkUri: str
-
-@typing.type_check_only
-class CloudStorageSource(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    kind: str
-    metadata: ObjectMeta
-    spec: CloudStorageSourceSpec
-    status: CloudStorageSourceStatus
-
-@typing.type_check_only
-class CloudStorageSourceSpec(typing_extensions.TypedDict, total=False):
-    bucket: str
-    ceOverrides: CloudEventOverrides
-    eventTypes: typing.List[str]
-    objectNamePrefix: str
-    payloadFormat: str
-    project: str
-    pubsubSecret: SecretKeySelector
-    secret: SecretKeySelector
-    serviceAccountName: str
-    sink: Destination
-
-@typing.type_check_only
-class CloudStorageSourceStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[Condition]
-    observedGeneration: int
-    sinkUri: str
-
-@typing.type_check_only
-class Condition(typing_extensions.TypedDict, total=False):
-    lastTransitionTime: str
-    message: str
-    reason: str
-    severity: str
-    status: str
-    type: str
-
-@typing.type_check_only
 class ConfigMapEnvSource(typing_extensions.TypedDict, total=False):
     localObjectReference: LocalObjectReference
     name: str
@@ -229,11 +115,6 @@ class ContainerPort(typing_extensions.TypedDict, total=False):
     hostPort: int
     name: str
     protocol: str
-
-@typing.type_check_only
-class Destination(typing_extensions.TypedDict, total=False):
-    ref: ObjectReference
-    uri: str
 
 @typing.type_check_only
 class DomainMapping(typing_extensions.TypedDict, total=False):
@@ -319,10 +200,71 @@ class Handler(typing_extensions.TypedDict, total=False):
     tcpSocket: TCPSocketAction
 
 @typing.type_check_only
+class InstanceSpec(typing_extensions.TypedDict, total=False):
+    activeDeadlineSeconds: str
+    containers: typing.List[Container]
+    restartPolicy: str
+    serviceAccountName: str
+    terminationGracePeriodSeconds: str
+    volumes: typing.List[Volume]
+
+@typing.type_check_only
+class InstanceStatus(typing_extensions.TypedDict, total=False):
+    completionTime: str
+    failed: int
+    index: int
+    lastExitCode: int
+    restarted: int
+    startTime: str
+    succeeded: int
+
+@typing.type_check_only
+class InstanceTemplateSpec(typing_extensions.TypedDict, total=False):
+    spec: InstanceSpec
+
+@typing.type_check_only
 class IntOrString(typing_extensions.TypedDict, total=False):
     intVal: int
     strVal: str
     type: int
+
+@typing.type_check_only
+class Job(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: JobSpec
+    status: JobStatus
+
+@typing.type_check_only
+class JobCondition(typing_extensions.TypedDict, total=False):
+    lastTransitionTime: str
+    message: str
+    reason: str
+    severity: str
+    status: str
+    type: str
+
+@typing.type_check_only
+class JobSpec(typing_extensions.TypedDict, total=False):
+    activeDeadlineSeconds: str
+    backoffLimit: int
+    completions: int
+    parallelism: int
+    template: InstanceTemplateSpec
+    ttlSecondsAfterFinished: int
+
+@typing.type_check_only
+class JobStatus(typing_extensions.TypedDict, total=False):
+    active: int
+    completionTime: str
+    conditions: typing.List[JobCondition]
+    failed: int
+    imageDigest: str
+    instances: typing.List[InstanceStatus]
+    observedGeneration: int
+    startTime: str
+    succeeded: int
 
 @typing.type_check_only
 class KeyToPath(typing_extensions.TypedDict, total=False):
@@ -341,38 +283,6 @@ class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListCloudAuditLogsSourcesResponse(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    items: typing.List[CloudAuditLogsSource]
-    kind: str
-    metadata: ListMeta
-    unreachable: typing.List[str]
-
-@typing.type_check_only
-class ListCloudPubSubSourcesResponse(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    items: typing.List[CloudPubSubSource]
-    kind: str
-    metadata: ListMeta
-    unreachable: typing.List[str]
-
-@typing.type_check_only
-class ListCloudSchedulerSourcesResponse(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    items: typing.List[CloudSchedulerSource]
-    kind: str
-    metadata: ListMeta
-    unreachable: typing.List[str]
-
-@typing.type_check_only
-class ListCloudStorageSourcesResponse(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    items: typing.List[CloudStorageSource]
-    kind: str
-    metadata: ListMeta
-    unreachable: typing.List[str]
-
-@typing.type_check_only
 class ListConfigurationsResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
     items: typing.List[Configuration]
@@ -386,6 +296,15 @@ class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
     items: typing.List[DomainMapping]
     kind: str
     metadata: ListMeta
+    unreachable: typing.List[str]
+
+@typing.type_check_only
+class ListJobsResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: typing.List[Job]
+    kind: str
+    metadata: ListMeta
+    nextPageToken: str
     unreachable: typing.List[str]
 
 @typing.type_check_only
@@ -430,14 +349,6 @@ class ListServicesResponse(typing_extensions.TypedDict, total=False):
     unreachable: typing.List[str]
 
 @typing.type_check_only
-class ListTriggersResponse(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    items: typing.List[Trigger]
-    kind: str
-    metadata: ListMeta
-    unreachable: typing.List[str]
-
-@typing.type_check_only
 class LocalObjectReference(typing_extensions.TypedDict, total=False):
     name: str
 
@@ -465,16 +376,6 @@ class ObjectMeta(typing_extensions.TypedDict, total=False):
     ownerReferences: typing.List[OwnerReference]
     resourceVersion: str
     selfLink: str
-    uid: str
-
-@typing.type_check_only
-class ObjectReference(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    fieldPath: str
-    kind: str
-    name: str
-    namespace: str
-    resourceVersion: str
     uid: str
 
 @typing.type_check_only
@@ -716,39 +617,6 @@ class TrafficTarget(typing_extensions.TypedDict, total=False):
     revisionName: str
     tag: str
     url: str
-
-@typing.type_check_only
-class Trigger(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    kind: str
-    metadata: ObjectMeta
-    spec: TriggerSpec
-    status: TriggerStatus
-
-@typing.type_check_only
-class TriggerCondition(typing_extensions.TypedDict, total=False):
-    lastTransitionTime: str
-    message: str
-    reason: str
-    severity: str
-    status: str
-    type: str
-
-@typing.type_check_only
-class TriggerFilter(typing_extensions.TypedDict, total=False):
-    attributes: typing.Dict[str, typing.Any]
-
-@typing.type_check_only
-class TriggerSpec(typing_extensions.TypedDict, total=False):
-    broker: str
-    filter: TriggerFilter
-    subscriber: Destination
-
-@typing.type_check_only
-class TriggerStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[TriggerCondition]
-    observedGeneration: int
-    subscriberUri: str
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):

@@ -45,10 +45,17 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Trigger = ...,
                     triggerId: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    allowMissing: bool = ...,
+                    etag: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -74,7 +81,9 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Trigger = ...,
+                    allowMissing: bool = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(

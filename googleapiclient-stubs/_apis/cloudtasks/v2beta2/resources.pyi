@@ -105,6 +105,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    readMask: str = ...,
                     **kwargs: typing.Any
                 ) -> ListQueuesResponseHttpRequest: ...
                 def patch(

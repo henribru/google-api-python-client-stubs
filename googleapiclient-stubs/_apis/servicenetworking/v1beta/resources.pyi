@@ -17,7 +17,11 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ConnectionsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Connection = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudServicenetworkingV1betaConnection = ...,
+                **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def list(
                 self, *, parent: str, network: str = ..., **kwargs: typing.Any
@@ -32,7 +36,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            body: Connection = ...,
+            body: GoogleCloudServicenetworkingV1betaConnection = ...,
             force: bool = ...,
             updateMask: str = ...,
             **kwargs: typing.Any

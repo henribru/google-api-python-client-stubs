@@ -3,7 +3,6 @@ import typing
 import typing_extensions
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str

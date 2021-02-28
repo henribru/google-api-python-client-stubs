@@ -103,6 +103,9 @@ class CrashDialogError(typing_extensions.TypedDict, total=False):
     crashPackage: str
 
 @typing.type_check_only
+class DeviceOutOfMemory(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Duration(typing_extensions.TypedDict, total=False):
     nanos: int
     seconds: str
@@ -308,6 +311,9 @@ class ListStepsResponse(typing_extensions.TypedDict, total=False):
 class ListTestCasesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     testCases: typing.List[TestCase]
+
+@typing.type_check_only
+class LogcatCollectionError(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class MatrixDimensionDefinition(typing_extensions.TypedDict, total=False): ...
@@ -633,6 +639,8 @@ class TestIssue(typing_extensions.TypedDict, total=False):
         "blankScreen",
         "overlappingUiElements",
         "unityException",
+        "deviceOutOfMemory",
+        "logcatCollectionError",
     ]
     warning: Any
 

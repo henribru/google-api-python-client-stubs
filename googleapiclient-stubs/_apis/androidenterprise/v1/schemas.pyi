@@ -52,7 +52,24 @@ class AppRestrictionsSchemaChangeEvent(typing_extensions.TypedDict, total=False)
     productId: str
 
 @typing.type_check_only
-class AppRestrictionsSchemaRestriction(typing.Dict[str, typing.Any]): ...
+class AppRestrictionsSchemaRestriction(typing_extensions.TypedDict, total=False):
+    defaultValue: AppRestrictionsSchemaRestrictionRestrictionValue
+    description: str
+    entry: typing.List[str]
+    entryValue: typing.List[str]
+    key: str
+    nestedRestriction: typing.List[AppRestrictionsSchemaRestriction]
+    restrictionType: typing_extensions.Literal[
+        "bool",
+        "string",
+        "integer",
+        "choice",
+        "multiselect",
+        "hidden",
+        "bundle",
+        "bundleArray",
+    ]
+    title: str
 
 @typing.type_check_only
 class AppRestrictionsSchemaRestrictionRestrictionValue(
@@ -279,10 +296,18 @@ class ManagedConfigurationsSettingsListResponse(
     managedConfigurationsSettings: typing.List[ManagedConfigurationsSettings]
 
 @typing.type_check_only
-class ManagedProperty(typing.Dict[str, typing.Any]): ...
+class ManagedProperty(typing_extensions.TypedDict, total=False):
+    key: str
+    valueBool: bool
+    valueBundle: ManagedPropertyBundle
+    valueBundleArray: typing.List[ManagedPropertyBundle]
+    valueInteger: int
+    valueString: str
+    valueStringArray: typing.List[str]
 
 @typing.type_check_only
-class ManagedPropertyBundle(typing.Dict[str, typing.Any]): ...
+class ManagedPropertyBundle(typing_extensions.TypedDict, total=False):
+    managedProperty: typing.List[ManagedProperty]
 
 @typing.type_check_only
 class NewDeviceEvent(typing_extensions.TypedDict, total=False):
@@ -340,7 +365,18 @@ class Permission(typing_extensions.TypedDict, total=False):
     permissionId: str
 
 @typing.type_check_only
-class Policy(typing.Dict[str, typing.Any]): ...
+class Policy(typing_extensions.TypedDict, total=False):
+    autoUpdatePolicy: typing_extensions.Literal[
+        "autoUpdatePolicyUnspecified", "choiceToTheUser", "never", "wifiOnly", "always"
+    ]
+    deviceReportPolicy: typing_extensions.Literal[
+        "deviceReportPolicyUnspecified", "deviceReportDisabled", "deviceReportEnabled"
+    ]
+    maintenanceWindow: MaintenanceWindow
+    productAvailabilityPolicy: typing_extensions.Literal[
+        "productAvailabilityPolicyUnspecified", "whitelist", "all"
+    ]
+    productPolicy: typing.List[ProductPolicy]
 
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
@@ -398,7 +434,18 @@ class ProductPermissions(typing_extensions.TypedDict, total=False):
     productId: str
 
 @typing.type_check_only
-class ProductPolicy(typing.Dict[str, typing.Any]): ...
+class ProductPolicy(typing_extensions.TypedDict, total=False):
+    autoInstallPolicy: AutoInstallPolicy
+    autoUpdateMode: typing_extensions.Literal[
+        "autoUpdateModeUnspecified",
+        "autoUpdateDefault",
+        "autoUpdatePostponed",
+        "autoUpdateHighPriority",
+    ]
+    managedConfiguration: ManagedConfiguration
+    productId: str
+    trackIds: typing.List[str]
+    tracks: typing.List[str]
 
 @typing.type_check_only
 class ProductSet(typing_extensions.TypedDict, total=False):

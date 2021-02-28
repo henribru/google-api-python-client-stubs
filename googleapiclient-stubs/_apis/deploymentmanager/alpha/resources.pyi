@@ -8,7 +8,7 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 @typing.type_check_only
-class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
+class DeploymentManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class CompositeTypesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -28,7 +28,6 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> CompositeTypesListResponseHttpRequest: ...
         def patch(
@@ -62,7 +61,7 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             deployment: str,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
@@ -82,7 +81,7 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             project: str,
             body: Deployment = ...,
             createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
+                "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
             preview: bool = ...,
             **kwargs: typing.Any
@@ -95,7 +94,6 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> DeploymentsListResponseHttpRequest: ...
         def patch(
@@ -105,9 +103,9 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             deployment: str,
             body: Deployment = ...,
             createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
+                "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             preview: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -142,9 +140,9 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             deployment: str,
             body: Deployment = ...,
             createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE", "CREATE_OR_ACQUIRE"
+                "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             preview: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -162,7 +160,6 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> ManifestsListResponseHttpRequest: ...
     @typing.type_check_only
@@ -178,7 +175,6 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> OperationsListResponseHttpRequest: ...
     @typing.type_check_only
@@ -195,7 +191,6 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> ResourcesListResponseHttpRequest: ...
     @typing.type_check_only
@@ -220,7 +215,6 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> TypeProvidersListResponseHttpRequest: ...
         def listTypes(
@@ -232,7 +226,6 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> TypeProvidersListTypesResponseHttpRequest: ...
         def patch(
@@ -264,7 +257,6 @@ class DeploymentManagerAlphaResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> TypesListResponseHttpRequest: ...
     def compositeTypes(self) -> CompositeTypesResource: ...

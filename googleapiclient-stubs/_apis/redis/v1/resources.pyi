@@ -43,6 +43,9 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> InstanceHttpRequest: ...
+                def getAuthString(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InstanceAuthStringHttpRequest: ...
                 def import_(
                     self,
                     *,
@@ -129,6 +132,16 @@ class InstanceHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Instance: ...
+
+@typing.type_check_only
+class InstanceAuthStringHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> InstanceAuthString: ...
 
 @typing.type_check_only
 class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):

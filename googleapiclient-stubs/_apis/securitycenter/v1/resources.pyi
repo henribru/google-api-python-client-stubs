@@ -10,6 +10,98 @@ from .schemas import *
 @typing.type_check_only
 class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class AssetsResource(googleapiclient.discovery.Resource):
+            def group(
+                self,
+                *,
+                parent: str,
+                body: GroupAssetsRequest = ...,
+                **kwargs: typing.Any
+            ) -> GroupAssetsResponseHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                compareDuration: str = ...,
+                fieldMask: str = ...,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                readTime: str = ...,
+                **kwargs: typing.Any
+            ) -> ListAssetsResponseHttpRequest: ...
+            def updateSecurityMarks(
+                self,
+                *,
+                name: str,
+                body: SecurityMarks = ...,
+                startTime: str = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> SecurityMarksHttpRequest: ...
+        @typing.type_check_only
+        class SourcesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class FindingsResource(googleapiclient.discovery.Resource):
+                def group(
+                    self,
+                    *,
+                    parent: str,
+                    body: GroupFindingsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GroupFindingsResponseHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    compareDuration: str = ...,
+                    fieldMask: str = ...,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    readTime: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFindingsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Finding = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> FindingHttpRequest: ...
+                def setState(
+                    self,
+                    *,
+                    name: str,
+                    body: SetFindingStateRequest = ...,
+                    **kwargs: typing.Any
+                ) -> FindingHttpRequest: ...
+                def updateSecurityMarks(
+                    self,
+                    *,
+                    name: str,
+                    body: SecurityMarks = ...,
+                    startTime: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> SecurityMarksHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListSourcesResponseHttpRequest: ...
+            def findings(self) -> FindingsResource: ...
+        def assets(self) -> AssetsResource: ...
+        def sources(self) -> SourcesResource: ...
+    @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AssetsResource(googleapiclient.discovery.Resource):
@@ -214,7 +306,101 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def notificationConfigs(self) -> NotificationConfigsResource: ...
         def operations(self) -> OperationsResource: ...
         def sources(self) -> SourcesResource: ...
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class AssetsResource(googleapiclient.discovery.Resource):
+            def group(
+                self,
+                *,
+                parent: str,
+                body: GroupAssetsRequest = ...,
+                **kwargs: typing.Any
+            ) -> GroupAssetsResponseHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                compareDuration: str = ...,
+                fieldMask: str = ...,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                readTime: str = ...,
+                **kwargs: typing.Any
+            ) -> ListAssetsResponseHttpRequest: ...
+            def updateSecurityMarks(
+                self,
+                *,
+                name: str,
+                body: SecurityMarks = ...,
+                startTime: str = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> SecurityMarksHttpRequest: ...
+        @typing.type_check_only
+        class SourcesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class FindingsResource(googleapiclient.discovery.Resource):
+                def group(
+                    self,
+                    *,
+                    parent: str,
+                    body: GroupFindingsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GroupFindingsResponseHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    compareDuration: str = ...,
+                    fieldMask: str = ...,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    readTime: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFindingsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Finding = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> FindingHttpRequest: ...
+                def setState(
+                    self,
+                    *,
+                    name: str,
+                    body: SetFindingStateRequest = ...,
+                    **kwargs: typing.Any
+                ) -> FindingHttpRequest: ...
+                def updateSecurityMarks(
+                    self,
+                    *,
+                    name: str,
+                    body: SecurityMarks = ...,
+                    startTime: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> SecurityMarksHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListSourcesResponseHttpRequest: ...
+            def findings(self) -> FindingsResource: ...
+        def assets(self) -> AssetsResource: ...
+        def sources(self) -> SourcesResource: ...
+    def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

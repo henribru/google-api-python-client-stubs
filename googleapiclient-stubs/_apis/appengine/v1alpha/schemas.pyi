@@ -81,6 +81,7 @@ class Location(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
     flexibleEnvironmentAvailable: bool
+    searchApiAvailable: bool
     standardEnvironmentAvailable: bool
 
 @typing.type_check_only

@@ -139,6 +139,9 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
     class GroupsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MembershipsResource(googleapiclient.discovery.Resource):
+            def checkTransitiveMembership(
+                self, *, parent: str, query: str = ..., **kwargs: typing.Any
+            ) -> CheckTransitiveMembershipResponseHttpRequest: ...
             def create(
                 self, *, parent: str, body: Membership = ..., **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
@@ -148,6 +151,9 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> MembershipHttpRequest: ...
+            def getMembershipGraph(
+                self, *, parent: str, query: str = ..., **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def list(
                 self,
                 *,
@@ -174,6 +180,23 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 body: ModifyMembershipRolesRequest = ...,
                 **kwargs: typing.Any
             ) -> ModifyMembershipRolesResponseHttpRequest: ...
+            def searchTransitiveGroups(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                query: str = ...,
+                **kwargs: typing.Any
+            ) -> SearchTransitiveGroupsResponseHttpRequest: ...
+            def searchTransitiveMemberships(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> SearchTransitiveMembershipsResponseHttpRequest: ...
         def create(
             self,
             *,
@@ -223,6 +246,16 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
         def memberships(self) -> MembershipsResource: ...
     def devices(self) -> DevicesResource: ...
     def groups(self) -> GroupsResource: ...
+
+@typing.type_check_only
+class CheckTransitiveMembershipResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> CheckTransitiveMembershipResponse: ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1ClientStateHttpRequest(
@@ -397,3 +430,23 @@ class SearchGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> SearchGroupsResponse: ...
+
+@typing.type_check_only
+class SearchTransitiveGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SearchTransitiveGroupsResponse: ...
+
+@typing.type_check_only
+class SearchTransitiveMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SearchTransitiveMembershipsResponse: ...

@@ -101,6 +101,7 @@ class ConcatPosition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ContainerSpec(typing_extensions.TypedDict, total=False):
+    defaultEnvironment: FlexTemplateRuntimeEnvironment
     image: str
     metadata: TemplateMetadata
     sdkInfo: SDKInfo
@@ -257,6 +258,9 @@ class Environment(typing_extensions.TypedDict, total=False):
     sdkPipelineOptions: typing.Dict[str, typing.Any]
     serviceAccountEmail: str
     serviceKmsKeyName: str
+    shuffleMode: typing_extensions.Literal[
+        "SHUFFLE_MODE_UNSPECIFIED", "VM_BASED", "SERVICE_BASED"
+    ]
     tempStoragePrefix: str
     userAgent: typing.Dict[str, typing.Any]
     version: typing.Dict[str, typing.Any]
@@ -281,6 +285,7 @@ class ExecutionStageState(typing_extensions.TypedDict, total=False):
         "JOB_STATE_PENDING",
         "JOB_STATE_CANCELLING",
         "JOB_STATE_QUEUED",
+        "JOB_STATE_RESOURCE_CLEANING_UP",
     ]
 
 @typing.type_check_only
@@ -302,6 +307,7 @@ class ExecutionStageSummary(typing_extensions.TypedDict, total=False):
     ]
     name: str
     outputSource: typing.List[StageSource]
+    prerequisiteStage: typing.List[str]
 
 @typing.type_check_only
 class FailedLocation(typing_extensions.TypedDict, total=False):
@@ -320,6 +326,9 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     additionalExperiments: typing.List[str]
     additionalUserLabels: typing.Dict[str, typing.Any]
     enableStreamingEngine: bool
+    flexrsGoal: typing_extensions.Literal[
+        "FLEXRS_UNSPECIFIED", "FLEXRS_SPEED_OPTIMIZED", "FLEXRS_COST_OPTIMIZED"
+    ]
     ipConfiguration: typing_extensions.Literal[
         "WORKER_IP_UNSPECIFIED", "WORKER_IP_PUBLIC", "WORKER_IP_PRIVATE"
     ]
@@ -418,6 +427,7 @@ class Job(typing_extensions.TypedDict, total=False):
         "JOB_STATE_PENDING",
         "JOB_STATE_CANCELLING",
         "JOB_STATE_QUEUED",
+        "JOB_STATE_RESOURCE_CLEANING_UP",
     ]
     currentStateTime: str
     environment: Environment
@@ -444,7 +454,9 @@ class Job(typing_extensions.TypedDict, total=False):
         "JOB_STATE_PENDING",
         "JOB_STATE_CANCELLING",
         "JOB_STATE_QUEUED",
+        "JOB_STATE_RESOURCE_CLEANING_UP",
     ]
+    satisfiesPzs: bool
     stageStates: typing.List[ExecutionStageState]
     startTime: str
     steps: typing.List[Step]
@@ -519,6 +531,8 @@ class LaunchFlexTemplateParameter(typing_extensions.TypedDict, total=False):
     jobName: str
     launchOptions: typing.Dict[str, typing.Any]
     parameters: typing.Dict[str, typing.Any]
+    transformNameMappings: typing.Dict[str, typing.Any]
+    update: bool
 
 @typing.type_check_only
 class LaunchFlexTemplateRequest(typing_extensions.TypedDict, total=False):
@@ -730,7 +744,13 @@ class Point(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
-class Position(typing.Dict[str, typing.Any]): ...
+class Position(typing_extensions.TypedDict, total=False):
+    byteOffset: str
+    concatPosition: ConcatPosition
+    end: bool
+    key: str
+    recordIndex: str
+    shufflePosition: str
 
 @typing.type_check_only
 class ProgressTimeseries(typing_extensions.TypedDict, total=False):
@@ -827,6 +847,7 @@ class SDKInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SdkHarnessContainerImage(typing_extensions.TypedDict, total=False):
     containerImage: str
+    environmentId: str
     useSingleCorePerContainer: bool
 
 @typing.type_check_only
@@ -1216,10 +1237,34 @@ class WorkItemDetails(typing_extensions.TypedDict, total=False):
     taskId: str
 
 @typing.type_check_only
-class WorkItemServiceState(typing.Dict[str, typing.Any]): ...
+class WorkItemServiceState(typing_extensions.TypedDict, total=False):
+    completeWorkStatus: Status
+    harnessData: typing.Dict[str, typing.Any]
+    hotKeyDetection: HotKeyDetection
+    leaseExpireTime: str
+    metricShortId: typing.List[MetricShortId]
+    nextReportIndex: str
+    reportStatusInterval: str
+    splitRequest: ApproximateSplitRequest
+    suggestedStopPoint: ApproximateProgress
+    suggestedStopPosition: Position
 
 @typing.type_check_only
-class WorkItemStatus(typing.Dict[str, typing.Any]): ...
+class WorkItemStatus(typing_extensions.TypedDict, total=False):
+    completed: bool
+    counterUpdates: typing.List[CounterUpdate]
+    dynamicSourceSplit: DynamicSourceSplit
+    errors: typing.List[Status]
+    metricUpdates: typing.List[MetricUpdate]
+    progress: ApproximateProgress
+    reportIndex: str
+    reportedProgress: ApproximateReportedProgress
+    requestedLeaseDuration: str
+    sourceFork: SourceFork
+    sourceOperationResponse: SourceOperationResponse
+    stopPosition: Position
+    totalThrottlerWaitTimeSeconds: float
+    workItemId: str
 
 @typing.type_check_only
 class WorkerDetails(typing_extensions.TypedDict, total=False):

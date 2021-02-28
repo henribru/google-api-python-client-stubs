@@ -129,6 +129,7 @@ class Trigger(typing_extensions.TypedDict, total=False):
     createTime: str
     destination: Destination
     etag: str
+    labels: typing.Dict[str, typing.Any]
     matchingCriteria: typing.List[MatchingCriteria]
     name: str
     serviceAccount: str

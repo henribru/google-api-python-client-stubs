@@ -19,10 +19,43 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
+
+@typing.type_check_only
+class CloudresourcemanagerGoogleCloudResourcemanagerV2alpha1FolderOperation(
+    typing_extensions.TypedDict, total=False
+):
+    destinationParent: str
+    displayName: str
+    operationType: typing_extensions.Literal[
+        "OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"
+    ]
+    sourceParent: str
+
+@typing.type_check_only
+class CloudresourcemanagerGoogleCloudResourcemanagerV2beta1FolderOperation(
+    typing_extensions.TypedDict, total=False
+):
+    destinationParent: str
+    displayName: str
+    operationType: typing_extensions.Literal[
+        "OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"
+    ]
+    sourceParent: str
+
+@typing.type_check_only
+class CreateTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CreateTagValueMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteTagValueMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -146,3 +179,9 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UndeleteProjectRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateTagValueMetadata(typing_extensions.TypedDict, total=False): ...

@@ -506,6 +506,15 @@ class UpdateMembershipRolesParams(typing_extensions.TypedDict, total=False):
     membershipRole: MembershipRole
 
 @typing.type_check_only
+class UserInvitation(typing_extensions.TypedDict, total=False):
+    mailsSentCount: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_YET_SENT", "INVITED", "ACCEPTED", "DECLINED"
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class WipeDeviceRequest(typing_extensions.TypedDict, total=False):
     customer: str
 

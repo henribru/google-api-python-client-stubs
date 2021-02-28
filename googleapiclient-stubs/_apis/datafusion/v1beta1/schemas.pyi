@@ -21,7 +21,6 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -138,6 +137,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: typing.List[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class RemoveIamPolicyRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RemoveIamPolicyResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RestartInstanceRequest(typing_extensions.TypedDict, total=False): ...

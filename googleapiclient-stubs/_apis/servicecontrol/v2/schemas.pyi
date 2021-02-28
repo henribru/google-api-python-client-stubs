@@ -63,6 +63,7 @@ class AuthorizationInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckRequest(typing_extensions.TypedDict, total=False):
     attributes: AttributeContext
+    flags: str
     resources: typing.List[ResourceInfo]
     serviceConfigId: str
 
@@ -117,11 +118,18 @@ class RequestMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
+    annotations: typing.Dict[str, typing.Any]
+    createTime: str
+    deleteTime: str
+    displayName: str
+    etag: str
     labels: typing.Dict[str, typing.Any]
+    location: str
     name: str
     service: str
     type: str
     uid: str
+    updateTime: str
 
 @typing.type_check_only
 class ResourceInfo(typing_extensions.TypedDict, total=False):
@@ -136,6 +144,7 @@ class ResourceLocation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Response(typing_extensions.TypedDict, total=False):
+    backendLatency: str
     code: str
     headers: typing.Dict[str, typing.Any]
     size: str

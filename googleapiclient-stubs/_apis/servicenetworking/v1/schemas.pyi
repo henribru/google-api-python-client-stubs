@@ -44,6 +44,7 @@ class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
     ipPrefixLength: int
     region: str
     requestedAddress: str
+    requestedRanges: typing.List[str]
     secondaryIpRangeSpecs: typing.List[SecondaryIpRangeSpec]
     subnetwork: str
     subnetworkUsers: typing.List[str]
@@ -132,7 +133,10 @@ class ConsumerConfig(typing_extensions.TypedDict, total=False):
     producerImportCustomRoutes: bool
     producerImportSubnetRoutesWithPublicIp: bool
     producerNetwork: str
-    reservedRanges: typing.List[str]
+    reservedRanges: typing.List[
+        GoogleCloudServicenetworkingV1ConsumerConfigReservedRange
+    ]
+    vpcScReferenceArchitectureEnabled: bool
 
 @typing.type_check_only
 class ConsumerConfigMetadata(typing_extensions.TypedDict, total=False): ...
@@ -171,6 +175,9 @@ class CustomErrorRule(typing_extensions.TypedDict, total=False):
 class CustomHttpPattern(typing_extensions.TypedDict, total=False):
     kind: str
     path: str
+
+@typing.type_check_only
+class DeleteConnectionMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeletePeeredDnsDomainMetadata(typing_extensions.TypedDict, total=False): ...
@@ -273,6 +280,23 @@ class Field(typing_extensions.TypedDict, total=False):
     typeUrl: str
 
 @typing.type_check_only
+class GoogleCloudServicenetworkingV1ConsumerConfigReservedRange(
+    typing_extensions.TypedDict, total=False
+):
+    address: str
+    ipPrefixLength: int
+    name: str
+
+@typing.type_check_only
+class GoogleCloudServicenetworkingV1betaConnection(
+    typing_extensions.TypedDict, total=False
+):
+    network: str
+    peering: str
+    reservedPeeringRanges: typing.List[str]
+    service: str
+
+@typing.type_check_only
 class GoogleCloudServicenetworkingV1betaSubnetwork(
     typing_extensions.TypedDict, total=False
 ):
@@ -287,7 +311,17 @@ class Http(typing_extensions.TypedDict, total=False):
     rules: typing.List[HttpRule]
 
 @typing.type_check_only
-class HttpRule(typing.Dict[str, typing.Any]): ...
+class HttpRule(typing_extensions.TypedDict, total=False):
+    additionalBindings: typing.List[HttpRule]
+    body: str
+    custom: CustomHttpPattern
+    delete: str
+    get: str
+    patch: str
+    post: str
+    put: str
+    responseBody: str
+    selector: str
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
@@ -445,7 +479,10 @@ class Option(typing_extensions.TypedDict, total=False):
     value: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
-class Page(typing.Dict[str, typing.Any]): ...
+class Page(typing_extensions.TypedDict, total=False):
+    content: str
+    name: str
+    subpages: typing.List[Page]
 
 @typing.type_check_only
 class PeeredDnsDomain(typing_extensions.TypedDict, total=False):
@@ -486,7 +523,9 @@ class Range(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RangeReservation(typing_extensions.TypedDict, total=False):
     ipPrefixLength: int
+    requestedRanges: typing.List[str]
     secondaryRangeIpPrefixLengths: typing.List[int]
+    subnetworkCandidates: typing.List[Subnetwork]
 
 @typing.type_check_only
 class RemoveDnsRecordSetMetadata(typing_extensions.TypedDict, total=False): ...
@@ -584,6 +623,7 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     outsideAllocation: bool
+    region: str
     secondaryIpRanges: typing.List[SecondaryIpRange]
 
 @typing.type_check_only
@@ -609,6 +649,10 @@ class Type(typing_extensions.TypedDict, total=False):
     options: typing.List[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
+class UpdateConsumerConfigRequest(typing_extensions.TypedDict, total=False):
+    consumerConfig: ConsumerConfig
 
 @typing.type_check_only
 class UpdateDnsRecordSetMetadata(typing_extensions.TypedDict, total=False): ...
@@ -641,6 +685,7 @@ class ValidateConsumerConfigRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ValidateConsumerConfigResponse(typing_extensions.TypedDict, total=False):
+    existingSubnetworkCandidates: typing.List[Subnetwork]
     isValid: bool
     validationError: typing_extensions.Literal[
         "VALIDATION_ERROR_UNSPECIFIED",

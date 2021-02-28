@@ -69,11 +69,12 @@ class RunMobileFriendlyTestResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
     aggregationType: typing_extensions.Literal["AUTO", "BY_PROPERTY", "BY_PAGE"]
+    dataState: typing_extensions.Literal["DATA_STATE_UNSPECIFIED", "FINAL", "ALL"]
     dimensionFilterGroups: typing.List[ApiDimensionFilterGroup]
     dimensions: typing.List[str]
     endDate: str
     rowLimit: int
-    searchType: typing_extensions.Literal["WEB", "IMAGE", "VIDEO"]
+    searchType: typing_extensions.Literal["WEB", "IMAGE", "VIDEO", "NEWS"]
     startDate: str
     startRow: int
 

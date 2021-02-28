@@ -6,15 +6,38 @@ class ClassItem(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class CreateCustomClassRequest(typing_extensions.TypedDict, total=False):
+    customClass: CustomClass
+    customClassId: str
+
+@typing.type_check_only
+class CreatePhraseSetRequest(typing_extensions.TypedDict, total=False):
+    phraseSet: PhraseSet
+    phraseSetId: str
+
+@typing.type_check_only
 class CustomClass(typing_extensions.TypedDict, total=False):
     customClassId: str
     items: typing.List[ClassItem]
     name: str
 
 @typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ListCustomClassesResponse(typing_extensions.TypedDict, total=False):
+    customClasses: typing.List[CustomClass]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: typing.List[Operation]
+
+@typing.type_check_only
+class ListPhraseSetResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    phraseSets: typing.List[PhraseSet]
 
 @typing.type_check_only
 class LongRunningRecognizeMetadata(typing_extensions.TypedDict, total=False):
@@ -78,7 +101,6 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
         "OGG_OPUS",
         "SPEEX_WITH_HEADER_BYTE",
         "MP3",
-        "WEBM_OPUS",
     ]
     languageCode: str
     maxAlternatives: int
@@ -142,6 +164,7 @@ class SpeakerDiarizationConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SpeechAdaptation(typing_extensions.TypedDict, total=False):
     customClasses: typing.List[CustomClass]
+    phraseSetReferences: typing.List[str]
     phraseSets: typing.List[PhraseSet]
 
 @typing.type_check_only

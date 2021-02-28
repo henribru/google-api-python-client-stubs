@@ -2052,6 +2052,7 @@ class ImageContext(typing_extensions.TypedDict, total=False):
     languageHints: typing.List[str]
     latLongRect: LatLongRect
     productSearchParams: ProductSearchParams
+    textDetectionParams: TextDetectionParams
     webDetectionParams: WebDetectionParams
 
 @typing.type_check_only
@@ -2331,6 +2332,10 @@ class Symbol(typing_extensions.TypedDict, total=False):
 class TextAnnotation(typing_extensions.TypedDict, total=False):
     pages: typing.List[Page]
     text: str
+
+@typing.type_check_only
+class TextDetectionParams(typing_extensions.TypedDict, total=False):
+    enableTextDetectionConfidenceScore: bool
 
 @typing.type_check_only
 class TextProperty(typing_extensions.TypedDict, total=False):

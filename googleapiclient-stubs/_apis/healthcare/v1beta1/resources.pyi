@@ -632,6 +632,15 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         def Resource_purge(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> EmptyHttpRequest: ...
+                        def Resource_validate(
+                            self,
+                            *,
+                            parent: str,
+                            type: str,
+                            body: HttpBody = ...,
+                            profile: str = ...,
+                            **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
                         def capabilities(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
@@ -696,6 +705,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
+                            body: SearchResourcesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+                        def search_type(
+                            self,
+                            *,
+                            parent: str,
+                            resourceType: str,
                             body: SearchResourcesRequest = ...,
                             **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
@@ -787,6 +804,21 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 class Hl7V2StoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class MessagesResource(googleapiclient.discovery.Resource):
+                        def batchGet(
+                            self,
+                            *,
+                            parent: str,
+                            ids: typing.Union[str, typing.List[str]] = ...,
+                            view: typing_extensions.Literal[
+                                "MESSAGE_VIEW_UNSPECIFIED",
+                                "RAW_ONLY",
+                                "PARSED_ONLY",
+                                "FULL",
+                                "SCHEMATIZED_ONLY",
+                                "BASIC",
+                            ] = ...,
+                            **kwargs: typing.Any
+                        ) -> BatchGetMessagesResponseHttpRequest: ...
                         def create(
                             self,
                             *,
@@ -996,6 +1028,18 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 def fhirStores(self) -> FhirStoresResource: ...
                 def hl7V2Stores(self) -> Hl7V2StoresResource: ...
                 def operations(self) -> OperationsResource: ...
+            @typing.type_check_only
+            class ServicesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class NlpResource(googleapiclient.discovery.Resource):
+                    def analyzeEntities(
+                        self,
+                        *,
+                        nlpService: str,
+                        body: AnalyzeEntitiesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> AnalyzeEntitiesResponseHttpRequest: ...
+                def nlp(self) -> NlpResource: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -1009,8 +1053,19 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
             def datasets(self) -> DatasetsResource: ...
+            def services(self) -> ServicesResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AnalyzeEntitiesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> AnalyzeEntitiesResponse: ...
 
 @typing.type_check_only
 class AnnotationHttpRequest(googleapiclient.http.HttpRequest):
@@ -1051,6 +1106,16 @@ class AttributeDefinitionHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> AttributeDefinition: ...
+
+@typing.type_check_only
+class BatchGetMessagesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> BatchGetMessagesResponse: ...
 
 @typing.type_check_only
 class CheckDataAccessResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -32,7 +32,95 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 body: WatchCreativesRequest = ...,
                 **kwargs: typing.Any
             ) -> WatchCreativesResponseHttpRequest: ...
+        @typing.type_check_only
+        class PretargetingConfigsResource(googleapiclient.discovery.Resource):
+            def activate(
+                self,
+                *,
+                name: str,
+                body: ActivatePretargetingConfigRequest = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def addTargetedApps(
+                self,
+                *,
+                pretargetingConfig: str,
+                body: AddTargetedAppsRequest = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def addTargetedPublishers(
+                self,
+                *,
+                pretargetingConfig: str,
+                body: AddTargetedPublishersRequest = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def addTargetedSites(
+                self,
+                *,
+                pretargetingConfig: str,
+                body: AddTargetedSitesRequest = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def create(
+                self,
+                *,
+                parent: str,
+                body: PretargetingConfig = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListPretargetingConfigsResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: PretargetingConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def removeTargetedApps(
+                self,
+                *,
+                pretargetingConfig: str,
+                body: RemoveTargetedAppsRequest = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def removeTargetedPublishers(
+                self,
+                *,
+                pretargetingConfig: str,
+                body: RemoveTargetedPublishersRequest = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def removeTargetedSites(
+                self,
+                *,
+                pretargetingConfig: str,
+                body: RemoveTargetedSitesRequest = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
+            def suspend(
+                self,
+                *,
+                name: str,
+                body: SuspendPretargetingConfigRequest = ...,
+                **kwargs: typing.Any
+            ) -> PretargetingConfigHttpRequest: ...
         def creatives(self) -> CreativesResource: ...
+        def pretargetingConfigs(self) -> PretargetingConfigsResource: ...
     @typing.type_check_only
     class BuyersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -118,6 +206,16 @@ class CreativeHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Creative: ...
 
 @typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Empty: ...
+
+@typing.type_check_only
 class GetRemarketingTagResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -138,6 +236,16 @@ class ListCreativesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListCreativesResponse: ...
 
 @typing.type_check_only
+class ListPretargetingConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListPretargetingConfigsResponse: ...
+
+@typing.type_check_only
 class ListUserListsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -146,6 +254,16 @@ class ListUserListsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListUserListsResponse: ...
+
+@typing.type_check_only
+class PretargetingConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> PretargetingConfig: ...
 
 @typing.type_check_only
 class UserListHttpRequest(googleapiclient.http.HttpRequest):

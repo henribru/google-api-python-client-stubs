@@ -7,6 +7,14 @@ class Capacity(typing_extensions.TypedDict, total=False):
     subscribeMibPerSec: int
 
 @typing.type_check_only
+class ComputeHeadCursorRequest(typing_extensions.TypedDict, total=False):
+    partition: str
+
+@typing.type_check_only
+class ComputeHeadCursorResponse(typing_extensions.TypedDict, total=False):
+    headCursor: Cursor
+
+@typing.type_check_only
 class ComputeMessageStatsRequest(typing_extensions.TypedDict, total=False):
     endCursor: Cursor
     partition: str

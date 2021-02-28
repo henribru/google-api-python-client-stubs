@@ -10,6 +10,10 @@ class BatchCreateRowsResponse(typing_extensions.TypedDict, total=False):
     rows: typing.List[Row]
 
 @typing.type_check_only
+class BatchDeleteRowsRequest(typing_extensions.TypedDict, total=False):
+    names: typing.List[str]
+
+@typing.type_check_only
 class BatchUpdateRowsRequest(typing_extensions.TypedDict, total=False):
     requests: typing.List[UpdateRowRequest]
 
@@ -51,6 +55,11 @@ class ListTablesResponse(typing_extensions.TypedDict, total=False):
     tables: typing.List[Table]
 
 @typing.type_check_only
+class ListWorkspacesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    workspaces: typing.List[Workspace]
+
+@typing.type_check_only
 class LookupDetails(typing_extensions.TypedDict, total=False):
     relationshipColumn: str
     relationshipColumnId: str
@@ -61,17 +70,29 @@ class RelationshipDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Row(typing_extensions.TypedDict, total=False):
+    createTime: str
     name: str
+    updateTime: str
     values: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
     columns: typing.List[ColumnDescription]
+    createTime: str
     displayName: str
     name: str
+    updateTime: str
 
 @typing.type_check_only
 class UpdateRowRequest(typing_extensions.TypedDict, total=False):
     row: Row
     updateMask: str
     view: typing_extensions.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"]
+
+@typing.type_check_only
+class Workspace(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    name: str
+    tables: typing.List[Table]
+    updateTime: str

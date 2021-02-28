@@ -2,7 +2,26 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class AllowedIpRange(typing_extensions.TypedDict, total=False):
+    description: str
+    value: str
+
+@typing.type_check_only
+class DatabaseConfig(typing_extensions.TypedDict, total=False):
+    machineType: str
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
 
 @typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
@@ -20,11 +39,15 @@ class Environment(typing_extensions.TypedDict, total=False):
 class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     airflowUri: str
     dagGcsPrefix: str
+    databaseConfig: DatabaseConfig
+    encryptionConfig: EncryptionConfig
     gkeCluster: str
     nodeConfig: NodeConfig
     nodeCount: int
     privateEnvironmentConfig: PrivateEnvironmentConfig
     softwareConfig: SoftwareConfig
+    webServerConfig: WebServerConfig
+    webServerNetworkAccessControl: WebServerNetworkAccessControl
 
 @typing.type_check_only
 class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
@@ -36,9 +59,12 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageVersion(typing_extensions.TypedDict, total=False):
+    creationDisabled: bool
     imageVersionId: str
     isDefault: bool
+    releaseDate: Date
     supportedPythonVersions: typing.List[str]
+    upgradeDisabled: bool
 
 @typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
@@ -115,3 +141,11 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class WebServerConfig(typing_extensions.TypedDict, total=False):
+    machineType: str
+
+@typing.type_check_only
+class WebServerNetworkAccessControl(typing_extensions.TypedDict, total=False):
+    allowedIpRanges: typing.List[AllowedIpRange]

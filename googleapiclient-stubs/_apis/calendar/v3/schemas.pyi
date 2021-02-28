@@ -162,6 +162,7 @@ class Event(typing_extensions.TypedDict, total=False):
     end: EventDateTime
     endTimeUnspecified: bool
     etag: str
+    eventType: str
     extendedProperties: typing.Dict[str, typing.Any]
     gadget: typing.Dict[str, typing.Any]
     guestsCanInviteOthers: bool

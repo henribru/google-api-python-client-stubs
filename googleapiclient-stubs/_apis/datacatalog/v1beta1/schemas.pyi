@@ -3,7 +3,6 @@ import typing
 import typing_extensions
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -48,7 +47,14 @@ class GoogleCloudDatacatalogV1beta1BigQueryTableSpec(
     viewSpec: GoogleCloudDatacatalogV1beta1ViewSpec
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ColumnSchema(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1beta1ColumnSchema(
+    typing_extensions.TypedDict, total=False
+):
+    column: str
+    description: str
+    mode: str
+    subcolumns: typing.List[GoogleCloudDatacatalogV1beta1ColumnSchema]
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1Entry(typing_extensions.TypedDict, total=False):
@@ -130,7 +136,10 @@ class GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse(
     taxonomies: typing.List[GoogleCloudDatacatalogV1beta1Taxonomy]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1InlineSource(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1beta1InlineSource(
+    typing_extensions.TypedDict, total=False
+):
+    taxonomies: typing.List[GoogleCloudDatacatalogV1beta1SerializedTaxonomy]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ListEntriesResponse(
@@ -188,7 +197,8 @@ class GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldRequest(
     newTagTemplateFieldId: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1Schema(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1beta1Schema(typing_extensions.TypedDict, total=False):
+    columns: typing.List[GoogleCloudDatacatalogV1beta1ColumnSchema]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1SearchCatalogRequest(
@@ -222,6 +232,7 @@ class GoogleCloudDatacatalogV1beta1SearchCatalogResult(
     typing_extensions.TypedDict, total=False
 ):
     linkedResource: str
+    modifyTime: str
     relativeResourceName: str
     searchResultSubtype: str
     searchResultType: typing_extensions.Literal[
@@ -230,11 +241,21 @@ class GoogleCloudDatacatalogV1beta1SearchCatalogResult(
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1SerializedPolicyTag(
-    typing.Dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    childPolicyTags: typing.List[GoogleCloudDatacatalogV1beta1SerializedPolicyTag]
+    description: str
+    displayName: str
+    policyTag: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1SerializedTaxonomy(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1beta1SerializedTaxonomy(
+    typing_extensions.TypedDict, total=False
+):
+    activatedPolicyTypes: typing.List[str]
+    description: str
+    displayName: str
+    policyTags: typing.List[GoogleCloudDatacatalogV1beta1SerializedPolicyTag]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1SystemTimestamps(
@@ -284,6 +305,7 @@ class GoogleCloudDatacatalogV1beta1TagTemplate(
 class GoogleCloudDatacatalogV1beta1TagTemplateField(
     typing_extensions.TypedDict, total=False
 ):
+    description: str
     displayName: str
     isRequired: bool
     name: str
@@ -296,6 +318,8 @@ class GoogleCloudDatacatalogV1beta1Taxonomy(typing_extensions.TypedDict, total=F
     description: str
     displayName: str
     name: str
+    policyTagCount: int
+    taxonomyTimestamps: GoogleCloudDatacatalogV1beta1SystemTimestamps
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ViewSpec(typing_extensions.TypedDict, total=False):

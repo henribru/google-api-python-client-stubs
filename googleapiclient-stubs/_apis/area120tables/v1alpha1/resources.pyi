@@ -20,6 +20,13 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 body: BatchCreateRowsRequest = ...,
                 **kwargs: typing.Any
             ) -> BatchCreateRowsResponseHttpRequest: ...
+            def batchDelete(
+                self,
+                *,
+                parent: str,
+                body: BatchDeleteRowsRequest = ...,
+                **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
             def batchUpdate(
                 self,
                 *,
@@ -53,6 +60,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 view: typing_extensions.Literal[
@@ -76,7 +84,14 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListTablesResponseHttpRequest: ...
         def rows(self) -> RowsResource: ...
+    @typing.type_check_only
+    class WorkspacesResource(googleapiclient.discovery.Resource):
+        def get(self, *, name: str, **kwargs: typing.Any) -> WorkspaceHttpRequest: ...
+        def list(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> ListWorkspacesResponseHttpRequest: ...
     def tables(self) -> TablesResource: ...
+    def workspaces(self) -> WorkspacesResource: ...
 
 @typing.type_check_only
 class BatchCreateRowsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -129,6 +144,16 @@ class ListTablesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListTablesResponse: ...
 
 @typing.type_check_only
+class ListWorkspacesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListWorkspacesResponse: ...
+
+@typing.type_check_only
 class RowHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -147,3 +172,13 @@ class TableHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Table: ...
+
+@typing.type_check_only
+class WorkspaceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Workspace: ...

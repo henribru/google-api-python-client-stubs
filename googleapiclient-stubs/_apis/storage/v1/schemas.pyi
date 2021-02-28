@@ -23,6 +23,7 @@ class Bucket(typing_extensions.TypedDict, total=False):
     owner: typing.Dict[str, typing.Any]
     projectNumber: str
     retentionPolicy: typing.Dict[str, typing.Any]
+    satisfiesPZS: bool
     selfLink: str
     storageClass: str
     timeCreated: str

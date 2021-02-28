@@ -247,6 +247,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setEdgeSecurityPolicy(
+            self,
+            *,
+            project: str,
+            backendBucket: str,
+            body: SecurityPolicyReference = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setIamPolicy(
             self,
             *,
@@ -348,6 +357,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             backendService: str,
             body: BackendService = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setEdgeSecurityPolicy(
+            self,
+            *,
+            project: str,
+            backendService: str,
+            body: SecurityPolicyReference = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -587,6 +605,129 @@ class ComputeResource(googleapiclient.discovery.Resource):
             self,
             *,
             project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
+    @typing.type_check_only
+    class FirewallPoliciesResource(googleapiclient.discovery.Resource):
+        def addAssociation(
+            self,
+            *,
+            firewallPolicy: str,
+            body: FirewallPolicyAssociation = ...,
+            replaceExistingAssociation: bool = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def addRule(
+            self,
+            *,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def cloneRules(
+            self,
+            *,
+            firewallPolicy: str,
+            requestId: str = ...,
+            sourceFirewallPolicy: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, firewallPolicy: str, requestId: str = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, firewallPolicy: str, **kwargs: typing.Any
+        ) -> FirewallPolicyHttpRequest: ...
+        def getAssociation(
+            self, *, firewallPolicy: str, name: str = ..., **kwargs: typing.Any
+        ) -> FirewallPolicyAssociationHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def getRule(
+            self, *, firewallPolicy: str, priority: int = ..., **kwargs: typing.Any
+        ) -> FirewallPolicyRuleHttpRequest: ...
+        def insert(
+            self,
+            *,
+            body: FirewallPolicy = ...,
+            parentId: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            parentId: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> FirewallPolicyListHttpRequest: ...
+        def listAssociations(
+            self, *, targetResource: str = ..., **kwargs: typing.Any
+        ) -> FirewallPoliciesListAssociationsResponseHttpRequest: ...
+        def move(
+            self,
+            *,
+            firewallPolicy: str,
+            parentId: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def patch(
+            self,
+            *,
+            firewallPolicy: str,
+            body: FirewallPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def patchRule(
+            self,
+            *,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            priority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def removeAssociation(
+            self,
+            *,
+            firewallPolicy: str,
+            name: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def removeRule(
+            self,
+            *,
+            firewallPolicy: str,
+            priority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GlobalOrganizationSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
             resource: str,
             body: TestPermissionsRequest = ...,
             **kwargs: typing.Any
@@ -3818,6 +3959,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionHealthCheckServicesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> HealthCheckServiceAggregatedListHttpRequest: ...
         def delete(
             self,
             *,
@@ -4183,6 +4336,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def resizeAdvanced(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: RegionInstanceGroupManagersResizeAdvancedRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setAutoHealingPolicies(
             self,
             *,
@@ -4314,6 +4477,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def export(
+            self,
+            *,
+            project: str,
+            region: str,
+            instantSnapshot: str,
+            body: RegionInstantSnapshotsExportRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def get(
             self,
             *,
@@ -4422,6 +4595,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> NetworkEndpointGroupListHttpRequest: ...
     @typing.type_check_only
     class RegionNotificationEndpointsResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> NotificationEndpointAggregatedListHttpRequest: ...
         def delete(
             self,
             *,
@@ -5699,6 +5884,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> TargetHttpsProxyListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            targetHttpsProxy: str,
+            body: TargetHttpsProxy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setCertificateMap(
             self,
             *,
@@ -6443,6 +6637,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def export(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instantSnapshot: str,
+            body: ZoneInstantSnapshotsExportRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def get(
             self, *, project: str, zone: str, instantSnapshot: str, **kwargs: typing.Any
         ) -> InstantSnapshotHttpRequest: ...
@@ -6551,6 +6755,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def diskTypes(self) -> DiskTypesResource: ...
     def disks(self) -> DisksResource: ...
     def externalVpnGateways(self) -> ExternalVpnGatewaysResource: ...
+    def firewallPolicies(self) -> FirewallPoliciesResource: ...
     def firewalls(self) -> FirewallsResource: ...
     def forwardingRules(self) -> ForwardingRulesResource: ...
     def globalAddresses(self) -> GlobalAddressesResource: ...
@@ -6924,6 +7129,18 @@ class FirewallListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> FirewallList: ...
 
 @typing.type_check_only
+class FirewallPoliciesListAssociationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> FirewallPoliciesListAssociationsResponse: ...
+
+@typing.type_check_only
 class FirewallPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -7042,6 +7259,16 @@ class HealthCheckServiceHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> HealthCheckService: ...
+
+@typing.type_check_only
+class HealthCheckServiceAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> HealthCheckServiceAggregatedList: ...
 
 @typing.type_check_only
 class HealthCheckServicesListHttpRequest(googleapiclient.http.HttpRequest):
@@ -7704,6 +7931,16 @@ class NotificationEndpointHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> NotificationEndpoint: ...
+
+@typing.type_check_only
+class NotificationEndpointAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> NotificationEndpointAggregatedList: ...
 
 @typing.type_check_only
 class NotificationEndpointListHttpRequest(googleapiclient.http.HttpRequest):

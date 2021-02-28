@@ -102,6 +102,13 @@ class GoogleIdentityAccesscontextmanagerV1AccessPolicy(
     title: str
 
 @typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1ApiOperation(
+    typing_extensions.TypedDict, total=False
+):
+    methodSelectors: typing.List[GoogleIdentityAccesscontextmanagerV1MethodSelector]
+    serviceName: str
+
+@typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1BasicLevel(
     typing_extensions.TypedDict, total=False
 ):
@@ -135,6 +142,73 @@ class GoogleIdentityAccesscontextmanagerV1DevicePolicy(
     requireAdminApproval: bool
     requireCorpOwned: bool
     requireScreenlock: bool
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1EgressFrom(
+    typing_extensions.TypedDict, total=False
+):
+    identities: typing.List[str]
+    identityType: typing_extensions.Literal[
+        "IDENTITY_TYPE_UNSPECIFIED",
+        "ANY_IDENTITY",
+        "ANY_USER_ACCOUNT",
+        "ANY_SERVICE_ACCOUNT",
+    ]
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    egressFrom: GoogleIdentityAccesscontextmanagerV1EgressFrom
+    egressTo: GoogleIdentityAccesscontextmanagerV1EgressTo
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1EgressTo(
+    typing_extensions.TypedDict, total=False
+):
+    operations: typing.List[GoogleIdentityAccesscontextmanagerV1ApiOperation]
+    resources: typing.List[str]
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1IngressFrom(
+    typing_extensions.TypedDict, total=False
+):
+    identities: typing.List[str]
+    identityType: typing_extensions.Literal[
+        "IDENTITY_TYPE_UNSPECIFIED",
+        "ANY_IDENTITY",
+        "ANY_USER_ACCOUNT",
+        "ANY_SERVICE_ACCOUNT",
+    ]
+    sources: typing.List[GoogleIdentityAccesscontextmanagerV1IngressSource]
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1IngressPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    ingressFrom: GoogleIdentityAccesscontextmanagerV1IngressFrom
+    ingressTo: GoogleIdentityAccesscontextmanagerV1IngressTo
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1IngressSource(
+    typing_extensions.TypedDict, total=False
+):
+    accessLevel: str
+    resource: str
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1IngressTo(
+    typing_extensions.TypedDict, total=False
+):
+    operations: typing.List[GoogleIdentityAccesscontextmanagerV1ApiOperation]
+    resources: typing.List[str]
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1MethodSelector(
+    typing_extensions.TypedDict, total=False
+):
+    method: str
+    permission: str
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1OsConstraint(
@@ -171,6 +245,8 @@ class GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig(
     typing_extensions.TypedDict, total=False
 ):
     accessLevels: typing.List[str]
+    egressPolicies: typing.List[GoogleIdentityAccesscontextmanagerV1EgressPolicy]
+    ingressPolicies: typing.List[GoogleIdentityAccesscontextmanagerV1IngressPolicy]
     resources: typing.List[str]
     restrictedServices: typing.List[str]
     vpcAccessibleServices: GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices

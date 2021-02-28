@@ -347,11 +347,6 @@ class ReportError(typing_extensions.TypedDict, total=False):
     status: Status
 
 @typing.type_check_only
-class ReportInfo(typing_extensions.TypedDict, total=False):
-    operationId: str
-    quotaInfo: QuotaInfo
-
-@typing.type_check_only
 class ReportRequest(typing_extensions.TypedDict, total=False):
     operations: typing.List[Operation]
     serviceConfigId: str
@@ -359,7 +354,6 @@ class ReportRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReportResponse(typing_extensions.TypedDict, total=False):
     reportErrors: typing.List[ReportError]
-    reportInfos: typing.List[ReportInfo]
     serviceConfigId: str
     serviceRolloutId: str
 
@@ -388,11 +382,18 @@ class RequestMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
+    annotations: typing.Dict[str, typing.Any]
+    createTime: str
+    deleteTime: str
+    displayName: str
+    etag: str
     labels: typing.Dict[str, typing.Any]
+    location: str
     name: str
     service: str
     type: str
     uid: str
+    updateTime: str
 
 @typing.type_check_only
 class ResourceInfo(typing_extensions.TypedDict, total=False):

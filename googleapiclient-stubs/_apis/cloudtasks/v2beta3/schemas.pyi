@@ -38,7 +38,6 @@ class Attempt(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -127,6 +126,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PullMessage(typing_extensions.TypedDict, total=False):
+    payload: str
+    tag: str
+
+@typing.type_check_only
 class PurgeQueueRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -140,7 +144,18 @@ class Queue(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "DISABLED"
     ]
+    stats: QueueStats
+    taskTtl: str
+    tombstoneTtl: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PULL", "PUSH"]
+
+@typing.type_check_only
+class QueueStats(typing_extensions.TypedDict, total=False):
+    concurrentDispatchesCount: str
+    effectiveExecutionRate: float
+    executedLastMinuteCount: str
+    oldestEstimatedArrivalTime: str
+    tasksCount: str
 
 @typing.type_check_only
 class RateLimits(typing_extensions.TypedDict, total=False):
@@ -187,6 +202,7 @@ class Task(typing_extensions.TypedDict, total=False):
     httpRequest: HttpRequest
     lastAttempt: Attempt
     name: str
+    pullMessage: PullMessage
     responseCount: int
     scheduleTime: str
     view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]

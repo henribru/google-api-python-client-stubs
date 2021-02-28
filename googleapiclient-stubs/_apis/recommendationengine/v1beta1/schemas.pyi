@@ -353,12 +353,23 @@ class GoogleCloudRecommendationengineV1beta1PurgeUserEventsResponse(
     userEventsSample: typing.List[GoogleCloudRecommendationengineV1beta1UserEvent]
 
 @typing.type_check_only
+class GoogleCloudRecommendationengineV1beta1RejoinUserEventsMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest(
     typing_extensions.TypedDict, total=False
 ):
     userEventRejoinScope: typing_extensions.Literal[
         "USER_EVENT_REJOIN_SCOPE_UNSPECIFIED", "JOINED_EVENTS", "UNJOINED_EVENTS"
     ]
+
+@typing.type_check_only
+class GoogleCloudRecommendationengineV1beta1RejoinUserEventsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    rejoinedUserEventsCount: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1UserEvent(

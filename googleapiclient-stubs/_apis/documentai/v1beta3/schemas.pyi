@@ -2,7 +2,7 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
-class GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata(
+class GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
@@ -13,60 +13,45 @@ class GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiUiv1beta3CreateProcessorVersionMetadata(
+class GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    createTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "QUEUED",
-        "PREPARING",
-        "RUNNING",
-        "SUCCEEDED",
-        "FAILED",
-        "CANCELLING",
-        "CANCELLED",
-    ]
-    updateTime: str
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3DeleteLabelerPoolOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    createTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
-    ]
-    stateMessage: str
-    updateTime: str
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    createTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "WAITING", "RUNNING", "SUCCEEDED", "FAILED"
-    ]
-    stateMessage: str
-    updateTime: str
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    createTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "WAITING",
-        "RUNNING",
-        "SUCCEEDED",
-        "CANCELLING",
-        "CANCELLED",
-        "FAILED",
-    ]
-    stateMessage: str
-    updateTime: str
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3DisableProcessorResponse(
@@ -77,7 +62,77 @@ class GoogleCloudDocumentaiUiv1beta3DisableProcessorResponse(
 class GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    evaluation: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+    testDatasetValidation: GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation
+    trainingDatasetValidation: GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation(
+    typing_extensions.TypedDict, total=False
+):
+    datasetErrors: typing.List[GoogleRpcStatus]
+    documentErrors: typing.List[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    processorVersion: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3UpdateHumanReviewConfigMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1BatchProcessMetadata(
+    typing_extensions.TypedDict, total=False
+):
     createTime: str
+    individualProcessStatuses: typing.List[
+        GoogleCloudDocumentaiV1BatchProcessMetadataIndividualProcessStatus
+    ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "WAITING",
@@ -91,12 +146,21 @@ class GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse(
+class GoogleCloudDocumentaiV1BatchProcessMetadataIndividualProcessStatus(
+    typing_extensions.TypedDict, total=False
+):
+    humanReviewStatus: GoogleCloudDocumentaiV1HumanReviewStatus
+    inputGcsSource: str
+    outputGcsDestination: str
+    status: GoogleRpcStatus
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1BatchProcessResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata(
+class GoogleCloudDocumentaiV1CommonOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
@@ -105,6 +169,28 @@ class GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata(
     ]
     stateMessage: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1HumanReviewStatus(
+    typing_extensions.TypedDict, total=False
+):
+    humanReviewOperation: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SKIPPED", "VALIDATION_PASSED", "IN_PROGRESS", "ERROR"
+    ]
+    stateMessage: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1ReviewDocumentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    gcsDestination: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1BatchProcessDocumentsResponse(
@@ -136,13 +222,27 @@ class GoogleCloudDocumentaiV1beta1Document(typing_extensions.TypedDict, total=Fa
     uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1beta1DocumentEntity(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1beta1DocumentEntity(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    id: str
+    mentionId: str
+    mentionText: str
+    normalizedValue: GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue
+    pageAnchor: GoogleCloudDocumentaiV1beta1DocumentPageAnchor
+    properties: typing.List[GoogleCloudDocumentaiV1beta1DocumentEntity]
+    provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
+    redacted: bool
+    textAnchor: GoogleCloudDocumentaiV1beta1DocumentTextAnchor
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue(
     typing_extensions.TypedDict, total=False
 ):
     addressValue: GoogleTypePostalAddress
+    booleanValue: bool
     dateValue: GoogleTypeDate
     datetimeValue: GoogleTypeDateTime
     moneyValue: GoogleTypeMoney
@@ -531,13 +631,27 @@ class GoogleCloudDocumentaiV1beta2Document(typing_extensions.TypedDict, total=Fa
     uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1beta2DocumentEntity(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1beta2DocumentEntity(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    id: str
+    mentionId: str
+    mentionText: str
+    normalizedValue: GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue
+    pageAnchor: GoogleCloudDocumentaiV1beta2DocumentPageAnchor
+    properties: typing.List[GoogleCloudDocumentaiV1beta2DocumentEntity]
+    provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
+    redacted: bool
+    textAnchor: GoogleCloudDocumentaiV1beta2DocumentTextAnchor
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue(
     typing_extensions.TypedDict, total=False
 ):
     addressValue: GoogleTypePostalAddress
+    booleanValue: bool
     dateValue: GoogleTypeDate
     datetimeValue: GoogleTypeDateTime
     moneyValue: GoogleTypeMoney
@@ -905,6 +1019,13 @@ class GoogleCloudDocumentaiV1beta2Vertex(typing_extensions.TypedDict, total=Fals
     y: int
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig(
+    typing_extensions.TypedDict, total=False
+):
+    gcsDocuments: GoogleCloudDocumentaiV1beta3GcsDocuments
+    gcsPrefix: GoogleCloudDocumentaiV1beta3GcsPrefix
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3BatchProcessMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -929,6 +1050,7 @@ class GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus(
     typing_extensions.TypedDict, total=False
 ):
     humanReviewOperation: str
+    humanReviewStatus: GoogleCloudDocumentaiV1beta3HumanReviewStatus
     inputGcsSource: str
     outputGcsDestination: str
     status: GoogleRpcStatus
@@ -937,10 +1059,13 @@ class GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus(
 class GoogleCloudDocumentaiV1beta3BatchProcessRequest(
     typing_extensions.TypedDict, total=False
 ):
+    documentOutputConfig: GoogleCloudDocumentaiV1beta3DocumentOutputConfig
     inputConfigs: typing.List[
         GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchInputConfig
     ]
+    inputDocuments: GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig
     outputConfig: GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchOutputConfig
+    skipHumanReview: bool
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchInputConfig(
@@ -968,6 +1093,17 @@ class GoogleCloudDocumentaiV1beta3BoundingPoly(
     vertices: typing.List[GoogleCloudDocumentaiV1beta3Vertex]
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3CommonOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
+    ]
+    stateMessage: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3Document(typing_extensions.TypedDict, total=False):
     content: str
     entities: typing.List[GoogleCloudDocumentaiV1beta3DocumentEntity]
@@ -984,13 +1120,27 @@ class GoogleCloudDocumentaiV1beta3Document(typing_extensions.TypedDict, total=Fa
     uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1beta3DocumentEntity(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1beta3DocumentEntity(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    id: str
+    mentionId: str
+    mentionText: str
+    normalizedValue: GoogleCloudDocumentaiV1beta3DocumentEntityNormalizedValue
+    pageAnchor: GoogleCloudDocumentaiV1beta3DocumentPageAnchor
+    properties: typing.List[GoogleCloudDocumentaiV1beta3DocumentEntity]
+    provenance: GoogleCloudDocumentaiV1beta3DocumentProvenance
+    redacted: bool
+    textAnchor: GoogleCloudDocumentaiV1beta3DocumentTextAnchor
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DocumentEntityNormalizedValue(
     typing_extensions.TypedDict, total=False
 ):
     addressValue: GoogleTypePostalAddress
+    booleanValue: bool
     dateValue: GoogleTypeDate
     datetimeValue: GoogleTypeDateTime
     moneyValue: GoogleTypeMoney
@@ -1003,6 +1153,18 @@ class GoogleCloudDocumentaiV1beta3DocumentEntityRelation(
     objectId: str
     relation: str
     subjectId: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DocumentOutputConfig(
+    typing_extensions.TypedDict, total=False
+):
+    gcsOutputConfig: GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfig
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfig(
+    typing_extensions.TypedDict, total=False
+):
+    gcsUri: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DocumentPage(
@@ -1291,6 +1453,31 @@ class GoogleCloudDocumentaiV1beta3DocumentTranslation(
     translatedText: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3GcsDocument(typing_extensions.TypedDict, total=False):
+    gcsUri: str
+    mimeType: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3GcsDocuments(
+    typing_extensions.TypedDict, total=False
+):
+    documents: typing.List[GoogleCloudDocumentaiV1beta3GcsDocument]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3GcsPrefix(typing_extensions.TypedDict, total=False):
+    gcsUriPrefix: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3HumanReviewStatus(
+    typing_extensions.TypedDict, total=False
+):
+    humanReviewOperation: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SKIPPED", "VALIDATION_PASSED", "IN_PROGRESS", "ERROR"
+    ]
+    stateMessage: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3NormalizedVertex(
     typing_extensions.TypedDict, total=False
 ):
@@ -1302,6 +1489,8 @@ class GoogleCloudDocumentaiV1beta3ProcessRequest(
     typing_extensions.TypedDict, total=False
 ):
     document: GoogleCloudDocumentaiV1beta3Document
+    inlineDocument: GoogleCloudDocumentaiV1beta3Document
+    rawDocument: GoogleCloudDocumentaiV1beta3RawDocument
     skipHumanReview: bool
 
 @typing.type_check_only
@@ -1310,11 +1499,18 @@ class GoogleCloudDocumentaiV1beta3ProcessResponse(
 ):
     document: GoogleCloudDocumentaiV1beta3Document
     humanReviewOperation: str
+    humanReviewStatus: GoogleCloudDocumentaiV1beta3HumanReviewStatus
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3RawDocument(typing_extensions.TypedDict, total=False):
+    content: str
+    mimeType: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
     createTime: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
@@ -1327,6 +1523,7 @@ class GoogleCloudDocumentaiV1beta3ReviewDocumentRequest(
     typing_extensions.TypedDict, total=False
 ):
     document: GoogleCloudDocumentaiV1beta3Document
+    inlineDocument: GoogleCloudDocumentaiV1beta3Document
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3ReviewDocumentResponse(

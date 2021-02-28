@@ -144,12 +144,25 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: Enterprise = ...,
+            agreementAccepted: bool = ...,
             enterpriseToken: str = ...,
             projectId: str = ...,
             signupUrlName: str = ...,
             **kwargs: typing.Any
         ) -> EnterpriseHttpRequest: ...
+        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> EnterpriseHttpRequest: ...
+        def list(
+            self,
+            *,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            projectId: str = ...,
+            view: typing_extensions.Literal[
+                "ENTERPRISE_VIEW_UNSPECIFIED", "BASIC"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> ListEnterprisesResponseHttpRequest: ...
         def patch(
             self,
             *,
@@ -231,6 +244,16 @@ class ListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListDevicesResponse: ...
+
+@typing.type_check_only
+class ListEnterprisesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListEnterprisesResponse: ...
 
 @typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):

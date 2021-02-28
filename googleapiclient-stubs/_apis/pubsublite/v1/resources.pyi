@@ -127,6 +127,13 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
             class LocationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class TopicsResource(googleapiclient.discovery.Resource):
+                    def computeHeadCursor(
+                        self,
+                        *,
+                        topic: str,
+                        body: ComputeHeadCursorRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> ComputeHeadCursorResponseHttpRequest: ...
                     def computeMessageStats(
                         self,
                         *,
@@ -140,6 +147,16 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
     def admin(self) -> AdminResource: ...
     def cursor(self) -> CursorResource: ...
     def topicStats(self) -> TopicStatsResource: ...
+
+@typing.type_check_only
+class ComputeHeadCursorResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ComputeHeadCursorResponse: ...
 
 @typing.type_check_only
 class ComputeMessageStatsResponseHttpRequest(googleapiclient.http.HttpRequest):

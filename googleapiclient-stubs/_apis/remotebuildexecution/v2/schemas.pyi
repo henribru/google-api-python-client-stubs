@@ -6,7 +6,8 @@ class BuildBazelRemoteExecutionV2Action(typing_extensions.TypedDict, total=False
     commandDigest: BuildBazelRemoteExecutionV2Digest
     doNotCache: bool
     inputRootDigest: BuildBazelRemoteExecutionV2Digest
-    outputNodeProperties: typing.List[str]
+    platform: BuildBazelRemoteExecutionV2Platform
+    salt: str
     timeout: str
 
 @typing.type_check_only
@@ -95,6 +96,7 @@ class BuildBazelRemoteExecutionV2Command(typing_extensions.TypedDict, total=Fals
     ]
     outputDirectories: typing.List[str]
     outputFiles: typing.List[str]
+    outputNodeProperties: typing.List[str]
     outputPaths: typing.List[str]
     platform: BuildBazelRemoteExecutionV2Platform
     workingDirectory: str
@@ -115,7 +117,7 @@ class BuildBazelRemoteExecutionV2Digest(typing_extensions.TypedDict, total=False
 class BuildBazelRemoteExecutionV2Directory(typing_extensions.TypedDict, total=False):
     directories: typing.List[BuildBazelRemoteExecutionV2DirectoryNode]
     files: typing.List[BuildBazelRemoteExecutionV2FileNode]
-    nodeProperties: typing.List[BuildBazelRemoteExecutionV2NodeProperty]
+    nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
     symlinks: typing.List[BuildBazelRemoteExecutionV2SymlinkNode]
 
 @typing.type_check_only
@@ -159,6 +161,7 @@ class BuildBazelRemoteExecutionV2ExecuteResponse(
 class BuildBazelRemoteExecutionV2ExecutedActionMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    auxiliaryMetadata: typing.List[typing.Dict[str, typing.Any]]
     executionCompletedTimestamp: str
     executionStartTimestamp: str
     inputFetchCompletedTimestamp: str
@@ -175,7 +178,7 @@ class BuildBazelRemoteExecutionV2ExecutionCapabilities(
     typing_extensions.TypedDict, total=False
 ):
     digestFunction: typing_extensions.Literal[
-        "UNKNOWN", "SHA256", "SHA1", "MD5", "VSO", "SHA384", "SHA512"
+        "UNKNOWN", "SHA256", "SHA1", "MD5", "VSO", "SHA384", "SHA512", "MURMUR3"
     ]
     execEnabled: bool
     executionPriorityCapabilities: BuildBazelRemoteExecutionV2PriorityCapabilities
@@ -192,7 +195,7 @@ class BuildBazelRemoteExecutionV2FileNode(typing_extensions.TypedDict, total=Fal
     digest: BuildBazelRemoteExecutionV2Digest
     isExecutable: bool
     name: str
-    nodeProperties: typing.List[BuildBazelRemoteExecutionV2NodeProperty]
+    nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2FindMissingBlobsRequest(
@@ -219,6 +222,14 @@ class BuildBazelRemoteExecutionV2LogFile(typing_extensions.TypedDict, total=Fals
     humanReadable: bool
 
 @typing.type_check_only
+class BuildBazelRemoteExecutionV2NodeProperties(
+    typing_extensions.TypedDict, total=False
+):
+    mtime: str
+    properties: typing.List[BuildBazelRemoteExecutionV2NodeProperty]
+    unixMode: int
+
+@typing.type_check_only
 class BuildBazelRemoteExecutionV2NodeProperty(typing_extensions.TypedDict, total=False):
     name: str
     value: str
@@ -235,14 +246,14 @@ class BuildBazelRemoteExecutionV2OutputFile(typing_extensions.TypedDict, total=F
     contents: str
     digest: BuildBazelRemoteExecutionV2Digest
     isExecutable: bool
-    nodeProperties: typing.List[BuildBazelRemoteExecutionV2NodeProperty]
+    nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
     path: str
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2OutputSymlink(
     typing_extensions.TypedDict, total=False
 ):
-    nodeProperties: typing.List[BuildBazelRemoteExecutionV2NodeProperty]
+    nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
     path: str
     target: str
 
@@ -300,7 +311,7 @@ class BuildBazelRemoteExecutionV2ServerCapabilities(
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2SymlinkNode(typing_extensions.TypedDict, total=False):
     name: str
-    nodeProperties: typing.List[BuildBazelRemoteExecutionV2NodeProperty]
+    nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
     target: str
 
 @typing.type_check_only
@@ -329,6 +340,8 @@ class BuildBazelSemverSemVer(typing_extensions.TypedDict, total=False):
 class GoogleDevtoolsRemotebuildbotCommandDurations(
     typing_extensions.TypedDict, total=False
 ):
+    casRelease: str
+    cmWaitForAssignment: str
     dockerPrep: str
     dockerPrepStartTime: str
     download: str
@@ -345,11 +358,13 @@ class GoogleDevtoolsRemotebuildbotCommandDurations(
 class GoogleDevtoolsRemotebuildbotCommandEvents(
     typing_extensions.TypedDict, total=False
 ):
+    cmUsage: typing_extensions.Literal["NONE", "CONFIG_MATCH", "CONFIG_MISMATCH"]
     dockerCacheHit: bool
     dockerImageName: str
     inputCacheMiss: float
     numErrors: str
     numWarnings: str
+    usedAsyncContainer: bool
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildbotCommandStatus(
@@ -394,6 +409,8 @@ class GoogleDevtoolsRemotebuildbotCommandStatus(
         "DOCKER_CREATE_RUNTIME_PERMISSION_DENIED",
         "DOCKER_CREATE_PROCESS_FILE_NOT_FOUND",
         "DOCKER_CREATE_COMPUTE_SYSTEM_INCORRECT_PARAMETER_ERROR",
+        "DOCKER_TOO_MANY_SYMBOLIC_LINK_LEVELS",
+        "LOCAL_CONTAINER_MANAGER_NOT_RUNNING",
     ]
     message: str
 
@@ -529,13 +546,6 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse(
     workerPools: typing.List[GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool]
 
 @typing.type_check_only
-class GoogleDevtoolsRemotebuildexecutionAdminV1alphaSoleTenancyConfig(
-    typing_extensions.TypedDict, total=False
-):
-    nodeType: str
-    nodesZone: str
-
-@typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -564,7 +574,7 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig(
     minCpuPlatform: str
     networkAccess: str
     reserved: bool
-    soleTenancy: GoogleDevtoolsRemotebuildexecutionAdminV1alphaSoleTenancyConfig
+    soleTenantNodeType: str
     vmImage: str
 
 @typing.type_check_only

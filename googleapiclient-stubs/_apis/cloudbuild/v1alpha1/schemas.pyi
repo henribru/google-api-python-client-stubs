@@ -20,6 +20,7 @@ class Artifacts(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Build(typing_extensions.TypedDict, total=False):
     artifacts: Artifacts
+    availableSecrets: Secrets
     buildTriggerId: str
     createTime: str
     finishTime: str
@@ -76,7 +77,7 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
         "NONE",
     ]
     machineType: typing_extensions.Literal[
-        "UNSPECIFIED", "N1_HIGHCPU_8", "N1_HIGHCPU_32"
+        "UNSPECIFIED", "N1_HIGHCPU_8", "N1_HIGHCPU_32", "E2_HIGHCPU_8", "E2_HIGHCPU_32"
     ]
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: typing.List[str]
@@ -135,6 +136,11 @@ class HTTPDelivery(typing_extensions.TypedDict, total=False):
 class Hash(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["NONE", "SHA256", "MD5"]
     value: str
+
+@typing.type_check_only
+class InlineSecret(typing_extensions.TypedDict, total=False):
+    envMap: typing.Dict[str, typing.Any]
+    kmsKeyName: str
 
 @typing.type_check_only
 class ListWorkerPoolsResponse(typing_extensions.TypedDict, total=False):
@@ -221,6 +227,16 @@ class SMTPDelivery(typing_extensions.TypedDict, total=False):
 class Secret(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     secretEnv: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class SecretManagerSecret(typing_extensions.TypedDict, total=False):
+    env: str
+    versionName: str
+
+@typing.type_check_only
+class Secrets(typing_extensions.TypedDict, total=False):
+    inline: typing.List[InlineSecret]
+    secretManager: typing.List[SecretManagerSecret]
 
 @typing.type_check_only
 class SlackDelivery(typing_extensions.TypedDict, total=False):

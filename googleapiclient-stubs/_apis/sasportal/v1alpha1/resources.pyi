@@ -38,6 +38,28 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
+            def create(
+                self,
+                *,
+                parent: str,
+                body: SasPortalDeployment = ...,
+                **kwargs: typing.Any
+            ) -> SasPortalDeploymentHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SasPortalEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SasPortalDeploymentHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> SasPortalListDeploymentsResponseHttpRequest: ...
             def move(
                 self,
                 *,
@@ -45,16 +67,17 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 body: SasPortalMoveDeploymentRequest = ...,
                 **kwargs: typing.Any
             ) -> SasPortalOperationHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: SasPortalDeployment = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> SasPortalDeploymentHttpRequest: ...
             def devices(self) -> DevicesResource: ...
         @typing.type_check_only
         class DevicesResource(googleapiclient.discovery.Resource):
-            def bulk(
-                self,
-                *,
-                parent: str,
-                body: SasPortalBulkCreateDeviceRequest = ...,
-                **kwargs: typing.Any
-            ) -> SasPortalBulkCreateDeviceResponseHttpRequest: ...
             def create(
                 self, *, parent: str, body: SasPortalDevice = ..., **kwargs: typing.Any
             ) -> SasPortalDeviceHttpRequest: ...
@@ -112,6 +135,24 @@ class SasportalResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class NodesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class DeploymentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SasPortalDeployment = ...,
+                    **kwargs: typing.Any
+                ) -> SasPortalDeploymentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> SasPortalListDeploymentsResponseHttpRequest: ...
+            @typing.type_check_only
             class DevicesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -149,6 +190,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -166,6 +208,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
@@ -185,6 +228,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> SasPortalNodeHttpRequest: ...
+            def deployments(self) -> DeploymentsResource: ...
             def devices(self) -> DevicesResource: ...
             def nodes(self) -> NodesResource: ...
         def get(
@@ -243,6 +287,9 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 body: SasPortalUpdateSignedDeviceRequest = ...,
                 **kwargs: typing.Any
             ) -> SasPortalDeviceHttpRequest: ...
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SasPortalDeploymentHttpRequest: ...
         def devices(self) -> DevicesResource: ...
     @typing.type_check_only
     class InstallerResource(googleapiclient.discovery.Resource):
@@ -281,6 +328,21 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SasPortalEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SasPortalDeploymentHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> SasPortalListDeploymentsResponseHttpRequest: ...
             def move(
                 self,
                 *,
@@ -288,16 +350,17 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 body: SasPortalMoveDeploymentRequest = ...,
                 **kwargs: typing.Any
             ) -> SasPortalOperationHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: SasPortalDeployment = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> SasPortalDeploymentHttpRequest: ...
             def devices(self) -> DevicesResource: ...
         @typing.type_check_only
         class DevicesResource(googleapiclient.discovery.Resource):
-            def bulk(
-                self,
-                *,
-                parent: str,
-                body: SasPortalBulkCreateDeviceRequest = ...,
-                **kwargs: typing.Any
-            ) -> SasPortalBulkCreateDeviceResponseHttpRequest: ...
             def create(
                 self, *, parent: str, body: SasPortalDevice = ..., **kwargs: typing.Any
             ) -> SasPortalDeviceHttpRequest: ...
@@ -355,14 +418,25 @@ class SasportalResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class NodesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
-            class DevicesResource(googleapiclient.discovery.Resource):
-                def bulk(
+            class DeploymentsResource(googleapiclient.discovery.Resource):
+                def create(
                     self,
                     *,
                     parent: str,
-                    body: SasPortalBulkCreateDeviceRequest = ...,
+                    body: SasPortalDeployment = ...,
                     **kwargs: typing.Any
-                ) -> SasPortalBulkCreateDeviceResponseHttpRequest: ...
+                ) -> SasPortalDeploymentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> SasPortalListDeploymentsResponseHttpRequest: ...
+            @typing.type_check_only
+            class DevicesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
                     *,
@@ -399,6 +473,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -416,6 +491,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
@@ -435,6 +511,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> SasPortalNodeHttpRequest: ...
+            def deployments(self) -> DeploymentsResource: ...
             def devices(self) -> DevicesResource: ...
             def nodes(self) -> NodesResource: ...
         def get(
@@ -461,16 +538,6 @@ class SasportalResource(googleapiclient.discovery.Resource):
     def policies(self) -> PoliciesResource: ...
 
 @typing.type_check_only
-class SasPortalBulkCreateDeviceResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> SasPortalBulkCreateDeviceResponse: ...
-
-@typing.type_check_only
 class SasPortalCustomerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -479,6 +546,16 @@ class SasPortalCustomerHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> SasPortalCustomer: ...
+
+@typing.type_check_only
+class SasPortalDeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SasPortalDeployment: ...
 
 @typing.type_check_only
 class SasPortalDeviceHttpRequest(googleapiclient.http.HttpRequest):
@@ -519,6 +596,16 @@ class SasPortalListCustomersResponseHttpRequest(googleapiclient.http.HttpRequest
         ] = ...,
         num_retries: int = ...,
     ) -> SasPortalListCustomersResponse: ...
+
+@typing.type_check_only
+class SasPortalListDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SasPortalListDeploymentsResponse: ...
 
 @typing.type_check_only
 class SasPortalListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):

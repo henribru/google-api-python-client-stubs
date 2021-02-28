@@ -71,6 +71,7 @@ class Address(typing_extensions.TypedDict, total=False):
         "DNS_RESOLVER",
         "GCE_ENDPOINT",
         "NAT_AUTO",
+        "PRIVATE_SERVICE_CONNECT",
         "SHARED_LOADBALANCER_VIP",
         "VPC_PEERING",
     ]
@@ -103,6 +104,10 @@ class AddressList(typing_extensions.TypedDict, total=False):
 class AddressesScopedList(typing_extensions.TypedDict, total=False):
     addresses: typing.List[Address]
     warning: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
+    enableNestedVirtualization: bool
 
 @typing.type_check_only
 class AliasIpRange(typing_extensions.TypedDict, total=False):
@@ -163,6 +168,7 @@ class AttachedDiskInitializeParams(typing_extensions.TypedDict, total=False):
     onUpdateAction: typing_extensions.Literal[
         "RECREATE_DISK", "RECREATE_DISK_IF_SOURCE_CHANGED", "USE_EXISTING_DISK"
     ]
+    provisionedIops: str
     resourcePolicies: typing.List[str]
     sourceImage: str
     sourceImageEncryptionKey: CustomerEncryptionKey
@@ -203,6 +209,7 @@ class Autoscaler(typing_extensions.TypedDict, total=False):
     name: str
     recommendedSize: int
     region: str
+    scalingScheduleStatus: typing.Dict[str, typing.Any]
     selfLink: str
     status: typing_extensions.Literal["ACTIVE", "DELETING", "ERROR", "PENDING"]
     statusDetails: typing.List[AutoscalerStatusDetails]
@@ -268,6 +275,7 @@ class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["OFF", "ON", "ONLY_SCALE_OUT", "ONLY_UP"]
     scaleDownControl: AutoscalingPolicyScaleDownControl
     scaleInControl: AutoscalingPolicyScaleInControl
+    scalingSchedules: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class AutoscalingPolicyCpuUtilization(typing_extensions.TypedDict, total=False):
@@ -303,6 +311,15 @@ class AutoscalingPolicyScaleDownControl(typing_extensions.TypedDict, total=False
 class AutoscalingPolicyScaleInControl(typing_extensions.TypedDict, total=False):
     maxScaledInReplicas: FixedOrPercent
     timeWindowSec: int
+
+@typing.type_check_only
+class AutoscalingPolicyScalingSchedule(typing_extensions.TypedDict, total=False):
+    description: str
+    disabled: bool
+    durationSec: int
+    minRequiredReplicas: int
+    schedule: str
+    timeZone: str
 
 @typing.type_check_only
 class Backend(typing_extensions.TypedDict, total=False):
@@ -348,6 +365,7 @@ class BackendBucketCdnPolicy(typing_extensions.TypedDict, total=False):
     maxTtl: int
     negativeCaching: bool
     negativeCachingPolicy: typing.List[BackendBucketCdnPolicyNegativeCachingPolicy]
+    requestCoalescing: bool
     serveWhileStale: int
     signedUrlCacheMaxAgeSec: str
     signedUrlKeyNames: typing.List[str]
@@ -381,6 +399,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
     cdnPolicy: BackendServiceCdnPolicy
     circuitBreakers: CircuitBreakers
     connectionDraining: ConnectionDraining
+    connectionTrackingPolicy: BackendServiceConnectionTrackingPolicy
     consistentHash: ConsistentHashLoadBalancerSettings
     creationTimestamp: str
     customRequestHeaders: typing.List[str]
@@ -460,6 +479,7 @@ class BackendServiceCdnPolicy(typing_extensions.TypedDict, total=False):
     maxTtl: int
     negativeCaching: bool
     negativeCachingPolicy: typing.List[BackendServiceCdnPolicyNegativeCachingPolicy]
+    requestCoalescing: bool
     serveWhileStale: int
     signedUrlCacheMaxAgeSec: str
     signedUrlKeyNames: typing.List[str]
@@ -476,6 +496,16 @@ class BackendServiceCdnPolicyNegativeCachingPolicy(
 ):
     code: int
     ttl: int
+
+@typing.type_check_only
+class BackendServiceConnectionTrackingPolicy(typing_extensions.TypedDict, total=False):
+    connectionPersistenceOnUnhealthyBackends: typing_extensions.Literal[
+        "ALWAYS_PERSIST", "DEFAULT_FOR_PROTOCOL", "NEVER_PERSIST"
+    ]
+    idleTimeoutSec: int
+    trackingMode: typing_extensions.Literal[
+        "INVALID_TRACKING_MODE", "PER_CONNECTION", "PER_SESSION"
+    ]
 
 @typing.type_check_only
 class BackendServiceFailoverPolicy(typing_extensions.TypedDict, total=False):
@@ -757,13 +787,16 @@ class Disk(typing_extensions.TypedDict, total=False):
     lastDetachTimestamp: str
     licenseCodes: typing.List[str]
     licenses: typing.List[str]
+    locationHint: str
     multiWriter: bool
     name: str
     options: str
     physicalBlockSizeBytes: str
+    provisionedIops: str
     region: str
     replicaZones: typing.List[str]
     resourcePolicies: typing.List[str]
+    satisfiesPzs: bool
     selfLink: str
     sizeGb: str
     sourceDisk: str
@@ -883,6 +916,7 @@ class DisplayDevice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DistributionPolicy(typing_extensions.TypedDict, total=False):
+    targetShape: typing_extensions.Literal["ANY", "BALANCED", "EVEN"]
     zones: typing.List[DistributionPolicyZoneConfiguration]
 
 @typing.type_check_only
@@ -993,6 +1027,71 @@ class FirewallLogConfig(typing_extensions.TypedDict, total=False):
     metadata: typing_extensions.Literal["EXCLUDE_ALL_METADATA", "INCLUDE_ALL_METADATA"]
 
 @typing.type_check_only
+class FirewallPoliciesListAssociationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    associations: typing.List[FirewallPolicyAssociation]
+    kind: str
+
+@typing.type_check_only
+class FirewallPolicy(typing_extensions.TypedDict, total=False):
+    associations: typing.List[FirewallPolicyAssociation]
+    creationTimestamp: str
+    description: str
+    displayName: str
+    fingerprint: str
+    id: str
+    kind: str
+    name: str
+    parent: str
+    ruleTupleCount: int
+    rules: typing.List[FirewallPolicyRule]
+    selfLink: str
+    selfLinkWithId: str
+
+@typing.type_check_only
+class FirewallPolicyAssociation(typing_extensions.TypedDict, total=False):
+    attachmentTarget: str
+    displayName: str
+    firewallPolicyId: str
+    name: str
+
+@typing.type_check_only
+class FirewallPolicyList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: typing.List[FirewallPolicy]
+    kind: str
+    nextPageToken: str
+    warning: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class FirewallPolicyRule(typing_extensions.TypedDict, total=False):
+    action: str
+    description: str
+    direction: typing_extensions.Literal["EGRESS", "INGRESS"]
+    disabled: bool
+    enableLogging: bool
+    kind: str
+    match: FirewallPolicyRuleMatcher
+    priority: int
+    ruleTupleCount: int
+    targetResources: typing.List[str]
+    targetSecureLabels: typing.List[str]
+    targetServiceAccounts: typing.List[str]
+
+@typing.type_check_only
+class FirewallPolicyRuleMatcher(typing_extensions.TypedDict, total=False):
+    destIpRanges: typing.List[str]
+    layer4Configs: typing.List[FirewallPolicyRuleMatcherLayer4Config]
+    srcIpRanges: typing.List[str]
+    srcSecureLabels: typing.List[str]
+
+@typing.type_check_only
+class FirewallPolicyRuleMatcherLayer4Config(typing_extensions.TypedDict, total=False):
+    ipProtocol: str
+    ports: typing.List[str]
+
+@typing.type_check_only
 class FixedOrPercent(typing_extensions.TypedDict, total=False):
     calculated: int
     fixed: int
@@ -1088,6 +1187,12 @@ class GlobalNetworkEndpointGroupsDetachEndpointsRequest(
     typing_extensions.TypedDict, total=False
 ):
     networkEndpoints: typing.List[NetworkEndpoint]
+
+@typing.type_check_only
+class GlobalOrganizationSetPolicyRequest(typing_extensions.TypedDict, total=False):
+    bindings: typing.List[Binding]
+    etag: str
+    policy: Policy
 
 @typing.type_check_only
 class GlobalSetLabelsRequest(typing_extensions.TypedDict, total=False):
@@ -1260,6 +1365,10 @@ class HealthStatus(typing_extensions.TypedDict, total=False):
     instance: str
     ipAddress: str
     port: int
+    weight: str
+    weightError: typing_extensions.Literal[
+        "INVALID_WEIGHT", "MISSING_WEIGHT", "UNAVAILABLE_WEIGHT", "WEIGHT_NONE"
+    ]
 
 @typing.type_check_only
 class HealthStatusForNetworkEndpoint(typing_extensions.TypedDict, total=False):
@@ -1483,6 +1592,7 @@ class InitialStateConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    advancedMachineFeatures: AdvancedMachineFeatures
     canIpForward: bool
     confidentialInstanceConfig: ConfidentialInstanceConfig
     cpuPlatform: str
@@ -1514,6 +1624,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
     reservationAffinity: ReservationAffinity
     resourcePolicies: typing.List[str]
+    satisfiesPzs: bool
     scheduling: Scheduling
     selfLink: str
     serviceAccounts: typing.List[ServiceAccount]
@@ -1601,7 +1712,6 @@ class InstanceGroupManager(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     namedPorts: typing.List[NamedPort]
-    pendingActions: InstanceGroupManagerPendingActionsSummary
     region: str
     selfLink: str
     serviceAccount: str
@@ -1648,15 +1758,6 @@ class InstanceGroupManagerList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
     warning: typing.Dict[str, typing.Any]
-
-@typing.type_check_only
-class InstanceGroupManagerPendingActionsSummary(
-    typing_extensions.TypedDict, total=False
-):
-    creating: int
-    deleting: int
-    recreating: int
-    restarting: int
 
 @typing.type_check_only
 class InstanceGroupManagerStatus(typing_extensions.TypedDict, total=False):
@@ -1888,6 +1989,7 @@ class InstanceMoveRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstanceProperties(typing_extensions.TypedDict, total=False):
+    advancedMachineFeatures: AdvancedMachineFeatures
     canIpForward: bool
     confidentialInstanceConfig: ConfidentialInstanceConfig
     description: str
@@ -1899,6 +2001,9 @@ class InstanceProperties(typing_extensions.TypedDict, total=False):
     metadata: Metadata
     minCpuPlatform: str
     networkInterfaces: typing.List[NetworkInterface]
+    postKeyRevocationActionType: typing_extensions.Literal[
+        "NOOP", "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED", "SHUTDOWN"
+    ]
     privateIpv6GoogleAccess: typing_extensions.Literal[
         "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
         "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
@@ -1960,10 +2065,22 @@ class InstancesAddResourcePoliciesRequest(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class InstancesGetEffectiveFirewallsResponse(typing_extensions.TypedDict, total=False):
+    firewallPolicys: typing.List[
+        InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy
+    ]
     firewalls: typing.List[Firewall]
     organizationFirewalls: typing.List[
         InstancesGetEffectiveFirewallsResponseOrganizationFirewallPolicy
     ]
+
+@typing.type_check_only
+class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    name: str
+    rules: typing.List[FirewallPolicyRule]
+    type: typing_extensions.Literal["HIERARCHY", "UNSPECIFIED"]
 
 @typing.type_check_only
 class InstancesGetEffectiveFirewallsResponseOrganizationFirewallPolicy(
@@ -2072,6 +2189,7 @@ class InterconnectAttachment(typing_extensions.TypedDict, total=False):
     cloudRouterIpAddress: str
     creationTimestamp: str
     customerRouterIpAddress: str
+    dataplaneVersion: int
     description: str
     edgeAvailabilityDomain: typing_extensions.Literal[
         "AVAILABILITY_DOMAIN_1", "AVAILABILITY_DOMAIN_2", "AVAILABILITY_DOMAIN_ANY"
@@ -2082,6 +2200,7 @@ class InterconnectAttachment(typing_extensions.TypedDict, total=False):
     kind: str
     labelFingerprint: str
     labels: typing.Dict[str, typing.Any]
+    mtu: int
     name: str
     operationalStatus: typing_extensions.Literal["OS_ACTIVE", "OS_UNPROVISIONED"]
     pairingKey: str
@@ -2513,6 +2632,7 @@ class NetworkEndpointGroup(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     networkEndpointType: typing_extensions.Literal[
+        "GCE_VM_IP",
         "GCE_VM_IP_PORT",
         "INTERNET_FQDN_PORT",
         "INTERNET_IP_PORT",
@@ -2627,6 +2747,7 @@ class NetworkInterface(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     networkIP: str
+    nicType: typing_extensions.Literal["GVNIC", "UNSPECIFIED_NIC_TYPE", "VIRTIO_NET"]
     subnetwork: str
 
 @typing.type_check_only
@@ -2665,10 +2786,22 @@ class NetworksAddPeeringRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworksGetEffectiveFirewallsResponse(typing_extensions.TypedDict, total=False):
+    firewallPolicys: typing.List[
+        NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy
+    ]
     firewalls: typing.List[Firewall]
     organizationFirewalls: typing.List[
         NetworksGetEffectiveFirewallsResponseOrganizationFirewallPolicy
     ]
+
+@typing.type_check_only
+class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    name: str
+    rules: typing.List[FirewallPolicyRule]
+    type: typing_extensions.Literal["HIERARCHY", "NETWORK", "UNSPECIFIED"]
 
 @typing.type_check_only
 class NetworksGetEffectiveFirewallsResponseOrganizationFirewallPolicy(
@@ -2699,6 +2832,7 @@ class NodeGroup(typing_extensions.TypedDict, total=False):
         "MIGRATE_WITHIN_NODE_GROUP",
         "RESTART_IN_PLACE",
     ]
+    maintenanceWindow: NodeGroupMaintenanceWindow
     name: str
     nodeTemplate: str
     selfLink: str
@@ -2730,6 +2864,11 @@ class NodeGroupList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
     warning: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class NodeGroupMaintenanceWindow(typing_extensions.TypedDict, total=False):
+    maintenanceDuration: Duration
+    startTime: str
 
 @typing.type_check_only
 class NodeGroupNode(typing_extensions.TypedDict, total=False):
@@ -3003,6 +3142,7 @@ class PacketMirroringAggregatedList(typing_extensions.TypedDict, total=False):
 class PacketMirroringFilter(typing_extensions.TypedDict, total=False):
     IPProtocols: typing.List[str]
     cidrRanges: typing.List[str]
+    direction: typing_extensions.Literal["BOTH", "EGRESS", "INGRESS"]
 
 @typing.type_check_only
 class PacketMirroringForwardingRuleInfo(typing_extensions.TypedDict, total=False):
@@ -3140,6 +3280,102 @@ class ProjectsSetDefaultNetworkTierRequest(typing_extensions.TypedDict, total=Fa
     networkTier: typing_extensions.Literal["PREMIUM", "STANDARD"]
 
 @typing.type_check_only
+class PublicAdvertisedPrefix(typing_extensions.TypedDict, total=False):
+    creationTimestamp: str
+    description: str
+    dnsVerificationIp: str
+    fingerprint: str
+    id: str
+    ipCidrRange: str
+    kind: str
+    name: str
+    publicDelegatedPrefixs: typing.List[PublicAdvertisedPrefixPublicDelegatedPrefix]
+    selfLink: str
+    sharedSecret: str
+    status: typing_extensions.Literal[
+        "INITIAL",
+        "PREFIX_CONFIGURATION_COMPLETE",
+        "PREFIX_CONFIGURATION_IN_PROGRESS",
+        "PREFIX_REMOVAL_IN_PROGRESS",
+        "PTR_CONFIGURED",
+        "REVERSE_DNS_LOOKUP_FAILED",
+        "VALIDATED",
+    ]
+
+@typing.type_check_only
+class PublicAdvertisedPrefixList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: typing.List[PublicAdvertisedPrefix]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class PublicAdvertisedPrefixPublicDelegatedPrefix(
+    typing_extensions.TypedDict, total=False
+):
+    ipRange: str
+    name: str
+    project: str
+    region: str
+    status: str
+
+@typing.type_check_only
+class PublicDelegatedPrefix(typing_extensions.TypedDict, total=False):
+    creationTimestamp: str
+    description: str
+    fingerprint: str
+    id: str
+    ipCidrRange: str
+    isLiveMigration: bool
+    kind: str
+    name: str
+    parentPrefix: str
+    publicDelegatedSubPrefixs: typing.List[
+        PublicDelegatedPrefixPublicDelegatedSubPrefix
+    ]
+    region: str
+    selfLink: str
+    status: typing_extensions.Literal["ANNOUNCED", "DELETING", "INITIALIZING"]
+
+@typing.type_check_only
+class PublicDelegatedPrefixAggregatedList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: typing.Dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: typing.List[str]
+    warning: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class PublicDelegatedPrefixList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: typing.List[PublicDelegatedPrefix]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class PublicDelegatedPrefixPublicDelegatedSubPrefix(
+    typing_extensions.TypedDict, total=False
+):
+    delegateeProject: str
+    description: str
+    ipCidrRange: str
+    isAddress: bool
+    name: str
+    region: str
+    status: typing_extensions.Literal["ACTIVE", "INACTIVE"]
+
+@typing.type_check_only
+class PublicDelegatedPrefixesScopedList(typing_extensions.TypedDict, total=False):
+    publicDelegatedPrefixes: typing.List[PublicDelegatedPrefix]
+    warning: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
     limit: float
     metric: typing_extensions.Literal[
@@ -3167,6 +3403,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "CPUS",
         "CPUS_ALL_REGIONS",
         "DISKS_TOTAL_GB",
+        "E2_CPUS",
         "EXTERNAL_NETWORK_LB_FORWARDING_RULES",
         "EXTERNAL_PROTOCOL_FORWARDING_RULES",
         "EXTERNAL_VPN_GATEWAYS",
@@ -3211,6 +3448,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "NVIDIA_T4_VWS_GPUS",
         "NVIDIA_V100_GPUS",
         "PACKET_MIRRORINGS",
+        "PD_EXTREME_TOTAL_PROVISIONED_IOPS",
         "PREEMPTIBLE_CPUS",
         "PREEMPTIBLE_LOCAL_SSD_GB",
         "PREEMPTIBLE_NVIDIA_A100_GPUS",
@@ -3223,6 +3461,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "PREEMPTIBLE_NVIDIA_T4_VWS_GPUS",
         "PREEMPTIBLE_NVIDIA_V100_GPUS",
         "PRIVATE_V6_ACCESS_SUBNETWORKS",
+        "PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK",
         "PUBLIC_ADVERTISED_PREFIXES",
         "PUBLIC_DELEGATED_PREFIXES",
         "REGIONAL_AUTOSCALERS",
@@ -3250,6 +3489,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "URL_MAPS",
         "VPN_GATEWAYS",
         "VPN_TUNNELS",
+        "XPN_SERVICE_PROJECTS",
     ]
     owner: str
     usage: float
@@ -3272,6 +3512,7 @@ class Region(typing_extensions.TypedDict, total=False):
     quotas: typing.List[Quota]
     selfLink: str
     status: typing_extensions.Literal["DOWN", "UP"]
+    supportsPzs: bool
     zones: typing.List[str]
 
 @typing.type_check_only
@@ -3776,6 +4017,7 @@ class RouterList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RouterNat(typing_extensions.TypedDict, total=False):
     drainNatIps: typing.List[str]
+    enableEndpointIndependentMapping: bool
     icmpIdleTimeoutSec: int
     logConfig: RouterNatLogConfig
     minPortsPerVm: int
@@ -3893,8 +4135,15 @@ class SavedAttachedDisk(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["PERSISTENT", "SCRATCH"]
 
 @typing.type_check_only
+class ScalingScheduleStatus(typing_extensions.TypedDict, total=False):
+    lastStartTime: str
+    nextStartTime: str
+    state: typing_extensions.Literal["ACTIVE", "DISABLED", "OBSOLETE", "READY"]
+
+@typing.type_check_only
 class Scheduling(typing_extensions.TypedDict, total=False):
     automaticRestart: bool
+    locationHint: str
     minNodeCpus: int
     nodeAffinities: typing.List[SchedulingNodeAffinity]
     onHostMaintenance: typing_extensions.Literal["MIGRATE", "TERMINATE"]
@@ -3923,6 +4172,7 @@ class SecurityPoliciesWafConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityPolicy(typing_extensions.TypedDict, total=False):
+    adaptiveProtectionConfig: SecurityPolicyAdaptiveProtectionConfig
     associations: typing.List[SecurityPolicyAssociation]
     creationTimestamp: str
     description: str
@@ -3939,6 +4189,17 @@ class SecurityPolicy(typing_extensions.TypedDict, total=False):
     selfLink: str
     selfLinkWithId: str
     type: typing_extensions.Literal["CLOUD_ARMOR", "FIREWALL"]
+
+@typing.type_check_only
+class SecurityPolicyAdaptiveProtectionConfig(typing_extensions.TypedDict, total=False):
+    layer7DdosDefenseConfig: SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig
+
+@typing.type_check_only
+class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enable: bool
+    ruleVisibility: typing_extensions.Literal["PREMIUM", "STANDARD"]
 
 @typing.type_check_only
 class SecurityPolicyAssociation(typing_extensions.TypedDict, total=False):
@@ -3969,6 +4230,7 @@ class SecurityPolicyRule(typing_extensions.TypedDict, total=False):
     match: SecurityPolicyRuleMatcher
     preview: bool
     priority: int
+    ruleNumber: str
     ruleTupleCount: int
     targetResources: typing.List[str]
     targetServiceAccounts: typing.List[str]
@@ -4018,6 +4280,39 @@ class ServerBinding(typing_extensions.TypedDict, total=False):
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     email: str
     scopes: typing.List[str]
+
+@typing.type_check_only
+class ServiceAttachment(typing_extensions.TypedDict, total=False):
+    connectionPreference: typing_extensions.Literal[
+        "ACCEPT_AUTOMATIC", "CONNECTION_PREFERENCE_UNSPECIFIED"
+    ]
+    consumerForwardingRules: typing.List[ServiceAttachmentConsumerForwardingRule]
+    creationTimestamp: str
+    description: str
+    enableProxyProtocol: bool
+    id: str
+    kind: str
+    name: str
+    natSubnets: typing.List[str]
+    producerForwardingRule: str
+    region: str
+    selfLink: str
+
+@typing.type_check_only
+class ServiceAttachmentConsumerForwardingRule(typing_extensions.TypedDict, total=False):
+    forwardingRule: str
+    status: typing_extensions.Literal[
+        "ACTIVE", "INACTIVE", "PENDING", "STATUS_UNSPECIFIED"
+    ]
+
+@typing.type_check_only
+class ServiceAttachmentList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: typing.List[ServiceAttachment]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
@@ -4081,7 +4376,9 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     licenseCodes: typing.List[str]
     licenses: typing.List[str]
+    locationHint: str
     name: str
+    satisfiesPzs: bool
     selfLink: str
     snapshotEncryptionKey: CustomerEncryptionKey
     sourceDisk: str
@@ -4124,6 +4421,9 @@ class SourceInstanceProperties(typing_extensions.TypedDict, total=False):
     metadata: Metadata
     minCpuPlatform: str
     networkInterfaces: typing.List[NetworkInterface]
+    postKeyRevocationActionType: typing_extensions.Literal[
+        "NOOP", "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED", "SHUTDOWN"
+    ]
     scheduling: Scheduling
     serviceAccounts: typing.List[ServiceAccount]
     tags: Tags
@@ -4255,7 +4555,10 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
         "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
     ]
     purpose: typing_extensions.Literal[
-        "INTERNAL_HTTPS_LOAD_BALANCER", "PRIVATE", "PRIVATE_RFC_1918"
+        "INTERNAL_HTTPS_LOAD_BALANCER",
+        "PRIVATE",
+        "PRIVATE_RFC_1918",
+        "PRIVATE_SERVICE_CONNECT",
     ]
     region: str
     role: typing_extensions.Literal["ACTIVE", "BACKUP"]
@@ -4616,6 +4919,7 @@ class TargetTcpProxy(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    proxyBind: bool
     proxyHeader: typing_extensions.Literal["NONE", "PROXY_V1"]
     selfLink: str
     service: str
@@ -4671,8 +4975,13 @@ class TargetVpnGatewaysScopedList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestFailure(typing_extensions.TypedDict, total=False):
+    actualOutputUrl: str
+    actualRedirectResponseCode: int
     actualService: str
+    expectedOutputUrl: str
+    expectedRedirectResponseCode: int
     expectedService: str
+    headers: typing.List[UrlMapTestHeader]
     host: str
     path: str
 
@@ -4718,9 +5027,17 @@ class UrlMapReference(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UrlMapTest(typing_extensions.TypedDict, total=False):
     description: str
+    expectedOutputUrl: str
+    expectedRedirectResponseCode: int
+    headers: typing.List[UrlMapTestHeader]
     host: str
     path: str
     service: str
+
+@typing.type_check_only
+class UrlMapTestHeader(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
 
 @typing.type_check_only
 class UrlMapValidationResult(typing_extensions.TypedDict, total=False):
@@ -4988,6 +5305,7 @@ class Zone(typing_extensions.TypedDict, total=False):
     region: str
     selfLink: str
     status: typing_extensions.Literal["DOWN", "UP"]
+    supportsPzs: bool
 
 @typing.type_check_only
 class ZoneList(typing_extensions.TypedDict, total=False):

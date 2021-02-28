@@ -6,6 +6,9 @@ class Accelerator(typing_extensions.TypedDict, total=False):
     acceleratorType: typing_extensions.Literal[
         "ACCELERATOR_TYPE_UNSPECIFIED", "CDC", "HEALTHCARE"
     ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ENABLED", "DISABLED", "UNKNOWN"
+    ]
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -21,7 +24,6 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -124,6 +126,7 @@ class Operation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
+    additionalStatus: typing.Dict[str, typing.Any]
     apiVersion: str
     createTime: str
     endTime: str

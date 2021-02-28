@@ -65,6 +65,13 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Backup = ...,
                     backupId: str = ...,
+                    encryptionConfig_encryptionType: typing_extensions.Literal[
+                        "ENCRYPTION_TYPE_UNSPECIFIED",
+                        "USE_DATABASE_ENCRYPTION",
+                        "GOOGLE_DEFAULT_ENCRYPTION",
+                        "CUSTOMER_MANAGED_ENCRYPTION",
+                    ] = ...,
+                    encryptionConfig_kmsKeyName: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -352,6 +359,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 filter: str = ...,
+                instanceDeadline: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any

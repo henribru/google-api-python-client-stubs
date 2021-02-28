@@ -119,6 +119,13 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     def list(
                         self, *, parent: str, **kwargs: typing.Any
                     ) -> GoogleCloudMlV1__ListTrialsResponseHttpRequest: ...
+                    def listOptimalTrials(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudMlV1__ListOptimalTrialsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudMlV1__ListOptimalTrialsResponseHttpRequest: ...
                     def stop(
                         self,
                         *,
@@ -358,6 +365,18 @@ class GoogleCloudMlV1__ListModelsResponseHttpRequest(googleapiclient.http.HttpRe
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudMlV1__ListModelsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudMlV1__ListOptimalTrialsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudMlV1__ListOptimalTrialsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudMlV1__ListStudiesResponseHttpRequest(googleapiclient.http.HttpRequest):

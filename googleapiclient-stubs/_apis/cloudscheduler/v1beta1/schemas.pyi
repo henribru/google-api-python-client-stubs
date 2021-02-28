@@ -53,6 +53,7 @@ class Job(typing_extensions.TypedDict, total=False):
     description: str
     httpTarget: HttpTarget
     lastAttemptTime: str
+    legacyAppEngineCron: bool
     name: str
     pubsubTarget: PubsubTarget
     retryConfig: RetryConfig
@@ -122,7 +123,8 @@ class RetryConfig(typing_extensions.TypedDict, total=False):
     retryCount: int
 
 @typing.type_check_only
-class RunJobRequest(typing_extensions.TypedDict, total=False): ...
+class RunJobRequest(typing_extensions.TypedDict, total=False):
+    legacyAppEngineCron: bool
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

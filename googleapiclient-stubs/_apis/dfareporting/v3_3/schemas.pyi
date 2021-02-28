@@ -521,6 +521,7 @@ class Creative(typing_extensions.TypedDict, total=False):
         "CREATIVE_AUTHORING_SOURCE_DCM",
         "CREATIVE_AUTHORING_SOURCE_DBM",
         "CREATIVE_AUTHORING_SOURCE_STUDIO",
+        "CREATIVE_AUTHORING_SOURCE_GWD",
     ]
     authoringTool: typing_extensions.Literal["NINJA", "SWIFFY"]
     autoAdvanceImages: bool

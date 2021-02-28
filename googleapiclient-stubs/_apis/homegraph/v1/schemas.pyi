@@ -17,6 +17,7 @@ class Device(typing_extensions.TypedDict, total=False):
     deviceInfo: DeviceInfo
     id: str
     name: DeviceNames
+    nonLocalTraits: typing.List[NonLocalTrait]
     notificationSupportedByAgent: bool
     otherDeviceIds: typing.List[AgentOtherDeviceId]
     roomHint: str
@@ -40,6 +41,10 @@ class DeviceNames(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class NonLocalTrait(typing_extensions.TypedDict, total=False):
+    trait: str
 
 @typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):

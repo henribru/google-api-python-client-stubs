@@ -206,10 +206,14 @@ class FieldViolation(typing_extensions.TypedDict, total=False):
     field: str
 
 @typing.type_check_only
-class Filter(typing.Dict[str, typing.Any]): ...
+class Filter(typing_extensions.TypedDict, total=False):
+    compositeFilter: CompositeFilter
+    valueFilter: ValueFilter
 
 @typing.type_check_only
-class FilterOptions(typing.Dict[str, typing.Any]): ...
+class FilterOptions(typing_extensions.TypedDict, total=False):
+    filter: Filter
+    objectType: str
 
 @typing.type_check_only
 class FreshnessOptions(typing_extensions.TypedDict, total=False):
@@ -305,7 +309,19 @@ class Interaction(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["UNSPECIFIED", "VIEW", "EDIT"]
 
 @typing.type_check_only
-class Item(typing.Dict[str, typing.Any]): ...
+class Item(typing_extensions.TypedDict, total=False):
+    acl: ItemAcl
+    content: ItemContent
+    itemType: typing_extensions.Literal[
+        "UNSPECIFIED", "CONTENT_ITEM", "CONTAINER_ITEM", "VIRTUAL_CONTAINER_ITEM"
+    ]
+    metadata: ItemMetadata
+    name: str
+    payload: str
+    queue: str
+    status: ItemStatus
+    structuredData: ItemStructuredData
+    version: str
 
 @typing.type_check_only
 class ItemAcl(typing_extensions.TypedDict, total=False):
@@ -355,7 +371,9 @@ class ItemStatus(typing_extensions.TypedDict, total=False):
     repositoryErrors: typing.List[RepositoryError]
 
 @typing.type_check_only
-class ItemStructuredData(typing.Dict[str, typing.Any]): ...
+class ItemStructuredData(typing_extensions.TypedDict, total=False):
+    hash: str
+    object: StructuredDataObject
 
 @typing.type_check_only
 class ListDataSourceResponse(typing_extensions.TypedDict, total=False):
@@ -423,7 +441,17 @@ class Name(typing_extensions.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class NamedProperty(typing.Dict[str, typing.Any]): ...
+class NamedProperty(typing_extensions.TypedDict, total=False):
+    booleanValue: bool
+    dateValues: DateValues
+    doubleValues: DoubleValues
+    enumValues: EnumValues
+    htmlValues: HtmlValues
+    integerValues: IntegerValues
+    name: str
+    objectValues: ObjectValues
+    textValues: TextValues
+    timestampValues: TimestampValues
 
 @typing.type_check_only
 class ObjectDefinition(typing_extensions.TypedDict, total=False):
@@ -446,7 +474,8 @@ class ObjectPropertyOptions(typing_extensions.TypedDict, total=False):
     subobjectProperties: typing.List[PropertyDefinition]
 
 @typing.type_check_only
-class ObjectValues(typing.Dict[str, typing.Any]): ...
+class ObjectValues(typing_extensions.TypedDict, total=False):
+    values: typing.List[StructuredDataObject]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -503,7 +532,24 @@ class ProcessingError(typing_extensions.TypedDict, total=False):
     fieldViolations: typing.List[FieldViolation]
 
 @typing.type_check_only
-class PropertyDefinition(typing.Dict[str, typing.Any]): ...
+class PropertyDefinition(typing_extensions.TypedDict, total=False):
+    booleanPropertyOptions: BooleanPropertyOptions
+    datePropertyOptions: DatePropertyOptions
+    displayOptions: PropertyDisplayOptions
+    doublePropertyOptions: DoublePropertyOptions
+    enumPropertyOptions: EnumPropertyOptions
+    htmlPropertyOptions: HtmlPropertyOptions
+    integerPropertyOptions: IntegerPropertyOptions
+    isFacetable: bool
+    isRepeatable: bool
+    isReturnable: bool
+    isSortable: bool
+    isSuggestable: bool
+    isWildcardSearchable: bool
+    name: str
+    objectPropertyOptions: ObjectPropertyOptions
+    textPropertyOptions: TextPropertyOptions
+    timestampPropertyOptions: TimestampPropertyOptions
 
 @typing.type_check_only
 class PropertyDisplayOptions(typing_extensions.TypedDict, total=False):
@@ -645,7 +691,9 @@ class ResultDisplayLine(typing_extensions.TypedDict, total=False):
     fields: typing.List[ResultDisplayField]
 
 @typing.type_check_only
-class ResultDisplayMetadata(typing.Dict[str, typing.Any]): ...
+class ResultDisplayMetadata(typing_extensions.TypedDict, total=False):
+    metalines: typing.List[ResultDisplayLine]
+    objectTypeLabel: str
 
 @typing.type_check_only
 class RetrievalImportance(typing_extensions.TypedDict, total=False):
@@ -662,7 +710,15 @@ class ScoringConfig(typing_extensions.TypedDict, total=False):
     disablePersonalization: bool
 
 @typing.type_check_only
-class SearchApplication(typing.Dict[str, typing.Any]): ...
+class SearchApplication(typing_extensions.TypedDict, total=False):
+    dataSourceRestrictions: typing.List[DataSourceRestriction]
+    defaultFacetOptions: typing.List[FacetOptions]
+    defaultSortOptions: SortOptions
+    displayName: str
+    name: str
+    operationIds: typing.List[str]
+    scoringConfig: ScoringConfig
+    sourceConfig: typing.List[SourceConfig]
 
 @typing.type_check_only
 class SearchApplicationQueryStats(typing_extensions.TypedDict, total=False):
@@ -722,7 +778,13 @@ class SearchResponse(typing_extensions.TypedDict, total=False):
     structuredResults: typing.List[StructuredResult]
 
 @typing.type_check_only
-class SearchResult(typing.Dict[str, typing.Any]): ...
+class SearchResult(typing_extensions.TypedDict, total=False):
+    clusteredResults: typing.List[SearchResult]
+    debugInfo: ResultDebugInfo
+    metadata: Metadata
+    snippet: Snippet
+    title: str
+    url: str
 
 @typing.type_check_only
 class Snippet(typing_extensions.TypedDict, total=False):
@@ -787,7 +849,8 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class StructuredDataObject(typing.Dict[str, typing.Any]): ...
+class StructuredDataObject(typing_extensions.TypedDict, total=False):
+    properties: typing.List[NamedProperty]
 
 @typing.type_check_only
 class StructuredResult(typing_extensions.TypedDict, total=False):

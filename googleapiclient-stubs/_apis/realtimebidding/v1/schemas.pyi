@@ -2,11 +2,40 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class ActivatePretargetingConfigRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AddTargetedAppsRequest(typing_extensions.TypedDict, total=False):
+    appIds: typing.List[str]
+    targetingMode: typing_extensions.Literal[
+        "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
+    ]
+
+@typing.type_check_only
+class AddTargetedPublishersRequest(typing_extensions.TypedDict, total=False):
+    publisherIds: typing.List[str]
+    targetingMode: typing_extensions.Literal[
+        "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
+    ]
+
+@typing.type_check_only
+class AddTargetedSitesRequest(typing_extensions.TypedDict, total=False):
+    sites: typing.List[str]
+    targetingMode: typing_extensions.Literal[
+        "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
+    ]
+
+@typing.type_check_only
 class AdvertiserAndBrand(typing_extensions.TypedDict, total=False):
     advertiserId: str
     advertiserName: str
     brandId: str
     brandName: str
+
+@typing.type_check_only
+class AppTargeting(typing_extensions.TypedDict, total=False):
+    mobileAppCategoryTargeting: NumericTargetingDimension
+    mobileAppTargeting: StringTargetingDimension
 
 @typing.type_check_only
 class CloseUserListRequest(typing_extensions.TypedDict, total=False): ...
@@ -35,6 +64,11 @@ class Creative(typing_extensions.TypedDict, total=False):
     restrictedCategories: typing.List[str]
     version: int
     video: VideoContent
+
+@typing.type_check_only
+class CreativeDimensions(typing_extensions.TypedDict, total=False):
+    height: str
+    width: str
 
 @typing.type_check_only
 class CreativeServingDecision(typing_extensions.TypedDict, total=False):
@@ -119,6 +153,9 @@ class DownloadSizeEvidence(typing_extensions.TypedDict, total=False):
     totalDownloadSizeKb: int
 
 @typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GetRemarketingTagResponse(typing_extensions.TypedDict, total=False):
     snippet: str
 
@@ -147,6 +184,11 @@ class Image(typing_extensions.TypedDict, total=False):
 class ListCreativesResponse(typing_extensions.TypedDict, total=False):
     creatives: typing.List[Creative]
     nextPageToken: str
+
+@typing.type_check_only
+class ListPretargetingConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    pretargetingConfigs: typing.List[PretargetingConfig]
 
 @typing.type_check_only
 class ListUserListsResponse(typing_extensions.TypedDict, total=False):
@@ -193,6 +235,11 @@ class NativeContent(typing_extensions.TypedDict, total=False):
     videoUrl: str
 
 @typing.type_check_only
+class NumericTargetingDimension(typing_extensions.TypedDict, total=False):
+    excludedIds: typing.List[str]
+    includedIds: typing.List[str]
+
+@typing.type_check_only
 class OpenUserListRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -217,6 +264,58 @@ class PolicyTopicEvidence(typing_extensions.TypedDict, total=False):
     downloadSize: DownloadSizeEvidence
     httpCall: HttpCallEvidence
     httpCookie: HttpCookieEvidence
+
+@typing.type_check_only
+class PretargetingConfig(typing_extensions.TypedDict, total=False):
+    allowedUserTargetingModes: typing.List[str]
+    appTargeting: AppTargeting
+    billingId: str
+    displayName: str
+    excludedContentLabelIds: typing.List[str]
+    geoTargeting: NumericTargetingDimension
+    includedCreativeDimensions: typing.List[CreativeDimensions]
+    includedEnvironments: typing.List[str]
+    includedFormats: typing.List[str]
+    includedLanguages: typing.List[str]
+    includedMobileOperatingSystemIds: typing.List[str]
+    includedPlatforms: typing.List[str]
+    includedUserIdTypes: typing.List[str]
+    interstitialTargeting: typing_extensions.Literal[
+        "INTERSTITIAL_TARGETING_UNSPECIFIED",
+        "ONLY_INTERSTITIAL_REQUESTS",
+        "ONLY_NON_INTERSTITIAL_REQUESTS",
+    ]
+    invalidGeoIds: typing.List[str]
+    maximumQps: str
+    minimumViewabilityDecile: int
+    name: str
+    publisherTargeting: StringTargetingDimension
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED"]
+    userListTargeting: NumericTargetingDimension
+    verticalTargeting: NumericTargetingDimension
+    webTargeting: StringTargetingDimension
+
+@typing.type_check_only
+class RemoveTargetedAppsRequest(typing_extensions.TypedDict, total=False):
+    appIds: typing.List[str]
+
+@typing.type_check_only
+class RemoveTargetedPublishersRequest(typing_extensions.TypedDict, total=False):
+    publisherIds: typing.List[str]
+
+@typing.type_check_only
+class RemoveTargetedSitesRequest(typing_extensions.TypedDict, total=False):
+    sites: typing.List[str]
+
+@typing.type_check_only
+class StringTargetingDimension(typing_extensions.TypedDict, total=False):
+    targetingMode: typing_extensions.Literal[
+        "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
+    ]
+    values: typing.List[str]
+
+@typing.type_check_only
+class SuspendPretargetingConfigRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UrlDownloadSize(typing_extensions.TypedDict, total=False):

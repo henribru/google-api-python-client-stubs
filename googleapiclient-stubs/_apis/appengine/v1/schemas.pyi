@@ -229,6 +229,14 @@ class Instance(typing_extensions.TypedDict, total=False):
     vmDebugEnabled: bool
     vmId: str
     vmIp: str
+    vmLiveness: typing_extensions.Literal[
+        "LIVENESS_STATE_UNSPECIFIED",
+        "UNKNOWN",
+        "HEALTHY",
+        "UNHEALTHY",
+        "DRAINING",
+        "TIMEOUT",
+    ]
     vmName: str
     vmStatus: str
     vmZoneName: str
@@ -304,6 +312,7 @@ class Location(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
     flexibleEnvironmentAvailable: bool
+    searchApiAvailable: bool
     standardEnvironmentAvailable: bool
 
 @typing.type_check_only

@@ -36,6 +36,7 @@ class CategoryGroupV5(typing_extensions.TypedDict, total=False):
 class ConfigSettings(typing_extensions.TypedDict, total=False):
     channel: str
     emulatedFormFactor: str
+    formFactor: str
     locale: str
     onlyCategories: typing.Any
 

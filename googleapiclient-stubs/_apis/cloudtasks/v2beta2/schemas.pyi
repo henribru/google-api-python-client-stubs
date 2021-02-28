@@ -35,7 +35,6 @@ class AttemptStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -133,6 +132,17 @@ class Queue(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "DISABLED"
     ]
+    stats: QueueStats
+    taskTtl: str
+    tombstoneTtl: str
+
+@typing.type_check_only
+class QueueStats(typing_extensions.TypedDict, total=False):
+    concurrentDispatchesCount: str
+    effectiveExecutionRate: float
+    executedLastMinuteCount: str
+    oldestEstimatedArrivalTime: str
+    tasksCount: str
 
 @typing.type_check_only
 class RateLimits(typing_extensions.TypedDict, total=False):

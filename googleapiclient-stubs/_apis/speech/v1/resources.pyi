@@ -22,26 +22,6 @@ class SpeechResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
     @typing.type_check_only
-    class ProjectsResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class LocationsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class OperationsResource(googleapiclient.discovery.Resource):
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListOperationsResponseHttpRequest: ...
-            def operations(self) -> OperationsResource: ...
-        def locations(self) -> LocationsResource: ...
-    @typing.type_check_only
     class SpeechResource(googleapiclient.discovery.Resource):
         def longrunningrecognize(
             self, *, body: LongRunningRecognizeRequest = ..., **kwargs: typing.Any
@@ -50,7 +30,6 @@ class SpeechResource(googleapiclient.discovery.Resource):
             self, *, body: RecognizeRequest = ..., **kwargs: typing.Any
         ) -> RecognizeResponseHttpRequest: ...
     def operations(self) -> OperationsResource: ...
-    def projects(self) -> ProjectsResource: ...
     def speech(self) -> SpeechResource: ...
 
 @typing.type_check_only

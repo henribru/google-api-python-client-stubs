@@ -7,7 +7,6 @@ class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -38,6 +37,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class ListSchemasResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    schemas: typing.List[Schema]
 
 @typing.type_check_only
 class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
@@ -131,6 +135,17 @@ class RetryPolicy(typing_extensions.TypedDict, total=False):
     minimumBackoff: str
 
 @typing.type_check_only
+class Schema(typing_extensions.TypedDict, total=False):
+    definition: str
+    name: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PROTOCOL_BUFFER", "AVRO"]
+
+@typing.type_check_only
+class SchemaSettings(typing_extensions.TypedDict, total=False):
+    encoding: typing_extensions.Literal["ENCODING_UNSPECIFIED", "JSON", "BINARY"]
+    schema: str
+
+@typing.type_check_only
 class SeekRequest(typing_extensions.TypedDict, total=False):
     snapshot: str
     time: str
@@ -179,6 +194,8 @@ class Topic(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     messageStoragePolicy: MessageStoragePolicy
     name: str
+    satisfiesPzs: bool
+    schemaSettings: SchemaSettings
 
 @typing.type_check_only
 class UpdateSnapshotRequest(typing_extensions.TypedDict, total=False):
@@ -194,3 +211,20 @@ class UpdateSubscriptionRequest(typing_extensions.TypedDict, total=False):
 class UpdateTopicRequest(typing_extensions.TypedDict, total=False):
     topic: Topic
     updateMask: str
+
+@typing.type_check_only
+class ValidateMessageRequest(typing_extensions.TypedDict, total=False):
+    encoding: typing_extensions.Literal["ENCODING_UNSPECIFIED", "JSON", "BINARY"]
+    message: str
+    name: str
+    schema: Schema
+
+@typing.type_check_only
+class ValidateMessageResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ValidateSchemaRequest(typing_extensions.TypedDict, total=False):
+    schema: Schema
+
+@typing.type_check_only
+class ValidateSchemaResponse(typing_extensions.TypedDict, total=False): ...

@@ -593,6 +593,9 @@ class ListCreativeStatusBreakdownByDetailResponse(
         "PRODUCT_CATEGORY",
         "DISAPPROVAL_REASON",
         "POLICY_TOPIC",
+        "ATP_VENDOR",
+        "VENDOR_DOMAIN",
+        "GVL_ID",
     ]
     filteredBidDetailRows: typing.List[FilteredBidDetailRow]
     nextPageToken: str
@@ -811,6 +814,7 @@ class Proposal(typing_extensions.TypedDict, total=False):
     ]
     seller: Seller
     sellerContacts: typing.List[ContactInformation]
+    termsAndConditions: str
     updateTime: str
 
 @typing.type_check_only
@@ -824,6 +828,7 @@ class PublisherProfile(typing_extensions.TypedDict, total=False):
     isParent: bool
     logoUrl: str
     mediaKitUrl: str
+    mobileApps: typing.List[PublisherProfileMobileApplication]
     overview: str
     programmaticDealsContact: str
     publisherProfileId: str
@@ -831,6 +836,26 @@ class PublisherProfile(typing_extensions.TypedDict, total=False):
     samplePageUrl: str
     seller: Seller
     topHeadlines: typing.List[str]
+
+@typing.type_check_only
+class PublisherProfileMobileApplication(typing_extensions.TypedDict, total=False):
+    appStore: typing_extensions.Literal[
+        "APP_STORE_TYPE_UNSPECIFIED",
+        "APPLE_ITUNES",
+        "GOOGLE_PLAY",
+        "ROKU",
+        "AMAZON_FIRETV",
+        "PLAYSTATION",
+        "XBOX",
+        "SAMSUNG_TV",
+        "AMAZON",
+        "OPPO",
+        "SAMSUNG",
+        "VIVO",
+        "XIAOMI",
+    ]
+    externalAppId: str
+    name: str
 
 @typing.type_check_only
 class RealtimeTimeRange(typing_extensions.TypedDict, total=False):

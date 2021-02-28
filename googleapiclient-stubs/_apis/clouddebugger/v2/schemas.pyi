@@ -153,7 +153,11 @@ class SourceLocation(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class StackFrame(typing.Dict[str, typing.Any]): ...
+class StackFrame(typing_extensions.TypedDict, total=False):
+    arguments: typing.List[Variable]
+    function: str
+    locals: typing.List[Variable]
+    location: SourceLocation
 
 @typing.type_check_only
 class StatusMessage(typing_extensions.TypedDict, total=False):
@@ -178,4 +182,10 @@ class UpdateActiveBreakpointRequest(typing_extensions.TypedDict, total=False):
 class UpdateActiveBreakpointResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Variable(typing.Dict[str, typing.Any]): ...
+class Variable(typing_extensions.TypedDict, total=False):
+    members: typing.List[Variable]
+    name: str
+    status: StatusMessage
+    type: str
+    value: str
+    varTableIndex: int

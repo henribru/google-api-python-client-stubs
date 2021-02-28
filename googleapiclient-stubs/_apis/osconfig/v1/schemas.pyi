@@ -52,6 +52,86 @@ class GcsObject(typing_extensions.TypedDict, total=False):
 class GooSettings(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Inventory(typing_extensions.TypedDict, total=False):
+    items: typing.Dict[str, typing.Any]
+    osInfo: InventoryOsInfo
+
+@typing.type_check_only
+class InventoryItem(typing_extensions.TypedDict, total=False):
+    availablePackage: InventorySoftwarePackage
+    createTime: str
+    id: str
+    installedPackage: InventorySoftwarePackage
+    originType: typing_extensions.Literal["ORIGIN_TYPE_UNSPECIFIED", "INVENTORY_REPORT"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "INSTALLED_PACKAGE", "AVAILABLE_PACKAGE"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class InventoryOsInfo(typing_extensions.TypedDict, total=False):
+    architecture: str
+    hostname: str
+    kernelRelease: str
+    kernelVersion: str
+    longName: str
+    osconfigAgentVersion: str
+    shortName: str
+    version: str
+
+@typing.type_check_only
+class InventorySoftwarePackage(typing_extensions.TypedDict, total=False):
+    aptPackage: InventoryVersionedPackage
+    cosPackage: InventoryVersionedPackage
+    googetPackage: InventoryVersionedPackage
+    qfePackage: InventoryWindowsQuickFixEngineeringPackage
+    wuaPackage: InventoryWindowsUpdatePackage
+    yumPackage: InventoryVersionedPackage
+    zypperPackage: InventoryVersionedPackage
+    zypperPatch: InventoryZypperPatch
+
+@typing.type_check_only
+class InventoryVersionedPackage(typing_extensions.TypedDict, total=False):
+    architecture: str
+    packageName: str
+    version: str
+
+@typing.type_check_only
+class InventoryWindowsQuickFixEngineeringPackage(
+    typing_extensions.TypedDict, total=False
+):
+    caption: str
+    description: str
+    hotFixId: str
+    installTime: str
+
+@typing.type_check_only
+class InventoryWindowsUpdatePackage(typing_extensions.TypedDict, total=False):
+    categories: typing.List[InventoryWindowsUpdatePackageWindowsUpdateCategory]
+    description: str
+    kbArticleIds: typing.List[str]
+    lastDeploymentChangeTime: str
+    moreInfoUrls: typing.List[str]
+    revisionNumber: int
+    supportUrl: str
+    title: str
+    updateId: str
+
+@typing.type_check_only
+class InventoryWindowsUpdatePackageWindowsUpdateCategory(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    name: str
+
+@typing.type_check_only
+class InventoryZypperPatch(typing_extensions.TypedDict, total=False):
+    category: str
+    patchName: str
+    severity: str
+    summary: str
+
+@typing.type_check_only
 class ListPatchDeploymentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     patchDeployments: typing.List[PatchDeployment]

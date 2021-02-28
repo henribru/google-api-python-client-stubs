@@ -11,6 +11,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     cloudRunConfig: CloudRunConfig
     configConnectorConfig: ConfigConnectorConfig
     dnsCacheConfig: DnsCacheConfig
+    gcePersistentDiskCsiDriverConfig: GcePersistentDiskCsiDriverConfig
     horizontalPodAutoscaling: HorizontalPodAutoscaling
     httpLoadBalancing: HttpLoadBalancing
     kubernetesDashboard: KubernetesDashboard
@@ -25,6 +26,10 @@ class AuthenticatorGroupsConfig(typing_extensions.TypedDict, total=False):
 class AutoUpgradeOptions(typing_extensions.TypedDict, total=False):
     autoUpgradeStartTime: str
     description: str
+
+@typing.type_check_only
+class Autopilot(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class AutoprovisioningNodePoolDefaults(typing_extensions.TypedDict, total=False):
@@ -75,6 +80,7 @@ class CloudRunConfig(typing_extensions.TypedDict, total=False):
 class Cluster(typing_extensions.TypedDict, total=False):
     addonsConfig: AddonsConfig
     authenticatorGroupsConfig: AuthenticatorGroupsConfig
+    autopilot: Autopilot
     autoscaling: ClusterAutoscaling
     binaryAuthorization: BinaryAuthorization
     clusterIpv4Cidr: str
@@ -110,6 +116,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     nodeConfig: NodeConfig
     nodeIpv4CidrSize: int
     nodePools: typing.List[NodePool]
+    notificationConfig: NotificationConfig
     privateClusterConfig: PrivateClusterConfig
     releaseChannel: ReleaseChannel
     resourceLabels: typing.Dict[str, typing.Any]
@@ -157,7 +164,14 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredNodePoolAutoscaling: NodePoolAutoscaling
     desiredNodePoolId: str
     desiredNodeVersion: str
+    desiredNotificationConfig: NotificationConfig
     desiredPrivateClusterConfig: PrivateClusterConfig
+    desiredPrivateIpv6GoogleAccess: typing_extensions.Literal[
+        "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL",
+    ]
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
     desiredShieldedNodes: ShieldedNodes
@@ -214,6 +228,10 @@ class DnsCacheConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class GetJSONWebKeysResponse(typing_extensions.TypedDict, total=False):
@@ -286,6 +304,10 @@ class LegacyAbac(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
+    sysctls: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
     clusters: typing.List[Cluster]
     missingZones: typing.List[str]
@@ -345,6 +367,12 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     defaultSnatStatus: DefaultSnatStatus
     enableIntraNodeVisibility: bool
     network: str
+    privateIpv6GoogleAccess: typing_extensions.Literal[
+        "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL",
+    ]
     subnetwork: str
 
 @typing.type_check_only
@@ -363,7 +391,9 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
     diskType: str
     imageType: str
+    kubeletConfig: NodeKubeletConfig
     labels: typing.Dict[str, typing.Any]
+    linuxNodeConfig: LinuxNodeConfig
     localSsdCount: int
     machineType: str
     metadata: typing.Dict[str, typing.Any]
@@ -378,6 +408,12 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     tags: typing.List[str]
     taints: typing.List[NodeTaint]
     workloadMetadataConfig: WorkloadMetadataConfig
+
+@typing.type_check_only
+class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
+    cpuCfsQuota: bool
+    cpuCfsQuotaPeriod: str
+    cpuManagerPolicy: str
 
 @typing.type_check_only
 class NodeManagement(typing_extensions.TypedDict, total=False):
@@ -427,10 +463,54 @@ class NodeTaint(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class Operation(typing.Dict[str, typing.Any]): ...
+class NotificationConfig(typing_extensions.TypedDict, total=False):
+    pubsub: PubSub
 
 @typing.type_check_only
-class OperationProgress(typing.Dict[str, typing.Any]): ...
+class Operation(typing_extensions.TypedDict, total=False):
+    clusterConditions: typing.List[StatusCondition]
+    detail: str
+    endTime: str
+    location: str
+    name: str
+    nodepoolConditions: typing.List[StatusCondition]
+    operationType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "CREATE_CLUSTER",
+        "DELETE_CLUSTER",
+        "UPGRADE_MASTER",
+        "UPGRADE_NODES",
+        "REPAIR_CLUSTER",
+        "UPDATE_CLUSTER",
+        "CREATE_NODE_POOL",
+        "DELETE_NODE_POOL",
+        "SET_NODE_POOL_MANAGEMENT",
+        "AUTO_REPAIR_NODES",
+        "AUTO_UPGRADE_NODES",
+        "SET_LABELS",
+        "SET_MASTER_AUTH",
+        "SET_NODE_POOL_SIZE",
+        "SET_NETWORK_POLICY",
+        "SET_MAINTENANCE_POLICY",
+    ]
+    progress: OperationProgress
+    selfLink: str
+    startTime: str
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
+    ]
+    statusMessage: str
+    targetLink: str
+    zone: str
+
+@typing.type_check_only
+class OperationProgress(typing_extensions.TypedDict, total=False):
+    metrics: typing.List[Metric]
+    name: str
+    stages: typing.List[OperationProgress]
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
+    ]
 
 @typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
@@ -445,6 +525,11 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PrivateClusterMasterGlobalAccessConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
+
+@typing.type_check_only
+class PubSub(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    topic: str
 
 @typing.type_check_only
 class RecurringTimeWindow(typing_extensions.TypedDict, total=False):
@@ -659,6 +744,8 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
     imageType: str
+    kubeletConfig: NodeKubeletConfig
+    linuxNodeConfig: LinuxNodeConfig
     locations: typing.List[str]
     name: str
     nodePoolId: str

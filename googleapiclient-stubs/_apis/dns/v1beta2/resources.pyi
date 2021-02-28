@@ -190,9 +190,55 @@ class DnsResource(googleapiclient.discovery.Resource):
         ) -> PoliciesUpdateResponseHttpRequest: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class ManagedZonesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class RrsetsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    project: str,
+                    managedZone: str,
+                    body: ResourceRecordSet = ...,
+                    clientOperationId: str = ...,
+                    **kwargs: typing.Any
+                ) -> ResourceRecordSetHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    project: str,
+                    managedZone: str,
+                    name: str,
+                    type: str,
+                    clientOperationId: str = ...,
+                    **kwargs: typing.Any
+                ) -> googleapiclient.http.HttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    project: str,
+                    managedZone: str,
+                    name: str,
+                    type: str,
+                    clientOperationId: str = ...,
+                    **kwargs: typing.Any
+                ) -> ResourceRecordSetHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    project: str,
+                    managedZone: str,
+                    name: str,
+                    type: str,
+                    body: ResourceRecordSet = ...,
+                    clientOperationId: str = ...,
+                    **kwargs: typing.Any
+                ) -> ResourceRecordSetHttpRequest: ...
+            def rrsets(self) -> RrsetsResource: ...
         def get(
             self, *, project: str, clientOperationId: str = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
+        def managedZones(self) -> ManagedZonesResource: ...
     @typing.type_check_only
     class ResourceRecordSetsResource(googleapiclient.discovery.Resource):
         def list(
@@ -206,6 +252,116 @@ class DnsResource(googleapiclient.discovery.Resource):
             type: str = ...,
             **kwargs: typing.Any
         ) -> ResourceRecordSetsListResponseHttpRequest: ...
+    @typing.type_check_only
+    class ResponsePoliciesResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            project: str,
+            body: ResponsePolicy = ...,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePolicyHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePolicyHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePoliciesListResponseHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            body: ResponsePolicy = ...,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePoliciesPatchResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            body: ResponsePolicy = ...,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePoliciesUpdateResponseHttpRequest: ...
+    @typing.type_check_only
+    class ResponsePolicyRulesResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            body: ResponsePolicyRule = ...,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePolicyRuleHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            responsePolicyRule: str,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            responsePolicyRule: str,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePolicyRuleHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePolicyRulesListResponseHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            responsePolicyRule: str,
+            body: ResponsePolicyRule = ...,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePolicyRulesPatchResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            responsePolicy: str,
+            responsePolicyRule: str,
+            body: ResponsePolicyRule = ...,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResponsePolicyRulesUpdateResponseHttpRequest: ...
     def changes(self) -> ChangesResource: ...
     def dnsKeys(self) -> DnsKeysResource: ...
     def managedZoneOperations(self) -> ManagedZoneOperationsResource: ...
@@ -213,6 +369,8 @@ class DnsResource(googleapiclient.discovery.Resource):
     def policies(self) -> PoliciesResource: ...
     def projects(self) -> ProjectsResource: ...
     def resourceRecordSets(self) -> ResourceRecordSetsResource: ...
+    def responsePolicies(self) -> ResponsePoliciesResource: ...
+    def responsePolicyRules(self) -> ResponsePolicyRulesResource: ...
 
 @typing.type_check_only
 class ChangeHttpRequest(googleapiclient.http.HttpRequest):
@@ -345,6 +503,16 @@ class ProjectHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Project: ...
 
 @typing.type_check_only
+class ResourceRecordSetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ResourceRecordSet: ...
+
+@typing.type_check_only
 class ResourceRecordSetsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -353,3 +521,83 @@ class ResourceRecordSetsListResponseHttpRequest(googleapiclient.http.HttpRequest
         ] = ...,
         num_retries: int = ...,
     ) -> ResourceRecordSetsListResponse: ...
+
+@typing.type_check_only
+class ResponsePoliciesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ResponsePoliciesListResponse: ...
+
+@typing.type_check_only
+class ResponsePoliciesPatchResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ResponsePoliciesPatchResponse: ...
+
+@typing.type_check_only
+class ResponsePoliciesUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ResponsePoliciesUpdateResponse: ...
+
+@typing.type_check_only
+class ResponsePolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ResponsePolicy: ...
+
+@typing.type_check_only
+class ResponsePolicyRuleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ResponsePolicyRule: ...
+
+@typing.type_check_only
+class ResponsePolicyRulesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ResponsePolicyRulesListResponse: ...
+
+@typing.type_check_only
+class ResponsePolicyRulesPatchResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ResponsePolicyRulesPatchResponse: ...
+
+@typing.type_check_only
+class ResponsePolicyRulesUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ResponsePolicyRulesUpdateResponse: ...

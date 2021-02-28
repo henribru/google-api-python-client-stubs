@@ -13,7 +13,7 @@ class LicensingResource(googleapiclient.discovery.Resource):
     class LicenseAssignmentsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, productId: str, skuId: str, userId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
+        ) -> EmptyHttpRequest: ...
         def get(
             self, *, productId: str, skuId: str, userId: str, **kwargs: typing.Any
         ) -> LicenseAssignmentHttpRequest: ...
@@ -63,6 +63,16 @@ class LicensingResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> LicenseAssignmentHttpRequest: ...
     def licenseAssignments(self) -> LicenseAssignmentsResource: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Empty: ...
 
 @typing.type_check_only
 class LicenseAssignmentHttpRequest(googleapiclient.http.HttpRequest):

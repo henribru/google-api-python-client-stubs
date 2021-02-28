@@ -105,7 +105,6 @@ class FilterPair(typing_extensions.TypedDict, total=False):
         "FILTER_VIDEO_RATING_TIER",
         "FILTER_VIDEO_FORMAT_SUPPORT",
         "FILTER_VIDEO_SKIPPABLE_SUPPORT",
-        "FILTER_VIDEO_VPAID_SUPPORT",
         "FILTER_VIDEO_CREATIVE_DURATION",
         "FILTER_PAGE_LAYOUT",
         "FILTER_VIDEO_AD_POSITION_IN_STREAM",
@@ -315,6 +314,8 @@ class FilterPair(typing_extensions.TypedDict, total=False):
         "FILTER_PATH_EVENT_INDEX",
         "FILTER_EVENT_TYPE",
         "FILTER_CHANNEL_GROUPING",
+        "FILTER_OM_SDK_AVAILABLE",
+        "FILTER_DATA_SOURCE",
     ]
     value: str
 
@@ -443,7 +444,6 @@ class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
         "FILTER_VIDEO_RATING_TIER",
         "FILTER_VIDEO_FORMAT_SUPPORT",
         "FILTER_VIDEO_SKIPPABLE_SUPPORT",
-        "FILTER_VIDEO_VPAID_SUPPORT",
         "FILTER_VIDEO_CREATIVE_DURATION",
         "FILTER_PAGE_LAYOUT",
         "FILTER_VIDEO_AD_POSITION_IN_STREAM",
@@ -653,6 +653,8 @@ class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
         "FILTER_PATH_EVENT_INDEX",
         "FILTER_EVENT_TYPE",
         "FILTER_CHANNEL_GROUPING",
+        "FILTER_OM_SDK_AVAILABLE",
+        "FILTER_DATA_SOURCE",
     ]
     match: typing_extensions.Literal[
         "UNKNOWN", "EXACT", "PARTIAL", "BEGINS_WITH", "WILDCARD_EXPRESSION"

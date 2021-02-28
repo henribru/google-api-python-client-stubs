@@ -33,7 +33,6 @@ class BasicYarnAutoscalingConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -168,6 +167,7 @@ class GceClusterConfig(typing_extensions.TypedDict, total=False):
     reservationAffinity: ReservationAffinity
     serviceAccount: str
     serviceAccountScopes: typing.List[str]
+    shieldedInstanceConfig: ShieldedInstanceConfig
     subnetworkUri: str
     tags: typing.List[str]
     zoneUri: str
@@ -205,6 +205,11 @@ class HiveJob(typing_extensions.TypedDict, total=False):
     scriptVariables: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class InjectCredentialsRequest(typing_extensions.TypedDict, total=False):
+    clusterUuid: str
+    credentialsCiphertext: str
+
+@typing.type_check_only
 class InstanceGroupAutoscalingPolicyConfig(typing_extensions.TypedDict, total=False):
     maxInstances: int
     minInstances: int
@@ -230,6 +235,7 @@ class InstanceGroupConfig(typing_extensions.TypedDict, total=False):
 class InstanceReference(typing_extensions.TypedDict, total=False):
     instanceId: str
     instanceName: str
+    publicKey: str
 
 @typing.type_check_only
 class InstantiateWorkflowTemplateRequest(typing_extensions.TypedDict, total=False):
@@ -270,6 +276,7 @@ class JobMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobPlacement(typing_extensions.TypedDict, total=False):
+    clusterLabels: typing.Dict[str, typing.Any]
     clusterName: str
     clusterUuid: str
 
@@ -474,6 +481,12 @@ class SecurityConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
+
+@typing.type_check_only
+class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
+    enableIntegrityMonitoring: bool
+    enableSecureBoot: bool
+    enableVtpm: bool
 
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):

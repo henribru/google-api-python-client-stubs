@@ -40,12 +40,20 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def restartWebServer(
+                    self,
+                    *,
+                    name: str,
+                    body: RestartWebServerRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
             @typing.type_check_only
             class ImageVersionsResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
                     *,
                     parent: str,
+                    includePastReleases: bool = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any

@@ -228,6 +228,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
                 *,
                 project: str,
                 instance: str,
+                skipVerification: bool = ...,
                 syncMode: typing_extensions.Literal[
                     "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"
                 ] = ...,

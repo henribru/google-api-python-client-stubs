@@ -42,7 +42,6 @@ class AttestorPublicKey(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -102,6 +101,9 @@ class Policy(typing_extensions.TypedDict, total=False):
     globalPolicyEvaluationMode: typing_extensions.Literal[
         "GLOBAL_POLICY_EVALUATION_MODE_UNSPECIFIED", "ENABLE", "DISABLE"
     ]
+    istioServiceIdentityAdmissionRules: typing.Dict[str, typing.Any]
+    kubernetesNamespaceAdmissionRules: typing.Dict[str, typing.Any]
+    kubernetesServiceAccountAdmissionRules: typing.Dict[str, typing.Any]
     name: str
     updateTime: str
 

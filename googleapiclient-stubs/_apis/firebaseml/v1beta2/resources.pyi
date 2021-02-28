@@ -19,6 +19,9 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def download(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> DownloadModelResponseHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> ModelHttpRequest: ...
             def list(
                 self,
@@ -45,6 +48,16 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
         def models(self) -> ModelsResource: ...
         def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class DownloadModelResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> DownloadModelResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

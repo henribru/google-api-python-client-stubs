@@ -88,6 +88,20 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class EnvironmentsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class IntentsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        intentView: typing_extensions.Literal[
+                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                        ] = ...,
+                        languageCode: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest: ...
+                @typing.type_check_only
                 class UsersResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class SessionsResource(googleapiclient.discovery.Resource):
@@ -174,6 +188,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest: ...
+                def intents(self) -> IntentsResource: ...
                 def users(self) -> UsersResource: ...
             @typing.type_check_only
             class IntentsResource(googleapiclient.discovery.Resource):
@@ -248,6 +263,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowV2beta1Document = ...,
+                        importGcsCustomMetadata: bool = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -451,6 +467,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDialogflowV2beta1Document = ...,
+                    importGcsCustomMetadata: bool = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
@@ -881,6 +898,79 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def intents(self) -> IntentsResource: ...
                 def sessions(self) -> SessionsResource: ...
             @typing.type_check_only
+            class KnowledgeBasesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class DocumentsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1Document = ...,
+                        importGcsCustomMetadata: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1DocumentHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowV2beta1Document = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def reload(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowV2beta1ReloadDocumentRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1KnowledgeBase = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
+                def delete(
+                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1KnowledgeBase = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest: ...
+                def documents(self) -> DocumentsResource: ...
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self, *, name: str, **kwargs: typing.Any
@@ -912,6 +1002,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1AgentHttpRequest: ...
             def agent(self) -> AgentResource: ...
+            def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def operations(self) -> OperationsResource: ...
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):

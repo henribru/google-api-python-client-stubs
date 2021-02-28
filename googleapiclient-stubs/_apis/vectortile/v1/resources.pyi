@@ -15,6 +15,7 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
+            alwaysIncludeBuildingFootprints: bool = ...,
             clientInfo_apiClient: str = ...,
             clientInfo_applicationId: str = ...,
             clientInfo_applicationVersion: str = ...,

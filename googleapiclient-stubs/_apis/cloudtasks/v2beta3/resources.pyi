@@ -61,7 +61,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, readMask: str = ..., **kwargs: typing.Any
                 ) -> QueueHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -77,6 +77,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    readMask: str = ...,
                     **kwargs: typing.Any
                 ) -> ListQueuesResponseHttpRequest: ...
                 def patch(

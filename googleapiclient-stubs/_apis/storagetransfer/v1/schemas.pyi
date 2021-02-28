@@ -10,11 +10,13 @@ class AwsAccessKey(typing_extensions.TypedDict, total=False):
 class AwsS3Data(typing_extensions.TypedDict, total=False):
     awsAccessKey: AwsAccessKey
     bucketName: str
+    path: str
 
 @typing.type_check_only
 class AzureBlobStorageData(typing_extensions.TypedDict, total=False):
     azureCredentials: AzureCredentials
     container: str
+    path: str
     storageAccount: str
 
 @typing.type_check_only
@@ -65,6 +67,7 @@ class ErrorSummary(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GcsData(typing_extensions.TypedDict, total=False):
     bucketName: str
+    path: str
 
 @typing.type_check_only
 class GoogleServiceAccount(typing_extensions.TypedDict, total=False):
@@ -116,7 +119,13 @@ class PauseTransferOperationRequest(typing_extensions.TypedDict, total=False): .
 class ResumeTransferOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class RunTransferJobRequest(typing_extensions.TypedDict, total=False):
+    projectId: str
+
+@typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
+    endTimeOfDay: TimeOfDay
+    repeatInterval: str
     scheduleEndDate: Date
     scheduleStartDate: Date
     startTimeOfDay: TimeOfDay

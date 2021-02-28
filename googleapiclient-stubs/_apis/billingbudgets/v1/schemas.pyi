@@ -17,12 +17,23 @@ class GoogleCloudBillingBudgetsV1BudgetAmount(typing_extensions.TypedDict, total
     specifiedAmount: GoogleTypeMoney
 
 @typing.type_check_only
+class GoogleCloudBillingBudgetsV1CustomPeriod(typing_extensions.TypedDict, total=False):
+    endDate: GoogleTypeDate
+    startDate: GoogleTypeDate
+
+@typing.type_check_only
 class GoogleCloudBillingBudgetsV1Filter(typing_extensions.TypedDict, total=False):
+    calendarPeriod: typing_extensions.Literal[
+        "CALENDAR_PERIOD_UNSPECIFIED", "MONTH", "QUARTER", "YEAR"
+    ]
+    creditTypes: typing.List[str]
     creditTypesTreatment: typing_extensions.Literal[
         "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
         "INCLUDE_ALL_CREDITS",
         "EXCLUDE_ALL_CREDITS",
+        "INCLUDE_SPECIFIED_CREDITS",
     ]
+    customPeriod: GoogleCloudBillingBudgetsV1CustomPeriod
     labels: typing.Dict[str, typing.Any]
     projects: typing.List[str]
     services: typing.List[str]
@@ -60,6 +71,12 @@ class GoogleCloudBillingBudgetsV1ThresholdRule(
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
 
 @typing.type_check_only
 class GoogleTypeMoney(typing_extensions.TypedDict, total=False):

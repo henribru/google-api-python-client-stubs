@@ -450,6 +450,7 @@ class GoogleCloudVisionV1p1beta1ImageContext(typing_extensions.TypedDict, total=
     languageHints: typing.List[str]
     latLongRect: GoogleCloudVisionV1p1beta1LatLongRect
     productSearchParams: GoogleCloudVisionV1p1beta1ProductSearchParams
+    textDetectionParams: GoogleCloudVisionV1p1beta1TextDetectionParams
     webDetectionParams: GoogleCloudVisionV1p1beta1WebDetectionParams
 
 @typing.type_check_only
@@ -656,6 +657,12 @@ class GoogleCloudVisionV1p1beta1TextAnnotationTextProperty(
     detectedLanguages: typing.List[
         GoogleCloudVisionV1p1beta1TextAnnotationDetectedLanguage
     ]
+
+@typing.type_check_only
+class GoogleCloudVisionV1p1beta1TextDetectionParams(
+    typing_extensions.TypedDict, total=False
+):
+    enableTextDetectionConfidenceScore: bool
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1Vertex(typing_extensions.TypedDict, total=False):

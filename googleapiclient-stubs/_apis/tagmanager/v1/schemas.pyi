@@ -158,10 +158,36 @@ class ListVariablesResponse(typing_extensions.TypedDict, total=False):
     variables: typing.List[Variable]
 
 @typing.type_check_only
-class Macro(typing.Dict[str, typing.Any]): ...
+class Macro(typing_extensions.TypedDict, total=False):
+    accountId: str
+    containerId: str
+    disablingRuleId: typing.List[str]
+    enablingRuleId: typing.List[str]
+    fingerprint: str
+    macroId: str
+    name: str
+    notes: str
+    parameter: typing.List[Parameter]
+    parentFolderId: str
+    scheduleEndMs: str
+    scheduleStartMs: str
+    type: str
 
 @typing.type_check_only
-class Parameter(typing.Dict[str, typing.Any]): ...
+class Parameter(typing_extensions.TypedDict, total=False):
+    key: str
+    list: typing.List[Parameter]
+    map: typing.List[Parameter]
+    type: typing_extensions.Literal[
+        "template",
+        "integer",
+        "boolean",
+        "list",
+        "map",
+        "triggerReference",
+        "tagReference",
+    ]
+    value: str
 
 @typing.type_check_only
 class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
@@ -169,7 +195,14 @@ class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
     containerVersion: ContainerVersion
 
 @typing.type_check_only
-class Rule(typing.Dict[str, typing.Any]): ...
+class Rule(typing_extensions.TypedDict, total=False):
+    accountId: str
+    condition: typing.List[Condition]
+    containerId: str
+    fingerprint: str
+    name: str
+    notes: str
+    ruleId: str
 
 @typing.type_check_only
 class SetupTag(typing_extensions.TypedDict, total=False):
@@ -177,7 +210,30 @@ class SetupTag(typing_extensions.TypedDict, total=False):
     tagName: str
 
 @typing.type_check_only
-class Tag(typing.Dict[str, typing.Any]): ...
+class Tag(typing_extensions.TypedDict, total=False):
+    accountId: str
+    blockingRuleId: typing.List[str]
+    blockingTriggerId: typing.List[str]
+    containerId: str
+    fingerprint: str
+    firingRuleId: typing.List[str]
+    firingTriggerId: typing.List[str]
+    liveOnly: bool
+    name: str
+    notes: str
+    parameter: typing.List[Parameter]
+    parentFolderId: str
+    paused: bool
+    priority: Parameter
+    scheduleEndMs: str
+    scheduleStartMs: str
+    setupTag: typing.List[SetupTag]
+    tagFiringOption: typing_extensions.Literal[
+        "unlimited", "oncePerEvent", "oncePerLoad"
+    ]
+    tagId: str
+    teardownTag: typing.List[TeardownTag]
+    type: str
 
 @typing.type_check_only
 class TeardownTag(typing_extensions.TypedDict, total=False):
@@ -185,7 +241,55 @@ class TeardownTag(typing_extensions.TypedDict, total=False):
     tagName: str
 
 @typing.type_check_only
-class Trigger(typing.Dict[str, typing.Any]): ...
+class Trigger(typing_extensions.TypedDict, total=False):
+    accountId: str
+    autoEventFilter: typing.List[Condition]
+    checkValidation: Parameter
+    containerId: str
+    continuousTimeMinMilliseconds: Parameter
+    customEventFilter: typing.List[Condition]
+    eventName: Parameter
+    filter: typing.List[Condition]
+    fingerprint: str
+    horizontalScrollPercentageList: Parameter
+    interval: Parameter
+    intervalSeconds: Parameter
+    limit: Parameter
+    maxTimerLengthSeconds: Parameter
+    name: str
+    parameter: typing.List[Parameter]
+    parentFolderId: str
+    selector: Parameter
+    totalTimeMinMilliseconds: Parameter
+    triggerId: str
+    type: typing_extensions.Literal[
+        "pageview",
+        "domReady",
+        "windowLoaded",
+        "customEvent",
+        "triggerGroup",
+        "always",
+        "formSubmission",
+        "click",
+        "linkClick",
+        "jsError",
+        "historyChange",
+        "timer",
+        "ampClick",
+        "ampTimer",
+        "ampScroll",
+        "ampVisibility",
+        "youTubeVideo",
+        "scrollDepth",
+        "elementVisibility",
+    ]
+    uniqueTriggerId: Parameter
+    verticalScrollPercentageList: Parameter
+    visibilitySelector: Parameter
+    visiblePercentageMax: Parameter
+    visiblePercentageMin: Parameter
+    waitForTags: Parameter
+    waitForTagsTimeout: Parameter
 
 @typing.type_check_only
 class UserAccess(typing_extensions.TypedDict, total=False):
@@ -196,4 +300,17 @@ class UserAccess(typing_extensions.TypedDict, total=False):
     permissionId: str
 
 @typing.type_check_only
-class Variable(typing.Dict[str, typing.Any]): ...
+class Variable(typing_extensions.TypedDict, total=False):
+    accountId: str
+    containerId: str
+    disablingTriggerId: typing.List[str]
+    enablingTriggerId: typing.List[str]
+    fingerprint: str
+    name: str
+    notes: str
+    parameter: typing.List[Parameter]
+    parentFolderId: str
+    scheduleEndMs: str
+    scheduleStartMs: str
+    type: str
+    variableId: str

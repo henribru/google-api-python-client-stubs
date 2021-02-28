@@ -17,6 +17,11 @@ class AccessPolicy(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ApiOperation(typing_extensions.TypedDict, total=False):
+    methodSelectors: typing.List[MethodSelector]
+    serviceName: str
+
+@typing.type_check_only
 class BasicLevel(typing_extensions.TypedDict, total=False):
     combiningFunction: typing_extensions.Literal["AND", "OR"]
     conditions: typing.List[Condition]
@@ -55,6 +60,26 @@ class DevicePolicy(typing_extensions.TypedDict, total=False):
     requireScreenlock: bool
 
 @typing.type_check_only
+class EgressFrom(typing_extensions.TypedDict, total=False):
+    identities: typing.List[str]
+    identityType: typing_extensions.Literal[
+        "IDENTITY_TYPE_UNSPECIFIED",
+        "ANY_IDENTITY",
+        "ANY_USER_ACCOUNT",
+        "ANY_SERVICE_ACCOUNT",
+    ]
+
+@typing.type_check_only
+class EgressPolicy(typing_extensions.TypedDict, total=False):
+    egressFrom: EgressFrom
+    egressTo: EgressTo
+
+@typing.type_check_only
+class EgressTo(typing_extensions.TypedDict, total=False):
+    operations: typing.List[ApiOperation]
+    resources: typing.List[str]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -69,6 +94,32 @@ class GcpUserAccessBinding(typing_extensions.TypedDict, total=False):
     accessLevels: typing.List[str]
     groupKey: str
     name: str
+
+@typing.type_check_only
+class IngressFrom(typing_extensions.TypedDict, total=False):
+    identities: typing.List[str]
+    identityType: typing_extensions.Literal[
+        "IDENTITY_TYPE_UNSPECIFIED",
+        "ANY_IDENTITY",
+        "ANY_USER_ACCOUNT",
+        "ANY_SERVICE_ACCOUNT",
+    ]
+    sources: typing.List[IngressSource]
+
+@typing.type_check_only
+class IngressPolicy(typing_extensions.TypedDict, total=False):
+    ingressFrom: IngressFrom
+    ingressTo: IngressTo
+
+@typing.type_check_only
+class IngressSource(typing_extensions.TypedDict, total=False):
+    accessLevel: str
+    resource: str
+
+@typing.type_check_only
+class IngressTo(typing_extensions.TypedDict, total=False):
+    operations: typing.List[ApiOperation]
+    resources: typing.List[str]
 
 @typing.type_check_only
 class ListAccessLevelsResponse(typing_extensions.TypedDict, total=False):
@@ -94,6 +145,11 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
 class ListServicePerimetersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     servicePerimeters: typing.List[ServicePerimeter]
+
+@typing.type_check_only
+class MethodSelector(typing_extensions.TypedDict, total=False):
+    method: str
+    permission: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -150,6 +206,8 @@ class ServicePerimeter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServicePerimeterConfig(typing_extensions.TypedDict, total=False):
     accessLevels: typing.List[str]
+    egressPolicies: typing.List[EgressPolicy]
+    ingressPolicies: typing.List[IngressPolicy]
     resources: typing.List[str]
     restrictedServices: typing.List[str]
     vpcAccessibleServices: VpcAccessibleServices

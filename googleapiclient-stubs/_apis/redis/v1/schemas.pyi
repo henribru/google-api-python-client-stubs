@@ -50,6 +50,7 @@ class InputConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     alternativeLocationId: str
+    authEnabled: bool
     authorizedNetwork: str
     connectMode: typing_extensions.Literal[
         "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
@@ -67,6 +68,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     redisConfigs: typing.Dict[str, typing.Any]
     redisVersion: str
     reservedIpRange: str
+    serverCaCerts: typing.List[TlsCertificate]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -80,6 +82,13 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
     statusMessage: str
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "BASIC", "STANDARD_HA"]
+    transitEncryptionMode: typing_extensions.Literal[
+        "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED", "SERVER_AUTHENTICATION", "DISABLED"
+    ]
+
+@typing.type_check_only
+class InstanceAuthString(typing_extensions.TypedDict, total=False):
+    authString: str
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
@@ -122,6 +131,14 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TlsCertificate(typing_extensions.TypedDict, total=False):
+    cert: str
+    createTime: str
+    expireTime: str
+    serialNumber: str
+    sha1Fingerprint: str
 
 @typing.type_check_only
 class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False):

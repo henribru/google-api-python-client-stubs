@@ -15,6 +15,29 @@ class DataFusionResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class NamespacesResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -82,6 +105,7 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     body: UpgradeInstanceRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def namespaces(self) -> NamespacesResource: ...
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -130,6 +154,13 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def removeIamPolicy(
+                self,
+                *,
+                resource: str,
+                body: RemoveIamPolicyRequest = ...,
+                **kwargs: typing.Any
+            ) -> RemoveIamPolicyResponseHttpRequest: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
             def versions(self) -> VersionsResource: ...
@@ -225,6 +256,16 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class RemoveIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> RemoveIamPolicyResponse: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -29,6 +29,22 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDocumentaiV1beta3ReviewDocumentRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                @typing.type_check_only
+                class ProcessorVersionsResource(googleapiclient.discovery.Resource):
+                    def batchProcess(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDocumentaiV1beta3BatchProcessRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def process(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDocumentaiV1beta3ProcessRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDocumentaiV1beta3ProcessResponseHttpRequest: ...
                 def batchProcess(
                     self,
                     *,
@@ -44,6 +60,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudDocumentaiV1beta3ProcessResponseHttpRequest: ...
                 def humanReviewConfig(self) -> HumanReviewConfigResource: ...
+                def processorVersions(self) -> ProcessorVersionsResource: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudLocationLocationHttpRequest: ...

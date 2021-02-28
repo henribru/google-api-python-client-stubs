@@ -3,11 +3,11 @@ import typing
 import typing_extensions
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAccount(typing_extensions.TypedDict, total=False):
-    countryCode: str
     createTime: str
     deleted: bool
     displayName: str
     name: str
+    regionCode: str
     updateTime: str
 
 @typing.type_check_only
@@ -119,23 +119,17 @@ class GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest(
 class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings(
     typing_extensions.TypedDict, total=False
 ):
-    articlesAndBlogsEnabled: bool
-    contentViewsEnabled: bool
-    dataTaggedElementClicksEnabled: bool
-    excludedDomains: str
     fileDownloadsEnabled: bool
-    formInteractionsEnabled: bool
     name: str
     outboundClicksEnabled: bool
     pageChangesEnabled: bool
     pageLoadsEnabled: bool
     pageViewsEnabled: bool
-    productsAndEcommerceEnabled: bool
     scrollsEnabled: bool
     searchQueryParameter: str
     siteSearchEnabled: bool
     streamEnabled: bool
-    urlQueryParameter: str
+    uriQueryParameter: str
     videoEngagementEnabled: bool
 
 @typing.type_check_only
@@ -155,6 +149,7 @@ class GoogleAnalyticsAdminV1alphaFirebaseLink(typing_extensions.TypedDict, total
 class GoogleAnalyticsAdminV1alphaGlobalSiteTag(
     typing_extensions.TypedDict, total=False
 ):
+    name: str
     snippet: str
 
 @typing.type_check_only
@@ -167,7 +162,6 @@ class GoogleAnalyticsAdminV1alphaGoogleAdsLink(
     customerId: str
     emailAddress: str
     name: str
-    parent: str
     updateTime: str
 
 @typing.type_check_only
@@ -207,6 +201,7 @@ class GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
     firebaseLinks: typing.List[GoogleAnalyticsAdminV1alphaFirebaseLink]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse(

@@ -187,6 +187,13 @@ class BigqueryResource(googleapiclient.discovery.Resource):
         ) -> RoutineHttpRequest: ...
     @typing.type_check_only
     class RowAccessPoliciesResource(googleapiclient.discovery.Resource):
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def list(
             self,
             *,
@@ -197,6 +204,20 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListRowAccessPoliciesResponseHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: SetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            resource: str,
+            body: TestIamPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestIamPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class TabledataResource(googleapiclient.discovery.Resource):
         def insertAll(

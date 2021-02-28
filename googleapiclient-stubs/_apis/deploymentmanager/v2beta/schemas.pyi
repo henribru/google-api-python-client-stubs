@@ -9,18 +9,14 @@ class AsyncOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: typing.List[AuditLogConfig]
-    exemptedMembers: typing.List[str]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
     exemptedMembers: typing.List[str]
-    ignoreChildExemptions: bool
-    logType: str
-
-@typing.type_check_only
-class AuthorizationLoggingOptions(typing_extensions.TypedDict, total=False):
-    permissionType: str
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
 
 @typing.type_check_only
 class BaseType(typing_extensions.TypedDict, total=False):
@@ -54,7 +50,9 @@ class CompositeType(typing_extensions.TypedDict, total=False):
     name: str
     operation: Operation
     selfLink: str
-    status: str
+    status: typing_extensions.Literal[
+        "UNKNOWN_STATUS", "DEPRECATED", "EXPERIMENTAL", "SUPPORTED"
+    ]
     templateContents: TemplateContents
 
 @typing.type_check_only
@@ -66,14 +64,6 @@ class CompositeTypeLabelEntry(typing_extensions.TypedDict, total=False):
 class CompositeTypesListResponse(typing_extensions.TypedDict, total=False):
     compositeTypes: typing.List[CompositeType]
     nextPageToken: str
-
-@typing.type_check_only
-class Condition(typing_extensions.TypedDict, total=False):
-    iam: str
-    op: str
-    svc: str
-    sys: str
-    values: typing.List[str]
 
 @typing.type_check_only
 class ConfigFile(typing_extensions.TypedDict, total=False):
@@ -132,7 +122,7 @@ class DeploymentsStopRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Diagnostic(typing_extensions.TypedDict, total=False):
     field: str
-    level: str
+    level: typing_extensions.Literal["UNKNOWN", "INFORMATION", "WARNING", "ERROR"]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -155,35 +145,9 @@ class ImportFile(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InputMapping(typing_extensions.TypedDict, total=False):
     fieldName: str
-    location: str
+    location: typing_extensions.Literal["UNKNOWN", "PATH", "QUERY", "BODY", "HEADER"]
     methodMatch: str
     value: str
-
-@typing.type_check_only
-class LogConfig(typing_extensions.TypedDict, total=False):
-    cloudAudit: LogConfigCloudAuditOptions
-    counter: LogConfigCounterOptions
-    dataAccess: LogConfigDataAccessOptions
-
-@typing.type_check_only
-class LogConfigCloudAuditOptions(typing_extensions.TypedDict, total=False):
-    authorizationLoggingOptions: AuthorizationLoggingOptions
-    logName: str
-
-@typing.type_check_only
-class LogConfigCounterOptions(typing_extensions.TypedDict, total=False):
-    customFields: typing.List[LogConfigCounterOptionsCustomField]
-    field: str
-    metric: str
-
-@typing.type_check_only
-class LogConfigCounterOptionsCustomField(typing_extensions.TypedDict, total=False):
-    name: str
-    value: str
-
-@typing.type_check_only
-class LogConfigDataAccessOptions(typing_extensions.TypedDict, total=False):
-    logMode: str
 
 @typing.type_check_only
 class Manifest(typing_extensions.TypedDict, total=False):
@@ -193,6 +157,8 @@ class Manifest(typing_extensions.TypedDict, total=False):
     imports: typing.List[ImportFile]
     insertTime: str
     layout: str
+    manifestSizeBytes: str
+    manifestSizeLimitBytes: str
     name: str
     selfLink: str
 
@@ -214,12 +180,13 @@ class Operation(typing_extensions.TypedDict, total=False):
     insertTime: str
     kind: str
     name: str
+    operationGroupId: str
     operationType: str
     progress: int
     region: str
     selfLink: str
     startTime: str
-    status: str
+    status: typing_extensions.Literal["PENDING", "RUNNING", "DONE"]
     statusMessage: str
     targetId: str
     targetLink: str
@@ -244,8 +211,6 @@ class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: typing.List[AuditConfig]
     bindings: typing.List[Binding]
     etag: str
-    iamOwned: bool
-    rules: typing.List[Rule]
     version: int
 
 @typing.type_check_only
@@ -280,26 +245,20 @@ class ResourceUpdate(typing_extensions.TypedDict, total=False):
     accessControl: ResourceAccessControl
     error: typing.Dict[str, typing.Any]
     finalProperties: str
-    intent: str
+    intent: typing_extensions.Literal[
+        "CREATE_OR_ACQUIRE", "DELETE", "ACQUIRE", "UPDATE", "ABANDON", "CREATE"
+    ]
     manifest: str
     properties: str
-    state: str
+    state: typing_extensions.Literal[
+        "PENDING", "IN_PROGRESS", "IN_PREVIEW", "FAILED", "ABORTED"
+    ]
     warnings: typing.List[typing.Dict[str, typing.Any]]
 
 @typing.type_check_only
 class ResourcesListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: typing.List[Resource]
-
-@typing.type_check_only
-class Rule(typing_extensions.TypedDict, total=False):
-    action: str
-    conditions: typing.List[Condition]
-    description: str
-    ins: typing.List[str]
-    logConfigs: typing.List[LogConfig]
-    notIns: typing.List[str]
-    permissions: typing.List[str]
 
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
@@ -313,7 +272,7 @@ class TargetConfiguration(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TemplateContents(typing_extensions.TypedDict, total=False):
     imports: typing.List[ImportFile]
-    interpreter: str
+    interpreter: typing_extensions.Literal["UNKNOWN_INTERPRETER", "PYTHON", "JINJA"]
     mainTemplate: str
     schema: str
     template: str
@@ -394,5 +353,14 @@ class TypesListResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ValidationOptions(typing_extensions.TypedDict, total=False):
-    schemaValidation: str
-    undeclaredProperties: str
+    schemaValidation: typing_extensions.Literal[
+        "UNKNOWN", "IGNORE", "IGNORE_WITH_WARNINGS", "FAIL"
+    ]
+    undeclaredProperties: typing_extensions.Literal[
+        "UNKNOWN",
+        "INCLUDE",
+        "IGNORE",
+        "INCLUDE_WITH_WARNINGS",
+        "IGNORE_WITH_WARNINGS",
+        "FAIL",
+    ]

@@ -10,6 +10,9 @@ class AsymmetricDecryptRequest(typing_extensions.TypedDict, total=False):
 class AsymmetricDecryptResponse(typing_extensions.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+    ]
     verifiedCiphertextCrc32c: bool
 
 @typing.type_check_only
@@ -20,6 +23,9 @@ class AsymmetricSignRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AsymmetricSignResponse(typing_extensions.TypedDict, total=False):
     name: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+    ]
     signature: str
     signatureCrc32c: str
     verifiedDigestCrc32c: bool
@@ -38,7 +44,6 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -146,6 +151,10 @@ class DecryptRequest(typing_extensions.TypedDict, total=False):
 class DecryptResponse(typing_extensions.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+    ]
+    usedPrimary: bool
 
 @typing.type_check_only
 class DestroyCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): ...
@@ -168,6 +177,9 @@ class EncryptResponse(typing_extensions.TypedDict, total=False):
     ciphertext: str
     ciphertextCrc32c: str
     name: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+    ]
     verifiedAdditionalAuthenticatedDataCrc32c: bool
     verifiedPlaintextCrc32c: bool
 
@@ -313,6 +325,9 @@ class PublicKey(typing_extensions.TypedDict, total=False):
     name: str
     pem: str
     pemCrc32c: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+    ]
 
 @typing.type_check_only
 class RestoreCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): ...

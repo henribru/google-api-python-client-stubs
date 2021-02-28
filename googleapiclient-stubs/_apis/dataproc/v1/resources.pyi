@@ -230,6 +230,15 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: GetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def injectCredentials(
+                    self,
+                    *,
+                    project: str,
+                    region: str,
+                    cluster: str,
+                    body: InjectCredentialsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -259,6 +268,24 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def start(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    clusterName: str,
+                    body: StartClusterRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def stop(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    clusterName: str,
+                    body: StopClusterRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,

@@ -23,7 +23,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                     class SqlIntegrationsResource(googleapiclient.discovery.Resource):
                         def get(
                             self, *, name: str, **kwargs: typing.Any
-                        ) -> SQLIntegrationHttpRequest: ...
+                        ) -> SqlIntegrationHttpRequest: ...
                         def list(
                             self,
                             *,
@@ -33,7 +33,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             pageSize: int = ...,
                             pageToken: str = ...,
                             **kwargs: typing.Any
-                        ) -> ListSQLIntegrationsResponseHttpRequest: ...
+                        ) -> ListSqlIntegrationsResponseHttpRequest: ...
                     def attachTrust(
                         self,
                         *,
@@ -216,14 +216,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
-class ListSQLIntegrationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+class ListSqlIntegrationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: typing.Optional[
             typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
         ] = ...,
         num_retries: int = ...,
-    ) -> ListSQLIntegrationsResponse: ...
+    ) -> ListSqlIntegrationsResponse: ...
 
 @typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
@@ -266,14 +266,14 @@ class ResetAdminPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ResetAdminPasswordResponse: ...
 
 @typing.type_check_only
-class SQLIntegrationHttpRequest(googleapiclient.http.HttpRequest):
+class SqlIntegrationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: typing.Optional[
             typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
         ] = ...,
         num_retries: int = ...,
-    ) -> SQLIntegration: ...
+    ) -> SqlIntegration: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

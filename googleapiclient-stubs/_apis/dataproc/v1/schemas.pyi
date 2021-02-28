@@ -33,7 +33,6 @@ class BasicYarnAutoscalingConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -62,6 +61,7 @@ class ClusterConfig(typing_extensions.TypedDict, total=False):
     initializationActions: typing.List[NodeInitializationAction]
     lifecycleConfig: LifecycleConfig
     masterConfig: InstanceGroupConfig
+    metastoreConfig: MetastoreConfig
     secondaryWorkerConfig: InstanceGroupConfig
     securityConfig: SecurityConfig
     softwareConfig: SoftwareConfig
@@ -158,6 +158,7 @@ class GceClusterConfig(typing_extensions.TypedDict, total=False):
     reservationAffinity: ReservationAffinity
     serviceAccount: str
     serviceAccountScopes: typing.List[str]
+    shieldedInstanceConfig: ShieldedInstanceConfig
     subnetworkUri: str
     tags: typing.List[str]
     zoneUri: str
@@ -191,6 +192,11 @@ class HiveJob(typing_extensions.TypedDict, total=False):
     scriptVariables: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class InjectCredentialsRequest(typing_extensions.TypedDict, total=False):
+    clusterUuid: str
+    credentialsCiphertext: str
+
+@typing.type_check_only
 class InstanceGroupAutoscalingPolicyConfig(typing_extensions.TypedDict, total=False):
     maxInstances: int
     minInstances: int
@@ -216,6 +222,7 @@ class InstanceGroupConfig(typing_extensions.TypedDict, total=False):
 class InstanceReference(typing_extensions.TypedDict, total=False):
     instanceId: str
     instanceName: str
+    publicKey: str
 
 @typing.type_check_only
 class InstantiateWorkflowTemplateRequest(typing_extensions.TypedDict, total=False):
@@ -254,6 +261,7 @@ class JobMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobPlacement(typing_extensions.TypedDict, total=False):
+    clusterLabels: typing.Dict[str, typing.Any]
     clusterName: str
     clusterUuid: str
 
@@ -351,6 +359,10 @@ class ManagedCluster(typing_extensions.TypedDict, total=False):
 class ManagedGroupConfig(typing_extensions.TypedDict, total=False):
     instanceGroupManagerName: str
     instanceTemplateName: str
+
+@typing.type_check_only
+class MetastoreConfig(typing_extensions.TypedDict, total=False):
+    dataprocMetastoreService: str
 
 @typing.type_check_only
 class NodeGroupAffinity(typing_extensions.TypedDict, total=False):
@@ -451,6 +463,12 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
+class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
+    enableIntegrityMonitoring: bool
+    enableSecureBoot: bool
+    enableVtpm: bool
+
+@typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
     imageVersion: str
     optionalComponents: typing.List[str]
@@ -486,10 +504,20 @@ class SparkSqlJob(typing_extensions.TypedDict, total=False):
     scriptVariables: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class StartClusterRequest(typing_extensions.TypedDict, total=False):
+    clusterUuid: str
+    requestId: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StopClusterRequest(typing_extensions.TypedDict, total=False):
+    clusterUuid: str
+    requestId: str
 
 @typing.type_check_only
 class SubmitJobRequest(typing_extensions.TypedDict, total=False):
@@ -524,6 +552,9 @@ class WorkflowMetadata(typing_extensions.TypedDict, total=False):
     clusterName: str
     clusterUuid: str
     createCluster: ClusterOperation
+    dagEndTime: str
+    dagStartTime: str
+    dagTimeout: str
     deleteCluster: ClusterOperation
     endTime: str
     graph: WorkflowGraph
@@ -551,6 +582,7 @@ class WorkflowNode(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkflowTemplate(typing_extensions.TypedDict, total=False):
     createTime: str
+    dagTimeout: str
     id: str
     jobs: typing.List[OrderedJob]
     labels: typing.Dict[str, typing.Any]

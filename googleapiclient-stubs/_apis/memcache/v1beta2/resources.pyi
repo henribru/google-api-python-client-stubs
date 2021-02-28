@@ -22,6 +22,13 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     body: ApplyParametersRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def applySoftwareUpdate(
+                    self,
+                    *,
+                    instance: str,
+                    body: ApplySoftwareUpdateRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,

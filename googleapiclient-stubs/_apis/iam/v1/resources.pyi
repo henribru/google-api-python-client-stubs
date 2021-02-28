@@ -66,6 +66,102 @@ class IamResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class WorkloadIdentityPoolsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                @typing.type_check_only
+                class ProvidersResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class OperationsResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: WorkloadIdentityPoolProvider = ...,
+                        workloadIdentityPoolProviderId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> WorkloadIdentityPoolProviderHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        showDeleted: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> ListWorkloadIdentityPoolProvidersResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: WorkloadIdentityPoolProvider = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def undelete(
+                        self,
+                        *,
+                        name: str,
+                        body: UndeleteWorkloadIdentityPoolProviderRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def operations(self) -> OperationsResource: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: WorkloadIdentityPool = ...,
+                    workloadIdentityPoolId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> WorkloadIdentityPoolHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    showDeleted: bool = ...,
+                    **kwargs: typing.Any
+                ) -> ListWorkloadIdentityPoolsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: WorkloadIdentityPool = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def undelete(
+                    self,
+                    *,
+                    name: str,
+                    body: UndeleteWorkloadIdentityPoolRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def operations(self) -> OperationsResource: ...
+                def providers(self) -> ProvidersResource: ...
+            def workloadIdentityPools(self) -> WorkloadIdentityPoolsResource: ...
+        @typing.type_check_only
         class RolesResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -229,6 +325,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 self, *, name: str, body: ServiceAccount = ..., **kwargs: typing.Any
             ) -> ServiceAccountHttpRequest: ...
             def keys(self) -> KeysResource: ...
+        def locations(self) -> LocationsResource: ...
         def roles(self) -> RolesResource: ...
         def serviceAccounts(self) -> ServiceAccountsResource: ...
     @typing.type_check_only
@@ -302,6 +399,38 @@ class ListServiceAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListServiceAccountsResponse: ...
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolProvidersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListWorkloadIdentityPoolProvidersResponse: ...
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListWorkloadIdentityPoolsResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Operation: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
@@ -412,3 +541,23 @@ class UndeleteServiceAccountResponseHttpRequest(googleapiclient.http.HttpRequest
         ] = ...,
         num_retries: int = ...,
     ) -> UndeleteServiceAccountResponse: ...
+
+@typing.type_check_only
+class WorkloadIdentityPoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> WorkloadIdentityPool: ...
+
+@typing.type_check_only
+class WorkloadIdentityPoolProviderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> WorkloadIdentityPoolProvider: ...

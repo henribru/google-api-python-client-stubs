@@ -7,7 +7,29 @@ class ApplyParametersRequest(typing_extensions.TypedDict, total=False):
     nodeIds: typing.List[str]
 
 @typing.type_check_only
+class ApplySoftwareUpdateRequest(typing_extensions.TypedDict, total=False):
+    applyAll: bool
+    nodeIds: typing.List[str]
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DailyCycle(typing_extensions.TypedDict, total=False):
+    duration: str
+    startTime: TimeOfDay
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
+class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
+    endDate: Date
+    startDate: Date
+    time: TimeOfDay
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -67,6 +89,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule(
     canReschedule: bool
     endTime: str
     rolloutManagementPolicy: str
+    scheduleDeadlineTime: str
     startTime: str
 
 @typing.type_check_only
@@ -74,6 +97,8 @@ class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
     typing_extensions.TypedDict, total=False
 ):
     exclude: bool
+    isRollback: bool
+    maintenancePolicies: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
@@ -135,6 +160,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "PERFORMING_MAINTENANCE"
     ]
+    updateAvailable: bool
     updateTime: str
     zones: typing.List[str]
 
@@ -168,6 +194,21 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MaintenancePolicy(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
+    updatePolicy: UpdatePolicy
+    updateTime: str
+
+@typing.type_check_only
+class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+    dailyCycle: DailyCycle
+    weeklyCycle: WeeklyCycle
+
+@typing.type_check_only
 class MemcacheParameters(typing_extensions.TypedDict, total=False):
     id: str
     params: typing.Dict[str, typing.Any]
@@ -181,6 +222,7 @@ class Node(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
+    updateAvailable: bool
     zone: str
 
 @typing.type_check_only
@@ -197,15 +239,57 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class Schedule(typing_extensions.TypedDict, total=False):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    duration: str
+    startTime: TimeOfDay
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
+
+@typing.type_check_only
 class UpdateParametersRequest(typing_extensions.TypedDict, total=False):
     parameters: MemcacheParameters
     updateMask: str
+
+@typing.type_check_only
+class UpdatePolicy(typing_extensions.TypedDict, total=False):
+    channel: typing_extensions.Literal["UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER"]
+    denyMaintenancePeriods: typing.List[DenyMaintenancePeriod]
+    window: MaintenanceWindow
+
+@typing.type_check_only
+class WeeklyCycle(typing_extensions.TypedDict, total=False):
+    schedule: typing.List[Schedule]
 
 @typing.type_check_only
 class ZoneMetadata(typing_extensions.TypedDict, total=False): ...

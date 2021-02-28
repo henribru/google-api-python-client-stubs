@@ -304,6 +304,12 @@ class InternalChecker(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["UNSPECIFIED", "CREATING", "RUNNING"]
 
 @typing.type_check_only
+class IstioCanonicalService(typing_extensions.TypedDict, total=False):
+    canonicalService: str
+    canonicalServiceNamespace: str
+    meshUid: str
+
+@typing.type_check_only
 class LabelDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     key: str
@@ -526,10 +532,12 @@ class MutationRecord(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NotificationChannel(typing_extensions.TypedDict, total=False):
+    creationRecord: MutationRecord
     description: str
     displayName: str
     enabled: bool
     labels: typing.Dict[str, typing.Any]
+    mutationRecords: typing.List[MutationRecord]
     name: str
     type: str
     userLabels: typing.Dict[str, typing.Any]
@@ -618,6 +626,7 @@ class Service(typing_extensions.TypedDict, total=False):
     clusterIstio: ClusterIstio
     custom: Custom
     displayName: str
+    istioCanonicalService: IstioCanonicalService
     meshIstio: MeshIstio
     name: str
     telemetry: Telemetry

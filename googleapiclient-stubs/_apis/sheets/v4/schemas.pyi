@@ -161,8 +161,11 @@ class BasicChartDomain(typing_extensions.TypedDict, total=False):
 class BasicChartSeries(typing_extensions.TypedDict, total=False):
     color: Color
     colorStyle: ColorStyle
+    dataLabel: DataLabel
     lineStyle: LineStyle
+    pointStyle: PointStyle
     series: ChartData
+    styleOverrides: typing.List[BasicSeriesDataPointStyleOverride]
     targetAxis: typing_extensions.Literal[
         "BASIC_CHART_AXIS_POSITION_UNSPECIFIED",
         "BOTTOM_AXIS",
@@ -216,6 +219,7 @@ class BasicChartSpec(typing_extensions.TypedDict, total=False):
         "PERCENT_STACKED",
     ]
     threeDimensional: bool
+    totalDataLabel: DataLabel
 
 @typing.type_check_only
 class BasicFilter(typing_extensions.TypedDict, total=False):
@@ -223,6 +227,13 @@ class BasicFilter(typing_extensions.TypedDict, total=False):
     filterSpecs: typing.List[FilterSpec]
     range: GridRange
     sortSpecs: typing.List[SortSpec]
+
+@typing.type_check_only
+class BasicSeriesDataPointStyleOverride(typing_extensions.TypedDict, total=False):
+    color: Color
+    colorStyle: ColorStyle
+    index: int
+    pointStyle: PointStyle
 
 @typing.type_check_only
 class BatchClearValuesByDataFilterRequest(typing_extensions.TypedDict, total=False):
@@ -727,6 +738,25 @@ class DataFilterValueRange(typing_extensions.TypedDict, total=False):
     values: typing.List[list]
 
 @typing.type_check_only
+class DataLabel(typing_extensions.TypedDict, total=False):
+    customLabelData: ChartData
+    placement: typing_extensions.Literal[
+        "DATA_LABEL_PLACEMENT_UNSPECIFIED",
+        "CENTER",
+        "LEFT",
+        "RIGHT",
+        "ABOVE",
+        "BELOW",
+        "INSIDE_END",
+        "INSIDE_BASE",
+        "OUTSIDE_END",
+    ]
+    textFormat: TextFormat
+    type: typing_extensions.Literal[
+        "DATA_LABEL_TYPE_UNSPECIFIED", "NONE", "DATA", "CUSTOM"
+    ]
+
+@typing.type_check_only
 class DataSource(typing_extensions.TypedDict, total=False):
     calculatedColumns: typing.List[DataSourceColumn]
     dataSourceId: str
@@ -1017,9 +1047,15 @@ class Editors(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EmbeddedChart(typing_extensions.TypedDict, total=False):
+    border: EmbeddedObjectBorder
     chartId: int
     position: EmbeddedObjectPosition
     spec: ChartSpec
+
+@typing.type_check_only
+class EmbeddedObjectBorder(typing_extensions.TypedDict, total=False):
+    color: Color
+    colorStyle: ColorStyle
 
 @typing.type_check_only
 class EmbeddedObjectPosition(typing_extensions.TypedDict, total=False):
@@ -1335,6 +1371,8 @@ class PieChartSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PivotFilterCriteria(typing_extensions.TypedDict, total=False):
+    condition: BooleanCondition
+    visibleByDefault: bool
     visibleValues: typing.List[str]
 
 @typing.type_check_only
@@ -1420,6 +1458,21 @@ class PivotValue(typing_extensions.TypedDict, total=False):
         "VARP",
         "CUSTOM",
     ]
+
+@typing.type_check_only
+class PointStyle(typing_extensions.TypedDict, total=False):
+    shape: typing_extensions.Literal[
+        "POINT_SHAPE_UNSPECIFIED",
+        "CIRCLE",
+        "DIAMOND",
+        "HEXAGON",
+        "PENTAGON",
+        "SQUARE",
+        "STAR",
+        "TRIANGLE",
+        "X_MARK",
+    ]
+    size: float
 
 @typing.type_check_only
 class ProtectedRange(typing_extensions.TypedDict, total=False):
@@ -1517,6 +1570,7 @@ class Request(typing_extensions.TypedDict, total=False):
     updateDeveloperMetadata: UpdateDeveloperMetadataRequest
     updateDimensionGroup: UpdateDimensionGroupRequest
     updateDimensionProperties: UpdateDimensionPropertiesRequest
+    updateEmbeddedObjectBorder: UpdateEmbeddedObjectBorderRequest
     updateEmbeddedObjectPosition: UpdateEmbeddedObjectPositionRequest
     updateFilterView: UpdateFilterViewRequest
     updateNamedRange: UpdateNamedRangeRequest
@@ -1872,6 +1926,12 @@ class UpdateDimensionPropertiesRequest(typing_extensions.TypedDict, total=False)
     range: DimensionRange
 
 @typing.type_check_only
+class UpdateEmbeddedObjectBorderRequest(typing_extensions.TypedDict, total=False):
+    border: EmbeddedObjectBorder
+    fields: str
+    objectId: int
+
+@typing.type_check_only
 class UpdateEmbeddedObjectPositionRequest(typing_extensions.TypedDict, total=False):
     fields: str
     newPosition: EmbeddedObjectPosition
@@ -1959,6 +2019,7 @@ class WaterfallChartDomain(typing_extensions.TypedDict, total=False):
 class WaterfallChartSeries(typing_extensions.TypedDict, total=False):
     customSubtotals: typing.List[WaterfallChartCustomSubtotal]
     data: ChartData
+    dataLabel: DataLabel
     hideTrailingSubtotal: bool
     negativeColumnsStyle: WaterfallChartColumnStyle
     positiveColumnsStyle: WaterfallChartColumnStyle
@@ -1974,3 +2035,4 @@ class WaterfallChartSpec(typing_extensions.TypedDict, total=False):
     stackedType: typing_extensions.Literal[
         "WATERFALL_STACKED_TYPE_UNSPECIFIED", "STACKED", "SEQUENTIAL"
     ]
+    totalDataLabel: DataLabel

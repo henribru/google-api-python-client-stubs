@@ -180,6 +180,9 @@ class GoogleCloudHealthcareV1FhirBigQueryDestination(
     datasetUri: str
     force: bool
     schemaConfig: SchemaConfig
+    writeDisposition: typing_extensions.Literal[
+        "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
+    ]
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1FhirGcsDestination(

@@ -72,6 +72,8 @@ class GoogleCloudVideointelligenceV1_FaceAnnotation(
 class GoogleCloudVideointelligenceV1_FaceDetectionAnnotation(
     typing_extensions.TypedDict, total=False
 ):
+    thumbnail: str
+    tracks: typing.List[GoogleCloudVideointelligenceV1_Track]
     version: str
 
 @typing.type_check_only
@@ -370,6 +372,8 @@ class GoogleCloudVideointelligenceV1beta2_FaceAnnotation(
 class GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation(
     typing_extensions.TypedDict, total=False
 ):
+    thumbnail: str
+    tracks: typing.List[GoogleCloudVideointelligenceV1beta2_Track]
     version: str
 
 @typing.type_check_only
@@ -680,6 +684,8 @@ class GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation(
 class GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation(
     typing_extensions.TypedDict, total=False
 ):
+    thumbnail: str
+    tracks: typing.List[GoogleCloudVideointelligenceV1p1beta1_Track]
     version: str
 
 @typing.type_check_only
@@ -990,6 +996,8 @@ class GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation(
 class GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation(
     typing_extensions.TypedDict, total=False
 ):
+    thumbnail: str
+    tracks: typing.List[GoogleCloudVideointelligenceV1p2beta1_Track]
     version: str
 
 @typing.type_check_only
@@ -1339,6 +1347,8 @@ class GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation(
 class GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation(
     typing_extensions.TypedDict, total=False
 ):
+    thumbnail: str
+    tracks: typing.List[GoogleCloudVideointelligenceV1p3beta1_Track]
     version: str
 
 @typing.type_check_only

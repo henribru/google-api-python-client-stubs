@@ -299,10 +299,20 @@ class DirectoryResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OrgunitsResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, customerId: str, orgUnitPath: str, **kwargs: typing.Any
+            self,
+            *,
+            customerId: str,
+            orgUnitPath: str,
+            allowPlus: bool = ...,
+            **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
-            self, *, customerId: str, orgUnitPath: str, **kwargs: typing.Any
+            self,
+            *,
+            customerId: str,
+            orgUnitPath: str,
+            allowPlus: bool = ...,
+            **kwargs: typing.Any
         ) -> OrgUnitHttpRequest: ...
         def insert(
             self, *, customerId: str, body: OrgUnit = ..., **kwargs: typing.Any
@@ -321,6 +331,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customerId: str,
             orgUnitPath: str,
             body: OrgUnit = ...,
+            allowPlus: bool = ...,
             **kwargs: typing.Any
         ) -> OrgUnitHttpRequest: ...
         def update(
@@ -329,6 +340,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customerId: str,
             orgUnitPath: str,
             body: OrgUnit = ...,
+            allowPlus: bool = ...,
             **kwargs: typing.Any
         ) -> OrgUnitHttpRequest: ...
     @typing.type_check_only

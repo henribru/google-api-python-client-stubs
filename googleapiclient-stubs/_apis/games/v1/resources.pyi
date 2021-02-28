@@ -65,6 +65,15 @@ class GamesResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> ApplicationHttpRequest: ...
+        def getEndPoint(
+            self,
+            *,
+            applicationId: str = ...,
+            endPointType: typing_extensions.Literal[
+                "END_POINT_TYPE_UNSPECIFIED", "PROFILE_CREATION", "PROFILE_SETTINGS"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> EndPointHttpRequest: ...
         def played(self, **kwargs: typing.Any) -> googleapiclient.http.HttpRequest: ...
         def verify(
             self, *, applicationId: str, **kwargs: typing.Any
@@ -337,6 +346,16 @@ class CategoryListResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> CategoryListResponse: ...
+
+@typing.type_check_only
+class EndPointHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> EndPoint: ...
 
 @typing.type_check_only
 class EventDefinitionListResponseHttpRequest(googleapiclient.http.HttpRequest):

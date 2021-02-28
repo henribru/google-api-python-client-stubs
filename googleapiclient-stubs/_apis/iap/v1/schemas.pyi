@@ -20,7 +20,6 @@ class ApplicationSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -86,7 +85,6 @@ class ListIdentityAwareProxyClientsResponse(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class OAuthSettings(typing_extensions.TypedDict, total=False):
-    clientId: str
     loginHint: str
 
 @typing.type_check_only

@@ -135,6 +135,22 @@ class DLPResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
             @typing.type_check_only
+            class DlpJobsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    locationId: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    type: typing_extensions.Literal[
+                        "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
+                    ] = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
+            @typing.type_check_only
             class InspectTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -166,6 +182,39 @@ class DLPResource(googleapiclient.discovery.Resource):
                     body: GooglePrivacyDlpV2UpdateInspectTemplateRequest = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
+            @typing.type_check_only
+            class JobTriggersResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GooglePrivacyDlpV2CreateJobTriggerRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    locationId: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GooglePrivacyDlpV2UpdateJobTriggerRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
             @typing.type_check_only
             class StoredInfoTypesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -199,7 +248,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
             def deidentifyTemplates(self) -> DeidentifyTemplatesResource: ...
+            def dlpJobs(self) -> DlpJobsResource: ...
             def inspectTemplates(self) -> InspectTemplatesResource: ...
+            def jobTriggers(self) -> JobTriggersResource: ...
             def storedInfoTypes(self) -> StoredInfoTypesResource: ...
         @typing.type_check_only
         class StoredInfoTypesResource(googleapiclient.discovery.Resource):

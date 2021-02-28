@@ -88,6 +88,20 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class EnvironmentsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class IntentsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        intentView: typing_extensions.Literal[
+                            "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                        ] = ...,
+                        languageCode: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2ListIntentsResponseHttpRequest: ...
+                @typing.type_check_only
                 class UsersResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class SessionsResource(googleapiclient.discovery.Resource):
@@ -174,6 +188,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2ListEnvironmentsResponseHttpRequest: ...
+                def intents(self) -> IntentsResource: ...
                 def users(self) -> UsersResource: ...
             @typing.type_check_only
             class IntentsResource(googleapiclient.discovery.Resource):

@@ -18,6 +18,7 @@ class ApigatewayApiConfig(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
     gatewayConfig: ApigatewayGatewayConfig
+    gatewayServiceAccount: str
     grpcServices: typing.List[ApigatewayApiConfigGrpcServiceDefinition]
     labels: typing.Dict[str, typing.Any]
     managedServiceConfigs: typing.List[ApigatewayApiConfigFile]

@@ -14,6 +14,7 @@ class ApiWarning(typing_extensions.TypedDict, total=False):
         "SQL_API_WARNING_CODE_UNSPECIFIED", "REGION_UNREACHABLE"
     ]
     message: str
+    region: str
 
 @typing.type_check_only
 class BackupConfiguration(typing_extensions.TypedDict, total=False):
@@ -26,6 +27,11 @@ class BackupConfiguration(typing_extensions.TypedDict, total=False):
     replicationLogArchivingEnabled: bool
     startTime: str
     transactionLogRetentionDays: int
+
+@typing.type_check_only
+class BackupContext(typing_extensions.TypedDict, total=False):
+    backupId: str
+    kind: str
 
 @typing.type_check_only
 class BackupRetentionSettings(typing_extensions.TypedDict, total=False):
@@ -267,6 +273,13 @@ class ImportContext(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class InsightsConfig(typing_extensions.TypedDict, total=False):
+    queryInsightsEnabled: bool
+    queryStringLength: int
+    recordApplicationTags: bool
+    recordClientAddress: bool
+
+@typing.type_check_only
 class InstancesCloneRequest(typing_extensions.TypedDict, total=False):
     cloneContext: CloneContext
 
@@ -373,6 +386,7 @@ class OnPremisesConfiguration(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
+    backupContext: BackupContext
     endTime: str
     error: OperationErrors
     exportContext: ExportContext
@@ -492,6 +506,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     databaseFlags: typing.List[DatabaseFlags]
     databaseReplicationEnabled: bool
     denyMaintenancePeriods: typing.List[DenyMaintenancePeriod]
+    insightsConfig: InsightsConfig
     ipConfiguration: IpConfiguration
     kind: str
     locationPreference: LocationPreference
@@ -539,6 +554,7 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_GTID_MODE",
         "SQLSERVER_AGENT_NOT_RUNNING",
         "UNSUPPORTED_TABLE_DEFINITION",
+        "UNSUPPORTED_DEFINER",
     ]
 
 @typing.type_check_only
@@ -553,6 +569,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse(
 ):
     errors: typing.List[SqlExternalSyncSettingError]
     kind: str
+    warnings: typing.List[SqlExternalSyncSettingError]
 
 @typing.type_check_only
 class SqlScheduledMaintenance(typing_extensions.TypedDict, total=False):
@@ -589,6 +606,7 @@ class SslCertDetail(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SslCertsCreateEphemeralRequest(typing_extensions.TypedDict, total=False):
+    access_token: str
     public_key: str
 
 @typing.type_check_only

@@ -2,6 +2,9 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class ActivateManualTriggerRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ActiveViewVideoViewabilityMetricConfig(typing_extensions.TypedDict, total=False):
     displayName: str
     minimumDuration: typing_extensions.Literal[
@@ -463,6 +466,13 @@ class BulkListAdvertiserAssignedTargetingOptionsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class BulkListInsertionOrderAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    nextPageToken: str
+
+@typing.type_check_only
 class BulkListLineItemAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -577,11 +587,15 @@ class CombinedAudienceTargetingSetting(typing_extensions.TypedDict, total=False)
 class ContentInstreamPositionAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
+    adType: typing_extensions.Literal[
+        "AD_TYPE_UNSPECIFIED", "AD_TYPE_DISPLAY", "AD_TYPE_VIDEO", "AD_TYPE_AUDIO"
+    ]
     contentInstreamPosition: typing_extensions.Literal[
         "CONTENT_INSTREAM_POSITION_UNSPECIFIED",
         "CONTENT_INSTREAM_POSITION_PRE_ROLL",
         "CONTENT_INSTREAM_POSITION_MID_ROLL",
         "CONTENT_INSTREAM_POSITION_POST_ROLL",
+        "CONTENT_INSTREAM_POSITION_UNKNOWN",
     ]
     targetingOptionId: str
 
@@ -594,12 +608,16 @@ class ContentInstreamPositionTargetingOptionDetails(
         "CONTENT_INSTREAM_POSITION_PRE_ROLL",
         "CONTENT_INSTREAM_POSITION_MID_ROLL",
         "CONTENT_INSTREAM_POSITION_POST_ROLL",
+        "CONTENT_INSTREAM_POSITION_UNKNOWN",
     ]
 
 @typing.type_check_only
 class ContentOutstreamPositionAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
+    adType: typing_extensions.Literal[
+        "AD_TYPE_UNSPECIFIED", "AD_TYPE_DISPLAY", "AD_TYPE_VIDEO", "AD_TYPE_AUDIO"
+    ]
     contentOutstreamPosition: typing_extensions.Literal[
         "CONTENT_OUTSTREAM_POSITION_UNSPECIFIED",
         "CONTENT_OUTSTREAM_POSITION_UNKNOWN",
@@ -701,6 +719,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5",
         "SDF_VERSION_5_1",
         "SDF_VERSION_5_2",
+        "SDF_VERSION_5_3",
     ]
 
 @typing.type_check_only
@@ -774,9 +793,11 @@ class Creative(typing_extensions.TypedDict, total=False):
     jsTrackerUrl: str
     lineItemIds: typing.List[str]
     mediaDuration: str
+    mp3Audio: bool
     name: str
     notes: str
     obaIcon: ObaIcon
+    oggAudio: bool
     progressOffset: AudioVideoOffset
     requireHtml5: bool
     requireMraid: bool
@@ -883,6 +904,9 @@ class DayAndTimeAssignedTargetingOptionDetails(
         "TIME_ZONE_RESOLUTION_END_USER",
         "TIME_ZONE_RESOLUTION_ADVERTISER",
     ]
+
+@typing.type_check_only
+class DeactivateManualTriggerRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
@@ -1000,6 +1024,7 @@ class DoubleVerify(typing_extensions.TypedDict, total=False):
     appStarRating: DoubleVerifyAppStarRating
     avoidedAgeRatings: typing.List[str]
     brandSafetyCategories: DoubleVerifyBrandSafetyCategories
+    customSegmentId: str
     displayViewability: DoubleVerifyDisplayViewability
     fraudInvalidTraffic: DoubleVerifyFraudInvalidTraffic
     videoViewability: DoubleVerifyVideoViewability
@@ -1184,8 +1209,11 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_INMOBI",
         "EXCHANGE_SMAATO",
         "EXCHANGE_AJA",
+        "EXCHANGE_SUPERSHIP",
         "EXCHANGE_NEXSTAR_DIGITAL",
         "EXCHANGE_WAZE",
+        "EXCHANGE_SOUNDCAST",
+        "EXCHANGE_SHARETHROUGH",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -1252,8 +1280,11 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_INMOBI",
         "EXCHANGE_SMAATO",
         "EXCHANGE_AJA",
+        "EXCHANGE_SUPERSHIP",
         "EXCHANGE_NEXSTAR_DIGITAL",
         "EXCHANGE_WAZE",
+        "EXCHANGE_SOUNDCAST",
+        "EXCHANGE_SHARETHROUGH",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -1323,8 +1354,11 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_INMOBI",
         "EXCHANGE_SMAATO",
         "EXCHANGE_AJA",
+        "EXCHANGE_SUPERSHIP",
         "EXCHANGE_NEXSTAR_DIGITAL",
         "EXCHANGE_WAZE",
+        "EXCHANGE_SOUNDCAST",
+        "EXCHANGE_SHARETHROUGH",
     ]
 
 @typing.type_check_only
@@ -1504,6 +1538,10 @@ class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total
     targetingOptionId: str
 
 @typing.type_check_only
+class GeoRegionSearchTerms(typing_extensions.TypedDict, total=False):
+    geoRegionQuery: str
+
+@typing.type_check_only
 class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     displayName: str
     geoRegionType: typing_extensions.Literal[
@@ -1548,6 +1586,8 @@ class GoogleAudience(typing_extensions.TypedDict, total=False):
         "GOOGLE_AUDIENCE_TYPE_IN_MARKET",
         "GOOGLE_AUDIENCE_TYPE_INSTALLED_APPS",
         "GOOGLE_AUDIENCE_TYPE_NEW_MOBILE_DEVICES",
+        "GOOGLE_AUDIENCE_TYPE_LIFE_EVENT",
+        "GOOGLE_AUDIENCE_TYPE_EXTENDED_DEMOGRAPHIC",
     ]
     name: str
 
@@ -1618,6 +1658,9 @@ class InsertionOrder(typing_extensions.TypedDict, total=False):
     ]
     frequencyCap: FrequencyCap
     insertionOrderId: str
+    insertionOrderType: typing_extensions.Literal[
+        "INSERTION_ORDER_TYPE_UNSPECIFIED", "RTB", "OVER_THE_TOP"
+    ]
     integrationDetails: IntegrationDetails
     name: str
     pacing: Pacing
@@ -1647,6 +1690,7 @@ class InsertionOrderBudgetSegment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IntegralAdScience(typing_extensions.TypedDict, total=False):
+    customSegmentId: typing.List[str]
     displayViewability: typing_extensions.Literal[
         "PERFORMANCE_VIEWABILITY_UNSPECIFIED",
         "PERFORMANCE_VIEWABILITY_40",
@@ -1783,8 +1827,11 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_INMOBI",
         "EXCHANGE_SMAATO",
         "EXCHANGE_AJA",
+        "EXCHANGE_SUPERSHIP",
         "EXCHANGE_NEXSTAR_DIGITAL",
         "EXCHANGE_WAZE",
+        "EXCHANGE_SOUNDCAST",
+        "EXCHANGE_SHARETHROUGH",
     ]
     inventorySourceId: str
     inventorySourceType: typing_extensions.Literal[
@@ -1902,11 +1949,14 @@ class LineItem(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
         "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
         "LINE_ITEM_TYPE_AUDIO_DEFAULT",
+        "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP",
     ]
+    mobileApp: MobileApp
     name: str
     pacing: Pacing
     partnerCosts: typing.List[PartnerCost]
     partnerRevenueModel: PartnerRevenueModel
+    targetingExpansion: TargetingExpansionConfig
     updateTime: str
     warningMessages: typing.List[str]
 
@@ -1930,7 +1980,9 @@ class LineItemFlight(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_FLIGHT_DATE_TYPE_UNSPECIFIED",
         "LINE_ITEM_FLIGHT_DATE_TYPE_INHERITED",
         "LINE_ITEM_FLIGHT_DATE_TYPE_CUSTOM",
+        "LINE_ITEM_FLIGHT_DATE_TYPE_TRIGGER",
     ]
+    triggerId: str
 
 @typing.type_check_only
 class ListAdvertiserAssignedTargetingOptionsResponse(
@@ -1995,6 +2047,13 @@ class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListInsertionOrderAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListInsertionOrdersResponse(typing_extensions.TypedDict, total=False):
     insertionOrders: typing.List[InsertionOrder]
     nextPageToken: str
@@ -2024,6 +2083,11 @@ class ListLineItemsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListLocationListsResponse(typing_extensions.TypedDict, total=False):
     locationLists: typing.List[LocationList]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListManualTriggersResponse(typing_extensions.TypedDict, total=False):
+    manualTriggers: typing.List[ManualTrigger]
     nextPageToken: str
 
 @typing.type_check_only
@@ -2081,6 +2145,16 @@ class LookbackWindow(typing_extensions.TypedDict, total=False):
     impressionDays: int
 
 @typing.type_check_only
+class ManualTrigger(typing_extensions.TypedDict, total=False):
+    activationDurationMinutes: str
+    advertiserId: str
+    displayName: str
+    latestActivationTime: str
+    name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "INACTIVE", "ACTIVE"]
+    triggerId: str
+
+@typing.type_check_only
 class MaximizeSpendBidStrategy(typing_extensions.TypedDict, total=False):
     customBiddingAlgorithmId: str
     maxAverageCpmBidAmountMicros: str
@@ -2099,6 +2173,13 @@ class MaximizeSpendBidStrategy(typing_extensions.TypedDict, total=False):
 class MeasurementConfig(typing_extensions.TypedDict, total=False):
     dv360ToCmCostReportingEnabled: bool
     dv360ToCmDataSharingEnabled: bool
+
+@typing.type_check_only
+class MobileApp(typing_extensions.TypedDict, total=False):
+    appId: str
+    displayName: str
+    platform: typing_extensions.Literal["PLATFORM_UNSPECIFIED", "IOS", "ANDROID"]
+    publisher: str
 
 @typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
@@ -2145,6 +2226,9 @@ class ObaIcon(typing_extensions.TypedDict, total=False):
 class OnScreenPositionAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
+    adType: typing_extensions.Literal[
+        "AD_TYPE_UNSPECIFIED", "AD_TYPE_DISPLAY", "AD_TYPE_VIDEO", "AD_TYPE_AUDIO"
+    ]
     onScreenPosition: typing_extensions.Literal[
         "ON_SCREEN_POSITION_UNSPECIFIED",
         "ON_SCREEN_POSITION_UNKNOWN",
@@ -2334,6 +2418,12 @@ class PerformanceGoal(typing_extensions.TypedDict, total=False):
         "PERFORMANCE_GOAL_TYPE_VIEWABILITY",
         "PERFORMANCE_GOAL_TYPE_CPIAVC",
         "PERFORMANCE_GOAL_TYPE_CPE",
+        "PERFORMANCE_GOAL_TYPE_CLICK_CVR",
+        "PERFORMANCE_GOAL_TYPE_IMPRESSION_CVR",
+        "PERFORMANCE_GOAL_TYPE_VCPM",
+        "PERFORMANCE_GOAL_TYPE_VTR",
+        "PERFORMANCE_GOAL_TYPE_AUDIO_COMPLETION_RATE",
+        "PERFORMANCE_GOAL_TYPE_VIDEO_COMPLETION_RATE",
         "PERFORMANCE_GOAL_TYPE_OTHER",
     ]
 
@@ -2431,6 +2521,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5",
         "SDF_VERSION_5_1",
         "SDF_VERSION_5_2",
+        "SDF_VERSION_5_3",
     ]
 
 @typing.type_check_only
@@ -2450,7 +2541,20 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5",
         "SDF_VERSION_5_1",
         "SDF_VERSION_5_2",
+        "SDF_VERSION_5_3",
     ]
+
+@typing.type_check_only
+class SearchTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
+    advertiserId: str
+    geoRegionSearchTerms: GeoRegionSearchTerms
+    pageSize: int
+    pageToken: str
+
+@typing.type_check_only
+class SearchTargetingOptionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    targetingOptions: typing.List[TargetingOption]
 
 @typing.type_check_only
 class SensitiveCategoryAssignedTargetingOptionDetails(
@@ -2521,6 +2625,19 @@ class SubExchangeAssignedTargetingOptionDetails(
 @typing.type_check_only
 class SubExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     displayName: str
+
+@typing.type_check_only
+class TargetingExpansionConfig(typing_extensions.TypedDict, total=False):
+    excludeFirstPartyAudience: bool
+    targetingExpansionLevel: typing_extensions.Literal[
+        "TARGETING_EXPANSION_LEVEL_UNSPECIFIED",
+        "NO_EXPANSION",
+        "LEAST_EXPANSION",
+        "SOME_EXPANSION",
+        "BALANCED_EXPANSION",
+        "MORE_EXPANSION",
+        "MOST_EXPANSION",
+    ]
 
 @typing.type_check_only
 class TargetingOption(typing_extensions.TypedDict, total=False):

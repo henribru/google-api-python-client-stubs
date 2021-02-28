@@ -231,6 +231,15 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def injectCredentials(
+                    self,
+                    *,
+                    project: str,
+                    region: str,
+                    cluster: str,
+                    body: InjectCredentialsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,

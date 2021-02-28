@@ -37,6 +37,13 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             body: UpdateTransferJobRequest = ...,
             **kwargs: typing.Any
         ) -> TransferJobHttpRequest: ...
+        def run(
+            self,
+            *,
+            jobName: str,
+            body: RunTransferJobRequest = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class TransferOperationsResource(googleapiclient.discovery.Resource):
         def cancel(

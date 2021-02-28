@@ -3,6 +3,11 @@ import typing
 import typing_extensions
 @typing.type_check_only
 class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
+    commonCriteriaMode: typing_extensions.Literal[
+        "COMMON_CRITERIA_MODE_UNSPECIFIED",
+        "COMMON_CRITERIA_MODE_DISABLED",
+        "COMMON_CRITERIA_MODE_ENABLED",
+    ]
     untrustedAppsPolicy: typing_extensions.Literal[
         "UNTRUSTED_APPS_POLICY_UNSPECIFIED",
         "DISALLOW_INSTALL",
@@ -56,6 +61,12 @@ class ApplicationPermission(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     accessibleTrackIds: typing.List[str]
+    autoUpdateMode: typing_extensions.Literal[
+        "AUTO_UPDATE_MODE_UNSPECIFIED",
+        "AUTO_UPDATE_DEFAULT",
+        "AUTO_UPDATE_POSTPONED",
+        "AUTO_UPDATE_HIGH_PRIORITY",
+    ]
     connectedWorkAndPersonalApp: typing_extensions.Literal[
         "CONNECTED_WORK_AND_PERSONAL_APP_UNSPECIFIED",
         "CONNECTED_WORK_AND_PERSONAL_APP_DISALLOWED",
@@ -144,11 +155,29 @@ class Command(typing_extensions.TypedDict, total=False):
     userName: str
 
 @typing.type_check_only
+class CommonCriteriaModeInfo(typing_extensions.TypedDict, total=False):
+    commonCriteriaModeStatus: typing_extensions.Literal[
+        "COMMON_CRITERIA_MODE_STATUS_UNKNOWN",
+        "COMMON_CRITERIA_MODE_DISABLED",
+        "COMMON_CRITERIA_MODE_ENABLED",
+    ]
+
+@typing.type_check_only
 class ComplianceRule(typing_extensions.TypedDict, total=False):
     apiLevelCondition: ApiLevelCondition
     disableApps: bool
     nonComplianceDetailCondition: NonComplianceDetailCondition
     packageNamesToDisable: typing.List[str]
+
+@typing.type_check_only
+class ContactInfo(typing_extensions.TypedDict, total=False):
+    contactEmail: str
+    dataProtectionOfficerEmail: str
+    dataProtectionOfficerName: str
+    dataProtectionOfficerPhone: str
+    euRepresentativeEmail: str
+    euRepresentativeName: str
+    euRepresentativePhone: str
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -165,6 +194,7 @@ class Device(typing_extensions.TypedDict, total=False):
     appliedState: typing_extensions.Literal[
         "DEVICE_STATE_UNSPECIFIED", "ACTIVE", "DISABLED", "DELETED", "PROVISIONING"
     ]
+    commonCriteriaModeInfo: CommonCriteriaModeInfo
     deviceSettings: DeviceSettings
     disabledReason: UserFacingMessage
     displays: typing.List[Display]
@@ -253,6 +283,7 @@ class EnrollmentToken(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Enterprise(typing_extensions.TypedDict, total=False):
     appAutoApprovalEnabled: bool
+    contactInfo: ContactInfo
     enabledNotificationTypes: typing.List[str]
     enterpriseDisplayName: str
     logo: ExternalData
@@ -348,6 +379,11 @@ class ListDevicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListEnterprisesResponse(typing_extensions.TypedDict, total=False):
+    enterprises: typing.List[Enterprise]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: typing.List[Operation]
@@ -368,7 +404,24 @@ class ManagedConfigurationTemplate(typing_extensions.TypedDict, total=False):
     templateId: str
 
 @typing.type_check_only
-class ManagedProperty(typing.Dict[str, typing.Any]): ...
+class ManagedProperty(typing_extensions.TypedDict, total=False):
+    defaultValue: typing.Any
+    description: str
+    entries: typing.List[ManagedPropertyEntry]
+    key: str
+    nestedProperties: typing.List[ManagedProperty]
+    title: str
+    type: typing_extensions.Literal[
+        "MANAGED_PROPERTY_TYPE_UNSPECIFIED",
+        "BOOL",
+        "STRING",
+        "INTEGER",
+        "CHOICE",
+        "MULTISELECT",
+        "HIDDEN",
+        "BUNDLE",
+        "BUNDLE_ARRAY",
+    ]
 
 @typing.type_check_only
 class ManagedPropertyEntry(typing_extensions.TypedDict, total=False):
@@ -398,6 +451,7 @@ class NetworkInfo(typing_extensions.TypedDict, total=False):
     imei: str
     meid: str
     networkOperatorName: str
+    telephonyInfos: typing.List[TelephonyInfo]
     wifiMacAddress: str
 
 @typing.type_check_only
@@ -509,7 +563,9 @@ class PersistentPreferredActivity(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PersonalApplicationPolicy(typing_extensions.TypedDict, total=False):
-    installType: typing_extensions.Literal["INSTALL_TYPE_UNSPECIFIED", "BLOCKED"]
+    installType: typing_extensions.Literal[
+        "INSTALL_TYPE_UNSPECIFIED", "BLOCKED", "AVAILABLE"
+    ]
     packageName: str
 
 @typing.type_check_only
@@ -519,7 +575,7 @@ class PersonalUsagePolicies(typing_extensions.TypedDict, total=False):
     maxDaysWithWorkOff: int
     personalApplications: typing.List[PersonalApplicationPolicy]
     personalPlayStoreMode: typing_extensions.Literal[
-        "PLAY_STORE_MODE_UNSPECIFIED", "BLACKLIST"
+        "PLAY_STORE_MODE_UNSPECIFIED", "BLACKLIST", "BLOCKLIST", "ALLOWLIST"
     ]
     screenCaptureDisabled: bool
 
@@ -539,6 +595,11 @@ class Policy(typing_extensions.TypedDict, total=False):
         "ALWAYS",
     ]
     applications: typing.List[ApplicationPolicy]
+    autoDateAndTimeZone: typing_extensions.Literal[
+        "AUTO_DATE_AND_TIME_ZONE_UNSPECIFIED",
+        "AUTO_DATE_AND_TIME_ZONE_USER_CHOICE",
+        "AUTO_DATE_AND_TIME_ZONE_ENFORCED",
+    ]
     autoTimeRequired: bool
     blockApplicationsEnabled: bool
     bluetoothConfigDisabled: bool
@@ -577,6 +638,9 @@ class Policy(typing_extensions.TypedDict, total=False):
         "SENSORS_ONLY",
         "BATTERY_SAVING",
         "OFF",
+        "LOCATION_USER_CHOICE",
+        "LOCATION_ENFORCED",
+        "LOCATION_DISABLED",
     ]
     longSupportMessage: UserFacingMessage
     maximumTimeToLock: str
@@ -715,6 +779,7 @@ class Status(typing_extensions.TypedDict, total=False):
 class StatusReportingSettings(typing_extensions.TypedDict, total=False):
     applicationReportingSettings: ApplicationReportingSettings
     applicationReportsEnabled: bool
+    commonCriteriaModeEnabled: bool
     deviceSettingsEnabled: bool
     displayInfoEnabled: bool
     hardwareStatusEnabled: bool
@@ -743,6 +808,11 @@ class SystemUpdateInfo(typing_extensions.TypedDict, total=False):
         "SECURITY_UPDATE_AVAILABLE",
         "OS_UPDATE_AVAILABLE",
     ]
+
+@typing.type_check_only
+class TelephonyInfo(typing_extensions.TypedDict, total=False):
+    carrierName: str
+    phoneNumber: str
 
 @typing.type_check_only
 class TermsAndConditions(typing_extensions.TypedDict, total=False):

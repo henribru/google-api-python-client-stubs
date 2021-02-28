@@ -24,6 +24,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     mpn: str
     pattern: str
     productDetail: typing.List[ProductDetail]
+    productHighlight: typing.List[str]
     productLine: str
     productName: str
     productPageUrl: str

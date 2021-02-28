@@ -36,6 +36,7 @@ class FeedbackLoop(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IpReputation(typing_extensions.TypedDict, total=False):
+    ipCount: str
     numIps: str
     reputation: typing_extensions.Literal[
         "REPUTATION_CATEGORY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BAD"

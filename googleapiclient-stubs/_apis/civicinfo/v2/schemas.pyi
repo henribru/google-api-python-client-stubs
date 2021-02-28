@@ -2,7 +2,11 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
-class AdministrationRegion(typing.Dict[str, typing.Any]): ...
+class AdministrationRegion(typing_extensions.TypedDict, total=False):
+    electionAdministrationBody: AdministrativeBody
+    local_jurisdiction: AdministrationRegion
+    name: str
+    sources: typing.List[Source]
 
 @typing.type_check_only
 class AdministrativeBody(typing_extensions.TypedDict, total=False):

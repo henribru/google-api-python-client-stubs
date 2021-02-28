@@ -36,6 +36,7 @@ class CheckInRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckInResponse(typing_extensions.TypedDict, total=False):
     deadline: str
+    features: typing.Dict[str, typing.Any]
     metadata: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
@@ -135,6 +136,10 @@ class Mount(typing_extensions.TypedDict, total=False):
     readOnly: bool
 
 @typing.type_check_only
+class NFSMount(typing_extensions.TypedDict, total=False):
+    target: str
+
+@typing.type_check_only
 class Network(typing_extensions.TypedDict, total=False):
     name: str
     subnetwork: str
@@ -198,6 +203,7 @@ class Resources(typing_extensions.TypedDict, total=False):
 class RunPipelineRequest(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     pipeline: Pipeline
+    pubSubTopic: str
 
 @typing.type_check_only
 class RunPipelineResponse(typing_extensions.TypedDict, total=False): ...
@@ -252,6 +258,7 @@ class VirtualMachine(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
     existingDisk: ExistingDisk
+    nfsMount: NFSMount
     persistentDisk: PersistentDisk
     volume: str
 

@@ -81,6 +81,7 @@ class DimensionHeader(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DimensionMetadata(typing_extensions.TypedDict, total=False):
     apiName: str
+    customDefinition: bool
     deprecatedApiNames: typing.List[str]
     description: str
     uiName: str
@@ -108,15 +109,19 @@ class Filter(typing_extensions.TypedDict, total=False):
     betweenFilter: BetweenFilter
     fieldName: str
     inListFilter: InListFilter
-    nullFilter: bool
     numericFilter: NumericFilter
     stringFilter: StringFilter
 
 @typing.type_check_only
-class FilterExpression(typing.Dict[str, typing.Any]): ...
+class FilterExpression(typing_extensions.TypedDict, total=False):
+    andGroup: FilterExpressionList
+    filter: Filter
+    notExpression: FilterExpression
+    orGroup: FilterExpressionList
 
 @typing.type_check_only
-class FilterExpressionList(typing.Dict[str, typing.Any]): ...
+class FilterExpressionList(typing_extensions.TypedDict, total=False):
+    expressions: typing.List[FilterExpression]
 
 @typing.type_check_only
 class InListFilter(typing_extensions.TypedDict, total=False):
@@ -157,6 +162,7 @@ class MetricHeader(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetricMetadata(typing_extensions.TypedDict, total=False):
     apiName: str
+    customDefinition: bool
     deprecatedApiNames: typing.List[str]
     description: str
     expression: str
@@ -258,7 +264,18 @@ class Row(typing_extensions.TypedDict, total=False):
     metricValues: typing.List[MetricValue]
 
 @typing.type_check_only
-class RunPivotReportRequest(typing.Dict[str, typing.Any]): ...
+class RunPivotReportRequest(typing_extensions.TypedDict, total=False):
+    cohortSpec: CohortSpec
+    currencyCode: str
+    dateRanges: typing.List[DateRange]
+    dimensionFilter: FilterExpression
+    dimensions: typing.List[Dimension]
+    entity: Entity
+    keepEmptyRows: bool
+    metricFilter: FilterExpression
+    metrics: typing.List[Metric]
+    pivots: typing.List[Pivot]
+    returnPropertyQuota: bool
 
 @typing.type_check_only
 class RunPivotReportResponse(typing_extensions.TypedDict, total=False):
@@ -271,7 +288,43 @@ class RunPivotReportResponse(typing_extensions.TypedDict, total=False):
     rows: typing.List[Row]
 
 @typing.type_check_only
-class RunReportRequest(typing.Dict[str, typing.Any]): ...
+class RunRealtimeReportRequest(typing_extensions.TypedDict, total=False):
+    dimensionFilter: FilterExpression
+    dimensions: typing.List[Dimension]
+    limit: str
+    metricAggregations: typing.List[str]
+    metricFilter: FilterExpression
+    metrics: typing.List[Metric]
+    orderBys: typing.List[OrderBy]
+    returnPropertyQuota: bool
+
+@typing.type_check_only
+class RunRealtimeReportResponse(typing_extensions.TypedDict, total=False):
+    dimensionHeaders: typing.List[DimensionHeader]
+    maximums: typing.List[Row]
+    metricHeaders: typing.List[MetricHeader]
+    minimums: typing.List[Row]
+    propertyQuota: PropertyQuota
+    rowCount: int
+    rows: typing.List[Row]
+    totals: typing.List[Row]
+
+@typing.type_check_only
+class RunReportRequest(typing_extensions.TypedDict, total=False):
+    cohortSpec: CohortSpec
+    currencyCode: str
+    dateRanges: typing.List[DateRange]
+    dimensionFilter: FilterExpression
+    dimensions: typing.List[Dimension]
+    entity: Entity
+    keepEmptyRows: bool
+    limit: str
+    metricAggregations: typing.List[str]
+    metricFilter: FilterExpression
+    metrics: typing.List[Metric]
+    offset: str
+    orderBys: typing.List[OrderBy]
+    returnPropertyQuota: bool
 
 @typing.type_check_only
 class RunReportResponse(typing_extensions.TypedDict, total=False):
@@ -298,8 +351,3 @@ class StringFilter(typing_extensions.TypedDict, total=False):
         "PARTIAL_REGEXP",
     ]
     value: str
-
-@typing.type_check_only
-class UniversalMetadata(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[DimensionMetadata]
-    metrics: typing.List[MetricMetadata]

@@ -14,6 +14,13 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
         def getMetadata(
             self, *, name: str, **kwargs: typing.Any
         ) -> MetadataHttpRequest: ...
+        def runRealtimeReport(
+            self,
+            *,
+            property: str,
+            body: RunRealtimeReportRequest = ...,
+            **kwargs: typing.Any
+        ) -> RunRealtimeReportResponseHttpRequest: ...
     @typing.type_check_only
     class V1alphaResource(googleapiclient.discovery.Resource):
         def batchRunPivotReports(
@@ -22,9 +29,6 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
         def batchRunReports(
             self, *, body: BatchRunReportsRequest = ..., **kwargs: typing.Any
         ) -> BatchRunReportsResponseHttpRequest: ...
-        def getUniversalMetadata(
-            self, **kwargs: typing.Any
-        ) -> UniversalMetadataHttpRequest: ...
         def runPivotReport(
             self, *, body: RunPivotReportRequest = ..., **kwargs: typing.Any
         ) -> RunPivotReportResponseHttpRequest: ...
@@ -75,6 +79,16 @@ class RunPivotReportResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> RunPivotReportResponse: ...
 
 @typing.type_check_only
+class RunRealtimeReportResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> RunRealtimeReportResponse: ...
+
+@typing.type_check_only
 class RunReportResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -83,13 +97,3 @@ class RunReportResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> RunReportResponse: ...
-
-@typing.type_check_only
-class UniversalMetadataHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> UniversalMetadata: ...

@@ -52,7 +52,6 @@ class BatchCreateOccurrencesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -179,6 +178,7 @@ class Detail(typing_extensions.TypedDict, total=False):
     package: str
     packageType: str
     severityName: str
+    source: str
     sourceUpdateTime: str
 
 @typing.type_check_only
@@ -588,6 +588,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
     epoch: int
+    inclusive: bool
     kind: typing_extensions.Literal[
         "VERSION_KIND_UNSPECIFIED", "NORMAL", "MINIMUM", "MAXIMUM"
     ]

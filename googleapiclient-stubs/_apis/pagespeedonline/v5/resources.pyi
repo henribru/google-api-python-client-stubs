@@ -14,6 +14,7 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
         def runpagespeed(
             self,
             *,
+            url: str,
             captchaToken: str = ...,
             category: typing.Union[
                 typing_extensions.Literal[
@@ -39,7 +40,6 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
             strategy: typing_extensions.Literal[
                 "STRATEGY_UNSPECIFIED", "DESKTOP", "MOBILE"
             ] = ...,
-            url: str = ...,
             utm_campaign: str = ...,
             utm_source: str = ...,
             **kwargs: typing.Any

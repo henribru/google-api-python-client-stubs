@@ -64,6 +64,7 @@ class ClientData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ContactGroup(typing_extensions.TypedDict, total=False):
+    clientData: typing.List[GroupClientData]
     etag: str
     formattedName: str
     groupType: typing_extensions.Literal[
@@ -108,6 +109,7 @@ class CoverPhoto(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CreateContactGroupRequest(typing_extensions.TypedDict, total=False):
     contactGroup: ContactGroup
+    readGroupFields: str
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -169,6 +171,11 @@ class Gender(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetPeopleResponse(typing_extensions.TypedDict, total=False):
     responses: typing.List[PersonResponse]
+
+@typing.type_check_only
+class GroupClientData(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
 
 @typing.type_check_only
 class ImClient(typing_extensions.TypedDict, total=False):
@@ -429,6 +436,14 @@ class SearchDirectoryPeopleResponse(typing_extensions.TypedDict, total=False):
     totalSize: int
 
 @typing.type_check_only
+class SearchResponse(typing_extensions.TypedDict, total=False):
+    results: typing.List[SearchResult]
+
+@typing.type_check_only
+class SearchResult(typing_extensions.TypedDict, total=False):
+    person: Person
+
+@typing.type_check_only
 class SipAddress(typing_extensions.TypedDict, total=False):
     formattedType: str
     metadata: FieldMetadata
@@ -470,6 +485,8 @@ class Tagline(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateContactGroupRequest(typing_extensions.TypedDict, total=False):
     contactGroup: ContactGroup
+    readGroupFields: str
+    updateGroupFields: str
 
 @typing.type_check_only
 class UpdateContactPhotoRequest(typing_extensions.TypedDict, total=False):

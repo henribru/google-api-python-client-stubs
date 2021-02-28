@@ -18,6 +18,14 @@ class AutoText(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "SLIDE_NUMBER"]
 
 @typing.type_check_only
+class Autofit(typing_extensions.TypedDict, total=False):
+    autofitType: typing_extensions.Literal[
+        "AUTOFIT_TYPE_UNSPECIFIED", "NONE", "TEXT_AUTOFIT", "SHAPE_AUTOFIT"
+    ]
+    fontScale: float
+    lineSpacingReduction: float
+
+@typing.type_check_only
 class BatchUpdatePresentationRequest(typing_extensions.TypedDict, total=False):
     requests: typing.List[Request]
     writeControl: WriteControl
@@ -593,7 +601,20 @@ class PageBackgroundFill(typing_extensions.TypedDict, total=False):
     stretchedPictureFill: StretchedPictureFill
 
 @typing.type_check_only
-class PageElement(typing.Dict[str, typing.Any]): ...
+class PageElement(typing_extensions.TypedDict, total=False):
+    description: str
+    elementGroup: Group
+    image: Image
+    line: Line
+    objectId: str
+    shape: Shape
+    sheetsChart: SheetsChart
+    size: Size
+    table: Table
+    title: str
+    transform: AffineTransform
+    video: Video
+    wordArt: WordArt
 
 @typing.type_check_only
 class PageElementProperties(typing_extensions.TypedDict, total=False):
@@ -1003,6 +1024,7 @@ class ShapeBackgroundFill(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ShapeProperties(typing_extensions.TypedDict, total=False):
+    autofit: Autofit
     contentAlignment: typing_extensions.Literal[
         "CONTENT_ALIGNMENT_UNSPECIFIED",
         "CONTENT_ALIGNMENT_UNSUPPORTED",
@@ -1032,7 +1054,10 @@ class Size(typing_extensions.TypedDict, total=False):
     width: Dimension
 
 @typing.type_check_only
-class SlideProperties(typing.Dict[str, typing.Any]): ...
+class SlideProperties(typing_extensions.TypedDict, total=False):
+    layoutObjectId: str
+    masterObjectId: str
+    notesPage: Page
 
 @typing.type_check_only
 class SolidFill(typing_extensions.TypedDict, total=False):

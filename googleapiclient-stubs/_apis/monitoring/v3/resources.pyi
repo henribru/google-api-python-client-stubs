@@ -10,6 +10,202 @@ from .schemas import *
 @typing.type_check_only
 class MonitoringResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class TimeSeriesResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                name: str,
+                aggregation_alignmentPeriod: str = ...,
+                aggregation_crossSeriesReducer: typing_extensions.Literal[
+                    "REDUCE_NONE",
+                    "REDUCE_MEAN",
+                    "REDUCE_MIN",
+                    "REDUCE_MAX",
+                    "REDUCE_SUM",
+                    "REDUCE_STDDEV",
+                    "REDUCE_COUNT",
+                    "REDUCE_COUNT_TRUE",
+                    "REDUCE_COUNT_FALSE",
+                    "REDUCE_FRACTION_TRUE",
+                    "REDUCE_PERCENTILE_99",
+                    "REDUCE_PERCENTILE_95",
+                    "REDUCE_PERCENTILE_50",
+                    "REDUCE_PERCENTILE_05",
+                ] = ...,
+                aggregation_groupByFields: typing.Union[str, typing.List[str]] = ...,
+                aggregation_perSeriesAligner: typing_extensions.Literal[
+                    "ALIGN_NONE",
+                    "ALIGN_DELTA",
+                    "ALIGN_RATE",
+                    "ALIGN_INTERPOLATE",
+                    "ALIGN_NEXT_OLDER",
+                    "ALIGN_MIN",
+                    "ALIGN_MAX",
+                    "ALIGN_MEAN",
+                    "ALIGN_COUNT",
+                    "ALIGN_SUM",
+                    "ALIGN_STDDEV",
+                    "ALIGN_COUNT_TRUE",
+                    "ALIGN_COUNT_FALSE",
+                    "ALIGN_FRACTION_TRUE",
+                    "ALIGN_PERCENTILE_99",
+                    "ALIGN_PERCENTILE_95",
+                    "ALIGN_PERCENTILE_50",
+                    "ALIGN_PERCENTILE_05",
+                    "ALIGN_PERCENT_CHANGE",
+                ] = ...,
+                filter: str = ...,
+                interval_endTime: str = ...,
+                interval_startTime: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                secondaryAggregation_alignmentPeriod: str = ...,
+                secondaryAggregation_crossSeriesReducer: typing_extensions.Literal[
+                    "REDUCE_NONE",
+                    "REDUCE_MEAN",
+                    "REDUCE_MIN",
+                    "REDUCE_MAX",
+                    "REDUCE_SUM",
+                    "REDUCE_STDDEV",
+                    "REDUCE_COUNT",
+                    "REDUCE_COUNT_TRUE",
+                    "REDUCE_COUNT_FALSE",
+                    "REDUCE_FRACTION_TRUE",
+                    "REDUCE_PERCENTILE_99",
+                    "REDUCE_PERCENTILE_95",
+                    "REDUCE_PERCENTILE_50",
+                    "REDUCE_PERCENTILE_05",
+                ] = ...,
+                secondaryAggregation_groupByFields: typing.Union[
+                    str, typing.List[str]
+                ] = ...,
+                secondaryAggregation_perSeriesAligner: typing_extensions.Literal[
+                    "ALIGN_NONE",
+                    "ALIGN_DELTA",
+                    "ALIGN_RATE",
+                    "ALIGN_INTERPOLATE",
+                    "ALIGN_NEXT_OLDER",
+                    "ALIGN_MIN",
+                    "ALIGN_MAX",
+                    "ALIGN_MEAN",
+                    "ALIGN_COUNT",
+                    "ALIGN_SUM",
+                    "ALIGN_STDDEV",
+                    "ALIGN_COUNT_TRUE",
+                    "ALIGN_COUNT_FALSE",
+                    "ALIGN_FRACTION_TRUE",
+                    "ALIGN_PERCENTILE_99",
+                    "ALIGN_PERCENTILE_95",
+                    "ALIGN_PERCENTILE_50",
+                    "ALIGN_PERCENTILE_05",
+                    "ALIGN_PERCENT_CHANGE",
+                ] = ...,
+                view: typing_extensions.Literal["FULL", "HEADERS"] = ...,
+                **kwargs: typing.Any
+            ) -> ListTimeSeriesResponseHttpRequest: ...
+        def timeSeries(self) -> TimeSeriesResource: ...
+    @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class TimeSeriesResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                name: str,
+                aggregation_alignmentPeriod: str = ...,
+                aggregation_crossSeriesReducer: typing_extensions.Literal[
+                    "REDUCE_NONE",
+                    "REDUCE_MEAN",
+                    "REDUCE_MIN",
+                    "REDUCE_MAX",
+                    "REDUCE_SUM",
+                    "REDUCE_STDDEV",
+                    "REDUCE_COUNT",
+                    "REDUCE_COUNT_TRUE",
+                    "REDUCE_COUNT_FALSE",
+                    "REDUCE_FRACTION_TRUE",
+                    "REDUCE_PERCENTILE_99",
+                    "REDUCE_PERCENTILE_95",
+                    "REDUCE_PERCENTILE_50",
+                    "REDUCE_PERCENTILE_05",
+                ] = ...,
+                aggregation_groupByFields: typing.Union[str, typing.List[str]] = ...,
+                aggregation_perSeriesAligner: typing_extensions.Literal[
+                    "ALIGN_NONE",
+                    "ALIGN_DELTA",
+                    "ALIGN_RATE",
+                    "ALIGN_INTERPOLATE",
+                    "ALIGN_NEXT_OLDER",
+                    "ALIGN_MIN",
+                    "ALIGN_MAX",
+                    "ALIGN_MEAN",
+                    "ALIGN_COUNT",
+                    "ALIGN_SUM",
+                    "ALIGN_STDDEV",
+                    "ALIGN_COUNT_TRUE",
+                    "ALIGN_COUNT_FALSE",
+                    "ALIGN_FRACTION_TRUE",
+                    "ALIGN_PERCENTILE_99",
+                    "ALIGN_PERCENTILE_95",
+                    "ALIGN_PERCENTILE_50",
+                    "ALIGN_PERCENTILE_05",
+                    "ALIGN_PERCENT_CHANGE",
+                ] = ...,
+                filter: str = ...,
+                interval_endTime: str = ...,
+                interval_startTime: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                secondaryAggregation_alignmentPeriod: str = ...,
+                secondaryAggregation_crossSeriesReducer: typing_extensions.Literal[
+                    "REDUCE_NONE",
+                    "REDUCE_MEAN",
+                    "REDUCE_MIN",
+                    "REDUCE_MAX",
+                    "REDUCE_SUM",
+                    "REDUCE_STDDEV",
+                    "REDUCE_COUNT",
+                    "REDUCE_COUNT_TRUE",
+                    "REDUCE_COUNT_FALSE",
+                    "REDUCE_FRACTION_TRUE",
+                    "REDUCE_PERCENTILE_99",
+                    "REDUCE_PERCENTILE_95",
+                    "REDUCE_PERCENTILE_50",
+                    "REDUCE_PERCENTILE_05",
+                ] = ...,
+                secondaryAggregation_groupByFields: typing.Union[
+                    str, typing.List[str]
+                ] = ...,
+                secondaryAggregation_perSeriesAligner: typing_extensions.Literal[
+                    "ALIGN_NONE",
+                    "ALIGN_DELTA",
+                    "ALIGN_RATE",
+                    "ALIGN_INTERPOLATE",
+                    "ALIGN_NEXT_OLDER",
+                    "ALIGN_MIN",
+                    "ALIGN_MAX",
+                    "ALIGN_MEAN",
+                    "ALIGN_COUNT",
+                    "ALIGN_SUM",
+                    "ALIGN_STDDEV",
+                    "ALIGN_COUNT_TRUE",
+                    "ALIGN_COUNT_FALSE",
+                    "ALIGN_FRACTION_TRUE",
+                    "ALIGN_PERCENTILE_99",
+                    "ALIGN_PERCENTILE_95",
+                    "ALIGN_PERCENTILE_50",
+                    "ALIGN_PERCENTILE_05",
+                    "ALIGN_PERCENT_CHANGE",
+                ] = ...,
+                view: typing_extensions.Literal["FULL", "HEADERS"] = ...,
+                **kwargs: typing.Any
+            ) -> ListTimeSeriesResponseHttpRequest: ...
+        def timeSeries(self) -> TimeSeriesResource: ...
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AlertPoliciesResource(googleapiclient.discovery.Resource):
@@ -429,6 +625,8 @@ class MonitoringResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListUptimeCheckIpsResponseHttpRequest: ...
+    def folders(self) -> FoldersResource: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
     def services(self) -> ServicesResource: ...
     def uptimeCheckIps(self) -> UptimeCheckIpsResource: ...

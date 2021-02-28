@@ -4,32 +4,20 @@ import typing_extensions
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: typing.List[AuditLogConfig]
-    exemptedMembers: typing.List[str]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
     exemptedMembers: typing.List[str]
-    ignoreChildExemptions: bool
-    logType: str
-
-@typing.type_check_only
-class AuthorizationLoggingOptions(typing_extensions.TypedDict, total=False):
-    permissionType: str
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: typing.List[str]
     role: str
-
-@typing.type_check_only
-class Condition(typing_extensions.TypedDict, total=False):
-    iam: str
-    op: str
-    svc: str
-    sys: str
-    values: typing.List[str]
 
 @typing.type_check_only
 class ConfigFile(typing_extensions.TypedDict, total=False):
@@ -98,32 +86,6 @@ class ImportFile(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LogConfig(typing_extensions.TypedDict, total=False):
-    cloudAudit: LogConfigCloudAuditOptions
-    counter: LogConfigCounterOptions
-    dataAccess: LogConfigDataAccessOptions
-
-@typing.type_check_only
-class LogConfigCloudAuditOptions(typing_extensions.TypedDict, total=False):
-    authorizationLoggingOptions: AuthorizationLoggingOptions
-    logName: str
-
-@typing.type_check_only
-class LogConfigCounterOptions(typing_extensions.TypedDict, total=False):
-    customFields: typing.List[LogConfigCounterOptionsCustomField]
-    field: str
-    metric: str
-
-@typing.type_check_only
-class LogConfigCounterOptionsCustomField(typing_extensions.TypedDict, total=False):
-    name: str
-    value: str
-
-@typing.type_check_only
-class LogConfigDataAccessOptions(typing_extensions.TypedDict, total=False):
-    logMode: str
-
-@typing.type_check_only
 class Manifest(typing_extensions.TypedDict, total=False):
     config: ConfigFile
     expandedConfig: str
@@ -131,6 +93,8 @@ class Manifest(typing_extensions.TypedDict, total=False):
     imports: typing.List[ImportFile]
     insertTime: str
     layout: str
+    manifestSizeBytes: str
+    manifestSizeLimitBytes: str
     name: str
     selfLink: str
 
@@ -152,12 +116,13 @@ class Operation(typing_extensions.TypedDict, total=False):
     insertTime: str
     kind: str
     name: str
+    operationGroupId: str
     operationType: str
     progress: int
     region: str
     selfLink: str
     startTime: str
-    status: str
+    status: typing_extensions.Literal["PENDING", "RUNNING", "DONE"]
     statusMessage: str
     targetId: str
     targetLink: str
@@ -175,8 +140,6 @@ class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: typing.List[AuditConfig]
     bindings: typing.List[Binding]
     etag: str
-    iamOwned: bool
-    rules: typing.List[Rule]
     version: int
 
 @typing.type_check_only
@@ -203,26 +166,20 @@ class ResourceUpdate(typing_extensions.TypedDict, total=False):
     accessControl: ResourceAccessControl
     error: typing.Dict[str, typing.Any]
     finalProperties: str
-    intent: str
+    intent: typing_extensions.Literal[
+        "CREATE_OR_ACQUIRE", "DELETE", "ACQUIRE", "UPDATE", "ABANDON", "CREATE"
+    ]
     manifest: str
     properties: str
-    state: str
+    state: typing_extensions.Literal[
+        "PENDING", "IN_PROGRESS", "IN_PREVIEW", "FAILED", "ABORTED"
+    ]
     warnings: typing.List[typing.Dict[str, typing.Any]]
 
 @typing.type_check_only
 class ResourcesListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: typing.List[Resource]
-
-@typing.type_check_only
-class Rule(typing_extensions.TypedDict, total=False):
-    action: str
-    conditions: typing.List[Condition]
-    description: str
-    ins: typing.List[str]
-    logConfigs: typing.List[LogConfig]
-    notIns: typing.List[str]
-    permissions: typing.List[str]
 
 @typing.type_check_only
 class TargetConfiguration(typing_extensions.TypedDict, total=False):

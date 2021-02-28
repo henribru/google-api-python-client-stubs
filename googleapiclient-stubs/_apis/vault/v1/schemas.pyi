@@ -69,6 +69,7 @@ class CorpusQuery(typing_extensions.TypedDict, total=False):
     groupsQuery: HeldGroupsQuery
     hangoutsChatQuery: HeldHangoutsChatQuery
     mailQuery: HeldMailQuery
+    voiceQuery: HeldVoiceQuery
 
 @typing.type_check_only
 class CountArtifactsMetadata(typing_extensions.TypedDict, total=False):
@@ -127,6 +128,7 @@ class ExportOptions(typing_extensions.TypedDict, total=False):
     region: typing_extensions.Literal[
         "EXPORT_REGION_UNSPECIFIED", "ANY", "US", "EUROPE"
     ]
+    voiceOptions: VoiceExportOptions
 
 @typing.type_check_only
 class ExportStats(typing_extensions.TypedDict, total=False):
@@ -193,10 +195,14 @@ class HeldOrgUnit(typing_extensions.TypedDict, total=False):
     orgUnitId: str
 
 @typing.type_check_only
+class HeldVoiceQuery(typing_extensions.TypedDict, total=False):
+    coveredData: typing.List[str]
+
+@typing.type_check_only
 class Hold(typing_extensions.TypedDict, total=False):
     accounts: typing.List[HeldAccount]
     corpus: typing_extensions.Literal[
-        "CORPUS_TYPE_UNSPECIFIED", "DRIVE", "MAIL", "GROUPS", "HANGOUTS_CHAT"
+        "CORPUS_TYPE_UNSPECIFIED", "DRIVE", "MAIL", "GROUPS", "HANGOUTS_CHAT", "VOICE"
     ]
     holdId: str
     name: str
@@ -279,7 +285,7 @@ class OrgUnitInfo(typing_extensions.TypedDict, total=False):
 class Query(typing_extensions.TypedDict, total=False):
     accountInfo: AccountInfo
     corpus: typing_extensions.Literal[
-        "CORPUS_TYPE_UNSPECIFIED", "DRIVE", "MAIL", "GROUPS", "HANGOUTS_CHAT"
+        "CORPUS_TYPE_UNSPECIFIED", "DRIVE", "MAIL", "GROUPS", "HANGOUTS_CHAT", "VOICE"
     ]
     dataScope: typing_extensions.Literal[
         "DATA_SCOPE_UNSPECIFIED", "ALL_DATA", "HELD_DATA", "UNPROCESSED_DATA"
@@ -313,6 +319,7 @@ class Query(typing_extensions.TypedDict, total=False):
     teamDriveInfo: TeamDriveInfo
     terms: str
     timeZone: str
+    voiceOptions: VoiceOptions
 
 @typing.type_check_only
 class RemoveHeldAccountsRequest(typing_extensions.TypedDict, total=False):
@@ -362,3 +369,11 @@ class UndeleteMatterRequest(typing_extensions.TypedDict, total=False): ...
 class UserInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     email: str
+
+@typing.type_check_only
+class VoiceExportOptions(typing_extensions.TypedDict, total=False):
+    exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST"]
+
+@typing.type_check_only
+class VoiceOptions(typing_extensions.TypedDict, total=False):
+    coveredData: typing.List[str]

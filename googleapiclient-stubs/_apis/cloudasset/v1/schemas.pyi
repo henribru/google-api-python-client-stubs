@@ -2,6 +2,22 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class AccessSelector(typing_extensions.TypedDict, total=False):
+    permissions: typing.List[str]
+    roles: typing.List[str]
+
+@typing.type_check_only
+class AnalyzeIamPolicyLongrunningRequest(typing_extensions.TypedDict, total=False):
+    analysisQuery: IamPolicyAnalysisQuery
+    outputConfig: IamPolicyAnalysisOutputConfig
+
+@typing.type_check_only
+class AnalyzeIamPolicyResponse(typing_extensions.TypedDict, total=False):
+    fullyExplored: bool
+    mainAnalysis: IamPolicyAnalysis
+    serviceAccountImpersonationAnalysis: typing.List[IamPolicyAnalysis]
+
+@typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     accessLevel: GoogleIdentityAccesscontextmanagerV1AccessLevel
     accessPolicy: GoogleIdentityAccesscontextmanagerV1AccessPolicy
@@ -10,6 +26,7 @@ class Asset(typing_extensions.TypedDict, total=False):
     iamPolicy: Policy
     name: str
     orgPolicy: typing.List[GoogleCloudOrgpolicyV1Policy]
+    osInventory: Inventory
     resource: Resource
     servicePerimeter: GoogleIdentityAccesscontextmanagerV1ServicePerimeter
     updateTime: str
@@ -65,6 +82,7 @@ class ExportAssetsRequest(typing_extensions.TypedDict, total=False):
         "IAM_POLICY",
         "ORG_POLICY",
         "ACCESS_POLICY",
+        "OS_INVENTORY",
     ]
     outputConfig: OutputConfig
     readTime: str
@@ -87,6 +105,7 @@ class Feed(typing_extensions.TypedDict, total=False):
         "IAM_POLICY",
         "ORG_POLICY",
         "ACCESS_POLICY",
+        "OS_INVENTORY",
     ]
     feedOutputConfig: FeedOutputConfig
     name: str
@@ -99,6 +118,49 @@ class FeedOutputConfig(typing_extensions.TypedDict, total=False):
 class GcsDestination(typing_extensions.TypedDict, total=False):
     uri: str
     uriPrefix: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1Access(typing_extensions.TypedDict, total=False):
+    analysisState: IamPolicyAnalysisState
+    permission: str
+    role: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1AccessControlList(typing_extensions.TypedDict, total=False):
+    accesses: typing.List[GoogleCloudAssetV1Access]
+    resourceEdges: typing.List[GoogleCloudAssetV1Edge]
+    resources: typing.List[GoogleCloudAssetV1Resource]
+
+@typing.type_check_only
+class GoogleCloudAssetV1BigQueryDestination(typing_extensions.TypedDict, total=False):
+    dataset: str
+    partitionKey: typing_extensions.Literal["PARTITION_KEY_UNSPECIFIED", "REQUEST_TIME"]
+    tablePrefix: str
+    writeDisposition: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1Edge(typing_extensions.TypedDict, total=False):
+    sourceNode: str
+    targetNode: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1GcsDestination(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1Identity(typing_extensions.TypedDict, total=False):
+    analysisState: IamPolicyAnalysisState
+    name: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1IdentityList(typing_extensions.TypedDict, total=False):
+    groupEdges: typing.List[GoogleCloudAssetV1Edge]
+    identities: typing.List[GoogleCloudAssetV1Identity]
+
+@typing.type_check_only
+class GoogleCloudAssetV1Resource(typing_extensions.TypedDict, total=False):
+    analysisState: IamPolicyAnalysisState
+    fullResourceName: str
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV1BooleanPolicy(typing_extensions.TypedDict, total=False):
@@ -147,6 +209,13 @@ class GoogleIdentityAccesscontextmanagerV1AccessPolicy(
     title: str
 
 @typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1ApiOperation(
+    typing_extensions.TypedDict, total=False
+):
+    methodSelectors: typing.List[GoogleIdentityAccesscontextmanagerV1MethodSelector]
+    serviceName: str
+
+@typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1BasicLevel(
     typing_extensions.TypedDict, total=False
 ):
@@ -180,6 +249,73 @@ class GoogleIdentityAccesscontextmanagerV1DevicePolicy(
     requireAdminApproval: bool
     requireCorpOwned: bool
     requireScreenlock: bool
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1EgressFrom(
+    typing_extensions.TypedDict, total=False
+):
+    identities: typing.List[str]
+    identityType: typing_extensions.Literal[
+        "IDENTITY_TYPE_UNSPECIFIED",
+        "ANY_IDENTITY",
+        "ANY_USER_ACCOUNT",
+        "ANY_SERVICE_ACCOUNT",
+    ]
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    egressFrom: GoogleIdentityAccesscontextmanagerV1EgressFrom
+    egressTo: GoogleIdentityAccesscontextmanagerV1EgressTo
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1EgressTo(
+    typing_extensions.TypedDict, total=False
+):
+    operations: typing.List[GoogleIdentityAccesscontextmanagerV1ApiOperation]
+    resources: typing.List[str]
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1IngressFrom(
+    typing_extensions.TypedDict, total=False
+):
+    identities: typing.List[str]
+    identityType: typing_extensions.Literal[
+        "IDENTITY_TYPE_UNSPECIFIED",
+        "ANY_IDENTITY",
+        "ANY_USER_ACCOUNT",
+        "ANY_SERVICE_ACCOUNT",
+    ]
+    sources: typing.List[GoogleIdentityAccesscontextmanagerV1IngressSource]
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1IngressPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    ingressFrom: GoogleIdentityAccesscontextmanagerV1IngressFrom
+    ingressTo: GoogleIdentityAccesscontextmanagerV1IngressTo
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1IngressSource(
+    typing_extensions.TypedDict, total=False
+):
+    accessLevel: str
+    resource: str
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1IngressTo(
+    typing_extensions.TypedDict, total=False
+):
+    operations: typing.List[GoogleIdentityAccesscontextmanagerV1ApiOperation]
+    resources: typing.List[str]
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1MethodSelector(
+    typing_extensions.TypedDict, total=False
+):
+    method: str
+    permission: str
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1OsConstraint(
@@ -216,6 +352,8 @@ class GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig(
     typing_extensions.TypedDict, total=False
 ):
     accessLevels: typing.List[str]
+    egressPolicies: typing.List[GoogleIdentityAccesscontextmanagerV1EgressPolicy]
+    ingressPolicies: typing.List[GoogleIdentityAccesscontextmanagerV1IngressPolicy]
     resources: typing.List[str]
     restrictedServices: typing.List[str]
     vpcAccessibleServices: GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices
@@ -228,11 +366,83 @@ class GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices(
     enableRestriction: bool
 
 @typing.type_check_only
+class IamPolicyAnalysis(typing_extensions.TypedDict, total=False):
+    analysisQuery: IamPolicyAnalysisQuery
+    analysisResults: typing.List[IamPolicyAnalysisResult]
+    fullyExplored: bool
+    nonCriticalErrors: typing.List[IamPolicyAnalysisState]
+
+@typing.type_check_only
+class IamPolicyAnalysisOutputConfig(typing_extensions.TypedDict, total=False):
+    bigqueryDestination: GoogleCloudAssetV1BigQueryDestination
+    gcsDestination: GoogleCloudAssetV1GcsDestination
+
+@typing.type_check_only
+class IamPolicyAnalysisQuery(typing_extensions.TypedDict, total=False):
+    accessSelector: AccessSelector
+    identitySelector: IdentitySelector
+    options: Options
+    resourceSelector: ResourceSelector
+    scope: str
+
+@typing.type_check_only
+class IamPolicyAnalysisResult(typing_extensions.TypedDict, total=False):
+    accessControlLists: typing.List[GoogleCloudAssetV1AccessControlList]
+    attachedResourceFullName: str
+    fullyExplored: bool
+    iamBinding: Binding
+    identityList: GoogleCloudAssetV1IdentityList
+
+@typing.type_check_only
+class IamPolicyAnalysisState(typing_extensions.TypedDict, total=False):
+    cause: str
+    code: typing_extensions.Literal[
+        "OK",
+        "CANCELLED",
+        "UNKNOWN",
+        "INVALID_ARGUMENT",
+        "DEADLINE_EXCEEDED",
+        "NOT_FOUND",
+        "ALREADY_EXISTS",
+        "PERMISSION_DENIED",
+        "UNAUTHENTICATED",
+        "RESOURCE_EXHAUSTED",
+        "FAILED_PRECONDITION",
+        "ABORTED",
+        "OUT_OF_RANGE",
+        "UNIMPLEMENTED",
+        "INTERNAL",
+        "UNAVAILABLE",
+        "DATA_LOSS",
+    ]
+
+@typing.type_check_only
 class IamPolicySearchResult(typing_extensions.TypedDict, total=False):
     explanation: Explanation
     policy: Policy
     project: str
     resource: str
+
+@typing.type_check_only
+class IdentitySelector(typing_extensions.TypedDict, total=False):
+    identity: str
+
+@typing.type_check_only
+class Inventory(typing_extensions.TypedDict, total=False):
+    items: typing.Dict[str, typing.Any]
+    osInfo: OsInfo
+
+@typing.type_check_only
+class Item(typing_extensions.TypedDict, total=False):
+    availablePackage: SoftwarePackage
+    createTime: str
+    id: str
+    installedPackage: SoftwarePackage
+    originType: typing_extensions.Literal["ORIGIN_TYPE_UNSPECIFIED", "INVENTORY_REPORT"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "INSTALLED_PACKAGE", "AVAILABLE_PACKAGE"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class ListFeedsResponse(typing_extensions.TypedDict, total=False):
@@ -245,6 +455,26 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: typing.Dict[str, typing.Any]
     name: str
     response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Options(typing_extensions.TypedDict, total=False):
+    analyzeServiceAccountImpersonation: bool
+    expandGroups: bool
+    expandResources: bool
+    expandRoles: bool
+    outputGroupEdges: bool
+    outputResourceEdges: bool
+
+@typing.type_check_only
+class OsInfo(typing_extensions.TypedDict, total=False):
+    architecture: str
+    hostname: str
+    kernelRelease: str
+    kernelVersion: str
+    longName: str
+    osconfigAgentVersion: str
+    shortName: str
+    version: str
 
 @typing.type_check_only
 class OutputConfig(typing_extensions.TypedDict, total=False):
@@ -286,13 +516,25 @@ class Resource(typing_extensions.TypedDict, total=False):
 class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     additionalAttributes: typing.Dict[str, typing.Any]
     assetType: str
+    createTime: str
     description: str
     displayName: str
+    folders: typing.List[str]
+    kmsKey: str
     labels: typing.Dict[str, typing.Any]
     location: str
     name: str
     networkTags: typing.List[str]
+    organization: str
+    parentAssetType: str
+    parentFullResourceName: str
     project: str
+    state: str
+    updateTime: str
+
+@typing.type_check_only
+class ResourceSelector(typing_extensions.TypedDict, total=False):
+    fullResourceName: str
 
 @typing.type_check_only
 class SearchAllIamPoliciesResponse(typing_extensions.TypedDict, total=False):
@@ -303,6 +545,17 @@ class SearchAllIamPoliciesResponse(typing_extensions.TypedDict, total=False):
 class SearchAllResourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     results: typing.List[ResourceSearchResult]
+
+@typing.type_check_only
+class SoftwarePackage(typing_extensions.TypedDict, total=False):
+    aptPackage: VersionedPackage
+    cosPackage: VersionedPackage
+    googetPackage: VersionedPackage
+    qfePackage: WindowsQuickFixEngineeringPackage
+    wuaPackage: WindowsUpdatePackage
+    yumPackage: VersionedPackage
+    zypperPackage: VersionedPackage
+    zypperPatch: ZypperPatch
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -333,3 +586,40 @@ class TimeWindow(typing_extensions.TypedDict, total=False):
 class UpdateFeedRequest(typing_extensions.TypedDict, total=False):
     feed: Feed
     updateMask: str
+
+@typing.type_check_only
+class VersionedPackage(typing_extensions.TypedDict, total=False):
+    architecture: str
+    packageName: str
+    version: str
+
+@typing.type_check_only
+class WindowsQuickFixEngineeringPackage(typing_extensions.TypedDict, total=False):
+    caption: str
+    description: str
+    hotFixId: str
+    installTime: str
+
+@typing.type_check_only
+class WindowsUpdateCategory(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+
+@typing.type_check_only
+class WindowsUpdatePackage(typing_extensions.TypedDict, total=False):
+    categories: typing.List[WindowsUpdateCategory]
+    description: str
+    kbArticleIds: typing.List[str]
+    lastDeploymentChangeTime: str
+    moreInfoUrls: typing.List[str]
+    revisionNumber: int
+    supportUrl: str
+    title: str
+    updateId: str
+
+@typing.type_check_only
+class ZypperPatch(typing_extensions.TypedDict, total=False):
+    category: str
+    patchName: str
+    severity: str
+    summary: str

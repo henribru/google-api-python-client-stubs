@@ -127,6 +127,10 @@ class CategoryListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class EndPoint(typing_extensions.TypedDict, total=False):
+    url: str
+
+@typing.type_check_only
 class EventBatchRecordFailure(typing_extensions.TypedDict, total=False):
     failureCause: typing_extensions.Literal[
         "EVENT_FAILURE_CAUSE_UNSPECIFIED",
@@ -448,6 +452,7 @@ class ProfileSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResolveSnapshotHeadRequest(typing_extensions.TypedDict, total=False):
+    maxConflictsPerSnapshot: int
     resolutionPolicy: typing_extensions.Literal[
         "RESOLUTION_POLICY_UNSPECIFIED",
         "USE_HEAD",
@@ -512,7 +517,7 @@ class SnapshotExtended(typing_extensions.TypedDict, total=False):
     conflictingRevisions: typing.List[SnapshotRevision]
     hasConflictingRevisions: bool
     headRevision: SnapshotRevision
-    name: str
+    snapshotName: str
 
 @typing.type_check_only
 class SnapshotImage(typing_extensions.TypedDict, total=False):
@@ -532,10 +537,9 @@ class SnapshotListResponse(typing_extensions.TypedDict, total=False):
 class SnapshotMetadata(typing_extensions.TypedDict, total=False):
     description: str
     deviceName: str
-    duration: str
+    gameplayDuration: str
     lastModifyTime: str
     progressValue: str
-    title: str
 
 @typing.type_check_only
 class SnapshotRevision(typing_extensions.TypedDict, total=False):

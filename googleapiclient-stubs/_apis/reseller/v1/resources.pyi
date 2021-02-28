@@ -72,7 +72,9 @@ class ResellerResource(googleapiclient.discovery.Resource):
             *,
             customerId: str,
             subscriptionId: str,
-            deletionType: typing_extensions.Literal["cancel", "transfer_to_direct"],
+            deletionType: typing_extensions.Literal[
+                "deletion_type_undefined", "cancel", "transfer_to_direct"
+            ],
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def get(

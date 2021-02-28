@@ -23,6 +23,7 @@ class ApiDimensionFilterGroup(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
     aggregationType: str
+    dataState: str
     dimensionFilterGroups: typing.List[ApiDimensionFilterGroup]
     dimensions: typing.List[str]
     endDate: str

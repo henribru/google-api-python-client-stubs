@@ -71,6 +71,7 @@ class ManagedZone(typing_extensions.TypedDict, total=False):
     peeringConfig: ManagedZonePeeringConfig
     privateVisibilityConfig: ManagedZonePrivateVisibilityConfig
     reverseLookupConfig: ManagedZoneReverseLookupConfig
+    serviceDirectoryConfig: ManagedZoneServiceDirectoryConfig
     visibility: typing_extensions.Literal["public", "private"]
 
 @typing.type_check_only
@@ -126,6 +127,19 @@ class ManagedZonePrivateVisibilityConfigNetwork(
 @typing.type_check_only
 class ManagedZoneReverseLookupConfig(typing_extensions.TypedDict, total=False):
     kind: str
+
+@typing.type_check_only
+class ManagedZoneServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
+    kind: str
+    namespace: ManagedZoneServiceDirectoryConfigNamespace
+
+@typing.type_check_only
+class ManagedZoneServiceDirectoryConfigNamespace(
+    typing_extensions.TypedDict, total=False
+):
+    deletionTime: str
+    kind: str
+    namespaceUrl: str
 
 @typing.type_check_only
 class ManagedZonesListResponse(typing_extensions.TypedDict, total=False):
@@ -227,45 +241,9 @@ class Quota(typing_extensions.TypedDict, total=False):
     whitelistedKeySpecs: typing.List[DnsKeySpec]
 
 @typing.type_check_only
-class RRSetRoutingPolicy(typing_extensions.TypedDict, total=False):
-    geoPolicy: RRSetRoutingPolicyGeoPolicy
-    kind: str
-    wrrPolicy: RRSetRoutingPolicyWrrPolicy
-
-@typing.type_check_only
-class RRSetRoutingPolicyGeoPolicy(typing_extensions.TypedDict, total=False):
-    failovers: typing.List[RRSetRoutingPolicyGeoPolicyGeoPolicyItem]
-    items: typing.List[RRSetRoutingPolicyGeoPolicyGeoPolicyItem]
-    kind: str
-
-@typing.type_check_only
-class RRSetRoutingPolicyGeoPolicyGeoPolicyItem(
-    typing_extensions.TypedDict, total=False
-):
-    kind: str
-    location: str
-    rrdatas: typing.List[str]
-    signatureRrdatas: typing.List[str]
-
-@typing.type_check_only
-class RRSetRoutingPolicyWrrPolicy(typing_extensions.TypedDict, total=False):
-    items: typing.List[RRSetRoutingPolicyWrrPolicyWrrPolicyItem]
-    kind: str
-
-@typing.type_check_only
-class RRSetRoutingPolicyWrrPolicyWrrPolicyItem(
-    typing_extensions.TypedDict, total=False
-):
-    kind: str
-    rrdatas: typing.List[str]
-    signatureRrdatas: typing.List[str]
-    weight: float
-
-@typing.type_check_only
 class ResourceRecordSet(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
-    routingPolicy: RRSetRoutingPolicy
     rrdatas: typing.List[str]
     signatureRrdatas: typing.List[str]
     ttl: int

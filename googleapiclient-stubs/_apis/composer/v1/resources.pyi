@@ -46,6 +46,7 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    includePastReleases: bool = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any

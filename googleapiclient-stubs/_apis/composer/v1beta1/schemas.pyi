@@ -11,7 +11,17 @@ class DatabaseConfig(typing_extensions.TypedDict, total=False):
     machineType: str
 
 @typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
 
 @typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
@@ -30,7 +40,9 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     airflowUri: str
     dagGcsPrefix: str
     databaseConfig: DatabaseConfig
+    encryptionConfig: EncryptionConfig
     gkeCluster: str
+    maintenanceWindow: MaintenanceWindow
     nodeConfig: NodeConfig
     nodeCount: int
     privateEnvironmentConfig: PrivateEnvironmentConfig
@@ -48,9 +60,12 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageVersion(typing_extensions.TypedDict, total=False):
+    creationDisabled: bool
     imageVersionId: str
     isDefault: bool
+    releaseDate: Date
     supportedPythonVersions: typing.List[str]
+    upgradeDisabled: bool
 
 @typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
@@ -68,11 +83,18 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: typing.List[Operation]
 
 @typing.type_check_only
+class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+    endTime: str
+    recurrence: str
+    startTime: str
+
+@typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
     ipAllocationPolicy: IPAllocationPolicy
     location: str
     machineType: str
+    maxPodsPerNode: int
     network: str
     oauthScopes: typing.List[str]
     serviceAccount: str
@@ -113,6 +135,9 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
     privateClusterConfig: PrivateClusterConfig
     webServerIpv4CidrBlock: str
     webServerIpv4ReservedRange: str
+
+@typing.type_check_only
+class RestartWebServerRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):

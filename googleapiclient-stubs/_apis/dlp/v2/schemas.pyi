@@ -500,6 +500,7 @@ class GooglePrivacyDlpV2FileSet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2Finding(typing_extensions.TypedDict, total=False):
     createTime: str
+    findingId: str
     infoType: GooglePrivacyDlpV2InfoType
     jobCreateTime: str
     jobName: str

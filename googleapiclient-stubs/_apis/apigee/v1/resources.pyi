@@ -195,6 +195,38 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1ListAppsResponseHttpRequest: ...
         @typing.type_check_only
+        class DatacollectorsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudApigeeV1DataCollector = ...,
+                dataCollectorId: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1DataCollectorHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1DataCollectorHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1ListDataCollectorsResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1DataCollector = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1DataCollectorHttpRequest: ...
+        @typing.type_check_only
         class DeploymentsResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, sharedFlows: bool = ..., **kwargs: typing.Any
@@ -343,6 +375,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                app: str = ...,
                 count: str = ...,
                 expand: bool = ...,
                 ids: str = ...,
@@ -864,6 +897,58 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def stats(self) -> StatsResource: ...
             def targetservers(self) -> TargetserversResource: ...
         @typing.type_check_only
+        class HostQueriesResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudApigeeV1Query = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1AsyncQueryHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1AsyncQueryHttpRequest: ...
+            def getResult(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleApiHttpBodyHttpRequest: ...
+            def getResultView(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1AsyncQueryResultViewHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                dataset: str = ...,
+                envgroupHostname: str = ...,
+                inclQueriesWithoutReport: str = ...,
+                status: str = ...,
+                submittedBy: str = ...,
+                to: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1ListAsyncQueriesResponseHttpRequest: ...
+        @typing.type_check_only
+        class HostStatsResource(googleapiclient.discovery.Resource):
+            def get(
+                self,
+                *,
+                name: str,
+                accuracy: str = ...,
+                envgroupHostname: str = ...,
+                filter: str = ...,
+                limit: str = ...,
+                offset: str = ...,
+                realtime: bool = ...,
+                select: str = ...,
+                sort: str = ...,
+                sortby: str = ...,
+                timeRange: str = ...,
+                timeUnit: str = ...,
+                topk: str = ...,
+                tsAscending: bool = ...,
+                tzo: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1StatsHttpRequest: ...
+        @typing.type_check_only
         class InstancesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AttachmentsResource(googleapiclient.discovery.Resource):
@@ -888,6 +973,48 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1ListInstanceAttachmentsResponseHttpRequest: ...
+            @typing.type_check_only
+            class CanaryevaluationsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudApigeeV1CanaryEvaluation = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1CanaryEvaluationHttpRequest: ...
+            @typing.type_check_only
+            class NatAddressesResource(googleapiclient.discovery.Resource):
+                def activate(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1ActivateNatAddressRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudApigeeV1NatAddress = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1NatAddressHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ListNatAddressesResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -917,6 +1044,8 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1ReportInstanceStatusResponseHttpRequest: ...
             def attachments(self) -> AttachmentsResource: ...
+            def canaryevaluations(self) -> CanaryevaluationsResource: ...
+            def natAddresses(self) -> NatAddressesResource: ...
         @typing.type_check_only
         class KeyvaluemapsResource(googleapiclient.discovery.Resource):
             def create(
@@ -943,6 +1072,28 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+        @typing.type_check_only
+        class OptimizedHostStatsResource(googleapiclient.discovery.Resource):
+            def get(
+                self,
+                *,
+                name: str,
+                accuracy: str = ...,
+                envgroupHostname: str = ...,
+                filter: str = ...,
+                limit: str = ...,
+                offset: str = ...,
+                realtime: bool = ...,
+                select: str = ...,
+                sort: str = ...,
+                sortby: str = ...,
+                timeRange: str = ...,
+                timeUnit: str = ...,
+                topk: str = ...,
+                tsAscending: bool = ...,
+                tzo: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1OptimizedStatsHttpRequest: ...
         @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
             def create(
@@ -1057,6 +1208,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             **kwargs: typing.Any
         ) -> GoogleLongrunningOperationHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleCloudApigeeV1OrganizationHttpRequest: ...
@@ -1097,13 +1251,17 @@ class ApigeeResource(googleapiclient.discovery.Resource):
         def apiproducts(self) -> ApiproductsResource: ...
         def apis(self) -> ApisResource: ...
         def apps(self) -> AppsResource: ...
+        def datacollectors(self) -> DatacollectorsResource: ...
         def deployments(self) -> DeploymentsResource: ...
         def developers(self) -> DevelopersResource: ...
         def envgroups(self) -> EnvgroupsResource: ...
         def environments(self) -> EnvironmentsResource: ...
+        def hostQueries(self) -> HostQueriesResource: ...
+        def hostStats(self) -> HostStatsResource: ...
         def instances(self) -> InstancesResource: ...
         def keyvaluemaps(self) -> KeyvaluemapsResource: ...
         def operations(self) -> OperationsResource: ...
+        def optimizedHostStats(self) -> OptimizedHostStatsResource: ...
         def reports(self) -> ReportsResource: ...
         def sharedflows(self) -> SharedflowsResource: ...
         def sites(self) -> SitesResource: ...
@@ -1213,6 +1371,18 @@ class GoogleCloudApigeeV1AsyncQueryHttpRequest(googleapiclient.http.HttpRequest)
     ) -> GoogleCloudApigeeV1AsyncQuery: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1AsyncQueryResultViewHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1AsyncQueryResultView: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1AttributeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1233,6 +1403,16 @@ class GoogleCloudApigeeV1AttributesHttpRequest(googleapiclient.http.HttpRequest)
     ) -> GoogleCloudApigeeV1Attributes: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1CanaryEvaluationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1CanaryEvaluation: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1CustomReportHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1241,6 +1421,16 @@ class GoogleCloudApigeeV1CustomReportHttpRequest(googleapiclient.http.HttpReques
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1CustomReport: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1DataCollectorHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1DataCollector: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DatastoreHttpRequest(googleapiclient.http.HttpRequest):
@@ -1533,6 +1723,18 @@ class GoogleCloudApigeeV1ListCustomReportsResponseHttpRequest(
     ) -> GoogleCloudApigeeV1ListCustomReportsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListDataCollectorsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1ListDataCollectorsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListDatastoresResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1665,6 +1867,18 @@ class GoogleCloudApigeeV1ListInstancesResponseHttpRequest(
     ) -> GoogleCloudApigeeV1ListInstancesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListNatAddressesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1ListNatAddressesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListOfDevelopersResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1699,6 +1913,16 @@ class GoogleCloudApigeeV1ListSharedFlowsResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListSharedFlowsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1NatAddressHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1NatAddress: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1OptimizedStatsHttpRequest(googleapiclient.http.HttpRequest):

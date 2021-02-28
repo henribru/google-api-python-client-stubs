@@ -5,17 +5,20 @@ import typing_extensions
 class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     database: str
+    encryptionInfo: EncryptionInfo
     expireTime: str
     name: str
     referencingDatabases: typing.List[str]
     sizeBytes: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
+    versionTime: str
 
 @typing.type_check_only
 class BackupInfo(typing_extensions.TypedDict, total=False):
     backup: str
     createTime: str
     sourceDatabase: str
+    versionTime: str
 
 @typing.type_check_only
 class BatchCreateSessionsRequest(typing_extensions.TypedDict, total=False):
@@ -32,7 +35,6 @@ class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -46,12 +48,18 @@ class ChildLink(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CommitRequest(typing_extensions.TypedDict, total=False):
     mutations: typing.List[Mutation]
+    returnCommitStats: bool
     singleUseTransaction: TransactionOptions
     transactionId: str
 
 @typing.type_check_only
 class CommitResponse(typing_extensions.TypedDict, total=False):
+    commitStats: CommitStats
     commitTimestamp: str
+
+@typing.type_check_only
+class CommitStats(typing_extensions.TypedDict, total=False):
+    mutationCount: str
 
 @typing.type_check_only
 class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
@@ -67,6 +75,7 @@ class CreateDatabaseMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CreateDatabaseRequest(typing_extensions.TypedDict, total=False):
     createStatement: str
+    encryptionConfig: EncryptionConfig
     extraStatements: typing.List[str]
 
 @typing.type_check_only
@@ -88,11 +97,15 @@ class CreateSessionRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
     createTime: str
+    earliestVersionTime: str
+    encryptionConfig: EncryptionConfig
+    encryptionInfo: typing.List[EncryptionInfo]
     name: str
     restoreInfo: RestoreInfo
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "READY_OPTIMIZING"
     ]
+    versionRetentionPeriod: str
 
 @typing.type_check_only
 class Delete(typing_extensions.TypedDict, total=False):
@@ -101,6 +114,18 @@ class Delete(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+
+@typing.type_check_only
+class EncryptionInfo(typing_extensions.TypedDict, total=False):
+    encryptionStatus: Status
+    encryptionType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "GOOGLE_DEFAULT_ENCRYPTION", "CUSTOMER_MANAGED_ENCRYPTION"
+    ]
+    kmsKeyVersion: str
 
 @typing.type_check_only
 class ExecuteBatchDmlRequest(typing_extensions.TypedDict, total=False):
@@ -207,6 +232,7 @@ class ListInstanceConfigsResponse(typing_extensions.TypedDict, total=False):
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
     instances: typing.List[Instance]
     nextPageToken: str
+    unreachable: typing.List[str]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -343,6 +369,16 @@ class ReplicaInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RestoreDatabaseEncryptionConfig(typing_extensions.TypedDict, total=False):
+    encryptionType: typing_extensions.Literal[
+        "ENCRYPTION_TYPE_UNSPECIFIED",
+        "USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION",
+        "GOOGLE_DEFAULT_ENCRYPTION",
+        "CUSTOMER_MANAGED_ENCRYPTION",
+    ]
+    kmsKeyName: str
+
+@typing.type_check_only
 class RestoreDatabaseMetadata(typing_extensions.TypedDict, total=False):
     backupInfo: BackupInfo
     cancelTime: str
@@ -355,6 +391,7 @@ class RestoreDatabaseMetadata(typing_extensions.TypedDict, total=False):
 class RestoreDatabaseRequest(typing_extensions.TypedDict, total=False):
     backup: str
     databaseId: str
+    encryptionConfig: RestoreDatabaseEncryptionConfig
 
 @typing.type_check_only
 class RestoreInfo(typing_extensions.TypedDict, total=False):
@@ -362,10 +399,15 @@ class RestoreInfo(typing_extensions.TypedDict, total=False):
     sourceType: typing_extensions.Literal["TYPE_UNSPECIFIED", "BACKUP"]
 
 @typing.type_check_only
-class ResultSet(typing.Dict[str, typing.Any]): ...
+class ResultSet(typing_extensions.TypedDict, total=False):
+    metadata: ResultSetMetadata
+    rows: typing.List[list]
+    stats: ResultSetStats
 
 @typing.type_check_only
-class ResultSetMetadata(typing.Dict[str, typing.Any]): ...
+class ResultSetMetadata(typing_extensions.TypedDict, total=False):
+    rowType: StructType
+    transaction: Transaction
 
 @typing.type_check_only
 class ResultSetStats(typing_extensions.TypedDict, total=False):
@@ -407,7 +449,8 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class StructType(typing.Dict[str, typing.Any]): ...
+class StructType(typing_extensions.TypedDict, total=False):
+    fields: typing.List[Field]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -435,13 +478,29 @@ class TransactionSelector(typing_extensions.TypedDict, total=False):
     singleUse: TransactionOptions
 
 @typing.type_check_only
-class Type(typing.Dict[str, typing.Any]): ...
+class Type(typing_extensions.TypedDict, total=False):
+    arrayElementType: Type
+    code: typing_extensions.Literal[
+        "TYPE_CODE_UNSPECIFIED",
+        "BOOL",
+        "INT64",
+        "FLOAT64",
+        "TIMESTAMP",
+        "DATE",
+        "STRING",
+        "BYTES",
+        "ARRAY",
+        "STRUCT",
+        "NUMERIC",
+    ]
+    structType: StructType
 
 @typing.type_check_only
 class UpdateDatabaseDdlMetadata(typing_extensions.TypedDict, total=False):
     commitTimestamps: typing.List[str]
     database: str
     statements: typing.List[str]
+    throttled: bool
 
 @typing.type_check_only
 class UpdateDatabaseDdlRequest(typing_extensions.TypedDict, total=False):

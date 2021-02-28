@@ -117,6 +117,7 @@ class ApkManifest(typing_extensions.TypedDict, total=False):
     minSdkVersion: int
     packageName: str
     targetSdkVersion: int
+    usesPermission: typing.List[str]
 
 @typing.type_check_only
 class AppBundle(typing_extensions.TypedDict, total=False):
@@ -322,6 +323,7 @@ class Orientation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProvidedSoftwareCatalog(typing_extensions.TypedDict, total=False):
+    androidxOrchestratorVersion: str
     orchestratorVersion: str
 
 @typing.type_check_only

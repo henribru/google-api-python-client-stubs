@@ -8,6 +8,16 @@ class ActivateConsentRequest(typing_extensions.TypedDict, total=False):
     ttl: str
 
 @typing.type_check_only
+class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
+    documentContent: str
+
+@typing.type_check_only
+class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
+    entities: typing.List[Entity]
+    entityMentions: typing.List[EntityMention]
+    relationships: typing.List[EntityMentionRelationship]
+
+@typing.type_check_only
 class Annotation(typing_extensions.TypedDict, total=False):
     annotationSource: AnnotationSource
     customData: typing.Dict[str, typing.Any]
@@ -63,6 +73,10 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BatchGetMessagesResponse(typing_extensions.TypedDict, total=False):
+    messages: typing.List[Message]
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: typing.List[str]
@@ -102,6 +116,7 @@ class CloudHealthcareSource(typing_extensions.TypedDict, total=False):
 class Consent(typing_extensions.TypedDict, total=False):
     consentArtifact: str
     expireTime: str
+    metadata: typing.Dict[str, typing.Any]
     name: str
     policies: typing.List[GoogleCloudHealthcareV1beta1ConsentPolicy]
     revisionCreateTime: str
@@ -221,9 +236,27 @@ class DicomStore(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ErrorDetail(typing_extensions.TypedDict, total=False):
-    error: Status
-    resource: str
+class Entity(typing_extensions.TypedDict, total=False):
+    entityId: str
+    preferredTerm: str
+    vocabularyCodes: typing.List[str]
+
+@typing.type_check_only
+class EntityMention(typing_extensions.TypedDict, total=False):
+    certaintyAssessment: Feature
+    confidence: float
+    linkedEntities: typing.List[LinkedEntity]
+    mentionId: str
+    subject: Feature
+    temporalAssessment: Feature
+    text: TextSpan
+    type: str
+
+@typing.type_check_only
+class EntityMentionRelationship(typing_extensions.TypedDict, total=False):
+    confidence: float
+    objectId: str
+    subjectId: str
 
 @typing.type_check_only
 class EvaluateAnnotationStoreRequest(typing_extensions.TypedDict, total=False):
@@ -264,6 +297,7 @@ class ExportAnnotationsResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ExportDicomDataRequest(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1beta1DicomBigQueryDestination
+    filterConfig: DicomFilterConfig
     gcsDestination: GoogleCloudHealthcareV1beta1DicomGcsDestination
 
 @typing.type_check_only
@@ -277,6 +311,8 @@ class ExportMessagesRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExportResourcesRequest(typing_extensions.TypedDict, total=False):
+    _since: str
+    _type: str
     bigqueryDestination: GoogleCloudHealthcareV1beta1FhirBigQueryDestination
     gcsDestination: GoogleCloudHealthcareV1beta1FhirGcsDestination
 
@@ -286,6 +322,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class Feature(typing_extensions.TypedDict, total=False):
+    confidence: float
+    value: str
 
 @typing.type_check_only
 class FhirConfig(typing_extensions.TypedDict, total=False):
@@ -305,6 +346,7 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     name: str
     notificationConfig: NotificationConfig
     streamConfigs: typing.List[StreamConfig]
+    validationConfig: ValidationConfig
     version: typing_extensions.Literal["VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4"]
 
 @typing.type_check_only
@@ -461,38 +503,6 @@ class GoogleCloudHealthcareV1beta1FhirImportResourcesResponse(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudHealthcareV1beta1FhirRestExportResourcesErrorDetails(
-    typing_extensions.TypedDict, total=False
-):
-    errorCount: str
-    fhirStore: str
-    resourceCount: str
-    successCount: str
-
-@typing.type_check_only
-class GoogleCloudHealthcareV1beta1FhirRestExportResourcesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    fhirStore: str
-    resourceCount: str
-
-@typing.type_check_only
-class GoogleCloudHealthcareV1beta1FhirRestImportResourcesErrorDetails(
-    typing_extensions.TypedDict, total=False
-):
-    errorCount: str
-    fhirStore: str
-    inputSize: str
-    successCount: str
-
-@typing.type_check_only
-class GoogleCloudHealthcareV1beta1FhirRestImportResourcesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    fhirStore: str
-    inputSize: str
-
-@typing.type_check_only
 class GroupOrSegment(typing_extensions.TypedDict, total=False):
     group: SchemaGroup
     segment: SchemaSegment
@@ -554,10 +564,6 @@ class ImportAnnotationsRequest(typing_extensions.TypedDict, total=False):
 class ImportAnnotationsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ImportDicomDataErrorDetails(typing_extensions.TypedDict, total=False):
-    sampleErrors: typing.List[ErrorDetail]
-
-@typing.type_check_only
 class ImportDicomDataRequest(typing_extensions.TypedDict, total=False):
     gcsSource: GoogleCloudHealthcareV1beta1DicomGcsSource
 
@@ -605,6 +611,10 @@ class IngestMessageRequest(typing_extensions.TypedDict, total=False):
 class IngestMessageResponse(typing_extensions.TypedDict, total=False):
     hl7Ack: str
     message: Message
+
+@typing.type_check_only
+class LinkedEntity(typing_extensions.TypedDict, total=False):
+    entityId: str
 
 @typing.type_check_only
 class ListAnnotationStoresResponse(typing_extensions.TypedDict, total=False):
@@ -794,7 +804,12 @@ class SchemaConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SchemaGroup(typing.Dict[str, typing.Any]): ...
+class SchemaGroup(typing_extensions.TypedDict, total=False):
+    choice: bool
+    maxOccurs: int
+    members: typing.List[GroupOrSegment]
+    minOccurs: int
+    name: str
 
 @typing.type_check_only
 class SchemaPackage(typing_extensions.TypedDict, total=False):
@@ -873,6 +888,11 @@ class TextConfig(typing_extensions.TypedDict, total=False):
     transformations: typing.List[InfoTypeTransformation]
 
 @typing.type_check_only
+class TextSpan(typing_extensions.TypedDict, total=False):
+    beginOffset: int
+    content: str
+
+@typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
     fields: typing.List[Field]
     name: str
@@ -888,6 +908,11 @@ class UserDataMapping(typing_extensions.TypedDict, total=False):
     name: str
     resourceAttributes: typing.List[Attribute]
     userId: str
+
+@typing.type_check_only
+class ValidationConfig(typing_extensions.TypedDict, total=False):
+    disableProfileValidation: bool
+    enabledImplementationGuides: typing.List[str]
 
 @typing.type_check_only
 class VersionSource(typing_extensions.TypedDict, total=False):

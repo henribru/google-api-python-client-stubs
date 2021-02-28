@@ -58,8 +58,16 @@ class Finding(typing_extensions.TypedDict, total=False):
     parent: str
     resourceName: str
     securityMarks: SecurityMarks
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
     sourceProperties: typing.Dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+
+@typing.type_check_only
+class Folder(typing_extensions.TypedDict, total=False):
+    resourceFolder: str
+    resourceFolderDisplayName: str
 
 @typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -79,6 +87,7 @@ class GoogleCloudSecuritycenterV1NotificationMessage(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
+    folders: typing.List[Folder]
     name: str
     parent: str
     parentDisplayName: str
@@ -142,6 +151,13 @@ class GoogleCloudSecuritycenterV1p1beta1Finding(
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV1p1beta1Folder(
+    typing_extensions.TypedDict, total=False
+):
+    resourceFolder: str
+    resourceFolderDisplayName: str
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV1p1beta1NotificationMessage(
     typing_extensions.TypedDict, total=False
 ):
@@ -153,6 +169,7 @@ class GoogleCloudSecuritycenterV1p1beta1NotificationMessage(
 class GoogleCloudSecuritycenterV1p1beta1Resource(
     typing_extensions.TypedDict, total=False
 ):
+    folders: typing.List[GoogleCloudSecuritycenterV1p1beta1Folder]
     name: str
     parent: str
     parentDisplayName: str

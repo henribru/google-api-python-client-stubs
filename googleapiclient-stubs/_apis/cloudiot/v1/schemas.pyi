@@ -11,7 +11,6 @@ class BindDeviceToGatewayResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str

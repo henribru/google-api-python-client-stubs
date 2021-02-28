@@ -26,10 +26,42 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: V1Beta1QuotaOverride = ...,
                         force: bool = ...,
+                        forceOnly: typing.Union[
+                            typing_extensions.Literal[
+                                "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+                                "LIMIT_DECREASE_BELOW_USAGE",
+                                "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+                            ],
+                            typing.List[
+                                typing_extensions.Literal[
+                                    "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+                                    "LIMIT_DECREASE_BELOW_USAGE",
+                                    "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+                                ]
+                            ],
+                        ] = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def delete(
-                        self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        force: bool = ...,
+                        forceOnly: typing.Union[
+                            typing_extensions.Literal[
+                                "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+                                "LIMIT_DECREASE_BELOW_USAGE",
+                                "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+                            ],
+                            typing.List[
+                                typing_extensions.Literal[
+                                    "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+                                    "LIMIT_DECREASE_BELOW_USAGE",
+                                    "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+                                ]
+                            ],
+                        ] = ...,
+                        **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def list(
                         self,
@@ -45,6 +77,20 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: V1Beta1QuotaOverride = ...,
                         force: bool = ...,
+                        forceOnly: typing.Union[
+                            typing_extensions.Literal[
+                                "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+                                "LIMIT_DECREASE_BELOW_USAGE",
+                                "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+                            ],
+                            typing.List[
+                                typing_extensions.Literal[
+                                    "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+                                    "LIMIT_DECREASE_BELOW_USAGE",
+                                    "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+                                ]
+                            ],
+                        ] = ...,
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...

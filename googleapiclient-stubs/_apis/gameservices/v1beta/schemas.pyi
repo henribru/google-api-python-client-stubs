@@ -131,6 +131,9 @@ class FleetConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GameServerCluster(typing_extensions.TypedDict, total=False):
+    allocationPriority: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "P1", "P2", "P3", "P4"
+    ]
     connectionInfo: GameServerClusterConnectionInfo
     createTime: str
     description: str
@@ -142,6 +145,7 @@ class GameServerCluster(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GameServerClusterConnectionInfo(typing_extensions.TypedDict, total=False):
     gkeClusterReference: GkeClusterReference
+    gkeHubClusterReference: GkeHubClusterReference
     namespace: str
 
 @typing.type_check_only
@@ -180,6 +184,10 @@ class GameServerDeploymentRollout(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GkeClusterReference(typing_extensions.TypedDict, total=False):
     cluster: str
+
+@typing.type_check_only
+class GkeHubClusterReference(typing_extensions.TypedDict, total=False):
+    membership: str
 
 @typing.type_check_only
 class LabelSelector(typing_extensions.TypedDict, total=False):

@@ -149,6 +149,15 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 body: RepoSource = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+            def webhook(
+                self,
+                *,
+                projectId: str,
+                trigger: str,
+                body: HttpBody = ...,
+                secret: str = ...,
+                **kwargs: typing.Any
+            ) -> ReceiveTriggerWebhookResponseHttpRequest: ...
         def builds(self) -> BuildsResource: ...
         def locations(self) -> LocationsResource: ...
         def triggers(self) -> TriggersResource: ...
@@ -214,3 +223,13 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class ReceiveTriggerWebhookResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ReceiveTriggerWebhookResponse: ...

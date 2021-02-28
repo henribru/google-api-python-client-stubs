@@ -132,7 +132,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     orgUnitPath: str
     osVersion: str
     platformVersion: str
-    recentUsers: typing.List[typing.Dict[str, typing.Any]]
+    recentUsers: typing.List[RecentUsers]
     serialNumber: str
     status: str
     supportEndDate: str
@@ -401,13 +401,25 @@ class OrgUnits(typing_extensions.TypedDict, total=False):
     organizationUnits: typing.List[OrgUnit]
 
 @typing.type_check_only
-class Privilege(typing.Dict[str, typing.Any]): ...
+class Privilege(typing_extensions.TypedDict, total=False):
+    childPrivileges: typing.List[Privilege]
+    etag: str
+    isOuScopable: bool
+    kind: str
+    privilegeName: str
+    serviceId: str
+    serviceName: str
 
 @typing.type_check_only
 class Privileges(typing_extensions.TypedDict, total=False):
     etag: str
     items: typing.List[Privilege]
     kind: str
+
+@typing.type_check_only
+class RecentUsers(typing_extensions.TypedDict, total=False):
+    email: str
+    type: str
 
 @typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):

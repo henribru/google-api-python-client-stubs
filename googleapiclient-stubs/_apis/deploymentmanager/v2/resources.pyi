@@ -24,14 +24,19 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             deployment: str,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
             self, *, project: str, deployment: str, **kwargs: typing.Any
         ) -> DeploymentHttpRequest: ...
         def getIamPolicy(
-            self, *, project: str, resource: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def insert(
             self,
@@ -39,7 +44,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             body: Deployment = ...,
             createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE_OR_ACQUIRE"
+                "CREATE_OR_ACQUIRE", "ACQUIRE"
             ] = ...,
             preview: bool = ...,
             **kwargs: typing.Any
@@ -61,9 +66,9 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             deployment: str,
             body: Deployment = ...,
             createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE_OR_ACQUIRE"
+                "CREATE_OR_ACQUIRE", "ACQUIRE"
             ] = ...,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             preview: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -98,9 +103,9 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             deployment: str,
             body: Deployment = ...,
             createPolicy: typing_extensions.Literal[
-                "ACQUIRE", "CREATE_OR_ACQUIRE"
+                "CREATE_OR_ACQUIRE", "ACQUIRE"
             ] = ...,
-            deletePolicy: typing_extensions.Literal["ABANDON", "DELETE"] = ...,
+            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             preview: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...

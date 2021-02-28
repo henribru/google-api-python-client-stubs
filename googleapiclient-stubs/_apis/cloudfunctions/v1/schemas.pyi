@@ -34,6 +34,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     availableMemoryMb: int
     buildEnvironmentVariables: typing.Dict[str, typing.Any]
     buildId: str
+    buildWorkerPool: str
     description: str
     entryPoint: str
     environmentVariables: typing.Dict[str, typing.Any]
@@ -53,6 +54,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     serviceAccountEmail: str
     sourceArchiveUrl: str
     sourceRepository: SourceRepository
+    sourceToken: str
     sourceUploadUrl: str
     status: typing_extensions.Literal[
         "CLOUD_FUNCTION_STATUS_UNSPECIFIED",
@@ -107,6 +109,9 @@ class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HttpsTrigger(typing_extensions.TypedDict, total=False):
+    securityLevel: typing_extensions.Literal[
+        "SECURITY_LEVEL_UNSPECIFIED", "SECURE_ALWAYS", "SECURE_OPTIONAL"
+    ]
     url: str
 
 @typing.type_check_only
@@ -145,6 +150,7 @@ class Operation(typing_extensions.TypedDict, total=False):
 class OperationMetadataV1(typing_extensions.TypedDict, total=False):
     buildId: str
     request: typing.Dict[str, typing.Any]
+    sourceToken: str
     target: str
     type: typing_extensions.Literal[
         "OPERATION_UNSPECIFIED", "CREATE_FUNCTION", "UPDATE_FUNCTION", "DELETE_FUNCTION"

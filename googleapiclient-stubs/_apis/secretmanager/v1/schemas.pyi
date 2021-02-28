@@ -32,7 +32,6 @@ class AutomaticStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -119,9 +118,12 @@ class ReplicationStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
     createTime: str
+    expireTime: str
     labels: typing.Dict[str, typing.Any]
     name: str
     replication: Replication
+    topics: typing.List[Topic]
+    ttl: str
 
 @typing.type_check_only
 class SecretPayload(typing_extensions.TypedDict, total=False):
@@ -149,6 +151,10 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
+
+@typing.type_check_only
+class Topic(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class UserManaged(typing_extensions.TypedDict, total=False):

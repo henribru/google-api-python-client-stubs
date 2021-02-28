@@ -81,7 +81,27 @@ class GoogleCloudMlV1_StudyConfig_MetricSpec(typing_extensions.TypedDict, total=
     metric: str
 
 @typing.type_check_only
-class GoogleCloudMlV1_StudyConfig_ParameterSpec(typing.Dict[str, typing.Any]): ...
+class GoogleCloudMlV1_StudyConfig_ParameterSpec(
+    typing_extensions.TypedDict, total=False
+):
+    categoricalValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec
+    childParameterSpecs: typing.List[GoogleCloudMlV1_StudyConfig_ParameterSpec]
+    discreteValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec
+    doubleValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec
+    integerValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec
+    parameter: str
+    parentCategoricalValues: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec
+    parentDiscreteValues: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec
+    parentIntValues: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec
+    scaleType: typing_extensions.Literal[
+        "SCALE_TYPE_UNSPECIFIED",
+        "UNIT_LINEAR_SCALE",
+        "UNIT_LOG_SCALE",
+        "UNIT_REVERSE_LOG_SCALE",
+    ]
+    type: typing_extensions.Literal[
+        "PARAMETER_TYPE_UNSPECIFIED", "DOUBLE", "INTEGER", "CATEGORICAL", "DISCRETE"
+    ]
 
 @typing.type_check_only
 class GoogleCloudMlV1_Trial_Parameter(typing_extensions.TypedDict, total=False):
@@ -100,6 +120,7 @@ class GoogleCloudMlV1__AcceleratorConfig(typing_extensions.TypedDict, total=Fals
         "NVIDIA_TESLA_V100",
         "NVIDIA_TESLA_P4",
         "NVIDIA_TESLA_T4",
+        "NVIDIA_TESLA_A100",
         "TPU_V2",
         "TPU_V3",
     ]
@@ -182,6 +203,11 @@ class GoogleCloudMlV1__ContainerSpec(typing_extensions.TypedDict, total=False):
     env: typing.List[GoogleCloudMlV1__EnvVar]
     image: str
     ports: typing.List[GoogleCloudMlV1__ContainerPort]
+
+@typing.type_check_only
+class GoogleCloudMlV1__DiskConfig(typing_extensions.TypedDict, total=False):
+    bootDiskSizeGb: int
+    bootDiskType: str
 
 @typing.type_check_only
 class GoogleCloudMlV1__EncryptionConfig(typing_extensions.TypedDict, total=False):
@@ -287,6 +313,17 @@ class GoogleCloudMlV1__ListLocationsResponse(typing_extensions.TypedDict, total=
 class GoogleCloudMlV1__ListModelsResponse(typing_extensions.TypedDict, total=False):
     models: typing.List[GoogleCloudMlV1__Model]
     nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudMlV1__ListOptimalTrialsRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudMlV1__ListOptimalTrialsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    trials: typing.List[GoogleCloudMlV1__Trial]
 
 @typing.type_check_only
 class GoogleCloudMlV1__ListStudiesResponse(typing_extensions.TypedDict, total=False):
@@ -403,6 +440,7 @@ class GoogleCloudMlV1__ReplicaConfig(typing_extensions.TypedDict, total=False):
     acceleratorConfig: GoogleCloudMlV1__AcceleratorConfig
     containerArgs: typing.List[str]
     containerCommand: typing.List[str]
+    diskConfig: GoogleCloudMlV1__DiskConfig
     imageUri: str
     tpuTfVersion: str
 
@@ -436,10 +474,26 @@ class GoogleCloudMlV1__SetDefaultVersionRequest(
 class GoogleCloudMlV1__StopTrialRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleCloudMlV1__Study(typing.Dict[str, typing.Any]): ...
+class GoogleCloudMlV1__Study(typing_extensions.TypedDict, total=False):
+    createTime: str
+    inactiveReason: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "COMPLETED"
+    ]
+    studyConfig: GoogleCloudMlV1__StudyConfig
 
 @typing.type_check_only
-class GoogleCloudMlV1__StudyConfig(typing.Dict[str, typing.Any]): ...
+class GoogleCloudMlV1__StudyConfig(typing_extensions.TypedDict, total=False):
+    algorithm: typing_extensions.Literal[
+        "ALGORITHM_UNSPECIFIED",
+        "GAUSSIAN_PROCESS_BANDIT",
+        "GRID_SEARCH",
+        "RANDOM_SEARCH",
+    ]
+    automatedStoppingConfig: GoogleCloudMlV1__AutomatedStoppingConfig
+    metrics: typing.List[GoogleCloudMlV1_StudyConfig_MetricSpec]
+    parameters: typing.List[GoogleCloudMlV1_StudyConfig_ParameterSpec]
 
 @typing.type_check_only
 class GoogleCloudMlV1__SuggestTrialsMetadata(typing_extensions.TypedDict, total=False):
@@ -533,6 +587,8 @@ class GoogleCloudMlV1__Version(typing_extensions.TypedDict, total=False):
     ]
     isDefault: bool
     labels: typing.Dict[str, typing.Any]
+    lastMigrationModelId: str
+    lastMigrationTime: str
     lastUseTime: str
     machineType: str
     manualScaling: GoogleCloudMlV1__ManualScaling
@@ -566,7 +622,6 @@ class GoogleIamV1__AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleIamV1__Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: GoogleType__Expr
     members: typing.List[str]
     role: str

@@ -26,8 +26,11 @@ class AuditableService(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Aws(typing_extensions.TypedDict, total=False):
+    accountId: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -107,6 +110,31 @@ class ListServiceAccountKeysResponse(typing_extensions.TypedDict, total=False):
 class ListServiceAccountsResponse(typing_extensions.TypedDict, total=False):
     accounts: typing.List[ServiceAccount]
     nextPageToken: str
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolProvidersResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    workloadIdentityPoolProviders: typing.List[WorkloadIdentityPoolProvider]
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    workloadIdentityPools: typing.List[WorkloadIdentityPool]
+
+@typing.type_check_only
+class Oidc(typing_extensions.TypedDict, total=False):
+    allowedAudiences: typing.List[str]
+    issuerUri: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class PatchServiceAccountRequest(typing_extensions.TypedDict, total=False):
@@ -241,6 +269,12 @@ class SignJwtResponse(typing_extensions.TypedDict, total=False):
     signedJwt: str
 
 @typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
 
@@ -260,5 +294,33 @@ class UndeleteServiceAccountResponse(typing_extensions.TypedDict, total=False):
     restoredAccount: ServiceAccount
 
 @typing.type_check_only
+class UndeleteWorkloadIdentityPoolProviderRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class UndeleteWorkloadIdentityPoolRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class UploadServiceAccountKeyRequest(typing_extensions.TypedDict, total=False):
     publicKeyData: str
+
+@typing.type_check_only
+class WorkloadIdentityPool(typing_extensions.TypedDict, total=False):
+    description: str
+    disabled: bool
+    displayName: str
+    name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+
+@typing.type_check_only
+class WorkloadIdentityPoolProvider(typing_extensions.TypedDict, total=False):
+    attributeCondition: str
+    attributeMapping: typing.Dict[str, typing.Any]
+    aws: Aws
+    description: str
+    disabled: bool
+    displayName: str
+    name: str
+    oidc: Oidc
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]

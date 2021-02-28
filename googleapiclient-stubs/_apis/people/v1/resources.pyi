@@ -23,6 +23,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
         def batchGet(
             self,
             *,
+            groupFields: str = ...,
             maxMembers: int = ...,
             resourceNames: typing.Union[str, typing.List[str]] = ...,
             **kwargs: typing.Any
@@ -34,11 +35,17 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             self, *, resourceName: str, deleteContacts: bool = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(
-            self, *, resourceName: str, maxMembers: int = ..., **kwargs: typing.Any
+            self,
+            *,
+            resourceName: str,
+            groupFields: str = ...,
+            maxMembers: int = ...,
+            **kwargs: typing.Any
         ) -> ContactGroupHttpRequest: ...
         def list(
             self,
             *,
+            groupFields: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             syncToken: str = ...,
@@ -71,6 +78,14 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOtherContactsResponseHttpRequest: ...
+        def search(
+            self,
+            *,
+            pageSize: int = ...,
+            query: str = ...,
+            readMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SearchResponseHttpRequest: ...
     @typing.type_check_only
     class PeopleResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -242,6 +257,14 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ListDirectoryPeopleResponseHttpRequest: ...
+        def searchContacts(
+            self,
+            *,
+            pageSize: int = ...,
+            query: str = ...,
+            readMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SearchResponseHttpRequest: ...
         def searchDirectoryPeople(
             self,
             *,
@@ -433,6 +456,16 @@ class SearchDirectoryPeopleResponseHttpRequest(googleapiclient.http.HttpRequest)
         ] = ...,
         num_retries: int = ...,
     ) -> SearchDirectoryPeopleResponse: ...
+
+@typing.type_check_only
+class SearchResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SearchResponse: ...
 
 @typing.type_check_only
 class UpdateContactPhotoResponseHttpRequest(googleapiclient.http.HttpRequest):

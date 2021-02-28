@@ -30,6 +30,10 @@ class AutoUpgradeOptions(typing_extensions.TypedDict, total=False):
     description: str
 
 @typing.type_check_only
+class Autopilot(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class AutoprovisioningNodePoolDefaults(typing_extensions.TypedDict, total=False):
     bootDiskKmsKey: str
     diskSizeGb: int
@@ -83,6 +87,7 @@ class CloudRunConfig(typing_extensions.TypedDict, total=False):
 class Cluster(typing_extensions.TypedDict, total=False):
     addonsConfig: AddonsConfig
     authenticatorGroupsConfig: AuthenticatorGroupsConfig
+    autopilot: Autopilot
     autoscaling: ClusterAutoscaling
     binaryAuthorization: BinaryAuthorization
     clusterIpv4Cidr: str
@@ -188,6 +193,12 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredNotificationConfig: NotificationConfig
     desiredPodSecurityPolicyConfig: PodSecurityPolicyConfig
     desiredPrivateClusterConfig: PrivateClusterConfig
+    desiredPrivateIpv6GoogleAccess: typing_extensions.Literal[
+        "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL",
+    ]
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
     desiredShieldedNodes: ShieldedNodes
@@ -249,6 +260,10 @@ class DnsCacheConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EphemeralStorageConfig(typing_extensions.TypedDict, total=False):
+    localSsdCount: int
 
 @typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
@@ -415,6 +430,12 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     defaultSnatStatus: DefaultSnatStatus
     enableIntraNodeVisibility: bool
     network: str
+    privateIpv6GoogleAccess: typing_extensions.Literal[
+        "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
+        "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL",
+    ]
     subnetwork: str
 
 @typing.type_check_only
@@ -432,6 +453,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     bootDiskKmsKey: str
     diskSizeGb: int
     diskType: str
+    ephemeralStorageConfig: EphemeralStorageConfig
     imageType: str
     kubeletConfig: NodeKubeletConfig
     labels: typing.Dict[str, typing.Any]
@@ -509,10 +531,51 @@ class NotificationConfig(typing_extensions.TypedDict, total=False):
     pubsub: PubSub
 
 @typing.type_check_only
-class Operation(typing.Dict[str, typing.Any]): ...
+class Operation(typing_extensions.TypedDict, total=False):
+    clusterConditions: typing.List[StatusCondition]
+    detail: str
+    endTime: str
+    error: Status
+    location: str
+    name: str
+    nodepoolConditions: typing.List[StatusCondition]
+    operationType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "CREATE_CLUSTER",
+        "DELETE_CLUSTER",
+        "UPGRADE_MASTER",
+        "UPGRADE_NODES",
+        "REPAIR_CLUSTER",
+        "UPDATE_CLUSTER",
+        "CREATE_NODE_POOL",
+        "DELETE_NODE_POOL",
+        "SET_NODE_POOL_MANAGEMENT",
+        "AUTO_REPAIR_NODES",
+        "AUTO_UPGRADE_NODES",
+        "SET_LABELS",
+        "SET_MASTER_AUTH",
+        "SET_NODE_POOL_SIZE",
+        "SET_NETWORK_POLICY",
+        "SET_MAINTENANCE_POLICY",
+    ]
+    progress: OperationProgress
+    selfLink: str
+    startTime: str
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
+    ]
+    statusMessage: str
+    targetLink: str
+    zone: str
 
 @typing.type_check_only
-class OperationProgress(typing.Dict[str, typing.Any]): ...
+class OperationProgress(typing_extensions.TypedDict, total=False):
+    metrics: typing.List[Metric]
+    name: str
+    stages: typing.List[OperationProgress]
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
+    ]
 
 @typing.type_check_only
 class PodSecurityPolicyConfig(typing_extensions.TypedDict, total=False):
@@ -793,6 +856,15 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     upgradeSettings: UpgradeSettings
     workloadMetadataConfig: WorkloadMetadataConfig
     zone: str
+
+@typing.type_check_only
+class UpgradeAvailableEvent(typing_extensions.TypedDict, total=False):
+    releaseChannel: ReleaseChannel
+    resource: str
+    resourceType: typing_extensions.Literal[
+        "UPGRADE_RESOURCE_TYPE_UNSPECIFIED", "MASTER", "NODE_POOL"
+    ]
+    version: str
 
 @typing.type_check_only
 class UpgradeEvent(typing_extensions.TypedDict, total=False):

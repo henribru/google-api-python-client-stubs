@@ -253,7 +253,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            gmbEmail: str = ...,
+            gmbEmail: str,
             **kwargs: typing.Any
         ) -> LiasettingsRequestGmbAccessResponseHttpRequest: ...
         def requestinventoryverification(
@@ -264,10 +264,10 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            contactEmail: str = ...,
-            contactName: str = ...,
-            country: str = ...,
-            language: str = ...,
+            country: str,
+            language: str,
+            contactName: str,
+            contactEmail: str,
             **kwargs: typing.Any
         ) -> LiasettingsSetInventoryVerificationContactResponseHttpRequest: ...
         def setposdataprovider(
@@ -275,7 +275,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             *,
             merchantId: str,
             accountId: str,
-            country: str = ...,
+            country: str,
             posDataProviderId: str = ...,
             posExternalAccountId: str = ...,
             **kwargs: typing.Any

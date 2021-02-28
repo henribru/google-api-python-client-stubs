@@ -54,7 +54,9 @@ class EntityResult(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class Filter(typing.Dict[str, typing.Any]): ...
+class Filter(typing_extensions.TypedDict, total=False):
+    compositeFilter: CompositeFilter
+    propertyFilter: PropertyFilter
 
 @typing.type_check_only
 class GoogleDatastoreAdminV1CommonMetadata(typing_extensions.TypedDict, total=False):
@@ -244,7 +246,9 @@ class GqlQuery(typing_extensions.TypedDict, total=False):
     queryString: str
 
 @typing.type_check_only
-class GqlQueryParameter(typing.Dict[str, typing.Any]): ...
+class GqlQueryParameter(typing_extensions.TypedDict, total=False):
+    cursor: str
+    value: Value
 
 @typing.type_check_only
 class Key(typing_extensions.TypedDict, total=False):
@@ -301,7 +305,18 @@ class Projection(typing_extensions.TypedDict, total=False):
     property: PropertyReference
 
 @typing.type_check_only
-class PropertyFilter(typing.Dict[str, typing.Any]): ...
+class PropertyFilter(typing_extensions.TypedDict, total=False):
+    op: typing_extensions.Literal[
+        "OPERATOR_UNSPECIFIED",
+        "LESS_THAN",
+        "LESS_THAN_OR_EQUAL",
+        "GREATER_THAN",
+        "GREATER_THAN_OR_EQUAL",
+        "EQUAL",
+        "HAS_ANCESTOR",
+    ]
+    property: PropertyReference
+    value: Value
 
 @typing.type_check_only
 class PropertyOrder(typing_extensions.TypedDict, total=False):
@@ -397,4 +412,17 @@ class TransactionOptions(typing_extensions.TypedDict, total=False):
     readWrite: ReadWrite
 
 @typing.type_check_only
-class Value(typing.Dict[str, typing.Any]): ...
+class Value(typing_extensions.TypedDict, total=False):
+    arrayValue: ArrayValue
+    blobValue: str
+    booleanValue: bool
+    doubleValue: float
+    entityValue: Entity
+    excludeFromIndexes: bool
+    geoPointValue: LatLng
+    integerValue: str
+    keyValue: Key
+    meaning: int
+    nullValue: typing_extensions.Literal["NULL_VALUE"]
+    stringValue: str
+    timestampValue: str

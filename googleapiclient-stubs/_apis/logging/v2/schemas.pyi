@@ -72,6 +72,11 @@ class ListExclusionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+    locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListLogEntriesRequest(typing_extensions.TypedDict, total=False):
     filter: str
     orderBy: str
@@ -111,6 +116,14 @@ class ListSinksResponse(typing_extensions.TypedDict, total=False):
 class ListViewsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     views: typing.List[LogView]
+
+@typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
 
 @typing.type_check_only
 class LogBucket(typing_extensions.TypedDict, total=False):
@@ -353,6 +366,24 @@ class SourceLocation(typing_extensions.TypedDict, total=False):
 class SourceReference(typing_extensions.TypedDict, total=False):
     repository: str
     revisionId: str
+
+@typing.type_check_only
+class SuppressionInfo(typing_extensions.TypedDict, total=False):
+    reason: typing_extensions.Literal[
+        "REASON_UNSPECIFIED", "RATE_LIMIT", "NOT_CONSUMED"
+    ]
+    suppressedCount: int
+
+@typing.type_check_only
+class TailLogEntriesRequest(typing_extensions.TypedDict, total=False):
+    bufferWindow: str
+    filter: str
+    resourceNames: typing.List[str]
+
+@typing.type_check_only
+class TailLogEntriesResponse(typing_extensions.TypedDict, total=False):
+    entries: typing.List[LogEntry]
+    suppressionInfo: typing.List[SuppressionInfo]
 
 @typing.type_check_only
 class UndeleteBucketRequest(typing_extensions.TypedDict, total=False): ...

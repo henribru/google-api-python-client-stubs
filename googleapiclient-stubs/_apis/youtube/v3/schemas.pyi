@@ -1229,6 +1229,9 @@ class LiveBroadcastContentDetails(typing_extensions.TypedDict, total=False):
     ]
     recordFromStart: bool
     startWithSlate: bool
+    stereoLayout: typing_extensions.Literal[
+        "stereoLayoutUnspecified", "mono", "leftRight", "topBottom"
+    ]
 
 @typing.type_check_only
 class LiveBroadcastListResponse(typing_extensions.TypedDict, total=False):
@@ -1658,6 +1661,8 @@ class PlaylistItemSnippet(typing_extensions.TypedDict, total=False):
     resourceId: ResourceId
     thumbnails: ThumbnailDetails
     title: str
+    videoOwnerChannelId: str
+    videoOwnerChannelTitle: str
 
 @typing.type_check_only
 class PlaylistItemStatus(typing_extensions.TypedDict, total=False):
@@ -1693,6 +1698,7 @@ class PlaylistSnippet(typing_extensions.TypedDict, total=False):
     localized: PlaylistLocalization
     publishedAt: str
     tags: typing.List[str]
+    thumbnailVideoId: str
     thumbnails: ThumbnailDetails
     title: str
 
@@ -1747,30 +1753,6 @@ class SearchResultSnippet(typing_extensions.TypedDict, total=False):
     publishedAt: str
     thumbnails: ThumbnailDetails
     title: str
-
-@typing.type_check_only
-class Sponsor(typing_extensions.TypedDict, total=False):
-    etag: str
-    kind: str
-    snippet: SponsorSnippet
-
-@typing.type_check_only
-class SponsorListResponse(typing_extensions.TypedDict, total=False):
-    etag: str
-    eventId: str
-    items: typing.List[Sponsor]
-    kind: str
-    nextPageToken: str
-    pageInfo: PageInfo
-    tokenPagination: TokenPagination
-    visitorId: str
-
-@typing.type_check_only
-class SponsorSnippet(typing_extensions.TypedDict, total=False):
-    channelId: str
-    cumulativeDurationMonths: int
-    sponsorDetails: ChannelProfileDetails
-    sponsorSince: str
 
 @typing.type_check_only
 class Subscription(typing_extensions.TypedDict, total=False):
@@ -2105,8 +2087,7 @@ class VideoProcessingDetailsProcessingProgress(
     timeLeftMs: str
 
 @typing.type_check_only
-class VideoProjectDetails(typing_extensions.TypedDict, total=False):
-    tags: typing.List[str]
+class VideoProjectDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class VideoRating(typing_extensions.TypedDict, total=False):

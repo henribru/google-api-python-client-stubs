@@ -162,6 +162,125 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             ) -> CreativeHttpRequest: ...
         @typing.type_check_only
         class InsertionOrdersResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class TargetingTypesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AssignedTargetingOptionsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def get(
+                        self,
+                        *,
+                        advertiserId: str,
+                        insertionOrderId: str,
+                        targetingType: typing_extensions.Literal[
+                            "TARGETING_TYPE_UNSPECIFIED",
+                            "TARGETING_TYPE_CHANNEL",
+                            "TARGETING_TYPE_APP_CATEGORY",
+                            "TARGETING_TYPE_APP",
+                            "TARGETING_TYPE_URL",
+                            "TARGETING_TYPE_DAY_AND_TIME",
+                            "TARGETING_TYPE_AGE_RANGE",
+                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                            "TARGETING_TYPE_GENDER",
+                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                            "TARGETING_TYPE_PARENTAL_STATUS",
+                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                            "TARGETING_TYPE_DEVICE_TYPE",
+                            "TARGETING_TYPE_AUDIENCE_GROUP",
+                            "TARGETING_TYPE_BROWSER",
+                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                            "TARGETING_TYPE_ON_SCREEN_POSITION",
+                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                            "TARGETING_TYPE_ENVIRONMENT",
+                            "TARGETING_TYPE_CARRIER_AND_ISP",
+                            "TARGETING_TYPE_OPERATING_SYSTEM",
+                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                            "TARGETING_TYPE_KEYWORD",
+                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                            "TARGETING_TYPE_VIEWABILITY",
+                            "TARGETING_TYPE_CATEGORY",
+                            "TARGETING_TYPE_INVENTORY_SOURCE",
+                            "TARGETING_TYPE_LANGUAGE",
+                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                            "TARGETING_TYPE_GEO_REGION",
+                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                            "TARGETING_TYPE_EXCHANGE",
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                        ],
+                        assignedTargetingOptionId: str,
+                        **kwargs: typing.Any
+                    ) -> AssignedTargetingOptionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        advertiserId: str,
+                        insertionOrderId: str,
+                        targetingType: typing_extensions.Literal[
+                            "TARGETING_TYPE_UNSPECIFIED",
+                            "TARGETING_TYPE_CHANNEL",
+                            "TARGETING_TYPE_APP_CATEGORY",
+                            "TARGETING_TYPE_APP",
+                            "TARGETING_TYPE_URL",
+                            "TARGETING_TYPE_DAY_AND_TIME",
+                            "TARGETING_TYPE_AGE_RANGE",
+                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                            "TARGETING_TYPE_GENDER",
+                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                            "TARGETING_TYPE_PARENTAL_STATUS",
+                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                            "TARGETING_TYPE_DEVICE_TYPE",
+                            "TARGETING_TYPE_AUDIENCE_GROUP",
+                            "TARGETING_TYPE_BROWSER",
+                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                            "TARGETING_TYPE_ON_SCREEN_POSITION",
+                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                            "TARGETING_TYPE_ENVIRONMENT",
+                            "TARGETING_TYPE_CARRIER_AND_ISP",
+                            "TARGETING_TYPE_OPERATING_SYSTEM",
+                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                            "TARGETING_TYPE_KEYWORD",
+                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                            "TARGETING_TYPE_VIEWABILITY",
+                            "TARGETING_TYPE_CATEGORY",
+                            "TARGETING_TYPE_INVENTORY_SOURCE",
+                            "TARGETING_TYPE_LANGUAGE",
+                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                            "TARGETING_TYPE_GEO_REGION",
+                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                            "TARGETING_TYPE_EXCHANGE",
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                        ],
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest: ...
+                def assignedTargetingOptions(
+                    self,
+                ) -> AssignedTargetingOptionsResource: ...
+            def bulkListInsertionOrderAssignedTargetingOptions(
+                self,
+                *,
+                advertiserId: str,
+                insertionOrderId: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -194,6 +313,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> InsertionOrderHttpRequest: ...
+            def targetingTypes(self) -> TargetingTypesResource: ...
         @typing.type_check_only
         class LineItemsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -517,6 +637,53 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> LocationListHttpRequest: ...
             def assignedLocations(self) -> AssignedLocationsResource: ...
+        @typing.type_check_only
+        class ManualTriggersResource(googleapiclient.discovery.Resource):
+            def activate(
+                self,
+                *,
+                advertiserId: str,
+                triggerId: str,
+                body: ActivateManualTriggerRequest = ...,
+                **kwargs: typing.Any
+            ) -> ManualTriggerHttpRequest: ...
+            def create(
+                self,
+                *,
+                advertiserId: str,
+                body: ManualTrigger = ...,
+                **kwargs: typing.Any
+            ) -> ManualTriggerHttpRequest: ...
+            def deactivate(
+                self,
+                *,
+                advertiserId: str,
+                triggerId: str,
+                body: DeactivateManualTriggerRequest = ...,
+                **kwargs: typing.Any
+            ) -> ManualTriggerHttpRequest: ...
+            def get(
+                self, *, advertiserId: str, triggerId: str, **kwargs: typing.Any
+            ) -> ManualTriggerHttpRequest: ...
+            def list(
+                self,
+                *,
+                advertiserId: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListManualTriggersResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                advertiserId: str,
+                triggerId: str,
+                body: ManualTrigger = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> ManualTriggerHttpRequest: ...
         @typing.type_check_only
         class NegativeKeywordListsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -845,6 +1012,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         def insertionOrders(self) -> InsertionOrdersResource: ...
         def lineItems(self) -> LineItemsResource: ...
         def locationLists(self) -> LocationListsResource: ...
+        def manualTriggers(self) -> ManualTriggersResource: ...
         def negativeKeywordLists(self) -> NegativeKeywordListsResource: ...
         def targetingTypes(self) -> TargetingTypesResource: ...
     @typing.type_check_only
@@ -1479,6 +1647,52 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTargetingOptionsResponseHttpRequest: ...
+            def search(
+                self,
+                *,
+                targetingType: typing_extensions.Literal[
+                    "TARGETING_TYPE_UNSPECIFIED",
+                    "TARGETING_TYPE_CHANNEL",
+                    "TARGETING_TYPE_APP_CATEGORY",
+                    "TARGETING_TYPE_APP",
+                    "TARGETING_TYPE_URL",
+                    "TARGETING_TYPE_DAY_AND_TIME",
+                    "TARGETING_TYPE_AGE_RANGE",
+                    "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                    "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                    "TARGETING_TYPE_GENDER",
+                    "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                    "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                    "TARGETING_TYPE_PARENTAL_STATUS",
+                    "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                    "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                    "TARGETING_TYPE_DEVICE_TYPE",
+                    "TARGETING_TYPE_AUDIENCE_GROUP",
+                    "TARGETING_TYPE_BROWSER",
+                    "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                    "TARGETING_TYPE_ON_SCREEN_POSITION",
+                    "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                    "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                    "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                    "TARGETING_TYPE_ENVIRONMENT",
+                    "TARGETING_TYPE_CARRIER_AND_ISP",
+                    "TARGETING_TYPE_OPERATING_SYSTEM",
+                    "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                    "TARGETING_TYPE_KEYWORD",
+                    "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                    "TARGETING_TYPE_VIEWABILITY",
+                    "TARGETING_TYPE_CATEGORY",
+                    "TARGETING_TYPE_INVENTORY_SOURCE",
+                    "TARGETING_TYPE_LANGUAGE",
+                    "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                    "TARGETING_TYPE_GEO_REGION",
+                    "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                    "TARGETING_TYPE_EXCHANGE",
+                    "TARGETING_TYPE_SUB_EXCHANGE",
+                ],
+                body: SearchTargetingOptionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> SearchTargetingOptionsResponseHttpRequest: ...
         def targetingOptions(self) -> TargetingOptionsResource: ...
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
@@ -1675,6 +1889,18 @@ class BulkListAdvertiserAssignedTargetingOptionsResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> BulkListAdvertiserAssignedTargetingOptionsResponse: ...
+
+@typing.type_check_only
+class BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> BulkListInsertionOrderAssignedTargetingOptionsResponse: ...
 
 @typing.type_check_only
 class BulkListLineItemAssignedTargetingOptionsResponseHttpRequest(
@@ -1973,6 +2199,18 @@ class ListGoogleAudiencesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListGoogleAudiencesResponse: ...
 
 @typing.type_check_only
+class ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListInsertionOrderAssignedTargetingOptionsResponse: ...
+
+@typing.type_check_only
 class ListInsertionOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2033,6 +2271,16 @@ class ListLocationListsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListLocationListsResponse: ...
+
+@typing.type_check_only
+class ListManualTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListManualTriggersResponse: ...
 
 @typing.type_check_only
 class ListNegativeKeywordListsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -2117,6 +2365,16 @@ class LocationListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LocationList: ...
 
 @typing.type_check_only
+class ManualTriggerHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ManualTrigger: ...
+
+@typing.type_check_only
 class NegativeKeywordHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2155,6 +2413,16 @@ class PartnerHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Partner: ...
+
+@typing.type_check_only
+class SearchTargetingOptionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SearchTargetingOptionsResponse: ...
 
 @typing.type_check_only
 class SiteHttpRequest(googleapiclient.http.HttpRequest):

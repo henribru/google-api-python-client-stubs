@@ -27,7 +27,6 @@ class Basis(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -113,6 +112,7 @@ class Detail(typing_extensions.TypedDict, total=False):
     package: str
     packageType: str
     severityName: str
+    source: str
 
 @typing.type_check_only
 class Discovered(typing_extensions.TypedDict, total=False):
@@ -494,6 +494,7 @@ class UpgradeOccurrence(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
     epoch: int
+    inclusive: bool
     kind: typing_extensions.Literal["NORMAL", "MINIMUM", "MAXIMUM"]
     name: str
     revision: str

@@ -12,6 +12,53 @@ class PubsubResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class SchemasResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: Schema = ...,
+                schemaId: str = ...,
+                **kwargs: typing.Any
+            ) -> SchemaHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self,
+                *,
+                name: str,
+                view: typing_extensions.Literal[
+                    "SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> SchemaHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                view: typing_extensions.Literal[
+                    "SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> ListSchemasResponseHttpRequest: ...
+            def validate(
+                self,
+                *,
+                parent: str,
+                body: ValidateSchemaRequest = ...,
+                **kwargs: typing.Any
+            ) -> ValidateSchemaResponseHttpRequest: ...
+            def validateMessage(
+                self,
+                *,
+                parent: str,
+                body: ValidateMessageRequest = ...,
+                **kwargs: typing.Any
+            ) -> ValidateMessageResponseHttpRequest: ...
+        @typing.type_check_only
         class SnapshotsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -213,6 +260,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def snapshots(self) -> SnapshotsResource: ...
             def subscriptions(self) -> SubscriptionsResource: ...
+        def schemas(self) -> SchemasResource: ...
         def snapshots(self) -> SnapshotsResource: ...
         def subscriptions(self) -> SubscriptionsResource: ...
         def topics(self) -> TopicsResource: ...
@@ -237,6 +285,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Empty: ...
+
+@typing.type_check_only
+class ListSchemasResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListSchemasResponse: ...
 
 @typing.type_check_only
 class ListSnapshotsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -319,6 +377,16 @@ class PullResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> PullResponse: ...
 
 @typing.type_check_only
+class SchemaHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Schema: ...
+
+@typing.type_check_only
 class SeekResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -367,3 +435,23 @@ class TopicHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Topic: ...
+
+@typing.type_check_only
+class ValidateMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ValidateMessageResponse: ...
+
+@typing.type_check_only
+class ValidateSchemaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ValidateSchemaResponse: ...

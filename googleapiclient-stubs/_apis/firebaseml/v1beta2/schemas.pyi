@@ -2,6 +2,13 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class DownloadModelResponse(typing_extensions.TypedDict, total=False):
+    downloadUri: str
+    expireTime: str
+    modelFormat: typing_extensions.Literal["MODEL_FORMAT_UNSPECIFIED", "TFLITE"]
+    sizeBytes: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only

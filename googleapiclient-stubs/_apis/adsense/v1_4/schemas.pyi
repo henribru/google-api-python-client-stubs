@@ -2,7 +2,14 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
-class Account(typing.Dict[str, typing.Any]): ...
+class Account(typing_extensions.TypedDict, total=False):
+    creation_time: str
+    id: str
+    kind: str
+    name: str
+    premium: bool
+    subAccounts: typing.List[Account]
+    timezone: str
 
 @typing.type_check_only
 class Accounts(typing_extensions.TypedDict, total=False):
