@@ -113,15 +113,10 @@ class Filter(typing_extensions.TypedDict, total=False):
     stringFilter: StringFilter
 
 @typing.type_check_only
-class FilterExpression(typing_extensions.TypedDict, total=False):
-    andGroup: FilterExpressionList
-    filter: Filter
-    notExpression: FilterExpression
-    orGroup: FilterExpressionList
+class FilterExpression(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class FilterExpressionList(typing_extensions.TypedDict, total=False):
-    expressions: typing.List[FilterExpression]
+class FilterExpressionList(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class InListFilter(typing_extensions.TypedDict, total=False):
@@ -264,18 +259,7 @@ class Row(typing_extensions.TypedDict, total=False):
     metricValues: typing.List[MetricValue]
 
 @typing.type_check_only
-class RunPivotReportRequest(typing_extensions.TypedDict, total=False):
-    cohortSpec: CohortSpec
-    currencyCode: str
-    dateRanges: typing.List[DateRange]
-    dimensionFilter: FilterExpression
-    dimensions: typing.List[Dimension]
-    entity: Entity
-    keepEmptyRows: bool
-    metricFilter: FilterExpression
-    metrics: typing.List[Metric]
-    pivots: typing.List[Pivot]
-    returnPropertyQuota: bool
+class RunPivotReportRequest(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RunPivotReportResponse(typing_extensions.TypedDict, total=False):
@@ -310,21 +294,7 @@ class RunRealtimeReportResponse(typing_extensions.TypedDict, total=False):
     totals: typing.List[Row]
 
 @typing.type_check_only
-class RunReportRequest(typing_extensions.TypedDict, total=False):
-    cohortSpec: CohortSpec
-    currencyCode: str
-    dateRanges: typing.List[DateRange]
-    dimensionFilter: FilterExpression
-    dimensions: typing.List[Dimension]
-    entity: Entity
-    keepEmptyRows: bool
-    limit: str
-    metricAggregations: typing.List[str]
-    metricFilter: FilterExpression
-    metrics: typing.List[Metric]
-    offset: str
-    orderBys: typing.List[OrderBy]
-    returnPropertyQuota: bool
+class RunReportRequest(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RunReportResponse(typing_extensions.TypedDict, total=False):

@@ -144,11 +144,7 @@ class Frame(typing_extensions.TypedDict, total=False):
     zoneId: str
 
 @typing.type_check_only
-class GcRule(typing_extensions.TypedDict, total=False):
-    intersection: Intersection
-    maxAge: str
-    maxNumVersions: int
-    union: Union
+class GcRule(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GenerateConsistencyTokenRequest(typing_extensions.TypedDict, total=False): ...
@@ -174,8 +170,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PRODUCTION", "DEVELOPMENT"]
 
 @typing.type_check_only
-class Intersection(typing_extensions.TypedDict, total=False):
-    rules: typing.List[GcRule]
+class Intersection(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ListAppProfilesResponse(typing_extensions.TypedDict, total=False):
@@ -333,8 +328,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
 
 @typing.type_check_only
-class Union(typing_extensions.TypedDict, total=False):
-    rules: typing.List[GcRule]
+class Union(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class UpdateAppProfileMetadata(typing_extensions.TypedDict, total=False): ...

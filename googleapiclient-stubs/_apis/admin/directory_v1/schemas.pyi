@@ -401,14 +401,7 @@ class OrgUnits(typing_extensions.TypedDict, total=False):
     organizationUnits: typing.List[OrgUnit]
 
 @typing.type_check_only
-class Privilege(typing_extensions.TypedDict, total=False):
-    childPrivileges: typing.List[Privilege]
-    etag: str
-    isOuScopable: bool
-    kind: str
-    privilegeName: str
-    serviceId: str
-    serviceName: str
+class Privilege(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Privileges(typing_extensions.TypedDict, total=False):

@@ -337,6 +337,7 @@ class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     hivePartitioningOptions: HivePartitioningOptions
     ignoreUnknownValues: bool
     maxBadRecords: int
+    parquetOptions: ParquetOptions
     schema: TableSchema
     sourceFormat: str
     sourceUris: typing.List[str]
@@ -420,15 +421,7 @@ class JobCancelResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class JobConfiguration(typing_extensions.TypedDict, total=False):
-    copy: JobConfigurationTableCopy
-    dryRun: bool
-    extract: JobConfigurationExtract
-    jobTimeoutMs: str
-    jobType: str
-    labels: typing.Dict[str, typing.Any]
-    load: JobConfigurationLoad
-    query: JobConfigurationQuery
+class JobConfiguration(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class JobConfigurationExtract(typing_extensions.TypedDict, total=False):
@@ -443,62 +436,10 @@ class JobConfigurationExtract(typing_extensions.TypedDict, total=False):
     useAvroLogicalTypes: bool
 
 @typing.type_check_only
-class JobConfigurationLoad(typing_extensions.TypedDict, total=False):
-    allowJaggedRows: bool
-    allowQuotedNewlines: bool
-    autodetect: bool
-    clustering: Clustering
-    createDisposition: str
-    decimalTargetTypes: typing.List[str]
-    destinationEncryptionConfiguration: EncryptionConfiguration
-    destinationTable: TableReference
-    destinationTableProperties: DestinationTableProperties
-    encoding: str
-    fieldDelimiter: str
-    hivePartitioningOptions: HivePartitioningOptions
-    ignoreUnknownValues: bool
-    jsonExtension: str
-    maxBadRecords: int
-    nullMarker: str
-    projectionFields: typing.List[str]
-    quote: str
-    rangePartitioning: RangePartitioning
-    schema: TableSchema
-    schemaInline: str
-    schemaInlineFormat: str
-    schemaUpdateOptions: typing.List[str]
-    skipLeadingRows: int
-    sourceFormat: str
-    sourceUris: typing.List[str]
-    timePartitioning: TimePartitioning
-    useAvroLogicalTypes: bool
-    writeDisposition: str
+class JobConfigurationLoad(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class JobConfigurationQuery(typing_extensions.TypedDict, total=False):
-    allowLargeResults: bool
-    clustering: Clustering
-    connectionProperties: typing.List[ConnectionProperty]
-    createDisposition: str
-    defaultDataset: DatasetReference
-    destinationEncryptionConfiguration: EncryptionConfiguration
-    destinationTable: TableReference
-    flattenResults: bool
-    maximumBillingTier: int
-    maximumBytesBilled: str
-    parameterMode: str
-    preserveNulls: bool
-    priority: str
-    query: str
-    queryParameters: typing.List[QueryParameter]
-    rangePartitioning: RangePartitioning
-    schemaUpdateOptions: typing.List[str]
-    tableDefinitions: typing.Dict[str, typing.Any]
-    timePartitioning: TimePartitioning
-    useLegacySql: bool
-    useQueryCache: bool
-    userDefinedFunctionResources: typing.List[UserDefinedFunctionResource]
-    writeDisposition: str
+class JobConfigurationQuery(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class JobConfigurationTableCopy(typing_extensions.TypedDict, total=False):
@@ -525,53 +466,10 @@ class JobReference(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
-class JobStatistics(typing_extensions.TypedDict, total=False):
-    completionRatio: float
-    creationTime: str
-    endTime: str
-    extract: JobStatistics4
-    load: JobStatistics3
-    numChildJobs: str
-    parentJobId: str
-    query: JobStatistics2
-    quotaDeferments: typing.List[str]
-    reservationUsage: typing.List[typing.Dict[str, typing.Any]]
-    reservation_id: str
-    rowLevelSecurityStatistics: RowLevelSecurityStatistics
-    scriptStatistics: ScriptStatistics
-    startTime: str
-    totalBytesProcessed: str
-    totalSlotMs: str
-    transactionInfoTemplate: TransactionInfo
+class JobStatistics(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class JobStatistics2(typing_extensions.TypedDict, total=False):
-    billingTier: int
-    cacheHit: bool
-    ddlAffectedRowAccessPolicyCount: str
-    ddlOperationPerformed: str
-    ddlTargetDataset: DatasetReference
-    ddlTargetRoutine: RoutineReference
-    ddlTargetRowAccessPolicy: RowAccessPolicyReference
-    ddlTargetTable: TableReference
-    estimatedBytesProcessed: str
-    modelTraining: BigQueryModelTraining
-    modelTrainingCurrentIteration: int
-    modelTrainingExpectedTotalIteration: str
-    numDmlAffectedRows: str
-    queryPlan: typing.List[ExplainQueryStage]
-    referencedRoutines: typing.List[RoutineReference]
-    referencedTables: typing.List[TableReference]
-    reservationUsage: typing.List[typing.Dict[str, typing.Any]]
-    schema: TableSchema
-    statementType: str
-    timeline: typing.List[QueryTimelineSample]
-    totalBytesBilled: str
-    totalBytesProcessed: str
-    totalBytesProcessedAccuracy: str
-    totalPartitionsProcessed: str
-    totalSlotMs: str
-    undeclaredQueryParameters: typing.List[QueryParameter]
+class JobStatistics2(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class JobStatistics3(typing_extensions.TypedDict, total=False):
@@ -625,35 +523,7 @@ class MaterializedViewDefinition(typing_extensions.TypedDict, total=False):
     refreshIntervalMs: str
 
 @typing.type_check_only
-class Model(typing_extensions.TypedDict, total=False):
-    creationTime: str
-    description: str
-    encryptionConfiguration: EncryptionConfiguration
-    etag: str
-    expirationTime: str
-    featureColumns: typing.List[StandardSqlField]
-    friendlyName: str
-    labelColumns: typing.List[StandardSqlField]
-    labels: typing.Dict[str, typing.Any]
-    lastModifiedTime: str
-    location: str
-    modelReference: ModelReference
-    modelType: typing_extensions.Literal[
-        "MODEL_TYPE_UNSPECIFIED",
-        "LINEAR_REGRESSION",
-        "LOGISTIC_REGRESSION",
-        "KMEANS",
-        "MATRIX_FACTORIZATION",
-        "DNN_CLASSIFIER",
-        "TENSORFLOW",
-        "DNN_REGRESSOR",
-        "BOOSTED_TREE_REGRESSOR",
-        "BOOSTED_TREE_CLASSIFIER",
-        "ARIMA",
-        "AUTOML_REGRESSOR",
-        "AUTOML_CLASSIFIER",
-    ]
-    trainingRuns: typing.List[TrainingRun]
+class Model(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ModelDefinition(typing_extensions.TypedDict, total=False):
@@ -670,6 +540,11 @@ class ModelReference(typing_extensions.TypedDict, total=False):
 class MultiClassClassificationMetrics(typing_extensions.TypedDict, total=False):
     aggregateClassificationMetrics: AggregateClassificationMetrics
     confusionMatrixList: typing.List[ConfusionMatrix]
+
+@typing.type_check_only
+class ParquetOptions(typing_extensions.TypedDict, total=False):
+    enableListInference: bool
+    enumAsString: bool
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -698,22 +573,13 @@ class ProjectReference(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
-class QueryParameter(typing_extensions.TypedDict, total=False):
-    name: str
-    parameterType: QueryParameterType
-    parameterValue: QueryParameterValue
+class QueryParameter(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class QueryParameterType(typing_extensions.TypedDict, total=False):
-    arrayType: QueryParameterType
-    structTypes: typing.List[typing.Dict[str, typing.Any]]
-    type: str
+class QueryParameterType(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class QueryParameterValue(typing_extensions.TypedDict, total=False):
-    arrayValues: typing.List[QueryParameterValue]
-    structValues: typing.Dict[str, typing.Any]
-    value: str
+class QueryParameterValue(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):
@@ -777,23 +643,7 @@ class RegressionMetrics(typing_extensions.TypedDict, total=False):
     rSquared: float
 
 @typing.type_check_only
-class Routine(typing_extensions.TypedDict, total=False):
-    arguments: typing.List[Argument]
-    creationTime: str
-    definitionBody: str
-    description: str
-    determinismLevel: typing_extensions.Literal[
-        "DETERMINISM_LEVEL_UNSPECIFIED", "DETERMINISTIC", "NOT_DETERMINISTIC"
-    ]
-    etag: str
-    importedLibraries: typing.List[str]
-    language: typing_extensions.Literal["LANGUAGE_UNSPECIFIED", "SQL", "JAVASCRIPT"]
-    lastModifiedTime: str
-    returnType: StandardSqlDataType
-    routineReference: RoutineReference
-    routineType: typing_extensions.Literal[
-        "ROUTINE_TYPE_UNSPECIFIED", "SCALAR_FUNCTION", "PROCEDURE"
-    ]
+class Routine(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RoutineReference(typing_extensions.TypedDict, total=False):
@@ -850,35 +700,13 @@ class SnapshotDefinition(typing_extensions.TypedDict, total=False):
     snapshotTime: str
 
 @typing.type_check_only
-class StandardSqlDataType(typing_extensions.TypedDict, total=False):
-    arrayElementType: StandardSqlDataType
-    structType: StandardSqlStructType
-    typeKind: typing_extensions.Literal[
-        "TYPE_KIND_UNSPECIFIED",
-        "INT64",
-        "BOOL",
-        "FLOAT64",
-        "STRING",
-        "BYTES",
-        "TIMESTAMP",
-        "DATE",
-        "TIME",
-        "DATETIME",
-        "GEOGRAPHY",
-        "NUMERIC",
-        "BIGNUMERIC",
-        "ARRAY",
-        "STRUCT",
-    ]
+class StandardSqlDataType(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class StandardSqlField(typing_extensions.TypedDict, total=False):
-    name: str
-    type: StandardSqlDataType
+class StandardSqlField(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class StandardSqlStructType(typing_extensions.TypedDict, total=False):
-    fields: typing.List[StandardSqlField]
+class StandardSqlStructType(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Streamingbuffer(typing_extensions.TypedDict, total=False):
@@ -944,14 +772,7 @@ class TableDataList(typing_extensions.TypedDict, total=False):
     totalRows: str
 
 @typing.type_check_only
-class TableFieldSchema(typing_extensions.TypedDict, total=False):
-    categories: typing.Dict[str, typing.Any]
-    description: str
-    fields: typing.List[TableFieldSchema]
-    mode: str
-    name: str
-    policyTags: typing.Dict[str, typing.Any]
-    type: str
+class TableFieldSchema(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TableList(typing_extensions.TypedDict, total=False):
@@ -972,8 +793,7 @@ class TableRow(typing_extensions.TypedDict, total=False):
     f: typing.List[TableCell]
 
 @typing.type_check_only
-class TableSchema(typing_extensions.TypedDict, total=False):
-    fields: typing.List[TableFieldSchema]
+class TableSchema(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

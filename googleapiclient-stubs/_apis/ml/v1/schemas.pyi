@@ -81,27 +81,7 @@ class GoogleCloudMlV1_StudyConfig_MetricSpec(typing_extensions.TypedDict, total=
     metric: str
 
 @typing.type_check_only
-class GoogleCloudMlV1_StudyConfig_ParameterSpec(
-    typing_extensions.TypedDict, total=False
-):
-    categoricalValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec
-    childParameterSpecs: typing.List[GoogleCloudMlV1_StudyConfig_ParameterSpec]
-    discreteValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec
-    doubleValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec
-    integerValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec
-    parameter: str
-    parentCategoricalValues: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec
-    parentDiscreteValues: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec
-    parentIntValues: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec
-    scaleType: typing_extensions.Literal[
-        "SCALE_TYPE_UNSPECIFIED",
-        "UNIT_LINEAR_SCALE",
-        "UNIT_LOG_SCALE",
-        "UNIT_REVERSE_LOG_SCALE",
-    ]
-    type: typing_extensions.Literal[
-        "PARAMETER_TYPE_UNSPECIFIED", "DOUBLE", "INTEGER", "CATEGORICAL", "DISCRETE"
-    ]
+class GoogleCloudMlV1_StudyConfig_ParameterSpec(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudMlV1_Trial_Parameter(typing_extensions.TypedDict, total=False):
@@ -474,26 +454,10 @@ class GoogleCloudMlV1__SetDefaultVersionRequest(
 class GoogleCloudMlV1__StopTrialRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleCloudMlV1__Study(typing_extensions.TypedDict, total=False):
-    createTime: str
-    inactiveReason: str
-    name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "COMPLETED"
-    ]
-    studyConfig: GoogleCloudMlV1__StudyConfig
+class GoogleCloudMlV1__Study(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudMlV1__StudyConfig(typing_extensions.TypedDict, total=False):
-    algorithm: typing_extensions.Literal[
-        "ALGORITHM_UNSPECIFIED",
-        "GAUSSIAN_PROCESS_BANDIT",
-        "GRID_SEARCH",
-        "RANDOM_SEARCH",
-    ]
-    automatedStoppingConfig: GoogleCloudMlV1__AutomatedStoppingConfig
-    metrics: typing.List[GoogleCloudMlV1_StudyConfig_MetricSpec]
-    parameters: typing.List[GoogleCloudMlV1_StudyConfig_ParameterSpec]
+class GoogleCloudMlV1__StudyConfig(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudMlV1__SuggestTrialsMetadata(typing_extensions.TypedDict, total=False):

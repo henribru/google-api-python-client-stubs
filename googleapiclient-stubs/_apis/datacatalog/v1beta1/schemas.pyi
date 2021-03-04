@@ -47,14 +47,7 @@ class GoogleCloudDatacatalogV1beta1BigQueryTableSpec(
     viewSpec: GoogleCloudDatacatalogV1beta1ViewSpec
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ColumnSchema(
-    typing_extensions.TypedDict, total=False
-):
-    column: str
-    description: str
-    mode: str
-    subcolumns: typing.List[GoogleCloudDatacatalogV1beta1ColumnSchema]
-    type: str
+class GoogleCloudDatacatalogV1beta1ColumnSchema(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1Entry(typing_extensions.TypedDict, total=False):
@@ -136,10 +129,7 @@ class GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse(
     taxonomies: typing.List[GoogleCloudDatacatalogV1beta1Taxonomy]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1InlineSource(
-    typing_extensions.TypedDict, total=False
-):
-    taxonomies: typing.List[GoogleCloudDatacatalogV1beta1SerializedTaxonomy]
+class GoogleCloudDatacatalogV1beta1InlineSource(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ListEntriesResponse(
@@ -197,8 +187,7 @@ class GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldRequest(
     newTagTemplateFieldId: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1Schema(typing_extensions.TypedDict, total=False):
-    columns: typing.List[GoogleCloudDatacatalogV1beta1ColumnSchema]
+class GoogleCloudDatacatalogV1beta1Schema(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1SearchCatalogRequest(
@@ -241,21 +230,11 @@ class GoogleCloudDatacatalogV1beta1SearchCatalogResult(
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1SerializedPolicyTag(
-    typing_extensions.TypedDict, total=False
-):
-    childPolicyTags: typing.List[GoogleCloudDatacatalogV1beta1SerializedPolicyTag]
-    description: str
-    displayName: str
-    policyTag: str
+    typing.Dict[str, typing.Any]
+): ...
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1SerializedTaxonomy(
-    typing_extensions.TypedDict, total=False
-):
-    activatedPolicyTypes: typing.List[str]
-    description: str
-    displayName: str
-    policyTags: typing.List[GoogleCloudDatacatalogV1beta1SerializedPolicyTag]
+class GoogleCloudDatacatalogV1beta1SerializedTaxonomy(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1SystemTimestamps(

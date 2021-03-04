@@ -808,6 +808,40 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudApigeeV1TargetServer = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1TargetServerHttpRequest: ...
+            @typing.type_check_only
+            class TraceConfigResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OverridesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudApigeeV1TraceConfigOverride = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudApigeeV1TraceConfigOverrideHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudApigeeV1TraceConfigOverrideHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudApigeeV1ListTraceConfigOverridesResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudApigeeV1TraceConfigOverride = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudApigeeV1TraceConfigOverrideHttpRequest: ...
+                def overrides(self) -> OverridesResource: ...
             def create(
                 self,
                 *,
@@ -835,6 +869,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 options_requestedPolicyVersion: int = ...,
                 **kwargs: typing.Any
             ) -> GoogleIamV1PolicyHttpRequest: ...
+            def getTraceConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1TraceConfigHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
@@ -882,6 +919,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudApigeeV1Environment = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1EnvironmentHttpRequest: ...
+            def updateTraceConfig(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1TraceConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1TraceConfigHttpRequest: ...
             def analytics(self) -> AnalyticsResource: ...
             def apis(self) -> ApisResource: ...
             def caches(self) -> CachesResource: ...
@@ -896,6 +941,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def sharedflows(self) -> SharedflowsResource: ...
             def stats(self) -> StatsResource: ...
             def targetservers(self) -> TargetserversResource: ...
+            def traceConfig(self) -> TraceConfigResource: ...
         @typing.type_check_only
         class HostQueriesResource(googleapiclient.discovery.Resource):
             def create(
@@ -1915,6 +1961,18 @@ class GoogleCloudApigeeV1ListSharedFlowsResponseHttpRequest(
     ) -> GoogleCloudApigeeV1ListSharedFlowsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListTraceConfigOverridesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1ListTraceConfigOverridesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1NatAddressHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2059,6 +2117,28 @@ class GoogleCloudApigeeV1TestDatastoreResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1TestDatastoreResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1TraceConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1TraceConfig: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1TraceConfigOverrideHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1TraceConfigOverride: ...
 
 @typing.type_check_only
 class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):

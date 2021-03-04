@@ -646,6 +646,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customFieldMask: str = ...,
             customer: str = ...,
             domain: str = ...,
+            event: typing_extensions.Literal[
+                "eventUndefined", "add", "delete", "makeAdmin", "undelete", "update"
+            ] = ...,
             maxResults: int = ...,
             orderBy: typing_extensions.Literal[
                 "orderByUndefined", "email", "familyName", "givenName"

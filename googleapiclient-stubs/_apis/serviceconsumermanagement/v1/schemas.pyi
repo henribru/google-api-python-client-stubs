@@ -209,17 +209,7 @@ class Http(typing_extensions.TypedDict, total=False):
     rules: typing.List[HttpRule]
 
 @typing.type_check_only
-class HttpRule(typing_extensions.TypedDict, total=False):
-    additionalBindings: typing.List[HttpRule]
-    body: str
-    custom: CustomHttpPattern
-    delete: str
-    get: str
-    patch: str
-    post: str
-    put: str
-    responseBody: str
-    selector: str
+class HttpRule(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
@@ -374,10 +364,7 @@ class Option(typing_extensions.TypedDict, total=False):
     value: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
-class Page(typing_extensions.TypedDict, total=False):
-    content: str
-    name: str
-    subpages: typing.List[Page]
+class Page(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class PolicyBinding(typing_extensions.TypedDict, total=False):

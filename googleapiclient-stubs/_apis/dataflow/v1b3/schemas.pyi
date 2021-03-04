@@ -258,6 +258,7 @@ class Environment(typing_extensions.TypedDict, total=False):
     sdkPipelineOptions: typing.Dict[str, typing.Any]
     serviceAccountEmail: str
     serviceKmsKeyName: str
+    serviceOptions: typing.List[str]
     shuffleMode: typing_extensions.Literal[
         "SHUFFLE_MODE_UNSPECIFIED", "VM_BASED", "SERVICE_BASED"
     ]
@@ -744,13 +745,7 @@ class Point(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
-class Position(typing_extensions.TypedDict, total=False):
-    byteOffset: str
-    concatPosition: ConcatPosition
-    end: bool
-    key: str
-    recordIndex: str
-    shufflePosition: str
+class Position(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ProgressTimeseries(typing_extensions.TypedDict, total=False):
@@ -1237,34 +1232,10 @@ class WorkItemDetails(typing_extensions.TypedDict, total=False):
     taskId: str
 
 @typing.type_check_only
-class WorkItemServiceState(typing_extensions.TypedDict, total=False):
-    completeWorkStatus: Status
-    harnessData: typing.Dict[str, typing.Any]
-    hotKeyDetection: HotKeyDetection
-    leaseExpireTime: str
-    metricShortId: typing.List[MetricShortId]
-    nextReportIndex: str
-    reportStatusInterval: str
-    splitRequest: ApproximateSplitRequest
-    suggestedStopPoint: ApproximateProgress
-    suggestedStopPosition: Position
+class WorkItemServiceState(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class WorkItemStatus(typing_extensions.TypedDict, total=False):
-    completed: bool
-    counterUpdates: typing.List[CounterUpdate]
-    dynamicSourceSplit: DynamicSourceSplit
-    errors: typing.List[Status]
-    metricUpdates: typing.List[MetricUpdate]
-    progress: ApproximateProgress
-    reportIndex: str
-    reportedProgress: ApproximateReportedProgress
-    requestedLeaseDuration: str
-    sourceFork: SourceFork
-    sourceOperationResponse: SourceOperationResponse
-    stopPosition: Position
-    totalThrottlerWaitTimeSeconds: float
-    workItemId: str
+class WorkItemStatus(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class WorkerDetails(typing_extensions.TypedDict, total=False):

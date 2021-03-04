@@ -284,17 +284,7 @@ class Http(typing_extensions.TypedDict, total=False):
     rules: typing.List[HttpRule]
 
 @typing.type_check_only
-class HttpRule(typing_extensions.TypedDict, total=False):
-    additionalBindings: typing.List[HttpRule]
-    body: str
-    custom: CustomHttpPattern
-    delete: str
-    get: str
-    patch: str
-    post: str
-    put: str
-    responseBody: str
-    selector: str
+class HttpRule(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
@@ -471,10 +461,7 @@ class Option(typing_extensions.TypedDict, total=False):
     value: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
-class Page(typing_extensions.TypedDict, total=False):
-    content: str
-    name: str
-    subpages: typing.List[Page]
+class Page(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -525,34 +512,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     trafficPercentStrategy: TrafficPercentStrategy
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
-    apis: typing.List[Api]
-    authentication: Authentication
-    backend: Backend
-    billing: Billing
-    configVersion: int
-    context: Context
-    control: Control
-    customError: CustomError
-    documentation: Documentation
-    endpoints: typing.List[Endpoint]
-    enums: typing.List[Enum]
-    http: Http
-    id: str
-    logging: Logging
-    logs: typing.List[LogDescriptor]
-    metrics: typing.List[MetricDescriptor]
-    monitoredResources: typing.List[MonitoredResourceDescriptor]
-    monitoring: Monitoring
-    name: str
-    producerProjectId: str
-    quota: Quota
-    sourceInfo: SourceInfo
-    systemParameters: SystemParameters
-    systemTypes: typing.List[Type]
-    title: str
-    types: typing.List[Type]
-    usage: Usage
+class Service(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

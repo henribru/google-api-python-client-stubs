@@ -123,9 +123,7 @@ class Node(typing_extensions.TypedDict, total=False):
     userAgentVersion: str
 
 @typing.type_check_only
-class NodeMatcher(typing_extensions.TypedDict, total=False):
-    nodeId: StringMatcher
-    nodeMetadatas: typing.List[StructMatcher]
+class NodeMatcher(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class NullMatch(typing_extensions.TypedDict, total=False): ...
@@ -202,9 +200,7 @@ class StringMatcher(typing_extensions.TypedDict, total=False):
     suffix: str
 
 @typing.type_check_only
-class StructMatcher(typing_extensions.TypedDict, total=False):
-    path: typing.List[PathSegment]
-    value: ValueMatcher
+class StructMatcher(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class UpdateFailureState(typing_extensions.TypedDict, total=False):
@@ -213,10 +209,4 @@ class UpdateFailureState(typing_extensions.TypedDict, total=False):
     lastUpdateAttempt: str
 
 @typing.type_check_only
-class ValueMatcher(typing_extensions.TypedDict, total=False):
-    boolMatch: bool
-    doubleMatch: DoubleMatcher
-    listMatch: ListMatcher
-    nullMatch: NullMatch
-    presentMatch: bool
-    stringMatch: StringMatcher
+class ValueMatcher(typing.Dict[str, typing.Any]): ...

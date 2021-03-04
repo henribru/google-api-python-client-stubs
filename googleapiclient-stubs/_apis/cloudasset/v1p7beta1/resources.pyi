@@ -12,7 +12,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class V1p7beta1Resource(googleapiclient.discovery.Resource):
         def exportAssets(
-            self, *, parent: str, body: ExportAssetsRequest = ..., **kwargs: typing.Any
+            self,
+            *,
+            parent: str,
+            body: GoogleCloudAssetV1p7beta1ExportAssetsRequest = ...,
+            **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
     def v1p7beta1(self) -> V1p7beta1Resource: ...
 

@@ -12,6 +12,15 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class CredentialsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                accountId: str,
+                body: AccountCredentials = ...,
+                **kwargs: typing.Any
+            ) -> AccountCredentialsHttpRequest: ...
+        @typing.type_check_only
         class LabelsResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, accountId: str, body: AccountLabel = ..., **kwargs: typing.Any
@@ -134,6 +143,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             body: AccountsUpdateLabelsRequest = ...,
             **kwargs: typing.Any
         ) -> AccountsUpdateLabelsResponseHttpRequest: ...
+        def credentials(self) -> CredentialsResource: ...
         def labels(self) -> LabelsResource: ...
         def returncarrier(self) -> ReturncarrierResource: ...
     @typing.type_check_only
@@ -1096,6 +1106,16 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Account: ...
+
+@typing.type_check_only
+class AccountCredentialsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> AccountCredentials: ...
 
 @typing.type_check_only
 class AccountLabelHttpRequest(googleapiclient.http.HttpRequest):

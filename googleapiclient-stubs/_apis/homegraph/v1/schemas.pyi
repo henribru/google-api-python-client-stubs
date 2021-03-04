@@ -86,6 +86,16 @@ class ReportStateAndNotificationRequest(typing_extensions.TypedDict, total=False
 class ReportStateAndNotificationResponse(typing_extensions.TypedDict, total=False):
     requestId: str
 
+@typing.type_check_only
+class RequestLinkRequest(typing_extensions.TypedDict, total=False):
+    payload: RequestLinkRequestPayload
+    requestId: str
+
+@typing.type_check_only
+class RequestLinkRequestPayload(typing_extensions.TypedDict, total=False):
+    detectionTime: str
+    potentialCastDeviceIds: typing.List[str]
+
 AlternativeRequestSyncDevicesRequest = typing_extensions.TypedDict(
     "AlternativeRequestSyncDevicesRequest",
     {

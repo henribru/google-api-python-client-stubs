@@ -601,20 +601,7 @@ class PageBackgroundFill(typing_extensions.TypedDict, total=False):
     stretchedPictureFill: StretchedPictureFill
 
 @typing.type_check_only
-class PageElement(typing_extensions.TypedDict, total=False):
-    description: str
-    elementGroup: Group
-    image: Image
-    line: Line
-    objectId: str
-    shape: Shape
-    sheetsChart: SheetsChart
-    size: Size
-    table: Table
-    title: str
-    transform: AffineTransform
-    video: Video
-    wordArt: WordArt
+class PageElement(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class PageElementProperties(typing_extensions.TypedDict, total=False):
@@ -1054,10 +1041,7 @@ class Size(typing_extensions.TypedDict, total=False):
     width: Dimension
 
 @typing.type_check_only
-class SlideProperties(typing_extensions.TypedDict, total=False):
-    layoutObjectId: str
-    masterObjectId: str
-    notesPage: Page
+class SlideProperties(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class SolidFill(typing_extensions.TypedDict, total=False):

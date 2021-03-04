@@ -24,12 +24,14 @@ class DatabaseDump(typing_extensions.TypedDict, total=False):
     databaseType: typing_extensions.Literal["DATABASE_TYPE_UNSPECIFIED", "MYSQL"]
     gcsUri: str
     sourceDatabase: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "MYSQL", "AVRO"]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ExportMetadataRequest(typing_extensions.TypedDict, total=False):
+    databaseDumpType: typing_extensions.Literal["TYPE_UNSPECIFIED", "MYSQL", "AVRO"]
     destinationGcsFolder: str
     requestId: str
 
@@ -107,6 +109,7 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetadataExport(typing_extensions.TypedDict, total=False):
+    databaseDumpType: typing_extensions.Literal["TYPE_UNSPECIFIED", "MYSQL", "AVRO"]
     destinationGcsUri: str
     endTime: str
     startTime: str

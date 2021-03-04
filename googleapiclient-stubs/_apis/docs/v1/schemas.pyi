@@ -843,13 +843,7 @@ class SizeSuggestionState(typing_extensions.TypedDict, total=False):
     widthSuggested: bool
 
 @typing.type_check_only
-class StructuralElement(typing_extensions.TypedDict, total=False):
-    endIndex: int
-    paragraph: Paragraph
-    sectionBreak: SectionBreak
-    startIndex: int
-    table: Table
-    tableOfContents: TableOfContents
+class StructuralElement(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class SubstringMatchCriteria(typing_extensions.TypedDict, total=False):
@@ -914,13 +908,7 @@ class TabStop(typing_extensions.TypedDict, total=False):
     offset: Dimension
 
 @typing.type_check_only
-class Table(typing_extensions.TypedDict, total=False):
-    columns: int
-    rows: int
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    tableRows: typing.List[TableRow]
-    tableStyle: TableStyle
+class Table(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TableCell(typing_extensions.TypedDict, total=False):
@@ -990,10 +978,7 @@ class TableColumnProperties(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TableOfContents(typing_extensions.TypedDict, total=False):
-    content: typing.List[StructuralElement]
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
+class TableOfContents(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TableRange(typing_extensions.TypedDict, total=False):
@@ -1002,14 +987,7 @@ class TableRange(typing_extensions.TypedDict, total=False):
     tableCellLocation: TableCellLocation
 
 @typing.type_check_only
-class TableRow(typing_extensions.TypedDict, total=False):
-    endIndex: int
-    startIndex: int
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTableRowStyleChanges: typing.Dict[str, typing.Any]
-    tableCells: typing.List[TableCell]
-    tableRowStyle: TableRowStyle
+class TableRow(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TableRowStyle(typing_extensions.TypedDict, total=False):

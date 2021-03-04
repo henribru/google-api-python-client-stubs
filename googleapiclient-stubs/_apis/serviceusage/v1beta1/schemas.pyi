@@ -277,24 +277,10 @@ class GoogleApiServiceusageV1OperationMetadata(
     resourceNames: typing.List[str]
 
 @typing.type_check_only
-class GoogleApiServiceusageV1Service(typing_extensions.TypedDict, total=False):
-    config: GoogleApiServiceusageV1ServiceConfig
-    name: str
-    parent: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DISABLED", "ENABLED"]
+class GoogleApiServiceusageV1Service(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleApiServiceusageV1ServiceConfig(typing_extensions.TypedDict, total=False):
-    apis: typing.List[Api]
-    authentication: Authentication
-    documentation: Documentation
-    endpoints: typing.List[Endpoint]
-    monitoredResources: typing.List[MonitoredResourceDescriptor]
-    monitoring: Monitoring
-    name: str
-    quota: Quota
-    title: str
-    usage: Usage
+class GoogleApiServiceusageV1ServiceConfig(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleApiServiceusageV1beta1GetServiceIdentityResponse(
@@ -311,22 +297,10 @@ class GoogleApiServiceusageV1beta1ServiceIdentity(
     uniqueId: str
 
 @typing.type_check_only
-class Http(typing_extensions.TypedDict, total=False):
-    fullyDecodeReservedExpansion: bool
-    rules: typing.List[HttpRule]
+class Http(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class HttpRule(typing_extensions.TypedDict, total=False):
-    additionalBindings: typing.List[HttpRule]
-    body: str
-    custom: CustomHttpPattern
-    delete: str
-    get: str
-    patch: str
-    post: str
-    put: str
-    responseBody: str
-    selector: str
+class HttpRule(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ImportAdminOverridesRequest(typing_extensions.TypedDict, total=False):
@@ -528,10 +502,7 @@ class OverrideInlineSource(typing_extensions.TypedDict, total=False):
     overrides: typing.List[QuotaOverride]
 
 @typing.type_check_only
-class Page(typing_extensions.TypedDict, total=False):
-    content: str
-    name: str
-    subpages: typing.List[Page]
+class Page(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
@@ -570,24 +541,10 @@ class QuotaOverride(typing_extensions.TypedDict, total=False):
     unit: str
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
-    config: ServiceConfig
-    name: str
-    parent: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DISABLED", "ENABLED"]
+class Service(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class ServiceConfig(typing_extensions.TypedDict, total=False):
-    apis: typing.List[Api]
-    authentication: Authentication
-    documentation: Documentation
-    endpoints: typing.List[Endpoint]
-    monitoredResources: typing.List[MonitoredResourceDescriptor]
-    monitoring: Monitoring
-    name: str
-    quota: Quota
-    title: str
-    usage: Usage
+class ServiceConfig(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ServiceIdentity(typing_extensions.TypedDict, total=False):

@@ -467,50 +467,10 @@ class NotificationConfig(typing_extensions.TypedDict, total=False):
     pubsub: PubSub
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
-    clusterConditions: typing.List[StatusCondition]
-    detail: str
-    endTime: str
-    location: str
-    name: str
-    nodepoolConditions: typing.List[StatusCondition]
-    operationType: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED",
-        "CREATE_CLUSTER",
-        "DELETE_CLUSTER",
-        "UPGRADE_MASTER",
-        "UPGRADE_NODES",
-        "REPAIR_CLUSTER",
-        "UPDATE_CLUSTER",
-        "CREATE_NODE_POOL",
-        "DELETE_NODE_POOL",
-        "SET_NODE_POOL_MANAGEMENT",
-        "AUTO_REPAIR_NODES",
-        "AUTO_UPGRADE_NODES",
-        "SET_LABELS",
-        "SET_MASTER_AUTH",
-        "SET_NODE_POOL_SIZE",
-        "SET_NETWORK_POLICY",
-        "SET_MAINTENANCE_POLICY",
-    ]
-    progress: OperationProgress
-    selfLink: str
-    startTime: str
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
-    ]
-    statusMessage: str
-    targetLink: str
-    zone: str
+class Operation(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class OperationProgress(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[Metric]
-    name: str
-    stages: typing.List[OperationProgress]
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
-    ]
+class OperationProgress(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):

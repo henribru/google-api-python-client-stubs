@@ -222,20 +222,7 @@ class GoogleCloudDocumentaiV1beta1Document(typing_extensions.TypedDict, total=Fa
     uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1beta1DocumentEntity(
-    typing_extensions.TypedDict, total=False
-):
-    confidence: float
-    id: str
-    mentionId: str
-    mentionText: str
-    normalizedValue: GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue
-    pageAnchor: GoogleCloudDocumentaiV1beta1DocumentPageAnchor
-    properties: typing.List[GoogleCloudDocumentaiV1beta1DocumentEntity]
-    provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
-    redacted: bool
-    textAnchor: GoogleCloudDocumentaiV1beta1DocumentTextAnchor
-    type: str
+class GoogleCloudDocumentaiV1beta1DocumentEntity(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue(
@@ -643,20 +630,7 @@ class GoogleCloudDocumentaiV1beta2Document(typing_extensions.TypedDict, total=Fa
     uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1beta2DocumentEntity(
-    typing_extensions.TypedDict, total=False
-):
-    confidence: float
-    id: str
-    mentionId: str
-    mentionText: str
-    normalizedValue: GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue
-    pageAnchor: GoogleCloudDocumentaiV1beta2DocumentPageAnchor
-    properties: typing.List[GoogleCloudDocumentaiV1beta2DocumentEntity]
-    provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
-    redacted: bool
-    textAnchor: GoogleCloudDocumentaiV1beta2DocumentTextAnchor
-    type: str
+class GoogleCloudDocumentaiV1beta2DocumentEntity(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue(

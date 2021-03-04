@@ -56,6 +56,50 @@ class GcsDestination(typing_extensions.TypedDict, total=False):
     uriPrefix: str
 
 @typing.type_check_only
+class GoogleCloudAssetV1p7beta1Asset(typing_extensions.TypedDict, total=False):
+    accessLevel: GoogleIdentityAccesscontextmanagerV1AccessLevel
+    accessPolicy: GoogleIdentityAccesscontextmanagerV1AccessPolicy
+    ancestors: typing.List[str]
+    assetType: str
+    iamPolicy: Policy
+    name: str
+    orgPolicy: typing.List[GoogleCloudOrgpolicyV1Policy]
+    relatedAssets: GoogleCloudAssetV1p7beta1RelatedAssets
+    resource: GoogleCloudAssetV1p7beta1Resource
+    servicePerimeter: GoogleIdentityAccesscontextmanagerV1ServicePerimeter
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1p7beta1RelatedAsset(typing_extensions.TypedDict, total=False):
+    ancestors: typing.List[str]
+    asset: str
+    assetType: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1p7beta1RelatedAssets(typing_extensions.TypedDict, total=False):
+    assets: typing.List[GoogleCloudAssetV1p7beta1RelatedAsset]
+    relationshipAttributes: GoogleCloudAssetV1p7beta1RelationshipAttributes
+
+@typing.type_check_only
+class GoogleCloudAssetV1p7beta1RelationshipAttributes(
+    typing_extensions.TypedDict, total=False
+):
+    action: str
+    sourceResourceType: str
+    targetResourceType: str
+    type: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1p7beta1Resource(typing_extensions.TypedDict, total=False):
+    data: typing.Dict[str, typing.Any]
+    discoveryDocumentUri: str
+    discoveryName: str
+    location: str
+    parent: str
+    resourceUrl: str
+    version: str
+
+@typing.type_check_only
 class GoogleCloudOrgpolicyV1BooleanPolicy(typing_extensions.TypedDict, total=False):
     enforced: bool
 

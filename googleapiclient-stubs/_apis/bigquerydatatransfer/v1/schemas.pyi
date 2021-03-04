@@ -39,31 +39,7 @@ class DataSource(typing_extensions.TypedDict, total=False):
     updateDeadlineSeconds: int
 
 @typing.type_check_only
-class DataSourceParameter(typing_extensions.TypedDict, total=False):
-    allowedValues: typing.List[str]
-    deprecated: bool
-    description: str
-    displayName: str
-    fields: typing.List[DataSourceParameter]
-    immutable: bool
-    maxValue: float
-    minValue: float
-    paramId: str
-    recurse: bool
-    repeated: bool
-    required: bool
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED",
-        "STRING",
-        "INTEGER",
-        "DOUBLE",
-        "BOOLEAN",
-        "RECORD",
-        "PLUS_PAGE",
-    ]
-    validationDescription: str
-    validationHelpUrl: str
-    validationRegex: str
+class DataSourceParameter(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class EmailPreferences(typing_extensions.TypedDict, total=False):

@@ -132,6 +132,7 @@ class Trigger(typing_extensions.TypedDict, total=False):
     destination: Destination
     etag: str
     eventFilters: typing.List[EventFilter]
+    labels: typing.Dict[str, typing.Any]
     name: str
     serviceAccount: str
     transport: Transport

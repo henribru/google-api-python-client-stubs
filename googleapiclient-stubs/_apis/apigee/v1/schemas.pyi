@@ -779,6 +779,13 @@ class GoogleCloudApigeeV1ListSharedFlowsResponse(
     sharedFlows: typing.List[GoogleCloudApigeeV1SharedFlow]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListTraceConfigOverridesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    traceConfigOverrides: typing.List[GoogleCloudApigeeV1TraceConfigOverride]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1Metadata(typing_extensions.TypedDict, total=False):
     errors: typing.List[str]
     notices: typing.List[str]
@@ -1191,6 +1198,23 @@ class GoogleCloudApigeeV1TlsInfoConfig(typing_extensions.TypedDict, total=False)
     keyAliasReference: GoogleCloudApigeeV1KeyAliasReference
     protocols: typing.List[str]
     trustStore: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1TraceConfig(typing_extensions.TypedDict, total=False):
+    endpoint: str
+    exporter: typing_extensions.Literal["EXPORTER_UNSPECIFIED", "JAEGER", "CLOUD_TRACE"]
+    samplingConfig: GoogleCloudApigeeV1TraceSamplingConfig
+
+@typing.type_check_only
+class GoogleCloudApigeeV1TraceConfigOverride(typing_extensions.TypedDict, total=False):
+    apiProxy: str
+    name: str
+    samplingConfig: GoogleCloudApigeeV1TraceSamplingConfig
+
+@typing.type_check_only
+class GoogleCloudApigeeV1TraceSamplingConfig(typing_extensions.TypedDict, total=False):
+    sampler: typing_extensions.Literal["SAMPLER_UNSPECIFIED", "OFF", "PROBABILITY"]
+    samplingRate: float
 
 @typing.type_check_only
 class GoogleCloudApigeeV1UpdateError(typing_extensions.TypedDict, total=False):

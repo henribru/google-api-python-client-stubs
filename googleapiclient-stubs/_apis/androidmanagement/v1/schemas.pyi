@@ -404,24 +404,7 @@ class ManagedConfigurationTemplate(typing_extensions.TypedDict, total=False):
     templateId: str
 
 @typing.type_check_only
-class ManagedProperty(typing_extensions.TypedDict, total=False):
-    defaultValue: typing.Any
-    description: str
-    entries: typing.List[ManagedPropertyEntry]
-    key: str
-    nestedProperties: typing.List[ManagedProperty]
-    title: str
-    type: typing_extensions.Literal[
-        "MANAGED_PROPERTY_TYPE_UNSPECIFIED",
-        "BOOL",
-        "STRING",
-        "INTEGER",
-        "CHOICE",
-        "MULTISELECT",
-        "HIDDEN",
-        "BUNDLE",
-        "BUNDLE_ARRAY",
-    ]
+class ManagedProperty(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ManagedPropertyEntry(typing_extensions.TypedDict, total=False):

@@ -78,22 +78,16 @@ class History(typing_extensions.TypedDict, total=False):
     messagesDeleted: typing.List[HistoryMessageDeleted]
 
 @typing.type_check_only
-class HistoryLabelAdded(typing_extensions.TypedDict, total=False):
-    labelIds: typing.List[str]
-    message: Message
+class HistoryLabelAdded(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class HistoryLabelRemoved(typing_extensions.TypedDict, total=False):
-    labelIds: typing.List[str]
-    message: Message
+class HistoryLabelRemoved(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class HistoryMessageAdded(typing_extensions.TypedDict, total=False):
-    message: Message
+class HistoryMessageAdded(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class HistoryMessageDeleted(typing_extensions.TypedDict, total=False):
-    message: Message
+class HistoryMessageDeleted(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ImapSettings(typing_extensions.TypedDict, total=False):
@@ -177,25 +171,10 @@ class ListThreadsResponse(typing_extensions.TypedDict, total=False):
     threads: typing.List[Thread]
 
 @typing.type_check_only
-class Message(typing_extensions.TypedDict, total=False):
-    historyId: str
-    id: str
-    internalDate: str
-    labelIds: typing.List[str]
-    payload: MessagePart
-    raw: str
-    sizeEstimate: int
-    snippet: str
-    threadId: str
+class Message(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class MessagePart(typing_extensions.TypedDict, total=False):
-    body: MessagePartBody
-    filename: str
-    headers: typing.List[MessagePartHeader]
-    mimeType: str
-    partId: str
-    parts: typing.List[MessagePart]
+class MessagePart(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class MessagePartBody(typing_extensions.TypedDict, total=False):
@@ -269,11 +248,7 @@ class SmtpMsa(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class Thread(typing_extensions.TypedDict, total=False):
-    historyId: str
-    id: str
-    messages: typing.List[Message]
-    snippet: str
+class Thread(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class VacationSettings(typing_extensions.TypedDict, total=False):
