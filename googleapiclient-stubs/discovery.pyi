@@ -1,5 +1,5 @@
 from email.generator import Generator as BytesGenerator
-from typing import Any, Dict, Optional, Union, overload
+from typing import Any, Dict, Optional, TypeVar, Union, overload
 
 import google.auth.credentials  # type: ignore
 import httplib2  # type: ignore
@@ -333,6 +333,8 @@ from googleapiclient.discovery_cache.base import Cache
 from googleapiclient.http import HttpMock, HttpRequest
 from googleapiclient.model import Model
 
+T = TypeVar("T")
+
 class _BytesGenerator(BytesGenerator): ...
 
 def fix_method_name(name: Any): ...
@@ -362,7 +364,7 @@ class Resource:
         rootDesc: Any,
         schema: Any,
     ) -> None: ...
-    def __enter__(self): ...
+    def __enter__(self: T) -> T: ...
     def __exit__(self, exc_type: Any, exc: Any, exc_tb: Any) -> None: ...
     def close(self) -> None: ...
 
