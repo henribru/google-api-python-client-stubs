@@ -16,7 +16,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^2.7 || ^3.4"
-google-api-python-client = "^1.12.8"
+google-api-python-client = "^2.0.0"
 typing = { version = "^3.7.4.3", python = "<3.5" }
 typing-extensions = "^3.7.4.3"
 

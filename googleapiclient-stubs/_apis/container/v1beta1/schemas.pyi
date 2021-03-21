@@ -486,6 +486,12 @@ class NodeManagement(typing_extensions.TypedDict, total=False):
     upgradeOptions: AutoUpgradeOptions
 
 @typing.type_check_only
+class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
+    createPodRange: bool
+    podIpv4CidrBlock: str
+    podRange: str
+
+@typing.type_check_only
 class NodePool(typing_extensions.TypedDict, total=False):
     autoscaling: NodePoolAutoscaling
     conditions: typing.List[StatusCondition]
@@ -496,6 +502,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     management: NodeManagement
     maxPodsConstraint: MaxPodsConstraint
     name: str
+    networkConfig: NodeNetworkConfig
     podIpv4CidrSize: int
     selfLink: str
     status: typing_extensions.Literal[

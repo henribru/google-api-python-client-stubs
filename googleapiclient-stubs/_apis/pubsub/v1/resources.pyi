@@ -33,13 +33,6 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> SchemaHttpRequest: ...
-            def getIamPolicy(
-                self,
-                *,
-                resource: str,
-                options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
-            ) -> PolicyHttpRequest: ...
             def list(
                 self,
                 *,
@@ -51,20 +44,6 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListSchemasResponseHttpRequest: ...
-            def setIamPolicy(
-                self,
-                *,
-                resource: str,
-                body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
-            ) -> PolicyHttpRequest: ...
-            def testIamPermissions(
-                self,
-                *,
-                resource: str,
-                body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
-            ) -> TestIamPermissionsResponseHttpRequest: ...
             def validate(
                 self,
                 *,

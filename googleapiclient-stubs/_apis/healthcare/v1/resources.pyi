@@ -17,197 +17,6 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
             class DatasetsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ConsentStoresResource(googleapiclient.discovery.Resource):
-                    @typing.type_check_only
-                    class AttributeDefinitionsResource(
-                        googleapiclient.discovery.Resource
-                    ):
-                        def create(
-                            self,
-                            *,
-                            parent: str,
-                            body: AttributeDefinition = ...,
-                            attributeDefinitionId: str = ...,
-                            **kwargs: typing.Any
-                        ) -> AttributeDefinitionHttpRequest: ...
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> EmptyHttpRequest: ...
-                        def get(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> AttributeDefinitionHttpRequest: ...
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            **kwargs: typing.Any
-                        ) -> ListAttributeDefinitionsResponseHttpRequest: ...
-                        def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: AttributeDefinition = ...,
-                            updateMask: str = ...,
-                            **kwargs: typing.Any
-                        ) -> AttributeDefinitionHttpRequest: ...
-                    @typing.type_check_only
-                    class ConsentArtifactsResource(googleapiclient.discovery.Resource):
-                        def create(
-                            self,
-                            *,
-                            parent: str,
-                            body: ConsentArtifact = ...,
-                            **kwargs: typing.Any
-                        ) -> ConsentArtifactHttpRequest: ...
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> EmptyHttpRequest: ...
-                        def get(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> ConsentArtifactHttpRequest: ...
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            **kwargs: typing.Any
-                        ) -> ListConsentArtifactsResponseHttpRequest: ...
-                    @typing.type_check_only
-                    class ConsentsResource(googleapiclient.discovery.Resource):
-                        def activate(
-                            self,
-                            *,
-                            name: str,
-                            body: ActivateConsentRequest = ...,
-                            **kwargs: typing.Any
-                        ) -> ConsentHttpRequest: ...
-                        def create(
-                            self,
-                            *,
-                            parent: str,
-                            body: Consent = ...,
-                            **kwargs: typing.Any
-                        ) -> ConsentHttpRequest: ...
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> EmptyHttpRequest: ...
-                        def deleteRevision(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> EmptyHttpRequest: ...
-                        def get(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> ConsentHttpRequest: ...
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            **kwargs: typing.Any
-                        ) -> ListConsentsResponseHttpRequest: ...
-                        def listRevisions(
-                            self,
-                            *,
-                            name: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            **kwargs: typing.Any
-                        ) -> ListConsentRevisionsResponseHttpRequest: ...
-                        def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: Consent = ...,
-                            updateMask: str = ...,
-                            **kwargs: typing.Any
-                        ) -> ConsentHttpRequest: ...
-                        def reject(
-                            self,
-                            *,
-                            name: str,
-                            body: RejectConsentRequest = ...,
-                            **kwargs: typing.Any
-                        ) -> ConsentHttpRequest: ...
-                        def revoke(
-                            self,
-                            *,
-                            name: str,
-                            body: RevokeConsentRequest = ...,
-                            **kwargs: typing.Any
-                        ) -> ConsentHttpRequest: ...
-                    @typing.type_check_only
-                    class UserDataMappingsResource(googleapiclient.discovery.Resource):
-                        def archive(
-                            self,
-                            *,
-                            name: str,
-                            body: ArchiveUserDataMappingRequest = ...,
-                            **kwargs: typing.Any
-                        ) -> ArchiveUserDataMappingResponseHttpRequest: ...
-                        def create(
-                            self,
-                            *,
-                            parent: str,
-                            body: UserDataMapping = ...,
-                            **kwargs: typing.Any
-                        ) -> UserDataMappingHttpRequest: ...
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> EmptyHttpRequest: ...
-                        def get(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> UserDataMappingHttpRequest: ...
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            **kwargs: typing.Any
-                        ) -> ListUserDataMappingsResponseHttpRequest: ...
-                        def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: UserDataMapping = ...,
-                            updateMask: str = ...,
-                            **kwargs: typing.Any
-                        ) -> UserDataMappingHttpRequest: ...
-                    def checkDataAccess(
-                        self,
-                        *,
-                        consentStore: str,
-                        body: CheckDataAccessRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> CheckDataAccessResponseHttpRequest: ...
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: ConsentStore = ...,
-                        consentStoreId: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ConsentStoreHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> EmptyHttpRequest: ...
-                    def evaluateUserConsents(
-                        self,
-                        *,
-                        consentStore: str,
-                        body: EvaluateUserConsentsRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> EvaluateUserConsentsResponseHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> ConsentStoreHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -215,30 +24,6 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any
                     ) -> PolicyHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ListConsentStoresResponseHttpRequest: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: ConsentStore = ...,
-                        updateMask: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ConsentStoreHttpRequest: ...
-                    def queryAccessibleData(
-                        self,
-                        *,
-                        consentStore: str,
-                        body: QueryAccessibleDataRequest = ...,
-                        **kwargs: typing.Any
-                    ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -253,10 +38,6 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
-                    def attributeDefinitions(self) -> AttributeDefinitionsResource: ...
-                    def consentArtifacts(self) -> ConsentArtifactsResource: ...
-                    def consents(self) -> ConsentsResource: ...
-                    def userDataMappings(self) -> UserDataMappingsResource: ...
                 @typing.type_check_only
                 class DicomStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -848,66 +629,6 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
-class ArchiveUserDataMappingResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ArchiveUserDataMappingResponse: ...
-
-@typing.type_check_only
-class AttributeDefinitionHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> AttributeDefinition: ...
-
-@typing.type_check_only
-class CheckDataAccessResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> CheckDataAccessResponse: ...
-
-@typing.type_check_only
-class ConsentHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> Consent: ...
-
-@typing.type_check_only
-class ConsentArtifactHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ConsentArtifact: ...
-
-@typing.type_check_only
-class ConsentStoreHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ConsentStore: ...
-
-@typing.type_check_only
 class DatasetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -936,16 +657,6 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Empty: ...
-
-@typing.type_check_only
-class EvaluateUserConsentsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> EvaluateUserConsentsResponse: ...
 
 @typing.type_check_only
 class FhirStoreHttpRequest(googleapiclient.http.HttpRequest):
@@ -986,56 +697,6 @@ class IngestMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> IngestMessageResponse: ...
-
-@typing.type_check_only
-class ListAttributeDefinitionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListAttributeDefinitionsResponse: ...
-
-@typing.type_check_only
-class ListConsentArtifactsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListConsentArtifactsResponse: ...
-
-@typing.type_check_only
-class ListConsentRevisionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListConsentRevisionsResponse: ...
-
-@typing.type_check_only
-class ListConsentStoresResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListConsentStoresResponse: ...
-
-@typing.type_check_only
-class ListConsentsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListConsentsResponse: ...
 
 @typing.type_check_only
 class ListDatasetsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1108,16 +769,6 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
-class ListUserDataMappingsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListUserDataMappingsResponse: ...
-
-@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1166,13 +817,3 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
-
-@typing.type_check_only
-class UserDataMappingHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> UserDataMapping: ...
