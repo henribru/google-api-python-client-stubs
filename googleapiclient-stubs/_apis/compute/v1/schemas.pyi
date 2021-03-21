@@ -69,6 +69,7 @@ class Address(typing_extensions.TypedDict, total=False):
         "DNS_RESOLVER",
         "GCE_ENDPOINT",
         "NAT_AUTO",
+        "PRIVATE_SERVICE_CONNECT",
         "SHARED_LOADBALANCER_VIP",
         "VPC_PEERING",
     ]
@@ -126,6 +127,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties(
     localSsds: typing.List[
         AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk
     ]
+    locationHint: str
     machineType: str
     minCpuPlatform: str
 
@@ -163,6 +165,7 @@ class AttachedDiskInitializeParams(typing_extensions.TypedDict, total=False):
     onUpdateAction: typing_extensions.Literal[
         "RECREATE_DISK", "RECREATE_DISK_IF_SOURCE_CHANGED", "USE_EXISTING_DISK"
     ]
+    provisionedIops: str
     resourcePolicies: typing.List[str]
     sourceImage: str
     sourceImageEncryptionKey: CustomerEncryptionKey
@@ -480,6 +483,22 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BulkInsertInstanceResource(typing_extensions.TypedDict, total=False):
+    count: str
+    instanceProperties: InstanceProperties
+    locationPolicy: LocationPolicy
+    minCount: str
+    namePattern: str
+    perInstanceProperties: typing.Dict[str, typing.Any]
+    sourceInstanceTemplate: str
+
+@typing.type_check_only
+class BulkInsertInstanceResourcePerInstanceProperties(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
 class CacheInvalidationRule(typing_extensions.TypedDict, total=False):
     host: str
     path: str
@@ -633,6 +652,7 @@ class Disk(typing_extensions.TypedDict, total=False):
     name: str
     options: str
     physicalBlockSizeBytes: str
+    provisionedIops: str
     region: str
     replicaZones: typing.List[str]
     resourcePolicies: typing.List[str]
@@ -959,8 +979,12 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     networkTier: typing_extensions.Literal["PREMIUM", "STANDARD"]
     portRange: str
     ports: typing.List[str]
+    pscConnectionId: str
     region: str
     selfLink: str
+    serviceDirectoryRegistrations: typing.List[
+        ForwardingRuleServiceDirectoryRegistration
+    ]
     serviceLabel: str
     serviceName: str
     subnetwork: str
@@ -988,6 +1012,14 @@ class ForwardingRuleList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ForwardingRuleReference(typing_extensions.TypedDict, total=False):
     forwardingRule: str
+
+@typing.type_check_only
+class ForwardingRuleServiceDirectoryRegistration(
+    typing_extensions.TypedDict, total=False
+):
+    namespace: str
+    service: str
+    serviceDirectoryRegion: str
 
 @typing.type_check_only
 class ForwardingRulesScopedList(typing_extensions.TypedDict, total=False):
@@ -1377,6 +1409,7 @@ class Image(typing_extensions.TypedDict, total=False):
     licenses: typing.List[str]
     name: str
     rawDisk: typing.Dict[str, typing.Any]
+    satisfiesPzs: bool
     selfLink: str
     shieldedInstanceInitialState: InitialStateConfig
     sourceDisk: str
@@ -1855,6 +1888,22 @@ class InstancesAddResourcePoliciesRequest(typing_extensions.TypedDict, total=Fal
     resourcePolicies: typing.List[str]
 
 @typing.type_check_only
+class InstancesGetEffectiveFirewallsResponse(typing_extensions.TypedDict, total=False):
+    firewallPolicys: typing.List[
+        InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy
+    ]
+    firewalls: typing.List[Firewall]
+
+@typing.type_check_only
+class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    name: str
+    rules: typing.List[FirewallPolicyRule]
+    type: typing_extensions.Literal["HIERARCHY", "UNSPECIFIED"]
+
+@typing.type_check_only
 class InstancesRemoveResourcePoliciesRequest(typing_extensions.TypedDict, total=False):
     resourcePolicies: typing.List[str]
 
@@ -2178,6 +2227,14 @@ class LocalDisk(typing_extensions.TypedDict, total=False):
     diskType: str
 
 @typing.type_check_only
+class LocationPolicy(typing_extensions.TypedDict, total=False):
+    locations: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class LocationPolicyLocation(typing_extensions.TypedDict, total=False):
+    preference: typing_extensions.Literal["ALLOW", "DENY", "PREFERENCE_UNSPECIFIED"]
+
+@typing.type_check_only
 class LogConfig(typing_extensions.TypedDict, total=False):
     cloudAudit: LogConfigCloudAuditOptions
     counter: LogConfigCounterOptions
@@ -2356,6 +2413,7 @@ class NetworkEndpointGroup(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     networkEndpointType: typing_extensions.Literal[
+        "GCE_VM_IP",
         "GCE_VM_IP_PORT",
         "INTERNET_FQDN_PORT",
         "INTERNET_IP_PORT",
@@ -2490,6 +2548,22 @@ class NetworksAddPeeringRequest(typing_extensions.TypedDict, total=False):
     peerNetwork: str
 
 @typing.type_check_only
+class NetworksGetEffectiveFirewallsResponse(typing_extensions.TypedDict, total=False):
+    firewallPolicys: typing.List[
+        NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy
+    ]
+    firewalls: typing.List[Firewall]
+
+@typing.type_check_only
+class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    name: str
+    rules: typing.List[FirewallPolicyRule]
+    type: typing_extensions.Literal["HIERARCHY", "NETWORK", "UNSPECIFIED"]
+
+@typing.type_check_only
 class NetworksRemovePeeringRequest(typing_extensions.TypedDict, total=False):
     name: str
 
@@ -2505,6 +2579,7 @@ class NodeGroup(typing_extensions.TypedDict, total=False):
     fingerprint: str
     id: str
     kind: str
+    locationHint: str
     maintenancePolicy: typing_extensions.Literal[
         "DEFAULT",
         "MAINTENANCE_POLICY_UNSPECIFIED",
@@ -2559,6 +2634,7 @@ class NodeGroupNode(typing_extensions.TypedDict, total=False):
     instances: typing.List[str]
     name: str
     nodeType: str
+    satisfiesPzs: bool
     serverBinding: ServerBinding
     serverId: str
     status: typing_extensions.Literal[
@@ -2722,6 +2798,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     insertTime: str
     kind: str
     name: str
+    operationGroupId: str
     operationType: str
     progress: int
     region: str
@@ -2954,6 +3031,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "COMMITTED_A2_CPUS",
         "COMMITTED_C2_CPUS",
         "COMMITTED_CPUS",
+        "COMMITTED_E2_CPUS",
         "COMMITTED_LICENSES",
         "COMMITTED_LOCAL_SSD_TOTAL_GB",
         "COMMITTED_MEMORY_OPTIMIZED_CPUS",
@@ -3282,6 +3360,7 @@ class Reservation(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    satisfiesPzs: bool
     selfLink: str
     specificReservation: AllocationSpecificSKUReservation
     specificReservationRequired: bool
@@ -3349,12 +3428,16 @@ class ResourcePolicy(typing_extensions.TypedDict, total=False):
     description: str
     groupPlacementPolicy: ResourcePolicyGroupPlacementPolicy
     id: str
+    instanceSchedulePolicy: ResourcePolicyInstanceSchedulePolicy
     kind: str
     name: str
     region: str
+    resourceStatus: ResourcePolicyResourceStatus
     selfLink: str
     snapshotSchedulePolicy: ResourcePolicySnapshotSchedulePolicy
-    status: typing_extensions.Literal["CREATING", "DELETING", "INVALID", "READY"]
+    status: typing_extensions.Literal[
+        "CREATING", "DELETING", "EXPIRED", "INVALID", "READY"
+    ]
 
 @typing.type_check_only
 class ResourcePolicyAggregatedList(typing_extensions.TypedDict, total=False):
@@ -3386,6 +3469,20 @@ class ResourcePolicyHourlyCycle(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class ResourcePolicyInstanceSchedulePolicy(typing_extensions.TypedDict, total=False):
+    expirationTime: str
+    startTime: str
+    timeZone: str
+    vmStartSchedule: ResourcePolicyInstanceSchedulePolicySchedule
+    vmStopSchedule: ResourcePolicyInstanceSchedulePolicySchedule
+
+@typing.type_check_only
+class ResourcePolicyInstanceSchedulePolicySchedule(
+    typing_extensions.TypedDict, total=False
+):
+    schedule: str
+
+@typing.type_check_only
 class ResourcePolicyList(typing_extensions.TypedDict, total=False):
     etag: str
     id: str
@@ -3394,6 +3491,17 @@ class ResourcePolicyList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
     warning: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class ResourcePolicyResourceStatus(typing_extensions.TypedDict, total=False):
+    instanceSchedulePolicy: ResourcePolicyResourceStatusInstanceSchedulePolicyStatus
+
+@typing.type_check_only
+class ResourcePolicyResourceStatusInstanceSchedulePolicyStatus(
+    typing_extensions.TypedDict, total=False
+):
+    lastRunStartTime: str
+    nextRunStartTime: str
 
 @typing.type_check_only
 class ResourcePolicySnapshotSchedulePolicy(typing_extensions.TypedDict, total=False):
@@ -4296,6 +4404,7 @@ class TargetTcpProxy(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    proxyBind: bool
     proxyHeader: typing_extensions.Literal["NONE", "PROXY_V1"]
     selfLink: str
     service: str

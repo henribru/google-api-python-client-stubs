@@ -1630,6 +1630,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def bulkInsert(
+            self,
+            *,
+            project: str,
+            zone: str,
+            body: BulkInsertInstanceResource = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def delete(
             self,
             *,
@@ -1663,6 +1672,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, zone: str, instance: str, **kwargs: typing.Any
         ) -> InstanceHttpRequest: ...
+        def getEffectiveFirewalls(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instance: str,
+            networkInterface: str,
+            **kwargs: typing.Any
+        ) -> InstancesGetEffectiveFirewallsResponseHttpRequest: ...
         def getGuestAttributes(
             self,
             *,
@@ -2308,6 +2326,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, network: str, **kwargs: typing.Any
         ) -> NetworkHttpRequest: ...
+        def getEffectiveFirewalls(
+            self, *, project: str, network: str, **kwargs: typing.Any
+        ) -> NetworksGetEffectiveFirewallsResponseHttpRequest: ...
         def insert(
             self,
             *,
@@ -3402,6 +3423,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroup: str,
             body: RegionInstanceGroupsSetNamedPortsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
+    class RegionInstancesResource(googleapiclient.discovery.Resource):
+        def bulkInsert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: BulkInsertInstanceResource = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -5174,6 +5206,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionHealthChecks(self) -> RegionHealthChecksResource: ...
     def regionInstanceGroupManagers(self) -> RegionInstanceGroupManagersResource: ...
     def regionInstanceGroups(self) -> RegionInstanceGroupsResource: ...
+    def regionInstances(self) -> RegionInstancesResource: ...
     def regionNetworkEndpointGroups(self) -> RegionNetworkEndpointGroupsResource: ...
     def regionNotificationEndpoints(self) -> RegionNotificationEndpointsResource: ...
     def regionOperations(self) -> RegionOperationsResource: ...
@@ -5864,6 +5897,18 @@ class InstanceTemplateListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> InstanceTemplateList: ...
 
 @typing.type_check_only
+class InstancesGetEffectiveFirewallsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> InstancesGetEffectiveFirewallsResponse: ...
+
+@typing.type_check_only
 class InterconnectHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -6064,6 +6109,18 @@ class NetworkListHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> NetworkList: ...
+
+@typing.type_check_only
+class NetworksGetEffectiveFirewallsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> NetworksGetEffectiveFirewallsResponse: ...
 
 @typing.type_check_only
 class NodeGroupHttpRequest(googleapiclient.http.HttpRequest):

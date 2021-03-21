@@ -358,19 +358,12 @@ class GoogleDevtoolsRemotebuildbotCommandDurations(
 class GoogleDevtoolsRemotebuildbotCommandEvents(
     typing_extensions.TypedDict, total=False
 ):
-    cmUsage: typing_extensions.Literal["CONFIG_NONE", "CONFIG_MATCH", "CONFIG_MISMATCH"]
+    cmUsage: typing_extensions.Literal["NONE", "CONFIG_MATCH", "CONFIG_MISMATCH"]
     dockerCacheHit: bool
     dockerImageName: str
     inputCacheMiss: float
     numErrors: str
     numWarnings: str
-    outputLocation: typing_extensions.Literal[
-        "LOCATION_UNDEFINED",
-        "LOCATION_NONE",
-        "LOCATION_EXEC_ROOT_RELATIVE",
-        "LOCATION_WORKING_DIR_RELATIVE",
-        "LOCATION_EXEC_ROOT_AND_WORKING_DIR_RELATIVE",
-    ]
     usedAsyncContainer: bool
 
 @typing.type_check_only
@@ -418,7 +411,6 @@ class GoogleDevtoolsRemotebuildbotCommandStatus(
         "DOCKER_CREATE_COMPUTE_SYSTEM_INCORRECT_PARAMETER_ERROR",
         "DOCKER_TOO_MANY_SYMBOLIC_LINK_LEVELS",
         "LOCAL_CONTAINER_MANAGER_NOT_RUNNING",
-        "DOCKER_IMAGE_VPCSC_PERMISSION_DENIED",
     ]
     message: str
 

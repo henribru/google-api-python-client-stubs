@@ -569,7 +569,6 @@ class SqlInstancesVerifyExternalSyncSettingsResponse(
 ):
     errors: typing.List[SqlExternalSyncSettingError]
     kind: str
-    warnings: typing.List[SqlExternalSyncSettingError]
 
 @typing.type_check_only
 class SqlScheduledMaintenance(typing_extensions.TypedDict, total=False):

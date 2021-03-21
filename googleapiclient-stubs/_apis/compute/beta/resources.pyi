@@ -1820,6 +1820,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def bulkInsert(
+            self,
+            *,
+            project: str,
+            zone: str,
+            body: BulkInsertInstanceResource = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def delete(
             self,
             *,
@@ -4017,6 +4026,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
+    class RegionInstancesResource(googleapiclient.discovery.Resource):
+        def bulkInsert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: BulkInsertInstanceResource = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class RegionNetworkEndpointGroupsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -4770,6 +4790,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class ServiceAttachmentsResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> ServiceAttachmentAggregatedListHttpRequest: ...
         def delete(
             self,
             *,
@@ -5982,6 +6014,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionHealthChecks(self) -> RegionHealthChecksResource: ...
     def regionInstanceGroupManagers(self) -> RegionInstanceGroupManagersResource: ...
     def regionInstanceGroups(self) -> RegionInstanceGroupsResource: ...
+    def regionInstances(self) -> RegionInstancesResource: ...
     def regionNetworkEndpointGroups(self) -> RegionNetworkEndpointGroupsResource: ...
     def regionNotificationEndpoints(self) -> RegionNotificationEndpointsResource: ...
     def regionOperations(self) -> RegionOperationsResource: ...
@@ -7507,6 +7540,16 @@ class ServiceAttachmentHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ServiceAttachment: ...
+
+@typing.type_check_only
+class ServiceAttachmentAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ServiceAttachmentAggregatedList: ...
 
 @typing.type_check_only
 class ServiceAttachmentListHttpRequest(googleapiclient.http.HttpRequest):

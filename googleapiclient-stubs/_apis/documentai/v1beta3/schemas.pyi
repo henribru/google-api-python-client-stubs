@@ -82,6 +82,17 @@ class GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse(
     evaluation: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata(
     typing_extensions.TypedDict, total=False
 ):
