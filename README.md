@@ -7,7 +7,7 @@ It allows you to type check usage of the library with e.g. [mypy](http://mypy-la
 
 **This is in no way affiliated with Google.**
 
-The stubs were generated automatically based on Google's [Discovery Documents](https://developers.google.com/discovery/v1/reference/apis).
+The stubs were generated automatically based on Google's [Discovery Documents](https://developers.google.com/discovery/v1/reference/apis), that are bundled with google-api-python-client as of v2.
 
 If you find incorrect annotations, please create an issue.
 
