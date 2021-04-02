@@ -15,15 +15,14 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^2.7 || ^3.4"
+python = "^3.7"
 google-api-python-client = "^2.0.0"
-typing = { version = "^3.7.4.3", python = "<3.5" }
 typing-extensions = "^3.7.4.3"
 
 [tool.poetry.dev-dependencies]
-mypy = { version = "^0.812", python = "^3.5" }
-black = { version = "^20.8b1", python = "^3.6" }
-isort = { version = "^5.7.0", python = "^3.6" }
+mypy = "^0.812"
+black = "^20.8b1"
+isort = "^5.7.0"
 
 [tool.isort]
 profile = "black"
