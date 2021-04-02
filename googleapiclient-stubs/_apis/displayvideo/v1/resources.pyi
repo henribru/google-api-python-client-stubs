@@ -22,6 +22,125 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             ) -> CreateAssetResponseHttpRequest: ...
         @typing.type_check_only
         class CampaignsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class TargetingTypesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AssignedTargetingOptionsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def get(
+                        self,
+                        *,
+                        advertiserId: str,
+                        campaignId: str,
+                        targetingType: typing_extensions.Literal[
+                            "TARGETING_TYPE_UNSPECIFIED",
+                            "TARGETING_TYPE_CHANNEL",
+                            "TARGETING_TYPE_APP_CATEGORY",
+                            "TARGETING_TYPE_APP",
+                            "TARGETING_TYPE_URL",
+                            "TARGETING_TYPE_DAY_AND_TIME",
+                            "TARGETING_TYPE_AGE_RANGE",
+                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                            "TARGETING_TYPE_GENDER",
+                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                            "TARGETING_TYPE_PARENTAL_STATUS",
+                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                            "TARGETING_TYPE_DEVICE_TYPE",
+                            "TARGETING_TYPE_AUDIENCE_GROUP",
+                            "TARGETING_TYPE_BROWSER",
+                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                            "TARGETING_TYPE_ON_SCREEN_POSITION",
+                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                            "TARGETING_TYPE_ENVIRONMENT",
+                            "TARGETING_TYPE_CARRIER_AND_ISP",
+                            "TARGETING_TYPE_OPERATING_SYSTEM",
+                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                            "TARGETING_TYPE_KEYWORD",
+                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                            "TARGETING_TYPE_VIEWABILITY",
+                            "TARGETING_TYPE_CATEGORY",
+                            "TARGETING_TYPE_INVENTORY_SOURCE",
+                            "TARGETING_TYPE_LANGUAGE",
+                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                            "TARGETING_TYPE_GEO_REGION",
+                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                            "TARGETING_TYPE_EXCHANGE",
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                        ],
+                        assignedTargetingOptionId: str,
+                        **kwargs: typing.Any
+                    ) -> AssignedTargetingOptionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        advertiserId: str,
+                        campaignId: str,
+                        targetingType: typing_extensions.Literal[
+                            "TARGETING_TYPE_UNSPECIFIED",
+                            "TARGETING_TYPE_CHANNEL",
+                            "TARGETING_TYPE_APP_CATEGORY",
+                            "TARGETING_TYPE_APP",
+                            "TARGETING_TYPE_URL",
+                            "TARGETING_TYPE_DAY_AND_TIME",
+                            "TARGETING_TYPE_AGE_RANGE",
+                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                            "TARGETING_TYPE_GENDER",
+                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                            "TARGETING_TYPE_PARENTAL_STATUS",
+                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                            "TARGETING_TYPE_DEVICE_TYPE",
+                            "TARGETING_TYPE_AUDIENCE_GROUP",
+                            "TARGETING_TYPE_BROWSER",
+                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                            "TARGETING_TYPE_ON_SCREEN_POSITION",
+                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                            "TARGETING_TYPE_ENVIRONMENT",
+                            "TARGETING_TYPE_CARRIER_AND_ISP",
+                            "TARGETING_TYPE_OPERATING_SYSTEM",
+                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                            "TARGETING_TYPE_KEYWORD",
+                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                            "TARGETING_TYPE_VIEWABILITY",
+                            "TARGETING_TYPE_CATEGORY",
+                            "TARGETING_TYPE_INVENTORY_SOURCE",
+                            "TARGETING_TYPE_LANGUAGE",
+                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                            "TARGETING_TYPE_GEO_REGION",
+                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                            "TARGETING_TYPE_EXCHANGE",
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                        ],
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListCampaignAssignedTargetingOptionsResponseHttpRequest: ...
+                def assignedTargetingOptions(
+                    self,
+                ) -> AssignedTargetingOptionsResource: ...
+            def bulkListCampaignAssignedTargetingOptions(
+                self,
+                *,
+                advertiserId: str,
+                campaignId: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> BulkListCampaignAssignedTargetingOptionsResponseHttpRequest: ...
             def create(
                 self, *, advertiserId: str, body: Campaign = ..., **kwargs: typing.Any
             ) -> CampaignHttpRequest: ...
@@ -50,6 +169,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> CampaignHttpRequest: ...
+            def targetingTypes(self) -> TargetingTypesResource: ...
         @typing.type_check_only
         class ChannelsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -92,6 +212,14 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     partnerId: str = ...,
                     **kwargs: typing.Any
                 ) -> ListSitesResponseHttpRequest: ...
+                def replace(
+                    self,
+                    *,
+                    advertiserId: str,
+                    channelId: str,
+                    body: ReplaceSitesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ReplaceSitesResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -545,6 +673,13 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, advertiserId: str, lineItemId: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def generateDefault(
+                self,
+                *,
+                advertiserId: str,
+                body: GenerateDefaultLineItemRequest = ...,
+                **kwargs: typing.Any
+            ) -> LineItemHttpRequest: ...
             def get(
                 self, *, advertiserId: str, lineItemId: str, **kwargs: typing.Any
             ) -> LineItemHttpRequest: ...
@@ -723,6 +858,14 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListNegativeKeywordsResponseHttpRequest: ...
+                def replace(
+                    self,
+                    *,
+                    advertiserId: str,
+                    negativeKeywordListId: str,
+                    body: ReplaceNegativeKeywordsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ReplaceNegativeKeywordsResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -1280,6 +1423,14 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListSitesResponseHttpRequest: ...
+                def replace(
+                    self,
+                    *,
+                    partnerId: str,
+                    channelId: str,
+                    body: ReplaceSitesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ReplaceSitesResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -1891,6 +2042,18 @@ class BulkListAdvertiserAssignedTargetingOptionsResponseHttpRequest(
     ) -> BulkListAdvertiserAssignedTargetingOptionsResponse: ...
 
 @typing.type_check_only
+class BulkListCampaignAssignedTargetingOptionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> BulkListCampaignAssignedTargetingOptionsResponse: ...
+
+@typing.type_check_only
 class BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2115,6 +2278,18 @@ class ListAssignedLocationsResponseHttpRequest(googleapiclient.http.HttpRequest)
         ] = ...,
         num_retries: int = ...,
     ) -> ListAssignedLocationsResponse: ...
+
+@typing.type_check_only
+class ListCampaignAssignedTargetingOptionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListCampaignAssignedTargetingOptionsResponse: ...
 
 @typing.type_check_only
 class ListCampaignsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -2413,6 +2588,26 @@ class PartnerHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Partner: ...
+
+@typing.type_check_only
+class ReplaceNegativeKeywordsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ReplaceNegativeKeywordsResponse: ...
+
+@typing.type_check_only
+class ReplaceSitesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ReplaceSitesResponse: ...
 
 @typing.type_check_only
 class SearchTargetingOptionsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -114,7 +114,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
     operationType: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "CREATE", "DELETE", "UPDATE"
+        "TYPE_UNSPECIFIED", "CREATE", "DELETE", "UPDATE", "CHECK"
     ]
     resource: str
     resourceUuid: str

@@ -163,9 +163,6 @@ class Diagnostic(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class DisableServiceResponse(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class Documentation(typing_extensions.TypedDict, total=False):
     documentationRootUrl: str
     overview: str
@@ -179,10 +176,6 @@ class DocumentationRule(typing_extensions.TypedDict, total=False):
     deprecationDescription: str
     description: str
     selector: str
-
-@typing.type_check_only
-class EnableServiceRequest(typing_extensions.TypedDict, total=False):
-    consumerId: str
 
 @typing.type_check_only
 class EnableServiceResponse(typing_extensions.TypedDict, total=False): ...

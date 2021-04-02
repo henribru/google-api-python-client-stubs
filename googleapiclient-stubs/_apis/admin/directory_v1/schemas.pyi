@@ -32,6 +32,32 @@ class Asps(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class AuxiliaryMessage(typing_extensions.TypedDict, total=False):
+    auxiliaryMessage: str
+    fieldMask: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "SEVERITY_INFO", "SEVERITY_WARNING", "SEVERITY_ERROR"
+    ]
+
+@typing.type_check_only
+class BatchCreatePrintersRequest(typing_extensions.TypedDict, total=False):
+    requests: typing.List[CreatePrinterRequest]
+
+@typing.type_check_only
+class BatchCreatePrintersResponse(typing_extensions.TypedDict, total=False):
+    failures: typing.List[FailureInfo]
+    printers: typing.List[Printer]
+
+@typing.type_check_only
+class BatchDeletePrintersRequest(typing_extensions.TypedDict, total=False):
+    printerIds: typing.List[str]
+
+@typing.type_check_only
+class BatchDeletePrintersResponse(typing_extensions.TypedDict, total=False):
+    failedPrinters: typing.List[FailureInfo]
+    printerIds: typing.List[str]
+
+@typing.type_check_only
 class Building(typing_extensions.TypedDict, total=False):
     address: BuildingAddress
     buildingId: str
@@ -133,6 +159,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     osVersion: str
     platformVersion: str
     recentUsers: typing.List[RecentUsers]
+    screenshotFiles: typing.List[typing.Dict[str, typing.Any]]
     serialNumber: str
     status: str
     supportEndDate: str
@@ -156,6 +183,11 @@ class ChromeOsDevices(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ChromeOsMoveDevicesToOu(typing_extensions.TypedDict, total=False):
     deviceIds: typing.List[str]
+
+@typing.type_check_only
+class CreatePrinterRequest(typing_extensions.TypedDict, total=False):
+    parent: str
+    printer: Printer
 
 @typing.type_check_only
 class Customer(typing_extensions.TypedDict, total=False):
@@ -266,6 +298,34 @@ class Domains2(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FailureInfo(typing_extensions.TypedDict, total=False):
+    errorCode: typing_extensions.Literal[
+        "OK",
+        "CANCELLED",
+        "UNKNOWN",
+        "INVALID_ARGUMENT",
+        "DEADLINE_EXCEEDED",
+        "NOT_FOUND",
+        "ALREADY_EXISTS",
+        "PERMISSION_DENIED",
+        "UNAUTHENTICATED",
+        "RESOURCE_EXHAUSTED",
+        "FAILED_PRECONDITION",
+        "ABORTED",
+        "OUT_OF_RANGE",
+        "UNIMPLEMENTED",
+        "INTERNAL",
+        "UNAVAILABLE",
+        "DATA_LOSS",
+    ]
+    errorMessage: str
+    printer: Printer
+    printerId: str
+
+@typing.type_check_only
 class Feature(typing_extensions.TypedDict, total=False):
     etags: str
     kind: str
@@ -305,6 +365,16 @@ class Groups(typing_extensions.TypedDict, total=False):
     groups: typing.List[Group]
     kind: str
     nextPageToken: str
+
+@typing.type_check_only
+class ListPrinterModelsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    printerModels: typing.List[PrinterModel]
+
+@typing.type_check_only
+class ListPrintersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    printers: typing.List[Printer]
 
 @typing.type_check_only
 class Member(typing_extensions.TypedDict, total=False):
@@ -399,6 +469,25 @@ class OrgUnits(typing_extensions.TypedDict, total=False):
     etag: str
     kind: str
     organizationUnits: typing.List[OrgUnit]
+
+@typing.type_check_only
+class Printer(typing_extensions.TypedDict, total=False):
+    auxiliaryMessages: typing.List[AuxiliaryMessage]
+    createTime: str
+    description: str
+    displayName: str
+    id: str
+    makeAndModel: str
+    name: str
+    orgUnitId: str
+    uri: str
+    useDriverlessConfig: bool
+
+@typing.type_check_only
+class PrinterModel(typing_extensions.TypedDict, total=False):
+    displayName: str
+    makeAndModel: str
+    manufacturer: str
 
 @typing.type_check_only
 class Privilege(typing.Dict[str, typing.Any]): ...

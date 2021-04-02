@@ -33,6 +33,19 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> WatchCreativesResponseHttpRequest: ...
         @typing.type_check_only
+        class EndpointsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EndpointHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListEndpointsResponseHttpRequest: ...
+        @typing.type_check_only
         class PretargetingConfigsResource(googleapiclient.discovery.Resource):
             def activate(
                 self,
@@ -119,7 +132,12 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 body: SuspendPretargetingConfigRequest = ...,
                 **kwargs: typing.Any
             ) -> PretargetingConfigHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> BidderHttpRequest: ...
+        def list(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> ListBiddersResponseHttpRequest: ...
         def creatives(self) -> CreativesResource: ...
+        def endpoints(self) -> EndpointsResource: ...
         def pretargetingConfigs(self) -> PretargetingConfigsResource: ...
     @typing.type_check_only
     class BuyersResource(googleapiclient.discovery.Resource):
@@ -187,13 +205,37 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, name: str, body: UserList = ..., **kwargs: typing.Any
             ) -> UserListHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> BuyerHttpRequest: ...
         def getRemarketingTag(
             self, *, name: str, **kwargs: typing.Any
         ) -> GetRemarketingTagResponseHttpRequest: ...
+        def list(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> ListBuyersResponseHttpRequest: ...
         def creatives(self) -> CreativesResource: ...
         def userLists(self) -> UserListsResource: ...
     def bidders(self) -> BiddersResource: ...
     def buyers(self) -> BuyersResource: ...
+
+@typing.type_check_only
+class BidderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Bidder: ...
+
+@typing.type_check_only
+class BuyerHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Buyer: ...
 
 @typing.type_check_only
 class CreativeHttpRequest(googleapiclient.http.HttpRequest):
@@ -216,6 +258,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class EndpointHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Endpoint: ...
+
+@typing.type_check_only
 class GetRemarketingTagResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -226,6 +278,26 @@ class GetRemarketingTagResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GetRemarketingTagResponse: ...
 
 @typing.type_check_only
+class ListBiddersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListBiddersResponse: ...
+
+@typing.type_check_only
+class ListBuyersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListBuyersResponse: ...
+
+@typing.type_check_only
 class ListCreativesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -234,6 +306,16 @@ class ListCreativesResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListCreativesResponse: ...
+
+@typing.type_check_only
+class ListEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListEndpointsResponse: ...
 
 @typing.type_check_only
 class ListPretargetingConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -22,6 +22,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Subscription = ...,
+                        skipBacklog: bool = ...,
                         subscriptionId: str = ...,
                         **kwargs: typing.Any
                     ) -> SubscriptionHttpRequest: ...

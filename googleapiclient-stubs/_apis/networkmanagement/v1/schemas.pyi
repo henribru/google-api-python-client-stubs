@@ -32,7 +32,6 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
-    bindingId: str
     condition: Expr
     members: typing.List[str]
     role: str
@@ -120,7 +119,14 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
     action: str
     direction: str
     displayName: str
+    firewallRuleType: typing_extensions.Literal[
+        "FIREWALL_RULE_TYPE_UNSPECIFIED",
+        "HIERARCHICAL_FIREWALL_POLICY_RULE",
+        "VPC_FIREWALL_RULE",
+        "IMPLIED_VPC_FIREWALL_RULE",
+    ]
     networkUri: str
+    policy: str
     priority: int
     targetServiceAccounts: typing.List[str]
     targetTags: typing.List[str]

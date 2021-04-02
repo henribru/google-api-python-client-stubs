@@ -181,6 +181,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredImageType: str
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
+    desiredL4ilbSubsettingConfig: ILBSubsettingConfig
     desiredLocations: typing.List[str]
     desiredLoggingService: str
     desiredMaster: Master
@@ -298,6 +299,10 @@ class HttpCacheControlResponseHeader(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HttpLoadBalancing(typing_extensions.TypedDict, total=False):
     disabled: bool
+
+@typing.type_check_only
+class ILBSubsettingConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
@@ -429,6 +434,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     ]
     defaultSnatStatus: DefaultSnatStatus
     enableIntraNodeVisibility: bool
+    enableL4ilbSubsetting: bool
     network: str
     privateIpv6GoogleAccess: typing_extensions.Literal[
         "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
@@ -446,6 +452,10 @@ class NetworkPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NetworkPolicyConfig(typing_extensions.TypedDict, total=False):
     disabled: bool
+
+@typing.type_check_only
+class NetworkTags(typing_extensions.TypedDict, total=False):
+    tags: typing.List[str]
 
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
@@ -478,6 +488,10 @@ class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
     cpuCfsQuota: bool
     cpuCfsQuotaPeriod: str
     cpuManagerPolicy: str
+
+@typing.type_check_only
+class NodeLabels(typing_extensions.TypedDict, total=False):
+    labels: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class NodeManagement(typing_extensions.TypedDict, total=False):
@@ -532,6 +546,10 @@ class NodeTaint(typing_extensions.TypedDict, total=False):
     ]
     key: str
     value: str
+
+@typing.type_check_only
+class NodeTaints(typing_extensions.TypedDict, total=False):
+    taints: typing.List[NodeTaint]
 
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
@@ -813,12 +831,15 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
     imageType: str
     kubeletConfig: NodeKubeletConfig
+    labels: NodeLabels
     linuxNodeConfig: LinuxNodeConfig
     locations: typing.List[str]
     name: str
     nodePoolId: str
     nodeVersion: str
     projectId: str
+    tags: NetworkTags
+    taints: NodeTaints
     upgradeSettings: UpgradeSettings
     workloadMetadataConfig: WorkloadMetadataConfig
     zone: str

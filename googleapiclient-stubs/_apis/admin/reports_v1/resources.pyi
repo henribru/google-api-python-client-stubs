@@ -16,7 +16,6 @@ class ReportsResource(googleapiclient.discovery.Resource):
             *,
             userKey: str,
             applicationName: typing_extensions.Literal[
-                "application_name_undefined",
                 "access_transparency",
                 "admin",
                 "calendar",
@@ -55,7 +54,6 @@ class ReportsResource(googleapiclient.discovery.Resource):
             *,
             userKey: str,
             applicationName: typing_extensions.Literal[
-                "application_name_unspecified",
                 "access_transparency",
                 "admin",
                 "calendar",
@@ -111,12 +109,8 @@ class ReportsResource(googleapiclient.discovery.Resource):
         def get(
             self,
             *,
-            entityType: typing_extensions.Literal[
-                "entity_type_undefined", "gplus_communities"
-            ],
-            entityKey: typing_extensions.Literal[
-                "entityKeyUndefined", "all", "entityKey"
-            ],
+            entityType: typing_extensions.Literal["gplus_communities"],
+            entityKey: typing_extensions.Literal["all", "entityKey"],
             date: str,
             customerId: str = ...,
             filters: str = ...,

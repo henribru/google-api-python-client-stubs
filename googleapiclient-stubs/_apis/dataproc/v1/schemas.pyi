@@ -58,6 +58,7 @@ class ClusterConfig(typing_extensions.TypedDict, total=False):
     encryptionConfig: EncryptionConfig
     endpointConfig: EndpointConfig
     gceClusterConfig: GceClusterConfig
+    gkeClusterConfig: GkeClusterConfig
     initializationActions: typing.List[NodeInitializationAction]
     lifecycleConfig: LifecycleConfig
     masterConfig: InstanceGroupConfig
@@ -106,7 +107,15 @@ class ClusterSelector(typing_extensions.TypedDict, total=False):
 class ClusterStatus(typing_extensions.TypedDict, total=False):
     detail: str
     state: typing_extensions.Literal[
-        "UNKNOWN", "CREATING", "RUNNING", "ERROR", "DELETING", "UPDATING"
+        "UNKNOWN",
+        "CREATING",
+        "RUNNING",
+        "ERROR",
+        "DELETING",
+        "UPDATING",
+        "STOPPING",
+        "STOPPED",
+        "STARTING",
     ]
     stateStartTime: str
     substate: typing_extensions.Literal["UNSPECIFIED", "UNHEALTHY", "STALE_STATUS"]
@@ -172,6 +181,10 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class GkeClusterConfig(typing_extensions.TypedDict, total=False):
+    namespacedGkeDeploymentTarget: NamespacedGkeDeploymentTarget
+
+@typing.type_check_only
 class HadoopJob(typing_extensions.TypedDict, total=False):
     archiveUris: typing.List[str]
     args: typing.List[str]
@@ -190,6 +203,10 @@ class HiveJob(typing_extensions.TypedDict, total=False):
     queryFileUri: str
     queryList: QueryList
     scriptVariables: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class IdentityConfig(typing_extensions.TypedDict, total=False):
+    userServiceAccountMapping: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class InjectCredentialsRequest(typing_extensions.TypedDict, total=False):
@@ -365,6 +382,11 @@ class MetastoreConfig(typing_extensions.TypedDict, total=False):
     dataprocMetastoreService: str
 
 @typing.type_check_only
+class NamespacedGkeDeploymentTarget(typing_extensions.TypedDict, total=False):
+    clusterNamespace: str
+    targetGkeCluster: str
+
+@typing.type_check_only
 class NodeGroupAffinity(typing_extensions.TypedDict, total=False):
     nodeGroupUri: str
 
@@ -456,6 +478,7 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityConfig(typing_extensions.TypedDict, total=False):
+    identityConfig: IdentityConfig
     kerberosConfig: KerberosConfig
 
 @typing.type_check_only

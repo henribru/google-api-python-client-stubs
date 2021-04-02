@@ -41,13 +41,19 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DomainmappingsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: DomainMapping = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                body: DomainMapping = ...,
+                dryRun: str = ...,
+                **kwargs: typing.Any
             ) -> DomainMappingHttpRequest: ...
             def delete(
                 self,
                 *,
                 name: str,
                 apiVersion: str = ...,
+                dryRun: str = ...,
                 kind: str = ...,
                 propagationPolicy: str = ...,
                 **kwargs: typing.Any
@@ -74,6 +80,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 apiVersion: str = ...,
+                dryRun: str = ...,
                 kind: str = ...,
                 propagationPolicy: str = ...,
                 **kwargs: typing.Any
@@ -111,13 +118,19 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Service = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                body: Service = ...,
+                dryRun: str = ...,
+                **kwargs: typing.Any
             ) -> ServiceHttpRequest: ...
             def delete(
                 self,
                 *,
                 name: str,
                 apiVersion: str = ...,
+                dryRun: str = ...,
                 kind: str = ...,
                 propagationPolicy: str = ...,
                 **kwargs: typing.Any
@@ -136,7 +149,12 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ListServicesResponseHttpRequest: ...
             def replaceService(
-                self, *, name: str, body: Service = ..., **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                body: Service = ...,
+                dryRun: str = ...,
+                **kwargs: typing.Any
             ) -> ServiceHttpRequest: ...
         def authorizeddomains(self) -> AuthorizeddomainsResource: ...
         def configurations(self) -> ConfigurationsResource: ...
@@ -192,6 +210,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: DomainMapping = ...,
+                    dryRun: str = ...,
                     **kwargs: typing.Any
                 ) -> DomainMappingHttpRequest: ...
                 def delete(
@@ -199,6 +218,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     apiVersion: str = ...,
+                    dryRun: str = ...,
                     kind: str = ...,
                     propagationPolicy: str = ...,
                     **kwargs: typing.Any
@@ -225,6 +245,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     apiVersion: str = ...,
+                    dryRun: str = ...,
                     kind: str = ...,
                     propagationPolicy: str = ...,
                     **kwargs: typing.Any
@@ -264,13 +285,19 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ServicesResource(googleapiclient.discovery.Resource):
                 def create(
-                    self, *, parent: str, body: Service = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    parent: str,
+                    body: Service = ...,
+                    dryRun: str = ...,
+                    **kwargs: typing.Any
                 ) -> ServiceHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
                     apiVersion: str = ...,
+                    dryRun: str = ...,
                     kind: str = ...,
                     propagationPolicy: str = ...,
                     **kwargs: typing.Any
@@ -298,7 +325,12 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> ListServicesResponseHttpRequest: ...
                 def replaceService(
-                    self, *, name: str, body: Service = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    body: Service = ...,
+                    dryRun: str = ...,
+                    **kwargs: typing.Any
                 ) -> ServiceHttpRequest: ...
                 def setIamPolicy(
                     self,

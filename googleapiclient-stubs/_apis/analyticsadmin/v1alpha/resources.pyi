@@ -113,6 +113,13 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             body: GoogleAnalyticsAdminV1alphaProvisionAccountTicketRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponseHttpRequest: ...
+        def searchChangeHistoryEvents(
+            self,
+            *,
+            account: str,
+            body: GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest: ...
         def userLinks(self) -> UserLinksResource: ...
     @typing.type_check_only
     class PropertiesResource(googleapiclient.discovery.Resource):
@@ -655,6 +662,18 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaUserLinkHttpRequest(googleapiclient.http.HttpRequest):

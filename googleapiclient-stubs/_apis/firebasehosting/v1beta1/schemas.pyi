@@ -115,6 +115,11 @@ class ListReleasesResponse(typing_extensions.TypedDict, total=False):
     releases: typing.List[Release]
 
 @typing.type_check_only
+class ListSitesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sites: typing.List[Site]
+
+@typing.type_check_only
 class ListVersionFilesResponse(typing_extensions.TypedDict, total=False):
     files: typing.List[VersionFile]
     nextPageToken: str
@@ -188,6 +193,14 @@ class ServingConfig(typing_extensions.TypedDict, total=False):
     trailingSlashBehavior: typing_extensions.Literal[
         "TRAILING_SLASH_BEHAVIOR_UNSPECIFIED", "ADD", "REMOVE"
     ]
+
+@typing.type_check_only
+class Site(typing_extensions.TypedDict, total=False):
+    appId: str
+    defaultUrl: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DEFAULT_SITE", "USER_SITE"]
 
 @typing.type_check_only
 class SiteConfig(typing_extensions.TypedDict, total=False):

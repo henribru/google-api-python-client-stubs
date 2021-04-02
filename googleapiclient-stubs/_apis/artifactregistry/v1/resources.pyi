@@ -25,7 +25,27 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class RepositoriesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class DockerImagesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListDockerImagesResponseHttpRequest: ...
+                def dockerImages(self) -> DockerImagesResource: ...
+            def repositories(self) -> RepositoriesResource: ...
+        def locations(self) -> LocationsResource: ...
     def operations(self) -> OperationsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -36,6 +56,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Empty: ...
+
+@typing.type_check_only
+class ListDockerImagesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListDockerImagesResponse: ...
 
 @typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):

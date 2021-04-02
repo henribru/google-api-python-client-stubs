@@ -70,6 +70,7 @@ class Address(typing_extensions.TypedDict, total=False):
     purpose: typing_extensions.Literal[
         "DNS_RESOLVER",
         "GCE_ENDPOINT",
+        "IPSEC_INTERCONNECT",
         "NAT_AUTO",
         "PRIVATE_SERVICE_CONNECT",
         "SHARED_LOADBALANCER_VIP",
@@ -255,6 +256,8 @@ class AutoscalerStatusDetails(typing_extensions.TypedDict, total=False):
         "NOT_ENOUGH_QUOTA_AVAILABLE",
         "REGION_RESOURCE_STOCKOUT",
         "SCALING_TARGET_DOES_NOT_EXIST",
+        "SCHEDULED_INSTANCES_GREATER_THAN_AUTOSCALER_MAX",
+        "SCHEDULED_INSTANCES_LESS_THAN_AUTOSCALER_MIN",
         "UNKNOWN",
         "UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION",
         "ZONE_RESOURCE_STOCKOUT",
@@ -430,6 +433,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
         "ROUND_ROBIN",
     ]
     logConfig: BackendServiceLogConfig
+    maxStreamDuration: Duration
     name: str
     network: str
     outlierDetection: OutlierDetection
@@ -451,6 +455,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
         "HTTP_COOKIE",
         "NONE",
     ]
+    subsetting: Subsetting
     timeoutSec: int
 
 @typing.type_check_only
@@ -1065,6 +1070,7 @@ class FirewallPolicy(typing_extensions.TypedDict, total=False):
     rules: typing.List[FirewallPolicyRule]
     selfLink: str
     selfLinkWithId: str
+    shortName: str
 
 @typing.type_check_only
 class FirewallPolicyAssociation(typing_extensions.TypedDict, total=False):
@@ -1072,6 +1078,7 @@ class FirewallPolicyAssociation(typing_extensions.TypedDict, total=False):
     displayName: str
     firewallPolicyId: str
     name: str
+    shortName: str
 
 @typing.type_check_only
 class FirewallPolicyList(typing_extensions.TypedDict, total=False):
@@ -1507,6 +1514,7 @@ class HttpRetryPolicy(typing_extensions.TypedDict, total=False):
 class HttpRouteAction(typing_extensions.TypedDict, total=False):
     corsPolicy: CorsPolicy
     faultInjectionPolicy: HttpFaultInjection
+    maxStreamDuration: Duration
     requestMirrorPolicy: RequestMirrorPolicy
     retryPolicy: HttpRetryPolicy
     timeout: Duration
@@ -1638,6 +1646,9 @@ class Instance(typing_extensions.TypedDict, total=False):
     name: str
     networkInterfaces: typing.List[NetworkInterface]
     networkPerformanceConfig: NetworkPerformanceConfig
+    postKeyRevocationActionType: typing_extensions.Literal[
+        "NOOP", "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED", "SHUTDOWN"
+    ]
     privateIpv6GoogleAccess: typing_extensions.Literal[
         "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
         "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
@@ -2102,6 +2113,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
     displayName: str
     name: str
     rules: typing.List[FirewallPolicyRule]
+    shortName: str
     type: typing_extensions.Literal["HIERARCHY", "UNSPECIFIED"]
 
 @typing.type_check_only
@@ -2216,9 +2228,11 @@ class InterconnectAttachment(typing_extensions.TypedDict, total=False):
     edgeAvailabilityDomain: typing_extensions.Literal[
         "AVAILABILITY_DOMAIN_1", "AVAILABILITY_DOMAIN_2", "AVAILABILITY_DOMAIN_ANY"
     ]
+    encryption: typing_extensions.Literal["IPSEC", "NONE"]
     googleReferenceId: str
     id: str
     interconnect: str
+    ipsecInternalAddresses: typing.List[str]
     kind: str
     labelFingerprint: str
     labels: typing.Dict[str, typing.Any]
@@ -2836,6 +2850,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
     displayName: str
     name: str
     rules: typing.List[FirewallPolicyRule]
+    shortName: str
     type: typing_extensions.Literal["HIERARCHY", "NETWORK", "UNSPECIFIED"]
 
 @typing.type_check_only
@@ -3422,9 +3437,11 @@ class Quota(typing_extensions.TypedDict, total=False):
         "AUTOSCALERS",
         "BACKEND_BUCKETS",
         "BACKEND_SERVICES",
+        "C2D_CPUS",
         "C2_CPUS",
         "COMMITMENTS",
         "COMMITTED_A2_CPUS",
+        "COMMITTED_C2D_CPUS",
         "COMMITTED_C2_CPUS",
         "COMMITTED_CPUS",
         "COMMITTED_E2_CPUS",
@@ -4006,6 +4023,7 @@ class Router(typing_extensions.TypedDict, total=False):
     bgpPeers: typing.List[RouterBgpPeer]
     creationTimestamp: str
     description: str
+    encryptedInterconnectRouter: bool
     id: str
     interfaces: typing.List[RouterInterface]
     kind: str
@@ -4054,6 +4072,7 @@ class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     name: str
     peerAsn: int
     peerIpAddress: str
+    routerApplianceInstance: str
 
 @typing.type_check_only
 class RouterBgpPeerBfd(typing_extensions.TypedDict, total=False):
@@ -4073,6 +4092,9 @@ class RouterInterface(typing_extensions.TypedDict, total=False):
         "MANAGED_BY_ATTACHMENT", "MANAGED_BY_USER"
     ]
     name: str
+    privateIpAddress: str
+    redundantInterface: str
+    subnetwork: str
 
 @typing.type_check_only
 class RouterList(typing_extensions.TypedDict, total=False):
@@ -4131,6 +4153,7 @@ class RouterStatusBgpPeerStatus(typing_extensions.TypedDict, total=False):
     name: str
     numLearnedRoutes: int
     peerIpAddress: str
+    routerApplianceInstance: str
     state: str
     status: typing_extensions.Literal["DOWN", "UNKNOWN", "UP"]
     uptime: str
@@ -4708,6 +4731,10 @@ class SubnetworksSetPrivateIpGoogleAccessRequest(
     privateIpGoogleAccess: bool
 
 @typing.type_check_only
+class Subsetting(typing_extensions.TypedDict, total=False):
+    policy: typing_extensions.Literal["CONSISTENT_HASH_SUBSETTING", "NONE"]
+
+@typing.type_check_only
 class TCPHealthCheck(typing_extensions.TypedDict, total=False):
     port: int
     portName: str
@@ -4807,6 +4834,7 @@ class TargetHttpsProxy(typing_extensions.TypedDict, total=False):
     authorizationPolicy: str
     creationTimestamp: str
     description: str
+    fingerprint: str
     httpFilters: typing.List[str]
     id: str
     kind: str
@@ -5271,6 +5299,7 @@ class VpnGatewayStatusVpnConnection(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VpnGatewayVpnGatewayInterface(typing_extensions.TypedDict, total=False):
     id: int
+    interconnectAttachment: str
     ipAddress: str
 
 @typing.type_check_only

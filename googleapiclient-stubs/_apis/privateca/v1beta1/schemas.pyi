@@ -38,10 +38,6 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class BillingView(typing_extensions.TypedDict, total=False):
-    reportRequests: typing.List[GoogleApiServicecontrolV1ReportRequest]
-
-@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: typing.List[str]
@@ -151,12 +147,6 @@ class EnableCertificateAuthorityRequest(typing_extensions.TypedDict, total=False
     requestId: str
 
 @typing.type_check_only
-class Exemplar(typing_extensions.TypedDict, total=False):
-    attachments: typing.List[typing.Dict[str, typing.Any]]
-    timestamp: str
-    value: float
-
-@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -175,187 +165,6 @@ class ExtendedKeyUsageOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FetchCertificateAuthorityCsrResponse(typing_extensions.TypedDict, total=False):
     pemCsr: str
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1AttributeValue(typing_extensions.TypedDict, total=False):
-    boolValue: bool
-    intValue: str
-    stringValue: GoogleApiServicecontrolV1TruncatableString
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1Attributes(typing_extensions.TypedDict, total=False):
-    attributeMap: typing.Dict[str, typing.Any]
-    droppedAttributesCount: int
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1Distribution(typing_extensions.TypedDict, total=False):
-    bucketCounts: typing.List[str]
-    count: str
-    exemplars: typing.List[Exemplar]
-    explicitBuckets: GoogleApiServicecontrolV1ExplicitBuckets
-    exponentialBuckets: GoogleApiServicecontrolV1ExponentialBuckets
-    linearBuckets: GoogleApiServicecontrolV1LinearBuckets
-    maximum: float
-    mean: float
-    minimum: float
-    sumOfSquaredDeviation: float
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1ExplicitBuckets(
-    typing_extensions.TypedDict, total=False
-):
-    bounds: typing.List[float]
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1ExponentialBuckets(
-    typing_extensions.TypedDict, total=False
-):
-    growthFactor: float
-    numFiniteBuckets: int
-    scale: float
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1HttpRequest(typing_extensions.TypedDict, total=False):
-    cacheFillBytes: str
-    cacheHit: bool
-    cacheLookup: bool
-    cacheValidatedWithOriginServer: bool
-    latency: str
-    protocol: str
-    referer: str
-    remoteIp: str
-    requestMethod: str
-    requestSize: str
-    requestUrl: str
-    responseSize: str
-    serverIp: str
-    status: int
-    userAgent: str
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1LinearBuckets(typing_extensions.TypedDict, total=False):
-    numFiniteBuckets: int
-    offset: float
-    width: float
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1LogEntry(typing_extensions.TypedDict, total=False):
-    httpRequest: GoogleApiServicecontrolV1HttpRequest
-    insertId: str
-    labels: typing.Dict[str, typing.Any]
-    name: str
-    operation: GoogleApiServicecontrolV1LogEntryOperation
-    protoPayload: typing.Dict[str, typing.Any]
-    severity: typing_extensions.Literal[
-        "DEFAULT",
-        "DEBUG",
-        "INFO",
-        "NOTICE",
-        "WARNING",
-        "ERROR",
-        "CRITICAL",
-        "ALERT",
-        "EMERGENCY",
-    ]
-    sourceLocation: GoogleApiServicecontrolV1LogEntrySourceLocation
-    structPayload: typing.Dict[str, typing.Any]
-    textPayload: str
-    timestamp: str
-    trace: str
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1LogEntryOperation(
-    typing_extensions.TypedDict, total=False
-):
-    first: bool
-    id: str
-    last: bool
-    producer: str
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1LogEntrySourceLocation(
-    typing_extensions.TypedDict, total=False
-):
-    file: str
-    function: str
-    line: str
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1MetricValue(typing_extensions.TypedDict, total=False):
-    boolValue: bool
-    distributionValue: GoogleApiServicecontrolV1Distribution
-    doubleValue: float
-    endTime: str
-    int64Value: str
-    labels: typing.Dict[str, typing.Any]
-    moneyValue: Money
-    startTime: str
-    stringValue: str
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1MetricValueSet(typing_extensions.TypedDict, total=False):
-    metricName: str
-    metricValues: typing.List[GoogleApiServicecontrolV1MetricValue]
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1Operation(typing_extensions.TypedDict, total=False):
-    consumerId: str
-    endTime: str
-    extensions: typing.List[typing.Dict[str, typing.Any]]
-    importance: typing_extensions.Literal["LOW", "HIGH", "DEBUG"]
-    labels: typing.Dict[str, typing.Any]
-    logEntries: typing.List[GoogleApiServicecontrolV1LogEntry]
-    metricValueSets: typing.List[GoogleApiServicecontrolV1MetricValueSet]
-    operationId: str
-    operationName: str
-    quotaProperties: GoogleApiServicecontrolV1QuotaProperties
-    resources: typing.List[GoogleApiServicecontrolV1ResourceInfo]
-    startTime: str
-    traceSpans: typing.List[GoogleApiServicecontrolV1TraceSpan]
-    userLabels: typing.Dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1QuotaProperties(
-    typing_extensions.TypedDict, total=False
-):
-    quotaMode: typing_extensions.Literal[
-        "ACQUIRE", "ACQUIRE_BEST_EFFORT", "CHECK", "RELEASE"
-    ]
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1ReportRequest(typing_extensions.TypedDict, total=False):
-    operations: typing.List[GoogleApiServicecontrolV1Operation]
-    serviceConfigId: str
-    serviceName: str
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1ResourceInfo(typing_extensions.TypedDict, total=False):
-    resourceContainer: str
-    resourceLocation: str
-    resourceName: str
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1TraceSpan(typing_extensions.TypedDict, total=False):
-    attributes: GoogleApiServicecontrolV1Attributes
-    childSpanCount: int
-    displayName: GoogleApiServicecontrolV1TruncatableString
-    endTime: str
-    name: str
-    parentSpanId: str
-    sameProcessAsParentSpan: bool
-    spanId: str
-    spanKind: typing_extensions.Literal[
-        "SPAN_KIND_UNSPECIFIED", "INTERNAL", "SERVER", "CLIENT", "PRODUCER", "CONSUMER"
-    ]
-    startTime: str
-    status: Status
-
-@typing.type_check_only
-class GoogleApiServicecontrolV1TruncatableString(
-    typing_extensions.TypedDict, total=False
-):
-    truncatedByteCount: int
-    value: str
 
 @typing.type_check_only
 class IssuanceModes(typing_extensions.TypedDict, total=False):
@@ -447,12 +256,6 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
-    currencyCode: str
-    nanos: int
-    units: str
-
-@typing.type_check_only
 class ObjectId(typing_extensions.TypedDict, total=False):
     objectIdPath: typing.List[int]
 
@@ -485,6 +288,10 @@ class Policy(typing_extensions.TypedDict, total=False):
 class PublicKey(typing_extensions.TypedDict, total=False):
     key: str
     type: typing_extensions.Literal["KEY_TYPE_UNSPECIFIED", "PEM_RSA_KEY", "PEM_EC_KEY"]
+
+@typing.type_check_only
+class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
+    deleteResource: bool
 
 @typing.type_check_only
 class RestoreCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):

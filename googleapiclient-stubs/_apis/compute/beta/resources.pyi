@@ -211,6 +211,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, backendBucket: str, **kwargs: typing.Any
         ) -> BackendBucketHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -239,6 +247,22 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -2395,6 +2419,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, licenseCode: str, **kwargs: typing.Any
         ) -> LicenseCodeHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class LicensesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -2443,6 +2475,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: GlobalSetPolicyRequest = ...,
             **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class MachineImagesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -3504,6 +3544,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> CommitmentListHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
         def updateReservations(
             self,
             *,
@@ -3694,6 +3743,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionHealthChecksResource(googleapiclient.discovery.Resource):
         def delete(
@@ -3739,6 +3797,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -4116,6 +4183,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> NotificationEndpointListHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionOperationsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -4179,6 +4255,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> SslCertificateListHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionTargetHttpProxiesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -4229,6 +4314,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionTargetHttpsProxiesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -4289,6 +4383,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionUrlMapsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -4344,6 +4447,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -4819,6 +4931,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             serviceAttachment: str,
             **kwargs: typing.Any
         ) -> ServiceAttachmentHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -4840,6 +4961,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
             returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> ServiceAttachmentListHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class SnapshotsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -5173,6 +5312,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class TargetHttpProxiesResource(googleapiclient.discovery.Resource):
         def aggregatedList(
@@ -5638,6 +5785,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class TargetVpnGatewaysResource(googleapiclient.discovery.Resource):
         def aggregatedList(
@@ -5856,6 +6011,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class VpnTunnelsResource(googleapiclient.discovery.Resource):
         def aggregatedList(

@@ -70,6 +70,7 @@ class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     environments: typing.List[str]
+    graphqlOperationGroup: GoogleCloudApigeeV1GraphQLOperationGroup
     lastModifiedAt: str
     name: str
     operationGroup: GoogleCloudApigeeV1OperationGroup
@@ -556,6 +557,27 @@ class GoogleCloudApigeeV1FlowHookConfig(typing_extensions.TypedDict, total=False
 class GoogleCloudApigeeV1GetSyncAuthorizationRequest(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1GraphQLOperation(typing_extensions.TypedDict, total=False):
+    operation: str
+    operationTypes: typing.List[str]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1GraphQLOperationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    apiSource: str
+    attributes: typing.List[GoogleCloudApigeeV1Attribute]
+    operations: typing.List[GoogleCloudApigeeV1GraphQLOperation]
+    quota: GoogleCloudApigeeV1Quota
+
+@typing.type_check_only
+class GoogleCloudApigeeV1GraphQLOperationGroup(
+    typing_extensions.TypedDict, total=False
+):
+    operationConfigType: str
+    operationConfigs: typing.List[GoogleCloudApigeeV1GraphQLOperationConfig]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1IngressConfig(typing_extensions.TypedDict, total=False):

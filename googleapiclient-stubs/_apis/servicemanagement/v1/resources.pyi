@@ -97,13 +97,6 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, serviceName: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-        def enable(
-            self,
-            *,
-            serviceName: str,
-            body: EnableServiceRequest = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
         def generateConfigReport(
             self, *, body: GenerateConfigReportRequest = ..., **kwargs: typing.Any
         ) -> GenerateConfigReportResponseHttpRequest: ...

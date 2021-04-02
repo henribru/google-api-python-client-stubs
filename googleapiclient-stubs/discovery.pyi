@@ -76,6 +76,7 @@ import googleapiclient._apis.cloudbilling.v1.resources
 import googleapiclient._apis.cloudbuild.v1.resources
 import googleapiclient._apis.cloudbuild.v1alpha1.resources
 import googleapiclient._apis.cloudbuild.v1alpha2.resources
+import googleapiclient._apis.cloudbuild.v1beta1.resources
 import googleapiclient._apis.clouddebugger.v2.resources
 import googleapiclient._apis.clouderrorreporting.v1beta1.resources
 import googleapiclient._apis.cloudfunctions.v1.resources
@@ -117,6 +118,7 @@ import googleapiclient._apis.dataflow.v1b3.resources
 import googleapiclient._apis.datafusion.v1.resources
 import googleapiclient._apis.datafusion.v1beta1.resources
 import googleapiclient._apis.datalabeling.v1beta1.resources
+import googleapiclient._apis.datamigration.v1.resources
 import googleapiclient._apis.datamigration.v1beta1.resources
 import googleapiclient._apis.dataproc.v1.resources
 import googleapiclient._apis.dataproc.v1beta2.resources
@@ -234,6 +236,7 @@ import googleapiclient._apis.pubsub.v1beta1a.resources
 import googleapiclient._apis.pubsub.v1beta2.resources
 import googleapiclient._apis.pubsublite.v1.resources
 import googleapiclient._apis.realtimebidding.v1.resources
+import googleapiclient._apis.realtimebidding.v1alpha.resources
 import googleapiclient._apis.recommendationengine.v1beta1.resources
 import googleapiclient._apis.recommender.v1.resources
 import googleapiclient._apis.recommender.v1beta1.resources
@@ -1700,6 +1703,26 @@ def build(
     num_retries: int = ...,
     static_discovery: Optional[bool] = ...,
 ) -> googleapiclient._apis.securitycenter.v1.resources.SecurityCommandCenterResource: ...
+@overload
+def build(
+    serviceName: Literal["realtimebidding"],
+    version: Literal["v1alpha"],
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
+    discoveryServiceUrl: Optional[str] = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+    static_discovery: Optional[bool] = ...,
+) -> googleapiclient._apis.realtimebidding.v1alpha.resources.RealTimeBiddingResource: ...
 @overload
 def build(
     serviceName: Literal["memcache"],
@@ -3200,6 +3223,26 @@ def build(
     num_retries: int = ...,
     static_discovery: Optional[bool] = ...,
 ) -> googleapiclient._apis.cloudbuild.v1alpha1.resources.CloudBuildResource: ...
+@overload
+def build(
+    serviceName: Literal["datamigration"],
+    version: Literal["v1"],
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
+    discoveryServiceUrl: Optional[str] = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+    static_discovery: Optional[bool] = ...,
+) -> googleapiclient._apis.datamigration.v1.resources.DatabaseMigrationServiceResource: ...
 @overload
 def build(
     serviceName: Literal["groupsmigration"],
@@ -6320,6 +6363,26 @@ def build(
     num_retries: int = ...,
     static_discovery: Optional[bool] = ...,
 ) -> googleapiclient._apis.gmail.v1.resources.GmailResource: ...
+@overload
+def build(
+    serviceName: Literal["cloudbuild"],
+    version: Literal["v1beta1"],
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
+    discoveryServiceUrl: Optional[str] = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+    static_discovery: Optional[bool] = ...,
+) -> googleapiclient._apis.cloudbuild.v1beta1.resources.CloudBuildResource: ...
 @overload
 def build(
     serviceName: Literal["memcache"],

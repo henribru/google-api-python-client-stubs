@@ -91,6 +91,42 @@ class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse(
     userLinks: typing.List[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaChangeHistoryChange(
+    typing_extensions.TypedDict, total=False
+):
+    action: typing_extensions.Literal[
+        "ACTION_TYPE_UNSPECIFIED", "CREATED", "UPDATED", "DELETED"
+    ]
+    resource: str
+    resourceAfterChange: GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource
+    resourceBeforeChange: GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
+    typing_extensions.TypedDict, total=False
+):
+    account: GoogleAnalyticsAdminV1alphaAccount
+    androidAppDataStream: GoogleAnalyticsAdminV1alphaAndroidAppDataStream
+    firebaseLink: GoogleAnalyticsAdminV1alphaFirebaseLink
+    googleAdsLink: GoogleAnalyticsAdminV1alphaGoogleAdsLink
+    iosAppDataStream: GoogleAnalyticsAdminV1alphaIosAppDataStream
+    property: GoogleAnalyticsAdminV1alphaProperty
+    webDataStream: GoogleAnalyticsAdminV1alphaWebDataStream
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
+    typing_extensions.TypedDict, total=False
+):
+    actorType: typing_extensions.Literal[
+        "ACTOR_TYPE_UNSPECIFIED", "USER", "SYSTEM", "SUPPORT"
+    ]
+    changeTime: str
+    changes: typing.List[GoogleAnalyticsAdminV1alphaChangeHistoryChange]
+    changesFiltered: bool
+    id: str
+    userActorEmail: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCreateUserLinkRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -297,6 +333,26 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse(
     typing_extensions.TypedDict, total=False
 ):
     accountTicketId: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    action: typing.List[str]
+    actorEmail: typing.List[str]
+    earliestChangeTime: str
+    latestChangeTime: str
+    pageSize: int
+    pageToken: str
+    property: str
+    resourceType: typing.List[str]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    changeHistoryEvents: typing.List[GoogleAnalyticsAdminV1alphaChangeHistoryEvent]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest(

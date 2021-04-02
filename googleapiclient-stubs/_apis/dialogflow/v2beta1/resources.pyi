@@ -459,6 +459,182 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def sessions(self) -> SessionsResource: ...
         @typing.type_check_only
+        class AnswerRecordsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1AnswerRecordHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDialogflowV2beta1AnswerRecord = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1AnswerRecordHttpRequest: ...
+        @typing.type_check_only
+        class ConversationProfilesResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudDialogflowV2beta1ConversationProfile = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ConversationProfileHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ConversationProfileHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ListConversationProfilesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDialogflowV2beta1ConversationProfile = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ConversationProfileHttpRequest: ...
+        @typing.type_check_only
+        class ConversationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class MessagesResource(googleapiclient.discovery.Resource):
+                def batchCreate(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1BatchCreateMessagesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1BatchCreateMessagesResponseHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ListMessagesResponseHttpRequest: ...
+            @typing.type_check_only
+            class ParticipantsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class SuggestionsResource(googleapiclient.discovery.Resource):
+                    def compile(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1CompileSuggestionRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1CompileSuggestionResponseHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ListSuggestionsResponseHttpRequest: ...
+                    def suggestArticles(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1SuggestArticlesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1SuggestArticlesResponseHttpRequest: ...
+                    def suggestFaqAnswers(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1SuggestFaqAnswersRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponseHttpRequest: ...
+                    def suggestSmartReplies(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1SuggestSmartRepliesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponseHttpRequest: ...
+                def analyzeContent(
+                    self,
+                    *,
+                    participant: str,
+                    body: GoogleCloudDialogflowV2beta1AnalyzeContentRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1AnalyzeContentResponseHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1Participant = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ParticipantHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ParticipantHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1Participant = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ParticipantHttpRequest: ...
+                def suggestions(self) -> SuggestionsResource: ...
+            def complete(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDialogflowV2beta1CompleteConversationRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ConversationHttpRequest: ...
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudDialogflowV2beta1Conversation = ...,
+                conversationId: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ConversationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ConversationHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1ListConversationsResponseHttpRequest: ...
+            def messages(self) -> MessagesResource: ...
+            def participants(self) -> ParticipantsResource: ...
+        @typing.type_check_only
         class KnowledgeBasesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DocumentsResource(googleapiclient.discovery.Resource):
@@ -476,6 +652,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1DocumentHttpRequest: ...
+                def import_(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1ImportDocumentsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -898,6 +1081,166 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def intents(self) -> IntentsResource: ...
                 def sessions(self) -> SessionsResource: ...
             @typing.type_check_only
+            class AnswerRecordsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1AnswerRecordHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1AnswerRecord = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1AnswerRecordHttpRequest: ...
+            @typing.type_check_only
+            class ConversationProfilesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1ConversationProfile = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ConversationProfileHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ConversationProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ListConversationProfilesResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1ConversationProfile = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ConversationProfileHttpRequest: ...
+            @typing.type_check_only
+            class ConversationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class MessagesResource(googleapiclient.discovery.Resource):
+                    def batchCreate(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1BatchCreateMessagesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1BatchCreateMessagesResponseHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ListMessagesResponseHttpRequest: ...
+                @typing.type_check_only
+                class ParticipantsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class SuggestionsResource(googleapiclient.discovery.Resource):
+                        def suggestArticles(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowV2beta1SuggestArticlesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1SuggestArticlesResponseHttpRequest: ...
+                        def suggestFaqAnswers(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowV2beta1SuggestFaqAnswersRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponseHttpRequest: ...
+                        def suggestSmartReplies(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowV2beta1SuggestSmartRepliesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponseHttpRequest: ...
+                    def analyzeContent(
+                        self,
+                        *,
+                        participant: str,
+                        body: GoogleCloudDialogflowV2beta1AnalyzeContentRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1AnalyzeContentResponseHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1Participant = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ParticipantHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ParticipantHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowV2beta1Participant = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2beta1ParticipantHttpRequest: ...
+                    def suggestions(self) -> SuggestionsResource: ...
+                def complete(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1CompleteConversationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ConversationHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1Conversation = ...,
+                    conversationId: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ConversationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ConversationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1ListConversationsResponseHttpRequest: ...
+                def messages(self) -> MessagesResource: ...
+                def participants(self) -> ParticipantsResource: ...
+            @typing.type_check_only
             class KnowledgeBasesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class DocumentsResource(googleapiclient.discovery.Resource):
@@ -915,6 +1258,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1DocumentHttpRequest: ...
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2beta1ImportDocumentsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -1002,6 +1352,9 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1AgentHttpRequest: ...
             def agent(self) -> AgentResource: ...
+            def answerRecords(self) -> AnswerRecordsResource: ...
+            def conversationProfiles(self) -> ConversationProfilesResource: ...
+            def conversations(self) -> ConversationsResource: ...
             def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def operations(self) -> OperationsResource: ...
         @typing.type_check_only
@@ -1036,6 +1389,9 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> GoogleCloudDialogflowV2beta1AgentHttpRequest: ...
         def agent(self) -> AgentResource: ...
+        def answerRecords(self) -> AnswerRecordsResource: ...
+        def conversationProfiles(self) -> ConversationProfilesResource: ...
+        def conversations(self) -> ConversationsResource: ...
         def knowledgeBases(self) -> KnowledgeBasesResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
@@ -1052,6 +1408,54 @@ class GoogleCloudDialogflowV2beta1AgentHttpRequest(googleapiclient.http.HttpRequ
     ) -> GoogleCloudDialogflowV2beta1Agent: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1AnalyzeContentResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1AnalyzeContentResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AnswerRecordHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1AnswerRecord: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1BatchCreateMessagesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1CompileSuggestionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1CompileSuggestionResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1ContextHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1060,6 +1464,30 @@ class GoogleCloudDialogflowV2beta1ContextHttpRequest(googleapiclient.http.HttpRe
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2beta1Context: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ConversationHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1Conversation: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ConversationProfileHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1ConversationProfile: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1DetectIntentResponseHttpRequest(
@@ -1130,6 +1558,18 @@ class GoogleCloudDialogflowV2beta1KnowledgeBaseHttpRequest(
     ) -> GoogleCloudDialogflowV2beta1KnowledgeBase: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1140,6 +1580,30 @@ class GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2beta1ListContextsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListConversationProfilesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1ListConversationProfilesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListConversationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1ListConversationsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest(
@@ -1202,6 +1666,30 @@ class GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest(
     ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListMessagesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1ListMessagesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1ListParticipantsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1212,6 +1700,30 @@ class GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListSuggestionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1ListSuggestionsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ParticipantHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1Participant: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest(
@@ -1236,6 +1748,42 @@ class GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2beta1SessionEntityType: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SuggestArticlesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1SuggestArticlesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ValidationResultHttpRequest(

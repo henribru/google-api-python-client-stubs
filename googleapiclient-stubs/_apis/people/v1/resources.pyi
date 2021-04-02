@@ -124,6 +124,15 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 syncToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListConnectionsResponseHttpRequest: ...
+        def batchCreateContacts(
+            self, *, body: BatchCreateContactsRequest = ..., **kwargs: typing.Any
+        ) -> BatchCreateContactsResponseHttpRequest: ...
+        def batchDeleteContacts(
+            self, *, body: BatchDeleteContactsRequest = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+        def batchUpdateContacts(
+            self, *, body: BatchUpdateContactsRequest = ..., **kwargs: typing.Any
+        ) -> BatchUpdateContactsResponseHttpRequest: ...
         def createContact(
             self,
             *,
@@ -338,6 +347,16 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
     def people(self) -> PeopleResource: ...
 
 @typing.type_check_only
+class BatchCreateContactsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> BatchCreateContactsResponse: ...
+
+@typing.type_check_only
 class BatchGetContactGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -346,6 +365,16 @@ class BatchGetContactGroupsResponseHttpRequest(googleapiclient.http.HttpRequest)
         ] = ...,
         num_retries: int = ...,
     ) -> BatchGetContactGroupsResponse: ...
+
+@typing.type_check_only
+class BatchUpdateContactsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> BatchUpdateContactsResponse: ...
 
 @typing.type_check_only
 class ContactGroupHttpRequest(googleapiclient.http.HttpRequest):

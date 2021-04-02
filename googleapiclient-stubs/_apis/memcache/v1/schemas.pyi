@@ -30,6 +30,10 @@ class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleCloudMemcacheV1LocationMetadata(typing_extensions.TypedDict, total=False):
+    availableZones: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class GoogleCloudMemcacheV1OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
@@ -38,6 +42,9 @@ class GoogleCloudMemcacheV1OperationMetadata(typing_extensions.TypedDict, total=
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class GoogleCloudMemcacheV1ZoneMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
@@ -96,6 +103,12 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
     nodeId: str
 
 @typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
+    typing_extensions.TypedDict, total=False
+):
+    eligibilities: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource(
     typing_extensions.TypedDict, total=False
 ):
@@ -125,6 +138,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     eligibility: GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility
     exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
     nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
+    perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
     tier: str
 
 @typing.type_check_only

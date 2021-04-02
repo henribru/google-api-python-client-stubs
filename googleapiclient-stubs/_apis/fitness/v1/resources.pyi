@@ -32,8 +32,6 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     userId: str,
                     dataSourceId: str,
                     datasetId: str,
-                    currentTimeMillis: str = ...,
-                    modifiedTimeMillis: str = ...,
                     **kwargs: typing.Any
                 ) -> googleapiclient.http.HttpRequest: ...
                 def get(
@@ -53,7 +51,6 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     dataSourceId: str,
                     datasetId: str,
                     body: Dataset = ...,
-                    currentTimeMillis: str = ...,
                     **kwargs: typing.Any
                 ) -> DatasetHttpRequest: ...
             def create(
@@ -90,12 +87,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class SessionsResource(googleapiclient.discovery.Resource):
             def delete(
-                self,
-                *,
-                userId: str,
-                sessionId: str,
-                currentTimeMillis: str = ...,
-                **kwargs: typing.Any
+                self, *, userId: str, sessionId: str, **kwargs: typing.Any
             ) -> googleapiclient.http.HttpRequest: ...
             def list(
                 self,
@@ -114,7 +106,6 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 userId: str,
                 sessionId: str,
                 body: Session = ...,
-                currentTimeMillis: str = ...,
                 **kwargs: typing.Any
             ) -> SessionHttpRequest: ...
         def dataSources(self) -> DataSourcesResource: ...

@@ -476,6 +476,9 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 class TestCasesResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class ResultsResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowCxV3TestCaseResultHttpRequest: ...
                         def list(
                             self,
                             *,
@@ -1080,6 +1083,18 @@ class GoogleCloudDialogflowCxV3TestCaseHttpRequest(googleapiclient.http.HttpRequ
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3TestCase: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3TestCaseResultHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowCxV3TestCaseResult: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest(

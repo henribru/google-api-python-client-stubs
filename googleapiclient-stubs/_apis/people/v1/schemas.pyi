@@ -27,8 +27,33 @@ class AgeRangeType(typing_extensions.TypedDict, total=False):
     metadata: FieldMetadata
 
 @typing.type_check_only
+class BatchCreateContactsRequest(typing_extensions.TypedDict, total=False):
+    contacts: typing.List[ContactToCreate]
+    readMask: str
+    sources: typing.List[str]
+
+@typing.type_check_only
+class BatchCreateContactsResponse(typing_extensions.TypedDict, total=False):
+    createdPeople: typing.List[PersonResponse]
+
+@typing.type_check_only
+class BatchDeleteContactsRequest(typing_extensions.TypedDict, total=False):
+    resourceNames: typing.List[str]
+
+@typing.type_check_only
 class BatchGetContactGroupsResponse(typing_extensions.TypedDict, total=False):
     responses: typing.List[ContactGroupResponse]
+
+@typing.type_check_only
+class BatchUpdateContactsRequest(typing_extensions.TypedDict, total=False):
+    contacts: typing.Dict[str, typing.Any]
+    readMask: str
+    sources: typing.List[str]
+    updateMask: str
+
+@typing.type_check_only
+class BatchUpdateContactsResponse(typing_extensions.TypedDict, total=False):
+    updateResult: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class Biography(typing_extensions.TypedDict, total=False):
@@ -91,6 +116,10 @@ class ContactGroupResponse(typing_extensions.TypedDict, total=False):
     contactGroup: ContactGroup
     requestedResourceName: str
     status: Status
+
+@typing.type_check_only
+class ContactToCreate(typing_extensions.TypedDict, total=False):
+    contactPerson: Person
 
 @typing.type_check_only
 class CopyOtherContactToMyContactsGroupRequest(

@@ -316,6 +316,7 @@ class FilterPair(typing_extensions.TypedDict, total=False):
         "FILTER_CHANNEL_GROUPING",
         "FILTER_OM_SDK_AVAILABLE",
         "FILTER_DATA_SOURCE",
+        "FILTER_CM360_PLACEMENT_ID",
     ]
     value: str
 
@@ -655,6 +656,7 @@ class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
         "FILTER_CHANNEL_GROUPING",
         "FILTER_OM_SDK_AVAILABLE",
         "FILTER_DATA_SOURCE",
+        "FILTER_CM360_PLACEMENT_ID",
     ]
     match: typing_extensions.Literal[
         "UNKNOWN", "EXACT", "PARTIAL", "BEGINS_WITH", "WILDCARD_EXPRESSION"

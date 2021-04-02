@@ -7,6 +7,11 @@ class SasPortalAssignment(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class SasPortalChannelWithScore(typing_extensions.TypedDict, total=False):
+    frequencyRange: SasPortalFrequencyRange
+    score: float
+
+@typing.type_check_only
 class SasPortalCreateSignedDeviceRequest(typing_extensions.TypedDict, total=False):
     encodedDevice: str
     installerId: str
@@ -30,6 +35,7 @@ class SasPortalDeployment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SasPortalDevice(typing_extensions.TypedDict, total=False):
     activeConfig: SasPortalDeviceConfig
+    currentChannels: typing.List[SasPortalChannelWithScore]
     deviceMetadata: SasPortalDeviceMetadata
     displayName: str
     fccId: str

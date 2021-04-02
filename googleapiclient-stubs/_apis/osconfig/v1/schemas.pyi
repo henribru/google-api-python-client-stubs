@@ -132,6 +132,11 @@ class InventoryZypperPatch(typing_extensions.TypedDict, total=False):
     summary: str
 
 @typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
 class ListPatchDeploymentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     patchDeployments: typing.List[PatchDeployment]
@@ -154,6 +159,14 @@ class MonthlySchedule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OneTimeSchedule(typing_extensions.TypedDict, total=False):
     executeTime: str
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class PatchConfig(typing_extensions.TypedDict, total=False):
@@ -282,6 +295,12 @@ class RecurringSchedule(typing_extensions.TypedDict, total=False):
     timeOfDay: TimeOfDay
     timeZone: TimeZone
     weekly: WeeklySchedule
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):

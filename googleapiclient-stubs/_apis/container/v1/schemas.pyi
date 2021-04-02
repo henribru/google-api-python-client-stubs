@@ -668,7 +668,32 @@ class StartIPRotationRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class StatusCondition(typing_extensions.TypedDict, total=False):
+    canonicalCode: typing_extensions.Literal[
+        "OK",
+        "CANCELLED",
+        "UNKNOWN",
+        "INVALID_ARGUMENT",
+        "DEADLINE_EXCEEDED",
+        "NOT_FOUND",
+        "ALREADY_EXISTS",
+        "PERMISSION_DENIED",
+        "UNAUTHENTICATED",
+        "RESOURCE_EXHAUSTED",
+        "FAILED_PRECONDITION",
+        "ABORTED",
+        "OUT_OF_RANGE",
+        "UNIMPLEMENTED",
+        "INTERNAL",
+        "UNAVAILABLE",
+        "DATA_LOSS",
+    ]
     code: typing_extensions.Literal[
         "UNKNOWN",
         "GCE_STOCKOUT",

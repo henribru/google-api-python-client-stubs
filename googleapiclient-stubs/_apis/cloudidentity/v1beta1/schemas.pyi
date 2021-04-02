@@ -14,32 +14,31 @@ class AndroidAttributes(typing_extensions.TypedDict, total=False):
     supportsWorkProfile: bool
 
 @typing.type_check_only
-class ApproveDeviceUserRequest(typing_extensions.TypedDict, total=False):
-    customer: str
+class ApproveDeviceUserRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ApproveDeviceUserResponse(typing_extensions.TypedDict, total=False):
     deviceUser: DeviceUser
 
 @typing.type_check_only
-class BlockDeviceUserRequest(typing_extensions.TypedDict, total=False):
-    customer: str
+class BlockDeviceUserRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class BlockDeviceUserResponse(typing_extensions.TypedDict, total=False):
     deviceUser: DeviceUser
 
 @typing.type_check_only
-class CancelWipeDeviceRequest(typing_extensions.TypedDict, total=False):
-    customer: str
+class CancelUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CancelWipeDeviceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CancelWipeDeviceResponse(typing_extensions.TypedDict, total=False):
     device: Device
 
 @typing.type_check_only
-class CancelWipeDeviceUserRequest(typing_extensions.TypedDict, total=False):
-    customer: str
+class CancelWipeDeviceUserRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CancelWipeDeviceUserResponse(typing_extensions.TypedDict, total=False):
@@ -74,7 +73,6 @@ class ClientState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateDeviceRequest(typing_extensions.TypedDict, total=False):
-    customer: str
     device: Device
 
 @typing.type_check_only
@@ -388,6 +386,10 @@ class GroupRelation(typing_extensions.TypedDict, total=False):
     roles: typing.List[TransitiveMembershipRole]
 
 @typing.type_check_only
+class IsInvitableUserResponse(typing_extensions.TypedDict, total=False):
+    isInvitableUser: bool
+
+@typing.type_check_only
 class ListClientStatesResponse(typing_extensions.TypedDict, total=False):
     clientStates: typing.List[ClientState]
     nextPageToken: str
@@ -411,6 +413,11 @@ class ListGroupsResponse(typing_extensions.TypedDict, total=False):
 class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
     memberships: typing.List[Membership]
     nextPageToken: str
+
+@typing.type_check_only
+class ListUserInvitationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    userInvitations: typing.List[UserInvitation]
 
 @typing.type_check_only
 class LookupGroupNameResponse(typing_extensions.TypedDict, total=False):
@@ -491,6 +498,9 @@ class SearchTransitiveMembershipsResponse(typing_extensions.TypedDict, total=Fal
     nextPageToken: str
 
 @typing.type_check_only
+class SendUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
@@ -515,16 +525,14 @@ class UserInvitation(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class WipeDeviceRequest(typing_extensions.TypedDict, total=False):
-    customer: str
+class WipeDeviceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class WipeDeviceResponse(typing_extensions.TypedDict, total=False):
     device: Device
 
 @typing.type_check_only
-class WipeDeviceUserRequest(typing_extensions.TypedDict, total=False):
-    customer: str
+class WipeDeviceUserRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class WipeDeviceUserResponse(typing_extensions.TypedDict, total=False):

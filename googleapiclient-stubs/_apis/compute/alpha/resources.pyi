@@ -1621,6 +1621,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def resumeInstances(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagersResumeInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setAutoHealingPolicies(
             self,
             *,
@@ -1648,6 +1658,36 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersSetTargetPoolsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def startInstances(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagersStartInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def stopInstances(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagersStopInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def suspendInstances(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagersSuspendInstancesRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -2036,6 +2076,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def sendDiagnosticInterrupt(
+            self, *, project: str, zone: str, instance: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
         def setDeletionProtection(
             self,
             *,
@@ -2779,6 +2822,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             firewallPolicy: str,
             body: FirewallPolicyRule = ...,
+            requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def cloneRules(
@@ -2860,6 +2904,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             firewallPolicy: str,
             body: FirewallPolicyRule = ...,
             priority: int = ...,
+            requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def removeAssociation(
@@ -2877,6 +2922,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             firewallPolicy: str,
             priority: int = ...,
+            requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def setIamPolicy(
@@ -4352,6 +4398,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def resumeInstances(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: RegionInstanceGroupManagersResumeInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setAutoHealingPolicies(
             self,
             *,
@@ -4379,6 +4435,36 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersSetTargetPoolsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def startInstances(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: RegionInstanceGroupManagersStartInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def stopInstances(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: RegionInstanceGroupManagersStopInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def suspendInstances(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: RegionInstanceGroupManagersSuspendInstancesRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -4599,6 +4685,163 @@ class ComputeResource(googleapiclient.discovery.Resource):
             returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> NetworkEndpointGroupListHttpRequest: ...
+    @typing.type_check_only
+    class RegionNetworkFirewallPoliciesResource(googleapiclient.discovery.Resource):
+        def addAssociation(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            body: FirewallPolicyAssociation = ...,
+            replaceExistingAssociation: bool = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def addRule(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def cloneRules(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            requestId: str = ...,
+            sourceFirewallPolicy: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            **kwargs: typing.Any
+        ) -> FirewallPolicyHttpRequest: ...
+        def getAssociation(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            name: str = ...,
+            **kwargs: typing.Any
+        ) -> FirewallPolicyAssociationHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def getRule(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            priority: int = ...,
+            **kwargs: typing.Any
+        ) -> FirewallPolicyRuleHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: FirewallPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> FirewallPolicyListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            body: FirewallPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def patchRule(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            priority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def removeAssociation(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            name: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def removeRule(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            priority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionNotificationEndpointsResource(googleapiclient.discovery.Resource):
         def aggregatedList(
@@ -6824,6 +7067,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionInstances(self) -> RegionInstancesResource: ...
     def regionInstantSnapshots(self) -> RegionInstantSnapshotsResource: ...
     def regionNetworkEndpointGroups(self) -> RegionNetworkEndpointGroupsResource: ...
+    def regionNetworkFirewallPolicies(
+        self,
+    ) -> RegionNetworkFirewallPoliciesResource: ...
     def regionNotificationEndpoints(self) -> RegionNotificationEndpointsResource: ...
     def regionOperations(self) -> RegionOperationsResource: ...
     def regionSslCertificates(self) -> RegionSslCertificatesResource: ...

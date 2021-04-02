@@ -21,12 +21,6 @@ class ApproximateSplitRequest(typing_extensions.TypedDict, total=False):
     position: Position
 
 @typing.type_check_only
-class Artifact(typing_extensions.TypedDict, total=False):
-    containerSpec: ContainerSpec
-    jobGraphGcsPath: str
-    metadata: TemplateMetadata
-
-@typing.type_check_only
 class AutoscalingEvent(typing_extensions.TypedDict, total=False):
     currentNumWorkers: str
     description: StructuredMessage
@@ -68,10 +62,6 @@ class CPUTime(typing_extensions.TypedDict, total=False):
     rate: float
     timestamp: str
     totalMs: str
-
-@typing.type_check_only
-class CommitTemplateVersionRequest(typing_extensions.TypedDict, total=False):
-    templateVersion: TemplateVersion
 
 @typing.type_check_only
 class ComponentSource(typing_extensions.TypedDict, total=False):
@@ -178,10 +168,6 @@ class CreateJobFromTemplateRequest(typing_extensions.TypedDict, total=False):
     parameters: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
-class CreateTemplateVersionRequest(typing_extensions.TypedDict, total=False):
-    templateVersion: TemplateVersion
-
-@typing.type_check_only
 class CustomSourceLocation(typing_extensions.TypedDict, total=False):
     stateful: bool
 
@@ -194,6 +180,10 @@ class DataDiskAssignment(typing_extensions.TypedDict, total=False):
 class DatastoreIODetails(typing_extensions.TypedDict, total=False):
     namespace: str
     projectId: str
+
+@typing.type_check_only
+class DebugOptions(typing_extensions.TypedDict, total=False):
+    enableHotKeyLogging: bool
 
 @typing.type_check_only
 class DeleteSnapshotResponse(typing_extensions.TypedDict, total=False): ...
@@ -244,12 +234,10 @@ class DynamicSourceSplit(typing_extensions.TypedDict, total=False):
     residual: DerivedSource
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
     clusterManagerApiService: str
     dataset: str
+    debugOptions: DebugOptions
     experiments: typing.List[str]
     flexResourceSchedulingGoal: typing_extensions.Literal[
         "FLEXRS_UNSPECIFIED", "FLEXRS_SPEED_OPTIMIZED", "FLEXRS_COST_OPTIMIZED"
@@ -588,11 +576,6 @@ class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
     snapshots: typing.List[Snapshot]
 
 @typing.type_check_only
-class ListTemplateVersionsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    templateVersions: typing.List[TemplateVersion]
-
-@typing.type_check_only
 class MapTask(typing_extensions.TypedDict, total=False):
     counterPrefix: str
     instructions: typing.List[ParallelInstruction]
@@ -630,25 +613,6 @@ class MetricUpdate(typing_extensions.TypedDict, total=False):
     scalar: typing.Any
     set: typing.Any
     updateTime: str
-
-@typing.type_check_only
-class ModifyTemplateVersionLabelRequest(typing_extensions.TypedDict, total=False):
-    key: str
-    op: typing_extensions.Literal["OPERATION_UNSPECIFIED", "ADD", "REMOVE"]
-    value: str
-
-@typing.type_check_only
-class ModifyTemplateVersionLabelResponse(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-
-@typing.type_check_only
-class ModifyTemplateVersionTagRequest(typing_extensions.TypedDict, total=False):
-    removeOnly: bool
-    tag: str
-
-@typing.type_check_only
-class ModifyTemplateVersionTagResponse(typing_extensions.TypedDict, total=False):
-    tags: typing.List[str]
 
 @typing.type_check_only
 class MountedDataDisk(typing_extensions.TypedDict, total=False):
@@ -1151,18 +1115,6 @@ class TemplateMetadata(typing_extensions.TypedDict, total=False):
     description: str
     name: str
     parameters: typing.List[ParameterMetadata]
-
-@typing.type_check_only
-class TemplateVersion(typing_extensions.TypedDict, total=False):
-    artifact: Artifact
-    createTime: str
-    description: str
-    displayName: str
-    labels: typing.Dict[str, typing.Any]
-    projectId: str
-    tags: typing.List[str]
-    type: typing_extensions.Literal["TEMPLATE_TYPE_UNSPECIFIED", "LEGACY", "FLEX"]
-    versionId: str
 
 @typing.type_check_only
 class TopologyConfig(typing_extensions.TypedDict, total=False):

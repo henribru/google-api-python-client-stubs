@@ -147,8 +147,32 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListOperationsResponseHttpRequest: ...
+                @typing.type_check_only
+                class PeeringsResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
                 def domains(self) -> DomainsResource: ...
                 def operations(self) -> OperationsResource: ...
+                def peerings(self) -> PeeringsResource: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...

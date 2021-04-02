@@ -42,10 +42,30 @@ class CloudresourcemanagerGoogleCloudResourcemanagerV2beta1FolderOperation(
     sourceParent: str
 
 @typing.type_check_only
+class CreateFolderMetadata(typing_extensions.TypedDict, total=False):
+    displayName: str
+    parent: str
+
+@typing.type_check_only
+class CreateProjectMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+    gettable: bool
+    ready: bool
+
+@typing.type_check_only
 class CreateTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CreateTagValueMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteFolderMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteOrganizationMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteProjectMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
@@ -62,6 +82,17 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class Folder(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    displayName: str
+    etag: str
+    name: str
+    parent: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"]
+    updateTime: str
 
 @typing.type_check_only
 class FolderOperation(typing_extensions.TypedDict, total=False):
@@ -105,9 +136,19 @@ class Lien(typing_extensions.TypedDict, total=False):
     restrictions: typing.List[str]
 
 @typing.type_check_only
+class ListFoldersResponse(typing_extensions.TypedDict, total=False):
+    folders: typing.List[Folder]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListLiensResponse(typing_extensions.TypedDict, total=False):
     liens: typing.List[Lien]
     nextPageToken: str
+
+@typing.type_check_only
+class ListProjectsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    projects: typing.List[Project]
 
 @typing.type_check_only
 class ListTagBindingsResponse(typing_extensions.TypedDict, total=False):
@@ -125,12 +166,40 @@ class ListTagValuesResponse(typing_extensions.TypedDict, total=False):
     tagValues: typing.List[TagValue]
 
 @typing.type_check_only
+class MoveFolderMetadata(typing_extensions.TypedDict, total=False):
+    destinationParent: str
+    displayName: str
+    sourceParent: str
+
+@typing.type_check_only
+class MoveFolderRequest(typing_extensions.TypedDict, total=False):
+    destinationParent: str
+
+@typing.type_check_only
+class MoveProjectMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class MoveProjectRequest(typing_extensions.TypedDict, total=False):
+    destinationParent: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
     metadata: typing.Dict[str, typing.Any]
     name: str
     response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Organization(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    directoryCustomerId: str
+    displayName: str
+    etag: str
+    name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"]
+    updateTime: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -140,10 +209,38 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class Project(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    displayName: str
+    etag: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    parent: str
+    projectId: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"]
+    updateTime: str
+
+@typing.type_check_only
 class ProjectCreationStatus(typing_extensions.TypedDict, total=False):
     createTime: str
     gettable: bool
     ready: bool
+
+@typing.type_check_only
+class SearchFoldersResponse(typing_extensions.TypedDict, total=False):
+    folders: typing.List[Folder]
+    nextPageToken: str
+
+@typing.type_check_only
+class SearchOrganizationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    organizations: typing.List[Organization]
+
+@typing.type_check_only
+class SearchProjectsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    projects: typing.List[Project]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -191,6 +288,27 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
+
+@typing.type_check_only
+class UndeleteFolderMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteFolderRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteOrganizationMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteProjectMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteProjectRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateFolderMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateProjectMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UpdateTagKeyMetadata(typing_extensions.TypedDict, total=False): ...

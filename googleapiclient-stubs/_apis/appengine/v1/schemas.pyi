@@ -545,6 +545,7 @@ class Version(typing_extensions.TypedDict, total=False):
     runtimeApiVersion: str
     runtimeChannel: str
     runtimeMainExecutablePath: str
+    serviceAccount: str
     servingStatus: typing_extensions.Literal[
         "SERVING_STATUS_UNSPECIFIED", "SERVING", "STOPPED"
     ]

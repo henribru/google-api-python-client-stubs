@@ -38,9 +38,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             *,
             customerId: str,
             deviceId: str,
-            projection: typing_extensions.Literal[
-                "PROJECTION_UNDEFINED", "BASIC", "FULL"
-            ] = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> ChromeOsDeviceHttpRequest: ...
         def list(
@@ -49,7 +47,6 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customerId: str,
             maxResults: int = ...,
             orderBy: typing_extensions.Literal[
-                "orderByUndefined",
                 "annotatedLocation",
                 "annotatedUser",
                 "lastSync",
@@ -60,13 +57,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             ] = ...,
             orgUnitPath: str = ...,
             pageToken: str = ...,
-            projection: typing_extensions.Literal[
-                "PROJECTION_UNDEFINED", "BASIC", "FULL"
-            ] = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
             query: str = ...,
-            sortOrder: typing_extensions.Literal[
-                "SORT_ORDER_UNDEFINED", "ASCENDING", "DESCENDING"
-            ] = ...,
+            sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             **kwargs: typing.Any
         ) -> ChromeOsDevicesHttpRequest: ...
         def moveDevicesToOu(
@@ -83,9 +76,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customerId: str,
             deviceId: str,
             body: ChromeOsDevice = ...,
-            projection: typing_extensions.Literal[
-                "PROJECTION_UNDEFINED", "BASIC", "FULL"
-            ] = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> ChromeOsDeviceHttpRequest: ...
         def update(
@@ -94,9 +85,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customerId: str,
             deviceId: str,
             body: ChromeOsDevice = ...,
-            projection: typing_extensions.Literal[
-                "PROJECTION_UNDEFINED", "BASIC", "FULL"
-            ] = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> ChromeOsDeviceHttpRequest: ...
     @typing.type_check_only
@@ -128,6 +117,62 @@ class DirectoryResource(googleapiclient.discovery.Resource):
         def devices(self) -> DevicesResource: ...
     @typing.type_check_only
     class CustomersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class ChromeResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class PrintersResource(googleapiclient.discovery.Resource):
+                def batchCreatePrinters(
+                    self,
+                    *,
+                    parent: str,
+                    body: BatchCreatePrintersRequest = ...,
+                    **kwargs: typing.Any
+                ) -> BatchCreatePrintersResponseHttpRequest: ...
+                def batchDeletePrinters(
+                    self,
+                    *,
+                    parent: str,
+                    body: BatchDeletePrintersRequest = ...,
+                    **kwargs: typing.Any
+                ) -> BatchDeletePrintersResponseHttpRequest: ...
+                def create(
+                    self, *, parent: str, body: Printer = ..., **kwargs: typing.Any
+                ) -> PrinterHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> PrinterHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orgUnitId: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListPrintersResponseHttpRequest: ...
+                def listPrinterModels(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListPrinterModelsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Printer = ...,
+                    clearMask: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> PrinterHttpRequest: ...
+            def printers(self) -> PrintersResource: ...
         def get(
             self, *, customerKey: str, **kwargs: typing.Any
         ) -> CustomerHttpRequest: ...
@@ -137,6 +182,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
         def update(
             self, *, customerKey: str, body: Customer = ..., **kwargs: typing.Any
         ) -> CustomerHttpRequest: ...
+        def chrome(self) -> ChromeResource: ...
     @typing.type_check_only
     class DomainAliasesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -191,12 +237,10 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customer: str = ...,
             domain: str = ...,
             maxResults: int = ...,
-            orderBy: typing_extensions.Literal["orderByUndefined", "email"] = ...,
+            orderBy: typing_extensions.Literal["email"] = ...,
             pageToken: str = ...,
             query: str = ...,
-            sortOrder: typing_extensions.Literal[
-                "SORT_ORDER_UNDEFINED", "ASCENDING", "DESCENDING"
-            ] = ...,
+            sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             userKey: str = ...,
             **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
@@ -265,9 +309,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             *,
             customerId: str,
             resourceId: str,
-            projection: typing_extensions.Literal[
-                "PROJECTION_UNDEFINED", "BASIC", "FULL"
-            ] = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> MobileDeviceHttpRequest: ...
         def list(
@@ -276,24 +318,12 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customerId: str,
             maxResults: int = ...,
             orderBy: typing_extensions.Literal[
-                "orderByUndefined",
-                "deviceId",
-                "email",
-                "lastSync",
-                "model",
-                "name",
-                "os",
-                "status",
-                "type",
+                "deviceId", "email", "lastSync", "model", "name", "os", "status", "type"
             ] = ...,
             pageToken: str = ...,
-            projection: typing_extensions.Literal[
-                "PROJECTION_UNDEFINED", "BASIC", "FULL"
-            ] = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
             query: str = ...,
-            sortOrder: typing_extensions.Literal[
-                "SORT_ORDER_UNDEFINED", "ASCENDING", "DESCENDING"
-            ] = ...,
+            sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             **kwargs: typing.Any
         ) -> MobileDevicesHttpRequest: ...
     @typing.type_check_only
@@ -322,7 +352,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             *,
             customerId: str,
             orgUnitPath: str = ...,
-            type: typing_extensions.Literal["typeUndefined", "all", "children"] = ...,
+            type: typing_extensions.Literal["all", "children"] = ...,
             **kwargs: typing.Any
         ) -> OrgUnitsHttpRequest: ...
         def patch(
@@ -364,10 +394,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 customer: str,
                 body: Building = ...,
                 coordinatesSource: typing_extensions.Literal[
-                    "COORDINATES_SOURCE_UNDEFINED",
-                    "CLIENT_SPECIFIED",
-                    "RESOLVED_FROM_ADDRESS",
-                    "SOURCE_UNSPECIFIED",
+                    "CLIENT_SPECIFIED", "RESOLVED_FROM_ADDRESS", "SOURCE_UNSPECIFIED"
                 ] = ...,
                 **kwargs: typing.Any
             ) -> BuildingHttpRequest: ...
@@ -386,10 +413,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 buildingId: str,
                 body: Building = ...,
                 coordinatesSource: typing_extensions.Literal[
-                    "COORDINATES_SOURCE_UNDEFINED",
-                    "CLIENT_SPECIFIED",
-                    "RESOLVED_FROM_ADDRESS",
-                    "SOURCE_UNSPECIFIED",
+                    "CLIENT_SPECIFIED", "RESOLVED_FROM_ADDRESS", "SOURCE_UNSPECIFIED"
                 ] = ...,
                 **kwargs: typing.Any
             ) -> BuildingHttpRequest: ...
@@ -400,10 +424,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 buildingId: str,
                 body: Building = ...,
                 coordinatesSource: typing_extensions.Literal[
-                    "COORDINATES_SOURCE_UNDEFINED",
-                    "CLIENT_SPECIFIED",
-                    "RESOLVED_FROM_ADDRESS",
-                    "SOURCE_UNSPECIFIED",
+                    "CLIENT_SPECIFIED", "RESOLVED_FROM_ADDRESS", "SOURCE_UNSPECIFIED"
                 ] = ...,
                 **kwargs: typing.Any
             ) -> BuildingHttpRequest: ...
@@ -602,9 +623,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 *,
                 userKey: str,
                 body: Channel = ...,
-                event: typing_extensions.Literal[
-                    "eventUndefined", "add", "delete"
-                ] = ...,
+                event: typing_extensions.Literal["add", "delete"] = ...,
                 **kwargs: typing.Any
             ) -> ChannelHttpRequest: ...
         @typing.type_check_only
@@ -629,12 +648,8 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             *,
             userKey: str,
             customFieldMask: str = ...,
-            projection: typing_extensions.Literal[
-                "projectionUndefined", "basic", "custom", "full"
-            ] = ...,
-            viewType: typing_extensions.Literal[
-                "view_type_undefined", "admin_view", "domain_public"
-            ] = ...,
+            projection: typing_extensions.Literal["basic", "custom", "full"] = ...,
+            viewType: typing_extensions.Literal["admin_view", "domain_public"] = ...,
             **kwargs: typing.Any
         ) -> UserHttpRequest: ...
         def insert(
@@ -647,24 +662,18 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customer: str = ...,
             domain: str = ...,
             event: typing_extensions.Literal[
-                "eventUndefined", "add", "delete", "makeAdmin", "undelete", "update"
+                "add", "delete", "makeAdmin", "undelete", "update"
             ] = ...,
             maxResults: int = ...,
             orderBy: typing_extensions.Literal[
-                "orderByUndefined", "email", "familyName", "givenName"
+                "email", "familyName", "givenName"
             ] = ...,
             pageToken: str = ...,
-            projection: typing_extensions.Literal[
-                "projectionUndefined", "basic", "custom", "full"
-            ] = ...,
+            projection: typing_extensions.Literal["basic", "custom", "full"] = ...,
             query: str = ...,
             showDeleted: str = ...,
-            sortOrder: typing_extensions.Literal[
-                "SORT_ORDER_UNDEFINED", "ASCENDING", "DESCENDING"
-            ] = ...,
-            viewType: typing_extensions.Literal[
-                "view_type_undefined", "admin_view", "domain_public"
-            ] = ...,
+            sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
+            viewType: typing_extensions.Literal["admin_view", "domain_public"] = ...,
             **kwargs: typing.Any
         ) -> UsersHttpRequest: ...
         def makeAdmin(
@@ -690,26 +699,17 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             customer: str = ...,
             domain: str = ...,
             event: typing_extensions.Literal[
-                "eventTypeUnspecified",
-                "add",
-                "delete",
-                "makeAdmin",
-                "undelete",
-                "update",
+                "add", "delete", "makeAdmin", "undelete", "update"
             ] = ...,
             maxResults: int = ...,
             orderBy: typing_extensions.Literal[
-                "orderByUnspecified", "email", "familyName", "givenName"
+                "email", "familyName", "givenName"
             ] = ...,
             pageToken: str = ...,
-            projection: typing_extensions.Literal[
-                "projectionUnspecified", "basic", "custom", "full"
-            ] = ...,
+            projection: typing_extensions.Literal["basic", "custom", "full"] = ...,
             query: str = ...,
             showDeleted: str = ...,
-            sortOrder: typing_extensions.Literal[
-                "sortOrderUnspecified", "ASCENDING", "DESCENDING"
-            ] = ...,
+            sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             viewType: typing_extensions.Literal["admin_view", "domain_public"] = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
@@ -786,6 +786,26 @@ class AspsHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Asps: ...
+
+@typing.type_check_only
+class BatchCreatePrintersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> BatchCreatePrintersResponse: ...
+
+@typing.type_check_only
+class BatchDeletePrintersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> BatchDeletePrintersResponse: ...
 
 @typing.type_check_only
 class BuildingHttpRequest(googleapiclient.http.HttpRequest):
@@ -930,6 +950,16 @@ class Domains2HttpRequest(googleapiclient.http.HttpRequest):
     ) -> Domains2: ...
 
 @typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Empty: ...
+
+@typing.type_check_only
 class FeatureHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -968,6 +998,26 @@ class GroupsHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Groups: ...
+
+@typing.type_check_only
+class ListPrinterModelsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListPrinterModelsResponse: ...
+
+@typing.type_check_only
+class ListPrintersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListPrintersResponse: ...
 
 @typing.type_check_only
 class MemberHttpRequest(googleapiclient.http.HttpRequest):
@@ -1038,6 +1088,16 @@ class OrgUnitsHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> OrgUnits: ...
+
+@typing.type_check_only
+class PrinterHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Printer: ...
 
 @typing.type_check_only
 class PrivilegesHttpRequest(googleapiclient.http.HttpRequest):

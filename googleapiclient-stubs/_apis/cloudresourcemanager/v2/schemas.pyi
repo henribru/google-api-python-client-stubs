@@ -42,10 +42,30 @@ class CloudresourcemanagerGoogleCloudResourcemanagerV2beta1FolderOperation(
     sourceParent: str
 
 @typing.type_check_only
+class CreateFolderMetadata(typing_extensions.TypedDict, total=False):
+    displayName: str
+    parent: str
+
+@typing.type_check_only
+class CreateProjectMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+    gettable: bool
+    ready: bool
+
+@typing.type_check_only
 class CreateTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CreateTagValueMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteFolderMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteOrganizationMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteProjectMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
@@ -108,8 +128,17 @@ class ListFoldersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class MoveFolderMetadata(typing_extensions.TypedDict, total=False):
+    destinationParent: str
+    displayName: str
+    sourceParent: str
+
+@typing.type_check_only
 class MoveFolderRequest(typing_extensions.TypedDict, total=False):
     destinationParent: str
+
+@typing.type_check_only
+class MoveProjectMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -163,7 +192,22 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
 
 @typing.type_check_only
+class UndeleteFolderMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class UndeleteFolderRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteOrganizationMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteProjectMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateFolderMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateProjectMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UpdateTagKeyMetadata(typing_extensions.TypedDict, total=False): ...

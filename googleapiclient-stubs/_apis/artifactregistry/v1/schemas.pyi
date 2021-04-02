@@ -17,6 +17,11 @@ class DockerImage(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ListDockerImagesResponse(typing_extensions.TypedDict, total=False):
+    dockerImages: typing.List[DockerImage]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: typing.List[Operation]

@@ -32,6 +32,7 @@ class BatchCreateSessionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
     options: TransactionOptions
+    requestOptions: RequestOptions
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -48,6 +49,7 @@ class ChildLink(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CommitRequest(typing_extensions.TypedDict, total=False):
     mutations: typing.List[Mutation]
+    requestOptions: RequestOptions
     returnCommitStats: bool
     singleUseTransaction: TransactionOptions
     transactionId: str
@@ -129,6 +131,7 @@ class EncryptionInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecuteBatchDmlRequest(typing_extensions.TypedDict, total=False):
+    requestOptions: RequestOptions
     seqno: str
     statements: typing.List[Statement]
     transaction: TransactionSelector
@@ -145,6 +148,7 @@ class ExecuteSqlRequest(typing_extensions.TypedDict, total=False):
     partitionToken: str
     queryMode: typing_extensions.Literal["NORMAL", "PLAN", "PROFILE"]
     queryOptions: QueryOptions
+    requestOptions: RequestOptions
     resumeToken: str
     seqno: str
     sql: str
@@ -331,6 +335,7 @@ class Policy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryOptions(typing_extensions.TypedDict, total=False):
+    optimizerStatisticsPackage: str
     optimizerVersion: str
 
 @typing.type_check_only
@@ -353,6 +358,7 @@ class ReadRequest(typing_extensions.TypedDict, total=False):
     keySet: KeySet
     limit: str
     partitionToken: str
+    requestOptions: RequestOptions
     resumeToken: str
     table: str
     transaction: TransactionSelector
@@ -366,6 +372,12 @@ class ReplicaInfo(typing_extensions.TypedDict, total=False):
     location: str
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "READ_WRITE", "READ_ONLY", "WITNESS"
+    ]
+
+@typing.type_check_only
+class RequestOptions(typing_extensions.TypedDict, total=False):
+    priority: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "PRIORITY_LOW", "PRIORITY_MEDIUM", "PRIORITY_HIGH"
     ]
 
 @typing.type_check_only

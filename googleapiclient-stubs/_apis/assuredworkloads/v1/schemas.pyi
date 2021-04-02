@@ -71,6 +71,8 @@ class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
         "FEDRAMP_HIGH",
         "FEDRAMP_MODERATE",
         "US_REGIONAL_ACCESS",
+        "HIPAA",
+        "HITRUST",
     ]
     createTime: str
     displayName: str
@@ -89,6 +91,8 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "FEDRAMP_HIGH",
         "FEDRAMP_MODERATE",
         "US_REGIONAL_ACCESS",
+        "HIPAA",
+        "HITRUST",
     ]
     createTime: str
     displayName: str
@@ -100,6 +104,9 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
     labels: typing.Dict[str, typing.Any]
     name: str
     provisionedResourcesParent: str
+    resourceSettings: typing.List[
+        GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings
+    ]
     resources: typing.List[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo]
 
 @typing.type_check_only
@@ -135,6 +142,15 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings(
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    resourceId: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED", "CONSUMER_PROJECT", "ENCRYPTION_KEYS_PROJECT"
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings(
     typing_extensions.TypedDict, total=False
 ):
     resourceId: str

@@ -584,6 +584,7 @@ class QueryParameterValue(typing.Dict[str, typing.Any]): ...
 @typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):
     connectionProperties: typing.List[ConnectionProperty]
+    createSession: bool
     defaultDataset: DatasetReference
     dryRun: bool
     kind: str
@@ -611,6 +612,7 @@ class QueryResponse(typing_extensions.TypedDict, total=False):
     pageToken: str
     rows: typing.List[TableRow]
     schema: TableSchema
+    sessionInfoTemplate: SessionInfo
     totalBytesProcessed: str
     totalRows: str
 
@@ -690,6 +692,10 @@ class ScriptStatistics(typing_extensions.TypedDict, total=False):
     stackFrames: typing.List[ScriptStackFrame]
 
 @typing.type_check_only
+class SessionInfo(typing_extensions.TypedDict, total=False):
+    sessionId: str
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -707,6 +713,9 @@ class StandardSqlField(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class StandardSqlStructType(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class StandardSqlTableType(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Streamingbuffer(typing_extensions.TypedDict, total=False):

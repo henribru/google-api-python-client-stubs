@@ -246,12 +246,14 @@ class SlackDelivery(typing_extensions.TypedDict, total=False):
 class Source(typing_extensions.TypedDict, total=False):
     repoSource: RepoSource
     storageSource: StorageSource
+    storageSourceManifest: StorageSourceManifest
 
 @typing.type_check_only
 class SourceProvenance(typing_extensions.TypedDict, total=False):
     fileHashes: typing.Dict[str, typing.Any]
     resolvedRepoSource: RepoSource
     resolvedStorageSource: StorageSource
+    resolvedStorageSourceManifest: StorageSourceManifest
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -261,6 +263,12 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StorageSource(typing_extensions.TypedDict, total=False):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
+class StorageSourceManifest(typing_extensions.TypedDict, total=False):
     bucket: str
     generation: str
     object: str

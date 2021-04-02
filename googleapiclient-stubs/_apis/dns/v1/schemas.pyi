@@ -250,6 +250,9 @@ class ResourceRecordSet(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class ResourceRecordSetsDeleteResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ResourceRecordSetsListResponse(typing_extensions.TypedDict, total=False):
     header: ResponseHeader
     kind: str

@@ -7,6 +7,9 @@ class AccountWarning(typing_extensions.TypedDict, total=False):
     loginDetails: LoginDetails
 
 @typing.type_check_only
+class ActionInfo(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ActivityRule(typing_extensions.TypedDict, total=False):
     actionNames: typing.List[str]
     createTime: str
@@ -235,6 +238,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
     ruleInfo: RuleInfo
     suppressedActionTypes: typing.List[str]
     trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "DRIVE_SHARE"]
+    triggeredActionInfo: typing.List[ActionInfo]
     triggeredActionTypes: typing.List[str]
     triggeringUserEmail: str
 

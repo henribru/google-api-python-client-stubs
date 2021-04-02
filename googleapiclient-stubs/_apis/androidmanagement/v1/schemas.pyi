@@ -180,6 +180,12 @@ class ContactInfo(typing_extensions.TypedDict, total=False):
     euRepresentativePhone: str
 
 @typing.type_check_only
+class ContentProviderEndpoint(typing_extensions.TypedDict, total=False):
+    packageName: str
+    signingCertsSha256: typing.List[str]
+    uri: str
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
@@ -489,6 +495,11 @@ class NonComplianceDetailCondition(typing_extensions.TypedDict, total=False):
     settingName: str
 
 @typing.type_check_only
+class OncCertificateProvider(typing_extensions.TypedDict, total=False):
+    certificateReferences: typing.List[str]
+    contentProviderEndpoint: ContentProviderEndpoint
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -634,6 +645,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     name: str
     networkEscapeHatchEnabled: bool
     networkResetDisabled: bool
+    oncCertificateProviders: typing.List[OncCertificateProvider]
     openNetworkConfiguration: typing.Dict[str, typing.Any]
     outgoingBeamDisabled: bool
     outgoingCallsDisabled: bool

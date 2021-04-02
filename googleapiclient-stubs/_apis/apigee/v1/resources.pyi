@@ -458,7 +458,12 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class AdminResource(googleapiclient.discovery.Resource):
                     def getSchemav2(
-                        self, *, name: str, type: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        disableCache: bool = ...,
+                        type: str = ...,
+                        **kwargs: typing.Any
                     ) -> GoogleCloudApigeeV1SchemaHttpRequest: ...
                 @typing.type_check_only
                 class ExportsResource(googleapiclient.discovery.Resource):

@@ -199,6 +199,7 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
         "CONNECTION_PROFILE_TYPES_INCOMPATIBILITY",
         "UNSUPPORTED_GTID_MODE",
         "UNSUPPORTED_DEFINER",
+        "CANT_RESTART_RUNNING_MIGRATION",
     ]
     errorDetailMessage: str
     errorMessage: str

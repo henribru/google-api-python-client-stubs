@@ -5,6 +5,12 @@ import typing_extensions
 class ActivatePretargetingConfigRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class AdTechnologyProviders(typing_extensions.TypedDict, total=False):
+    detectedGvlIds: typing.List[str]
+    detectedProviderIds: typing.List[str]
+    unidentifiedProviderDomains: typing.List[str]
+
+@typing.type_check_only
 class AddTargetedAppsRequest(typing_extensions.TypedDict, total=False):
     appIds: typing.List[str]
     targetingMode: typing_extensions.Literal[
@@ -36,6 +42,23 @@ class AdvertiserAndBrand(typing_extensions.TypedDict, total=False):
 class AppTargeting(typing_extensions.TypedDict, total=False):
     mobileAppCategoryTargeting: NumericTargetingDimension
     mobileAppTargeting: StringTargetingDimension
+
+@typing.type_check_only
+class Bidder(typing_extensions.TypedDict, total=False):
+    bypassNonguaranteedDealsPretargeting: bool
+    cookieMatchingNetworkId: str
+    cookieMatchingUrl: str
+    dealsBillingId: str
+    name: str
+
+@typing.type_check_only
+class Buyer(typing_extensions.TypedDict, total=False):
+    activeCreativeCount: str
+    bidder: str
+    billingIds: typing.List[str]
+    displayName: str
+    maximumActiveCreativeCount: str
+    name: str
 
 @typing.type_check_only
 class CloseUserListRequest(typing_extensions.TypedDict, total=False): ...
@@ -72,6 +95,7 @@ class CreativeDimensions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreativeServingDecision(typing_extensions.TypedDict, total=False):
+    adTechnologyProviders: AdTechnologyProviders
     chinaPolicyCompliance: PolicyCompliance
     dealsPolicyCompliance: PolicyCompliance
     detectedAdvertisers: typing.List[AdvertiserAndBrand]
@@ -156,6 +180,26 @@ class DownloadSizeEvidence(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Endpoint(typing_extensions.TypedDict, total=False):
+    bidProtocol: typing_extensions.Literal[
+        "BID_PROTOCOL_UNSPECIFIED",
+        "GOOGLE_RTB",
+        "OPENRTB_2_2",
+        "OPENRTB_2_3",
+        "OPENRTB_PROTOBUF_2_3",
+        "OPENRTB_2_4",
+        "OPENRTB_PROTOBUF_2_4",
+        "OPENRTB_2_5",
+        "OPENRTB_PROTOBUF_2_5",
+    ]
+    maximumQps: str
+    name: str
+    tradingLocation: typing_extensions.Literal[
+        "TRADING_LOCATION_UNSPECIFIED", "US_WEST", "US_EAST", "EUROPE", "ASIA"
+    ]
+    url: str
+
+@typing.type_check_only
 class GetRemarketingTagResponse(typing_extensions.TypedDict, total=False):
     snippet: str
 
@@ -181,8 +225,23 @@ class Image(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
+class ListBiddersResponse(typing_extensions.TypedDict, total=False):
+    bidders: typing.List[Bidder]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListBuyersResponse(typing_extensions.TypedDict, total=False):
+    buyers: typing.List[Buyer]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListCreativesResponse(typing_extensions.TypedDict, total=False):
     creatives: typing.List[Creative]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListEndpointsResponse(typing_extensions.TypedDict, total=False):
+    endpoints: typing.List[Endpoint]
     nextPageToken: str
 
 @typing.type_check_only

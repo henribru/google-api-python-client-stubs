@@ -82,6 +82,12 @@ class GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse(
     evaluation: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3SampleDatasetMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -229,7 +235,6 @@ class GoogleCloudDocumentaiV1beta1Document(typing_extensions.TypedDict, total=Fa
     text: str
     textChanges: typing.List[GoogleCloudDocumentaiV1beta1DocumentTextChange]
     textStyles: typing.List[GoogleCloudDocumentaiV1beta1DocumentStyle]
-    translations: typing.List[GoogleCloudDocumentaiV1beta1DocumentTranslation]
     uri: str
 
 @typing.type_check_only
@@ -532,15 +537,6 @@ class GoogleCloudDocumentaiV1beta1DocumentTextChange(
     textAnchor: GoogleCloudDocumentaiV1beta1DocumentTextAnchor
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1beta1DocumentTranslation(
-    typing_extensions.TypedDict, total=False
-):
-    languageCode: str
-    provenance: typing.List[GoogleCloudDocumentaiV1beta1DocumentProvenance]
-    textAnchor: GoogleCloudDocumentaiV1beta1DocumentTextAnchor
-    translatedText: str
-
-@typing.type_check_only
 class GoogleCloudDocumentaiV1beta1GcsDestination(
     typing_extensions.TypedDict, total=False
 ):
@@ -637,7 +633,6 @@ class GoogleCloudDocumentaiV1beta2Document(typing_extensions.TypedDict, total=Fa
     text: str
     textChanges: typing.List[GoogleCloudDocumentaiV1beta2DocumentTextChange]
     textStyles: typing.List[GoogleCloudDocumentaiV1beta2DocumentStyle]
-    translations: typing.List[GoogleCloudDocumentaiV1beta2DocumentTranslation]
     uri: str
 
 @typing.type_check_only
@@ -946,15 +941,6 @@ class GoogleCloudDocumentaiV1beta2DocumentTextChange(
     changedText: str
     provenance: typing.List[GoogleCloudDocumentaiV1beta2DocumentProvenance]
     textAnchor: GoogleCloudDocumentaiV1beta2DocumentTextAnchor
-
-@typing.type_check_only
-class GoogleCloudDocumentaiV1beta2DocumentTranslation(
-    typing_extensions.TypedDict, total=False
-):
-    languageCode: str
-    provenance: typing.List[GoogleCloudDocumentaiV1beta2DocumentProvenance]
-    textAnchor: GoogleCloudDocumentaiV1beta2DocumentTextAnchor
-    translatedText: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2EntityExtractionParams(

@@ -42,6 +42,7 @@ class ListPhraseSetResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LongRunningRecognizeMetadata(typing_extensions.TypedDict, total=False):
     lastUpdateTime: str
+    outputConfig: TranscriptOutputConfig
     progressPercent: int
     startTime: str
     uri: str
@@ -50,9 +51,12 @@ class LongRunningRecognizeMetadata(typing_extensions.TypedDict, total=False):
 class LongRunningRecognizeRequest(typing_extensions.TypedDict, total=False):
     audio: RecognitionAudio
     config: RecognitionConfig
+    outputConfig: TranscriptOutputConfig
 
 @typing.type_check_only
 class LongRunningRecognizeResponse(typing_extensions.TypedDict, total=False):
+    outputConfig: TranscriptOutputConfig
+    outputError: Status
     results: typing.List[SpeechRecognitionResult]
 
 @typing.type_check_only
@@ -189,6 +193,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TranscriptOutputConfig(typing_extensions.TypedDict, total=False):
+    gcsUri: str
 
 @typing.type_check_only
 class WordInfo(typing_extensions.TypedDict, total=False):

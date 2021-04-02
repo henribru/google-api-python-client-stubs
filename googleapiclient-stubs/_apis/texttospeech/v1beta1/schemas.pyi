@@ -10,6 +10,7 @@ class AudioConfig(typing_extensions.TypedDict, total=False):
         "MP3_64_KBPS",
         "OGG_OPUS",
         "MULAW",
+        "ALAW",
     ]
     effectsProfileId: typing.List[str]
     pitch: float

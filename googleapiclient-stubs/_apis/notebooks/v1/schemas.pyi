@@ -177,6 +177,7 @@ class Instance(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IsInstanceUpgradeableResponse(typing_extensions.TypedDict, total=False):
+    upgradeImage: str
     upgradeInfo: str
     upgradeVersion: str
     upgradeable: bool

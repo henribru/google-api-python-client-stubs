@@ -588,6 +588,7 @@ class ParagraphElement(typing_extensions.TypedDict, total=False):
     horizontalRule: HorizontalRule
     inlineObjectElement: InlineObjectElement
     pageBreak: PageBreak
+    person: Person
     startIndex: int
     textRun: TextRun
 
@@ -654,6 +655,20 @@ class ParagraphStyleSuggestionState(typing_extensions.TypedDict, total=False):
     spaceAboveSuggested: bool
     spaceBelowSuggested: bool
     spacingModeSuggested: bool
+
+@typing.type_check_only
+class Person(typing_extensions.TypedDict, total=False):
+    personId: str
+    personProperties: PersonProperties
+    suggestedDeletionIds: typing.List[str]
+    suggestedInsertionIds: typing.List[str]
+    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    textStyle: TextStyle
+
+@typing.type_check_only
+class PersonProperties(typing_extensions.TypedDict, total=False):
+    email: str
+    name: str
 
 @typing.type_check_only
 class PositionedObject(typing_extensions.TypedDict, total=False):

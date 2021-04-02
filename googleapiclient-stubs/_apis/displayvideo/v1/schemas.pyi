@@ -139,6 +139,19 @@ class AgeRangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AppAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     appId: str
+    appPlatform: typing_extensions.Literal[
+        "APP_PLATFORM_UNSPECIFIED",
+        "APP_PLATFORM_IOS",
+        "APP_PLATFORM_ANDROID",
+        "APP_PLATFORM_ROKU",
+        "APP_PLATFORM_AMAZON_FIRETV",
+        "APP_PLATFORM_PLAYSTATION",
+        "APP_PLATFORM_APPLE_TV",
+        "APP_PLATFORM_XBOX",
+        "APP_PLATFORM_SAMSUNG_TV",
+        "APP_PLATFORM_ANDROID_TV",
+        "APP_PLATFORM_GENERIC_CTV",
+    ]
     displayName: str
     negative: bool
 
@@ -460,6 +473,13 @@ class BulkEditSitesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BulkListAdvertiserAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    nextPageToken: str
+
+@typing.type_check_only
+class BulkListCampaignAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
     assignedTargetingOptions: typing.List[AssignedTargetingOption]
@@ -1501,6 +1521,23 @@ class GenderTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
+    displayName: str
+    insertionOrderId: str
+    lineItemType: typing_extensions.Literal[
+        "LINE_ITEM_TYPE_UNSPECIFIED",
+        "LINE_ITEM_TYPE_DISPLAY_DEFAULT",
+        "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL",
+        "LINE_ITEM_TYPE_VIDEO_DEFAULT",
+        "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL",
+        "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
+        "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
+        "LINE_ITEM_TYPE_AUDIO_DEFAULT",
+        "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP",
+    ]
+    mobileApp: MobileApp
+
+@typing.type_check_only
 class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     displayName: str
     geoRegionType: typing_extensions.Literal[
@@ -2007,6 +2044,13 @@ class ListAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListCampaignAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListCampaignsResponse(typing_extensions.TypedDict, total=False):
     campaigns: typing.List[Campaign]
     nextPageToken: str
@@ -2484,6 +2528,24 @@ class RegionalLocationListAssignedTargetingOptionDetails(
 ):
     negative: bool
     regionalLocationListId: str
+
+@typing.type_check_only
+class ReplaceNegativeKeywordsRequest(typing_extensions.TypedDict, total=False):
+    newNegativeKeywords: typing.List[NegativeKeyword]
+
+@typing.type_check_only
+class ReplaceNegativeKeywordsResponse(typing_extensions.TypedDict, total=False):
+    negativeKeywords: typing.List[NegativeKeyword]
+
+@typing.type_check_only
+class ReplaceSitesRequest(typing_extensions.TypedDict, total=False):
+    advertiserId: str
+    newSites: typing.List[Site]
+    partnerId: str
+
+@typing.type_check_only
+class ReplaceSitesResponse(typing_extensions.TypedDict, total=False):
+    sites: typing.List[Site]
 
 @typing.type_check_only
 class ReviewStatusInfo(typing_extensions.TypedDict, total=False):

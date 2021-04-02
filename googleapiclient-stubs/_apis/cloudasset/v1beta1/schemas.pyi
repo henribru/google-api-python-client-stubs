@@ -2,6 +2,9 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class AnalyzeIamPolicyLongrunningResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     accessLevel: GoogleIdentityAccesscontextmanagerV1AccessLevel
     accessPolicy: GoogleIdentityAccesscontextmanagerV1AccessPolicy

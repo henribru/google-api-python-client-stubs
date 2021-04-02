@@ -168,9 +168,37 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> PopulateVersionFilesResponseHttpRequest: ...
                 def files(self) -> FilesResource: ...
+            def create(
+                self,
+                *,
+                parent: str,
+                body: Site = ...,
+                siteId: str = ...,
+                **kwargs: typing.Any
+            ) -> SiteHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> SiteHttpRequest: ...
             def getConfig(
                 self, *, name: str, **kwargs: typing.Any
             ) -> SiteConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListSitesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Site = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> SiteHttpRequest: ...
             def updateConfig(
                 self,
                 *,
@@ -412,6 +440,16 @@ class ListReleasesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListReleasesResponse: ...
 
 @typing.type_check_only
+class ListSitesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListSitesResponse: ...
+
+@typing.type_check_only
 class ListVersionFilesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -460,6 +498,16 @@ class ReleaseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Release: ...
+
+@typing.type_check_only
+class SiteHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Site: ...
 
 @typing.type_check_only
 class SiteConfigHttpRequest(googleapiclient.http.HttpRequest):

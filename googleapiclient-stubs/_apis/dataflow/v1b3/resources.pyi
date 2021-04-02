@@ -12,45 +12,6 @@ class DataflowResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
-        class CatalogTemplatesResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class TemplateVersionsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: CreateTemplateVersionRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TemplateVersionHttpRequest: ...
-            def commit(
-                self,
-                *,
-                name: str,
-                body: CommitTemplateVersionRequest = ...,
-                **kwargs: typing.Any
-            ) -> TemplateVersionHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> EmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> TemplateVersionHttpRequest: ...
-            def label(
-                self,
-                *,
-                name: str,
-                body: ModifyTemplateVersionLabelRequest = ...,
-                **kwargs: typing.Any
-            ) -> ModifyTemplateVersionLabelResponseHttpRequest: ...
-            def tag(
-                self,
-                *,
-                name: str,
-                body: ModifyTemplateVersionTagRequest = ...,
-                **kwargs: typing.Any
-            ) -> ModifyTemplateVersionTagResponseHttpRequest: ...
-            def templateVersions(self) -> TemplateVersionsResource: ...
-        @typing.type_check_only
         class JobsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DebugResource(googleapiclient.discovery.Resource):
@@ -493,16 +454,6 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ListSnapshotsResponseHttpRequest: ...
         @typing.type_check_only
-        class TemplateVersionsResource(googleapiclient.discovery.Resource):
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> ListTemplateVersionsResponseHttpRequest: ...
-        @typing.type_check_only
         class TemplatesResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -547,11 +498,9 @@ class DataflowResource(googleapiclient.discovery.Resource):
             body: SendWorkerMessagesRequest = ...,
             **kwargs: typing.Any
         ) -> SendWorkerMessagesResponseHttpRequest: ...
-        def catalogTemplates(self) -> CatalogTemplatesResource: ...
         def jobs(self) -> JobsResource: ...
         def locations(self) -> LocationsResource: ...
         def snapshots(self) -> SnapshotsResource: ...
-        def templateVersions(self) -> TemplateVersionsResource: ...
         def templates(self) -> TemplatesResource: ...
     def projects(self) -> ProjectsResource: ...
 
@@ -564,16 +513,6 @@ class DeleteSnapshotResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> DeleteSnapshotResponse: ...
-
-@typing.type_check_only
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> Empty: ...
 
 @typing.type_check_only
 class GetDebugConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -686,36 +625,6 @@ class ListSnapshotsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListSnapshotsResponse: ...
 
 @typing.type_check_only
-class ListTemplateVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListTemplateVersionsResponse: ...
-
-@typing.type_check_only
-class ModifyTemplateVersionLabelResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ModifyTemplateVersionLabelResponse: ...
-
-@typing.type_check_only
-class ModifyTemplateVersionTagResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ModifyTemplateVersionTagResponse: ...
-
-@typing.type_check_only
 class ReportWorkItemStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -764,16 +673,6 @@ class StageExecutionDetailsHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> StageExecutionDetails: ...
-
-@typing.type_check_only
-class TemplateVersionHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> TemplateVersion: ...
 
 @typing.type_check_only
 class ValidateResponseHttpRequest(googleapiclient.http.HttpRequest):

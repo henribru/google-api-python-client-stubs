@@ -981,6 +981,47 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationListHttpRequest: ...
     @typing.type_check_only
+    class GlobalPublicDelegatedPrefixesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            project: str,
+            publicDelegatedPrefix: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, publicDelegatedPrefix: str, **kwargs: typing.Any
+        ) -> PublicDelegatedPrefixHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            body: PublicDelegatedPrefix = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> PublicDelegatedPrefixListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            publicDelegatedPrefix: str,
+            body: PublicDelegatedPrefix = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class HealthChecksResource(googleapiclient.discovery.Resource):
         def aggregatedList(
             self,
@@ -2788,6 +2829,109 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             body: UsageExportLocation = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
+    class PublicAdvertisedPrefixesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            project: str,
+            publicAdvertisedPrefix: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, publicAdvertisedPrefix: str, **kwargs: typing.Any
+        ) -> PublicAdvertisedPrefixHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            body: PublicAdvertisedPrefix = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> PublicAdvertisedPrefixListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            publicAdvertisedPrefix: str,
+            body: PublicAdvertisedPrefix = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
+    class PublicDelegatedPrefixesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> PublicDelegatedPrefixAggregatedListHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            region: str,
+            publicDelegatedPrefix: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            region: str,
+            publicDelegatedPrefix: str,
+            **kwargs: typing.Any
+        ) -> PublicDelegatedPrefixHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: PublicDelegatedPrefix = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> PublicDelegatedPrefixListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            publicDelegatedPrefix: str,
+            body: PublicDelegatedPrefix = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -5176,6 +5320,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def globalNetworkEndpointGroups(self) -> GlobalNetworkEndpointGroupsResource: ...
     def globalOperations(self) -> GlobalOperationsResource: ...
     def globalOrganizationOperations(self) -> GlobalOrganizationOperationsResource: ...
+    def globalPublicDelegatedPrefixes(
+        self,
+    ) -> GlobalPublicDelegatedPrefixesResource: ...
     def healthChecks(self) -> HealthChecksResource: ...
     def httpHealthChecks(self) -> HttpHealthChecksResource: ...
     def httpsHealthChecks(self) -> HttpsHealthChecksResource: ...
@@ -5197,6 +5344,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def nodeTypes(self) -> NodeTypesResource: ...
     def packetMirrorings(self) -> PacketMirroringsResource: ...
     def projects(self) -> ProjectsResource: ...
+    def publicAdvertisedPrefixes(self) -> PublicAdvertisedPrefixesResource: ...
+    def publicDelegatedPrefixes(self) -> PublicDelegatedPrefixesResource: ...
     def regionAutoscalers(self) -> RegionAutoscalersResource: ...
     def regionBackendServices(self) -> RegionBackendServicesResource: ...
     def regionCommitments(self) -> RegionCommitmentsResource: ...
@@ -6331,6 +6480,56 @@ class ProjectsGetXpnResourcesHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ProjectsGetXpnResources: ...
+
+@typing.type_check_only
+class PublicAdvertisedPrefixHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> PublicAdvertisedPrefix: ...
+
+@typing.type_check_only
+class PublicAdvertisedPrefixListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> PublicAdvertisedPrefixList: ...
+
+@typing.type_check_only
+class PublicDelegatedPrefixHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> PublicDelegatedPrefix: ...
+
+@typing.type_check_only
+class PublicDelegatedPrefixAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> PublicDelegatedPrefixAggregatedList: ...
+
+@typing.type_check_only
+class PublicDelegatedPrefixListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> PublicDelegatedPrefixList: ...
 
 @typing.type_check_only
 class RegionHttpRequest(googleapiclient.http.HttpRequest):

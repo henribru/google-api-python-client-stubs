@@ -22,9 +22,6 @@ class HomeGraphServiceResource(googleapiclient.discovery.Resource):
         def reportStateAndNotification(
             self, *, body: ReportStateAndNotificationRequest = ..., **kwargs: typing.Any
         ) -> ReportStateAndNotificationResponseHttpRequest: ...
-        def requestLink(
-            self, *, body: RequestLinkRequest = ..., **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
         def requestSync(
             self, *, body: RequestSyncDevicesRequest = ..., **kwargs: typing.Any
         ) -> RequestSyncDevicesResponseHttpRequest: ...

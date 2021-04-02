@@ -116,12 +116,18 @@ class ReplicationStatus(typing_extensions.TypedDict, total=False):
     userManaged: UserManagedStatus
 
 @typing.type_check_only
+class Rotation(typing_extensions.TypedDict, total=False):
+    nextRotationTime: str
+    rotationPeriod: str
+
+@typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
     createTime: str
     expireTime: str
     labels: typing.Dict[str, typing.Any]
     name: str
     replication: Replication
+    rotation: Rotation
     topics: typing.List[Topic]
     ttl: str
 

@@ -47,6 +47,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     dataprocServiceAccount: str
     description: str
     displayName: str
+    enableRbac: bool
     enableStackdriverLogging: bool
     enableStackdriverMonitoring: bool
     gcsBucket: str

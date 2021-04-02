@@ -10,6 +10,67 @@ from .schemas import *
 @typing.type_check_only
 class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, body: Folder = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> FolderHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def list(
+            self,
+            *,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            parent: str = ...,
+            showDeleted: bool = ...,
+            **kwargs: typing.Any
+        ) -> ListFoldersResponseHttpRequest: ...
+        def move(
+            self, *, name: str, body: MoveFolderRequest = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: Folder = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def search(
+            self,
+            *,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            query: str = ...,
+            **kwargs: typing.Any
+        ) -> SearchFoldersResponseHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: SetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            resource: str,
+            body: TestIamPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestIamPermissionsResponseHttpRequest: ...
+        def undelete(
+            self, *, name: str, body: UndeleteFolderRequest = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class LiensResource(googleapiclient.discovery.Resource):
         def create(
             self, *, body: Lien = ..., **kwargs: typing.Any
@@ -27,6 +88,101 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+    @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OrganizationHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def search(
+            self,
+            *,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            query: str = ...,
+            **kwargs: typing.Any
+        ) -> SearchOrganizationsResponseHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: SetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            resource: str,
+            body: TestIamPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestIamPermissionsResponseHttpRequest: ...
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, body: Project = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> ProjectHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def list(
+            self,
+            *,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            parent: str = ...,
+            showDeleted: bool = ...,
+            **kwargs: typing.Any
+        ) -> ListProjectsResponseHttpRequest: ...
+        def move(
+            self, *, name: str, body: MoveProjectRequest = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: Project = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def search(
+            self,
+            *,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            query: str = ...,
+            **kwargs: typing.Any
+        ) -> SearchProjectsResponseHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: SetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            resource: str,
+            body: TestIamPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestIamPermissionsResponseHttpRequest: ...
+        def undelete(
+            self, *, name: str, body: UndeleteProjectRequest = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class TagBindingsResource(googleapiclient.discovery.Resource):
         def create(
@@ -155,8 +311,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: TestIamPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestIamPermissionsResponseHttpRequest: ...
+    def folders(self) -> FoldersResource: ...
     def liens(self) -> LiensResource: ...
     def operations(self) -> OperationsResource: ...
+    def organizations(self) -> OrganizationsResource: ...
+    def projects(self) -> ProjectsResource: ...
     def tagBindings(self) -> TagBindingsResource: ...
     def tagKeys(self) -> TagKeysResource: ...
     def tagValues(self) -> TagValuesResource: ...
@@ -172,6 +331,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class FolderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Folder: ...
+
+@typing.type_check_only
 class LienHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -182,6 +351,16 @@ class LienHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Lien: ...
 
 @typing.type_check_only
+class ListFoldersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListFoldersResponse: ...
+
+@typing.type_check_only
 class ListLiensResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -190,6 +369,16 @@ class ListLiensResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListLiensResponse: ...
+
+@typing.type_check_only
+class ListProjectsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListProjectsResponse: ...
 
 @typing.type_check_only
 class ListTagBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -232,6 +421,16 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Operation: ...
 
 @typing.type_check_only
+class OrganizationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Organization: ...
+
+@typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -240,6 +439,46 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class ProjectHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Project: ...
+
+@typing.type_check_only
+class SearchFoldersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SearchFoldersResponse: ...
+
+@typing.type_check_only
+class SearchOrganizationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SearchOrganizationsResponse: ...
+
+@typing.type_check_only
+class SearchProjectsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SearchProjectsResponse: ...
 
 @typing.type_check_only
 class TagKeyHttpRequest(googleapiclient.http.HttpRequest):

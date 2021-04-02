@@ -131,6 +131,7 @@ class AddressesScopedList(typing_extensions.TypedDict, total=False):
 class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
     enableNestedVirtualization: bool
     threadsPerCore: int
+    visibleCoreCount: int
 
 @typing.type_check_only
 class AliasIpRange(typing_extensions.TypedDict, total=False):
@@ -308,6 +309,8 @@ class AutoscalerStatusDetails(typing_extensions.TypedDict, total=False):
         "NOT_ENOUGH_QUOTA_AVAILABLE",
         "REGION_RESOURCE_STOCKOUT",
         "SCALING_TARGET_DOES_NOT_EXIST",
+        "SCHEDULED_INSTANCES_GREATER_THAN_AUTOSCALER_MAX",
+        "SCHEDULED_INSTANCES_LESS_THAN_AUTOSCALER_MIN",
         "UNKNOWN",
         "UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION",
         "ZONE_RESOURCE_STOCKOUT",
@@ -783,6 +786,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "GENERAL_PURPOSE_N2",
         "GENERAL_PURPOSE_N2D",
         "MEMORY_OPTIMIZED",
+        "MEMORY_OPTIMIZED_REGIONAL_EXTENSION",
         "TYPE_UNSPECIFIED",
     ]
 
@@ -1165,10 +1169,12 @@ class FirewallPolicy(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     parent: str
+    region: str
     ruleTupleCount: int
     rules: typing.List[FirewallPolicyRule]
     selfLink: str
     selfLinkWithId: str
+    shortName: str
 
 @typing.type_check_only
 class FirewallPolicyAssociation(typing_extensions.TypedDict, total=False):
@@ -1176,6 +1182,7 @@ class FirewallPolicyAssociation(typing_extensions.TypedDict, total=False):
     displayName: str
     firewallPolicyId: str
     name: str
+    shortName: str
 
 @typing.type_check_only
 class FirewallPolicyList(typing_extensions.TypedDict, total=False):
@@ -1403,6 +1410,7 @@ class HTTP2HealthCheck(typing_extensions.TypedDict, total=False):
     proxyHeader: typing_extensions.Literal["NONE", "PROXY_V1"]
     requestPath: str
     response: str
+    weightReportMode: typing_extensions.Literal["DISABLE", "DRY_RUN", "ENABLE"]
 
 @typing.type_check_only
 class HTTPHealthCheck(typing_extensions.TypedDict, total=False):
@@ -1415,6 +1423,7 @@ class HTTPHealthCheck(typing_extensions.TypedDict, total=False):
     proxyHeader: typing_extensions.Literal["NONE", "PROXY_V1"]
     requestPath: str
     response: str
+    weightReportMode: typing_extensions.Literal["DISABLE", "DRY_RUN", "ENABLE"]
 
 @typing.type_check_only
 class HTTPSHealthCheck(typing_extensions.TypedDict, total=False):
@@ -1427,6 +1436,7 @@ class HTTPSHealthCheck(typing_extensions.TypedDict, total=False):
     proxyHeader: typing_extensions.Literal["NONE", "PROXY_V1"]
     requestPath: str
     response: str
+    weightReportMode: typing_extensions.Literal["DISABLE", "DRY_RUN", "ENABLE"]
 
 @typing.type_check_only
 class HealthCheck(typing_extensions.TypedDict, total=False):
@@ -1534,6 +1544,8 @@ class HealthChecksScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HealthStatus(typing_extensions.TypedDict, total=False):
     annotations: typing.Dict[str, typing.Any]
+    forwardingRule: str
+    forwardingRuleIp: str
     healthState: typing_extensions.Literal["HEALTHY", "UNHEALTHY"]
     instance: str
     ipAddress: str
@@ -1931,6 +1943,7 @@ class InstanceGroupManager(typing_extensions.TypedDict, total=False):
     fingerprint: str
     id: str
     instanceGroup: str
+    instanceLifecyclePolicy: InstanceGroupManagerInstanceLifecyclePolicy
     instanceTemplate: str
     kind: str
     name: str
@@ -1943,6 +1956,8 @@ class InstanceGroupManager(typing_extensions.TypedDict, total=False):
     status: InstanceGroupManagerStatus
     targetPools: typing.List[str]
     targetSize: int
+    targetStoppedSize: int
+    targetSuspendedSize: int
     updatePolicy: InstanceGroupManagerUpdatePolicy
     versions: typing.List[InstanceGroupManagerVersion]
     zone: str
@@ -1957,6 +1972,10 @@ class InstanceGroupManagerActionsSummary(typing_extensions.TypedDict, total=Fals
     recreating: int
     refreshing: int
     restarting: int
+    resuming: int
+    starting: int
+    stopping: int
+    suspending: int
     verifying: int
 
 @typing.type_check_only
@@ -1974,6 +1993,18 @@ class InstanceGroupManagerAutoHealingPolicy(typing_extensions.TypedDict, total=F
     healthCheck: str
     initialDelaySec: int
     maxUnavailable: FixedOrPercent
+
+@typing.type_check_only
+class InstanceGroupManagerInstanceLifecyclePolicy(
+    typing_extensions.TypedDict, total=False
+):
+    metadataBasedReadinessSignal: InstanceGroupManagerInstanceLifecyclePolicyMetadataBasedReadinessSignal
+
+@typing.type_check_only
+class InstanceGroupManagerInstanceLifecyclePolicyMetadataBasedReadinessSignal(
+    typing_extensions.TypedDict, total=False
+):
+    timeoutSec: int
 
 @typing.type_check_only
 class InstanceGroupManagerList(typing_extensions.TypedDict, total=False):
@@ -2103,6 +2134,12 @@ class InstanceGroupManagersResizeAdvancedRequest(
     targetSize: int
 
 @typing.type_check_only
+class InstanceGroupManagersResumeInstancesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    instances: typing.List[str]
+
+@typing.type_check_only
 class InstanceGroupManagersScopedList(typing_extensions.TypedDict, total=False):
     instanceGroupManagers: typing.List[InstanceGroupManager]
     warning: typing.Dict[str, typing.Any]
@@ -2125,6 +2162,26 @@ class InstanceGroupManagersSetTargetPoolsRequest(
 ):
     fingerprint: str
     targetPools: typing.List[str]
+
+@typing.type_check_only
+class InstanceGroupManagersStartInstancesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    instances: typing.List[str]
+
+@typing.type_check_only
+class InstanceGroupManagersStopInstancesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    forceStop: bool
+    instances: typing.List[str]
+
+@typing.type_check_only
+class InstanceGroupManagersSuspendInstancesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    forceSuspend: bool
+    instances: typing.List[str]
 
 @typing.type_check_only
 class InstanceGroupManagersUpdatePerInstanceConfigsReq(
@@ -2200,6 +2257,10 @@ class InstanceManagedByIgmErrorInstanceActionDetails(
         "RECREATING",
         "REFRESHING",
         "RESTARTING",
+        "RESUMING",
+        "STARTING",
+        "STOPPING",
+        "SUSPENDING",
         "VERIFYING",
     ]
     instance: str
@@ -2312,6 +2373,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
     displayName: str
     name: str
     rules: typing.List[FirewallPolicyRule]
+    shortName: str
     type: typing_extensions.Literal["HIERARCHY", "NETWORK", "UNSPECIFIED"]
 
 @typing.type_check_only
@@ -2876,6 +2938,10 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
         "RECREATING",
         "REFRESHING",
         "RESTARTING",
+        "RESUMING",
+        "STARTING",
+        "STOPPING",
+        "SUSPENDING",
         "VERIFYING",
     ]
     id: str
@@ -2994,8 +3060,10 @@ class NetworkEndpointGroup(typing_extensions.TypedDict, total=False):
         "INTERNET_FQDN_PORT",
         "INTERNET_IP_PORT",
         "NON_GCP_PRIVATE_IP_PORT",
+        "PRIVATE_SERVICE_CONNECT",
         "SERVERLESS",
     ]
+    pscTargetService: str
     region: str
     selfLink: str
     selfLinkWithId: str
@@ -3194,6 +3262,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
     displayName: str
     name: str
     rules: typing.List[FirewallPolicyRule]
+    shortName: str
     type: typing_extensions.Literal["HIERARCHY", "NETWORK", "UNSPECIFIED"]
 
 @typing.type_check_only
@@ -3874,9 +3943,11 @@ class Quota(typing_extensions.TypedDict, total=False):
         "AUTOSCALERS",
         "BACKEND_BUCKETS",
         "BACKEND_SERVICES",
+        "C2D_CPUS",
         "C2_CPUS",
         "COMMITMENTS",
         "COMMITTED_A2_CPUS",
+        "COMMITTED_C2D_CPUS",
         "COMMITTED_C2_CPUS",
         "COMMITTED_CPUS",
         "COMMITTED_E2_CPUS",
@@ -4162,6 +4233,12 @@ class RegionInstanceGroupManagersResizeAdvancedRequest(
     targetSize: int
 
 @typing.type_check_only
+class RegionInstanceGroupManagersResumeInstancesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    instances: typing.List[str]
+
+@typing.type_check_only
 class RegionInstanceGroupManagersSetAutoHealingRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -4179,6 +4256,26 @@ class RegionInstanceGroupManagersSetTemplateRequest(
     typing_extensions.TypedDict, total=False
 ):
     instanceTemplate: str
+
+@typing.type_check_only
+class RegionInstanceGroupManagersStartInstancesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    instances: typing.List[str]
+
+@typing.type_check_only
+class RegionInstanceGroupManagersStopInstancesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    forceStop: bool
+    instances: typing.List[str]
+
+@typing.type_check_only
+class RegionInstanceGroupManagersSuspendInstancesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    forceSuspend: bool
+    instances: typing.List[str]
 
 @typing.type_check_only
 class RegionInstanceGroupsListInstances(typing_extensions.TypedDict, total=False):
@@ -4497,6 +4594,7 @@ class RolloutPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Route(typing_extensions.TypedDict, total=False):
+    allowConflictingSubnetworks: bool
     creationTimestamp: str
     description: str
     destRange: str
@@ -4681,6 +4779,7 @@ class RouterStatusBgpPeerStatus(typing_extensions.TypedDict, total=False):
     name: str
     numLearnedRoutes: int
     peerIpAddress: str
+    routerApplianceInstance: str
     state: str
     status: typing_extensions.Literal["DOWN", "UNKNOWN", "UP"]
     uptime: str
@@ -4867,6 +4966,7 @@ class SecurityPolicyRule(typing_extensions.TypedDict, total=False):
     description: str
     direction: typing_extensions.Literal["EGRESS", "INGRESS"]
     enableLogging: bool
+    headerAction: SecurityPolicyRuleHttpHeaderAction
     kind: str
     match: SecurityPolicyRuleMatcher
     preview: bool
@@ -4877,6 +4977,19 @@ class SecurityPolicyRule(typing_extensions.TypedDict, total=False):
     ruleTupleCount: int
     targetResources: typing.List[str]
     targetServiceAccounts: typing.List[str]
+
+@typing.type_check_only
+class SecurityPolicyRuleHttpHeaderAction(typing_extensions.TypedDict, total=False):
+    requestHeadersToAdds: typing.List[
+        SecurityPolicyRuleHttpHeaderActionHttpHeaderOption
+    ]
+
+@typing.type_check_only
+class SecurityPolicyRuleHttpHeaderActionHttpHeaderOption(
+    typing_extensions.TypedDict, total=False
+):
+    headerName: str
+    headerValue: str
 
 @typing.type_check_only
 class SecurityPolicyRuleMatcher(typing_extensions.TypedDict, total=False):
@@ -4909,12 +5022,10 @@ class SecurityPolicyRuleMatcherConfigLayer4Config(
 class SecurityPolicyRuleRateLimitOptions(typing_extensions.TypedDict, total=False):
     banDurationSec: int
     banThreshold: SecurityPolicyRuleRateLimitOptionsThreshold
-    blockDuration: int
     conformAction: str
     enforceOnKey: typing_extensions.Literal["ALL_IPS", "IP"]
     exceedAction: str
     rateLimitThreshold: SecurityPolicyRuleRateLimitOptionsThreshold
-    thresholdRps: int
 
 @typing.type_check_only
 class SecurityPolicyRuleRateLimitOptionsThreshold(

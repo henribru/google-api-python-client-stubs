@@ -2,6 +2,9 @@ import typing
 
 import typing_extensions
 @typing.type_check_only
+class AnalyzeIamPolicyLongrunningResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: typing.List[AuditLogConfig]
     service: str
