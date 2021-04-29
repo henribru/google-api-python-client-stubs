@@ -403,11 +403,16 @@ class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total
     detectIntentResponseId: str
     fulfillmentInfo: GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3WebhookRequestIntentInfo
+    languageCode: str
     messages: typing.List[GoogleCloudDialogflowCxV3ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3PageInfo
     payload: typing.Dict[str, typing.Any]
     sentimentAnalysisResult: GoogleCloudDialogflowCxV3WebhookRequestSentimentAnalysisResult
     sessionInfo: GoogleCloudDialogflowCxV3SessionInfo
+    text: str
+    transcript: str
+    triggerEvent: str
+    triggerIntent: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo(
@@ -756,6 +761,7 @@ class GoogleCloudDialogflowCxV3beta1Flow(typing_extensions.TypedDict, total=Fals
     eventHandlers: typing.List[GoogleCloudDialogflowCxV3beta1EventHandler]
     name: str
     nluSettings: GoogleCloudDialogflowCxV3beta1NluSettings
+    transitionRouteGroups: typing.List[str]
     transitionRoutes: typing.List[GoogleCloudDialogflowCxV3beta1TransitionRoute]
 
 @typing.type_check_only
@@ -1159,6 +1165,7 @@ class GoogleCloudDialogflowCxV3beta1QueryParameters(
     typing_extensions.TypedDict, total=False
 ):
     analyzeQueryTextSentiment: bool
+    currentPage: str
     disableWebhook: bool
     geoLocation: GoogleTypeLatLng
     parameters: typing.Dict[str, typing.Any]
@@ -1537,11 +1544,16 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest(
     detectIntentResponseId: str
     fulfillmentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo
+    languageCode: str
     messages: typing.List[GoogleCloudDialogflowCxV3beta1ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3beta1PageInfo
     payload: typing.Dict[str, typing.Any]
     sentimentAnalysisResult: GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult
     sessionInfo: GoogleCloudDialogflowCxV3beta1SessionInfo
+    text: str
+    transcript: str
+    triggerEvent: str
+    triggerIntent: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo(

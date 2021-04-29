@@ -82,6 +82,7 @@ class Container(typing_extensions.TypedDict, total=False):
     readinessProbe: Probe
     resources: ResourceRequirements
     securityContext: SecurityContext
+    startupProbe: Probe
     terminationMessagePath: str
     terminationMessagePolicy: str
     volumeMounts: typing.List[VolumeMount]

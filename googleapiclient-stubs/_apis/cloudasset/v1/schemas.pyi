@@ -66,6 +66,16 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class ConditionContext(typing_extensions.TypedDict, total=False):
+    accessTime: str
+
+@typing.type_check_only
+class ConditionEvaluation(typing_extensions.TypedDict, total=False):
+    evaluationValue: typing_extensions.Literal[
+        "EVALUATION_VALUE_UNSPECIFIED", "TRUE", "FALSE", "CONDITIONAL"
+    ]
+
+@typing.type_check_only
 class CreateFeedRequest(typing_extensions.TypedDict, total=False):
     feed: Feed
     feedId: str
@@ -132,6 +142,7 @@ class GoogleCloudAssetV1Access(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudAssetV1AccessControlList(typing_extensions.TypedDict, total=False):
     accesses: typing.List[GoogleCloudAssetV1Access]
+    conditionEvaluation: ConditionEvaluation
     resourceEdges: typing.List[GoogleCloudAssetV1Edge]
     resources: typing.List[GoogleCloudAssetV1Resource]
 
@@ -428,6 +439,7 @@ class IamPolicyAnalysisOutputConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class IamPolicyAnalysisQuery(typing_extensions.TypedDict, total=False):
     accessSelector: AccessSelector
+    conditionContext: ConditionContext
     identitySelector: IdentitySelector
     options: Options
     resourceSelector: ResourceSelector

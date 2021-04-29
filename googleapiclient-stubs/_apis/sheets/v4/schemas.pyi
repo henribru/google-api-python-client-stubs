@@ -1261,6 +1261,10 @@ class LineStyle(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
+class Link(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
 class ManualRule(typing_extensions.TypedDict, total=False):
     groups: typing.List[ManualRuleGroup]
 
@@ -1758,6 +1762,7 @@ class TextFormat(typing_extensions.TypedDict, total=False):
     foregroundColor: Color
     foregroundColorStyle: ColorStyle
     italic: bool
+    link: Link
     strikethrough: bool
     underline: bool
 

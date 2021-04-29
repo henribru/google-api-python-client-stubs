@@ -3,6 +3,13 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class AuditLoggingSettings(typing_extensions.TypedDict, total=False):
+    logAdminReadActions: bool
+    logDataReadActions: bool
+    logDataWriteActions: bool
+    project: str
+
+@typing.type_check_only
 class BooleanOperatorOptions(typing_extensions.TypedDict, total=False):
     operatorName: str
 
@@ -20,6 +27,11 @@ class CompositeFilter(typing_extensions.TypedDict, total=False):
     subFilters: typing.List[Filter]
 
 @typing.type_check_only
+class ContextAttribute(typing_extensions.TypedDict, total=False):
+    name: str
+    values: typing.List[str]
+
+@typing.type_check_only
 class CustomerIndexStats(typing_extensions.TypedDict, total=False):
     date: Date
     itemCountByStatus: typing.List[ItemCountByStatus]
@@ -33,6 +45,11 @@ class CustomerQueryStats(typing_extensions.TypedDict, total=False):
 class CustomerSessionStats(typing_extensions.TypedDict, total=False):
     date: Date
     searchSessionsCount: str
+
+@typing.type_check_only
+class CustomerSettings(typing_extensions.TypedDict, total=False):
+    auditLoggingSettings: AuditLoggingSettings
+    vpcSettings: VPCSettings
 
 @typing.type_check_only
 class CustomerUserStats(typing_extensions.TypedDict, total=False):
@@ -336,6 +353,7 @@ class ItemCountByStatus(typing_extensions.TypedDict, total=False):
 class ItemMetadata(typing_extensions.TypedDict, total=False):
     containerName: str
     contentLanguage: str
+    contextAttributes: typing.List[ContextAttribute]
     createTime: str
     hash: str
     interactions: typing.List[Interaction]
@@ -699,6 +717,7 @@ class SearchQualityMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchRequest(typing_extensions.TypedDict, total=False):
+    contextAttributes: typing.List[ContextAttribute]
     dataSourceRestrictions: typing.List[DataSourceRestriction]
     facetOptions: typing.List[FacetOptions]
     pageSize: int
@@ -871,6 +890,10 @@ class UpdateSchemaRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UploadItemRef(typing_extensions.TypedDict, total=False):
     name: str
+
+@typing.type_check_only
+class VPCSettings(typing_extensions.TypedDict, total=False):
+    project: str
 
 @typing.type_check_only
 class Value(typing_extensions.TypedDict, total=False):

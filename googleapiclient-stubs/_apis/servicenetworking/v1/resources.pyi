@@ -33,6 +33,13 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, parent: str, body: Connection = ..., **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+            def deleteConnection(
+                self,
+                *,
+                name: str,
+                body: DeleteConnectionRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def list(
                 self, *, parent: str, network: str = ..., **kwargs: typing.Any
             ) -> ListConnectionsResponseHttpRequest: ...

@@ -48,6 +48,7 @@ class RestDescription(typing_extensions.TypedDict, total=False):
 class RestMethod(typing_extensions.TypedDict, total=False):
     description: str
     etagRequired: bool
+    flatPath: str
     httpMethod: str
     id: str
     mediaUpload: typing.Dict[str, typing.Any]

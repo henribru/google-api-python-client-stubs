@@ -279,8 +279,9 @@ class GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse(
 class GoogleAnalyticsAdminV1alphaProperty(typing_extensions.TypedDict, total=False):
     createTime: str
     currencyCode: str
-    deleted: bool
+    deleteTime: str
     displayName: str
+    expireTime: str
     industryCategory: typing_extensions.Literal[
         "INDUSTRY_CATEGORY_UNSPECIFIED",
         "AUTOMOTIVE",

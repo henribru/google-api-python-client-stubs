@@ -126,13 +126,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
     class PropertiesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AndroidAppDataStreamsResource(googleapiclient.discovery.Resource):
-            def create(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaAndroidAppDataStream = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaAndroidAppDataStreamHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -213,13 +206,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> GoogleAnalyticsAdminV1alphaGoogleAdsLinkHttpRequest: ...
         @typing.type_check_only
         class IosAppDataStreamsResource(googleapiclient.discovery.Resource):
-            def create(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaIosAppDataStream = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaIosAppDataStreamHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -361,7 +347,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
-        ) -> GoogleProtobufEmptyHttpRequest: ...
+        ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...

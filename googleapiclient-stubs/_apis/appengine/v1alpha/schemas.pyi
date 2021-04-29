@@ -47,6 +47,12 @@ class DomainMapping(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleAppengineV1betaLocationMetadata(typing_extensions.TypedDict, total=False):
+    flexibleEnvironmentAvailable: bool
+    searchApiAvailable: bool
+    standardEnvironmentAvailable: bool
+
+@typing.type_check_only
 class ListAuthorizedCertificatesResponse(typing_extensions.TypedDict, total=False):
     certificates: typing.List[AuthorizedCertificate]
     nextPageToken: str

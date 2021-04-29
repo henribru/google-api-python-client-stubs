@@ -122,6 +122,10 @@ class ClusterStatus(typing_extensions.TypedDict, total=False):
     substate: typing_extensions.Literal["UNSPECIFIED", "UNHEALTHY", "STALE_STATUS"]
 
 @typing.type_check_only
+class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
+    enableConfidentialCompute: bool
+
+@typing.type_check_only
 class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -155,6 +159,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GceClusterConfig(typing_extensions.TypedDict, total=False):
+    confidentialInstanceConfig: ConfidentialInstanceConfig
     internalIpOnly: bool
     metadata: typing.Dict[str, typing.Any]
     networkUri: str

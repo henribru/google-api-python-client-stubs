@@ -126,6 +126,9 @@ class Control(typing_extensions.TypedDict, total=False):
     environment: str
 
 @typing.type_check_only
+class CreateAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CustomError(typing_extensions.TypedDict, total=False):
     rules: typing.List[CustomErrorRule]
     types: typing.List[str]
@@ -139,6 +142,9 @@ class CustomErrorRule(typing_extensions.TypedDict, total=False):
 class CustomHttpPattern(typing_extensions.TypedDict, total=False):
     kind: str
     path: str
+
+@typing.type_check_only
+class DeleteAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DisableServiceRequest(typing_extensions.TypedDict, total=False): ...
@@ -237,6 +243,9 @@ class Field(typing_extensions.TypedDict, total=False):
     typeUrl: str
 
 @typing.type_check_only
+class GetServiceIdentityMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GetServiceIdentityResponse(typing_extensions.TypedDict, total=False):
     identity: ServiceIdentity
     state: typing_extensions.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
@@ -304,6 +313,9 @@ class Http(typing.Dict[str, typing.Any]): ...
 class HttpRule(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
+class ImportAdminOverridesMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ImportAdminOverridesRequest(typing_extensions.TypedDict, total=False):
     force: bool
     forceOnly: typing.List[str]
@@ -314,8 +326,14 @@ class ImportAdminOverridesResponse(typing_extensions.TypedDict, total=False):
     overrides: typing.List[QuotaOverride]
 
 @typing.type_check_only
+class ImportAdminQuotaPoliciesMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ImportAdminQuotaPoliciesResponse(typing_extensions.TypedDict, total=False):
     policies: typing.List[AdminQuotaPolicy]
+
+@typing.type_check_only
+class ImportConsumerOverridesMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ImportConsumerOverridesRequest(typing_extensions.TypedDict, total=False):
@@ -589,6 +607,9 @@ class Type(typing_extensions.TypedDict, total=False):
     options: typing.List[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
+class UpdateAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Usage(typing_extensions.TypedDict, total=False):

@@ -83,12 +83,6 @@ class GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse(
     evaluation: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiUiv1beta3SampleDatasetMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
-
-@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -111,7 +105,9 @@ class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata(
 class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation(
     typing_extensions.TypedDict, total=False
 ):
+    datasetErrorCount: int
     datasetErrors: typing.List[GoogleRpcStatus]
+    documentErrorCount: int
     documentErrors: typing.List[GoogleRpcStatus]
 
 @typing.type_check_only
@@ -461,6 +457,7 @@ class GoogleCloudDocumentaiV1beta1DocumentProvenance(
         "REPLACE",
         "EVAL_REQUESTED",
         "EVAL_APPROVED",
+        "EVAL_SKIPPED",
     ]
 
 @typing.type_check_only
@@ -867,6 +864,7 @@ class GoogleCloudDocumentaiV1beta2DocumentProvenance(
         "REPLACE",
         "EVAL_REQUESTED",
         "EVAL_APPROVED",
+        "EVAL_SKIPPED",
     ]
 
 @typing.type_check_only

@@ -226,6 +226,8 @@ class GoogleDevtoolsRemotebuildbotCommandEvents(
         "LOCATION_EXEC_ROOT_RELATIVE",
         "LOCATION_WORKING_DIR_RELATIVE",
         "LOCATION_EXEC_ROOT_AND_WORKING_DIR_RELATIVE",
+        "LOCATION_EXEC_ROOT_RELATIVE_OUTPUT_OUTSIDE_WORKING_DIR",
+        "LOCATION_EXEC_ROOT_AND_WORKING_DIR_RELATIVE_OUTPUT_OUTSIDE_WORKING_DIR",
     ]
     usedAsyncContainer: bool
 
@@ -275,6 +277,7 @@ class GoogleDevtoolsRemotebuildbotCommandStatus(
         "DOCKER_TOO_MANY_SYMBOLIC_LINK_LEVELS",
         "LOCAL_CONTAINER_MANAGER_NOT_RUNNING",
         "DOCKER_IMAGE_VPCSC_PERMISSION_DENIED",
+        "WORKING_DIR_NOT_RELATIVE",
     ]
     message: str
 

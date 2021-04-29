@@ -158,6 +158,22 @@ class MonthlySchedule(typing_extensions.TypedDict, total=False):
     weekDayOfMonth: WeekDayOfMonth
 
 @typing.type_check_only
+class OSPolicyAssignmentOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiMethod: typing_extensions.Literal[
+        "API_METHOD_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
+    ]
+    osPolicyAssignment: str
+    rolloutStartTime: str
+    rolloutState: typing_extensions.Literal[
+        "ROLLOUT_STATE_UNSPECIFIED",
+        "IN_PROGRESS",
+        "CANCELLING",
+        "CANCELLED",
+        "SUCCEEDED",
+    ]
+    rolloutUpdateTime: str
+
+@typing.type_check_only
 class OneTimeSchedule(typing_extensions.TypedDict, total=False):
     executeTime: str
 

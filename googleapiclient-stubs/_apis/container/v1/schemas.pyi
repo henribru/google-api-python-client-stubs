@@ -86,6 +86,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     binaryAuthorization: BinaryAuthorization
     clusterIpv4Cidr: str
     conditions: typing.List[StatusCondition]
+    confidentialNodes: ConfidentialNodes
     createTime: str
     currentMasterVersion: str
     currentNodeCount: int
@@ -97,6 +98,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     enableTpu: bool
     endpoint: str
     expireTime: str
+    id: str
     initialClusterVersion: str
     initialNodeCount: int
     instanceGroupUrls: typing.List[str]
@@ -185,6 +187,10 @@ class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
     name: str
     projectId: str
     zone: str
+
+@typing.type_check_only
+class ConfidentialNodes(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class ConfigConnectorConfig(typing_extensions.TypedDict, total=False):

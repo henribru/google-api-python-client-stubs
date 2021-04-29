@@ -21,7 +21,22 @@ class Oauth2Resource(googleapiclient.discovery.Resource):
         def get(self, **kwargs: typing.Any) -> UserinfoHttpRequest: ...
         def v2(self) -> V2Resource: ...
     def tokeninfo(
-        self, *, access_token: str = ..., id_token: str = ..., **kwargs: typing.Any
+        self,
+        *,
+        access_token: str = ...,
+        alt: typing_extensions.Literal["json"] = ...,
+        fields: str = ...,
+        id_token: str = ...,
+        key: str = ...,
+        oauth_token: str = ...,
+        pp: str = ...,
+        prettyPrint: bool = ...,
+        quotaUser: str = ...,
+        strict: str = ...,
+        trace: str = ...,
+        userIp: str = ...,
+        userip: str = ...,
+        **kwargs: typing.Any
     ) -> TokeninfoHttpRequest: ...
     def userinfo(self) -> UserinfoResource: ...
 

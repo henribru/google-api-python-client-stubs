@@ -33,10 +33,6 @@ class CapacityCommitment(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
 
 @typing.type_check_only
-class CreateSlotPoolMetadata(typing_extensions.TypedDict, total=False):
-    slotPool: str
-
-@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -50,11 +46,6 @@ class ListCapacityCommitmentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: typing.List[Operation]
-
-@typing.type_check_only
 class ListReservationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     reservations: typing.List[Reservation]
@@ -66,14 +57,6 @@ class MergeCapacityCommitmentsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MoveAssignmentRequest(typing_extensions.TypedDict, total=False):
     destinationId: str
-
-@typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
-    done: bool
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-    response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class Reservation(typing_extensions.TypedDict, total=False):

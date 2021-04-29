@@ -9,6 +9,16 @@ class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
         "COMMON_CRITERIA_MODE_DISABLED",
         "COMMON_CRITERIA_MODE_ENABLED",
     ]
+    developerSettings: typing_extensions.Literal[
+        "DEVELOPER_SETTINGS_UNSPECIFIED",
+        "DEVELOPER_SETTINGS_DISABLED",
+        "DEVELOPER_SETTINGS_ALLOWED",
+    ]
+    googlePlayProtectVerifyApps: typing_extensions.Literal[
+        "GOOGLE_PLAY_PROTECT_VERIFY_APPS_UNSPECIFIED",
+        "VERIFY_APPS_ENFORCED",
+        "VERIFY_APPS_USER_CHOICE",
+    ]
     untrustedAppsPolicy: typing_extensions.Literal[
         "UNTRUSTED_APPS_POLICY_UNSPECIFIED",
         "DISALLOW_INSTALL",

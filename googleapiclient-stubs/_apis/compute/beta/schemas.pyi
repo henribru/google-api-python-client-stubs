@@ -110,6 +110,7 @@ class AddressesScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
     enableNestedVirtualization: bool
+    threadsPerCore: int
 
 @typing.type_check_only
 class AliasIpRange(typing_extensions.TypedDict, total=False):
@@ -449,6 +450,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
     selfLink: str
     sessionAffinity: typing_extensions.Literal[
         "CLIENT_IP",
+        "CLIENT_IP_NO_DESTINATION",
         "CLIENT_IP_PORT_PROTO",
         "CLIENT_IP_PROTO",
         "GENERATED_COOKIE",
@@ -1388,6 +1390,8 @@ class HealthChecksScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HealthStatus(typing_extensions.TypedDict, total=False):
     annotations: typing.Dict[str, typing.Any]
+    forwardingRule: str
+    forwardingRuleIp: str
     healthState: typing_extensions.Literal["HEALTHY", "UNHEALTHY"]
     instance: str
     ipAddress: str
@@ -1602,6 +1606,10 @@ class Image(typing_extensions.TypedDict, total=False):
     sourceType: typing_extensions.Literal["RAW"]
     status: typing_extensions.Literal["DELETING", "FAILED", "PENDING", "READY"]
     storageLocations: typing.List[str]
+
+@typing.type_check_only
+class ImageFamilyView(typing_extensions.TypedDict, total=False):
+    image: Image
 
 @typing.type_check_only
 class ImageList(typing_extensions.TypedDict, total=False):
@@ -1822,6 +1830,9 @@ class InstanceGroupManagerUpdatePolicy(typing_extensions.TypedDict, total=False)
     maxUnavailable: FixedOrPercent
     minReadySec: int
     minimalAction: typing_extensions.Literal["NONE", "REFRESH", "REPLACE", "RESTART"]
+    mostDisruptiveAllowedAction: typing_extensions.Literal[
+        "NONE", "REFRESH", "REPLACE", "RESTART"
+    ]
     replacementMethod: typing_extensions.Literal["RECREATE", "SUBSTITUTE"]
     type: typing_extensions.Literal["OPPORTUNISTIC", "PROACTIVE"]
 
@@ -4376,6 +4387,7 @@ class ServiceAccount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceAttachment(typing_extensions.TypedDict, total=False):
+    connectedEndpoints: typing.List[ServiceAttachmentConnectedEndpoint]
     connectionPreference: typing_extensions.Literal[
         "ACCEPT_AUTOMATIC", "CONNECTION_PREFERENCE_UNSPECIFIED"
     ]
@@ -4388,8 +4400,10 @@ class ServiceAttachment(typing_extensions.TypedDict, total=False):
     name: str
     natSubnets: typing.List[str]
     producerForwardingRule: str
+    pscServiceAttachmentId: Uint128
     region: str
     selfLink: str
+    targetService: str
 
 @typing.type_check_only
 class ServiceAttachmentAggregatedList(typing_extensions.TypedDict, total=False):
@@ -4402,10 +4416,20 @@ class ServiceAttachmentAggregatedList(typing_extensions.TypedDict, total=False):
     warning: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class ServiceAttachmentConnectedEndpoint(typing_extensions.TypedDict, total=False):
+    endpoint: str
+    forwardingRule: str
+    pscConnectionId: str
+    status: typing_extensions.Literal[
+        "ACCEPTED", "CLOSED", "PENDING", "REJECTED", "STATUS_UNSPECIFIED"
+    ]
+
+@typing.type_check_only
 class ServiceAttachmentConsumerForwardingRule(typing_extensions.TypedDict, total=False):
     forwardingRule: str
+    pscConnectionId: str
     status: typing_extensions.Literal[
-        "ACCEPTED", "PENDING", "REJECTED", "STATUS_UNSPECIFIED"
+        "ACCEPTED", "CLOSED", "PENDING", "REJECTED", "STATUS_UNSPECIFIED"
     ]
 
 @typing.type_check_only
@@ -4920,6 +4944,7 @@ class TargetPool(typing_extensions.TypedDict, total=False):
     selfLink: str
     sessionAffinity: typing_extensions.Literal[
         "CLIENT_IP",
+        "CLIENT_IP_NO_DESTINATION",
         "CLIENT_IP_PORT_PROTO",
         "CLIENT_IP_PROTO",
         "GENERATED_COOKIE",
@@ -5105,6 +5130,11 @@ class TestPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
+
+@typing.type_check_only
+class Uint128(typing_extensions.TypedDict, total=False):
+    high: str
+    low: str
 
 @typing.type_check_only
 class UrlMap(typing_extensions.TypedDict, total=False):

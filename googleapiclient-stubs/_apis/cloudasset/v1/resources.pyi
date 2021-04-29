@@ -38,6 +38,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             analysisQuery_accessSelector_roles: typing.Union[
                 str, typing.List[str]
             ] = ...,
+            analysisQuery_conditionContext_accessTime: str = ...,
             analysisQuery_identitySelector_identity: str = ...,
             analysisQuery_options_analyzeServiceAccountImpersonation: bool = ...,
             analysisQuery_options_expandGroups: bool = ...,

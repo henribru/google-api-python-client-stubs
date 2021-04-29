@@ -11,6 +11,7 @@ class Accelerator(typing_extensions.TypedDict, total=False):
 class Action(typing_extensions.TypedDict, total=False):
     commands: typing.List[str]
     credentials: Secret
+    encryptedEnvironment: Secret
     entrypoint: str
     environment: typing.Dict[str, typing.Any]
     flags: typing.List[str]
@@ -181,6 +182,7 @@ class PersistentDisk(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Pipeline(typing_extensions.TypedDict, total=False):
     actions: typing.List[Action]
+    encryptedEnvironment: Secret
     environment: typing.Dict[str, typing.Any]
     resources: Resources
     timeout: str

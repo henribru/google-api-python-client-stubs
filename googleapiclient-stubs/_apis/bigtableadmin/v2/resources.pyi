@@ -142,6 +142,14 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 def list(
                     self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                 ) -> ListClustersResponseHttpRequest: ...
+                def partialUpdateCluster(
+                    self,
+                    *,
+                    name: str,
+                    body: Cluster = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def update(
                     self, *, name: str, body: Cluster = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -188,6 +196,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         "NAME_ONLY",
                         "SCHEMA_VIEW",
                         "REPLICATION_VIEW",
+                        "ENCRYPTION_VIEW",
                         "FULL",
                     ] = ...,
                     **kwargs: typing.Any
@@ -210,6 +219,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         "NAME_ONLY",
                         "SCHEMA_VIEW",
                         "REPLICATION_VIEW",
+                        "ENCRYPTION_VIEW",
                         "FULL",
                     ] = ...,
                     **kwargs: typing.Any

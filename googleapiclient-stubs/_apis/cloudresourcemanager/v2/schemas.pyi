@@ -54,6 +54,9 @@ class CreateProjectMetadata(typing_extensions.TypedDict, total=False):
     ready: bool
 
 @typing.type_check_only
+class CreateTagBindingMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CreateTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -67,6 +70,9 @@ class DeleteOrganizationMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteProjectMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteTagBindingMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteTagKeyMetadata(typing_extensions.TypedDict, total=False): ...

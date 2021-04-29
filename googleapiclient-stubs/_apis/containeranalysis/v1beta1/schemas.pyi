@@ -181,6 +181,7 @@ class Detail(typing_extensions.TypedDict, total=False):
     severityName: str
     source: str
     sourceUpdateTime: str
+    vendor: str
 
 @typing.type_check_only
 class Details(typing_extensions.TypedDict, total=False):

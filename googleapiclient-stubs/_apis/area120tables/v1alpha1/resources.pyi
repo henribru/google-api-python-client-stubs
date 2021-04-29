@@ -62,6 +62,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 filter: str = ...,
+                orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 view: typing_extensions.Literal[
@@ -82,7 +83,12 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
             ) -> RowHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> TableHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            orderBy: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
         ) -> ListTablesResponseHttpRequest: ...
         def rows(self) -> RowsResource: ...
     @typing.type_check_only

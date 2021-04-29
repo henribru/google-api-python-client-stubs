@@ -36,6 +36,7 @@ class EventThreatDetectionSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
+    canonicalName: str
     category: str
     createTime: str
     eventTime: str
@@ -94,6 +95,7 @@ class GoogleCloudSecuritycenterV1beta1RunAssetDiscoveryResponse(
 class GoogleCloudSecuritycenterV1p1beta1Finding(
     typing_extensions.TypedDict, total=False
 ):
+    canonicalName: str
     category: str
     createTime: str
     eventTime: str
@@ -147,6 +149,7 @@ class GoogleCloudSecuritycenterV1p1beta1RunAssetDiscoveryResponse(
 class GoogleCloudSecuritycenterV1p1beta1SecurityMarks(
     typing_extensions.TypedDict, total=False
 ):
+    canonicalName: str
     marks: typing.Dict[str, typing.Any]
     name: str
 
@@ -168,6 +171,7 @@ class SecurityHealthAnalyticsSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityMarks(typing_extensions.TypedDict, total=False):
+    canonicalName: str
     marks: typing.Dict[str, typing.Any]
     name: str
 

@@ -94,6 +94,8 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
     enableAutomaticPunctuation: bool
     enableSeparateRecognitionPerChannel: bool
     enableSpeakerDiarization: bool
+    enableSpokenEmojis: bool
+    enableSpokenPunctuation: bool
     enableWordConfidence: bool
     enableWordTimeOffsets: bool
     encoding: typing_extensions.Literal[

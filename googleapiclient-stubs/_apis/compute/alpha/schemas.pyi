@@ -174,11 +174,6 @@ class AllocationSpecificSKUReservation(typing_extensions.TypedDict, total=False)
     instanceProperties: AllocationSpecificSKUAllocationReservedInstanceProperties
 
 @typing.type_check_only
-class Any(typing_extensions.TypedDict, total=False):
-    typeUrl: str
-    value: str
-
-@typing.type_check_only
 class AttachedDisk(typing_extensions.TypedDict, total=False):
     autoDelete: bool
     boot: bool
@@ -1272,6 +1267,9 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     portRange: str
     ports: typing.List[str]
     pscConnectionId: str
+    pscConnectionStatus: typing_extensions.Literal[
+        "ACCEPTED", "CLOSED", "PENDING", "REJECTED", "STATUS_UNSPECIFIED"
+    ]
     region: str
     selfLink: str
     selfLinkWithId: str
@@ -2965,6 +2963,9 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
     preservedStateFromConfig: PreservedState
     preservedStateFromPolicy: PreservedState
     tag: str
+    targetStatus: typing_extensions.Literal[
+        "ABANDONED", "DELETED", "RUNNING", "STOPPED", "SUSPENDED"
+    ]
     version: ManagedInstanceVersion
 
 @typing.type_check_only
@@ -3526,7 +3527,6 @@ class Operation(typing_extensions.TypedDict, total=False):
     id: str
     insertTime: str
     kind: str
-    metadata: Any
     name: str
     operationGroupId: str
     operationType: str
@@ -5073,20 +5073,26 @@ class ServiceAccount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceAttachment(typing_extensions.TypedDict, total=False):
+    connectedEndpoints: typing.List[ServiceAttachmentConnectedEndpoint]
     connectionPreference: typing_extensions.Literal[
-        "ACCEPT_AUTOMATIC", "CONNECTION_PREFERENCE_UNSPECIFIED"
+        "ACCEPT_AUTOMATIC", "ACCEPT_MANUAL", "CONNECTION_PREFERENCE_UNSPECIFIED"
     ]
+    consumerAcceptLists: typing.List[ServiceAttachmentConsumerProjectLimit]
     consumerForwardingRules: typing.List[ServiceAttachmentConsumerForwardingRule]
+    consumerRejectLists: typing.List[str]
     creationTimestamp: str
     description: str
     enableProxyProtocol: bool
+    fingerprint: str
     id: str
     kind: str
     name: str
     natSubnets: typing.List[str]
     producerForwardingRule: str
+    pscServiceAttachmentId: Uint128
     region: str
     selfLink: str
+    targetService: str
 
 @typing.type_check_only
 class ServiceAttachmentAggregatedList(typing_extensions.TypedDict, total=False):
@@ -5099,11 +5105,26 @@ class ServiceAttachmentAggregatedList(typing_extensions.TypedDict, total=False):
     warning: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class ServiceAttachmentConnectedEndpoint(typing_extensions.TypedDict, total=False):
+    endpoint: str
+    forwardingRule: str
+    pscConnectionId: str
+    status: typing_extensions.Literal[
+        "ACCEPTED", "CLOSED", "PENDING", "REJECTED", "STATUS_UNSPECIFIED"
+    ]
+
+@typing.type_check_only
 class ServiceAttachmentConsumerForwardingRule(typing_extensions.TypedDict, total=False):
     forwardingRule: str
+    pscConnectionId: str
     status: typing_extensions.Literal[
-        "ACCEPTED", "PENDING", "REJECTED", "STATUS_UNSPECIFIED"
+        "ACCEPTED", "CLOSED", "PENDING", "REJECTED", "STATUS_UNSPECIFIED"
     ]
+
+@typing.type_check_only
+class ServiceAttachmentConsumerProjectLimit(typing_extensions.TypedDict, total=False):
+    connectionLimit: int
+    projectIdOrNum: str
 
 @typing.type_check_only
 class ServiceAttachmentList(typing_extensions.TypedDict, total=False):
@@ -5886,6 +5907,11 @@ class UDPHealthCheck(typing_extensions.TypedDict, total=False):
     portName: str
     request: str
     response: str
+
+@typing.type_check_only
+class Uint128(typing_extensions.TypedDict, total=False):
+    high: str
+    low: str
 
 @typing.type_check_only
 class UpcomingMaintenance(typing_extensions.TypedDict, total=False):

@@ -159,6 +159,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     name: str
     networks: typing.List[NetworkConfig]
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",

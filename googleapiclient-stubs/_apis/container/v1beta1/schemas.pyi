@@ -6,6 +6,7 @@ import typing_extensions
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorCount: str
     acceleratorType: str
+    gpuPartitionSize: str
 
 @typing.type_check_only
 class AddonsConfig(typing_extensions.TypedDict, total=False):
@@ -106,6 +107,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     enableTpu: bool
     endpoint: str
     expireTime: str
+    id: str
     initialClusterVersion: str
     initialNodeCount: int
     instanceGroupUrls: typing.List[str]
@@ -152,6 +154,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     tpuConfig: TpuConfig
     tpuIpv4CidrBlock: str
     verticalPodAutoscaling: VerticalPodAutoscaling
+    workloadCertificates: WorkloadCertificates
     workloadIdentityConfig: WorkloadIdentityConfig
     zone: str
 
@@ -206,6 +209,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredShieldedNodes: ShieldedNodes
     desiredTpuConfig: TpuConfig
     desiredVerticalPodAutoscaling: VerticalPodAutoscaling
+    desiredWorkloadCertificates: WorkloadCertificates
     desiredWorkloadIdentityConfig: WorkloadIdentityConfig
 
 @typing.type_check_only
@@ -893,6 +897,10 @@ class UsableSubnetworkSecondaryRange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VerticalPodAutoscaling(typing_extensions.TypedDict, total=False):
     enabled: bool
+
+@typing.type_check_only
+class WorkloadCertificates(typing_extensions.TypedDict, total=False):
+    enableCertificates: bool
 
 @typing.type_check_only
 class WorkloadIdentityConfig(typing_extensions.TypedDict, total=False):

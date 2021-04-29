@@ -171,7 +171,12 @@ class Instance(typing_extensions.TypedDict, total=False):
     nodeCount: int
     parameters: MemcacheParameters
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "PERFORMING_MAINTENANCE"
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "READY",
+        "UPDATING",
+        "DELETING",
+        "PERFORMING_MAINTENANCE",
     ]
     updateAvailable: bool
     updateTime: str

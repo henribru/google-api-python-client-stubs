@@ -324,6 +324,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, force: bool = ..., **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowCxV3ExportFlowRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self,
                         *,
@@ -338,6 +345,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         languageCode: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowCxV3FlowValidationResultHttpRequest: ...
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowCxV3ImportFlowRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
                         *,

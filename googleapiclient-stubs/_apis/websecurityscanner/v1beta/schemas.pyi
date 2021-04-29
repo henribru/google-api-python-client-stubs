@@ -111,6 +111,7 @@ class ScanConfig(typing_extensions.TypedDict, total=False):
     exportToSecurityCommandCenter: typing_extensions.Literal[
         "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED", "ENABLED", "DISABLED"
     ]
+    ignoreHttpStatusErrors: bool
     latestRun: ScanRun
     managedScan: bool
     maxQps: int
