@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class Attributes(typing_extensions.TypedDict, total=False):
     additionalImageLink: typing.List[Image]

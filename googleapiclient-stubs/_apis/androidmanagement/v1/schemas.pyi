@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
     commonCriteriaMode: typing_extensions.Literal[

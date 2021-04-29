@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AddFirebaseRequest(typing_extensions.TypedDict, total=False):
     locationId: str

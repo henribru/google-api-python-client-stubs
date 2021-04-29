@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     createTime: str

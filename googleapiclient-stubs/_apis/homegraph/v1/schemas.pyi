@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AgentDeviceId(typing_extensions.TypedDict, total=False):
     id: str
@@ -94,6 +95,7 @@ AlternativeRequestSyncDevicesRequest = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class RequestSyncDevicesRequest(AlternativeRequestSyncDevicesRequest): ...
 

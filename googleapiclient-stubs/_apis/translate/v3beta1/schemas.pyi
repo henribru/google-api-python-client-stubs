@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class BatchTranslateTextRequest(typing_extensions.TypedDict, total=False):
     glossaries: typing.Dict[str, typing.Any]

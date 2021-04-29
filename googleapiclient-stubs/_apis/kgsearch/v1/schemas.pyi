@@ -11,5 +11,6 @@ AlternativeSearchResponse = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class SearchResponse(AlternativeSearchResponse): ...

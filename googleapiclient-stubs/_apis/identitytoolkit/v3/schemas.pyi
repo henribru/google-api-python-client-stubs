@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class CreateAuthUriResponse(typing_extensions.TypedDict, total=False):
     allProviders: typing.List[str]
@@ -45,6 +46,7 @@ AlternativeEmailTemplate = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class EmailTemplate(AlternativeEmailTemplate): ...
 

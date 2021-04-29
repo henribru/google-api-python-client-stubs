@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class CustomResourceColumnDefinition(typing_extensions.TypedDict, total=False):
     description: str
@@ -92,6 +93,7 @@ AlternativeListMeta = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class ListMeta(AlternativeListMeta): ...
 

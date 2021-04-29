@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     accountPermissionIds: typing.List[str]

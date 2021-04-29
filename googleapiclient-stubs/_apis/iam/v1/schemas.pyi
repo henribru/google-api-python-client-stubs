@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AdminAuditData(typing_extensions.TypedDict, total=False):
     permissionDelta: PermissionDelta

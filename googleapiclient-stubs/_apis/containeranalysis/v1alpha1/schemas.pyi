@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class Artifact(typing_extensions.TypedDict, total=False):
     checksum: str

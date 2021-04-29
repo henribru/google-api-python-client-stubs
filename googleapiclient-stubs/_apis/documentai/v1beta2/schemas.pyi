@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata(
     typing_extensions.TypedDict, total=False

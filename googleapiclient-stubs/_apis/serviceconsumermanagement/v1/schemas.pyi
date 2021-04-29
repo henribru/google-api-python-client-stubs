@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AddTenantProjectRequest(typing_extensions.TypedDict, total=False):
     projectConfig: TenantProjectConfig

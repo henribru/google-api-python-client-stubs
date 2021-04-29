@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AbuseReport(typing_extensions.TypedDict, total=False):
     abuseTypes: typing.List[AbuseType]
