@@ -114,6 +114,7 @@ class Detail(typing_extensions.TypedDict, total=False):
     packageType: str
     severityName: str
     source: str
+    vendor: str
 
 @typing.type_check_only
 class Discovered(typing_extensions.TypedDict, total=False):

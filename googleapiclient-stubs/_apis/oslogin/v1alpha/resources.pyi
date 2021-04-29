@@ -48,6 +48,9 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             ] = ...,
             projectId: str = ...,
             systemId: str = ...,
+            view: typing_extensions.Literal[
+                "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
+            ] = ...,
             **kwargs: typing.Any
         ) -> LoginProfileHttpRequest: ...
         def importSshPublicKey(
@@ -56,6 +59,9 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             parent: str,
             body: SshPublicKey = ...,
             projectId: str = ...,
+            view: typing_extensions.Literal[
+                "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
+            ] = ...,
             **kwargs: typing.Any
         ) -> ImportSshPublicKeyResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...

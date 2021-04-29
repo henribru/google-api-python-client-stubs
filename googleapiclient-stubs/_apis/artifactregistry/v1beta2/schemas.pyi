@@ -133,6 +133,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class Version(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
+    metadata: typing.Dict[str, typing.Any]
     name: str
     relatedTags: typing.List[Tag]
     updateTime: str

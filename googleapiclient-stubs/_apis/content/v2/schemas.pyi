@@ -288,6 +288,7 @@ class CarrierRate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CarriersCarrier(typing_extensions.TypedDict, total=False):
     country: str
+    eddServices: typing.List[str]
     name: str
     services: typing.List[str]
 
@@ -456,6 +457,7 @@ class DeliveryTime(typing_extensions.TypedDict, total=False):
     minTransitTimeInDays: int
     transitBusinessDayConfig: BusinessDayConfig
     transitTimeTable: TransitTable
+    warehouseBasedDeliveryTimes: typing.List[WarehouseBasedDeliveryTime]
 
 @typing.type_check_only
 class Error(typing_extensions.TypedDict, total=False):
@@ -2052,6 +2054,16 @@ class Value(typing_extensions.TypedDict, total=False):
     noShipping: bool
     pricePercentage: str
     subtableName: str
+
+@typing.type_check_only
+class WarehouseBasedDeliveryTime(typing_extensions.TypedDict, total=False):
+    carrier: str
+    carrierService: str
+    originAdministrativeArea: str
+    originCity: str
+    originCountry: str
+    originPostalCode: str
+    originStreetAddress: str
 
 @typing.type_check_only
 class Weight(typing_extensions.TypedDict, total=False):

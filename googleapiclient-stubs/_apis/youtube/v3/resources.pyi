@@ -702,7 +702,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             id: typing.Union[str, typing.List[str]],
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
-        ) -> VideoRatingListResponseHttpRequest: ...
+        ) -> VideoGetRatingResponseHttpRequest: ...
         def insert(
             self,
             *,
@@ -1203,6 +1203,16 @@ class VideoCategoryListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> VideoCategoryListResponse: ...
 
 @typing.type_check_only
+class VideoGetRatingResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> VideoGetRatingResponse: ...
+
+@typing.type_check_only
 class VideoListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1211,13 +1221,3 @@ class VideoListResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> VideoListResponse: ...
-
-@typing.type_check_only
-class VideoRatingListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> VideoRatingListResponse: ...

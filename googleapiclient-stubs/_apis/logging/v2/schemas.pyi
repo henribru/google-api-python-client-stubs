@@ -135,6 +135,7 @@ class LogBucket(typing_extensions.TypedDict, total=False):
     ]
     locked: bool
     name: str
+    restrictedFields: typing.List[str]
     retentionDays: int
     updateTime: str
 

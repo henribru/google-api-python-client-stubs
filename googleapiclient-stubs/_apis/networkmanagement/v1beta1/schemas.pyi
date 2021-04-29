@@ -16,6 +16,10 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "UNINTENDED_DESTINATION",
         "TRACE_TOO_LONG",
         "INTERNAL_ERROR",
+        "SOURCE_ENDPOINT_NOT_FOUND",
+        "MISMATCHED_SOURCE_NETWORK",
+        "DESTINATION_ENDPOINT_NOT_FOUND",
+        "MISMATCHED_DESTINATION_NETWORK",
     ]
     resourceUri: str
 
@@ -99,6 +103,8 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS",
         "DROPPED_INSIDE_GKE_SERVICE",
         "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
+        "GOOGLE_MANAGED_SERVICE_NO_PEERING",
+        "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
     ]
     resourceUri: str
 

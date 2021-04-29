@@ -5673,6 +5673,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> ServiceAttachmentListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            serviceAttachment: str,
+            body: ServiceAttachment = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setIamPolicy(
             self,
             *,

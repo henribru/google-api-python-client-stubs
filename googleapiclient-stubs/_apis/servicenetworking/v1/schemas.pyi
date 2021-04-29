@@ -181,6 +181,10 @@ class CustomHttpPattern(typing_extensions.TypedDict, total=False):
 class DeleteConnectionMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DeleteConnectionRequest(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+
+@typing.type_check_only
 class DeletePeeredDnsDomainMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only

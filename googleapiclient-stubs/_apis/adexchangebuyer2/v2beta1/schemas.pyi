@@ -517,7 +517,12 @@ class GuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
     fixedPrices: typing.List[PricePerBuyer]
     guaranteedImpressions: str
     guaranteedLooks: str
+    impressionCap: str
     minimumDailyLooks: str
+    percentShareOfVoice: str
+    reservationType: typing_extensions.Literal[
+        "RESERVATION_TYPE_UNSPECIFIED", "STANDARD", "SPONSORSHIP"
+    ]
 
 @typing.type_check_only
 class HtmlContent(typing_extensions.TypedDict, total=False):

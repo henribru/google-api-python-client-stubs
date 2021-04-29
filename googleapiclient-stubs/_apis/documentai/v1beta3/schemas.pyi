@@ -83,12 +83,6 @@ class GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse(
     evaluation: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiUiv1beta3SampleDatasetMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
-
-@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -111,7 +105,9 @@ class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata(
 class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation(
     typing_extensions.TypedDict, total=False
 ):
+    datasetErrorCount: int
     datasetErrors: typing.List[GoogleRpcStatus]
+    documentErrorCount: int
     documentErrors: typing.List[GoogleRpcStatus]
 
 @typing.type_check_only
@@ -461,6 +457,7 @@ class GoogleCloudDocumentaiV1beta1DocumentProvenance(
         "REPLACE",
         "EVAL_REQUESTED",
         "EVAL_APPROVED",
+        "EVAL_SKIPPED",
     ]
 
 @typing.type_check_only
@@ -855,6 +852,7 @@ class GoogleCloudDocumentaiV1beta2DocumentProvenance(
         "REPLACE",
         "EVAL_REQUESTED",
         "EVAL_APPROVED",
+        "EVAL_SKIPPED",
     ]
 
 @typing.type_check_only
@@ -1074,6 +1072,11 @@ class GoogleCloudDocumentaiV1beta3CommonOperationMetadata(
     ]
     stateMessage: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DisableProcessorRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3Document(typing_extensions.TypedDict, total=False):
@@ -1325,6 +1328,7 @@ class GoogleCloudDocumentaiV1beta3DocumentProvenance(
         "REPLACE",
         "EVAL_REQUESTED",
         "EVAL_APPROVED",
+        "EVAL_SKIPPED",
     ]
 
 @typing.type_check_only
@@ -1402,6 +1406,17 @@ class GoogleCloudDocumentaiV1beta3DocumentTextChange(
     textAnchor: GoogleCloudDocumentaiV1beta3DocumentTextAnchor
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3EnableProcessorRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    processorTypes: typing.List[GoogleCloudDocumentaiV1beta3ProcessorType]
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3GcsDocument(typing_extensions.TypedDict, total=False):
     gcsUri: str
     mimeType: str
@@ -1427,6 +1442,13 @@ class GoogleCloudDocumentaiV1beta3HumanReviewStatus(
     stateMessage: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ListProcessorsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    processors: typing.List[GoogleCloudDocumentaiV1beta3Processor]
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3NormalizedVertex(
     typing_extensions.TypedDict, total=False
 ):
@@ -1449,6 +1471,35 @@ class GoogleCloudDocumentaiV1beta3ProcessResponse(
     document: GoogleCloudDocumentaiV1beta3Document
     humanReviewOperation: str
     humanReviewStatus: GoogleCloudDocumentaiV1beta3HumanReviewStatus
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3Processor(typing_extensions.TypedDict, total=False):
+    createTime: str
+    defaultProcessorVersion: str
+    displayName: str
+    kmsKeyName: str
+    name: str
+    processEndpoint: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ENABLED",
+        "DISABLED",
+        "ENABLING",
+        "DISABLING",
+        "CREATING",
+        "FAILED",
+        "DELETING",
+    ]
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ProcessorType(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ProcessorTypeLocationInfo(
+    typing_extensions.TypedDict, total=False
+):
+    locationId: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3RawDocument(typing_extensions.TypedDict, total=False):
@@ -1479,6 +1530,12 @@ class GoogleCloudDocumentaiV1beta3ReviewDocumentResponse(
     typing_extensions.TypedDict, total=False
 ):
     gcsDestination: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3Schema(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3SchemaEntityType(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3Vertex(typing_extensions.TypedDict, total=False):

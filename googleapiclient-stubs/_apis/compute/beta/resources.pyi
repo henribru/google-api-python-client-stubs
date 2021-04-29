@@ -1310,6 +1310,11 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
     @typing.type_check_only
+    class ImageFamilyViewsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, zone: str, family: str, **kwargs: typing.Any
+        ) -> ImageFamilyViewHttpRequest: ...
+    @typing.type_check_only
     class ImagesResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -6148,6 +6153,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def healthChecks(self) -> HealthChecksResource: ...
     def httpHealthChecks(self) -> HttpHealthChecksResource: ...
     def httpsHealthChecks(self) -> HttpsHealthChecksResource: ...
+    def imageFamilyViews(self) -> ImageFamilyViewsResource: ...
     def images(self) -> ImagesResource: ...
     def instanceGroupManagers(self) -> InstanceGroupManagersResource: ...
     def instanceGroups(self) -> InstanceGroupsResource: ...
@@ -6693,6 +6699,16 @@ class ImageHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Image: ...
+
+@typing.type_check_only
+class ImageFamilyViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ImageFamilyView: ...
 
 @typing.type_check_only
 class ImageListHttpRequest(googleapiclient.http.HttpRequest):

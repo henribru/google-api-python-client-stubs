@@ -21,6 +21,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CapacityCommitment = ...,
+                    capacityCommitmentId: str = ...,
                     enforceSingleAdminProjectPerOrg: bool = ...,
                     **kwargs: typing.Any
                 ) -> CapacityCommitmentHttpRequest: ...
@@ -69,6 +70,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Assignment = ...,
+                        assignmentId: str = ...,
                         **kwargs: typing.Any
                     ) -> AssignmentHttpRequest: ...
                     def delete(
@@ -87,6 +89,14 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: MoveAssignmentRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> AssignmentHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Assignment = ...,
+                        updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> AssignmentHttpRequest: ...
                 def create(

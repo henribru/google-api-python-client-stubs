@@ -28,6 +28,7 @@ class ColumnDescription(typing_extensions.TypedDict, total=False):
     id: str
     labels: typing.List[LabeledItem]
     lookupDetails: LookupDetails
+    multipleValuesDisallowed: bool
     name: str
     relationshipDetails: RelationshipDetails
 
@@ -77,11 +78,17 @@ class Row(typing_extensions.TypedDict, total=False):
     values: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class SavedView(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+
+@typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
     columns: typing.List[ColumnDescription]
     createTime: str
     displayName: str
     name: str
+    savedViews: typing.List[SavedView]
     updateTime: str
 
 @typing.type_check_only

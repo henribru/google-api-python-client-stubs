@@ -108,6 +108,7 @@ class AddressesScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
     enableNestedVirtualization: bool
+    threadsPerCore: int
 
 @typing.type_check_only
 class AliasIpRange(typing_extensions.TypedDict, total=False):
@@ -279,6 +280,7 @@ class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AutoscalingPolicyCpuUtilization(typing_extensions.TypedDict, total=False):
+    predictiveMethod: typing_extensions.Literal["NONE", "OPTIMIZE_AVAILABILITY"]
     utilizationTarget: float
 
 @typing.type_check_only
@@ -357,6 +359,7 @@ class BackendBucketCdnPolicy(typing_extensions.TypedDict, total=False):
     maxTtl: int
     negativeCaching: bool
     negativeCachingPolicy: typing.List[BackendBucketCdnPolicyNegativeCachingPolicy]
+    requestCoalescing: bool
     serveWhileStale: int
     signedUrlCacheMaxAgeSec: str
     signedUrlKeyNames: typing.List[str]
@@ -434,6 +437,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
     selfLink: str
     sessionAffinity: typing_extensions.Literal[
         "CLIENT_IP",
+        "CLIENT_IP_NO_DESTINATION",
         "CLIENT_IP_PORT_PROTO",
         "CLIENT_IP_PROTO",
         "GENERATED_COOKIE",
@@ -470,6 +474,7 @@ class BackendServiceCdnPolicy(typing_extensions.TypedDict, total=False):
     maxTtl: int
     negativeCaching: bool
     negativeCachingPolicy: typing.List[BackendServiceCdnPolicyNegativeCachingPolicy]
+    requestCoalescing: bool
     serveWhileStale: int
     signedUrlCacheMaxAgeSec: str
     signedUrlKeyNames: typing.List[str]
@@ -829,6 +834,7 @@ class DisplayDevice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DistributionPolicy(typing_extensions.TypedDict, total=False):
+    targetShape: typing_extensions.Literal["ANY", "BALANCED", "EVEN"]
     zones: typing.List[DistributionPolicyZoneConfiguration]
 
 @typing.type_check_only
@@ -1275,6 +1281,8 @@ class HealthChecksScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HealthStatus(typing_extensions.TypedDict, total=False):
     annotations: typing.Dict[str, typing.Any]
+    forwardingRule: str
+    forwardingRuleIp: str
     healthState: typing_extensions.Literal["HEALTHY", "UNHEALTHY"]
     instance: str
     ipAddress: str
@@ -4465,6 +4473,7 @@ class TargetPool(typing_extensions.TypedDict, total=False):
     selfLink: str
     sessionAffinity: typing_extensions.Literal[
         "CLIENT_IP",
+        "CLIENT_IP_NO_DESTINATION",
         "CLIENT_IP_PORT_PROTO",
         "CLIENT_IP_PROTO",
         "GENERATED_COOKIE",

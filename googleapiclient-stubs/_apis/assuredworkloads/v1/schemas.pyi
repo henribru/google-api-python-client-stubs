@@ -13,6 +13,8 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
         "FEDRAMP_HIGH",
         "FEDRAMP_MODERATE",
         "US_REGIONAL_ACCESS",
+        "HIPAA",
+        "HITRUST",
     ]
     createTime: str
     displayName: str
@@ -35,6 +37,8 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "FEDRAMP_HIGH",
         "FEDRAMP_MODERATE",
         "US_REGIONAL_ACCESS",
+        "HIPAA",
+        "HITRUST",
     ]
     createTime: str
     displayName: str
@@ -43,6 +47,7 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
     labels: typing.Dict[str, typing.Any]
     name: str
     provisionedResourcesParent: str
+    resourceSettings: typing.List[GoogleCloudAssuredworkloadsV1WorkloadResourceSettings]
     resources: typing.List[GoogleCloudAssuredworkloadsV1WorkloadResourceInfo]
 
 @typing.type_check_only
@@ -58,7 +63,22 @@ class GoogleCloudAssuredworkloadsV1WorkloadResourceInfo(
 ):
     resourceId: str
     resourceType: typing_extensions.Literal[
-        "RESOURCE_TYPE_UNSPECIFIED", "CONSUMER_PROJECT", "ENCRYPTION_KEYS_PROJECT"
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "CONSUMER_PROJECT",
+        "ENCRYPTION_KEYS_PROJECT",
+        "KEYRING",
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1WorkloadResourceSettings(
+    typing_extensions.TypedDict, total=False
+):
+    resourceId: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "CONSUMER_PROJECT",
+        "ENCRYPTION_KEYS_PROJECT",
+        "KEYRING",
     ]
 
 @typing.type_check_only
@@ -147,7 +167,10 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo(
 ):
     resourceId: str
     resourceType: typing_extensions.Literal[
-        "RESOURCE_TYPE_UNSPECIFIED", "CONSUMER_PROJECT", "ENCRYPTION_KEYS_PROJECT"
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "CONSUMER_PROJECT",
+        "ENCRYPTION_KEYS_PROJECT",
+        "KEYRING",
     ]
 
 @typing.type_check_only
@@ -156,7 +179,10 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings(
 ):
     resourceId: str
     resourceType: typing_extensions.Literal[
-        "RESOURCE_TYPE_UNSPECIFIED", "CONSUMER_PROJECT", "ENCRYPTION_KEYS_PROJECT"
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "CONSUMER_PROJECT",
+        "ENCRYPTION_KEYS_PROJECT",
+        "KEYRING",
     ]
 
 @typing.type_check_only

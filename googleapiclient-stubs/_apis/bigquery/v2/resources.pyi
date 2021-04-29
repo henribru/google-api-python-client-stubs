@@ -62,6 +62,14 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             location: str = ...,
             **kwargs: typing.Any
         ) -> JobCancelResponseHttpRequest: ...
+        def delete(
+            self,
+            *,
+            projectId: str,
+            jobId: str,
+            location: str = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
             *,

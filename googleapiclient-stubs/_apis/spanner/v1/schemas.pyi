@@ -380,6 +380,8 @@ class RequestOptions(typing_extensions.TypedDict, total=False):
     priority: typing_extensions.Literal[
         "PRIORITY_UNSPECIFIED", "PRIORITY_LOW", "PRIORITY_MEDIUM", "PRIORITY_HIGH"
     ]
+    requestTag: str
+    transactionTag: str
 
 @typing.type_check_only
 class RestoreDatabaseEncryptionConfig(typing_extensions.TypedDict, total=False):
@@ -491,6 +493,7 @@ class Type(typing.Dict[str, typing.Any]): ...
 class UpdateDatabaseDdlMetadata(typing_extensions.TypedDict, total=False):
     commitTimestamps: typing.List[str]
     database: str
+    progress: typing.List[OperationProgress]
     statements: typing.List[str]
     throttled: bool
 

@@ -328,6 +328,7 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     network: str
     numWorkers: int
     serviceAccountEmail: str
+    stagingLocation: str
     subnetwork: str
     tempLocation: str
     workerRegion: str
@@ -671,6 +672,7 @@ class Parameter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ParameterMetadata(typing_extensions.TypedDict, total=False):
+    customMetadata: typing.Dict[str, typing.Any]
     helpText: str
     isOptional: bool
     label: str
@@ -875,6 +877,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     id: str
     projectId: str
     pubsubMetadata: typing.List[PubsubSnapshotMetadata]
+    region: str
     sourceJobId: str
     state: typing_extensions.Literal[
         "UNKNOWN_SNAPSHOT_STATE", "PENDING", "RUNNING", "READY", "FAILED", "DELETED"
@@ -1200,6 +1203,7 @@ class WorkerHealthReport(typing_extensions.TypedDict, total=False):
     msg: str
     pods: typing.List[typing.Dict[str, typing.Any]]
     reportInterval: str
+    vmBrokenCode: str
     vmIsBroken: bool
     vmIsHealthy: bool
     vmStartupTime: str

@@ -568,7 +568,9 @@ class Channel(typing_extensions.TypedDict, total=False):
     channelId: str
     displayName: str
     name: str
+    negativelyTargetedLineItemCount: str
     partnerId: str
+    positivelyTargetedLineItemCount: str
 
 @typing.type_check_only
 class ChannelAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
@@ -2243,6 +2245,7 @@ class NegativeKeywordList(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     negativeKeywordListId: str
+    targetedLineItemCount: str
 
 @typing.type_check_only
 class NegativeKeywordListAssignedTargetingOptionDetails(

@@ -195,6 +195,14 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         ) -> AccountTaxHttpRequest: ...
     @typing.type_check_only
     class BuyongoogleprogramsResource(googleapiclient.discovery.Resource):
+        def activate(
+            self,
+            *,
+            merchantId: str,
+            regionCode: str,
+            body: ActivateBuyOnGoogleProgramRequest = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self, *, merchantId: str, regionCode: str, **kwargs: typing.Any
         ) -> BuyOnGoogleProgramStatusHttpRequest: ...
@@ -204,6 +212,22 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             merchantId: str,
             regionCode: str,
             body: OnboardBuyOnGoogleProgramRequest = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def pause(
+            self,
+            *,
+            merchantId: str,
+            regionCode: str,
+            body: PauseBuyOnGoogleProgramRequest = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def requestreview(
+            self,
+            *,
+            merchantId: str,
+            regionCode: str,
+            body: RequestReviewBuyOnGoogleProgramRequest = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
     @typing.type_check_only

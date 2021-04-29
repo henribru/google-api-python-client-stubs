@@ -150,6 +150,7 @@ class Operation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OperationMetadataV1(typing_extensions.TypedDict, total=False):
     buildId: str
+    buildName: str
     request: typing.Dict[str, typing.Any]
     sourceToken: str
     target: str
