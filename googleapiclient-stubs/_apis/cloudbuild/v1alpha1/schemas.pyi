@@ -56,6 +56,7 @@ class Build(typing_extensions.TypedDict, total=False):
     tags: typing.List[str]
     timeout: str
     timing: typing.Dict[str, typing.Any]
+    warnings: typing.List[Warning]
 
 @typing.type_check_only
 class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -283,6 +284,13 @@ class TimeSpan(typing_extensions.TypedDict, total=False):
 class Volume(typing_extensions.TypedDict, total=False):
     name: str
     path: str
+
+@typing.type_check_only
+class Warning(typing_extensions.TypedDict, total=False):
+    priority: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "INFO", "WARNING", "ALERT"
+    ]
+    text: str
 
 @typing.type_check_only
 class WorkerConfig(typing_extensions.TypedDict, total=False):

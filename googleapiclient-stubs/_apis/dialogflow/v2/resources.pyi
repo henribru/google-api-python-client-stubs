@@ -181,6 +181,28 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         def contexts(self) -> ContextsResource: ...
                         def entityTypes(self) -> EntityTypesResource: ...
                     def sessions(self) -> SessionsResource: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2Environment = ...,
+                    environmentId: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2EnvironmentHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2EnvironmentHttpRequest: ...
+                def getHistory(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2EnvironmentHistoryHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -189,6 +211,15 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2ListEnvironmentsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2Environment = ...,
+                    allowLoadToDraftAndDiscardChanges: bool = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2EnvironmentHttpRequest: ...
                 def intents(self) -> IntentsResource: ...
                 def users(self) -> UsersResource: ...
             @typing.type_check_only
@@ -401,6 +432,37 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDialogflowV2DetectIntentResponseHttpRequest: ...
                 def contexts(self) -> ContextsResource: ...
                 def entityTypes(self) -> EntityTypesResource: ...
+            @typing.type_check_only
+            class VersionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2Version = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2VersionHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2VersionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2ListVersionsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2Version = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2VersionHttpRequest: ...
             def export(
                 self,
                 *,
@@ -456,6 +518,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def intents(self) -> IntentsResource: ...
             def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def sessions(self) -> SessionsResource: ...
+            def versions(self) -> VersionsResource: ...
         @typing.type_check_only
         class AnswerRecordsResource(googleapiclient.discovery.Resource):
             def list(
@@ -753,6 +816,20 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class EnvironmentsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
+                    class IntentsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            intentView: typing_extensions.Literal[
+                                "INTENT_VIEW_UNSPECIFIED", "INTENT_VIEW_FULL"
+                            ] = ...,
+                            languageCode: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2ListIntentsResponseHttpRequest: ...
+                    @typing.type_check_only
                     class UsersResource(googleapiclient.discovery.Resource):
                         @typing.type_check_only
                         class SessionsResource(googleapiclient.discovery.Resource):
@@ -833,6 +910,28 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             def contexts(self) -> ContextsResource: ...
                             def entityTypes(self) -> EntityTypesResource: ...
                         def sessions(self) -> SessionsResource: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2Environment = ...,
+                        environmentId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2EnvironmentHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2EnvironmentHttpRequest: ...
+                    def getHistory(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2EnvironmentHistoryHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -841,6 +940,16 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2ListEnvironmentsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowV2Environment = ...,
+                        allowLoadToDraftAndDiscardChanges: bool = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2EnvironmentHttpRequest: ...
+                    def intents(self) -> IntentsResource: ...
                     def users(self) -> UsersResource: ...
                 @typing.type_check_only
                 class IntentsResource(googleapiclient.discovery.Resource):
@@ -982,6 +1091,37 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     ) -> GoogleCloudDialogflowV2DetectIntentResponseHttpRequest: ...
                     def contexts(self) -> ContextsResource: ...
                     def entityTypes(self) -> EntityTypesResource: ...
+                @typing.type_check_only
+                class VersionsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2Version = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2VersionHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2VersionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2ListVersionsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowV2Version = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2VersionHttpRequest: ...
                 def export(
                     self,
                     *,
@@ -1036,6 +1176,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def environments(self) -> EnvironmentsResource: ...
                 def intents(self) -> IntentsResource: ...
                 def sessions(self) -> SessionsResource: ...
+                def versions(self) -> VersionsResource: ...
             @typing.type_check_only
             class AnswerRecordsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -1424,6 +1565,28 @@ class GoogleCloudDialogflowV2EntityTypeHttpRequest(googleapiclient.http.HttpRequ
     ) -> GoogleCloudDialogflowV2EntityType: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2Environment: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2EnvironmentHistoryHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2EnvironmentHistory: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2FulfillmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1598,6 +1761,18 @@ class GoogleCloudDialogflowV2ListSessionEntityTypesResponseHttpRequest(
     ) -> GoogleCloudDialogflowV2ListSessionEntityTypesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2ListVersionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2ListVersionsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2ParticipantHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1666,6 +1841,16 @@ class GoogleCloudDialogflowV2ValidationResultHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2ValidationResult: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2VersionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2Version: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(

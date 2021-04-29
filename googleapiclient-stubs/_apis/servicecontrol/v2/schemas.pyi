@@ -134,6 +134,8 @@ class Resource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceInfo(typing_extensions.TypedDict, total=False):
+    container: str
+    location: str
     name: str
     permission: str
     type: str

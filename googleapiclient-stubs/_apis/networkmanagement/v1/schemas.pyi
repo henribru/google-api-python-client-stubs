@@ -16,6 +16,10 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "UNINTENDED_DESTINATION",
         "TRACE_TOO_LONG",
         "INTERNAL_ERROR",
+        "SOURCE_ENDPOINT_NOT_FOUND",
+        "MISMATCHED_SOURCE_NETWORK",
+        "DESTINATION_ENDPOINT_NOT_FOUND",
+        "MISMATCHED_DESTINATION_NETWORK",
     ]
     resourceUri: str
 
@@ -41,6 +45,15 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CloudSQLInstanceInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    externalIp: str
+    internalIp: str
+    networkUri: str
+    region: str
+    uri: str
+
+@typing.type_check_only
 class ConnectivityTest(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -58,7 +71,12 @@ class ConnectivityTest(typing_extensions.TypedDict, total=False):
 class DeliverInfo(typing_extensions.TypedDict, total=False):
     resourceUri: str
     target: typing_extensions.Literal[
-        "TARGET_UNSPECIFIED", "INSTANCE", "INTERNET", "GOOGLE_API"
+        "TARGET_UNSPECIFIED",
+        "INSTANCE",
+        "INTERNET",
+        "GOOGLE_API",
+        "GKE_MASTER",
+        "CLOUD_SQL_INSTANCE",
     ]
 
 @typing.type_check_only
@@ -81,6 +99,11 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "INSTANCE_NOT_RUNNING",
         "TRAFFIC_TYPE_BLOCKED",
         "GKE_MASTER_UNAUTHORIZED_ACCESS",
+        "CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS",
+        "DROPPED_INSIDE_GKE_SERVICE",
+        "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
+        "GOOGLE_MANAGED_SERVICE_NO_PEERING",
+        "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
     ]
     resourceUri: str
 
@@ -89,6 +112,8 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
+    cloudSqlInstance: str
+    gkeMasterCluster: str
     instance: str
     ipAddress: str
     network: str
@@ -143,6 +168,7 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
         "INTERCONNECT",
         "GKE_MASTER",
         "IMPORTED_CUSTOM_ROUTE_NEXT_HOP",
+        "CLOUD_SQL_INSTANCE",
     ]
 
 @typing.type_check_only
@@ -154,6 +180,13 @@ class ForwardingRuleInfo(typing_extensions.TypedDict, total=False):
     target: str
     uri: str
     vip: str
+
+@typing.type_check_only
+class GKEMasterInfo(typing_extensions.TypedDict, total=False):
+    clusterNetworkUri: str
+    clusterUri: str
+    externalIp: str
+    internalIp: str
 
 @typing.type_check_only
 class InstanceInfo(typing_extensions.TypedDict, total=False):
@@ -307,6 +340,7 @@ class Status(typing_extensions.TypedDict, total=False):
 class Step(typing_extensions.TypedDict, total=False):
     abort: AbortInfo
     causesDrop: bool
+    cloudSqlInstance: CloudSQLInstanceInfo
     deliver: DeliverInfo
     description: str
     drop: DropInfo
@@ -314,6 +348,7 @@ class Step(typing_extensions.TypedDict, total=False):
     firewall: FirewallInfo
     forward: ForwardInfo
     forwardingRule: ForwardingRuleInfo
+    gkeMaster: GKEMasterInfo
     instance: InstanceInfo
     loadBalancer: LoadBalancerInfo
     network: NetworkInfo
@@ -324,6 +359,8 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_INSTANCE",
         "START_FROM_INTERNET",
         "START_FROM_PRIVATE_NETWORK",
+        "START_FROM_GKE_MASTER",
+        "START_FROM_CLOUD_SQL_INSTANCE",
         "APPLY_INGRESS_FIREWALL_RULE",
         "APPLY_EGRESS_FIREWALL_RULE",
         "APPLY_ROUTE",

@@ -117,6 +117,13 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListPartitionCursorsResponseHttpRequest: ...
+                    def commitCursor(
+                        self,
+                        *,
+                        subscription: str,
+                        body: CommitCursorRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> CommitCursorResponseHttpRequest: ...
                     def cursors(self) -> CursorsResource: ...
                 def subscriptions(self) -> SubscriptionsResource: ...
             def locations(self) -> LocationsResource: ...
@@ -143,12 +150,29 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         body: ComputeMessageStatsRequest = ...,
                         **kwargs: typing.Any
                     ) -> ComputeMessageStatsResponseHttpRequest: ...
+                    def computeTimeCursor(
+                        self,
+                        *,
+                        topic: str,
+                        body: ComputeTimeCursorRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> ComputeTimeCursorResponseHttpRequest: ...
                 def topics(self) -> TopicsResource: ...
             def locations(self) -> LocationsResource: ...
         def projects(self) -> ProjectsResource: ...
     def admin(self) -> AdminResource: ...
     def cursor(self) -> CursorResource: ...
     def topicStats(self) -> TopicStatsResource: ...
+
+@typing.type_check_only
+class CommitCursorResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> CommitCursorResponse: ...
 
 @typing.type_check_only
 class ComputeHeadCursorResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -169,6 +193,16 @@ class ComputeMessageStatsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ComputeMessageStatsResponse: ...
+
+@typing.type_check_only
+class ComputeTimeCursorResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ComputeTimeCursorResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

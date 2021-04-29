@@ -11,6 +11,26 @@ from .schemas import *
 @typing.type_check_only
 class CloudAssetResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class AssetsResource(googleapiclient.discovery.Resource):
+        def list(
+            self,
+            *,
+            parent: str,
+            assetTypes: typing.Union[str, typing.List[str]] = ...,
+            contentType: typing_extensions.Literal[
+                "CONTENT_TYPE_UNSPECIFIED",
+                "RESOURCE",
+                "IAM_POLICY",
+                "ORG_POLICY",
+                "ACCESS_POLICY",
+                "OS_INVENTORY",
+            ] = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            readTime: str = ...,
+            **kwargs: typing.Any
+        ) -> ListAssetsResponseHttpRequest: ...
+    @typing.type_check_only
     class FeedsResource(googleapiclient.discovery.Resource):
         def create(
             self, *, parent: str, body: CreateFeedRequest = ..., **kwargs: typing.Any
@@ -38,6 +58,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             analysisQuery_accessSelector_roles: typing.Union[
                 str, typing.List[str]
             ] = ...,
+            analysisQuery_conditionContext_accessTime: str = ...,
             analysisQuery_identitySelector_identity: str = ...,
             analysisQuery_options_analyzeServiceAccountImpersonation: bool = ...,
             analysisQuery_options_expandGroups: bool = ...,
@@ -56,6 +77,16 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             body: AnalyzeIamPolicyLongrunningRequest = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def analyzeMove(
+            self,
+            *,
+            resource: str,
+            destinationParent: str = ...,
+            view: typing_extensions.Literal[
+                "ANALYSIS_VIEW_UNSPECIFIED", "FULL", "BASIC"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> AnalyzeMoveResponseHttpRequest: ...
         def batchGetAssetsHistory(
             self,
             *,
@@ -96,6 +127,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             query: str = ...,
             **kwargs: typing.Any
         ) -> SearchAllResourcesResponseHttpRequest: ...
+    def assets(self) -> AssetsResource: ...
     def feeds(self) -> FeedsResource: ...
     def operations(self) -> OperationsResource: ...
     def v1(self) -> V1Resource: ...
@@ -109,6 +141,16 @@ class AnalyzeIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> AnalyzeIamPolicyResponse: ...
+
+@typing.type_check_only
+class AnalyzeMoveResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> AnalyzeMoveResponse: ...
 
 @typing.type_check_only
 class BatchGetAssetsHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -139,6 +181,16 @@ class FeedHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Feed: ...
+
+@typing.type_check_only
+class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListAssetsResponse: ...
 
 @typing.type_check_only
 class ListFeedsResponseHttpRequest(googleapiclient.http.HttpRequest):

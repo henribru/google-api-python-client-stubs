@@ -42,6 +42,17 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListDockerImagesResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RepositoryHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListRepositoriesResponseHttpRequest: ...
                 def dockerImages(self) -> DockerImagesResource: ...
             def repositories(self) -> RepositoriesResource: ...
         def locations(self) -> LocationsResource: ...
@@ -79,6 +90,16 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListRepositoriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListRepositoriesResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -87,3 +108,13 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class RepositoryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Repository: ...

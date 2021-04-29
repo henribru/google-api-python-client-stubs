@@ -36,6 +36,16 @@ class GoogleCloudApigeeV1ActivateNatAddressRequest(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1AddonsConfig(typing_extensions.TypedDict, total=False):
+    advancedApiOpsConfig: GoogleCloudApigeeV1AdvancedApiOpsConfig
+    integrationConfig: GoogleCloudApigeeV1IntegrationConfig
+    monetizationConfig: GoogleCloudApigeeV1MonetizationConfig
+
+@typing.type_check_only
+class GoogleCloudApigeeV1AdvancedApiOpsConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class GoogleCloudApigeeV1Alias(typing_extensions.TypedDict, total=False):
     alias: str
     certsInfo: GoogleCloudApigeeV1Certificate
@@ -354,6 +364,7 @@ class GoogleCloudApigeeV1Deployment(typing_extensions.TypedDict, total=False):
     routeConflicts: typing.List[
         GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict
     ]
+    serviceAccount: str
     state: typing_extensions.Literal[
         "RUNTIME_STATE_UNSPECIFIED", "READY", "PROGRESSING", "ERROR"
     ]
@@ -450,6 +461,17 @@ class GoogleCloudApigeeV1DeveloperAppKey(typing_extensions.TypedDict, total=Fals
     status: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1DeveloperSubscription(
+    typing_extensions.TypedDict, total=False
+):
+    apiproduct: str
+    createdAt: str
+    endTime: str
+    lastModifiedAt: str
+    name: str
+    startTime: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1DimensionMetric(typing_extensions.TypedDict, total=False):
     metrics: typing.List[GoogleCloudApigeeV1Metric]
     name: str
@@ -469,7 +491,7 @@ class GoogleCloudApigeeV1Environment(typing_extensions.TypedDict, total=False):
     name: str
     properties: GoogleCloudApigeeV1Properties
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
     ]
 
 @typing.type_check_only
@@ -499,7 +521,7 @@ class GoogleCloudApigeeV1EnvironmentGroup(typing_extensions.TypedDict, total=Fal
     lastModifiedAt: str
     name: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
     ]
 
 @typing.type_check_only
@@ -519,6 +541,11 @@ class GoogleCloudApigeeV1EnvironmentGroupConfig(
     revisionId: str
     routingRules: typing.List[GoogleCloudApigeeV1RoutingRule]
     uid: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ExpireDeveloperSubscriptionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Export(typing_extensions.TypedDict, total=False):
@@ -599,11 +626,17 @@ class GoogleCloudApigeeV1Instance(typing_extensions.TypedDict, total=False):
     location: str
     name: str
     peeringCidrRange: typing_extensions.Literal[
-        "CIDR_RANGE_UNSPECIFIED", "SLASH_16", "SLASH_20"
+        "CIDR_RANGE_UNSPECIFIED",
+        "SLASH_16",
+        "SLASH_17",
+        "SLASH_18",
+        "SLASH_19",
+        "SLASH_20",
+        "SLASH_23",
     ]
     port: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
     ]
 
 @typing.type_check_only
@@ -639,6 +672,10 @@ class GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRoute(
     envgroup: str
     environment: str
     percentage: int
+
+@typing.type_check_only
+class GoogleCloudApigeeV1IntegrationConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class GoogleCloudApigeeV1KeyAliasReference(typing_extensions.TypedDict, total=False):
@@ -731,6 +768,13 @@ class GoogleCloudApigeeV1ListDeveloperAppsResponse(
     app: typing.List[GoogleCloudApigeeV1DeveloperApp]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListDeveloperSubscriptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    developerSubscriptions: typing.List[GoogleCloudApigeeV1DeveloperSubscription]
+    nextStartKey: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -796,6 +840,13 @@ class GoogleCloudApigeeV1ListOrganizationsResponse(
     organizations: typing.List[GoogleCloudApigeeV1OrganizationProjectMapping]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListRatePlansResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextStartKey: str
+    ratePlans: typing.List[GoogleCloudApigeeV1RatePlan]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListSharedFlowsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -817,6 +868,10 @@ class GoogleCloudApigeeV1Metadata(typing_extensions.TypedDict, total=False):
 class GoogleCloudApigeeV1Metric(typing_extensions.TypedDict, total=False):
     name: str
     values: typing.List[typing.Any]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1MonetizationConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class GoogleCloudApigeeV1NatAddress(typing_extensions.TypedDict, total=False):
@@ -848,10 +903,22 @@ class GoogleCloudApigeeV1OperationMetadata(typing_extensions.TypedDict, total=Fa
     operationType: typing_extensions.Literal[
         "OPERATION_TYPE_UNSPECIFIED", "INSERT", "DELETE", "UPDATE"
     ]
+    progress: GoogleCloudApigeeV1OperationMetadataProgress
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "FINISHED"
     ]
     targetResourceName: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1OperationMetadataProgress(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    details: typing.Dict[str, typing.Any]
+    percentDone: int
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "FINISHED"
+    ]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1OptimizedStats(typing_extensions.TypedDict, total=False):
@@ -872,6 +939,7 @@ class GoogleCloudApigeeV1OptimizedStatsResponse(
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
+    addonsConfig: GoogleCloudApigeeV1AddonsConfig
     analyticsRegion: str
     attributes: typing.List[str]
     authorizedNetwork: str
@@ -894,7 +962,7 @@ class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
         "RUNTIME_TYPE_UNSPECIFIED", "CLOUD", "HYBRID"
     ]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
     ]
     subscriptionType: typing_extensions.Literal[
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "PAID", "TRIAL"
@@ -982,6 +1050,46 @@ class GoogleCloudApigeeV1Quota(typing_extensions.TypedDict, total=False):
     timeUnit: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1RatePlan(typing_extensions.TypedDict, total=False):
+    apiproduct: str
+    billingPeriod: typing_extensions.Literal[
+        "BILLING_PERIOD_UNSPECIFIED", "WEEKLY", "MONTHLY"
+    ]
+    consumptionPricingRates: typing.List[GoogleCloudApigeeV1RateRange]
+    consumptionPricingType: typing_extensions.Literal[
+        "CONSUMPTION_PRICING_TYPE_UNSPECIFIED",
+        "FIXED_PER_UNIT",
+        "BANDED",
+        "TIERED",
+        "STAIRSTEP",
+    ]
+    createdAt: str
+    currencyCode: str
+    description: str
+    displayName: str
+    endTime: str
+    fixedFeeFrequency: int
+    fixedRecurringFee: GoogleTypeMoney
+    lastModifiedAt: str
+    name: str
+    paymentFundingModel: typing_extensions.Literal[
+        "PAYMENT_FUNDING_MODEL_UNSPECIFIED", "PREPAID", "POSTPAID"
+    ]
+    revenueShareRates: typing.List[GoogleCloudApigeeV1RevenueShareRange]
+    revenueShareType: typing_extensions.Literal[
+        "REVENUE_SHARE_TYPE_UNSPECIFIED", "FIXED", "VOLUME_BANDED"
+    ]
+    setupFee: GoogleTypeMoney
+    startTime: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "PUBLISHED"]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1RateRange(typing_extensions.TypedDict, total=False):
+    end: str
+    fee: GoogleTypeMoney
+    start: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1Reference(typing_extensions.TypedDict, total=False):
     description: str
     name: str
@@ -1044,6 +1152,12 @@ class GoogleCloudApigeeV1Result(typing_extensions.TypedDict, total=False):
     timestamp: str
     uRI: str
     verb: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1RevenueShareRange(typing_extensions.TypedDict, total=False):
+    end: str
+    sharePercentage: float
+    start: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1RevisionStatus(typing_extensions.TypedDict, total=False):
@@ -1118,6 +1232,10 @@ class GoogleCloudApigeeV1Session(typing_extensions.TypedDict, total=False):
     timestampMs: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1SetAddonsRequest(typing_extensions.TypedDict, total=False):
+    addonsConfig: GoogleCloudApigeeV1AddonsConfig
+
+@typing.type_check_only
 class GoogleCloudApigeeV1SharedFlow(typing_extensions.TypedDict, total=False):
     latestRevisionId: str
     metaData: GoogleCloudApigeeV1EntityMetadata
@@ -1177,6 +1295,7 @@ class GoogleCloudApigeeV1TargetServer(typing_extensions.TypedDict, total=False):
     isEnabled: bool
     name: str
     port: int
+    protocol: typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "HTTP", "GRPC"]
     sSLInfo: GoogleCloudApigeeV1TlsInfo
 
 @typing.type_check_only
@@ -1184,6 +1303,7 @@ class GoogleCloudApigeeV1TargetServerConfig(typing_extensions.TypedDict, total=F
     host: str
     name: str
     port: int
+    protocol: typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "HTTP", "GRPC"]
     tlsInfo: GoogleCloudApigeeV1TlsInfoConfig
 
 @typing.type_check_only
@@ -1340,3 +1460,9 @@ class GoogleTypeExpr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
+    currencyCode: str
+    nanos: int
+    units: str

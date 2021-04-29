@@ -273,6 +273,22 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             query: str = ...,
             readMask: str = ...,
+            sources: typing.Union[
+                typing_extensions.Literal[
+                    "READ_SOURCE_TYPE_UNSPECIFIED",
+                    "READ_SOURCE_TYPE_PROFILE",
+                    "READ_SOURCE_TYPE_CONTACT",
+                    "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                ],
+                typing.List[
+                    typing_extensions.Literal[
+                        "READ_SOURCE_TYPE_UNSPECIFIED",
+                        "READ_SOURCE_TYPE_PROFILE",
+                        "READ_SOURCE_TYPE_CONTACT",
+                        "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    ]
+                ],
+            ] = ...,
             **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
         def searchDirectoryPeople(

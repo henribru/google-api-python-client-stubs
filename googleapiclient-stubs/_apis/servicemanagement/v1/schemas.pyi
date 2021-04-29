@@ -64,7 +64,6 @@ class BackendRule(typing_extensions.TypedDict, total=False):
     deadline: float
     disableAuth: bool
     jwtAudience: str
-    minDeadline: float
     operationDeadline: float
     pathTranslation: typing_extensions.Literal[
         "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
@@ -183,7 +182,6 @@ class EnableServiceResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
-    aliases: typing.List[str]
     allowCors: bool
     name: str
     target: str

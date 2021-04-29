@@ -94,6 +94,8 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
     enableAutomaticPunctuation: bool
     enableSeparateRecognitionPerChannel: bool
     enableSpeakerDiarization: bool
+    enableSpokenEmojis: bool
+    enableSpokenPunctuation: bool
     enableWordConfidence: bool
     enableWordTimeOffsets: bool
     encoding: typing_extensions.Literal[
@@ -106,6 +108,7 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
         "OGG_OPUS",
         "SPEEX_WITH_HEADER_BYTE",
         "MP3",
+        "WEBM_OPUS",
     ]
     languageCode: str
     maxAlternatives: int

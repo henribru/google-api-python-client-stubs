@@ -54,6 +54,9 @@ class NetworkEndpoint(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Node(typing_extensions.TypedDict, total=False):
     acceleratorType: str
+    apiVersion: typing_extensions.Literal[
+        "API_VERSION_UNSPECIFIED", "V1_ALPHA1", "V1", "V2_ALPHA1"
+    ]
     cidrBlock: str
     createTime: str
     description: str
@@ -145,6 +148,7 @@ class Symptom(typing_extensions.TypedDict, total=False):
         "EXECUTE_TIMED_OUT",
         "MESH_BUILD_FAIL",
         "HBM_OUT_OF_MEMORY",
+        "PROJECT_ABUSE",
     ]
     workerId: str
 

@@ -73,6 +73,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -121,6 +122,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -341,6 +343,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -389,6 +392,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -444,6 +448,29 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             ) -> InsertionOrderHttpRequest: ...
             def targetingTypes(self) -> TargetingTypesResource: ...
         @typing.type_check_only
+        class InvoicesResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                advertiserId: str,
+                issueMonth: str = ...,
+                loiSapinInvoiceType: typing_extensions.Literal[
+                    "LOI_SAPIN_INVOICE_TYPE_UNSPECIFIED",
+                    "LOI_SAPIN_INVOICE_TYPE_MEDIA",
+                    "LOI_SAPIN_INVOICE_TYPE_PLATFORM",
+                ] = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListInvoicesResponseHttpRequest: ...
+            def lookupInvoiceCurrency(
+                self,
+                *,
+                advertiserId: str,
+                invoiceMonth: str = ...,
+                **kwargs: typing.Any
+            ) -> LookupInvoiceCurrencyResponseHttpRequest: ...
+        @typing.type_check_only
         class LineItemsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class TargetingTypesResource(googleapiclient.discovery.Resource):
@@ -495,6 +522,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         ],
                         body: AssignedTargetingOption = ...,
                         **kwargs: typing.Any
@@ -543,6 +571,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -591,6 +620,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -639,6 +669,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
                             "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -953,6 +984,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
                         "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any
@@ -1000,6 +1032,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
                         "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1047,6 +1080,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
                         "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1094,6 +1128,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
                         "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -1154,6 +1189,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         def channels(self) -> ChannelsResource: ...
         def creatives(self) -> CreativesResource: ...
         def insertionOrders(self) -> InsertionOrdersResource: ...
+        def invoices(self) -> InvoicesResource: ...
         def lineItems(self) -> LineItemsResource: ...
         def locationLists(self) -> LocationListsResource: ...
         def manualTriggers(self) -> ManualTriggersResource: ...
@@ -1517,6 +1553,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
                         "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any
@@ -1564,6 +1601,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
                         "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1611,6 +1649,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
                         "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1658,6 +1697,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
                         "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -1744,6 +1784,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                     "TARGETING_TYPE_EXCHANGE",
                     "TARGETING_TYPE_SUB_EXCHANGE",
+                    "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                 ],
                 targetingOptionId: str,
                 advertiserId: str = ...,
@@ -1791,6 +1832,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                     "TARGETING_TYPE_EXCHANGE",
                     "TARGETING_TYPE_SUB_EXCHANGE",
+                    "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                 ],
                 advertiserId: str = ...,
                 filter: str = ...,
@@ -1841,6 +1883,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                     "TARGETING_TYPE_EXCHANGE",
                     "TARGETING_TYPE_SUB_EXCHANGE",
+                    "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                 ],
                 body: SearchTargetingOptionsRequest = ...,
                 **kwargs: typing.Any
@@ -2417,6 +2460,16 @@ class ListInventorySourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListInventorySourcesResponse: ...
 
 @typing.type_check_only
+class ListInvoicesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListInvoicesResponse: ...
+
+@typing.type_check_only
 class ListLineItemAssignedTargetingOptionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2539,6 +2592,16 @@ class LocationListHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> LocationList: ...
+
+@typing.type_check_only
+class LookupInvoiceCurrencyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> LookupInvoiceCurrencyResponse: ...
 
 @typing.type_check_only
 class ManualTriggerHttpRequest(googleapiclient.http.HttpRequest):

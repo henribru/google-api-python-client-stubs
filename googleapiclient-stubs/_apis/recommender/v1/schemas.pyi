@@ -13,6 +13,7 @@ class GoogleCloudRecommenderV1Impact(typing_extensions.TypedDict, total=False):
         "CATEGORY_UNSPECIFIED", "COST", "SECURITY", "PERFORMANCE", "MANAGEABILITY"
     ]
     costProjection: GoogleCloudRecommenderV1CostProjection
+    securityProjection: GoogleCloudRecommenderV1SecurityProjection
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1Insight(typing_extensions.TypedDict, total=False):
@@ -29,6 +30,9 @@ class GoogleCloudRecommenderV1Insight(typing_extensions.TypedDict, total=False):
     lastRefreshTime: str
     name: str
     observationPeriod: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
+    ]
     stateInfo: GoogleCloudRecommenderV1InsightStateInfo
     targetResources: typing.List[str]
 
@@ -118,6 +122,7 @@ class GoogleCloudRecommenderV1Recommendation(typing_extensions.TypedDict, total=
     lastRefreshTime: str
     name: str
     primaryImpact: GoogleCloudRecommenderV1Impact
+    priority: typing_extensions.Literal["PRIORITY_UNSPECIFIED", "P4", "P3", "P2", "P1"]
     recommenderSubtype: str
     stateInfo: GoogleCloudRecommenderV1RecommendationStateInfo
 
@@ -141,6 +146,12 @@ class GoogleCloudRecommenderV1RecommendationStateInfo(
         "STATE_UNSPECIFIED", "ACTIVE", "CLAIMED", "SUCCEEDED", "FAILED", "DISMISSED"
     ]
     stateMetadata: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1SecurityProjection(
+    typing_extensions.TypedDict, total=False
+):
+    details: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1ValueMatcher(typing_extensions.TypedDict, total=False):

@@ -210,7 +210,9 @@ class GoogleDevtoolsRemotebuildbotCommandDurations(
 class GoogleDevtoolsRemotebuildbotCommandEvents(
     typing_extensions.TypedDict, total=False
 ):
-    cmUsage: typing_extensions.Literal["CONFIG_NONE", "CONFIG_MATCH", "CONFIG_MISMATCH"]
+    cmUsage: typing_extensions.Literal[
+        "CONFIG_NONE", "CONFIG_MATCH", "CONFIG_MISMATCH", "CONFIG_MISSING_CONTAINER"
+    ]
     dockerCacheHit: bool
     dockerImageName: str
     inputCacheMiss: float
@@ -222,6 +224,8 @@ class GoogleDevtoolsRemotebuildbotCommandEvents(
         "LOCATION_EXEC_ROOT_RELATIVE",
         "LOCATION_WORKING_DIR_RELATIVE",
         "LOCATION_EXEC_ROOT_AND_WORKING_DIR_RELATIVE",
+        "LOCATION_EXEC_ROOT_RELATIVE_OUTPUT_OUTSIDE_WORKING_DIR",
+        "LOCATION_EXEC_ROOT_AND_WORKING_DIR_RELATIVE_OUTPUT_OUTSIDE_WORKING_DIR",
     ]
     usedAsyncContainer: bool
 
@@ -271,6 +275,8 @@ class GoogleDevtoolsRemotebuildbotCommandStatus(
         "DOCKER_TOO_MANY_SYMBOLIC_LINK_LEVELS",
         "LOCAL_CONTAINER_MANAGER_NOT_RUNNING",
         "DOCKER_IMAGE_VPCSC_PERMISSION_DENIED",
+        "WORKING_DIR_NOT_RELATIVE",
+        "DOCKER_MISSING_CONTAINER",
     ]
     message: str
 
@@ -281,6 +287,18 @@ class GoogleDevtoolsRemotebuildbotResourceUsage(
     cpuUsedPercent: float
     diskUsage: GoogleDevtoolsRemotebuildbotResourceUsageStat
     memoryUsage: GoogleDevtoolsRemotebuildbotResourceUsageStat
+    totalDiskIoStats: GoogleDevtoolsRemotebuildbotResourceUsageIOStats
+
+@typing.type_check_only
+class GoogleDevtoolsRemotebuildbotResourceUsageIOStats(
+    typing_extensions.TypedDict, total=False
+):
+    readBytesCount: str
+    readCount: str
+    readTimeMs: str
+    writeBytesCount: str
+    writeCount: str
+    writeTimeMs: str
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildbotResourceUsageStat(

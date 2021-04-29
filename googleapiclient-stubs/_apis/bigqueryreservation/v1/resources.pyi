@@ -11,18 +11,6 @@ from .schemas import *
 @typing.type_check_only
 class BigQueryReservationResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
-        def list(
-            self,
-            *,
-            name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> ListOperationsResponseHttpRequest: ...
-    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -33,6 +21,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CapacityCommitment = ...,
+                    capacityCommitmentId: str = ...,
                     enforceSingleAdminProjectPerOrg: bool = ...,
                     **kwargs: typing.Any
                 ) -> CapacityCommitmentHttpRequest: ...
@@ -81,6 +70,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Assignment = ...,
+                        assignmentId: str = ...,
                         **kwargs: typing.Any
                     ) -> AssignmentHttpRequest: ...
                     def delete(
@@ -164,7 +154,6 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
             def capacityCommitments(self) -> CapacityCommitmentsResource: ...
             def reservations(self) -> ReservationsResource: ...
         def locations(self) -> LocationsResource: ...
-    def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -226,16 +215,6 @@ class ListCapacityCommitmentsResponseHttpRequest(googleapiclient.http.HttpReques
         ] = ...,
         num_retries: int = ...,
     ) -> ListCapacityCommitmentsResponse: ...
-
-@typing.type_check_only
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
 class ListReservationsResponseHttpRequest(googleapiclient.http.HttpRequest):

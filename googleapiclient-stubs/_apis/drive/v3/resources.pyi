@@ -180,7 +180,12 @@ class DriveResource(googleapiclient.discovery.Resource):
             self, *, fileId: str, mimeType: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def generateIds(
-            self, *, count: int = ..., space: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            count: int = ...,
+            space: str = ...,
+            type: str = ...,
+            **kwargs: typing.Any
         ) -> GeneratedIdsHttpRequest: ...
         def get(
             self,

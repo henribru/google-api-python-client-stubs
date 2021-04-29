@@ -11,6 +11,7 @@ class ActivateConsentRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
     documentContent: str
+    licensedVocabularies: typing.List[str]
 
 @typing.type_check_only
 class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
@@ -768,6 +769,9 @@ class QueryAccessibleDataRequest(typing_extensions.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1beta1ConsentGcsDestination
     requestAttributes: typing.Dict[str, typing.Any]
     resourceAttributes: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class QueryAccessibleDataResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RedactConfig(typing_extensions.TypedDict, total=False): ...

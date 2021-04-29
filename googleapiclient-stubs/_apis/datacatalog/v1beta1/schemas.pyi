@@ -67,6 +67,7 @@ class GoogleCloudDatacatalogV1beta1Entry(typing_extensions.TypedDict, total=Fals
     type: typing_extensions.Literal[
         "ENTRY_TYPE_UNSPECIFIED", "TABLE", "MODEL", "DATA_STREAM", "FILESET"
     ]
+    usageSignal: GoogleCloudDatacatalogV1beta1UsageSignal
     userSpecifiedSystem: str
     userSpecifiedType: str
 
@@ -300,6 +301,20 @@ class GoogleCloudDatacatalogV1beta1Taxonomy(typing_extensions.TypedDict, total=F
     name: str
     policyTagCount: int
     taxonomyTimestamps: GoogleCloudDatacatalogV1beta1SystemTimestamps
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1beta1UsageSignal(
+    typing_extensions.TypedDict, total=False
+):
+    updateTime: str
+    usageWithinTimeRange: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1beta1UsageStats(typing_extensions.TypedDict, total=False):
+    totalCancellations: float
+    totalCompletions: float
+    totalExecutionTimeForCompletionsMillis: float
+    totalFailures: float
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ViewSpec(typing_extensions.TypedDict, total=False):

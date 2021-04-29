@@ -298,6 +298,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, name: str, body: SearchApplication = ..., **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+        def getCustomer(self, **kwargs: typing.Any) -> CustomerSettingsHttpRequest: ...
+        def updateCustomer(
+            self,
+            *,
+            body: CustomerSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def datasources(self) -> DatasourcesResource: ...
         def searchapplications(self) -> SearchapplicationsResource: ...
     @typing.type_check_only
@@ -435,6 +443,16 @@ class CheckAccessResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> CheckAccessResponse: ...
+
+@typing.type_check_only
+class CustomerSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> CustomerSettings: ...
 
 @typing.type_check_only
 class DataSourceHttpRequest(googleapiclient.http.HttpRequest):

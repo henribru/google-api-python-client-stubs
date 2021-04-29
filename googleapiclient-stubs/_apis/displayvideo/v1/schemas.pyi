@@ -76,6 +76,7 @@ class Advertiser(typing_extensions.TypedDict, total=False):
     integrationDetails: IntegrationDetails
     name: str
     partnerId: str
+    prismaEnabled: bool
     servingConfig: AdvertiserTargetingConfig
     updateTime: str
 
@@ -242,6 +243,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     keywordDetails: KeywordAssignedTargetingOptionDetails
     languageDetails: LanguageAssignedTargetingOptionDetails
     name: str
+    nativeContentPositionDetails: NativeContentPositionAssignedTargetingOptionDetails
     negativeKeywordListDetails: NegativeKeywordListAssignedTargetingOptionDetails
     onScreenPositionDetails: OnScreenPositionAssignedTargetingOptionDetails
     operatingSystemDetails: OperatingSystemAssignedTargetingOptionDetails
@@ -289,6 +291,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
         "TARGETING_TYPE_EXCHANGE",
         "TARGETING_TYPE_SUB_EXCHANGE",
+        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
     ]
     thirdPartyVerifierDetails: ThirdPartyVerifierAssignedTargetingOptionDetails
     urlDetails: UrlAssignedTargetingOptionDetails
@@ -381,6 +384,14 @@ class BrowserAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class BrowserTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     displayName: str
+
+@typing.type_check_only
+class BudgetSummary(typing_extensions.TypedDict, total=False):
+    externalBudgetId: str
+    preTaxAmountMicros: str
+    prismaCpeCode: PrismaCpeCode
+    taxAmountMicros: str
+    totalAmountMicros: str
 
 @typing.type_check_only
 class BulkEditAdvertiserAssignedTargetingOptionsRequest(
@@ -503,6 +514,7 @@ class BulkListLineItemAssignedTargetingOptionsResponse(
 @typing.type_check_only
 class Campaign(typing_extensions.TypedDict, total=False):
     advertiserId: str
+    campaignBudgets: typing.List[CampaignBudget]
     campaignFlight: CampaignFlight
     campaignGoal: CampaignGoal
     campaignId: str
@@ -518,6 +530,24 @@ class Campaign(typing_extensions.TypedDict, total=False):
     frequencyCap: FrequencyCap
     name: str
     updateTime: str
+
+@typing.type_check_only
+class CampaignBudget(typing_extensions.TypedDict, total=False):
+    budgetAmountMicros: str
+    budgetId: str
+    budgetUnit: typing_extensions.Literal[
+        "BUDGET_UNIT_UNSPECIFIED", "BUDGET_UNIT_CURRENCY", "BUDGET_UNIT_IMPRESSIONS"
+    ]
+    dateRange: DateRange
+    displayName: str
+    externalBudgetId: str
+    externalBudgetSource: typing_extensions.Literal[
+        "EXTERNAL_BUDGET_SOURCE_UNSPECIFIED",
+        "EXTERNAL_BUDGET_SOURCE_NONE",
+        "EXTERNAL_BUDGET_SOURCE_MEDIA_OCEAN",
+    ]
+    invoiceGroupingId: str
+    prismaConfig: PrismaConfig
 
 @typing.type_check_only
 class CampaignFlight(typing_extensions.TypedDict, total=False):
@@ -568,7 +598,9 @@ class Channel(typing_extensions.TypedDict, total=False):
     channelId: str
     displayName: str
     name: str
+    negativelyTargetedLineItemCount: str
     partnerId: str
+    positivelyTargetedLineItemCount: str
 
 @typing.type_check_only
 class ChannelAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
@@ -722,6 +754,7 @@ class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
         "TARGETING_TYPE_EXCHANGE",
         "TARGETING_TYPE_SUB_EXCHANGE",
+        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
     ]
 
 @typing.type_check_only
@@ -971,6 +1004,7 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
         "TARGETING_TYPE_EXCHANGE",
         "TARGETING_TYPE_SUB_EXCHANGE",
+        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
     ]
 
 @typing.type_check_only
@@ -1235,6 +1269,7 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_MEDIANET",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -1306,6 +1341,7 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_MEDIANET",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -1380,6 +1416,7 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_MEDIANET",
     ]
 
 @typing.type_check_only
@@ -1466,6 +1503,7 @@ class FirstAndThirdPartyAudienceTargetingSetting(
         "RECENCY_28_DAYS",
         "RECENCY_30_DAYS",
         "RECENCY_40_DAYS",
+        "RECENCY_45_DAYS",
         "RECENCY_60_DAYS",
         "RECENCY_90_DAYS",
         "RECENCY_120_DAYS",
@@ -1870,6 +1908,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_MEDIANET",
     ]
     inventorySourceId: str
     inventorySourceType: typing_extensions.Literal[
@@ -1939,6 +1978,31 @@ class InventorySourceStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InventorySourceVideoCreativeConfig(typing_extensions.TypedDict, total=False):
     duration: str
+
+@typing.type_check_only
+class Invoice(typing_extensions.TypedDict, total=False):
+    budgetInvoiceGroupingId: str
+    budgetSummaries: typing.List[BudgetSummary]
+    correctedInvoiceId: str
+    currencyCode: str
+    displayName: str
+    dueDate: Date
+    invoiceId: str
+    invoiceType: typing_extensions.Literal[
+        "INVOICE_TYPE_UNSPECIFIED", "INVOICE_TYPE_CREDIT", "INVOICE_TYPE_INVOICE"
+    ]
+    issueDate: Date
+    name: str
+    nonBudgetMicros: str
+    paymentsAccountId: str
+    paymentsProfileId: str
+    pdfUrl: str
+    purchaseOrderNumber: str
+    replacedInvoiceIds: typing.List[str]
+    serviceDateRange: DateRange
+    subtotalAmountMicros: str
+    totalAmountMicros: str
+    totalTaxAmountMicros: str
 
 @typing.type_check_only
 class KeywordAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
@@ -2114,6 +2178,11 @@ class ListInventorySourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListInvoicesResponse(typing_extensions.TypedDict, total=False):
+    invoices: typing.List[Invoice]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListLineItemAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -2190,6 +2259,10 @@ class LookbackWindow(typing_extensions.TypedDict, total=False):
     impressionDays: int
 
 @typing.type_check_only
+class LookupInvoiceCurrencyResponse(typing_extensions.TypedDict, total=False):
+    currencyCode: str
+
+@typing.type_check_only
 class ManualTrigger(typing_extensions.TypedDict, total=False):
     activationDurationMinutes: str
     advertiserId: str
@@ -2233,6 +2306,33 @@ class Money(typing_extensions.TypedDict, total=False):
     units: str
 
 @typing.type_check_only
+class NativeContentPositionAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    contentPosition: typing_extensions.Literal[
+        "NATIVE_CONTENT_POSITION_UNSPECIFIED",
+        "NATIVE_CONTENT_POSITION_UNKNOWN",
+        "NATIVE_CONTENT_POSITION_IN_ARTICLE",
+        "NATIVE_CONTENT_POSITION_IN_FEED",
+        "NATIVE_CONTENT_POSITION_PERIPHERAL",
+        "NATIVE_CONTENT_POSITION_RECOMMENDATION",
+    ]
+    targetingOptionId: str
+
+@typing.type_check_only
+class NativeContentPositionTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    contentPosition: typing_extensions.Literal[
+        "NATIVE_CONTENT_POSITION_UNSPECIFIED",
+        "NATIVE_CONTENT_POSITION_UNKNOWN",
+        "NATIVE_CONTENT_POSITION_IN_ARTICLE",
+        "NATIVE_CONTENT_POSITION_IN_FEED",
+        "NATIVE_CONTENT_POSITION_PERIPHERAL",
+        "NATIVE_CONTENT_POSITION_RECOMMENDATION",
+    ]
+
+@typing.type_check_only
 class NegativeKeyword(typing_extensions.TypedDict, total=False):
     keywordValue: str
     name: str
@@ -2243,6 +2343,7 @@ class NegativeKeywordList(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     negativeKeywordListId: str
+    targetedLineItemCount: str
 
 @typing.type_check_only
 class NegativeKeywordListAssignedTargetingOptionDetails(
@@ -2489,6 +2590,26 @@ class PerformanceGoalBidStrategy(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PrismaConfig(typing_extensions.TypedDict, total=False):
+    prismaCpeCode: PrismaCpeCode
+    prismaType: typing_extensions.Literal[
+        "PRISMA_TYPE_UNSPECIFIED",
+        "PRISMA_TYPE_DISPLAY",
+        "PRISMA_TYPE_SEARCH",
+        "PRISMA_TYPE_VIDEO",
+        "PRISMA_TYPE_AUDIO",
+        "PRISMA_TYPE_SOCIAL",
+        "PRISMA_TYPE_FEE",
+    ]
+    supplier: str
+
+@typing.type_check_only
+class PrismaCpeCode(typing_extensions.TypedDict, total=False):
+    prismaClientCode: str
+    prismaEstimateCode: str
+    prismaProductCode: str
+
+@typing.type_check_only
 class ProximityLocationListAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -2722,6 +2843,7 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
     householdIncomeDetails: HouseholdIncomeTargetingOptionDetails
     languageDetails: LanguageTargetingOptionDetails
     name: str
+    nativeContentPositionDetails: NativeContentPositionTargetingOptionDetails
     onScreenPositionDetails: OnScreenPositionTargetingOptionDetails
     operatingSystemDetails: OperatingSystemTargetingOptionDetails
     parentalStatusDetails: ParentalStatusTargetingOptionDetails
@@ -2767,6 +2889,7 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
         "TARGETING_TYPE_EXCHANGE",
         "TARGETING_TYPE_SUB_EXCHANGE",
+        "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
     ]
     userRewardedContentDetails: UserRewardedContentTargetingOptionDetails
     videoPlayerSizeDetails: VideoPlayerSizeTargetingOptionDetails

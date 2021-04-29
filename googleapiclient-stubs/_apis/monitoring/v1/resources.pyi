@@ -15,7 +15,12 @@ class MonitoringResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DashboardsResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Dashboard = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                body: Dashboard = ...,
+                validateOnly: bool = ...,
+                **kwargs: typing.Any
             ) -> DashboardHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -32,7 +37,12 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ListDashboardsResponseHttpRequest: ...
             def patch(
-                self, *, name: str, body: Dashboard = ..., **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                body: Dashboard = ...,
+                validateOnly: bool = ...,
+                **kwargs: typing.Any
             ) -> DashboardHttpRequest: ...
         def dashboards(self) -> DashboardsResource: ...
     def projects(self) -> ProjectsResource: ...

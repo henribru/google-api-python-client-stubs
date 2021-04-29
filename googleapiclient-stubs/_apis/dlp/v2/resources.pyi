@@ -207,6 +207,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    type: typing_extensions.Literal[
+                        "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
+                    ] = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
                 def patch(
@@ -454,6 +457,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                type: typing_extensions.Literal[
+                    "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
+                ] = ...,
                 **kwargs: typing.Any
             ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
             def patch(
@@ -649,6 +655,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    type: typing_extensions.Literal[
+                        "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
+                    ] = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
                 def patch(

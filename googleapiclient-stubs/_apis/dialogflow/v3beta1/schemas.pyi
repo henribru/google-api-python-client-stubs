@@ -20,6 +20,17 @@ class GoogleCloudDialogflowCxV3BatchRunTestCasesResponse(
     results: typing.List[GoogleCloudDialogflowCxV3TestCaseResult]
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3ContinuousTestResult(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    result: typing_extensions.Literal[
+        "AGGREGATED_TEST_RESULT_UNSPECIFIED", "PASSED", "FAILED"
+    ]
+    runTime: str
+    testCaseResults: typing.List[str]
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3ConversationTurn(
     typing_extensions.TypedDict, total=False
 ):
@@ -80,6 +91,13 @@ class GoogleCloudDialogflowCxV3ExportAgentResponse(
 ):
     agentContent: str
     agentUri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ExportFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    flowContent: str
+    flowUri: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ExportTestCasesMetadata(
@@ -147,6 +165,12 @@ class GoogleCloudDialogflowCxV3ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     warnings: typing.List[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ImportFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    flow: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ImportTestCasesMetadata(
@@ -333,6 +357,18 @@ class GoogleCloudDialogflowCxV3ResponseMessageText(
     text: typing.List[str]
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3RunContinuousTestMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    errors: typing.List[GoogleCloudDialogflowCxV3TestError]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3RunContinuousTestResponse(
+    typing_extensions.TypedDict, total=False
+):
+    continuousTestResult: GoogleCloudDialogflowCxV3ContinuousTestResult
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3RunTestCaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -403,11 +439,16 @@ class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total
     detectIntentResponseId: str
     fulfillmentInfo: GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3WebhookRequestIntentInfo
+    languageCode: str
     messages: typing.List[GoogleCloudDialogflowCxV3ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3PageInfo
     payload: typing.Dict[str, typing.Any]
     sentimentAnalysisResult: GoogleCloudDialogflowCxV3WebhookRequestSentimentAnalysisResult
     sessionInfo: GoogleCloudDialogflowCxV3SessionInfo
+    text: str
+    transcript: str
+    triggerEvent: str
+    triggerIntent: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo(
@@ -470,6 +511,7 @@ class GoogleCloudDialogflowCxV3beta1Agent(typing_extensions.TypedDict, total=Fal
     securitySettings: str
     speechToTextSettings: GoogleCloudDialogflowCxV3beta1SpeechToTextSettings
     startFlow: str
+    supportedLanguageCodes: typing.List[str]
     timeZone: str
 
 @typing.type_check_only
@@ -521,6 +563,17 @@ class GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse(
     intentCoverage: GoogleCloudDialogflowCxV3beta1IntentCoverage
     routeGroupCoverage: GoogleCloudDialogflowCxV3beta1TransitionRouteGroupCoverage
     transitionCoverage: GoogleCloudDialogflowCxV3beta1TransitionCoverage
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ContinuousTestResult(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    result: typing_extensions.Literal[
+        "AGGREGATED_TEST_RESULT_UNSPECIFIED", "PASSED", "FAILED"
+    ]
+    runTime: str
+    testCaseResults: typing.List[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ConversationTurn(
@@ -721,6 +774,7 @@ class GoogleCloudDialogflowCxV3beta1ExportAgentRequest(
     typing_extensions.TypedDict, total=False
 ):
     agentUri: str
+    environment: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ExportAgentResponse(
@@ -728,6 +782,20 @@ class GoogleCloudDialogflowCxV3beta1ExportAgentResponse(
 ):
     agentContent: str
     agentUri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ExportFlowRequest(
+    typing_extensions.TypedDict, total=False
+):
+    flowUri: str
+    includeReferencedFlows: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ExportFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    flowContent: str
+    flowUri: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata(
@@ -756,6 +824,7 @@ class GoogleCloudDialogflowCxV3beta1Flow(typing_extensions.TypedDict, total=Fals
     eventHandlers: typing.List[GoogleCloudDialogflowCxV3beta1EventHandler]
     name: str
     nluSettings: GoogleCloudDialogflowCxV3beta1NluSettings
+    transitionRouteGroups: typing.List[str]
     transitionRoutes: typing.List[GoogleCloudDialogflowCxV3beta1TransitionRoute]
 
 @typing.type_check_only
@@ -837,6 +906,22 @@ class GoogleCloudDialogflowCxV3beta1ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     warnings: typing.List[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ImportFlowRequest(
+    typing_extensions.TypedDict, total=False
+):
+    flowContent: str
+    flowUri: str
+    importOption: typing_extensions.Literal[
+        "IMPORT_OPTION_UNSPECIFIED", "KEEP", "FALLBACK"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ImportFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    flow: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ImportTestCasesMetadata(
@@ -943,6 +1028,15 @@ class GoogleCloudDialogflowCxV3beta1ListAgentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     agents: typing.List[GoogleCloudDialogflowCxV3beta1Agent]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ListContinuousTestResultsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    continuousTestResults: typing.List[
+        GoogleCloudDialogflowCxV3beta1ContinuousTestResult
+    ]
     nextPageToken: str
 
 @typing.type_check_only
@@ -1159,6 +1253,7 @@ class GoogleCloudDialogflowCxV3beta1QueryParameters(
     typing_extensions.TypedDict, total=False
 ):
     analyzeQueryTextSentiment: bool
+    currentPage: str
     disableWebhook: bool
     geoLocation: GoogleTypeLatLng
     parameters: typing.Dict[str, typing.Any]
@@ -1260,6 +1355,23 @@ class GoogleCloudDialogflowCxV3beta1RestoreAgentRequest(
     restoreOption: typing_extensions.Literal[
         "RESTORE_OPTION_UNSPECIFIED", "KEEP", "FALLBACK"
     ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1RunContinuousTestMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    errors: typing.List[GoogleCloudDialogflowCxV3beta1TestError]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1RunContinuousTestRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1RunContinuousTestResponse(
+    typing_extensions.TypedDict, total=False
+):
+    continuousTestResult: GoogleCloudDialogflowCxV3beta1ContinuousTestResult
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata(
@@ -1519,6 +1631,7 @@ class GoogleCloudDialogflowCxV3beta1Webhook(typing_extensions.TypedDict, total=F
     displayName: str
     genericWebService: GoogleCloudDialogflowCxV3beta1WebhookGenericWebService
     name: str
+    serviceDirectory: GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig
     timeout: str
 
 @typing.type_check_only
@@ -1537,11 +1650,16 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest(
     detectIntentResponseId: str
     fulfillmentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo
+    languageCode: str
     messages: typing.List[GoogleCloudDialogflowCxV3beta1ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3beta1PageInfo
     payload: typing.Dict[str, typing.Any]
     sentimentAnalysisResult: GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult
     sessionInfo: GoogleCloudDialogflowCxV3beta1SessionInfo
+    text: str
+    transcript: str
+    triggerEvent: str
+    triggerIntent: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo(
@@ -1591,6 +1709,13 @@ class GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse(
         "MERGE_BEHAVIOR_UNSPECIFIED", "APPEND", "REPLACE"
     ]
     messages: typing.List[GoogleCloudDialogflowCxV3beta1ResponseMessage]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig(
+    typing_extensions.TypedDict, total=False
+):
+    genericWebService: GoogleCloudDialogflowCxV3beta1WebhookGenericWebService
+    service: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2AnnotatedMessagePart(
@@ -2037,6 +2162,7 @@ class GoogleCloudDialogflowV2OriginalDetectIntentRequest(
 class GoogleCloudDialogflowV2QueryResult(typing_extensions.TypedDict, total=False):
     action: str
     allRequiredParamsPresent: bool
+    cancelsSlotFilling: bool
     diagnosticInfo: typing.Dict[str, typing.Any]
     fulfillmentMessages: typing.List[GoogleCloudDialogflowV2IntentMessage]
     fulfillmentText: str
@@ -2707,6 +2833,7 @@ class GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest(
 class GoogleCloudDialogflowV2beta1QueryResult(typing_extensions.TypedDict, total=False):
     action: str
     allRequiredParamsPresent: bool
+    cancelsSlotFilling: bool
     diagnosticInfo: typing.Dict[str, typing.Any]
     fulfillmentMessages: typing.List[GoogleCloudDialogflowV2beta1IntentMessage]
     fulfillmentText: str

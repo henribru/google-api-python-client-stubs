@@ -70,6 +70,13 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def rescheduleMaintenance(
+                    self,
+                    *,
+                    name: str,
+                    body: RescheduleMaintenanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def upgrade(
                     self,
                     *,

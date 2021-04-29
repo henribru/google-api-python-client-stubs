@@ -617,7 +617,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 self, *, userKey: str, body: Alias = ..., **kwargs: typing.Any
             ) -> AliasHttpRequest: ...
             def list(
-                self, *, userKey: str, **kwargs: typing.Any
+                self,
+                *,
+                userKey: str,
+                event: typing_extensions.Literal["add", "delete"] = ...,
+                **kwargs: typing.Any
             ) -> AliasesHttpRequest: ...
             def watch(
                 self,

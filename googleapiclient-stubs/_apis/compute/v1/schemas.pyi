@@ -45,13 +45,15 @@ class AcceleratorTypesScopedList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccessConfig(typing_extensions.TypedDict, total=False):
+    externalIpv6: str
+    externalIpv6PrefixLength: int
     kind: str
     name: str
     natIP: str
     networkTier: typing_extensions.Literal["PREMIUM", "STANDARD"]
     publicPtrDomainName: str
     setPublicPtr: bool
-    type: typing_extensions.Literal["ONE_TO_ONE_NAT"]
+    type: typing_extensions.Literal["DIRECT_IPV6", "ONE_TO_ONE_NAT"]
 
 @typing.type_check_only
 class Address(typing_extensions.TypedDict, total=False):
@@ -108,6 +110,7 @@ class AddressesScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
     enableNestedVirtualization: bool
+    threadsPerCore: int
 
 @typing.type_check_only
 class AliasIpRange(typing_extensions.TypedDict, total=False):
@@ -279,6 +282,7 @@ class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AutoscalingPolicyCpuUtilization(typing_extensions.TypedDict, total=False):
+    predictiveMethod: typing_extensions.Literal["NONE", "OPTIMIZE_AVAILABILITY"]
     utilizationTarget: float
 
 @typing.type_check_only
@@ -357,6 +361,7 @@ class BackendBucketCdnPolicy(typing_extensions.TypedDict, total=False):
     maxTtl: int
     negativeCaching: bool
     negativeCachingPolicy: typing.List[BackendBucketCdnPolicyNegativeCachingPolicy]
+    requestCoalescing: bool
     serveWhileStale: int
     signedUrlCacheMaxAgeSec: str
     signedUrlKeyNames: typing.List[str]
@@ -434,6 +439,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
     selfLink: str
     sessionAffinity: typing_extensions.Literal[
         "CLIENT_IP",
+        "CLIENT_IP_NO_DESTINATION",
         "CLIENT_IP_PORT_PROTO",
         "CLIENT_IP_PROTO",
         "GENERATED_COOKIE",
@@ -470,6 +476,7 @@ class BackendServiceCdnPolicy(typing_extensions.TypedDict, total=False):
     maxTtl: int
     negativeCaching: bool
     negativeCachingPolicy: typing.List[BackendServiceCdnPolicyNegativeCachingPolicy]
+    requestCoalescing: bool
     serveWhileStale: int
     signedUrlCacheMaxAgeSec: str
     signedUrlKeyNames: typing.List[str]
@@ -829,6 +836,7 @@ class DisplayDevice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DistributionPolicy(typing_extensions.TypedDict, total=False):
+    targetShape: typing_extensions.Literal["ANY", "BALANCED", "EVEN"]
     zones: typing.List[DistributionPolicyZoneConfiguration]
 
 @typing.type_check_only
@@ -989,7 +997,6 @@ class FirewallPolicyRule(typing_extensions.TypedDict, total=False):
     priority: int
     ruleTupleCount: int
     targetResources: typing.List[str]
-    targetSecureLabels: typing.List[str]
     targetServiceAccounts: typing.List[str]
 
 @typing.type_check_only
@@ -997,7 +1004,6 @@ class FirewallPolicyRuleMatcher(typing_extensions.TypedDict, total=False):
     destIpRanges: typing.List[str]
     layer4Configs: typing.List[FirewallPolicyRuleMatcherLayer4Config]
     srcIpRanges: typing.List[str]
-    srcSecureLabels: typing.List[str]
 
 @typing.type_check_only
 class FirewallPolicyRuleMatcherLayer4Config(typing_extensions.TypedDict, total=False):
@@ -1275,6 +1281,8 @@ class HealthChecksScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HealthStatus(typing_extensions.TypedDict, total=False):
     annotations: typing.Dict[str, typing.Any]
+    forwardingRule: str
+    forwardingRuleIp: str
     healthState: typing_extensions.Literal["HEALTHY", "UNHEALTHY"]
     instance: str
     ipAddress: str
@@ -1524,9 +1532,6 @@ class Instance(typing_extensions.TypedDict, total=False):
     minCpuPlatform: str
     name: str
     networkInterfaces: typing.List[NetworkInterface]
-    postKeyRevocationActionType: typing_extensions.Literal[
-        "NOOP", "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED", "SHUTDOWN"
-    ]
     privateIpv6GoogleAccess: typing_extensions.Literal[
         "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
         "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
@@ -1889,9 +1894,6 @@ class InstanceProperties(typing_extensions.TypedDict, total=False):
     metadata: Metadata
     minCpuPlatform: str
     networkInterfaces: typing.List[NetworkInterface]
-    postKeyRevocationActionType: typing_extensions.Literal[
-        "NOOP", "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED", "SHUTDOWN"
-    ]
     privateIpv6GoogleAccess: typing_extensions.Literal[
         "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
         "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
@@ -2571,12 +2573,19 @@ class NetworkInterface(typing_extensions.TypedDict, total=False):
     accessConfigs: typing.List[AccessConfig]
     aliasIpRanges: typing.List[AliasIpRange]
     fingerprint: str
+    ipv6AccessConfigs: typing.List[AccessConfig]
+    ipv6AccessType: typing_extensions.Literal[
+        "EXTERNAL", "UNSPECIFIED_IPV6_ACCESS_TYPE"
+    ]
     ipv6Address: str
     kind: str
     name: str
     network: str
     networkIP: str
     nicType: typing_extensions.Literal["GVNIC", "UNSPECIFIED_NIC_TYPE", "VIRTIO_NET"]
+    stackType: typing_extensions.Literal[
+        "IPV4_IPV6", "IPV4_ONLY", "UNSPECIFIED_STACK_TYPE"
+    ]
     subnetwork: str
 
 @typing.type_check_only
@@ -3200,6 +3209,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "COMMITTED_LICENSES",
         "COMMITTED_LOCAL_SSD_TOTAL_GB",
         "COMMITTED_MEMORY_OPTIMIZED_CPUS",
+        "COMMITTED_N2A_CPUS",
         "COMMITTED_N2D_CPUS",
         "COMMITTED_N2_CPUS",
         "COMMITTED_NVIDIA_A100_GPUS",
@@ -3208,6 +3218,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "COMMITTED_NVIDIA_P4_GPUS",
         "COMMITTED_NVIDIA_T4_GPUS",
         "COMMITTED_NVIDIA_V100_GPUS",
+        "COMMITTED_P2D_CPUS",
         "CPUS",
         "CPUS_ALL_REGIONS",
         "DISKS_TOTAL_GB",
@@ -3239,6 +3250,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "M1_CPUS",
         "M2_CPUS",
         "MACHINE_IMAGES",
+        "N2A_CPUS",
         "N2D_CPUS",
         "N2_CPUS",
         "NETWORKS",
@@ -3255,6 +3267,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "NVIDIA_T4_GPUS",
         "NVIDIA_T4_VWS_GPUS",
         "NVIDIA_V100_GPUS",
+        "P2D_CPUS",
         "PACKET_MIRRORINGS",
         "PD_EXTREME_TOTAL_PROVISIONED_IOPS",
         "PREEMPTIBLE_CPUS",
@@ -3278,8 +3291,10 @@ class Quota(typing_extensions.TypedDict, total=False):
         "ROUTERS",
         "ROUTES",
         "SECURITY_POLICIES",
+        "SECURITY_POLICIES_PER_REGION",
         "SECURITY_POLICY_CEVAL_RULES",
         "SECURITY_POLICY_RULES",
+        "SECURITY_POLICY_RULES_PER_REGION",
         "SNAPSHOTS",
         "SSD_TOTAL_GB",
         "SSL_CERTIFICATES",
@@ -3788,6 +3803,7 @@ class RouterBgp(typing_extensions.TypedDict, total=False):
     advertisedGroups: typing.List[str]
     advertisedIpRanges: typing.List[RouterAdvertisedIpRange]
     asn: int
+    keepaliveInterval: int
 
 @typing.type_check_only
 class RouterBgpPeer(typing_extensions.TypedDict, total=False):
@@ -3795,6 +3811,7 @@ class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     advertisedGroups: typing.List[str]
     advertisedIpRanges: typing.List[RouterAdvertisedIpRange]
     advertisedRoutePriority: int
+    enable: typing_extensions.Literal["FALSE", "TRUE"]
     interfaceName: str
     ipAddress: str
     managementType: typing_extensions.Literal[
@@ -3961,6 +3978,7 @@ class SecurityPoliciesWafConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityPolicy(typing_extensions.TypedDict, total=False):
+    advancedOptionsConfig: SecurityPolicyAdvancedOptionsConfig
     creationTimestamp: str
     description: str
     fingerprint: str
@@ -3969,6 +3987,11 @@ class SecurityPolicy(typing_extensions.TypedDict, total=False):
     name: str
     rules: typing.List[SecurityPolicyRule]
     selfLink: str
+
+@typing.type_check_only
+class SecurityPolicyAdvancedOptionsConfig(typing_extensions.TypedDict, total=False):
+    jsonParsing: typing_extensions.Literal["DISABLED", "STANDARD"]
+    logLevel: typing_extensions.Literal["NORMAL", "VERBOSE"]
 
 @typing.type_check_only
 class SecurityPolicyList(typing_extensions.TypedDict, total=False):
@@ -4205,10 +4228,14 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     description: str
     enableFlowLogs: bool
+    externalIpv6Prefix: str
     fingerprint: str
     gatewayAddress: str
     id: str
     ipCidrRange: str
+    ipv6AccessType: typing_extensions.Literal[
+        "EXTERNAL", "UNSPECIFIED_IPV6_ACCESS_TYPE"
+    ]
     ipv6CidrRange: str
     kind: str
     logConfig: SubnetworkLogConfig
@@ -4227,6 +4254,9 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
     role: typing_extensions.Literal["ACTIVE", "BACKUP"]
     secondaryIpRanges: typing.List[SubnetworkSecondaryRange]
     selfLink: str
+    stackType: typing_extensions.Literal[
+        "IPV4_IPV6", "IPV4_ONLY", "UNSPECIFIED_STACK_TYPE"
+    ]
     state: typing_extensions.Literal["DRAINING", "READY"]
 
 @typing.type_check_only
@@ -4465,6 +4495,7 @@ class TargetPool(typing_extensions.TypedDict, total=False):
     selfLink: str
     sessionAffinity: typing_extensions.Literal[
         "CLIENT_IP",
+        "CLIENT_IP_NO_DESTINATION",
         "CLIENT_IP_PORT_PROTO",
         "CLIENT_IP_PROTO",
         "GENERATED_COOKIE",

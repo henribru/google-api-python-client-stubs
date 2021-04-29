@@ -159,7 +159,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     orgUnitPath: str
     osVersion: str
     platformVersion: str
-    recentUsers: typing.List[RecentUsers]
+    recentUsers: typing.List[typing.Dict[str, typing.Any]]
     screenshotFiles: typing.List[typing.Dict[str, typing.Any]]
     serialNumber: str
     status: str
@@ -498,11 +498,6 @@ class Privileges(typing_extensions.TypedDict, total=False):
     etag: str
     items: typing.List[Privilege]
     kind: str
-
-@typing.type_check_only
-class RecentUsers(typing_extensions.TypedDict, total=False):
-    email: str
-    type: str
 
 @typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):

@@ -33,6 +33,19 @@ class BasicYarnAutoscalingConfig(typing_extensions.TypedDict, total=False):
     scaleUpMinWorkerFraction: float
 
 @typing.type_check_only
+class BatchOperationMetadata(typing_extensions.TypedDict, total=False):
+    batch: str
+    batchUuid: str
+    createTime: str
+    description: str
+    doneTime: str
+    labels: typing.Dict[str, typing.Any]
+    operationType: typing_extensions.Literal[
+        "BATCH_OPERATION_TYPE_UNSPECIFIED", "BATCH"
+    ]
+    warnings: typing.List[str]
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: typing.List[str]
@@ -122,6 +135,10 @@ class ClusterStatus(typing_extensions.TypedDict, total=False):
     substate: typing_extensions.Literal["UNSPECIFIED", "UNHEALTHY", "STALE_STATUS"]
 
 @typing.type_check_only
+class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
+    enableConfidentialCompute: bool
+
+@typing.type_check_only
 class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -155,6 +172,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GceClusterConfig(typing_extensions.TypedDict, total=False):
+    confidentialInstanceConfig: ConfidentialInstanceConfig
     internalIpOnly: bool
     metadata: typing.Dict[str, typing.Any]
     networkUri: str

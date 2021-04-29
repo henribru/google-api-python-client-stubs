@@ -122,6 +122,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: ResetInstanceRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def rollback(
+                    self,
+                    *,
+                    name: str,
+                    body: RollbackInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def setAccelerator(
                     self,
                     *,
@@ -171,6 +178,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def updateShieldedInstanceConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: UpdateShieldedInstanceConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def upgrade(
                     self,
                     *,
@@ -209,6 +223,58 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+            @typing.type_check_only
+            class RuntimesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Runtime = ...,
+                    runtimeId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RuntimeHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListRuntimesResponseHttpRequest: ...
+                def reset(
+                    self,
+                    *,
+                    name: str,
+                    body: ResetRuntimeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def start(
+                    self,
+                    *,
+                    name: str,
+                    body: StartRuntimeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def stop(
+                    self,
+                    *,
+                    name: str,
+                    body: StopRuntimeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def switch(
+                    self,
+                    *,
+                    name: str,
+                    body: SwitchRuntimeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
             @typing.type_check_only
             class SchedulesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -258,6 +324,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
             def executions(self) -> ExecutionsResource: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
+            def runtimes(self) -> RuntimesResource: ...
             def schedules(self) -> SchedulesResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
@@ -373,6 +440,16 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListRuntimesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListRuntimesResponse: ...
+
+@typing.type_check_only
 class ListSchedulesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -411,6 +488,16 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class RuntimeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Runtime: ...
 
 @typing.type_check_only
 class ScheduleHttpRequest(googleapiclient.http.HttpRequest):

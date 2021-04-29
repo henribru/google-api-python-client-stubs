@@ -293,6 +293,9 @@ class PublicKey(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
     deleteResource: bool
+    exclusiveAction: typing_extensions.Literal[
+        "UNKNOWN_REPAIR_ACTION", "DELETE", "RETRY"
+    ]
 
 @typing.type_check_only
 class RestoreCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):

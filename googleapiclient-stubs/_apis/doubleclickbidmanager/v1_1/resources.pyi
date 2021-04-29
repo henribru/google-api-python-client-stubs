@@ -11,14 +11,6 @@ from .schemas import *
 @typing.type_check_only
 class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class LineitemsResource(googleapiclient.discovery.Resource):
-        def downloadlineitems(
-            self, *, body: DownloadLineItemsRequest = ..., **kwargs: typing.Any
-        ) -> DownloadLineItemsResponseHttpRequest: ...
-        def uploadlineitems(
-            self, *, body: UploadLineItemsRequest = ..., **kwargs: typing.Any
-        ) -> UploadLineItemsResponseHttpRequest: ...
-    @typing.type_check_only
     class QueriesResource(googleapiclient.discovery.Resource):
         def createquery(
             self, *, body: Query = ..., asynchronous: bool = ..., **kwargs: typing.Any
@@ -50,35 +42,8 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListReportsResponseHttpRequest: ...
-    @typing.type_check_only
-    class SdfResource(googleapiclient.discovery.Resource):
-        def download(
-            self, *, body: DownloadRequest = ..., **kwargs: typing.Any
-        ) -> DownloadResponseHttpRequest: ...
-    def lineitems(self) -> LineitemsResource: ...
     def queries(self) -> QueriesResource: ...
     def reports(self) -> ReportsResource: ...
-    def sdf(self) -> SdfResource: ...
-
-@typing.type_check_only
-class DownloadLineItemsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> DownloadLineItemsResponse: ...
-
-@typing.type_check_only
-class DownloadResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> DownloadResponse: ...
 
 @typing.type_check_only
 class ListQueriesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -109,13 +74,3 @@ class QueryHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Query: ...
-
-@typing.type_check_only
-class UploadLineItemsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> UploadLineItemsResponse: ...

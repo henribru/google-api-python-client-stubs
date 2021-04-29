@@ -33,10 +33,6 @@ class CapacityCommitment(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
 
 @typing.type_check_only
-class CreateSlotPoolMetadata(typing_extensions.TypedDict, total=False):
-    slotPool: str
-
-@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -66,7 +62,6 @@ class MoveAssignmentRequest(typing_extensions.TypedDict, total=False):
 class Reservation(typing_extensions.TypedDict, total=False):
     creationTime: str
     ignoreIdleSlots: bool
-    maxConcurrency: str
     name: str
     slotCapacity: str
     updateTime: str

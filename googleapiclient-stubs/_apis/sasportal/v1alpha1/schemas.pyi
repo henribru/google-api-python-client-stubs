@@ -30,6 +30,7 @@ class SasPortalDeployment(typing_extensions.TypedDict, total=False):
         "BILLING_MODE_UNSPECIFIED", "MOBILE", "FIXED_WIRELESS"
     ]
     displayName: str
+    frns: typing.List[str]
     name: str
     sasUserIds: typing.List[str]
 

@@ -24,6 +24,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
+    encryptionInfo: EncryptionInfo
     endTime: str
     expireTime: str
     name: str
@@ -58,6 +59,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     defaultStorageType: typing_extensions.Literal[
         "STORAGE_TYPE_UNSPECIFIED", "SSD", "HDD"
     ]
+    encryptionConfig: EncryptionConfig
     location: str
     name: str
     serveNodes: int
@@ -67,6 +69,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClusterState(typing_extensions.TypedDict, total=False):
+    encryptionInfo: typing.List[EncryptionInfo]
     replicationState: typing_extensions.Literal[
         "STATE_NOT_KNOWN",
         "INITIALIZING",
@@ -126,6 +129,20 @@ class DropRowRangeRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+
+@typing.type_check_only
+class EncryptionInfo(typing_extensions.TypedDict, total=False):
+    encryptionStatus: Status
+    encryptionType: typing_extensions.Literal[
+        "ENCRYPTION_TYPE_UNSPECIFIED",
+        "GOOGLE_DEFAULT_ENCRYPTION",
+        "CUSTOMER_MANAGED_ENCRYPTION",
+    ]
+    kmsKeyVersion: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
