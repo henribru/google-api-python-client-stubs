@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class ApplicationInfo(typing_extensions.TypedDict, total=False):
     emails: typing.List[str]
@@ -19,6 +20,7 @@ AlternativeBucketRange = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class BucketRange(AlternativeBucketRange): ...
 

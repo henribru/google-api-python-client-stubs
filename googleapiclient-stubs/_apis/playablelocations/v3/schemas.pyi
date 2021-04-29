@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3Impression(typing_extensions.TypedDict, total=False):
     gameObjectType: int

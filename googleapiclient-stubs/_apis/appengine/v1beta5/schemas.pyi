@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class ApiConfigHandler(typing_extensions.TypedDict, total=False):
     authFailAction: typing_extensions.Literal[

@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class BatchCreateRowsRequest(typing_extensions.TypedDict, total=False):
     requests: typing.List[CreateRowRequest]

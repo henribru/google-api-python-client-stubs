@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AbortInfo(typing_extensions.TypedDict, total=False):
     cause: typing_extensions.Literal[

@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
     ackId: typing.List[str]

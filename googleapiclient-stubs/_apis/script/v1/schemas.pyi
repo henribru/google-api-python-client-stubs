@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class Content(typing_extensions.TypedDict, total=False):
     files: typing.List[File]

@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AdministrationRegion(typing.Dict[str, typing.Any]): ...
 

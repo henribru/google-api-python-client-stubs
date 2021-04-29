@@ -1,0 +1,14 @@
+{
+  "problemMatcher": [
+    {
+      "owner": "black",
+      "pattern": [
+        {
+          "regexp": "^(would reformat) (.+)$",
+          "message": 1,
+          "file": 2
+        }
+      ]
+    }
+  ]
+}

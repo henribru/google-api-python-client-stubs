@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     childLink: typing.Dict[str, typing.Any]
@@ -583,6 +584,7 @@ AlternativeUnsampledReport = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class UnsampledReport(AlternativeUnsampledReport): ...
 

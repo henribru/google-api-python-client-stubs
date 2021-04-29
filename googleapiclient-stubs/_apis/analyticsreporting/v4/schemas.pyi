@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class Activity(typing_extensions.TypedDict, total=False):
     activityTime: str
@@ -84,6 +85,7 @@ AlternativeDimensionFilter = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class DimensionFilter(AlternativeDimensionFilter): ...
 
@@ -171,6 +173,7 @@ AlternativeMetricFilter = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class MetricFilter(AlternativeMetricFilter): ...
 
@@ -356,6 +359,7 @@ AlternativeSegmentFilter = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class SegmentFilter(AlternativeSegmentFilter): ...
 
@@ -368,6 +372,7 @@ AlternativeSegmentFilterClause = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class SegmentFilterClause(AlternativeSegmentFilterClause): ...
 

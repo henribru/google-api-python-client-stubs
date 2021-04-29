@@ -7,6 +7,7 @@ import googleapiclient.discovery
 import googleapiclient.http  # type: ignore
 
 from .schemas import *
+
 @typing.type_check_only
 class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only

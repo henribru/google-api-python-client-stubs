@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class GoogleIdentityStsV1ExchangeTokenRequest(typing_extensions.TypedDict, total=False):
     audience: str

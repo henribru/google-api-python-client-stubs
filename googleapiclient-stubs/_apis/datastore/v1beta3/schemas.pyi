@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AllocateIdsRequest(typing_extensions.TypedDict, total=False):
     keys: typing.List[Key]

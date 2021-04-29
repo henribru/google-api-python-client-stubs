@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class Promotion(typing_extensions.TypedDict, total=False):
     bodyLines: typing.List[typing.Dict[str, typing.Any]]

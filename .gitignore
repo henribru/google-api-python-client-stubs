@@ -1,4 +1,6 @@
 *
+!*/
+!/.github/**
 !/.gitignore
 !/googleapiclient-stubs/
 !/googleapiclient-stubs/**

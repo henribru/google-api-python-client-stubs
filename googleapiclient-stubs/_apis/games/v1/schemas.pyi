@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AchievementDefinition(typing_extensions.TypedDict, total=False):
     achievementType: typing_extensions.Literal[

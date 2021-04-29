@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AutoForwarding(typing_extensions.TypedDict, total=False):
     disposition: typing_extensions.Literal[
@@ -58,6 +59,7 @@ AlternativeFilterCriteria = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class FilterCriteria(AlternativeFilterCriteria): ...
 

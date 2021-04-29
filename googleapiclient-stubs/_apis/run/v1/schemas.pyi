@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class Addressable(typing_extensions.TypedDict, total=False):
     url: str
@@ -206,6 +207,7 @@ AlternativeListMeta = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class ListMeta(AlternativeListMeta): ...
 

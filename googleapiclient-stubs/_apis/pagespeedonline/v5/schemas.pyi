@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class AuditRefs(typing_extensions.TypedDict, total=False):
     group: str
@@ -24,6 +25,7 @@ AlternativeCategories = typing_extensions.TypedDict(
     },
     total=False,
 )
+
 @typing.type_check_only
 class Categories(AlternativeCategories): ...
 

@@ -1,6 +1,7 @@
 import typing
 
 import typing_extensions
+
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1Budget(typing_extensions.TypedDict, total=False):
     amount: GoogleCloudBillingBudgetsV1BudgetAmount
