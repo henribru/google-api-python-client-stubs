@@ -70,6 +70,11 @@ class AppMakerSqlSetupNotification(typing_extensions.TypedDict, total=False):
     requestInfo: typing.List[RequestInfo]
 
 @typing.type_check_only
+class AppSettingsChanged(typing_extensions.TypedDict, total=False):
+    alertDetails: str
+    name: str
+
+@typing.type_check_only
 class Attachment(typing_extensions.TypedDict, total=False):
     csv: Csv
 
@@ -215,6 +220,12 @@ class PredefinedDetectorInfo(typing_extensions.TypedDict, total=False):
     detectorName: str
 
 @typing.type_check_only
+class ReportingRule(typing_extensions.TypedDict, total=False):
+    alertDetails: str
+    name: str
+    query: str
+
+@typing.type_check_only
 class RequestInfo(typing_extensions.TypedDict, total=False):
     appDeveloperEmail: typing.List[str]
     appKey: str
@@ -282,6 +293,10 @@ class UndeleteAlertRequest(typing_extensions.TypedDict, total=False):
 class User(typing_extensions.TypedDict, total=False):
     displayName: str
     emailAddress: str
+
+@typing.type_check_only
+class UserChanges(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class UserDefinedDetectorInfo(typing_extensions.TypedDict, total=False):

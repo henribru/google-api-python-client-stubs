@@ -65,6 +65,15 @@ class CommitStats(typing_extensions.TypedDict, total=False):
     mutationCount: str
 
 @typing.type_check_only
+class ContextValue(typing_extensions.TypedDict, total=False):
+    label: LocalizedString
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "INFO", "WARNING", "ERROR", "FATAL"
+    ]
+    unit: str
+    value: float
+
+@typing.type_check_only
 class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
     cancelTime: str
     database: str
@@ -114,6 +123,21 @@ class Database(typing_extensions.TypedDict, total=False):
 class Delete(typing_extensions.TypedDict, total=False):
     keySet: KeySet
     table: str
+
+@typing.type_check_only
+class DerivedMetric(typing_extensions.TypedDict, total=False):
+    denominator: LocalizedString
+    numerator: LocalizedString
+
+@typing.type_check_only
+class DiagnosticMessage(typing_extensions.TypedDict, total=False):
+    info: LocalizedString
+    metric: LocalizedString
+    metricSpecific: bool
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "INFO", "WARNING", "ERROR", "FATAL"
+    ]
+    shortMessage: LocalizedString
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -180,6 +204,14 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class IndexedHotKey(typing_extensions.TypedDict, total=False):
+    sparseHotKeys: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class IndexedKeyRangeInfos(typing_extensions.TypedDict, total=False):
+    keyRangeInfos: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     config: str
     displayName: str
@@ -201,6 +233,22 @@ class KeyRange(typing_extensions.TypedDict, total=False):
     endOpen: typing.List[typing.Any]
     startClosed: typing.List[typing.Any]
     startOpen: typing.List[typing.Any]
+
+@typing.type_check_only
+class KeyRangeInfo(typing_extensions.TypedDict, total=False):
+    contextValues: typing.List[ContextValue]
+    endKeyIndex: int
+    info: LocalizedString
+    keysCount: str
+    metric: LocalizedString
+    startKeyIndex: int
+    unit: LocalizedString
+    value: float
+
+@typing.type_check_only
+class KeyRangeInfos(typing_extensions.TypedDict, total=False):
+    infos: typing.List[KeyRangeInfo]
+    totalSize: int
 
 @typing.type_check_only
 class KeySet(typing_extensions.TypedDict, total=False):
@@ -245,9 +293,43 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: typing.List[Operation]
 
 @typing.type_check_only
+class ListScansResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    scans: typing.List[Scan]
+
+@typing.type_check_only
 class ListSessionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     sessions: typing.List[Session]
+
+@typing.type_check_only
+class LocalizedString(typing_extensions.TypedDict, total=False):
+    args: typing.Dict[str, typing.Any]
+    message: str
+    token: str
+
+@typing.type_check_only
+class Metric(typing_extensions.TypedDict, total=False):
+    aggregation: typing_extensions.Literal["AGGREGATION_UNSPECIFIED", "MAX", "SUM"]
+    category: LocalizedString
+    derived: DerivedMetric
+    displayLabel: LocalizedString
+    hasNonzeroData: bool
+    hotValue: float
+    indexedHotKeys: typing.Dict[str, typing.Any]
+    indexedKeyRangeInfos: typing.Dict[str, typing.Any]
+    info: LocalizedString
+    matrix: MetricMatrix
+    unit: LocalizedString
+    visible: bool
+
+@typing.type_check_only
+class MetricMatrix(typing_extensions.TypedDict, total=False):
+    rows: typing.List[MetricMatrixRow]
+
+@typing.type_check_only
+class MetricMatrixRow(typing_extensions.TypedDict, total=False):
+    cols: typing.List[float]
 
 @typing.type_check_only
 class Mutation(typing_extensions.TypedDict, total=False):
@@ -335,6 +417,14 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PrefixNode(typing_extensions.TypedDict, total=False):
+    dataSourceNode: bool
+    depth: int
+    endIndex: int
+    startIndex: int
+    word: str
+
+@typing.type_check_only
 class QueryOptions(typing_extensions.TypedDict, total=False):
     optimizerStatisticsPackage: str
     optimizerVersion: str
@@ -380,6 +470,8 @@ class RequestOptions(typing_extensions.TypedDict, total=False):
     priority: typing_extensions.Literal[
         "PRIORITY_UNSPECIFIED", "PRIORITY_LOW", "PRIORITY_MEDIUM", "PRIORITY_HIGH"
     ]
+    requestTag: str
+    transactionTag: str
 
 @typing.type_check_only
 class RestoreDatabaseEncryptionConfig(typing_extensions.TypedDict, total=False):
@@ -427,6 +519,20 @@ class ResultSetStats(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RollbackRequest(typing_extensions.TypedDict, total=False):
     transactionId: str
+
+@typing.type_check_only
+class Scan(typing_extensions.TypedDict, total=False):
+    details: typing.Dict[str, typing.Any]
+    endTime: str
+    name: str
+    scanData: ScanData
+    startTime: str
+
+@typing.type_check_only
+class ScanData(typing_extensions.TypedDict, total=False):
+    data: VisualizationData
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class Session(typing_extensions.TypedDict, total=False):
@@ -491,6 +597,7 @@ class Type(typing.Dict[str, typing.Any]): ...
 class UpdateDatabaseDdlMetadata(typing_extensions.TypedDict, total=False):
     commitTimestamps: typing.List[str]
     database: str
+    progress: typing.List[OperationProgress]
     statements: typing.List[str]
     throttled: bool
 
@@ -510,6 +617,19 @@ class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):
 class UpdateInstanceRequest(typing_extensions.TypedDict, total=False):
     fieldMask: str
     instance: Instance
+
+@typing.type_check_only
+class VisualizationData(typing_extensions.TypedDict, total=False):
+    dataSourceEndToken: str
+    dataSourceSeparatorToken: str
+    diagnosticMessages: typing.List[DiagnosticMessage]
+    endKeyStrings: typing.List[str]
+    hasPii: bool
+    indexedKeys: typing.List[str]
+    keySeparator: str
+    keyUnit: typing_extensions.Literal["KEY_UNIT_UNSPECIFIED", "KEY", "CHUNK"]
+    metrics: typing.List[Metric]
+    prefixNodes: typing.List[PrefixNode]
 
 @typing.type_check_only
 class Write(typing_extensions.TypedDict, total=False):

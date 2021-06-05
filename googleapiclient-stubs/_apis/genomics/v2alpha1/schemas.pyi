@@ -11,6 +11,7 @@ class Accelerator(typing_extensions.TypedDict, total=False):
 class Action(typing_extensions.TypedDict, total=False):
     commands: typing.List[str]
     credentials: Secret
+    encryptedEnvironment: Secret
     entrypoint: str
     environment: typing.Dict[str, typing.Any]
     flags: typing.List[str]
@@ -39,13 +40,6 @@ class CheckInResponse(typing_extensions.TypedDict, total=False):
     deadline: str
     features: typing.Dict[str, typing.Any]
     metadata: typing.Dict[str, typing.Any]
-
-@typing.type_check_only
-class ComputeEngine(typing_extensions.TypedDict, total=False):
-    diskNames: typing.List[str]
-    instanceName: str
-    machineType: str
-    zone: str
 
 @typing.type_check_only
 class ContainerKilledEvent(typing_extensions.TypedDict, total=False):
@@ -155,24 +149,6 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationEvent(typing_extensions.TypedDict, total=False):
-    description: str
-    endTime: str
-    startTime: str
-
-@typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    clientId: str
-    createTime: str
-    endTime: str
-    events: typing.List[OperationEvent]
-    labels: typing.Dict[str, typing.Any]
-    projectId: str
-    request: typing.Dict[str, typing.Any]
-    runtimeMetadata: typing.Dict[str, typing.Any]
-    startTime: str
-
-@typing.type_check_only
 class PersistentDisk(typing_extensions.TypedDict, total=False):
     sizeGb: int
     sourceImage: str
@@ -181,6 +157,7 @@ class PersistentDisk(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Pipeline(typing_extensions.TypedDict, total=False):
     actions: typing.List[Action]
+    encryptedEnvironment: Secret
     environment: typing.Dict[str, typing.Any]
     resources: Resources
     timeout: str
@@ -208,10 +185,6 @@ class RunPipelineRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RunPipelineResponse(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class RuntimeMetadata(typing_extensions.TypedDict, total=False):
-    computeEngine: ComputeEngine
 
 @typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):

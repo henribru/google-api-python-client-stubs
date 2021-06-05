@@ -185,6 +185,22 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListProposalsResponseHttpRequest: ...
+            def pause(
+                self,
+                *,
+                accountId: str,
+                proposalId: str,
+                body: PauseProposalDealsRequest = ...,
+                **kwargs: typing.Any
+            ) -> ProposalHttpRequest: ...
+            def resume(
+                self,
+                *,
+                accountId: str,
+                proposalId: str,
+                body: ResumeProposalDealsRequest = ...,
+                **kwargs: typing.Any
+            ) -> ProposalHttpRequest: ...
         @typing.type_check_only
         class ProductsResource(googleapiclient.discovery.Resource):
             def get(

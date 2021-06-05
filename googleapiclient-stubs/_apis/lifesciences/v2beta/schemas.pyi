@@ -17,6 +17,7 @@ class Action(typing_extensions.TypedDict, total=False):
     disableImagePrefetch: bool
     disableStandardErrorCapture: bool
     enableFuse: bool
+    encryptedEnvironment: Secret
     entrypoint: str
     environment: typing.Dict[str, typing.Any]
     ignoreExitStatus: bool
@@ -166,6 +167,7 @@ class PersistentDisk(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Pipeline(typing_extensions.TypedDict, total=False):
     actions: typing.List[Action]
+    encryptedEnvironment: Secret
     environment: typing.Dict[str, typing.Any]
     resources: Resources
     timeout: str

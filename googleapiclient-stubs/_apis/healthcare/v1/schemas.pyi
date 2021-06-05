@@ -234,6 +234,7 @@ class FhirFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FhirStore(typing_extensions.TypedDict, total=False):
+    defaultSearchHandlingStrict: bool
     disableReferentialIntegrity: bool
     disableResourceVersioning: bool
     enableUpdateCreate: bool
@@ -545,6 +546,9 @@ class QueryAccessibleDataRequest(typing_extensions.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1ConsentGcsDestination
     requestAttributes: typing.Dict[str, typing.Any]
     resourceAttributes: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class QueryAccessibleDataResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RedactConfig(typing_extensions.TypedDict, total=False): ...

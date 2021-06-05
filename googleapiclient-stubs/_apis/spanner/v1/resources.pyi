@@ -277,6 +277,17 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     body: GetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def getScans(
+                    self,
+                    *,
+                    name: str,
+                    endTime: str = ...,
+                    startTime: str = ...,
+                    view: typing_extensions.Literal[
+                        "VIEW_UNSPECIFIED", "SUMMARY", "FULL"
+                    ] = ...,
+                    **kwargs: typing.Any
+                ) -> ScanHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -393,7 +404,22 @@ class SpannerResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
         def instanceConfigs(self) -> InstanceConfigsResource: ...
         def instances(self) -> InstancesResource: ...
+    @typing.type_check_only
+    class ScansResource(googleapiclient.discovery.Resource):
+        def list(
+            self,
+            *,
+            parent: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            view: typing_extensions.Literal[
+                "VIEW_UNSPECIFIED", "SUMMARY", "FULL"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> ListScansResponseHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+    def scans(self) -> ScansResource: ...
 
 @typing.type_check_only
 class BackupHttpRequest(googleapiclient.http.HttpRequest):
@@ -556,6 +582,16 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListScansResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListScansResponse: ...
+
+@typing.type_check_only
 class ListSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -614,6 +650,16 @@ class ResultSetHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ResultSet: ...
+
+@typing.type_check_only
+class ScanHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Scan: ...
 
 @typing.type_check_only
 class SessionHttpRequest(googleapiclient.http.HttpRequest):

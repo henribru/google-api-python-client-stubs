@@ -46,16 +46,19 @@ class CustomerManagedEncryptionStatus(typing_extensions.TypedDict, total=False):
     kmsKeyVersionName: str
 
 @typing.type_check_only
-class DestroySecretVersionRequest(typing_extensions.TypedDict, total=False): ...
+class DestroySecretVersionRequest(typing_extensions.TypedDict, total=False):
+    etag: str
 
 @typing.type_check_only
-class DisableSecretVersionRequest(typing_extensions.TypedDict, total=False): ...
+class DisableSecretVersionRequest(typing_extensions.TypedDict, total=False):
+    etag: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnableSecretVersionRequest(typing_extensions.TypedDict, total=False): ...
+class EnableSecretVersionRequest(typing_extensions.TypedDict, total=False):
+    etag: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -124,6 +127,7 @@ class Rotation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
     createTime: str
+    etag: str
     expireTime: str
     labels: typing.Dict[str, typing.Any]
     name: str
@@ -140,6 +144,7 @@ class SecretPayload(typing_extensions.TypedDict, total=False):
 class SecretVersion(typing_extensions.TypedDict, total=False):
     createTime: str
     destroyTime: str
+    etag: str
     name: str
     replicationStatus: ReplicationStatus
     state: typing_extensions.Literal[

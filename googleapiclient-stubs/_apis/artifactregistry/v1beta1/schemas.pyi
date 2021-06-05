@@ -100,7 +100,9 @@ class Policy(typing_extensions.TypedDict, total=False):
 class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
-    format: typing_extensions.Literal["FORMAT_UNSPECIFIED", "DOCKER"]
+    format: typing_extensions.Literal[
+        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "PYPI", "PYTHON"
+    ]
     kmsKeyName: str
     labels: typing.Dict[str, typing.Any]
     name: str

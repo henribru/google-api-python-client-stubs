@@ -7,6 +7,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DockerImage(typing_extensions.TypedDict, total=False):
+    buildTime: str
     imageSizeBytes: str
     mediaType: str
     name: str
@@ -28,12 +29,29 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: typing.List[Operation]
 
 @typing.type_check_only
+class ListRepositoriesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    repositories: typing.List[Repository]
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
     metadata: typing.Dict[str, typing.Any]
     name: str
     response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class Repository(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    format: typing_extensions.Literal[
+        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "PYPI", "PYTHON"
+    ]
+    kmsKeyName: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    updateTime: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

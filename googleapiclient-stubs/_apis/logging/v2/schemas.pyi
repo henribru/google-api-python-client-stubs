@@ -135,6 +135,7 @@ class LogBucket(typing_extensions.TypedDict, total=False):
     ]
     locked: bool
     name: str
+    restrictedFields: typing.List[str]
     retentionDays: int
     updateTime: str
 
@@ -212,6 +213,7 @@ class LogMetric(typing_extensions.TypedDict, total=False):
     bucketOptions: BucketOptions
     createTime: str
     description: str
+    disabled: bool
     filter: str
     labelExtractors: typing.Dict[str, typing.Any]
     metricDescriptor: MetricDescriptor

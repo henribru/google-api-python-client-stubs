@@ -5,8 +5,6 @@ import typing_extensions
 @typing.type_check_only
 class AddFirebaseRequest(typing_extensions.TypedDict, total=False):
     locationId: str
-    regionCode: str
-    timeZone: str
 
 @typing.type_check_only
 class AddGoogleAnalyticsRequest(typing_extensions.TypedDict, total=False):

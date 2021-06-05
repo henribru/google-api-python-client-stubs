@@ -35,7 +35,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     scent: str
     size: str
     sizeSystem: str
-    sizeType: str
+    sizeType: typing.List[str]
     suggestedRetailPrice: Price
     targetClientId: str
     theme: str

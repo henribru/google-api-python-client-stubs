@@ -659,6 +659,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                 "RAW_ONLY",
                                 "PARSED_ONLY",
                                 "FULL",
+                                "SCHEMATIZED_ONLY",
                                 "BASIC",
                             ] = ...,
                             **kwargs: typing.Any
@@ -683,6 +684,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                 "RAW_ONLY",
                                 "PARSED_ONLY",
                                 "FULL",
+                                "SCHEMATIZED_ONLY",
                                 "BASIC",
                             ] = ...,
                             **kwargs: typing.Any

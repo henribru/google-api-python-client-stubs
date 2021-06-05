@@ -62,6 +62,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     host: str
     labels: typing.Dict[str, typing.Any]
     locationId: str
+    maintenancePolicy: MaintenancePolicy
+    maintenanceSchedule: MaintenanceSchedule
     memorySizeGb: int
     name: str
     persistenceIamIdentity: str
@@ -116,6 +118,20 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MaintenancePolicy(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    updateTime: str
+    weeklyMaintenanceWindow: typing.List[WeeklyMaintenanceWindow]
+
+@typing.type_check_only
+class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
+    canReschedule: bool
+    endTime: str
+    scheduleDeadlineTime: str
+    startTime: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -128,10 +144,27 @@ class OutputConfig(typing_extensions.TypedDict, total=False):
     gcsDestination: GcsDestination
 
 @typing.type_check_only
+class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
+    rescheduleType: typing_extensions.Literal[
+        "RESCHEDULE_TYPE_UNSPECIFIED",
+        "IMMEDIATE",
+        "NEXT_AVAILABLE_WINDOW",
+        "SPECIFIC_TIME",
+    ]
+    scheduleTime: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
 
 @typing.type_check_only
 class TlsCertificate(typing_extensions.TypedDict, total=False):
@@ -144,3 +177,18 @@ class TlsCertificate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False):
     redisVersion: str
+
+@typing.type_check_only
+class WeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    duration: str
+    startTime: TimeOfDay

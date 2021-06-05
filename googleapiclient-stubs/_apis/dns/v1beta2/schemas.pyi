@@ -116,8 +116,16 @@ class ManagedZonePeeringConfigTargetNetwork(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class ManagedZonePrivateVisibilityConfig(typing_extensions.TypedDict, total=False):
+    gkeClusters: typing.List[ManagedZonePrivateVisibilityConfigGKECluster]
     kind: str
     networks: typing.List[ManagedZonePrivateVisibilityConfigNetwork]
+
+@typing.type_check_only
+class ManagedZonePrivateVisibilityConfigGKECluster(
+    typing_extensions.TypedDict, total=False
+):
+    gkeClusterName: str
+    kind: str
 
 @typing.type_check_only
 class ManagedZonePrivateVisibilityConfigNetwork(
@@ -228,8 +236,11 @@ class Project(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
     dnsKeysPerManagedZone: int
+    gkeClustersPerManagedZone: int
+    gkeClustersPerResponsePolicy: int
     kind: str
     managedZones: int
+    managedZonesPerGkeCluster: int
     managedZonesPerNetwork: int
     networksPerManagedZone: int
     networksPerPolicy: int
@@ -283,10 +294,16 @@ class ResponsePoliciesUpdateResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResponsePolicy(typing_extensions.TypedDict, total=False):
     description: str
+    gkeClusters: typing.List[ResponsePolicyGKECluster]
     id: str
     kind: str
     networks: typing.List[ResponsePolicyNetwork]
     responsePolicyName: str
+
+@typing.type_check_only
+class ResponsePolicyGKECluster(typing_extensions.TypedDict, total=False):
+    gkeClusterName: str
+    kind: str
 
 @typing.type_check_only
 class ResponsePolicyNetwork(typing_extensions.TypedDict, total=False):

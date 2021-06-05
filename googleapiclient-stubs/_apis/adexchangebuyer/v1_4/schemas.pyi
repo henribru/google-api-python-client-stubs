@@ -448,6 +448,7 @@ class PublisherProfileApiProto(typing_extensions.TypedDict, total=False):
     buyerPitchStatement: str
     directContact: str
     exchange: str
+    forecastInventory: str
     googlePlusLink: str
     isParent: bool
     isPublished: bool

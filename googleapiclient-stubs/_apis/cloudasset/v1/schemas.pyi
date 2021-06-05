@@ -22,6 +22,10 @@ class AnalyzeIamPolicyResponse(typing_extensions.TypedDict, total=False):
     serviceAccountImpersonationAnalysis: typing.List[IamPolicyAnalysis]
 
 @typing.type_check_only
+class AnalyzeMoveResponse(typing_extensions.TypedDict, total=False):
+    moveAnalysis: typing.List[MoveAnalysis]
+
+@typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     accessLevel: GoogleIdentityAccesscontextmanagerV1AccessLevel
     accessPolicy: GoogleIdentityAccesscontextmanagerV1AccessPolicy
@@ -64,6 +68,16 @@ class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: typing.List[str]
     role: str
+
+@typing.type_check_only
+class ConditionContext(typing_extensions.TypedDict, total=False):
+    accessTime: str
+
+@typing.type_check_only
+class ConditionEvaluation(typing_extensions.TypedDict, total=False):
+    evaluationValue: typing_extensions.Literal[
+        "EVALUATION_VALUE_UNSPECIFIED", "TRUE", "FALSE", "CONDITIONAL"
+    ]
 
 @typing.type_check_only
 class CreateFeedRequest(typing_extensions.TypedDict, total=False):
@@ -132,6 +146,7 @@ class GoogleCloudAssetV1Access(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudAssetV1AccessControlList(typing_extensions.TypedDict, total=False):
     accesses: typing.List[GoogleCloudAssetV1Access]
+    conditionEvaluation: ConditionEvaluation
     resourceEdges: typing.List[GoogleCloudAssetV1Edge]
     resources: typing.List[GoogleCloudAssetV1Resource]
 
@@ -428,6 +443,7 @@ class IamPolicyAnalysisOutputConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class IamPolicyAnalysisQuery(typing_extensions.TypedDict, total=False):
     accessSelector: AccessSelector
+    conditionContext: ConditionContext
     identitySelector: IdentitySelector
     options: Options
     resourceSelector: ResourceSelector
@@ -493,8 +509,29 @@ class Item(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ListAssetsResponse(typing_extensions.TypedDict, total=False):
+    assets: typing.List[Asset]
+    nextPageToken: str
+    readTime: str
+
+@typing.type_check_only
 class ListFeedsResponse(typing_extensions.TypedDict, total=False):
     feeds: typing.List[Feed]
+
+@typing.type_check_only
+class MoveAnalysis(typing_extensions.TypedDict, total=False):
+    analysis: MoveAnalysisResult
+    displayName: str
+    error: Status
+
+@typing.type_check_only
+class MoveAnalysisResult(typing_extensions.TypedDict, total=False):
+    blockers: typing.List[MoveImpact]
+    warnings: typing.List[MoveImpact]
+
+@typing.type_check_only
+class MoveImpact(typing_extensions.TypedDict, total=False):
+    detail: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

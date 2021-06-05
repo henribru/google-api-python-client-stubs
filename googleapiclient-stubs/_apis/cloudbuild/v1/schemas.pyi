@@ -56,6 +56,7 @@ class Build(typing_extensions.TypedDict, total=False):
     tags: typing.List[str]
     timeout: str
     timing: typing.Dict[str, typing.Any]
+    warnings: typing.List[Warning]
 
 @typing.type_check_only
 class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -120,11 +121,13 @@ class BuildTrigger(typing_extensions.TypedDict, total=False):
     description: str
     disabled: bool
     filename: str
+    filter: str
     github: GitHubEventsConfig
     id: str
     ignoredFiles: typing.List[str]
     includedFiles: typing.List[str]
     name: str
+    pubsubConfig: PubsubConfig
     substitutions: typing.Dict[str, typing.Any]
     tags: typing.List[str]
     triggerTemplate: RepoSource
@@ -230,6 +233,19 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: typing.Dict[str, typing.Any]
     name: str
     response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class PubsubConfig(typing_extensions.TypedDict, total=False):
+    serviceAccountEmail: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "OK",
+        "SUBSCRIPTION_DELETED",
+        "TOPIC_DELETED",
+        "SUBSCRIPTION_MISCONFIGURED",
+    ]
+    subscription: str
+    topic: str
 
 @typing.type_check_only
 class PullRequestFilter(typing_extensions.TypedDict, total=False):
@@ -344,3 +360,10 @@ class TimeSpan(typing_extensions.TypedDict, total=False):
 class Volume(typing_extensions.TypedDict, total=False):
     name: str
     path: str
+
+@typing.type_check_only
+class Warning(typing_extensions.TypedDict, total=False):
+    priority: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "INFO", "WARNING", "ALERT"
+    ]
+    text: str

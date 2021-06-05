@@ -16,6 +16,7 @@ class GoogleAdsHomeservicesLocalservicesV1AccountReport(
     currentPeriodConnectedPhoneCalls: str
     currentPeriodPhoneCalls: str
     currentPeriodTotalCost: float
+    impressionsLastTwoDays: str
     phoneLeadResponsiveness: float
     previousPeriodChargedLeads: str
     previousPeriodConnectedPhoneCalls: str

@@ -77,7 +77,6 @@ class BackendRule(typing_extensions.TypedDict, total=False):
     deadline: float
     disableAuth: bool
     jwtAudience: str
-    minDeadline: float
     operationDeadline: float
     pathTranslation: typing_extensions.Literal[
         "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
@@ -186,7 +185,6 @@ class DocumentationRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
-    aliases: typing.List[str]
     allowCors: bool
     name: str
     target: str
@@ -425,6 +423,9 @@ class Option(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Page(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class PartialDeleteConnectionMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PeeredDnsDomain(typing_extensions.TypedDict, total=False):

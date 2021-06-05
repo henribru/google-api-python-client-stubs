@@ -135,6 +135,7 @@ class GameServerCluster(typing_extensions.TypedDict, total=False):
     allocationPriority: typing_extensions.Literal[
         "PRIORITY_UNSPECIFIED", "P1", "P2", "P3", "P4"
     ]
+    clusterState: KubernetesClusterState
     connectionInfo: GameServerClusterConnectionInfo
     createTime: str
     description: str
@@ -189,6 +190,24 @@ class GkeClusterReference(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GkeHubClusterReference(typing_extensions.TypedDict, total=False):
     membership: str
+
+@typing.type_check_only
+class KubernetesClusterState(typing_extensions.TypedDict, total=False):
+    agonesVersionInstalled: str
+    agonesVersionTargeted: str
+    installationState: typing_extensions.Literal[
+        "INSTALLATION_STATE_UNSPECIFIED",
+        "AGONES_KUBERNETES_VERSION_SUPPORTED",
+        "AGONES_VERSION_UNSUPPORTED",
+        "AGONES_KUBERNETES_VERSION_UNSUPPORTED",
+        "AGONES_VERSION_UNRECOGNIZED",
+        "KUBERNETES_VERSION_UNRECOGNIZED",
+        "VERSION_VERIFICATION_FAILED",
+        "AGONES_NOT_INSTALLED",
+    ]
+    kubernetesVersionInstalled: str
+    provider: str
+    versionInstalledErrorMessage: str
 
 @typing.type_check_only
 class LabelSelector(typing_extensions.TypedDict, total=False):
@@ -284,6 +303,7 @@ class Policy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PreviewCreateGameServerClusterResponse(typing_extensions.TypedDict, total=False):
+    clusterState: KubernetesClusterState
     etag: str
     targetState: TargetState
 

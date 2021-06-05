@@ -14,9 +14,12 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
     address: str
+    createTime: str
     metadata: typing.Dict[str, typing.Any]
     name: str
+    network: str
     port: int
+    updateTime: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -63,8 +66,10 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Namespace(typing_extensions.TypedDict, total=False):
+    createTime: str
     labels: typing.Dict[str, typing.Any]
     name: str
+    updateTime: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -83,9 +88,11 @@ class ResolveServiceResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
+    createTime: str
     endpoints: typing.List[Endpoint]
     metadata: typing.Dict[str, typing.Any]
     name: str
+    updateTime: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

@@ -294,7 +294,12 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TrackHttpRequest: ...
         def commit(
-            self, *, packageName: str, editId: str, **kwargs: typing.Any
+            self,
+            *,
+            packageName: str,
+            editId: str,
+            changesNotSentForReview: bool = ...,
+            **kwargs: typing.Any
         ) -> AppEditHttpRequest: ...
         def delete(
             self, *, packageName: str, editId: str, **kwargs: typing.Any

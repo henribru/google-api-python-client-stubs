@@ -203,6 +203,7 @@ class AccountsLinkRequest(typing_extensions.TypedDict, total=False):
     action: str
     linkType: str
     linkedAccountId: str
+    paymentServiceProviderLinkInfo: PaymentServiceProviderLinkInfo
     services: typing.List[str]
 
 @typing.type_check_only
@@ -289,6 +290,9 @@ class AccounttaxListResponse(typing_extensions.TypedDict, total=False):
     resources: typing.List[AccountTax]
 
 @typing.type_check_only
+class ActivateBuyOnGoogleProgramRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Amount(typing_extensions.TypedDict, total=False):
     priceAmount: Price
     taxAmount: Price
@@ -306,6 +310,9 @@ class BuyOnGoogleProgramStatus(typing_extensions.TypedDict, total=False):
         "NOT_ELIGIBLE",
         "ELIGIBLE",
         "ONBOARDING",
+        "ELIGIBLE_FOR_REVIEW",
+        "PENDING_REVIEW",
+        "REVIEW_DISAPPROVED",
         "ACTIVE",
         "PAUSED",
     ]
@@ -322,6 +329,7 @@ class CarrierRate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CarriersCarrier(typing_extensions.TypedDict, total=False):
     country: str
+    eddServices: typing.List[str]
     name: str
     services: typing.List[str]
 
@@ -551,6 +559,7 @@ class DeliveryTime(typing_extensions.TypedDict, total=False):
     minTransitTimeInDays: int
     transitBusinessDayConfig: BusinessDayConfig
     transitTimeTable: TransitTable
+    warehouseBasedDeliveryTimes: typing.List[WarehouseBasedDeliveryTime]
 
 @typing.type_check_only
 class Error(typing_extensions.TypedDict, total=False):
@@ -612,6 +621,8 @@ class InapplicabilityDetails(typing_extensions.TypedDict, total=False):
         "TRIUMPHED_OVER_BY_OTHER_RULE_ON_OFFER",
         "RESTRICTIONS_NOT_MET",
         "UNCATEGORIZED",
+        "INVALID_AUTO_PRICE_MIN",
+        "INVALID_FLOOR_CONFIG",
     ]
 
 @typing.type_check_only
@@ -1273,6 +1284,7 @@ class OrderreturnsCreateOrderReturnResponse(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class OrderreturnsLineItem(typing_extensions.TypedDict, total=False):
     lineItemId: str
+    productId: str
     quantity: int
 
 @typing.type_check_only
@@ -1580,6 +1592,14 @@ class OrdersUpdateShipmentResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class PauseBuyOnGoogleProgramRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PaymentServiceProviderLinkInfo(typing_extensions.TypedDict, total=False):
+    externalAccountBusinessCountry: str
+    externalAccountId: str
+
+@typing.type_check_only
 class PickupCarrierService(typing_extensions.TypedDict, total=False):
     carrierName: str
     serviceName: str
@@ -1738,6 +1758,7 @@ class PriceAmount(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
     additionalImageLinks: typing.List[str]
+    additionalSizeType: str
     adsGrouping: str
     adsLabels: typing.List[str]
     adsRedirect: str
@@ -1779,6 +1800,7 @@ class Product(typing_extensions.TypedDict, total=False):
     itemGroupId: str
     kind: str
     link: str
+    linkTemplate: str
     loyaltyPoints: LoyaltyPoints
     material: str
     maxEnergyEfficiencyClass: str
@@ -1786,10 +1808,13 @@ class Product(typing_extensions.TypedDict, total=False):
     minEnergyEfficiencyClass: str
     minHandlingTime: str
     mobileLink: str
+    mobileLinkTemplate: str
     mpn: str
     multipack: str
     offerId: str
     pattern: str
+    pickupMethod: str
+    pickupSla: str
     price: Price
     productDetails: typing.List[ProductProductDetail]
     productHighlights: typing.List[str]
@@ -1835,6 +1860,10 @@ class ProductShipping(typing_extensions.TypedDict, total=False):
     country: str
     locationGroupName: str
     locationId: str
+    maxHandlingTime: str
+    maxTransitTime: str
+    minHandlingTime: str
+    minTransitTime: str
     postalCode: str
     price: Price
     region: str
@@ -2142,6 +2171,11 @@ class RepricingRuleStatsBasedRule(typing_extensions.TypedDict, total=False):
     priceDelta: str
 
 @typing.type_check_only
+class RequestReviewBuyOnGoogleProgramRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class ReturnAddress(typing_extensions.TypedDict, total=False):
     address: ReturnAddressAddress
     country: str
@@ -2251,6 +2285,12 @@ class ReturnShipment(typing_extensions.TypedDict, total=False):
     shipmentTrackingInfos: typing.List[ShipmentTrackingInfo]
     shippingDate: str
     state: str
+
+@typing.type_check_only
+class ReturnShippingLabel(typing_extensions.TypedDict, total=False):
+    carrier: str
+    labelUri: str
+    trackingId: str
 
 @typing.type_check_only
 class ReturnaddressCustomBatchRequest(typing_extensions.TypedDict, total=False):
@@ -2606,6 +2646,16 @@ class Value(typing_extensions.TypedDict, total=False):
     noShipping: bool
     pricePercentage: str
     subtableName: str
+
+@typing.type_check_only
+class WarehouseBasedDeliveryTime(typing_extensions.TypedDict, total=False):
+    carrier: str
+    carrierService: str
+    originAdministrativeArea: str
+    originCity: str
+    originCountry: str
+    originPostalCode: str
+    originStreetAddress: str
 
 @typing.type_check_only
 class Weight(typing_extensions.TypedDict, total=False):

@@ -3,14 +3,25 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class Accelerator(typing_extensions.TypedDict, total=False):
+    count: str
+    type: str
 
 @typing.type_check_only
-class ComputeEngine(typing_extensions.TypedDict, total=False):
-    diskNames: typing.List[str]
-    instanceName: str
-    machineType: str
-    zone: str
+class Action(typing_extensions.TypedDict, total=False):
+    commands: typing.List[str]
+    credentials: Secret
+    encryptedEnvironment: Secret
+    entrypoint: str
+    environment: typing.Dict[str, typing.Any]
+    flags: typing.List[str]
+    imageUri: str
+    labels: typing.Dict[str, typing.Any]
+    mounts: typing.List[Mount]
+    name: str
+    pidNamespace: str
+    portMappings: typing.Dict[str, typing.Any]
+    timeout: str
 
 @typing.type_check_only
 class ContainerKilledEvent(typing_extensions.TypedDict, total=False):
@@ -34,13 +45,21 @@ class DelayedEvent(typing_extensions.TypedDict, total=False):
     metrics: typing.List[str]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Disk(typing_extensions.TypedDict, total=False):
+    name: str
+    sizeGb: int
+    sourceImage: str
+    type: str
 
 @typing.type_check_only
 class Event(typing_extensions.TypedDict, total=False):
     description: str
     details: typing.Dict[str, typing.Any]
     timestamp: str
+
+@typing.type_check_only
+class ExistingDisk(typing_extensions.TypedDict, total=False):
+    disk: str
 
 @typing.type_check_only
 class FailedEvent(typing_extensions.TypedDict, total=False):
@@ -66,35 +85,43 @@ class FailedEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: typing.List[Operation]
-
-@typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
-    done: bool
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-    response: typing.Dict[str, typing.Any]
-
-@typing.type_check_only
-class OperationEvent(typing_extensions.TypedDict, total=False):
-    description: str
-    endTime: str
-    startTime: str
-
-@typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    clientId: str
+class Metadata(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
-    events: typing.List[OperationEvent]
+    events: typing.List[Event]
     labels: typing.Dict[str, typing.Any]
-    projectId: str
-    request: typing.Dict[str, typing.Any]
-    runtimeMetadata: typing.Dict[str, typing.Any]
+    pipeline: Pipeline
     startTime: str
+
+@typing.type_check_only
+class Mount(typing_extensions.TypedDict, total=False):
+    disk: str
+    path: str
+    readOnly: bool
+
+@typing.type_check_only
+class NFSMount(typing_extensions.TypedDict, total=False):
+    target: str
+
+@typing.type_check_only
+class Network(typing_extensions.TypedDict, total=False):
+    name: str
+    subnetwork: str
+    usePrivateAddress: bool
+
+@typing.type_check_only
+class PersistentDisk(typing_extensions.TypedDict, total=False):
+    sizeGb: int
+    sourceImage: str
+    type: str
+
+@typing.type_check_only
+class Pipeline(typing_extensions.TypedDict, total=False):
+    actions: typing.List[Action]
+    encryptedEnvironment: Secret
+    environment: typing.Dict[str, typing.Any]
+    resources: Resources
+    timeout: str
 
 @typing.type_check_only
 class PullStartedEvent(typing_extensions.TypedDict, total=False):
@@ -105,22 +132,53 @@ class PullStoppedEvent(typing_extensions.TypedDict, total=False):
     imageUri: str
 
 @typing.type_check_only
+class Resources(typing_extensions.TypedDict, total=False):
+    projectId: str
+    regions: typing.List[str]
+    virtualMachine: VirtualMachine
+    zones: typing.List[str]
+
+@typing.type_check_only
 class RunPipelineResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RuntimeMetadata(typing_extensions.TypedDict, total=False):
-    computeEngine: ComputeEngine
+class Secret(typing_extensions.TypedDict, total=False):
+    cipherText: str
+    keyName: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
-    code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
+class ServiceAccount(typing_extensions.TypedDict, total=False):
+    email: str
+    scopes: typing.List[str]
 
 @typing.type_check_only
 class UnexpectedExitStatusEvent(typing_extensions.TypedDict, total=False):
     actionId: int
     exitStatus: int
+
+@typing.type_check_only
+class VirtualMachine(typing_extensions.TypedDict, total=False):
+    accelerators: typing.List[Accelerator]
+    bootDiskSizeGb: int
+    bootImage: str
+    cpuPlatform: str
+    disks: typing.List[Disk]
+    dockerCacheImages: typing.List[str]
+    enableStackdriverMonitoring: bool
+    labels: typing.Dict[str, typing.Any]
+    machineType: str
+    network: Network
+    nvidiaDriverVersion: str
+    preemptible: bool
+    serviceAccount: ServiceAccount
+    volumes: typing.List[Volume]
+
+@typing.type_check_only
+class Volume(typing_extensions.TypedDict, total=False):
+    existingDisk: ExistingDisk
+    nfsMount: NFSMount
+    persistentDisk: PersistentDisk
+    volume: str
 
 @typing.type_check_only
 class WorkerAssignedEvent(typing_extensions.TypedDict, total=False):

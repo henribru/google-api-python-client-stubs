@@ -247,6 +247,7 @@ class ListOtherContactsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     nextSyncToken: str
     otherContacts: typing.List[Person]
+    totalSize: int
 
 @typing.type_check_only
 class Locale(typing_extensions.TypedDict, total=False):

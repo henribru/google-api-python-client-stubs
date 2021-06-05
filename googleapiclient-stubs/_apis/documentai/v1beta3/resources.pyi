@@ -16,9 +16,21 @@ class DocumentResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
+                def cancelOperation(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             @typing.type_check_only
             class ProcessorsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -53,6 +65,38 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDocumentaiV1beta3BatchProcessRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDocumentaiV1beta3Processor = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDocumentaiV1beta3ProcessorHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def disable(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDocumentaiV1beta3DisableProcessorRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def enable(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDocumentaiV1beta3EnableProcessorRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDocumentaiV1beta3ListProcessorsResponseHttpRequest: ...
                 def process(
                     self,
                     *,
@@ -62,6 +106,9 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDocumentaiV1beta3ProcessResponseHttpRequest: ...
                 def humanReviewConfig(self) -> HumanReviewConfigResource: ...
                 def processorVersions(self) -> ProcessorVersionsResource: ...
+            def fetchProcessorTypes(
+                self, *, parent: str, **kwargs: typing.Any
+            ) -> GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudLocationLocationHttpRequest: ...
@@ -80,6 +127,30 @@ class DocumentResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ListProcessorsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDocumentaiV1beta3ListProcessorsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3ProcessResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -90,6 +161,18 @@ class GoogleCloudDocumentaiV1beta3ProcessResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDocumentaiV1beta3ProcessResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ProcessorHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDocumentaiV1beta3Processor: ...
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponseHttpRequest(
@@ -114,6 +197,18 @@ class GoogleCloudLocationLocationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleCloudLocationLocation: ...
 
 @typing.type_check_only
+class GoogleLongrunningListOperationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleLongrunningListOperationsResponse: ...
+
+@typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -122,3 +217,13 @@ class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningOperation: ...
+
+@typing.type_check_only
+class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleProtobufEmpty: ...

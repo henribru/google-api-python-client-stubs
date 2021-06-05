@@ -510,6 +510,8 @@ class FrequencyCap(typing_extensions.TypedDict, total=False):
         "WEEK",
         "MONTH",
         "LIFETIME",
+        "POD",
+        "STREAM",
     ]
 
 @typing.type_check_only
@@ -517,7 +519,12 @@ class GuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
     fixedPrices: typing.List[PricePerBuyer]
     guaranteedImpressions: str
     guaranteedLooks: str
+    impressionCap: str
     minimumDailyLooks: str
+    percentShareOfVoice: str
+    reservationType: typing_extensions.Literal[
+        "RESERVATION_TYPE_UNSPECIFIED", "STANDARD", "SPONSORSHIP"
+    ]
 
 @typing.type_check_only
 class HtmlContent(typing_extensions.TypedDict, total=False):
@@ -736,6 +743,11 @@ class OperatingSystemTargeting(typing_extensions.TypedDict, total=False):
     operatingSystemVersionCriteria: CriteriaTargeting
 
 @typing.type_check_only
+class PauseProposalDealsRequest(typing_extensions.TypedDict, total=False):
+    externalDealIds: typing.List[str]
+    reason: str
+
+@typing.type_check_only
 class PauseProposalRequest(typing_extensions.TypedDict, total=False):
     reason: str
 
@@ -870,6 +882,10 @@ class RelativeDateRange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RemoveDealAssociationRequest(typing_extensions.TypedDict, total=False):
     association: CreativeDealAssociation
+
+@typing.type_check_only
+class ResumeProposalDealsRequest(typing_extensions.TypedDict, total=False):
+    externalDealIds: typing.List[str]
 
 @typing.type_check_only
 class ResumeProposalRequest(typing_extensions.TypedDict, total=False): ...

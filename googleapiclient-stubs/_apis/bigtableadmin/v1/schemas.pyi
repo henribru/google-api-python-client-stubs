@@ -4,6 +4,7 @@ import typing_extensions
 
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
+    encryptionInfo: EncryptionInfo
     endTime: str
     expireTime: str
     name: str
@@ -24,6 +25,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     defaultStorageType: typing_extensions.Literal[
         "STORAGE_TYPE_UNSPECIFIED", "SSD", "HDD"
     ]
+    encryptionConfig: EncryptionConfig
     location: str
     name: str
     serveNodes: int
@@ -63,6 +65,20 @@ class CreateInstanceRequest(typing_extensions.TypedDict, total=False):
     instance: Instance
     instanceId: str
     parent: str
+
+@typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+
+@typing.type_check_only
+class EncryptionInfo(typing_extensions.TypedDict, total=False):
+    encryptionStatus: Status
+    encryptionType: typing_extensions.Literal[
+        "ENCRYPTION_TYPE_UNSPECIFIED",
+        "GOOGLE_DEFAULT_ENCRYPTION",
+        "CUSTOMER_MANAGED_ENCRYPTION",
+    ]
+    kmsKeyVersion: str
 
 @typing.type_check_only
 class FailureTrace(typing_extensions.TypedDict, total=False):
@@ -105,6 +121,12 @@ class RestoreTableMetadata(typing_extensions.TypedDict, total=False):
     optimizeTableOperationName: str
     progress: OperationProgress
     sourceType: typing_extensions.Literal["RESTORE_SOURCE_TYPE_UNSPECIFIED", "BACKUP"]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class TableProgress(typing_extensions.TypedDict, total=False):

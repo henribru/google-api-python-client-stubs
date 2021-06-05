@@ -19,6 +19,7 @@ class AdministratorWebTokenSpec(typing_extensions.TypedDict, total=False):
     privateApps: AdministratorWebTokenSpecPrivateApps
     storeBuilder: AdministratorWebTokenSpecStoreBuilder
     webApps: AdministratorWebTokenSpecWebApps
+    zeroTouch: AdministratorWebTokenSpecZeroTouch
 
 @typing.type_check_only
 class AdministratorWebTokenSpecManagedConfigurations(
@@ -41,6 +42,10 @@ class AdministratorWebTokenSpecStoreBuilder(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class AdministratorWebTokenSpecWebApps(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class AdministratorWebTokenSpecZeroTouch(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only

@@ -8,6 +8,14 @@ class Capacity(typing_extensions.TypedDict, total=False):
     subscribeMibPerSec: int
 
 @typing.type_check_only
+class CommitCursorRequest(typing_extensions.TypedDict, total=False):
+    cursor: Cursor
+    partition: str
+
+@typing.type_check_only
+class CommitCursorResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ComputeHeadCursorRequest(typing_extensions.TypedDict, total=False):
     partition: str
 
@@ -27,6 +35,15 @@ class ComputeMessageStatsResponse(typing_extensions.TypedDict, total=False):
     messageCount: str
     minimumEventTime: str
     minimumPublishTime: str
+
+@typing.type_check_only
+class ComputeTimeCursorRequest(typing_extensions.TypedDict, total=False):
+    partition: str
+    target: TimeTarget
+
+@typing.type_check_only
+class ComputeTimeCursorResponse(typing_extensions.TypedDict, total=False):
+    cursor: Cursor
 
 @typing.type_check_only
 class Cursor(typing_extensions.TypedDict, total=False):
@@ -84,6 +101,11 @@ class Subscription(typing_extensions.TypedDict, total=False):
     deliveryConfig: DeliveryConfig
     name: str
     topic: str
+
+@typing.type_check_only
+class TimeTarget(typing_extensions.TypedDict, total=False):
+    eventTime: str
+    publishTime: str
 
 @typing.type_check_only
 class Topic(typing_extensions.TypedDict, total=False):

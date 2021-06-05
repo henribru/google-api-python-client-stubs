@@ -93,9 +93,7 @@ class ActivityContentDetailsSocial(typing_extensions.TypedDict, total=False):
     imageUrl: str
     referenceUrl: str
     resourceId: ResourceId
-    type: typing_extensions.Literal[
-        "typeUnspecified", "googlePlus", "facebook", "twitter"
-    ]
+    type: typing_extensions.Literal["unspecified", "googlePlus", "facebook", "twitter"]
 
 @typing.type_check_only
 class ActivityContentDetailsSubscription(typing_extensions.TypedDict, total=False):
@@ -301,7 +299,7 @@ class ChannelSectionSnippet(typing_extensions.TypedDict, total=False):
     ]
     title: str
     type: typing_extensions.Literal[
-        "channelsectionTypeUnspecified",
+        "channelsectionTypeUndefined",
         "singlePlaylist",
         "multiplePlaylists",
         "popularUploads",
@@ -2029,6 +2027,14 @@ class VideoFileDetailsVideoStream(typing_extensions.TypedDict, total=False):
     widthPixels: int
 
 @typing.type_check_only
+class VideoGetRatingResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    eventId: str
+    items: typing.List[VideoRating]
+    kind: str
+    visitorId: str
+
+@typing.type_check_only
 class VideoListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
@@ -2094,14 +2100,6 @@ class VideoProjectDetails(typing_extensions.TypedDict, total=False): ...
 class VideoRating(typing_extensions.TypedDict, total=False):
     rating: typing_extensions.Literal["none", "like", "dislike"]
     videoId: str
-
-@typing.type_check_only
-class VideoRatingListResponse(typing_extensions.TypedDict, total=False):
-    etag: str
-    eventId: str
-    items: typing.List[VideoRating]
-    kind: str
-    visitorId: str
 
 @typing.type_check_only
 class VideoRecordingDetails(typing_extensions.TypedDict, total=False):

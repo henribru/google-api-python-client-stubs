@@ -3,6 +3,32 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class AdUnit(typing_extensions.TypedDict, total=False):
+    adFormat: str
+    adTypes: typing.List[str]
+    adUnitId: str
+    appId: str
+    displayName: str
+    name: str
+
+@typing.type_check_only
+class App(typing_extensions.TypedDict, total=False):
+    appId: str
+    linkedAppInfo: AppLinkedAppInfo
+    manualAppInfo: AppManualAppInfo
+    name: str
+    platform: str
+
+@typing.type_check_only
+class AppLinkedAppInfo(typing_extensions.TypedDict, total=False):
+    appStoreId: str
+    displayName: str
+
+@typing.type_check_only
+class AppManualAppInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
@@ -32,6 +58,16 @@ class GenerateNetworkReportResponse(typing_extensions.TypedDict, total=False):
     footer: ReportFooter
     header: ReportHeader
     row: ReportRow
+
+@typing.type_check_only
+class ListAdUnitsResponse(typing_extensions.TypedDict, total=False):
+    adUnits: typing.List[AdUnit]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAppsResponse(typing_extensions.TypedDict, total=False):
+    apps: typing.List[App]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListPublisherAccountsResponse(typing_extensions.TypedDict, total=False):

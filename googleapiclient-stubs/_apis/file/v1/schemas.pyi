@@ -10,6 +10,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     downloadBytes: str
     labels: typing.Dict[str, typing.Any]
     name: str
+    satisfiesPzs: bool
     sourceFileShare: str
     sourceInstance: str
     sourceInstanceTier: typing_extensions.Literal[
@@ -159,6 +160,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     name: str
     networks: typing.List[NetworkConfig]
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",

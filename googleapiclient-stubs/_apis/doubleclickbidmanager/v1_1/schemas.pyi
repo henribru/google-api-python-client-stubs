@@ -13,42 +13,6 @@ class DisjunctiveMatchStatement(typing_extensions.TypedDict, total=False):
     eventFilters: typing.List[EventFilter]
 
 @typing.type_check_only
-class DownloadLineItemsRequest(typing_extensions.TypedDict, total=False):
-    fileSpec: typing_extensions.Literal["EWF"]
-    filterIds: typing.List[str]
-    filterType: typing_extensions.Literal[
-        "ADVERTISER_ID", "INSERTION_ORDER_ID", "LINE_ITEM_ID"
-    ]
-    format: typing_extensions.Literal["CSV"]
-
-@typing.type_check_only
-class DownloadLineItemsResponse(typing_extensions.TypedDict, total=False):
-    lineItems: str
-
-@typing.type_check_only
-class DownloadRequest(typing_extensions.TypedDict, total=False):
-    fileTypes: typing.List[str]
-    filterIds: typing.List[str]
-    filterType: typing_extensions.Literal[
-        "ADVERTISER_ID",
-        "INSERTION_ORDER_ID",
-        "LINE_ITEM_ID",
-        "CAMPAIGN_ID",
-        "INVENTORY_SOURCE_ID",
-        "PARTNER_ID",
-    ]
-    version: str
-
-@typing.type_check_only
-class DownloadResponse(typing_extensions.TypedDict, total=False):
-    adGroups: str
-    ads: str
-    campaigns: str
-    insertionOrders: str
-    inventorySources: str
-    lineItems: str
-
-@typing.type_check_only
 class EventFilter(typing_extensions.TypedDict, total=False):
     dimensionFilter: PathQueryOptionsFilter
 
@@ -318,6 +282,23 @@ class FilterPair(typing_extensions.TypedDict, total=False):
         "FILTER_OM_SDK_AVAILABLE",
         "FILTER_DATA_SOURCE",
         "FILTER_CM360_PLACEMENT_ID",
+        "FILTER_TRUEVIEW_CLICK_TYPE_NAME",
+        "FILTER_TRUEVIEW_AD_TYPE_NAME",
+        "FILTER_VIDEO_CONTENT_DURATION",
+        "FILTER_MATCHED_GENRE_TARGET",
+        "FILTER_VIDEO_CONTENT_LIVE_STREAM",
+        "FILTER_BUDGET_SEGMENT_TYPE",
+        "FILTER_BUDGET_SEGMENT_BUDGET",
+        "FILTER_BUDGET_SEGMENT_START_DATE",
+        "FILTER_BUDGET_SEGMENT_END_DATE",
+        "FILTER_BUDGET_SEGMENT_PACING_PERCENTAGE",
+        "FILTER_LINE_ITEM_BUDGET",
+        "FILTER_LINE_ITEM_START_DATE",
+        "FILTER_LINE_ITEM_END_DATE",
+        "FILTER_INSERTION_ORDER_GOAL_TYPE",
+        "FILTER_LINE_ITEM_PACING_PERCENTAGE",
+        "FILTER_INSERTION_ORDER_GOAL_VALUE",
+        "FILTER_OMID_CAPABLE",
     ]
     value: str
 
@@ -658,6 +639,23 @@ class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
         "FILTER_OM_SDK_AVAILABLE",
         "FILTER_DATA_SOURCE",
         "FILTER_CM360_PLACEMENT_ID",
+        "FILTER_TRUEVIEW_CLICK_TYPE_NAME",
+        "FILTER_TRUEVIEW_AD_TYPE_NAME",
+        "FILTER_VIDEO_CONTENT_DURATION",
+        "FILTER_MATCHED_GENRE_TARGET",
+        "FILTER_VIDEO_CONTENT_LIVE_STREAM",
+        "FILTER_BUDGET_SEGMENT_TYPE",
+        "FILTER_BUDGET_SEGMENT_BUDGET",
+        "FILTER_BUDGET_SEGMENT_START_DATE",
+        "FILTER_BUDGET_SEGMENT_END_DATE",
+        "FILTER_BUDGET_SEGMENT_PACING_PERCENTAGE",
+        "FILTER_LINE_ITEM_BUDGET",
+        "FILTER_LINE_ITEM_START_DATE",
+        "FILTER_LINE_ITEM_END_DATE",
+        "FILTER_INSERTION_ORDER_GOAL_TYPE",
+        "FILTER_LINE_ITEM_PACING_PERCENTAGE",
+        "FILTER_INSERTION_ORDER_GOAL_VALUE",
+        "FILTER_OMID_CAPABLE",
     ]
     match: typing_extensions.Literal[
         "UNKNOWN", "EXACT", "PARTIAL", "BEGINS_WITH", "WILDCARD_EXPRESSION"
@@ -714,7 +712,7 @@ class QueryMetadata(typing_extensions.TypedDict, total=False):
 class QuerySchedule(typing_extensions.TypedDict, total=False):
     endTimeMs: str
     frequency: typing_extensions.Literal[
-        "ONE_TIME", "DAILY", "WEEKLY", "SEMI_MONTHLY", "MONTHLY", "QUARTERLY"
+        "ONE_TIME", "DAILY", "WEEKLY", "SEMI_MONTHLY", "MONTHLY", "QUARTERLY", "YEARLY"
     ]
     nextRunMinuteOfDay: int
     nextRunTimezoneCode: str
@@ -769,15 +767,6 @@ class ReportStatus(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["RUNNING", "DONE", "FAILED"]
 
 @typing.type_check_only
-class RowStatus(typing_extensions.TypedDict, total=False):
-    changed: bool
-    entityId: str
-    entityName: str
-    errors: typing.List[str]
-    persisted: bool
-    rowNumber: int
-
-@typing.type_check_only
 class Rule(typing_extensions.TypedDict, total=False):
     disjunctiveMatchStatements: typing.List[DisjunctiveMatchStatement]
     name: str
@@ -809,18 +798,3 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
     reportDataEndTimeMs: str
     reportDataStartTimeMs: str
     timezoneCode: str
-
-@typing.type_check_only
-class UploadLineItemsRequest(typing_extensions.TypedDict, total=False):
-    dryRun: bool
-    format: typing_extensions.Literal["CSV"]
-    lineItems: str
-
-@typing.type_check_only
-class UploadLineItemsResponse(typing_extensions.TypedDict, total=False):
-    uploadStatus: UploadStatus
-
-@typing.type_check_only
-class UploadStatus(typing_extensions.TypedDict, total=False):
-    errors: typing.List[str]
-    rowStatus: typing.List[RowStatus]

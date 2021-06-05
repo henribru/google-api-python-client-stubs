@@ -152,6 +152,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     maxDiskSize: str
     name: str
     onPremisesConfiguration: OnPremisesConfiguration
+    outOfDiskReport: SqlOutOfDiskReport
     project: str
     region: str
     replicaConfiguration: ReplicaConfiguration
@@ -276,6 +277,7 @@ class ImportContext(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InsightsConfig(typing_extensions.TypedDict, total=False):
     queryInsightsEnabled: bool
+    queryPlansPerMinute: int
     queryStringLength: int
     recordApplicationTags: bool
     recordClientAddress: bool
@@ -571,6 +573,13 @@ class SqlInstancesVerifyExternalSyncSettingsResponse(
     errors: typing.List[SqlExternalSyncSettingError]
     kind: str
     warnings: typing.List[SqlExternalSyncSettingError]
+
+@typing.type_check_only
+class SqlOutOfDiskReport(typing_extensions.TypedDict, total=False):
+    sqlMinRecommendedIncreaseSizeGb: int
+    sqlOutOfDiskState: typing_extensions.Literal[
+        "SQL_OUT_OF_DISK_STATE_UNSPECIFIED", "NORMAL", "SOFT_SHUTDOWN"
+    ]
 
 @typing.type_check_only
 class SqlScheduledMaintenance(typing_extensions.TypedDict, total=False):

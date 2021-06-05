@@ -47,9 +47,13 @@ class ArimaModelInfo(typing_extensions.TypedDict, total=False):
     arimaCoefficients: ArimaCoefficients
     arimaFittingMetrics: ArimaFittingMetrics
     hasDrift: bool
+    hasHolidayEffect: bool
+    hasSpikesAndDips: bool
+    hasStepChanges: bool
     nonSeasonalOrder: ArimaOrder
     seasonalPeriods: typing.List[str]
     timeSeriesId: str
+    timeSeriesIds: typing.List[str]
 
 @typing.type_check_only
 class ArimaOrder(typing_extensions.TypedDict, total=False):
@@ -66,9 +70,13 @@ class ArimaResult(typing_extensions.TypedDict, total=False):
 class ArimaSingleModelForecastingMetrics(typing_extensions.TypedDict, total=False):
     arimaFittingMetrics: ArimaFittingMetrics
     hasDrift: bool
+    hasHolidayEffect: bool
+    hasSpikesAndDips: bool
+    hasStepChanges: bool
     nonSeasonalOrder: ArimaOrder
     seasonalPeriods: typing.List[str]
     timeSeriesId: str
+    timeSeriesIds: typing.List[str]
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -248,10 +256,6 @@ class DestinationTableProperties(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
-class DimensionalityReductionMetrics(typing_extensions.TypedDict, total=False):
-    totalExplainedVarianceRatio: float
-
-@typing.type_check_only
 class EncryptionConfiguration(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
 
@@ -272,7 +276,6 @@ class EvaluationMetrics(typing_extensions.TypedDict, total=False):
     arimaForecastingMetrics: ArimaForecastingMetrics
     binaryClassificationMetrics: BinaryClassificationMetrics
     clusteringMetrics: ClusteringMetrics
-    dimensionalityReductionMetrics: DimensionalityReductionMetrics
     multiClassClassificationMetrics: MultiClassClassificationMetrics
     rankingMetrics: RankingMetrics
     regressionMetrics: RegressionMetrics
@@ -401,7 +404,6 @@ class IterationResult(typing_extensions.TypedDict, total=False):
     evalLoss: float
     index: int
     learnRate: float
-    principalComponentInfos: typing.List[PrincipalComponentInfo]
     trainingLoss: float
 
 @typing.type_check_only
@@ -553,13 +555,6 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: typing.List[Binding]
     etag: str
     version: int
-
-@typing.type_check_only
-class PrincipalComponentInfo(typing_extensions.TypedDict, total=False):
-    cumulativeExplainedVarianceRatio: float
-    explainedVariance: float
-    explainedVarianceRatio: float
-    principalComponentId: str
 
 @typing.type_check_only
 class ProjectList(typing_extensions.TypedDict, total=False):
@@ -822,9 +817,11 @@ class TimePartitioning(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TrainingOptions(typing_extensions.TypedDict, total=False):
+    adjustStepChanges: bool
     autoArima: bool
     autoArimaMaxOrder: str
     batchSize: str
+    cleanSpikesAndDips: bool
     dataFrequency: typing_extensions.Literal[
         "DATA_FREQUENCY_UNSPECIFIED",
         "AUTO_FREQUENCY",
@@ -846,6 +843,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
         "NO_SPLIT",
         "AUTO_SPLIT",
     ]
+    decomposeTimeSeries: bool
     distanceType: typing_extensions.Literal[
         "DISTANCE_TYPE_UNSPECIFIED", "EUCLIDEAN", "COSINE"
     ]
@@ -963,6 +961,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     subsample: float
     timeSeriesDataColumn: str
     timeSeriesIdColumn: str
+    timeSeriesIdColumns: typing.List[str]
     timeSeriesTimestampColumn: str
     userColumn: str
     walsAlpha: float
@@ -989,5 +988,6 @@ class UserDefinedFunctionResource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ViewDefinition(typing_extensions.TypedDict, total=False):
     query: str
+    useExplicitColumnNames: bool
     useLegacySql: bool
     userDefinedFunctionResources: typing.List[UserDefinedFunctionResource]

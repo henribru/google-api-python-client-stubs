@@ -213,6 +213,12 @@ class FirewallRule(typing_extensions.TypedDict, total=False):
     sourceRange: str
 
 @typing.type_check_only
+class GoogleAppengineV1betaLocationMetadata(typing_extensions.TypedDict, total=False):
+    flexibleEnvironmentAvailable: bool
+    searchApiAvailable: bool
+    standardEnvironmentAvailable: bool
+
+@typing.type_check_only
 class HealthCheck(typing_extensions.TypedDict, total=False):
     checkInterval: str
     disableHealthCheck: bool

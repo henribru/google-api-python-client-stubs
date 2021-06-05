@@ -6,6 +6,7 @@ import typing_extensions
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorCount: str
     acceleratorType: str
+    gpuPartitionSize: str
 
 @typing.type_check_only
 class AddonsConfig(typing_extensions.TypedDict, total=False):
@@ -106,6 +107,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     enableTpu: bool
     endpoint: str
     expireTime: str
+    id: str
     initialClusterVersion: str
     initialNodeCount: int
     instanceGroupUrls: typing.List[str]
@@ -127,6 +129,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     networkPolicy: NetworkPolicy
     nodeConfig: NodeConfig
     nodeIpv4CidrSize: int
+    nodePoolDefaults: NodePoolDefaults
     nodePools: typing.List[NodePool]
     notificationConfig: NotificationConfig
     podSecurityPolicyConfig: PodSecurityPolicyConfig
@@ -152,6 +155,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     tpuConfig: TpuConfig
     tpuIpv4CidrBlock: str
     verticalPodAutoscaling: VerticalPodAutoscaling
+    workloadCertificates: WorkloadCertificates
     workloadIdentityConfig: WorkloadIdentityConfig
     zone: str
 
@@ -172,6 +176,7 @@ class ClusterTelemetry(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredAddonsConfig: AddonsConfig
+    desiredAutopilot: Autopilot
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
     desiredClusterTelemetry: ClusterTelemetry
@@ -180,6 +185,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
     desiredDefaultSnatStatus: DefaultSnatStatus
+    desiredDnsConfig: DNSConfig
     desiredImageType: str
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
     desiredL4ilbSubsettingConfig: ILBSubsettingConfig
@@ -206,6 +212,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredShieldedNodes: ShieldedNodes
     desiredTpuConfig: TpuConfig
     desiredVerticalPodAutoscaling: VerticalPodAutoscaling
+    desiredWorkloadCertificates: WorkloadCertificates
     desiredWorkloadIdentityConfig: WorkloadIdentityConfig
 
 @typing.type_check_only
@@ -243,6 +250,16 @@ class CreateNodePoolRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class DNSConfig(typing_extensions.TypedDict, total=False):
+    clusterDns: typing_extensions.Literal[
+        "PROVIDER_UNSPECIFIED", "PLATFORM_DEFAULT", "CLOUD_DNS"
+    ]
+    clusterDnsDomain: str
+    clusterDnsScope: typing_extensions.Literal[
+        "DNS_SCOPE_UNSPECIFIED", "CLUSTER_SCOPE", "VPC_SCOPE"
+    ]
+
+@typing.type_check_only
 class DailyMaintenanceWindow(typing_extensions.TypedDict, total=False):
     duration: str
     startTime: str
@@ -251,6 +268,12 @@ class DailyMaintenanceWindow(typing_extensions.TypedDict, total=False):
 class DatabaseEncryption(typing_extensions.TypedDict, total=False):
     keyName: str
     state: typing_extensions.Literal["UNKNOWN", "ENCRYPTED", "DECRYPTED"]
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
 
 @typing.type_check_only
 class DefaultSnatStatus(typing_extensions.TypedDict, total=False):
@@ -434,6 +457,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
     defaultSnatStatus: DefaultSnatStatus
+    dnsConfig: DNSConfig
     enableIntraNodeVisibility: bool
     enableL4ilbSubsetting: bool
     network: str
@@ -483,6 +507,9 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     tags: typing.List[str]
     taints: typing.List[NodeTaint]
     workloadMetadataConfig: WorkloadMetadataConfig
+
+@typing.type_check_only
+class NodeConfigDefaults(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
@@ -539,6 +566,10 @@ class NodePoolAutoscaling(typing_extensions.TypedDict, total=False):
     enabled: bool
     maxNodeCount: int
     minNodeCount: int
+
+@typing.type_check_only
+class NodePoolDefaults(typing_extensions.TypedDict, total=False):
+    nodeConfigDefaults: NodeConfigDefaults
 
 @typing.type_check_only
 class NodeTaint(typing_extensions.TypedDict, total=False):
@@ -642,6 +673,7 @@ class ServerConfig(typing_extensions.TypedDict, total=False):
     validImageTypes: typing.List[str]
     validMasterVersions: typing.List[str]
     validNodeVersions: typing.List[str]
+    windowsVersionMaps: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class SetAddonsConfigRequest(typing_extensions.TypedDict, total=False):
@@ -797,6 +829,7 @@ class StatusCondition(typing_extensions.TypedDict, total=False):
         "GCE_QUOTA_EXCEEDED",
         "SET_BY_OPERATOR",
         "CLOUD_KMS_KEY_ERROR",
+        "CA_EXPIRING",
     ]
     message: str
 
@@ -893,6 +926,20 @@ class UsableSubnetworkSecondaryRange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VerticalPodAutoscaling(typing_extensions.TypedDict, total=False):
     enabled: bool
+
+@typing.type_check_only
+class WindowsVersion(typing_extensions.TypedDict, total=False):
+    imageType: str
+    osVersion: str
+    supportEndDate: Date
+
+@typing.type_check_only
+class WindowsVersions(typing_extensions.TypedDict, total=False):
+    windowsVersions: typing.List[WindowsVersion]
+
+@typing.type_check_only
+class WorkloadCertificates(typing_extensions.TypedDict, total=False):
+    enableCertificates: bool
 
 @typing.type_check_only
 class WorkloadIdentityConfig(typing_extensions.TypedDict, total=False):

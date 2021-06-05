@@ -86,6 +86,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     binaryAuthorization: BinaryAuthorization
     clusterIpv4Cidr: str
     conditions: typing.List[StatusCondition]
+    confidentialNodes: ConfidentialNodes
     createTime: str
     currentMasterVersion: str
     currentNodeCount: int
@@ -97,6 +98,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     enableTpu: bool
     endpoint: str
     expireTime: str
+    id: str
     initialClusterVersion: str
     initialNodeCount: int
     instanceGroupUrls: typing.List[str]
@@ -151,9 +153,13 @@ class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredAddonsConfig: AddonsConfig
+    desiredAutopilot: Autopilot
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
     desiredDatabaseEncryption: DatabaseEncryption
+    desiredDatapathProvider: typing_extensions.Literal[
+        "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
+    ]
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredImageType: str
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
@@ -185,6 +191,10 @@ class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
     name: str
     projectId: str
     zone: str
+
+@typing.type_check_only
+class ConfidentialNodes(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class ConfigConnectorConfig(typing_extensions.TypedDict, total=False):
@@ -365,6 +375,9 @@ class Metric(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
+    datapathProvider: typing_extensions.Literal[
+        "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
+    ]
     defaultSnatStatus: DefaultSnatStatus
     enableIntraNodeVisibility: bool
     network: str
@@ -702,6 +715,7 @@ class StatusCondition(typing_extensions.TypedDict, total=False):
         "GCE_QUOTA_EXCEEDED",
         "SET_BY_OPERATOR",
         "CLOUD_KMS_KEY_ERROR",
+        "CA_EXPIRING",
     ]
     message: str
 
@@ -740,6 +754,15 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     upgradeSettings: UpgradeSettings
     workloadMetadataConfig: WorkloadMetadataConfig
     zone: str
+
+@typing.type_check_only
+class UpgradeAvailableEvent(typing_extensions.TypedDict, total=False):
+    releaseChannel: ReleaseChannel
+    resource: str
+    resourceType: typing_extensions.Literal[
+        "UPGRADE_RESOURCE_TYPE_UNSPECIFIED", "MASTER", "NODE_POOL"
+    ]
+    version: str
 
 @typing.type_check_only
 class UpgradeEvent(typing_extensions.TypedDict, total=False):

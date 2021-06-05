@@ -32,6 +32,16 @@ class GoogleAnalyticsAdminV1alphaAndroidAppDataStream(
     updateTime: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaArchiveCustomDimensionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaArchiveCustomMetricRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAuditUserLink(
     typing_extensions.TypedDict, total=False
 ):
@@ -108,9 +118,14 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
 ):
     account: GoogleAnalyticsAdminV1alphaAccount
     androidAppDataStream: GoogleAnalyticsAdminV1alphaAndroidAppDataStream
+    conversionEvent: GoogleAnalyticsAdminV1alphaConversionEvent
+    customDimension: GoogleAnalyticsAdminV1alphaCustomDimension
+    customMetric: GoogleAnalyticsAdminV1alphaCustomMetric
     firebaseLink: GoogleAnalyticsAdminV1alphaFirebaseLink
     googleAdsLink: GoogleAnalyticsAdminV1alphaGoogleAdsLink
+    googleSignalsSettings: GoogleAnalyticsAdminV1alphaGoogleSignalsSettings
     iosAppDataStream: GoogleAnalyticsAdminV1alphaIosAppDataStream
+    measurementProtocolSecret: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret
     property: GoogleAnalyticsAdminV1alphaProperty
     webDataStream: GoogleAnalyticsAdminV1alphaWebDataStream
 
@@ -128,12 +143,53 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
     userActorEmail: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaConversionEvent(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    eventName: str
+    isDeletable: bool
+    name: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCreateUserLinkRequest(
     typing_extensions.TypedDict, total=False
 ):
     notifyNewUser: bool
     parent: str
     userLink: GoogleAnalyticsAdminV1alphaUserLink
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCustomDimension(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    disallowAdsPersonalization: bool
+    displayName: str
+    name: str
+    parameterName: str
+    scope: typing_extensions.Literal["DIMENSION_SCOPE_UNSPECIFIED", "EVENT", "USER"]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCustomMetric(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    measurementUnit: typing_extensions.Literal[
+        "MEASUREMENT_UNIT_UNSPECIFIED",
+        "STANDARD",
+        "CURRENCY",
+        "FEET",
+        "METERS",
+        "KILOMETERS",
+        "MILES",
+        "MILLISECONDS",
+        "SECONDS",
+        "MINUTES",
+        "HOURS",
+    ]
+    name: str
+    parameterName: str
+    scope: typing_extensions.Literal["METRIC_SCOPE_UNSPECIFIED", "EVENT"]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDataSharingSettings(
@@ -202,6 +258,22 @@ class GoogleAnalyticsAdminV1alphaGoogleAdsLink(
     updateTime: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaGoogleSignalsSettings(
+    typing_extensions.TypedDict, total=False
+):
+    consent: typing_extensions.Literal[
+        "GOOGLE_SIGNALS_CONSENT_UNSPECIFIED",
+        "GOOGLE_SIGNALS_CONSENT_CONSENTED",
+        "GOOGLE_SIGNALS_CONSENT_NOT_CONSENTED",
+    ]
+    name: str
+    state: typing_extensions.Literal[
+        "GOOGLE_SIGNALS_STATE_UNSPECIFIED",
+        "GOOGLE_SIGNALS_ENABLED",
+        "GOOGLE_SIGNALS_DISABLED",
+    ]
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaIosAppDataStream(
     typing_extensions.TypedDict, total=False
 ):
@@ -234,6 +306,27 @@ class GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListConversionEventsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    conversionEvents: typing.List[GoogleAnalyticsAdminV1alphaConversionEvent]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListCustomDimensionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    customDimensions: typing.List[GoogleAnalyticsAdminV1alphaCustomDimension]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListCustomMetricsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    customMetrics: typing.List[GoogleAnalyticsAdminV1alphaCustomMetric]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -252,6 +345,15 @@ class GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse(
     typing_extensions.TypedDict, total=False
 ):
     iosAppDataStreams: typing.List[GoogleAnalyticsAdminV1alphaIosAppDataStream]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    measurementProtocolSecrets: typing.List[
+        GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret
+    ]
     nextPageToken: str
 
 @typing.type_check_only
@@ -276,11 +378,20 @@ class GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse(
     webDataStreams: typing.List[GoogleAnalyticsAdminV1alphaWebDataStream]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    name: str
+    secretValue: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaProperty(typing_extensions.TypedDict, total=False):
     createTime: str
     currencyCode: str
-    deleted: bool
+    deleteTime: str
     displayName: str
+    expireTime: str
     industryCategory: typing_extensions.Literal[
         "INDUSTRY_CATEGORY_UNSPECIFIED",
         "AUTOMOTIVE",

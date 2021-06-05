@@ -234,15 +234,6 @@ class GamesResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> SnapshotListResponseHttpRequest: ...
     @typing.type_check_only
-    class SnapshotsExtendedResource(googleapiclient.discovery.Resource):
-        def resolveSnapshotHead(
-            self,
-            *,
-            snapshotName: str,
-            body: ResolveSnapshotHeadRequest = ...,
-            **kwargs: typing.Any
-        ) -> ResolveSnapshotHeadResponseHttpRequest: ...
-    @typing.type_check_only
     class StatsResource(googleapiclient.discovery.Resource):
         def get(self, **kwargs: typing.Any) -> StatsResponseHttpRequest: ...
     def achievementDefinitions(self) -> AchievementDefinitionsResource: ...
@@ -255,7 +246,6 @@ class GamesResource(googleapiclient.discovery.Resource):
     def revisions(self) -> RevisionsResource: ...
     def scores(self) -> ScoresResource: ...
     def snapshots(self) -> SnapshotsResource: ...
-    def snapshotsExtended(self) -> SnapshotsExtendedResource: ...
     def stats(self) -> StatsResource: ...
 
 @typing.type_check_only
@@ -487,16 +477,6 @@ class PlayerScoreResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> PlayerScoreResponse: ...
-
-@typing.type_check_only
-class ResolveSnapshotHeadResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ResolveSnapshotHeadResponse: ...
 
 @typing.type_check_only
 class RevisionCheckResponseHttpRequest(googleapiclient.http.HttpRequest):
