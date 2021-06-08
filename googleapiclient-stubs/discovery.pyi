@@ -215,6 +215,7 @@ import googleapiclient._apis.jobs.v2.resources
 import googleapiclient._apis.jobs.v3.resources
 import googleapiclient._apis.jobs.v3p1beta1.resources
 import googleapiclient._apis.jobs.v4.resources
+import googleapiclient._apis.keep.v1.resources
 import googleapiclient._apis.kgsearch.v1.resources
 import googleapiclient._apis.language.v1.resources
 import googleapiclient._apis.language.v1beta1.resources
@@ -262,6 +263,7 @@ import googleapiclient._apis.policysimulator.v1beta1.resources
 import googleapiclient._apis.policytroubleshooter.v1.resources
 import googleapiclient._apis.policytroubleshooter.v1beta.resources
 import googleapiclient._apis.poly.v1.resources
+import googleapiclient._apis.privateca.v1.resources
 import googleapiclient._apis.privateca.v1beta1.resources
 import googleapiclient._apis.prod_tt_sasportal.v1alpha1.resources
 import googleapiclient._apis.pubsub.v1.resources
@@ -4743,6 +4745,26 @@ def build(
 ) -> googleapiclient._apis.adexchangebuyer2.v2beta1.resources.AdExchangeBuyerIIResource: ...
 @overload
 def build(
+    serviceName: Literal["keep"],
+    version: Literal["v1"],
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
+    discoveryServiceUrl: Optional[str] = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+    static_discovery: Optional[bool] = ...,
+) -> googleapiclient._apis.keep.v1.resources.KeepResource: ...
+@overload
+def build(
     serviceName: Literal["cloudtrace"],
     version: Literal["v1"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
@@ -7501,6 +7523,26 @@ def build(
     num_retries: int = ...,
     static_discovery: Optional[bool] = ...,
 ) -> googleapiclient._apis.youtubeAnalytics.v1.resources.YouTubeAnalyticsResource: ...
+@overload
+def build(
+    serviceName: Literal["privateca"],
+    version: Literal["v1"],
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
+    discoveryServiceUrl: Optional[str] = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+    static_discovery: Optional[bool] = ...,
+) -> googleapiclient._apis.privateca.v1.resources.CertificateAuthorityServiceResource: ...
 @overload
 def build(
     serviceName: str,

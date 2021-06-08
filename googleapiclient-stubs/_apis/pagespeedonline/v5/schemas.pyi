@@ -4,8 +4,10 @@ import typing_extensions
 
 @typing.type_check_only
 class AuditRefs(typing_extensions.TypedDict, total=False):
+    acronym: str
     group: str
     id: str
+    relevantAudits: typing.List[str]
     weight: float
 
 @typing.type_check_only
@@ -60,6 +62,7 @@ class LighthouseAuditResultV5(typing_extensions.TypedDict, total=False):
     errorMessage: str
     explanation: str
     id: str
+    numericUnit: str
     numericValue: float
     score: typing.Any
     scoreDisplayMode: str
@@ -120,10 +123,20 @@ class PagespeedVersion(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RendererFormattedStrings(typing_extensions.TypedDict, total=False):
     auditGroupExpandTooltip: str
+    calculatorLink: str
     crcInitialNavigation: str
     crcLongestDurationLabel: str
+    dropdownCopyJSON: str
+    dropdownDarkTheme: str
+    dropdownPrintExpanded: str
+    dropdownPrintSummary: str
+    dropdownSaveGist: str
+    dropdownSaveHTML: str
+    dropdownSaveJSON: str
+    dropdownViewer: str
     errorLabel: str
     errorMissingAuditInfo: str
+    footerIssue: str
     labDataTitle: str
     lsPerformanceCategoryDescription: str
     manualAuditsGroupTitle: str
@@ -131,9 +144,31 @@ class RendererFormattedStrings(typing_extensions.TypedDict, total=False):
     opportunityResourceColumnLabel: str
     opportunitySavingsColumnLabel: str
     passedAuditsGroupTitle: str
+    runtimeDesktopEmulation: str
+    runtimeMobileEmulation: str
+    runtimeNoEmulation: str
+    runtimeSettingsAxeVersion: str
+    runtimeSettingsBenchmark: str
+    runtimeSettingsCPUThrottling: str
+    runtimeSettingsChannel: str
+    runtimeSettingsDevice: str
+    runtimeSettingsFetchTime: str
+    runtimeSettingsNetworkThrottling: str
+    runtimeSettingsTitle: str
+    runtimeSettingsUA: str
+    runtimeSettingsUANetwork: str
+    runtimeSettingsUrl: str
+    runtimeUnknown: str
     scorescaleLabel: str
+    showRelevantAudits: str
+    snippetCollapseButtonLabel: str
+    snippetExpandButtonLabel: str
+    thirdPartyResourcesLabel: str
+    throttlingProvided: str
     toplevelWarningsMessage: str
     varianceDisclaimer: str
+    viewTreemapLabel: str
+    warningAuditsGroupTitle: str
     warningHeader: str
 
 @typing.type_check_only

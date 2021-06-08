@@ -888,9 +888,26 @@ class MerchantRejectionReason(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Metrics(typing_extensions.TypedDict, total=False):
+    aos: float
+    aovMicros: float
     clicks: str
     ctr: float
+    daysToShip: float
     impressions: str
+    itemDaysToShip: float
+    itemFillRate: float
+    orderedItemSalesMicros: str
+    orderedItems: str
+    orders: str
+    rejectedItems: str
+    returnRate: float
+    returnedItems: str
+    returnsMicros: str
+    shippedItemSalesMicros: str
+    shippedItems: str
+    shippedOrders: str
+    unshippedItems: float
+    unshippedOrders: float
 
 @typing.type_check_only
 class MinimumOrderValueTable(typing_extensions.TypedDict, total=False):
@@ -2368,8 +2385,25 @@ class SearchResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Segments(typing_extensions.TypedDict, total=False):
+    brand: str
+    categoryL1: str
+    categoryL2: str
+    categoryL3: str
+    categoryL4: str
+    categoryL5: str
+    currencyCode: str
+    customLabel0: str
+    customLabel1: str
+    customLabel2: str
+    customLabel3: str
+    customLabel4: str
     date: Date
     offerId: str
+    productTypeL1: str
+    productTypeL2: str
+    productTypeL3: str
+    productTypeL4: str
+    productTypeL5: str
     program: typing_extensions.Literal[
         "PROGRAM_UNSPECIFIED",
         "SHOPPING_ADS",
@@ -2377,6 +2411,8 @@ class Segments(typing_extensions.TypedDict, total=False):
         "FREE_LOCAL_PRODUCT_LISTING",
         "BUY_ON_GOOGLE_LISTING",
     ]
+    title: str
+    week: Date
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):

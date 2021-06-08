@@ -333,6 +333,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: ResourceGroupReference = ...,
             **kwargs: typing.Any
         ) -> BackendServiceGroupHealthHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -370,6 +378,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def setSecurityPolicy(
             self,
             *,
@@ -2121,6 +2137,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             returnPartialSuccess: bool = ...,
             **kwargs: typing.Any
         ) -> InstanceListReferrersHttpRequest: ...
+        def performMaintenance(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instance: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def removeResourcePolicies(
             self,
             *,
@@ -2950,6 +2975,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             firewallPolicy: str,
             body: FirewallPolicyRule = ...,
+            maxPriority: int = ...,
+            minPriority: int = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -3899,6 +3926,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: ResourceGroupReference = ...,
             **kwargs: typing.Any
         ) -> BackendServiceGroupHealthHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -3930,6 +3966,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
@@ -4697,6 +4742,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def recommendLocations(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: RegionInstancesRecommendLocationsResource = ...,
+            **kwargs: typing.Any
+        ) -> RegionInstancesRecommendLocationsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionInstantSnapshotsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -4844,6 +4897,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             firewallPolicy: str,
             body: FirewallPolicyRule = ...,
+            maxPriority: int = ...,
+            minPriority: int = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -8743,6 +8798,18 @@ class RegionInstanceGroupsListInstancesHttpRequest(googleapiclient.http.HttpRequ
         ] = ...,
         num_retries: int = ...,
     ) -> RegionInstanceGroupsListInstances: ...
+
+@typing.type_check_only
+class RegionInstancesRecommendLocationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> RegionInstancesRecommendLocationsResponse: ...
 
 @typing.type_check_only
 class RegionListHttpRequest(googleapiclient.http.HttpRequest):

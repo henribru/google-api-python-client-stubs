@@ -364,7 +364,6 @@ class GoogleCloudApigeeV1Deployment(typing_extensions.TypedDict, total=False):
     routeConflicts: typing.List[
         GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict
     ]
-    serviceAccount: str
     state: typing_extensions.Literal[
         "RUNTIME_STATE_UNSPECIFIED", "READY", "PROGRESSING", "ERROR"
     ]

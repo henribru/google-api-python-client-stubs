@@ -4744,6 +4744,7 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
         "PRIVATE",
         "PRIVATE_RFC_1918",
         "PRIVATE_SERVICE_CONNECT",
+        "REGIONAL_MANAGED_PROXY",
     ]
     region: str
     role: typing_extensions.Literal["ACTIVE", "BACKUP"]

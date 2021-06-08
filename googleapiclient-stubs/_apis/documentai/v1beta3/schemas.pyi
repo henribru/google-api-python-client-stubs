@@ -1078,7 +1078,24 @@ class GoogleCloudDocumentaiV1beta3CommonOperationMetadata(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DisableProcessorMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DisableProcessorRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DisableProcessorResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -1412,7 +1429,18 @@ class GoogleCloudDocumentaiV1beta3DocumentTextChange(
     textAnchor: GoogleCloudDocumentaiV1beta3DocumentTextAnchor
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3EnableProcessorMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3EnableProcessorRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3EnableProcessorResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -1529,6 +1557,7 @@ class GoogleCloudDocumentaiV1beta3ReviewDocumentRequest(
     typing_extensions.TypedDict, total=False
 ):
     document: GoogleCloudDocumentaiV1beta3Document
+    enableSchemaValidation: bool
     inlineDocument: GoogleCloudDocumentaiV1beta3Document
 
 @typing.type_check_only

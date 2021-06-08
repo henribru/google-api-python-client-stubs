@@ -23,7 +23,9 @@ class ContainerThreatDetectionSettings(typing_extensions.TypedDict, total=False)
 class Details(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STANDARD", "TRIAL", "ALPHA"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "STANDARD", "TRIAL", "ALPHA", "DEMO"
+    ]
 
 @typing.type_check_only
 class EventThreatDetectionSettings(typing_extensions.TypedDict, total=False):

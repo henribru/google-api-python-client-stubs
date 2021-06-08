@@ -604,7 +604,6 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         name: str,
                         override: bool = ...,
                         sequencedRollout: bool = ...,
-                        serviceAccount: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudApigeeV1DeploymentHttpRequest: ...
                     def getDeployments(
@@ -823,12 +822,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class RevisionsResource(googleapiclient.discovery.Resource):
                     def deploy(
-                        self,
-                        *,
-                        name: str,
-                        override: bool = ...,
-                        serviceAccount: str = ...,
-                        **kwargs: typing.Any
+                        self, *, name: str, override: bool = ..., **kwargs: typing.Any
                     ) -> GoogleCloudApigeeV1DeploymentHttpRequest: ...
                     def getDeployments(
                         self, *, name: str, **kwargs: typing.Any

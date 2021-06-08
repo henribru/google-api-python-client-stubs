@@ -1107,6 +1107,34 @@ class GoogleCloudDocumentaiV1beta3CommonOperationMetadata(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DisableProcessorMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DisableProcessorResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3EnableProcessorMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3EnableProcessorResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3HumanReviewStatus(
     typing_extensions.TypedDict, total=False
 ):

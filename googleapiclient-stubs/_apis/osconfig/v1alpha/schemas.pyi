@@ -290,6 +290,7 @@ class OSPolicyResourceComplianceExecResourceOutput(
 
 @typing.type_check_only
 class OSPolicyResourceConfigStep(typing_extensions.TypedDict, total=False):
+    errorMessage: str
     outcome: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "SUCCEEDED", "FAILED"]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",

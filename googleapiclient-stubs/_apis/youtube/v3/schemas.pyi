@@ -1838,6 +1838,7 @@ class SuperStickerMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestItem(typing_extensions.TypedDict, total=False):
+    featuredPart: bool
     gaia: str
     id: str
     snippet: TestItemTestItemSnippet

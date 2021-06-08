@@ -337,6 +337,7 @@ class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     compression: str
     connectionId: str
     csvOptions: CsvOptions
+    decimalTargetTypes: typing.List[str]
     googleSheetsOptions: GoogleSheetsOptions
     hivePartitioningOptions: HivePartitioningOptions
     ignoreUnknownValues: bool
@@ -600,6 +601,7 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueryResponse(typing_extensions.TypedDict, total=False):
     cacheHit: bool
+    dmlStats: typing.Any
     errors: typing.List[ErrorProto]
     jobComplete: bool
     jobReference: JobReference

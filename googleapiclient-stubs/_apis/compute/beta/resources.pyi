@@ -333,6 +333,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: ResourceGroupReference = ...,
             **kwargs: typing.Any
         ) -> BackendServiceGroupHealthHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -370,6 +378,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def setSecurityPolicy(
             self,
             *,
@@ -3480,6 +3496,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: ResourceGroupReference = ...,
             **kwargs: typing.Any
         ) -> BackendServiceGroupHealthHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -3511,6 +3536,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,

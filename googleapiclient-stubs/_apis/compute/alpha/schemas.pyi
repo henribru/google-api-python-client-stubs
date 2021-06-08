@@ -788,7 +788,6 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "GENERAL_PURPOSE_N2",
         "GENERAL_PURPOSE_N2D",
         "MEMORY_OPTIMIZED",
-        "MEMORY_OPTIMIZED_REGIONAL_EXTENSION",
         "TYPE_UNSPECIFIED",
     ]
 
@@ -2911,6 +2910,9 @@ class LocalDisk(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LocationPolicy(typing_extensions.TypedDict, total=False):
     locations: typing.Dict[str, typing.Any]
+    targetShape: typing_extensions.Literal[
+        "ANY", "ANY_SINGLE_ZONE", "BALANCED", "TARGET_SHAPE_UNSPECIFIED"
+    ]
 
 @typing.type_check_only
 class LocationPolicyLocation(typing_extensions.TypedDict, total=False):
@@ -4020,7 +4022,9 @@ class PublicDelegatedPrefix(typing_extensions.TypedDict, total=False):
     region: str
     selfLink: str
     selfLinkWithId: str
-    status: typing_extensions.Literal["ANNOUNCED", "DELETING", "INITIALIZING"]
+    status: typing_extensions.Literal[
+        "ANNOUNCED", "DELETING", "INITIALIZING", "READY_TO_ANNOUNCE"
+    ]
 
 @typing.type_check_only
 class PublicDelegatedPrefixAggregatedList(typing_extensions.TypedDict, total=False):
@@ -4434,6 +4438,31 @@ class RegionInstanceGroupsSetNamedPortsRequest(
     namedPorts: typing.List[NamedPort]
 
 @typing.type_check_only
+class RegionInstancesRecommendLocationsResource(
+    typing_extensions.TypedDict, total=False
+):
+    instanceSpecs: typing.Dict[str, typing.Any]
+    locationPolicy: LocationPolicy
+
+@typing.type_check_only
+class RegionInstancesRecommendLocationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    recommendedLocations: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class RegionInstancesRecommendLocationsResponseRecommendation(
+    typing_extensions.TypedDict, total=False
+):
+    instanceCount: int
+
+@typing.type_check_only
+class RegionInstancesRecommendLocationsResponseRecommendationsForInstanceSpecs(
+    typing_extensions.TypedDict, total=False
+):
+    locations: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class RegionInstantSnapshotsExportRequest(typing_extensions.TypedDict, total=False):
     exportParams: InstantSnapshotExportParams
 
@@ -4715,10 +4744,15 @@ class ResourcePolicyWeeklyCycleDayOfWeek(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class ResourceStatus(typing_extensions.TypedDict, total=False):
     scheduling: ResourceStatusScheduling
+    upcomingMaintenance: ResourceStatusUpcomingMaintenance
 
 @typing.type_check_only
 class ResourceStatusScheduling(typing_extensions.TypedDict, total=False):
     availabilityDomain: int
+
+@typing.type_check_only
+class ResourceStatusUpcomingMaintenance(typing_extensions.TypedDict, total=False):
+    canReschedule: bool
 
 @typing.type_check_only
 class RolloutPolicy(typing_extensions.TypedDict, total=False):
@@ -5599,6 +5633,7 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
         "PRIVATE",
         "PRIVATE_RFC_1918",
         "PRIVATE_SERVICE_CONNECT",
+        "REGIONAL_MANAGED_PROXY",
     ]
     region: str
     reservedInternalRange: str
