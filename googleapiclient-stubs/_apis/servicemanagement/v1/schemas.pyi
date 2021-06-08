@@ -441,6 +441,11 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class OperationInfo(typing_extensions.TypedDict, total=False):
+    metadataType: str
+    responseType: str
+
+@typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
     progressPercentage: int
     resourceNames: typing.List[str]

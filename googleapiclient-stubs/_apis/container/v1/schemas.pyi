@@ -37,6 +37,7 @@ class AutoprovisioningNodePoolDefaults(typing_extensions.TypedDict, total=False)
     bootDiskKmsKey: str
     diskSizeGb: int
     diskType: str
+    imageType: str
     management: NodeManagement
     minCpuPlatform: str
     oauthScopes: typing.List[str]

@@ -85,6 +85,7 @@ class GoogleCloudDialogflowCxV3ConversationTurn(
 class GoogleCloudDialogflowCxV3ConversationTurnUserInput(
     typing_extensions.TypedDict, total=False
 ):
+    enableSentimentAnalysis: bool
     injectedParameters: typing.Dict[str, typing.Any]
     input: GoogleCloudDialogflowCxV3QueryInput
     isWebhookEnabled: bool
@@ -1217,6 +1218,7 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurn(
 class GoogleCloudDialogflowCxV3beta1ConversationTurnUserInput(
     typing_extensions.TypedDict, total=False
 ):
+    enableSentimentAnalysis: bool
     injectedParameters: typing.Dict[str, typing.Any]
     input: GoogleCloudDialogflowCxV3beta1QueryInput
     isWebhookEnabled: bool

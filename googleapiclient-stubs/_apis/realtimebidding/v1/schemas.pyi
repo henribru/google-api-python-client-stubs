@@ -293,6 +293,7 @@ class NativeContent(typing_extensions.TypedDict, total=False):
     priceDisplayText: str
     starRating: float
     videoUrl: str
+    videoVastXml: str
 
 @typing.type_check_only
 class NumericTargetingDimension(typing_extensions.TypedDict, total=False):

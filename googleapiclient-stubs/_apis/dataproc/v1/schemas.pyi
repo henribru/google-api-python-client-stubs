@@ -258,6 +258,7 @@ class InstanceGroupConfig(typing_extensions.TypedDict, total=False):
 class InstanceReference(typing_extensions.TypedDict, total=False):
     instanceId: str
     instanceName: str
+    publicEciesKey: str
     publicKey: str
 
 @typing.type_check_only

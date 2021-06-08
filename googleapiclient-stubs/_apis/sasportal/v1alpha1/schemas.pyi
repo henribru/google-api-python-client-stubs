@@ -209,6 +209,7 @@ class SasPortalPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SasPortalSetPolicyRequest(typing_extensions.TypedDict, total=False):
+    disableNotification: bool
     policy: SasPortalPolicy
     resource: str
 

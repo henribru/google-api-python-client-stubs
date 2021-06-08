@@ -50,6 +50,13 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> BackupHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -60,6 +67,20 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListBackupsResponseHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
                 @typing.type_check_only
                 class MetadataImportsResource(googleapiclient.discovery.Resource):
                     def create(

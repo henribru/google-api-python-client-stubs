@@ -67,6 +67,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
         "SUSPICIOUS",
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
+        "ACCURACY_TIPS",
     ]
 
 @typing.type_check_only
@@ -138,6 +139,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateRespon
         "SUSPICIOUS",
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
+        "ACCURACY_TIPS",
     ]
 
 @typing.type_check_only
@@ -259,6 +261,7 @@ class GoogleSecuritySafebrowsingV4ThreatHit(typing_extensions.TypedDict, total=F
         "SUSPICIOUS",
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
+        "ACCURACY_TIPS",
     ]
     userInfo: GoogleSecuritySafebrowsingV4ThreatHitUserInfo
 
@@ -333,6 +336,7 @@ class GoogleSecuritySafebrowsingV4ThreatListDescriptor(
         "SUSPICIOUS",
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
+        "ACCURACY_TIPS",
     ]
 
 @typing.type_check_only
@@ -378,4 +382,5 @@ class GoogleSecuritySafebrowsingV4ThreatMatch(typing_extensions.TypedDict, total
         "SUSPICIOUS",
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
+        "ACCURACY_TIPS",
     ]
