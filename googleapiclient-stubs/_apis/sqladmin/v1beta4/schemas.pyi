@@ -133,6 +133,10 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "POSTGRES_12",
         "MYSQL_8_0",
         "POSTGRES_13",
+        "SQLSERVER_2019_STANDARD",
+        "SQLSERVER_2019_ENTERPRISE",
+        "SQLSERVER_2019_EXPRESS",
+        "SQLSERVER_2019_WEB",
     ]
     diskEncryptionConfiguration: DiskEncryptionConfiguration
     diskEncryptionStatus: DiskEncryptionStatus
@@ -558,6 +562,8 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "SQLSERVER_AGENT_NOT_RUNNING",
         "UNSUPPORTED_TABLE_DEFINITION",
         "UNSUPPORTED_DEFINER",
+        "SQLSERVER_SERVERNAME_MISMATCH",
+        "PRIMARY_ALREADY_SETUP",
     ]
 
 @typing.type_check_only

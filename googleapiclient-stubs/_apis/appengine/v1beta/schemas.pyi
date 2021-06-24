@@ -583,6 +583,9 @@ class Volume(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VpcAccessConnector(typing_extensions.TypedDict, total=False):
+    egressSetting: typing_extensions.Literal[
+        "EGRESS_SETTING_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_IP_RANGES"
+    ]
     name: str
 
 @typing.type_check_only

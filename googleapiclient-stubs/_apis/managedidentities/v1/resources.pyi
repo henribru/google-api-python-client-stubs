@@ -20,6 +20,21 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
             class GlobalResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class DomainsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class SqlIntegrationsResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> SqlIntegrationHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListSqlIntegrationsResponseHttpRequest: ...
                     def attachTrust(
                         self,
                         *,
@@ -55,6 +70,9 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any
                     ) -> PolicyHttpRequest: ...
+                    def getLdapssettings(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> LDAPSSettingsHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -101,6 +119,14 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def updateLdapssettings(
+                        self,
+                        *,
+                        name: str,
+                        body: LDAPSSettings = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def validateTrust(
                         self,
                         *,
@@ -108,6 +134,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: ValidateTrustRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def sqlIntegrations(self) -> SqlIntegrationsResource: ...
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def cancel(
@@ -171,6 +198,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class LDAPSSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> LDAPSSettings: ...
+
+@typing.type_check_only
 class ListDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -199,6 +236,16 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListSqlIntegrationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListSqlIntegrationsResponse: ...
 
 @typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
@@ -239,6 +286,16 @@ class ResetAdminPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ResetAdminPasswordResponse: ...
+
+@typing.type_check_only
+class SqlIntegrationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> SqlIntegration: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

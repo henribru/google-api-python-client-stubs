@@ -206,6 +206,7 @@ class Date(typing_extensions.TypedDict, total=False):
 class Device(typing_extensions.TypedDict, total=False):
     apiLevel: int
     applicationReports: typing.List[ApplicationReport]
+    appliedPasswordPolicies: typing.List[PasswordRequirements]
     appliedPolicyName: str
     appliedPolicyVersion: str
     appliedState: typing_extensions.Literal[
@@ -546,6 +547,9 @@ class PasswordRequirements(typing_extensions.TypedDict, total=False):
         "ALPHABETIC",
         "ALPHANUMERIC",
         "COMPLEX",
+        "COMPLEXITY_LOW",
+        "COMPLEXITY_MEDIUM",
+        "COMPLEXITY_HIGH",
     ]
     passwordScope: typing_extensions.Literal[
         "SCOPE_UNSPECIFIED", "SCOPE_DEVICE", "SCOPE_PROFILE"

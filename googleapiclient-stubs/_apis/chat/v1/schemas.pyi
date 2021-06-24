@@ -66,6 +66,18 @@ class CardHeader(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class CardWithId(typing_extensions.TypedDict, total=False):
+    card: GoogleAppsCardV1Card
+    cardId: str
+
+@typing.type_check_only
+class Color(typing_extensions.TypedDict, total=False):
+    alpha: float
+    blue: float
+    green: float
+    red: float
+
+@typing.type_check_only
 class DeprecatedEvent(typing_extensions.TypedDict, total=False):
     action: FormAction
     configCompleteRedirectUrl: str
@@ -90,6 +102,191 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class FormAction(typing_extensions.TypedDict, total=False):
     actionMethodName: str
     parameters: typing.List[ActionParameter]
+
+@typing.type_check_only
+class GoogleAppsCardV1Action(typing_extensions.TypedDict, total=False):
+    function: str
+    loadIndicator: typing_extensions.Literal["SPINNER", "NONE"]
+    parameters: typing.List[GoogleAppsCardV1ActionParameter]
+    persistValues: bool
+
+@typing.type_check_only
+class GoogleAppsCardV1ActionParameter(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
+class GoogleAppsCardV1BorderStyle(typing_extensions.TypedDict, total=False):
+    cornerRadius: int
+    strokeColor: Color
+    type: typing_extensions.Literal["BORDER_TYPE_UNSPECIFIED", "NO_BORDER", "STROKE"]
+
+@typing.type_check_only
+class GoogleAppsCardV1Button(typing_extensions.TypedDict, total=False):
+    altText: str
+    color: Color
+    disabled: bool
+    icon: GoogleAppsCardV1Icon
+    onClick: GoogleAppsCardV1OnClick
+    text: str
+
+@typing.type_check_only
+class GoogleAppsCardV1ButtonList(typing_extensions.TypedDict, total=False):
+    buttons: typing.List[GoogleAppsCardV1Button]
+
+@typing.type_check_only
+class GoogleAppsCardV1Card(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleAppsCardV1CardAction(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleAppsCardV1CardFixedFooter(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleAppsCardV1CardHeader(typing_extensions.TypedDict, total=False):
+    imageAltText: str
+    imageType: typing_extensions.Literal["SQUARE", "CIRCLE"]
+    imageUrl: str
+    subtitle: str
+    title: str
+
+@typing.type_check_only
+class GoogleAppsCardV1DateTimePicker(typing_extensions.TypedDict, total=False):
+    label: str
+    name: str
+    onChangeAction: GoogleAppsCardV1Action
+    timezoneOffsetDate: int
+    type: typing_extensions.Literal["DATE_AND_TIME", "DATE_ONLY", "TIME_ONLY"]
+    valueMsEpoch: str
+
+@typing.type_check_only
+class GoogleAppsCardV1DecoratedText(typing_extensions.TypedDict, total=False):
+    bottomLabel: str
+    button: GoogleAppsCardV1Button
+    endIcon: GoogleAppsCardV1Icon
+    icon: GoogleAppsCardV1Icon
+    onClick: GoogleAppsCardV1OnClick
+    startIcon: GoogleAppsCardV1Icon
+    switchControl: GoogleAppsCardV1SwitchControl
+    text: str
+    topLabel: str
+    wrapText: bool
+
+@typing.type_check_only
+class GoogleAppsCardV1Divider(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleAppsCardV1Grid(typing_extensions.TypedDict, total=False):
+    borderStyle: GoogleAppsCardV1BorderStyle
+    columnCount: int
+    items: typing.List[GoogleAppsCardV1GridItem]
+    onClick: GoogleAppsCardV1OnClick
+    title: str
+
+@typing.type_check_only
+class GoogleAppsCardV1GridItem(typing_extensions.TypedDict, total=False):
+    id: str
+    image: GoogleAppsCardV1ImageComponent
+    layout: typing_extensions.Literal[
+        "GRID_ITEM_LAYOUT_UNSPECIFIED", "TEXT_BELOW", "TEXT_ABOVE"
+    ]
+    subtitle: str
+    textAlignment: typing_extensions.Literal[
+        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
+    ]
+    title: str
+
+@typing.type_check_only
+class GoogleAppsCardV1Icon(typing_extensions.TypedDict, total=False):
+    altText: str
+    iconUrl: str
+    imageType: typing_extensions.Literal["SQUARE", "CIRCLE"]
+    knownIcon: str
+
+@typing.type_check_only
+class GoogleAppsCardV1Image(typing_extensions.TypedDict, total=False):
+    altText: str
+    imageUrl: str
+    onClick: GoogleAppsCardV1OnClick
+
+@typing.type_check_only
+class GoogleAppsCardV1ImageComponent(typing_extensions.TypedDict, total=False):
+    altText: str
+    borderStyle: GoogleAppsCardV1BorderStyle
+    cropStyle: GoogleAppsCardV1ImageCropStyle
+    imageUri: str
+
+@typing.type_check_only
+class GoogleAppsCardV1ImageCropStyle(typing_extensions.TypedDict, total=False):
+    aspectRatio: float
+    type: typing_extensions.Literal[
+        "IMAGE_CROP_TYPE_UNSPECIFIED",
+        "SQUARE",
+        "CIRCLE",
+        "RECTANGLE_CUSTOM",
+        "RECTANGLE_4_3",
+    ]
+
+@typing.type_check_only
+class GoogleAppsCardV1OnClick(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleAppsCardV1OpenLink(typing_extensions.TypedDict, total=False):
+    onClose: typing_extensions.Literal["NOTHING", "RELOAD"]
+    openAs: typing_extensions.Literal["FULL_SIZE", "OVERLAY"]
+    url: str
+
+@typing.type_check_only
+class GoogleAppsCardV1Section(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleAppsCardV1SelectionInput(typing_extensions.TypedDict, total=False):
+    items: typing.List[GoogleAppsCardV1SelectionItem]
+    label: str
+    name: str
+    onChangeAction: GoogleAppsCardV1Action
+    type: typing_extensions.Literal["CHECK_BOX", "RADIO_BUTTON", "SWITCH", "DROPDOWN"]
+
+@typing.type_check_only
+class GoogleAppsCardV1SelectionItem(typing_extensions.TypedDict, total=False):
+    selected: bool
+    text: str
+    value: str
+
+@typing.type_check_only
+class GoogleAppsCardV1SuggestionItem(typing_extensions.TypedDict, total=False):
+    text: str
+
+@typing.type_check_only
+class GoogleAppsCardV1Suggestions(typing_extensions.TypedDict, total=False):
+    items: typing.List[GoogleAppsCardV1SuggestionItem]
+
+@typing.type_check_only
+class GoogleAppsCardV1SwitchControl(typing_extensions.TypedDict, total=False):
+    controlType: typing_extensions.Literal["SWITCH", "CHECKBOX", "CHECK_BOX"]
+    name: str
+    onChangeAction: GoogleAppsCardV1Action
+    selected: bool
+    value: str
+
+@typing.type_check_only
+class GoogleAppsCardV1TextInput(typing_extensions.TypedDict, total=False):
+    autoCompleteAction: GoogleAppsCardV1Action
+    hintText: str
+    initialSuggestions: GoogleAppsCardV1Suggestions
+    label: str
+    name: str
+    onChangeAction: GoogleAppsCardV1Action
+    type: typing_extensions.Literal["SINGLE_LINE", "MULTIPLE_LINE"]
+    value: str
+
+@typing.type_check_only
+class GoogleAppsCardV1TextParagraph(typing_extensions.TypedDict, total=False):
+    text: str
+
+@typing.type_check_only
+class GoogleAppsCardV1Widget(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
@@ -203,21 +400,7 @@ class Membership(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Message(typing_extensions.TypedDict, total=False):
-    actionResponse: ActionResponse
-    annotations: typing.List[Annotation]
-    argumentText: str
-    attachment: typing.List[Attachment]
-    cards: typing.List[Card]
-    createTime: str
-    fallbackText: str
-    name: str
-    previewText: str
-    sender: User
-    slashCommand: SlashCommand
-    space: Space
-    text: str
-    thread: Thread
+class Message(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class OnClick(typing_extensions.TypedDict, total=False):

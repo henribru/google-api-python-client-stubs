@@ -125,6 +125,7 @@ class ClusterStatus(typing_extensions.TypedDict, total=False):
         "CREATING",
         "RUNNING",
         "ERROR",
+        "ERROR_DUE_TO_UPDATE",
         "DELETING",
         "UPDATING",
         "STOPPING",

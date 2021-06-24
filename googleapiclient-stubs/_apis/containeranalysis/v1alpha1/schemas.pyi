@@ -68,6 +68,13 @@ class BuildType(typing_extensions.TypedDict, total=False):
     signature: BuildSignature
 
 @typing.type_check_only
+class CisBenchmark(typing_extensions.TypedDict, total=False):
+    profileLevel: int
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
+    ]
+
+@typing.type_check_only
 class Command(typing_extensions.TypedDict, total=False):
     args: typing.List[str]
     dir: str
@@ -75,6 +82,26 @@ class Command(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     waitFor: typing.List[str]
+
+@typing.type_check_only
+class ComplianceNote(typing_extensions.TypedDict, total=False):
+    cisBenchmark: CisBenchmark
+    description: str
+    rationale: str
+    remediation: str
+    scanInstructions: str
+    title: str
+    version: typing.List[ComplianceVersion]
+
+@typing.type_check_only
+class ComplianceOccurrence(typing_extensions.TypedDict, total=False):
+    nonComplianceReason: str
+    nonCompliantFiles: typing.List[NonCompliantFile]
+
+@typing.type_check_only
+class ComplianceVersion(typing_extensions.TypedDict, total=False):
+    cpeUri: str
+    version: str
 
 @typing.type_check_only
 class CreateOperationRequest(typing_extensions.TypedDict, total=False):
@@ -145,6 +172,7 @@ class Discovery(typing_extensions.TypedDict, total=False):
         "DISCOVERY",
         "ATTESTATION_AUTHORITY",
         "UPGRADE",
+        "COMPLIANCE",
     ]
 
 @typing.type_check_only
@@ -310,10 +338,17 @@ class Location(typing_extensions.TypedDict, total=False):
     version: Version
 
 @typing.type_check_only
+class NonCompliantFile(typing_extensions.TypedDict, total=False):
+    displayCommand: str
+    path: str
+    reason: str
+
+@typing.type_check_only
 class Note(typing_extensions.TypedDict, total=False):
     attestationAuthority: AttestationAuthority
     baseImage: Basis
     buildType: BuildType
+    compliance: ComplianceNote
     createTime: str
     deployable: Deployable
     discovery: Discovery
@@ -328,6 +363,7 @@ class Note(typing_extensions.TypedDict, total=False):
         "DISCOVERY",
         "ATTESTATION_AUTHORITY",
         "UPGRADE",
+        "COMPLIANCE",
     ]
     longDescription: str
     name: str
@@ -342,6 +378,7 @@ class Note(typing_extensions.TypedDict, total=False):
 class Occurrence(typing_extensions.TypedDict, total=False):
     attestation: Attestation
     buildDetails: BuildDetails
+    compliance: ComplianceOccurrence
     createTime: str
     deployment: Deployment
     derivedImage: Derived
@@ -357,6 +394,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "DISCOVERY",
         "ATTESTATION_AUTHORITY",
         "UPGRADE",
+        "COMPLIANCE",
     ]
     name: str
     noteName: str

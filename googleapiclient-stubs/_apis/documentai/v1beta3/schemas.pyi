@@ -271,6 +271,7 @@ class GoogleCloudDocumentaiV1beta1DocumentPage(
     lines: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageLine]
     pageNumber: int
     paragraphs: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageParagraph]
+    provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
     tables: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageTable]
     tokens: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageToken]
     transforms: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageMatrix]
@@ -335,6 +336,7 @@ class GoogleCloudDocumentaiV1beta1DocumentPageFormField(
     nameDetectedLanguages: typing.List[
         GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
     ]
+    provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
     valueDetectedLanguages: typing.List[
         GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
     ]
@@ -668,6 +670,7 @@ class GoogleCloudDocumentaiV1beta2DocumentPage(
     lines: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageLine]
     pageNumber: int
     paragraphs: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageParagraph]
+    provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
     tables: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageTable]
     tokens: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageToken]
     transforms: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageMatrix]
@@ -732,6 +735,7 @@ class GoogleCloudDocumentaiV1beta2DocumentPageFormField(
     nameDetectedLanguages: typing.List[
         GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
     ]
+    provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
     valueDetectedLanguages: typing.List[
         GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
     ]
@@ -1163,6 +1167,7 @@ class GoogleCloudDocumentaiV1beta3DocumentPage(
     lines: typing.List[GoogleCloudDocumentaiV1beta3DocumentPageLine]
     pageNumber: int
     paragraphs: typing.List[GoogleCloudDocumentaiV1beta3DocumentPageParagraph]
+    provenance: GoogleCloudDocumentaiV1beta3DocumentProvenance
     tables: typing.List[GoogleCloudDocumentaiV1beta3DocumentPageTable]
     tokens: typing.List[GoogleCloudDocumentaiV1beta3DocumentPageToken]
     transforms: typing.List[GoogleCloudDocumentaiV1beta3DocumentPageMatrix]
@@ -1227,6 +1232,7 @@ class GoogleCloudDocumentaiV1beta3DocumentPageFormField(
     nameDetectedLanguages: typing.List[
         GoogleCloudDocumentaiV1beta3DocumentPageDetectedLanguage
     ]
+    provenance: GoogleCloudDocumentaiV1beta3DocumentProvenance
     valueDetectedLanguages: typing.List[
         GoogleCloudDocumentaiV1beta3DocumentPageDetectedLanguage
     ]
@@ -1559,6 +1565,7 @@ class GoogleCloudDocumentaiV1beta3ReviewDocumentRequest(
     document: GoogleCloudDocumentaiV1beta3Document
     enableSchemaValidation: bool
     inlineDocument: GoogleCloudDocumentaiV1beta3Document
+    priority: typing_extensions.Literal["DEFAULT", "URGENT"]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3ReviewDocumentResponse(

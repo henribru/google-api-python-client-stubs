@@ -122,6 +122,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     "DISCOVERY",
                     "ATTESTATION_AUTHORITY",
                     "UPGRADE",
+                    "COMPLIANCE",
                 ] = ...,
                 name: str = ...,
                 pageSize: int = ...,

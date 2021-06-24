@@ -5,6 +5,7 @@ import typing_extensions
 @typing.type_check_only
 class AccessDeniedPageSettings(typing_extensions.TypedDict, total=False):
     accessDeniedPageUri: str
+    generateTroubleshootingUri: bool
 
 @typing.type_check_only
 class AccessSettings(typing_extensions.TypedDict, total=False):
