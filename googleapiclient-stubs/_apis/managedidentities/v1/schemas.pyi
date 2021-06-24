@@ -16,6 +16,9 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Certificate(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
 class DailyCycle(typing_extensions.TypedDict, total=False):
     duration: str
     startTime: TimeOfDay
@@ -192,11 +195,21 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion(
 class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    eligibility: GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility
     exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
     nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
     tier: str
+
+@typing.type_check_only
+class LDAPSSettings(typing_extensions.TypedDict, total=False):
+    certificate: Certificate
+    certificatePassword: str
+    certificatePfx: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "UPDATING", "ACTIVE", "FAILED"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class ListDomainsResponse(typing_extensions.TypedDict, total=False):
@@ -213,6 +226,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: typing.List[Operation]
+
+@typing.type_check_only
+class ListSqlIntegrationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sqlIntegrations: typing.List[SqlIntegration]
+    unreachable: typing.List[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -291,6 +310,16 @@ class Schedule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
+
+@typing.type_check_only
+class SqlIntegration(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    sqlInstance: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "DELETING", "READY"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

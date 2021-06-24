@@ -8,6 +8,18 @@ class AllowedIpRange(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class CheckUpgradeRequest(typing_extensions.TypedDict, total=False):
+    imageVersion: str
+
+@typing.type_check_only
+class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
+    buildLogUri: str
+    containsPypiModulesConflict: typing_extensions.Literal[
+        "CONFLICT_RESULT_UNSPECIFIED", "CONFLICT", "NO_CONFLICT"
+    ]
+    pypiConflictBuildLogExtract: str
+
+@typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):
     machineType: str
 

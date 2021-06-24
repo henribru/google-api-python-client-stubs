@@ -16,6 +16,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class EnvironmentsResource(googleapiclient.discovery.Resource):
+                def checkUpgrade(
+                    self,
+                    *,
+                    environment: str,
+                    body: CheckUpgradeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def create(
                     self, *, parent: str, body: Environment = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...

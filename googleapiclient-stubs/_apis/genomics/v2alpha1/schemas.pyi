@@ -226,6 +226,7 @@ class VirtualMachine(typing_extensions.TypedDict, total=False):
     network: Network
     nvidiaDriverVersion: str
     preemptible: bool
+    reservation: str
     serviceAccount: ServiceAccount
     volumes: typing.List[Volume]
 

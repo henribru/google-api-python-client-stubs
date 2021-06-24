@@ -412,6 +412,7 @@ class GoogleCloudApigeeV1DeploymentConfig(typing_extensions.TypedDict, total=Fal
     location: str
     name: str
     proxyUid: str
+    serviceAccount: str
     uid: str
 
 @typing.type_check_only

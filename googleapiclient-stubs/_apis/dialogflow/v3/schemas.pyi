@@ -125,10 +125,14 @@ class GoogleCloudDialogflowCxV3DetectIntentRequest(
 class GoogleCloudDialogflowCxV3DetectIntentResponse(
     typing_extensions.TypedDict, total=False
 ):
+    allowCancellation: bool
     outputAudio: str
     outputAudioConfig: GoogleCloudDialogflowCxV3OutputAudioConfig
     queryResult: GoogleCloudDialogflowCxV3QueryResult
     responseId: str
+    responseType: typing_extensions.Literal[
+        "RESPONSE_TYPE_UNSPECIFIED", "PARTIAL", "FINAL"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3DtmfInput(typing_extensions.TypedDict, total=False):

@@ -147,6 +147,7 @@ class GoogleAnalyticsAdminV1alphaConversionEvent(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
+    custom: bool
     eventName: str
     isDeletable: bool
     name: str
@@ -228,13 +229,6 @@ class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings(
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaFirebaseLink(typing_extensions.TypedDict, total=False):
     createTime: str
-    maximumUserAccess: typing_extensions.Literal[
-        "MAXIMUM_USER_ACCESS_UNSPECIFIED",
-        "NO_ACCESS",
-        "READ_AND_ANALYZE",
-        "EDITOR_WITHOUT_LINK_MANAGEMENT",
-        "EDITOR_INCLUDING_LINK_MANAGEMENT",
-    ]
     name: str
     project: str
 
@@ -252,8 +246,8 @@ class GoogleAnalyticsAdminV1alphaGoogleAdsLink(
     adsPersonalizationEnabled: bool
     canManageClients: bool
     createTime: str
+    creatorEmailAddress: str
     customerId: str
-    emailAddress: str
     name: str
     updateTime: str
 

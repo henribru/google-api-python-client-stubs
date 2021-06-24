@@ -1134,6 +1134,10 @@ class GoogleCloudDialogflowV2AutomatedAgentConfig(
 class GoogleCloudDialogflowV2AutomatedAgentReply(
     typing_extensions.TypedDict, total=False
 ):
+    allowCancellation: bool
+    automatedAgentReplyType: typing_extensions.Literal[
+        "AUTOMATED_AGENT_REPLY_TYPE_UNSPECIFIED", "PARTIAL", "FINAL"
+    ]
     detectIntentResponse: GoogleCloudDialogflowV2DetectIntentResponse
 
 @typing.type_check_only

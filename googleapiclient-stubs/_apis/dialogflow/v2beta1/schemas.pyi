@@ -1673,6 +1673,10 @@ class GoogleCloudDialogflowV2beta1AutomatedAgentConfig(
 class GoogleCloudDialogflowV2beta1AutomatedAgentReply(
     typing_extensions.TypedDict, total=False
 ):
+    allowCancellation: bool
+    automatedAgentReplyType: typing_extensions.Literal[
+        "AUTOMATED_AGENT_REPLY_TYPE_UNSPECIFIED", "PARTIAL", "FINAL"
+    ]
     cxSessionParameters: typing.Dict[str, typing.Any]
     detectIntentResponse: GoogleCloudDialogflowV2beta1DetectIntentResponse
     event: str

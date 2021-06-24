@@ -219,6 +219,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     name: str
     nodeCount: int
+    processingUnits: int
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
 
 @typing.type_check_only
