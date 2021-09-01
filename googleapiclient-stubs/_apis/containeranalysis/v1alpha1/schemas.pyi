@@ -34,6 +34,7 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildDetails(typing_extensions.TypedDict, total=False):
+    intotoProvenance: InTotoProvenance
     provenance: BuildProvenance
     provenanceBytes: str
 
@@ -68,6 +69,10 @@ class BuildType(typing_extensions.TypedDict, total=False):
     signature: BuildSignature
 
 @typing.type_check_only
+class BuilderConfig(typing_extensions.TypedDict, total=False):
+    id: str
+
+@typing.type_check_only
 class CisBenchmark(typing_extensions.TypedDict, total=False):
     profileLevel: int
     severity: typing_extensions.Literal[
@@ -82,6 +87,12 @@ class Command(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     waitFor: typing.List[str]
+
+@typing.type_check_only
+class Completeness(typing_extensions.TypedDict, total=False):
+    arguments: bool
+    environment: bool
+    materials: bool
 
 @typing.type_check_only
 class ComplianceNote(typing_extensions.TypedDict, total=False):
@@ -107,6 +118,19 @@ class ComplianceVersion(typing_extensions.TypedDict, total=False):
 class CreateOperationRequest(typing_extensions.TypedDict, total=False):
     operation: Operation
     operationId: str
+
+@typing.type_check_only
+class DSSEAttestationNote(typing_extensions.TypedDict, total=False):
+    hint: DSSEHint
+
+@typing.type_check_only
+class DSSEAttestationOccurrence(typing_extensions.TypedDict, total=False):
+    envelope: Envelope
+    statement: InTotoStatement
+
+@typing.type_check_only
+class DSSEHint(typing_extensions.TypedDict, total=False):
+    humanReadableName: str
 
 @typing.type_check_only
 class Deployable(typing_extensions.TypedDict, total=False):
@@ -173,6 +197,11 @@ class Discovery(typing_extensions.TypedDict, total=False):
         "ATTESTATION_AUTHORITY",
         "UPGRADE",
         "COMPLIANCE",
+        "SBOM",
+        "SPDX_PACKAGE",
+        "SPDX_FILE",
+        "SPDX_RELATIONSHIP",
+        "DSSE_ATTESTATION",
     ]
 
 @typing.type_check_only
@@ -185,7 +214,35 @@ class Distribution(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class DocumentNote(typing_extensions.TypedDict, total=False):
+    dataLicence: str
+    spdxVersion: str
+
+@typing.type_check_only
+class DocumentOccurrence(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creatorComment: str
+    creators: typing.List[str]
+    documentComment: str
+    externalDocumentRefs: typing.List[str]
+    id: str
+    licenseListVersion: str
+    namespace: str
+    title: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Envelope(typing_extensions.TypedDict, total=False):
+    payload: str
+    payloadType: str
+    signatures: typing.List[EnvelopeSignature]
+
+@typing.type_check_only
+class EnvelopeSignature(typing_extensions.TypedDict, total=False):
+    keyid: str
+    sig: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -195,8 +252,48 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ExternalRef(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal[
+        "CATEGORY_UNSPECIFIED", "SECURITY", "PACKAGE_MANAGER", "PERSISTENT_ID", "OTHER"
+    ]
+    comment: str
+    locator: str
+    type: str
+
+@typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: typing.List[Hash]
+
+@typing.type_check_only
+class FileNote(typing_extensions.TypedDict, total=False):
+    checksum: typing.List[str]
+    fileType: typing_extensions.Literal[
+        "FILE_TYPE_UNSPECIFIED",
+        "SOURCE",
+        "BINARY",
+        "ARCHIVE",
+        "APPLICATION",
+        "AUDIO",
+        "IMAGE",
+        "TEXT",
+        "VIDEO",
+        "DOCUMENTATION",
+        "SPDX",
+        "OTHER",
+    ]
+    title: str
+
+@typing.type_check_only
+class FileOccurrence(typing_extensions.TypedDict, total=False):
+    attributions: typing.List[str]
+    comment: str
+    contributors: typing.List[str]
+    copyright: str
+    filesLicenseInfo: typing.List[str]
+    id: str
+    licenseComments: str
+    licenseConcluded: str
+    notice: str
 
 @typing.type_check_only
 class Fingerprint(typing_extensions.TypedDict, total=False):
@@ -283,6 +380,20 @@ class Hash(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class InTotoProvenance(typing_extensions.TypedDict, total=False):
+    builderConfig: BuilderConfig
+    materials: typing.List[str]
+    metadata: Metadata
+    recipe: Recipe
+
+@typing.type_check_only
+class InTotoStatement(typing_extensions.TypedDict, total=False):
+    predicateType: str
+    provenance: InTotoProvenance
+    subject: typing.List[Subject]
+    type: str
+
+@typing.type_check_only
 class Installation(typing_extensions.TypedDict, total=False):
     location: typing.List[Location]
     name: str
@@ -338,6 +449,14 @@ class Location(typing_extensions.TypedDict, total=False):
     version: Version
 
 @typing.type_check_only
+class Metadata(typing_extensions.TypedDict, total=False):
+    buildFinishedOn: str
+    buildInvocationId: str
+    buildStartedOn: str
+    completeness: Completeness
+    reproducible: bool
+
+@typing.type_check_only
 class NonCompliantFile(typing_extensions.TypedDict, total=False):
     displayCommand: str
     path: str
@@ -352,6 +471,7 @@ class Note(typing_extensions.TypedDict, total=False):
     createTime: str
     deployable: Deployable
     discovery: Discovery
+    dsseAttestation: DSSEAttestationNote
     expirationTime: str
     kind: typing_extensions.Literal[
         "KIND_UNSPECIFIED",
@@ -364,12 +484,21 @@ class Note(typing_extensions.TypedDict, total=False):
         "ATTESTATION_AUTHORITY",
         "UPGRADE",
         "COMPLIANCE",
+        "SBOM",
+        "SPDX_PACKAGE",
+        "SPDX_FILE",
+        "SPDX_RELATIONSHIP",
+        "DSSE_ATTESTATION",
     ]
     longDescription: str
     name: str
     package: Package
     relatedUrl: typing.List[RelatedUrl]
+    sbom: DocumentNote
     shortDescription: str
+    spdxFile: FileNote
+    spdxPackage: PackageNote
+    spdxRelationship: RelationshipNote
     updateTime: str
     upgrade: UpgradeNote
     vulnerabilityType: VulnerabilityType
@@ -383,6 +512,8 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     deployment: Deployment
     derivedImage: Derived
     discovered: Discovered
+    dsseAttestation: DSSEAttestationOccurrence
+    envelope: Envelope
     installation: Installation
     kind: typing_extensions.Literal[
         "KIND_UNSPECIFIED",
@@ -395,12 +526,21 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "ATTESTATION_AUTHORITY",
         "UPGRADE",
         "COMPLIANCE",
+        "SBOM",
+        "SPDX_PACKAGE",
+        "SPDX_FILE",
+        "SPDX_RELATIONSHIP",
+        "DSSE_ATTESTATION",
     ]
     name: str
     noteName: str
     remediation: str
     resource: Resource
     resourceUrl: str
+    sbom: DocumentOccurrence
+    spdxFile: FileOccurrence
+    spdxPackage: PackageOccurrence
+    spdxRelationship: RelationshipOccurrence
     updateTime: str
     upgrade: UpgradeOccurrence
     vulnerabilityDetails: VulnerabilityDetails
@@ -421,8 +561,40 @@ class Package(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PackageIssue(typing_extensions.TypedDict, total=False):
     affectedLocation: VulnerabilityLocation
+    effectiveSeverity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
+    ]
     fixedLocation: VulnerabilityLocation
+    packageType: str
     severityName: str
+
+@typing.type_check_only
+class PackageNote(typing_extensions.TypedDict, total=False):
+    analyzed: bool
+    attribution: str
+    checksum: str
+    copyright: str
+    detailedDescription: str
+    downloadLocation: str
+    externalRefs: typing.List[ExternalRef]
+    filesLicenseInfo: typing.List[str]
+    homePage: str
+    licenseDeclared: str
+    originator: str
+    summaryDescription: str
+    supplier: str
+    title: str
+    verificationCode: str
+    version: str
+
+@typing.type_check_only
+class PackageOccurrence(typing_extensions.TypedDict, total=False):
+    comment: str
+    filename: str
+    id: str
+    licenseComments: str
+    licenseConcluded: str
+    sourceInfo: str
 
 @typing.type_check_only
 class PgpSignedAttestation(typing_extensions.TypedDict, total=False):
@@ -439,9 +611,72 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class Recipe(typing_extensions.TypedDict, total=False):
+    arguments: typing.List[str]
+    definedInMaterial: str
+    entryPoint: str
+    environment: typing.Dict[str, typing.Any]
+    type: str
+
+@typing.type_check_only
 class RelatedUrl(typing_extensions.TypedDict, total=False):
     label: str
     url: str
+
+@typing.type_check_only
+class RelationshipNote(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RelationshipOccurrence(typing_extensions.TypedDict, total=False):
+    comment: str
+    source: str
+    target: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "DESCRIBES",
+        "DESCRIBED_BY",
+        "CONTAINS",
+        "CONTAINED_BY",
+        "DEPENDS_ON",
+        "DEPENDENCY_OF",
+        "DEPENDENCY_MANIFEST_OF",
+        "BUILD_DEPENDENCY_OF",
+        "DEV_DEPENDENCY_OF",
+        "OPTIONAL_DEPENDENCY_OF",
+        "PROVIDED_DEPENDENCY_OF",
+        "TEST_DEPENDENCY_OF",
+        "RUNTIME_DEPENDENCY_OF",
+        "EXAMPLE_OF",
+        "GENERATES",
+        "GENERATED_FROM",
+        "ANCESTOR_OF",
+        "DESCENDANT_OF",
+        "VARIANT_OF",
+        "DISTRIBUTION_ARTIFACT",
+        "PATCH_FOR",
+        "PATCH_APPLIED",
+        "COPY_OF",
+        "FILE_ADDED",
+        "FILE_DELETED",
+        "FILE_MODIFIED",
+        "EXPANDED_FROM_ARCHIVE",
+        "DYNAMIC_LINK",
+        "STATIC_LINK",
+        "DATA_FILE_OF",
+        "TEST_CASE_OF",
+        "BUILD_TOOL_OF",
+        "DEV_TOOL_OF",
+        "TEST_OF",
+        "TEST_TOOL_OF",
+        "DOCUMENTATION_OF",
+        "OPTIONAL_COMPONENT_OF",
+        "METAFILE_OF",
+        "PACKAGE_OF",
+        "AMENDS",
+        "PREREQUISITE_FOR",
+        "HAS_PREREQUISITE",
+        "OTHER",
+    ]
 
 @typing.type_check_only
 class RepoSource(typing_extensions.TypedDict, total=False):
@@ -498,6 +733,11 @@ class StorageSource(typing_extensions.TypedDict, total=False):
     bucket: str
     generation: str
     object: str
+
+@typing.type_check_only
+class Subject(typing_extensions.TypedDict, total=False):
+    digest: typing.Dict[str, typing.Any]
+    name: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

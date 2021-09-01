@@ -26,6 +26,13 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
             body: BatchRunReportsRequest = ...,
             **kwargs: typing.Any
         ) -> BatchRunReportsResponseHttpRequest: ...
+        def checkCompatibility(
+            self,
+            *,
+            property: str,
+            body: CheckCompatibilityRequest = ...,
+            **kwargs: typing.Any
+        ) -> CheckCompatibilityResponseHttpRequest: ...
         def getMetadata(
             self, *, name: str, **kwargs: typing.Any
         ) -> MetadataHttpRequest: ...
@@ -67,6 +74,16 @@ class BatchRunReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> BatchRunReportsResponse: ...
+
+@typing.type_check_only
+class CheckCompatibilityResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> CheckCompatibilityResponse: ...
 
 @typing.type_check_only
 class MetadataHttpRequest(googleapiclient.http.HttpRequest):

@@ -362,6 +362,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             sku: str,
             body: InAppProduct = ...,
+            allowMissing: bool = ...,
             autoConvertMissingPrices: bool = ...,
             **kwargs: typing.Any
         ) -> InAppProductHttpRequest: ...

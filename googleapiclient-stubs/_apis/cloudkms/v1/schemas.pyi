@@ -58,6 +58,8 @@ class CertificateChains(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CryptoKey(typing_extensions.TypedDict, total=False):
     createTime: str
+    destroyScheduledDuration: str
+    importOnly: bool
     labels: typing.Dict[str, typing.Any]
     name: str
     nextRotationTime: str
@@ -67,6 +69,7 @@ class CryptoKey(typing_extensions.TypedDict, total=False):
         "ENCRYPT_DECRYPT",
         "ASYMMETRIC_SIGN",
         "ASYMMETRIC_DECRYPT",
+        "MAC",
     ]
     rotationPeriod: str
     versionTemplate: CryptoKeyVersionTemplate
@@ -90,6 +93,8 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "RSA_DECRYPT_OAEP_4096_SHA512",
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
+        "EC_SIGN_SECP256K1_SHA256",
+        "HMAC_SHA256",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
     ]
     attestation: KeyOperationAttestation
@@ -105,6 +110,7 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
     protectionLevel: typing_extensions.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
     ]
+    reimportEligible: bool
     state: typing_extensions.Literal[
         "CRYPTO_KEY_VERSION_STATE_UNSPECIFIED",
         "PENDING_GENERATION",
@@ -135,6 +141,8 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "RSA_DECRYPT_OAEP_4096_SHA512",
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
+        "EC_SIGN_SECP256K1_SHA256",
+        "HMAC_SHA256",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
     ]
     protectionLevel: typing_extensions.Literal[
@@ -196,6 +204,18 @@ class ExternalProtectionLevelOptions(typing_extensions.TypedDict, total=False):
     externalKeyUri: str
 
 @typing.type_check_only
+class GenerateRandomBytesRequest(typing_extensions.TypedDict, total=False):
+    lengthBytes: int
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+    ]
+
+@typing.type_check_only
+class GenerateRandomBytesResponse(typing_extensions.TypedDict, total=False):
+    data: str
+    dataCrc32c: str
+
+@typing.type_check_only
 class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
     algorithm: typing_extensions.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
@@ -214,8 +234,11 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
         "RSA_DECRYPT_OAEP_4096_SHA512",
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
+        "EC_SIGN_SECP256K1_SHA256",
+        "HMAC_SHA256",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
     ]
+    cryptoKeyVersion: str
     importJob: str
     rsaAesWrappedKey: str
 
@@ -296,6 +319,39 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
     hsmAvailable: bool
 
 @typing.type_check_only
+class MacSignRequest(typing_extensions.TypedDict, total=False):
+    data: str
+    dataCrc32c: str
+
+@typing.type_check_only
+class MacSignResponse(typing_extensions.TypedDict, total=False):
+    mac: str
+    macCrc32c: str
+    name: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+    ]
+    verifiedDataCrc32c: bool
+
+@typing.type_check_only
+class MacVerifyRequest(typing_extensions.TypedDict, total=False):
+    data: str
+    dataCrc32c: str
+    mac: str
+    macCrc32c: str
+
+@typing.type_check_only
+class MacVerifyResponse(typing_extensions.TypedDict, total=False):
+    name: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+    ]
+    success: bool
+    verifiedDataCrc32c: bool
+    verifiedMacCrc32c: bool
+    verifiedSuccessIntegrity: bool
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: typing.List[AuditConfig]
     bindings: typing.List[Binding]
@@ -321,6 +377,8 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "RSA_DECRYPT_OAEP_4096_SHA512",
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
+        "EC_SIGN_SECP256K1_SHA256",
+        "HMAC_SHA256",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
     ]
     name: str

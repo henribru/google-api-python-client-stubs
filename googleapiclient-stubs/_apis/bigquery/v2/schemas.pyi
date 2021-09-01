@@ -91,6 +91,16 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BiEngineReason(typing_extensions.TypedDict, total=False):
+    code: str
+    message: str
+
+@typing.type_check_only
+class BiEngineStatistics(typing_extensions.TypedDict, total=False):
+    biEngineMode: str
+    biEngineReasons: typing.List[BiEngineReason]
+
+@typing.type_check_only
 class BigQueryModelTraining(typing_extensions.TypedDict, total=False):
     currentIteration: int
     expectedTotalIterations: str
@@ -205,6 +215,7 @@ class CsvOptions(typing_extensions.TypedDict, total=False):
     allowQuotedNewlines: bool
     encoding: str
     fieldDelimiter: str
+    null_marker: str
     quote: str
     skipLeadingRows: str
 
@@ -225,6 +236,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     etag: str
     friendlyName: str
     id: str
+    isCaseInsensitive: bool
     kind: str
     labels: typing.Dict[str, typing.Any]
     lastModifiedTime: str
@@ -254,6 +266,12 @@ class DestinationTableProperties(typing_extensions.TypedDict, total=False):
     description: str
     friendlyName: str
     labels: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class DmlStatistics(typing_extensions.TypedDict, total=False):
+    deletedRowCount: str
+    insertedRowCount: str
+    updatedRowCount: str
 
 @typing.type_check_only
 class EncryptionConfiguration(typing_extensions.TypedDict, total=False):
@@ -319,11 +337,6 @@ class ExplainQueryStep(typing_extensions.TypedDict, total=False):
     substeps: typing.List[str]
 
 @typing.type_check_only
-class Explanation(typing_extensions.TypedDict, total=False):
-    attribution: float
-    featureName: str
-
-@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -380,11 +393,6 @@ class GetQueryResultsResponse(typing_extensions.TypedDict, total=False):
 class GetServiceAccountResponse(typing_extensions.TypedDict, total=False):
     email: str
     kind: str
-
-@typing.type_check_only
-class GlobalExplanation(typing_extensions.TypedDict, total=False):
-    classLabel: str
-    explanations: typing.List[Explanation]
 
 @typing.type_check_only
 class GoogleSheetsOptions(typing_extensions.TypedDict, total=False):
@@ -601,7 +609,7 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueryResponse(typing_extensions.TypedDict, total=False):
     cacheHit: bool
-    dmlStats: typing.Any
+    dmlStats: DmlStatistics
     errors: typing.List[ErrorProto]
     jobComplete: bool
     jobReference: JobReference
@@ -610,7 +618,7 @@ class QueryResponse(typing_extensions.TypedDict, total=False):
     pageToken: str
     rows: typing.List[TableRow]
     schema: TableSchema
-    sessionInfoTemplate: SessionInfo
+    sessionInfo: SessionInfo
     totalBytesProcessed: str
     totalRows: str
 
@@ -973,7 +981,6 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
 class TrainingRun(typing_extensions.TypedDict, total=False):
     dataSplitResult: DataSplitResult
     evaluationMetrics: EvaluationMetrics
-    globalExplanations: typing.List[GlobalExplanation]
     results: typing.List[IterationResult]
     startTime: str
     trainingOptions: TrainingOptions

@@ -137,6 +137,7 @@ class GoogleCloudRecommenderV1beta1RecommendationContent(
     typing_extensions.TypedDict, total=False
 ):
     operationGroups: typing.List[GoogleCloudRecommenderV1beta1OperationGroup]
+    overview: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1RecommendationInsightReference(

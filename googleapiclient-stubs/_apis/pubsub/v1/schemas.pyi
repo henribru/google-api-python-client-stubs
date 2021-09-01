@@ -180,6 +180,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     retainAckedMessages: bool
     retryPolicy: RetryPolicy
     topic: str
+    topicMessageRetentionDuration: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -193,6 +194,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class Topic(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     labels: typing.Dict[str, typing.Any]
+    messageRetentionDuration: str
     messageStoragePolicy: MessageStoragePolicy
     name: str
     satisfiesPzs: bool

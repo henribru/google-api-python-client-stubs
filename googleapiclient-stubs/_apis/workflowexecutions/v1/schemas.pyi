@@ -14,6 +14,9 @@ class Error(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Execution(typing_extensions.TypedDict, total=False):
     argument: str
+    callLogLevel: typing_extensions.Literal[
+        "CALL_LOG_LEVEL_UNSPECIFIED", "LOG_ALL_CALLS", "LOG_ERRORS_ONLY"
+    ]
     endTime: str
     error: Error
     name: str

@@ -109,6 +109,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     endpoint: str
     expireTime: str
     id: str
+    identityServiceConfig: IdentityServiceConfig
     initialClusterVersion: str
     initialNodeCount: int
     instanceGroupUrls: typing.List[str]
@@ -117,12 +118,14 @@ class Cluster(typing_extensions.TypedDict, total=False):
     legacyAbac: LegacyAbac
     location: str
     locations: typing.List[str]
+    loggingConfig: LoggingConfig
     loggingService: str
     maintenancePolicy: MaintenancePolicy
     master: Master
     masterAuth: MasterAuth
     masterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
     masterIpv4CidrBlock: str
+    monitoringConfig: MonitoringConfig
     monitoringService: str
     name: str
     network: str
@@ -177,6 +180,7 @@ class ClusterTelemetry(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredAddonsConfig: AddonsConfig
+    desiredAuthenticatorGroupsConfig: AuthenticatorGroupsConfig
     desiredAutopilot: Autopilot
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
@@ -187,14 +191,17 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     ]
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredDnsConfig: DNSConfig
+    desiredIdentityServiceConfig: IdentityServiceConfig
     desiredImageType: str
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
     desiredL4ilbSubsettingConfig: ILBSubsettingConfig
     desiredLocations: typing.List[str]
+    desiredLoggingConfig: LoggingConfig
     desiredLoggingService: str
     desiredMaster: Master
     desiredMasterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
     desiredMasterVersion: str
+    desiredMonitoringConfig: MonitoringConfig
     desiredMonitoringService: str
     desiredNodePoolAutoscaling: NodePoolAutoscaling
     desiredNodePoolId: str
@@ -210,6 +217,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     ]
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
+    desiredServiceExternalIpsConfig: ServiceExternalIPsConfig
     desiredShieldedNodes: ShieldedNodes
     desiredTpuConfig: TpuConfig
     desiredVerticalPodAutoscaling: VerticalPodAutoscaling
@@ -347,6 +355,10 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     useRoutes: bool
 
 @typing.type_check_only
+class IdentityServiceConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class IntraNodeVisibilityConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -414,6 +426,14 @@ class Location(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["LOCATION_TYPE_UNSPECIFIED", "ZONE", "REGION"]
 
 @typing.type_check_only
+class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
+    enableComponents: typing.List[str]
+
+@typing.type_check_only
+class LoggingConfig(typing_extensions.TypedDict, total=False):
+    componentConfig: LoggingComponentConfig
+
+@typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
     resourceVersion: str
     window: MaintenanceWindow
@@ -453,6 +473,14 @@ class Metric(typing_extensions.TypedDict, total=False):
     stringValue: str
 
 @typing.type_check_only
+class MonitoringComponentConfig(typing_extensions.TypedDict, total=False):
+    enableComponents: typing.List[str]
+
+@typing.type_check_only
+class MonitoringConfig(typing_extensions.TypedDict, total=False):
+    componentConfig: MonitoringComponentConfig
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     datapathProvider: typing_extensions.Literal[
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
@@ -468,6 +496,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
         "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
         "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL",
     ]
+    serviceExternalIpsConfig: ServiceExternalIPsConfig
     subnetwork: str
 
 @typing.type_check_only
@@ -490,6 +519,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
     diskType: str
     ephemeralStorageConfig: EphemeralStorageConfig
+    gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig
     labels: typing.Dict[str, typing.Any]
@@ -675,6 +705,10 @@ class ServerConfig(typing_extensions.TypedDict, total=False):
     validMasterVersions: typing.List[str]
     validNodeVersions: typing.List[str]
     windowsVersionMaps: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class ServiceExternalIPsConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class SetAddonsConfigRequest(typing_extensions.TypedDict, total=False):
@@ -864,6 +898,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
+    gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig
     labels: NodeLabels
@@ -887,6 +922,7 @@ class UpgradeAvailableEvent(typing_extensions.TypedDict, total=False):
         "UPGRADE_RESOURCE_TYPE_UNSPECIFIED", "MASTER", "NODE_POOL"
     ]
     version: str
+    windowsVersions: WindowsVersions
 
 @typing.type_check_only
 class UpgradeEvent(typing_extensions.TypedDict, total=False):
@@ -926,6 +962,10 @@ class UsableSubnetworkSecondaryRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VerticalPodAutoscaling(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class VirtualNIC(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only

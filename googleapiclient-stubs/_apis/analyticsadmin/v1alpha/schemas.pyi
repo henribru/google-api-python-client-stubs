@@ -32,6 +32,17 @@ class GoogleAnalyticsAdminV1alphaAndroidAppDataStream(
     updateTime: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponse(
+    typing_extensions.TypedDict, total=False
+):
+    displayVideo360AdvertiserLink: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaArchiveCustomDimensionRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -102,6 +113,11 @@ class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse(
     userLinks: typing.List[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaChangeHistoryChange(
     typing_extensions.TypedDict, total=False
 ):
@@ -121,6 +137,9 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     conversionEvent: GoogleAnalyticsAdminV1alphaConversionEvent
     customDimension: GoogleAnalyticsAdminV1alphaCustomDimension
     customMetric: GoogleAnalyticsAdminV1alphaCustomMetric
+    dataRetentionSettings: GoogleAnalyticsAdminV1alphaDataRetentionSettings
+    displayVideo360AdvertiserLink: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
+    displayVideo360AdvertiserLinkProposal: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal
     firebaseLink: GoogleAnalyticsAdminV1alphaFirebaseLink
     googleAdsLink: GoogleAnalyticsAdminV1alphaGoogleAdsLink
     googleSignalsSettings: GoogleAnalyticsAdminV1alphaGoogleSignalsSettings
@@ -148,8 +167,8 @@ class GoogleAnalyticsAdminV1alphaConversionEvent(
 ):
     createTime: str
     custom: bool
+    deletable: bool
     eventName: str
-    isDeletable: bool
     name: str
 
 @typing.type_check_only
@@ -193,6 +212,21 @@ class GoogleAnalyticsAdminV1alphaCustomMetric(typing_extensions.TypedDict, total
     scope: typing_extensions.Literal["METRIC_SCOPE_UNSPECIFIED", "EVENT"]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDataRetentionSettings(
+    typing_extensions.TypedDict, total=False
+):
+    eventDataRetention: typing_extensions.Literal[
+        "RETENTION_DURATION_UNSPECIFIED",
+        "TWO_MONTHS",
+        "FOURTEEN_MONTHS",
+        "TWENTY_SIX_MONTHS",
+        "THIRTY_EIGHT_MONTHS",
+        "FIFTY_MONTHS",
+    ]
+    name: str
+    resetUserDataOnNewActivity: bool
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDataSharingSettings(
     typing_extensions.TypedDict, total=False
 ):
@@ -208,6 +242,30 @@ class GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest(
     typing_extensions.TypedDict, total=False
 ):
     name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink(
+    typing_extensions.TypedDict, total=False
+):
+    adsPersonalizationEnabled: bool
+    advertiserDisplayName: str
+    advertiserId: str
+    campaignDataSharingEnabled: bool
+    costDataSharingEnabled: bool
+    name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal(
+    typing_extensions.TypedDict, total=False
+):
+    adsPersonalizationEnabled: bool
+    advertiserDisplayName: str
+    advertiserId: str
+    campaignDataSharingEnabled: bool
+    costDataSharingEnabled: bool
+    linkProposalStatusDetails: GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails
+    name: str
+    validationEmail: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings(
@@ -279,6 +337,26 @@ class GoogleAnalyticsAdminV1alphaIosAppDataStream(
     updateTime: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails(
+    typing_extensions.TypedDict, total=False
+):
+    linkProposalInitiatingProduct: typing_extensions.Literal[
+        "LINK_PROPOSAL_INITIATING_PRODUCT_UNSPECIFIED",
+        "GOOGLE_ANALYTICS",
+        "LINKED_PRODUCT",
+    ]
+    linkProposalState: typing_extensions.Literal[
+        "LINK_PROPOSAL_STATE_UNSPECIFIED",
+        "AWAITING_REVIEW_FROM_GOOGLE_ANALYTICS",
+        "AWAITING_REVIEW_FROM_LINKED_PRODUCT",
+        "WITHDRAWN",
+        "DECLINED",
+        "EXPIRED",
+        "OBSOLETE",
+    ]
+    requestorEmail: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListAccountSummariesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -318,6 +396,24 @@ class GoogleAnalyticsAdminV1alphaListCustomMetricsResponse(
     typing_extensions.TypedDict, total=False
 ):
     customMetrics: typing.List[GoogleAnalyticsAdminV1alphaCustomMetric]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    displayVideo360AdvertiserLinkProposals: typing.List[
+        GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse(
+    typing_extensions.TypedDict, total=False
+):
+    displayVideo360AdvertiserLinks: typing.List[
+        GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
+    ]
     nextPageToken: str
 
 @typing.type_check_only
@@ -417,6 +513,9 @@ class GoogleAnalyticsAdminV1alphaProperty(typing_extensions.TypedDict, total=Fal
     ]
     name: str
     parent: str
+    serviceLevel: typing_extensions.Literal[
+        "SERVICE_LEVEL_UNSPECIFIED", "GOOGLE_ANALYTICS_STANDARD", "GOOGLE_ANALYTICS_360"
+    ]
     timeZone: str
     updateTime: str
 

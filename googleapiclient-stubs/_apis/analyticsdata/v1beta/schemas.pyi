@@ -30,6 +30,21 @@ class CaseExpression(typing_extensions.TypedDict, total=False):
     dimensionName: str
 
 @typing.type_check_only
+class CheckCompatibilityRequest(typing_extensions.TypedDict, total=False):
+    compatibilityFilter: typing_extensions.Literal[
+        "COMPATIBILITY_UNSPECIFIED", "COMPATIBLE", "INCOMPATIBLE"
+    ]
+    dimensionFilter: FilterExpression
+    dimensions: typing.List[Dimension]
+    metricFilter: FilterExpression
+    metrics: typing.List[Metric]
+
+@typing.type_check_only
+class CheckCompatibilityResponse(typing_extensions.TypedDict, total=False):
+    dimensionCompatibilities: typing.List[DimensionCompatibility]
+    metricCompatibilities: typing.List[MetricCompatibility]
+
+@typing.type_check_only
 class Cohort(typing_extensions.TypedDict, total=False):
     dateRange: DateRange
     dimension: str
@@ -70,6 +85,13 @@ class Dimension(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class DimensionCompatibility(typing_extensions.TypedDict, total=False):
+    compatibility: typing_extensions.Literal[
+        "COMPATIBILITY_UNSPECIFIED", "COMPATIBLE", "INCOMPATIBLE"
+    ]
+    dimensionMetadata: DimensionMetadata
+
+@typing.type_check_only
 class DimensionExpression(typing_extensions.TypedDict, total=False):
     concatenate: ConcatenateExpression
     lowerCase: CaseExpression
@@ -82,6 +104,7 @@ class DimensionHeader(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DimensionMetadata(typing_extensions.TypedDict, total=False):
     apiName: str
+    category: str
     customDefinition: bool
     deprecatedApiNames: typing.List[str]
     description: str
@@ -133,6 +156,13 @@ class Metric(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MetricCompatibility(typing_extensions.TypedDict, total=False):
+    compatibility: typing_extensions.Literal[
+        "COMPATIBILITY_UNSPECIFIED", "COMPATIBLE", "INCOMPATIBLE"
+    ]
+    metricMetadata: MetricMetadata
+
+@typing.type_check_only
 class MetricHeader(typing_extensions.TypedDict, total=False):
     name: str
     type: typing_extensions.Literal[
@@ -154,6 +184,7 @@ class MetricHeader(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetricMetadata(typing_extensions.TypedDict, total=False):
     apiName: str
+    category: str
     customDefinition: bool
     deprecatedApiNames: typing.List[str]
     description: str
@@ -182,6 +213,12 @@ class MetricOrderBy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetricValue(typing_extensions.TypedDict, total=False):
     value: str
+
+@typing.type_check_only
+class MinuteRange(typing_extensions.TypedDict, total=False):
+    endMinutesAgo: int
+    name: str
+    startMinutesAgo: int
 
 @typing.type_check_only
 class NumericFilter(typing_extensions.TypedDict, total=False):
@@ -249,7 +286,9 @@ class QuotaStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResponseMetaData(typing_extensions.TypedDict, total=False):
+    currencyCode: str
     dataLossFromOtherRow: bool
+    timeZone: str
 
 @typing.type_check_only
 class Row(typing_extensions.TypedDict, total=False):
@@ -278,6 +317,7 @@ class RunRealtimeReportRequest(typing_extensions.TypedDict, total=False):
     metricAggregations: typing.List[str]
     metricFilter: FilterExpression
     metrics: typing.List[Metric]
+    minuteRanges: typing.List[MinuteRange]
     orderBys: typing.List[OrderBy]
     returnPropertyQuota: bool
 

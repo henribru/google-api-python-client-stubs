@@ -14,6 +14,7 @@ class ImportSshPublicKeyResponse(typing_extensions.TypedDict, total=False):
 class LoginProfile(typing_extensions.TypedDict, total=False):
     name: str
     posixAccounts: typing.List[PosixAccount]
+    securityKeys: typing.List[SecurityKey]
     sshPublicKeys: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
@@ -33,8 +34,23 @@ class PosixAccount(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
+class SecurityKey(typing_extensions.TypedDict, total=False):
+    privateKey: str
+    publicKey: str
+    universalTwoFactor: UniversalTwoFactor
+    webAuthn: WebAuthn
+
+@typing.type_check_only
 class SshPublicKey(typing_extensions.TypedDict, total=False):
     expirationTimeUsec: str
     fingerprint: str
     key: str
     name: str
+
+@typing.type_check_only
+class UniversalTwoFactor(typing_extensions.TypedDict, total=False):
+    appId: str
+
+@typing.type_check_only
+class WebAuthn(typing_extensions.TypedDict, total=False):
+    rpId: str

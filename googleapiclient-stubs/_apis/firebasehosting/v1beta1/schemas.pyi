@@ -152,11 +152,6 @@ class PopulateVersionFilesResponse(typing_extensions.TypedDict, total=False):
     uploadUrl: str
 
 @typing.type_check_only
-class PreviewConfig(typing_extensions.TypedDict, total=False):
-    active: bool
-    expireTime: str
-
-@typing.type_check_only
 class Redirect(typing_extensions.TypedDict, total=False):
     glob: str
     location: str
@@ -226,7 +221,6 @@ class Version(typing_extensions.TypedDict, total=False):
     finalizeUser: ActingUser
     labels: typing.Dict[str, typing.Any]
     name: str
-    preview: PreviewConfig
     status: typing_extensions.Literal[
         "VERSION_STATUS_UNSPECIFIED",
         "CREATED",

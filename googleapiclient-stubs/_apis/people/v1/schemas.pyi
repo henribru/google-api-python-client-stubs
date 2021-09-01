@@ -184,6 +184,7 @@ class ExternalId(typing_extensions.TypedDict, total=False):
 class FieldMetadata(typing_extensions.TypedDict, total=False):
     primary: bool
     source: Source
+    sourcePrimary: bool
     verified: bool
 
 @typing.type_check_only
@@ -340,11 +341,13 @@ class Occupation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Organization(typing_extensions.TypedDict, total=False):
+    costCenter: str
     current: bool
     department: str
     domain: str
     endDate: Date
     formattedType: str
+    fullTimeEquivalentMillipercent: int
     jobDescription: str
     location: str
     metadata: FieldMetadata

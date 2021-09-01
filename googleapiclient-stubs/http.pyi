@@ -1,7 +1,5 @@
 from typing import Any, Optional
 
-from six.moves import http_client as http_client
-
 from googleapiclient.errors import (
     BatchError as BatchError,
     HttpError as HttpError,

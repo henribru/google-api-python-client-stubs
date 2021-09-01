@@ -490,6 +490,11 @@ class RegexValidation(typing_extensions.TypedDict, total=False):
     regexes: typing.List[str]
 
 @typing.type_check_only
+class RepairClusterRequest(typing_extensions.TypedDict, total=False):
+    clusterUuid: str
+    requestId: str
+
+@typing.type_check_only
 class ReservationAffinity(typing_extensions.TypedDict, total=False):
     consumeReservationType: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "NO_RESERVATION", "ANY_RESERVATION", "SPECIFIC_RESERVATION"

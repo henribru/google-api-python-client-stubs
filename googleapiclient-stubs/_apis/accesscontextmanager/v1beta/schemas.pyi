@@ -3,6 +3,11 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class AccessContextManagerOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class AccessLevel(typing_extensions.TypedDict, total=False):
     basic: BasicLevel
     custom: CustomLevel

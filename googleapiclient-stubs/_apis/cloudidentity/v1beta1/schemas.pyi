@@ -210,10 +210,20 @@ class GoogleAppsCloudidentityDevicesV1AndroidAttributes(
     supportsWorkProfile: bool
 
 @typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1ApproveDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1ApproveDeviceUserResponse(
     typing_extensions.TypedDict, total=False
 ):
     deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1BlockDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse(
@@ -222,10 +232,20 @@ class GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse(
     deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
 
 @typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceResponse(
     typing_extensions.TypedDict, total=False
 ):
     device: GoogleAppsCloudidentityDevicesV1Device
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserResponse(
@@ -259,12 +279,27 @@ class GoogleAppsCloudidentityDevicesV1ClientState(
     scoreReason: str
 
 @typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CreateDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1CustomAttributeValue(
     typing_extensions.TypedDict, total=False
 ):
     boolValue: bool
     numberValue: float
     stringValue: str
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1DeleteDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1DeleteDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1Device(typing_extensions.TypedDict, total=False):
@@ -351,10 +386,40 @@ class GoogleAppsCloudidentityDevicesV1DeviceUser(
     userEmail: str
 
 @typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1ListEndpointAppsMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1SignoutDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1UpdateClientStateMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1UpdateDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1WipeDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1WipeDeviceResponse(
     typing_extensions.TypedDict, total=False
 ):
     device: GoogleAppsCloudidentityDevicesV1Device
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1WipeDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1WipeDeviceUserResponse(
@@ -373,6 +438,7 @@ class Group(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     name: str
     parent: str
+    posixGroups: typing.List[PosixGroup]
     updateTime: str
 
 @typing.type_check_only
@@ -484,6 +550,12 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class PosixGroup(typing_extensions.TypedDict, total=False):
+    gid: str
+    name: str
+    systemId: str
+
+@typing.type_check_only
 class SearchGroupsResponse(typing_extensions.TypedDict, total=False):
     groups: typing.List[Group]
     nextPageToken: str
@@ -526,7 +598,8 @@ class UserInvitation(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class WipeDeviceRequest(typing_extensions.TypedDict, total=False): ...
+class WipeDeviceRequest(typing_extensions.TypedDict, total=False):
+    removeResetLock: bool
 
 @typing.type_check_only
 class WipeDeviceResponse(typing_extensions.TypedDict, total=False):

@@ -21,6 +21,29 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                 @typing.type_check_only
                 class DomainsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
+                    class BackupsResource(googleapiclient.discovery.Resource):
+                        def getIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            options_requestedPolicyVersion: int = ...,
+                            **kwargs: typing.Any
+                        ) -> PolicyHttpRequest: ...
+                        def setIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            body: SetIamPolicyRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> PolicyHttpRequest: ...
+                        def testIamPermissions(
+                            self,
+                            *,
+                            resource: str,
+                            body: TestIamPermissionsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> TestIamPermissionsResponseHttpRequest: ...
+                    @typing.type_check_only
                     class SqlIntegrationsResource(googleapiclient.discovery.Resource):
                         def get(
                             self, *, name: str, **kwargs: typing.Any
@@ -70,6 +93,9 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any
                     ) -> PolicyHttpRequest: ...
+                    def getLdapssettings(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> LDAPSSettingsHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -116,6 +142,14 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def updateLdapssettings(
+                        self,
+                        *,
+                        name: str,
+                        body: LDAPSSettings = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def validateTrust(
                         self,
                         *,
@@ -123,6 +157,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: ValidateTrustRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def backups(self) -> BackupsResource: ...
                     def sqlIntegrations(self) -> SqlIntegrationsResource: ...
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
@@ -150,6 +185,20 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                     ) -> ListOperationsResponseHttpRequest: ...
                 @typing.type_check_only
                 class PeeringsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Peering = ...,
+                        peeringId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> PeeringHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -157,6 +206,24 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any
                     ) -> PolicyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListPeeringsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Peering = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -211,6 +278,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class LDAPSSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> LDAPSSettings: ...
+
+@typing.type_check_only
 class ListDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -241,6 +318,16 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListPeeringsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListPeeringsResponse: ...
+
+@typing.type_check_only
 class ListSqlIntegrationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -269,6 +356,16 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class PeeringHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Peering: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):

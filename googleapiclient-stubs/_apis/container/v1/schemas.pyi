@@ -6,6 +6,7 @@ import typing_extensions
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorCount: str
     acceleratorType: str
+    gpuPartitionSize: str
 
 @typing.type_check_only
 class AddonsConfig(typing_extensions.TypedDict, total=False):
@@ -108,10 +109,12 @@ class Cluster(typing_extensions.TypedDict, total=False):
     legacyAbac: LegacyAbac
     location: str
     locations: typing.List[str]
+    loggingConfig: LoggingConfig
     loggingService: str
     maintenancePolicy: MaintenancePolicy
     masterAuth: MasterAuth
     masterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
+    monitoringConfig: MonitoringConfig
     monitoringService: str
     name: str
     network: str
@@ -148,12 +151,16 @@ class Cluster(typing_extensions.TypedDict, total=False):
 class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
     autoprovisioningLocations: typing.List[str]
     autoprovisioningNodePoolDefaults: AutoprovisioningNodePoolDefaults
+    autoscalingProfile: typing_extensions.Literal[
+        "PROFILE_UNSPECIFIED", "OPTIMIZE_UTILIZATION", "BALANCED"
+    ]
     enableNodeAutoprovisioning: bool
     resourceLimits: typing.List[ResourceLimit]
 
 @typing.type_check_only
 class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredAddonsConfig: AddonsConfig
+    desiredAuthenticatorGroupsConfig: AuthenticatorGroupsConfig
     desiredAutopilot: Autopilot
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
@@ -164,10 +171,13 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredImageType: str
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
+    desiredL4ilbSubsettingConfig: ILBSubsettingConfig
     desiredLocations: typing.List[str]
+    desiredLoggingConfig: LoggingConfig
     desiredLoggingService: str
     desiredMasterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
     desiredMasterVersion: str
+    desiredMonitoringConfig: MonitoringConfig
     desiredMonitoringService: str
     desiredNodePoolAutoscaling: NodePoolAutoscaling
     desiredNodePoolId: str
@@ -276,6 +286,10 @@ class HttpLoadBalancing(typing_extensions.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
+class ILBSubsettingConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     clusterIpv4Cidr: str
     clusterIpv4CidrBlock: str
@@ -339,6 +353,14 @@ class ListUsableSubnetworksResponse(typing_extensions.TypedDict, total=False):
     subnetworks: typing.List[UsableSubnetwork]
 
 @typing.type_check_only
+class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
+    enableComponents: typing.List[str]
+
+@typing.type_check_only
+class LoggingConfig(typing_extensions.TypedDict, total=False):
+    componentConfig: LoggingComponentConfig
+
+@typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
     resourceVersion: str
     window: MaintenanceWindow
@@ -375,12 +397,21 @@ class Metric(typing_extensions.TypedDict, total=False):
     stringValue: str
 
 @typing.type_check_only
+class MonitoringComponentConfig(typing_extensions.TypedDict, total=False):
+    enableComponents: typing.List[str]
+
+@typing.type_check_only
+class MonitoringConfig(typing_extensions.TypedDict, total=False):
+    componentConfig: MonitoringComponentConfig
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     datapathProvider: typing_extensions.Literal[
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
     defaultSnatStatus: DefaultSnatStatus
     enableIntraNodeVisibility: bool
+    enableL4ilbSubsetting: bool
     network: str
     privateIpv6GoogleAccess: typing_extensions.Literal[
         "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
@@ -405,6 +436,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     bootDiskKmsKey: str
     diskSizeGb: int
     diskType: str
+    gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig
     labels: typing.Dict[str, typing.Any]
@@ -437,6 +469,12 @@ class NodeManagement(typing_extensions.TypedDict, total=False):
     upgradeOptions: AutoUpgradeOptions
 
 @typing.type_check_only
+class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
+    createPodRange: bool
+    podIpv4CidrBlock: str
+    podRange: str
+
+@typing.type_check_only
 class NodePool(typing_extensions.TypedDict, total=False):
     autoscaling: NodePoolAutoscaling
     conditions: typing.List[StatusCondition]
@@ -447,6 +485,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     management: NodeManagement
     maxPodsConstraint: MaxPodsConstraint
     name: str
+    networkConfig: NodeNetworkConfig
     podIpv4CidrSize: int
     selfLink: str
     status: typing_extensions.Literal[
@@ -744,6 +783,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
+    gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig
     linuxNodeConfig: LinuxNodeConfig
@@ -803,6 +843,10 @@ class UsableSubnetworkSecondaryRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VerticalPodAutoscaling(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class VirtualNIC(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only

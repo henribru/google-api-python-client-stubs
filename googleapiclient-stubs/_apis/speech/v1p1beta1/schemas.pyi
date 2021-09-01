@@ -59,6 +59,7 @@ class LongRunningRecognizeResponse(typing_extensions.TypedDict, total=False):
     outputConfig: TranscriptOutputConfig
     outputError: Status
     results: typing.List[SpeechRecognitionResult]
+    totalBilledTime: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -161,6 +162,7 @@ class RecognizeRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RecognizeResponse(typing_extensions.TypedDict, total=False):
     results: typing.List[SpeechRecognitionResult]
+    totalBilledTime: str
 
 @typing.type_check_only
 class SpeakerDiarizationConfig(typing_extensions.TypedDict, total=False):

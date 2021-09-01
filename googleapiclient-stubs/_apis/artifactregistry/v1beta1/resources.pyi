@@ -19,15 +19,6 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListOperationsResponseHttpRequest: ...
             @typing.type_check_only
             class RepositoriesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -230,16 +221,6 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListLocationsResponse: ...
-
-@typing.type_check_only
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
 class ListPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):

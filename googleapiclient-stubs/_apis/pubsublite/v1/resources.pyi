@@ -17,6 +17,30 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class LocationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelOperationRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListOperationsResponseHttpRequest: ...
+                @typing.type_check_only
                 class SubscriptionsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -49,6 +73,13 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> SubscriptionHttpRequest: ...
+                    def seek(
+                        self,
+                        *,
+                        name: str,
+                        body: SeekSubscriptionRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                 @typing.type_check_only
                 class TopicsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -95,6 +126,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TopicHttpRequest: ...
                     def subscriptions(self) -> SubscriptionsResource: ...
+                def operations(self) -> OperationsResource: ...
                 def subscriptions(self) -> SubscriptionsResource: ...
                 def topics(self) -> TopicsResource: ...
             def locations(self) -> LocationsResource: ...
@@ -215,6 +247,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
 class ListPartitionCursorsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -253,6 +295,16 @@ class ListTopicsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListTopicsResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Operation: ...
 
 @typing.type_check_only
 class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):

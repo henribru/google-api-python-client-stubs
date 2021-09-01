@@ -548,7 +548,8 @@ class QueryAccessibleDataRequest(typing_extensions.TypedDict, total=False):
     resourceAttributes: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
-class QueryAccessibleDataResponse(typing_extensions.TypedDict, total=False): ...
+class QueryAccessibleDataResponse(typing_extensions.TypedDict, total=False):
+    gcsUris: typing.List[str]
 
 @typing.type_check_only
 class RedactConfig(typing_extensions.TypedDict, total=False): ...

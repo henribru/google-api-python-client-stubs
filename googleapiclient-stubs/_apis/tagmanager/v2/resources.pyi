@@ -204,6 +204,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                 "requestMethod",
                                 "clientName",
                                 "queryString",
+                                "serverPageLocationUrl",
+                                "serverPageLocationPath",
+                                "serverPageLocationHostname",
                             ],
                             typing.List[
                                 typing_extensions.Literal[
@@ -317,6 +320,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                     "requestMethod",
                                     "clientName",
                                     "queryString",
+                                    "serverPageLocationUrl",
+                                    "serverPageLocationPath",
+                                    "serverPageLocationHostname",
                                 ]
                             ],
                         ] = ...,
@@ -438,6 +444,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                 "requestMethod",
                                 "clientName",
                                 "queryString",
+                                "serverPageLocationUrl",
+                                "serverPageLocationPath",
+                                "serverPageLocationHostname",
                             ],
                             typing.List[
                                 typing_extensions.Literal[
@@ -551,6 +560,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                     "requestMethod",
                                     "clientName",
                                     "queryString",
+                                    "serverPageLocationUrl",
+                                    "serverPageLocationPath",
+                                    "serverPageLocationHostname",
                                 ]
                             ],
                         ] = ...,
@@ -674,9 +686,37 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                             "requestMethod",
                             "clientName",
                             "queryString",
+                            "serverPageLocationUrl",
+                            "serverPageLocationPath",
+                            "serverPageLocationHostname",
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> RevertBuiltInVariableResponseHttpRequest: ...
+                @typing.type_check_only
+                class ClientsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self, *, parent: str, body: Client = ..., **kwargs: typing.Any
+                    ) -> ClientHttpRequest: ...
+                    def delete(
+                        self, *, path: str, **kwargs: typing.Any
+                    ) -> googleapiclient.http.HttpRequest: ...
+                    def get(
+                        self, *, path: str, **kwargs: typing.Any
+                    ) -> ClientHttpRequest: ...
+                    def list(
+                        self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
+                    ) -> ListClientsResponseHttpRequest: ...
+                    def revert(
+                        self, *, path: str, fingerprint: str = ..., **kwargs: typing.Any
+                    ) -> RevertClientResponseHttpRequest: ...
+                    def update(
+                        self,
+                        *,
+                        path: str,
+                        body: Client = ...,
+                        fingerprint: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ClientHttpRequest: ...
                 @typing.type_check_only
                 class FoldersResource(googleapiclient.discovery.Resource):
                     def create(
@@ -889,6 +929,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> WorkspaceHttpRequest: ...
                 def built_in_variables(self) -> Built_in_variablesResource: ...
+                def clients(self) -> ClientsResource: ...
                 def folders(self) -> FoldersResource: ...
                 def tags(self) -> TagsResource: ...
                 def templates(self) -> TemplatesResource: ...
@@ -961,6 +1002,16 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Account: ...
+
+@typing.type_check_only
+class ClientHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Client: ...
 
 @typing.type_check_only
 class ContainerHttpRequest(googleapiclient.http.HttpRequest):
@@ -1071,6 +1122,16 @@ class ListAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListAccountsResponse: ...
+
+@typing.type_check_only
+class ListClientsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListClientsResponse: ...
 
 @typing.type_check_only
 class ListContainerVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1221,6 +1282,16 @@ class RevertBuiltInVariableResponseHttpRequest(googleapiclient.http.HttpRequest)
         ] = ...,
         num_retries: int = ...,
     ) -> RevertBuiltInVariableResponse: ...
+
+@typing.type_check_only
+class RevertClientResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> RevertClientResponse: ...
 
 @typing.type_check_only
 class RevertFolderResponseHttpRequest(googleapiclient.http.HttpRequest):

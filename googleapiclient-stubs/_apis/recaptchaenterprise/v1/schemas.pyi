@@ -79,6 +79,7 @@ class GoogleCloudRecaptchaenterpriseV1ListKeysResponse(
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Metrics(typing_extensions.TypedDict, total=False):
     challengeMetrics: typing.List[GoogleCloudRecaptchaenterpriseV1ChallengeMetrics]
+    name: str
     scoreMetrics: typing.List[GoogleCloudRecaptchaenterpriseV1ScoreMetrics]
     startTime: str
 
@@ -112,7 +113,7 @@ class GoogleCloudRecaptchaenterpriseV1TestingOptions(
     typing_extensions.TypedDict, total=False
 ):
     testingChallenge: typing_extensions.Literal[
-        "TESTING_CHALLENGE_UNSPECIFIED", "NOCAPTCHA", "CHALLENGE"
+        "TESTING_CHALLENGE_UNSPECIFIED", "NOCAPTCHA", "UNSOLVABLE_CHALLENGE"
     ]
     testingScore: float
 

@@ -210,9 +210,7 @@ class GoogleDevtoolsRemotebuildbotCommandDurations(
 class GoogleDevtoolsRemotebuildbotCommandEvents(
     typing_extensions.TypedDict, total=False
 ):
-    cmUsage: typing_extensions.Literal[
-        "CONFIG_NONE", "CONFIG_MATCH", "CONFIG_MISMATCH", "CONFIG_MISSING_CONTAINER"
-    ]
+    cmUsage: typing_extensions.Literal["CONFIG_NONE", "CONFIG_MATCH", "CONFIG_MISMATCH"]
     dockerCacheHit: bool
     dockerImageName: str
     inputCacheMiss: float

@@ -15,10 +15,6 @@ class IdeahubResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            creator_platform: typing_extensions.Literal[
-                "UNKNOWN", "BLOGGER", "SITEKIT"
-            ] = ...,
-            creator_platformId: str = ...,
             filter: str = ...,
             orderBy: str = ...,
             pageSize: int = ...,
@@ -30,6 +26,15 @@ class IdeahubResource(googleapiclient.discovery.Resource):
     class PlatformsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class PropertiesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class IdeaActivitiesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleSearchIdeahubV1alphaIdeaActivity = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleSearchIdeahubV1alphaIdeaActivityHttpRequest: ...
             @typing.type_check_only
             class IdeaStatesResource(googleapiclient.discovery.Resource):
                 def patch(
@@ -46,10 +51,6 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    creator_platform: typing_extensions.Literal[
-                        "UNKNOWN", "BLOGGER", "SITEKIT"
-                    ] = ...,
-                    creator_platformId: str = ...,
                     filter: str = ...,
                     orderBy: str = ...,
                     pageSize: int = ...,
@@ -66,12 +67,36 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest: ...
+            @typing.type_check_only
+            class TopicStatesResource(googleapiclient.discovery.Resource):
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleSearchIdeahubV1alphaTopicState = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleSearchIdeahubV1alphaTopicStateHttpRequest: ...
+            def ideaActivities(self) -> IdeaActivitiesResource: ...
             def ideaStates(self) -> IdeaStatesResource: ...
             def ideas(self) -> IdeasResource: ...
             def locales(self) -> LocalesResource: ...
+            def topicStates(self) -> TopicStatesResource: ...
         def properties(self) -> PropertiesResource: ...
     def ideas(self) -> IdeasResource: ...
     def platforms(self) -> PlatformsResource: ...
+
+@typing.type_check_only
+class GoogleSearchIdeahubV1alphaIdeaActivityHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleSearchIdeahubV1alphaIdeaActivity: ...
 
 @typing.type_check_only
 class GoogleSearchIdeahubV1alphaIdeaStateHttpRequest(googleapiclient.http.HttpRequest):
@@ -106,3 +131,13 @@ class GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleSearchIdeahubV1alphaListIdeasResponse: ...
+
+@typing.type_check_only
+class GoogleSearchIdeahubV1alphaTopicStateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleSearchIdeahubV1alphaTopicState: ...

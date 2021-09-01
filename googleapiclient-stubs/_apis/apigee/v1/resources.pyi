@@ -208,6 +208,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 includeRevisions: bool = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1ListApiProxiesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1ApiProxy = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1ApiProxyHttpRequest: ...
             def deployments(self) -> DeploymentsResource: ...
             def keyvaluemaps(self) -> KeyvaluemapsResource: ...
             def revisions(self) -> RevisionsResource: ...
@@ -604,6 +612,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         name: str,
                         override: bool = ...,
                         sequencedRollout: bool = ...,
+                        serviceAccount: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudApigeeV1DeploymentHttpRequest: ...
                     def getDeployments(
@@ -620,6 +629,52 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     def deployments(self) -> DeploymentsResource: ...
                 def deployments(self) -> DeploymentsResource: ...
                 def revisions(self) -> RevisionsResource: ...
+            @typing.type_check_only
+            class ArchiveDeploymentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudApigeeV1ArchiveDeployment = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def generateDownloadUrl(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1GenerateDownloadUrlRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1GenerateDownloadUrlResponseHttpRequest: ...
+                def generateUploadUrl(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudApigeeV1GenerateUploadUrlRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1GenerateUploadUrlResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ArchiveDeploymentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ListArchiveDeploymentsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1ArchiveDeployment = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ArchiveDeploymentHttpRequest: ...
             @typing.type_check_only
             class CachesResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -822,7 +877,12 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class RevisionsResource(googleapiclient.discovery.Resource):
                     def deploy(
-                        self, *, name: str, override: bool = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        override: bool = ...,
+                        serviceAccount: str = ...,
+                        **kwargs: typing.Any
                     ) -> GoogleCloudApigeeV1DeploymentHttpRequest: ...
                     def getDeployments(
                         self, *, name: str, **kwargs: typing.Any
@@ -999,6 +1059,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudApigeeV1TraceConfigHttpRequest: ...
             def analytics(self) -> AnalyticsResource: ...
             def apis(self) -> ApisResource: ...
+            def archiveDeployments(self) -> ArchiveDeploymentsResource: ...
             def caches(self) -> CachesResource: ...
             def deployments(self) -> DeploymentsResource: ...
             def flowhooks(self) -> FlowhooksResource: ...
@@ -1152,6 +1213,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1ListInstancesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1Instance = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def reportStatus(
                 self,
                 *,
@@ -1339,6 +1408,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudApigeeV1IngressConfigHttpRequest: ...
+        def getRuntimeConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleCloudApigeeV1RuntimeConfigHttpRequest: ...
         def getSyncAuthorization(
             self,
             *,
@@ -1482,6 +1554,16 @@ class GoogleCloudApigeeV1AppHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1App: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ArchiveDeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1ArchiveDeployment: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1AsyncQueryHttpRequest(googleapiclient.http.HttpRequest):
@@ -1736,6 +1818,30 @@ class GoogleCloudApigeeV1FlowHookHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleCloudApigeeV1FlowHook: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1GenerateDownloadUrlResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1GenerateDownloadUrlResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1GenerateUploadUrlResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1GenerateUploadUrlResponse: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1IngressConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1832,6 +1938,18 @@ class GoogleCloudApigeeV1ListAppsResponseHttpRequest(googleapiclient.http.HttpRe
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListAppsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListArchiveDeploymentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1ListArchiveDeploymentsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListAsyncQueriesResponseHttpRequest(
@@ -2156,6 +2274,16 @@ class GoogleCloudApigeeV1ResourceFileHttpRequest(googleapiclient.http.HttpReques
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ResourceFile: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1RuntimeConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1RuntimeConfig: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SchemaHttpRequest(googleapiclient.http.HttpRequest):

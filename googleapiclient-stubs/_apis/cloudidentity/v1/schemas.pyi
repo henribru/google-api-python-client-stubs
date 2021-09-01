@@ -7,6 +7,18 @@ class CheckTransitiveMembershipResponse(typing_extensions.TypedDict, total=False
     hasMembership: bool
 
 @typing.type_check_only
+class CreateGroupMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CreateMembershipMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteGroupMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteMembershipMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class DynamicGroupMetadata(typing_extensions.TypedDict, total=False):
     queries: typing.List[DynamicGroupQuery]
     status: DynamicGroupStatus
@@ -33,6 +45,9 @@ class ExpiryDetail(typing_extensions.TypedDict, total=False):
     expireTime: str
 
 @typing.type_check_only
+class GetMembershipGraphMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GetMembershipGraphResponse(typing_extensions.TypedDict, total=False):
     adjacencyList: typing.List[MembershipAdjacencyList]
     groups: typing.List[Group]
@@ -52,6 +67,11 @@ class GoogleAppsCloudidentityDevicesV1AndroidAttributes(
     supportsWorkProfile: bool
 
 @typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1ApproveDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1ApproveDeviceUserRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -62,6 +82,11 @@ class GoogleAppsCloudidentityDevicesV1ApproveDeviceUserResponse(
     typing_extensions.TypedDict, total=False
 ):
     deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1BlockDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1BlockDeviceUserRequest(
@@ -76,6 +101,11 @@ class GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse(
     deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
 
 @typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -86,6 +116,11 @@ class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceResponse(
     typing_extensions.TypedDict, total=False
 ):
     device: GoogleAppsCloudidentityDevicesV1Device
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserRequest(
@@ -125,12 +160,27 @@ class GoogleAppsCloudidentityDevicesV1ClientState(
     scoreReason: str
 
 @typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CreateDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1CustomAttributeValue(
     typing_extensions.TypedDict, total=False
 ):
     boolValue: bool
     numberValue: float
     stringValue: str
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1DeleteDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1DeleteDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1Device(typing_extensions.TypedDict, total=False):
@@ -238,12 +288,37 @@ class GoogleAppsCloudidentityDevicesV1ListDevicesResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1ListEndpointAppsMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse(
     typing_extensions.TypedDict, total=False
 ):
     customer: str
     names: typing.List[str]
     nextPageToken: str
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1SignoutDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1UpdateClientStateMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1UpdateDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1WipeDeviceMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1WipeDeviceRequest(
@@ -256,6 +331,11 @@ class GoogleAppsCloudidentityDevicesV1WipeDeviceResponse(
     typing_extensions.TypedDict, total=False
 ):
     device: GoogleAppsCloudidentityDevicesV1Device
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1WipeDeviceUserMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1WipeDeviceUserRequest(
@@ -382,6 +462,12 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TransitiveMembershipRole(typing_extensions.TypedDict, total=False):
     role: str
+
+@typing.type_check_only
+class UpdateGroupMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateMembershipMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UpdateMembershipRolesParams(typing_extensions.TypedDict, total=False):

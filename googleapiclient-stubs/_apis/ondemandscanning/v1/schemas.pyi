@@ -44,6 +44,7 @@ class AttestationOccurrence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildOccurrence(typing_extensions.TypedDict, total=False):
+    intotoProvenance: InTotoProvenance
     provenance: BuildProvenance
     provenanceBytes: str
 
@@ -62,6 +63,10 @@ class BuildProvenance(typing_extensions.TypedDict, total=False):
     sourceProvenance: Source
     startTime: str
     triggerId: str
+
+@typing.type_check_only
+class BuilderConfig(typing_extensions.TypedDict, total=False):
+    id: str
 
 @typing.type_check_only
 class Category(typing_extensions.TypedDict, total=False):
@@ -84,9 +89,20 @@ class Command(typing_extensions.TypedDict, total=False):
     waitFor: typing.List[str]
 
 @typing.type_check_only
+class Completeness(typing_extensions.TypedDict, total=False):
+    arguments: bool
+    environment: bool
+    materials: bool
+
+@typing.type_check_only
 class ComplianceOccurrence(typing_extensions.TypedDict, total=False):
     nonComplianceReason: str
     nonCompliantFiles: typing.List[NonCompliantFile]
+
+@typing.type_check_only
+class DSSEAttestationOccurrence(typing_extensions.TypedDict, total=False):
+    envelope: Envelope
+    statement: InTotoStatement
 
 @typing.type_check_only
 class DeploymentOccurrence(typing_extensions.TypedDict, total=False):
@@ -117,6 +133,17 @@ class DiscoveryOccurrence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Envelope(typing_extensions.TypedDict, total=False):
+    payload: str
+    payloadType: str
+    signatures: typing.List[EnvelopeSignature]
+
+@typing.type_check_only
+class EnvelopeSignature(typing_extensions.TypedDict, total=False):
+    keyid: str
+    sig: str
 
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
@@ -158,6 +185,20 @@ class ImageOccurrence(typing_extensions.TypedDict, total=False):
     layerInfo: typing.List[Layer]
 
 @typing.type_check_only
+class InTotoProvenance(typing_extensions.TypedDict, total=False):
+    builderConfig: BuilderConfig
+    materials: typing.List[str]
+    metadata: Metadata
+    recipe: Recipe
+
+@typing.type_check_only
+class InTotoStatement(typing_extensions.TypedDict, total=False):
+    predicateType: str
+    provenance: InTotoProvenance
+    subject: typing.List[Subject]
+    type: str
+
+@typing.type_check_only
 class Jwt(typing_extensions.TypedDict, total=False):
     compactJwt: str
 
@@ -183,6 +224,14 @@ class Location(typing_extensions.TypedDict, total=False):
     version: Version
 
 @typing.type_check_only
+class Metadata(typing_extensions.TypedDict, total=False):
+    buildFinishedOn: str
+    buildInvocationId: str
+    buildStartedOn: str
+    completeness: Completeness
+    reproducible: bool
+
+@typing.type_check_only
 class NonCompliantFile(typing_extensions.TypedDict, total=False):
     displayCommand: str
     path: str
@@ -196,6 +245,8 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     createTime: str
     deployment: DeploymentOccurrence
     discovery: DiscoveryOccurrence
+    dsseAttestation: DSSEAttestationOccurrence
+    envelope: Envelope
     image: ImageOccurrence
     kind: typing_extensions.Literal[
         "NOTE_KIND_UNSPECIFIED",
@@ -207,6 +258,8 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "DISCOVERY",
         "ATTESTATION",
         "UPGRADE",
+        "COMPLIANCE",
+        "DSSE_ATTESTATION",
     ]
     name: str
     noteName: str
@@ -231,6 +284,9 @@ class PackageData(typing_extensions.TypedDict, total=False):
     os: str
     osVersion: str
     package: str
+    packageType: typing_extensions.Literal[
+        "PACKAGE_TYPE_UNSPECIFIED", "OS", "MAVEN", "GO", "GO_STDLIB"
+    ]
     unused: str
     version: str
 
@@ -239,10 +295,14 @@ class PackageIssue(typing_extensions.TypedDict, total=False):
     affectedCpeUri: str
     affectedPackage: str
     affectedVersion: Version
+    effectiveSeverity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
+    ]
     fixAvailable: bool
     fixedCpeUri: str
     fixedPackage: str
     fixedVersion: Version
+    packageType: str
 
 @typing.type_check_only
 class PackageOccurrence(typing_extensions.TypedDict, total=False):
@@ -253,6 +313,14 @@ class PackageOccurrence(typing_extensions.TypedDict, total=False):
 class ProjectRepoId(typing_extensions.TypedDict, total=False):
     projectId: str
     repoName: str
+
+@typing.type_check_only
+class Recipe(typing_extensions.TypedDict, total=False):
+    arguments: typing.List[typing.Dict[str, typing.Any]]
+    definedInMaterial: str
+    entryPoint: str
+    environment: typing.List[typing.Dict[str, typing.Any]]
+    type: str
 
 @typing.type_check_only
 class RelatedUrl(typing_extensions.TypedDict, total=False):
@@ -288,6 +356,11 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class Subject(typing_extensions.TypedDict, total=False):
+    digest: typing.Dict[str, typing.Any]
+    name: str
 
 @typing.type_check_only
 class UpgradeDistribution(typing_extensions.TypedDict, total=False):

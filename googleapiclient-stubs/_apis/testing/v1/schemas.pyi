@@ -75,6 +75,9 @@ class AndroidRoboTest(typing_extensions.TypedDict, total=False):
     maxDepth: int
     maxSteps: int
     roboDirectives: typing.List[RoboDirective]
+    roboMode: typing_extensions.Literal[
+        "ROBO_MODE_UNSPECIFIED", "ROBO_VERSION_1", "ROBO_VERSION_2"
+    ]
     roboScript: FileReference
     startingIntents: typing.List[RoboStartingIntent]
 

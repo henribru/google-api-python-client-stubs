@@ -14,10 +14,41 @@ class BucketOptions(typing_extensions.TypedDict, total=False):
     linearBuckets: Linear
 
 @typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CmekSettings(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     name: str
     serviceAccountId: str
+
+@typing.type_check_only
+class CopyLogEntriesMetadata(typing_extensions.TypedDict, total=False):
+    cancellationRequested: bool
+    endTime: str
+    progress: int
+    request: CopyLogEntriesRequest
+    startTime: str
+    state: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "OPERATION_STATE_SCHEDULED",
+        "OPERATION_STATE_WAITING_FOR_PERMISSIONS",
+        "OPERATION_STATE_RUNNING",
+        "OPERATION_STATE_SUCCEEDED",
+        "OPERATION_STATE_FAILED",
+        "OPERATION_STATE_CANCELLED",
+    ]
+    writerIdentity: str
+
+@typing.type_check_only
+class CopyLogEntriesRequest(typing_extensions.TypedDict, total=False):
+    destination: str
+    filter: str
+    name: str
+
+@typing.type_check_only
+class CopyLogEntriesResponse(typing_extensions.TypedDict, total=False):
+    logEntriesCopiedCount: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -107,6 +138,11 @@ class ListMonitoredResourceDescriptorsResponse(
 ):
     nextPageToken: str
     resourceDescriptors: typing.List[MonitoredResourceDescriptor]
+
+@typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
 
 @typing.type_check_only
 class ListSinksResponse(typing_extensions.TypedDict, total=False):
@@ -240,12 +276,7 @@ class LogSink(typing_extensions.TypedDict, total=False):
     writerIdentity: str
 
 @typing.type_check_only
-class LogView(typing_extensions.TypedDict, total=False):
-    createTime: str
-    description: str
-    filter: str
-    name: str
-    updateTime: str
+class LogView(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
@@ -324,6 +355,14 @@ class MonitoredResourceMetadata(typing_extensions.TypedDict, total=False):
     userLabels: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class RequestLog(typing_extensions.TypedDict, total=False):
     appEngineRelease: str
     appId: str
@@ -371,11 +410,23 @@ class SourceReference(typing_extensions.TypedDict, total=False):
     revisionId: str
 
 @typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class SuppressionInfo(typing_extensions.TypedDict, total=False):
     reason: typing_extensions.Literal[
         "REASON_UNSPECIFIED", "RATE_LIMIT", "NOT_CONSUMED"
     ]
     suppressedCount: int
+
+@typing.type_check_only
+class TableFieldSchema(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class TableSchema(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TailLogEntriesRequest(typing_extensions.TypedDict, total=False):

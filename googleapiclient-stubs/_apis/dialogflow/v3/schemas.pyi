@@ -3,7 +3,21 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3AdvancedSettings(
+    typing_extensions.TypedDict, total=False
+):
+    loggingSettings: GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings(
+    typing_extensions.TypedDict, total=False
+):
+    enableInteractionLogging: bool
+    enableStackdriverLogging: bool
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3Agent(typing_extensions.TypedDict, total=False):
+    advancedSettings: GoogleCloudDialogflowCxV3AdvancedSettings
     avatarUri: str
     defaultLanguageCode: str
     description: str
@@ -204,8 +218,13 @@ class GoogleCloudDialogflowCxV3Experiment(typing_extensions.TypedDict, total=Fal
     lastUpdateTime: str
     name: str
     result: GoogleCloudDialogflowCxV3ExperimentResult
+    rolloutConfig: GoogleCloudDialogflowCxV3RolloutConfig
+    rolloutFailureReason: str
+    rolloutState: GoogleCloudDialogflowCxV3RolloutState
     startTime: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "RUNNING", "DONE"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "DRAFT", "RUNNING", "DONE", "ROLLOUT_FAILED"
+    ]
     variantsHistory: typing.List[GoogleCloudDialogflowCxV3VariantsHistory]
 
 @typing.type_check_only
@@ -733,6 +752,7 @@ class GoogleCloudDialogflowCxV3QueryParameters(
     analyzeQueryTextSentiment: bool
     currentPage: str
     disableWebhook: bool
+    flowVersions: typing.List[str]
     geoLocation: GoogleTypeLatLng
     parameters: typing.Dict[str, typing.Any]
     payload: typing.Dict[str, typing.Any]
@@ -831,6 +851,26 @@ class GoogleCloudDialogflowCxV3RestoreAgentRequest(
     ]
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3RolloutConfig(typing_extensions.TypedDict, total=False):
+    failureCondition: str
+    rolloutCondition: str
+    rolloutSteps: typing.List[GoogleCloudDialogflowCxV3RolloutConfigRolloutStep]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3RolloutConfigRolloutStep(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    minDuration: str
+    trafficPercent: int
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3RolloutState(typing_extensions.TypedDict, total=False):
+    startTime: str
+    step: str
+    stepIndex: int
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3RunContinuousTestMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -868,7 +908,9 @@ class GoogleCloudDialogflowCxV3RunTestCaseResponse(
 class GoogleCloudDialogflowCxV3SecuritySettings(
     typing_extensions.TypedDict, total=False
 ):
+    deidentifyTemplate: str
     displayName: str
+    insightsExportSettings: GoogleCloudDialogflowCxV3SecuritySettingsInsightsExportSettings
     inspectTemplate: str
     name: str
     purgeDataTypes: typing.List[str]
@@ -879,6 +921,12 @@ class GoogleCloudDialogflowCxV3SecuritySettings(
         "REDACTION_STRATEGY_UNSPECIFIED", "REDACT_WITH_SERVICE"
     ]
     retentionWindowDays: int
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3SecuritySettingsInsightsExportSettings(
+    typing_extensions.TypedDict, total=False
+):
+    enableInsightsExport: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3SentimentAnalysisResult(
@@ -2962,6 +3010,21 @@ class GoogleCloudDialogflowV3alpha1UpdateDocumentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     genericMetadata: GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudLocationListLocationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    locations: typing.List[GoogleCloudLocationLocation]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):

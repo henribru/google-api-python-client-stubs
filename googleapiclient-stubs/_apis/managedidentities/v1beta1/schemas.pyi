@@ -16,6 +16,9 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Certificate(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
 class DailyCycle(typing_extensions.TypedDict, total=False):
     duration: str
     startTime: TimeOfDay
@@ -156,9 +159,9 @@ class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
 class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
     location: str
     nodeId: str
+    perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
@@ -181,22 +184,23 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility(
     reason: str
 
 @typing.type_check_only
-class GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion(
-    typing_extensions.TypedDict, total=False
-):
-    duration: str
-    reason: str
-    sliName: str
-    startTime: str
-
-@typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
     nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
     tier: str
+
+@typing.type_check_only
+class LDAPSSettings(typing_extensions.TypedDict, total=False):
+    certificate: Certificate
+    certificatePassword: str
+    certificatePfx: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "UPDATING", "ACTIVE", "FAILED"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class ListDomainsResponse(typing_extensions.TypedDict, total=False):
@@ -213,6 +217,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: typing.List[Operation]
+
+@typing.type_check_only
+class ListPeeringsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    peerings: typing.List[Peering]
+    unreachable: typing.List[str]
 
 @typing.type_check_only
 class ListSqlIntegrationsResponse(typing_extensions.TypedDict, total=False):
@@ -260,6 +270,19 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class Peering(typing_extensions.TypedDict, total=False):
+    authorizedNetwork: str
+    createTime: str
+    domainResource: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "CONNECTED", "DISCONNECTED", "DELETING"
+    ]
+    statusMessage: str
+    updateTime: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):

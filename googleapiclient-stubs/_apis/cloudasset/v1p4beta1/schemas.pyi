@@ -8,6 +8,10 @@ class AccessSelector(typing_extensions.TypedDict, total=False):
     roles: typing.List[str]
 
 @typing.type_check_only
+class AnalyzeIamPolicyLongrunningMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+
+@typing.type_check_only
 class AnalyzeIamPolicyLongrunningResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only

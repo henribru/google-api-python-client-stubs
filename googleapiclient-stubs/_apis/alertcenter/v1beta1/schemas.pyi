@@ -3,6 +3,32 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class AccountSuspensionDetails(typing_extensions.TypedDict, total=False):
+    abuseReason: typing_extensions.Literal[
+        "ACCOUNT_SUSPENSION_ABUSE_REASON_UNSPECIFIED",
+        "TOS_VIOLATION",
+        "SPAM",
+        "PHISHING",
+        "TRAFFIC_PUMPING",
+        "FRAUD",
+        "NUMBER_HARVESTING",
+        "PAYMENTS_FRAUD",
+    ]
+    productName: str
+
+@typing.type_check_only
+class AccountSuspensionWarning(typing_extensions.TypedDict, total=False):
+    appealWindow: str
+    state: typing_extensions.Literal[
+        "ACCOUNT_SUSPENSION_WARNING_STATE_UNSPECIFIED",
+        "WARNING",
+        "SUSPENDED",
+        "APPEAL_APPROVED",
+        "APPEAL_SUBMITTED",
+    ]
+    suspensionDetails: typing.List[AccountSuspensionDetails]
+
+@typing.type_check_only
 class AccountWarning(typing_extensions.TypedDict, total=False):
     email: str
     loginDetails: LoginDetails
@@ -73,6 +99,16 @@ class AppMakerSqlSetupNotification(typing_extensions.TypedDict, total=False):
 class AppSettingsChanged(typing_extensions.TypedDict, total=False):
     alertDetails: str
     name: str
+
+@typing.type_check_only
+class AppsOutage(typing_extensions.TypedDict, total=False):
+    dashboardUri: str
+    nextUpdateTime: str
+    products: typing.List[str]
+    resolutionTime: str
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "NEW", "ONGOING", "RESOLVED"
+    ]
 
 @typing.type_check_only
 class Attachment(typing_extensions.TypedDict, total=False):

@@ -13,6 +13,26 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class CustomersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class AppsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AndroidResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
+            @typing.type_check_only
+            class ChromeResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
+            @typing.type_check_only
+            class WebResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
+            def android(self) -> AndroidResource: ...
+            def chrome(self) -> ChromeResource: ...
+            def web(self) -> WebResource: ...
+        @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
             def countChromeVersions(
                 self,
@@ -55,8 +75,19 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest: ...
+        def apps(self) -> AppsResource: ...
         def reports(self) -> ReportsResource: ...
     def customers(self) -> CustomersResource: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1AppDetailsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromeManagementV1AppDetails: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest(

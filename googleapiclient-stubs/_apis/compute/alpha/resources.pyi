@@ -576,6 +576,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: Disk = ...,
             paths: typing.Union[str, typing.List[str]] = ...,
             requestId: str = ...,
+            updateMask: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
     @typing.type_check_only
@@ -968,6 +969,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: FutureReservation = ...,
             paths: typing.Union[str, typing.List[str]] = ...,
             requestId: str = ...,
+            updateMask: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
     @typing.type_check_only
@@ -2107,7 +2109,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             body: Instance = ...,
             requestId: str = ...,
-            secureTags: typing.Union[str, typing.List[str]] = ...,
             sourceInstanceTemplate: str = ...,
             sourceMachineImage: str = ...,
             **kwargs: typing.Any
@@ -2384,7 +2385,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
                 "INVALID", "NO_EFFECT", "REFRESH", "RESTART"
             ] = ...,
             requestId: str = ...,
-            secureTags: typing.Union[str, typing.List[str]] = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def updateAccessConfig(
@@ -2587,6 +2587,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
             optionsRequestedPolicyVersion: int = ...,
             **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
+        def getMacsecConfig(
+            self, *, project: str, interconnect: str, **kwargs: typing.Any
+        ) -> InterconnectsGetMacsecConfigResponseHttpRequest: ...
         def insert(
             self,
             *,
@@ -2860,6 +2863,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: NetworkEdgeSecurityService = ...,
             paths: typing.Union[str, typing.List[str]] = ...,
             requestId: str = ...,
+            updateMask: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
     @typing.type_check_only
@@ -4050,6 +4054,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: Commitment = ...,
             paths: typing.Union[str, typing.List[str]] = ...,
             requestId: str = ...,
+            updateMask: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def updateReservations(
@@ -4193,6 +4198,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: TestPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            region: str,
+            disk: str,
+            body: Disk = ...,
+            paths: typing.Union[str, typing.List[str]] = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class RegionHealthCheckServicesResource(googleapiclient.discovery.Resource):
         def aggregatedList(
@@ -4742,14 +4759,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-        def recommendLocations(
-            self,
-            *,
-            project: str,
-            region: str,
-            body: RegionInstancesRecommendLocationsResource = ...,
-            **kwargs: typing.Any
-        ) -> RegionInstancesRecommendLocationsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionInstantSnapshotsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -4938,6 +4947,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
             name: str = ...,
             **kwargs: typing.Any
         ) -> FirewallPolicyAssociationHttpRequest: ...
+        def getEffectiveFirewalls(
+            self, *, project: str, region: str, network: str, **kwargs: typing.Any
+        ) -> RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseHttpRequest: ...
         def getIamPolicy(
             self,
             *,
@@ -5531,6 +5543,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: TestPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            zone: str,
+            reservation: str,
+            body: Reservation = ...,
+            paths: typing.Union[str, typing.List[str]] = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class ResourcePoliciesResource(googleapiclient.discovery.Resource):
         def aggregatedList(
@@ -6208,6 +6232,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str = ...,
             pageToken: str = ...,
             returnPartialSuccess: bool = ...,
+            serviceProject: str = ...,
             **kwargs: typing.Any
         ) -> UsableSubnetworksAggregatedListHttpRequest: ...
         def patch(
@@ -8226,6 +8251,16 @@ class InterconnectsGetDiagnosticsResponseHttpRequest(googleapiclient.http.HttpRe
     ) -> InterconnectsGetDiagnosticsResponse: ...
 
 @typing.type_check_only
+class InterconnectsGetMacsecConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> InterconnectsGetMacsecConfigResponse: ...
+
+@typing.type_check_only
 class IpAddressesListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -8800,18 +8835,6 @@ class RegionInstanceGroupsListInstancesHttpRequest(googleapiclient.http.HttpRequ
     ) -> RegionInstanceGroupsListInstances: ...
 
 @typing.type_check_only
-class RegionInstancesRecommendLocationsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> RegionInstancesRecommendLocationsResponse: ...
-
-@typing.type_check_only
 class RegionListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -8820,6 +8843,18 @@ class RegionListHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> RegionList: ...
+
+@typing.type_check_only
+class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse: ...
 
 @typing.type_check_only
 class ReservationHttpRequest(googleapiclient.http.HttpRequest):

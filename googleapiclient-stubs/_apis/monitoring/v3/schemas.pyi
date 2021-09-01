@@ -46,6 +46,7 @@ class Aggregation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AlertPolicy(typing_extensions.TypedDict, total=False):
+    alertStrategy: AlertStrategy
     combiner: typing_extensions.Literal[
         "COMBINE_UNSPECIFIED", "AND", "OR", "AND_WITH_MATCHING_RESOURCE"
     ]
@@ -59,6 +60,10 @@ class AlertPolicy(typing_extensions.TypedDict, total=False):
     notificationChannels: typing.List[str]
     userLabels: typing.Dict[str, typing.Any]
     validity: Status
+
+@typing.type_check_only
+class AlertStrategy(typing_extensions.TypedDict, total=False):
+    notificationRateLimit: NotificationRateLimit
 
 @typing.type_check_only
 class AppEngine(typing_extensions.TypedDict, total=False):
@@ -130,6 +135,7 @@ class CollectdValueError(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Condition(typing_extensions.TypedDict, total=False):
     conditionAbsent: MetricAbsence
+    conditionMatchedLog: LogMatch
     conditionMonitoringQueryLanguage: MonitoringQueryLanguageCondition
     conditionThreshold: MetricThreshold
     displayName: str
@@ -403,6 +409,11 @@ class ListUptimeCheckIpsResponse(typing_extensions.TypedDict, total=False):
     uptimeCheckIps: typing.List[UptimeCheckIp]
 
 @typing.type_check_only
+class LogMatch(typing_extensions.TypedDict, total=False):
+    filter: str
+    labelExtractors: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class MeshIstio(typing_extensions.TypedDict, total=False):
     meshUid: str
     serviceName: str
@@ -565,6 +576,18 @@ class NotificationChannelDescriptor(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class NotificationRateLimit(typing_extensions.TypedDict, total=False):
+    period: str
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATED", "RUNNING", "DONE", "CANCELLED"
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class Option(typing_extensions.TypedDict, total=False):
     name: str
     value: typing.Dict[str, typing.Any]
@@ -631,6 +654,7 @@ class Service(typing_extensions.TypedDict, total=False):
     meshIstio: MeshIstio
     name: str
     telemetry: Telemetry
+    userLabels: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class ServiceLevelIndicator(typing_extensions.TypedDict, total=False):
@@ -655,6 +679,7 @@ class ServiceLevelObjective(typing_extensions.TypedDict, total=False):
     name: str
     rollingPeriod: str
     serviceLevelIndicator: ServiceLevelIndicator
+    userLabels: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class SourceContext(typing_extensions.TypedDict, total=False):

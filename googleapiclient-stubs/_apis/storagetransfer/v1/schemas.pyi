@@ -12,6 +12,7 @@ class AwsS3Data(typing_extensions.TypedDict, total=False):
     awsAccessKey: AwsAccessKey
     bucketName: str
     path: str
+    roleArn: str
 
 @typing.type_check_only
 class AzureBlobStorageData(typing_extensions.TypedDict, total=False):
@@ -73,6 +74,7 @@ class GcsData(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleServiceAccount(typing_extensions.TypedDict, total=False):
     accountEmail: str
+    subjectId: str
 
 @typing.type_check_only
 class HttpData(typing_extensions.TypedDict, total=False):
@@ -87,6 +89,10 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
 class ListTransferJobsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     transferJobs: typing.List[TransferJob]
+
+@typing.type_check_only
+class LoggingConfig(typing_extensions.TypedDict, total=False):
+    enableOnpremGcsTransferLogs: bool
 
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
@@ -115,6 +121,10 @@ class Operation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PauseTransferOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PosixFilesystem(typing_extensions.TypedDict, total=False):
+    rootDirectory: str
 
 @typing.type_check_only
 class ResumeTransferOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -154,6 +164,9 @@ class TransferCounters(typing_extensions.TypedDict, total=False):
     bytesFoundOnlyFromSink: str
     bytesFromSourceFailed: str
     bytesFromSourceSkippedBySync: str
+    directoriesFailedToListFromSource: str
+    directoriesFoundFromSource: str
+    directoriesSuccessfullyListedFromSource: str
     objectsCopiedToSink: str
     objectsDeletedFromSink: str
     objectsDeletedFromSource: str
@@ -170,6 +183,7 @@ class TransferJob(typing_extensions.TypedDict, total=False):
     description: str
     lastModificationTime: str
     latestOperationName: str
+    loggingConfig: LoggingConfig
     name: str
     notificationConfig: NotificationConfig
     projectId: str
@@ -214,6 +228,7 @@ class TransferSpec(typing_extensions.TypedDict, total=False):
     gcsDataSource: GcsData
     httpDataSource: HttpData
     objectConditions: ObjectConditions
+    posixDataSource: PosixFilesystem
     transferOptions: TransferOptions
 
 @typing.type_check_only

@@ -35,6 +35,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     availableMemoryMb: int
     buildEnvironmentVariables: typing.Dict[str, typing.Any]
     buildId: str
+    buildName: str
     buildWorkerPool: str
     description: str
     entryPoint: str
@@ -49,9 +50,12 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     ]
     labels: typing.Dict[str, typing.Any]
     maxInstances: int
+    minInstances: int
     name: str
     network: str
     runtime: str
+    secretEnvironmentVariables: typing.List[SecretEnvVar]
+    secretVolumes: typing.List[SecretVolume]
     serviceAccountEmail: str
     sourceArchiveUrl: str
     sourceRepository: SourceRepository
@@ -169,6 +173,25 @@ class Policy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Retry(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SecretEnvVar(typing_extensions.TypedDict, total=False):
+    key: str
+    projectId: str
+    secret: str
+    version: str
+
+@typing.type_check_only
+class SecretVersion(typing_extensions.TypedDict, total=False):
+    path: str
+    version: str
+
+@typing.type_check_only
+class SecretVolume(typing_extensions.TypedDict, total=False):
+    mountPath: str
+    projectId: str
+    secret: str
+    versions: typing.List[SecretVersion]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

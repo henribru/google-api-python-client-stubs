@@ -19,6 +19,7 @@ class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
         "VERIFY_APPS_ENFORCED",
         "VERIFY_APPS_USER_CHOICE",
     ]
+    personalAppsThatCanReadWorkNotifications: typing.List[str]
     untrustedAppsPolicy: typing_extensions.Literal[
         "UNTRUSTED_APPS_POLICY_UNSPECIFIED",
         "DISALLOW_INSTALL",
@@ -195,6 +196,25 @@ class ContentProviderEndpoint(typing_extensions.TypedDict, total=False):
     packageName: str
     signingCertsSha256: typing.List[str]
     uri: str
+
+@typing.type_check_only
+class CrossProfilePolicies(typing_extensions.TypedDict, total=False):
+    crossProfileCopyPaste: typing_extensions.Literal[
+        "CROSS_PROFILE_COPY_PASTE_UNSPECIFIED",
+        "COPY_FROM_WORK_TO_PERSONAL_DISALLOWED",
+        "CROSS_PROFILE_COPY_PASTE_ALLOWED",
+    ]
+    crossProfileDataSharing: typing_extensions.Literal[
+        "CROSS_PROFILE_DATA_SHARING_UNSPECIFIED",
+        "CROSS_PROFILE_DATA_SHARING_DISALLOWED",
+        "DATA_SHARING_FROM_WORK_TO_PERSONAL_DISALLOWED",
+        "CROSS_PROFILE_DATA_SHARING_ALLOWED",
+    ]
+    showWorkContactsInPersonalProfile: typing_extensions.Literal[
+        "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_UNSPECIFIED",
+        "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED",
+        "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED",
+    ]
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -623,6 +643,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     complianceRules: typing.List[ComplianceRule]
     createWindowsDisabled: bool
     credentialsConfigDisabled: bool
+    crossProfilePolicies: CrossProfilePolicies
     dataRoamingDisabled: bool
     debuggingFeaturesAllowed: bool
     defaultPermissionPolicy: typing_extensions.Literal[

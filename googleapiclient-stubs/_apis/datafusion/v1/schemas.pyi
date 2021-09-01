@@ -5,7 +5,7 @@ import typing_extensions
 @typing.type_check_only
 class Accelerator(typing_extensions.TypedDict, total=False):
     acceleratorType: typing_extensions.Literal[
-        "ACCELERATOR_TYPE_UNSPECIFIED", "CDC", "HEALTHCARE"
+        "ACCELERATOR_TYPE_UNSPECIFIED", "CDC", "HEALTHCARE", "CCAI_INSIGHTS"
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ENABLED", "DISABLED", "UNKNOWN"
@@ -33,6 +33,10 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
+    keyReference: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -48,6 +52,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     apiEndpoint: str
     availableVersion: typing.List[Version]
     createTime: str
+    cryptoKeyConfig: CryptoKeyConfig
     dataprocServiceAccount: str
     description: str
     displayName: str

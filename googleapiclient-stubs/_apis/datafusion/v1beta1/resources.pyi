@@ -17,6 +17,30 @@ class DataFusionResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class DnsPeeringsResource(googleapiclient.discovery.Resource):
+                    def add(
+                        self,
+                        *,
+                        parent: str,
+                        body: AddDnsPeeringRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> AddDnsPeeringResponseHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListDnsPeeringsResponseHttpRequest: ...
+                    def remove(
+                        self,
+                        *,
+                        parent: str,
+                        body: RemoveDnsPeeringRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> RemoveDnsPeeringResponseHttpRequest: ...
+                @typing.type_check_only
                 class NamespacesResource(googleapiclient.discovery.Resource):
                     def getIamPolicy(
                         self,
@@ -25,6 +49,19 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any
                     ) -> PolicyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "NAMESPACE_VIEW_UNSPECIFIED",
+                            "NAMESPACE_VIEW_BASIC",
+                            "NAMESPACE_VIEW_FULL",
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> ListNamespacesResponseHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -106,6 +143,7 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     body: UpgradeInstanceRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def dnsPeerings(self) -> DnsPeeringsResource: ...
                 def namespaces(self) -> NamespacesResource: ...
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -169,6 +207,16 @@ class DataFusionResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class AddDnsPeeringResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> AddDnsPeeringResponse: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -199,6 +247,16 @@ class ListAvailableVersionsResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListAvailableVersionsResponse: ...
 
 @typing.type_check_only
+class ListDnsPeeringsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListDnsPeeringsResponse: ...
+
+@typing.type_check_only
 class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -217,6 +275,16 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
+class ListNamespacesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListNamespacesResponse: ...
 
 @typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -257,6 +325,16 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class RemoveDnsPeeringResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> RemoveDnsPeeringResponse: ...
 
 @typing.type_check_only
 class RemoveIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):

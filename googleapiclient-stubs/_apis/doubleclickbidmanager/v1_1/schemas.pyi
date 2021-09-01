@@ -299,6 +299,8 @@ class FilterPair(typing_extensions.TypedDict, total=False):
         "FILTER_LINE_ITEM_PACING_PERCENTAGE",
         "FILTER_INSERTION_ORDER_GOAL_VALUE",
         "FILTER_OMID_CAPABLE",
+        "FILTER_VENDOR_MEASUREMENT_MODE",
+        "FILTER_IMPRESSION_LOSS_REJECTION_REASON",
     ]
     value: str
 
@@ -656,6 +658,8 @@ class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
         "FILTER_LINE_ITEM_PACING_PERCENTAGE",
         "FILTER_INSERTION_ORDER_GOAL_VALUE",
         "FILTER_OMID_CAPABLE",
+        "FILTER_VENDOR_MEASUREMENT_MODE",
+        "FILTER_IMPRESSION_LOSS_REJECTION_REASON",
     ]
     match: typing_extensions.Literal[
         "UNKNOWN", "EXACT", "PARTIAL", "BEGINS_WITH", "WILDCARD_EXPRESSION"

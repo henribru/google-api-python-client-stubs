@@ -215,6 +215,9 @@ class Discovery(typing_extensions.TypedDict, total=False):
         "DISCOVERY",
         "ATTESTATION",
         "INTOTO",
+        "SBOM",
+        "SPDX_PACKAGE",
+        "SPDX_FILE",
     ]
 
 @typing.type_check_only
@@ -225,6 +228,23 @@ class Distribution(typing_extensions.TypedDict, total=False):
     latestVersion: Version
     maintainer: str
     url: str
+
+@typing.type_check_only
+class DocumentNote(typing_extensions.TypedDict, total=False):
+    dataLicence: str
+    spdxVersion: str
+
+@typing.type_check_only
+class DocumentOccurrence(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creatorComment: str
+    creators: typing.List[str]
+    documentComment: str
+    externalDocumentRefs: typing.List[str]
+    id: str
+    licenseListVersion: str
+    namespace: str
+    title: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -241,8 +261,48 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ExternalRef(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal[
+        "CATEGORY_UNSPECIFIED", "SECURITY", "PACKAGE_MANAGER", "PERSISTENT_ID", "OTHER"
+    ]
+    comment: str
+    locator: str
+    type: str
+
+@typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: typing.List[Hash]
+
+@typing.type_check_only
+class FileNote(typing_extensions.TypedDict, total=False):
+    checksum: typing.List[str]
+    fileType: typing_extensions.Literal[
+        "FILE_TYPE_UNSPECIFIED",
+        "SOURCE",
+        "BINARY",
+        "ARCHIVE",
+        "APPLICATION",
+        "AUDIO",
+        "IMAGE",
+        "TEXT",
+        "VIDEO",
+        "DOCUMENTATION",
+        "SPDX",
+        "OTHER",
+    ]
+    title: str
+
+@typing.type_check_only
+class FileOccurrence(typing_extensions.TypedDict, total=False):
+    attributions: typing.List[str]
+    comment: str
+    contributors: typing.List[str]
+    copyright: str
+    filesLicenseInfo: typing.List[str]
+    id: str
+    licenseComments: str
+    licenseConcluded: str
+    notice: str
 
 @typing.type_check_only
 class Fingerprint(typing_extensions.TypedDict, total=False):
@@ -451,13 +511,20 @@ class Note(typing_extensions.TypedDict, total=False):
         "DISCOVERY",
         "ATTESTATION",
         "INTOTO",
+        "SBOM",
+        "SPDX_PACKAGE",
+        "SPDX_FILE",
     ]
     longDescription: str
     name: str
     package: Package
     relatedNoteNames: typing.List[str]
     relatedUrl: typing.List[RelatedUrl]
+    sbom: DocumentNote
     shortDescription: str
+    spdxFile: FileNote
+    spdxPackage: PackageNote
+    spdxRelationship: RelationshipNote
     updateTime: str
     vulnerability: Vulnerability
 
@@ -481,11 +548,18 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "DISCOVERY",
         "ATTESTATION",
         "INTOTO",
+        "SBOM",
+        "SPDX_PACKAGE",
+        "SPDX_FILE",
     ]
     name: str
     noteName: str
     remediation: str
     resource: Resource
+    sbom: DocumentOccurrence
+    spdxFile: FileOccurrence
+    spdxPackage: PackageOccurrence
+    spdxRelationship: RelationshipOccurrence
     updateTime: str
     vulnerability: GrafeasV1beta1VulnerabilityDetails
 
@@ -497,8 +571,40 @@ class Package(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PackageIssue(typing_extensions.TypedDict, total=False):
     affectedLocation: VulnerabilityLocation
+    effectiveSeverity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
+    ]
     fixedLocation: VulnerabilityLocation
+    packageType: str
     severityName: str
+
+@typing.type_check_only
+class PackageNote(typing_extensions.TypedDict, total=False):
+    analyzed: bool
+    attribution: str
+    checksum: str
+    copyright: str
+    detailedDescription: str
+    downloadLocation: str
+    externalRefs: typing.List[ExternalRef]
+    filesLicenseInfo: typing.List[str]
+    homePage: str
+    licenseDeclared: str
+    originator: str
+    summaryDescription: str
+    supplier: str
+    title: str
+    verificationCode: str
+    version: str
+
+@typing.type_check_only
+class PackageOccurrence(typing_extensions.TypedDict, total=False):
+    comment: str
+    filename: str
+    id: str
+    licenseComments: str
+    licenseConcluded: str
+    sourceInfo: str
 
 @typing.type_check_only
 class PgpSignedAttestation(typing_extensions.TypedDict, total=False):
@@ -523,6 +629,61 @@ class ProjectRepoId(typing_extensions.TypedDict, total=False):
 class RelatedUrl(typing_extensions.TypedDict, total=False):
     label: str
     url: str
+
+@typing.type_check_only
+class RelationshipNote(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RelationshipOccurrence(typing_extensions.TypedDict, total=False):
+    comment: str
+    source: str
+    target: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "DESCRIBES",
+        "DESCRIBED_BY",
+        "CONTAINS",
+        "CONTAINED_BY",
+        "DEPENDS_ON",
+        "DEPENDENCY_OF",
+        "DEPENDENCY_MANIFEST_OF",
+        "BUILD_DEPENDENCY_OF",
+        "DEV_DEPENDENCY_OF",
+        "OPTIONAL_DEPENDENCY_OF",
+        "PROVIDED_DEPENDENCY_OF",
+        "TEST_DEPENDENCY_OF",
+        "RUNTIME_DEPENDENCY_OF",
+        "EXAMPLE_OF",
+        "GENERATES",
+        "GENERATED_FROM",
+        "ANCESTOR_OF",
+        "DESCENDANT_OF",
+        "VARIANT_OF",
+        "DISTRIBUTION_ARTIFACT",
+        "PATCH_FOR",
+        "PATCH_APPLIED",
+        "COPY_OF",
+        "FILE_ADDED",
+        "FILE_DELETED",
+        "FILE_MODIFIED",
+        "EXPANDED_FROM_ARCHIVE",
+        "DYNAMIC_LINK",
+        "STATIC_LINK",
+        "DATA_FILE_OF",
+        "TEST_CASE_OF",
+        "BUILD_TOOL_OF",
+        "DEV_TOOL_OF",
+        "TEST_OF",
+        "TEST_TOOL_OF",
+        "DOCUMENTATION_OF",
+        "OPTIONAL_COMPONENT_OF",
+        "METAFILE_OF",
+        "PACKAGE_OF",
+        "AMENDS",
+        "PREREQUISITE_FOR",
+        "HAS_PREREQUISITE",
+        "OTHER",
+    ]
 
 @typing.type_check_only
 class RepoId(typing_extensions.TypedDict, total=False):

@@ -56,6 +56,7 @@ class GenerateExclusivityManifestResponse(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GkeCluster(typing_extensions.TypedDict, total=False):
+    clusterMissing: bool
     resourceLink: str
 
 @typing.type_check_only
@@ -127,6 +128,8 @@ class MembershipEndpoint(typing_extensions.TypedDict, total=False):
     gkeCluster: GkeCluster
     kubernetesMetadata: KubernetesMetadata
     kubernetesResource: KubernetesResource
+    multiCloudCluster: MultiCloudCluster
+    onPremCluster: OnPremCluster
 
 @typing.type_check_only
 class MembershipState(typing_extensions.TypedDict, total=False):
@@ -140,6 +143,17 @@ class MembershipState(typing_extensions.TypedDict, total=False):
     ]
     description: str
     updateTime: str
+
+@typing.type_check_only
+class MultiCloudCluster(typing_extensions.TypedDict, total=False):
+    clusterMissing: bool
+    resourceLink: str
+
+@typing.type_check_only
+class OnPremCluster(typing_extensions.TypedDict, total=False):
+    adminCluster: bool
+    clusterMissing: bool
+    resourceLink: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

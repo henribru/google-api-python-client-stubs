@@ -19,22 +19,31 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListOperationsResponseHttpRequest: ...
             @typing.type_check_only
             class RepositoriesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AptArtifactsResource(googleapiclient.discovery.Resource):
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: ImportAptArtifactsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                @typing.type_check_only
+                class AptartifactsResource(googleapiclient.discovery.Resource):
+                    def upload(
+                        self,
+                        *,
+                        parent: str,
+                        body: UploadAptArtifactRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> UploadAptArtifactMediaResponseHttpRequest: ...
                 @typing.type_check_only
                 class FilesResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
-                    ) -> FileHttpRequest: ...
+                    ) -> GoogleDevtoolsArtifactregistryV1beta2FileHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -121,6 +130,24 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     ) -> ListPackagesResponseHttpRequest: ...
                     def tags(self) -> TagsResource: ...
                     def versions(self) -> VersionsResource: ...
+                @typing.type_check_only
+                class YumArtifactsResource(googleapiclient.discovery.Resource):
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: ImportYumArtifactsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                @typing.type_check_only
+                class YumartifactsResource(googleapiclient.discovery.Resource):
+                    def upload(
+                        self,
+                        *,
+                        parent: str,
+                        body: UploadYumArtifactRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> UploadYumArtifactMediaResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -172,8 +199,12 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def aptArtifacts(self) -> AptArtifactsResource: ...
+                def aptartifacts(self) -> AptartifactsResource: ...
                 def files(self) -> FilesResource: ...
                 def packages(self) -> PackagesResource: ...
+                def yumArtifacts(self) -> YumArtifactsResource: ...
+                def yumartifacts(self) -> YumartifactsResource: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -202,14 +233,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
-class FileHttpRequest(googleapiclient.http.HttpRequest):
+class GoogleDevtoolsArtifactregistryV1beta2FileHttpRequest(
+    googleapiclient.http.HttpRequest
+):
     def execute(
         self,
         http: typing.Optional[
             typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
         ] = ...,
         num_retries: int = ...,
-    ) -> File: ...
+    ) -> GoogleDevtoolsArtifactregistryV1beta2File: ...
 
 @typing.type_check_only
 class ListFilesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -230,16 +263,6 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListLocationsResponse: ...
-
-@typing.type_check_only
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
-        num_retries: int = ...,
-    ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
 class ListPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -350,6 +373,26 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class UploadAptArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> UploadAptArtifactMediaResponse: ...
+
+@typing.type_check_only
+class UploadYumArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> UploadYumArtifactMediaResponse: ...
 
 @typing.type_check_only
 class VersionHttpRequest(googleapiclient.http.HttpRequest):

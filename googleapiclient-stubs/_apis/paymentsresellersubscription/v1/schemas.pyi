@@ -116,6 +116,11 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
     freeTrialEndTime: str
     name: str
     partnerUserToken: str
+    processingState: typing_extensions.Literal[
+        "PROCESSING_STATE_UNSPECIFIED",
+        "PROCESSING_STATE_CANCELLING",
+        "PROCESSING_STATE_RECURRING",
+    ]
     products: typing.List[str]
     promotions: typing.List[str]
     redirectUri: str
@@ -129,6 +134,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
         "STATE_CANCEL_AT_END_OF_CYCLE",
     ]
     updateTime: str
+    upgradeDowngradeDetails: GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails(
@@ -144,6 +150,17 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails(
         "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
         "CANCELLATION_REASON_OTHER",
     ]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails(
+    typing_extensions.TypedDict, total=False
+):
+    billingCycleSpec: typing_extensions.Literal[
+        "BILLING_CYCLE_SPEC_UNSPECIFIED",
+        "BILLING_CYCLE_SPEC_ALIGN_WITH_PREVIOUS_SUBSCRIPTION",
+        "BILLING_CYCLE_SPEC_START_IMMEDIATELY",
+    ]
+    previousSubscriptionId: str
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionRequest(

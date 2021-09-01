@@ -205,6 +205,17 @@ class GoogleCloudChannelV1EntitlementEvent(typing_extensions.TypedDict, total=Fa
     ]
 
 @typing.type_check_only
+class GoogleCloudChannelV1ImportCustomerRequest(
+    typing_extensions.TypedDict, total=False
+):
+    authToken: str
+    channelPartnerId: str
+    cloudIdentityId: str
+    customer: str
+    domain: str
+    overwriteIfExists: bool
+
+@typing.type_check_only
 class GoogleCloudChannelV1ListChannelPartnerLinksResponse(
     typing_extensions.TypedDict, total=False
 ):

@@ -40,6 +40,51 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class Cve(typing_extensions.TypedDict, total=False):
+    cvssv3: Cvssv3
+    id: str
+    references: typing.List[Reference]
+
+@typing.type_check_only
+class Cvssv3(typing_extensions.TypedDict, total=False):
+    attackComplexity: typing_extensions.Literal[
+        "ATTACK_COMPLEXITY_UNSPECIFIED",
+        "ATTACK_COMPLEXITY_LOW",
+        "ATTACK_COMPLEXITY_HIGH",
+    ]
+    attackVector: typing_extensions.Literal[
+        "ATTACK_VECTOR_UNSPECIFIED",
+        "ATTACK_VECTOR_NETWORK",
+        "ATTACK_VECTOR_ADJACENT",
+        "ATTACK_VECTOR_LOCAL",
+        "ATTACK_VECTOR_PHYSICAL",
+    ]
+    availabilityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    baseScore: float
+    confidentialityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    integrityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    privilegesRequired: typing_extensions.Literal[
+        "PRIVILEGES_REQUIRED_UNSPECIFIED",
+        "PRIVILEGES_REQUIRED_NONE",
+        "PRIVILEGES_REQUIRED_LOW",
+        "PRIVILEGES_REQUIRED_HIGH",
+    ]
+    scope: typing_extensions.Literal[
+        "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
+    ]
+    userInteraction: typing_extensions.Literal[
+        "USER_INTERACTION_UNSPECIFIED",
+        "USER_INTERACTION_NONE",
+        "USER_INTERACTION_REQUIRED",
+    ]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -56,6 +101,14 @@ class Finding(typing_extensions.TypedDict, total=False):
     createTime: str
     eventTime: str
     externalUri: str
+    findingClass: typing_extensions.Literal[
+        "FINDING_CLASS_UNSPECIFIED",
+        "THREAT",
+        "VULNERABILITY",
+        "MISCONFIGURATION",
+        "OBSERVATION",
+    ]
+    indicator: Indicator
     name: str
     parent: str
     resourceName: str
@@ -65,6 +118,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     ]
     sourceProperties: typing.Dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    vulnerability: Vulnerability
 
 @typing.type_check_only
 class Folder(typing_extensions.TypedDict, total=False):
@@ -95,6 +149,7 @@ class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=Fal
     parentDisplayName: str
     project: str
     projectDisplayName: str
+    type: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(
@@ -218,6 +273,11 @@ class IamPolicy(typing_extensions.TypedDict, total=False):
     policyBlob: str
 
 @typing.type_check_only
+class Indicator(typing_extensions.TypedDict, total=False):
+    domains: typing.List[str]
+    ipAddresses: typing.List[str]
+
+@typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
     listAssetsResults: typing.List[ListAssetsResult]
     nextPageToken: str
@@ -289,6 +349,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class Reference(typing_extensions.TypedDict, total=False):
+    source: str
+    uri: str
+
+@typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
     folders: typing.List[Folder]
     name: str
@@ -352,3 +417,7 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
+
+@typing.type_check_only
+class Vulnerability(typing_extensions.TypedDict, total=False):
+    cve: Cve

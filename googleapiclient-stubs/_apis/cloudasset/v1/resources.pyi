@@ -24,10 +24,12 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
                 "ORG_POLICY",
                 "ACCESS_POLICY",
                 "OS_INVENTORY",
+                "RELATIONSHIP",
             ] = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             readTime: str = ...,
+            relationshipTypes: typing.Union[str, typing.List[str]] = ...,
             **kwargs: typing.Any
         ) -> ListAssetsResponseHttpRequest: ...
     @typing.type_check_only
@@ -99,9 +101,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
                 "ORG_POLICY",
                 "ACCESS_POLICY",
                 "OS_INVENTORY",
+                "RELATIONSHIP",
             ] = ...,
             readTimeWindow_endTime: str = ...,
             readTimeWindow_startTime: str = ...,
+            relationshipTypes: typing.Union[str, typing.List[str]] = ...,
             **kwargs: typing.Any
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(
@@ -111,6 +115,8 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             scope: str,
+            assetTypes: typing.Union[str, typing.List[str]] = ...,
+            orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
@@ -125,6 +131,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
+            readMask: str = ...,
             **kwargs: typing.Any
         ) -> SearchAllResourcesResponseHttpRequest: ...
     def assets(self) -> AssetsResource: ...

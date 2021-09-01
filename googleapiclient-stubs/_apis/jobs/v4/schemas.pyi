@@ -64,7 +64,12 @@ class ClientEvent(typing_extensions.TypedDict, total=False):
 class CommuteFilter(typing_extensions.TypedDict, total=False):
     allowImpreciseAddresses: bool
     commuteMethod: typing_extensions.Literal[
-        "COMMUTE_METHOD_UNSPECIFIED", "DRIVING", "TRANSIT"
+        "COMMUTE_METHOD_UNSPECIFIED",
+        "DRIVING",
+        "TRANSIT",
+        "WALKING",
+        "CYCLING",
+        "TRANSIT_ACCESSIBLE",
     ]
     departureTime: TimeOfDay
     roadTraffic: typing_extensions.Literal[

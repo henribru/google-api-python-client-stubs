@@ -3,6 +3,28 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -83,6 +105,29 @@ class GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse(
     evaluation: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ExportProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ExportProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    gcsUri: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ImportDocumentsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -126,6 +171,12 @@ class GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata(
 class GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3UpdateDatasetOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3UpdateHumanReviewConfigMetadata(
@@ -245,6 +296,8 @@ class GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue(
     booleanValue: bool
     dateValue: GoogleTypeDate
     datetimeValue: GoogleTypeDateTime
+    floatValue: float
+    integerValue: int
     moneyValue: GoogleTypeMoney
     text: str
 
@@ -636,6 +689,8 @@ class GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue(
     booleanValue: bool
     dateValue: GoogleTypeDate
     datetimeValue: GoogleTypeDateTime
+    floatValue: float
+    integerValue: int
     moneyValue: GoogleTypeMoney
     text: str
 
@@ -1129,6 +1184,8 @@ class GoogleCloudDocumentaiV1beta3DocumentEntityNormalizedValue(
     booleanValue: bool
     dateValue: GoogleTypeDate
     datetimeValue: GoogleTypeDateTime
+    floatValue: float
+    integerValue: int
     moneyValue: GoogleTypeMoney
     text: str
 
@@ -1533,7 +1590,16 @@ class GoogleCloudDocumentaiV1beta3Processor(typing_extensions.TypedDict, total=F
     type: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1beta3ProcessorType(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1beta3ProcessorType(
+    typing_extensions.TypedDict, total=False
+):
+    allowCreation: bool
+    availableLocations: typing.List[
+        GoogleCloudDocumentaiV1beta3ProcessorTypeLocationInfo
+    ]
+    category: str
+    name: str
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3ProcessorTypeLocationInfo(
@@ -1572,12 +1638,6 @@ class GoogleCloudDocumentaiV1beta3ReviewDocumentResponse(
     typing_extensions.TypedDict, total=False
 ):
     gcsDestination: str
-
-@typing.type_check_only
-class GoogleCloudDocumentaiV1beta3Schema(typing.Dict[str, typing.Any]): ...
-
-@typing.type_check_only
-class GoogleCloudDocumentaiV1beta3SchemaEntityType(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3Vertex(typing_extensions.TypedDict, total=False):

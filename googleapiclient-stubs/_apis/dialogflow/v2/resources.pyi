@@ -1411,9 +1411,21 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def deleteAgent(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudLocationLocationHttpRequest: ...
             def getAgent(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2AgentHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
             def setAgent(
                 self,
                 *,
@@ -1851,6 +1863,28 @@ class GoogleCloudDialogflowV2VersionHttpRequest(googleapiclient.http.HttpRequest
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2Version: ...
+
+@typing.type_check_only
+class GoogleCloudLocationListLocationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudLocationListLocationsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudLocationLocationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudLocationLocation: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(

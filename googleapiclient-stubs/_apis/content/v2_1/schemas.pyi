@@ -4,6 +4,7 @@ import typing_extensions
 
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
+    accountManagement: str
     adsLinks: typing.List[AccountAdsLink]
     adultContent: bool
     automaticLabelIds: typing.List[str]
@@ -84,6 +85,7 @@ class AccountReturnCarrier(typing_extensions.TypedDict, total=False):
 class AccountStatus(typing_extensions.TypedDict, total=False):
     accountId: str
     accountLevelIssues: typing.List[AccountStatusAccountLevelIssue]
+    accountManagement: str
     kind: str
     products: typing.List[AccountStatusProducts]
     websiteClaimed: bool
@@ -315,6 +317,15 @@ class BuyOnGoogleProgramStatus(typing_extensions.TypedDict, total=False):
         "REVIEW_DISAPPROVED",
         "ACTIVE",
         "PAUSED",
+    ]
+
+@typing.type_check_only
+class CaptureOrderRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CaptureOrderResponse(typing_extensions.TypedDict, total=False):
+    executionStatus: typing_extensions.Literal[
+        "EXECUTION_STATUS_UNSPECIFIED", "EXECUTED", "DUPLICATE"
     ]
 
 @typing.type_check_only
@@ -572,6 +583,41 @@ class Errors(typing_extensions.TypedDict, total=False):
     code: int
     errors: typing.List[Error]
     message: str
+
+@typing.type_check_only
+class FreeListingsProgramStatus(typing_extensions.TypedDict, total=False):
+    regionStatuses: typing.List[FreeListingsProgramStatusRegionStatus]
+    state: typing_extensions.Literal[
+        "PROGRAM_STATE_UNSPECIFIED", "ONBOARDED", "NOT_ONBOARDED"
+    ]
+
+@typing.type_check_only
+class FreeListingsProgramStatusRegionStatus(typing_extensions.TypedDict, total=False):
+    disapprovalDate: str
+    eligibilityStatus: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "APPROVED",
+        "DISAPPROVED",
+        "WARNING",
+        "UNDER_REVIEW",
+        "PENDING_REVIEW",
+        "ONBOARDING",
+    ]
+    enhancedEligibilityStatus: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "APPROVED",
+        "DISAPPROVED",
+        "WARNING",
+        "UNDER_REVIEW",
+        "PENDING_REVIEW",
+        "ONBOARDING",
+    ]
+    ineligibilityReason: str
+    regionCodes: typing.List[str]
+    reviewEligibilityStatus: typing_extensions.Literal[
+        "REVIEW_ELIGIBILITY_UNSPECIFIED", "ELIGIBLE", "INELIGIBLE"
+    ]
+    reviewIssues: typing.List[str]
 
 @typing.type_check_only
 class GmbAccounts(typing_extensions.TypedDict, total=False):
@@ -1834,8 +1880,12 @@ class Product(typing_extensions.TypedDict, total=False):
     pickupSla: str
     price: Price
     productDetails: typing.List[ProductProductDetail]
+    productHeight: ProductDimension
     productHighlights: typing.List[str]
+    productLength: ProductDimension
     productTypes: typing.List[str]
+    productWeight: ProductWeight
+    productWidth: ProductDimension
     promotionIds: typing.List[str]
     salePrice: Price
     salePriceEffectiveDate: str
@@ -1865,6 +1915,11 @@ class ProductAmount(typing_extensions.TypedDict, total=False):
     priceAmount: Price
     remittedTaxAmount: Price
     taxAmount: Price
+
+@typing.type_check_only
+class ProductDimension(typing_extensions.TypedDict, total=False):
+    unit: str
+    value: float
 
 @typing.type_check_only
 class ProductProductDetail(typing_extensions.TypedDict, total=False):
@@ -1954,6 +2009,11 @@ class ProductUnitPricingMeasure(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
+class ProductWeight(typing_extensions.TypedDict, total=False):
+    unit: str
+    value: float
+
+@typing.type_check_only
 class ProductsCustomBatchRequest(typing_extensions.TypedDict, total=False):
     entries: typing.List[ProductsCustomBatchRequestEntry]
 
@@ -2004,6 +2064,59 @@ class ProductstatusesListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     resources: typing.List[ProductStatus]
+
+@typing.type_check_only
+class Promotion(typing_extensions.TypedDict, total=False):
+    brand: typing.List[str]
+    brandExclusion: typing.List[str]
+    contentLanguage: str
+    couponValueType: typing_extensions.Literal[
+        "COUPON_VALUE_TYPE_UNSPECIFIED",
+        "MONEY_OFF",
+        "PERCENT_OFF",
+        "BUY_M_GET_N_MONEY_OFF",
+        "BUY_M_GET_N_PERCENT_OFF",
+        "BUY_M_GET_MONEY_OFF",
+        "BUY_M_GET_PERCENT_OFF",
+        "FREE_GIFT",
+        "FREE_GIFT_WITH_VALUE",
+        "FREE_GIFT_WITH_ITEM_ID",
+        "FREE_SHIPPING_STANDARD",
+        "FREE_SHIPPING_OVERNIGHT",
+        "FREE_SHIPPING_TWO_DAY",
+    ]
+    freeGiftDescription: str
+    freeGiftItemId: str
+    freeGiftValue: PriceAmount
+    genericRedemptionCode: str
+    getThisQuantityDiscounted: int
+    id: str
+    itemGroupId: typing.List[str]
+    itemGroupIdExclusion: typing.List[str]
+    itemId: typing.List[str]
+    itemIdExclusion: typing.List[str]
+    limitQuantity: int
+    limitValue: PriceAmount
+    longTitle: str
+    minimumPurchaseAmount: PriceAmount
+    minimumPurchaseQuantity: int
+    moneyBudget: PriceAmount
+    moneyOffAmount: PriceAmount
+    offerType: typing_extensions.Literal[
+        "OFFER_TYPE_UNSPECIFIED", "NO_CODE", "GENERIC_CODE"
+    ]
+    orderLimit: int
+    percentOff: int
+    productApplicability: typing_extensions.Literal[
+        "PRODUCT_APPLICABILITY_UNSPECIFIED", "ALL_PRODUCTS", "PRODUCT_SPECIFIC"
+    ]
+    promotionDestinationIds: typing.List[str]
+    promotionDisplayDates: str
+    promotionEffectiveDates: str
+    promotionId: str
+    redemptionChannel: typing.List[str]
+    shippingServiceNames: typing.List[str]
+    targetCountry: str
 
 @typing.type_check_only
 class PubsubNotificationSettings(typing_extensions.TypedDict, total=False):
@@ -2091,7 +2204,11 @@ class RepricingProductReport(typing_extensions.TypedDict, total=False):
     ruleIds: typing.List[str]
     totalGmv: PriceAmount
     type: typing_extensions.Literal[
-        "REPRICING_RULE_TYPE_UNSPECIFIED", "TYPE_STATS_BASED", "TYPE_COGS_BASED"
+        "REPRICING_RULE_TYPE_UNSPECIFIED",
+        "TYPE_STATS_BASED",
+        "TYPE_COGS_BASED",
+        "TYPE_SALES_VOLUME_BASED",
+        "TYPE_COMPETITIVE_PRICE",
     ]
 
 @typing.type_check_only
@@ -2114,7 +2231,11 @@ class RepricingRule(typing_extensions.TypedDict, total=False):
     statsBasedRule: RepricingRuleStatsBasedRule
     title: str
     type: typing_extensions.Literal[
-        "REPRICING_RULE_TYPE_UNSPECIFIED", "TYPE_STATS_BASED", "TYPE_COGS_BASED"
+        "REPRICING_RULE_TYPE_UNSPECIFIED",
+        "TYPE_STATS_BASED",
+        "TYPE_COGS_BASED",
+        "TYPE_SALES_VOLUME_BASED",
+        "TYPE_COMPETITIVE_PRICE",
     ]
 
 @typing.type_check_only
@@ -2163,7 +2284,11 @@ class RepricingRuleReport(typing_extensions.TypedDict, total=False):
     ruleId: str
     totalGmv: PriceAmount
     type: typing_extensions.Literal[
-        "REPRICING_RULE_TYPE_UNSPECIFIED", "TYPE_STATS_BASED", "TYPE_COGS_BASED"
+        "REPRICING_RULE_TYPE_UNSPECIFIED",
+        "TYPE_STATS_BASED",
+        "TYPE_COGS_BASED",
+        "TYPE_SALES_VOLUME_BASED",
+        "TYPE_COMPETITIVE_PRICE",
     ]
 
 @typing.type_check_only
@@ -2188,9 +2313,30 @@ class RepricingRuleStatsBasedRule(typing_extensions.TypedDict, total=False):
     priceDelta: str
 
 @typing.type_check_only
+class RequestPhoneVerificationRequest(typing_extensions.TypedDict, total=False):
+    languageCode: str
+    phoneNumber: str
+    phoneRegionCode: str
+    phoneVerificationMethod: typing_extensions.Literal[
+        "PHONE_VERIFICATION_METHOD_UNSPECIFIED", "SMS", "PHONE_CALL"
+    ]
+
+@typing.type_check_only
+class RequestPhoneVerificationResponse(typing_extensions.TypedDict, total=False):
+    verificationId: str
+
+@typing.type_check_only
 class RequestReviewBuyOnGoogleProgramRequest(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class RequestReviewFreeListingsRequest(typing_extensions.TypedDict, total=False):
+    regionCode: str
+
+@typing.type_check_only
+class RequestReviewShoppingAdsRequest(typing_extensions.TypedDict, total=False):
+    regionCode: str
 
 @typing.type_check_only
 class ReturnAddress(typing_extensions.TypedDict, total=False):
@@ -2562,6 +2708,32 @@ class ShippingsettingsListResponse(typing_extensions.TypedDict, total=False):
     resources: typing.List[ShippingSettings]
 
 @typing.type_check_only
+class ShoppingAdsProgramStatus(typing_extensions.TypedDict, total=False):
+    regionStatuses: typing.List[ShoppingAdsProgramStatusRegionStatus]
+    state: typing_extensions.Literal[
+        "PROGRAM_STATE_UNSPECIFIED", "ONBOARDED", "NOT_ONBOARDED"
+    ]
+
+@typing.type_check_only
+class ShoppingAdsProgramStatusRegionStatus(typing_extensions.TypedDict, total=False):
+    disapprovalDate: str
+    eligibilityStatus: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "APPROVED",
+        "DISAPPROVED",
+        "WARNING",
+        "UNDER_REVIEW",
+        "PENDING_REVIEW",
+        "ONBOARDING",
+    ]
+    ineligibilityReason: str
+    regionCodes: typing.List[str]
+    reviewEligibilityStatus: typing_extensions.Literal[
+        "REVIEW_ELIGIBILITY_UNSPECIFIED", "ELIGIBLE", "INELIGIBLE"
+    ]
+    reviewIssues: typing.List[str]
+
+@typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
     columnHeaders: Headers
     name: str
@@ -2682,6 +2854,18 @@ class Value(typing_extensions.TypedDict, total=False):
     noShipping: bool
     pricePercentage: str
     subtableName: str
+
+@typing.type_check_only
+class VerifyPhoneNumberRequest(typing_extensions.TypedDict, total=False):
+    phoneVerificationMethod: typing_extensions.Literal[
+        "PHONE_VERIFICATION_METHOD_UNSPECIFIED", "SMS", "PHONE_CALL"
+    ]
+    verificationCode: str
+    verificationId: str
+
+@typing.type_check_only
+class VerifyPhoneNumberResponse(typing_extensions.TypedDict, total=False):
+    verifiedPhoneNumber: str
 
 @typing.type_check_only
 class WarehouseBasedDeliveryTime(typing_extensions.TypedDict, total=False):

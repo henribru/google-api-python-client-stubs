@@ -31,6 +31,7 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     legacyAppEngineCron: bool = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,

@@ -94,6 +94,36 @@ class CloneContext(typing_extensions.TypedDict, total=False):
     pointInTime: str
 
 @typing.type_check_only
+class ConnectSettings(typing_extensions.TypedDict, total=False):
+    backendType: typing_extensions.Literal[
+        "SQL_BACKEND_TYPE_UNSPECIFIED", "FIRST_GEN", "SECOND_GEN", "EXTERNAL"
+    ]
+    databaseVersion: typing_extensions.Literal[
+        "SQL_DATABASE_VERSION_UNSPECIFIED",
+        "MYSQL_5_1",
+        "MYSQL_5_5",
+        "MYSQL_5_6",
+        "MYSQL_5_7",
+        "POSTGRES_9_6",
+        "POSTGRES_11",
+        "SQLSERVER_2017_STANDARD",
+        "SQLSERVER_2017_ENTERPRISE",
+        "SQLSERVER_2017_EXPRESS",
+        "SQLSERVER_2017_WEB",
+        "POSTGRES_10",
+        "POSTGRES_12",
+        "MYSQL_8_0",
+        "POSTGRES_13",
+        "SQLSERVER_2019_STANDARD",
+        "SQLSERVER_2019_ENTERPRISE",
+        "SQLSERVER_2019_EXPRESS",
+        "SQLSERVER_2019_WEB",
+    ]
+    ipAddresses: typing.List[IpMapping]
+    kind: str
+    serverCaCert: SslCert
+
+@typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
     charset: str
     collation: str
@@ -116,6 +146,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "SQL_BACKEND_TYPE_UNSPECIFIED", "FIRST_GEN", "SECOND_GEN", "EXTERNAL"
     ]
     connectionName: str
+    createTime: str
     currentDiskSize: str
     databaseVersion: typing_extensions.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
@@ -177,6 +208,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "PENDING_CREATE",
         "MAINTENANCE",
         "FAILED",
+        "ONLINE_MAINTENANCE",
     ]
     suspensionReason: typing.List[str]
 
@@ -195,6 +227,7 @@ class DemoteMasterContext(typing_extensions.TypedDict, total=False):
     kind: str
     masterInstanceName: str
     replicaConfiguration: DemoteMasterConfiguration
+    skipReplicationSetup: bool
     verifyGtidConsistency: bool
 
 @typing.type_check_only
@@ -267,6 +300,16 @@ class FlagsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class GenerateEphemeralCertRequest(typing_extensions.TypedDict, total=False):
+    access_token: str
+    public_key: str
+    readTime: str
+
+@typing.type_check_only
+class GenerateEphemeralCertResponse(typing_extensions.TypedDict, total=False):
+    ephemeralCert: SslCert
+
+@typing.type_check_only
 class ImportContext(typing_extensions.TypedDict, total=False):
     bakImportOptions: typing.Dict[str, typing.Any]
     csvImportOptions: typing.Dict[str, typing.Any]
@@ -285,6 +328,12 @@ class InsightsConfig(typing_extensions.TypedDict, total=False):
     queryStringLength: int
     recordApplicationTags: bool
     recordClientAddress: bool
+
+@typing.type_check_only
+class InstanceReference(typing_extensions.TypedDict, total=False):
+    name: str
+    project: str
+    region: str
 
 @typing.type_check_only
 class InstancesCloneRequest(typing_extensions.TypedDict, total=False):
@@ -333,6 +382,7 @@ class InstancesTruncateLogRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IpConfiguration(typing_extensions.TypedDict, total=False):
+    allocatedIpRange: str
     authorizedNetworks: typing.List[AclEntry]
     ipv4Enabled: bool
     privateNetwork: str
@@ -381,6 +431,10 @@ class MySqlReplicaConfiguration(typing_extensions.TypedDict, total=False):
     verifyServerCertificate: bool
 
 @typing.type_check_only
+class MySqlSyncConfig(typing_extensions.TypedDict, total=False):
+    initialSyncFlags: typing.List[SyncFlags]
+
+@typing.type_check_only
 class OnPremisesConfiguration(typing_extensions.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
@@ -389,6 +443,7 @@ class OnPremisesConfiguration(typing_extensions.TypedDict, total=False):
     hostPort: str
     kind: str
     password: str
+    sourceInstance: InstanceReference
     username: str
 
 @typing.type_check_only
@@ -573,6 +628,24 @@ class SqlInstancesRescheduleMaintenanceRequestBody(
     reschedule: Reschedule
 
 @typing.type_check_only
+class SqlInstancesStartExternalSyncRequest(typing_extensions.TypedDict, total=False):
+    mysqlSyncConfig: MySqlSyncConfig
+    skipVerification: bool
+    syncMode: typing_extensions.Literal[
+        "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"
+    ]
+
+@typing.type_check_only
+class SqlInstancesVerifyExternalSyncSettingsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    mysqlSyncConfig: MySqlSyncConfig
+    syncMode: typing_extensions.Literal[
+        "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"
+    ]
+    verifyConnectionOnly: bool
+
+@typing.type_check_only
 class SqlInstancesVerifyExternalSyncSettingsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -591,6 +664,7 @@ class SqlOutOfDiskReport(typing_extensions.TypedDict, total=False):
 class SqlScheduledMaintenance(typing_extensions.TypedDict, total=False):
     canDefer: bool
     canReschedule: bool
+    scheduleDeadlineTime: str
     startTime: str
 
 @typing.type_check_only
@@ -640,6 +714,11 @@ class SslCertsInsertResponse(typing_extensions.TypedDict, total=False):
 class SslCertsListResponse(typing_extensions.TypedDict, total=False):
     items: typing.List[SslCert]
     kind: str
+
+@typing.type_check_only
+class SyncFlags(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
 
 @typing.type_check_only
 class Tier(typing_extensions.TypedDict, total=False):

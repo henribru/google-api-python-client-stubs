@@ -364,6 +364,7 @@ class GroupObjectsResponse(typing_extensions.TypedDict, total=False):
 class Image(typing_extensions.TypedDict, total=False):
     contentUrl: str
     imageProperties: ImageProperties
+    placeholder: Placeholder
     sourceUrl: str
 
 @typing.type_check_only
@@ -762,50 +763,7 @@ class ReplaceImageRequest(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class Request(typing_extensions.TypedDict, total=False):
-    createImage: CreateImageRequest
-    createLine: CreateLineRequest
-    createParagraphBullets: CreateParagraphBulletsRequest
-    createShape: CreateShapeRequest
-    createSheetsChart: CreateSheetsChartRequest
-    createSlide: CreateSlideRequest
-    createTable: CreateTableRequest
-    createVideo: CreateVideoRequest
-    deleteObject: DeleteObjectRequest
-    deleteParagraphBullets: DeleteParagraphBulletsRequest
-    deleteTableColumn: DeleteTableColumnRequest
-    deleteTableRow: DeleteTableRowRequest
-    deleteText: DeleteTextRequest
-    duplicateObject: DuplicateObjectRequest
-    groupObjects: GroupObjectsRequest
-    insertTableColumns: InsertTableColumnsRequest
-    insertTableRows: InsertTableRowsRequest
-    insertText: InsertTextRequest
-    mergeTableCells: MergeTableCellsRequest
-    refreshSheetsChart: RefreshSheetsChartRequest
-    replaceAllShapesWithImage: ReplaceAllShapesWithImageRequest
-    replaceAllShapesWithSheetsChart: ReplaceAllShapesWithSheetsChartRequest
-    replaceAllText: ReplaceAllTextRequest
-    replaceImage: ReplaceImageRequest
-    rerouteLine: RerouteLineRequest
-    ungroupObjects: UngroupObjectsRequest
-    unmergeTableCells: UnmergeTableCellsRequest
-    updateImageProperties: UpdateImagePropertiesRequest
-    updateLineCategory: UpdateLineCategoryRequest
-    updateLineProperties: UpdateLinePropertiesRequest
-    updatePageElementAltText: UpdatePageElementAltTextRequest
-    updatePageElementTransform: UpdatePageElementTransformRequest
-    updatePageElementsZOrder: UpdatePageElementsZOrderRequest
-    updatePageProperties: UpdatePagePropertiesRequest
-    updateParagraphStyle: UpdateParagraphStyleRequest
-    updateShapeProperties: UpdateShapePropertiesRequest
-    updateSlidesPosition: UpdateSlidesPositionRequest
-    updateTableBorderProperties: UpdateTableBorderPropertiesRequest
-    updateTableCellProperties: UpdateTableCellPropertiesRequest
-    updateTableColumnProperties: UpdateTableColumnPropertiesRequest
-    updateTableRowProperties: UpdateTableRowPropertiesRequest
-    updateTextStyle: UpdateTextStyleRequest
-    updateVideoProperties: UpdateVideoPropertiesRequest
+class Request(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RerouteLineRequest(typing_extensions.TypedDict, total=False):
@@ -1280,6 +1238,9 @@ class UpdateShapePropertiesRequest(typing_extensions.TypedDict, total=False):
     fields: str
     objectId: str
     shapeProperties: ShapeProperties
+
+@typing.type_check_only
+class UpdateSlidePropertiesRequest(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class UpdateSlidesPositionRequest(typing_extensions.TypedDict, total=False):

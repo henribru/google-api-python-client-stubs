@@ -741,6 +741,18 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowCxV3SecuritySettingsHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudLocationLocationHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
             def agents(self) -> AgentsResource: ...
             def operations(self) -> OperationsResource: ...
             def securitySettings(self) -> SecuritySettingsResource: ...
@@ -1176,6 +1188,28 @@ class GoogleCloudDialogflowCxV3WebhookHttpRequest(googleapiclient.http.HttpReque
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Webhook: ...
+
+@typing.type_check_only
+class GoogleCloudLocationListLocationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudLocationListLocationsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudLocationLocationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudLocationLocation: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(

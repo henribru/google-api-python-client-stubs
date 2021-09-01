@@ -82,6 +82,53 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                 @typing.type_check_only
+                class DatabasesResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class TablesResource(googleapiclient.discovery.Resource):
+                        def getIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            options_requestedPolicyVersion: int = ...,
+                            **kwargs: typing.Any
+                        ) -> PolicyHttpRequest: ...
+                        def setIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            body: SetIamPolicyRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> PolicyHttpRequest: ...
+                        def testIamPermissions(
+                            self,
+                            *,
+                            resource: str,
+                            body: TestIamPermissionsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def tables(self) -> TablesResource: ...
+                @typing.type_check_only
                 class MetadataImportsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -184,6 +231,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
+                def databases(self) -> DatabasesResource: ...
                 def metadataImports(self) -> MetadataImportsResource: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any

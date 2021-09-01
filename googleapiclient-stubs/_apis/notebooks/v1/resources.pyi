@@ -178,6 +178,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def updateConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: UpdateInstanceConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def updateShieldedInstanceConfig(
                     self,
                     *,
@@ -247,6 +254,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListRuntimesResponseHttpRequest: ...
+                def reportEvent(
+                    self,
+                    *,
+                    name: str,
+                    body: ReportRuntimeEventRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def reset(
                     self,
                     *,

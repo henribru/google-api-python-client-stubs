@@ -590,6 +590,7 @@ class ParagraphElement(typing_extensions.TypedDict, total=False):
     inlineObjectElement: InlineObjectElement
     pageBreak: PageBreak
     person: Person
+    richLink: RichLink
     startIndex: int
     textRun: TextRun
 
@@ -688,6 +689,7 @@ class PositionedObjectPositioning(typing_extensions.TypedDict, total=False):
         "BREAK_RIGHT",
         "BREAK_LEFT_RIGHT",
         "IN_FRONT_OF_TEXT",
+        "BEHIND_TEXT",
     ]
     leftOffset: Dimension
     topOffset: Dimension
@@ -791,6 +793,21 @@ class RgbColor(typing_extensions.TypedDict, total=False):
     blue: float
     green: float
     red: float
+
+@typing.type_check_only
+class RichLink(typing_extensions.TypedDict, total=False):
+    richLinkId: str
+    richLinkProperties: RichLinkProperties
+    suggestedDeletionIds: typing.List[str]
+    suggestedInsertionIds: typing.List[str]
+    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    textStyle: TextStyle
+
+@typing.type_check_only
+class RichLinkProperties(typing_extensions.TypedDict, total=False):
+    mimeType: str
+    title: str
+    uri: str
 
 @typing.type_check_only
 class SectionBreak(typing_extensions.TypedDict, total=False):

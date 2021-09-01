@@ -194,6 +194,9 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     body: Cluster = ...,
+                    actionOnFailedPrimaryWorkers: typing_extensions.Literal[
+                        "FAILURE_ACTION_UNSPECIFIED", "NO_ACTION", "DELETE"
+                    ] = ...,
                     requestId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -260,6 +263,15 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     gracefulDecommissionTimeout: str = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def repair(
+                    self,
+                    *,
+                    projectId: str,
+                    region: str,
+                    clusterName: str,
+                    body: RepairClusterRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(

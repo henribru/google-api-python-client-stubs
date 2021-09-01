@@ -47,6 +47,13 @@ class GoogleChromePolicyV1ModifyOrgUnitPolicyRequest(
 class GoogleChromePolicyV1PolicySchema(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
+class GoogleChromePolicyV1PolicySchemaFieldDependencies(
+    typing_extensions.TypedDict, total=False
+):
+    sourceField: str
+    sourceFieldValue: str
+
+@typing.type_check_only
 class GoogleChromePolicyV1PolicySchemaFieldDescription(
     typing.Dict[str, typing.Any]
 ): ...

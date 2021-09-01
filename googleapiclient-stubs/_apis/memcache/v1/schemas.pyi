@@ -102,6 +102,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
     exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
     location: str
     nodeId: str
+    perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
@@ -136,7 +137,6 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion(
 class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    eligibility: GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility
     exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
     nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility

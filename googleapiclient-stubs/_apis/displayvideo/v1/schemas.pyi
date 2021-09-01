@@ -218,6 +218,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     audienceGroupDetails: AudienceGroupAssignedTargetingOptionDetails
     authorizedSellerStatusDetails: AuthorizedSellerStatusAssignedTargetingOptionDetails
     browserDetails: BrowserAssignedTargetingOptionDetails
+    businessChainDetails: BusinessChainAssignedTargetingOptionDetails
     carrierAndIspDetails: CarrierAndIspAssignedTargetingOptionDetails
     categoryDetails: CategoryAssignedTargetingOptionDetails
     channelDetails: ChannelAssignedTargetingOptionDetails
@@ -245,9 +246,11 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     name: str
     nativeContentPositionDetails: NativeContentPositionAssignedTargetingOptionDetails
     negativeKeywordListDetails: NegativeKeywordListAssignedTargetingOptionDetails
+    omidDetails: OmidAssignedTargetingOptionDetails
     onScreenPositionDetails: OnScreenPositionAssignedTargetingOptionDetails
     operatingSystemDetails: OperatingSystemAssignedTargetingOptionDetails
     parentalStatusDetails: ParentalStatusAssignedTargetingOptionDetails
+    poiDetails: PoiAssignedTargetingOptionDetails
     proximityLocationListDetails: ProximityLocationListAssignedTargetingOptionDetails
     regionalLocationListDetails: RegionalLocationListAssignedTargetingOptionDetails
     sensitiveCategoryExclusionDetails: SensitiveCategoryAssignedTargetingOptionDetails
@@ -291,7 +294,10 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
         "TARGETING_TYPE_EXCHANGE",
         "TARGETING_TYPE_SUB_EXCHANGE",
+        "TARGETING_TYPE_POI",
+        "TARGETING_TYPE_BUSINESS_CHAIN",
         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
+        "TARGETING_TYPE_OMID",
     ]
     thirdPartyVerifierDetails: ThirdPartyVerifierAssignedTargetingOptionDetails
     urlDetails: UrlAssignedTargetingOptionDetails
@@ -510,6 +516,58 @@ class BulkListLineItemAssignedTargetingOptionsResponse(
 ):
     assignedTargetingOptions: typing.List[AssignedTargetingOption]
     nextPageToken: str
+
+@typing.type_check_only
+class BusinessChainAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    proximityRadiusAmount: float
+    proximityRadiusUnit: typing_extensions.Literal[
+        "DISTANCE_UNIT_UNSPECIFIED", "DISTANCE_UNIT_MILES", "DISTANCE_UNIT_KILOMETERS"
+    ]
+    targetingOptionId: str
+
+@typing.type_check_only
+class BusinessChainSearchTerms(typing_extensions.TypedDict, total=False):
+    businessChain: str
+    region: str
+
+@typing.type_check_only
+class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    businessChain: str
+    geoRegion: str
+    geoRegionType: typing_extensions.Literal[
+        "GEO_REGION_TYPE_UNKNOWN",
+        "GEO_REGION_TYPE_OTHER",
+        "GEO_REGION_TYPE_COUNTRY",
+        "GEO_REGION_TYPE_REGION",
+        "GEO_REGION_TYPE_TERRITORY",
+        "GEO_REGION_TYPE_PROVINCE",
+        "GEO_REGION_TYPE_STATE",
+        "GEO_REGION_TYPE_PREFECTURE",
+        "GEO_REGION_TYPE_GOVERNORATE",
+        "GEO_REGION_TYPE_CANTON",
+        "GEO_REGION_TYPE_UNION_TERRITORY",
+        "GEO_REGION_TYPE_AUTONOMOUS_COMMUNITY",
+        "GEO_REGION_TYPE_DMA_REGION",
+        "GEO_REGION_TYPE_METRO",
+        "GEO_REGION_TYPE_CONGRESSIONAL_DISTRICT",
+        "GEO_REGION_TYPE_COUNTY",
+        "GEO_REGION_TYPE_MUNICIPALITY",
+        "GEO_REGION_TYPE_CITY",
+        "GEO_REGION_TYPE_POSTAL_CODE",
+        "GEO_REGION_TYPE_DEPARTMENT",
+        "GEO_REGION_TYPE_AIRPORT",
+        "GEO_REGION_TYPE_TV_REGION",
+        "GEO_REGION_TYPE_OKRUG",
+        "GEO_REGION_TYPE_BOROUGH",
+        "GEO_REGION_TYPE_CITY_REGION",
+        "GEO_REGION_TYPE_ARRONDISSEMENT",
+        "GEO_REGION_TYPE_NEIGHBORHOOD",
+        "GEO_REGION_TYPE_UNIVERSITY",
+        "GEO_REGION_TYPE_DISTRICT",
+    ]
 
 @typing.type_check_only
 class Campaign(typing_extensions.TypedDict, total=False):
@@ -754,7 +812,10 @@ class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
         "TARGETING_TYPE_EXCHANGE",
         "TARGETING_TYPE_SUB_EXCHANGE",
+        "TARGETING_TYPE_POI",
+        "TARGETING_TYPE_BUSINESS_CHAIN",
         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
+        "TARGETING_TYPE_OMID",
     ]
 
 @typing.type_check_only
@@ -895,10 +956,14 @@ class CreativeConfig(typing_extensions.TypedDict, total=False):
 class CustomBiddingAlgorithm(typing_extensions.TypedDict, total=False):
     advertiserId: str
     customBiddingAlgorithmId: str
+    customBiddingAlgorithmState: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ENABLED", "DORMANT", "SUSPENDED"
+    ]
     customBiddingAlgorithmType: typing_extensions.Literal[
         "CUSTOM_BIDDING_ALGORITHM_TYPE_UNSPECIFIED",
         "SCRIPT_BASED",
         "ADS_DATA_HUB_BASED",
+        "GOAL_BUILDER_BASED",
     ]
     displayName: str
     entityStatus: typing_extensions.Literal[
@@ -911,6 +976,7 @@ class CustomBiddingAlgorithm(typing_extensions.TypedDict, total=False):
     ]
     name: str
     partnerId: str
+    sharedAdvertiserIds: typing.List[str]
 
 @typing.type_check_only
 class CustomList(typing_extensions.TypedDict, total=False):
@@ -1004,7 +1070,10 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
         "TARGETING_TYPE_EXCHANGE",
         "TARGETING_TYPE_SUB_EXCHANGE",
+        "TARGETING_TYPE_POI",
+        "TARGETING_TYPE_BUSINESS_CHAIN",
         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
+        "TARGETING_TYPE_OMID",
     ]
 
 @typing.type_check_only
@@ -1269,7 +1338,9 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_RED_FOR_PUBLISHERS",
         "EXCHANGE_MEDIANET",
+        "EXCHANGE_TAPJOY",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -1341,7 +1412,9 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_RED_FOR_PUBLISHERS",
         "EXCHANGE_MEDIANET",
+        "EXCHANGE_TAPJOY",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -1416,7 +1489,9 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_RED_FOR_PUBLISHERS",
         "EXCHANGE_MEDIANET",
+        "EXCHANGE_TAPJOY",
     ]
 
 @typing.type_check_only
@@ -1908,7 +1983,9 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_RED_FOR_PUBLISHERS",
         "EXCHANGE_MEDIANET",
+        "EXCHANGE_TAPJOY",
     ]
     inventorySourceId: str
     inventorySourceType: typing_extensions.Literal[
@@ -2369,6 +2446,15 @@ class ObaIcon(typing_extensions.TypedDict, total=False):
     viewTrackingUrl: str
 
 @typing.type_check_only
+class OmidAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    omid: typing_extensions.Literal["OMID_UNSPECIFIED", "OMID_FOR_MOBILE_DISPLAY_ADS"]
+    targetingOptionId: str
+
+@typing.type_check_only
+class OmidTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    omid: typing_extensions.Literal["OMID_UNSPECIFIED", "OMID_FOR_MOBILE_DISPLAY_ADS"]
+
+@typing.type_check_only
 class OnScreenPositionAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -2590,6 +2676,27 @@ class PerformanceGoalBidStrategy(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PoiAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    displayName: str
+    latitude: float
+    longitude: float
+    proximityRadiusAmount: float
+    proximityRadiusUnit: typing_extensions.Literal[
+        "DISTANCE_UNIT_UNSPECIFIED", "DISTANCE_UNIT_MILES", "DISTANCE_UNIT_KILOMETERS"
+    ]
+    targetingOptionId: str
+
+@typing.type_check_only
+class PoiSearchTerms(typing_extensions.TypedDict, total=False):
+    poiQuery: str
+
+@typing.type_check_only
+class PoiTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    displayName: str
+    latitude: float
+    longitude: float
+
+@typing.type_check_only
 class PrismaConfig(typing_extensions.TypedDict, total=False):
     prismaCpeCode: PrismaCpeCode
     prismaType: typing_extensions.Literal[
@@ -2731,9 +2838,11 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
     advertiserId: str
+    businessChainSearchTerms: BusinessChainSearchTerms
     geoRegionSearchTerms: GeoRegionSearchTerms
     pageSize: int
     pageToken: str
+    poiSearchTerms: PoiSearchTerms
 
 @typing.type_check_only
 class SearchTargetingOptionsResponse(typing_extensions.TypedDict, total=False):
@@ -2829,6 +2938,7 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
     appCategoryDetails: AppCategoryTargetingOptionDetails
     authorizedSellerStatusDetails: AuthorizedSellerStatusTargetingOptionDetails
     browserDetails: BrowserTargetingOptionDetails
+    businessChainDetails: BusinessChainTargetingOptionDetails
     carrierAndIspDetails: CarrierAndIspTargetingOptionDetails
     categoryDetails: CategoryTargetingOptionDetails
     contentInstreamPositionDetails: ContentInstreamPositionTargetingOptionDetails
@@ -2844,9 +2954,11 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
     languageDetails: LanguageTargetingOptionDetails
     name: str
     nativeContentPositionDetails: NativeContentPositionTargetingOptionDetails
+    omidDetails: OmidTargetingOptionDetails
     onScreenPositionDetails: OnScreenPositionTargetingOptionDetails
     operatingSystemDetails: OperatingSystemTargetingOptionDetails
     parentalStatusDetails: ParentalStatusTargetingOptionDetails
+    poiDetails: PoiTargetingOptionDetails
     sensitiveCategoryDetails: SensitiveCategoryTargetingOptionDetails
     subExchangeDetails: SubExchangeTargetingOptionDetails
     targetingOptionId: str
@@ -2889,7 +3001,10 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
         "TARGETING_TYPE_EXCHANGE",
         "TARGETING_TYPE_SUB_EXCHANGE",
+        "TARGETING_TYPE_POI",
+        "TARGETING_TYPE_BUSINESS_CHAIN",
         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
+        "TARGETING_TYPE_OMID",
     ]
     userRewardedContentDetails: UserRewardedContentTargetingOptionDetails
     videoPlayerSizeDetails: VideoPlayerSizeTargetingOptionDetails

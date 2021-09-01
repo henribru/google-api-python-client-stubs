@@ -74,6 +74,20 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             ] = ...,
                             **kwargs: typing.Any
                         ) -> ListCryptoKeyVersionsResponseHttpRequest: ...
+                        def macSign(
+                            self,
+                            *,
+                            name: str,
+                            body: MacSignRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> MacSignResponseHttpRequest: ...
+                        def macVerify(
+                            self,
+                            *,
+                            name: str,
+                            body: MacVerifyRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> MacVerifyResponseHttpRequest: ...
                         def patch(
                             self,
                             *,
@@ -253,6 +267,13 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def cryptoKeys(self) -> CryptoKeysResource: ...
                 def importJobs(self) -> ImportJobsResource: ...
+            def generateRandomBytes(
+                self,
+                *,
+                location: str,
+                body: GenerateRandomBytesRequest = ...,
+                **kwargs: typing.Any
+            ) -> GenerateRandomBytesResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -328,6 +349,16 @@ class EncryptResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> EncryptResponse: ...
+
+@typing.type_check_only
+class GenerateRandomBytesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GenerateRandomBytesResponse: ...
 
 @typing.type_check_only
 class ImportJobHttpRequest(googleapiclient.http.HttpRequest):
@@ -408,6 +439,26 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Location: ...
+
+@typing.type_check_only
+class MacSignResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> MacSignResponse: ...
+
+@typing.type_check_only
+class MacVerifyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> MacVerifyResponse: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):

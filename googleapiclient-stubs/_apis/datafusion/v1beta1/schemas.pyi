@@ -9,6 +9,13 @@ class Accelerator(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AddDnsPeeringRequest(typing_extensions.TypedDict, total=False):
+    dnsPeering: DnsPeering
+
+@typing.type_check_only
+class AddDnsPeeringResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: typing.List[AuditLogConfig]
     service: str
@@ -30,6 +37,18 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
+    keyReference: str
+
+@typing.type_check_only
+class DnsPeering(typing_extensions.TypedDict, total=False):
+    description: str
+    domain: str
+    targetNetwork: str
+    targetProject: str
+    zone: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -40,11 +59,17 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class IAMPolicy(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    status: Status
+
+@typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     accelerators: typing.List[Accelerator]
     apiEndpoint: str
     availableVersion: typing.List[Version]
     createTime: str
+    cryptoKeyConfig: CryptoKeyConfig
     dataprocServiceAccount: str
     description: str
     displayName: str
@@ -87,6 +112,11 @@ class ListAvailableVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListDnsPeeringsResponse(typing_extensions.TypedDict, total=False):
+    dnsPeerings: typing.List[DnsPeering]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
     instances: typing.List[Instance]
     nextPageToken: str
@@ -95,6 +125,11 @@ class ListInstancesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: typing.List[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListNamespacesResponse(typing_extensions.TypedDict, total=False):
+    namespaces: typing.List[Namespace]
     nextPageToken: str
 
 @typing.type_check_only
@@ -108,6 +143,11 @@ class Location(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     locationId: str
     metadata: typing.Dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class Namespace(typing_extensions.TypedDict, total=False):
+    iamPolicy: IAMPolicy
     name: str
 
 @typing.type_check_only
@@ -139,6 +179,13 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: typing.List[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class RemoveDnsPeeringRequest(typing_extensions.TypedDict, total=False):
+    zone: str
+
+@typing.type_check_only
+class RemoveDnsPeeringResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RemoveIamPolicyRequest(typing_extensions.TypedDict, total=False): ...

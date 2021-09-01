@@ -3,11 +3,6 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
-class Capabilities(typing_extensions.TypedDict, total=False):
-    add: typing.List[str]
-    drop: typing.List[str]
-
-@typing.type_check_only
 class ConfigMapEnvSource(typing_extensions.TypedDict, total=False):
     localObjectReference: LocalObjectReference
     name: str
@@ -35,27 +30,21 @@ class Container(typing_extensions.TypedDict, total=False):
     envFrom: typing.List[EnvFromSource]
     image: str
     imagePullPolicy: str
-    lifecycle: Lifecycle
     livenessProbe: Probe
     name: str
     ports: typing.List[ContainerPort]
     readinessProbe: Probe
     resources: ResourceRequirements
     securityContext: SecurityContext
-    stdin: bool
-    stdinOnce: bool
+    startupProbe: Probe
     terminationMessagePath: str
     terminationMessagePolicy: str
-    tty: bool
-    volumeDevices: typing.List[VolumeDevice]
     volumeMounts: typing.List[VolumeMount]
     workingDir: str
 
 @typing.type_check_only
 class ContainerPort(typing_extensions.TypedDict, total=False):
     containerPort: int
-    hostIP: str
-    hostPort: int
     name: str
     protocol: str
 
@@ -88,19 +77,12 @@ class HTTPGetAction(typing_extensions.TypedDict, total=False):
     host: str
     httpHeaders: typing.List[HTTPHeader]
     path: str
-    port: IntOrString
     scheme: str
 
 @typing.type_check_only
 class HTTPHeader(typing_extensions.TypedDict, total=False):
     name: str
     value: str
-
-@typing.type_check_only
-class Handler(typing_extensions.TypedDict, total=False):
-    exec: ExecAction
-    httpGet: HTTPGetAction
-    tcpSocket: TCPSocketAction
 
 @typing.type_check_only
 class InstanceSpec(typing_extensions.TypedDict, total=False):
@@ -124,12 +106,6 @@ class InstanceStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstanceTemplateSpec(typing_extensions.TypedDict, total=False):
     spec: InstanceSpec
-
-@typing.type_check_only
-class IntOrString(typing_extensions.TypedDict, total=False):
-    intVal: int
-    strVal: str
-    type: int
 
 @typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
@@ -174,11 +150,6 @@ class KeyToPath(typing_extensions.TypedDict, total=False):
     key: str
     mode: int
     path: str
-
-@typing.type_check_only
-class Lifecycle(typing_extensions.TypedDict, total=False):
-    postStart: Handler
-    preStop: Handler
 
 @typing.type_check_only
 class ListJobsResponse(typing_extensions.TypedDict, total=False):
@@ -235,30 +206,19 @@ class OwnerReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Probe(typing_extensions.TypedDict, total=False):
+    exec: ExecAction
     failureThreshold: int
-    handler: Handler
+    httpGet: HTTPGetAction
     initialDelaySeconds: int
     periodSeconds: int
     successThreshold: int
+    tcpSocket: TCPSocketAction
     timeoutSeconds: int
-
-@typing.type_check_only
-class Quantity(typing_extensions.TypedDict, total=False):
-    string: str
 
 @typing.type_check_only
 class ResourceRequirements(typing_extensions.TypedDict, total=False):
     limits: typing.Dict[str, typing.Any]
-    limitsInMap: typing.Dict[str, typing.Any]
     requests: typing.Dict[str, typing.Any]
-    requestsInMap: typing.Dict[str, typing.Any]
-
-@typing.type_check_only
-class SELinuxOptions(typing_extensions.TypedDict, total=False):
-    level: str
-    role: str
-    type: str
-    user: str
 
 @typing.type_check_only
 class SecretEnvSource(typing_extensions.TypedDict, total=False):
@@ -282,19 +242,12 @@ class SecretVolumeSource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityContext(typing_extensions.TypedDict, total=False):
-    allowPrivilegeEscalation: bool
-    capabilities: Capabilities
-    privileged: bool
-    readOnlyRootFilesystem: bool
-    runAsGroup: int
-    runAsNonRoot: bool
     runAsUser: int
-    seLinuxOptions: SELinuxOptions
 
 @typing.type_check_only
 class TCPSocketAction(typing_extensions.TypedDict, total=False):
     host: str
-    port: IntOrString
+    port: int
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
@@ -303,14 +256,8 @@ class Volume(typing_extensions.TypedDict, total=False):
     secret: SecretVolumeSource
 
 @typing.type_check_only
-class VolumeDevice(typing_extensions.TypedDict, total=False):
-    devicePath: str
-    name: str
-
-@typing.type_check_only
 class VolumeMount(typing_extensions.TypedDict, total=False):
     mountPath: str
-    mountPropagation: str
     name: str
     readOnly: bool
     subPath: str

@@ -271,6 +271,7 @@ class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GkeCluster(typing_extensions.TypedDict, total=False):
+    clusterMissing: bool
     resourceLink: str
 
 @typing.type_check_only
@@ -336,6 +337,8 @@ class Membership(typing_extensions.TypedDict, total=False):
 class MembershipEndpoint(typing_extensions.TypedDict, total=False):
     gkeCluster: GkeCluster
     kubernetesMetadata: KubernetesMetadata
+    multiCloudCluster: MultiCloudCluster
+    onPremCluster: OnPremCluster
 
 @typing.type_check_only
 class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
@@ -358,8 +361,19 @@ class MembershipState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class MultiCloudCluster(typing_extensions.TypedDict, total=False):
+    clusterMissing: bool
+    resourceLink: str
+
+@typing.type_check_only
 class MultiClusterIngressFeatureSpec(typing_extensions.TypedDict, total=False):
     configMembership: str
+
+@typing.type_check_only
+class OnPremCluster(typing_extensions.TypedDict, total=False):
+    adminCluster: bool
+    clusterMissing: bool
+    resourceLink: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
