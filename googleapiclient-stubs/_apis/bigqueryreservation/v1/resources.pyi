@@ -26,7 +26,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> CapacityCommitmentHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any

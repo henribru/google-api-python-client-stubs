@@ -5,7 +5,7 @@ import typing_extensions
 @typing.type_check_only
 class AudioConfig(typing_extensions.TypedDict, total=False):
     audioEncoding: typing_extensions.Literal[
-        "AUDIO_ENCODING_UNSPECIFIED", "LINEAR16", "MP3", "OGG_OPUS"
+        "AUDIO_ENCODING_UNSPECIFIED", "LINEAR16", "MP3", "OGG_OPUS", "MULAW", "ALAW"
     ]
     effectsProfileId: typing.List[str]
     pitch: float

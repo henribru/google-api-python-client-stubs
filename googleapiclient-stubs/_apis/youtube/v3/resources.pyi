@@ -186,13 +186,6 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             videoId: str = ...,
             **kwargs: typing.Any
         ) -> CommentThreadListResponseHttpRequest: ...
-        def update(
-            self,
-            *,
-            part: typing.Union[str, typing.List[str]],
-            body: CommentThread = ...,
-            **kwargs: typing.Any
-        ) -> CommentThreadHttpRequest: ...
     @typing.type_check_only
     class CommentsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -772,6 +765,18 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+    @typing.type_check_only
+    class YoutubeResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class V3Resource(googleapiclient.discovery.Resource):
+            def updateCommentThreads(
+                self,
+                *,
+                body: CommentThread = ...,
+                part: typing.Union[str, typing.List[str]] = ...,
+                **kwargs: typing.Any
+            ) -> CommentThreadHttpRequest: ...
+        def v3(self) -> V3Resource: ...
     def abuseReports(self) -> AbuseReportsResource: ...
     def activities(self) -> ActivitiesResource: ...
     def captions(self) -> CaptionsResource: ...
@@ -801,6 +806,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
     def videoCategories(self) -> VideoCategoriesResource: ...
     def videos(self) -> VideosResource: ...
     def watermarks(self) -> WatermarksResource: ...
+    def youtube(self) -> YoutubeResource: ...
 
 @typing.type_check_only
 class AbuseReportHttpRequest(googleapiclient.http.HttpRequest):

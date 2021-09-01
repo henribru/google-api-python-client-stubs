@@ -51,6 +51,7 @@ class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GkeCluster(typing_extensions.TypedDict, total=False):
+    clusterMissing: bool
     resourceLink: str
 
 @typing.type_check_only

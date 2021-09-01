@@ -105,6 +105,10 @@ class MediationReportSpecDimensionFilter(typing_extensions.TypedDict, total=Fals
         "COUNTRY",
         "FORMAT",
         "PLATFORM",
+        "MOBILE_OS_VERSION",
+        "GMA_SDK_VERSION",
+        "APP_VERSION_NAME",
+        "SERVING_RESTRICTION",
     ]
     matchesAny: StringList
 
@@ -123,6 +127,10 @@ class MediationReportSpecSortCondition(typing_extensions.TypedDict, total=False)
         "COUNTRY",
         "FORMAT",
         "PLATFORM",
+        "MOBILE_OS_VERSION",
+        "GMA_SDK_VERSION",
+        "APP_VERSION_NAME",
+        "SERVING_RESTRICTION",
     ]
     metric: typing_extensions.Literal[
         "METRIC_UNSPECIFIED",
@@ -163,6 +171,10 @@ class NetworkReportSpecDimensionFilter(typing_extensions.TypedDict, total=False)
         "COUNTRY",
         "FORMAT",
         "PLATFORM",
+        "MOBILE_OS_VERSION",
+        "GMA_SDK_VERSION",
+        "APP_VERSION_NAME",
+        "SERVING_RESTRICTION",
     ]
     matchesAny: StringList
 
@@ -179,6 +191,10 @@ class NetworkReportSpecSortCondition(typing_extensions.TypedDict, total=False):
         "COUNTRY",
         "FORMAT",
         "PLATFORM",
+        "MOBILE_OS_VERSION",
+        "GMA_SDK_VERSION",
+        "APP_VERSION_NAME",
+        "SERVING_RESTRICTION",
     ]
     metric: typing_extensions.Literal[
         "METRIC_UNSPECIFIED",

@@ -277,6 +277,37 @@ class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class IdentityServiceAuthMethod(typing_extensions.TypedDict, total=False):
+    name: str
+    oidcConfig: IdentityServiceOidcConfig
+    proxy: str
+
+@typing.type_check_only
+class IdentityServiceMembershipSpec(typing_extensions.TypedDict, total=False):
+    authMethods: typing.List[IdentityServiceAuthMethod]
+
+@typing.type_check_only
+class IdentityServiceMembershipState(typing_extensions.TypedDict, total=False):
+    failureReason: str
+    installedVersion: str
+    memberConfig: IdentityServiceMembershipSpec
+    state: typing_extensions.Literal["DEPLOYMENT_STATE_UNSPECIFIED", "OK", "ERROR"]
+
+@typing.type_check_only
+class IdentityServiceOidcConfig(typing_extensions.TypedDict, total=False):
+    certificateAuthorityData: str
+    clientId: str
+    deployCloudConsoleProxy: bool
+    extraParams: str
+    groupPrefix: str
+    groupsClaim: str
+    issuerUri: str
+    kubectlRedirectUri: str
+    scopes: str
+    userClaim: str
+    userPrefix: str
+
+@typing.type_check_only
 class ListFeaturesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: typing.List[Feature]
@@ -302,10 +333,12 @@ class Location(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
     configmanagement: ConfigManagementMembershipSpec
+    identityservice: IdentityServiceMembershipSpec
 
 @typing.type_check_only
 class MembershipFeatureState(typing_extensions.TypedDict, total=False):
     configmanagement: ConfigManagementMembershipState
+    identityservice: IdentityServiceMembershipState
     metering: MeteringMembershipState
     state: FeatureState
 

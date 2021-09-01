@@ -15,6 +15,7 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
         "US_REGIONAL_ACCESS",
         "HIPAA",
         "HITRUST",
+        "EU_REGIONS_AND_SUPPORT",
     ]
     createTime: str
     displayName: str
@@ -39,6 +40,7 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "US_REGIONAL_ACCESS",
         "HIPAA",
         "HITRUST",
+        "EU_REGIONS_AND_SUPPORT",
     ]
     createTime: str
     displayName: str
@@ -95,6 +97,8 @@ class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
         "US_REGIONAL_ACCESS",
         "HIPAA",
         "HITRUST",
+        "EU_REGIONS_AND_SUPPORT",
+        "CA_REGIONS_AND_SUPPORT",
     ]
     createTime: str
     displayName: str
@@ -118,6 +122,8 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "US_REGIONAL_ACCESS",
         "HIPAA",
         "HITRUST",
+        "EU_REGIONS_AND_SUPPORT",
+        "CA_REGIONS_AND_SUPPORT",
     ]
     createTime: str
     displayName: str
@@ -173,6 +179,7 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo(
     resourceType: typing_extensions.Literal[
         "RESOURCE_TYPE_UNSPECIFIED",
         "CONSUMER_PROJECT",
+        "CONSUMER_FOLDER",
         "ENCRYPTION_KEYS_PROJECT",
         "KEYRING",
     ]
@@ -186,6 +193,7 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings(
     resourceType: typing_extensions.Literal[
         "RESOURCE_TYPE_UNSPECIFIED",
         "CONSUMER_PROJECT",
+        "CONSUMER_FOLDER",
         "ENCRYPTION_KEYS_PROJECT",
         "KEYRING",
     ]

@@ -1839,7 +1839,9 @@ class GoogleCloudDialogflowV2beta1ConversationProfile(
     name: str
     newMessageEventNotificationConfig: GoogleCloudDialogflowV2beta1NotificationConfig
     notificationConfig: GoogleCloudDialogflowV2beta1NotificationConfig
+    securitySettings: str
     sttConfig: GoogleCloudDialogflowV2beta1SpeechToTextConfig
+    timeZone: str
     updateTime: str
 
 @typing.type_check_only
@@ -3205,6 +3207,21 @@ class GoogleCloudDialogflowV3alpha1UpdateDocumentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     genericMetadata: GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudLocationListLocationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    locations: typing.List[GoogleCloudLocationLocation]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: typing.Dict[str, typing.Any]
+    locationId: str
+    metadata: typing.Dict[str, typing.Any]
+    name: str
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):

@@ -20,6 +20,13 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class BuildsResource(googleapiclient.discovery.Resource):
+            def approve(
+                self,
+                *,
+                name: str,
+                body: ApproveBuildRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def cancel(
                 self,
                 *,
@@ -58,9 +65,53 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
         @typing.type_check_only
+        class GithubEnterpriseConfigsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GitHubEnterpriseConfig = ...,
+                projectId: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self,
+                *,
+                name: str,
+                configId: str = ...,
+                projectId: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self,
+                *,
+                name: str,
+                configId: str = ...,
+                projectId: str = ...,
+                **kwargs: typing.Any
+            ) -> GitHubEnterpriseConfigHttpRequest: ...
+            def list(
+                self, *, parent: str, projectId: str = ..., **kwargs: typing.Any
+            ) -> ListGithubEnterpriseConfigsResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GitHubEnterpriseConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+        @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BuildsResource(googleapiclient.discovery.Resource):
+                def approve(
+                    self,
+                    *,
+                    name: str,
+                    body: ApproveBuildRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def cancel(
                     self,
                     *,
@@ -102,6 +153,43 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
             @typing.type_check_only
+            class GithubEnterpriseConfigsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GitHubEnterpriseConfig = ...,
+                    projectId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    configId: str = ...,
+                    projectId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    name: str,
+                    configId: str = ...,
+                    projectId: str = ...,
+                    **kwargs: typing.Any
+                ) -> GitHubEnterpriseConfigHttpRequest: ...
+                def list(
+                    self, *, parent: str, projectId: str = ..., **kwargs: typing.Any
+                ) -> ListGithubEnterpriseConfigsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GitHubEnterpriseConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -113,18 +201,137 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+            @typing.type_check_only
+            class TriggersResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: BuildTrigger = ...,
+                    projectId: str = ...,
+                    **kwargs: typing.Any
+                ) -> BuildTriggerHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    projectId: str = ...,
+                    triggerId: str = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    name: str,
+                    projectId: str = ...,
+                    triggerId: str = ...,
+                    **kwargs: typing.Any
+                ) -> BuildTriggerHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    projectId: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListBuildTriggersResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    resourceName: str,
+                    body: BuildTrigger = ...,
+                    projectId: str = ...,
+                    triggerId: str = ...,
+                    **kwargs: typing.Any
+                ) -> BuildTriggerHttpRequest: ...
+                def run(
+                    self,
+                    *,
+                    name: str,
+                    body: RunBuildTriggerRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def webhook(
+                    self,
+                    *,
+                    name: str,
+                    body: HttpBody = ...,
+                    projectId: str = ...,
+                    secret: str = ...,
+                    trigger: str = ...,
+                    **kwargs: typing.Any
+                ) -> ReceiveTriggerWebhookResponseHttpRequest: ...
+            @typing.type_check_only
+            class WorkerPoolsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: WorkerPool = ...,
+                    validateOnly: bool = ...,
+                    workerPoolId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    allowMissing: bool = ...,
+                    etag: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> WorkerPoolHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListWorkerPoolsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: WorkerPool = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
             def builds(self) -> BuildsResource: ...
+            def githubEnterpriseConfigs(self) -> GithubEnterpriseConfigsResource: ...
             def operations(self) -> OperationsResource: ...
+            def triggers(self) -> TriggersResource: ...
+            def workerPools(self) -> WorkerPoolsResource: ...
         @typing.type_check_only
         class TriggersResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, projectId: str, body: BuildTrigger = ..., **kwargs: typing.Any
+                self,
+                *,
+                projectId: str,
+                body: BuildTrigger = ...,
+                parent: str = ...,
+                **kwargs: typing.Any
             ) -> BuildTriggerHttpRequest: ...
             def delete(
-                self, *, projectId: str, triggerId: str, **kwargs: typing.Any
+                self,
+                *,
+                projectId: str,
+                triggerId: str,
+                name: str = ...,
+                **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(
-                self, *, projectId: str, triggerId: str, **kwargs: typing.Any
+                self,
+                *,
+                projectId: str,
+                triggerId: str,
+                name: str = ...,
+                **kwargs: typing.Any
             ) -> BuildTriggerHttpRequest: ...
             def list(
                 self,
@@ -132,6 +339,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                parent: str = ...,
                 **kwargs: typing.Any
             ) -> ListBuildTriggersResponseHttpRequest: ...
             def patch(
@@ -148,6 +356,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 triggerId: str,
                 body: RepoSource = ...,
+                name: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def webhook(
@@ -156,14 +365,22 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 trigger: str,
                 body: HttpBody = ...,
+                name: str = ...,
                 secret: str = ...,
                 **kwargs: typing.Any
             ) -> ReceiveTriggerWebhookResponseHttpRequest: ...
         def builds(self) -> BuildsResource: ...
+        def githubEnterpriseConfigs(self) -> GithubEnterpriseConfigsResource: ...
         def locations(self) -> LocationsResource: ...
         def triggers(self) -> TriggersResource: ...
+    @typing.type_check_only
+    class V1Resource(googleapiclient.discovery.Resource):
+        def webhook(
+            self, *, body: HttpBody = ..., webhookKey: str = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
+    def v1(self) -> V1Resource: ...
 
 @typing.type_check_only
 class BuildHttpRequest(googleapiclient.http.HttpRequest):
@@ -196,6 +413,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class GitHubEnterpriseConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GitHubEnterpriseConfig: ...
+
+@typing.type_check_only
 class ListBuildTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -216,6 +443,26 @@ class ListBuildsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListBuildsResponse: ...
 
 @typing.type_check_only
+class ListGithubEnterpriseConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListGithubEnterpriseConfigsResponse: ...
+
+@typing.type_check_only
+class ListWorkerPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListWorkerPoolsResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -234,3 +481,13 @@ class ReceiveTriggerWebhookResponseHttpRequest(googleapiclient.http.HttpRequest)
         ] = ...,
         num_retries: int = ...,
     ) -> ReceiveTriggerWebhookResponse: ...
+
+@typing.type_check_only
+class WorkerPoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> WorkerPool: ...

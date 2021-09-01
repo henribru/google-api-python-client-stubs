@@ -3,6 +3,9 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Capacity(typing_extensions.TypedDict, total=False):
     publishMibPerSec: int
     subscribeMibPerSec: int
@@ -61,6 +64,11 @@ class DeliveryConfig(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: typing.List[Operation]
+
+@typing.type_check_only
 class ListPartitionCursorsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     partitionCursors: typing.List[PartitionCursor]
@@ -81,6 +89,21 @@ class ListTopicsResponse(typing_extensions.TypedDict, total=False):
     topics: typing.List[Topic]
 
 @typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+    endTime: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class PartitionConfig(typing_extensions.TypedDict, total=False):
     capacity: Capacity
     count: str
@@ -95,6 +118,20 @@ class PartitionCursor(typing_extensions.TypedDict, total=False):
 class RetentionConfig(typing_extensions.TypedDict, total=False):
     perPartitionBytes: str
     period: str
+
+@typing.type_check_only
+class SeekSubscriptionRequest(typing_extensions.TypedDict, total=False):
+    namedTarget: typing_extensions.Literal["NAMED_TARGET_UNSPECIFIED", "TAIL", "HEAD"]
+    timeTarget: TimeTarget
+
+@typing.type_check_only
+class SeekSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class Subscription(typing_extensions.TypedDict, total=False):

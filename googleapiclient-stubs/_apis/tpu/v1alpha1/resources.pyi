@@ -37,10 +37,11 @@ class TPUResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Node = ...,
                     nodeId: str = ...,
+                    requestId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any

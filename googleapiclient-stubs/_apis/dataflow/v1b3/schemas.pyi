@@ -315,6 +315,13 @@ class FlattenInstruction(typing_extensions.TypedDict, total=False):
 class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     additionalExperiments: typing.List[str]
     additionalUserLabels: typing.Dict[str, typing.Any]
+    autoscalingAlgorithm: typing_extensions.Literal[
+        "AUTOSCALING_ALGORITHM_UNKNOWN",
+        "AUTOSCALING_ALGORITHM_NONE",
+        "AUTOSCALING_ALGORITHM_BASIC",
+    ]
+    diskSizeGb: int
+    dumpHeapOnOom: bool
     enableStreamingEngine: bool
     flexrsGoal: typing_extensions.Literal[
         "FLEXRS_UNSPECIFIED", "FLEXRS_SPEED_OPTIMIZED", "FLEXRS_COST_OPTIMIZED"
@@ -327,6 +334,7 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     maxWorkers: int
     network: str
     numWorkers: int
+    saveHeapDumpsToGcsPath: str
     sdkContainerImage: str
     serviceAccountEmail: str
     stagingLocation: str

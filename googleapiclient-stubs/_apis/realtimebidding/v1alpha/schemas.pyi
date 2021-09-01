@@ -3,9 +3,16 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class ActivateBiddingFunctionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ArchiveBiddingFunctionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class BiddingFunction(typing_extensions.TypedDict, total=False):
     biddingFunction: str
     name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "ARCHIVED"]
     type: typing_extensions.Literal[
         "FUNCTION_TYPE_UNSPECIFIED",
         "TURTLEDOVE_SIMULATION_BIDDING_FUNCTION",

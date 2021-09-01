@@ -75,6 +75,7 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                     "judge",
                     "schoolBoard",
                     "specialPurposeOfficer",
+                    "otherRole",
                 ],
                 typing.List[
                     typing_extensions.Literal[
@@ -89,6 +90,7 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                         "judge",
                         "schoolBoard",
                         "specialPurposeOfficer",
+                        "otherRole",
                     ]
                 ],
             ] = ...,
@@ -138,6 +140,7 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                     "judge",
                     "schoolBoard",
                     "specialPurposeOfficer",
+                    "otherRole",
                 ],
                 typing.List[
                     typing_extensions.Literal[
@@ -152,6 +155,7 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                         "judge",
                         "schoolBoard",
                         "specialPurposeOfficer",
+                        "otherRole",
                     ]
                 ],
             ] = ...,

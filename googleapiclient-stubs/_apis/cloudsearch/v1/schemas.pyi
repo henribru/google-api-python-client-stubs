@@ -562,8 +562,14 @@ class QueryInterpretation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class QueryInterpretationConfig(typing_extensions.TypedDict, total=False):
+    forceDisableSupplementalResults: bool
+    forceVerbatimMode: bool
+
+@typing.type_check_only
 class QueryInterpretationOptions(typing_extensions.TypedDict, total=False):
     disableNlInterpretation: bool
+    disableSupplementalResults: bool
     enableVerbatimMode: bool
 
 @typing.type_check_only

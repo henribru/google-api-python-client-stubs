@@ -125,6 +125,7 @@ class File(typing_extensions.TypedDict, total=False):
     isAppAuthorized: bool
     kind: str
     lastModifyingUser: User
+    linkShareMetadata: typing.Dict[str, typing.Any]
     md5Checksum: str
     mimeType: str
     modifiedByMe: bool
@@ -139,6 +140,7 @@ class File(typing_extensions.TypedDict, total=False):
     permissions: typing.List[Permission]
     properties: typing.Dict[str, typing.Any]
     quotaBytesUsed: str
+    resourceKey: str
     shared: bool
     sharedWithMeTime: str
     sharingUser: User

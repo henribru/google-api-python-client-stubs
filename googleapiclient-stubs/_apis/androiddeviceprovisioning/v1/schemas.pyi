@@ -25,8 +25,10 @@ class Company(typing_extensions.TypedDict, total=False):
     adminEmails: typing.List[str]
     companyId: str
     companyName: str
+    languageCode: str
     name: str
     ownerEmails: typing.List[str]
+    skipWelcomeEmail: bool
     termsStatus: typing_extensions.Literal[
         "TERMS_STATUS_UNSPECIFIED",
         "TERMS_STATUS_NOT_ACCEPTED",
@@ -93,6 +95,9 @@ class Device(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceClaim(typing_extensions.TypedDict, total=False):
+    additionalService: typing_extensions.Literal[
+        "ADDITIONAL_SERVICE_UNSPECIFIED", "DEVICE_PROTECTION"
+    ]
     ownerCompanyId: str
     resellerId: str
     sectionType: typing_extensions.Literal[

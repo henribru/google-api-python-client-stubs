@@ -29,10 +29,18 @@ class Customer(typing_extensions.TypedDict, total=False):
     customerDomain: str
     customerDomainVerified: bool
     customerId: str
+    customerType: typing_extensions.Literal[
+        "CUSTOMER_TYPE_UNSPECIFIED", "DOMAIN", "TEAM"
+    ]
     kind: str
     phoneNumber: str
     postalAddress: Address
+    primaryAdmin: PrimaryAdmin
     resourceUiUrl: str
+
+@typing.type_check_only
+class PrimaryAdmin(typing_extensions.TypedDict, total=False):
+    primaryEmail: str
 
 @typing.type_check_only
 class RenewalSettings(typing_extensions.TypedDict, total=False):

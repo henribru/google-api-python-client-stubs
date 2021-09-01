@@ -17,7 +17,9 @@ class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
     containsPypiModulesConflict: typing_extensions.Literal[
         "CONFLICT_RESULT_UNSPECIFIED", "CONFLICT", "NO_CONFLICT"
     ]
+    imageVersion: str
     pypiConflictBuildLogExtract: str
+    pypiDependencies: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):
@@ -54,6 +56,12 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     dagGcsPrefix: str
     databaseConfig: DatabaseConfig
     encryptionConfig: EncryptionConfig
+    environmentSize: typing_extensions.Literal[
+        "ENVIRONMENT_SIZE_UNSPECIFIED",
+        "ENVIRONMENT_SIZE_SMALL",
+        "ENVIRONMENT_SIZE_MEDIUM",
+        "ENVIRONMENT_SIZE_LARGE",
+    ]
     gkeCluster: str
     maintenanceWindow: MaintenanceWindow
     nodeConfig: NodeConfig
@@ -62,6 +70,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     softwareConfig: SoftwareConfig
     webServerConfig: WebServerConfig
     webServerNetworkAccessControl: WebServerNetworkAccessControl
+    workloadsConfig: WorkloadsConfig
 
 @typing.type_check_only
 class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
@@ -104,6 +113,7 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
+    enableIpMasqAgent: bool
     ipAllocationPolicy: IPAllocationPolicy
     location: str
     machineType: str
@@ -143,8 +153,11 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
+    cloudComposerNetworkIpv4CidrBlock: str
+    cloudComposerNetworkIpv4ReservedRange: str
     cloudSqlIpv4CidrBlock: str
     enablePrivateEnvironment: bool
+    enablePrivatelyUsedPublicIps: bool
     privateClusterConfig: PrivateClusterConfig
     webServerIpv4CidrBlock: str
     webServerIpv4ReservedRange: str
@@ -153,12 +166,20 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
 class RestartWebServerRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class SchedulerResource(typing_extensions.TypedDict, total=False):
+    count: int
+    cpu: float
+    memoryGb: float
+    storageGb: float
+
+@typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
     airflowConfigOverrides: typing.Dict[str, typing.Any]
     envVariables: typing.Dict[str, typing.Any]
     imageVersion: str
     pypiPackages: typing.Dict[str, typing.Any]
     pythonVersion: str
+    schedulerCount: int
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -173,3 +194,23 @@ class WebServerConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WebServerNetworkAccessControl(typing_extensions.TypedDict, total=False):
     allowedIpRanges: typing.List[AllowedIpRange]
+
+@typing.type_check_only
+class WebServerResource(typing_extensions.TypedDict, total=False):
+    cpu: float
+    memoryGb: float
+    storageGb: float
+
+@typing.type_check_only
+class WorkerResource(typing_extensions.TypedDict, total=False):
+    cpu: float
+    maxCount: int
+    memoryGb: float
+    minCount: int
+    storageGb: float
+
+@typing.type_check_only
+class WorkloadsConfig(typing_extensions.TypedDict, total=False):
+    scheduler: SchedulerResource
+    webServer: WebServerResource
+    worker: WorkerResource

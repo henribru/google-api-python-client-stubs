@@ -567,6 +567,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: TestPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            zone: str,
+            disk: str,
+            body: Disk = ...,
+            paths: typing.Union[str, typing.List[str]] = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class ExternalVpnGatewaysResource(googleapiclient.discovery.Resource):
         def delete(
@@ -2038,6 +2050,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def sendDiagnosticInterrupt(
+            self, *, project: str, zone: str, instance: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
         def setDeletionProtection(
             self,
             *,
@@ -3751,6 +3766,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: TestPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            region: str,
+            disk: str,
+            body: Disk = ...,
+            paths: typing.Union[str, typing.List[str]] = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class RegionHealthCheckServicesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -4633,6 +4660,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: TestPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            zone: str,
+            reservation: str,
+            body: Reservation = ...,
+            paths: typing.Union[str, typing.List[str]] = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class ResourcePoliciesResource(googleapiclient.discovery.Resource):
         def aggregatedList(
@@ -5298,6 +5337,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str = ...,
             pageToken: str = ...,
             returnPartialSuccess: bool = ...,
+            serviceProject: str = ...,
             **kwargs: typing.Any
         ) -> UsableSubnetworksAggregatedListHttpRequest: ...
         def patch(
@@ -5508,6 +5548,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             targetHttpsProxy: str,
             body: TargetHttpsProxy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setCertificateMap(
+            self,
+            *,
+            project: str,
+            targetHttpsProxy: str,
+            body: TargetHttpsProxiesSetCertificateMapRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -5765,6 +5814,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             targetSslProxy: str,
             body: TargetSslProxiesSetBackendServiceRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setCertificateMap(
+            self,
+            *,
+            project: str,
+            targetSslProxy: str,
+            body: TargetSslProxiesSetCertificateMapRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...

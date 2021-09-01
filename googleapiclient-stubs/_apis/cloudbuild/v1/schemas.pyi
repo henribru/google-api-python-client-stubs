@@ -3,6 +3,22 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class ApprovalConfig(typing_extensions.TypedDict, total=False):
+    approvalRequired: bool
+
+@typing.type_check_only
+class ApprovalResult(typing_extensions.TypedDict, total=False):
+    approvalTime: str
+    approverAccount: str
+    comment: str
+    decision: typing_extensions.Literal["DECISION_UNSPECIFIED", "APPROVED", "REJECTED"]
+    url: str
+
+@typing.type_check_only
+class ApproveBuildRequest(typing_extensions.TypedDict, total=False):
+    approvalResult: ApprovalResult
+
+@typing.type_check_only
 class ArtifactObjects(typing_extensions.TypedDict, total=False):
     location: str
     paths: typing.List[str]
@@ -20,10 +36,12 @@ class Artifacts(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Build(typing_extensions.TypedDict, total=False):
+    approval: BuildApproval
     artifacts: Artifacts
     availableSecrets: Secrets
     buildTriggerId: str
     createTime: str
+    failureInfo: FailureInfo
     finishTime: str
     id: str
     images: typing.List[str]
@@ -41,6 +59,7 @@ class Build(typing_extensions.TypedDict, total=False):
     startTime: str
     status: typing_extensions.Literal[
         "STATUS_UNKNOWN",
+        "PENDING",
         "QUEUED",
         "WORKING",
         "SUCCESS",
@@ -57,6 +76,14 @@ class Build(typing_extensions.TypedDict, total=False):
     timeout: str
     timing: typing.Dict[str, typing.Any]
     warnings: typing.List[Warning]
+
+@typing.type_check_only
+class BuildApproval(typing_extensions.TypedDict, total=False):
+    config: ApprovalConfig
+    result: ApprovalResult
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "APPROVED", "REJECTED", "CANCELLED"
+    ]
 
 @typing.type_check_only
 class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -81,6 +108,7 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
     machineType: typing_extensions.Literal[
         "UNSPECIFIED", "N1_HIGHCPU_8", "N1_HIGHCPU_32", "E2_HIGHCPU_8", "E2_HIGHCPU_32"
     ]
+    pool: PoolOption
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: typing.List[str]
     sourceProvenanceHash: typing.List[str]
@@ -97,9 +125,11 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     pullTiming: TimeSpan
+    script: str
     secretEnv: typing.List[str]
     status: typing_extensions.Literal[
         "STATUS_UNKNOWN",
+        "PENDING",
         "QUEUED",
         "WORKING",
         "SUCCESS",
@@ -116,21 +146,28 @@ class BuildStep(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildTrigger(typing_extensions.TypedDict, total=False):
+    approvalConfig: ApprovalConfig
+    autodetect: bool
     build: Build
     createTime: str
     description: str
     disabled: bool
     filename: str
     filter: str
+    gitFileSource: GitFileSource
     github: GitHubEventsConfig
     id: str
     ignoredFiles: typing.List[str]
     includedFiles: typing.List[str]
     name: str
     pubsubConfig: PubsubConfig
+    resourceName: str
+    serviceAccount: str
+    sourceToBuild: GitRepoSource
     substitutions: typing.Dict[str, typing.Any]
     tags: typing.List[str]
     triggerTemplate: RepoSource
+    webhookConfig: WebhookConfig
 
 @typing.type_check_only
 class BuiltImage(typing_extensions.TypedDict, total=False):
@@ -148,19 +185,113 @@ class CancelBuildRequest(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CreateGitHubEnterpriseConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    createTime: str
+    githubEnterpriseConfig: str
+
+@typing.type_check_only
+class CreateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    workerPool: str
+
+@typing.type_check_only
+class DeleteGitHubEnterpriseConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    createTime: str
+    githubEnterpriseConfig: str
+
+@typing.type_check_only
+class DeleteWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    workerPool: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FailureInfo(typing_extensions.TypedDict, total=False):
+    detail: str
+    type: typing_extensions.Literal[
+        "FAILURE_TYPE_UNSPECIFIED",
+        "PUSH_FAILED",
+        "PUSH_IMAGE_NOT_FOUND",
+        "PUSH_NOT_AUTHORIZED",
+        "LOGGING_FAILURE",
+        "USER_BUILD_STEP",
+        "FETCH_SOURCE_FAILED",
+    ]
 
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: typing.List[Hash]
 
 @typing.type_check_only
+class GitFileSource(typing_extensions.TypedDict, total=False):
+    path: str
+    repoType: typing_extensions.Literal[
+        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB"
+    ]
+    revision: str
+    uri: str
+
+@typing.type_check_only
+class GitHubEnterpriseConfig(typing_extensions.TypedDict, total=False):
+    appId: str
+    createTime: str
+    displayName: str
+    hostUrl: str
+    name: str
+    peeredNetwork: str
+    secrets: GitHubEnterpriseSecrets
+    sslCa: str
+    webhookKey: str
+
+@typing.type_check_only
+class GitHubEnterpriseSecrets(typing_extensions.TypedDict, total=False):
+    oauthClientIdName: str
+    oauthClientIdVersionName: str
+    oauthSecretName: str
+    oauthSecretVersionName: str
+    privateKeyName: str
+    privateKeyVersionName: str
+    webhookSecretName: str
+    webhookSecretVersionName: str
+
+@typing.type_check_only
 class GitHubEventsConfig(typing_extensions.TypedDict, total=False):
+    enterpriseConfigResourceName: str
     installationId: str
     name: str
     owner: str
     pullRequest: PullRequestFilter
     push: PushFilter
+
+@typing.type_check_only
+class GitRepoSource(typing_extensions.TypedDict, total=False):
+    ref: str
+    repoType: typing_extensions.Literal[
+        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB"
+    ]
+    uri: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV2OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
 
 @typing.type_check_only
 class HTTPDelivery(typing_extensions.TypedDict, total=False):
@@ -191,6 +322,22 @@ class ListBuildTriggersResponse(typing_extensions.TypedDict, total=False):
 class ListBuildsResponse(typing_extensions.TypedDict, total=False):
     builds: typing.List[Build]
     nextPageToken: str
+
+@typing.type_check_only
+class ListGithubEnterpriseConfigsResponse(typing_extensions.TypedDict, total=False):
+    configs: typing.List[GitHubEnterpriseConfig]
+
+@typing.type_check_only
+class ListWorkerPoolsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    workerPools: typing.List[WorkerPool]
+
+@typing.type_check_only
+class NetworkConfig(typing_extensions.TypedDict, total=False):
+    egressOption: typing_extensions.Literal[
+        "EGRESS_OPTION_UNSPECIFIED", "NO_PUBLIC_EGRESS", "PUBLIC_EGRESS"
+    ]
+    peeredNetwork: str
 
 @typing.type_check_only
 class Notification(typing_extensions.TypedDict, total=False):
@@ -233,6 +380,33 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: typing.Dict[str, typing.Any]
     name: str
     response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class PoolOption(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class PrivatePoolV1Config(typing_extensions.TypedDict, total=False):
+    networkConfig: NetworkConfig
+    workerConfig: WorkerConfig
+
+@typing.type_check_only
+class ProcessAppManifestCallbackOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    createTime: str
+    githubEnterpriseConfig: str
 
 @typing.type_check_only
 class PubsubConfig(typing_extensions.TypedDict, total=False):
@@ -291,6 +465,12 @@ class RetryBuildRequest(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     projectId: str
+
+@typing.type_check_only
+class RunBuildTriggerRequest(typing_extensions.TypedDict, total=False):
+    projectId: str
+    source: RepoSource
+    triggerId: str
 
 @typing.type_check_only
 class SMTPDelivery(typing_extensions.TypedDict, total=False):
@@ -357,6 +537,20 @@ class TimeSpan(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class UpdateGitHubEnterpriseConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    createTime: str
+    githubEnterpriseConfig: str
+
+@typing.type_check_only
+class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    workerPool: str
+
+@typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
     name: str
     path: str
@@ -367,3 +561,28 @@ class Warning(typing_extensions.TypedDict, total=False):
         "PRIORITY_UNSPECIFIED", "INFO", "WARNING", "ALERT"
     ]
     text: str
+
+@typing.type_check_only
+class WebhookConfig(typing_extensions.TypedDict, total=False):
+    secret: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "OK", "SECRET_DELETED"]
+
+@typing.type_check_only
+class WorkerConfig(typing_extensions.TypedDict, total=False):
+    diskSizeGb: str
+    machineType: str
+
+@typing.type_check_only
+class WorkerPool(typing_extensions.TypedDict, total=False):
+    annotations: typing.Dict[str, typing.Any]
+    createTime: str
+    deleteTime: str
+    displayName: str
+    etag: str
+    name: str
+    privatePoolV1Config: PrivatePoolV1Config
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "RUNNING", "DELETING", "DELETED"
+    ]
+    uid: str
+    updateTime: str

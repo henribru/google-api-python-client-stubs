@@ -76,6 +76,22 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             readMask: str = ...,
             requestSyncToken: bool = ...,
+            sources: typing.Union[
+                typing_extensions.Literal[
+                    "READ_SOURCE_TYPE_UNSPECIFIED",
+                    "READ_SOURCE_TYPE_PROFILE",
+                    "READ_SOURCE_TYPE_CONTACT",
+                    "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                ],
+                typing.List[
+                    typing_extensions.Literal[
+                        "READ_SOURCE_TYPE_UNSPECIFIED",
+                        "READ_SOURCE_TYPE_PROFILE",
+                        "READ_SOURCE_TYPE_CONTACT",
+                        "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    ]
+                ],
+            ] = ...,
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOtherContactsResponseHttpRequest: ...

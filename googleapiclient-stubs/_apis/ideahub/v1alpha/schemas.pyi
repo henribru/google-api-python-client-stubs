@@ -16,6 +16,20 @@ class GoogleSearchIdeahubV1alphaIdea(typing_extensions.TypedDict, total=False):
     topics: typing.List[GoogleSearchIdeahubV1alphaTopic]
 
 @typing.type_check_only
+class GoogleSearchIdeahubV1alphaIdeaActivity(typing_extensions.TypedDict, total=False):
+    ideas: typing.List[str]
+    name: str
+    topics: typing.List[str]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "POST_DRAFTED",
+        "POST_PUBLISHED",
+        "POST_DELETED",
+        "POST_UNPUBLISHED",
+    ]
+    uri: str
+
+@typing.type_check_only
 class GoogleSearchIdeahubV1alphaIdeaState(typing_extensions.TypedDict, total=False):
     dismissed: bool
     name: str
@@ -39,3 +53,10 @@ class GoogleSearchIdeahubV1alphaListIdeasResponse(
 class GoogleSearchIdeahubV1alphaTopic(typing_extensions.TypedDict, total=False):
     displayName: str
     mid: str
+    name: str
+
+@typing.type_check_only
+class GoogleSearchIdeahubV1alphaTopicState(typing_extensions.TypedDict, total=False):
+    dismissed: bool
+    name: str
+    saved: bool

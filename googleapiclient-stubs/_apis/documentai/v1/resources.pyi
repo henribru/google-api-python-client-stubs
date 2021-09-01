@@ -21,7 +21,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
-                def cancelOperation(
+                def cancel(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def get(
@@ -108,7 +108,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
             class LocationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
-                    def cancelOperation(
+                    def cancel(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
                     def get(

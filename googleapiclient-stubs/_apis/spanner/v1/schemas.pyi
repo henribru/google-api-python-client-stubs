@@ -109,6 +109,7 @@ class CreateSessionRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
     createTime: str
+    defaultLeader: str
     earliestVersionTime: str
     encryptionConfig: EncryptionConfig
     encryptionInfo: typing.List[EncryptionInfo]
@@ -225,6 +226,7 @@ class Instance(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstanceConfig(typing_extensions.TypedDict, total=False):
     displayName: str
+    leaderOptions: typing.List[str]
     name: str
     replicas: typing.List[ReplicaInfo]
 
@@ -243,6 +245,7 @@ class KeyRangeInfo(typing_extensions.TypedDict, total=False):
     keysCount: str
     metric: LocalizedString
     startKeyIndex: int
+    timeOffset: str
     unit: LocalizedString
     value: float
 

@@ -14,6 +14,20 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
     class BiddersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class BiddingFunctionsResource(googleapiclient.discovery.Resource):
+            def activate(
+                self,
+                *,
+                name: str,
+                body: ActivateBiddingFunctionRequest = ...,
+                **kwargs: typing.Any
+            ) -> BiddingFunctionHttpRequest: ...
+            def archive(
+                self,
+                *,
+                name: str,
+                body: ArchiveBiddingFunctionRequest = ...,
+                **kwargs: typing.Any
+            ) -> BiddingFunctionHttpRequest: ...
             def create(
                 self, *, parent: str, body: BiddingFunction = ..., **kwargs: typing.Any
             ) -> BiddingFunctionHttpRequest: ...

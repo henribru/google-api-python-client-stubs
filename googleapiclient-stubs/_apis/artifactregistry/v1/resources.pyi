@@ -20,8 +20,8 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
+            name: str,
             filter: str = ...,
-            name: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             **kwargs: typing.Any

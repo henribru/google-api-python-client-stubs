@@ -3,6 +3,11 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class AccessContextManagerOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class AccessLevel(typing_extensions.TypedDict, total=False):
     basic: BasicLevel
     custom: CustomLevel
@@ -95,6 +100,11 @@ class GcpUserAccessBinding(typing_extensions.TypedDict, total=False):
     accessLevels: typing.List[str]
     groupKey: str
     name: str
+
+@typing.type_check_only
+class GcpUserAccessBindingOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class IngressFrom(typing_extensions.TypedDict, total=False):

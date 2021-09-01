@@ -115,6 +115,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             merchantId: str,
             label: str = ...,
             maxResults: int = ...,
+            name: str = ...,
             pageToken: str = ...,
             view: typing_extensions.Literal["MERCHANT", "CSS"] = ...,
             **kwargs: typing.Any
@@ -128,6 +129,14 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> AccountsListLinksResponseHttpRequest: ...
+        def requestphoneverification(
+            self,
+            *,
+            merchantId: str,
+            accountId: str,
+            body: RequestPhoneVerificationRequest = ...,
+            **kwargs: typing.Any
+        ) -> RequestPhoneVerificationResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -144,6 +153,14 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             body: AccountsUpdateLabelsRequest = ...,
             **kwargs: typing.Any
         ) -> AccountsUpdateLabelsResponseHttpRequest: ...
+        def verifyphonenumber(
+            self,
+            *,
+            merchantId: str,
+            accountId: str,
+            body: VerifyPhoneNumberRequest = ...,
+            **kwargs: typing.Any
+        ) -> VerifyPhoneNumberResponseHttpRequest: ...
         def credentials(self) -> CredentialsResource: ...
         def labels(self) -> LabelsResource: ...
         def returncarrier(self) -> ReturncarrierResource: ...
@@ -166,6 +183,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             merchantId: str,
             destinations: typing.Union[str, typing.List[str]] = ...,
             maxResults: int = ...,
+            name: str = ...,
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> AccountstatusesListResponseHttpRequest: ...
@@ -341,6 +359,18 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> DatafeedstatusesListResponseHttpRequest: ...
+    @typing.type_check_only
+    class FreelistingsprogramResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, merchantId: str, **kwargs: typing.Any
+        ) -> FreeListingsProgramStatusHttpRequest: ...
+        def requestreview(
+            self,
+            *,
+            merchantId: str,
+            body: RequestReviewFreeListingsRequest = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
     @typing.type_check_only
     class LiasettingsResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -575,6 +605,14 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             body: OrdersCancelTestOrderByCustomerRequest = ...,
             **kwargs: typing.Any
         ) -> OrdersCancelTestOrderByCustomerResponseHttpRequest: ...
+        def captureOrder(
+            self,
+            *,
+            merchantId: str,
+            orderId: str,
+            body: CaptureOrderRequest = ...,
+            **kwargs: typing.Any
+        ) -> CaptureOrderResponseHttpRequest: ...
         def createtestorder(
             self,
             *,
@@ -869,6 +907,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         ) -> ProductstatusesListResponseHttpRequest: ...
         def repricingreports(self) -> RepricingreportsResource: ...
     @typing.type_check_only
+    class PromotionsResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, merchantId: str, body: Promotion = ..., **kwargs: typing.Any
+        ) -> PromotionHttpRequest: ...
+    @typing.type_check_only
     class PubsubnotificationsettingsResource(googleapiclient.discovery.Resource):
         def get(
             self, *, merchantId: str, **kwargs: typing.Any
@@ -1111,6 +1154,18 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             body: ShippingSettings = ...,
             **kwargs: typing.Any
         ) -> ShippingSettingsHttpRequest: ...
+    @typing.type_check_only
+    class ShoppingadsprogramResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, merchantId: str, **kwargs: typing.Any
+        ) -> ShoppingAdsProgramStatusHttpRequest: ...
+        def requestreview(
+            self,
+            *,
+            merchantId: str,
+            body: RequestReviewShoppingAdsRequest = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
     def accounts(self) -> AccountsResource: ...
     def accountstatuses(self) -> AccountstatusesResource: ...
     def accounttax(self) -> AccounttaxResource: ...
@@ -1120,6 +1175,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def csses(self) -> CssesResource: ...
     def datafeeds(self) -> DatafeedsResource: ...
     def datafeedstatuses(self) -> DatafeedstatusesResource: ...
+    def freelistingsprogram(self) -> FreelistingsprogramResource: ...
     def liasettings(self) -> LiasettingsResource: ...
     def localinventory(self) -> LocalinventoryResource: ...
     def orderinvoices(self) -> OrderinvoicesResource: ...
@@ -1130,6 +1186,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def pos(self) -> PosResource: ...
     def products(self) -> ProductsResource: ...
     def productstatuses(self) -> ProductstatusesResource: ...
+    def promotions(self) -> PromotionsResource: ...
     def pubsubnotificationsettings(self) -> PubsubnotificationsettingsResource: ...
     def regionalinventory(self) -> RegionalinventoryResource: ...
     def regions(self) -> RegionsResource: ...
@@ -1141,6 +1198,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def settlementreports(self) -> SettlementreportsResource: ...
     def settlementtransactions(self) -> SettlementtransactionsResource: ...
     def shippingsettings(self) -> ShippingsettingsResource: ...
+    def shoppingadsprogram(self) -> ShoppingadsprogramResource: ...
 
 @typing.type_check_only
 class AccountHttpRequest(googleapiclient.http.HttpRequest):
@@ -1323,6 +1381,16 @@ class BuyOnGoogleProgramStatusHttpRequest(googleapiclient.http.HttpRequest):
     ) -> BuyOnGoogleProgramStatus: ...
 
 @typing.type_check_only
+class CaptureOrderResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> CaptureOrderResponse: ...
+
+@typing.type_check_only
 class CollectionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1421,6 +1489,16 @@ class DatafeedstatusesListResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> DatafeedstatusesListResponse: ...
+
+@typing.type_check_only
+class FreeListingsProgramStatusHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> FreeListingsProgramStatus: ...
 
 @typing.type_check_only
 class LiaSettingsHttpRequest(googleapiclient.http.HttpRequest):
@@ -2075,6 +2153,16 @@ class ProductstatusesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ProductstatusesListResponse: ...
 
 @typing.type_check_only
+class PromotionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Promotion: ...
+
+@typing.type_check_only
 class PubsubNotificationSettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2123,6 +2211,16 @@ class RepricingRuleHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> RepricingRule: ...
+
+@typing.type_check_only
+class RequestPhoneVerificationResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> RequestPhoneVerificationResponse: ...
 
 @typing.type_check_only
 class ReturnAddressHttpRequest(googleapiclient.http.HttpRequest):
@@ -2309,3 +2407,23 @@ class ShippingsettingsListResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ShippingsettingsListResponse: ...
+
+@typing.type_check_only
+class ShoppingAdsProgramStatusHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ShoppingAdsProgramStatus: ...
+
+@typing.type_check_only
+class VerifyPhoneNumberResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> VerifyPhoneNumberResponse: ...

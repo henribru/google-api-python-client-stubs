@@ -191,57 +191,40 @@ class DnsResource(googleapiclient.discovery.Resource):
         ) -> PoliciesUpdateResponseHttpRequest: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class ManagedZonesResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class RrsetsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    project: str,
-                    managedZone: str,
-                    body: ResourceRecordSet = ...,
-                    clientOperationId: str = ...,
-                    **kwargs: typing.Any
-                ) -> ResourceRecordSetHttpRequest: ...
-                def delete(
-                    self,
-                    *,
-                    project: str,
-                    managedZone: str,
-                    name: str,
-                    type: str,
-                    clientOperationId: str = ...,
-                    **kwargs: typing.Any
-                ) -> ResourceRecordSetsDeleteResponseHttpRequest: ...
-                def get(
-                    self,
-                    *,
-                    project: str,
-                    managedZone: str,
-                    name: str,
-                    type: str,
-                    clientOperationId: str = ...,
-                    **kwargs: typing.Any
-                ) -> ResourceRecordSetHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    project: str,
-                    managedZone: str,
-                    name: str,
-                    type: str,
-                    body: ResourceRecordSet = ...,
-                    clientOperationId: str = ...,
-                    **kwargs: typing.Any
-                ) -> ResourceRecordSetHttpRequest: ...
-            def rrsets(self) -> RrsetsResource: ...
         def get(
             self, *, project: str, clientOperationId: str = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
-        def managedZones(self) -> ManagedZonesResource: ...
     @typing.type_check_only
     class ResourceRecordSetsResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            project: str,
+            managedZone: str,
+            body: ResourceRecordSet = ...,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResourceRecordSetHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            managedZone: str,
+            name: str,
+            type: str,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResourceRecordSetsDeleteResponseHttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            managedZone: str,
+            name: str,
+            type: str,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResourceRecordSetHttpRequest: ...
         def list(
             self,
             *,
@@ -253,6 +236,17 @@ class DnsResource(googleapiclient.discovery.Resource):
             type: str = ...,
             **kwargs: typing.Any
         ) -> ResourceRecordSetsListResponseHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            managedZone: str,
+            name: str,
+            type: str,
+            body: ResourceRecordSet = ...,
+            clientOperationId: str = ...,
+            **kwargs: typing.Any
+        ) -> ResourceRecordSetHttpRequest: ...
     def changes(self) -> ChangesResource: ...
     def dnsKeys(self) -> DnsKeysResource: ...
     def managedZoneOperations(self) -> ManagedZoneOperationsResource: ...

@@ -134,6 +134,9 @@ class BuiltInVariable(typing_extensions.TypedDict, total=False):
         "requestMethod",
         "clientName",
         "queryString",
+        "serverPageLocationUrl",
+        "serverPageLocationPath",
+        "serverPageLocationHostname",
     ]
     workspaceId: str
 
@@ -333,6 +336,11 @@ class ListAccountsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListClientsResponse(typing_extensions.TypedDict, total=False):
+    client: typing.List[Client]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListContainerVersionsResponse(typing_extensions.TypedDict, total=False):
     containerVersionHeader: typing.List[ContainerVersionHeader]
     nextPageToken: str
@@ -414,6 +422,10 @@ class RevertBuiltInVariableResponse(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class RevertClientResponse(typing_extensions.TypedDict, total=False):
+    client: Client
+
+@typing.type_check_only
 class RevertFolderResponse(typing_extensions.TypedDict, total=False):
     folder: Folder
 
@@ -454,6 +466,9 @@ class SyncWorkspaceResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Tag(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class TagConsentSetting(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TeardownTag(typing_extensions.TypedDict, total=False):

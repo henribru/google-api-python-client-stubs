@@ -61,6 +61,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -95,6 +96,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any

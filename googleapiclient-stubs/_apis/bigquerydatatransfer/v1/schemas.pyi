@@ -50,6 +50,10 @@ class EmailPreferences(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EnrollDataSourcesRequest(typing_extensions.TypedDict, total=False):
+    dataSourceIds: typing.List[str]
+
+@typing.type_check_only
 class ListDataSourcesResponse(typing_extensions.TypedDict, total=False):
     dataSources: typing.List[DataSource]
     nextPageToken: str
@@ -129,6 +133,7 @@ class TransferConfig(typing_extensions.TypedDict, total=False):
     name: str
     nextRunTime: str
     notificationPubsubTopic: str
+    ownerInfo: UserInfo
     params: typing.Dict[str, typing.Any]
     schedule: str
     scheduleOptions: ScheduleOptions
@@ -175,3 +180,7 @@ class TransferRun(typing_extensions.TypedDict, total=False):
     ]
     updateTime: str
     userId: str
+
+@typing.type_check_only
+class UserInfo(typing_extensions.TypedDict, total=False):
+    email: str

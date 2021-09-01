@@ -20,9 +20,10 @@ class Backup(typing_extensions.TypedDict, total=False):
     description: str
     endTime: str
     name: str
+    restoringServices: typing.List[str]
     serviceRevision: Service
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "DELETING", "ACTIVE", "FAILED"
+        "STATE_UNSPECIFIED", "CREATING", "DELETING", "ACTIVE", "FAILED", "RESTORING"
     ]
 
 @typing.type_check_only
@@ -43,7 +44,15 @@ class DatabaseDump(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "MYSQL", "AVRO"]
 
 @typing.type_check_only
+class DataplexConfig(typing_extensions.TypedDict, total=False):
+    lakeResources: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    kmsKey: str
 
 @typing.type_check_only
 class ExportMetadataRequest(typing_extensions.TypedDict, total=False):
@@ -61,6 +70,9 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HiveMetastoreConfig(typing_extensions.TypedDict, total=False):
     configOverrides: typing.Dict[str, typing.Any]
+    endpointProtocol: typing_extensions.Literal[
+        "ENDPOINT_PROTOCOL_UNSPECIFIED", "THRIFT", "GRPC"
+    ]
     kerberosConfig: KerberosConfig
     version: str
 
@@ -74,6 +86,10 @@ class KerberosConfig(typing_extensions.TypedDict, total=False):
     keytab: Secret
     krb5ConfigGcsUri: str
     principal: str
+
+@typing.type_check_only
+class Lake(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
@@ -144,6 +160,7 @@ class MetadataImport(typing_extensions.TypedDict, total=False):
     createTime: str
     databaseDump: DatabaseDump
     description: str
+    endTime: str
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "UPDATING", "FAILED"
@@ -153,6 +170,7 @@ class MetadataImport(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetadataIntegration(typing_extensions.TypedDict, total=False):
     dataCatalogConfig: DataCatalogConfig
+    dataplexConfig: DataplexConfig
 
 @typing.type_check_only
 class MetadataManagementActivity(typing_extensions.TypedDict, total=False):
@@ -211,6 +229,7 @@ class Secret(typing_extensions.TypedDict, total=False):
 class Service(typing_extensions.TypedDict, total=False):
     artifactGcsUri: str
     createTime: str
+    encryptionConfig: EncryptionConfig
     endpointUri: str
     hiveMetastoreConfig: HiveMetastoreConfig
     labels: typing.Dict[str, typing.Any]

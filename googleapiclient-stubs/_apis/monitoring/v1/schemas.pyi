@@ -45,6 +45,10 @@ class Aggregation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AlertChart(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class Axis(typing_extensions.TypedDict, total=False):
     label: str
     scale: typing_extensions.Literal["SCALE_UNSPECIFIED", "LINEAR", "LOG10"]
@@ -79,6 +83,7 @@ class DataSet(typing_extensions.TypedDict, total=False):
     plotType: typing_extensions.Literal[
         "PLOT_TYPE_UNSPECIFIED", "LINE", "STACKED_AREA", "STACKED_BAR", "HEATMAP"
     ]
+    targetAxis: typing_extensions.Literal["TARGET_AXIS_UNSPECIFIED", "Y1", "Y2"]
     timeSeriesQuery: TimeSeriesQuery
 
 @typing.type_check_only
@@ -142,9 +147,43 @@ class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMetricsScopesByMonitoredProjectResponse(
+    typing_extensions.TypedDict, total=False
+):
+    metricsScopes: typing.List[MetricsScope]
+
+@typing.type_check_only
+class MetricsScope(typing_extensions.TypedDict, total=False):
+    createTime: str
+    monitoredProjects: typing.List[MonitoredProject]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class MonitoredProject(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+
+@typing.type_check_only
 class MosaicLayout(typing_extensions.TypedDict, total=False):
     columns: int
     tiles: typing.List[Tile]
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: typing.Dict[str, typing.Any]
+    name: str
+    response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATED", "RUNNING", "DONE", "CANCELLED"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class Option(typing_extensions.TypedDict, total=False):
@@ -208,6 +247,12 @@ class StatisticalTimeSeriesFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class Text(typing_extensions.TypedDict, total=False):
     content: str
     format: typing_extensions.Literal["FORMAT_UNSPECIFIED", "MARKDOWN", "RAW"]
@@ -217,6 +262,7 @@ class Threshold(typing_extensions.TypedDict, total=False):
     color: typing_extensions.Literal["COLOR_UNSPECIFIED", "YELLOW", "RED"]
     direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "ABOVE", "BELOW"]
     label: str
+    targetAxis: typing_extensions.Literal["TARGET_AXIS_UNSPECIFIED", "Y1", "Y2"]
     value: float
 
 @typing.type_check_only
@@ -261,6 +307,7 @@ class Type(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Widget(typing_extensions.TypedDict, total=False):
+    alertChart: AlertChart
     blank: Empty
     scorecard: Scorecard
     text: Text
@@ -274,4 +321,5 @@ class XyChart(typing_extensions.TypedDict, total=False):
     thresholds: typing.List[Threshold]
     timeshiftDuration: str
     xAxis: Axis
+    y2Axis: Axis
     yAxis: Axis

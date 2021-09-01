@@ -201,16 +201,6 @@ class NormalizedCoordinate(typing_extensions.TypedDict, total=False):
     y: float
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    cancelRequested: bool
-    createTime: str
-    endTime: str
-    statusDetail: str
-    target: str
-    verb: str
-
-@typing.type_check_only
 class OriginUri(typing_extensions.TypedDict, total=False):
     dash: str
     hls: str

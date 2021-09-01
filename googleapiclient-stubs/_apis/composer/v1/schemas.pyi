@@ -13,7 +13,9 @@ class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
     containsPypiModulesConflict: typing_extensions.Literal[
         "CONFLICT_RESULT_UNSPECIFIED", "CONFLICT", "NO_CONFLICT"
     ]
+    imageVersion: str
     pypiConflictBuildLogExtract: str
+    pypiDependencies: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):

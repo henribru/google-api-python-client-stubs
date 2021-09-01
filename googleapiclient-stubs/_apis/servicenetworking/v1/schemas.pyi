@@ -43,6 +43,7 @@ class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
     consumerNetwork: str
     description: str
     ipPrefixLength: int
+    privateIpv6GoogleAccess: str
     region: str
     requestedAddress: str
     requestedRanges: typing.List[str]

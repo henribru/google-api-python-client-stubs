@@ -46,6 +46,7 @@ class Application(typing_extensions.TypedDict, total=False):
     id: str
     locationId: str
     name: str
+    serviceAccount: str
     servingStatus: typing_extensions.Literal[
         "UNSPECIFIED", "SERVING", "USER_DISABLED", "SYSTEM_DISABLED"
     ]
@@ -356,6 +357,9 @@ class ManualScaling(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Network(typing_extensions.TypedDict, total=False):
     forwardedPorts: typing.List[str]
+    instanceIpMode: typing_extensions.Literal[
+        "INSTANCE_IP_MODE_UNSPECIFIED", "EXTERNAL", "INTERNAL"
+    ]
     instanceTag: str
     name: str
     sessionAffinity: bool

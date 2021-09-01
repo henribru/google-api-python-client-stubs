@@ -1312,6 +1312,12 @@ class LiveChatFanFundingEventDetails(typing_extensions.TypedDict, total=False):
     userComment: str
 
 @typing.type_check_only
+class LiveChatMemberMilestoneChatDetails(typing_extensions.TypedDict, total=False):
+    memberLevelName: str
+    memberMonth: int
+    userComment: str
+
+@typing.type_check_only
 class LiveChatMessage(typing_extensions.TypedDict, total=False):
     authorDetails: LiveChatMessageAuthorDetails
     etag: str
@@ -1358,8 +1364,10 @@ class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
     fanFundingEventDetails: LiveChatFanFundingEventDetails
     hasDisplayContent: bool
     liveChatId: str
+    memberMilestoneChatDetails: LiveChatMemberMilestoneChatDetails
     messageDeletedDetails: LiveChatMessageDeletedDetails
     messageRetractedDetails: LiveChatMessageRetractedDetails
+    newSponsorDetails: LiveChatNewSponsorDetails
     publishedAt: str
     superChatDetails: LiveChatSuperChatDetails
     superStickerDetails: LiveChatSuperStickerDetails
@@ -1373,6 +1381,7 @@ class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
         "sponsorOnlyModeStartedEvent",
         "sponsorOnlyModeEndedEvent",
         "newSponsorEvent",
+        "memberMilestoneChatEvent",
         "messageDeletedEvent",
         "messageRetractedEvent",
         "userBannedEvent",
@@ -1404,6 +1413,11 @@ class LiveChatModeratorListResponse(typing_extensions.TypedDict, total=False):
 class LiveChatModeratorSnippet(typing_extensions.TypedDict, total=False):
     liveChatId: str
     moderatorDetails: ChannelProfileDetails
+
+@typing.type_check_only
+class LiveChatNewSponsorDetails(typing_extensions.TypedDict, total=False):
+    isUpgrade: bool
+    memberLevelName: str
 
 @typing.type_check_only
 class LiveChatSuperChatDetails(typing_extensions.TypedDict, total=False):

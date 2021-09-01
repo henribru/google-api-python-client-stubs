@@ -29,6 +29,13 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
+                def import_(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudChannelV1ImportCustomerRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -162,6 +169,13 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
+            def import_(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudChannelV1ImportCustomerRequest = ...,
+                **kwargs: typing.Any
             ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
             def list(
                 self,

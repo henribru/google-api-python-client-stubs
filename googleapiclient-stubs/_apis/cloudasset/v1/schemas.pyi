@@ -8,6 +8,10 @@ class AccessSelector(typing_extensions.TypedDict, total=False):
     roles: typing.List[str]
 
 @typing.type_check_only
+class AnalyzeIamPolicyLongrunningMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+
+@typing.type_check_only
 class AnalyzeIamPolicyLongrunningRequest(typing_extensions.TypedDict, total=False):
     analysisQuery: IamPolicyAnalysisQuery
     outputConfig: IamPolicyAnalysisOutputConfig
@@ -35,9 +39,15 @@ class Asset(typing_extensions.TypedDict, total=False):
     name: str
     orgPolicy: typing.List[GoogleCloudOrgpolicyV1Policy]
     osInventory: Inventory
+    relatedAssets: RelatedAssets
     resource: Resource
     servicePerimeter: GoogleIdentityAccesscontextmanagerV1ServicePerimeter
     updateTime: str
+
+@typing.type_check_only
+class AttachedResource(typing_extensions.TypedDict, total=False):
+    assetType: str
+    versionedResources: typing.List[VersionedResource]
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -101,9 +111,11 @@ class ExportAssetsRequest(typing_extensions.TypedDict, total=False):
         "ORG_POLICY",
         "ACCESS_POLICY",
         "OS_INVENTORY",
+        "RELATIONSHIP",
     ]
     outputConfig: OutputConfig
     readTime: str
+    relationshipTypes: typing.List[str]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -124,9 +136,11 @@ class Feed(typing_extensions.TypedDict, total=False):
         "ORG_POLICY",
         "ACCESS_POLICY",
         "OS_INVENTORY",
+        "RELATIONSHIP",
     ]
     feedOutputConfig: FeedOutputConfig
     name: str
+    relationshipTypes: typing.List[str]
 
 @typing.type_check_only
 class FeedOutputConfig(typing_extensions.TypedDict, total=False):
@@ -482,7 +496,10 @@ class IamPolicyAnalysisState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IamPolicySearchResult(typing_extensions.TypedDict, total=False):
+    assetType: str
     explanation: Explanation
+    folders: typing.List[str]
+    organization: str
     policy: Policy
     project: str
     resource: str
@@ -494,7 +511,9 @@ class IdentitySelector(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Inventory(typing_extensions.TypedDict, total=False):
     items: typing.Dict[str, typing.Any]
+    name: str
     osInfo: OsInfo
+    updateTime: str
 
 @typing.type_check_only
 class Item(typing_extensions.TypedDict, total=False):
@@ -588,6 +607,24 @@ class PubsubDestination(typing_extensions.TypedDict, total=False):
     topic: str
 
 @typing.type_check_only
+class RelatedAsset(typing_extensions.TypedDict, total=False):
+    ancestors: typing.List[str]
+    asset: str
+    assetType: str
+
+@typing.type_check_only
+class RelatedAssets(typing_extensions.TypedDict, total=False):
+    assets: typing.List[RelatedAsset]
+    relationshipAttributes: RelationshipAttributes
+
+@typing.type_check_only
+class RelationshipAttributes(typing_extensions.TypedDict, total=False):
+    action: str
+    sourceResourceType: str
+    targetResourceType: str
+    type: str
+
+@typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
     data: typing.Dict[str, typing.Any]
     discoveryDocumentUri: str
@@ -601,6 +638,7 @@ class Resource(typing_extensions.TypedDict, total=False):
 class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     additionalAttributes: typing.Dict[str, typing.Any]
     assetType: str
+    attachedResources: typing.List[AttachedResource]
     createTime: str
     description: str
     displayName: str
@@ -616,6 +654,7 @@ class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     project: str
     state: str
     updateTime: str
+    versionedResources: typing.List[VersionedResource]
 
 @typing.type_check_only
 class ResourceSelector(typing_extensions.TypedDict, total=False):
@@ -676,6 +715,11 @@ class UpdateFeedRequest(typing_extensions.TypedDict, total=False):
 class VersionedPackage(typing_extensions.TypedDict, total=False):
     architecture: str
     packageName: str
+    version: str
+
+@typing.type_check_only
+class VersionedResource(typing_extensions.TypedDict, total=False):
+    resource: typing.Dict[str, typing.Any]
     version: str
 
 @typing.type_check_only

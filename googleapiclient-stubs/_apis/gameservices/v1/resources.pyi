@@ -163,7 +163,13 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def get(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        ] = ...,
+                        **kwargs: typing.Any
                     ) -> GameServerClusterHttpRequest: ...
                     def list(
                         self,
@@ -173,6 +179,9 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        ] = ...,
                         **kwargs: typing.Any
                     ) -> ListGameServerClustersResponseHttpRequest: ...
                     def patch(
@@ -190,6 +199,9 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         body: GameServerCluster = ...,
                         gameServerClusterId: str = ...,
                         previewTime: str = ...,
+                        view: typing_extensions.Literal[
+                            "GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        ] = ...,
                         **kwargs: typing.Any
                     ) -> PreviewCreateGameServerClusterResponseHttpRequest: ...
                     def previewDelete(

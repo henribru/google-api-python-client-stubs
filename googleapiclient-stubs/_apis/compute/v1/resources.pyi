@@ -1185,6 +1185,11 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
     @typing.type_check_only
+    class ImageFamilyViewsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, zone: str, family: str, **kwargs: typing.Any
+        ) -> ImageFamilyViewHttpRequest: ...
+    @typing.type_check_only
     class ImagesResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -1812,6 +1817,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def sendDiagnosticInterrupt(
+            self, *, project: str, zone: str, instance: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
         def setDeletionProtection(
             self,
             *,
@@ -4288,6 +4296,95 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
     @typing.type_check_only
+    class ServiceAttachmentsResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> ServiceAttachmentAggregatedListHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            region: str,
+            serviceAttachment: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            region: str,
+            serviceAttachment: str,
+            **kwargs: typing.Any
+        ) -> ServiceAttachmentHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: ServiceAttachment = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> ServiceAttachmentListHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            serviceAttachment: str,
+            body: ServiceAttachment = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
+    @typing.type_check_only
     class SnapshotsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -5327,6 +5424,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def healthChecks(self) -> HealthChecksResource: ...
     def httpHealthChecks(self) -> HttpHealthChecksResource: ...
     def httpsHealthChecks(self) -> HttpsHealthChecksResource: ...
+    def imageFamilyViews(self) -> ImageFamilyViewsResource: ...
     def images(self) -> ImagesResource: ...
     def instanceGroupManagers(self) -> InstanceGroupManagersResource: ...
     def instanceGroups(self) -> InstanceGroupsResource: ...
@@ -5370,6 +5468,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def routers(self) -> RoutersResource: ...
     def routes(self) -> RoutesResource: ...
     def securityPolicies(self) -> SecurityPoliciesResource: ...
+    def serviceAttachments(self) -> ServiceAttachmentsResource: ...
     def snapshots(self) -> SnapshotsResource: ...
     def sslCertificates(self) -> SslCertificatesResource: ...
     def sslPolicies(self) -> SslPoliciesResource: ...
@@ -5869,6 +5968,16 @@ class ImageHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Image: ...
+
+@typing.type_check_only
+class ImageFamilyViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ImageFamilyView: ...
 
 @typing.type_check_only
 class ImageListHttpRequest(googleapiclient.http.HttpRequest):
@@ -6829,6 +6938,36 @@ class SerialPortOutputHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> SerialPortOutput: ...
+
+@typing.type_check_only
+class ServiceAttachmentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ServiceAttachment: ...
+
+@typing.type_check_only
+class ServiceAttachmentAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ServiceAttachmentAggregatedList: ...
+
+@typing.type_check_only
+class ServiceAttachmentListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ServiceAttachmentList: ...
 
 @typing.type_check_only
 class ShieldedInstanceIdentityHttpRequest(googleapiclient.http.HttpRequest):

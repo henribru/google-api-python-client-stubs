@@ -104,6 +104,8 @@ class GoogleCloudMlV1__AcceleratorConfig(typing_extensions.TypedDict, total=Fals
         "NVIDIA_TESLA_A100",
         "TPU_V2",
         "TPU_V3",
+        "TPU_V2_POD",
+        "TPU_V3_POD",
     ]
 
 @typing.type_check_only
@@ -235,6 +237,7 @@ class GoogleCloudMlV1__HyperparameterOutput(typing_extensions.TypedDict, total=F
         "CANCELLED",
     ]
     trialId: str
+    webAccessUris: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudMlV1__HyperparameterSpec(typing_extensions.TypedDict, total=False):
@@ -445,6 +448,7 @@ class GoogleCloudMlV1__SampledShapleyAttribution(
 class GoogleCloudMlV1__Scheduling(typing_extensions.TypedDict, total=False):
     maxRunningTime: str
     maxWaitTime: str
+    priority: int
 
 @typing.type_check_only
 class GoogleCloudMlV1__SetDefaultVersionRequest(
@@ -484,6 +488,7 @@ class GoogleCloudMlV1__SuggestTrialsResponse(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudMlV1__TrainingInput(typing_extensions.TypedDict, total=False):
     args: typing.List[str]
+    enableWebAccess: bool
     encryptionConfig: GoogleCloudMlV1__EncryptionConfig
     evaluatorConfig: GoogleCloudMlV1__ReplicaConfig
     evaluatorCount: str
@@ -520,6 +525,7 @@ class GoogleCloudMlV1__TrainingOutput(typing_extensions.TypedDict, total=False):
     isBuiltInAlgorithmJob: bool
     isHyperparameterTuningJob: bool
     trials: typing.List[GoogleCloudMlV1__HyperparameterOutput]
+    webAccessUris: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudMlV1__Trial(typing_extensions.TypedDict, total=False):

@@ -12,6 +12,7 @@ class Groups(typing_extensions.TypedDict, total=False):
     customReplyTo: str
     customRolesEnabledForSettingsToBeMerged: str
     defaultMessageDenyNotificationText: str
+    default_sender: str
     description: str
     email: str
     enableCollaborativeInbox: str

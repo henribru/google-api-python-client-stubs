@@ -35,6 +35,10 @@ class ContainerImage(typing_extensions.TypedDict, total=False):
     tag: str
 
 @typing.type_check_only
+class DataprocParameters(typing_extensions.TypedDict, total=False):
+    cluster: str
+
+@typing.type_check_only
 class Disk(typing_extensions.TypedDict, total=False):
     autoDelete: bool
     boot: bool
@@ -67,11 +71,17 @@ class Environment(typing_extensions.TypedDict, total=False):
     vmImage: VmImage
 
 @typing.type_check_only
+class Event(typing_extensions.TypedDict, total=False):
+    reportTime: str
+    type: typing_extensions.Literal["EVENT_TYPE_UNSPECIFIED", "IDLE"]
+
+@typing.type_check_only
 class Execution(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
     executionTemplate: ExecutionTemplate
+    jobUri: str
     name: str
     outputNotebookFile: str
     state: typing_extensions.Literal[
@@ -83,6 +93,8 @@ class Execution(typing_extensions.TypedDict, total=False):
         "FAILED",
         "CANCELLING",
         "CANCELLED",
+        "EXPIRED",
+        "INITIALIZING",
     ]
     updateTime: str
 
@@ -90,7 +102,9 @@ class Execution(typing_extensions.TypedDict, total=False):
 class ExecutionTemplate(typing_extensions.TypedDict, total=False):
     acceleratorConfig: SchedulerAcceleratorConfig
     containerImageUri: str
+    dataprocParameters: DataprocParameters
     inputNotebookFile: str
+    jobType: typing_extensions.Literal["JOB_TYPE_UNSPECIFIED", "VERTEX_AI", "DATAPROC"]
     labels: typing.Dict[str, typing.Any]
     masterType: str
     outputNotebookFolder: str
@@ -161,6 +175,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     noRemoveDataDisk: bool
     postStartupScript: str
     proxyUri: str
+    reservationAffinity: ReservationAffinity
     serviceAccount: str
     serviceAccountScopes: typing.List[str]
     shieldedInstanceConfig: ShieldedInstanceConfig
@@ -181,6 +196,11 @@ class Instance(typing_extensions.TypedDict, total=False):
     updateTime: str
     upgradeHistory: typing.List[UpgradeHistoryEntry]
     vmImage: VmImage
+
+@typing.type_check_only
+class InstanceConfig(typing_extensions.TypedDict, total=False):
+    enableHealthMonitoring: bool
+    notebookUpgradeSchedule: str
 
 @typing.type_check_only
 class IsInstanceUpgradeableResponse(typing_extensions.TypedDict, total=False):
@@ -297,6 +317,19 @@ class ReportInstanceInfoRequest(typing_extensions.TypedDict, total=False):
     vmId: str
 
 @typing.type_check_only
+class ReportRuntimeEventRequest(typing_extensions.TypedDict, total=False):
+    event: Event
+    vmId: str
+
+@typing.type_check_only
+class ReservationAffinity(typing_extensions.TypedDict, total=False):
+    consumeReservationType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "NO_RESERVATION", "ANY_RESERVATION", "SPECIFIC_RESERVATION"
+    ]
+    key: str
+    values: typing.List[str]
+
+@typing.type_check_only
 class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -390,7 +423,13 @@ class Schedule(typing_extensions.TypedDict, total=False):
     name: str
     recentExecutions: typing.List[Execution]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ENABLED", "PAUSED", "DISABLED", "UPDATE_FAILED"
+        "STATE_UNSPECIFIED",
+        "ENABLED",
+        "PAUSED",
+        "DISABLED",
+        "UPDATE_FAILED",
+        "INITIALIZING",
+        "DELETING",
     ]
     timeZone: str
     updateTime: str
@@ -478,6 +517,10 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TriggerScheduleRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateInstanceConfigRequest(typing_extensions.TypedDict, total=False):
+    config: InstanceConfig
 
 @typing.type_check_only
 class UpdateShieldedInstanceConfigRequest(typing_extensions.TypedDict, total=False):

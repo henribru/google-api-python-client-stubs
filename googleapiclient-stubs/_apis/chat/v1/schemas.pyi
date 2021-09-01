@@ -9,10 +9,34 @@ class ActionParameter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ActionResponse(typing_extensions.TypedDict, total=False):
+    dialogAction: DialogAction
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "NEW_MESSAGE", "UPDATE_MESSAGE", "REQUEST_CONFIG"
     ]
     url: str
+
+@typing.type_check_only
+class ActionStatus(typing_extensions.TypedDict, total=False):
+    statusCode: typing_extensions.Literal[
+        "OK",
+        "CANCELLED",
+        "UNKNOWN",
+        "INVALID_ARGUMENT",
+        "DEADLINE_EXCEEDED",
+        "NOT_FOUND",
+        "ALREADY_EXISTS",
+        "PERMISSION_DENIED",
+        "UNAUTHENTICATED",
+        "RESOURCE_EXHAUSTED",
+        "FAILED_PRECONDITION",
+        "ABORTED",
+        "OUT_OF_RANGE",
+        "UNIMPLEMENTED",
+        "INTERNAL",
+        "UNAVAILABLE",
+        "DATA_LOSS",
+    ]
+    userFacingMessage: str
 
 @typing.type_check_only
 class Annotation(typing_extensions.TypedDict, total=False):
@@ -66,11 +90,6 @@ class CardHeader(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class CardWithId(typing_extensions.TypedDict, total=False):
-    card: GoogleAppsCardV1Card
-    cardId: str
-
-@typing.type_check_only
 class Color(typing_extensions.TypedDict, total=False):
     alpha: float
     blue: float
@@ -78,10 +97,47 @@ class Color(typing_extensions.TypedDict, total=False):
     red: float
 
 @typing.type_check_only
+class CommonEventObject(typing_extensions.TypedDict, total=False):
+    formInputs: typing.Dict[str, typing.Any]
+    hostApp: typing_extensions.Literal[
+        "UNSPECIFIED_HOST_APP",
+        "GMAIL",
+        "CALENDAR",
+        "DRIVE",
+        "DEMO",
+        "DOCS",
+        "SHEETS",
+        "SLIDES",
+        "DRAWINGS",
+        "CHAT",
+        "ALL_HOST_APPS",
+    ]
+    invokedFunction: str
+    parameters: typing.Dict[str, typing.Any]
+    platform: typing_extensions.Literal["UNKNOWN_PLATFORM", "WEB", "IOS", "ANDROID"]
+    timeZone: TimeZone
+    userLocale: str
+
+@typing.type_check_only
+class DateInput(typing_extensions.TypedDict, total=False):
+    msSinceEpoch: str
+
+@typing.type_check_only
+class DateTimeInput(typing_extensions.TypedDict, total=False):
+    hasDate: bool
+    hasTime: bool
+    msSinceEpoch: str
+
+@typing.type_check_only
 class DeprecatedEvent(typing_extensions.TypedDict, total=False):
     action: FormAction
+    common: CommonEventObject
     configCompleteRedirectUrl: str
+    dialogEventType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "REQUEST_DIALOG", "SUBMIT_DIALOG", "CANCEL_DIALOG"
+    ]
     eventTime: str
+    isDialogEvent: bool
     message: Message
     space: Space
     threadKey: str
@@ -90,6 +146,13 @@ class DeprecatedEvent(typing_extensions.TypedDict, total=False):
         "UNSPECIFIED", "MESSAGE", "ADDED_TO_SPACE", "REMOVED_FROM_SPACE", "CARD_CLICKED"
     ]
     user: User
+
+@typing.type_check_only
+class Dialog(typing_extensions.TypedDict, total=False):
+    body: GoogleAppsCardV1Card
+
+@typing.type_check_only
+class DialogAction(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class DriveDataRef(typing_extensions.TypedDict, total=False):
@@ -334,6 +397,13 @@ class ImageButton(typing_extensions.TypedDict, total=False):
     onClick: OnClick
 
 @typing.type_check_only
+class Inputs(typing_extensions.TypedDict, total=False):
+    dateInput: DateInput
+    dateTimeInput: DateTimeInput
+    stringInputs: StringInputs
+    timeInput: TimeInput
+
+@typing.type_check_only
 class KeyValue(typing_extensions.TypedDict, total=False):
     bottomLabel: str
     button: Button
@@ -437,6 +507,10 @@ class Space(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ROOM", "DM"]
 
 @typing.type_check_only
+class StringInputs(typing_extensions.TypedDict, total=False):
+    value: typing.List[str]
+
+@typing.type_check_only
 class TextButton(typing_extensions.TypedDict, total=False):
     onClick: OnClick
     text: str
@@ -448,6 +522,16 @@ class TextParagraph(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Thread(typing_extensions.TypedDict, total=False):
     name: str
+
+@typing.type_check_only
+class TimeInput(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+
+@typing.type_check_only
+class TimeZone(typing_extensions.TypedDict, total=False):
+    id: str
+    offset: int
 
 @typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):

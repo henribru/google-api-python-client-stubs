@@ -47,6 +47,12 @@ class CVSSv3(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -122,6 +128,7 @@ class InventorySoftwarePackage(typing_extensions.TypedDict, total=False):
     cosPackage: InventoryVersionedPackage
     googetPackage: InventoryVersionedPackage
     qfePackage: InventoryWindowsQuickFixEngineeringPackage
+    windowsApplication: InventoryWindowsApplication
     wuaPackage: InventoryWindowsUpdatePackage
     yumPackage: InventoryVersionedPackage
     zypperPackage: InventoryVersionedPackage
@@ -132,6 +139,14 @@ class InventoryVersionedPackage(typing_extensions.TypedDict, total=False):
     architecture: str
     packageName: str
     version: str
+
+@typing.type_check_only
+class InventoryWindowsApplication(typing_extensions.TypedDict, total=False):
+    displayName: str
+    displayVersion: str
+    helpLink: str
+    installDate: Date
+    publisher: str
 
 @typing.type_check_only
 class InventoryWindowsQuickFixEngineeringPackage(
@@ -208,6 +223,7 @@ class OSPolicyAssignment(typing_extensions.TypedDict, total=False):
     baseline: bool
     deleted: bool
     description: str
+    etag: str
     instanceFilter: OSPolicyAssignmentInstanceFilter
     name: str
     osPolicies: typing.List[OSPolicy]
@@ -229,7 +245,15 @@ class OSPolicyAssignmentInstanceFilter(typing_extensions.TypedDict, total=False)
     all: bool
     exclusionLabels: typing.List[OSPolicyAssignmentLabelSet]
     inclusionLabels: typing.List[OSPolicyAssignmentLabelSet]
+    inventories: typing.List[OSPolicyAssignmentInstanceFilterInventory]
     osShortNames: typing.List[str]
+
+@typing.type_check_only
+class OSPolicyAssignmentInstanceFilterInventory(
+    typing_extensions.TypedDict, total=False
+):
+    osShortName: str
+    osVersion: str
 
 @typing.type_check_only
 class OSPolicyAssignmentLabelSet(typing_extensions.TypedDict, total=False):
@@ -255,6 +279,11 @@ class OSPolicyAssignmentOperationMetadata(typing_extensions.TypedDict, total=Fal
 class OSPolicyAssignmentRollout(typing_extensions.TypedDict, total=False):
     disruptionBudget: FixedOrPercent
     minWaitDuration: str
+
+@typing.type_check_only
+class OSPolicyInventoryFilter(typing_extensions.TypedDict, total=False):
+    osShortName: str
+    osVersion: str
 
 @typing.type_check_only
 class OSPolicyOSFilter(typing_extensions.TypedDict, total=False):
@@ -345,6 +374,7 @@ class OSPolicyResourceFileResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OSPolicyResourceGroup(typing_extensions.TypedDict, total=False):
+    inventoryFilters: typing.List[OSPolicyInventoryFilter]
     osFilter: OSPolicyOSFilter
     resources: typing.List[OSPolicyResource]
 
@@ -475,4 +505,5 @@ class VulnerabilityReportVulnerabilityDetails(typing_extensions.TypedDict, total
 class VulnerabilityReportVulnerabilityDetailsReference(
     typing_extensions.TypedDict, total=False
 ):
+    source: str
     url: str

@@ -46,6 +46,7 @@ class Application(typing_extensions.TypedDict, total=False):
     id: str
     locationId: str
     name: str
+    serviceAccount: str
     servingStatus: typing_extensions.Literal[
         "UNSPECIFIED", "SERVING", "USER_DISABLED", "SYSTEM_DISABLED"
     ]

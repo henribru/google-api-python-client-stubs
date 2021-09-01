@@ -727,6 +727,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         def vread(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
+                    def configureSearch(
+                        self,
+                        *,
+                        name: str,
+                        body: ConfigureSearchRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def create(
                         self,
                         *,

@@ -312,6 +312,7 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
         "NEXT_HOP_INTERNET_GATEWAY",
         "NEXT_HOP_BLACKHOLE",
         "NEXT_HOP_ILB",
+        "NEXT_HOP_ROUTER_APPLIANCE",
     ]
     priority: int
     routeType: typing_extensions.Literal[

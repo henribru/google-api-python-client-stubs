@@ -115,6 +115,11 @@ class CloudHealthcareSource(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class ConfigureSearchRequest(typing_extensions.TypedDict, total=False):
+    canonicalUrls: typing.List[str]
+    validateOnly: bool
+
+@typing.type_check_only
 class Consent(typing_extensions.TypedDict, total=False):
     consentArtifact: str
     expireTime: str
@@ -347,6 +352,7 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     labels: typing.Dict[str, typing.Any]
     name: str
     notificationConfig: NotificationConfig
+    searchConfig: SearchConfig
     streamConfigs: typing.List[StreamConfig]
     validationConfig: ValidationConfig
     version: typing_extensions.Literal["VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4"]
@@ -717,6 +723,7 @@ class Message(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
     pubsubTopic: str
+    sendForBulkImport: bool
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -771,7 +778,8 @@ class QueryAccessibleDataRequest(typing_extensions.TypedDict, total=False):
     resourceAttributes: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
-class QueryAccessibleDataResponse(typing_extensions.TypedDict, total=False): ...
+class QueryAccessibleDataResponse(typing_extensions.TypedDict, total=False):
+    gcsUris: typing.List[str]
 
 @typing.type_check_only
 class RedactConfig(typing_extensions.TypedDict, total=False): ...
@@ -833,6 +841,15 @@ class SchemaSegment(typing_extensions.TypedDict, total=False):
 class SchematizedData(typing_extensions.TypedDict, total=False):
     data: str
     error: str
+
+@typing.type_check_only
+class SearchConfig(typing_extensions.TypedDict, total=False):
+    searchParameters: typing.List[SearchParameter]
+
+@typing.type_check_only
+class SearchParameter(typing_extensions.TypedDict, total=False):
+    canonicalUrl: str
+    parameter: str
 
 @typing.type_check_only
 class SearchResourcesRequest(typing_extensions.TypedDict, total=False):

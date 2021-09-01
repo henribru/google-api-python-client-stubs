@@ -7,11 +7,52 @@ class AddFirebaseRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Bucket(typing_extensions.TypedDict, total=False):
+    location: str
     name: str
     reconciling: bool
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    lastUpdateTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "CREATING_TEMP_BUCKET",
+        "TRANSFERRING_TO_TEMP",
+        "DELETING_SOURCE_BUCKET",
+        "CREATING_DESTINATION_BUCKET",
+        "TRANSFERRING_TO_DESTINATION",
+        "DELETING_TEMP_BUCKET",
+        "SUCCEEDED",
+        "FAILED",
+        "ROLLING_BACK",
+    ]
+
+@typing.type_check_only
+class GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    lastUpdateTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "CREATING_TEMP_BUCKET",
+        "TRANSFERRING_TO_TEMP",
+        "DELETING_SOURCE_BUCKET",
+        "CREATING_DESTINATION_BUCKET",
+        "TRANSFERRING_TO_DESTINATION",
+        "DELETING_TEMP_BUCKET",
+        "SUCCEEDED",
+        "FAILED",
+        "ROLLING_BACK",
+    ]
 
 @typing.type_check_only
 class ListBucketsResponse(typing_extensions.TypedDict, total=False):

@@ -3,6 +3,18 @@ import typing
 import typing_extensions
 
 @typing.type_check_only
+class ApprovalConfig(typing_extensions.TypedDict, total=False):
+    approvalRequired: bool
+
+@typing.type_check_only
+class ApprovalResult(typing_extensions.TypedDict, total=False):
+    approvalTime: str
+    approverAccount: str
+    comment: str
+    decision: typing_extensions.Literal["DECISION_UNSPECIFIED", "APPROVED", "REJECTED"]
+    url: str
+
+@typing.type_check_only
 class ArtifactObjects(typing_extensions.TypedDict, total=False):
     location: str
     paths: typing.List[str]
@@ -20,10 +32,12 @@ class Artifacts(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Build(typing_extensions.TypedDict, total=False):
+    approval: BuildApproval
     artifacts: Artifacts
     availableSecrets: Secrets
     buildTriggerId: str
     createTime: str
+    failureInfo: FailureInfo
     finishTime: str
     id: str
     images: typing.List[str]
@@ -41,6 +55,7 @@ class Build(typing_extensions.TypedDict, total=False):
     startTime: str
     status: typing_extensions.Literal[
         "STATUS_UNKNOWN",
+        "PENDING",
         "QUEUED",
         "WORKING",
         "SUCCESS",
@@ -57,6 +72,14 @@ class Build(typing_extensions.TypedDict, total=False):
     timeout: str
     timing: typing.Dict[str, typing.Any]
     warnings: typing.List[Warning]
+
+@typing.type_check_only
+class BuildApproval(typing_extensions.TypedDict, total=False):
+    config: ApprovalConfig
+    result: ApprovalResult
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "APPROVED", "REJECTED", "CANCELLED"
+    ]
 
 @typing.type_check_only
 class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -81,6 +104,7 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
     machineType: typing_extensions.Literal[
         "UNSPECIFIED", "N1_HIGHCPU_8", "N1_HIGHCPU_32", "E2_HIGHCPU_8", "E2_HIGHCPU_32"
     ]
+    pool: PoolOption
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: typing.List[str]
     sourceProvenanceHash: typing.List[str]
@@ -97,9 +121,11 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     pullTiming: TimeSpan
+    script: str
     secretEnv: typing.List[str]
     status: typing_extensions.Literal[
         "STATUS_UNKNOWN",
+        "PENDING",
         "QUEUED",
         "WORKING",
         "SUCCESS",
@@ -124,11 +150,64 @@ class BuiltImage(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CreateGitHubEnterpriseConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    createTime: str
+    githubEnterpriseConfig: str
+
+@typing.type_check_only
+class CreateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    workerPool: str
+
+@typing.type_check_only
+class DeleteGitHubEnterpriseConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    createTime: str
+    githubEnterpriseConfig: str
+
+@typing.type_check_only
+class DeleteWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    workerPool: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FailureInfo(typing_extensions.TypedDict, total=False):
+    detail: str
+    type: typing_extensions.Literal[
+        "FAILURE_TYPE_UNSPECIFIED",
+        "PUSH_FAILED",
+        "PUSH_IMAGE_NOT_FOUND",
+        "PUSH_NOT_AUTHORIZED",
+        "LOGGING_FAILURE",
+        "USER_BUILD_STEP",
+        "FETCH_SOURCE_FAILED",
+    ]
 
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: typing.List[Hash]
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV2OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
 
 @typing.type_check_only
 class HTTPDelivery(typing_extensions.TypedDict, total=False):
@@ -195,6 +274,28 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: typing.Dict[str, typing.Any]
     name: str
     response: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class PoolOption(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class ProcessAppManifestCallbackOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    createTime: str
+    githubEnterpriseConfig: str
 
 @typing.type_check_only
 class RepoSource(typing_extensions.TypedDict, total=False):
@@ -279,6 +380,20 @@ class StorageSourceManifest(typing_extensions.TypedDict, total=False):
 class TimeSpan(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class UpdateGitHubEnterpriseConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    createTime: str
+    githubEnterpriseConfig: str
+
+@typing.type_check_only
+class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    workerPool: str
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):

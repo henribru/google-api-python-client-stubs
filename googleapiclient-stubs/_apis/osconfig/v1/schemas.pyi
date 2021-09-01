@@ -9,6 +9,47 @@ class AptSettings(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DIST", "UPGRADE"]
 
 @typing.type_check_only
+class CVSSv3(typing_extensions.TypedDict, total=False):
+    attackComplexity: typing_extensions.Literal[
+        "ATTACK_COMPLEXITY_UNSPECIFIED",
+        "ATTACK_COMPLEXITY_LOW",
+        "ATTACK_COMPLEXITY_HIGH",
+    ]
+    attackVector: typing_extensions.Literal[
+        "ATTACK_VECTOR_UNSPECIFIED",
+        "ATTACK_VECTOR_NETWORK",
+        "ATTACK_VECTOR_ADJACENT",
+        "ATTACK_VECTOR_LOCAL",
+        "ATTACK_VECTOR_PHYSICAL",
+    ]
+    availabilityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    baseScore: float
+    confidentialityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    exploitabilityScore: float
+    impactScore: float
+    integrityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    privilegesRequired: typing_extensions.Literal[
+        "PRIVILEGES_REQUIRED_UNSPECIFIED",
+        "PRIVILEGES_REQUIRED_NONE",
+        "PRIVILEGES_REQUIRED_LOW",
+        "PRIVILEGES_REQUIRED_HIGH",
+    ]
+    scope: typing_extensions.Literal[
+        "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
+    ]
+    userInteraction: typing_extensions.Literal[
+        "USER_INTERACTION_UNSPECIFIED",
+        "USER_INTERACTION_NONE",
+        "USER_INTERACTION_REQUIRED",
+    ]
+
+@typing.type_check_only
 class CancelPatchJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -55,7 +96,9 @@ class GooSettings(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Inventory(typing_extensions.TypedDict, total=False):
     items: typing.Dict[str, typing.Any]
+    name: str
     osInfo: InventoryOsInfo
+    updateTime: str
 
 @typing.type_check_only
 class InventoryItem(typing_extensions.TypedDict, total=False):
@@ -133,9 +176,9 @@ class InventoryZypperPatch(typing_extensions.TypedDict, total=False):
     summary: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListInventoriesResponse(typing_extensions.TypedDict, total=False):
+    inventories: typing.List[Inventory]
     nextPageToken: str
-    operations: typing.List[Operation]
 
 @typing.type_check_only
 class ListPatchDeploymentsResponse(typing_extensions.TypedDict, total=False):
@@ -151,6 +194,11 @@ class ListPatchJobInstanceDetailsResponse(typing_extensions.TypedDict, total=Fal
 class ListPatchJobsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     patchJobs: typing.List[PatchJob]
+
+@typing.type_check_only
+class ListVulnerabilityReportsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    vulnerabilityReports: typing.List[VulnerabilityReport]
 
 @typing.type_check_only
 class MonthlySchedule(typing_extensions.TypedDict, total=False):
@@ -176,14 +224,6 @@ class OSPolicyAssignmentOperationMetadata(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class OneTimeSchedule(typing_extensions.TypedDict, total=False):
     executeTime: str
-
-@typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
-    done: bool
-    error: Status
-    metadata: typing.Dict[str, typing.Any]
-    name: str
-    response: typing.Dict[str, typing.Any]
 
 @typing.type_check_only
 class PatchConfig(typing_extensions.TypedDict, total=False):
@@ -314,12 +354,6 @@ class RecurringSchedule(typing_extensions.TypedDict, total=False):
     weekly: WeeklySchedule
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
-    code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
-    message: str
-
-@typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):
     hours: int
     minutes: int
@@ -330,6 +364,36 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
 class TimeZone(typing_extensions.TypedDict, total=False):
     id: str
     version: str
+
+@typing.type_check_only
+class VulnerabilityReport(typing_extensions.TypedDict, total=False):
+    name: str
+    updateTime: str
+    vulnerabilities: typing.List[VulnerabilityReportVulnerability]
+
+@typing.type_check_only
+class VulnerabilityReportVulnerability(typing_extensions.TypedDict, total=False):
+    availableInventoryItemIds: typing.List[str]
+    createTime: str
+    details: VulnerabilityReportVulnerabilityDetails
+    installedInventoryItemIds: typing.List[str]
+    updateTime: str
+
+@typing.type_check_only
+class VulnerabilityReportVulnerabilityDetails(typing_extensions.TypedDict, total=False):
+    cve: str
+    cvssV2Score: float
+    cvssV3: CVSSv3
+    description: str
+    references: typing.List[VulnerabilityReportVulnerabilityDetailsReference]
+    severity: str
+
+@typing.type_check_only
+class VulnerabilityReportVulnerabilityDetailsReference(
+    typing_extensions.TypedDict, total=False
+):
+    source: str
+    url: str
 
 @typing.type_check_only
 class WeekDayOfMonth(typing_extensions.TypedDict, total=False):

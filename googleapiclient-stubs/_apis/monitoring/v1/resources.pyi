@@ -11,6 +11,36 @@ from .schemas import *
 @typing.type_check_only
 class MonitoringResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class LocationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class GlobalResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class MetricsScopesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ProjectsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: MonitoredProject = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MetricsScopeHttpRequest: ...
+                def listMetricsScopesByMonitoredProject(
+                    self, *, monitoredResourceContainer: str = ..., **kwargs: typing.Any
+                ) -> ListMetricsScopesByMonitoredProjectResponseHttpRequest: ...
+                def projects(self) -> ProjectsResource: ...
+            def metricsScopes(self) -> MetricsScopesResource: ...
+        def global_(self) -> GlobalResource: ...
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DashboardsResource(googleapiclient.discovery.Resource):
@@ -45,6 +75,8 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> DashboardHttpRequest: ...
         def dashboards(self) -> DashboardsResource: ...
+    def locations(self) -> LocationsResource: ...
+    def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -76,3 +108,35 @@ class ListDashboardsResponseHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> ListDashboardsResponse: ...
+
+@typing.type_check_only
+class ListMetricsScopesByMonitoredProjectResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListMetricsScopesByMonitoredProjectResponse: ...
+
+@typing.type_check_only
+class MetricsScopeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> MetricsScope: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Operation: ...
