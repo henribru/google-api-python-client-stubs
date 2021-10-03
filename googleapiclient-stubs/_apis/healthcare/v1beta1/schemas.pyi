@@ -317,6 +317,9 @@ class ExportMessagesRequest(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class ExportMessagesResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ExportResourcesRequest(typing_extensions.TypedDict, total=False):
     _since: str
     _type: str

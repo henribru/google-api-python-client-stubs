@@ -508,6 +508,19 @@ class SecurityConfig(typing_extensions.TypedDict, total=False):
     kerberosConfig: KerberosConfig
 
 @typing.type_check_only
+class SessionOperationMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    doneTime: str
+    labels: typing.Dict[str, typing.Any]
+    operationType: typing_extensions.Literal[
+        "SESSION_OPERATION_TYPE_UNSPECIFIED", "CREATE", "TERMINATE", "DELETE"
+    ]
+    session: str
+    sessionUuid: str
+    warnings: typing.List[str]
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
 

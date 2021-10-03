@@ -32,6 +32,7 @@ class GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetada
         "SUCCEEDED",
         "FAILED",
         "ROLLING_BACK",
+        "ROLLED_BACK",
     ]
 
 @typing.type_check_only
@@ -52,6 +53,7 @@ class GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadat
         "SUCCEEDED",
         "FAILED",
         "ROLLING_BACK",
+        "ROLLED_BACK",
     ]
 
 @typing.type_check_only

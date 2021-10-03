@@ -120,6 +120,7 @@ class ExecutionTemplate(typing_extensions.TypedDict, total=False):
         "CUSTOM",
     ]
     serviceAccount: str
+    vertexAiParameters: VertexAIParameters
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -547,6 +548,10 @@ class UpgradeInstanceInternalRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class VertexAIParameters(typing_extensions.TypedDict, total=False):
+    network: str
 
 @typing.type_check_only
 class VirtualMachine(typing_extensions.TypedDict, total=False):

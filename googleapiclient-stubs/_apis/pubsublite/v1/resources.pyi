@@ -41,6 +41,49 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> ListOperationsResponseHttpRequest: ...
                 @typing.type_check_only
+                class ReservationsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class TopicsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            name: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListReservationTopicsResponseHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Reservation = ...,
+                        reservationId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ReservationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ReservationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListReservationsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Reservation = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ReservationHttpRequest: ...
+                    def topics(self) -> TopicsResource: ...
+                @typing.type_check_only
                 class SubscriptionsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -127,6 +170,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                     ) -> TopicHttpRequest: ...
                     def subscriptions(self) -> SubscriptionsResource: ...
                 def operations(self) -> OperationsResource: ...
+                def reservations(self) -> ReservationsResource: ...
                 def subscriptions(self) -> SubscriptionsResource: ...
                 def topics(self) -> TopicsResource: ...
             def locations(self) -> LocationsResource: ...
@@ -267,6 +311,26 @@ class ListPartitionCursorsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListPartitionCursorsResponse: ...
 
 @typing.type_check_only
+class ListReservationTopicsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListReservationTopicsResponse: ...
+
+@typing.type_check_only
+class ListReservationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListReservationsResponse: ...
+
+@typing.type_check_only
 class ListSubscriptionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -305,6 +369,16 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class ReservationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> Reservation: ...
 
 @typing.type_check_only
 class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):

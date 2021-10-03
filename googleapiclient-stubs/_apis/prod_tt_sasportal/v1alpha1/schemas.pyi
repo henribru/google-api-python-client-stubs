@@ -105,6 +105,8 @@ class SasPortalDeviceGrant(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SasPortalDeviceMetadata(typing_extensions.TypedDict, total=False):
     antennaModel: str
+    commonChannelGroup: str
+    interferenceCoordinationGroup: str
 
 @typing.type_check_only
 class SasPortalDeviceModel(typing_extensions.TypedDict, total=False):

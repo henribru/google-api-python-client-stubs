@@ -110,7 +110,6 @@ class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
 class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
     location: str
     nodeId: str
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
@@ -136,19 +135,9 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility(
     reason: str
 
 @typing.type_check_only
-class GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion(
-    typing_extensions.TypedDict, total=False
-):
-    duration: str
-    reason: str
-    sliName: str
-    startTime: str
-
-@typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    exclusions: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion]
     nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
     tier: str

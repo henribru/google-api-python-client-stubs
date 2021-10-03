@@ -330,6 +330,7 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
         "WORKER_IP_UNSPECIFIED", "WORKER_IP_PUBLIC", "WORKER_IP_PRIVATE"
     ]
     kmsKeyName: str
+    launcherMachineType: str
     machineType: str
     maxWorkers: int
     network: str

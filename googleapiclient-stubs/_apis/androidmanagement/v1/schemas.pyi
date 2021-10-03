@@ -89,6 +89,7 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     ]
     delegatedScopes: typing.List[str]
     disabled: bool
+    extensionConfig: ExtensionConfig
     installType: typing_extensions.Literal[
         "INSTALL_TYPE_UNSPECIFIED",
         "PREINSTALLED",
@@ -330,6 +331,11 @@ class Enterprise(typing_extensions.TypedDict, total=False):
     pubsubTopic: str
     signinDetails: typing.List[SigninDetail]
     termsAndConditions: typing.List[TermsAndConditions]
+
+@typing.type_check_only
+class ExtensionConfig(typing_extensions.TypedDict, total=False):
+    notificationReceiver: str
+    signingKeyFingerprintsSha256: typing.List[str]
 
 @typing.type_check_only
 class ExternalData(typing_extensions.TypedDict, total=False):

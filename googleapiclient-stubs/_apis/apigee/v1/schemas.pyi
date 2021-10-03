@@ -267,6 +267,13 @@ class GoogleCloudApigeeV1Credential(typing_extensions.TypedDict, total=False):
     status: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1CreditDeveloperBalanceRequest(
+    typing_extensions.TypedDict, total=False
+):
+    transactionAmount: GoogleTypeMoney
+    transactionId: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1CustomReport(typing_extensions.TypedDict, total=False):
     chartType: str
     comments: typing.List[str]
@@ -480,6 +487,25 @@ class GoogleCloudApigeeV1DeveloperAppKey(typing_extensions.TypedDict, total=Fals
     status: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1DeveloperBalance(typing_extensions.TypedDict, total=False):
+    wallets: typing.List[GoogleCloudApigeeV1DeveloperBalanceWallet]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1DeveloperBalanceWallet(
+    typing_extensions.TypedDict, total=False
+):
+    balance: GoogleTypeMoney
+    lastCreditTime: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1DeveloperMonetizationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    billingType: typing_extensions.Literal[
+        "BILLING_TYPE_UNSPECIFIED", "PREPAID", "POSTPAID"
+    ]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1DeveloperSubscription(
     typing_extensions.TypedDict, total=False
 ):
@@ -685,6 +711,7 @@ class GoogleCloudApigeeV1Instance(typing_extensions.TypedDict, total=False):
         "SLASH_23",
     ]
     port: str
+    runtimeVersion: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
     ]
@@ -1360,6 +1387,7 @@ class GoogleCloudApigeeV1TargetServer(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApigeeV1TargetServerConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
     host: str
     name: str
     port: int

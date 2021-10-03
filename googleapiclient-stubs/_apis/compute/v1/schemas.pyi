@@ -3222,10 +3222,12 @@ class Quota(typing_extensions.TypedDict, total=False):
         "BACKEND_SERVICES",
         "C2D_CPUS",
         "C2_CPUS",
+        "C3_CPUS",
         "COMMITMENTS",
         "COMMITTED_A2_CPUS",
         "COMMITTED_C2D_CPUS",
         "COMMITTED_C2_CPUS",
+        "COMMITTED_C3_CPUS",
         "COMMITTED_CPUS",
         "COMMITTED_E2_CPUS",
         "COMMITTED_LICENSES",
@@ -3836,6 +3838,7 @@ class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     advertisedGroups: typing.List[str]
     advertisedIpRanges: typing.List[RouterAdvertisedIpRange]
     advertisedRoutePriority: int
+    bfd: RouterBgpPeerBfd
     enable: typing_extensions.Literal["FALSE", "TRUE"]
     interfaceName: str
     ipAddress: str
@@ -3845,6 +3848,16 @@ class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     name: str
     peerAsn: int
     peerIpAddress: str
+    routerApplianceInstance: str
+
+@typing.type_check_only
+class RouterBgpPeerBfd(typing_extensions.TypedDict, total=False):
+    minReceiveInterval: int
+    minTransmitInterval: int
+    multiplier: int
+    sessionInitializationMode: typing_extensions.Literal[
+        "ACTIVE", "DISABLED", "PASSIVE"
+    ]
 
 @typing.type_check_only
 class RouterInterface(typing_extensions.TypedDict, total=False):
@@ -3855,6 +3868,9 @@ class RouterInterface(typing_extensions.TypedDict, total=False):
         "MANAGED_BY_ATTACHMENT", "MANAGED_BY_USER"
     ]
     name: str
+    privateIpAddress: str
+    redundantInterface: str
+    subnetwork: str
 
 @typing.type_check_only
 class RouterList(typing_extensions.TypedDict, total=False):
@@ -3912,6 +3928,7 @@ class RouterStatusBgpPeerStatus(typing_extensions.TypedDict, total=False):
     name: str
     numLearnedRoutes: int
     peerIpAddress: str
+    routerApplianceInstance: str
     state: str
     status: typing_extensions.Literal["DOWN", "UNKNOWN", "UP"]
     uptime: str
@@ -4552,6 +4569,7 @@ class TargetInstance(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     natPolicy: typing_extensions.Literal["NO_NAT"]
+    network: str
     selfLink: str
     zone: str
 

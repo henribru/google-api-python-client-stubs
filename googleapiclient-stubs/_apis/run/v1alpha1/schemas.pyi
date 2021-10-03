@@ -73,6 +73,12 @@ class ExecAction(typing_extensions.TypedDict, total=False):
     command: typing.List[str]
 
 @typing.type_check_only
+class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+    code: int
+    details: typing.List[typing.Dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class HTTPGetAction(typing_extensions.TypedDict, total=False):
     host: str
     httpHeaders: typing.List[HTTPHeader]
@@ -83,6 +89,11 @@ class HTTPGetAction(typing_extensions.TypedDict, total=False):
 class HTTPHeader(typing_extensions.TypedDict, total=False):
     name: str
     value: str
+
+@typing.type_check_only
+class InstanceAttemptResult(typing_extensions.TypedDict, total=False):
+    exitCode: int
+    status: GoogleRpcStatus
 
 @typing.type_check_only
 class InstanceSpec(typing_extensions.TypedDict, total=False):
@@ -98,6 +109,7 @@ class InstanceStatus(typing_extensions.TypedDict, total=False):
     completionTime: str
     failed: int
     index: int
+    lastAttemptResult: InstanceAttemptResult
     lastExitCode: int
     restarted: int
     startTime: str

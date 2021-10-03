@@ -87,7 +87,7 @@ class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     format: typing_extensions.Literal[
-        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "PYPI", "APT", "YUM", "PYTHON"
+        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "APT", "YUM", "PYTHON"
     ]
     kmsKeyName: str
     labels: typing.Dict[str, typing.Any]

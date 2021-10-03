@@ -146,6 +146,7 @@ class SoftwareConfig(typing_extensions.TypedDict, total=False):
     imageVersion: str
     pypiPackages: typing.Dict[str, typing.Any]
     pythonVersion: str
+    schedulerCount: int
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

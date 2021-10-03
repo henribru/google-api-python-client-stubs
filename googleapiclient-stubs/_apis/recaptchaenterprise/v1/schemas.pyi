@@ -6,6 +6,7 @@ import typing_extensions
 class GoogleCloudRecaptchaenterpriseV1AndroidKeySettings(
     typing_extensions.TypedDict, total=False
 ):
+    allowAllPackageNames: bool
     allowedPackageNames: typing.List[str]
 
 @typing.type_check_only
@@ -56,6 +57,7 @@ class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=F
 class GoogleCloudRecaptchaenterpriseV1IOSKeySettings(
     typing_extensions.TypedDict, total=False
 ):
+    allowAllBundleIds: bool
     allowedBundleIds: typing.List[str]
 
 @typing.type_check_only

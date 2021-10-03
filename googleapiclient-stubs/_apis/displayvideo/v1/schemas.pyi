@@ -530,8 +530,8 @@ class BusinessChainAssignedTargetingOptionDetails(
 
 @typing.type_check_only
 class BusinessChainSearchTerms(typing_extensions.TypedDict, total=False):
-    businessChain: str
-    region: str
+    businessChainQuery: str
+    regionQuery: str
 
 @typing.type_check_only
 class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=False):

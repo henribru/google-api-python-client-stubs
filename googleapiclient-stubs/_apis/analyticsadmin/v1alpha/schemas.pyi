@@ -477,6 +477,7 @@ class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaProperty(typing_extensions.TypedDict, total=False):
+    account: str
     createTime: str
     currencyCode: str
     deleteTime: str

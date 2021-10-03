@@ -56,6 +56,23 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> ListInventoriesResponseHttpRequest: ...
                 @typing.type_check_only
+                class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class ReportsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListOSPolicyAssignmentReportsResponseHttpRequest: ...
+                    def getReport(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OSPolicyAssignmentReportHttpRequest: ...
+                    def reports(self) -> ReportsResource: ...
+                @typing.type_check_only
                 class VulnerabilityReportsResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -70,6 +87,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> ListVulnerabilityReportsResponseHttpRequest: ...
                 def inventories(self) -> InventoriesResource: ...
+                def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
                 def vulnerabilityReports(self) -> VulnerabilityReportsResource: ...
             @typing.type_check_only
             class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
@@ -185,6 +203,18 @@ class ListInventoriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListInventoriesResponse: ...
 
 @typing.type_check_only
+class ListOSPolicyAssignmentReportsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> ListOSPolicyAssignmentReportsResponse: ...
+
+@typing.type_check_only
 class ListOSPolicyAssignmentRevisionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -225,6 +255,16 @@ class OSPolicyAssignmentHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> OSPolicyAssignment: ...
+
+@typing.type_check_only
+class OSPolicyAssignmentReportHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> OSPolicyAssignmentReport: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

@@ -38,6 +38,26 @@ class GoogleIdentityStsV1ExchangeTokenResponse(
     token_type: str
 
 @typing.type_check_only
+class GoogleIdentityStsV1IntrospectTokenRequest(
+    typing_extensions.TypedDict, total=False
+):
+    token: str
+    tokenTypeHint: str
+
+@typing.type_check_only
+class GoogleIdentityStsV1IntrospectTokenResponse(
+    typing_extensions.TypedDict, total=False
+):
+    active: bool
+    client_id: str
+    exp: str
+    iat: str
+    iss: str
+    scope: str
+    sub: str
+    username: str
+
+@typing.type_check_only
 class GoogleIdentityStsV1Options(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1AccessBoundary
     audiences: typing.List[str]

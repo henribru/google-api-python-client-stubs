@@ -53,6 +53,30 @@ class GoogleAppengineV1betaLocationMetadata(typing_extensions.TypedDict, total=F
     standardEnvironmentAvailable: bool
 
 @typing.type_check_only
+class GoogleAppengineV2OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    ephemeralMessage: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+    warning: typing.List[str]
+
+@typing.type_check_only
+class GoogleAppengineV2mainOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    ephemeralMessage: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+    warning: typing.List[str]
+
+@typing.type_check_only
 class ListAuthorizedCertificatesResponse(typing_extensions.TypedDict, total=False):
     certificates: typing.List[AuthorizedCertificate]
     nextPageToken: str

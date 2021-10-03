@@ -232,6 +232,15 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             body: OnboardBuyOnGoogleProgramRequest = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def patch(
+            self,
+            *,
+            merchantId: str,
+            regionCode: str,
+            body: BuyOnGoogleProgramStatus = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> BuyOnGoogleProgramStatusHttpRequest: ...
         def pause(
             self,
             *,

@@ -214,6 +214,20 @@ class IamResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def disable(
+                    self,
+                    *,
+                    name: str,
+                    body: DisableServiceAccountKeyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def enable(
+                    self,
+                    *,
+                    name: str,
+                    body: EnableServiceAccountKeyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self,
                     *,

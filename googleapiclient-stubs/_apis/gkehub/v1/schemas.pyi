@@ -41,12 +41,16 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     git: ConfigManagementGitConfig
+    resourceRequirements: typing.Dict[str, typing.Any]
     sourceFormat: str
 
 @typing.type_check_only
 class ConfigManagementConfigSyncDeploymentState(
     typing_extensions.TypedDict, total=False
 ):
+    admissionWebhook: typing_extensions.Literal[
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+    ]
     gitSync: typing_extensions.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
     ]
@@ -74,12 +78,21 @@ class ConfigManagementConfigSyncState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigManagementConfigSyncVersion(typing_extensions.TypedDict, total=False):
+    admissionWebhook: str
     gitSync: str
     importer: str
     monitor: str
     reconcilerManager: str
     rootReconciler: str
     syncer: str
+
+@typing.type_check_only
+class ConfigManagementContainerResourceRequirements(
+    typing_extensions.TypedDict, total=False
+):
+    containerName: str
+    cpuLimit: ConfigManagementQuantity
+    memoryLimit: ConfigManagementQuantity
 
 @typing.type_check_only
 class ConfigManagementErrorResource(typing_extensions.TypedDict, total=False):
@@ -103,9 +116,11 @@ class ConfigManagementGatekeeperDeploymentState(
 class ConfigManagementGitConfig(typing_extensions.TypedDict, total=False):
     gcpServiceAccountEmail: str
     httpsProxy: str
+    noSslVerify: bool
     policyDir: str
     secretType: str
     syncBranch: str
+    syncDepth: str
     syncRepo: str
     syncRev: str
     syncWaitSecs: str
@@ -194,6 +209,10 @@ class ConfigManagementPolicyControllerState(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class ConfigManagementPolicyControllerVersion(typing_extensions.TypedDict, total=False):
     version: str
+
+@typing.type_check_only
+class ConfigManagementQuantity(typing_extensions.TypedDict, total=False):
+    string: str
 
 @typing.type_check_only
 class ConfigManagementSyncError(typing_extensions.TypedDict, total=False):

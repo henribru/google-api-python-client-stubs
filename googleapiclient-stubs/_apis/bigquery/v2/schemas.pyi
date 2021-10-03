@@ -91,6 +91,10 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AvroOptions(typing_extensions.TypedDict, total=False):
+    useAvroLogicalTypes: bool
+
+@typing.type_check_only
 class BiEngineReason(typing_extensions.TypedDict, total=False):
     code: str
     message: str
@@ -229,6 +233,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     access: typing.List[typing.Dict[str, typing.Any]]
     creationTime: str
     datasetReference: DatasetReference
+    defaultCollation: str
     defaultEncryptionConfiguration: EncryptionConfiguration
     defaultPartitionExpirationMs: str
     defaultTableExpirationMs: str
@@ -346,6 +351,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     autodetect: bool
+    avroOptions: AvroOptions
     bigtableOptions: BigtableOptions
     compression: str
     connectionId: str
@@ -733,6 +739,7 @@ class Streamingbuffer(typing_extensions.TypedDict, total=False):
 class Table(typing_extensions.TypedDict, total=False):
     clustering: Clustering
     creationTime: str
+    defaultCollation: str
     description: str
     encryptionConfiguration: EncryptionConfiguration
     etag: str
@@ -831,7 +838,14 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     autoArima: bool
     autoArimaMaxOrder: str
     batchSize: str
+    boosterType: typing_extensions.Literal["BOOSTER_TYPE_UNSPECIFIED", "GBTREE", "DART"]
     cleanSpikesAndDips: bool
+    colsampleBylevel: float
+    colsampleBynode: float
+    colsampleBytree: float
+    dartNormalizeType: typing_extensions.Literal[
+        "DART_NORMALIZE_TYPE_UNSPECIFIED", "TREE", "FOREST"
+    ]
     dataFrequency: typing_extensions.Literal[
         "DATA_FREQUENCY_UNSPECIFIED",
         "AUTO_FREQUENCY",
@@ -960,10 +974,12 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     maxTreeDepth: str
     minRelativeProgress: float
     minSplitLoss: float
+    minTreeChildWeight: str
     modelUri: str
     nonSeasonalOrder: ArimaOrder
     numClusters: str
     numFactors: str
+    numParallelTree: str
     optimizationStrategy: typing_extensions.Literal[
         "OPTIMIZATION_STRATEGY_UNSPECIFIED", "BATCH_GRADIENT_DESCENT", "NORMAL_EQUATION"
     ]
@@ -973,6 +989,9 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     timeSeriesIdColumn: str
     timeSeriesIdColumns: typing.List[str]
     timeSeriesTimestampColumn: str
+    treeMethod: typing_extensions.Literal[
+        "TREE_METHOD_UNSPECIFIED", "AUTO", "EXACT", "APPROX", "HIST"
+    ]
     userColumn: str
     walsAlpha: float
     warmStart: bool

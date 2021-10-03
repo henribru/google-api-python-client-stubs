@@ -253,6 +253,17 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class TableDataSet(typing_extensions.TypedDict, total=False):
+    minAlignmentPeriod: str
+    tableDisplayOptions: TableDisplayOptions
+    tableTemplate: str
+    timeSeriesQuery: TimeSeriesQuery
+
+@typing.type_check_only
+class TableDisplayOptions(typing_extensions.TypedDict, total=False):
+    shownColumns: typing.List[str]
+
+@typing.type_check_only
 class Text(typing_extensions.TypedDict, total=False):
     content: str
     format: typing_extensions.Literal["FORMAT_UNSPECIFIED", "MARKDOWN", "RAW"]
@@ -297,6 +308,10 @@ class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
     unitOverride: str
 
 @typing.type_check_only
+class TimeSeriesTable(typing_extensions.TypedDict, total=False):
+    dataSets: typing.List[TableDataSet]
+
+@typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
     fields: typing.List[Field]
     name: str
@@ -311,6 +326,7 @@ class Widget(typing_extensions.TypedDict, total=False):
     blank: Empty
     scorecard: Scorecard
     text: Text
+    timeSeriesTable: TimeSeriesTable
     title: str
     xyChart: XyChart
 

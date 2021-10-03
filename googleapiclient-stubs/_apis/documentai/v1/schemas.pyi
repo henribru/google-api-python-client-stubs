@@ -256,6 +256,50 @@ class GoogleCloudDocumentaiV1CommonOperationMetadata(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1DeleteProcessorMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DeployProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DeployProcessorVersionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DeployProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DisableProcessorMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DisableProcessorRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DisableProcessorResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1Document(typing_extensions.TypedDict, total=False):
     content: str
     entities: typing.List[GoogleCloudDocumentaiV1DocumentEntity]
@@ -375,6 +419,8 @@ class GoogleCloudDocumentaiV1DocumentPageDimension(
 class GoogleCloudDocumentaiV1DocumentPageFormField(
     typing_extensions.TypedDict, total=False
 ):
+    correctedKeyText: str
+    correctedValueText: str
     fieldName: GoogleCloudDocumentaiV1DocumentPageLayout
     fieldValue: GoogleCloudDocumentaiV1DocumentPageLayout
     nameDetectedLanguages: typing.List[
@@ -565,6 +611,50 @@ class GoogleCloudDocumentaiV1DocumentTextChange(
     textAnchor: GoogleCloudDocumentaiV1DocumentTextAnchor
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1EnableProcessorMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1EnableProcessorRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1EnableProcessorResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1EvaluationMetrics(
+    typing_extensions.TypedDict, total=False
+):
+    f1Score: float
+    falseNegativesCount: int
+    falsePositivesCount: int
+    groundTruthOccurrencesCount: int
+    precision: float
+    predictedOccurrencesCount: int
+    recall: float
+    totalDocumentsCount: int
+    truePositivesCount: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1EvaluationReference(
+    typing_extensions.TypedDict, total=False
+):
+    aggregateMetrics: GoogleCloudDocumentaiV1EvaluationMetrics
+    evaluation: str
+    operation: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1FetchProcessorTypesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    processorTypes: typing.List[GoogleCloudDocumentaiV1ProcessorType]
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1GcsDocument(typing_extensions.TypedDict, total=False):
     gcsUri: str
     mimeType: str
@@ -588,6 +678,20 @@ class GoogleCloudDocumentaiV1HumanReviewStatus(
     stateMessage: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1ListProcessorVersionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    processorVersions: typing.List[GoogleCloudDocumentaiV1ProcessorVersion]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1ListProcessorsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    processors: typing.List[GoogleCloudDocumentaiV1Processor]
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1NormalizedVertex(typing_extensions.TypedDict, total=False):
     x: float
     y: float
@@ -602,6 +706,43 @@ class GoogleCloudDocumentaiV1ProcessRequest(typing_extensions.TypedDict, total=F
 class GoogleCloudDocumentaiV1ProcessResponse(typing_extensions.TypedDict, total=False):
     document: GoogleCloudDocumentaiV1Document
     humanReviewStatus: GoogleCloudDocumentaiV1HumanReviewStatus
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1Processor(typing_extensions.TypedDict, total=False):
+    createTime: str
+    defaultProcessorVersion: str
+    displayName: str
+    kmsKeyName: str
+    name: str
+    processEndpoint: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ENABLED",
+        "DISABLED",
+        "ENABLING",
+        "DISABLING",
+        "CREATING",
+        "FAILED",
+        "DELETING",
+    ]
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1ProcessorType(typing_extensions.TypedDict, total=False):
+    allowCreation: bool
+    availableLocations: typing.List[GoogleCloudDocumentaiV1ProcessorTypeLocationInfo]
+    category: str
+    name: str
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1ProcessorTypeLocationInfo(
+    typing_extensions.TypedDict, total=False
+):
+    locationId: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1ProcessorVersion(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1RawDocument(typing_extensions.TypedDict, total=False):
@@ -627,6 +768,45 @@ class GoogleCloudDocumentaiV1ReviewDocumentResponse(
     typing_extensions.TypedDict, total=False
 ):
     gcsDestination: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1Schema(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1SchemaEntityType(typing.Dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1SetDefaultProcessorVersionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    defaultProcessorVersion: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1UndeployProcessorVersionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1UndeployProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1Vertex(typing_extensions.TypedDict, total=False):
@@ -760,6 +940,8 @@ class GoogleCloudDocumentaiV1beta1DocumentPageDimension(
 class GoogleCloudDocumentaiV1beta1DocumentPageFormField(
     typing_extensions.TypedDict, total=False
 ):
+    correctedKeyText: str
+    correctedValueText: str
     fieldName: GoogleCloudDocumentaiV1beta1DocumentPageLayout
     fieldValue: GoogleCloudDocumentaiV1beta1DocumentPageLayout
     nameDetectedLanguages: typing.List[
@@ -1161,6 +1343,8 @@ class GoogleCloudDocumentaiV1beta2DocumentPageDimension(
 class GoogleCloudDocumentaiV1beta2DocumentPageFormField(
     typing_extensions.TypedDict, total=False
 ):
+    correctedKeyText: str
+    correctedValueText: str
     fieldName: GoogleCloudDocumentaiV1beta2DocumentPageLayout
     fieldValue: GoogleCloudDocumentaiV1beta2DocumentPageLayout
     nameDetectedLanguages: typing.List[
@@ -1480,6 +1664,23 @@ class GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata(
     commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DisableProcessorMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1528,6 +1729,28 @@ class GoogleCloudDocumentaiV1beta3ReviewDocumentResponse(
     typing_extensions.TypedDict, total=False
 ):
     gcsDestination: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(

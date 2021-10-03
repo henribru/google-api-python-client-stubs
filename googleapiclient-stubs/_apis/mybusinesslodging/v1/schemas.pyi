@@ -211,6 +211,98 @@ class Connectivity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class EcoCertification(typing_extensions.TypedDict, total=False):
+    awarded: bool
+    awardedException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    ecoCertificate: typing_extensions.Literal[
+        "ECO_CERTIFICATE_UNSPECIFIED",
+        "ISO14001",
+        "ISO50001",
+        "ASIAN_ECOTOURISM",
+        "BIOSPHERE_RESPOSNIBLE_TOURISM",
+        "BUREAU_VERITAS",
+        "CONTROL_UNION",
+        "EARTHCHECK",
+        "ECO_CERTIFICATION_MALTA",
+        "ECOTOURISM_AUSTRALIAS_ECO",
+        "GREAT_GREEN_DEAL",
+        "GREEN_GLOBE",
+        "GREEN_GROWTH2050",
+        "GREEN_KEY",
+        "GREEN_KEY_ECO_RATING",
+        "GREEN_SEAL",
+        "GREEN_STAR",
+        "GREEN_TOURISM_ACTIVE",
+        "HILTON_LIGHTSTAY",
+        "HOSTELLING_INTERNATIONALS_QUALITY_AND_SUSTAINABILITY",
+        "HOTELES_MAS_VERDES",
+        "NORDIC_SWAN_ECOLABEL",
+        "PREFERRED_BY_NATURE_SUSTAINABLE_TOURISM",
+        "SUSTAINABLE_TRAVEL_IRELAND",
+        "TOF_TIGERS_INITITIVES_PUG",
+        "TRAVELIFE",
+        "UNITED_CERTIFICATION_SYSTEMS_LIMITED",
+        "VIREO_SRL",
+    ]
+
+@typing.type_check_only
+class EnergyEfficiency(typing_extensions.TypedDict, total=False):
+    carbonFreeEnergySources: bool
+    carbonFreeEnergySourcesException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    energyConservationProgram: bool
+    energyConservationProgramException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    energyEfficientHeatingAndCoolingSystems: bool
+    energyEfficientHeatingAndCoolingSystemsException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    energyEfficientLighting: bool
+    energyEfficientLightingException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    energySavingThermostats: bool
+    energySavingThermostatsException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    greenBuildingDesign: bool
+    greenBuildingDesignException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    independentOrganizationAuditsEnergyUse: bool
+    independentOrganizationAuditsEnergyUseException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+
+@typing.type_check_only
 class EnhancedCleaning(typing_extensions.TypedDict, total=False):
     commercialGradeDisinfectantCleaning: bool
     commercialGradeDisinfectantCleaningException: typing_extensions.Literal[
@@ -1021,6 +1113,7 @@ class Lodging(typing_extensions.TypedDict, total=False):
     property: Property
     services: Services
     someUnits: GuestUnitFeatures
+    sustainability: Sustainability
     transportation: Transportation
     wellness: Wellness
 
@@ -1551,6 +1644,106 @@ class Services(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Sustainability(typing_extensions.TypedDict, total=False):
+    energyEfficiency: EnergyEfficiency
+    sustainabilityCertifications: SustainabilityCertifications
+    sustainableSourcing: SustainableSourcing
+    wasteReduction: WasteReduction
+    waterConservation: WaterConservation
+
+@typing.type_check_only
+class SustainabilityCertifications(typing_extensions.TypedDict, total=False):
+    breeamCertification: typing_extensions.Literal[
+        "BREEAM_CERTIFICATION_UNSPECIFIED",
+        "NO_BREEAM_CERTIFICATION",
+        "BREEAM_PASS",
+        "BREEAM_GOOD",
+        "BREEAM_VERY_GOOD",
+        "BREEAM_EXCELLENT",
+        "BREEAM_OUTSTANDING",
+    ]
+    breeamCertificationException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    ecoCertifications: typing.List[EcoCertification]
+    leedCertification: typing_extensions.Literal[
+        "LEED_CERTIFICATION_UNSPECIFIED",
+        "NO_LEED_CERTIFICATION",
+        "LEED_CERTIFIED",
+        "LEED_SILVER",
+        "LEED_GOLD",
+        "LEED_PLATINUM",
+    ]
+    leedCertificationException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+
+@typing.type_check_only
+class SustainableSourcing(typing_extensions.TypedDict, total=False):
+    ecoFriendlyToiletries: bool
+    ecoFriendlyToiletriesException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    locallySourcedFoodAndBeverages: bool
+    locallySourcedFoodAndBeveragesException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    organicCageFreeEggs: bool
+    organicCageFreeEggsException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    organicFoodAndBeverages: bool
+    organicFoodAndBeveragesException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    responsiblePurchasingPolicy: bool
+    responsiblePurchasingPolicyException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    responsiblySourcesSeafood: bool
+    responsiblySourcesSeafoodException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    veganMeals: bool
+    veganMealsException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    vegetarianMeals: bool
+    vegetarianMealsException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+
+@typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):
     hours: int
     minutes: int
@@ -1662,6 +1855,166 @@ class ViewsFromUnit(typing_extensions.TypedDict, total=False):
     ]
     valleyView: bool
     valleyViewException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+
+@typing.type_check_only
+class WasteReduction(typing_extensions.TypedDict, total=False):
+    compostableFoodContainersAndCutlery: bool
+    compostableFoodContainersAndCutleryException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    compostsExcessFood: bool
+    compostsExcessFoodException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    donatesExcessFood: bool
+    donatesExcessFoodException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    foodWasteReductionProgram: bool
+    foodWasteReductionProgramException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    noSingleUsePlasticStraws: bool
+    noSingleUsePlasticStrawsException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    noSingleUsePlasticWaterBottles: bool
+    noSingleUsePlasticWaterBottlesException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    noStyrofoamFoodContainers: bool
+    noStyrofoamFoodContainersException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    recyclingProgram: bool
+    recyclingProgramException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    refillableToiletryContainers: bool
+    refillableToiletryContainersException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    safelyDisposesBatteries: bool
+    safelyDisposesBatteriesException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    safelyDisposesElectronics: bool
+    safelyDisposesElectronicsException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    safelyDisposesLightbulbs: bool
+    safelyDisposesLightbulbsException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    safelyHandlesHazardousSubstances: bool
+    safelyHandlesHazardousSubstancesException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    soapDonationProgram: bool
+    soapDonationProgramException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    toiletryDonationProgram: bool
+    toiletryDonationProgramException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    waterBottleFillingStations: bool
+    waterBottleFillingStationsException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+
+@typing.type_check_only
+class WaterConservation(typing_extensions.TypedDict, total=False):
+    independentOrganizationAuditsWaterUse: bool
+    independentOrganizationAuditsWaterUseException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    linenReuseProgram: bool
+    linenReuseProgramException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    towelReuseProgram: bool
+    towelReuseProgramException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    waterSavingShowers: bool
+    waterSavingShowersException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    waterSavingSinks: bool
+    waterSavingSinksException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
+    waterSavingToilets: bool
+    waterSavingToiletsException: typing_extensions.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",

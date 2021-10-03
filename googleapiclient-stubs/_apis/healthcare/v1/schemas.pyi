@@ -9,6 +9,17 @@ class ActivateConsentRequest(typing_extensions.TypedDict, total=False):
     ttl: str
 
 @typing.type_check_only
+class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
+    documentContent: str
+    licensedVocabularies: typing.List[str]
+
+@typing.type_check_only
+class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
+    entities: typing.List[Entity]
+    entityMentions: typing.List[EntityMention]
+    relationships: typing.List[EntityMentionRelationship]
+
+@typing.type_check_only
 class ArchiveUserDataMappingRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -185,6 +196,29 @@ class DicomStore(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Entity(typing_extensions.TypedDict, total=False):
+    entityId: str
+    preferredTerm: str
+    vocabularyCodes: typing.List[str]
+
+@typing.type_check_only
+class EntityMention(typing_extensions.TypedDict, total=False):
+    certaintyAssessment: Feature
+    confidence: float
+    linkedEntities: typing.List[LinkedEntity]
+    mentionId: str
+    subject: Feature
+    temporalAssessment: Feature
+    text: TextSpan
+    type: str
+
+@typing.type_check_only
+class EntityMentionRelationship(typing_extensions.TypedDict, total=False):
+    confidence: float
+    objectId: str
+    subjectId: str
+
+@typing.type_check_only
 class EvaluateUserConsentsRequest(typing_extensions.TypedDict, total=False):
     consentList: ConsentList
     pageSize: int
@@ -223,6 +257,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class Feature(typing_extensions.TypedDict, total=False):
+    confidence: float
+    value: str
 
 @typing.type_check_only
 class FhirConfig(typing_extensions.TypedDict, total=False):
@@ -407,6 +446,10 @@ class IngestMessageResponse(typing_extensions.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
+class LinkedEntity(typing_extensions.TypedDict, total=False):
+    entityId: str
+
+@typing.type_check_only
 class ListAttributeDefinitionsResponse(typing_extensions.TypedDict, total=False):
     attributeDefinitions: typing.List[AttributeDefinition]
     nextPageToken: str
@@ -522,6 +565,7 @@ class ParserConfig(typing_extensions.TypedDict, total=False):
     allowNullHeader: bool
     schema: SchemaPackage
     segmentTerminator: str
+    version: typing_extensions.Literal["PARSER_VERSION_UNSPECIFIED", "V1", "V2"]
 
 @typing.type_check_only
 class PatientId(typing_extensions.TypedDict, total=False):
@@ -591,6 +635,9 @@ class SchemaPackage(typing_extensions.TypedDict, total=False):
         "SCHEMATIZED_PARSING_TYPE_UNSPECIFIED", "SOFT_FAIL", "HARD_FAIL"
     ]
     types: typing.List[Hl7TypesConfig]
+    unexpectedSegmentHandling: typing_extensions.Literal[
+        "UNEXPECTED_SEGMENT_HANDLING_MODE_UNSPECIFIED", "FAIL", "SKIP", "PARSE"
+    ]
 
 @typing.type_check_only
 class SchemaSegment(typing_extensions.TypedDict, total=False):
@@ -651,6 +698,11 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TextConfig(typing_extensions.TypedDict, total=False):
     transformations: typing.List[InfoTypeTransformation]
+
+@typing.type_check_only
+class TextSpan(typing_extensions.TypedDict, total=False):
+    beginOffset: int
+    content: str
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):

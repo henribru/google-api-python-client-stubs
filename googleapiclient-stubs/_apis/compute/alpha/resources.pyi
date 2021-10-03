@@ -2440,6 +2440,88 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
     @typing.type_check_only
+    class InstantSnapshotsResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instantSnapshot: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def export(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instantSnapshot: str,
+            body: InstantSnapshotsExportRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, zone: str, instantSnapshot: str, **kwargs: typing.Any
+        ) -> InstantSnapshotHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            zone: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            zone: str,
+            body: InstantSnapshot = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            zone: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> InstantSnapshotListHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            zone: str,
+            resource: str,
+            body: ZoneSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def setLabels(
+            self,
+            *,
+            project: str,
+            zone: str,
+            resource: str,
+            body: ZoneSetLabelsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            zone: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
+    @typing.type_check_only
     class InterconnectAttachmentsResource(googleapiclient.discovery.Resource):
         def aggregatedList(
             self,
@@ -7180,88 +7262,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
-    class ZoneInstantSnapshotsResource(googleapiclient.discovery.Resource):
-        def delete(
-            self,
-            *,
-            project: str,
-            zone: str,
-            instantSnapshot: str,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def export(
-            self,
-            *,
-            project: str,
-            zone: str,
-            instantSnapshot: str,
-            body: ZoneInstantSnapshotsExportRequest = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def get(
-            self, *, project: str, zone: str, instantSnapshot: str, **kwargs: typing.Any
-        ) -> InstantSnapshotHttpRequest: ...
-        def getIamPolicy(
-            self,
-            *,
-            project: str,
-            zone: str,
-            resource: str,
-            optionsRequestedPolicyVersion: int = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
-        def insert(
-            self,
-            *,
-            project: str,
-            zone: str,
-            body: InstantSnapshot = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            project: str,
-            zone: str,
-            filter: str = ...,
-            maxResults: int = ...,
-            orderBy: str = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
-            **kwargs: typing.Any
-        ) -> InstantSnapshotListHttpRequest: ...
-        def setIamPolicy(
-            self,
-            *,
-            project: str,
-            zone: str,
-            resource: str,
-            body: ZoneSetPolicyRequest = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
-        def setLabels(
-            self,
-            *,
-            project: str,
-            zone: str,
-            resource: str,
-            body: ZoneSetLabelsRequest = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def testIamPermissions(
-            self,
-            *,
-            project: str,
-            zone: str,
-            resource: str,
-            body: TestPermissionsRequest = ...,
-            **kwargs: typing.Any
-        ) -> TestPermissionsResponseHttpRequest: ...
-    @typing.type_check_only
     class ZoneOperationsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, project: str, zone: str, operation: str, **kwargs: typing.Any
@@ -7329,6 +7329,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def instanceGroups(self) -> InstanceGroupsResource: ...
     def instanceTemplates(self) -> InstanceTemplatesResource: ...
     def instances(self) -> InstancesResource: ...
+    def instantSnapshots(self) -> InstantSnapshotsResource: ...
     def interconnectAttachments(self) -> InterconnectAttachmentsResource: ...
     def interconnectLocations(self) -> InterconnectLocationsResource: ...
     def interconnects(self) -> InterconnectsResource: ...
@@ -7394,7 +7395,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def vpnGateways(self) -> VpnGatewaysResource: ...
     def vpnTunnels(self) -> VpnTunnelsResource: ...
     def zoneInPlaceSnapshots(self) -> ZoneInPlaceSnapshotsResource: ...
-    def zoneInstantSnapshots(self) -> ZoneInstantSnapshotsResource: ...
     def zoneOperations(self) -> ZoneOperationsResource: ...
     def zones(self) -> ZonesResource: ...
 

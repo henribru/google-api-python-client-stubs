@@ -161,6 +161,7 @@ class GoogleCloudContactcenterinsightsV1ConversationParticipant(
 ):
     dialogflowParticipant: str
     dialogflowParticipantName: str
+    obfuscatedExternalUserId: str
     role: typing_extensions.Literal[
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER", "ANY_AGENT"
     ]
@@ -393,6 +394,7 @@ class GoogleCloudContactcenterinsightsV1Issue(typing_extensions.TypedDict, total
 class GoogleCloudContactcenterinsightsV1IssueAssignment(
     typing_extensions.TypedDict, total=False
 ):
+    displayName: str
     issue: str
     score: float
 
@@ -419,6 +421,7 @@ class GoogleCloudContactcenterinsightsV1IssueModel(
 class GoogleCloudContactcenterinsightsV1IssueModelInputDataConfig(
     typing_extensions.TypedDict, total=False
 ):
+    filter: str
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
     trainingConversationsCount: str
 
@@ -526,6 +529,7 @@ class GoogleCloudContactcenterinsightsV1PhraseMatcher(
     type: typing_extensions.Literal[
         "PHRASE_MATCHER_TYPE_UNSPECIFIED", "ALL_OF", "ANY_OF"
     ]
+    updateTime: str
     versionTag: str
 
 @typing.type_check_only
@@ -720,6 +724,7 @@ class GoogleCloudContactcenterinsightsV1alpha1IssueModel(
 class GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfig(
     typing_extensions.TypedDict, total=False
 ):
+    filter: str
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
     trainingConversationsCount: str
 

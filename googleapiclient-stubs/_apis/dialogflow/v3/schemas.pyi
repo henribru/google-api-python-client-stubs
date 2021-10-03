@@ -128,6 +128,43 @@ class GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata(
     genericMetadata: GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3DeployFlowMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    testErrors: typing.List[GoogleCloudDialogflowCxV3TestError]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DeployFlowRequest(
+    typing_extensions.TypedDict, total=False
+):
+    flowVersion: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DeployFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deployment: str
+    environment: GoogleCloudDialogflowCxV3Environment
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3Deployment(typing_extensions.TypedDict, total=False):
+    endTime: str
+    flowVersion: str
+    name: str
+    result: GoogleCloudDialogflowCxV3DeploymentResult
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "FAILED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DeploymentResult(
+    typing_extensions.TypedDict, total=False
+):
+    deploymentTestResults: typing.List[str]
+    experiment: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3DetectIntentRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -186,8 +223,17 @@ class GoogleCloudDialogflowCxV3Environment(typing_extensions.TypedDict, total=Fa
     description: str
     displayName: str
     name: str
+    testCasesConfig: GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig
     updateTime: str
     versionConfigs: typing.List[GoogleCloudDialogflowCxV3EnvironmentVersionConfig]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enableContinuousRun: bool
+    enablePredeploymentRun: bool
+    testCases: typing.List[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3EnvironmentVersionConfig(
@@ -542,6 +588,13 @@ class GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse(
     typing_extensions.TypedDict, total=False
 ):
     continuousTestResults: typing.List[GoogleCloudDialogflowCxV3ContinuousTestResult]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ListDeploymentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deployments: typing.List[GoogleCloudDialogflowCxV3Deployment]
     nextPageToken: str
 
 @typing.type_check_only
@@ -1299,9 +1352,47 @@ class GoogleCloudDialogflowCxV3beta1DeleteDocumentOperationMetadata(
     genericMetadata: GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1DeployFlowMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    testErrors: typing.List[GoogleCloudDialogflowCxV3beta1TestError]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1DeployFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deployment: str
+    environment: GoogleCloudDialogflowCxV3beta1Environment
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1DtmfInput(typing_extensions.TypedDict, total=False):
     digits: str
     finishDigit: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1Environment(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    displayName: str
+    name: str
+    testCasesConfig: GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig
+    updateTime: str
+    versionConfigs: typing.List[GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enableContinuousRun: bool
+    enablePredeploymentRun: bool
+    testCases: typing.List[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    version: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1EventHandler(

@@ -181,6 +181,7 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    createTime: str
     displayName: str
     labels: typing.Dict[str, typing.Any]
     name: str

@@ -449,7 +449,12 @@ class SearchJobsRequest(typing_extensions.TypedDict, total=False):
     customRankingInfo: CustomRankingInfo
     disableKeywordMatch: bool
     diversificationLevel: typing_extensions.Literal[
-        "DIVERSIFICATION_LEVEL_UNSPECIFIED", "DISABLED", "SIMPLE"
+        "DIVERSIFICATION_LEVEL_UNSPECIFIED",
+        "DISABLED",
+        "SIMPLE",
+        "ONE_PER_COMPANY",
+        "TWO_PER_COMPANY",
+        "DIVERSIFY_BY_LOOSER_SIMILARITY",
     ]
     enableBroadening: bool
     histogramQueries: typing.List[HistogramQuery]
@@ -460,6 +465,12 @@ class SearchJobsRequest(typing_extensions.TypedDict, total=False):
         "JOB_VIEW_MINIMAL",
         "JOB_VIEW_SMALL",
         "JOB_VIEW_FULL",
+    ]
+    keywordMatchMode: typing_extensions.Literal[
+        "KEYWORD_MATCH_MODE_UNSPECIFIED",
+        "KEYWORD_MATCH_DISABLED",
+        "KEYWORD_MATCH_ALL",
+        "KEYWORD_MATCH_TITLE_ONLY",
     ]
     maxPageSize: int
     offset: int

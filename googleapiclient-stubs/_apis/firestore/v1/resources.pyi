@@ -219,11 +219,25 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 body: GoogleFirestoreAdminV1ExportDocumentsRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleFirestoreAdminV1DatabaseHttpRequest: ...
             def importDocuments(
                 self,
                 *,
                 name: str,
                 body: GoogleFirestoreAdminV1ImportDocumentsRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def list(
+                self, *, parent: str, **kwargs: typing.Any
+            ) -> GoogleFirestoreAdminV1ListDatabasesResponseHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleFirestoreAdminV1Database = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def collectionGroups(self) -> CollectionGroupsResource: ...
@@ -308,6 +322,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1DatabaseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirestoreAdminV1Database: ...
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1FieldHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -326,6 +350,18 @@ class GoogleFirestoreAdminV1IndexHttpRequest(googleapiclient.http.HttpRequest):
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleFirestoreAdminV1Index: ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ListDatabasesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirestoreAdminV1ListDatabasesResponse: ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ListFieldsResponseHttpRequest(

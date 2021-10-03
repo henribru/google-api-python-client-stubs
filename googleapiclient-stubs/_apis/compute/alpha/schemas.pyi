@@ -1216,8 +1216,10 @@ class FirewallPolicyRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FirewallPolicyRuleMatcher(typing_extensions.TypedDict, total=False):
+    destAddressGroups: typing.List[str]
     destIpRanges: typing.List[str]
     layer4Configs: typing.List[FirewallPolicyRuleMatcherLayer4Config]
+    srcAddressGroups: typing.List[str]
     srcIpRanges: typing.List[str]
     srcSecureTags: typing.List[FirewallPolicyRuleSecureTag]
 
@@ -2561,6 +2563,10 @@ class InstantSnapshotList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
     warning: typing.Dict[str, typing.Any]
+
+@typing.type_check_only
+class InstantSnapshotsExportRequest(typing_extensions.TypedDict, total=False):
+    exportParams: InstantSnapshotExportParams
 
 @typing.type_check_only
 class Int64RangeMatch(typing_extensions.TypedDict, total=False):
@@ -4125,10 +4131,12 @@ class Quota(typing_extensions.TypedDict, total=False):
         "BACKEND_SERVICES",
         "C2D_CPUS",
         "C2_CPUS",
+        "C3_CPUS",
         "COMMITMENTS",
         "COMMITTED_A2_CPUS",
         "COMMITTED_C2D_CPUS",
         "COMMITTED_C2_CPUS",
+        "COMMITTED_C3_CPUS",
         "COMMITTED_CPUS",
         "COMMITTED_E2_CPUS",
         "COMMITTED_LICENSES",
@@ -5405,6 +5413,7 @@ class ServiceAttachmentsScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ShareSettings(typing_extensions.TypedDict, total=False):
     folderMap: typing.Dict[str, typing.Any]
+    projectMap: typing.Dict[str, typing.Any]
     projects: typing.List[str]
     shareType: typing_extensions.Literal[
         "DIRECT_PROJECTS_UNDER_SPECIFIC_FOLDERS",
@@ -5417,6 +5426,10 @@ class ShareSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ShareSettingsFolderConfig(typing_extensions.TypedDict, total=False):
     folderId: str
+
+@typing.type_check_only
+class ShareSettingsProjectConfig(typing_extensions.TypedDict, total=False):
+    projectId: str
 
 @typing.type_check_only
 class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
@@ -6540,10 +6553,6 @@ class Zone(typing_extensions.TypedDict, total=False):
     selfLink: str
     status: typing_extensions.Literal["DOWN", "UP"]
     supportsPzs: bool
-
-@typing.type_check_only
-class ZoneInstantSnapshotsExportRequest(typing_extensions.TypedDict, total=False):
-    exportParams: InstantSnapshotExportParams
 
 @typing.type_check_only
 class ZoneList(typing_extensions.TypedDict, total=False):
