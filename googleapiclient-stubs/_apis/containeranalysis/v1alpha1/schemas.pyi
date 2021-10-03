@@ -64,6 +64,34 @@ class BuildSignature(typing_extensions.TypedDict, total=False):
     signature: str
 
 @typing.type_check_only
+class BuildStep(typing_extensions.TypedDict, total=False):
+    args: typing.List[str]
+    dir: str
+    entrypoint: str
+    env: typing.List[str]
+    id: str
+    name: str
+    pullTiming: TimeSpan
+    script: str
+    secretEnv: typing.List[str]
+    status: typing_extensions.Literal[
+        "STATUS_UNKNOWN",
+        "PENDING",
+        "QUEUED",
+        "WORKING",
+        "SUCCESS",
+        "FAILURE",
+        "INTERNAL_ERROR",
+        "TIMEOUT",
+        "CANCELLED",
+        "EXPIRED",
+    ]
+    timeout: str
+    timing: TimeSpan
+    volumes: typing.List[Volume]
+    waitFor: typing.List[str]
+
+@typing.type_check_only
 class BuildType(typing_extensions.TypedDict, total=False):
     builderVersion: str
     signature: BuildSignature
@@ -612,10 +640,10 @@ class Policy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Recipe(typing_extensions.TypedDict, total=False):
-    arguments: typing.List[str]
+    arguments: typing.List[typing.Dict[str, typing.Any]]
     definedInMaterial: str
     entryPoint: str
-    environment: typing.Dict[str, typing.Any]
+    environment: typing.List[typing.Dict[str, typing.Any]]
     type: str
 
 @typing.type_check_only
@@ -748,6 +776,11 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: typing.List[str]
 
 @typing.type_check_only
+class TimeSpan(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
 class UpdateOperationRequest(typing_extensions.TypedDict, total=False):
     operation: Operation
     updateMask: str
@@ -778,6 +811,11 @@ class Version(typing_extensions.TypedDict, total=False):
     kind: typing_extensions.Literal["NORMAL", "MINIMUM", "MAXIMUM"]
     name: str
     revision: str
+
+@typing.type_check_only
+class Volume(typing_extensions.TypedDict, total=False):
+    name: str
+    path: str
 
 @typing.type_check_only
 class VulnerabilityDetails(typing_extensions.TypedDict, total=False):

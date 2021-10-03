@@ -12,6 +12,12 @@ from .schemas import *
 class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
+        def introspect(
+            self,
+            *,
+            body: GoogleIdentityStsV1IntrospectTokenRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleIdentityStsV1IntrospectTokenResponseHttpRequest: ...
         def token(
             self,
             *,
@@ -31,3 +37,15 @@ class GoogleIdentityStsV1ExchangeTokenResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleIdentityStsV1ExchangeTokenResponse: ...
+
+@typing.type_check_only
+class GoogleIdentityStsV1IntrospectTokenResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleIdentityStsV1IntrospectTokenResponse: ...

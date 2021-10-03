@@ -15,6 +15,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest(
         "CANCELLATION_REASON_PAST_DUE",
         "CANCELLATION_REASON_ACCOUNT_CLOSED",
         "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
+        "CANCELLATION_REASON_USER_DELINQUENCY",
         "CANCELLATION_REASON_OTHER",
     ]
 
@@ -148,6 +149,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails(
         "CANCELLATION_REASON_PAST_DUE",
         "CANCELLATION_REASON_ACCOUNT_CLOSED",
         "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
+        "CANCELLATION_REASON_USER_DELINQUENCY",
         "CANCELLATION_REASON_OTHER",
     ]
 

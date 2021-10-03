@@ -1254,9 +1254,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         ) -> ListCombinedAudiencesResponseHttpRequest: ...
     @typing.type_check_only
     class CustomBiddingAlgorithmsResource(googleapiclient.discovery.Resource):
-        def create(
-            self, *, body: CustomBiddingAlgorithm = ..., **kwargs: typing.Any
-        ) -> CustomBiddingAlgorithmHttpRequest: ...
         def get(
             self,
             *,
@@ -1276,14 +1273,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             partnerId: str = ...,
             **kwargs: typing.Any
         ) -> ListCustomBiddingAlgorithmsResponseHttpRequest: ...
-        def patch(
-            self,
-            *,
-            customBiddingAlgorithmId: str,
-            body: CustomBiddingAlgorithm = ...,
-            updateMask: str = ...,
-            **kwargs: typing.Any
-        ) -> CustomBiddingAlgorithmHttpRequest: ...
     @typing.type_check_only
     class CustomListsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1462,13 +1451,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
-        ) -> GoogleBytestreamMediaHttpRequest: ...
-        def upload(
-            self,
-            *,
-            resourceName: str,
-            body: GoogleBytestreamMedia = ...,
-            **kwargs: typing.Any
         ) -> GoogleBytestreamMediaHttpRequest: ...
     @typing.type_check_only
     class PartnersResource(googleapiclient.discovery.Resource):

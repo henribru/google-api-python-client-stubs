@@ -76,6 +76,7 @@ class Photo(typing_extensions.TypedDict, total=False):
         "RECEIVED_VIA_TRANSFER",
     ]
     uploadReference: UploadRef
+    uploadTime: str
     viewCount: str
 
 @typing.type_check_only

@@ -63,10 +63,16 @@ class CreateServiceAccountRequest(typing_extensions.TypedDict, total=False):
     serviceAccount: ServiceAccount
 
 @typing.type_check_only
+class DisableServiceAccountKeyRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class DisableServiceAccountRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableServiceAccountKeyRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EnableServiceAccountRequest(typing_extensions.TypedDict, total=False): ...
@@ -228,6 +234,7 @@ class ServiceAccount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceAccountKey(typing_extensions.TypedDict, total=False):
+    disabled: bool
     keyAlgorithm: typing_extensions.Literal[
         "KEY_ALG_UNSPECIFIED", "KEY_ALG_RSA_1024", "KEY_ALG_RSA_2048"
     ]

@@ -43,6 +43,7 @@ class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
     consumerNetwork: str
     description: str
     ipPrefixLength: int
+    outsideAllocationPublicIpRange: str
     privateIpv6GoogleAccess: str
     region: str
     requestedAddress: str
@@ -564,6 +565,7 @@ class SecondaryIpRange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SecondaryIpRangeSpec(typing_extensions.TypedDict, total=False):
     ipPrefixLength: int
+    outsideAllocationPublicIpRange: str
     rangeName: str
     requestedAddress: str
 

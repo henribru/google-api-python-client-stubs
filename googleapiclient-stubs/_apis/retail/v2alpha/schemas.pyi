@@ -231,6 +231,11 @@ class GoogleCloudRetailV2alphaCustomAttribute(typing_extensions.TypedDict, total
     text: typing.List[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaEnrollSolutionMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaExportErrorsConfig(
     typing_extensions.TypedDict, total=False
 ):

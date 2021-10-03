@@ -70,9 +70,45 @@ class GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata(
     genericMetadata: GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3DeployFlowMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    testErrors: typing.List[GoogleCloudDialogflowCxV3TestError]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DeployFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deployment: str
+    environment: GoogleCloudDialogflowCxV3Environment
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3DtmfInput(typing_extensions.TypedDict, total=False):
     digits: str
     finishDigit: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3Environment(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    name: str
+    testCasesConfig: GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig
+    updateTime: str
+    versionConfigs: typing.List[GoogleCloudDialogflowCxV3EnvironmentVersionConfig]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enableContinuousRun: bool
+    enablePredeploymentRun: bool
+    testCases: typing.List[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3EnvironmentVersionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    version: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3EventHandler(typing_extensions.TypedDict, total=False):
@@ -630,6 +666,45 @@ class GoogleCloudDialogflowCxV3beta1DeleteDocumentOperationMetadata(
     genericMetadata: GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1DeployFlowMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    testErrors: typing.List[GoogleCloudDialogflowCxV3beta1TestError]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1DeployFlowRequest(
+    typing_extensions.TypedDict, total=False
+):
+    flowVersion: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1DeployFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deployment: str
+    environment: GoogleCloudDialogflowCxV3beta1Environment
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1Deployment(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    flowVersion: str
+    name: str
+    result: GoogleCloudDialogflowCxV3beta1DeploymentResult
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "FAILED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1DeploymentResult(
+    typing_extensions.TypedDict, total=False
+):
+    deploymentTestResults: typing.List[str]
+    experiment: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1DetectIntentRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -692,8 +767,17 @@ class GoogleCloudDialogflowCxV3beta1Environment(
     description: str
     displayName: str
     name: str
+    testCasesConfig: GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig
     updateTime: str
     versionConfigs: typing.List[GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enableContinuousRun: bool
+    enablePredeploymentRun: bool
+    testCases: typing.List[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig(
@@ -1062,6 +1146,13 @@ class GoogleCloudDialogflowCxV3beta1ListContinuousTestResultsResponse(
     continuousTestResults: typing.List[
         GoogleCloudDialogflowCxV3beta1ContinuousTestResult
     ]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deployments: typing.List[GoogleCloudDialogflowCxV3beta1Deployment]
     nextPageToken: str
 
 @typing.type_check_only

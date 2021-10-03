@@ -14,6 +14,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     configConnectorConfig: ConfigConnectorConfig
     dnsCacheConfig: DnsCacheConfig
     gcePersistentDiskCsiDriverConfig: GcePersistentDiskCsiDriverConfig
+    gcpFilestoreCsiDriverConfig: GcpFilestoreCsiDriverConfig
     horizontalPodAutoscaling: HorizontalPodAutoscaling
     httpLoadBalancing: HttpLoadBalancing
     istioConfig: IstioConfig
@@ -301,6 +302,10 @@ class EphemeralStorageConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class GcpFilestoreCsiDriverConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only

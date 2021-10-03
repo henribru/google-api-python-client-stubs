@@ -95,6 +95,12 @@ class CreateFeedRequest(typing_extensions.TypedDict, total=False):
     feedId: str
 
 @typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -618,6 +624,15 @@ class RelatedAssets(typing_extensions.TypedDict, total=False):
     relationshipAttributes: RelationshipAttributes
 
 @typing.type_check_only
+class RelatedResource(typing_extensions.TypedDict, total=False):
+    assetType: str
+    fullResourceName: str
+
+@typing.type_check_only
+class RelatedResources(typing_extensions.TypedDict, total=False):
+    relatedResources: typing.List[RelatedResource]
+
+@typing.type_check_only
 class RelationshipAttributes(typing_extensions.TypedDict, total=False):
     action: str
     sourceResourceType: str
@@ -652,6 +667,7 @@ class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     parentAssetType: str
     parentFullResourceName: str
     project: str
+    relationships: typing.Dict[str, typing.Any]
     state: str
     updateTime: str
     versionedResources: typing.List[VersionedResource]
@@ -676,6 +692,7 @@ class SoftwarePackage(typing_extensions.TypedDict, total=False):
     cosPackage: VersionedPackage
     googetPackage: VersionedPackage
     qfePackage: WindowsQuickFixEngineeringPackage
+    windowsApplication: WindowsApplication
     wuaPackage: WindowsUpdatePackage
     yumPackage: VersionedPackage
     zypperPackage: VersionedPackage
@@ -721,6 +738,14 @@ class VersionedPackage(typing_extensions.TypedDict, total=False):
 class VersionedResource(typing_extensions.TypedDict, total=False):
     resource: typing.Dict[str, typing.Any]
     version: str
+
+@typing.type_check_only
+class WindowsApplication(typing_extensions.TypedDict, total=False):
+    displayName: str
+    displayVersion: str
+    helpLink: str
+    installDate: Date
+    publisher: str
 
 @typing.type_check_only
 class WindowsQuickFixEngineeringPackage(typing_extensions.TypedDict, total=False):

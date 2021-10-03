@@ -206,6 +206,30 @@ class GoogleAppengineV1betaLocationMetadata(typing_extensions.TypedDict, total=F
     standardEnvironmentAvailable: bool
 
 @typing.type_check_only
+class GoogleAppengineV2OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    ephemeralMessage: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+    warning: typing.List[str]
+
+@typing.type_check_only
+class GoogleAppengineV2mainOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    ephemeralMessage: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+    warning: typing.List[str]
+
+@typing.type_check_only
 class HealthCheck(typing_extensions.TypedDict, total=False):
     checkInterval: str
     disableHealthCheck: bool
@@ -444,6 +468,7 @@ class ScriptHandler(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
     id: str
+    labels: typing.Dict[str, typing.Any]
     name: str
     networkSettings: NetworkSettings
     split: TrafficSplit

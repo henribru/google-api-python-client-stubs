@@ -37,6 +37,7 @@ class AccountAdsLink(typing_extensions.TypedDict, total=False):
 class AccountBusinessInformation(typing_extensions.TypedDict, total=False):
     address: AccountAddress
     customerService: AccountCustomerService
+    koreanBusinessRegistrationNumber: str
     phoneNumber: str
 
 @typing.type_check_only
@@ -44,7 +45,9 @@ class AccountCredentials(typing_extensions.TypedDict, total=False):
     accessToken: str
     expiresIn: str
     purpose: typing_extensions.Literal[
-        "ACCOUNT_CREDENTIALS_PURPOSE_UNSPECIFIED", "SHOPIFY_ORDER_MANAGEMENT"
+        "ACCOUNT_CREDENTIALS_PURPOSE_UNSPECIFIED",
+        "SHOPIFY_ORDER_MANAGEMENT",
+        "SHOPIFY_INTEGRATION",
     ]
 
 @typing.type_check_only
@@ -203,6 +206,7 @@ class AccountsCustomBatchResponseEntry(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class AccountsLinkRequest(typing_extensions.TypedDict, total=False):
     action: str
+    eCommercePlatformLinkInfo: ECommercePlatformLinkInfo
     linkType: str
     linkedAccountId: str
     paymentServiceProviderLinkInfo: PaymentServiceProviderLinkInfo
@@ -305,8 +309,18 @@ class BusinessDayConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuyOnGoogleProgramStatus(typing_extensions.TypedDict, total=False):
+    businessModel: typing.List[str]
     customerServicePendingEmail: str
+    customerServicePendingPhoneNumber: str
+    customerServicePendingPhoneRegionCode: str
     customerServiceVerifiedEmail: str
+    customerServiceVerifiedPhoneNumber: str
+    customerServiceVerifiedPhoneRegionCode: str
+    onlineSalesChannel: typing_extensions.Literal[
+        "ONLINE_SALES_CHANNEL_UNSPECIFIED",
+        "GOOGLE_EXCLUSIVE",
+        "GOOGLE_AND_OTHER_WEBSITES",
+    ]
     participationStage: typing_extensions.Literal[
         "PROGRAM_PARTICIPATION_STAGE_UNSPECIFIED",
         "NOT_ELIGIBLE",
@@ -571,6 +585,10 @@ class DeliveryTime(typing_extensions.TypedDict, total=False):
     transitBusinessDayConfig: BusinessDayConfig
     transitTimeTable: TransitTable
     warehouseBasedDeliveryTimes: typing.List[WarehouseBasedDeliveryTime]
+
+@typing.type_check_only
+class ECommercePlatformLinkInfo(typing_extensions.TypedDict, total=False):
+    externalAccountId: str
 
 @typing.type_check_only
 class Error(typing_extensions.TypedDict, total=False):
@@ -2110,6 +2128,8 @@ class Promotion(typing_extensions.TypedDict, total=False):
     productApplicability: typing_extensions.Literal[
         "PRODUCT_APPLICABILITY_UNSPECIFIED", "ALL_PRODUCTS", "PRODUCT_SPECIFIC"
     ]
+    productType: typing.List[str]
+    productTypeExclusion: typing.List[str]
     promotionDestinationIds: typing.List[str]
     promotionDisplayDates: str
     promotionEffectiveDates: str

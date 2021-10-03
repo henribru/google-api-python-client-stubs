@@ -219,6 +219,12 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: typing.List[Operation]
 
 @typing.type_check_only
+class ListPeeringsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    peerings: typing.List[Peering]
+    unreachable: typing.List[str]
+
+@typing.type_check_only
 class ListSqlIntegrationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     sqlIntegrations: typing.List[SqlIntegration]
@@ -264,6 +270,19 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class Peering(typing_extensions.TypedDict, total=False):
+    authorizedNetwork: str
+    createTime: str
+    domainResource: str
+    labels: typing.Dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "CONNECTED", "DISCONNECTED", "DELETING"
+    ]
+    statusMessage: str
+    updateTime: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):

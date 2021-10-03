@@ -619,6 +619,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             *,
             part: typing.Union[str, typing.List[str]],
             body: TestItem = ...,
+            externalChannelId: str = ...,
             **kwargs: typing.Any
         ) -> TestItemHttpRequest: ...
     @typing.type_check_only
@@ -628,6 +629,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             *,
             linkingToken: str,
             type: typing_extensions.Literal["linkUnspecified", "channelToStoreLink"],
+            externalChannelId: str = ...,
             part: typing.Union[str, typing.List[str]] = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -636,12 +638,14 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             *,
             part: typing.Union[str, typing.List[str]],
             body: ThirdPartyLink = ...,
+            externalChannelId: str = ...,
             **kwargs: typing.Any
         ) -> ThirdPartyLinkHttpRequest: ...
         def list(
             self,
             *,
             part: typing.Union[str, typing.List[str]],
+            externalChannelId: str = ...,
             linkingToken: str = ...,
             type: typing_extensions.Literal[
                 "linkUnspecified", "channelToStoreLink"
@@ -653,6 +657,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             *,
             part: typing.Union[str, typing.List[str]],
             body: ThirdPartyLink = ...,
+            externalChannelId: str = ...,
             **kwargs: typing.Any
         ) -> ThirdPartyLinkHttpRequest: ...
     @typing.type_check_only

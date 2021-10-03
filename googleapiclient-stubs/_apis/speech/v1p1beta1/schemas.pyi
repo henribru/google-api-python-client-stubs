@@ -26,6 +26,12 @@ class CustomClass(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Entry(typing_extensions.TypedDict, total=False):
+    caseSensitive: bool
+    replace: str
+    search: str
+
+@typing.type_check_only
 class ListCustomClassesResponse(typing_extensions.TypedDict, total=False):
     customClasses: typing.List[CustomClass]
     nextPageToken: str
@@ -118,6 +124,7 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
     profanityFilter: bool
     sampleRateHertz: int
     speechContexts: typing.List[SpeechContext]
+    transcriptNormalization: TranscriptNormalization
     useEnhanced: bool
 
 @typing.type_check_only
@@ -199,6 +206,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: typing.List[typing.Dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TranscriptNormalization(typing_extensions.TypedDict, total=False):
+    entries: typing.List[Entry]
 
 @typing.type_check_only
 class TranscriptOutputConfig(typing_extensions.TypedDict, total=False):

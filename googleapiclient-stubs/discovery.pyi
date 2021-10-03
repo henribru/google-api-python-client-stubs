@@ -213,6 +213,7 @@ import googleapiclient._apis.iamcredentials.v1.resources
 import googleapiclient._apis.iap.v1.resources
 import googleapiclient._apis.iap.v1beta1.resources
 import googleapiclient._apis.ideahub.v1alpha.resources
+import googleapiclient._apis.ideahub.v1beta.resources
 import googleapiclient._apis.identitytoolkit.v3.resources
 import googleapiclient._apis.indexing.v3.resources
 import googleapiclient._apis.jobs.v2.resources
@@ -3898,6 +3899,26 @@ def build(
     num_retries: int = ...,
     static_discovery: Optional[bool] = ...,
 ) -> googleapiclient._apis.clouderrorreporting.v1beta1.resources.ClouderrorreportingResource: ...
+@overload
+def build(
+    serviceName: Literal["ideahub"],
+    version: Literal["v1beta"],
+    http: Optional[Union[httplib2.Http, HttpMock]] = ...,
+    discoveryServiceUrl: Optional[str] = ...,
+    developerKey: Optional[str] = ...,
+    model: Optional[Model] = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: Optional[
+        Union[oauth2client.Credentials, google.auth.credentials.Credentials]
+    ] = ...,
+    cache_discovery: bool = ...,
+    cache: Optional[Cache] = ...,
+    client_options: Optional[Union[Dict[str, Any], ClientOptions]] = ...,
+    adc_cert_path: Optional[str] = ...,
+    adc_key_path: Optional[str] = ...,
+    num_retries: int = ...,
+    static_discovery: Optional[bool] = ...,
+) -> googleapiclient._apis.ideahub.v1beta.resources.IdeahubResource: ...
 @overload
 def build(
     serviceName: Literal["language"],

@@ -139,6 +139,21 @@ class FieldTransform(typing.Dict[str, typing.Any]): ...
 class Filter(typing.Dict[str, typing.Any]): ...
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
+    concurrencyMode: typing_extensions.Literal[
+        "CONCURRENCY_MODE_UNSPECIFIED",
+        "OPTIMISTIC",
+        "PESSIMISTIC",
+        "OPTIMISTIC_WITH_ENTITY_GROUPS",
+    ]
+    etag: str
+    locationId: str
+    name: str
+    type: typing_extensions.Literal[
+        "DATABASE_TYPE_UNSPECIFIED", "FIRESTORE_NATIVE", "DATASTORE_MODE"
+    ]
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1ExportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -274,6 +289,12 @@ class GoogleFirestoreAdminV1IndexOperationMetadata(
         "FAILED",
         "CANCELLED",
     ]
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ListDatabasesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    databases: typing.List[GoogleFirestoreAdminV1Database]
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ListFieldsResponse(

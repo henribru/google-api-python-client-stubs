@@ -7,6 +7,7 @@ class Bucket(typing_extensions.TypedDict, total=False):
     acl: typing.List[BucketAccessControl]
     billing: typing.Dict[str, typing.Any]
     cors: typing.List[typing.Dict[str, typing.Any]]
+    customPlacementConfig: typing.Dict[str, typing.Any]
     defaultEventBasedHold: bool
     defaultObjectAcl: typing.List[ObjectAccessControl]
     encryption: typing.Dict[str, typing.Any]
@@ -24,6 +25,7 @@ class Bucket(typing_extensions.TypedDict, total=False):
     owner: typing.Dict[str, typing.Any]
     projectNumber: str
     retentionPolicy: typing.Dict[str, typing.Any]
+    rpo: str
     satisfiesPZS: bool
     selfLink: str
     storageClass: str
@@ -31,7 +33,6 @@ class Bucket(typing_extensions.TypedDict, total=False):
     updated: str
     versioning: typing.Dict[str, typing.Any]
     website: typing.Dict[str, typing.Any]
-    zoneAffinity: typing.List[str]
 
 @typing.type_check_only
 class BucketAccessControl(typing_extensions.TypedDict, total=False):

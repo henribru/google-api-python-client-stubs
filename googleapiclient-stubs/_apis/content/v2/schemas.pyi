@@ -34,6 +34,7 @@ class AccountAdwordsLink(typing_extensions.TypedDict, total=False):
 class AccountBusinessInformation(typing_extensions.TypedDict, total=False):
     address: AccountAddress
     customerService: AccountCustomerService
+    koreanBusinessRegistrationNumber: str
     phoneNumber: str
 
 @typing.type_check_only

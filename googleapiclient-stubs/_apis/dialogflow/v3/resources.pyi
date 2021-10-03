@@ -69,6 +69,19 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any
                         ) -> GoogleCloudDialogflowCxV3ListContinuousTestResultsResponseHttpRequest: ...
                     @typing.type_check_only
+                    class DeploymentsResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowCxV3DeploymentHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowCxV3ListDeploymentsResponseHttpRequest: ...
+                    @typing.type_check_only
                     class ExperimentsResource(googleapiclient.discovery.Resource):
                         def create(
                             self,
@@ -178,6 +191,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def deployFlow(
+                        self,
+                        *,
+                        environment: str,
+                        body: GoogleCloudDialogflowCxV3DeployFlowRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowCxV3EnvironmentHttpRequest: ...
@@ -215,6 +235,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     def continuousTestResults(
                         self,
                     ) -> ContinuousTestResultsResource: ...
+                    def deployments(self) -> DeploymentsResource: ...
                     def experiments(self) -> ExperimentsResource: ...
                     def sessions(self) -> SessionsResource: ...
                 @typing.type_check_only
@@ -812,6 +833,16 @@ class GoogleCloudDialogflowCxV3CalculateCoverageResponseHttpRequest(
     ) -> GoogleCloudDialogflowCxV3CalculateCoverageResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3DeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowCxV3Deployment: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3DetectIntentResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -920,6 +951,18 @@ class GoogleCloudDialogflowCxV3ListContinuousTestResultsResponseHttpRequest(
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ListDeploymentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowCxV3ListDeploymentsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListEntityTypesResponseHttpRequest(

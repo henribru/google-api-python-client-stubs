@@ -30,6 +30,7 @@ class ColumnDescription(typing_extensions.TypedDict, total=False):
     lookupDetails: LookupDetails
     multipleValuesDisallowed: bool
     name: str
+    readonly: bool
     relationshipDetails: RelationshipDetails
 
 @typing.type_check_only

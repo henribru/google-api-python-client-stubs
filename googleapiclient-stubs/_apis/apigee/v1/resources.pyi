@@ -404,6 +404,15 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1AttributeHttpRequest: ...
             @typing.type_check_only
+            class BalanceResource(googleapiclient.discovery.Resource):
+                def credit(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1CreditDeveloperBalanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1DeveloperBalanceHttpRequest: ...
+            @typing.type_check_only
             class SubscriptionsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -443,6 +452,12 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, action: str = ..., **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1DeveloperHttpRequest: ...
+            def getBalance(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1DeveloperBalanceHttpRequest: ...
+            def getMonetizationConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1DeveloperMonetizationConfigHttpRequest: ...
             def list(
                 self,
                 *,
@@ -465,8 +480,16 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudApigeeV1Developer = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1DeveloperHttpRequest: ...
+            def updateMonetizationConfig(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1DeveloperMonetizationConfig = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1DeveloperMonetizationConfigHttpRequest: ...
             def apps(self) -> AppsResource: ...
             def attributes(self) -> AttributesResource: ...
+            def balance(self) -> BalanceResource: ...
             def subscriptions(self) -> SubscriptionsResource: ...
         @typing.type_check_only
         class EnvgroupsResource(googleapiclient.discovery.Resource):
@@ -1742,6 +1765,28 @@ class GoogleCloudApigeeV1DeveloperAppKeyHttpRequest(googleapiclient.http.HttpReq
         ] = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DeveloperAppKey: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1DeveloperBalanceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1DeveloperBalance: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1DeveloperMonetizationConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: typing.Optional[
+            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
+        ] = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1DeveloperMonetizationConfig: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DeveloperSubscriptionHttpRequest(

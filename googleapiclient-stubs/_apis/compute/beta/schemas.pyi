@@ -436,6 +436,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
     kind: str
     loadBalancingScheme: typing_extensions.Literal[
         "EXTERNAL",
+        "EXTERNAL_MANAGED",
         "INTERNAL",
         "INTERNAL_MANAGED",
         "INTERNAL_SELF_MANAGED",
@@ -1164,7 +1165,12 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     labelFingerprint: str
     labels: typing.Dict[str, typing.Any]
     loadBalancingScheme: typing_extensions.Literal[
-        "EXTERNAL", "INTERNAL", "INTERNAL_MANAGED", "INTERNAL_SELF_MANAGED", "INVALID"
+        "EXTERNAL",
+        "EXTERNAL_MANAGED",
+        "INTERNAL",
+        "INTERNAL_MANAGED",
+        "INTERNAL_SELF_MANAGED",
+        "INVALID",
     ]
     metadataFilters: typing.List[MetadataFilter]
     name: str
@@ -3504,10 +3510,12 @@ class Quota(typing_extensions.TypedDict, total=False):
         "BACKEND_SERVICES",
         "C2D_CPUS",
         "C2_CPUS",
+        "C3_CPUS",
         "COMMITMENTS",
         "COMMITTED_A2_CPUS",
         "COMMITTED_C2D_CPUS",
         "COMMITTED_C2_CPUS",
+        "COMMITTED_C3_CPUS",
         "COMMITTED_CPUS",
         "COMMITTED_E2_CPUS",
         "COMMITTED_LICENSES",
@@ -4316,6 +4324,9 @@ class ScalingScheduleStatus(typing_extensions.TypedDict, total=False):
 class Scheduling(typing_extensions.TypedDict, total=False):
     automaticRestart: bool
     hostErrorTimeoutSeconds: int
+    instanceTerminationAction: typing_extensions.Literal[
+        "DELETE", "INSTANCE_TERMINATION_ACTION_UNSPECIFIED", "STOP"
+    ]
     locationHint: str
     maintenanceFreezeDurationHours: int
     maintenanceInterval: typing_extensions.Literal["PERIODIC"]
@@ -4323,6 +4334,7 @@ class Scheduling(typing_extensions.TypedDict, total=False):
     nodeAffinities: typing.List[SchedulingNodeAffinity]
     onHostMaintenance: typing_extensions.Literal["MIGRATE", "TERMINATE"]
     preemptible: bool
+    provisioningModel: typing_extensions.Literal["SPOT"]
 
 @typing.type_check_only
 class SchedulingNodeAffinity(typing_extensions.TypedDict, total=False):
@@ -4563,10 +4575,15 @@ class ServiceAttachmentsScopedList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ShareSettings(typing_extensions.TypedDict, total=False):
+    projectMap: typing.Dict[str, typing.Any]
     projects: typing.List[str]
     shareType: typing_extensions.Literal[
         "LOCAL", "SHARE_TYPE_UNSPECIFIED", "SPECIFIC_PROJECTS"
     ]
+
+@typing.type_check_only
+class ShareSettingsProjectConfig(typing_extensions.TypedDict, total=False):
+    projectId: str
 
 @typing.type_check_only
 class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):

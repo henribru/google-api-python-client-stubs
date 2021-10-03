@@ -63,6 +63,7 @@ class AlertPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AlertStrategy(typing_extensions.TypedDict, total=False):
+    autoClose: str
     notificationRateLimit: NotificationRateLimit
 
 @typing.type_check_only

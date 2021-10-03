@@ -19,6 +19,7 @@ class AnalyzePackagesMetadataV1(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AnalyzePackagesRequestV1(typing_extensions.TypedDict, total=False):
+    includeOsvData: bool
     packages: typing.List[PackageData]
     resourceUri: str
 

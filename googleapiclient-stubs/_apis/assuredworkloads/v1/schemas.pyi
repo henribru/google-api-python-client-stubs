@@ -16,6 +16,7 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
         "HIPAA",
         "HITRUST",
         "EU_REGIONS_AND_SUPPORT",
+        "CA_REGIONS_AND_SUPPORT",
     ]
     createTime: str
     displayName: str
@@ -41,6 +42,7 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "HIPAA",
         "HITRUST",
         "EU_REGIONS_AND_SUPPORT",
+        "CA_REGIONS_AND_SUPPORT",
     ]
     createTime: str
     displayName: str

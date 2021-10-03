@@ -120,6 +120,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
     ]
     ipAddresses: typing.List[IpMapping]
     kind: str
+    region: str
     serverCaCert: SslCert
 
 @typing.type_check_only
@@ -578,6 +579,7 @@ class Settings(typing_extensions.TypedDict, total=False):
         "SQL_REPLICATION_TYPE_UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"
     ]
     settingsVersion: str
+    sqlServerAuditConfig: SqlServerAuditConfig
     storageAutoResize: bool
     storageAutoResizeLimit: str
     tier: str
@@ -642,6 +644,7 @@ class SqlInstancesVerifyExternalSyncSettingsRequest(
         "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"
     ]
     verifyConnectionOnly: bool
+    verifyReplicationOnly: bool
 
 @typing.type_check_only
 class SqlInstancesVerifyExternalSyncSettingsResponse(
@@ -664,6 +667,11 @@ class SqlScheduledMaintenance(typing_extensions.TypedDict, total=False):
     canReschedule: bool
     scheduleDeadlineTime: str
     startTime: str
+
+@typing.type_check_only
+class SqlServerAuditConfig(typing_extensions.TypedDict, total=False):
+    bucket: str
+    kind: str
 
 @typing.type_check_only
 class SqlServerDatabaseDetails(typing_extensions.TypedDict, total=False):

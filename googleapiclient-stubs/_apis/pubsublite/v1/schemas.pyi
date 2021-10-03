@@ -74,6 +74,16 @@ class ListPartitionCursorsResponse(typing_extensions.TypedDict, total=False):
     partitionCursors: typing.List[PartitionCursor]
 
 @typing.type_check_only
+class ListReservationTopicsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    topics: typing.List[str]
+
+@typing.type_check_only
+class ListReservationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    reservations: typing.List[Reservation]
+
+@typing.type_check_only
 class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     subscriptions: typing.List[Subscription]
@@ -115,6 +125,15 @@ class PartitionCursor(typing_extensions.TypedDict, total=False):
     partition: str
 
 @typing.type_check_only
+class Reservation(typing_extensions.TypedDict, total=False):
+    name: str
+    throughputCapacity: str
+
+@typing.type_check_only
+class ReservationConfig(typing_extensions.TypedDict, total=False):
+    throughputReservation: str
+
+@typing.type_check_only
 class RetentionConfig(typing_extensions.TypedDict, total=False):
     perPartitionBytes: str
     period: str
@@ -148,6 +167,7 @@ class TimeTarget(typing_extensions.TypedDict, total=False):
 class Topic(typing_extensions.TypedDict, total=False):
     name: str
     partitionConfig: PartitionConfig
+    reservationConfig: ReservationConfig
     retentionConfig: RetentionConfig
 
 @typing.type_check_only
