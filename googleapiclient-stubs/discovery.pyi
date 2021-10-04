@@ -882,7 +882,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["adexchangebuyer"],
-    version: Literal["v1_2"],
+    version: Literal["v1.2"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
@@ -1182,7 +1182,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["content"],
-    version: Literal["v2_1"],
+    version: Literal["v2.1"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
@@ -1722,7 +1722,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["adsensehost"],
-    version: Literal["v4_1"],
+    version: Literal["v4.1"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
@@ -3322,7 +3322,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["dfareporting"],
-    version: Literal["v3_3"],
+    version: Literal["v3.3"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
@@ -4522,7 +4522,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["adexchangebuyer"],
-    version: Literal["v1_4"],
+    version: Literal["v1.4"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
@@ -5062,7 +5062,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["doubleclickbidmanager"],
-    version: Literal["v1_1"],
+    version: Literal["v1.1"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
@@ -6842,7 +6842,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["adexchangebuyer"],
-    version: Literal["v1_3"],
+    version: Literal["v1.3"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
@@ -7062,7 +7062,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["dfareporting"],
-    version: Literal["v3_5"],
+    version: Literal["v3.5"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
@@ -7082,7 +7082,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["adsense"],
-    version: Literal["v1_4"],
+    version: Literal["v1.4"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
@@ -7322,7 +7322,7 @@ def build(
 @overload
 def build(
     serviceName: Literal["dfareporting"],
-    version: Literal["v3_4"],
+    version: Literal["v3.4"],
     http: Optional[Union[httplib2.Http, HttpMock]] = ...,
     discoveryServiceUrl: Optional[str] = ...,
     developerKey: Optional[str] = ...,
