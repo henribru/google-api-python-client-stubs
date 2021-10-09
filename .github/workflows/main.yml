@@ -99,6 +99,4 @@ jobs:
 
       - name: Run Mypy
         run: |
-          mv googleapiclient-stubs googleapiclient
-          mv apiclient-stubs apiclient
-          poetry run mypy googleapiclient apiclient
+          poetry run mypy googleapiclient-stubs apiclient-stubs
