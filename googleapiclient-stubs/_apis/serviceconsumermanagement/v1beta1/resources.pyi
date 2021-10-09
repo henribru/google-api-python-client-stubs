@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -27,19 +29,17 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: V1Beta1QuotaOverride = ...,
                         force: bool = ...,
-                        forceOnly: typing.Union[
+                        forceOnly: typing_extensions.Literal[
+                            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+                            "LIMIT_DECREASE_BELOW_USAGE",
+                            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
-                            ],
-                            typing.List[
-                                typing_extensions.Literal[
-                                    "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-                                    "LIMIT_DECREASE_BELOW_USAGE",
-                                    "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
-                                ]
-                            ],
+                            ]
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
@@ -48,19 +48,17 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         force: bool = ...,
-                        forceOnly: typing.Union[
+                        forceOnly: typing_extensions.Literal[
+                            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+                            "LIMIT_DECREASE_BELOW_USAGE",
+                            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
-                            ],
-                            typing.List[
-                                typing_extensions.Literal[
-                                    "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-                                    "LIMIT_DECREASE_BELOW_USAGE",
-                                    "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
-                                ]
-                            ],
+                            ]
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
@@ -78,19 +76,17 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: V1Beta1QuotaOverride = ...,
                         force: bool = ...,
-                        forceOnly: typing.Union[
+                        forceOnly: typing_extensions.Literal[
+                            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+                            "LIMIT_DECREASE_BELOW_USAGE",
+                            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
-                            ],
-                            typing.List[
-                                typing_extensions.Literal[
-                                    "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-                                    "LIMIT_DECREASE_BELOW_USAGE",
-                                    "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
-                                ]
-                            ],
+                            ]
                         ] = ...,
                         updateMask: str = ...,
                         **kwargs: typing.Any
@@ -141,9 +137,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
 
@@ -151,9 +145,7 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
 class V1Beta1ConsumerQuotaLimitHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> V1Beta1ConsumerQuotaLimit: ...
 
@@ -161,9 +153,7 @@ class V1Beta1ConsumerQuotaLimitHttpRequest(googleapiclient.http.HttpRequest):
 class V1Beta1ConsumerQuotaMetricHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> V1Beta1ConsumerQuotaMetric: ...
 
@@ -173,9 +163,7 @@ class V1Beta1ListConsumerQuotaMetricsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> V1Beta1ListConsumerQuotaMetricsResponse: ...
 
@@ -183,8 +171,6 @@ class V1Beta1ListConsumerQuotaMetricsResponseHttpRequest(
 class V1Beta1ListProducerOverridesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> V1Beta1ListProducerOverridesResponse: ...

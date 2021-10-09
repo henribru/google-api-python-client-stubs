@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ClassItem(typing_extensions.TypedDict, total=False):
     value: str
@@ -19,7 +21,7 @@ class CreatePhraseSetRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CustomClass(typing_extensions.TypedDict, total=False):
     customClassId: str
-    items: typing.List[ClassItem]
+    items: _list[ClassItem]
     name: str
 
 @typing.type_check_only
@@ -33,18 +35,18 @@ class Entry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListCustomClassesResponse(typing_extensions.TypedDict, total=False):
-    customClasses: typing.List[CustomClass]
+    customClasses: _list[CustomClass]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListPhraseSetResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    phraseSets: typing.List[PhraseSet]
+    phraseSets: _list[PhraseSet]
 
 @typing.type_check_only
 class LongRunningRecognizeMetadata(typing_extensions.TypedDict, total=False):
@@ -64,16 +66,16 @@ class LongRunningRecognizeRequest(typing_extensions.TypedDict, total=False):
 class LongRunningRecognizeResponse(typing_extensions.TypedDict, total=False):
     outputConfig: TranscriptOutputConfig
     outputError: Status
-    results: typing.List[SpeechRecognitionResult]
+    results: _list[SpeechRecognitionResult]
     totalBilledTime: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Phrase(typing_extensions.TypedDict, total=False):
@@ -84,7 +86,7 @@ class Phrase(typing_extensions.TypedDict, total=False):
 class PhraseSet(typing_extensions.TypedDict, total=False):
     boost: float
     name: str
-    phrases: typing.List[Phrase]
+    phrases: _list[Phrase]
 
 @typing.type_check_only
 class RecognitionAudio(typing_extensions.TypedDict, total=False):
@@ -94,7 +96,7 @@ class RecognitionAudio(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RecognitionConfig(typing_extensions.TypedDict, total=False):
     adaptation: SpeechAdaptation
-    alternativeLanguageCodes: typing.List[str]
+    alternativeLanguageCodes: _list[str]
     audioChannelCount: int
     diarizationConfig: SpeakerDiarizationConfig
     diarizationSpeakerCount: int
@@ -123,7 +125,7 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
     model: str
     profanityFilter: bool
     sampleRateHertz: int
-    speechContexts: typing.List[SpeechContext]
+    speechContexts: _list[SpeechContext]
     transcriptNormalization: TranscriptNormalization
     useEnhanced: bool
 
@@ -168,7 +170,7 @@ class RecognizeRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RecognizeResponse(typing_extensions.TypedDict, total=False):
-    results: typing.List[SpeechRecognitionResult]
+    results: _list[SpeechRecognitionResult]
     totalBilledTime: str
 
 @typing.type_check_only
@@ -180,36 +182,36 @@ class SpeakerDiarizationConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SpeechAdaptation(typing_extensions.TypedDict, total=False):
-    customClasses: typing.List[CustomClass]
-    phraseSetReferences: typing.List[str]
-    phraseSets: typing.List[PhraseSet]
+    customClasses: _list[CustomClass]
+    phraseSetReferences: _list[str]
+    phraseSets: _list[PhraseSet]
 
 @typing.type_check_only
 class SpeechContext(typing_extensions.TypedDict, total=False):
     boost: float
-    phrases: typing.List[str]
+    phrases: _list[str]
 
 @typing.type_check_only
 class SpeechRecognitionAlternative(typing_extensions.TypedDict, total=False):
     confidence: float
     transcript: str
-    words: typing.List[WordInfo]
+    words: _list[WordInfo]
 
 @typing.type_check_only
 class SpeechRecognitionResult(typing_extensions.TypedDict, total=False):
-    alternatives: typing.List[SpeechRecognitionAlternative]
+    alternatives: _list[SpeechRecognitionAlternative]
     channelTag: int
     languageCode: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TranscriptNormalization(typing_extensions.TypedDict, total=False):
-    entries: typing.List[Entry]
+    entries: _list[Entry]
 
 @typing.type_check_only
 class TranscriptOutputConfig(typing_extensions.TypedDict, total=False):

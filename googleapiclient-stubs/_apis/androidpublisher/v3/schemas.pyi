@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Apk(typing_extensions.TypedDict, total=False):
     binary: ApkBinary
@@ -22,7 +24,7 @@ class ApksAddExternallyHostedResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ApksListResponse(typing_extensions.TypedDict, total=False):
-    apks: typing.List[Apk]
+    apks: _list[Apk]
     kind: str
 
 @typing.type_check_only
@@ -45,7 +47,7 @@ class Bundle(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BundlesListResponse(typing_extensions.TypedDict, total=False):
-    bundles: typing.List[Bundle]
+    bundles: _list[Bundle]
     kind: str
 
 @typing.type_check_only
@@ -55,7 +57,7 @@ class Comment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CountryTargeting(typing_extensions.TypedDict, total=False):
-    countries: typing.List[str]
+    countries: _list[str]
     includeRestOfWorld: bool
 
 @typing.type_check_only
@@ -90,8 +92,8 @@ class DeviceMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeviceSpec(typing_extensions.TypedDict, total=False):
     screenDensity: int
-    supportedAbis: typing.List[str]
-    supportedLocales: typing.List[str]
+    supportedAbis: _list[str]
+    supportedLocales: _list[str]
 
 @typing.type_check_only
 class ExpansionFile(typing_extensions.TypedDict, total=False):
@@ -105,7 +107,7 @@ class ExpansionFilesUploadResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
     applicationLabel: str
-    certificateBase64s: typing.List[str]
+    certificateBase64s: _list[str]
     externallyHostedUrl: str
     fileSha1Base64: str
     fileSha256Base64: str
@@ -113,10 +115,10 @@ class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
     iconBase64: str
     maximumSdk: int
     minimumSdk: int
-    nativeCodes: typing.List[str]
+    nativeCodes: _list[str]
     packageName: str
-    usesFeatures: typing.List[str]
-    usesPermissions: typing.List[UsesPermission]
+    usesFeatures: _list[str]
+    usesPermissions: _list[UsesPermission]
     versionCode: int
     versionName: str
 
@@ -129,11 +131,11 @@ class Image(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImagesDeleteAllResponse(typing_extensions.TypedDict, total=False):
-    deleted: typing.List[Image]
+    deleted: _list[Image]
 
 @typing.type_check_only
 class ImagesListResponse(typing_extensions.TypedDict, total=False):
-    images: typing.List[Image]
+    images: _list[Image]
 
 @typing.type_check_only
 class ImagesUploadResponse(typing_extensions.TypedDict, total=False):
@@ -144,9 +146,9 @@ class InAppProduct(typing_extensions.TypedDict, total=False):
     defaultLanguage: str
     defaultPrice: Price
     gracePeriod: str
-    listings: typing.Dict[str, typing.Any]
+    listings: dict[str, typing.Any]
     packageName: str
-    prices: typing.Dict[str, typing.Any]
+    prices: dict[str, typing.Any]
     purchaseType: typing_extensions.Literal[
         "purchaseTypeUnspecified", "managedUser", "subscription"
     ]
@@ -157,13 +159,13 @@ class InAppProduct(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InAppProductListing(typing_extensions.TypedDict, total=False):
-    benefits: typing.List[str]
+    benefits: _list[str]
     description: str
     title: str
 
 @typing.type_check_only
 class InappproductsListResponse(typing_extensions.TypedDict, total=False):
-    inappproduct: typing.List[InAppProduct]
+    inappproduct: _list[InAppProduct]
     kind: str
     pageInfo: PageInfo
     tokenPagination: TokenPagination
@@ -192,7 +194,7 @@ class Listing(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListingsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    listings: typing.List[Listing]
+    listings: _list[Listing]
 
 @typing.type_check_only
 class LocalizedText(typing_extensions.TypedDict, total=False):
@@ -234,7 +236,7 @@ class ProductPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class Review(typing_extensions.TypedDict, total=False):
     authorName: str
-    comments: typing.List[Comment]
+    comments: _list[Comment]
     reviewId: str
 
 @typing.type_check_only
@@ -245,7 +247,7 @@ class ReviewReplyResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReviewsListResponse(typing_extensions.TypedDict, total=False):
     pageInfo: PageInfo
-    reviews: typing.List[Review]
+    reviews: _list[Review]
     tokenPagination: TokenPagination
 
 @typing.type_check_only
@@ -317,11 +319,11 @@ class SubscriptionPurchasesDeferResponse(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class SystemApksListResponse(typing_extensions.TypedDict, total=False):
-    variants: typing.List[Variant]
+    variants: _list[Variant]
 
 @typing.type_check_only
 class Testers(typing_extensions.TypedDict, total=False):
-    googleGroups: typing.List[str]
+    googleGroups: _list[str]
 
 @typing.type_check_only
 class Timestamp(typing_extensions.TypedDict, total=False):
@@ -335,7 +337,7 @@ class TokenPagination(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Track(typing_extensions.TypedDict, total=False):
-    releases: typing.List[TrackRelease]
+    releases: _list[TrackRelease]
     track: str
 
 @typing.type_check_only
@@ -343,17 +345,17 @@ class TrackRelease(typing_extensions.TypedDict, total=False):
     countryTargeting: CountryTargeting
     inAppUpdatePriority: int
     name: str
-    releaseNotes: typing.List[LocalizedText]
+    releaseNotes: _list[LocalizedText]
     status: typing_extensions.Literal[
         "statusUnspecified", "draft", "inProgress", "halted", "completed"
     ]
     userFraction: float
-    versionCodes: typing.List[str]
+    versionCodes: _list[str]
 
 @typing.type_check_only
 class TracksListResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    tracks: typing.List[Track]
+    tracks: _list[Track]
 
 @typing.type_check_only
 class UserComment(typing_extensions.TypedDict, total=False):
@@ -394,4 +396,4 @@ class VoidedPurchase(typing_extensions.TypedDict, total=False):
 class VoidedPurchasesListResponse(typing_extensions.TypedDict, total=False):
     pageInfo: PageInfo
     tokenPagination: TokenPagination
-    voidedPurchases: typing.List[VoidedPurchase]
+    voidedPurchases: _list[VoidedPurchase]

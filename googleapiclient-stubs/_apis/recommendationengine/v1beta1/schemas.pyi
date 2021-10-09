@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleApiHttpBody(typing_extensions.TypedDict, total=False):
     contentType: str
     data: str
-    extensions: typing.List[typing.Dict[str, typing.Any]]
+    extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1alphaRejoinCatalogMetadata(
@@ -53,13 +55,13 @@ class GoogleCloudRecommendationengineV1beta1Catalog(
 class GoogleCloudRecommendationengineV1beta1CatalogInlineSource(
     typing_extensions.TypedDict, total=False
 ):
-    catalogItems: typing.List[GoogleCloudRecommendationengineV1beta1CatalogItem]
+    catalogItems: _list[GoogleCloudRecommendationengineV1beta1CatalogItem]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1CatalogItem(
     typing_extensions.TypedDict, total=False
 ):
-    categoryHierarchies: typing.List[
+    categoryHierarchies: _list[
         GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy
     ]
     description: str
@@ -68,14 +70,14 @@ class GoogleCloudRecommendationengineV1beta1CatalogItem(
     itemGroupId: str
     languageCode: str
     productMetadata: GoogleCloudRecommendationengineV1beta1ProductCatalogItem
-    tags: typing.List[str]
+    tags: _list[str]
     title: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy(
     typing_extensions.TypedDict, total=False
 ):
-    categories: typing.List[str]
+    categories: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfig(
@@ -99,7 +101,7 @@ class GoogleCloudRecommendationengineV1beta1EventDetail(
     typing_extensions.TypedDict, total=False
 ):
     eventAttributes: GoogleCloudRecommendationengineV1beta1FeatureMap
-    experimentIds: typing.List[str]
+    experimentIds: _list[str]
     pageViewId: str
     recommendationToken: str
     referrerUri: str
@@ -109,26 +111,26 @@ class GoogleCloudRecommendationengineV1beta1EventDetail(
 class GoogleCloudRecommendationengineV1beta1FeatureMap(
     typing_extensions.TypedDict, total=False
 ):
-    categoricalFeatures: typing.Dict[str, typing.Any]
-    numericalFeatures: typing.Dict[str, typing.Any]
+    categoricalFeatures: dict[str, typing.Any]
+    numericalFeatures: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1FeatureMapFloatList(
     typing_extensions.TypedDict, total=False
 ):
-    value: typing.List[float]
+    value: _list[float]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1FeatureMapStringList(
     typing_extensions.TypedDict, total=False
 ):
-    value: typing.List[str]
+    value: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1GcsSource(
     typing_extensions.TypedDict, total=False
 ):
-    inputUris: typing.List[str]
+    inputUris: _list[str]
     jsonSchema: str
 
 @typing.type_check_only
@@ -152,7 +154,7 @@ class GoogleCloudRecommendationengineV1beta1ImportCatalogItemsRequest(
 class GoogleCloudRecommendationengineV1beta1ImportCatalogItemsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    errorSamples: typing.List[GoogleRpcStatus]
+    errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRecommendationengineV1beta1ImportErrorsConfig
 
 @typing.type_check_only
@@ -184,7 +186,7 @@ class GoogleCloudRecommendationengineV1beta1ImportUserEventsRequest(
 class GoogleCloudRecommendationengineV1beta1ImportUserEventsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    errorSamples: typing.List[GoogleRpcStatus]
+    errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRecommendationengineV1beta1ImportErrorsConfig
     importSummary: GoogleCloudRecommendationengineV1beta1UserEventImportSummary
 
@@ -201,14 +203,14 @@ class GoogleCloudRecommendationengineV1beta1InputConfig(
 class GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    catalogItems: typing.List[GoogleCloudRecommendationengineV1beta1CatalogItem]
+    catalogItems: _list[GoogleCloudRecommendationengineV1beta1CatalogItem]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ListCatalogsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    catalogs: typing.List[GoogleCloudRecommendationengineV1beta1Catalog]
+    catalogs: _list[GoogleCloudRecommendationengineV1beta1Catalog]
     nextPageToken: str
 
 @typing.type_check_only
@@ -216,7 +218,7 @@ class GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsRes
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    predictionApiKeyRegistrations: typing.List[
+    predictionApiKeyRegistrations: _list[
         GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
     ]
 
@@ -225,7 +227,7 @@ class GoogleCloudRecommendationengineV1beta1ListUserEventsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    userEvents: typing.List[GoogleCloudRecommendationengineV1beta1UserEvent]
+    userEvents: _list[GoogleCloudRecommendationengineV1beta1UserEvent]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PredictRequest(
@@ -233,10 +235,10 @@ class GoogleCloudRecommendationengineV1beta1PredictRequest(
 ):
     dryRun: bool
     filter: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     pageSize: int
     pageToken: str
-    params: typing.Dict[str, typing.Any]
+    params: dict[str, typing.Any]
     userEvent: GoogleCloudRecommendationengineV1beta1UserEvent
 
 @typing.type_check_only
@@ -244,11 +246,11 @@ class GoogleCloudRecommendationengineV1beta1PredictResponse(
     typing_extensions.TypedDict, total=False
 ):
     dryRun: bool
-    itemsMissingInCatalog: typing.List[str]
-    metadata: typing.Dict[str, typing.Any]
+    itemsMissingInCatalog: _list[str]
+    metadata: dict[str, typing.Any]
     nextPageToken: str
     recommendationToken: str
-    results: typing.List[
+    results: _list[
         GoogleCloudRecommendationengineV1beta1PredictResponsePredictionResult
     ]
 
@@ -257,7 +259,7 @@ class GoogleCloudRecommendationengineV1beta1PredictResponsePredictionResult(
     typing_extensions.TypedDict, total=False
 ):
     id: str
-    itemMetadata: typing.Dict[str, typing.Any]
+    itemMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration(
@@ -271,10 +273,10 @@ class GoogleCloudRecommendationengineV1beta1ProductCatalogItem(
 ):
     availableQuantity: str
     canonicalProductUri: str
-    costs: typing.Dict[str, typing.Any]
+    costs: dict[str, typing.Any]
     currencyCode: str
     exactPrice: GoogleCloudRecommendationengineV1beta1ProductCatalogItemExactPrice
-    images: typing.List[GoogleCloudRecommendationengineV1beta1Image]
+    images: _list[GoogleCloudRecommendationengineV1beta1Image]
     priceRange: GoogleCloudRecommendationengineV1beta1ProductCatalogItemPriceRange
     stockState: typing_extensions.Literal[
         "STOCK_STATE_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "PREORDER", "BACKORDER"
@@ -315,10 +317,10 @@ class GoogleCloudRecommendationengineV1beta1ProductEventDetail(
 ):
     cartId: str
     listId: str
-    pageCategories: typing.List[
+    pageCategories: _list[
         GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy
     ]
-    productDetails: typing.List[GoogleCloudRecommendationengineV1beta1ProductDetail]
+    productDetails: _list[GoogleCloudRecommendationengineV1beta1ProductDetail]
     purchaseTransaction: GoogleCloudRecommendationengineV1beta1PurchaseTransaction
     searchQuery: str
 
@@ -326,11 +328,11 @@ class GoogleCloudRecommendationengineV1beta1ProductEventDetail(
 class GoogleCloudRecommendationengineV1beta1PurchaseTransaction(
     typing_extensions.TypedDict, total=False
 ):
-    costs: typing.Dict[str, typing.Any]
+    costs: dict[str, typing.Any]
     currencyCode: str
     id: str
     revenue: float
-    taxes: typing.Dict[str, typing.Any]
+    taxes: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PurgeUserEventsMetadata(
@@ -351,7 +353,7 @@ class GoogleCloudRecommendationengineV1beta1PurgeUserEventsResponse(
     typing_extensions.TypedDict, total=False
 ):
     purgedEventsCount: str
-    userEventsSample: typing.List[GoogleCloudRecommendationengineV1beta1UserEvent]
+    userEventsSample: _list[GoogleCloudRecommendationengineV1beta1UserEvent]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1RejoinUserEventsMetadata(
@@ -396,7 +398,7 @@ class GoogleCloudRecommendationengineV1beta1UserEventImportSummary(
 class GoogleCloudRecommendationengineV1beta1UserEventInlineSource(
     typing_extensions.TypedDict, total=False
 ):
-    userEvents: typing.List[GoogleCloudRecommendationengineV1beta1UserEvent]
+    userEvents: _list[GoogleCloudRecommendationengineV1beta1UserEvent]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1UserInfo(
@@ -411,15 +413,15 @@ class GoogleCloudRecommendationengineV1beta1UserInfo(
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -427,5 +429,5 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

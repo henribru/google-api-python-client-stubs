@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Annotation(typing_extensions.TypedDict, total=False):
     attributes: Attributes
@@ -15,12 +17,12 @@ class AttributeValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Attributes(typing_extensions.TypedDict, total=False):
-    attributeMap: typing.Dict[str, typing.Any]
+    attributeMap: dict[str, typing.Any]
     droppedAttributesCount: int
 
 @typing.type_check_only
 class BatchWriteSpansRequest(typing_extensions.TypedDict, total=False):
-    spans: typing.List[Span]
+    spans: _list[Span]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -37,7 +39,7 @@ class Link(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Links(typing_extensions.TypedDict, total=False):
     droppedLinksCount: int
-    link: typing.List[Link]
+    link: _list[Link]
 
 @typing.type_check_only
 class MessageEvent(typing_extensions.TypedDict, total=False):
@@ -83,7 +85,7 @@ class StackFrame(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StackFrames(typing_extensions.TypedDict, total=False):
     droppedFramesCount: int
-    frame: typing.List[StackFrame]
+    frame: _list[StackFrame]
 
 @typing.type_check_only
 class StackTrace(typing_extensions.TypedDict, total=False):
@@ -93,7 +95,7 @@ class StackTrace(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -106,7 +108,7 @@ class TimeEvent(typing_extensions.TypedDict, total=False):
 class TimeEvents(typing_extensions.TypedDict, total=False):
     droppedAnnotationsCount: int
     droppedMessageEventsCount: int
-    timeEvent: typing.List[TimeEvent]
+    timeEvent: _list[TimeEvent]
 
 @typing.type_check_only
 class TruncatableString(typing_extensions.TypedDict, total=False):

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class GamesResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -252,9 +254,7 @@ class GamesResource(googleapiclient.discovery.Resource):
 class AchievementDefinitionsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementDefinitionsListResponse: ...
 
@@ -262,9 +262,7 @@ class AchievementDefinitionsListResponseHttpRequest(googleapiclient.http.HttpReq
 class AchievementIncrementResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementIncrementResponse: ...
 
@@ -272,9 +270,7 @@ class AchievementIncrementResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AchievementRevealResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementRevealResponse: ...
 
@@ -282,9 +278,7 @@ class AchievementRevealResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AchievementSetStepsAtLeastResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementSetStepsAtLeastResponse: ...
 
@@ -292,9 +286,7 @@ class AchievementSetStepsAtLeastResponseHttpRequest(googleapiclient.http.HttpReq
 class AchievementUnlockResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementUnlockResponse: ...
 
@@ -302,9 +294,7 @@ class AchievementUnlockResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AchievementUpdateMultipleResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementUpdateMultipleResponse: ...
 
@@ -312,9 +302,7 @@ class AchievementUpdateMultipleResponseHttpRequest(googleapiclient.http.HttpRequ
 class ApplicationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Application: ...
 
@@ -322,9 +310,7 @@ class ApplicationHttpRequest(googleapiclient.http.HttpRequest):
 class ApplicationVerifyResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApplicationVerifyResponse: ...
 
@@ -332,9 +318,7 @@ class ApplicationVerifyResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CategoryListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CategoryListResponse: ...
 
@@ -342,9 +326,7 @@ class CategoryListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class EndPointHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EndPoint: ...
 
@@ -352,9 +334,7 @@ class EndPointHttpRequest(googleapiclient.http.HttpRequest):
 class EventDefinitionListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EventDefinitionListResponse: ...
 
@@ -362,9 +342,7 @@ class EventDefinitionListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class EventUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EventUpdateResponse: ...
 
@@ -372,9 +350,7 @@ class EventUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LeaderboardHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Leaderboard: ...
 
@@ -382,9 +358,7 @@ class LeaderboardHttpRequest(googleapiclient.http.HttpRequest):
 class LeaderboardListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LeaderboardListResponse: ...
 
@@ -392,9 +366,7 @@ class LeaderboardListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LeaderboardScoresHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LeaderboardScores: ...
 
@@ -402,9 +374,7 @@ class LeaderboardScoresHttpRequest(googleapiclient.http.HttpRequest):
 class MetagameConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> MetagameConfig: ...
 
@@ -412,9 +382,7 @@ class MetagameConfigHttpRequest(googleapiclient.http.HttpRequest):
 class PlayerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Player: ...
 
@@ -422,9 +390,7 @@ class PlayerHttpRequest(googleapiclient.http.HttpRequest):
 class PlayerAchievementListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlayerAchievementListResponse: ...
 
@@ -432,9 +398,7 @@ class PlayerAchievementListResponseHttpRequest(googleapiclient.http.HttpRequest)
 class PlayerEventListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlayerEventListResponse: ...
 
@@ -442,9 +406,7 @@ class PlayerEventListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PlayerLeaderboardScoreListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlayerLeaderboardScoreListResponse: ...
 
@@ -452,9 +414,7 @@ class PlayerLeaderboardScoreListResponseHttpRequest(googleapiclient.http.HttpReq
 class PlayerListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlayerListResponse: ...
 
@@ -462,9 +422,7 @@ class PlayerListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PlayerScoreListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlayerScoreListResponse: ...
 
@@ -472,9 +430,7 @@ class PlayerScoreListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PlayerScoreResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlayerScoreResponse: ...
 
@@ -482,9 +438,7 @@ class PlayerScoreResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RevisionCheckResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevisionCheckResponse: ...
 
@@ -492,9 +446,7 @@ class RevisionCheckResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SnapshotHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Snapshot: ...
 
@@ -502,9 +454,7 @@ class SnapshotHttpRequest(googleapiclient.http.HttpRequest):
 class SnapshotListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SnapshotListResponse: ...
 
@@ -512,8 +462,6 @@ class SnapshotListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class StatsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> StatsResponse: ...

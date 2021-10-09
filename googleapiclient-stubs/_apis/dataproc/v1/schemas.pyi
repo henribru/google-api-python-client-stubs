@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorCount: int
@@ -39,16 +41,16 @@ class BatchOperationMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     doneTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     operationType: typing_extensions.Literal[
         "BATCH_OPERATION_TYPE_UNSPECIFIED", "BATCH"
     ]
-    warnings: typing.List[str]
+    warnings: _list[str]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -59,11 +61,11 @@ class Cluster(typing_extensions.TypedDict, total=False):
     clusterName: str
     clusterUuid: str
     config: ClusterConfig
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     metrics: ClusterMetrics
     projectId: str
     status: ClusterStatus
-    statusHistory: typing.List[ClusterStatus]
+    statusHistory: _list[ClusterStatus]
 
 @typing.type_check_only
 class ClusterConfig(typing_extensions.TypedDict, total=False):
@@ -73,7 +75,7 @@ class ClusterConfig(typing_extensions.TypedDict, total=False):
     endpointConfig: EndpointConfig
     gceClusterConfig: GceClusterConfig
     gkeClusterConfig: GkeClusterConfig
-    initializationActions: typing.List[NodeInitializationAction]
+    initializationActions: _list[NodeInitializationAction]
     lifecycleConfig: LifecycleConfig
     masterConfig: InstanceGroupConfig
     metastoreConfig: MetastoreConfig
@@ -85,8 +87,8 @@ class ClusterConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClusterMetrics(typing_extensions.TypedDict, total=False):
-    hdfsMetrics: typing.Dict[str, typing.Any]
-    yarnMetrics: typing.Dict[str, typing.Any]
+    hdfsMetrics: dict[str, typing.Any]
+    yarnMetrics: dict[str, typing.Any]
 
 @typing.type_check_only
 class ClusterOperation(typing_extensions.TypedDict, total=False):
@@ -99,11 +101,11 @@ class ClusterOperationMetadata(typing_extensions.TypedDict, total=False):
     clusterName: str
     clusterUuid: str
     description: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     operationType: str
     status: ClusterOperationStatus
-    statusHistory: typing.List[ClusterOperationStatus]
-    warnings: typing.List[str]
+    statusHistory: _list[ClusterOperationStatus]
+    warnings: _list[str]
 
 @typing.type_check_only
 class ClusterOperationStatus(typing_extensions.TypedDict, total=False):
@@ -114,7 +116,7 @@ class ClusterOperationStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClusterSelector(typing_extensions.TypedDict, total=False):
-    clusterLabels: typing.Dict[str, typing.Any]
+    clusterLabels: dict[str, typing.Any]
     zone: str
 
 @typing.type_check_only
@@ -162,7 +164,7 @@ class EncryptionConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EndpointConfig(typing_extensions.TypedDict, total=False):
     enableHttpPortAccess: bool
-    httpPorts: typing.Dict[str, typing.Any]
+    httpPorts: dict[str, typing.Any]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -175,7 +177,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 class GceClusterConfig(typing_extensions.TypedDict, total=False):
     confidentialInstanceConfig: ConfidentialInstanceConfig
     internalIpOnly: bool
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     networkUri: str
     nodeGroupAffinity: NodeGroupAffinity
     privateIpv6GoogleAccess: typing_extensions.Literal[
@@ -186,10 +188,10 @@ class GceClusterConfig(typing_extensions.TypedDict, total=False):
     ]
     reservationAffinity: ReservationAffinity
     serviceAccount: str
-    serviceAccountScopes: typing.List[str]
+    serviceAccountScopes: _list[str]
     shieldedInstanceConfig: ShieldedInstanceConfig
     subnetworkUri: str
-    tags: typing.List[str]
+    tags: _list[str]
     zoneUri: str
 
 @typing.type_check_only
@@ -206,27 +208,27 @@ class GkeClusterConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HadoopJob(typing_extensions.TypedDict, total=False):
-    archiveUris: typing.List[str]
-    args: typing.List[str]
-    fileUris: typing.List[str]
-    jarFileUris: typing.List[str]
+    archiveUris: _list[str]
+    args: _list[str]
+    fileUris: _list[str]
+    jarFileUris: _list[str]
     loggingConfig: LoggingConfig
     mainClass: str
     mainJarFileUri: str
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
 
 @typing.type_check_only
 class HiveJob(typing_extensions.TypedDict, total=False):
     continueOnFailure: bool
-    jarFileUris: typing.List[str]
-    properties: typing.Dict[str, typing.Any]
+    jarFileUris: _list[str]
+    properties: dict[str, typing.Any]
     queryFileUri: str
     queryList: QueryList
-    scriptVariables: typing.Dict[str, typing.Any]
+    scriptVariables: dict[str, typing.Any]
 
 @typing.type_check_only
 class IdentityConfig(typing_extensions.TypedDict, total=False):
-    userServiceAccountMapping: typing.Dict[str, typing.Any]
+    userServiceAccountMapping: dict[str, typing.Any]
 
 @typing.type_check_only
 class InjectCredentialsRequest(typing_extensions.TypedDict, total=False):
@@ -241,11 +243,11 @@ class InstanceGroupAutoscalingPolicyConfig(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class InstanceGroupConfig(typing_extensions.TypedDict, total=False):
-    accelerators: typing.List[AcceleratorConfig]
+    accelerators: _list[AcceleratorConfig]
     diskConfig: DiskConfig
     imageUri: str
-    instanceNames: typing.List[str]
-    instanceReferences: typing.List[InstanceReference]
+    instanceNames: _list[str]
+    instanceReferences: _list[InstanceReference]
     isPreemptible: bool
     machineTypeUri: str
     managedGroupConfig: ManagedGroupConfig
@@ -264,7 +266,7 @@ class InstanceReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstantiateWorkflowTemplateRequest(typing_extensions.TypedDict, total=False):
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
     requestId: str
     version: int
 
@@ -276,7 +278,7 @@ class Job(typing_extensions.TypedDict, total=False):
     hadoopJob: HadoopJob
     hiveJob: HiveJob
     jobUuid: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     pigJob: PigJob
     placement: JobPlacement
     prestoJob: PrestoJob
@@ -287,8 +289,8 @@ class Job(typing_extensions.TypedDict, total=False):
     sparkRJob: SparkRJob
     sparkSqlJob: SparkSqlJob
     status: JobStatus
-    statusHistory: typing.List[JobStatus]
-    yarnApplications: typing.List[YarnApplication]
+    statusHistory: _list[JobStatus]
+    yarnApplications: _list[YarnApplication]
 
 @typing.type_check_only
 class JobMetadata(typing_extensions.TypedDict, total=False):
@@ -299,7 +301,7 @@ class JobMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobPlacement(typing_extensions.TypedDict, total=False):
-    clusterLabels: typing.Dict[str, typing.Any]
+    clusterLabels: dict[str, typing.Any]
     clusterName: str
     clusterUuid: str
 
@@ -361,37 +363,37 @@ class LifecycleConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListAutoscalingPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    policies: typing.List[AutoscalingPolicy]
+    policies: _list[AutoscalingPolicy]
 
 @typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
-    clusters: typing.List[Cluster]
+    clusters: _list[Cluster]
     nextPageToken: str
 
 @typing.type_check_only
 class ListJobsResponse(typing_extensions.TypedDict, total=False):
-    jobs: typing.List[Job]
+    jobs: _list[Job]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListWorkflowTemplatesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    templates: typing.List[WorkflowTemplate]
+    templates: _list[WorkflowTemplate]
 
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
-    driverLogLevels: typing.Dict[str, typing.Any]
+    driverLogLevels: dict[str, typing.Any]
 
 @typing.type_check_only
 class ManagedCluster(typing_extensions.TypedDict, total=False):
     clusterName: str
     config: ClusterConfig
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class ManagedGroupConfig(typing_extensions.TypedDict, total=False):
@@ -420,17 +422,17 @@ class NodeInitializationAction(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OrderedJob(typing_extensions.TypedDict, total=False):
     hadoopJob: HadoopJob
     hiveJob: HiveJob
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     pigJob: PigJob
-    prerequisiteStepIds: typing.List[str]
+    prerequisiteStepIds: _list[str]
     prestoJob: PrestoJob
     pysparkJob: PySparkJob
     scheduling: JobScheduling
@@ -447,47 +449,47 @@ class ParameterValidation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PigJob(typing_extensions.TypedDict, total=False):
     continueOnFailure: bool
-    jarFileUris: typing.List[str]
+    jarFileUris: _list[str]
     loggingConfig: LoggingConfig
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
     queryFileUri: str
     queryList: QueryList
-    scriptVariables: typing.Dict[str, typing.Any]
+    scriptVariables: dict[str, typing.Any]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class PrestoJob(typing_extensions.TypedDict, total=False):
-    clientTags: typing.List[str]
+    clientTags: _list[str]
     continueOnFailure: bool
     loggingConfig: LoggingConfig
     outputFormat: str
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
     queryFileUri: str
     queryList: QueryList
 
 @typing.type_check_only
 class PySparkJob(typing_extensions.TypedDict, total=False):
-    archiveUris: typing.List[str]
-    args: typing.List[str]
-    fileUris: typing.List[str]
-    jarFileUris: typing.List[str]
+    archiveUris: _list[str]
+    args: _list[str]
+    fileUris: _list[str]
+    jarFileUris: _list[str]
     loggingConfig: LoggingConfig
     mainPythonFileUri: str
-    properties: typing.Dict[str, typing.Any]
-    pythonFileUris: typing.List[str]
+    properties: dict[str, typing.Any]
+    pythonFileUris: _list[str]
 
 @typing.type_check_only
 class QueryList(typing_extensions.TypedDict, total=False):
-    queries: typing.List[str]
+    queries: _list[str]
 
 @typing.type_check_only
 class RegexValidation(typing_extensions.TypedDict, total=False):
-    regexes: typing.List[str]
+    regexes: _list[str]
 
 @typing.type_check_only
 class RepairClusterRequest(typing_extensions.TypedDict, total=False):
@@ -500,7 +502,7 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
         "TYPE_UNSPECIFIED", "NO_RESERVATION", "ANY_RESERVATION", "SPECIFIC_RESERVATION"
     ]
     key: str
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class SecurityConfig(typing_extensions.TypedDict, total=False):
@@ -512,13 +514,13 @@ class SessionOperationMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     doneTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     operationType: typing_extensions.Literal[
         "SESSION_OPERATION_TYPE_UNSPECIFIED", "CREATE", "TERMINATE", "DELETE"
     ]
     session: str
     sessionUuid: str
-    warnings: typing.List[str]
+    warnings: _list[str]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -533,37 +535,37 @@ class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
     imageVersion: str
-    optionalComponents: typing.List[str]
-    properties: typing.Dict[str, typing.Any]
+    optionalComponents: _list[str]
+    properties: dict[str, typing.Any]
 
 @typing.type_check_only
 class SparkJob(typing_extensions.TypedDict, total=False):
-    archiveUris: typing.List[str]
-    args: typing.List[str]
-    fileUris: typing.List[str]
-    jarFileUris: typing.List[str]
+    archiveUris: _list[str]
+    args: _list[str]
+    fileUris: _list[str]
+    jarFileUris: _list[str]
     loggingConfig: LoggingConfig
     mainClass: str
     mainJarFileUri: str
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
 
 @typing.type_check_only
 class SparkRJob(typing_extensions.TypedDict, total=False):
-    archiveUris: typing.List[str]
-    args: typing.List[str]
-    fileUris: typing.List[str]
+    archiveUris: _list[str]
+    args: _list[str]
+    fileUris: _list[str]
     loggingConfig: LoggingConfig
     mainRFileUri: str
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
 
 @typing.type_check_only
 class SparkSqlJob(typing_extensions.TypedDict, total=False):
-    jarFileUris: typing.List[str]
+    jarFileUris: _list[str]
     loggingConfig: LoggingConfig
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
     queryFileUri: str
     queryList: QueryList
-    scriptVariables: typing.Dict[str, typing.Any]
+    scriptVariables: dict[str, typing.Any]
 
 @typing.type_check_only
 class StartClusterRequest(typing_extensions.TypedDict, total=False):
@@ -573,7 +575,7 @@ class StartClusterRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -589,25 +591,25 @@ class SubmitJobRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TemplateParameter(typing_extensions.TypedDict, total=False):
     description: str
-    fields: typing.List[str]
+    fields: _list[str]
     name: str
     validation: ParameterValidation
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class ValueValidation(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class WorkflowGraph(typing_extensions.TypedDict, total=False):
-    nodes: typing.List[WorkflowNode]
+    nodes: _list[WorkflowNode]
 
 @typing.type_check_only
 class WorkflowMetadata(typing_extensions.TypedDict, total=False):
@@ -620,7 +622,7 @@ class WorkflowMetadata(typing_extensions.TypedDict, total=False):
     deleteCluster: ClusterOperation
     endTime: str
     graph: WorkflowGraph
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
     startTime: str
     state: typing_extensions.Literal["UNKNOWN", "PENDING", "RUNNING", "DONE"]
     template: str
@@ -630,7 +632,7 @@ class WorkflowMetadata(typing_extensions.TypedDict, total=False):
 class WorkflowNode(typing_extensions.TypedDict, total=False):
     error: str
     jobId: str
-    prerequisiteStepIds: typing.List[str]
+    prerequisiteStepIds: _list[str]
     state: typing_extensions.Literal[
         "NODE_STATE_UNSPECIFIED",
         "BLOCKED",
@@ -646,10 +648,10 @@ class WorkflowTemplate(typing_extensions.TypedDict, total=False):
     createTime: str
     dagTimeout: str
     id: str
-    jobs: typing.List[OrderedJob]
-    labels: typing.Dict[str, typing.Any]
+    jobs: _list[OrderedJob]
+    labels: dict[str, typing.Any]
     name: str
-    parameters: typing.List[TemplateParameter]
+    parameters: _list[TemplateParameter]
     placement: WorkflowTemplatePlacement
     updateTime: str
     version: int

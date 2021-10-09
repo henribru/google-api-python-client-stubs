@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class DeliveryError(typing_extensions.TypedDict, total=False):
     errorClass: typing_extensions.Literal[
@@ -41,30 +43,30 @@ class IpReputation(typing_extensions.TypedDict, total=False):
     reputation: typing_extensions.Literal[
         "REPUTATION_CATEGORY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BAD"
     ]
-    sampleIps: typing.List[str]
+    sampleIps: _list[str]
 
 @typing.type_check_only
 class ListDomainsResponse(typing_extensions.TypedDict, total=False):
-    domains: typing.List[Domain]
+    domains: _list[Domain]
     nextPageToken: str
 
 @typing.type_check_only
 class ListTrafficStatsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    trafficStats: typing.List[TrafficStats]
+    trafficStats: _list[TrafficStats]
 
 @typing.type_check_only
 class TrafficStats(typing_extensions.TypedDict, total=False):
-    deliveryErrors: typing.List[DeliveryError]
+    deliveryErrors: _list[DeliveryError]
     dkimSuccessRatio: float
     dmarcSuccessRatio: float
     domainReputation: typing_extensions.Literal[
         "REPUTATION_CATEGORY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BAD"
     ]
     inboundEncryptionRatio: float
-    ipReputations: typing.List[IpReputation]
+    ipReputations: _list[IpReputation]
     name: str
     outboundEncryptionRatio: float
-    spammyFeedbackLoops: typing.List[FeedbackLoop]
+    spammyFeedbackLoops: _list[FeedbackLoop]
     spfSuccessRatio: float
     userReportedSpamRatio: float

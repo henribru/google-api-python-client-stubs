@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -29,30 +31,30 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListConfigsResponse(typing_extensions.TypedDict, total=False):
-    configs: typing.List[RuntimeConfig]
+    configs: _list[RuntimeConfig]
     nextPageToken: str
 
 @typing.type_check_only
 class ListVariablesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    variables: typing.List[Variable]
+    variables: _list[Variable]
 
 @typing.type_check_only
 class ListWaitersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    waiters: typing.List[Waiter]
+    waiters: _list[Waiter]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -68,16 +70,16 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class Variable(typing_extensions.TypedDict, total=False):

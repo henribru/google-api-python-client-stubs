@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class SlidesResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -48,9 +50,7 @@ class SlidesResource(googleapiclient.discovery.Resource):
 class BatchUpdatePresentationResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchUpdatePresentationResponse: ...
 
@@ -58,9 +58,7 @@ class BatchUpdatePresentationResponseHttpRequest(googleapiclient.http.HttpReques
 class PageHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Page: ...
 
@@ -68,9 +66,7 @@ class PageHttpRequest(googleapiclient.http.HttpRequest):
 class PresentationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Presentation: ...
 
@@ -78,8 +74,6 @@ class PresentationHttpRequest(googleapiclient.http.HttpRequest):
 class ThumbnailHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Thumbnail: ...

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ConfigMapEnvSource(typing_extensions.TypedDict, total=False):
     localObjectReference: LocalObjectReference
@@ -18,28 +20,28 @@ class ConfigMapKeySelector(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConfigMapVolumeSource(typing_extensions.TypedDict, total=False):
     defaultMode: int
-    items: typing.List[KeyToPath]
+    items: _list[KeyToPath]
     name: str
     optional: bool
 
 @typing.type_check_only
 class Container(typing_extensions.TypedDict, total=False):
-    args: typing.List[str]
-    command: typing.List[str]
-    env: typing.List[EnvVar]
-    envFrom: typing.List[EnvFromSource]
+    args: _list[str]
+    command: _list[str]
+    env: _list[EnvVar]
+    envFrom: _list[EnvFromSource]
     image: str
     imagePullPolicy: str
     livenessProbe: Probe
     name: str
-    ports: typing.List[ContainerPort]
+    ports: _list[ContainerPort]
     readinessProbe: Probe
     resources: ResourceRequirements
     securityContext: SecurityContext
     startupProbe: Probe
     terminationMessagePath: str
     terminationMessagePolicy: str
-    volumeMounts: typing.List[VolumeMount]
+    volumeMounts: _list[VolumeMount]
     workingDir: str
 
 @typing.type_check_only
@@ -70,18 +72,18 @@ class EnvVarSource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecAction(typing_extensions.TypedDict, total=False):
-    command: typing.List[str]
+    command: _list[str]
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class HTTPGetAction(typing_extensions.TypedDict, total=False):
     host: str
-    httpHeaders: typing.List[HTTPHeader]
+    httpHeaders: _list[HTTPHeader]
     path: str
     scheme: str
 
@@ -98,11 +100,11 @@ class InstanceAttemptResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstanceSpec(typing_extensions.TypedDict, total=False):
     activeDeadlineSeconds: str
-    containers: typing.List[Container]
+    containers: _list[Container]
     restartPolicy: str
     serviceAccountName: str
     terminationGracePeriodSeconds: str
-    volumes: typing.List[Volume]
+    volumes: _list[Volume]
 
 @typing.type_check_only
 class InstanceStatus(typing_extensions.TypedDict, total=False):
@@ -149,10 +151,10 @@ class JobSpec(typing_extensions.TypedDict, total=False):
 class JobStatus(typing_extensions.TypedDict, total=False):
     active: int
     completionTime: str
-    conditions: typing.List[JobCondition]
+    conditions: _list[JobCondition]
     failed: int
     imageDigest: str
-    instances: typing.List[InstanceStatus]
+    instances: _list[InstanceStatus]
     observedGeneration: int
     startTime: str
     succeeded: int
@@ -166,11 +168,11 @@ class KeyToPath(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListJobsResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    items: typing.List[Job]
+    items: _list[Job]
     kind: str
     metadata: ListMeta
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 AlternativeListMeta = typing_extensions.TypedDict(
     "AlternativeListMeta",
@@ -191,18 +193,18 @@ class LocalObjectReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ObjectMeta(typing_extensions.TypedDict, total=False):
-    annotations: typing.Dict[str, typing.Any]
+    annotations: dict[str, typing.Any]
     clusterName: str
     creationTimestamp: str
     deletionGracePeriodSeconds: int
     deletionTimestamp: str
-    finalizers: typing.List[str]
+    finalizers: _list[str]
     generateName: str
     generation: int
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     namespace: str
-    ownerReferences: typing.List[OwnerReference]
+    ownerReferences: _list[OwnerReference]
     resourceVersion: str
     selfLink: str
     uid: str
@@ -229,8 +231,8 @@ class Probe(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceRequirements(typing_extensions.TypedDict, total=False):
-    limits: typing.Dict[str, typing.Any]
-    requests: typing.Dict[str, typing.Any]
+    limits: dict[str, typing.Any]
+    requests: dict[str, typing.Any]
 
 @typing.type_check_only
 class SecretEnvSource(typing_extensions.TypedDict, total=False):
@@ -248,7 +250,7 @@ class SecretKeySelector(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SecretVolumeSource(typing_extensions.TypedDict, total=False):
     defaultMode: int
-    items: typing.List[KeyToPath]
+    items: _list[KeyToPath]
     optional: bool
     secretName: str
 

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AgentDeviceId(typing_extensions.TypedDict, total=False):
     id: str
@@ -13,16 +15,16 @@ class AgentOtherDeviceId(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
-    attributes: typing.Dict[str, typing.Any]
-    customData: typing.Dict[str, typing.Any]
+    attributes: dict[str, typing.Any]
+    customData: dict[str, typing.Any]
     deviceInfo: DeviceInfo
     id: str
     name: DeviceNames
     notificationSupportedByAgent: bool
-    otherDeviceIds: typing.List[AgentOtherDeviceId]
+    otherDeviceIds: _list[AgentOtherDeviceId]
     roomHint: str
     structureHint: str
-    traits: typing.List[str]
+    traits: _list[str]
     type: str
     willReportState: bool
 
@@ -35,9 +37,9 @@ class DeviceInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceNames(typing_extensions.TypedDict, total=False):
-    defaultNames: typing.List[str]
+    defaultNames: _list[str]
     name: str
-    nicknames: typing.List[str]
+    nicknames: _list[str]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -45,7 +47,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):
     agentUserId: str
-    inputs: typing.List[QueryRequestInput]
+    inputs: _list[QueryRequestInput]
     requestId: str
 
 @typing.type_check_only
@@ -54,7 +56,7 @@ class QueryRequestInput(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryRequestPayload(typing_extensions.TypedDict, total=False):
-    devices: typing.List[AgentDeviceId]
+    devices: _list[AgentDeviceId]
 
 @typing.type_check_only
 class QueryResponse(typing_extensions.TypedDict, total=False):
@@ -63,12 +65,12 @@ class QueryResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryResponsePayload(typing_extensions.TypedDict, total=False):
-    devices: typing.Dict[str, typing.Any]
+    devices: dict[str, typing.Any]
 
 @typing.type_check_only
 class ReportStateAndNotificationDevice(typing_extensions.TypedDict, total=False):
-    notifications: typing.Dict[str, typing.Any]
-    states: typing.Dict[str, typing.Any]
+    notifications: dict[str, typing.Any]
+    states: dict[str, typing.Any]
 
 @typing.type_check_only
 class ReportStateAndNotificationRequest(typing_extensions.TypedDict, total=False):
@@ -114,4 +116,4 @@ class SyncResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SyncResponsePayload(typing_extensions.TypedDict, total=False):
     agentUserId: str
-    devices: typing.List[Device]
+    devices: _list[Device]

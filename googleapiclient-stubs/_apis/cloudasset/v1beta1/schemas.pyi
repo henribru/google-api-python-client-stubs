@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AnalyzeIamPolicyLongrunningMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
@@ -16,35 +18,35 @@ class Asset(typing_extensions.TypedDict, total=False):
     assetType: str
     iamPolicy: Policy
     name: str
-    orgPolicy: typing.List[GoogleCloudOrgpolicyV1Policy]
+    orgPolicy: _list[GoogleCloudOrgpolicyV1Policy]
     resource: Resource
     servicePerimeter: GoogleIdentityAccesscontextmanagerV1ServicePerimeter
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
 class BatchGetAssetsHistoryResponse(typing_extensions.TypedDict, total=False):
-    assets: typing.List[TemporalAsset]
+    assets: _list[TemporalAsset]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class ExportAssetsRequest(typing_extensions.TypedDict, total=False):
-    assetTypes: typing.List[str]
+    assetTypes: _list[str]
     contentType: typing_extensions.Literal[
         "CONTENT_TYPE_UNSPECIFIED", "RESOURCE", "IAM_POLICY"
     ]
@@ -67,11 +69,11 @@ class GcsDestination(typing_extensions.TypedDict, total=False):
 class GoogleCloudAssetV1p7beta1Asset(typing_extensions.TypedDict, total=False):
     accessLevel: GoogleIdentityAccesscontextmanagerV1AccessLevel
     accessPolicy: GoogleIdentityAccesscontextmanagerV1AccessPolicy
-    ancestors: typing.List[str]
+    ancestors: _list[str]
     assetType: str
     iamPolicy: Policy
     name: str
-    orgPolicy: typing.List[GoogleCloudOrgpolicyV1Policy]
+    orgPolicy: _list[GoogleCloudOrgpolicyV1Policy]
     relatedAssets: GoogleCloudAssetV1p7beta1RelatedAssets
     resource: GoogleCloudAssetV1p7beta1Resource
     servicePerimeter: GoogleIdentityAccesscontextmanagerV1ServicePerimeter
@@ -79,13 +81,13 @@ class GoogleCloudAssetV1p7beta1Asset(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudAssetV1p7beta1RelatedAsset(typing_extensions.TypedDict, total=False):
-    ancestors: typing.List[str]
+    ancestors: _list[str]
     asset: str
     assetType: str
 
 @typing.type_check_only
 class GoogleCloudAssetV1p7beta1RelatedAssets(typing_extensions.TypedDict, total=False):
-    assets: typing.List[GoogleCloudAssetV1p7beta1RelatedAsset]
+    assets: _list[GoogleCloudAssetV1p7beta1RelatedAsset]
     relationshipAttributes: GoogleCloudAssetV1p7beta1RelationshipAttributes
 
 @typing.type_check_only
@@ -99,7 +101,7 @@ class GoogleCloudAssetV1p7beta1RelationshipAttributes(
 
 @typing.type_check_only
 class GoogleCloudAssetV1p7beta1Resource(typing_extensions.TypedDict, total=False):
-    data: typing.Dict[str, typing.Any]
+    data: dict[str, typing.Any]
     discoveryDocumentUri: str
     discoveryName: str
     location: str
@@ -114,8 +116,8 @@ class GoogleCloudOrgpolicyV1BooleanPolicy(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GoogleCloudOrgpolicyV1ListPolicy(typing_extensions.TypedDict, total=False):
     allValues: typing_extensions.Literal["ALL_VALUES_UNSPECIFIED", "ALLOW", "DENY"]
-    allowedValues: typing.List[str]
-    deniedValues: typing.List[str]
+    allowedValues: _list[str]
+    deniedValues: _list[str]
     inheritFromParent: bool
     suggestedValue: str
 
@@ -157,7 +159,7 @@ class GoogleIdentityAccesscontextmanagerV1AccessPolicy(
 class GoogleIdentityAccesscontextmanagerV1ApiOperation(
     typing_extensions.TypedDict, total=False
 ):
-    methodSelectors: typing.List[GoogleIdentityAccesscontextmanagerV1MethodSelector]
+    methodSelectors: _list[GoogleIdentityAccesscontextmanagerV1MethodSelector]
     serviceName: str
 
 @typing.type_check_only
@@ -165,18 +167,18 @@ class GoogleIdentityAccesscontextmanagerV1BasicLevel(
     typing_extensions.TypedDict, total=False
 ):
     combiningFunction: typing_extensions.Literal["AND", "OR"]
-    conditions: typing.List[GoogleIdentityAccesscontextmanagerV1Condition]
+    conditions: _list[GoogleIdentityAccesscontextmanagerV1Condition]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1Condition(
     typing_extensions.TypedDict, total=False
 ):
     devicePolicy: GoogleIdentityAccesscontextmanagerV1DevicePolicy
-    ipSubnetworks: typing.List[str]
-    members: typing.List[str]
+    ipSubnetworks: _list[str]
+    members: _list[str]
     negate: bool
-    regions: typing.List[str]
-    requiredAccessLevels: typing.List[str]
+    regions: _list[str]
+    requiredAccessLevels: _list[str]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1CustomLevel(
@@ -188,9 +190,9 @@ class GoogleIdentityAccesscontextmanagerV1CustomLevel(
 class GoogleIdentityAccesscontextmanagerV1DevicePolicy(
     typing_extensions.TypedDict, total=False
 ):
-    allowedDeviceManagementLevels: typing.List[str]
-    allowedEncryptionStatuses: typing.List[str]
-    osConstraints: typing.List[GoogleIdentityAccesscontextmanagerV1OsConstraint]
+    allowedDeviceManagementLevels: _list[str]
+    allowedEncryptionStatuses: _list[str]
+    osConstraints: _list[GoogleIdentityAccesscontextmanagerV1OsConstraint]
     requireAdminApproval: bool
     requireCorpOwned: bool
     requireScreenlock: bool
@@ -199,7 +201,7 @@ class GoogleIdentityAccesscontextmanagerV1DevicePolicy(
 class GoogleIdentityAccesscontextmanagerV1EgressFrom(
     typing_extensions.TypedDict, total=False
 ):
-    identities: typing.List[str]
+    identities: _list[str]
     identityType: typing_extensions.Literal[
         "IDENTITY_TYPE_UNSPECIFIED",
         "ANY_IDENTITY",
@@ -218,21 +220,21 @@ class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
 class GoogleIdentityAccesscontextmanagerV1EgressTo(
     typing_extensions.TypedDict, total=False
 ):
-    operations: typing.List[GoogleIdentityAccesscontextmanagerV1ApiOperation]
-    resources: typing.List[str]
+    operations: _list[GoogleIdentityAccesscontextmanagerV1ApiOperation]
+    resources: _list[str]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1IngressFrom(
     typing_extensions.TypedDict, total=False
 ):
-    identities: typing.List[str]
+    identities: _list[str]
     identityType: typing_extensions.Literal[
         "IDENTITY_TYPE_UNSPECIFIED",
         "ANY_IDENTITY",
         "ANY_USER_ACCOUNT",
         "ANY_SERVICE_ACCOUNT",
     ]
-    sources: typing.List[GoogleIdentityAccesscontextmanagerV1IngressSource]
+    sources: _list[GoogleIdentityAccesscontextmanagerV1IngressSource]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1IngressPolicy(
@@ -252,8 +254,8 @@ class GoogleIdentityAccesscontextmanagerV1IngressSource(
 class GoogleIdentityAccesscontextmanagerV1IngressTo(
     typing_extensions.TypedDict, total=False
 ):
-    operations: typing.List[GoogleIdentityAccesscontextmanagerV1ApiOperation]
-    resources: typing.List[str]
+    operations: _list[GoogleIdentityAccesscontextmanagerV1ApiOperation]
+    resources: _list[str]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1MethodSelector(
@@ -296,27 +298,27 @@ class GoogleIdentityAccesscontextmanagerV1ServicePerimeter(
 class GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig(
     typing_extensions.TypedDict, total=False
 ):
-    accessLevels: typing.List[str]
-    egressPolicies: typing.List[GoogleIdentityAccesscontextmanagerV1EgressPolicy]
-    ingressPolicies: typing.List[GoogleIdentityAccesscontextmanagerV1IngressPolicy]
-    resources: typing.List[str]
-    restrictedServices: typing.List[str]
+    accessLevels: _list[str]
+    egressPolicies: _list[GoogleIdentityAccesscontextmanagerV1EgressPolicy]
+    ingressPolicies: _list[GoogleIdentityAccesscontextmanagerV1IngressPolicy]
+    resources: _list[str]
+    restrictedServices: _list[str]
     vpcAccessibleServices: GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices(
     typing_extensions.TypedDict, total=False
 ):
-    allowedServices: typing.List[str]
+    allowedServices: _list[str]
     enableRestriction: bool
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OutputConfig(typing_extensions.TypedDict, total=False):
@@ -324,14 +326,14 @@ class OutputConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
-    data: typing.Dict[str, typing.Any]
+    data: dict[str, typing.Any]
     discoveryDocumentUri: str
     discoveryName: str
     parent: str
@@ -341,7 +343,7 @@ class Resource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

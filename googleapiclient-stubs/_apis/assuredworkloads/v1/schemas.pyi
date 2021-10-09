@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
     typing_extensions.TypedDict, total=False
@@ -27,7 +29,7 @@ class GoogleCloudAssuredworkloadsV1ListWorkloadsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    workloads: typing.List[GoogleCloudAssuredworkloadsV1Workload]
+    workloads: _list[GoogleCloudAssuredworkloadsV1Workload]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=False):
@@ -48,11 +50,11 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
     displayName: str
     etag: str
     kmsSettings: GoogleCloudAssuredworkloadsV1WorkloadKMSSettings
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     provisionedResourcesParent: str
-    resourceSettings: typing.List[GoogleCloudAssuredworkloadsV1WorkloadResourceSettings]
-    resources: typing.List[GoogleCloudAssuredworkloadsV1WorkloadResourceInfo]
+    resourceSettings: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceSettings]
+    resources: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceInfo]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1WorkloadKMSSettings(
@@ -105,9 +107,7 @@ class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
     createTime: str
     displayName: str
     parent: str
-    resourceSettings: typing.List[
-        GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings
-    ]
+    resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1Workload(
@@ -134,13 +134,11 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
     fedrampModerateSettings: GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings
     il4Settings: GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings
     kmsSettings: GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     provisionedResourcesParent: str
-    resourceSettings: typing.List[
-        GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings
-    ]
-    resources: typing.List[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo]
+    resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]
+    resources: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings(
@@ -203,15 +201,15 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings(
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -219,5 +217,5 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

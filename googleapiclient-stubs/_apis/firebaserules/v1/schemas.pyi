@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Arg(typing_extensions.TypedDict, total=False):
     anyValue: Empty
@@ -11,7 +13,7 @@ class Arg(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExpressionReport(typing.Dict[str, typing.Any]): ...
+class ExpressionReport(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):
@@ -21,12 +23,12 @@ class File(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FunctionCall(typing_extensions.TypedDict, total=False):
-    args: typing.List[typing.Any]
+    args: _list[typing.Any]
     function: str
 
 @typing.type_check_only
 class FunctionMock(typing_extensions.TypedDict, total=False):
-    args: typing.List[Arg]
+    args: _list[Arg]
     function: str
     result: Result
 
@@ -56,16 +58,16 @@ class Issue(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListReleasesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    releases: typing.List[Release]
+    releases: _list[Release]
 
 @typing.type_check_only
 class ListRulesetsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    rulesets: typing.List[Ruleset]
+    rulesets: _list[Ruleset]
 
 @typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
-    services: typing.List[str]
+    services: _list[str]
 
 @typing.type_check_only
 class Release(typing_extensions.TypedDict, total=False):
@@ -88,7 +90,7 @@ class Ruleset(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
-    files: typing.List[File]
+    files: _list[File]
 
 @typing.type_check_only
 class SourcePosition(typing_extensions.TypedDict, total=False):
@@ -104,7 +106,7 @@ class TestCase(typing_extensions.TypedDict, total=False):
     expressionReportLevel: typing_extensions.Literal[
         "LEVEL_UNSPECIFIED", "NONE", "FULL", "VISITED"
     ]
-    functionMocks: typing.List[FunctionMock]
+    functionMocks: _list[FunctionMock]
     pathEncoding: typing_extensions.Literal[
         "ENCODING_UNSPECIFIED", "URL_ENCODED", "PLAIN"
     ]
@@ -113,12 +115,12 @@ class TestCase(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestResult(typing_extensions.TypedDict, total=False):
-    debugMessages: typing.List[str]
+    debugMessages: _list[str]
     errorPosition: SourcePosition
-    expressionReports: typing.List[ExpressionReport]
-    functionCalls: typing.List[FunctionCall]
+    expressionReports: _list[ExpressionReport]
+    functionCalls: _list[FunctionCall]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCESS", "FAILURE"]
-    visitedExpressions: typing.List[VisitedExpression]
+    visitedExpressions: _list[VisitedExpression]
 
 @typing.type_check_only
 class TestRulesetRequest(typing_extensions.TypedDict, total=False):
@@ -127,12 +129,12 @@ class TestRulesetRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestRulesetResponse(typing_extensions.TypedDict, total=False):
-    issues: typing.List[Issue]
-    testResults: typing.List[TestResult]
+    issues: _list[Issue]
+    testResults: _list[TestResult]
 
 @typing.type_check_only
 class TestSuite(typing_extensions.TypedDict, total=False):
-    testCases: typing.List[TestCase]
+    testCases: _list[TestCase]
 
 @typing.type_check_only
 class UpdateReleaseRequest(typing_extensions.TypedDict, total=False):

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AutoForwarding(typing_extensions.TypedDict, total=False):
     disposition: typing_extensions.Literal[
@@ -12,13 +14,13 @@ class AutoForwarding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchDeleteMessagesRequest(typing_extensions.TypedDict, total=False):
-    ids: typing.List[str]
+    ids: _list[str]
 
 @typing.type_check_only
 class BatchModifyMessagesRequest(typing_extensions.TypedDict, total=False):
-    addLabelIds: typing.List[str]
-    ids: typing.List[str]
-    removeLabelIds: typing.List[str]
+    addLabelIds: _list[str]
+    ids: _list[str]
+    removeLabelIds: _list[str]
 
 @typing.type_check_only
 class Delegate(typing_extensions.TypedDict, total=False):
@@ -40,9 +42,9 @@ class Filter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FilterAction(typing_extensions.TypedDict, total=False):
-    addLabelIds: typing.List[str]
+    addLabelIds: _list[str]
     forward: str
-    removeLabelIds: typing.List[str]
+    removeLabelIds: _list[str]
 
 AlternativeFilterCriteria = typing_extensions.TypedDict(
     "AlternativeFilterCriteria",
@@ -73,23 +75,23 @@ class ForwardingAddress(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class History(typing_extensions.TypedDict, total=False):
     id: str
-    labelsAdded: typing.List[HistoryLabelAdded]
-    labelsRemoved: typing.List[HistoryLabelRemoved]
-    messages: typing.List[Message]
-    messagesAdded: typing.List[HistoryMessageAdded]
-    messagesDeleted: typing.List[HistoryMessageDeleted]
+    labelsAdded: _list[HistoryLabelAdded]
+    labelsRemoved: _list[HistoryLabelRemoved]
+    messages: _list[Message]
+    messagesAdded: _list[HistoryMessageAdded]
+    messagesDeleted: _list[HistoryMessageDeleted]
 
 @typing.type_check_only
-class HistoryLabelAdded(typing.Dict[str, typing.Any]): ...
+class HistoryLabelAdded(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class HistoryLabelRemoved(typing.Dict[str, typing.Any]): ...
+class HistoryLabelRemoved(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class HistoryMessageAdded(typing.Dict[str, typing.Any]): ...
+class HistoryMessageAdded(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class HistoryMessageDeleted(typing.Dict[str, typing.Any]): ...
+class HistoryMessageDeleted(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ImapSettings(typing_extensions.TypedDict, total=False):
@@ -126,57 +128,57 @@ class LanguageSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListDelegatesResponse(typing_extensions.TypedDict, total=False):
-    delegates: typing.List[Delegate]
+    delegates: _list[Delegate]
 
 @typing.type_check_only
 class ListDraftsResponse(typing_extensions.TypedDict, total=False):
-    drafts: typing.List[Draft]
+    drafts: _list[Draft]
     nextPageToken: str
     resultSizeEstimate: int
 
 @typing.type_check_only
 class ListFiltersResponse(typing_extensions.TypedDict, total=False):
-    filter: typing.List[Filter]
+    filter: _list[Filter]
 
 @typing.type_check_only
 class ListForwardingAddressesResponse(typing_extensions.TypedDict, total=False):
-    forwardingAddresses: typing.List[ForwardingAddress]
+    forwardingAddresses: _list[ForwardingAddress]
 
 @typing.type_check_only
 class ListHistoryResponse(typing_extensions.TypedDict, total=False):
-    history: typing.List[History]
+    history: _list[History]
     historyId: str
     nextPageToken: str
 
 @typing.type_check_only
 class ListLabelsResponse(typing_extensions.TypedDict, total=False):
-    labels: typing.List[Label]
+    labels: _list[Label]
 
 @typing.type_check_only
 class ListMessagesResponse(typing_extensions.TypedDict, total=False):
-    messages: typing.List[Message]
+    messages: _list[Message]
     nextPageToken: str
     resultSizeEstimate: int
 
 @typing.type_check_only
 class ListSendAsResponse(typing_extensions.TypedDict, total=False):
-    sendAs: typing.List[SendAs]
+    sendAs: _list[SendAs]
 
 @typing.type_check_only
 class ListSmimeInfoResponse(typing_extensions.TypedDict, total=False):
-    smimeInfo: typing.List[SmimeInfo]
+    smimeInfo: _list[SmimeInfo]
 
 @typing.type_check_only
 class ListThreadsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resultSizeEstimate: int
-    threads: typing.List[Thread]
+    threads: _list[Thread]
 
 @typing.type_check_only
-class Message(typing.Dict[str, typing.Any]): ...
+class Message(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class MessagePart(typing.Dict[str, typing.Any]): ...
+class MessagePart(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class MessagePartBody(typing_extensions.TypedDict, total=False):
@@ -191,13 +193,13 @@ class MessagePartHeader(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ModifyMessageRequest(typing_extensions.TypedDict, total=False):
-    addLabelIds: typing.List[str]
-    removeLabelIds: typing.List[str]
+    addLabelIds: _list[str]
+    removeLabelIds: _list[str]
 
 @typing.type_check_only
 class ModifyThreadRequest(typing_extensions.TypedDict, total=False):
-    addLabelIds: typing.List[str]
-    removeLabelIds: typing.List[str]
+    addLabelIds: _list[str]
+    removeLabelIds: _list[str]
 
 @typing.type_check_only
 class PopSettings(typing_extensions.TypedDict, total=False):
@@ -250,7 +252,7 @@ class SmtpMsa(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class Thread(typing.Dict[str, typing.Any]): ...
+class Thread(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class VacationSettings(typing_extensions.TypedDict, total=False):
@@ -266,7 +268,7 @@ class VacationSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WatchRequest(typing_extensions.TypedDict, total=False):
     labelFilterAction: typing_extensions.Literal["include", "exclude"]
-    labelIds: typing.List[str]
+    labelIds: _list[str]
     topicName: str
 
 @typing.type_check_only

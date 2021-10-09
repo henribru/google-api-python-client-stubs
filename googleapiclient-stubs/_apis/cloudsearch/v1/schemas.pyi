@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditLoggingSettings(typing_extensions.TypedDict, total=False):
     logAdminReadActions: bool
@@ -24,22 +26,22 @@ class CheckAccessResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CompositeFilter(typing_extensions.TypedDict, total=False):
     logicOperator: typing_extensions.Literal["AND", "OR", "NOT"]
-    subFilters: typing.List[Filter]
+    subFilters: _list[Filter]
 
 @typing.type_check_only
 class ContextAttribute(typing_extensions.TypedDict, total=False):
     name: str
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class CustomerIndexStats(typing_extensions.TypedDict, total=False):
     date: Date
-    itemCountByStatus: typing.List[ItemCountByStatus]
+    itemCountByStatus: _list[ItemCountByStatus]
 
 @typing.type_check_only
 class CustomerQueryStats(typing_extensions.TypedDict, total=False):
     date: Date
-    queryCountByStatus: typing.List[QueryCountByStatus]
+    queryCountByStatus: _list[QueryCountByStatus]
 
 @typing.type_check_only
 class CustomerSessionStats(typing_extensions.TypedDict, total=False):
@@ -63,20 +65,20 @@ class DataSource(typing_extensions.TypedDict, total=False):
     disableModifications: bool
     disableServing: bool
     displayName: str
-    indexingServiceAccounts: typing.List[str]
-    itemsVisibility: typing.List[GSuitePrincipal]
+    indexingServiceAccounts: _list[str]
+    itemsVisibility: _list[GSuitePrincipal]
     name: str
-    operationIds: typing.List[str]
+    operationIds: _list[str]
     shortName: str
 
 @typing.type_check_only
 class DataSourceIndexStats(typing_extensions.TypedDict, total=False):
     date: Date
-    itemCountByStatus: typing.List[ItemCountByStatus]
+    itemCountByStatus: _list[ItemCountByStatus]
 
 @typing.type_check_only
 class DataSourceRestriction(typing_extensions.TypedDict, total=False):
-    filterOptions: typing.List[FilterOptions]
+    filterOptions: _list[FilterOptions]
     source: Source
 
 @typing.type_check_only
@@ -97,7 +99,7 @@ class DatePropertyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DateValues(typing_extensions.TypedDict, total=False):
-    values: typing.List[Date]
+    values: _list[Date]
 
 @typing.type_check_only
 class DebugOptions(typing_extensions.TypedDict, total=False):
@@ -123,7 +125,7 @@ class DoublePropertyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DoubleValues(typing_extensions.TypedDict, total=False):
-    values: typing.List[float]
+    values: _list[float]
 
 @typing.type_check_only
 class DriveFollowUpRestrict(typing_extensions.TypedDict, total=False):
@@ -178,7 +180,7 @@ class EnumOperatorOptions(typing_extensions.TypedDict, total=False):
 class EnumPropertyOptions(typing_extensions.TypedDict, total=False):
     operatorOptions: EnumOperatorOptions
     orderedRanking: typing_extensions.Literal["NO_ORDER", "ASCENDING", "DESCENDING"]
-    possibleValues: typing.List[EnumValuePair]
+    possibleValues: _list[EnumValuePair]
 
 @typing.type_check_only
 class EnumValuePair(typing_extensions.TypedDict, total=False):
@@ -187,11 +189,11 @@ class EnumValuePair(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EnumValues(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class ErrorInfo(typing_extensions.TypedDict, total=False):
-    errorMessages: typing.List[ErrorMessage]
+    errorMessages: _list[ErrorMessage]
 
 @typing.type_check_only
 class ErrorMessage(typing_extensions.TypedDict, total=False):
@@ -213,7 +215,7 @@ class FacetOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FacetResult(typing_extensions.TypedDict, total=False):
-    buckets: typing.List[FacetBucket]
+    buckets: _list[FacetBucket]
     objectType: str
     operatorName: str
     sourceName: str
@@ -224,10 +226,10 @@ class FieldViolation(typing_extensions.TypedDict, total=False):
     field: str
 
 @typing.type_check_only
-class Filter(typing.Dict[str, typing.Any]): ...
+class Filter(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class FilterOptions(typing.Dict[str, typing.Any]): ...
+class FilterOptions(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class FreshnessOptions(typing_extensions.TypedDict, total=False):
@@ -242,37 +244,37 @@ class GSuitePrincipal(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetCustomerIndexStatsResponse(typing_extensions.TypedDict, total=False):
-    stats: typing.List[CustomerIndexStats]
+    stats: _list[CustomerIndexStats]
 
 @typing.type_check_only
 class GetCustomerQueryStatsResponse(typing_extensions.TypedDict, total=False):
-    stats: typing.List[CustomerQueryStats]
+    stats: _list[CustomerQueryStats]
 
 @typing.type_check_only
 class GetCustomerSessionStatsResponse(typing_extensions.TypedDict, total=False):
-    stats: typing.List[CustomerSessionStats]
+    stats: _list[CustomerSessionStats]
 
 @typing.type_check_only
 class GetCustomerUserStatsResponse(typing_extensions.TypedDict, total=False):
-    stats: typing.List[CustomerUserStats]
+    stats: _list[CustomerUserStats]
 
 @typing.type_check_only
 class GetDataSourceIndexStatsResponse(typing_extensions.TypedDict, total=False):
-    stats: typing.List[DataSourceIndexStats]
+    stats: _list[DataSourceIndexStats]
 
 @typing.type_check_only
 class GetSearchApplicationQueryStatsResponse(typing_extensions.TypedDict, total=False):
-    stats: typing.List[SearchApplicationQueryStats]
+    stats: _list[SearchApplicationQueryStats]
 
 @typing.type_check_only
 class GetSearchApplicationSessionStatsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    stats: typing.List[SearchApplicationSessionStats]
+    stats: _list[SearchApplicationSessionStats]
 
 @typing.type_check_only
 class GetSearchApplicationUserStatsResponse(typing_extensions.TypedDict, total=False):
-    stats: typing.List[SearchApplicationUserStats]
+    stats: _list[SearchApplicationUserStats]
 
 @typing.type_check_only
 class HtmlOperatorOptions(typing_extensions.TypedDict, total=False):
@@ -285,7 +287,7 @@ class HtmlPropertyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HtmlValues(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class IndexItemOptions(typing_extensions.TypedDict, total=False):
@@ -314,7 +316,7 @@ class IntegerPropertyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IntegerValues(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class Interaction(typing_extensions.TypedDict, total=False):
@@ -323,17 +325,17 @@ class Interaction(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["UNSPECIFIED", "VIEW", "EDIT"]
 
 @typing.type_check_only
-class Item(typing.Dict[str, typing.Any]): ...
+class Item(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ItemAcl(typing_extensions.TypedDict, total=False):
     aclInheritanceType: typing_extensions.Literal[
         "NOT_APPLICABLE", "CHILD_OVERRIDE", "PARENT_OVERRIDE", "BOTH_PERMIT"
     ]
-    deniedReaders: typing.List[Principal]
+    deniedReaders: _list[Principal]
     inheritAclFrom: str
-    owners: typing.List[Principal]
-    readers: typing.List[Principal]
+    owners: _list[Principal]
+    readers: _list[Principal]
 
 @typing.type_check_only
 class ItemContent(typing_extensions.TypedDict, total=False):
@@ -353,11 +355,11 @@ class ItemCountByStatus(typing_extensions.TypedDict, total=False):
 class ItemMetadata(typing_extensions.TypedDict, total=False):
     containerName: str
     contentLanguage: str
-    contextAttributes: typing.List[ContextAttribute]
+    contextAttributes: _list[ContextAttribute]
     createTime: str
     hash: str
-    interactions: typing.List[Interaction]
-    keywords: typing.List[str]
+    interactions: _list[Interaction]
+    keywords: _list[str]
     mimeType: str
     objectType: str
     searchQualityMetadata: SearchQualityMetadata
@@ -370,48 +372,48 @@ class ItemStatus(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED", "ERROR", "MODIFIED", "NEW_ITEM", "ACCEPTED"
     ]
-    processingErrors: typing.List[ProcessingError]
-    repositoryErrors: typing.List[RepositoryError]
+    processingErrors: _list[ProcessingError]
+    repositoryErrors: _list[RepositoryError]
 
 @typing.type_check_only
-class ItemStructuredData(typing.Dict[str, typing.Any]): ...
+class ItemStructuredData(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ListDataSourceResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sources: typing.List[DataSource]
+    sources: _list[DataSource]
 
 @typing.type_check_only
 class ListItemNamesForUnmappedIdentityResponse(
     typing_extensions.TypedDict, total=False
 ):
-    itemNames: typing.List[str]
+    itemNames: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
 class ListItemsResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Item]
+    items: _list[Item]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListQuerySourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sources: typing.List[QuerySource]
+    sources: _list[QuerySource]
 
 @typing.type_check_only
 class ListSearchApplicationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    searchApplications: typing.List[SearchApplication]
+    searchApplications: _list[SearchApplication]
 
 @typing.type_check_only
 class ListUnmappedIdentitiesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    unmappedIdentities: typing.List[UnmappedIdentity]
+    unmappedIdentities: _list[UnmappedIdentity]
 
 @typing.type_check_only
 class MatchRange(typing_extensions.TypedDict, total=False):
@@ -426,7 +428,7 @@ class Media(typing_extensions.TypedDict, total=False):
 class Metadata(typing_extensions.TypedDict, total=False):
     createTime: str
     displayOptions: ResultDisplayMetadata
-    fields: typing.List[NamedProperty]
+    fields: _list[NamedProperty]
     mimeType: str
     objectType: str
     owner: Person
@@ -435,24 +437,24 @@ class Metadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Metaline(typing_extensions.TypedDict, total=False):
-    properties: typing.List[DisplayedProperty]
+    properties: _list[DisplayedProperty]
 
 @typing.type_check_only
 class Name(typing_extensions.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class NamedProperty(typing.Dict[str, typing.Any]): ...
+class NamedProperty(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ObjectDefinition(typing_extensions.TypedDict, total=False):
     name: str
     options: ObjectOptions
-    propertyDefinitions: typing.List[PropertyDefinition]
+    propertyDefinitions: _list[PropertyDefinition]
 
 @typing.type_check_only
 class ObjectDisplayOptions(typing_extensions.TypedDict, total=False):
-    metalines: typing.List[Metaline]
+    metalines: _list[Metaline]
     objectDisplayLabel: str
 
 @typing.type_check_only
@@ -462,18 +464,18 @@ class ObjectOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ObjectPropertyOptions(typing_extensions.TypedDict, total=False):
-    subobjectProperties: typing.List[PropertyDefinition]
+    subobjectProperties: _list[PropertyDefinition]
 
 @typing.type_check_only
-class ObjectValues(typing.Dict[str, typing.Any]): ...
+class ObjectValues(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class PeopleSuggestion(typing_extensions.TypedDict, total=False):
@@ -481,11 +483,11 @@ class PeopleSuggestion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Person(typing_extensions.TypedDict, total=False):
-    emailAddresses: typing.List[EmailAddress]
+    emailAddresses: _list[EmailAddress]
     name: str
     obfuscatedId: str
-    personNames: typing.List[Name]
-    photos: typing.List[Photo]
+    personNames: _list[Name]
+    photos: _list[Photo]
 
 @typing.type_check_only
 class Photo(typing_extensions.TypedDict, total=False):
@@ -497,11 +499,11 @@ class PollItemsRequest(typing_extensions.TypedDict, total=False):
     debugOptions: DebugOptions
     limit: int
     queue: str
-    statusCodes: typing.List[str]
+    statusCodes: _list[str]
 
 @typing.type_check_only
 class PollItemsResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Item]
+    items: _list[Item]
 
 @typing.type_check_only
 class Principal(typing_extensions.TypedDict, total=False):
@@ -519,10 +521,10 @@ class ProcessingError(typing_extensions.TypedDict, total=False):
         "ACL_CYCLE",
     ]
     errorMessage: str
-    fieldViolations: typing.List[FieldViolation]
+    fieldViolations: _list[FieldViolation]
 
 @typing.type_check_only
-class PropertyDefinition(typing.Dict[str, typing.Any]): ...
+class PropertyDefinition(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class PropertyDisplayOptions(typing_extensions.TypedDict, total=False):
@@ -579,7 +581,7 @@ class QueryItem(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueryOperator(typing_extensions.TypedDict, total=False):
     displayName: str
-    enumValues: typing.List[str]
+    enumValues: _list[str]
     greaterThanOperatorName: str
     isFacetable: bool
     isRepeatable: bool
@@ -604,7 +606,7 @@ class QueryOperator(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QuerySource(typing_extensions.TypedDict, total=False):
     displayName: str
-    operators: typing.List[QueryOperator]
+    operators: _list[QueryOperator]
     shortName: str
     source: Source
 
@@ -653,7 +655,7 @@ class RestrictItem(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResultCounts(typing_extensions.TypedDict, total=False):
-    sourceResultCounts: typing.List[SourceResultCount]
+    sourceResultCounts: _list[SourceResultCount]
 
 @typing.type_check_only
 class ResultDebugInfo(typing_extensions.TypedDict, total=False):
@@ -667,10 +669,10 @@ class ResultDisplayField(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResultDisplayLine(typing_extensions.TypedDict, total=False):
-    fields: typing.List[ResultDisplayField]
+    fields: _list[ResultDisplayField]
 
 @typing.type_check_only
-class ResultDisplayMetadata(typing.Dict[str, typing.Any]): ...
+class ResultDisplayMetadata(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RetrievalImportance(typing_extensions.TypedDict, total=False):
@@ -678,8 +680,8 @@ class RetrievalImportance(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Schema(typing_extensions.TypedDict, total=False):
-    objectDefinitions: typing.List[ObjectDefinition]
-    operationIds: typing.List[str]
+    objectDefinitions: _list[ObjectDefinition]
+    operationIds: _list[str]
 
 @typing.type_check_only
 class ScoringConfig(typing_extensions.TypedDict, total=False):
@@ -687,12 +689,12 @@ class ScoringConfig(typing_extensions.TypedDict, total=False):
     disablePersonalization: bool
 
 @typing.type_check_only
-class SearchApplication(typing.Dict[str, typing.Any]): ...
+class SearchApplication(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class SearchApplicationQueryStats(typing_extensions.TypedDict, total=False):
     date: Date
-    queryCountByStatus: typing.List[QueryCountByStatus]
+    queryCountByStatus: _list[QueryCountByStatus]
 
 @typing.type_check_only
 class SearchApplicationSessionStats(typing_extensions.TypedDict, total=False):
@@ -714,7 +716,7 @@ class SearchItemsByViewUrlRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchItemsByViewUrlResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Item]
+    items: _list[Item]
     nextPageToken: str
 
 @typing.type_check_only
@@ -723,9 +725,9 @@ class SearchQualityMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchRequest(typing_extensions.TypedDict, total=False):
-    contextAttributes: typing.List[ContextAttribute]
-    dataSourceRestrictions: typing.List[DataSourceRestriction]
-    facetOptions: typing.List[FacetOptions]
+    contextAttributes: _list[ContextAttribute]
+    dataSourceRestrictions: _list[DataSourceRestriction]
+    facetOptions: _list[FacetOptions]
     pageSize: int
     query: str
     queryInterpretationOptions: QueryInterpretationOptions
@@ -737,22 +739,22 @@ class SearchRequest(typing_extensions.TypedDict, total=False):
 class SearchResponse(typing_extensions.TypedDict, total=False):
     debugInfo: ResponseDebugInfo
     errorInfo: ErrorInfo
-    facetResults: typing.List[FacetResult]
+    facetResults: _list[FacetResult]
     hasMoreResults: bool
     queryInterpretation: QueryInterpretation
     resultCountEstimate: str
     resultCountExact: str
     resultCounts: ResultCounts
-    results: typing.List[SearchResult]
-    spellResults: typing.List[SpellResult]
-    structuredResults: typing.List[StructuredResult]
+    results: _list[SearchResult]
+    spellResults: _list[SpellResult]
+    structuredResults: _list[StructuredResult]
 
 @typing.type_check_only
-class SearchResult(typing.Dict[str, typing.Any]): ...
+class SearchResult(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Snippet(typing_extensions.TypedDict, total=False):
-    matchRanges: typing.List[MatchRange]
+    matchRanges: _list[MatchRange]
     snippet: str
 
 @typing.type_check_only
@@ -809,11 +811,11 @@ class StartUploadItemRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StructuredDataObject(typing.Dict[str, typing.Any]): ...
+class StructuredDataObject(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class StructuredResult(typing_extensions.TypedDict, total=False):
@@ -821,13 +823,13 @@ class StructuredResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SuggestRequest(typing_extensions.TypedDict, total=False):
-    dataSourceRestrictions: typing.List[DataSourceRestriction]
+    dataSourceRestrictions: _list[DataSourceRestriction]
     query: str
     requestOptions: RequestOptions
 
 @typing.type_check_only
 class SuggestResponse(typing_extensions.TypedDict, total=False):
-    suggestResults: typing.List[SuggestResult]
+    suggestResults: _list[SuggestResult]
 
 @typing.type_check_only
 class SuggestResult(typing_extensions.TypedDict, total=False):
@@ -848,7 +850,7 @@ class TextPropertyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TextValues(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class TimestampOperatorOptions(typing_extensions.TypedDict, total=False):
@@ -862,7 +864,7 @@ class TimestampPropertyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TimestampValues(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class UnmappedIdentity(typing_extensions.TypedDict, total=False):

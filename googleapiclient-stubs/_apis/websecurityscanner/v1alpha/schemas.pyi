@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Authentication(typing_extensions.TypedDict, total=False):
     customAccount: CustomAccount
@@ -83,45 +85,45 @@ class Header(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListCrawledUrlsResponse(typing_extensions.TypedDict, total=False):
-    crawledUrls: typing.List[CrawledUrl]
+    crawledUrls: _list[CrawledUrl]
     nextPageToken: str
 
 @typing.type_check_only
 class ListFindingTypeStatsResponse(typing_extensions.TypedDict, total=False):
-    findingTypeStats: typing.List[FindingTypeStats]
+    findingTypeStats: _list[FindingTypeStats]
 
 @typing.type_check_only
 class ListFindingsResponse(typing_extensions.TypedDict, total=False):
-    findings: typing.List[Finding]
+    findings: _list[Finding]
     nextPageToken: str
 
 @typing.type_check_only
 class ListScanConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    scanConfigs: typing.List[ScanConfig]
+    scanConfigs: _list[ScanConfig]
 
 @typing.type_check_only
 class ListScanRunsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    scanRuns: typing.List[ScanRun]
+    scanRuns: _list[ScanRun]
 
 @typing.type_check_only
 class OutdatedLibrary(typing_extensions.TypedDict, total=False):
-    learnMoreUrls: typing.List[str]
+    learnMoreUrls: _list[str]
     libraryName: str
     version: str
 
 @typing.type_check_only
 class ScanConfig(typing_extensions.TypedDict, total=False):
     authentication: Authentication
-    blacklistPatterns: typing.List[str]
+    blacklistPatterns: _list[str]
     displayName: str
     latestRun: ScanRun
     maxQps: int
     name: str
     schedule: Schedule
-    startingUrls: typing.List[str]
-    targetPlatforms: typing.List[str]
+    startingUrls: _list[str]
+    targetPlatforms: _list[str]
     userAgent: typing_extensions.Literal[
         "USER_AGENT_UNSPECIFIED", "CHROME_LINUX", "CHROME_ANDROID", "SAFARI_IPHONE"
     ]
@@ -160,14 +162,14 @@ class ViolatingResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VulnerableHeaders(typing_extensions.TypedDict, total=False):
-    headers: typing.List[Header]
-    missingHeaders: typing.List[Header]
+    headers: _list[Header]
+    missingHeaders: _list[Header]
 
 @typing.type_check_only
 class VulnerableParameters(typing_extensions.TypedDict, total=False):
-    parameterNames: typing.List[str]
+    parameterNames: _list[str]
 
 @typing.type_check_only
 class Xss(typing_extensions.TypedDict, total=False):
     errorMessage: str
-    stackTraces: typing.List[str]
+    stackTraces: _list[str]

@@ -2,9 +2,11 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class SasPortalAssignment(typing_extensions.TypedDict, total=False):
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -21,28 +23,28 @@ class SasPortalCreateSignedDeviceRequest(typing_extensions.TypedDict, total=Fals
 class SasPortalCustomer(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
-    sasUserIds: typing.List[str]
+    sasUserIds: _list[str]
 
 @typing.type_check_only
 class SasPortalDeployment(typing_extensions.TypedDict, total=False):
-    allowedBillingModes: typing.List[str]
+    allowedBillingModes: _list[str]
     defaultBillingMode: typing_extensions.Literal[
         "BILLING_MODE_UNSPECIFIED", "MOBILE", "FIXED_WIRELESS"
     ]
     displayName: str
-    frns: typing.List[str]
+    frns: _list[str]
     name: str
-    sasUserIds: typing.List[str]
+    sasUserIds: _list[str]
 
 @typing.type_check_only
 class SasPortalDevice(typing_extensions.TypedDict, total=False):
     activeConfig: SasPortalDeviceConfig
-    currentChannels: typing.List[SasPortalChannelWithScore]
+    currentChannels: _list[SasPortalChannelWithScore]
     deviceMetadata: SasPortalDeviceMetadata
     displayName: str
     fccId: str
-    grantRangeAllowlists: typing.List[SasPortalFrequencyRange]
-    grants: typing.List[SasPortalDeviceGrant]
+    grantRangeAllowlists: _list[SasPortalFrequencyRange]
+    grants: _list[SasPortalDeviceGrant]
     name: str
     preloadedConfig: SasPortalDeviceConfig
     serialNumber: str
@@ -74,7 +76,7 @@ class SasPortalDeviceConfig(typing_extensions.TypedDict, total=False):
     ]
     installationParams: SasPortalInstallationParams
     isSigned: bool
-    measurementCapabilities: typing.List[str]
+    measurementCapabilities: _list[str]
     model: SasPortalDeviceModel
     state: typing_extensions.Literal[
         "DEVICE_CONFIG_STATE_UNSPECIFIED", "DRAFT", "FINAL"
@@ -91,7 +93,7 @@ class SasPortalDeviceGrant(typing_extensions.TypedDict, total=False):
     frequencyRange: SasPortalFrequencyRange
     grantId: str
     maxEirp: float
-    moveList: typing.List[SasPortalDpaMoveList]
+    moveList: _list[SasPortalDpaMoveList]
     state: typing_extensions.Literal[
         "GRANT_STATE_UNSPECIFIED",
         "GRANT_STATE_GRANTED",
@@ -100,7 +102,7 @@ class SasPortalDeviceGrant(typing_extensions.TypedDict, total=False):
         "GRANT_STATE_AUTHORIZED",
         "GRANT_STATE_EXPIRED",
     ]
-    suspensionReason: typing.List[str]
+    suspensionReason: _list[str]
 
 @typing.type_check_only
 class SasPortalDeviceMetadata(typing_extensions.TypedDict, total=False):
@@ -161,23 +163,23 @@ class SasPortalInstallationParams(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SasPortalListCustomersResponse(typing_extensions.TypedDict, total=False):
-    customers: typing.List[SasPortalCustomer]
+    customers: _list[SasPortalCustomer]
     nextPageToken: str
 
 @typing.type_check_only
 class SasPortalListDeploymentsResponse(typing_extensions.TypedDict, total=False):
-    deployments: typing.List[SasPortalDeployment]
+    deployments: _list[SasPortalDeployment]
     nextPageToken: str
 
 @typing.type_check_only
 class SasPortalListDevicesResponse(typing_extensions.TypedDict, total=False):
-    devices: typing.List[SasPortalDevice]
+    devices: _list[SasPortalDevice]
     nextPageToken: str
 
 @typing.type_check_only
 class SasPortalListNodesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    nodes: typing.List[SasPortalNode]
+    nodes: _list[SasPortalNode]
 
 @typing.type_check_only
 class SasPortalMoveDeploymentRequest(typing_extensions.TypedDict, total=False):
@@ -195,19 +197,19 @@ class SasPortalMoveNodeRequest(typing_extensions.TypedDict, total=False):
 class SasPortalNode(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
-    sasUserIds: typing.List[str]
+    sasUserIds: _list[str]
 
 @typing.type_check_only
 class SasPortalOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: SasPortalStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class SasPortalPolicy(typing_extensions.TypedDict, total=False):
-    assignments: typing.List[SasPortalAssignment]
+    assignments: _list[SasPortalAssignment]
     etag: str
 
 @typing.type_check_only
@@ -223,17 +225,17 @@ class SasPortalSignDeviceRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SasPortalStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class SasPortalTestPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
     resource: str
 
 @typing.type_check_only
 class SasPortalTestPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class SasPortalUpdateSignedDeviceRequest(typing_extensions.TypedDict, total=False):

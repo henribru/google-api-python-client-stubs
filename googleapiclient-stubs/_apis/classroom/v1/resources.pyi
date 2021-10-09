@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ClassroomResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -43,21 +45,16 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                announcementStates: typing.Union[
+                announcementStates: typing_extensions.Literal[
+                    "ANNOUNCEMENT_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "ANNOUNCEMENT_STATE_UNSPECIFIED",
                         "PUBLISHED",
                         "DRAFT",
                         "DELETED",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "ANNOUNCEMENT_STATE_UNSPECIFIED",
-                            "PUBLISHED",
-                            "DRAFT",
-                            "DELETED",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 orderBy: str = ...,
                 pageSize: int = ...,
@@ -103,7 +100,15 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    states: typing.Union[
+                    states: typing_extensions.Literal[
+                        "SUBMISSION_STATE_UNSPECIFIED",
+                        "NEW",
+                        "CREATED",
+                        "TURNED_IN",
+                        "RETURNED",
+                        "RECLAIMED_BY_STUDENT",
+                    ]
+                    | _list[
                         typing_extensions.Literal[
                             "SUBMISSION_STATE_UNSPECIFIED",
                             "NEW",
@@ -111,17 +116,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                             "TURNED_IN",
                             "RETURNED",
                             "RECLAIMED_BY_STUDENT",
-                        ],
-                        typing.List[
-                            typing_extensions.Literal[
-                                "SUBMISSION_STATE_UNSPECIFIED",
-                                "NEW",
-                                "CREATED",
-                                "TURNED_IN",
-                                "RETURNED",
-                                "RECLAIMED_BY_STUDENT",
-                            ]
-                        ],
+                        ]
                     ] = ...,
                     userId: str = ...,
                     **kwargs: typing.Any
@@ -185,18 +180,13 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                courseWorkStates: typing.Union[
+                courseWorkStates: typing_extensions.Literal[
+                    "COURSE_WORK_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "COURSE_WORK_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "COURSE_WORK_STATE_UNSPECIFIED",
-                            "PUBLISHED",
-                            "DRAFT",
-                            "DELETED",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 orderBy: str = ...,
                 pageSize: int = ...,
@@ -240,21 +230,19 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                courseWorkMaterialStates: typing.Union[
+                courseWorkMaterialStates: typing_extensions.Literal[
+                    "COURSEWORK_MATERIAL_STATE_UNSPECIFIED",
+                    "PUBLISHED",
+                    "DRAFT",
+                    "DELETED",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "COURSEWORK_MATERIAL_STATE_UNSPECIFIED",
                         "PUBLISHED",
                         "DRAFT",
                         "DELETED",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "COURSEWORK_MATERIAL_STATE_UNSPECIFIED",
-                            "PUBLISHED",
-                            "DRAFT",
-                            "DELETED",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 materialDriveId: str = ...,
                 materialLink: str = ...,
@@ -351,7 +339,15 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            courseStates: typing.Union[
+            courseStates: typing_extensions.Literal[
+                "COURSE_STATE_UNSPECIFIED",
+                "ACTIVE",
+                "ARCHIVED",
+                "PROVISIONED",
+                "DECLINED",
+                "SUSPENDED",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "COURSE_STATE_UNSPECIFIED",
                     "ACTIVE",
@@ -359,17 +355,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     "PROVISIONED",
                     "DECLINED",
                     "SUSPENDED",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "COURSE_STATE_UNSPECIFIED",
-                        "ACTIVE",
-                        "ARCHIVED",
-                        "PROVISIONED",
-                        "DECLINED",
-                        "SUSPENDED",
-                    ]
-                ],
+                ]
             ] = ...,
             pageSize: int = ...,
             pageToken: str = ...,
@@ -441,17 +427,13 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 invitedEmailAddress: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                states: typing.Union[
+                states: typing_extensions.Literal[
+                    "GUARDIAN_INVITATION_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "GUARDIAN_INVITATION_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "GUARDIAN_INVITATION_STATE_UNSPECIFIED",
-                            "PENDING",
-                            "COMPLETE",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListGuardianInvitationsResponseHttpRequest: ...
@@ -495,9 +477,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
 class AnnouncementHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Announcement: ...
 
@@ -505,9 +485,7 @@ class AnnouncementHttpRequest(googleapiclient.http.HttpRequest):
 class CourseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Course: ...
 
@@ -515,9 +493,7 @@ class CourseHttpRequest(googleapiclient.http.HttpRequest):
 class CourseAliasHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CourseAlias: ...
 
@@ -525,9 +501,7 @@ class CourseAliasHttpRequest(googleapiclient.http.HttpRequest):
 class CourseWorkHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CourseWork: ...
 
@@ -535,9 +509,7 @@ class CourseWorkHttpRequest(googleapiclient.http.HttpRequest):
 class CourseWorkMaterialHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CourseWorkMaterial: ...
 
@@ -545,9 +517,7 @@ class CourseWorkMaterialHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -555,9 +525,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class GuardianHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Guardian: ...
 
@@ -565,9 +533,7 @@ class GuardianHttpRequest(googleapiclient.http.HttpRequest):
 class GuardianInvitationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GuardianInvitation: ...
 
@@ -575,9 +541,7 @@ class GuardianInvitationHttpRequest(googleapiclient.http.HttpRequest):
 class InvitationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Invitation: ...
 
@@ -585,9 +549,7 @@ class InvitationHttpRequest(googleapiclient.http.HttpRequest):
 class ListAnnouncementsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAnnouncementsResponse: ...
 
@@ -595,9 +557,7 @@ class ListAnnouncementsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListCourseAliasesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCourseAliasesResponse: ...
 
@@ -605,9 +565,7 @@ class ListCourseAliasesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListCourseWorkMaterialResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCourseWorkMaterialResponse: ...
 
@@ -615,9 +573,7 @@ class ListCourseWorkMaterialResponseHttpRequest(googleapiclient.http.HttpRequest
 class ListCourseWorkResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCourseWorkResponse: ...
 
@@ -625,9 +581,7 @@ class ListCourseWorkResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListCoursesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCoursesResponse: ...
 
@@ -635,9 +589,7 @@ class ListCoursesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListGuardianInvitationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGuardianInvitationsResponse: ...
 
@@ -645,9 +597,7 @@ class ListGuardianInvitationsResponseHttpRequest(googleapiclient.http.HttpReques
 class ListGuardiansResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGuardiansResponse: ...
 
@@ -655,9 +605,7 @@ class ListGuardiansResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListInvitationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListInvitationsResponse: ...
 
@@ -665,9 +613,7 @@ class ListInvitationsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListStudentSubmissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListStudentSubmissionsResponse: ...
 
@@ -675,9 +621,7 @@ class ListStudentSubmissionsResponseHttpRequest(googleapiclient.http.HttpRequest
 class ListStudentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListStudentsResponse: ...
 
@@ -685,9 +629,7 @@ class ListStudentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListTeachersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTeachersResponse: ...
 
@@ -695,9 +637,7 @@ class ListTeachersResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListTopicResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTopicResponse: ...
 
@@ -705,9 +645,7 @@ class ListTopicResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RegistrationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Registration: ...
 
@@ -715,9 +653,7 @@ class RegistrationHttpRequest(googleapiclient.http.HttpRequest):
 class StudentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Student: ...
 
@@ -725,9 +661,7 @@ class StudentHttpRequest(googleapiclient.http.HttpRequest):
 class StudentSubmissionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> StudentSubmission: ...
 
@@ -735,9 +669,7 @@ class StudentSubmissionHttpRequest(googleapiclient.http.HttpRequest):
 class TeacherHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Teacher: ...
 
@@ -745,9 +677,7 @@ class TeacherHttpRequest(googleapiclient.http.HttpRequest):
 class TopicHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Topic: ...
 
@@ -755,8 +685,6 @@ class TopicHttpRequest(googleapiclient.http.HttpRequest):
 class UserProfileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserProfile: ...

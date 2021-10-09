@@ -2,31 +2,33 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class BatchCreateRowsRequest(typing_extensions.TypedDict, total=False):
-    requests: typing.List[CreateRowRequest]
+    requests: _list[CreateRowRequest]
 
 @typing.type_check_only
 class BatchCreateRowsResponse(typing_extensions.TypedDict, total=False):
-    rows: typing.List[Row]
+    rows: _list[Row]
 
 @typing.type_check_only
 class BatchDeleteRowsRequest(typing_extensions.TypedDict, total=False):
-    names: typing.List[str]
+    names: _list[str]
 
 @typing.type_check_only
 class BatchUpdateRowsRequest(typing_extensions.TypedDict, total=False):
-    requests: typing.List[UpdateRowRequest]
+    requests: _list[UpdateRowRequest]
 
 @typing.type_check_only
 class BatchUpdateRowsResponse(typing_extensions.TypedDict, total=False):
-    rows: typing.List[Row]
+    rows: _list[Row]
 
 @typing.type_check_only
 class ColumnDescription(typing_extensions.TypedDict, total=False):
     dataType: str
     id: str
-    labels: typing.List[LabeledItem]
+    labels: _list[LabeledItem]
     lookupDetails: LookupDetails
     multipleValuesDisallowed: bool
     name: str
@@ -50,17 +52,17 @@ class LabeledItem(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListRowsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    rows: typing.List[Row]
+    rows: _list[Row]
 
 @typing.type_check_only
 class ListTablesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tables: typing.List[Table]
+    tables: _list[Table]
 
 @typing.type_check_only
 class ListWorkspacesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    workspaces: typing.List[Workspace]
+    workspaces: _list[Workspace]
 
 @typing.type_check_only
 class LookupDetails(typing_extensions.TypedDict, total=False):
@@ -76,7 +78,7 @@ class Row(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
     updateTime: str
-    values: typing.Dict[str, typing.Any]
+    values: dict[str, typing.Any]
 
 @typing.type_check_only
 class SavedView(typing_extensions.TypedDict, total=False):
@@ -85,11 +87,11 @@ class SavedView(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
-    columns: typing.List[ColumnDescription]
+    columns: _list[ColumnDescription]
     createTime: str
     displayName: str
     name: str
-    savedViews: typing.List[SavedView]
+    savedViews: _list[SavedView]
     updateTime: str
 
 @typing.type_check_only
@@ -103,5 +105,5 @@ class Workspace(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
     name: str
-    tables: typing.List[Table]
+    tables: _list[Table]
     updateTime: str

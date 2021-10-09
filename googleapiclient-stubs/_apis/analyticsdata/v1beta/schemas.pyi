@@ -2,23 +2,25 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class BatchRunPivotReportsRequest(typing_extensions.TypedDict, total=False):
-    requests: typing.List[RunPivotReportRequest]
+    requests: _list[RunPivotReportRequest]
 
 @typing.type_check_only
 class BatchRunPivotReportsResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    pivotReports: typing.List[RunPivotReportResponse]
+    pivotReports: _list[RunPivotReportResponse]
 
 @typing.type_check_only
 class BatchRunReportsRequest(typing_extensions.TypedDict, total=False):
-    requests: typing.List[RunReportRequest]
+    requests: _list[RunReportRequest]
 
 @typing.type_check_only
 class BatchRunReportsResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    reports: typing.List[RunReportResponse]
+    reports: _list[RunReportResponse]
 
 @typing.type_check_only
 class BetweenFilter(typing_extensions.TypedDict, total=False):
@@ -35,14 +37,14 @@ class CheckCompatibilityRequest(typing_extensions.TypedDict, total=False):
         "COMPATIBILITY_UNSPECIFIED", "COMPATIBLE", "INCOMPATIBLE"
     ]
     dimensionFilter: FilterExpression
-    dimensions: typing.List[Dimension]
+    dimensions: _list[Dimension]
     metricFilter: FilterExpression
-    metrics: typing.List[Metric]
+    metrics: _list[Metric]
 
 @typing.type_check_only
 class CheckCompatibilityResponse(typing_extensions.TypedDict, total=False):
-    dimensionCompatibilities: typing.List[DimensionCompatibility]
-    metricCompatibilities: typing.List[MetricCompatibility]
+    dimensionCompatibilities: _list[DimensionCompatibility]
+    metricCompatibilities: _list[MetricCompatibility]
 
 @typing.type_check_only
 class Cohort(typing_extensions.TypedDict, total=False):
@@ -57,7 +59,7 @@ class CohortReportSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CohortSpec(typing_extensions.TypedDict, total=False):
     cohortReportSettings: CohortReportSettings
-    cohorts: typing.List[Cohort]
+    cohorts: _list[Cohort]
     cohortsRange: CohortsRange
 
 @typing.type_check_only
@@ -71,7 +73,7 @@ class CohortsRange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConcatenateExpression(typing_extensions.TypedDict, total=False):
     delimiter: str
-    dimensionNames: typing.List[str]
+    dimensionNames: _list[str]
 
 @typing.type_check_only
 class DateRange(typing_extensions.TypedDict, total=False):
@@ -106,7 +108,7 @@ class DimensionMetadata(typing_extensions.TypedDict, total=False):
     apiName: str
     category: str
     customDefinition: bool
-    deprecatedApiNames: typing.List[str]
+    deprecatedApiNames: _list[str]
     description: str
     uiName: str
 
@@ -133,20 +135,20 @@ class Filter(typing_extensions.TypedDict, total=False):
     stringFilter: StringFilter
 
 @typing.type_check_only
-class FilterExpression(typing.Dict[str, typing.Any]): ...
+class FilterExpression(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class FilterExpressionList(typing.Dict[str, typing.Any]): ...
+class FilterExpressionList(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class InListFilter(typing_extensions.TypedDict, total=False):
     caseSensitive: bool
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[DimensionMetadata]
-    metrics: typing.List[MetricMetadata]
+    dimensions: _list[DimensionMetadata]
+    metrics: _list[MetricMetadata]
     name: str
 
 @typing.type_check_only
@@ -186,7 +188,7 @@ class MetricMetadata(typing_extensions.TypedDict, total=False):
     apiName: str
     category: str
     customDefinition: bool
-    deprecatedApiNames: typing.List[str]
+    deprecatedApiNames: _list[str]
     description: str
     expression: str
     type: typing_extensions.Literal[
@@ -246,25 +248,25 @@ class OrderBy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Pivot(typing_extensions.TypedDict, total=False):
-    fieldNames: typing.List[str]
+    fieldNames: _list[str]
     limit: str
-    metricAggregations: typing.List[str]
+    metricAggregations: _list[str]
     offset: str
-    orderBys: typing.List[OrderBy]
+    orderBys: _list[OrderBy]
 
 @typing.type_check_only
 class PivotDimensionHeader(typing_extensions.TypedDict, total=False):
-    dimensionValues: typing.List[DimensionValue]
+    dimensionValues: _list[DimensionValue]
 
 @typing.type_check_only
 class PivotHeader(typing_extensions.TypedDict, total=False):
-    pivotDimensionHeaders: typing.List[PivotDimensionHeader]
+    pivotDimensionHeaders: _list[PivotDimensionHeader]
     rowCount: int
 
 @typing.type_check_only
 class PivotOrderBy(typing_extensions.TypedDict, total=False):
     metricName: str
-    pivotSelections: typing.List[PivotSelection]
+    pivotSelections: _list[PivotSelection]
 
 @typing.type_check_only
 class PivotSelection(typing_extensions.TypedDict, total=False):
@@ -292,62 +294,62 @@ class ResponseMetaData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Row(typing_extensions.TypedDict, total=False):
-    dimensionValues: typing.List[DimensionValue]
-    metricValues: typing.List[MetricValue]
+    dimensionValues: _list[DimensionValue]
+    metricValues: _list[MetricValue]
 
 @typing.type_check_only
-class RunPivotReportRequest(typing.Dict[str, typing.Any]): ...
+class RunPivotReportRequest(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RunPivotReportResponse(typing_extensions.TypedDict, total=False):
-    aggregates: typing.List[Row]
-    dimensionHeaders: typing.List[DimensionHeader]
+    aggregates: _list[Row]
+    dimensionHeaders: _list[DimensionHeader]
     kind: str
     metadata: ResponseMetaData
-    metricHeaders: typing.List[MetricHeader]
-    pivotHeaders: typing.List[PivotHeader]
+    metricHeaders: _list[MetricHeader]
+    pivotHeaders: _list[PivotHeader]
     propertyQuota: PropertyQuota
-    rows: typing.List[Row]
+    rows: _list[Row]
 
 @typing.type_check_only
 class RunRealtimeReportRequest(typing_extensions.TypedDict, total=False):
     dimensionFilter: FilterExpression
-    dimensions: typing.List[Dimension]
+    dimensions: _list[Dimension]
     limit: str
-    metricAggregations: typing.List[str]
+    metricAggregations: _list[str]
     metricFilter: FilterExpression
-    metrics: typing.List[Metric]
-    minuteRanges: typing.List[MinuteRange]
-    orderBys: typing.List[OrderBy]
+    metrics: _list[Metric]
+    minuteRanges: _list[MinuteRange]
+    orderBys: _list[OrderBy]
     returnPropertyQuota: bool
 
 @typing.type_check_only
 class RunRealtimeReportResponse(typing_extensions.TypedDict, total=False):
-    dimensionHeaders: typing.List[DimensionHeader]
+    dimensionHeaders: _list[DimensionHeader]
     kind: str
-    maximums: typing.List[Row]
-    metricHeaders: typing.List[MetricHeader]
-    minimums: typing.List[Row]
+    maximums: _list[Row]
+    metricHeaders: _list[MetricHeader]
+    minimums: _list[Row]
     propertyQuota: PropertyQuota
     rowCount: int
-    rows: typing.List[Row]
-    totals: typing.List[Row]
+    rows: _list[Row]
+    totals: _list[Row]
 
 @typing.type_check_only
-class RunReportRequest(typing.Dict[str, typing.Any]): ...
+class RunReportRequest(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RunReportResponse(typing_extensions.TypedDict, total=False):
-    dimensionHeaders: typing.List[DimensionHeader]
+    dimensionHeaders: _list[DimensionHeader]
     kind: str
-    maximums: typing.List[Row]
+    maximums: _list[Row]
     metadata: ResponseMetaData
-    metricHeaders: typing.List[MetricHeader]
-    minimums: typing.List[Row]
+    metricHeaders: _list[MetricHeader]
+    minimums: _list[Row]
     propertyQuota: PropertyQuota
     rowCount: int
-    rows: typing.List[Row]
-    totals: typing.List[Row]
+    rows: _list[Row]
+    totals: _list[Row]
 
 @typing.type_check_only
 class StringFilter(typing_extensions.TypedDict, total=False):

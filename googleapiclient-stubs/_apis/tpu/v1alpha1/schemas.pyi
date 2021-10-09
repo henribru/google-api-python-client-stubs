@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AcceleratorType(typing_extensions.TypedDict, total=False):
     name: str
@@ -12,38 +14,38 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ListAcceleratorTypesResponse(typing_extensions.TypedDict, total=False):
-    acceleratorTypes: typing.List[AcceleratorType]
+    acceleratorTypes: _list[AcceleratorType]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListNodesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    nodes: typing.List[Node]
-    unreachable: typing.List[str]
+    nodes: _list[Node]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListTensorFlowVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tensorflowVersions: typing.List[TensorFlowVersion]
-    unreachable: typing.List[str]
+    tensorflowVersions: _list[TensorFlowVersion]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -70,10 +72,10 @@ class Node(typing_extensions.TypedDict, total=False):
     ]
     healthDescription: str
     ipAddress: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     network: str
-    networkEndpoints: typing.List[NetworkEndpoint]
+    networkEndpoints: _list[NetworkEndpoint]
     port: str
     schedulingConfig: SchedulingConfig
     serviceAccount: str
@@ -94,7 +96,7 @@ class Node(typing_extensions.TypedDict, total=False):
         "HIDDEN",
         "UNHIDING",
     ]
-    symptoms: typing.List[Symptom]
+    symptoms: _list[Symptom]
     tensorflowVersion: str
     useServiceNetworking: bool
 
@@ -102,9 +104,9 @@ class Node(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -131,7 +133,7 @@ class StartNodeRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

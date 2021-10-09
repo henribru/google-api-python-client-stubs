@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
     document: Document
@@ -9,7 +11,7 @@ class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
-    entities: typing.List[Entity]
+    entities: _list[Entity]
     language: str
 
 @typing.type_check_only
@@ -19,7 +21,7 @@ class AnalyzeEntitySentimentRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AnalyzeEntitySentimentResponse(typing_extensions.TypedDict, total=False):
-    entities: typing.List[Entity]
+    entities: _list[Entity]
     language: str
 
 @typing.type_check_only
@@ -31,7 +33,7 @@ class AnalyzeSentimentRequest(typing_extensions.TypedDict, total=False):
 class AnalyzeSentimentResponse(typing_extensions.TypedDict, total=False):
     documentSentiment: Sentiment
     language: str
-    sentences: typing.List[Sentence]
+    sentences: _list[Sentence]
 
 @typing.type_check_only
 class AnalyzeSyntaxRequest(typing_extensions.TypedDict, total=False):
@@ -41,8 +43,8 @@ class AnalyzeSyntaxRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AnalyzeSyntaxResponse(typing_extensions.TypedDict, total=False):
     language: str
-    sentences: typing.List[Sentence]
-    tokens: typing.List[Token]
+    sentences: _list[Sentence]
+    tokens: _list[Token]
 
 @typing.type_check_only
 class AnnotateTextRequest(typing_extensions.TypedDict, total=False):
@@ -52,12 +54,12 @@ class AnnotateTextRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AnnotateTextResponse(typing_extensions.TypedDict, total=False):
-    categories: typing.List[ClassificationCategory]
+    categories: _list[ClassificationCategory]
     documentSentiment: Sentiment
-    entities: typing.List[Entity]
+    entities: _list[Entity]
     language: str
-    sentences: typing.List[Sentence]
-    tokens: typing.List[Token]
+    sentences: _list[Sentence]
+    tokens: _list[Token]
 
 @typing.type_check_only
 class ClassificationCategory(typing_extensions.TypedDict, total=False):
@@ -70,7 +72,7 @@ class ClassifyTextRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClassifyTextResponse(typing_extensions.TypedDict, total=False):
-    categories: typing.List[ClassificationCategory]
+    categories: _list[ClassificationCategory]
 
 @typing.type_check_only
 class DependencyEdge(typing_extensions.TypedDict, total=False):
@@ -170,8 +172,8 @@ class Document(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Entity(typing_extensions.TypedDict, total=False):
-    mentions: typing.List[EntityMention]
-    metadata: typing.Dict[str, typing.Any]
+    mentions: _list[EntityMention]
+    metadata: dict[str, typing.Any]
     name: str
     salience: float
     sentiment: Sentiment
@@ -301,7 +303,7 @@ class Sentiment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

@@ -2,32 +2,34 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ActivatePretargetingConfigRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AdTechnologyProviders(typing_extensions.TypedDict, total=False):
-    detectedGvlIds: typing.List[str]
-    detectedProviderIds: typing.List[str]
-    unidentifiedProviderDomains: typing.List[str]
+    detectedGvlIds: _list[str]
+    detectedProviderIds: _list[str]
+    unidentifiedProviderDomains: _list[str]
 
 @typing.type_check_only
 class AddTargetedAppsRequest(typing_extensions.TypedDict, total=False):
-    appIds: typing.List[str]
+    appIds: _list[str]
     targetingMode: typing_extensions.Literal[
         "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
     ]
 
 @typing.type_check_only
 class AddTargetedPublishersRequest(typing_extensions.TypedDict, total=False):
-    publisherIds: typing.List[str]
+    publisherIds: _list[str]
     targetingMode: typing_extensions.Literal[
         "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
     ]
 
 @typing.type_check_only
 class AddTargetedSitesRequest(typing_extensions.TypedDict, total=False):
-    sites: typing.List[str]
+    sites: _list[str]
     targetingMode: typing_extensions.Literal[
         "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
     ]
@@ -56,7 +58,7 @@ class Bidder(typing_extensions.TypedDict, total=False):
 class Buyer(typing_extensions.TypedDict, total=False):
     activeCreativeCount: str
     bidder: str
-    billingIds: typing.List[str]
+    billingIds: _list[str]
     displayName: str
     maximumActiveCreativeCount: str
     name: str
@@ -76,16 +78,16 @@ class Creative(typing_extensions.TypedDict, total=False):
     ]
     creativeId: str
     creativeServingDecision: CreativeServingDecision
-    dealIds: typing.List[str]
-    declaredAttributes: typing.List[str]
-    declaredClickThroughUrls: typing.List[str]
-    declaredRestrictedCategories: typing.List[str]
-    declaredVendorIds: typing.List[int]
+    dealIds: _list[str]
+    declaredAttributes: _list[str]
+    declaredClickThroughUrls: _list[str]
+    declaredRestrictedCategories: _list[str]
+    declaredVendorIds: _list[int]
     html: HtmlContent
-    impressionTrackingUrls: typing.List[str]
+    impressionTrackingUrls: _list[str]
     name: str
     native: NativeContent
-    restrictedCategories: typing.List[str]
+    restrictedCategories: _list[str]
     version: int
     video: VideoContent
 
@@ -99,14 +101,14 @@ class CreativeServingDecision(typing_extensions.TypedDict, total=False):
     adTechnologyProviders: AdTechnologyProviders
     chinaPolicyCompliance: PolicyCompliance
     dealsPolicyCompliance: PolicyCompliance
-    detectedAdvertisers: typing.List[AdvertiserAndBrand]
-    detectedAttributes: typing.List[str]
-    detectedClickThroughUrls: typing.List[str]
-    detectedDomains: typing.List[str]
-    detectedLanguages: typing.List[str]
-    detectedProductCategories: typing.List[int]
-    detectedSensitiveCategories: typing.List[int]
-    detectedVendorIds: typing.List[int]
+    detectedAdvertisers: _list[AdvertiserAndBrand]
+    detectedAttributes: _list[str]
+    detectedClickThroughUrls: _list[str]
+    detectedDomains: _list[str]
+    detectedLanguages: _list[str]
+    detectedProductCategories: _list[int]
+    detectedSensitiveCategories: _list[int]
+    detectedVendorIds: _list[int]
     lastStatusUpdate: str
     networkPolicyCompliance: PolicyCompliance
     platformPolicyCompliance: PolicyCompliance
@@ -164,7 +166,7 @@ class DestinationUrlEvidence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DomainCallEvidence(typing_extensions.TypedDict, total=False):
-    topHttpCallDomains: typing.List[DomainCalls]
+    topHttpCallDomains: _list[DomainCalls]
     totalHttpCallCount: int
 
 @typing.type_check_only
@@ -174,7 +176,7 @@ class DomainCalls(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DownloadSizeEvidence(typing_extensions.TypedDict, total=False):
-    topUrlDownloadSizeBreakdowns: typing.List[UrlDownloadSize]
+    topUrlDownloadSizeBreakdowns: _list[UrlDownloadSize]
     totalDownloadSizeKb: int
 
 @typing.type_check_only
@@ -212,11 +214,11 @@ class HtmlContent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HttpCallEvidence(typing_extensions.TypedDict, total=False):
-    urls: typing.List[str]
+    urls: _list[str]
 
 @typing.type_check_only
 class HttpCookieEvidence(typing_extensions.TypedDict, total=False):
-    cookieNames: typing.List[str]
+    cookieNames: _list[str]
     maxCookieCount: int
 
 @typing.type_check_only
@@ -227,33 +229,33 @@ class Image(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListBiddersResponse(typing_extensions.TypedDict, total=False):
-    bidders: typing.List[Bidder]
+    bidders: _list[Bidder]
     nextPageToken: str
 
 @typing.type_check_only
 class ListBuyersResponse(typing_extensions.TypedDict, total=False):
-    buyers: typing.List[Buyer]
+    buyers: _list[Buyer]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCreativesResponse(typing_extensions.TypedDict, total=False):
-    creatives: typing.List[Creative]
+    creatives: _list[Creative]
     nextPageToken: str
 
 @typing.type_check_only
 class ListEndpointsResponse(typing_extensions.TypedDict, total=False):
-    endpoints: typing.List[Endpoint]
+    endpoints: _list[Endpoint]
     nextPageToken: str
 
 @typing.type_check_only
 class ListPretargetingConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    pretargetingConfigs: typing.List[PretargetingConfig]
+    pretargetingConfigs: _list[PretargetingConfig]
 
 @typing.type_check_only
 class ListUserListsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    userLists: typing.List[UserList]
+    userLists: _list[UserList]
 
 @typing.type_check_only
 class MediaFile(typing_extensions.TypedDict, total=False):
@@ -297,8 +299,8 @@ class NativeContent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NumericTargetingDimension(typing_extensions.TypedDict, total=False):
-    excludedIds: typing.List[str]
-    includedIds: typing.List[str]
+    excludedIds: _list[str]
+    includedIds: _list[str]
 
 @typing.type_check_only
 class OpenUserListRequest(typing_extensions.TypedDict, total=False): ...
@@ -308,11 +310,11 @@ class PolicyCompliance(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "PENDING_REVIEW", "DISAPPROVED", "APPROVED"
     ]
-    topics: typing.List[PolicyTopicEntry]
+    topics: _list[PolicyTopicEntry]
 
 @typing.type_check_only
 class PolicyTopicEntry(typing_extensions.TypedDict, total=False):
-    evidences: typing.List[PolicyTopicEvidence]
+    evidences: _list[PolicyTopicEvidence]
     helpCenterUrl: str
     policyTopic: str
 
@@ -328,25 +330,25 @@ class PolicyTopicEvidence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PretargetingConfig(typing_extensions.TypedDict, total=False):
-    allowedUserTargetingModes: typing.List[str]
+    allowedUserTargetingModes: _list[str]
     appTargeting: AppTargeting
     billingId: str
     displayName: str
-    excludedContentLabelIds: typing.List[str]
+    excludedContentLabelIds: _list[str]
     geoTargeting: NumericTargetingDimension
-    includedCreativeDimensions: typing.List[CreativeDimensions]
-    includedEnvironments: typing.List[str]
-    includedFormats: typing.List[str]
-    includedLanguages: typing.List[str]
-    includedMobileOperatingSystemIds: typing.List[str]
-    includedPlatforms: typing.List[str]
-    includedUserIdTypes: typing.List[str]
+    includedCreativeDimensions: _list[CreativeDimensions]
+    includedEnvironments: _list[str]
+    includedFormats: _list[str]
+    includedLanguages: _list[str]
+    includedMobileOperatingSystemIds: _list[str]
+    includedPlatforms: _list[str]
+    includedUserIdTypes: _list[str]
     interstitialTargeting: typing_extensions.Literal[
         "INTERSTITIAL_TARGETING_UNSPECIFIED",
         "ONLY_INTERSTITIAL_REQUESTS",
         "ONLY_NON_INTERSTITIAL_REQUESTS",
     ]
-    invalidGeoIds: typing.List[str]
+    invalidGeoIds: _list[str]
     maximumQps: str
     minimumViewabilityDecile: int
     name: str
@@ -358,22 +360,22 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RemoveTargetedAppsRequest(typing_extensions.TypedDict, total=False):
-    appIds: typing.List[str]
+    appIds: _list[str]
 
 @typing.type_check_only
 class RemoveTargetedPublishersRequest(typing_extensions.TypedDict, total=False):
-    publisherIds: typing.List[str]
+    publisherIds: _list[str]
 
 @typing.type_check_only
 class RemoveTargetedSitesRequest(typing_extensions.TypedDict, total=False):
-    sites: typing.List[str]
+    sites: _list[str]
 
 @typing.type_check_only
 class StringTargetingDimension(typing_extensions.TypedDict, total=False):
     targetingMode: typing_extensions.Literal[
         "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
     ]
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class SuspendPretargetingConfigRequest(typing_extensions.TypedDict, total=False): ...
@@ -420,7 +422,7 @@ class VideoMetadata(typing_extensions.TypedDict, total=False):
     duration: str
     isValidVast: bool
     isVpaid: bool
-    mediaFiles: typing.List[MediaFile]
+    mediaFiles: _list[MediaFile]
     skipOffset: str
     vastVersion: typing_extensions.Literal[
         "VAST_VERSION_UNSPECIFIED",

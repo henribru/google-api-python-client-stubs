@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudChannelV1ActivateEntitlementRequest(
     typing_extensions.TypedDict, total=False
@@ -27,7 +29,7 @@ class GoogleCloudChannelV1CancelEntitlementRequest(
 @typing.type_check_only
 class GoogleCloudChannelV1ChangeOfferRequest(typing_extensions.TypedDict, total=False):
     offer: str
-    parameters: typing.List[GoogleCloudChannelV1Parameter]
+    parameters: _list[GoogleCloudChannelV1Parameter]
     purchaseOrderId: str
     requestId: str
 
@@ -35,7 +37,7 @@ class GoogleCloudChannelV1ChangeOfferRequest(typing_extensions.TypedDict, total=
 class GoogleCloudChannelV1ChangeParametersRequest(
     typing_extensions.TypedDict, total=False
 ):
-    parameters: typing.List[GoogleCloudChannelV1Parameter]
+    parameters: _list[GoogleCloudChannelV1Parameter]
     purchaseOrderId: str
     requestId: str
 
@@ -73,7 +75,7 @@ class GoogleCloudChannelV1CheckCloudIdentityAccountsExistRequest(
 class GoogleCloudChannelV1CheckCloudIdentityAccountsExistResponse(
     typing_extensions.TypedDict, total=False
 ):
-    cloudIdentityAccounts: typing.List[GoogleCloudChannelV1CloudIdentityCustomerAccount]
+    cloudIdentityAccounts: _list[GoogleCloudChannelV1CloudIdentityCustomerAccount]
 
 @typing.type_check_only
 class GoogleCloudChannelV1CloudIdentityCustomerAccount(
@@ -140,9 +142,9 @@ class GoogleCloudChannelV1Customer(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudChannelV1CustomerConstraints(typing_extensions.TypedDict, total=False):
-    allowedCustomerTypes: typing.List[str]
-    allowedRegions: typing.List[str]
-    promotionalOrderTypes: typing.List[str]
+    allowedCustomerTypes: _list[str]
+    allowedRegions: _list[str]
+    promotionalOrderTypes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudChannelV1CustomerEvent(typing_extensions.TypedDict, total=False):
@@ -175,13 +177,13 @@ class GoogleCloudChannelV1Entitlement(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
     offer: str
-    parameters: typing.List[GoogleCloudChannelV1Parameter]
+    parameters: _list[GoogleCloudChannelV1Parameter]
     provisionedService: GoogleCloudChannelV1ProvisionedService
     provisioningState: typing_extensions.Literal[
         "PROVISIONING_STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED"
     ]
     purchaseOrderId: str
-    suspensionReasons: typing.List[str]
+    suspensionReasons: _list[str]
     trialSettings: GoogleCloudChannelV1TrialSettings
     updateTime: str
 
@@ -219,60 +221,60 @@ class GoogleCloudChannelV1ImportCustomerRequest(
 class GoogleCloudChannelV1ListChannelPartnerLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
-    channelPartnerLinks: typing.List[GoogleCloudChannelV1ChannelPartnerLink]
+    channelPartnerLinks: _list[GoogleCloudChannelV1ChannelPartnerLink]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListCustomersResponse(
     typing_extensions.TypedDict, total=False
 ):
-    customers: typing.List[GoogleCloudChannelV1Customer]
+    customers: _list[GoogleCloudChannelV1Customer]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListEntitlementsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    entitlements: typing.List[GoogleCloudChannelV1Entitlement]
+    entitlements: _list[GoogleCloudChannelV1Entitlement]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListOffersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    offers: typing.List[GoogleCloudChannelV1Offer]
+    offers: _list[GoogleCloudChannelV1Offer]
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListProductsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    products: typing.List[GoogleCloudChannelV1Product]
+    products: _list[GoogleCloudChannelV1Product]
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListPurchasableOffersResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    purchasableOffers: typing.List[GoogleCloudChannelV1PurchasableOffer]
+    purchasableOffers: _list[GoogleCloudChannelV1PurchasableOffer]
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListPurchasableSkusResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    purchasableSkus: typing.List[GoogleCloudChannelV1PurchasableSku]
+    purchasableSkus: _list[GoogleCloudChannelV1PurchasableSku]
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListSkusResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    skus: typing.List[GoogleCloudChannelV1Sku]
+    skus: _list[GoogleCloudChannelV1Sku]
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListSubscribersResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    serviceAccounts: typing.List[str]
+    serviceAccounts: _list[str]
     topic: str
 
 @typing.type_check_only
@@ -291,7 +293,7 @@ class GoogleCloudChannelV1ListTransferableOffersResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    transferableOffers: typing.List[GoogleCloudChannelV1TransferableOffer]
+    transferableOffers: _list[GoogleCloudChannelV1TransferableOffer]
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListTransferableSkusRequest(
@@ -309,7 +311,7 @@ class GoogleCloudChannelV1ListTransferableSkusResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    transferableSkus: typing.List[GoogleCloudChannelV1TransferableSku]
+    transferableSkus: _list[GoogleCloudChannelV1TransferableSku]
 
 @typing.type_check_only
 class GoogleCloudChannelV1MarketingInfo(typing_extensions.TypedDict, total=False):
@@ -329,9 +331,9 @@ class GoogleCloudChannelV1Offer(typing_extensions.TypedDict, total=False):
     endTime: str
     marketingInfo: GoogleCloudChannelV1MarketingInfo
     name: str
-    parameterDefinitions: typing.List[GoogleCloudChannelV1ParameterDefinition]
+    parameterDefinitions: _list[GoogleCloudChannelV1ParameterDefinition]
     plan: GoogleCloudChannelV1Plan
-    priceByResources: typing.List[GoogleCloudChannelV1PriceByResource]
+    priceByResources: _list[GoogleCloudChannelV1PriceByResource]
     sku: GoogleCloudChannelV1Sku
     startTime: str
 
@@ -360,7 +362,7 @@ class GoogleCloudChannelV1Parameter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudChannelV1ParameterDefinition(typing_extensions.TypedDict, total=False):
-    allowedValues: typing.List[GoogleCloudChannelV1Value]
+    allowedValues: _list[GoogleCloudChannelV1Value]
     maxValue: GoogleCloudChannelV1Value
     minValue: GoogleCloudChannelV1Value
     name: str
@@ -398,7 +400,7 @@ class GoogleCloudChannelV1Price(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudChannelV1PriceByResource(typing_extensions.TypedDict, total=False):
     price: GoogleCloudChannelV1Price
-    pricePhases: typing.List[GoogleCloudChannelV1PricePhase]
+    pricePhases: _list[GoogleCloudChannelV1PricePhase]
     resourceType: typing_extensions.Literal[
         "RESOURCE_TYPE_UNSPECIFIED",
         "SEAT",
@@ -418,7 +420,7 @@ class GoogleCloudChannelV1PricePhase(typing_extensions.TypedDict, total=False):
         "PERIOD_TYPE_UNSPECIFIED", "DAY", "MONTH", "YEAR"
     ]
     price: GoogleCloudChannelV1Price
-    priceTiers: typing.List[GoogleCloudChannelV1PriceTier]
+    priceTiers: _list[GoogleCloudChannelV1PriceTier]
 
 @typing.type_check_only
 class GoogleCloudChannelV1PriceTier(typing_extensions.TypedDict, total=False):
@@ -513,20 +515,20 @@ class GoogleCloudChannelV1TransferEntitlementsRequest(
     typing_extensions.TypedDict, total=False
 ):
     authToken: str
-    entitlements: typing.List[GoogleCloudChannelV1Entitlement]
+    entitlements: _list[GoogleCloudChannelV1Entitlement]
     requestId: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1TransferEntitlementsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    entitlements: typing.List[GoogleCloudChannelV1Entitlement]
+    entitlements: _list[GoogleCloudChannelV1Entitlement]
 
 @typing.type_check_only
 class GoogleCloudChannelV1TransferEntitlementsToGoogleRequest(
     typing_extensions.TypedDict, total=False
 ):
-    entitlements: typing.List[GoogleCloudChannelV1Entitlement]
+    entitlements: _list[GoogleCloudChannelV1Entitlement]
     requestId: str
 
 @typing.type_check_only
@@ -568,7 +570,7 @@ class GoogleCloudChannelV1Value(typing_extensions.TypedDict, total=False):
     boolValue: bool
     doubleValue: float
     int64Value: str
-    protoValue: typing.Dict[str, typing.Any]
+    protoValue: dict[str, typing.Any]
     stringValue: str
 
 @typing.type_check_only
@@ -603,7 +605,7 @@ class GoogleCloudChannelV1alpha1Entitlement(typing_extensions.TypedDict, total=F
     name: str
     numUnits: int
     offer: str
-    parameters: typing.List[GoogleCloudChannelV1alpha1Parameter]
+    parameters: _list[GoogleCloudChannelV1alpha1Parameter]
     provisionedService: GoogleCloudChannelV1alpha1ProvisionedService
     provisioningState: typing_extensions.Literal[
         "PROVISIONING_STATE_UNSPECIFIED",
@@ -614,7 +616,7 @@ class GoogleCloudChannelV1alpha1Entitlement(typing_extensions.TypedDict, total=F
         "SUSPENDED",
     ]
     purchaseOrderId: str
-    suspensionReasons: typing.List[str]
+    suspensionReasons: _list[str]
     trialSettings: GoogleCloudChannelV1alpha1TrialSettings
     updateTime: str
 
@@ -708,7 +710,7 @@ class GoogleCloudChannelV1alpha1SubscriberEvent(
 class GoogleCloudChannelV1alpha1TransferEntitlementsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    entitlements: typing.List[GoogleCloudChannelV1alpha1Entitlement]
+    entitlements: _list[GoogleCloudChannelV1alpha1Entitlement]
 
 @typing.type_check_only
 class GoogleCloudChannelV1alpha1TrialSettings(typing_extensions.TypedDict, total=False):
@@ -720,7 +722,7 @@ class GoogleCloudChannelV1alpha1Value(typing_extensions.TypedDict, total=False):
     boolValue: bool
     doubleValue: float
     int64Value: str
-    protoValue: typing.Dict[str, typing.Any]
+    protoValue: dict[str, typing.Any]
     stringValue: str
 
 @typing.type_check_only
@@ -731,15 +733,15 @@ class GoogleLongrunningCancelOperationRequest(
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -747,7 +749,7 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -758,13 +760,13 @@ class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleTypePostalAddress(typing_extensions.TypedDict, total=False):
-    addressLines: typing.List[str]
+    addressLines: _list[str]
     administrativeArea: str
     languageCode: str
     locality: str
     organization: str
     postalCode: str
-    recipients: typing.List[str]
+    recipients: _list[str]
     regionCode: str
     revision: int
     sortingCode: str

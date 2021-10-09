@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
     commonCriteriaMode: typing_extensions.Literal[
@@ -19,7 +21,7 @@ class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
         "VERIFY_APPS_ENFORCED",
         "VERIFY_APPS_USER_CHOICE",
     ]
-    personalAppsThatCanReadWorkNotifications: typing.List[str]
+    personalAppsThatCanReadWorkNotifications: _list[str]
     untrustedAppsPolicy: typing_extensions.Literal[
         "UNTRUSTED_APPS_POLICY_UNSPECIFIED",
         "DISALLOW_INSTALL",
@@ -43,10 +45,10 @@ class AppTrackInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Application(typing_extensions.TypedDict, total=False):
-    appTracks: typing.List[AppTrackInfo]
-    managedProperties: typing.List[ManagedProperty]
+    appTracks: _list[AppTrackInfo]
+    managedProperties: _list[ManagedProperty]
     name: str
-    permissions: typing.List[ApplicationPermission]
+    permissions: _list[ApplicationPermission]
     title: str
 
 @typing.type_check_only
@@ -72,7 +74,7 @@ class ApplicationPermission(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ApplicationPolicy(typing_extensions.TypedDict, total=False):
-    accessibleTrackIds: typing.List[str]
+    accessibleTrackIds: _list[str]
     autoUpdateMode: typing_extensions.Literal[
         "AUTO_UPDATE_MODE_UNSPECIFIED",
         "AUTO_UPDATE_DEFAULT",
@@ -87,7 +89,7 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     defaultPermissionPolicy: typing_extensions.Literal[
         "PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"
     ]
-    delegatedScopes: typing.List[str]
+    delegatedScopes: _list[str]
     disabled: bool
     extensionConfig: ExtensionConfig
     installType: typing_extensions.Literal[
@@ -100,11 +102,11 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
         "KIOSK",
     ]
     lockTaskAllowed: bool
-    managedConfiguration: typing.Dict[str, typing.Any]
+    managedConfiguration: dict[str, typing.Any]
     managedConfigurationTemplate: ManagedConfigurationTemplate
     minimumVersionCode: int
     packageName: str
-    permissionGrants: typing.List[PermissionGrant]
+    permissionGrants: _list[PermissionGrant]
 
 @typing.type_check_only
 class ApplicationReport(typing_extensions.TypedDict, total=False):
@@ -115,12 +117,12 @@ class ApplicationReport(typing_extensions.TypedDict, total=False):
         "INSTALLED_FROM_PLAY_STORE",
     ]
     displayName: str
-    events: typing.List[ApplicationEvent]
+    events: _list[ApplicationEvent]
     installerPackageName: str
-    keyedAppStates: typing.List[KeyedAppState]
+    keyedAppStates: _list[KeyedAppState]
     packageName: str
     packageSha256Hash: str
-    signingKeyCertFingerprints: typing.List[str]
+    signingKeyCertFingerprints: _list[str]
     state: typing_extensions.Literal[
         "APPLICATION_STATE_UNSPECIFIED", "REMOVED", "INSTALLED"
     ]
@@ -140,7 +142,7 @@ class BlockAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChoosePrivateKeyRule(typing_extensions.TypedDict, total=False):
-    packageNames: typing.List[str]
+    packageNames: _list[str]
     privateKeyAlias: str
     urlPattern: str
 
@@ -157,7 +159,7 @@ class Command(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED",
     ]
     newPassword: str
-    resetPasswordFlags: typing.List[str]
+    resetPasswordFlags: _list[str]
     type: typing_extensions.Literal[
         "COMMAND_TYPE_UNSPECIFIED",
         "LOCK",
@@ -180,7 +182,7 @@ class ComplianceRule(typing_extensions.TypedDict, total=False):
     apiLevelCondition: ApiLevelCondition
     disableApps: bool
     nonComplianceDetailCondition: NonComplianceDetailCondition
-    packageNamesToDisable: typing.List[str]
+    packageNamesToDisable: _list[str]
 
 @typing.type_check_only
 class ContactInfo(typing_extensions.TypedDict, total=False):
@@ -195,7 +197,7 @@ class ContactInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ContentProviderEndpoint(typing_extensions.TypedDict, total=False):
     packageName: str
-    signingCertsSha256: typing.List[str]
+    signingCertsSha256: _list[str]
     uri: str
 
 @typing.type_check_only
@@ -226,8 +228,8 @@ class Date(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
     apiLevel: int
-    applicationReports: typing.List[ApplicationReport]
-    appliedPasswordPolicies: typing.List[PasswordRequirements]
+    applicationReports: _list[ApplicationReport]
+    appliedPasswordPolicies: _list[PasswordRequirements]
     appliedPolicyName: str
     appliedPolicyVersion: str
     appliedState: typing_extensions.Literal[
@@ -236,36 +238,36 @@ class Device(typing_extensions.TypedDict, total=False):
     commonCriteriaModeInfo: CommonCriteriaModeInfo
     deviceSettings: DeviceSettings
     disabledReason: UserFacingMessage
-    displays: typing.List[Display]
+    displays: _list[Display]
     enrollmentTime: str
     enrollmentTokenData: str
     enrollmentTokenName: str
     hardwareInfo: HardwareInfo
-    hardwareStatusSamples: typing.List[HardwareStatus]
+    hardwareStatusSamples: _list[HardwareStatus]
     lastPolicyComplianceReportTime: str
     lastPolicySyncTime: str
     lastStatusReportTime: str
     managementMode: typing_extensions.Literal[
         "MANAGEMENT_MODE_UNSPECIFIED", "DEVICE_OWNER", "PROFILE_OWNER"
     ]
-    memoryEvents: typing.List[MemoryEvent]
+    memoryEvents: _list[MemoryEvent]
     memoryInfo: MemoryInfo
     name: str
     networkInfo: NetworkInfo
-    nonComplianceDetails: typing.List[NonComplianceDetail]
+    nonComplianceDetails: _list[NonComplianceDetail]
     ownership: typing_extensions.Literal[
         "OWNERSHIP_UNSPECIFIED", "COMPANY_OWNED", "PERSONALLY_OWNED"
     ]
     policyCompliant: bool
     policyName: str
-    powerManagementEvents: typing.List[PowerManagementEvent]
-    previousDeviceNames: typing.List[str]
+    powerManagementEvents: _list[PowerManagementEvent]
+    previousDeviceNames: _list[str]
     securityPosture: SecurityPosture
     softwareInfo: SoftwareInfo
     state: typing_extensions.Literal[
         "DEVICE_STATE_UNSPECIFIED", "ACTIVE", "DISABLED", "DELETED", "PROVISIONING"
     ]
-    systemProperties: typing.Dict[str, typing.Any]
+    systemProperties: dict[str, typing.Any]
     user: User
     userName: str
 
@@ -323,19 +325,19 @@ class EnrollmentToken(typing_extensions.TypedDict, total=False):
 class Enterprise(typing_extensions.TypedDict, total=False):
     appAutoApprovalEnabled: bool
     contactInfo: ContactInfo
-    enabledNotificationTypes: typing.List[str]
+    enabledNotificationTypes: _list[str]
     enterpriseDisplayName: str
     logo: ExternalData
     name: str
     primaryColor: int
     pubsubTopic: str
-    signinDetails: typing.List[SigninDetail]
-    termsAndConditions: typing.List[TermsAndConditions]
+    signinDetails: _list[SigninDetail]
+    termsAndConditions: _list[TermsAndConditions]
 
 @typing.type_check_only
 class ExtensionConfig(typing_extensions.TypedDict, total=False):
     notificationReceiver: str
-    signingKeyFingerprintsSha256: typing.List[str]
+    signingKeyFingerprintsSha256: _list[str]
 
 @typing.type_check_only
 class ExternalData(typing_extensions.TypedDict, total=False):
@@ -349,30 +351,30 @@ class FreezePeriod(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HardwareInfo(typing_extensions.TypedDict, total=False):
-    batteryShutdownTemperatures: typing.List[float]
-    batteryThrottlingTemperatures: typing.List[float]
+    batteryShutdownTemperatures: _list[float]
+    batteryThrottlingTemperatures: _list[float]
     brand: str
-    cpuShutdownTemperatures: typing.List[float]
-    cpuThrottlingTemperatures: typing.List[float]
+    cpuShutdownTemperatures: _list[float]
+    cpuThrottlingTemperatures: _list[float]
     deviceBasebandVersion: str
-    gpuShutdownTemperatures: typing.List[float]
-    gpuThrottlingTemperatures: typing.List[float]
+    gpuShutdownTemperatures: _list[float]
+    gpuThrottlingTemperatures: _list[float]
     hardware: str
     manufacturer: str
     model: str
     serialNumber: str
-    skinShutdownTemperatures: typing.List[float]
-    skinThrottlingTemperatures: typing.List[float]
+    skinShutdownTemperatures: _list[float]
+    skinThrottlingTemperatures: _list[float]
 
 @typing.type_check_only
 class HardwareStatus(typing_extensions.TypedDict, total=False):
-    batteryTemperatures: typing.List[float]
-    cpuTemperatures: typing.List[float]
-    cpuUsages: typing.List[float]
+    batteryTemperatures: _list[float]
+    cpuTemperatures: _list[float]
+    cpuUsages: _list[float]
     createTime: str
-    fanSpeeds: typing.List[float]
-    gpuTemperatures: typing.List[float]
-    skinTemperatures: typing.List[float]
+    fanSpeeds: _list[float]
+    gpuTemperatures: _list[float]
+    skinTemperatures: _list[float]
 
 @typing.type_check_only
 class IssueCommandResponse(typing_extensions.TypedDict, total=False): ...
@@ -422,36 +424,36 @@ class LaunchAppAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListDevicesResponse(typing_extensions.TypedDict, total=False):
-    devices: typing.List[Device]
+    devices: _list[Device]
     nextPageToken: str
 
 @typing.type_check_only
 class ListEnterprisesResponse(typing_extensions.TypedDict, total=False):
-    enterprises: typing.List[Enterprise]
+    enterprises: _list[Enterprise]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    policies: typing.List[Policy]
+    policies: _list[Policy]
 
 @typing.type_check_only
 class ListWebAppsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    webApps: typing.List[WebApp]
+    webApps: _list[WebApp]
 
 @typing.type_check_only
 class ManagedConfigurationTemplate(typing_extensions.TypedDict, total=False):
-    configurationVariables: typing.Dict[str, typing.Any]
+    configurationVariables: dict[str, typing.Any]
     templateId: str
 
 @typing.type_check_only
-class ManagedProperty(typing.Dict[str, typing.Any]): ...
+class ManagedProperty(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ManagedPropertyEntry(typing_extensions.TypedDict, total=False):
@@ -481,7 +483,7 @@ class NetworkInfo(typing_extensions.TypedDict, total=False):
     imei: str
     meid: str
     networkOperatorName: str
-    telephonyInfos: typing.List[TelephonyInfo]
+    telephonyInfos: _list[TelephonyInfo]
     wifiMacAddress: str
 
 @typing.type_check_only
@@ -537,20 +539,20 @@ class NonComplianceDetailCondition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OncCertificateProvider(typing_extensions.TypedDict, total=False):
-    certificateReferences: typing.List[str]
+    certificateReferences: _list[str]
     contentProviderEndpoint: ContentProviderEndpoint
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class PackageNameList(typing_extensions.TypedDict, total=False):
-    packageNames: typing.List[str]
+    packageNames: _list[str]
 
 @typing.type_check_only
 class PasswordRequirements(typing_extensions.TypedDict, total=False):
@@ -595,8 +597,8 @@ class PermissionGrant(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PersistentPreferredActivity(typing_extensions.TypedDict, total=False):
-    actions: typing.List[str]
-    categories: typing.List[str]
+    actions: _list[str]
+    categories: _list[str]
     receiverActivity: str
 
 @typing.type_check_only
@@ -608,10 +610,10 @@ class PersonalApplicationPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PersonalUsagePolicies(typing_extensions.TypedDict, total=False):
-    accountTypesWithManagementDisabled: typing.List[str]
+    accountTypesWithManagementDisabled: _list[str]
     cameraDisabled: bool
     maxDaysWithWorkOff: int
-    personalApplications: typing.List[PersonalApplicationPolicy]
+    personalApplications: _list[PersonalApplicationPolicy]
     personalPlayStoreMode: typing_extensions.Literal[
         "PLAY_STORE_MODE_UNSPECIFIED", "BLACKLIST", "BLOCKLIST", "ALLOWLIST"
     ]
@@ -619,12 +621,12 @@ class PersonalUsagePolicies(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    accountTypesWithManagementDisabled: typing.List[str]
+    accountTypesWithManagementDisabled: _list[str]
     addUserDisabled: bool
     adjustVolumeDisabled: bool
     advancedSecurityOverrides: AdvancedSecurityOverrides
     alwaysOnVpnPackage: AlwaysOnVpnPackage
-    androidDevicePolicyTracks: typing.List[str]
+    androidDevicePolicyTracks: _list[str]
     appAutoUpdatePolicy: typing_extensions.Literal[
         "APP_AUTO_UPDATE_POLICY_UNSPECIFIED",
         "CHOICE_TO_THE_USER",
@@ -632,7 +634,7 @@ class Policy(typing_extensions.TypedDict, total=False):
         "WIFI_ONLY",
         "ALWAYS",
     ]
-    applications: typing.List[ApplicationPolicy]
+    applications: _list[ApplicationPolicy]
     autoDateAndTimeZone: typing_extensions.Literal[
         "AUTO_DATE_AND_TIME_ZONE_UNSPECIFIED",
         "AUTO_DATE_AND_TIME_ZONE_USER_CHOICE",
@@ -645,8 +647,8 @@ class Policy(typing_extensions.TypedDict, total=False):
     bluetoothDisabled: bool
     cameraDisabled: bool
     cellBroadcastsConfigDisabled: bool
-    choosePrivateKeyRules: typing.List[ChoosePrivateKeyRule]
-    complianceRules: typing.List[ComplianceRule]
+    choosePrivateKeyRules: _list[ChoosePrivateKeyRule]
+    complianceRules: _list[ComplianceRule]
     createWindowsDisabled: bool
     credentialsConfigDisabled: bool
     crossProfilePolicies: CrossProfilePolicies
@@ -663,12 +665,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     ]
     ensureVerifyAppsEnabled: bool
     factoryResetDisabled: bool
-    frpAdminEmails: typing.List[str]
+    frpAdminEmails: _list[str]
     funDisabled: bool
     installAppsDisabled: bool
     installUnknownSourcesAllowed: bool
     keyguardDisabled: bool
-    keyguardDisabledFeatures: typing.List[str]
+    keyguardDisabledFeatures: _list[str]
     kioskCustomLauncherEnabled: bool
     kioskCustomization: KioskCustomization
     locationMode: typing_extensions.Literal[
@@ -690,21 +692,21 @@ class Policy(typing_extensions.TypedDict, total=False):
     name: str
     networkEscapeHatchEnabled: bool
     networkResetDisabled: bool
-    oncCertificateProviders: typing.List[OncCertificateProvider]
-    openNetworkConfiguration: typing.Dict[str, typing.Any]
+    oncCertificateProviders: _list[OncCertificateProvider]
+    openNetworkConfiguration: dict[str, typing.Any]
     outgoingBeamDisabled: bool
     outgoingCallsDisabled: bool
-    passwordPolicies: typing.List[PasswordRequirements]
+    passwordPolicies: _list[PasswordRequirements]
     passwordRequirements: PasswordRequirements
-    permissionGrants: typing.List[PermissionGrant]
+    permissionGrants: _list[PermissionGrant]
     permittedAccessibilityServices: PackageNameList
     permittedInputMethods: PackageNameList
-    persistentPreferredActivities: typing.List[PersistentPreferredActivity]
+    persistentPreferredActivities: _list[PersistentPreferredActivity]
     personalUsagePolicies: PersonalUsagePolicies
     playStoreMode: typing_extensions.Literal[
         "PLAY_STORE_MODE_UNSPECIFIED", "WHITELIST", "BLACKLIST"
     ]
-    policyEnforcementRules: typing.List[PolicyEnforcementRule]
+    policyEnforcementRules: _list[PolicyEnforcementRule]
     privateKeySelectionEnabled: bool
     recommendedGlobalProxy: ProxyInfo
     removeUserDisabled: bool
@@ -712,14 +714,14 @@ class Policy(typing_extensions.TypedDict, total=False):
     screenCaptureDisabled: bool
     setUserIconDisabled: bool
     setWallpaperDisabled: bool
-    setupActions: typing.List[SetupAction]
+    setupActions: _list[SetupAction]
     shareLocationDisabled: bool
     shortSupportMessage: UserFacingMessage
     skipFirstUseHintsEnabled: bool
     smsDisabled: bool
     statusBarDisabled: bool
     statusReportingSettings: StatusReportingSettings
-    stayOnPluggedModes: typing.List[str]
+    stayOnPluggedModes: _list[str]
     systemUpdate: SystemUpdate
     tetheringConfigDisabled: bool
     uninstallAppsDisabled: bool
@@ -739,7 +741,7 @@ class PolicyEnforcementRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PostureDetail(typing_extensions.TypedDict, total=False):
-    advice: typing.List[UserFacingMessage]
+    advice: _list[UserFacingMessage]
     securityRisk: typing_extensions.Literal[
         "SECURITY_RISK_UNSPECIFIED", "UNKNOWN_OS", "COMPROMISED_OS"
     ]
@@ -761,7 +763,7 @@ class PowerManagementEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProxyInfo(typing_extensions.TypedDict, total=False):
-    excludedHosts: typing.List[str]
+    excludedHosts: _list[str]
     host: str
     pacUri: str
     port: int
@@ -771,7 +773,7 @@ class SecurityPosture(typing_extensions.TypedDict, total=False):
     devicePosture: typing_extensions.Literal[
         "POSTURE_UNSPECIFIED", "SECURE", "AT_RISK", "POTENTIALLY_COMPROMISED"
     ]
-    postureDetails: typing.List[PostureDetail]
+    postureDetails: _list[PostureDetail]
 
 @typing.type_check_only
 class SetupAction(typing_extensions.TypedDict, total=False):
@@ -812,7 +814,7 @@ class SoftwareInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -832,7 +834,7 @@ class StatusReportingSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SystemUpdate(typing_extensions.TypedDict, total=False):
     endMinutes: int
-    freezePeriods: typing.List[FreezePeriod]
+    freezePeriods: _list[FreezePeriod]
     startMinutes: int
     type: typing_extensions.Literal[
         "SYSTEM_UPDATE_TYPE_UNSPECIFIED", "AUTOMATIC", "WINDOWED", "POSTPONE"
@@ -866,14 +868,14 @@ class User(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UserFacingMessage(typing_extensions.TypedDict, total=False):
     defaultMessage: str
-    localizedMessages: typing.Dict[str, typing.Any]
+    localizedMessages: dict[str, typing.Any]
 
 @typing.type_check_only
 class WebApp(typing_extensions.TypedDict, total=False):
     displayMode: typing_extensions.Literal[
         "DISPLAY_MODE_UNSPECIFIED", "MINIMAL_UI", "STANDALONE", "FULL_SCREEN"
     ]
-    icons: typing.List[WebAppIcon]
+    icons: _list[WebAppIcon]
     name: str
     startUrl: str
     title: str
@@ -885,10 +887,10 @@ class WebAppIcon(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WebToken(typing_extensions.TypedDict, total=False):
-    enabledFeatures: typing.List[str]
+    enabledFeatures: _list[str]
     name: str
     parentFrameUrl: str
-    permissions: typing.List[str]
+    permissions: _list[str]
     value: str
 
 @typing.type_check_only

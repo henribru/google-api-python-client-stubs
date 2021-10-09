@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class FitnessResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -67,7 +69,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 userId: str,
-                dataTypeName: typing.Union[str, typing.List[str]] = ...,
+                dataTypeName: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> ListDataSourcesResponseHttpRequest: ...
             def update(
@@ -94,7 +96,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 userId: str,
-                activityType: typing.Union[int, typing.List[int]] = ...,
+                activityType: int | _list[int] = ...,
                 endTime: str = ...,
                 includeDeleted: bool = ...,
                 pageToken: str = ...,
@@ -118,9 +120,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
 class AggregateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AggregateResponse: ...
 
@@ -128,9 +128,7 @@ class AggregateResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DataSourceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DataSource: ...
 
@@ -138,9 +136,7 @@ class DataSourceHttpRequest(googleapiclient.http.HttpRequest):
 class DatasetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Dataset: ...
 
@@ -148,9 +144,7 @@ class DatasetHttpRequest(googleapiclient.http.HttpRequest):
 class ListDataPointChangesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDataPointChangesResponse: ...
 
@@ -158,9 +152,7 @@ class ListDataPointChangesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListDataSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDataSourcesResponse: ...
 
@@ -168,9 +160,7 @@ class ListDataSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListSessionsResponse: ...
 
@@ -178,8 +168,6 @@ class ListSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SessionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Session: ...

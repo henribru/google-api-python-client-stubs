@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class CVSSv3(typing_extensions.TypedDict, total=False):
     attackComplexity: typing_extensions.Literal[
@@ -68,7 +70,7 @@ class InstanceOSPoliciesCompliance(typing_extensions.TypedDict, total=False):
     lastComplianceCheckTime: str
     lastComplianceRunId: str
     name: str
-    osPolicyCompliances: typing.List[InstanceOSPoliciesComplianceOSPolicyCompliance]
+    osPolicyCompliances: _list[InstanceOSPoliciesComplianceOSPolicyCompliance]
     state: typing_extensions.Literal[
         "OS_POLICY_COMPLIANCE_STATE_UNSPECIFIED",
         "COMPLIANT",
@@ -83,7 +85,7 @@ class InstanceOSPoliciesComplianceOSPolicyCompliance(
 ):
     osPolicyAssignment: str
     osPolicyId: str
-    osPolicyResourceCompliances: typing.List[OSPolicyResourceCompliance]
+    osPolicyResourceCompliances: _list[OSPolicyResourceCompliance]
     state: typing_extensions.Literal[
         "OS_POLICY_COMPLIANCE_STATE_UNSPECIFIED",
         "COMPLIANT",
@@ -94,7 +96,7 @@ class InstanceOSPoliciesComplianceOSPolicyCompliance(
 
 @typing.type_check_only
 class Inventory(typing_extensions.TypedDict, total=False):
-    items: typing.Dict[str, typing.Any]
+    items: dict[str, typing.Any]
     name: str
     osInfo: InventoryOsInfo
     updateTime: str
@@ -159,11 +161,11 @@ class InventoryWindowsQuickFixEngineeringPackage(
 
 @typing.type_check_only
 class InventoryWindowsUpdatePackage(typing_extensions.TypedDict, total=False):
-    categories: typing.List[InventoryWindowsUpdatePackageWindowsUpdateCategory]
+    categories: _list[InventoryWindowsUpdatePackageWindowsUpdateCategory]
     description: str
-    kbArticleIds: typing.List[str]
+    kbArticleIds: _list[str]
     lastDeploymentChangeTime: str
-    moreInfoUrls: typing.List[str]
+    moreInfoUrls: _list[str]
     revisionNumber: int
     supportUrl: str
     title: str
@@ -187,33 +189,33 @@ class InventoryZypperPatch(typing_extensions.TypedDict, total=False):
 class ListInstanceOSPoliciesCompliancesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    instanceOsPoliciesCompliances: typing.List[InstanceOSPoliciesCompliance]
+    instanceOsPoliciesCompliances: _list[InstanceOSPoliciesCompliance]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInventoriesResponse(typing_extensions.TypedDict, total=False):
-    inventories: typing.List[Inventory]
+    inventories: _list[Inventory]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOSPolicyAssignmentReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    osPolicyAssignmentReports: typing.List[OSPolicyAssignmentReport]
+    osPolicyAssignmentReports: _list[OSPolicyAssignmentReport]
 
 @typing.type_check_only
 class ListOSPolicyAssignmentRevisionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    osPolicyAssignments: typing.List[OSPolicyAssignment]
+    osPolicyAssignments: _list[OSPolicyAssignment]
 
 @typing.type_check_only
 class ListOSPolicyAssignmentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    osPolicyAssignments: typing.List[OSPolicyAssignment]
+    osPolicyAssignments: _list[OSPolicyAssignment]
 
 @typing.type_check_only
 class ListVulnerabilityReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    vulnerabilityReports: typing.List[VulnerabilityReport]
+    vulnerabilityReports: _list[VulnerabilityReport]
 
 @typing.type_check_only
 class OSPolicy(typing_extensions.TypedDict, total=False):
@@ -221,7 +223,7 @@ class OSPolicy(typing_extensions.TypedDict, total=False):
     description: str
     id: str
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "VALIDATION", "ENFORCEMENT"]
-    resourceGroups: typing.List[OSPolicyResourceGroup]
+    resourceGroups: _list[OSPolicyResourceGroup]
 
 @typing.type_check_only
 class OSPolicyAssignment(typing_extensions.TypedDict, total=False):
@@ -231,7 +233,7 @@ class OSPolicyAssignment(typing_extensions.TypedDict, total=False):
     etag: str
     instanceFilter: OSPolicyAssignmentInstanceFilter
     name: str
-    osPolicies: typing.List[OSPolicy]
+    osPolicies: _list[OSPolicy]
     reconciling: bool
     revisionCreateTime: str
     revisionId: str
@@ -248,10 +250,10 @@ class OSPolicyAssignment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OSPolicyAssignmentInstanceFilter(typing_extensions.TypedDict, total=False):
     all: bool
-    exclusionLabels: typing.List[OSPolicyAssignmentLabelSet]
-    inclusionLabels: typing.List[OSPolicyAssignmentLabelSet]
-    inventories: typing.List[OSPolicyAssignmentInstanceFilterInventory]
-    osShortNames: typing.List[str]
+    exclusionLabels: _list[OSPolicyAssignmentLabelSet]
+    inclusionLabels: _list[OSPolicyAssignmentLabelSet]
+    inventories: _list[OSPolicyAssignmentInstanceFilterInventory]
+    osShortNames: _list[str]
 
 @typing.type_check_only
 class OSPolicyAssignmentInstanceFilterInventory(
@@ -262,7 +264,7 @@ class OSPolicyAssignmentInstanceFilterInventory(
 
 @typing.type_check_only
 class OSPolicyAssignmentLabelSet(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class OSPolicyAssignmentOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -286,7 +288,7 @@ class OSPolicyAssignmentReport(typing_extensions.TypedDict, total=False):
     lastRunId: str
     name: str
     osPolicyAssignment: str
-    osPolicyCompliances: typing.List[OSPolicyAssignmentReportOSPolicyCompliance]
+    osPolicyCompliances: _list[OSPolicyAssignmentReportOSPolicyCompliance]
     updateTime: str
 
 @typing.type_check_only
@@ -296,7 +298,7 @@ class OSPolicyAssignmentReportOSPolicyCompliance(
     complianceState: typing_extensions.Literal["UNKNOWN", "COMPLIANT", "NON_COMPLIANT"]
     complianceStateReason: str
     osPolicyId: str
-    osPolicyResourceCompliances: typing.List[
+    osPolicyResourceCompliances: _list[
         OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance
     ]
 
@@ -306,7 +308,7 @@ class OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance(
 ):
     complianceState: typing_extensions.Literal["UNKNOWN", "COMPLIANT", "NON_COMPLIANT"]
     complianceStateReason: str
-    configSteps: typing.List[
+    configSteps: _list[
         OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep
     ]
     execResourceOutput: OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput
@@ -356,7 +358,7 @@ class OSPolicyResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OSPolicyResourceCompliance(typing_extensions.TypedDict, total=False):
-    configSteps: typing.List[OSPolicyResourceConfigStep]
+    configSteps: _list[OSPolicyResourceConfigStep]
     execResourceOutput: OSPolicyResourceComplianceExecResourceOutput
     osPolicyResourceId: str
     state: typing_extensions.Literal[
@@ -392,7 +394,7 @@ class OSPolicyResourceExecResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OSPolicyResourceExecResourceExec(typing_extensions.TypedDict, total=False):
-    args: typing.List[str]
+    args: _list[str]
     file: OSPolicyResourceFile
     interpreter: typing_extensions.Literal[
         "INTERPRETER_UNSPECIFIED", "NONE", "SHELL", "POWERSHELL"
@@ -430,9 +432,9 @@ class OSPolicyResourceFileResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OSPolicyResourceGroup(typing_extensions.TypedDict, total=False):
-    inventoryFilters: typing.List[OSPolicyInventoryFilter]
+    inventoryFilters: _list[OSPolicyInventoryFilter]
     osFilter: OSPolicyOSFilter
-    resources: typing.List[OSPolicyResource]
+    resources: _list[OSPolicyResource]
 
 @typing.type_check_only
 class OSPolicyResourcePackageResource(typing_extensions.TypedDict, total=False):
@@ -462,7 +464,7 @@ class OSPolicyResourcePackageResourceGooGet(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class OSPolicyResourcePackageResourceMSI(typing_extensions.TypedDict, total=False):
-    properties: typing.List[str]
+    properties: _list[str]
     source: OSPolicyResourceFile
 
 @typing.type_check_only
@@ -490,7 +492,7 @@ class OSPolicyResourceRepositoryResourceAptRepository(
     typing_extensions.TypedDict, total=False
 ):
     archiveType: typing_extensions.Literal["ARCHIVE_TYPE_UNSPECIFIED", "DEB", "DEB_SRC"]
-    components: typing.List[str]
+    components: _list[str]
     distribution: str
     gpgKey: str
     uri: str
@@ -508,7 +510,7 @@ class OSPolicyResourceRepositoryResourceYumRepository(
 ):
     baseUrl: str
     displayName: str
-    gpgKeys: typing.List[str]
+    gpgKeys: _list[str]
     id: str
 
 @typing.type_check_only
@@ -517,35 +519,35 @@ class OSPolicyResourceRepositoryResourceZypperRepository(
 ):
     baseUrl: str
     displayName: str
-    gpgKeys: typing.List[str]
+    gpgKeys: _list[str]
     id: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class VulnerabilityReport(typing_extensions.TypedDict, total=False):
     name: str
     updateTime: str
-    vulnerabilities: typing.List[VulnerabilityReportVulnerability]
+    vulnerabilities: _list[VulnerabilityReportVulnerability]
 
 @typing.type_check_only
 class VulnerabilityReportVulnerability(typing_extensions.TypedDict, total=False):
-    availableInventoryItemIds: typing.List[str]
+    availableInventoryItemIds: _list[str]
     createTime: str
     details: VulnerabilityReportVulnerabilityDetails
-    installedInventoryItemIds: typing.List[str]
+    installedInventoryItemIds: _list[str]
     updateTime: str
 
 @typing.type_check_only
@@ -554,7 +556,7 @@ class VulnerabilityReportVulnerabilityDetails(typing_extensions.TypedDict, total
     cvssV2Score: float
     cvssV3: CVSSv3
     description: str
-    references: typing.List[VulnerabilityReportVulnerabilityDetailsReference]
+    references: _list[VulnerabilityReportVulnerabilityDetailsReference]
     severity: str
 
 @typing.type_check_only

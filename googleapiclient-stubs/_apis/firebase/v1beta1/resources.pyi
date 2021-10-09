@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class FirebaseManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -191,9 +193,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
 class AdminSdkConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdminSdkConfig: ...
 
@@ -201,9 +201,7 @@ class AdminSdkConfigHttpRequest(googleapiclient.http.HttpRequest):
 class AnalyticsDetailsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnalyticsDetails: ...
 
@@ -211,9 +209,7 @@ class AnalyticsDetailsHttpRequest(googleapiclient.http.HttpRequest):
 class AndroidAppHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AndroidApp: ...
 
@@ -221,9 +217,7 @@ class AndroidAppHttpRequest(googleapiclient.http.HttpRequest):
 class AndroidAppConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AndroidAppConfig: ...
 
@@ -231,9 +225,7 @@ class AndroidAppConfigHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -241,9 +233,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class FirebaseProjectHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FirebaseProject: ...
 
@@ -251,9 +241,7 @@ class FirebaseProjectHttpRequest(googleapiclient.http.HttpRequest):
 class IosAppHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> IosApp: ...
 
@@ -261,9 +249,7 @@ class IosAppHttpRequest(googleapiclient.http.HttpRequest):
 class IosAppConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> IosAppConfig: ...
 
@@ -271,9 +257,7 @@ class IosAppConfigHttpRequest(googleapiclient.http.HttpRequest):
 class ListAndroidAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAndroidAppsResponse: ...
 
@@ -281,9 +265,7 @@ class ListAndroidAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListAvailableLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAvailableLocationsResponse: ...
 
@@ -291,9 +273,7 @@ class ListAvailableLocationsResponseHttpRequest(googleapiclient.http.HttpRequest
 class ListAvailableProjectsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAvailableProjectsResponse: ...
 
@@ -301,9 +281,7 @@ class ListAvailableProjectsResponseHttpRequest(googleapiclient.http.HttpRequest)
 class ListFirebaseProjectsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListFirebaseProjectsResponse: ...
 
@@ -311,9 +289,7 @@ class ListFirebaseProjectsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListIosAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListIosAppsResponse: ...
 
@@ -321,9 +297,7 @@ class ListIosAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListShaCertificatesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListShaCertificatesResponse: ...
 
@@ -331,9 +305,7 @@ class ListShaCertificatesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListWebAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListWebAppsResponse: ...
 
@@ -341,9 +313,7 @@ class ListWebAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
 
@@ -351,9 +321,7 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
 class SearchFirebaseAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchFirebaseAppsResponse: ...
 
@@ -361,9 +329,7 @@ class SearchFirebaseAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ShaCertificateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ShaCertificate: ...
 
@@ -371,9 +337,7 @@ class ShaCertificateHttpRequest(googleapiclient.http.HttpRequest):
 class WebAppHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> WebApp: ...
 
@@ -381,8 +345,6 @@ class WebAppHttpRequest(googleapiclient.http.HttpRequest):
 class WebAppConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> WebAppConfig: ...

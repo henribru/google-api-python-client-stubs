@@ -2,20 +2,22 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class About(typing_extensions.TypedDict, total=False):
     appInstalled: bool
     canCreateDrives: bool
     canCreateTeamDrives: bool
-    driveThemes: typing.List[typing.Dict[str, typing.Any]]
-    exportFormats: typing.Dict[str, typing.Any]
-    folderColorPalette: typing.List[str]
-    importFormats: typing.Dict[str, typing.Any]
+    driveThemes: _list[dict[str, typing.Any]]
+    exportFormats: dict[str, typing.Any]
+    folderColorPalette: _list[str]
+    importFormats: dict[str, typing.Any]
     kind: str
-    maxImportSizes: typing.Dict[str, typing.Any]
+    maxImportSizes: dict[str, typing.Any]
     maxUploadSize: str
-    storageQuota: typing.Dict[str, typing.Any]
-    teamDriveThemes: typing.List[typing.Dict[str, typing.Any]]
+    storageQuota: dict[str, typing.Any]
+    teamDriveThemes: _list[dict[str, typing.Any]]
     user: User
 
 @typing.type_check_only
@@ -34,7 +36,7 @@ class Change(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChangeList(typing_extensions.TypedDict, total=False):
-    changes: typing.List[Change]
+    changes: _list[Change]
     kind: str
     newStartPageToken: str
     nextPageToken: str
@@ -45,7 +47,7 @@ class Channel(typing_extensions.TypedDict, total=False):
     expiration: str
     id: str
     kind: str
-    params: typing.Dict[str, typing.Any]
+    params: dict[str, typing.Any]
     payload: bool
     resourceId: str
     resourceUri: str
@@ -63,13 +65,13 @@ class Comment(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     modifiedTime: str
-    quotedFileContent: typing.Dict[str, typing.Any]
-    replies: typing.List[Reply]
+    quotedFileContent: dict[str, typing.Any]
+    replies: _list[Reply]
     resolved: bool
 
 @typing.type_check_only
 class CommentList(typing_extensions.TypedDict, total=False):
-    comments: typing.List[Comment]
+    comments: _list[Comment]
     kind: str
     nextPageToken: str
 
@@ -83,36 +85,36 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Drive(typing_extensions.TypedDict, total=False):
-    backgroundImageFile: typing.Dict[str, typing.Any]
+    backgroundImageFile: dict[str, typing.Any]
     backgroundImageLink: str
-    capabilities: typing.Dict[str, typing.Any]
+    capabilities: dict[str, typing.Any]
     colorRgb: str
     createdTime: str
     hidden: bool
     id: str
     kind: str
     name: str
-    restrictions: typing.Dict[str, typing.Any]
+    restrictions: dict[str, typing.Any]
     themeId: str
 
 @typing.type_check_only
 class DriveList(typing_extensions.TypedDict, total=False):
-    drives: typing.List[Drive]
+    drives: _list[Drive]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):
-    appProperties: typing.Dict[str, typing.Any]
-    capabilities: typing.Dict[str, typing.Any]
-    contentHints: typing.Dict[str, typing.Any]
-    contentRestrictions: typing.List[ContentRestriction]
+    appProperties: dict[str, typing.Any]
+    capabilities: dict[str, typing.Any]
+    contentHints: dict[str, typing.Any]
+    contentRestrictions: _list[ContentRestriction]
     copyRequiresWriterPermission: bool
     createdTime: str
     description: str
     driveId: str
     explicitlyTrashed: bool
-    exportLinks: typing.Dict[str, typing.Any]
+    exportLinks: dict[str, typing.Any]
     fileExtension: str
     folderColorRgb: str
     fullFileExtension: str
@@ -121,11 +123,11 @@ class File(typing_extensions.TypedDict, total=False):
     headRevisionId: str
     iconLink: str
     id: str
-    imageMediaMetadata: typing.Dict[str, typing.Any]
+    imageMediaMetadata: dict[str, typing.Any]
     isAppAuthorized: bool
     kind: str
     lastModifyingUser: User
-    linkShareMetadata: typing.Dict[str, typing.Any]
+    linkShareMetadata: dict[str, typing.Any]
     md5Checksum: str
     mimeType: str
     modifiedByMe: bool
@@ -134,19 +136,19 @@ class File(typing_extensions.TypedDict, total=False):
     name: str
     originalFilename: str
     ownedByMe: bool
-    owners: typing.List[User]
-    parents: typing.List[str]
-    permissionIds: typing.List[str]
-    permissions: typing.List[Permission]
-    properties: typing.Dict[str, typing.Any]
+    owners: _list[User]
+    parents: _list[str]
+    permissionIds: _list[str]
+    permissions: _list[Permission]
+    properties: dict[str, typing.Any]
     quotaBytesUsed: str
     resourceKey: str
     shared: bool
     sharedWithMeTime: str
     sharingUser: User
-    shortcutDetails: typing.Dict[str, typing.Any]
+    shortcutDetails: dict[str, typing.Any]
     size: str
-    spaces: typing.List[str]
+    spaces: _list[str]
     starred: bool
     teamDriveId: str
     thumbnailLink: str
@@ -155,7 +157,7 @@ class File(typing_extensions.TypedDict, total=False):
     trashedTime: str
     trashingUser: User
     version: str
-    videoMediaMetadata: typing.Dict[str, typing.Any]
+    videoMediaMetadata: dict[str, typing.Any]
     viewedByMe: bool
     viewedByMeTime: str
     viewersCanCopyContent: bool
@@ -165,14 +167,14 @@ class File(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FileList(typing_extensions.TypedDict, total=False):
-    files: typing.List[File]
+    files: _list[File]
     incompleteSearch: bool
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
 class GeneratedIds(typing_extensions.TypedDict, total=False):
-    ids: typing.List[str]
+    ids: _list[str]
     kind: str
     space: str
 
@@ -186,10 +188,10 @@ class Permission(typing_extensions.TypedDict, total=False):
     expirationTime: str
     id: str
     kind: str
-    permissionDetails: typing.List[typing.Dict[str, typing.Any]]
+    permissionDetails: _list[dict[str, typing.Any]]
     photoLink: str
     role: str
-    teamDrivePermissionDetails: typing.List[typing.Dict[str, typing.Any]]
+    teamDrivePermissionDetails: _list[dict[str, typing.Any]]
     type: str
     view: str
 
@@ -197,7 +199,7 @@ class Permission(typing_extensions.TypedDict, total=False):
 class PermissionList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    permissions: typing.List[Permission]
+    permissions: _list[Permission]
 
 @typing.type_check_only
 class Reply(typing_extensions.TypedDict, total=False):
@@ -215,11 +217,11 @@ class Reply(typing_extensions.TypedDict, total=False):
 class ReplyList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    replies: typing.List[Reply]
+    replies: _list[Reply]
 
 @typing.type_check_only
 class Revision(typing_extensions.TypedDict, total=False):
-    exportLinks: typing.Dict[str, typing.Any]
+    exportLinks: dict[str, typing.Any]
     id: str
     keepForever: bool
     kind: str
@@ -238,7 +240,7 @@ class Revision(typing_extensions.TypedDict, total=False):
 class RevisionList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    revisions: typing.List[Revision]
+    revisions: _list[Revision]
 
 @typing.type_check_only
 class StartPageToken(typing_extensions.TypedDict, total=False):
@@ -247,22 +249,22 @@ class StartPageToken(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TeamDrive(typing_extensions.TypedDict, total=False):
-    backgroundImageFile: typing.Dict[str, typing.Any]
+    backgroundImageFile: dict[str, typing.Any]
     backgroundImageLink: str
-    capabilities: typing.Dict[str, typing.Any]
+    capabilities: dict[str, typing.Any]
     colorRgb: str
     createdTime: str
     id: str
     kind: str
     name: str
-    restrictions: typing.Dict[str, typing.Any]
+    restrictions: dict[str, typing.Any]
     themeId: str
 
 @typing.type_check_only
 class TeamDriveList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    teamDrives: typing.List[TeamDrive]
+    teamDrives: _list[TeamDrive]
 
 @typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):

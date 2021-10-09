@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AccessUrls(typing_extensions.TypedDict, total=False):
     caCertificateAccessUrl: str
-    crlAccessUrls: typing.List[str]
+    crlAccessUrls: _list[str]
 
 @typing.type_check_only
 class ActivateCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):
@@ -20,12 +22,12 @@ class AllowedKeyType(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -33,7 +35,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -44,7 +46,7 @@ class CaOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CaPool(typing_extensions.TypedDict, total=False):
     issuancePolicy: IssuancePolicy
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     publishingOptions: PublishingOptions
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "ENTERPRISE", "DEVOPS"]
@@ -54,7 +56,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CertChain(typing_extensions.TypedDict, total=False):
-    certificates: typing.List[str]
+    certificates: _list[str]
 
 @typing.type_check_only
 class Certificate(typing_extensions.TypedDict, total=False):
@@ -63,11 +65,11 @@ class Certificate(typing_extensions.TypedDict, total=False):
     config: CertificateConfig
     createTime: str
     issuerCertificateAuthority: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     lifetime: str
     name: str
     pemCertificate: str
-    pemCertificateChain: typing.List[str]
+    pemCertificateChain: _list[str]
     pemCsr: str
     revocationDetails: RevocationDetails
     subjectMode: typing_extensions.Literal[
@@ -78,17 +80,17 @@ class Certificate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CertificateAuthority(typing_extensions.TypedDict, total=False):
     accessUrls: AccessUrls
-    caCertificateDescriptions: typing.List[CertificateDescription]
+    caCertificateDescriptions: _list[CertificateDescription]
     config: CertificateConfig
     createTime: str
     deleteTime: str
     expireTime: str
     gcsBucket: str
     keySpec: KeyVersionSpec
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     lifetime: str
     name: str
-    pemCaCertificates: typing.List[str]
+    pemCaCertificates: _list[str]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "ENABLED",
@@ -110,10 +112,10 @@ class CertificateConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CertificateDescription(typing_extensions.TypedDict, total=False):
-    aiaIssuingCertificateUrls: typing.List[str]
+    aiaIssuingCertificateUrls: _list[str]
     authorityKeyId: KeyId
     certFingerprint: CertificateFingerprint
-    crlDistributionPoints: typing.List[str]
+    crlDistributionPoints: _list[str]
     publicKey: PublicKey
     subjectDescription: SubjectDescription
     subjectKeyId: KeyId
@@ -121,8 +123,8 @@ class CertificateDescription(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CertificateExtensionConstraints(typing_extensions.TypedDict, total=False):
-    additionalExtensions: typing.List[ObjectId]
-    knownExtensions: typing.List[str]
+    additionalExtensions: _list[ObjectId]
+    knownExtensions: _list[str]
 
 @typing.type_check_only
 class CertificateFingerprint(typing_extensions.TypedDict, total=False):
@@ -138,11 +140,11 @@ class CertificateIdentityConstraints(typing_extensions.TypedDict, total=False):
 class CertificateRevocationList(typing_extensions.TypedDict, total=False):
     accessUrl: str
     createTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     pemCrl: str
     revisionId: str
-    revokedCertificates: typing.List[RevokedCertificate]
+    revokedCertificates: _list[RevokedCertificate]
     sequenceNumber: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "SUPERSEDED"]
     updateTime: str
@@ -152,7 +154,7 @@ class CertificateTemplate(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     identityConstraints: CertificateIdentityConstraints
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     passthroughExtensions: CertificateExtensionConstraints
     predefinedValues: X509Parameters
@@ -197,7 +199,7 @@ class FetchCaCertsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FetchCaCertsResponse(typing_extensions.TypedDict, total=False):
-    caCerts: typing.List[CertChain]
+    caCerts: _list[CertChain]
 
 @typing.type_check_only
 class FetchCertificateAuthorityCsrResponse(typing_extensions.TypedDict, total=False):
@@ -211,7 +213,7 @@ class IssuanceModes(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class IssuancePolicy(typing_extensions.TypedDict, total=False):
     allowedIssuanceModes: IssuanceModes
-    allowedKeyTypes: typing.List[AllowedKeyType]
+    allowedKeyTypes: _list[AllowedKeyType]
     baselineValues: X509Parameters
     identityConstraints: CertificateIdentityConstraints
     maximumLifetime: str
@@ -225,7 +227,7 @@ class KeyId(typing_extensions.TypedDict, total=False):
 class KeyUsage(typing_extensions.TypedDict, total=False):
     baseKeyUsage: KeyUsageOptions
     extendedKeyUsage: ExtendedKeyUsageOptions
-    unknownExtendedKeyUsages: typing.List[ObjectId]
+    unknownExtendedKeyUsages: _list[ObjectId]
 
 @typing.type_check_only
 class KeyUsageOptions(typing_extensions.TypedDict, total=False):
@@ -256,63 +258,63 @@ class KeyVersionSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListCaPoolsResponse(typing_extensions.TypedDict, total=False):
-    caPools: typing.List[CaPool]
+    caPools: _list[CaPool]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListCertificateAuthoritiesResponse(typing_extensions.TypedDict, total=False):
-    certificateAuthorities: typing.List[CertificateAuthority]
+    certificateAuthorities: _list[CertificateAuthority]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListCertificateRevocationListsResponse(typing_extensions.TypedDict, total=False):
-    certificateRevocationLists: typing.List[CertificateRevocationList]
+    certificateRevocationLists: _list[CertificateRevocationList]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListCertificateTemplatesResponse(typing_extensions.TypedDict, total=False):
-    certificateTemplates: typing.List[CertificateTemplate]
+    certificateTemplates: _list[CertificateTemplate]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListCertificatesResponse(typing_extensions.TypedDict, total=False):
-    certificates: typing.List[Certificate]
+    certificates: _list[Certificate]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class ObjectId(typing_extensions.TypedDict, total=False):
-    objectIdPath: typing.List[int]
+    objectIdPath: _list[int]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -326,8 +328,8 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -407,7 +409,7 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -423,11 +425,11 @@ class Subject(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SubjectAltNames(typing_extensions.TypedDict, total=False):
-    customSans: typing.List[X509Extension]
-    dnsNames: typing.List[str]
-    emailAddresses: typing.List[str]
-    ipAddresses: typing.List[str]
-    uris: typing.List[str]
+    customSans: _list[X509Extension]
+    dnsNames: _list[str]
+    emailAddresses: _list[str]
+    ipAddresses: _list[str]
+    uris: _list[str]
 
 @typing.type_check_only
 class SubjectConfig(typing_extensions.TypedDict, total=False):
@@ -450,15 +452,15 @@ class SubordinateConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SubordinateConfigChain(typing_extensions.TypedDict, total=False):
-    pemCertificates: typing.List[str]
+    pemCertificates: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class UndeleteCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):
@@ -472,8 +474,8 @@ class X509Extension(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class X509Parameters(typing_extensions.TypedDict, total=False):
-    additionalExtensions: typing.List[X509Extension]
-    aiaOcspServers: typing.List[str]
+    additionalExtensions: _list[X509Extension]
+    aiaOcspServers: _list[str]
     caOptions: CaOptions
     keyUsage: KeyUsage
-    policyIds: typing.List[ObjectId]
+    policyIds: _list[ObjectId]

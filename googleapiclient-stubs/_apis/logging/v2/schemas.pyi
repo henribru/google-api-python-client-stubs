@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class BigQueryOptions(typing_extensions.TypedDict, total=False):
     usePartitionedTables: bool
@@ -55,7 +57,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Explicit(typing_extensions.TypedDict, total=False):
-    bounds: typing.List[float]
+    bounds: _list[float]
 
 @typing.type_check_only
 class Exponential(typing_extensions.TypedDict, total=False):
@@ -95,17 +97,17 @@ class Linear(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListBucketsResponse(typing_extensions.TypedDict, total=False):
-    buckets: typing.List[LogBucket]
+    buckets: _list[LogBucket]
     nextPageToken: str
 
 @typing.type_check_only
 class ListExclusionsResponse(typing_extensions.TypedDict, total=False):
-    exclusions: typing.List[LogExclusion]
+    exclusions: _list[LogExclusion]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
@@ -114,22 +116,22 @@ class ListLogEntriesRequest(typing_extensions.TypedDict, total=False):
     orderBy: str
     pageSize: int
     pageToken: str
-    projectIds: typing.List[str]
-    resourceNames: typing.List[str]
+    projectIds: _list[str]
+    resourceNames: _list[str]
 
 @typing.type_check_only
 class ListLogEntriesResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[LogEntry]
+    entries: _list[LogEntry]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLogMetricsResponse(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[LogMetric]
+    metrics: _list[LogMetric]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLogsResponse(typing_extensions.TypedDict, total=False):
-    logNames: typing.List[str]
+    logNames: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
@@ -137,29 +139,29 @@ class ListMonitoredResourceDescriptorsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    resourceDescriptors: typing.List[MonitoredResourceDescriptor]
+    resourceDescriptors: _list[MonitoredResourceDescriptor]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListSinksResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sinks: typing.List[LogSink]
+    sinks: _list[LogSink]
 
 @typing.type_check_only
 class ListViewsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    views: typing.List[LogView]
+    views: _list[LogView]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -171,7 +173,7 @@ class LogBucket(typing_extensions.TypedDict, total=False):
     ]
     locked: bool
     name: str
-    restrictedFields: typing.List[str]
+    restrictedFields: _list[str]
     retentionDays: int
     updateTime: str
 
@@ -179,12 +181,12 @@ class LogBucket(typing_extensions.TypedDict, total=False):
 class LogEntry(typing_extensions.TypedDict, total=False):
     httpRequest: HttpRequest
     insertId: str
-    jsonPayload: typing.Dict[str, typing.Any]
-    labels: typing.Dict[str, typing.Any]
+    jsonPayload: dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     logName: str
     metadata: MonitoredResourceMetadata
     operation: LogEntryOperation
-    protoPayload: typing.Dict[str, typing.Any]
+    protoPayload: dict[str, typing.Any]
     receiveTimestamp: str
     resource: MonitoredResource
     severity: typing_extensions.Literal[
@@ -251,7 +253,7 @@ class LogMetric(typing_extensions.TypedDict, total=False):
     description: str
     disabled: bool
     filter: str
-    labelExtractors: typing.Dict[str, typing.Any]
+    labelExtractors: dict[str, typing.Any]
     metricDescriptor: MetricDescriptor
     name: str
     updateTime: str
@@ -265,7 +267,7 @@ class LogSink(typing_extensions.TypedDict, total=False):
     description: str
     destination: str
     disabled: bool
-    exclusions: typing.List[LogExclusion]
+    exclusions: _list[LogExclusion]
     filter: str
     includeChildren: bool
     name: str
@@ -276,13 +278,13 @@ class LogSink(typing_extensions.TypedDict, total=False):
     writerIdentity: str
 
 @typing.type_check_only
-class LogView(typing.Dict[str, typing.Any]): ...
+class LogView(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -297,7 +299,7 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
     metricKind: typing_extensions.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
-    monitoredResourceTypes: typing.List[str]
+    monitoredResourceTypes: _list[str]
     name: str
     type: str
     unit: str
@@ -328,14 +330,14 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MonitoredResource(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     type: str
 
 @typing.type_check_only
 class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -351,16 +353,16 @@ class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MonitoredResourceMetadata(typing_extensions.TypedDict, total=False):
-    systemLabels: typing.Dict[str, typing.Any]
-    userLabels: typing.Dict[str, typing.Any]
+    systemLabels: dict[str, typing.Any]
+    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class RequestLog(typing_extensions.TypedDict, total=False):
@@ -376,7 +378,7 @@ class RequestLog(typing_extensions.TypedDict, total=False):
     instanceIndex: int
     ip: str
     latency: str
-    line: typing.List[LogLine]
+    line: _list[LogLine]
     megaCycles: str
     method: str
     moduleId: str
@@ -386,7 +388,7 @@ class RequestLog(typing_extensions.TypedDict, total=False):
     requestId: str
     resource: str
     responseSize: str
-    sourceReference: typing.List[SourceReference]
+    sourceReference: _list[SourceReference]
     startTime: str
     status: int
     taskName: str
@@ -412,7 +414,7 @@ class SourceReference(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -423,21 +425,21 @@ class SuppressionInfo(typing_extensions.TypedDict, total=False):
     suppressedCount: int
 
 @typing.type_check_only
-class TableFieldSchema(typing.Dict[str, typing.Any]): ...
+class TableFieldSchema(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class TableSchema(typing.Dict[str, typing.Any]): ...
+class TableSchema(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TailLogEntriesRequest(typing_extensions.TypedDict, total=False):
     bufferWindow: str
     filter: str
-    resourceNames: typing.List[str]
+    resourceNames: _list[str]
 
 @typing.type_check_only
 class TailLogEntriesResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[LogEntry]
-    suppressionInfo: typing.List[SuppressionInfo]
+    entries: _list[LogEntry]
+    suppressionInfo: _list[SuppressionInfo]
 
 @typing.type_check_only
 class UndeleteBucketRequest(typing_extensions.TypedDict, total=False): ...
@@ -445,8 +447,8 @@ class UndeleteBucketRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class WriteLogEntriesRequest(typing_extensions.TypedDict, total=False):
     dryRun: bool
-    entries: typing.List[LogEntry]
-    labels: typing.Dict[str, typing.Any]
+    entries: _list[LogEntry]
+    labels: dict[str, typing.Any]
     logName: str
     partialSuccess: bool
     resource: MonitoredResource

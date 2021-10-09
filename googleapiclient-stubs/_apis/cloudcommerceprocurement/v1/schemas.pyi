@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
-    approvals: typing.List[Approval]
+    approvals: _list[Approval]
     createTime: str
-    inputProperties: typing.Dict[str, typing.Any]
+    inputProperties: dict[str, typing.Any]
     name: str
     provider: str
     state: typing_extensions.Literal[
@@ -26,7 +28,7 @@ class Approval(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApproveAccountRequest(typing_extensions.TypedDict, total=False):
     approvalName: str
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
     reason: str
 
 @typing.type_check_only
@@ -35,7 +37,7 @@ class ApproveEntitlementPlanChangeRequest(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class ApproveEntitlementRequest(typing_extensions.TypedDict, total=False):
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
 
 @typing.type_check_only
 class Consumer(typing_extensions.TypedDict, total=False):
@@ -47,9 +49,9 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Entitlement(typing_extensions.TypedDict, total=False):
     account: str
-    consumers: typing.List[Consumer]
+    consumers: _list[Consumer]
     createTime: str
-    inputProperties: typing.Dict[str, typing.Any]
+    inputProperties: dict[str, typing.Any]
     messageToUser: str
     name: str
     newPendingOffer: str
@@ -77,12 +79,12 @@ class Entitlement(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAccountsResponse(typing_extensions.TypedDict, total=False):
-    accounts: typing.List[Account]
+    accounts: _list[Account]
     nextPageToken: str
 
 @typing.type_check_only
 class ListEntitlementsResponse(typing_extensions.TypedDict, total=False):
-    entitlements: typing.List[Entitlement]
+    entitlements: _list[Entitlement]
     nextPageToken: str
 
 @typing.type_check_only

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudRecommenderV1CostProjection(typing_extensions.TypedDict, total=False):
     cost: GoogleTypeMoney
@@ -17,13 +19,13 @@ class GoogleCloudRecommenderV1Impact(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1Insight(typing_extensions.TypedDict, total=False):
-    associatedRecommendations: typing.List[
+    associatedRecommendations: _list[
         GoogleCloudRecommenderV1InsightRecommendationReference
     ]
     category: typing_extensions.Literal[
         "CATEGORY_UNSPECIFIED", "COST", "SECURITY", "PERFORMANCE", "MANAGEABILITY"
     ]
-    content: typing.Dict[str, typing.Any]
+    content: dict[str, typing.Any]
     description: str
     etag: str
     insightSubtype: str
@@ -34,7 +36,7 @@ class GoogleCloudRecommenderV1Insight(typing_extensions.TypedDict, total=False):
         "SEVERITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
     stateInfo: GoogleCloudRecommenderV1InsightStateInfo
-    targetResources: typing.List[str]
+    targetResources: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1InsightRecommendationReference(
@@ -49,13 +51,13 @@ class GoogleCloudRecommenderV1InsightStateInfo(
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "ACCEPTED", "DISMISSED"
     ]
-    stateMetadata: typing.Dict[str, typing.Any]
+    stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1ListInsightsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    insights: typing.List[GoogleCloudRecommenderV1Insight]
+    insights: _list[GoogleCloudRecommenderV1Insight]
     nextPageToken: str
 
 @typing.type_check_only
@@ -63,42 +65,42 @@ class GoogleCloudRecommenderV1ListRecommendationsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    recommendations: typing.List[GoogleCloudRecommenderV1Recommendation]
+    recommendations: _list[GoogleCloudRecommenderV1Recommendation]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1MarkInsightAcceptedRequest(
     typing_extensions.TypedDict, total=False
 ):
     etag: str
-    stateMetadata: typing.Dict[str, typing.Any]
+    stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1MarkRecommendationClaimedRequest(
     typing_extensions.TypedDict, total=False
 ):
     etag: str
-    stateMetadata: typing.Dict[str, typing.Any]
+    stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1MarkRecommendationFailedRequest(
     typing_extensions.TypedDict, total=False
 ):
     etag: str
-    stateMetadata: typing.Dict[str, typing.Any]
+    stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1MarkRecommendationSucceededRequest(
     typing_extensions.TypedDict, total=False
 ):
     etag: str
-    stateMetadata: typing.Dict[str, typing.Any]
+    stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1Operation(typing_extensions.TypedDict, total=False):
     action: str
     path: str
-    pathFilters: typing.Dict[str, typing.Any]
-    pathValueMatchers: typing.Dict[str, typing.Any]
+    pathFilters: dict[str, typing.Any]
+    pathValueMatchers: dict[str, typing.Any]
     resource: str
     resourceType: str
     sourcePath: str
@@ -108,14 +110,12 @@ class GoogleCloudRecommenderV1Operation(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1OperationGroup(typing_extensions.TypedDict, total=False):
-    operations: typing.List[GoogleCloudRecommenderV1Operation]
+    operations: _list[GoogleCloudRecommenderV1Operation]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1Recommendation(typing_extensions.TypedDict, total=False):
-    additionalImpact: typing.List[GoogleCloudRecommenderV1Impact]
-    associatedInsights: typing.List[
-        GoogleCloudRecommenderV1RecommendationInsightReference
-    ]
+    additionalImpact: _list[GoogleCloudRecommenderV1Impact]
+    associatedInsights: _list[GoogleCloudRecommenderV1RecommendationInsightReference]
     content: GoogleCloudRecommenderV1RecommendationContent
     description: str
     etag: str
@@ -130,8 +130,8 @@ class GoogleCloudRecommenderV1Recommendation(typing_extensions.TypedDict, total=
 class GoogleCloudRecommenderV1RecommendationContent(
     typing_extensions.TypedDict, total=False
 ):
-    operationGroups: typing.List[GoogleCloudRecommenderV1OperationGroup]
-    overview: typing.Dict[str, typing.Any]
+    operationGroups: _list[GoogleCloudRecommenderV1OperationGroup]
+    overview: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1RecommendationInsightReference(
@@ -146,13 +146,13 @@ class GoogleCloudRecommenderV1RecommendationStateInfo(
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "CLAIMED", "SUCCEEDED", "FAILED", "DISMISSED"
     ]
-    stateMetadata: typing.Dict[str, typing.Any]
+    stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1SecurityProjection(
     typing_extensions.TypedDict, total=False
 ):
-    details: typing.Dict[str, typing.Any]
+    details: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1ValueMatcher(typing_extensions.TypedDict, total=False):

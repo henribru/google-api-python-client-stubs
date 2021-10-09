@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class LibraryagentResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -44,9 +46,7 @@ class LibraryagentResource(googleapiclient.discovery.Resource):
 class GoogleExampleLibraryagentV1BookHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleExampleLibraryagentV1Book: ...
 
@@ -56,9 +56,7 @@ class GoogleExampleLibraryagentV1ListBooksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleExampleLibraryagentV1ListBooksResponse: ...
 
@@ -68,9 +66,7 @@ class GoogleExampleLibraryagentV1ListShelvesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleExampleLibraryagentV1ListShelvesResponse: ...
 
@@ -78,8 +74,6 @@ class GoogleExampleLibraryagentV1ListShelvesResponseHttpRequest(
 class GoogleExampleLibraryagentV1ShelfHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleExampleLibraryagentV1Shelf: ...

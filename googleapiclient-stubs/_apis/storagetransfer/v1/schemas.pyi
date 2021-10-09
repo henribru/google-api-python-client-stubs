@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AwsAccessKey(typing_extensions.TypedDict, total=False):
     accessKeyId: str
@@ -39,7 +41,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ErrorLogEntry(typing_extensions.TypedDict, total=False):
-    errorDetails: typing.List[str]
+    errorDetails: _list[str]
     url: str
 
 @typing.type_check_only
@@ -64,7 +66,7 @@ class ErrorSummary(typing_extensions.TypedDict, total=False):
         "DATA_LOSS",
     ]
     errorCount: str
-    errorLogEntries: typing.List[ErrorLogEntry]
+    errorLogEntries: _list[ErrorLogEntry]
 
 @typing.type_check_only
 class GcsData(typing_extensions.TypedDict, total=False):
@@ -83,12 +85,12 @@ class HttpData(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListTransferJobsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    transferJobs: typing.List[TransferJob]
+    transferJobs: _list[TransferJob]
 
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
@@ -96,7 +98,7 @@ class LoggingConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
-    eventTypes: typing.List[str]
+    eventTypes: _list[str]
     payloadFormat: typing_extensions.Literal[
         "PAYLOAD_FORMAT_UNSPECIFIED", "NONE", "JSON"
     ]
@@ -104,8 +106,8 @@ class NotificationConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ObjectConditions(typing_extensions.TypedDict, total=False):
-    excludePrefixes: typing.List[str]
-    includePrefixes: typing.List[str]
+    excludePrefixes: _list[str]
+    includePrefixes: _list[str]
     lastModifiedBefore: str
     lastModifiedSince: str
     maxTimeElapsedSinceLastModification: str
@@ -115,9 +117,9 @@ class ObjectConditions(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class PauseTransferOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -144,7 +146,7 @@ class Schedule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -197,7 +199,7 @@ class TransferJob(typing_extensions.TypedDict, total=False):
 class TransferOperation(typing_extensions.TypedDict, total=False):
     counters: TransferCounters
     endTime: str
-    errorBreakdowns: typing.List[ErrorSummary]
+    errorBreakdowns: _list[ErrorSummary]
     name: str
     notificationConfig: NotificationConfig
     projectId: str

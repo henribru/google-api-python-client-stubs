@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuthorizationPolicy(typing_extensions.TypedDict, total=False):
     action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ALLOW", "DENY"]
     createTime: str
     description: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
-    rules: typing.List[Rule]
+    rules: _list[Rule]
     updateTime: str
 
 @typing.type_check_only
@@ -24,18 +26,18 @@ class ClientTlsPolicy(typing_extensions.TypedDict, total=False):
     clientCertificate: GoogleCloudNetworksecurityV1CertificateProvider
     createTime: str
     description: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
-    serverValidationCa: typing.List[ValidationCA]
+    serverValidationCa: _list[ValidationCA]
     sni: str
     updateTime: str
 
 @typing.type_check_only
 class Destination(typing_extensions.TypedDict, total=False):
-    hosts: typing.List[str]
+    hosts: _list[str]
     httpHeaderMatch: HttpHeaderMatch
-    methods: typing.List[str]
-    ports: typing.List[int]
+    methods: _list[str]
+    ports: _list[int]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -62,12 +64,12 @@ class GoogleCloudNetworksecurityV1GrpcEndpoint(
 
 @typing.type_check_only
 class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[GoogleIamV1AuditLogConfig]
+    auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -75,13 +77,13 @@ class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[GoogleIamV1AuditConfig]
-    bindings: typing.List[GoogleIamV1Binding]
+    auditConfigs: _list[GoogleIamV1AuditConfig]
+    bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
 
@@ -92,11 +94,11 @@ class GoogleIamV1SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleIamV1TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class GoogleIamV1TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class HttpHeaderMatch(typing_extensions.TypedDict, total=False):
@@ -105,48 +107,48 @@ class HttpHeaderMatch(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAuthorizationPoliciesResponse(typing_extensions.TypedDict, total=False):
-    authorizationPolicies: typing.List[AuthorizationPolicy]
+    authorizationPolicies: _list[AuthorizationPolicy]
     nextPageToken: str
 
 @typing.type_check_only
 class ListClientTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
-    clientTlsPolicies: typing.List[ClientTlsPolicy]
+    clientTlsPolicies: _list[ClientTlsPolicy]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListServerTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    serverTlsPolicies: typing.List[ServerTlsPolicy]
+    serverTlsPolicies: _list[ServerTlsPolicy]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class MTLSPolicy(typing_extensions.TypedDict, total=False):
-    clientValidationCa: typing.List[ValidationCA]
+    clientValidationCa: _list[ValidationCA]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -160,15 +162,15 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Rule(typing_extensions.TypedDict, total=False):
-    destinations: typing.List[Destination]
-    sources: typing.List[Source]
+    destinations: _list[Destination]
+    sources: _list[Source]
 
 @typing.type_check_only
 class ServerTlsPolicy(typing_extensions.TypedDict, total=False):
     allowOpen: bool
     createTime: str
     description: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     mtlsPolicy: MTLSPolicy
     name: str
     serverCertificate: GoogleCloudNetworksecurityV1CertificateProvider
@@ -176,13 +178,13 @@ class ServerTlsPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
-    ipBlocks: typing.List[str]
-    principals: typing.List[str]
+    ipBlocks: _list[str]
+    principals: _list[str]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

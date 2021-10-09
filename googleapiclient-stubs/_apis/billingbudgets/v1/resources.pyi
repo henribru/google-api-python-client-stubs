@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -50,9 +52,7 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
 class GoogleCloudBillingBudgetsV1BudgetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudBillingBudgetsV1Budget: ...
 
@@ -62,9 +62,7 @@ class GoogleCloudBillingBudgetsV1ListBudgetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudBillingBudgetsV1ListBudgetsResponse: ...
 
@@ -72,8 +70,6 @@ class GoogleCloudBillingBudgetsV1ListBudgetsResponseHttpRequest(
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

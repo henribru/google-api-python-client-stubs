@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1Analysis(
     typing_extensions.TypedDict, total=False
@@ -22,14 +24,12 @@ class GoogleCloudContactcenterinsightsV1AnalysisResult(
 class GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    annotations: typing.List[GoogleCloudContactcenterinsightsV1CallAnnotation]
-    entities: typing.Dict[str, typing.Any]
-    intents: typing.Dict[str, typing.Any]
+    annotations: _list[GoogleCloudContactcenterinsightsV1CallAnnotation]
+    entities: dict[str, typing.Any]
+    intents: dict[str, typing.Any]
     issueModelResult: GoogleCloudContactcenterinsightsV1IssueModelResult
-    phraseMatchers: typing.Dict[str, typing.Any]
-    sentiments: typing.List[
-        GoogleCloudContactcenterinsightsV1ConversationLevelSentiment
-    ]
+    phraseMatchers: dict[str, typing.Any]
+    sentiments: _list[GoogleCloudContactcenterinsightsV1ConversationLevelSentiment]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1AnnotationBoundary(
@@ -56,7 +56,7 @@ class GoogleCloudContactcenterinsightsV1ArticleSuggestionData(
     typing_extensions.TypedDict, total=False
 ):
     confidenceScore: float
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     queryRecord: str
     source: str
     title: str
@@ -76,16 +76,16 @@ class GoogleCloudContactcenterinsightsV1CalculateStatsResponse(
     averageTurnCount: int
     conversationCount: int
     conversationCountTimeSeries: GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeries
-    customHighlighterMatches: typing.Dict[str, typing.Any]
-    issueMatches: typing.Dict[str, typing.Any]
-    smartHighlighterMatches: typing.Dict[str, typing.Any]
+    customHighlighterMatches: dict[str, typing.Any]
+    issueMatches: dict[str, typing.Any]
+    smartHighlighterMatches: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeries(
     typing_extensions.TypedDict, total=False
 ):
     intervalDuration: str
-    points: typing.List[
+    points: _list[
         GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesInterval
     ]
 
@@ -119,15 +119,15 @@ class GoogleCloudContactcenterinsightsV1Conversation(
     callMetadata: GoogleCloudContactcenterinsightsV1ConversationCallMetadata
     createTime: str
     dataSource: GoogleCloudContactcenterinsightsV1ConversationDataSource
-    dialogflowIntents: typing.Dict[str, typing.Any]
+    dialogflowIntents: dict[str, typing.Any]
     duration: str
     expireTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     languageCode: str
     latestAnalysis: GoogleCloudContactcenterinsightsV1Analysis
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
     name: str
-    runtimeAnnotations: typing.List[GoogleCloudContactcenterinsightsV1RuntimeAnnotation]
+    runtimeAnnotations: _list[GoogleCloudContactcenterinsightsV1RuntimeAnnotation]
     startTime: str
     transcript: GoogleCloudContactcenterinsightsV1ConversationTranscript
     ttl: str
@@ -171,7 +171,7 @@ class GoogleCloudContactcenterinsightsV1ConversationParticipant(
 class GoogleCloudContactcenterinsightsV1ConversationTranscript(
     typing_extensions.TypedDict, total=False
 ):
-    transcriptSegments: typing.List[
+    transcriptSegments: _list[
         GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegment
     ]
 
@@ -184,7 +184,7 @@ class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegment(
     languageCode: str
     segmentParticipant: GoogleCloudContactcenterinsightsV1ConversationParticipant
     text: str
-    words: typing.List[
+    words: _list[
         GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfo
     ]
 
@@ -278,7 +278,7 @@ class GoogleCloudContactcenterinsightsV1Entity(
     typing_extensions.TypedDict, total=False
 ):
     displayName: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     salience: float
     sentiment: GoogleCloudContactcenterinsightsV1SentimentData
     type: typing_extensions.Literal[
@@ -317,7 +317,7 @@ class GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadata(
 ):
     createTime: str
     endTime: str
-    partialErrors: typing.List[GoogleRpcStatus]
+    partialErrors: _list[GoogleRpcStatus]
     request: GoogleCloudContactcenterinsightsV1ExportInsightsDataRequest
 
 @typing.type_check_only
@@ -348,7 +348,7 @@ class GoogleCloudContactcenterinsightsV1FaqAnswerData(
 ):
     answer: str
     confidenceScore: float
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     queryRecord: str
     question: str
     source: str
@@ -430,7 +430,7 @@ class GoogleCloudContactcenterinsightsV1IssueModelLabelStats(
     typing_extensions.TypedDict, total=False
 ):
     analyzedConversationsCount: str
-    issueStats: typing.Dict[str, typing.Any]
+    issueStats: dict[str, typing.Any]
     unclassifiedConversationsCount: str
 
 @typing.type_check_only
@@ -445,40 +445,40 @@ class GoogleCloudContactcenterinsightsV1IssueModelResult(
     typing_extensions.TypedDict, total=False
 ):
     issueModel: str
-    issues: typing.List[GoogleCloudContactcenterinsightsV1IssueAssignment]
+    issues: _list[GoogleCloudContactcenterinsightsV1IssueAssignment]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListAnalysesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    analyses: typing.List[GoogleCloudContactcenterinsightsV1Analysis]
+    analyses: _list[GoogleCloudContactcenterinsightsV1Analysis]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListConversationsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conversations: typing.List[GoogleCloudContactcenterinsightsV1Conversation]
+    conversations: _list[GoogleCloudContactcenterinsightsV1Conversation]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListIssueModelsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    issueModels: typing.List[GoogleCloudContactcenterinsightsV1IssueModel]
+    issueModels: _list[GoogleCloudContactcenterinsightsV1IssueModel]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListIssuesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    issues: typing.List[GoogleCloudContactcenterinsightsV1Issue]
+    issues: _list[GoogleCloudContactcenterinsightsV1Issue]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    phraseMatchers: typing.List[GoogleCloudContactcenterinsightsV1PhraseMatcher]
+    phraseMatchers: _list[GoogleCloudContactcenterinsightsV1PhraseMatcher]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1PhraseMatchData(
@@ -505,7 +505,7 @@ class GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfig(
 class GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroup(
     typing_extensions.TypedDict, total=False
 ):
-    phraseMatchRules: typing.List[GoogleCloudContactcenterinsightsV1PhraseMatchRule]
+    phraseMatchRules: _list[GoogleCloudContactcenterinsightsV1PhraseMatchRule]
     type: typing_extensions.Literal[
         "PHRASE_MATCH_RULE_GROUP_TYPE_UNSPECIFIED", "ALL_OF", "ANY_OF"
     ]
@@ -518,9 +518,7 @@ class GoogleCloudContactcenterinsightsV1PhraseMatcher(
     active: bool
     displayName: str
     name: str
-    phraseMatchRuleGroups: typing.List[
-        GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroup
-    ]
+    phraseMatchRuleGroups: _list[GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroup]
     revisionCreateTime: str
     revisionId: str
     roleMatch: typing_extensions.Literal[
@@ -563,7 +561,7 @@ class GoogleCloudContactcenterinsightsV1Settings(
     createTime: str
     languageCode: str
     name: str
-    pubsubNotificationSettings: typing.Dict[str, typing.Any]
+    pubsubNotificationSettings: dict[str, typing.Any]
     updateTime: str
 
 @typing.type_check_only
@@ -582,7 +580,7 @@ class GoogleCloudContactcenterinsightsV1SmartComposeSuggestionData(
     typing_extensions.TypedDict, total=False
 ):
     confidenceScore: float
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     queryRecord: str
     suggestion: str
 
@@ -591,7 +589,7 @@ class GoogleCloudContactcenterinsightsV1SmartReplyData(
     typing_extensions.TypedDict, total=False
 ):
     confidenceScore: float
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     queryRecord: str
     reply: str
 
@@ -676,7 +674,7 @@ class GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadata(
 ):
     createTime: str
     endTime: str
-    partialErrors: typing.List[GoogleRpcStatus]
+    partialErrors: _list[GoogleRpcStatus]
     request: GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequest
 
 @typing.type_check_only
@@ -733,7 +731,7 @@ class GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStats(
     typing_extensions.TypedDict, total=False
 ):
     analyzedConversationsCount: str
-    issueStats: typing.Dict[str, typing.Any]
+    issueStats: dict[str, typing.Any]
     unclassifiedConversationsCount: str
 
 @typing.type_check_only
@@ -765,15 +763,15 @@ class GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponse(
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -781,5 +779,5 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

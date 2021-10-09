@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class DisableInteractiveSerialConsoleRequest(
     typing_extensions.TypedDict, total=False
@@ -28,7 +30,7 @@ class EnableInteractiveSerialConsoleResponse(
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     hyperthreadingEnabled: bool
-    luns: typing.List[Lun]
+    luns: _list[Lun]
     name: str
     scheduledPowerResetTime: str
     sshEnabled: bool
@@ -60,38 +62,38 @@ class InstanceQuota(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
+    instances: _list[Instance]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLunsResponse(typing_extensions.TypedDict, total=False):
-    luns: typing.List[Lun]
+    luns: _list[Lun]
     nextPageToken: str
 
 @typing.type_check_only
 class ListProvisioningQuotasResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    provisioningQuotas: typing.List[ProvisioningQuota]
+    provisioningQuotas: _list[ProvisioningQuota]
 
 @typing.type_check_only
 class ListSSHKeysResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sshKeys: typing.List[SSHKey]
+    sshKeys: _list[SSHKey]
 
 @typing.type_check_only
 class ListSnapshotSchedulePoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    snapshotSchedulePolicies: typing.List[SnapshotSchedulePolicy]
+    snapshotSchedulePolicies: _list[SnapshotSchedulePolicy]
 
 @typing.type_check_only
 class ListVolumeSnapshotsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    volumeSnapshots: typing.List[VolumeSnapshot]
+    volumeSnapshots: _list[VolumeSnapshot]
 
 @typing.type_check_only
 class ListVolumesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    volumes: typing.List[Volume]
+    volumes: _list[Volume]
 
 @typing.type_check_only
 class Lun(typing_extensions.TypedDict, total=False):
@@ -133,7 +135,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
         "SERVICE_CIDR_UNSPECIFIED", "DISABLED", "HIGH_26", "HIGH_27", "HIGH_28"
     ]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "CLIENT", "PRIVATE"]
-    vlanAttachments: typing.List[VlanAttachment]
+    vlanAttachments: _list[VlanAttachment]
 
 @typing.type_check_only
 class NfsExport(typing_extensions.TypedDict, total=False):
@@ -149,10 +151,10 @@ class NfsExport(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProvisioningConfig(typing_extensions.TypedDict, total=False):
-    instances: typing.List[InstanceConfig]
-    networks: typing.List[NetworkConfig]
+    instances: _list[InstanceConfig]
+    networks: _list[NetworkConfig]
     ticketId: str
-    volumes: typing.List[VolumeConfig]
+    volumes: _list[VolumeConfig]
 
 @typing.type_check_only
 class ProvisioningQuota(typing_extensions.TypedDict, total=False):
@@ -197,8 +199,8 @@ class SetVolumeSnapshotSchedulePolicyResponse(
 class SnapshotSchedulePolicy(typing_extensions.TypedDict, total=False):
     description: str
     name: str
-    schedules: typing.List[Schedule]
-    volumes: typing.List[str]
+    schedules: _list[Schedule]
+    volumes: _list[str]
 
 @typing.type_check_only
 class SubmitProvisioningConfigRequest(typing_extensions.TypedDict, total=False):
@@ -231,9 +233,9 @@ class Volume(typing_extensions.TypedDict, total=False):
 class VolumeConfig(typing_extensions.TypedDict, total=False):
     id: str
     location: str
-    lunRanges: typing.List[LunRange]
-    machineIds: typing.List[str]
-    nfsExports: typing.List[NfsExport]
+    lunRanges: _list[LunRange]
+    machineIds: _list[str]
+    nfsExports: _list[NfsExport]
     protocol: typing_extensions.Literal[
         "PROTOCOL_UNSPECIFIED", "PROTOCOL_FC", "PROTOCOL_NFS"
     ]

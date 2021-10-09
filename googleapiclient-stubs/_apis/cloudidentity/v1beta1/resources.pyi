@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudIdentityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -264,9 +266,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
 class CheckTransitiveMembershipResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CheckTransitiveMembershipResponse: ...
 
@@ -274,9 +274,7 @@ class CheckTransitiveMembershipResponseHttpRequest(googleapiclient.http.HttpRequ
 class ClientStateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ClientState: ...
 
@@ -284,9 +282,7 @@ class ClientStateHttpRequest(googleapiclient.http.HttpRequest):
 class DeviceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Device: ...
 
@@ -294,9 +290,7 @@ class DeviceHttpRequest(googleapiclient.http.HttpRequest):
 class DeviceUserHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DeviceUser: ...
 
@@ -304,9 +298,7 @@ class DeviceUserHttpRequest(googleapiclient.http.HttpRequest):
 class GroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Group: ...
 
@@ -314,9 +306,7 @@ class GroupHttpRequest(googleapiclient.http.HttpRequest):
 class IsInvitableUserResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> IsInvitableUserResponse: ...
 
@@ -324,9 +314,7 @@ class IsInvitableUserResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListDeviceUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDeviceUsersResponse: ...
 
@@ -334,9 +322,7 @@ class ListDeviceUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDevicesResponse: ...
 
@@ -344,9 +330,7 @@ class ListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGroupsResponse: ...
 
@@ -354,9 +338,7 @@ class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListMembershipsResponse: ...
 
@@ -364,9 +346,7 @@ class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListUserInvitationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListUserInvitationsResponse: ...
 
@@ -374,9 +354,7 @@ class ListUserInvitationsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LookupGroupNameResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LookupGroupNameResponse: ...
 
@@ -384,9 +362,7 @@ class LookupGroupNameResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LookupMembershipNameResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LookupMembershipNameResponse: ...
 
@@ -394,9 +370,7 @@ class LookupMembershipNameResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LookupSelfDeviceUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LookupSelfDeviceUsersResponse: ...
 
@@ -404,9 +378,7 @@ class LookupSelfDeviceUsersResponseHttpRequest(googleapiclient.http.HttpRequest)
 class MembershipHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Membership: ...
 
@@ -414,9 +386,7 @@ class MembershipHttpRequest(googleapiclient.http.HttpRequest):
 class ModifyMembershipRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ModifyMembershipRolesResponse: ...
 
@@ -424,9 +394,7 @@ class ModifyMembershipRolesResponseHttpRequest(googleapiclient.http.HttpRequest)
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
 
@@ -434,9 +402,7 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
 class SearchGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchGroupsResponse: ...
 
@@ -444,9 +410,7 @@ class SearchGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SearchTransitiveGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchTransitiveGroupsResponse: ...
 
@@ -454,9 +418,7 @@ class SearchTransitiveGroupsResponseHttpRequest(googleapiclient.http.HttpRequest
 class SearchTransitiveMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchTransitiveMembershipsResponse: ...
 
@@ -464,8 +426,6 @@ class SearchTransitiveMembershipsResponseHttpRequest(googleapiclient.http.HttpRe
 class UserInvitationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserInvitation: ...

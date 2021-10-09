@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class DatabaseInstance(typing_extensions.TypedDict, total=False):
     databaseUrl: str
@@ -19,7 +21,7 @@ class DisableDatabaseInstanceRequest(typing_extensions.TypedDict, total=False): 
 
 @typing.type_check_only
 class ListDatabaseInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[DatabaseInstance]
+    instances: _list[DatabaseInstance]
     nextPageToken: str
 
 @typing.type_check_only

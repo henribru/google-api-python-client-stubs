@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AdBreak(typing_extensions.TypedDict, total=False):
     startTimeOffset: str
@@ -40,12 +42,12 @@ class Audio(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AudioAtom(typing_extensions.TypedDict, total=False):
-    channels: typing.List[AudioChannel]
+    channels: _list[AudioChannel]
     key: str
 
 @typing.type_check_only
 class AudioChannel(typing_extensions.TypedDict, total=False):
-    inputs: typing.List[AudioChannelInput]
+    inputs: _list[AudioChannelInput]
 
 @typing.type_check_only
 class AudioChannelInput(typing_extensions.TypedDict, total=False):
@@ -58,9 +60,9 @@ class AudioChannelInput(typing_extensions.TypedDict, total=False):
 class AudioStream(typing_extensions.TypedDict, total=False):
     bitrateBps: int
     channelCount: int
-    channelLayout: typing.List[str]
+    channelLayout: _list[str]
     codec: str
-    mapping: typing.List[AudioAtom]
+    mapping: _list[AudioAtom]
     sampleRateHertz: int
 
 @typing.type_check_only
@@ -89,7 +91,7 @@ class Denoise(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EditAtom(typing_extensions.TypedDict, total=False):
     endTimeOffset: str
-    inputs: typing.List[str]
+    inputs: _list[str]
     key: str
     startTimeOffset: str
 
@@ -132,7 +134,7 @@ class Job(typing_extensions.TypedDict, total=False):
     config: JobConfig
     createTime: str
     endTime: str
-    failureDetails: typing.List[FailureDetail]
+    failureDetails: _list[FailureDetail]
     failureReason: str
     inputUri: str
     name: str
@@ -149,16 +151,16 @@ class Job(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobConfig(typing_extensions.TypedDict, total=False):
-    adBreaks: typing.List[AdBreak]
-    editList: typing.List[EditAtom]
-    elementaryStreams: typing.List[ElementaryStream]
-    inputs: typing.List[Input]
-    manifests: typing.List[Manifest]
-    muxStreams: typing.List[MuxStream]
+    adBreaks: _list[AdBreak]
+    editList: _list[EditAtom]
+    elementaryStreams: _list[ElementaryStream]
+    inputs: _list[Input]
+    manifests: _list[Manifest]
+    muxStreams: _list[MuxStream]
     output: Output
-    overlays: typing.List[Overlay]
+    overlays: _list[Overlay]
     pubsubDestination: PubsubDestination
-    spriteSheets: typing.List[SpriteSheet]
+    spriteSheets: _list[SpriteSheet]
 
 @typing.type_check_only
 class JobTemplate(typing_extensions.TypedDict, total=False):
@@ -167,18 +169,18 @@ class JobTemplate(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListJobTemplatesResponse(typing_extensions.TypedDict, total=False):
-    jobTemplates: typing.List[JobTemplate]
+    jobTemplates: _list[JobTemplate]
     nextPageToken: str
 
 @typing.type_check_only
 class ListJobsResponse(typing_extensions.TypedDict, total=False):
-    jobs: typing.List[Job]
+    jobs: _list[Job]
     nextPageToken: str
 
 @typing.type_check_only
 class Manifest(typing_extensions.TypedDict, total=False):
     fileName: str
-    muxStreams: typing.List[str]
+    muxStreams: _list[str]
     type: typing_extensions.Literal["MANIFEST_TYPE_UNSPECIFIED", "HLS", "DASH"]
 
 @typing.type_check_only
@@ -189,7 +191,7 @@ class MpegCommonEncryption(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MuxStream(typing_extensions.TypedDict, total=False):
     container: str
-    elementaryStreams: typing.List[str]
+    elementaryStreams: _list[str]
     encryption: Encryption
     fileName: str
     key: str
@@ -211,7 +213,7 @@ class Output(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Overlay(typing_extensions.TypedDict, total=False):
-    animations: typing.List[Animation]
+    animations: _list[Animation]
     image: Image
 
 @typing.type_check_only
@@ -266,7 +268,7 @@ class SpriteSheet(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TextAtom(typing_extensions.TypedDict, total=False):
-    inputs: typing.List[TextInput]
+    inputs: _list[TextInput]
     key: str
 
 @typing.type_check_only
@@ -278,7 +280,7 @@ class TextInput(typing_extensions.TypedDict, total=False):
 class TextStream(typing_extensions.TypedDict, total=False):
     codec: str
     languageCode: str
-    mapping: typing.List[TextAtom]
+    mapping: _list[TextAtom]
 
 @typing.type_check_only
 class VideoStream(typing_extensions.TypedDict, total=False):

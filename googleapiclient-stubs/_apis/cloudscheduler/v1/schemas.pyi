@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AppEngineHttpTarget(typing_extensions.TypedDict, total=False):
     appEngineRouting: AppEngineRouting
     body: str
-    headers: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
     httpMethod: typing_extensions.Literal[
         "HTTP_METHOD_UNSPECIFIED",
         "POST",
@@ -32,7 +34,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class HttpTarget(typing_extensions.TypedDict, total=False):
     body: str
-    headers: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
     httpMethod: typing_extensions.Literal[
         "HTTP_METHOD_UNSPECIFIED",
         "POST",
@@ -68,20 +70,20 @@ class Job(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListJobsResponse(typing_extensions.TypedDict, total=False):
-    jobs: typing.List[Job]
+    jobs: _list[Job]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -99,7 +101,7 @@ class PauseJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PubsubMessage(typing_extensions.TypedDict, total=False):
-    attributes: typing.Dict[str, typing.Any]
+    attributes: dict[str, typing.Any]
     data: str
     messageId: str
     orderingKey: str
@@ -107,7 +109,7 @@ class PubsubMessage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PubsubTarget(typing_extensions.TypedDict, total=False):
-    attributes: typing.Dict[str, typing.Any]
+    attributes: dict[str, typing.Any]
     data: str
     topicName: str
 
@@ -128,5 +130,5 @@ class RunJobRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

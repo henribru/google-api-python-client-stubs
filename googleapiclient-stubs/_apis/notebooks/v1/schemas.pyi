@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     coreCount: str
@@ -23,7 +25,7 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -44,11 +46,11 @@ class Disk(typing_extensions.TypedDict, total=False):
     boot: bool
     deviceName: str
     diskSizeGb: str
-    guestOsFeatures: typing.List[GuestOsFeature]
+    guestOsFeatures: _list[GuestOsFeature]
     index: str
     interface: str
     kind: str
-    licenses: typing.List[str]
+    licenses: _list[str]
     mode: str
     source: str
     type: str
@@ -105,7 +107,7 @@ class ExecutionTemplate(typing_extensions.TypedDict, total=False):
     dataprocParameters: DataprocParameters
     inputNotebookFile: str
     jobType: typing_extensions.Literal["JOB_TYPE_UNSPECIFIED", "VERTEX_AI", "DATAPROC"]
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     masterType: str
     outputNotebookFolder: str
     parameters: str
@@ -131,7 +133,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetInstanceHealthResponse(typing_extensions.TypedDict, total=False):
-    healthInfo: typing.Dict[str, typing.Any]
+    healthInfo: dict[str, typing.Any]
     healthState: typing_extensions.Literal[
         "HEALTH_STATE_UNSPECIFIED",
         "HEALTHY",
@@ -161,13 +163,13 @@ class Instance(typing_extensions.TypedDict, total=False):
     diskEncryption: typing_extensions.Literal[
         "DISK_ENCRYPTION_UNSPECIFIED", "GMEK", "CMEK"
     ]
-    disks: typing.List[Disk]
+    disks: _list[Disk]
     installGpuDriver: bool
-    instanceOwners: typing.List[str]
+    instanceOwners: _list[str]
     kmsKey: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     machineType: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
     network: str
     nicType: typing_extensions.Literal["UNSPECIFIED_NIC_TYPE", "VIRTIO_NET", "GVNIC"]
@@ -178,7 +180,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     proxyUri: str
     reservationAffinity: ReservationAffinity
     serviceAccount: str
-    serviceAccountScopes: typing.List[str]
+    serviceAccountScopes: _list[str]
     shieldedInstanceConfig: ShieldedInstanceConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -193,9 +195,9 @@ class Instance(typing_extensions.TypedDict, total=False):
         "REGISTERING",
     ]
     subnet: str
-    tags: typing.List[str]
+    tags: _list[str]
     updateTime: str
-    upgradeHistory: typing.List[UpgradeHistoryEntry]
+    upgradeHistory: _list[UpgradeHistoryEntry]
     vmImage: VmImage
 
 @typing.type_check_only
@@ -212,55 +214,55 @@ class IsInstanceUpgradeableResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
-    environments: typing.List[Environment]
+    environments: _list[Environment]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
-    executions: typing.List[Execution]
+    executions: _list[Execution]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
+    instances: _list[Instance]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListRuntimesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    runtimes: typing.List[Runtime]
-    unreachable: typing.List[str]
+    runtimes: _list[Runtime]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSchedulesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    schedules: typing.List[Schedule]
-    unreachable: typing.List[str]
+    schedules: _list[Schedule]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class LocalDisk(typing_extensions.TypedDict, total=False):
     autoDelete: bool
     boot: bool
     deviceName: str
-    guestOsFeatures: typing.List[RuntimeGuestOsFeature]
+    guestOsFeatures: _list[RuntimeGuestOsFeature]
     index: int
     initializeParams: LocalDiskInitializeParams
     interface: str
     kind: str
-    licenses: typing.List[str]
+    licenses: _list[str]
     mode: str
     source: str
     type: str
@@ -273,23 +275,23 @@ class LocalDiskInitializeParams(typing_extensions.TypedDict, total=False):
     diskType: typing_extensions.Literal[
         "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED"
     ]
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -304,7 +306,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -314,7 +316,7 @@ class RegisterInstanceRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReportInstanceInfoRequest(typing_extensions.TypedDict, total=False):
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     vmId: str
 
 @typing.type_check_only
@@ -328,7 +330,7 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
         "TYPE_UNSPECIFIED", "NO_RESERVATION", "ANY_RESERVATION", "SPECIFIC_RESERVATION"
     ]
     key: str
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
@@ -396,7 +398,7 @@ class RuntimeGuestOsFeature(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuntimeMetrics(typing_extensions.TypedDict, total=False):
-    systemMetrics: typing.Dict[str, typing.Any]
+    systemMetrics: dict[str, typing.Any]
 
 @typing.type_check_only
 class RuntimeShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
@@ -422,7 +424,7 @@ class Schedule(typing_extensions.TypedDict, total=False):
     displayName: str
     executionTemplate: ExecutionTemplate
     name: str
-    recentExecutions: typing.List[Execution]
+    recentExecutions: _list[Execution]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "ENABLED",
@@ -473,7 +475,7 @@ class SetInstanceAcceleratorRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SetInstanceLabelsRequest(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class SetInstanceMachineTypeRequest(typing_extensions.TypedDict, total=False):
@@ -494,7 +496,7 @@ class StartRuntimeRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -510,11 +512,11 @@ class SwitchRuntimeRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TriggerScheduleRequest(typing_extensions.TypedDict, total=False): ...
@@ -562,19 +564,19 @@ class VirtualMachine(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VirtualMachineConfig(typing_extensions.TypedDict, total=False):
     acceleratorConfig: RuntimeAcceleratorConfig
-    containerImages: typing.List[ContainerImage]
+    containerImages: _list[ContainerImage]
     dataDisk: LocalDisk
     encryptionConfig: EncryptionConfig
-    guestAttributes: typing.Dict[str, typing.Any]
+    guestAttributes: dict[str, typing.Any]
     internalIpOnly: bool
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     machineType: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     network: str
     nicType: typing_extensions.Literal["UNSPECIFIED_NIC_TYPE", "VIRTIO_NET", "GVNIC"]
     shieldedInstanceConfig: RuntimeShieldedInstanceConfig
     subnet: str
-    tags: typing.List[str]
+    tags: _list[str]
     zone: str
 
 @typing.type_check_only

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ActivateManualTriggerRequest(typing_extensions.TypedDict, total=False): ...
 
@@ -55,7 +57,7 @@ class ActiveViewVideoViewabilityMetricConfig(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class Adloox(typing_extensions.TypedDict, total=False):
-    excludedAdlooxCategories: typing.List[str]
+    excludedAdlooxCategories: _list[str]
 
 @typing.type_check_only
 class Advertiser(typing_extensions.TypedDict, total=False):
@@ -333,9 +335,7 @@ class AudienceGroupAssignedTargetingOptionDetails(
     excludedGoogleAudienceGroup: GoogleAudienceGroup
     includedCombinedAudienceGroup: CombinedAudienceGroup
     includedCustomListGroup: CustomListGroup
-    includedFirstAndThirdPartyAudienceGroups: typing.List[
-        FirstAndThirdPartyAudienceGroup
-    ]
+    includedFirstAndThirdPartyAudienceGroups: _list[FirstAndThirdPartyAudienceGroup]
     includedGoogleAudienceGroup: GoogleAudienceGroup
 
 @typing.type_check_only
@@ -403,118 +403,118 @@ class BudgetSummary(typing_extensions.TypedDict, total=False):
 class BulkEditAdvertiserAssignedTargetingOptionsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    createRequests: typing.List[CreateAssignedTargetingOptionsRequest]
-    deleteRequests: typing.List[DeleteAssignedTargetingOptionsRequest]
+    createRequests: _list[CreateAssignedTargetingOptionsRequest]
+    deleteRequests: _list[DeleteAssignedTargetingOptionsRequest]
 
 @typing.type_check_only
 class BulkEditAdvertiserAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    createdAssignedTargetingOptions: typing.List[AssignedTargetingOption]
+    createdAssignedTargetingOptions: _list[AssignedTargetingOption]
 
 @typing.type_check_only
 class BulkEditAssignedInventorySourcesRequest(typing_extensions.TypedDict, total=False):
     advertiserId: str
-    createdAssignedInventorySources: typing.List[AssignedInventorySource]
-    deletedAssignedInventorySources: typing.List[str]
+    createdAssignedInventorySources: _list[AssignedInventorySource]
+    deletedAssignedInventorySources: _list[str]
     partnerId: str
 
 @typing.type_check_only
 class BulkEditAssignedInventorySourcesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedInventorySources: typing.List[AssignedInventorySource]
+    assignedInventorySources: _list[AssignedInventorySource]
 
 @typing.type_check_only
 class BulkEditAssignedLocationsRequest(typing_extensions.TypedDict, total=False):
-    createdAssignedLocations: typing.List[AssignedLocation]
-    deletedAssignedLocations: typing.List[str]
+    createdAssignedLocations: _list[AssignedLocation]
+    deletedAssignedLocations: _list[str]
 
 @typing.type_check_only
 class BulkEditAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
-    assignedLocations: typing.List[AssignedLocation]
+    assignedLocations: _list[AssignedLocation]
 
 @typing.type_check_only
 class BulkEditAssignedUserRolesRequest(typing_extensions.TypedDict, total=False):
-    createdAssignedUserRoles: typing.List[AssignedUserRole]
-    deletedAssignedUserRoles: typing.List[str]
+    createdAssignedUserRoles: _list[AssignedUserRole]
+    deletedAssignedUserRoles: _list[str]
 
 @typing.type_check_only
 class BulkEditAssignedUserRolesResponse(typing_extensions.TypedDict, total=False):
-    createdAssignedUserRoles: typing.List[AssignedUserRole]
+    createdAssignedUserRoles: _list[AssignedUserRole]
 
 @typing.type_check_only
 class BulkEditLineItemAssignedTargetingOptionsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    createRequests: typing.List[CreateAssignedTargetingOptionsRequest]
-    deleteRequests: typing.List[DeleteAssignedTargetingOptionsRequest]
+    createRequests: _list[CreateAssignedTargetingOptionsRequest]
+    deleteRequests: _list[DeleteAssignedTargetingOptionsRequest]
 
 @typing.type_check_only
 class BulkEditLineItemAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    createdAssignedTargetingOptions: typing.List[AssignedTargetingOption]
+    createdAssignedTargetingOptions: _list[AssignedTargetingOption]
 
 @typing.type_check_only
 class BulkEditNegativeKeywordsRequest(typing_extensions.TypedDict, total=False):
-    createdNegativeKeywords: typing.List[NegativeKeyword]
-    deletedNegativeKeywords: typing.List[str]
+    createdNegativeKeywords: _list[NegativeKeyword]
+    deletedNegativeKeywords: _list[str]
 
 @typing.type_check_only
 class BulkEditNegativeKeywordsResponse(typing_extensions.TypedDict, total=False):
-    negativeKeywords: typing.List[NegativeKeyword]
+    negativeKeywords: _list[NegativeKeyword]
 
 @typing.type_check_only
 class BulkEditPartnerAssignedTargetingOptionsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    createRequests: typing.List[CreateAssignedTargetingOptionsRequest]
-    deleteRequests: typing.List[DeleteAssignedTargetingOptionsRequest]
+    createRequests: _list[CreateAssignedTargetingOptionsRequest]
+    deleteRequests: _list[DeleteAssignedTargetingOptionsRequest]
 
 @typing.type_check_only
 class BulkEditPartnerAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    createdAssignedTargetingOptions: typing.List[AssignedTargetingOption]
+    createdAssignedTargetingOptions: _list[AssignedTargetingOption]
 
 @typing.type_check_only
 class BulkEditSitesRequest(typing_extensions.TypedDict, total=False):
     advertiserId: str
-    createdSites: typing.List[Site]
-    deletedSites: typing.List[str]
+    createdSites: _list[Site]
+    deletedSites: _list[str]
     partnerId: str
 
 @typing.type_check_only
 class BulkEditSitesResponse(typing_extensions.TypedDict, total=False):
-    sites: typing.List[Site]
+    sites: _list[Site]
 
 @typing.type_check_only
 class BulkListAdvertiserAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
 class BulkListCampaignAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
 class BulkListInsertionOrderAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
 class BulkListLineItemAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
@@ -572,7 +572,7 @@ class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class Campaign(typing_extensions.TypedDict, total=False):
     advertiserId: str
-    campaignBudgets: typing.List[CampaignBudget]
+    campaignBudgets: _list[CampaignBudget]
     campaignFlight: CampaignFlight
     campaignGoal: CampaignGoal
     campaignId: str
@@ -670,7 +670,7 @@ class CmHybridConfig(typing_extensions.TypedDict, total=False):
     cmAccountId: str
     cmFloodlightConfigId: str
     cmFloodlightLinkingAuthorized: bool
-    cmSyncableSiteIds: typing.List[str]
+    cmSyncableSiteIds: _list[str]
     dv360ToCmCostReportingEnabled: bool
     dv360ToCmDataSharingEnabled: bool
 
@@ -688,7 +688,7 @@ class CombinedAudience(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CombinedAudienceGroup(typing_extensions.TypedDict, total=False):
-    settings: typing.List[CombinedAudienceTargetingSetting]
+    settings: _list[CombinedAudienceTargetingSetting]
 
 @typing.type_check_only
 class CombinedAudienceTargetingSetting(typing_extensions.TypedDict, total=False):
@@ -754,7 +754,7 @@ class ContentOutstreamPositionTargetingOptionDetails(
 
 @typing.type_check_only
 class ConversionCountingConfig(typing_extensions.TypedDict, total=False):
-    floodlightActivityConfigs: typing.List[TrackingFloodlightActivityConfig]
+    floodlightActivityConfigs: _list[TrackingFloodlightActivityConfig]
     postViewCountPercentageMillis: str
 
 @typing.type_check_only
@@ -772,7 +772,7 @@ class CreateAssetResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     targetingType: typing_extensions.Literal[
         "TARGETING_TYPE_UNSPECIFIED",
         "TARGETING_TYPE_CHANNEL",
@@ -839,16 +839,16 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Creative(typing_extensions.TypedDict, total=False):
-    additionalDimensions: typing.List[Dimensions]
+    additionalDimensions: _list[Dimensions]
     advertiserId: str
     appendedTag: str
-    assets: typing.List[AssetAssociation]
+    assets: _list[AssetAssociation]
     cmPlacementId: str
     cmTrackingAd: CmTrackingAd
-    companionCreativeIds: typing.List[str]
-    counterEvents: typing.List[CounterEvent]
+    companionCreativeIds: _list[str]
+    counterEvents: _list[CounterEvent]
     createTime: str
-    creativeAttributes: typing.List[str]
+    creativeAttributes: _list[str]
     creativeId: str
     creativeType: typing_extensions.Literal[
         "CREATIVE_TYPE_UNSPECIFIED",
@@ -878,7 +878,7 @@ class Creative(typing_extensions.TypedDict, total=False):
         "ENTITY_STATUS_PAUSED",
         "ENTITY_STATUS_SCHEDULED_FOR_DELETION",
     ]
-    exitEvents: typing.List[ExitEvent]
+    exitEvents: _list[ExitEvent]
     expandOnHover: bool
     expandingDirection: typing_extensions.Literal[
         "EXPANDING_DIRECTION_UNSPECIFIED",
@@ -906,7 +906,7 @@ class Creative(typing_extensions.TypedDict, total=False):
     iasCampaignMonitoring: bool
     integrationCode: str
     jsTrackerUrl: str
-    lineItemIds: typing.List[str]
+    lineItemIds: _list[str]
     mediaDuration: str
     mp3Audio: bool
     name: str
@@ -921,10 +921,10 @@ class Creative(typing_extensions.TypedDict, total=False):
     skipOffset: AudioVideoOffset
     skippable: bool
     thirdPartyTag: str
-    thirdPartyUrls: typing.List[ThirdPartyUrl]
-    timerEvents: typing.List[TimerEvent]
-    trackerUrls: typing.List[str]
-    transcodes: typing.List[Transcode]
+    thirdPartyUrls: _list[ThirdPartyUrl]
+    timerEvents: _list[TimerEvent]
+    trackerUrls: _list[str]
+    transcodes: _list[Transcode]
     universalAdId: UniversalAdId
     updateTime: str
     vastTagUrl: str
@@ -976,7 +976,7 @@ class CustomBiddingAlgorithm(typing_extensions.TypedDict, total=False):
     ]
     name: str
     partnerId: str
-    sharedAdvertiserIds: typing.List[str]
+    sharedAdvertiserIds: _list[str]
 
 @typing.type_check_only
 class CustomList(typing_extensions.TypedDict, total=False):
@@ -986,7 +986,7 @@ class CustomList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomListGroup(typing_extensions.TypedDict, total=False):
-    settings: typing.List[CustomListTargetingSetting]
+    settings: _list[CustomListTargetingSetting]
 
 @typing.type_check_only
 class CustomListTargetingSetting(typing_extensions.TypedDict, total=False):
@@ -1030,7 +1030,7 @@ class DeactivateManualTriggerRequest(typing_extensions.TypedDict, total=False): 
 
 @typing.type_check_only
 class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
-    assignedTargetingOptionIds: typing.List[str]
+    assignedTargetingOptionIds: _list[str]
     targetingType: typing_extensions.Literal[
         "TARGETING_TYPE_UNSPECIFIED",
         "TARGETING_TYPE_CHANNEL",
@@ -1146,7 +1146,7 @@ class Dimensions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DoubleVerify(typing_extensions.TypedDict, total=False):
     appStarRating: DoubleVerifyAppStarRating
-    avoidedAgeRatings: typing.List[str]
+    avoidedAgeRatings: _list[str]
     brandSafetyCategories: DoubleVerifyBrandSafetyCategories
     customSegmentId: str
     displayViewability: DoubleVerifyDisplayViewability
@@ -1170,8 +1170,8 @@ class DoubleVerifyAppStarRating(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DoubleVerifyBrandSafetyCategories(typing_extensions.TypedDict, total=False):
     avoidUnknownBrandSafetyCategory: bool
-    avoidedHighSeverityCategories: typing.List[str]
-    avoidedMediumSeverityCategories: typing.List[str]
+    avoidedHighSeverityCategories: _list[str]
+    avoidedMediumSeverityCategories: _list[str]
 
 @typing.type_check_only
 class DoubleVerifyDisplayViewability(typing_extensions.TypedDict, total=False):
@@ -1270,7 +1270,7 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class ExchangeConfig(typing_extensions.TypedDict, total=False):
-    enabledExchanges: typing.List[ExchangeConfigEnabledExchange]
+    enabledExchanges: _list[ExchangeConfigEnabledExchange]
 
 @typing.type_check_only
 class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
@@ -1547,7 +1547,7 @@ class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FirstAndThirdPartyAudienceGroup(typing_extensions.TypedDict, total=False):
-    settings: typing.List[FirstAndThirdPartyAudienceTargetingSetting]
+    settings: _list[FirstAndThirdPartyAudienceTargetingSetting]
 
 @typing.type_check_only
 class FirstAndThirdPartyAudienceTargetingSetting(
@@ -1594,7 +1594,7 @@ class FixedBidStrategy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FloodlightGroup(typing_extensions.TypedDict, total=False):
     activeViewConfig: ActiveViewVideoViewabilityMetricConfig
-    customVariables: typing.Dict[str, typing.Any]
+    customVariables: dict[str, typing.Any]
     displayName: str
     floodlightGroupId: str
     lookbackWindow: LookbackWindow
@@ -1744,7 +1744,7 @@ class GoogleAudience(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleAudienceGroup(typing_extensions.TypedDict, total=False):
-    settings: typing.List[GoogleAudienceTargetingSetting]
+    settings: _list[GoogleAudienceTargetingSetting]
 
 @typing.type_check_only
 class GoogleAudienceTargetingSetting(typing_extensions.TypedDict, total=False):
@@ -1785,12 +1785,12 @@ class HouseholdIncomeTargetingOptionDetails(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class IdFilter(typing_extensions.TypedDict, total=False):
-    adGroupAdIds: typing.List[str]
-    adGroupIds: typing.List[str]
-    campaignIds: typing.List[str]
-    insertionOrderIds: typing.List[str]
-    lineItemIds: typing.List[str]
-    mediaProductIds: typing.List[str]
+    adGroupAdIds: _list[str]
+    adGroupIds: _list[str]
+    campaignIds: _list[str]
+    insertionOrderIds: _list[str]
+    lineItemIds: _list[str]
+    mediaProductIds: _list[str]
 
 @typing.type_check_only
 class InsertionOrder(typing_extensions.TypedDict, total=False):
@@ -1815,7 +1815,7 @@ class InsertionOrder(typing_extensions.TypedDict, total=False):
     integrationDetails: IntegrationDetails
     name: str
     pacing: Pacing
-    partnerCosts: typing.List[PartnerCost]
+    partnerCosts: _list[PartnerCost]
     performanceGoal: PerformanceGoal
     updateTime: str
 
@@ -1827,7 +1827,7 @@ class InsertionOrderBudget(typing_extensions.TypedDict, total=False):
         "INSERTION_ORDER_AUTOMATION_TYPE_NONE",
         "INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET",
     ]
-    budgetSegments: typing.List[InsertionOrderBudgetSegment]
+    budgetSegments: _list[InsertionOrderBudgetSegment]
     budgetUnit: typing_extensions.Literal[
         "BUDGET_UNIT_UNSPECIFIED", "BUDGET_UNIT_CURRENCY", "BUDGET_UNIT_IMPRESSIONS"
     ]
@@ -1841,7 +1841,7 @@ class InsertionOrderBudgetSegment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IntegralAdScience(typing_extensions.TypedDict, total=False):
-    customSegmentId: typing.List[str]
+    customSegmentId: _list[str]
     displayViewability: typing_extensions.Literal[
         "PERFORMANCE_VIEWABILITY_UNSPECIFIED",
         "PERFORMANCE_VIEWABILITY_40",
@@ -1911,7 +1911,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "INVENTORY_SOURCE_COMMITMENT_GUARANTEED",
         "INVENTORY_SOURCE_COMMITMENT_NON_GUARANTEED",
     ]
-    creativeConfigs: typing.List[CreativeConfig]
+    creativeConfigs: _list[CreativeConfig]
     dealId: str
     deliveryMethod: typing_extensions.Literal[
         "INVENTORY_SOURCE_DELIVERY_METHOD_UNSPECIFIED",
@@ -2012,7 +2012,7 @@ class InventorySourceDisplayCreativeConfig(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class InventorySourceFilter(typing_extensions.TypedDict, total=False):
-    inventorySourceIds: typing.List[str]
+    inventorySourceIds: _list[str]
 
 @typing.type_check_only
 class InventorySourceGroup(typing_extensions.TypedDict, total=False):
@@ -2059,7 +2059,7 @@ class InventorySourceVideoCreativeConfig(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class Invoice(typing_extensions.TypedDict, total=False):
     budgetInvoiceGroupingId: str
-    budgetSummaries: typing.List[BudgetSummary]
+    budgetSummaries: _list[BudgetSummary]
     correctedInvoiceId: str
     currencyCode: str
     displayName: str
@@ -2075,7 +2075,7 @@ class Invoice(typing_extensions.TypedDict, total=False):
     paymentsProfileId: str
     pdfUrl: str
     purchaseOrderNumber: str
-    replacedInvoiceIds: typing.List[str]
+    replacedInvoiceIds: _list[str]
     serviceDateRange: DateRange
     subtotalAmountMicros: str
     totalAmountMicros: str
@@ -2103,7 +2103,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     budget: LineItemBudget
     campaignId: str
     conversionCounting: ConversionCountingConfig
-    creativeIds: typing.List[str]
+    creativeIds: _list[str]
     displayName: str
     entityStatus: typing_extensions.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
@@ -2117,7 +2117,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     frequencyCap: FrequencyCap
     insertionOrderId: str
     integrationDetails: IntegrationDetails
-    inventorySourceIds: typing.List[str]
+    inventorySourceIds: _list[str]
     lineItemId: str
     lineItemType: typing_extensions.Literal[
         "LINE_ITEM_TYPE_UNSPECIFIED",
@@ -2133,11 +2133,11 @@ class LineItem(typing_extensions.TypedDict, total=False):
     mobileApp: MobileApp
     name: str
     pacing: Pacing
-    partnerCosts: typing.List[PartnerCost]
+    partnerCosts: _list[PartnerCost]
     partnerRevenueModel: PartnerRevenueModel
     targetingExpansion: TargetingExpansionConfig
     updateTime: str
-    warningMessages: typing.List[str]
+    warningMessages: _list[str]
 
 @typing.type_check_only
 class LineItemBudget(typing_extensions.TypedDict, total=False):
@@ -2167,156 +2167,156 @@ class LineItemFlight(typing_extensions.TypedDict, total=False):
 class ListAdvertiserAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAdvertisersResponse(typing_extensions.TypedDict, total=False):
-    advertisers: typing.List[Advertiser]
+    advertisers: _list[Advertiser]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAssignedInventorySourcesResponse(typing_extensions.TypedDict, total=False):
-    assignedInventorySources: typing.List[AssignedInventorySource]
+    assignedInventorySources: _list[AssignedInventorySource]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
-    assignedLocations: typing.List[AssignedLocation]
+    assignedLocations: _list[AssignedLocation]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCampaignAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCampaignsResponse(typing_extensions.TypedDict, total=False):
-    campaigns: typing.List[Campaign]
+    campaigns: _list[Campaign]
     nextPageToken: str
 
 @typing.type_check_only
 class ListChannelsResponse(typing_extensions.TypedDict, total=False):
-    channels: typing.List[Channel]
+    channels: _list[Channel]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCombinedAudiencesResponse(typing_extensions.TypedDict, total=False):
-    combinedAudiences: typing.List[CombinedAudience]
+    combinedAudiences: _list[CombinedAudience]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCreativesResponse(typing_extensions.TypedDict, total=False):
-    creatives: typing.List[Creative]
+    creatives: _list[Creative]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCustomBiddingAlgorithmsResponse(typing_extensions.TypedDict, total=False):
-    customBiddingAlgorithms: typing.List[CustomBiddingAlgorithm]
+    customBiddingAlgorithms: _list[CustomBiddingAlgorithm]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCustomListsResponse(typing_extensions.TypedDict, total=False):
-    customLists: typing.List[CustomList]
+    customLists: _list[CustomList]
     nextPageToken: str
 
 @typing.type_check_only
 class ListFirstAndThirdPartyAudiencesResponse(typing_extensions.TypedDict, total=False):
-    firstAndThirdPartyAudiences: typing.List[FirstAndThirdPartyAudience]
+    firstAndThirdPartyAudiences: _list[FirstAndThirdPartyAudience]
     nextPageToken: str
 
 @typing.type_check_only
 class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
-    googleAudiences: typing.List[GoogleAudience]
+    googleAudiences: _list[GoogleAudience]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInsertionOrderAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInsertionOrdersResponse(typing_extensions.TypedDict, total=False):
-    insertionOrders: typing.List[InsertionOrder]
+    insertionOrders: _list[InsertionOrder]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInventorySourceGroupsResponse(typing_extensions.TypedDict, total=False):
-    inventorySourceGroups: typing.List[InventorySourceGroup]
+    inventorySourceGroups: _list[InventorySourceGroup]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInventorySourcesResponse(typing_extensions.TypedDict, total=False):
-    inventorySources: typing.List[InventorySource]
+    inventorySources: _list[InventorySource]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInvoicesResponse(typing_extensions.TypedDict, total=False):
-    invoices: typing.List[Invoice]
+    invoices: _list[Invoice]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLineItemAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLineItemsResponse(typing_extensions.TypedDict, total=False):
-    lineItems: typing.List[LineItem]
+    lineItems: _list[LineItem]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationListsResponse(typing_extensions.TypedDict, total=False):
-    locationLists: typing.List[LocationList]
+    locationLists: _list[LocationList]
     nextPageToken: str
 
 @typing.type_check_only
 class ListManualTriggersResponse(typing_extensions.TypedDict, total=False):
-    manualTriggers: typing.List[ManualTrigger]
+    manualTriggers: _list[ManualTrigger]
     nextPageToken: str
 
 @typing.type_check_only
 class ListNegativeKeywordListsResponse(typing_extensions.TypedDict, total=False):
-    negativeKeywordLists: typing.List[NegativeKeywordList]
+    negativeKeywordLists: _list[NegativeKeywordList]
     nextPageToken: str
 
 @typing.type_check_only
 class ListNegativeKeywordsResponse(typing_extensions.TypedDict, total=False):
-    negativeKeywords: typing.List[NegativeKeyword]
+    negativeKeywords: _list[NegativeKeyword]
     nextPageToken: str
 
 @typing.type_check_only
 class ListPartnerAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    assignedTargetingOptions: typing.List[AssignedTargetingOption]
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
 class ListPartnersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    partners: typing.List[Partner]
+    partners: _list[Partner]
 
 @typing.type_check_only
 class ListSitesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sites: typing.List[Site]
+    sites: _list[Site]
 
 @typing.type_check_only
 class ListTargetingOptionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    targetingOptions: typing.List[TargetingOption]
+    targetingOptions: _list[TargetingOption]
 
 @typing.type_check_only
 class ListUsersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    users: typing.List[User]
+    users: _list[User]
 
 @typing.type_check_only
 class LocationList(typing_extensions.TypedDict, total=False):
@@ -2494,9 +2494,9 @@ class OperatingSystemTargetingOptionDetails(typing_extensions.TypedDict, total=F
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Pacing(typing_extensions.TypedDict, total=False):
@@ -2514,8 +2514,8 @@ class Pacing(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ParentEntityFilter(typing_extensions.TypedDict, total=False):
-    fileType: typing.List[str]
-    filterIds: typing.List[str]
+    fileType: _list[str]
+    filterIds: _list[str]
     filterType: typing_extensions.Literal[
         "FILTER_TYPE_UNSPECIFIED",
         "FILTER_TYPE_NONE",
@@ -2760,21 +2760,21 @@ class RegionalLocationListAssignedTargetingOptionDetails(
 
 @typing.type_check_only
 class ReplaceNegativeKeywordsRequest(typing_extensions.TypedDict, total=False):
-    newNegativeKeywords: typing.List[NegativeKeyword]
+    newNegativeKeywords: _list[NegativeKeyword]
 
 @typing.type_check_only
 class ReplaceNegativeKeywordsResponse(typing_extensions.TypedDict, total=False):
-    negativeKeywords: typing.List[NegativeKeyword]
+    negativeKeywords: _list[NegativeKeyword]
 
 @typing.type_check_only
 class ReplaceSitesRequest(typing_extensions.TypedDict, total=False):
     advertiserId: str
-    newSites: typing.List[Site]
+    newSites: _list[Site]
     partnerId: str
 
 @typing.type_check_only
 class ReplaceSitesResponse(typing_extensions.TypedDict, total=False):
-    sites: typing.List[Site]
+    sites: _list[Site]
 
 @typing.type_check_only
 class ReviewStatusInfo(typing_extensions.TypedDict, total=False):
@@ -2797,8 +2797,8 @@ class ReviewStatusInfo(typing_extensions.TypedDict, total=False):
         "REVIEW_STATUS_REJECTED",
         "REVIEW_STATUS_PENDING",
     ]
-    exchangeReviewStatuses: typing.List[ExchangeReviewStatus]
-    publisherReviewStatuses: typing.List[PublisherReviewStatus]
+    exchangeReviewStatuses: _list[ExchangeReviewStatus]
+    publisherReviewStatuses: _list[PublisherReviewStatus]
 
 @typing.type_check_only
 class SdfConfig(typing_extensions.TypedDict, total=False):
@@ -2847,7 +2847,7 @@ class SearchTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchTargetingOptionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    targetingOptions: typing.List[TargetingOption]
+    targetingOptions: _list[TargetingOption]
 
 @typing.type_check_only
 class SensitiveCategoryAssignedTargetingOptionDetails(
@@ -2906,7 +2906,7 @@ class Site(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -3091,7 +3091,7 @@ class UrlAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
-    assignedUserRoles: typing.List[AssignedUserRole]
+    assignedUserRoles: _list[AssignedUserRole]
     displayName: str
     email: str
     name: str

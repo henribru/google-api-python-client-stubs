@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleAdsHomeservicesLocalservicesV1AccountReport(
     typing_extensions.TypedDict, total=False
@@ -75,16 +77,14 @@ class GoogleAdsHomeservicesLocalservicesV1PhoneLead(
 class GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    accountReports: typing.List[GoogleAdsHomeservicesLocalservicesV1AccountReport]
+    accountReports: _list[GoogleAdsHomeservicesLocalservicesV1AccountReport]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    detailedLeadReports: typing.List[
-        GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport
-    ]
+    detailedLeadReports: _list[GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport]
     nextPageToken: str
 
 @typing.type_check_only

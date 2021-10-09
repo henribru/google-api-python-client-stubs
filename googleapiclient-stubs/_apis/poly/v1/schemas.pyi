@@ -2,13 +2,15 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     authorName: str
     createTime: str
     description: str
     displayName: str
-    formats: typing.List[Format]
+    formats: _list[Format]
     isCurated: bool
     license: typing_extensions.Literal[
         "UNKNOWN", "CREATIVE_COMMONS_BY", "ALL_RIGHTS_RESERVED"
@@ -51,7 +53,7 @@ class File(typing_extensions.TypedDict, total=False):
 class Format(typing_extensions.TypedDict, total=False):
     formatComplexity: FormatComplexity
     formatType: str
-    resources: typing.List[File]
+    resources: _list[File]
     root: File
 
 @typing.type_check_only
@@ -68,13 +70,13 @@ class ImageError(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
-    assets: typing.List[Asset]
+    assets: _list[Asset]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
 class ListLikedAssetsResponse(typing_extensions.TypedDict, total=False):
-    assets: typing.List[Asset]
+    assets: _list[Asset]
     nextPageToken: str
     totalSize: int
 
@@ -82,7 +84,7 @@ class ListLikedAssetsResponse(typing_extensions.TypedDict, total=False):
 class ListUserAssetsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     totalSize: int
-    userAssets: typing.List[UserAsset]
+    userAssets: _list[UserAsset]
 
 @typing.type_check_only
 class ObjParseError(typing_extensions.TypedDict, total=False):
@@ -135,13 +137,13 @@ class Quaternion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RemixInfo(typing_extensions.TypedDict, total=False):
-    sourceAsset: typing.List[str]
+    sourceAsset: _list[str]
 
 @typing.type_check_only
 class StartAssetImportResponse(typing_extensions.TypedDict, total=False):
     assetId: str
     assetImportId: str
-    assetImportMessages: typing.List[AssetImportMessage]
+    assetImportMessages: _list[AssetImportMessage]
     publishUrl: str
 
 @typing.type_check_only

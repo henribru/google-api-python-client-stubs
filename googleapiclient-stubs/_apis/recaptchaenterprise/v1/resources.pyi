@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -79,9 +81,7 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse: ...
 
@@ -91,9 +91,7 @@ class GoogleCloudRecaptchaenterpriseV1AssessmentHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecaptchaenterpriseV1Assessment: ...
 
@@ -101,9 +99,7 @@ class GoogleCloudRecaptchaenterpriseV1AssessmentHttpRequest(
 class GoogleCloudRecaptchaenterpriseV1KeyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecaptchaenterpriseV1Key: ...
 
@@ -113,9 +109,7 @@ class GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecaptchaenterpriseV1ListKeysResponse: ...
 
@@ -125,9 +119,7 @@ class GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecaptchaenterpriseV1Metrics: ...
 
@@ -135,8 +127,6 @@ class GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest(
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

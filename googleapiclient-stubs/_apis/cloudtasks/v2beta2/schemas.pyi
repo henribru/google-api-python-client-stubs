@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AcknowledgeTaskRequest(typing_extensions.TypedDict, total=False):
     scheduleTime: str
@@ -9,7 +11,7 @@ class AcknowledgeTaskRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AppEngineHttpRequest(typing_extensions.TypedDict, total=False):
     appEngineRouting: AppEngineRouting
-    headers: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
     httpMethod: typing_extensions.Literal[
         "HTTP_METHOD_UNSPECIFIED", "POST", "GET", "HEAD", "PUT", "DELETE"
     ]
@@ -37,7 +39,7 @@ class AttemptStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -77,29 +79,29 @@ class LeaseTasksRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LeaseTasksResponse(typing_extensions.TypedDict, total=False):
-    tasks: typing.List[Task]
+    tasks: _list[Task]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListQueuesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    queues: typing.List[Queue]
+    queues: _list[Queue]
 
 @typing.type_check_only
 class ListTasksResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tasks: typing.List[Task]
+    tasks: _list[Task]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -107,7 +109,7 @@ class PauseQueueRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -180,7 +182,7 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -202,8 +204,8 @@ class TaskStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]

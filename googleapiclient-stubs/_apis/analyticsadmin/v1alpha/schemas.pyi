@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAccount(typing_extensions.TypedDict, total=False):
     createTime: str
@@ -18,7 +20,7 @@ class GoogleAnalyticsAdminV1alphaAccountSummary(
     account: str
     displayName: str
     name: str
-    propertySummaries: typing.List[GoogleAnalyticsAdminV1alphaPropertySummary]
+    propertySummaries: _list[GoogleAnalyticsAdminV1alphaPropertySummary]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAndroidAppDataStream(
@@ -56,8 +58,8 @@ class GoogleAnalyticsAdminV1alphaArchiveCustomMetricRequest(
 class GoogleAnalyticsAdminV1alphaAuditUserLink(
     typing_extensions.TypedDict, total=False
 ):
-    directRoles: typing.List[str]
-    effectiveRoles: typing.List[str]
+    directRoles: _list[str]
+    effectiveRoles: _list[str]
     emailAddress: str
     name: str
 
@@ -73,44 +75,44 @@ class GoogleAnalyticsAdminV1alphaAuditUserLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    userLinks: typing.List[GoogleAnalyticsAdminV1alphaAuditUserLink]
+    userLinks: _list[GoogleAnalyticsAdminV1alphaAuditUserLink]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest(
     typing_extensions.TypedDict, total=False
 ):
     notifyNewUsers: bool
-    requests: typing.List[GoogleAnalyticsAdminV1alphaCreateUserLinkRequest]
+    requests: _list[GoogleAnalyticsAdminV1alphaCreateUserLinkRequest]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
-    userLinks: typing.List[GoogleAnalyticsAdminV1alphaUserLink]
+    userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest(
     typing_extensions.TypedDict, total=False
 ):
-    requests: typing.List[GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest]
+    requests: _list[GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
-    userLinks: typing.List[GoogleAnalyticsAdminV1alphaUserLink]
+    userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest(
     typing_extensions.TypedDict, total=False
 ):
-    requests: typing.List[GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest]
+    requests: _list[GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
-    userLinks: typing.List[GoogleAnalyticsAdminV1alphaUserLink]
+    userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest(
@@ -156,7 +158,7 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
         "ACTOR_TYPE_UNSPECIFIED", "USER", "SYSTEM", "SUPPORT"
     ]
     changeTime: str
-    changes: typing.List[GoogleAnalyticsAdminV1alphaChangeHistoryChange]
+    changes: _list[GoogleAnalyticsAdminV1alphaChangeHistoryChange]
     changesFiltered: bool
     id: str
     userActorEmail: str
@@ -360,49 +362,49 @@ class GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails(
 class GoogleAnalyticsAdminV1alphaListAccountSummariesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    accountSummaries: typing.List[GoogleAnalyticsAdminV1alphaAccountSummary]
+    accountSummaries: _list[GoogleAnalyticsAdminV1alphaAccountSummary]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListAccountsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    accounts: typing.List[GoogleAnalyticsAdminV1alphaAccount]
+    accounts: _list[GoogleAnalyticsAdminV1alphaAccount]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    androidAppDataStreams: typing.List[GoogleAnalyticsAdminV1alphaAndroidAppDataStream]
+    androidAppDataStreams: _list[GoogleAnalyticsAdminV1alphaAndroidAppDataStream]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListConversionEventsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conversionEvents: typing.List[GoogleAnalyticsAdminV1alphaConversionEvent]
+    conversionEvents: _list[GoogleAnalyticsAdminV1alphaConversionEvent]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListCustomDimensionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    customDimensions: typing.List[GoogleAnalyticsAdminV1alphaCustomDimension]
+    customDimensions: _list[GoogleAnalyticsAdminV1alphaCustomDimension]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListCustomMetricsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    customMetrics: typing.List[GoogleAnalyticsAdminV1alphaCustomMetric]
+    customMetrics: _list[GoogleAnalyticsAdminV1alphaCustomMetric]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    displayVideo360AdvertiserLinkProposals: typing.List[
+    displayVideo360AdvertiserLinkProposals: _list[
         GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal
     ]
     nextPageToken: str
@@ -411,7 +413,7 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsRespo
 class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
-    displayVideo360AdvertiserLinks: typing.List[
+    displayVideo360AdvertiserLinks: _list[
         GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
     ]
     nextPageToken: str
@@ -420,28 +422,28 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse(
 class GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
-    firebaseLinks: typing.List[GoogleAnalyticsAdminV1alphaFirebaseLink]
+    firebaseLinks: _list[GoogleAnalyticsAdminV1alphaFirebaseLink]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
-    googleAdsLinks: typing.List[GoogleAnalyticsAdminV1alphaGoogleAdsLink]
+    googleAdsLinks: _list[GoogleAnalyticsAdminV1alphaGoogleAdsLink]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    iosAppDataStreams: typing.List[GoogleAnalyticsAdminV1alphaIosAppDataStream]
+    iosAppDataStreams: _list[GoogleAnalyticsAdminV1alphaIosAppDataStream]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    measurementProtocolSecrets: typing.List[
+    measurementProtocolSecrets: _list[
         GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret
     ]
     nextPageToken: str
@@ -451,21 +453,21 @@ class GoogleAnalyticsAdminV1alphaListPropertiesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    properties: typing.List[GoogleAnalyticsAdminV1alphaProperty]
+    properties: _list[GoogleAnalyticsAdminV1alphaProperty]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListUserLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    userLinks: typing.List[GoogleAnalyticsAdminV1alphaUserLink]
+    userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    webDataStreams: typing.List[GoogleAnalyticsAdminV1alphaWebDataStream]
+    webDataStreams: _list[GoogleAnalyticsAdminV1alphaWebDataStream]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret(
@@ -544,20 +546,20 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse(
 class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    action: typing.List[str]
-    actorEmail: typing.List[str]
+    action: _list[str]
+    actorEmail: _list[str]
     earliestChangeTime: str
     latestChangeTime: str
     pageSize: int
     pageToken: str
     property: str
-    resourceType: typing.List[str]
+    resourceType: _list[str]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    changeHistoryEvents: typing.List[GoogleAnalyticsAdminV1alphaChangeHistoryEvent]
+    changeHistoryEvents: _list[GoogleAnalyticsAdminV1alphaChangeHistoryEvent]
     nextPageToken: str
 
 @typing.type_check_only
@@ -568,7 +570,7 @@ class GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaUserLink(typing_extensions.TypedDict, total=False):
-    directRoles: typing.List[str]
+    directRoles: _list[str]
     emailAddress: str
     name: str
 

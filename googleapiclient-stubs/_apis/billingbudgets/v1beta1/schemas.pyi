@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1beta1AllUpdatesRule(
     typing_extensions.TypedDict, total=False
 ):
     disableDefaultIamRecipients: bool
-    monitoringNotificationChannels: typing.List[str]
+    monitoringNotificationChannels: _list[str]
     pubsubTopic: str
     schemaVersion: str
 
@@ -19,7 +21,7 @@ class GoogleCloudBillingBudgetsV1beta1Budget(typing_extensions.TypedDict, total=
     displayName: str
     etag: str
     name: str
-    thresholdRules: typing.List[GoogleCloudBillingBudgetsV1beta1ThresholdRule]
+    thresholdRules: _list[GoogleCloudBillingBudgetsV1beta1ThresholdRule]
 
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1beta1BudgetAmount(
@@ -46,7 +48,7 @@ class GoogleCloudBillingBudgetsV1beta1Filter(typing_extensions.TypedDict, total=
     calendarPeriod: typing_extensions.Literal[
         "CALENDAR_PERIOD_UNSPECIFIED", "MONTH", "QUARTER", "YEAR"
     ]
-    creditTypes: typing.List[str]
+    creditTypes: _list[str]
     creditTypesTreatment: typing_extensions.Literal[
         "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
         "INCLUDE_ALL_CREDITS",
@@ -54,10 +56,10 @@ class GoogleCloudBillingBudgetsV1beta1Filter(typing_extensions.TypedDict, total=
         "INCLUDE_SPECIFIED_CREDITS",
     ]
     customPeriod: GoogleCloudBillingBudgetsV1beta1CustomPeriod
-    labels: typing.Dict[str, typing.Any]
-    projects: typing.List[str]
-    services: typing.List[str]
-    subaccounts: typing.List[str]
+    labels: dict[str, typing.Any]
+    projects: _list[str]
+    services: _list[str]
+    subaccounts: _list[str]
 
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1beta1LastPeriodAmount(
@@ -68,7 +70,7 @@ class GoogleCloudBillingBudgetsV1beta1LastPeriodAmount(
 class GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    budgets: typing.List[GoogleCloudBillingBudgetsV1beta1Budget]
+    budgets: _list[GoogleCloudBillingBudgetsV1beta1Budget]
     nextPageToken: str
 
 @typing.type_check_only

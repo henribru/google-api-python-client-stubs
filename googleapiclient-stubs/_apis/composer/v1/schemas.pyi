@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AllowedIpRange(typing_extensions.TypedDict, total=False):
     description: str
@@ -15,7 +17,7 @@ class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
     ]
     imageVersion: str
     pypiConflictBuildLogExtract: str
-    pypiDependencies: typing.Dict[str, typing.Any]
+    pypiDependencies: dict[str, typing.Any]
 
 @typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):
@@ -38,7 +40,7 @@ class EncryptionConfig(typing_extensions.TypedDict, total=False):
 class Environment(typing_extensions.TypedDict, total=False):
     config: EnvironmentConfig
     createTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "ERROR"
@@ -74,23 +76,23 @@ class ImageVersion(typing_extensions.TypedDict, total=False):
     imageVersionId: str
     isDefault: bool
     releaseDate: Date
-    supportedPythonVersions: typing.List[str]
+    supportedPythonVersions: _list[str]
     upgradeDisabled: bool
 
 @typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
-    environments: typing.List[Environment]
+    environments: _list[Environment]
     nextPageToken: str
 
 @typing.type_check_only
 class ListImageVersionsResponse(typing_extensions.TypedDict, total=False):
-    imageVersions: typing.List[ImageVersion]
+    imageVersions: _list[ImageVersion]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
@@ -99,18 +101,18 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     location: str
     machineType: str
     network: str
-    oauthScopes: typing.List[str]
+    oauthScopes: _list[str]
     serviceAccount: str
     subnetwork: str
-    tags: typing.List[str]
+    tags: _list[str]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -141,17 +143,17 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
-    airflowConfigOverrides: typing.Dict[str, typing.Any]
-    envVariables: typing.Dict[str, typing.Any]
+    airflowConfigOverrides: dict[str, typing.Any]
+    envVariables: dict[str, typing.Any]
     imageVersion: str
-    pypiPackages: typing.Dict[str, typing.Any]
+    pypiPackages: dict[str, typing.Any]
     pythonVersion: str
     schedulerCount: int
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -160,4 +162,4 @@ class WebServerConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WebServerNetworkAccessControl(typing_extensions.TypedDict, total=False):
-    allowedIpRanges: typing.List[AllowedIpRange]
+    allowedIpRanges: _list[AllowedIpRange]

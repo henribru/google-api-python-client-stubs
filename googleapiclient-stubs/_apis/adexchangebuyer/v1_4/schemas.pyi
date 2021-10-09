@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     applyPretargetingToNonGuaranteedDeals: bool
-    bidderLocation: typing.List[typing.Dict[str, typing.Any]]
+    bidderLocation: _list[dict[str, typing.Any]]
     cookieMatchingNid: str
     cookieMatchingUrl: str
     id: int
@@ -16,38 +18,38 @@ class Account(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountsList(typing_extensions.TypedDict, total=False):
-    items: typing.List[Account]
+    items: _list[Account]
     kind: str
 
 @typing.type_check_only
 class AddOrderDealsRequest(typing_extensions.TypedDict, total=False):
-    deals: typing.List[MarketplaceDeal]
+    deals: _list[MarketplaceDeal]
     proposalRevisionNumber: str
     updateAction: str
 
 @typing.type_check_only
 class AddOrderDealsResponse(typing_extensions.TypedDict, total=False):
-    deals: typing.List[MarketplaceDeal]
+    deals: _list[MarketplaceDeal]
     proposalRevisionNumber: str
 
 @typing.type_check_only
 class AddOrderNotesRequest(typing_extensions.TypedDict, total=False):
-    notes: typing.List[MarketplaceNote]
+    notes: _list[MarketplaceNote]
 
 @typing.type_check_only
 class AddOrderNotesResponse(typing_extensions.TypedDict, total=False):
-    notes: typing.List[MarketplaceNote]
+    notes: _list[MarketplaceNote]
 
 @typing.type_check_only
 class BillingInfo(typing_extensions.TypedDict, total=False):
     accountId: int
     accountName: str
-    billingId: typing.List[str]
+    billingId: _list[str]
     kind: str
 
 @typing.type_check_only
 class BillingInfoList(typing_extensions.TypedDict, total=False):
-    items: typing.List[BillingInfo]
+    items: _list[BillingInfo]
     kind: str
 
 @typing.type_check_only
@@ -70,42 +72,42 @@ class ContactInformation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateOrdersRequest(typing_extensions.TypedDict, total=False):
-    proposals: typing.List[Proposal]
+    proposals: _list[Proposal]
     webPropertyCode: str
 
 @typing.type_check_only
 class CreateOrdersResponse(typing_extensions.TypedDict, total=False):
-    proposals: typing.List[Proposal]
+    proposals: _list[Proposal]
 
 @typing.type_check_only
 class Creative(typing_extensions.TypedDict, total=False):
     HTMLSnippet: str
     accountId: int
     adChoicesDestinationUrl: str
-    adTechnologyProviders: typing.Dict[str, typing.Any]
-    advertiserId: typing.List[str]
+    adTechnologyProviders: dict[str, typing.Any]
+    advertiserId: _list[str]
     advertiserName: str
     agencyId: str
     apiUploadTimestamp: str
-    attribute: typing.List[int]
+    attribute: _list[int]
     buyerCreativeId: str
-    clickThroughUrl: typing.List[str]
-    corrections: typing.List[typing.Dict[str, typing.Any]]
+    clickThroughUrl: _list[str]
+    corrections: _list[dict[str, typing.Any]]
     creativeStatusIdentityType: str
     dealsStatus: str
-    detectedDomains: typing.List[str]
-    filteringReasons: typing.Dict[str, typing.Any]
+    detectedDomains: _list[str]
+    filteringReasons: dict[str, typing.Any]
     height: int
-    impressionTrackingUrl: typing.List[str]
+    impressionTrackingUrl: _list[str]
     kind: str
-    languages: typing.List[str]
-    nativeAd: typing.Dict[str, typing.Any]
+    languages: _list[str]
+    nativeAd: dict[str, typing.Any]
     openAuctionStatus: str
-    productCategories: typing.List[int]
-    restrictedCategories: typing.List[int]
-    sensitiveCategories: typing.List[int]
-    servingRestrictions: typing.List[typing.Dict[str, typing.Any]]
-    vendorType: typing.List[int]
+    productCategories: _list[int]
+    restrictedCategories: _list[int]
+    sensitiveCategories: _list[int]
+    servingRestrictions: _list[dict[str, typing.Any]]
+    vendorType: _list[int]
     version: int
     videoURL: str
     videoVastXML: str
@@ -113,12 +115,12 @@ class Creative(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreativeDealIds(typing_extensions.TypedDict, total=False):
-    dealStatuses: typing.List[typing.Dict[str, typing.Any]]
+    dealStatuses: _list[dict[str, typing.Any]]
     kind: str
 
 @typing.type_check_only
 class CreativesList(typing_extensions.TypedDict, total=False):
-    items: typing.List[Creative]
+    items: _list[Creative]
     kind: str
     nextPageToken: str
 
@@ -151,7 +153,7 @@ class DealTerms(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DealTermsGuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
     billingInfo: DealTermsGuaranteedFixedPriceTermsBillingInfo
-    fixedPrices: typing.List[PricePerBuyer]
+    fixedPrices: _list[PricePerBuyer]
     guaranteedImpressions: str
     guaranteedLooks: str
     minimumDailyLooks: str
@@ -168,11 +170,11 @@ class DealTermsGuaranteedFixedPriceTermsBillingInfo(
 @typing.type_check_only
 class DealTermsNonGuaranteedAuctionTerms(typing_extensions.TypedDict, total=False):
     autoOptimizePrivateAuction: bool
-    reservePricePerBuyers: typing.List[PricePerBuyer]
+    reservePricePerBuyers: _list[PricePerBuyer]
 
 @typing.type_check_only
 class DealTermsNonGuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
-    fixedPrices: typing.List[PricePerBuyer]
+    fixedPrices: _list[PricePerBuyer]
 
 @typing.type_check_only
 class DealTermsRubiconNonGuaranteedTerms(typing_extensions.TypedDict, total=False):
@@ -181,20 +183,20 @@ class DealTermsRubiconNonGuaranteedTerms(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class DeleteOrderDealsRequest(typing_extensions.TypedDict, total=False):
-    dealIds: typing.List[str]
+    dealIds: _list[str]
     proposalRevisionNumber: str
     updateAction: str
 
 @typing.type_check_only
 class DeleteOrderDealsResponse(typing_extensions.TypedDict, total=False):
-    deals: typing.List[MarketplaceDeal]
+    deals: _list[MarketplaceDeal]
     proposalRevisionNumber: str
 
 @typing.type_check_only
 class DeliveryControl(typing_extensions.TypedDict, total=False):
     creativeBlockingLevel: str
     deliveryRateType: str
-    frequencyCaps: typing.List[DeliveryControlFrequencyCap]
+    frequencyCaps: _list[DeliveryControlFrequencyCap]
 
 @typing.type_check_only
 class DeliveryControlFrequencyCap(typing_extensions.TypedDict, total=False):
@@ -205,7 +207,7 @@ class DeliveryControlFrequencyCap(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Dimension(typing_extensions.TypedDict, total=False):
     dimensionType: str
-    dimensionValues: typing.List[DimensionDimensionValue]
+    dimensionValues: _list[DimensionDimensionValue]
 
 @typing.type_check_only
 class DimensionDimensionValue(typing_extensions.TypedDict, total=False):
@@ -215,35 +217,35 @@ class DimensionDimensionValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EditAllOrderDealsRequest(typing_extensions.TypedDict, total=False):
-    deals: typing.List[MarketplaceDeal]
+    deals: _list[MarketplaceDeal]
     proposal: Proposal
     proposalRevisionNumber: str
     updateAction: str
 
 @typing.type_check_only
 class EditAllOrderDealsResponse(typing_extensions.TypedDict, total=False):
-    deals: typing.List[MarketplaceDeal]
+    deals: _list[MarketplaceDeal]
     orderRevisionNumber: str
 
 @typing.type_check_only
 class GetOffersResponse(typing_extensions.TypedDict, total=False):
-    products: typing.List[Product]
+    products: _list[Product]
 
 @typing.type_check_only
 class GetOrderDealsResponse(typing_extensions.TypedDict, total=False):
-    deals: typing.List[MarketplaceDeal]
+    deals: _list[MarketplaceDeal]
 
 @typing.type_check_only
 class GetOrderNotesResponse(typing_extensions.TypedDict, total=False):
-    notes: typing.List[MarketplaceNote]
+    notes: _list[MarketplaceNote]
 
 @typing.type_check_only
 class GetOrdersResponse(typing_extensions.TypedDict, total=False):
-    proposals: typing.List[Proposal]
+    proposals: _list[Proposal]
 
 @typing.type_check_only
 class GetPublisherProfilesByAccountIdResponse(typing_extensions.TypedDict, total=False):
-    profiles: typing.List[PublisherProfileApiProto]
+    profiles: _list[PublisherProfileApiProto]
 
 @typing.type_check_only
 class MarketplaceDeal(typing_extensions.TypedDict, total=False):
@@ -268,8 +270,8 @@ class MarketplaceDeal(typing_extensions.TypedDict, total=False):
     productRevisionNumber: str
     programmaticCreativeSource: str
     proposalId: str
-    sellerContacts: typing.List[ContactInformation]
-    sharedTargetings: typing.List[SharedTargeting]
+    sellerContacts: _list[ContactInformation]
+    sharedTargetings: _list[SharedTargeting]
     syndicationProduct: str
     terms: DealTerms
     webPropertyCode: str
@@ -306,11 +308,11 @@ class MobileApplication(typing_extensions.TypedDict, total=False):
 class PerformanceReport(typing_extensions.TypedDict, total=False):
     bidRate: float
     bidRequestRate: float
-    calloutStatusRate: typing.List[typing.Any]
-    cookieMatcherStatusRate: typing.List[typing.Any]
-    creativeStatusRate: typing.List[typing.Any]
+    calloutStatusRate: _list[typing.Any]
+    cookieMatcherStatusRate: _list[typing.Any]
+    creativeStatusRate: _list[typing.Any]
     filteredBidRate: float
-    hostedMatchStatusRate: typing.List[typing.Any]
+    hostedMatchStatusRate: _list[typing.Any]
     inventoryMatchRate: float
     kind: str
     latency50thPercentile: float
@@ -330,41 +332,41 @@ class PerformanceReport(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PerformanceReportList(typing_extensions.TypedDict, total=False):
     kind: str
-    performanceReport: typing.List[PerformanceReport]
+    performanceReport: _list[PerformanceReport]
 
 @typing.type_check_only
 class PretargetingConfig(typing_extensions.TypedDict, total=False):
     billingId: str
     configId: str
     configName: str
-    creativeType: typing.List[str]
-    dimensions: typing.List[typing.Dict[str, typing.Any]]
-    excludedContentLabels: typing.List[str]
-    excludedGeoCriteriaIds: typing.List[str]
-    excludedPlacements: typing.List[typing.Dict[str, typing.Any]]
-    excludedUserLists: typing.List[str]
-    excludedVerticals: typing.List[str]
-    geoCriteriaIds: typing.List[str]
+    creativeType: _list[str]
+    dimensions: _list[dict[str, typing.Any]]
+    excludedContentLabels: _list[str]
+    excludedGeoCriteriaIds: _list[str]
+    excludedPlacements: _list[dict[str, typing.Any]]
+    excludedUserLists: _list[str]
+    excludedVerticals: _list[str]
+    geoCriteriaIds: _list[str]
     isActive: bool
     kind: str
-    languages: typing.List[str]
+    languages: _list[str]
     maximumQps: str
     minimumViewabilityDecile: int
-    mobileCarriers: typing.List[str]
-    mobileDevices: typing.List[str]
-    mobileOperatingSystemVersions: typing.List[str]
-    placements: typing.List[typing.Dict[str, typing.Any]]
-    platforms: typing.List[str]
-    supportedCreativeAttributes: typing.List[str]
-    userIdentifierDataRequired: typing.List[str]
-    userLists: typing.List[str]
-    vendorTypes: typing.List[str]
-    verticals: typing.List[str]
-    videoPlayerSizes: typing.List[typing.Dict[str, typing.Any]]
+    mobileCarriers: _list[str]
+    mobileDevices: _list[str]
+    mobileOperatingSystemVersions: _list[str]
+    placements: _list[dict[str, typing.Any]]
+    platforms: _list[str]
+    supportedCreativeAttributes: _list[str]
+    userIdentifierDataRequired: _list[str]
+    userLists: _list[str]
+    vendorTypes: _list[str]
+    verticals: _list[str]
+    videoPlayerSizes: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class PretargetingConfigList(typing_extensions.TypedDict, total=False):
-    items: typing.List[PretargetingConfig]
+    items: _list[PretargetingConfig]
     kind: str
 
 @typing.type_check_only
@@ -391,7 +393,7 @@ class Product(typing_extensions.TypedDict, total=False):
     billedBuyer: Buyer
     buyer: Buyer
     creationTimeMs: str
-    creatorContacts: typing.List[ContactInformation]
+    creatorContacts: _list[ContactInformation]
     creatorRole: str
     deliveryControl: DeliveryControl
     flightEndTimeMs: str
@@ -399,7 +401,7 @@ class Product(typing_extensions.TypedDict, total=False):
     hasCreatorSignedOff: bool
     inventorySource: str
     kind: str
-    labels: typing.List[MarketplaceLabel]
+    labels: _list[MarketplaceLabel]
     lastUpdateTimeMs: str
     legacyOfferId: str
     marketplacePublisherProfileId: str
@@ -410,7 +412,7 @@ class Product(typing_extensions.TypedDict, total=False):
     publisherProvidedForecast: PublisherProvidedForecast
     revisionNumber: str
     seller: Seller
-    sharedTargetings: typing.List[SharedTargeting]
+    sharedTargetings: _list[SharedTargeting]
     state: str
     syndicationProduct: str
     terms: DealTerms
@@ -420,16 +422,16 @@ class Product(typing_extensions.TypedDict, total=False):
 class Proposal(typing_extensions.TypedDict, total=False):
     billedBuyer: Buyer
     buyer: Buyer
-    buyerContacts: typing.List[ContactInformation]
+    buyerContacts: _list[ContactInformation]
     buyerPrivateData: PrivateData
-    dbmAdvertiserIds: typing.List[str]
+    dbmAdvertiserIds: _list[str]
     hasBuyerSignedOff: bool
     hasSellerSignedOff: bool
     inventorySource: str
     isRenegotiating: bool
     isSetupComplete: bool
     kind: str
-    labels: typing.List[MarketplaceLabel]
+    labels: _list[MarketplaceLabel]
     lastUpdaterOrCommentorRole: str
     name: str
     negotiationId: str
@@ -440,7 +442,7 @@ class Proposal(typing_extensions.TypedDict, total=False):
     revisionNumber: str
     revisionTimeMs: str
     seller: Seller
-    sellerContacts: typing.List[ContactInformation]
+    sellerContacts: _list[ContactInformation]
 
 @typing.type_check_only
 class PublisherProfileApiProto(typing_extensions.TypedDict, total=False):
@@ -459,20 +461,20 @@ class PublisherProfileApiProto(typing_extensions.TypedDict, total=False):
     overview: str
     profileId: int
     programmaticContact: str
-    publisherAppIds: typing.List[str]
-    publisherApps: typing.List[MobileApplication]
-    publisherDomains: typing.List[str]
+    publisherAppIds: _list[str]
+    publisherApps: _list[MobileApplication]
+    publisherDomains: _list[str]
     publisherProfileId: str
     publisherProvidedForecast: PublisherProvidedForecast
     rateCardInfoLink: str
     samplePageLink: str
     seller: Seller
     state: str
-    topHeadlines: typing.List[str]
+    topHeadlines: _list[str]
 
 @typing.type_check_only
 class PublisherProvidedForecast(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[Dimension]
+    dimensions: _list[Dimension]
     weeklyImpressions: str
     weeklyUniques: str
 
@@ -483,8 +485,8 @@ class Seller(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SharedTargeting(typing_extensions.TypedDict, total=False):
-    exclusions: typing.List[TargetingValue]
-    inclusions: typing.List[TargetingValue]
+    exclusions: _list[TargetingValue]
+    inclusions: _list[TargetingValue]
     key: str
 
 @typing.type_check_only
@@ -499,8 +501,8 @@ class TargetingValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TargetingValueCreativeSize(typing_extensions.TypedDict, total=False):
-    allowedFormats: typing.List[str]
-    companionSizes: typing.List[TargetingValueSize]
+    allowedFormats: _list[str]
+    companionSizes: _list[TargetingValueSize]
     creativeSizeType: str
     nativeTemplate: str
     size: TargetingValueSize
@@ -508,7 +510,7 @@ class TargetingValueCreativeSize(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TargetingValueDayPartTargeting(typing_extensions.TypedDict, total=False):
-    dayParts: typing.List[TargetingValueDayPartTargetingDayPart]
+    dayParts: _list[TargetingValueDayPartTargetingDayPart]
     timeZoneType: str
 
 @typing.type_check_only
@@ -521,15 +523,15 @@ class TargetingValueDayPartTargetingDayPart(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class TargetingValueDemogAgeCriteria(typing_extensions.TypedDict, total=False):
-    demogAgeCriteriaIds: typing.List[str]
+    demogAgeCriteriaIds: _list[str]
 
 @typing.type_check_only
 class TargetingValueDemogGenderCriteria(typing_extensions.TypedDict, total=False):
-    demogGenderCriteriaIds: typing.List[str]
+    demogGenderCriteriaIds: _list[str]
 
 @typing.type_check_only
 class TargetingValueRequestPlatformTargeting(typing_extensions.TypedDict, total=False):
-    requestPlatforms: typing.List[str]
+    requestPlatforms: _list[str]
 
 @typing.type_check_only
 class TargetingValueSize(typing_extensions.TypedDict, total=False):

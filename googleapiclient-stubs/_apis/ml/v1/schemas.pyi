@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleApi__HttpBody(typing_extensions.TypedDict, total=False):
     contentType: str
     data: str
-    extensions: typing.List[typing.Dict[str, typing.Any]]
+    extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig(
@@ -36,13 +38,13 @@ class GoogleCloudMlV1_Measurement_Metric(typing_extensions.TypedDict, total=Fals
 class GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec(
     typing_extensions.TypedDict, total=False
 ):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec(
     typing_extensions.TypedDict, total=False
 ):
-    values: typing.List[float]
+    values: _list[float]
 
 @typing.type_check_only
 class GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec(
@@ -62,19 +64,19 @@ class GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec(
 class GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec(
     typing_extensions.TypedDict, total=False
 ):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec(
     typing_extensions.TypedDict, total=False
 ):
-    values: typing.List[float]
+    values: _list[float]
 
 @typing.type_check_only
 class GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec(
     typing_extensions.TypedDict, total=False
 ):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudMlV1_StudyConfig_MetricSpec(typing_extensions.TypedDict, total=False):
@@ -82,7 +84,7 @@ class GoogleCloudMlV1_StudyConfig_MetricSpec(typing_extensions.TypedDict, total=
     metric: str
 
 @typing.type_check_only
-class GoogleCloudMlV1_StudyConfig_ParameterSpec(typing.Dict[str, typing.Any]): ...
+class GoogleCloudMlV1_StudyConfig_ParameterSpec(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudMlV1_Trial_Parameter(typing_extensions.TypedDict, total=False):
@@ -117,7 +119,7 @@ class GoogleCloudMlV1__AddTrialMeasurementRequest(
 @typing.type_check_only
 class GoogleCloudMlV1__AutoScaling(typing_extensions.TypedDict, total=False):
     maxNodes: int
-    metrics: typing.List[GoogleCloudMlV1__MetricSpec]
+    metrics: _list[GoogleCloudMlV1__MetricSpec]
     minNodes: int
 
 @typing.type_check_only
@@ -139,7 +141,7 @@ class GoogleCloudMlV1__CancelJobRequest(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GoogleCloudMlV1__Capability(typing_extensions.TypedDict, total=False):
-    availableAccelerators: typing.List[str]
+    availableAccelerators: _list[str]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "TRAINING", "BATCH_PREDICTION", "ONLINE_PREDICTION"
     ]
@@ -181,11 +183,11 @@ class GoogleCloudMlV1__ContainerPort(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudMlV1__ContainerSpec(typing_extensions.TypedDict, total=False):
-    args: typing.List[str]
-    command: typing.List[str]
-    env: typing.List[GoogleCloudMlV1__EnvVar]
+    args: _list[str]
+    command: _list[str]
+    env: _list[GoogleCloudMlV1__EnvVar]
     image: str
-    ports: typing.List[GoogleCloudMlV1__ContainerPort]
+    ports: _list[GoogleCloudMlV1__ContainerPort]
 
 @typing.type_check_only
 class GoogleCloudMlV1__DiskConfig(typing_extensions.TypedDict, total=False):
@@ -219,11 +221,11 @@ class GoogleCloudMlV1__GetConfigResponse(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudMlV1__HyperparameterOutput(typing_extensions.TypedDict, total=False):
-    allMetrics: typing.List[GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric]
+    allMetrics: _list[GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric]
     builtInAlgorithmOutput: GoogleCloudMlV1__BuiltInAlgorithmOutput
     endTime: str
     finalMetric: GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric
-    hyperparameters: typing.Dict[str, typing.Any]
+    hyperparameters: dict[str, typing.Any]
     isTrialStoppedEarly: bool
     startTime: str
     state: typing_extensions.Literal[
@@ -237,7 +239,7 @@ class GoogleCloudMlV1__HyperparameterOutput(typing_extensions.TypedDict, total=F
         "CANCELLED",
     ]
     trialId: str
-    webAccessUris: typing.Dict[str, typing.Any]
+    webAccessUris: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudMlV1__HyperparameterSpec(typing_extensions.TypedDict, total=False):
@@ -250,7 +252,7 @@ class GoogleCloudMlV1__HyperparameterSpec(typing_extensions.TypedDict, total=Fal
     maxFailedTrials: int
     maxParallelTrials: int
     maxTrials: int
-    params: typing.List[GoogleCloudMlV1__ParameterSpec]
+    params: _list[GoogleCloudMlV1__ParameterSpec]
     resumePreviousJobId: str
 
 @typing.type_check_only
@@ -266,7 +268,7 @@ class GoogleCloudMlV1__Job(typing_extensions.TypedDict, total=False):
     errorMessage: str
     etag: str
     jobId: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     predictionInput: GoogleCloudMlV1__PredictionInput
     predictionOutput: GoogleCloudMlV1__PredictionOutput
     startTime: str
@@ -285,17 +287,17 @@ class GoogleCloudMlV1__Job(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudMlV1__ListJobsResponse(typing_extensions.TypedDict, total=False):
-    jobs: typing.List[GoogleCloudMlV1__Job]
+    jobs: _list[GoogleCloudMlV1__Job]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudMlV1__ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[GoogleCloudMlV1__Location]
+    locations: _list[GoogleCloudMlV1__Location]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudMlV1__ListModelsResponse(typing_extensions.TypedDict, total=False):
-    models: typing.List[GoogleCloudMlV1__Model]
+    models: _list[GoogleCloudMlV1__Model]
     nextPageToken: str
 
 @typing.type_check_only
@@ -307,24 +309,24 @@ class GoogleCloudMlV1__ListOptimalTrialsRequest(
 class GoogleCloudMlV1__ListOptimalTrialsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    trials: typing.List[GoogleCloudMlV1__Trial]
+    trials: _list[GoogleCloudMlV1__Trial]
 
 @typing.type_check_only
 class GoogleCloudMlV1__ListStudiesResponse(typing_extensions.TypedDict, total=False):
-    studies: typing.List[GoogleCloudMlV1__Study]
+    studies: _list[GoogleCloudMlV1__Study]
 
 @typing.type_check_only
 class GoogleCloudMlV1__ListTrialsResponse(typing_extensions.TypedDict, total=False):
-    trials: typing.List[GoogleCloudMlV1__Trial]
+    trials: _list[GoogleCloudMlV1__Trial]
 
 @typing.type_check_only
 class GoogleCloudMlV1__ListVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    versions: typing.List[GoogleCloudMlV1__Version]
+    versions: _list[GoogleCloudMlV1__Version]
 
 @typing.type_check_only
 class GoogleCloudMlV1__Location(typing_extensions.TypedDict, total=False):
-    capabilities: typing.List[GoogleCloudMlV1__Capability]
+    capabilities: _list[GoogleCloudMlV1__Capability]
     name: str
 
 @typing.type_check_only
@@ -334,7 +336,7 @@ class GoogleCloudMlV1__ManualScaling(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudMlV1__Measurement(typing_extensions.TypedDict, total=False):
     elapsedTime: str
-    metrics: typing.List[GoogleCloudMlV1_Measurement_Metric]
+    metrics: _list[GoogleCloudMlV1_Measurement_Metric]
     stepCount: str
 
 @typing.type_check_only
@@ -349,18 +351,18 @@ class GoogleCloudMlV1__Model(typing_extensions.TypedDict, total=False):
     defaultVersion: GoogleCloudMlV1__Version
     description: str
     etag: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     onlinePredictionConsoleLogging: bool
     onlinePredictionLogging: bool
-    regions: typing.List[str]
+    regions: _list[str]
 
 @typing.type_check_only
 class GoogleCloudMlV1__OperationMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
     isCancellationRequested: bool
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     modelName: str
     operationType: typing_extensions.Literal[
         "OPERATION_TYPE_UNSPECIFIED",
@@ -377,8 +379,8 @@ class GoogleCloudMlV1__OperationMetadata(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudMlV1__ParameterSpec(typing_extensions.TypedDict, total=False):
-    categoricalValues: typing.List[str]
-    discreteValues: typing.List[float]
+    categoricalValues: _list[str]
+    discreteValues: _list[float]
     maxValue: float
     minValue: float
     parameterName: str
@@ -399,7 +401,7 @@ class GoogleCloudMlV1__PredictionInput(typing_extensions.TypedDict, total=False)
     dataFormat: typing_extensions.Literal[
         "DATA_FORMAT_UNSPECIFIED", "JSON", "TEXT", "TF_RECORD", "TF_RECORD_GZIP", "CSV"
     ]
-    inputPaths: typing.List[str]
+    inputPaths: _list[str]
     maxWorkerCount: str
     modelName: str
     outputDataFormat: typing_extensions.Literal[
@@ -422,8 +424,8 @@ class GoogleCloudMlV1__PredictionOutput(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleCloudMlV1__ReplicaConfig(typing_extensions.TypedDict, total=False):
     acceleratorConfig: GoogleCloudMlV1__AcceleratorConfig
-    containerArgs: typing.List[str]
-    containerCommand: typing.List[str]
+    containerArgs: _list[str]
+    containerCommand: _list[str]
     diskConfig: GoogleCloudMlV1__DiskConfig
     imageUri: str
     tpuTfVersion: str
@@ -459,10 +461,10 @@ class GoogleCloudMlV1__SetDefaultVersionRequest(
 class GoogleCloudMlV1__StopTrialRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleCloudMlV1__Study(typing.Dict[str, typing.Any]): ...
+class GoogleCloudMlV1__Study(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudMlV1__StudyConfig(typing.Dict[str, typing.Any]): ...
+class GoogleCloudMlV1__StudyConfig(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudMlV1__SuggestTrialsMetadata(typing_extensions.TypedDict, total=False):
@@ -483,11 +485,11 @@ class GoogleCloudMlV1__SuggestTrialsResponse(typing_extensions.TypedDict, total=
     studyState: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "COMPLETED"
     ]
-    trials: typing.List[GoogleCloudMlV1__Trial]
+    trials: _list[GoogleCloudMlV1__Trial]
 
 @typing.type_check_only
 class GoogleCloudMlV1__TrainingInput(typing_extensions.TypedDict, total=False):
-    args: typing.List[str]
+    args: _list[str]
     enableWebAccess: bool
     encryptionConfig: GoogleCloudMlV1__EncryptionConfig
     evaluatorConfig: GoogleCloudMlV1__ReplicaConfig
@@ -498,7 +500,7 @@ class GoogleCloudMlV1__TrainingInput(typing_extensions.TypedDict, total=False):
     masterConfig: GoogleCloudMlV1__ReplicaConfig
     masterType: str
     network: str
-    packageUris: typing.List[str]
+    packageUris: _list[str]
     parameterServerConfig: GoogleCloudMlV1__ReplicaConfig
     parameterServerCount: str
     parameterServerType: str
@@ -524,8 +526,8 @@ class GoogleCloudMlV1__TrainingOutput(typing_extensions.TypedDict, total=False):
     hyperparameterMetricTag: str
     isBuiltInAlgorithmJob: bool
     isHyperparameterTuningJob: bool
-    trials: typing.List[GoogleCloudMlV1__HyperparameterOutput]
-    webAccessUris: typing.Dict[str, typing.Any]
+    trials: _list[GoogleCloudMlV1__HyperparameterOutput]
+    webAccessUris: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudMlV1__Trial(typing_extensions.TypedDict, total=False):
@@ -533,9 +535,9 @@ class GoogleCloudMlV1__Trial(typing_extensions.TypedDict, total=False):
     endTime: str
     finalMeasurement: GoogleCloudMlV1__Measurement
     infeasibleReason: str
-    measurements: typing.List[GoogleCloudMlV1__Measurement]
+    measurements: _list[GoogleCloudMlV1__Measurement]
     name: str
-    parameters: typing.List[GoogleCloudMlV1_Trial_Parameter]
+    parameters: _list[GoogleCloudMlV1_Trial_Parameter]
     startTime: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "REQUESTED", "ACTIVE", "COMPLETED", "STOPPING"
@@ -557,14 +559,14 @@ class GoogleCloudMlV1__Version(typing_extensions.TypedDict, total=False):
         "FRAMEWORK_UNSPECIFIED", "TENSORFLOW", "SCIKIT_LEARN", "XGBOOST"
     ]
     isDefault: bool
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     lastMigrationModelId: str
     lastMigrationTime: str
     lastUseTime: str
     machineType: str
     manualScaling: GoogleCloudMlV1__ManualScaling
     name: str
-    packageUris: typing.List[str]
+    packageUris: _list[str]
     predictionClass: str
     pythonVersion: str
     requestLoggingConfig: GoogleCloudMlV1__RequestLoggingConfig
@@ -581,12 +583,12 @@ class GoogleCloudMlV1__XraiAttribution(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleIamV1__AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[GoogleIamV1__AuditLogConfig]
+    auditLogConfigs: _list[GoogleIamV1__AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class GoogleIamV1__AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -594,13 +596,13 @@ class GoogleIamV1__AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleIamV1__Binding(typing_extensions.TypedDict, total=False):
     condition: GoogleType__Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class GoogleIamV1__Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[GoogleIamV1__AuditConfig]
-    bindings: typing.List[GoogleIamV1__Binding]
+    auditConfigs: _list[GoogleIamV1__AuditConfig]
+    bindings: _list[GoogleIamV1__Binding]
     etag: str
     version: int
 
@@ -611,26 +613,26 @@ class GoogleIamV1__SetIamPolicyRequest(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleIamV1__TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class GoogleIamV1__TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunning__ListOperationsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunning__Operation]
+    operations: _list[GoogleLongrunning__Operation]
 
 @typing.type_check_only
 class GoogleLongrunning__Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpc__Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobuf__Empty(typing_extensions.TypedDict, total=False): ...
@@ -638,7 +640,7 @@ class GoogleProtobuf__Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpc__Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

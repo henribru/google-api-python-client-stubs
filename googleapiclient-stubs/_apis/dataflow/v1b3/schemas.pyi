@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ApproximateProgress(typing_extensions.TypedDict, total=False):
     percentComplete: float
@@ -79,10 +81,10 @@ class ComponentTransform(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ComputationTopology(typing_extensions.TypedDict, total=False):
     computationId: str
-    inputs: typing.List[StreamLocation]
-    keyRanges: typing.List[KeyRangeLocation]
-    outputs: typing.List[StreamLocation]
-    stateFamilies: typing.List[StateFamilyConfig]
+    inputs: _list[StreamLocation]
+    keyRanges: _list[KeyRangeLocation]
+    outputs: _list[StreamLocation]
+    stateFamilies: _list[StateFamilyConfig]
     systemStageName: str
 
 @typing.type_check_only
@@ -166,7 +168,7 @@ class CreateJobFromTemplateRequest(typing_extensions.TypedDict, total=False):
     gcsPath: str
     jobName: str
     location: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class CustomSourceLocation(typing_extensions.TypedDict, total=False):
@@ -174,7 +176,7 @@ class CustomSourceLocation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataDiskAssignment(typing_extensions.TypedDict, total=False):
-    dataDisks: typing.List[str]
+    dataDisks: _list[str]
     vmInstance: str
 
 @typing.type_check_only
@@ -239,22 +241,22 @@ class Environment(typing_extensions.TypedDict, total=False):
     clusterManagerApiService: str
     dataset: str
     debugOptions: DebugOptions
-    experiments: typing.List[str]
+    experiments: _list[str]
     flexResourceSchedulingGoal: typing_extensions.Literal[
         "FLEXRS_UNSPECIFIED", "FLEXRS_SPEED_OPTIMIZED", "FLEXRS_COST_OPTIMIZED"
     ]
-    internalExperiments: typing.Dict[str, typing.Any]
-    sdkPipelineOptions: typing.Dict[str, typing.Any]
+    internalExperiments: dict[str, typing.Any]
+    sdkPipelineOptions: dict[str, typing.Any]
     serviceAccountEmail: str
     serviceKmsKeyName: str
-    serviceOptions: typing.List[str]
+    serviceOptions: _list[str]
     shuffleMode: typing_extensions.Literal[
         "SHUFFLE_MODE_UNSPECIFIED", "VM_BASED", "SERVICE_BASED"
     ]
     tempStoragePrefix: str
-    userAgent: typing.Dict[str, typing.Any]
-    version: typing.Dict[str, typing.Any]
-    workerPools: typing.List[WorkerPool]
+    userAgent: dict[str, typing.Any]
+    version: dict[str, typing.Any]
+    workerPools: _list[WorkerPool]
     workerRegion: str
     workerZone: str
 
@@ -280,10 +282,10 @@ class ExecutionStageState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecutionStageSummary(typing_extensions.TypedDict, total=False):
-    componentSource: typing.List[ComponentSource]
-    componentTransform: typing.List[ComponentTransform]
+    componentSource: _list[ComponentSource]
+    componentTransform: _list[ComponentTransform]
     id: str
-    inputSource: typing.List[StageSource]
+    inputSource: _list[StageSource]
     kind: typing_extensions.Literal[
         "UNKNOWN_KIND",
         "PAR_DO_KIND",
@@ -296,8 +298,8 @@ class ExecutionStageSummary(typing_extensions.TypedDict, total=False):
         "SHUFFLE_KIND",
     ]
     name: str
-    outputSource: typing.List[StageSource]
-    prerequisiteStage: typing.List[str]
+    outputSource: _list[StageSource]
+    prerequisiteStage: _list[str]
 
 @typing.type_check_only
 class FailedLocation(typing_extensions.TypedDict, total=False):
@@ -309,12 +311,12 @@ class FileIODetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FlattenInstruction(typing_extensions.TypedDict, total=False):
-    inputs: typing.List[InstructionInput]
+    inputs: _list[InstructionInput]
 
 @typing.type_check_only
 class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
-    additionalExperiments: typing.List[str]
-    additionalUserLabels: typing.Dict[str, typing.Any]
+    additionalExperiments: _list[str]
+    additionalUserLabels: dict[str, typing.Any]
     autoscalingAlgorithm: typing_extensions.Literal[
         "AUTOSCALING_ALGORITHM_UNKNOWN",
         "AUTOSCALING_ALGORITHM_NONE",
@@ -347,7 +349,7 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FloatingPointList(typing_extensions.TypedDict, total=False):
-    elements: typing.List[float]
+    elements: _list[float]
 
 @typing.type_check_only
 class FloatingPointMean(typing_extensions.TypedDict, total=False):
@@ -373,7 +375,7 @@ class GetTemplateResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Histogram(typing_extensions.TypedDict, total=False):
-    bucketCounts: typing.List[str]
+    bucketCounts: _list[str]
     firstBucketOffset: int
 
 @typing.type_check_only
@@ -389,7 +391,7 @@ class InstructionInput(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstructionOutput(typing_extensions.TypedDict, total=False):
-    codec: typing.Dict[str, typing.Any]
+    codec: dict[str, typing.Any]
     name: str
     onlyCountKeyBytes: bool
     onlyCountValueBytes: bool
@@ -403,7 +405,7 @@ class IntegerGauge(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IntegerList(typing_extensions.TypedDict, total=False):
-    elements: typing.List[SplitInt64]
+    elements: _list[SplitInt64]
 
 @typing.type_check_only
 class IntegerMean(typing_extensions.TypedDict, total=False):
@@ -435,7 +437,7 @@ class Job(typing_extensions.TypedDict, total=False):
     executionInfo: JobExecutionInfo
     id: str
     jobMetadata: JobMetadata
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     location: str
     name: str
     pipelineDescription: PipelineDescription
@@ -458,12 +460,12 @@ class Job(typing_extensions.TypedDict, total=False):
         "JOB_STATE_RESOURCE_CLEANING_UP",
     ]
     satisfiesPzs: bool
-    stageStates: typing.List[ExecutionStageState]
+    stageStates: _list[ExecutionStageState]
     startTime: str
-    steps: typing.List[Step]
+    steps: _list[Step]
     stepsLocation: str
-    tempFiles: typing.List[str]
-    transformNameMapping: typing.Dict[str, typing.Any]
+    tempFiles: _list[str]
+    transformNameMapping: dict[str, typing.Any]
     type: typing_extensions.Literal[
         "JOB_TYPE_UNKNOWN", "JOB_TYPE_BATCH", "JOB_TYPE_STREAMING"
     ]
@@ -471,15 +473,15 @@ class Job(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class JobExecutionDetails(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    stages: typing.List[StageSummary]
+    stages: _list[StageSummary]
 
 @typing.type_check_only
 class JobExecutionInfo(typing_extensions.TypedDict, total=False):
-    stages: typing.Dict[str, typing.Any]
+    stages: dict[str, typing.Any]
 
 @typing.type_check_only
 class JobExecutionStageInfo(typing_extensions.TypedDict, total=False):
-    stepName: typing.List[str]
+    stepName: _list[str]
 
 @typing.type_check_only
 class JobMessage(typing_extensions.TypedDict, total=False):
@@ -497,18 +499,18 @@ class JobMessage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobMetadata(typing_extensions.TypedDict, total=False):
-    bigTableDetails: typing.List[BigTableIODetails]
-    bigqueryDetails: typing.List[BigQueryIODetails]
-    datastoreDetails: typing.List[DatastoreIODetails]
-    fileDetails: typing.List[FileIODetails]
-    pubsubDetails: typing.List[PubSubIODetails]
+    bigTableDetails: _list[BigTableIODetails]
+    bigqueryDetails: _list[BigQueryIODetails]
+    datastoreDetails: _list[DatastoreIODetails]
+    fileDetails: _list[FileIODetails]
+    pubsubDetails: _list[PubSubIODetails]
     sdkVersion: SdkVersion
-    spannerDetails: typing.List[SpannerIODetails]
+    spannerDetails: _list[SpannerIODetails]
 
 @typing.type_check_only
 class JobMetrics(typing_extensions.TypedDict, total=False):
     metricTime: str
-    metrics: typing.List[MetricUpdate]
+    metrics: _list[MetricUpdate]
 
 @typing.type_check_only
 class KeyRangeDataDiskAssignment(typing_extensions.TypedDict, total=False):
@@ -530,9 +532,9 @@ class LaunchFlexTemplateParameter(typing_extensions.TypedDict, total=False):
     containerSpecGcsPath: str
     environment: FlexTemplateRuntimeEnvironment
     jobName: str
-    launchOptions: typing.Dict[str, typing.Any]
-    parameters: typing.Dict[str, typing.Any]
-    transformNameMappings: typing.Dict[str, typing.Any]
+    launchOptions: dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
+    transformNameMappings: dict[str, typing.Any]
     update: bool
 
 @typing.type_check_only
@@ -548,8 +550,8 @@ class LaunchFlexTemplateResponse(typing_extensions.TypedDict, total=False):
 class LaunchTemplateParameters(typing_extensions.TypedDict, total=False):
     environment: RuntimeEnvironment
     jobName: str
-    parameters: typing.Dict[str, typing.Any]
-    transformNameMapping: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
+    transformNameMapping: dict[str, typing.Any]
     update: bool
 
 @typing.type_check_only
@@ -561,36 +563,36 @@ class LeaseWorkItemRequest(typing_extensions.TypedDict, total=False):
     currentWorkerTime: str
     location: str
     requestedLeaseDuration: str
-    unifiedWorkerRequest: typing.Dict[str, typing.Any]
-    workItemTypes: typing.List[str]
-    workerCapabilities: typing.List[str]
+    unifiedWorkerRequest: dict[str, typing.Any]
+    workItemTypes: _list[str]
+    workerCapabilities: _list[str]
     workerId: str
 
 @typing.type_check_only
 class LeaseWorkItemResponse(typing_extensions.TypedDict, total=False):
-    unifiedWorkerResponse: typing.Dict[str, typing.Any]
-    workItems: typing.List[WorkItem]
+    unifiedWorkerResponse: dict[str, typing.Any]
+    workItems: _list[WorkItem]
 
 @typing.type_check_only
 class ListJobMessagesResponse(typing_extensions.TypedDict, total=False):
-    autoscalingEvents: typing.List[AutoscalingEvent]
-    jobMessages: typing.List[JobMessage]
+    autoscalingEvents: _list[AutoscalingEvent]
+    jobMessages: _list[JobMessage]
     nextPageToken: str
 
 @typing.type_check_only
 class ListJobsResponse(typing_extensions.TypedDict, total=False):
-    failedLocation: typing.List[FailedLocation]
-    jobs: typing.List[Job]
+    failedLocation: _list[FailedLocation]
+    jobs: _list[Job]
     nextPageToken: str
 
 @typing.type_check_only
 class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
-    snapshots: typing.List[Snapshot]
+    snapshots: _list[Snapshot]
 
 @typing.type_check_only
 class MapTask(typing_extensions.TypedDict, total=False):
     counterPrefix: str
-    instructions: typing.List[ParallelInstruction]
+    instructions: _list[ParallelInstruction]
     stageName: str
     systemName: str
 
@@ -608,7 +610,7 @@ class MetricShortId(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetricStructuredName(typing_extensions.TypedDict, total=False):
-    context: typing.Dict[str, typing.Any]
+    context: dict[str, typing.Any]
     name: str
     origin: str
 
@@ -658,17 +660,17 @@ class Package(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ParDoInstruction(typing_extensions.TypedDict, total=False):
     input: InstructionInput
-    multiOutputInfos: typing.List[MultiOutputInfo]
+    multiOutputInfos: _list[MultiOutputInfo]
     numOutputs: int
-    sideInputs: typing.List[SideInputInfo]
-    userFn: typing.Dict[str, typing.Any]
+    sideInputs: _list[SideInputInfo]
+    userFn: dict[str, typing.Any]
 
 @typing.type_check_only
 class ParallelInstruction(typing_extensions.TypedDict, total=False):
     flatten: FlattenInstruction
     name: str
     originalName: str
-    outputs: typing.List[InstructionOutput]
+    outputs: _list[InstructionOutput]
     parDo: ParDoInstruction
     partialGroupByKey: PartialGroupByKeyInstruction
     read: ReadInstruction
@@ -682,7 +684,7 @@ class Parameter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ParameterMetadata(typing_extensions.TypedDict, total=False):
-    customMetadata: typing.Dict[str, typing.Any]
+    customMetadata: dict[str, typing.Any]
     helpText: str
     isOptional: bool
     label: str
@@ -699,22 +701,22 @@ class ParameterMetadata(typing_extensions.TypedDict, total=False):
         "PUBSUB_TOPIC",
         "PUBSUB_SUBSCRIPTION",
     ]
-    regexes: typing.List[str]
+    regexes: _list[str]
 
 @typing.type_check_only
 class PartialGroupByKeyInstruction(typing_extensions.TypedDict, total=False):
     input: InstructionInput
-    inputElementCodec: typing.Dict[str, typing.Any]
+    inputElementCodec: dict[str, typing.Any]
     originalCombineValuesInputStoreName: str
     originalCombineValuesStepName: str
-    sideInputs: typing.List[SideInputInfo]
-    valueCombiningFn: typing.Dict[str, typing.Any]
+    sideInputs: _list[SideInputInfo]
+    valueCombiningFn: dict[str, typing.Any]
 
 @typing.type_check_only
 class PipelineDescription(typing_extensions.TypedDict, total=False):
-    displayData: typing.List[DisplayData]
-    executionPipelineStage: typing.List[ExecutionStageSummary]
-    originalPipelineTransform: typing.List[TransformSummary]
+    displayData: _list[DisplayData]
+    executionPipelineStage: _list[ExecutionStageSummary]
+    originalPipelineTransform: _list[TransformSummary]
 
 @typing.type_check_only
 class Point(typing_extensions.TypedDict, total=False):
@@ -722,12 +724,12 @@ class Point(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
-class Position(typing.Dict[str, typing.Any]): ...
+class Position(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ProgressTimeseries(typing_extensions.TypedDict, total=False):
     currentProgress: float
-    dataPoints: typing.List[Point]
+    dataPoints: _list[Point]
 
 @typing.type_check_only
 class PubSubIODetails(typing_extensions.TypedDict, total=False):
@@ -752,7 +754,7 @@ class PubsubSnapshotMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryInfo(typing_extensions.TypedDict, total=False):
-    queryProperty: typing.List[str]
+    queryProperty: _list[str]
 
 @typing.type_check_only
 class ReadInstruction(typing_extensions.TypedDict, total=False):
@@ -762,14 +764,14 @@ class ReadInstruction(typing_extensions.TypedDict, total=False):
 class ReportWorkItemStatusRequest(typing_extensions.TypedDict, total=False):
     currentWorkerTime: str
     location: str
-    unifiedWorkerRequest: typing.Dict[str, typing.Any]
-    workItemStatuses: typing.List[WorkItemStatus]
+    unifiedWorkerRequest: dict[str, typing.Any]
+    workItemStatuses: _list[WorkItemStatus]
     workerId: str
 
 @typing.type_check_only
 class ReportWorkItemStatusResponse(typing_extensions.TypedDict, total=False):
-    unifiedWorkerResponse: typing.Dict[str, typing.Any]
-    workItemServiceStates: typing.List[WorkItemServiceState]
+    unifiedWorkerResponse: dict[str, typing.Any]
+    workItemServiceStates: _list[WorkItemServiceState]
 
 @typing.type_check_only
 class ReportedParallelism(typing_extensions.TypedDict, total=False):
@@ -778,17 +780,17 @@ class ReportedParallelism(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceUtilizationReport(typing_extensions.TypedDict, total=False):
-    containers: typing.Dict[str, typing.Any]
-    cpuTime: typing.List[CPUTime]
-    memoryInfo: typing.List[MemInfo]
+    containers: dict[str, typing.Any]
+    cpuTime: _list[CPUTime]
+    memoryInfo: _list[MemInfo]
 
 @typing.type_check_only
 class ResourceUtilizationReportResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RuntimeEnvironment(typing_extensions.TypedDict, total=False):
-    additionalExperiments: typing.List[str]
-    additionalUserLabels: typing.Dict[str, typing.Any]
+    additionalExperiments: _list[str]
+    additionalUserLabels: dict[str, typing.Any]
     bypassTempDirValidation: bool
     enableStreamingEngine: bool
     ipConfiguration: typing_extensions.Literal[
@@ -808,7 +810,7 @@ class RuntimeEnvironment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuntimeMetadata(typing_extensions.TypedDict, total=False):
-    parameters: typing.List[ParameterMetadata]
+    parameters: _list[ParameterMetadata]
     sdkInfo: SDKInfo
 
 @typing.type_check_only
@@ -843,20 +845,20 @@ class SendDebugCaptureResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class SendWorkerMessagesRequest(typing_extensions.TypedDict, total=False):
     location: str
-    workerMessages: typing.List[WorkerMessage]
+    workerMessages: _list[WorkerMessage]
 
 @typing.type_check_only
 class SendWorkerMessagesResponse(typing_extensions.TypedDict, total=False):
-    workerMessageResponses: typing.List[WorkerMessageResponse]
+    workerMessageResponses: _list[WorkerMessageResponse]
 
 @typing.type_check_only
 class SeqMapTask(typing_extensions.TypedDict, total=False):
-    inputs: typing.List[SideInputInfo]
+    inputs: _list[SideInputInfo]
     name: str
-    outputInfos: typing.List[SeqMapTaskOutputInfo]
+    outputInfos: _list[SeqMapTaskOutputInfo]
     stageName: str
     systemName: str
-    userFn: typing.Dict[str, typing.Any]
+    userFn: dict[str, typing.Any]
 
 @typing.type_check_only
 class SeqMapTaskOutputInfo(typing_extensions.TypedDict, total=False):
@@ -870,14 +872,14 @@ class ShellTask(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SideInputInfo(typing_extensions.TypedDict, total=False):
-    kind: typing.Dict[str, typing.Any]
-    sources: typing.List[Source]
+    kind: dict[str, typing.Any]
+    sources: _list[Source]
     tag: str
 
 @typing.type_check_only
 class Sink(typing_extensions.TypedDict, total=False):
-    codec: typing.Dict[str, typing.Any]
-    spec: typing.Dict[str, typing.Any]
+    codec: dict[str, typing.Any]
+    spec: dict[str, typing.Any]
 
 @typing.type_check_only
 class Snapshot(typing_extensions.TypedDict, total=False):
@@ -886,7 +888,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     diskSizeBytes: str
     id: str
     projectId: str
-    pubsubMetadata: typing.List[PubsubSnapshotMetadata]
+    pubsubMetadata: _list[PubsubSnapshotMetadata]
     region: str
     sourceJobId: str
     state: typing_extensions.Literal[
@@ -903,11 +905,11 @@ class SnapshotJobRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
-    baseSpecs: typing.List[typing.Dict[str, typing.Any]]
-    codec: typing.Dict[str, typing.Any]
+    baseSpecs: _list[dict[str, typing.Any]]
+    codec: dict[str, typing.Any]
     doesNotNeedSplitting: bool
     metadata: SourceMetadata
-    spec: typing.Dict[str, typing.Any]
+    spec: dict[str, typing.Any]
 
 @typing.type_check_only
 class SourceFork(typing_extensions.TypedDict, total=False):
@@ -956,13 +958,13 @@ class SourceSplitRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SourceSplitResponse(typing_extensions.TypedDict, total=False):
-    bundles: typing.List[DerivedSource]
+    bundles: _list[DerivedSource]
     outcome: typing_extensions.Literal[
         "SOURCE_SPLIT_OUTCOME_UNKNOWN",
         "SOURCE_SPLIT_OUTCOME_USE_CURRENT",
         "SOURCE_SPLIT_OUTCOME_SPLITTING_HAPPENED",
     ]
-    shards: typing.List[SourceSplitShard]
+    shards: _list[SourceSplitShard]
 
 @typing.type_check_only
 class SourceSplitShard(typing_extensions.TypedDict, total=False):
@@ -988,7 +990,7 @@ class SplitInt64(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StageExecutionDetails(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    workers: typing.List[WorkerDetails]
+    workers: _list[WorkerDetails]
 
 @typing.type_check_only
 class StageSource(typing_extensions.TypedDict, total=False):
@@ -1000,7 +1002,7 @@ class StageSource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StageSummary(typing_extensions.TypedDict, total=False):
     endTime: str
-    metrics: typing.List[MetricUpdate]
+    metrics: _list[MetricUpdate]
     progress: ProgressTimeseries
     stageId: str
     startTime: str
@@ -1021,14 +1023,14 @@ class StateFamilyConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class Step(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
 
 @typing.type_check_only
 class StreamLocation(typing_extensions.TypedDict, total=False):
@@ -1045,20 +1047,20 @@ class StreamingApplianceSnapshotConfig(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class StreamingComputationConfig(typing_extensions.TypedDict, total=False):
     computationId: str
-    instructions: typing.List[ParallelInstruction]
+    instructions: _list[ParallelInstruction]
     stageName: str
     systemName: str
-    transformUserNameToStateFamily: typing.Dict[str, typing.Any]
+    transformUserNameToStateFamily: dict[str, typing.Any]
 
 @typing.type_check_only
 class StreamingComputationRanges(typing_extensions.TypedDict, total=False):
     computationId: str
-    rangeAssignments: typing.List[KeyRangeDataDiskAssignment]
+    rangeAssignments: _list[KeyRangeDataDiskAssignment]
 
 @typing.type_check_only
 class StreamingComputationTask(typing_extensions.TypedDict, total=False):
-    computationRanges: typing.List[StreamingComputationRanges]
-    dataDisks: typing.List[MountedDataDisk]
+    computationRanges: _list[StreamingComputationRanges]
+    dataDisks: _list[MountedDataDisk]
     taskType: typing_extensions.Literal[
         "STREAMING_COMPUTATION_TASK_UNKNOWN",
         "STREAMING_COMPUTATION_TASK_STOP",
@@ -1070,8 +1072,8 @@ class StreamingConfigTask(typing_extensions.TypedDict, total=False):
     commitStreamChunkSizeBytes: str
     getDataStreamChunkSizeBytes: str
     maxWorkItemCommitBytes: str
-    streamingComputationConfigs: typing.List[StreamingComputationConfig]
-    userStepToStateFamilyNameMap: typing.Dict[str, typing.Any]
+    streamingComputationConfigs: _list[StreamingComputationConfig]
+    userStepToStateFamilyNameMap: dict[str, typing.Any]
     windmillServiceEndpoint: str
     windmillServicePort: str
 
@@ -1094,13 +1096,13 @@ class StreamingStageLocation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StringList(typing_extensions.TypedDict, total=False):
-    elements: typing.List[str]
+    elements: _list[str]
 
 @typing.type_check_only
 class StructuredMessage(typing_extensions.TypedDict, total=False):
     messageKey: str
     messageText: str
-    parameters: typing.List[Parameter]
+    parameters: _list[Parameter]
 
 @typing.type_check_only
 class TaskRunnerSettings(typing_extensions.TypedDict, total=False):
@@ -1115,7 +1117,7 @@ class TaskRunnerSettings(typing_extensions.TypedDict, total=False):
     logDir: str
     logToSerialconsole: bool
     logUploadLocation: str
-    oauthScopes: typing.List[str]
+    oauthScopes: _list[str]
     parallelWorkerSettings: WorkerSettings
     streamingWorkerMainClass: str
     taskGroup: str
@@ -1128,21 +1130,21 @@ class TaskRunnerSettings(typing_extensions.TypedDict, total=False):
 class TemplateMetadata(typing_extensions.TypedDict, total=False):
     description: str
     name: str
-    parameters: typing.List[ParameterMetadata]
+    parameters: _list[ParameterMetadata]
 
 @typing.type_check_only
 class TopologyConfig(typing_extensions.TypedDict, total=False):
-    computations: typing.List[ComputationTopology]
-    dataDiskAssignments: typing.List[DataDiskAssignment]
+    computations: _list[ComputationTopology]
+    dataDiskAssignments: _list[DataDiskAssignment]
     forwardingKeyBits: int
     persistentStateVersion: int
-    userStageToComputationNameMap: typing.Dict[str, typing.Any]
+    userStageToComputationNameMap: dict[str, typing.Any]
 
 @typing.type_check_only
 class TransformSummary(typing_extensions.TypedDict, total=False):
-    displayData: typing.List[DisplayData]
+    displayData: _list[DisplayData]
     id: str
-    inputCollectionName: typing.List[str]
+    inputCollectionName: _list[str]
     kind: typing_extensions.Literal[
         "UNKNOWN_KIND",
         "PAR_DO_KIND",
@@ -1155,7 +1157,7 @@ class TransformSummary(typing_extensions.TypedDict, total=False):
         "SHUFFLE_KIND",
     ]
     name: str
-    outputCollectionName: typing.List[str]
+    outputCollectionName: _list[str]
 
 @typing.type_check_only
 class ValidateResponse(typing_extensions.TypedDict, total=False):
@@ -1170,7 +1172,7 @@ class WorkItem(typing_extensions.TypedDict, total=False):
     jobId: str
     leaseExpireTime: str
     mapTask: MapTask
-    packages: typing.List[Package]
+    packages: _list[Package]
     projectId: str
     reportStatusInterval: str
     seqMapTask: SeqMapTask
@@ -1184,7 +1186,7 @@ class WorkItem(typing_extensions.TypedDict, total=False):
 class WorkItemDetails(typing_extensions.TypedDict, total=False):
     attemptId: str
     endTime: str
-    metrics: typing.List[MetricUpdate]
+    metrics: _list[MetricUpdate]
     progress: ProgressTimeseries
     startTime: str
     state: typing_extensions.Literal[
@@ -1198,20 +1200,20 @@ class WorkItemDetails(typing_extensions.TypedDict, total=False):
     taskId: str
 
 @typing.type_check_only
-class WorkItemServiceState(typing.Dict[str, typing.Any]): ...
+class WorkItemServiceState(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class WorkItemStatus(typing.Dict[str, typing.Any]): ...
+class WorkItemStatus(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class WorkerDetails(typing_extensions.TypedDict, total=False):
-    workItems: typing.List[WorkItemDetails]
+    workItems: _list[WorkItemDetails]
     workerName: str
 
 @typing.type_check_only
 class WorkerHealthReport(typing_extensions.TypedDict, total=False):
     msg: str
-    pods: typing.List[typing.Dict[str, typing.Any]]
+    pods: _list[dict[str, typing.Any]]
     reportInterval: str
     vmBrokenCode: str
     vmIsBroken: bool
@@ -1235,11 +1237,11 @@ class WorkerLifecycleEvent(typing_extensions.TypedDict, total=False):
         "SDK_INSTALL_START",
         "SDK_INSTALL_FINISH",
     ]
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class WorkerMessage(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     time: str
     workerHealthReport: WorkerHealthReport
     workerLifecycleEvent: WorkerLifecycleEvent
@@ -1250,7 +1252,7 @@ class WorkerMessage(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkerMessageCode(typing_extensions.TypedDict, total=False):
     code: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class WorkerMessageResponse(typing_extensions.TypedDict, total=False):
@@ -1261,7 +1263,7 @@ class WorkerMessageResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkerPool(typing_extensions.TypedDict, total=False):
     autoscalingSettings: AutoscalingSettings
-    dataDisks: typing.List[Disk]
+    dataDisks: _list[Disk]
     defaultPackageSet: typing_extensions.Literal[
         "DEFAULT_PACKAGE_SET_UNKNOWN",
         "DEFAULT_PACKAGE_SET_NONE",
@@ -1276,14 +1278,14 @@ class WorkerPool(typing_extensions.TypedDict, total=False):
     ]
     kind: str
     machineType: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     network: str
     numThreadsPerWorker: int
     numWorkers: int
     onHostMaintenance: str
-    packages: typing.List[Package]
-    poolArgs: typing.Dict[str, typing.Any]
-    sdkHarnessContainerImages: typing.List[SdkHarnessContainerImage]
+    packages: _list[Package]
+    poolArgs: dict[str, typing.Any]
+    sdkHarnessContainerImages: _list[SdkHarnessContainerImage]
     subnetwork: str
     taskrunnerSettings: TaskRunnerSettings
     teardownPolicy: typing_extensions.Literal[

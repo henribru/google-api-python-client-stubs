@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class TagManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -92,7 +94,122 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        type: typing.Union[
+                        type: typing_extensions.Literal[
+                            "builtInVariableTypeUnspecified",
+                            "pageUrl",
+                            "pageHostname",
+                            "pagePath",
+                            "referrer",
+                            "event",
+                            "clickElement",
+                            "clickClasses",
+                            "clickId",
+                            "clickTarget",
+                            "clickUrl",
+                            "clickText",
+                            "firstPartyServingUrl",
+                            "formElement",
+                            "formClasses",
+                            "formId",
+                            "formTarget",
+                            "formUrl",
+                            "formText",
+                            "errorMessage",
+                            "errorUrl",
+                            "errorLine",
+                            "newHistoryUrl",
+                            "oldHistoryUrl",
+                            "newHistoryFragment",
+                            "oldHistoryFragment",
+                            "newHistoryState",
+                            "oldHistoryState",
+                            "historySource",
+                            "containerVersion",
+                            "debugMode",
+                            "randomNumber",
+                            "containerId",
+                            "appId",
+                            "appName",
+                            "appVersionCode",
+                            "appVersionName",
+                            "language",
+                            "osVersion",
+                            "platform",
+                            "sdkVersion",
+                            "deviceName",
+                            "resolution",
+                            "advertiserId",
+                            "advertisingTrackingEnabled",
+                            "htmlId",
+                            "environmentName",
+                            "ampBrowserLanguage",
+                            "ampCanonicalPath",
+                            "ampCanonicalUrl",
+                            "ampCanonicalHost",
+                            "ampReferrer",
+                            "ampTitle",
+                            "ampClientId",
+                            "ampClientTimezone",
+                            "ampClientTimestamp",
+                            "ampClientScreenWidth",
+                            "ampClientScreenHeight",
+                            "ampClientScrollX",
+                            "ampClientScrollY",
+                            "ampClientMaxScrollX",
+                            "ampClientMaxScrollY",
+                            "ampTotalEngagedTime",
+                            "ampPageViewId",
+                            "ampPageLoadTime",
+                            "ampPageDownloadTime",
+                            "ampGtmEvent",
+                            "eventName",
+                            "firebaseEventParameterCampaign",
+                            "firebaseEventParameterCampaignAclid",
+                            "firebaseEventParameterCampaignAnid",
+                            "firebaseEventParameterCampaignClickTimestamp",
+                            "firebaseEventParameterCampaignContent",
+                            "firebaseEventParameterCampaignCp1",
+                            "firebaseEventParameterCampaignGclid",
+                            "firebaseEventParameterCampaignSource",
+                            "firebaseEventParameterCampaignTerm",
+                            "firebaseEventParameterCurrency",
+                            "firebaseEventParameterDynamicLinkAcceptTime",
+                            "firebaseEventParameterDynamicLinkLinkid",
+                            "firebaseEventParameterNotificationMessageDeviceTime",
+                            "firebaseEventParameterNotificationMessageId",
+                            "firebaseEventParameterNotificationMessageName",
+                            "firebaseEventParameterNotificationMessageTime",
+                            "firebaseEventParameterNotificationTopic",
+                            "firebaseEventParameterPreviousAppVersion",
+                            "firebaseEventParameterPreviousOsVersion",
+                            "firebaseEventParameterPrice",
+                            "firebaseEventParameterProductId",
+                            "firebaseEventParameterQuantity",
+                            "firebaseEventParameterValue",
+                            "videoProvider",
+                            "videoUrl",
+                            "videoTitle",
+                            "videoDuration",
+                            "videoPercent",
+                            "videoVisible",
+                            "videoStatus",
+                            "videoCurrentTime",
+                            "scrollDepthThreshold",
+                            "scrollDepthUnits",
+                            "scrollDepthDirection",
+                            "elementVisibilityRatio",
+                            "elementVisibilityTime",
+                            "elementVisibilityFirstTime",
+                            "elementVisibilityRecentTime",
+                            "requestPath",
+                            "requestMethod",
+                            "clientName",
+                            "queryString",
+                            "serverPageLocationUrl",
+                            "serverPageLocationPath",
+                            "serverPageLocationHostname",
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "builtInVariableTypeUnspecified",
                                 "pageUrl",
@@ -207,124 +324,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                 "serverPageLocationUrl",
                                 "serverPageLocationPath",
                                 "serverPageLocationHostname",
-                            ],
-                            typing.List[
-                                typing_extensions.Literal[
-                                    "builtInVariableTypeUnspecified",
-                                    "pageUrl",
-                                    "pageHostname",
-                                    "pagePath",
-                                    "referrer",
-                                    "event",
-                                    "clickElement",
-                                    "clickClasses",
-                                    "clickId",
-                                    "clickTarget",
-                                    "clickUrl",
-                                    "clickText",
-                                    "firstPartyServingUrl",
-                                    "formElement",
-                                    "formClasses",
-                                    "formId",
-                                    "formTarget",
-                                    "formUrl",
-                                    "formText",
-                                    "errorMessage",
-                                    "errorUrl",
-                                    "errorLine",
-                                    "newHistoryUrl",
-                                    "oldHistoryUrl",
-                                    "newHistoryFragment",
-                                    "oldHistoryFragment",
-                                    "newHistoryState",
-                                    "oldHistoryState",
-                                    "historySource",
-                                    "containerVersion",
-                                    "debugMode",
-                                    "randomNumber",
-                                    "containerId",
-                                    "appId",
-                                    "appName",
-                                    "appVersionCode",
-                                    "appVersionName",
-                                    "language",
-                                    "osVersion",
-                                    "platform",
-                                    "sdkVersion",
-                                    "deviceName",
-                                    "resolution",
-                                    "advertiserId",
-                                    "advertisingTrackingEnabled",
-                                    "htmlId",
-                                    "environmentName",
-                                    "ampBrowserLanguage",
-                                    "ampCanonicalPath",
-                                    "ampCanonicalUrl",
-                                    "ampCanonicalHost",
-                                    "ampReferrer",
-                                    "ampTitle",
-                                    "ampClientId",
-                                    "ampClientTimezone",
-                                    "ampClientTimestamp",
-                                    "ampClientScreenWidth",
-                                    "ampClientScreenHeight",
-                                    "ampClientScrollX",
-                                    "ampClientScrollY",
-                                    "ampClientMaxScrollX",
-                                    "ampClientMaxScrollY",
-                                    "ampTotalEngagedTime",
-                                    "ampPageViewId",
-                                    "ampPageLoadTime",
-                                    "ampPageDownloadTime",
-                                    "ampGtmEvent",
-                                    "eventName",
-                                    "firebaseEventParameterCampaign",
-                                    "firebaseEventParameterCampaignAclid",
-                                    "firebaseEventParameterCampaignAnid",
-                                    "firebaseEventParameterCampaignClickTimestamp",
-                                    "firebaseEventParameterCampaignContent",
-                                    "firebaseEventParameterCampaignCp1",
-                                    "firebaseEventParameterCampaignGclid",
-                                    "firebaseEventParameterCampaignSource",
-                                    "firebaseEventParameterCampaignTerm",
-                                    "firebaseEventParameterCurrency",
-                                    "firebaseEventParameterDynamicLinkAcceptTime",
-                                    "firebaseEventParameterDynamicLinkLinkid",
-                                    "firebaseEventParameterNotificationMessageDeviceTime",
-                                    "firebaseEventParameterNotificationMessageId",
-                                    "firebaseEventParameterNotificationMessageName",
-                                    "firebaseEventParameterNotificationMessageTime",
-                                    "firebaseEventParameterNotificationTopic",
-                                    "firebaseEventParameterPreviousAppVersion",
-                                    "firebaseEventParameterPreviousOsVersion",
-                                    "firebaseEventParameterPrice",
-                                    "firebaseEventParameterProductId",
-                                    "firebaseEventParameterQuantity",
-                                    "firebaseEventParameterValue",
-                                    "videoProvider",
-                                    "videoUrl",
-                                    "videoTitle",
-                                    "videoDuration",
-                                    "videoPercent",
-                                    "videoVisible",
-                                    "videoStatus",
-                                    "videoCurrentTime",
-                                    "scrollDepthThreshold",
-                                    "scrollDepthUnits",
-                                    "scrollDepthDirection",
-                                    "elementVisibilityRatio",
-                                    "elementVisibilityTime",
-                                    "elementVisibilityFirstTime",
-                                    "elementVisibilityRecentTime",
-                                    "requestPath",
-                                    "requestMethod",
-                                    "clientName",
-                                    "queryString",
-                                    "serverPageLocationUrl",
-                                    "serverPageLocationPath",
-                                    "serverPageLocationHostname",
-                                ]
-                            ],
+                            ]
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> CreateBuiltInVariableResponseHttpRequest: ...
@@ -332,7 +332,122 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         path: str,
-                        type: typing.Union[
+                        type: typing_extensions.Literal[
+                            "builtInVariableTypeUnspecified",
+                            "pageUrl",
+                            "pageHostname",
+                            "pagePath",
+                            "referrer",
+                            "event",
+                            "clickElement",
+                            "clickClasses",
+                            "clickId",
+                            "clickTarget",
+                            "clickUrl",
+                            "clickText",
+                            "firstPartyServingUrl",
+                            "formElement",
+                            "formClasses",
+                            "formId",
+                            "formTarget",
+                            "formUrl",
+                            "formText",
+                            "errorMessage",
+                            "errorUrl",
+                            "errorLine",
+                            "newHistoryUrl",
+                            "oldHistoryUrl",
+                            "newHistoryFragment",
+                            "oldHistoryFragment",
+                            "newHistoryState",
+                            "oldHistoryState",
+                            "historySource",
+                            "containerVersion",
+                            "debugMode",
+                            "randomNumber",
+                            "containerId",
+                            "appId",
+                            "appName",
+                            "appVersionCode",
+                            "appVersionName",
+                            "language",
+                            "osVersion",
+                            "platform",
+                            "sdkVersion",
+                            "deviceName",
+                            "resolution",
+                            "advertiserId",
+                            "advertisingTrackingEnabled",
+                            "htmlId",
+                            "environmentName",
+                            "ampBrowserLanguage",
+                            "ampCanonicalPath",
+                            "ampCanonicalUrl",
+                            "ampCanonicalHost",
+                            "ampReferrer",
+                            "ampTitle",
+                            "ampClientId",
+                            "ampClientTimezone",
+                            "ampClientTimestamp",
+                            "ampClientScreenWidth",
+                            "ampClientScreenHeight",
+                            "ampClientScrollX",
+                            "ampClientScrollY",
+                            "ampClientMaxScrollX",
+                            "ampClientMaxScrollY",
+                            "ampTotalEngagedTime",
+                            "ampPageViewId",
+                            "ampPageLoadTime",
+                            "ampPageDownloadTime",
+                            "ampGtmEvent",
+                            "eventName",
+                            "firebaseEventParameterCampaign",
+                            "firebaseEventParameterCampaignAclid",
+                            "firebaseEventParameterCampaignAnid",
+                            "firebaseEventParameterCampaignClickTimestamp",
+                            "firebaseEventParameterCampaignContent",
+                            "firebaseEventParameterCampaignCp1",
+                            "firebaseEventParameterCampaignGclid",
+                            "firebaseEventParameterCampaignSource",
+                            "firebaseEventParameterCampaignTerm",
+                            "firebaseEventParameterCurrency",
+                            "firebaseEventParameterDynamicLinkAcceptTime",
+                            "firebaseEventParameterDynamicLinkLinkid",
+                            "firebaseEventParameterNotificationMessageDeviceTime",
+                            "firebaseEventParameterNotificationMessageId",
+                            "firebaseEventParameterNotificationMessageName",
+                            "firebaseEventParameterNotificationMessageTime",
+                            "firebaseEventParameterNotificationTopic",
+                            "firebaseEventParameterPreviousAppVersion",
+                            "firebaseEventParameterPreviousOsVersion",
+                            "firebaseEventParameterPrice",
+                            "firebaseEventParameterProductId",
+                            "firebaseEventParameterQuantity",
+                            "firebaseEventParameterValue",
+                            "videoProvider",
+                            "videoUrl",
+                            "videoTitle",
+                            "videoDuration",
+                            "videoPercent",
+                            "videoVisible",
+                            "videoStatus",
+                            "videoCurrentTime",
+                            "scrollDepthThreshold",
+                            "scrollDepthUnits",
+                            "scrollDepthDirection",
+                            "elementVisibilityRatio",
+                            "elementVisibilityTime",
+                            "elementVisibilityFirstTime",
+                            "elementVisibilityRecentTime",
+                            "requestPath",
+                            "requestMethod",
+                            "clientName",
+                            "queryString",
+                            "serverPageLocationUrl",
+                            "serverPageLocationPath",
+                            "serverPageLocationHostname",
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "builtInVariableTypeUnspecified",
                                 "pageUrl",
@@ -447,124 +562,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                 "serverPageLocationUrl",
                                 "serverPageLocationPath",
                                 "serverPageLocationHostname",
-                            ],
-                            typing.List[
-                                typing_extensions.Literal[
-                                    "builtInVariableTypeUnspecified",
-                                    "pageUrl",
-                                    "pageHostname",
-                                    "pagePath",
-                                    "referrer",
-                                    "event",
-                                    "clickElement",
-                                    "clickClasses",
-                                    "clickId",
-                                    "clickTarget",
-                                    "clickUrl",
-                                    "clickText",
-                                    "firstPartyServingUrl",
-                                    "formElement",
-                                    "formClasses",
-                                    "formId",
-                                    "formTarget",
-                                    "formUrl",
-                                    "formText",
-                                    "errorMessage",
-                                    "errorUrl",
-                                    "errorLine",
-                                    "newHistoryUrl",
-                                    "oldHistoryUrl",
-                                    "newHistoryFragment",
-                                    "oldHistoryFragment",
-                                    "newHistoryState",
-                                    "oldHistoryState",
-                                    "historySource",
-                                    "containerVersion",
-                                    "debugMode",
-                                    "randomNumber",
-                                    "containerId",
-                                    "appId",
-                                    "appName",
-                                    "appVersionCode",
-                                    "appVersionName",
-                                    "language",
-                                    "osVersion",
-                                    "platform",
-                                    "sdkVersion",
-                                    "deviceName",
-                                    "resolution",
-                                    "advertiserId",
-                                    "advertisingTrackingEnabled",
-                                    "htmlId",
-                                    "environmentName",
-                                    "ampBrowserLanguage",
-                                    "ampCanonicalPath",
-                                    "ampCanonicalUrl",
-                                    "ampCanonicalHost",
-                                    "ampReferrer",
-                                    "ampTitle",
-                                    "ampClientId",
-                                    "ampClientTimezone",
-                                    "ampClientTimestamp",
-                                    "ampClientScreenWidth",
-                                    "ampClientScreenHeight",
-                                    "ampClientScrollX",
-                                    "ampClientScrollY",
-                                    "ampClientMaxScrollX",
-                                    "ampClientMaxScrollY",
-                                    "ampTotalEngagedTime",
-                                    "ampPageViewId",
-                                    "ampPageLoadTime",
-                                    "ampPageDownloadTime",
-                                    "ampGtmEvent",
-                                    "eventName",
-                                    "firebaseEventParameterCampaign",
-                                    "firebaseEventParameterCampaignAclid",
-                                    "firebaseEventParameterCampaignAnid",
-                                    "firebaseEventParameterCampaignClickTimestamp",
-                                    "firebaseEventParameterCampaignContent",
-                                    "firebaseEventParameterCampaignCp1",
-                                    "firebaseEventParameterCampaignGclid",
-                                    "firebaseEventParameterCampaignSource",
-                                    "firebaseEventParameterCampaignTerm",
-                                    "firebaseEventParameterCurrency",
-                                    "firebaseEventParameterDynamicLinkAcceptTime",
-                                    "firebaseEventParameterDynamicLinkLinkid",
-                                    "firebaseEventParameterNotificationMessageDeviceTime",
-                                    "firebaseEventParameterNotificationMessageId",
-                                    "firebaseEventParameterNotificationMessageName",
-                                    "firebaseEventParameterNotificationMessageTime",
-                                    "firebaseEventParameterNotificationTopic",
-                                    "firebaseEventParameterPreviousAppVersion",
-                                    "firebaseEventParameterPreviousOsVersion",
-                                    "firebaseEventParameterPrice",
-                                    "firebaseEventParameterProductId",
-                                    "firebaseEventParameterQuantity",
-                                    "firebaseEventParameterValue",
-                                    "videoProvider",
-                                    "videoUrl",
-                                    "videoTitle",
-                                    "videoDuration",
-                                    "videoPercent",
-                                    "videoVisible",
-                                    "videoStatus",
-                                    "videoCurrentTime",
-                                    "scrollDepthThreshold",
-                                    "scrollDepthUnits",
-                                    "scrollDepthDirection",
-                                    "elementVisibilityRatio",
-                                    "elementVisibilityTime",
-                                    "elementVisibilityFirstTime",
-                                    "elementVisibilityRecentTime",
-                                    "requestPath",
-                                    "requestMethod",
-                                    "clientName",
-                                    "queryString",
-                                    "serverPageLocationUrl",
-                                    "serverPageLocationPath",
-                                    "serverPageLocationHostname",
-                                ]
-                            ],
+                            ]
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> googleapiclient.http.HttpRequest: ...
@@ -739,9 +737,9 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         *,
                         path: str,
                         body: Folder = ...,
-                        tagId: typing.Union[str, typing.List[str]] = ...,
-                        triggerId: typing.Union[str, typing.List[str]] = ...,
-                        variableId: typing.Union[str, typing.List[str]] = ...,
+                        tagId: str | _list[str] = ...,
+                        triggerId: str | _list[str] = ...,
+                        variableId: str | _list[str] = ...,
                         **kwargs: typing.Any
                     ) -> googleapiclient.http.HttpRequest: ...
                     def revert(
@@ -997,9 +995,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
 class AccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Account: ...
 
@@ -1007,9 +1003,7 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
 class ClientHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Client: ...
 
@@ -1017,9 +1011,7 @@ class ClientHttpRequest(googleapiclient.http.HttpRequest):
 class ContainerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Container: ...
 
@@ -1027,9 +1019,7 @@ class ContainerHttpRequest(googleapiclient.http.HttpRequest):
 class ContainerVersionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ContainerVersion: ...
 
@@ -1037,9 +1027,7 @@ class ContainerVersionHttpRequest(googleapiclient.http.HttpRequest):
 class ContainerVersionHeaderHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ContainerVersionHeader: ...
 
@@ -1047,9 +1035,7 @@ class ContainerVersionHeaderHttpRequest(googleapiclient.http.HttpRequest):
 class CreateBuiltInVariableResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreateBuiltInVariableResponse: ...
 
@@ -1057,9 +1043,7 @@ class CreateBuiltInVariableResponseHttpRequest(googleapiclient.http.HttpRequest)
 class CreateContainerVersionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreateContainerVersionResponse: ...
 
@@ -1067,9 +1051,7 @@ class CreateContainerVersionResponseHttpRequest(googleapiclient.http.HttpRequest
 class CustomTemplateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CustomTemplate: ...
 
@@ -1077,9 +1059,7 @@ class CustomTemplateHttpRequest(googleapiclient.http.HttpRequest):
 class EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Environment: ...
 
@@ -1087,9 +1067,7 @@ class EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
 class FolderHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Folder: ...
 
@@ -1097,9 +1075,7 @@ class FolderHttpRequest(googleapiclient.http.HttpRequest):
 class FolderEntitiesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FolderEntities: ...
 
@@ -1107,9 +1083,7 @@ class FolderEntitiesHttpRequest(googleapiclient.http.HttpRequest):
 class GetWorkspaceStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetWorkspaceStatusResponse: ...
 
@@ -1117,9 +1091,7 @@ class GetWorkspaceStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAccountsResponse: ...
 
@@ -1127,9 +1099,7 @@ class ListAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListClientsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListClientsResponse: ...
 
@@ -1137,9 +1107,7 @@ class ListClientsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListContainerVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListContainerVersionsResponse: ...
 
@@ -1147,9 +1115,7 @@ class ListContainerVersionsResponseHttpRequest(googleapiclient.http.HttpRequest)
 class ListContainersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListContainersResponse: ...
 
@@ -1157,9 +1123,7 @@ class ListContainersResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListEnabledBuiltInVariablesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListEnabledBuiltInVariablesResponse: ...
 
@@ -1167,9 +1131,7 @@ class ListEnabledBuiltInVariablesResponseHttpRequest(googleapiclient.http.HttpRe
 class ListEnvironmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListEnvironmentsResponse: ...
 
@@ -1177,9 +1139,7 @@ class ListEnvironmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListFoldersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListFoldersResponse: ...
 
@@ -1187,9 +1147,7 @@ class ListFoldersResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListTagsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTagsResponse: ...
 
@@ -1197,9 +1155,7 @@ class ListTagsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTemplatesResponse: ...
 
@@ -1207,9 +1163,7 @@ class ListTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTriggersResponse: ...
 
@@ -1217,9 +1171,7 @@ class ListTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListUserPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListUserPermissionsResponse: ...
 
@@ -1227,9 +1179,7 @@ class ListUserPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListVariablesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListVariablesResponse: ...
 
@@ -1237,9 +1187,7 @@ class ListVariablesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListWorkspacesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListWorkspacesResponse: ...
 
@@ -1247,9 +1195,7 @@ class ListWorkspacesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListZonesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListZonesResponse: ...
 
@@ -1257,9 +1203,7 @@ class ListZonesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PublishContainerVersionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PublishContainerVersionResponse: ...
 
@@ -1267,9 +1211,7 @@ class PublishContainerVersionResponseHttpRequest(googleapiclient.http.HttpReques
 class QuickPreviewResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> QuickPreviewResponse: ...
 
@@ -1277,9 +1219,7 @@ class QuickPreviewResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RevertBuiltInVariableResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevertBuiltInVariableResponse: ...
 
@@ -1287,9 +1227,7 @@ class RevertBuiltInVariableResponseHttpRequest(googleapiclient.http.HttpRequest)
 class RevertClientResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevertClientResponse: ...
 
@@ -1297,9 +1235,7 @@ class RevertClientResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RevertFolderResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevertFolderResponse: ...
 
@@ -1307,9 +1243,7 @@ class RevertFolderResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RevertTagResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevertTagResponse: ...
 
@@ -1317,9 +1251,7 @@ class RevertTagResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RevertTemplateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevertTemplateResponse: ...
 
@@ -1327,9 +1259,7 @@ class RevertTemplateResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RevertTriggerResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevertTriggerResponse: ...
 
@@ -1337,9 +1267,7 @@ class RevertTriggerResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RevertVariableResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevertVariableResponse: ...
 
@@ -1347,9 +1275,7 @@ class RevertVariableResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RevertZoneResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevertZoneResponse: ...
 
@@ -1357,9 +1283,7 @@ class RevertZoneResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SyncWorkspaceResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SyncWorkspaceResponse: ...
 
@@ -1367,9 +1291,7 @@ class SyncWorkspaceResponseHttpRequest(googleapiclient.http.HttpRequest):
 class TagHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Tag: ...
 
@@ -1377,9 +1299,7 @@ class TagHttpRequest(googleapiclient.http.HttpRequest):
 class TriggerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Trigger: ...
 
@@ -1387,9 +1307,7 @@ class TriggerHttpRequest(googleapiclient.http.HttpRequest):
 class UserPermissionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserPermission: ...
 
@@ -1397,9 +1315,7 @@ class UserPermissionHttpRequest(googleapiclient.http.HttpRequest):
 class VariableHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Variable: ...
 
@@ -1407,9 +1323,7 @@ class VariableHttpRequest(googleapiclient.http.HttpRequest):
 class WorkspaceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Workspace: ...
 
@@ -1417,8 +1331,6 @@ class WorkspaceHttpRequest(googleapiclient.http.HttpRequest):
 class ZoneHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Zone: ...

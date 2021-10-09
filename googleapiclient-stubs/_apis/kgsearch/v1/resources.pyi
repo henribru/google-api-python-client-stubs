@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class KgsearchResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -15,13 +17,13 @@ class KgsearchResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             indent: bool = ...,
-            languages: typing.Union[str, typing.List[str]] = ...,
+            languages: str | _list[str] = ...,
             limit: int = ...,
             prefix: bool = ...,
             query: str = ...,
-            types: typing.Union[str, typing.List[str]] = ...,
+            types: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
     def entities(self) -> EntitiesResource: ...
@@ -30,8 +32,6 @@ class KgsearchResource(googleapiclient.discovery.Resource):
 class SearchResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchResponse: ...

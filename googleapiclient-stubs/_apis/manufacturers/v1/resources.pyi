@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ManufacturerCenterResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -22,15 +24,13 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 name: str,
-                include: typing.Union[
+                include: typing_extensions.Literal[
+                    "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ProductHttpRequest: ...
@@ -38,15 +38,13 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                include: typing.Union[
+                include: typing_extensions.Literal[
+                    "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -67,9 +65,7 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -77,9 +73,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class ListProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListProductsResponse: ...
 
@@ -87,8 +81,6 @@ class ListProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ProductHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Product: ...

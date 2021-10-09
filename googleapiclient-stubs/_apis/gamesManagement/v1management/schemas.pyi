@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AchievementResetAllResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    results: typing.List[AchievementResetResponse]
+    results: _list[AchievementResetResponse]
 
 @typing.type_check_only
 class AchievementResetMultipleForAllRequest(typing_extensions.TypedDict, total=False):
-    achievement_ids: typing.List[str]
+    achievement_ids: _list[str]
     kind: str
 
 @typing.type_check_only
@@ -21,7 +23,7 @@ class AchievementResetResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EventsResetMultipleForAllRequest(typing_extensions.TypedDict, total=False):
-    event_ids: typing.List[str]
+    event_ids: _list[str]
     kind: str
 
 @typing.type_check_only
@@ -45,7 +47,7 @@ class HiddenPlayer(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HiddenPlayerList(typing_extensions.TypedDict, total=False):
-    items: typing.List[HiddenPlayer]
+    items: _list[HiddenPlayer]
     kind: str
     nextPageToken: str
 
@@ -57,7 +59,7 @@ class Player(typing_extensions.TypedDict, total=False):
     displayName: str
     experienceInfo: GamesPlayerExperienceInfoResource
     kind: str
-    name: typing.Dict[str, typing.Any]
+    name: dict[str, typing.Any]
     originalPlayerId: str
     playerId: str
     profileSettings: ProfileSettings
@@ -66,13 +68,13 @@ class Player(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PlayerScoreResetAllResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    results: typing.List[PlayerScoreResetResponse]
+    results: _list[PlayerScoreResetResponse]
 
 @typing.type_check_only
 class PlayerScoreResetResponse(typing_extensions.TypedDict, total=False):
     definitionId: str
     kind: str
-    resetScoreTimeSpans: typing.List[str]
+    resetScoreTimeSpans: _list[str]
 
 @typing.type_check_only
 class ProfileSettings(typing_extensions.TypedDict, total=False):
@@ -82,4 +84,4 @@ class ProfileSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ScoresResetMultipleForAllRequest(typing_extensions.TypedDict, total=False):
     kind: str
-    leaderboard_ids: typing.List[str]
+    leaderboard_ids: _list[str]

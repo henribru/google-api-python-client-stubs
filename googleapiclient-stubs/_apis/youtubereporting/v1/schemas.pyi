@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
@@ -76,7 +78,7 @@ class GdataMedia(typing_extensions.TypedDict, total=False):
     bigstoreObjectRef: str
     blobRef: str
     blobstore2Info: GdataBlobstore2Info
-    compositeMedia: typing.List[GdataCompositeMedia]
+    compositeMedia: _list[GdataCompositeMedia]
     contentType: str
     contentTypeInfo: GdataContentTypeInfo
     cosmoBinaryReference: str
@@ -134,18 +136,18 @@ class Job(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListJobsResponse(typing_extensions.TypedDict, total=False):
-    jobs: typing.List[Job]
+    jobs: _list[Job]
     nextPageToken: str
 
 @typing.type_check_only
 class ListReportTypesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    reportTypes: typing.List[ReportType]
+    reportTypes: _list[ReportType]
 
 @typing.type_check_only
 class ListReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    reports: typing.List[Report]
+    reports: _list[Report]
 
 @typing.type_check_only
 class Report(typing_extensions.TypedDict, total=False):

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AptArtifact(typing_extensions.TypedDict, total=False):
     architecture: str
@@ -22,7 +24,7 @@ class DockerImage(typing_extensions.TypedDict, total=False):
     imageSizeBytes: str
     mediaType: str
     name: str
-    tags: typing.List[str]
+    tags: _list[str]
     uploadTime: str
     uri: str
 
@@ -36,13 +38,13 @@ class ImportAptArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportAptArtifactsGcsSource(typing_extensions.TypedDict, total=False):
-    uris: typing.List[str]
+    uris: _list[str]
     useWildcards: bool
 
 @typing.type_check_only
 class ImportAptArtifactsResponse(typing_extensions.TypedDict, total=False):
-    aptArtifacts: typing.List[AptArtifact]
-    errors: typing.List[ImportAptArtifactsErrorInfo]
+    aptArtifacts: _list[AptArtifact]
+    errors: _list[ImportAptArtifactsErrorInfo]
 
 @typing.type_check_only
 class ImportYumArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
@@ -51,36 +53,36 @@ class ImportYumArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportYumArtifactsGcsSource(typing_extensions.TypedDict, total=False):
-    uris: typing.List[str]
+    uris: _list[str]
     useWildcards: bool
 
 @typing.type_check_only
 class ImportYumArtifactsResponse(typing_extensions.TypedDict, total=False):
-    errors: typing.List[ImportYumArtifactsErrorInfo]
-    yumArtifacts: typing.List[YumArtifact]
+    errors: _list[ImportYumArtifactsErrorInfo]
+    yumArtifacts: _list[YumArtifact]
 
 @typing.type_check_only
 class ListDockerImagesResponse(typing_extensions.TypedDict, total=False):
-    dockerImages: typing.List[DockerImage]
+    dockerImages: _list[DockerImage]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListRepositoriesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    repositories: typing.List[Repository]
+    repositories: _list[Repository]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
@@ -90,14 +92,14 @@ class Repository(typing_extensions.TypedDict, total=False):
         "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "APT", "YUM", "PYTHON"
     ]
     kmsKeyName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     updateTime: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -106,7 +108,7 @@ class UploadAptArtifactMediaResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UploadAptArtifactResponse(typing_extensions.TypedDict, total=False):
-    aptArtifacts: typing.List[AptArtifact]
+    aptArtifacts: _list[AptArtifact]
 
 @typing.type_check_only
 class UploadYumArtifactMediaResponse(typing_extensions.TypedDict, total=False):
@@ -114,7 +116,7 @@ class UploadYumArtifactMediaResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UploadYumArtifactResponse(typing_extensions.TypedDict, total=False):
-    yumArtifacts: typing.List[YumArtifact]
+    yumArtifacts: _list[YumArtifact]
 
 @typing.type_check_only
 class YumArtifact(typing_extensions.TypedDict, total=False):

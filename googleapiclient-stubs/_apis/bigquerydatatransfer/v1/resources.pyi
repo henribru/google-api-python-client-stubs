@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -64,21 +66,19 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            messageTypes: typing.Union[
+                            messageTypes: typing_extensions.Literal[
+                                "MESSAGE_SEVERITY_UNSPECIFIED",
+                                "INFO",
+                                "WARNING",
+                                "ERROR",
+                            ]
+                            | _list[
                                 typing_extensions.Literal[
                                     "MESSAGE_SEVERITY_UNSPECIFIED",
                                     "INFO",
                                     "WARNING",
                                     "ERROR",
-                                ],
-                                typing.List[
-                                    typing_extensions.Literal[
-                                        "MESSAGE_SEVERITY_UNSPECIFIED",
-                                        "INFO",
-                                        "WARNING",
-                                        "ERROR",
-                                    ]
-                                ],
+                                ]
                             ] = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
@@ -99,7 +99,15 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         runAttempt: typing_extensions.Literal[
                             "RUN_ATTEMPT_UNSPECIFIED", "LATEST"
                         ] = ...,
-                        states: typing.Union[
+                        states: typing_extensions.Literal[
+                            "TRANSFER_STATE_UNSPECIFIED",
+                            "PENDING",
+                            "RUNNING",
+                            "SUCCEEDED",
+                            "FAILED",
+                            "CANCELLED",
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "TRANSFER_STATE_UNSPECIFIED",
                                 "PENDING",
@@ -107,17 +115,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                                 "SUCCEEDED",
                                 "FAILED",
                                 "CANCELLED",
-                            ],
-                            typing.List[
-                                typing_extensions.Literal[
-                                    "TRANSFER_STATE_UNSPECIFIED",
-                                    "PENDING",
-                                    "RUNNING",
-                                    "SUCCEEDED",
-                                    "FAILED",
-                                    "CANCELLED",
-                                ]
-                            ],
+                            ]
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> ListTransferRunsResponseHttpRequest: ...
@@ -142,7 +140,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    dataSourceIds: typing.Union[str, typing.List[str]] = ...,
+                    dataSourceIds: str | _list[str] = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -204,21 +202,16 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        messageTypes: typing.Union[
+                        messageTypes: typing_extensions.Literal[
+                            "MESSAGE_SEVERITY_UNSPECIFIED", "INFO", "WARNING", "ERROR"
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "MESSAGE_SEVERITY_UNSPECIFIED",
                                 "INFO",
                                 "WARNING",
                                 "ERROR",
-                            ],
-                            typing.List[
-                                typing_extensions.Literal[
-                                    "MESSAGE_SEVERITY_UNSPECIFIED",
-                                    "INFO",
-                                    "WARNING",
-                                    "ERROR",
-                                ]
-                            ],
+                            ]
                         ] = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
@@ -239,7 +232,15 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     runAttempt: typing_extensions.Literal[
                         "RUN_ATTEMPT_UNSPECIFIED", "LATEST"
                     ] = ...,
-                    states: typing.Union[
+                    states: typing_extensions.Literal[
+                        "TRANSFER_STATE_UNSPECIFIED",
+                        "PENDING",
+                        "RUNNING",
+                        "SUCCEEDED",
+                        "FAILED",
+                        "CANCELLED",
+                    ]
+                    | _list[
                         typing_extensions.Literal[
                             "TRANSFER_STATE_UNSPECIFIED",
                             "PENDING",
@@ -247,17 +248,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             "SUCCEEDED",
                             "FAILED",
                             "CANCELLED",
-                        ],
-                        typing.List[
-                            typing_extensions.Literal[
-                                "TRANSFER_STATE_UNSPECIFIED",
-                                "PENDING",
-                                "RUNNING",
-                                "SUCCEEDED",
-                                "FAILED",
-                                "CANCELLED",
-                            ]
-                        ],
+                        ]
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ListTransferRunsResponseHttpRequest: ...
@@ -282,7 +273,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                dataSourceIds: typing.Union[str, typing.List[str]] = ...,
+                dataSourceIds: str | _list[str] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
@@ -329,9 +320,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
 class CheckValidCredsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CheckValidCredsResponse: ...
 
@@ -339,9 +328,7 @@ class CheckValidCredsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DataSourceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DataSource: ...
 
@@ -349,9 +336,7 @@ class DataSourceHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -359,9 +344,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class ListDataSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDataSourcesResponse: ...
 
@@ -369,9 +352,7 @@ class ListDataSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListLocationsResponse: ...
 
@@ -379,9 +360,7 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListTransferConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTransferConfigsResponse: ...
 
@@ -389,9 +368,7 @@ class ListTransferConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListTransferLogsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTransferLogsResponse: ...
 
@@ -399,9 +376,7 @@ class ListTransferLogsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListTransferRunsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTransferRunsResponse: ...
 
@@ -409,9 +384,7 @@ class ListTransferRunsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Location: ...
 
@@ -419,9 +392,7 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
 class ScheduleTransferRunsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ScheduleTransferRunsResponse: ...
 
@@ -429,9 +400,7 @@ class ScheduleTransferRunsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class StartManualTransferRunsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> StartManualTransferRunsResponse: ...
 
@@ -439,9 +408,7 @@ class StartManualTransferRunsResponseHttpRequest(googleapiclient.http.HttpReques
 class TransferConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TransferConfig: ...
 
@@ -449,8 +416,6 @@ class TransferConfigHttpRequest(googleapiclient.http.HttpRequest):
 class TransferRunHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TransferRun: ...

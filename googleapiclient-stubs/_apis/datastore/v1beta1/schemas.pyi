@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleDatastoreAdminV1CommonMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     operationType: typing_extensions.Literal[
         "OPERATION_TYPE_UNSPECIFIED",
         "EXPORT_ENTITIES",
@@ -27,8 +29,8 @@ class GoogleDatastoreAdminV1CommonMetadata(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleDatastoreAdminV1EntityFilter(typing_extensions.TypedDict, total=False):
-    kinds: typing.List[str]
-    namespaceIds: typing.List[str]
+    kinds: _list[str]
+    namespaceIds: _list[str]
 
 @typing.type_check_only
 class GoogleDatastoreAdminV1ExportEntitiesMetadata(
@@ -74,7 +76,7 @@ class GoogleDatastoreAdminV1beta1CommonMetadata(
     typing_extensions.TypedDict, total=False
 ):
     endTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     operationType: typing_extensions.Literal[
         "OPERATION_TYPE_UNSPECIFIED", "EXPORT_ENTITIES", "IMPORT_ENTITIES"
     ]
@@ -92,8 +94,8 @@ class GoogleDatastoreAdminV1beta1CommonMetadata(
 
 @typing.type_check_only
 class GoogleDatastoreAdminV1beta1EntityFilter(typing_extensions.TypedDict, total=False):
-    kinds: typing.List[str]
-    namespaceIds: typing.List[str]
+    kinds: _list[str]
+    namespaceIds: _list[str]
 
 @typing.type_check_only
 class GoogleDatastoreAdminV1beta1ExportEntitiesMetadata(
@@ -110,7 +112,7 @@ class GoogleDatastoreAdminV1beta1ExportEntitiesRequest(
     typing_extensions.TypedDict, total=False
 ):
     entityFilter: GoogleDatastoreAdminV1beta1EntityFilter
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     outputUrlPrefix: str
 
 @typing.type_check_only
@@ -135,7 +137,7 @@ class GoogleDatastoreAdminV1beta1ImportEntitiesRequest(
 ):
     entityFilter: GoogleDatastoreAdminV1beta1EntityFilter
     inputUrl: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleDatastoreAdminV1beta1Progress(typing_extensions.TypedDict, total=False):
@@ -146,12 +148,12 @@ class GoogleDatastoreAdminV1beta1Progress(typing_extensions.TypedDict, total=Fal
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

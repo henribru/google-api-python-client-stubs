@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Announcement(typing_extensions.TypedDict, total=False):
     alternateLink: str
@@ -13,7 +15,7 @@ class Announcement(typing_extensions.TypedDict, total=False):
     creatorUserId: str
     id: str
     individualStudentsOptions: IndividualStudentsOptions
-    materials: typing.List[Material]
+    materials: _list[Material]
     scheduledTime: str
     state: typing_extensions.Literal[
         "ANNOUNCEMENT_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
@@ -27,7 +29,7 @@ class Assignment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AssignmentSubmission(typing_extensions.TypedDict, total=False):
-    attachments: typing.List[Attachment]
+    attachments: _list[Attachment]
 
 @typing.type_check_only
 class Attachment(typing_extensions.TypedDict, total=False):
@@ -45,7 +47,7 @@ class Course(typing_extensions.TypedDict, total=False):
     alternateLink: str
     calendarId: str
     courseGroupEmail: str
-    courseMaterialSets: typing.List[CourseMaterialSet]
+    courseMaterialSets: _list[CourseMaterialSet]
     courseState: typing_extensions.Literal[
         "COURSE_STATE_UNSPECIFIED",
         "ACTIVE",
@@ -81,7 +83,7 @@ class CourseMaterial(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CourseMaterialSet(typing_extensions.TypedDict, total=False):
-    materials: typing.List[CourseMaterial]
+    materials: _list[CourseMaterial]
     title: str
 
 @typing.type_check_only
@@ -104,7 +106,7 @@ class CourseWork(typing_extensions.TypedDict, total=False):
     dueTime: TimeOfDay
     id: str
     individualStudentsOptions: IndividualStudentsOptions
-    materials: typing.List[Material]
+    materials: _list[Material]
     maxPoints: float
     multipleChoiceQuestion: MultipleChoiceQuestion
     scheduledTime: str
@@ -142,7 +144,7 @@ class CourseWorkMaterial(typing_extensions.TypedDict, total=False):
     description: str
     id: str
     individualStudentsOptions: IndividualStudentsOptions
-    materials: typing.List[Material]
+    materials: _list[Material]
     scheduledTime: str
     state: typing_extensions.Literal[
         "COURSEWORK_MATERIAL_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
@@ -227,7 +229,7 @@ class GuardianInvitation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IndividualStudentsOptions(typing_extensions.TypedDict, total=False):
-    studentIds: typing.List[str]
+    studentIds: _list[str]
 
 @typing.type_check_only
 class Invitation(typing_extensions.TypedDict, total=False):
@@ -246,63 +248,63 @@ class Link(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAnnouncementsResponse(typing_extensions.TypedDict, total=False):
-    announcements: typing.List[Announcement]
+    announcements: _list[Announcement]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCourseAliasesResponse(typing_extensions.TypedDict, total=False):
-    aliases: typing.List[CourseAlias]
+    aliases: _list[CourseAlias]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCourseWorkMaterialResponse(typing_extensions.TypedDict, total=False):
-    courseWorkMaterial: typing.List[CourseWorkMaterial]
+    courseWorkMaterial: _list[CourseWorkMaterial]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCourseWorkResponse(typing_extensions.TypedDict, total=False):
-    courseWork: typing.List[CourseWork]
+    courseWork: _list[CourseWork]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCoursesResponse(typing_extensions.TypedDict, total=False):
-    courses: typing.List[Course]
+    courses: _list[Course]
     nextPageToken: str
 
 @typing.type_check_only
 class ListGuardianInvitationsResponse(typing_extensions.TypedDict, total=False):
-    guardianInvitations: typing.List[GuardianInvitation]
+    guardianInvitations: _list[GuardianInvitation]
     nextPageToken: str
 
 @typing.type_check_only
 class ListGuardiansResponse(typing_extensions.TypedDict, total=False):
-    guardians: typing.List[Guardian]
+    guardians: _list[Guardian]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInvitationsResponse(typing_extensions.TypedDict, total=False):
-    invitations: typing.List[Invitation]
+    invitations: _list[Invitation]
     nextPageToken: str
 
 @typing.type_check_only
 class ListStudentSubmissionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    studentSubmissions: typing.List[StudentSubmission]
+    studentSubmissions: _list[StudentSubmission]
 
 @typing.type_check_only
 class ListStudentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    students: typing.List[Student]
+    students: _list[Student]
 
 @typing.type_check_only
 class ListTeachersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    teachers: typing.List[Teacher]
+    teachers: _list[Teacher]
 
 @typing.type_check_only
 class ListTopicResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    topic: typing.List[Topic]
+    topic: _list[Topic]
 
 @typing.type_check_only
 class Material(typing_extensions.TypedDict, total=False):
@@ -320,7 +322,7 @@ class ModifyAnnouncementAssigneesRequest(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class ModifyAttachmentsRequest(typing_extensions.TypedDict, total=False):
-    addAttachments: typing.List[Attachment]
+    addAttachments: _list[Attachment]
 
 @typing.type_check_only
 class ModifyCourseWorkAssigneesRequest(typing_extensions.TypedDict, total=False):
@@ -331,12 +333,12 @@ class ModifyCourseWorkAssigneesRequest(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class ModifyIndividualStudentsOptions(typing_extensions.TypedDict, total=False):
-    addStudentIds: typing.List[str]
-    removeStudentIds: typing.List[str]
+    addStudentIds: _list[str]
+    removeStudentIds: _list[str]
 
 @typing.type_check_only
 class MultipleChoiceQuestion(typing_extensions.TypedDict, total=False):
-    choices: typing.List[str]
+    choices: _list[str]
 
 @typing.type_check_only
 class MultipleChoiceSubmission(typing_extensions.TypedDict, total=False):
@@ -420,7 +422,7 @@ class StudentSubmission(typing_extensions.TypedDict, total=False):
         "RETURNED",
         "RECLAIMED_BY_STUDENT",
     ]
-    submissionHistory: typing.List[SubmissionHistory]
+    submissionHistory: _list[SubmissionHistory]
     updateTime: str
     userId: str
 
@@ -457,7 +459,7 @@ class UserProfile(typing_extensions.TypedDict, total=False):
     emailAddress: str
     id: str
     name: Name
-    permissions: typing.List[GlobalPermission]
+    permissions: _list[GlobalPermission]
     photoUrl: str
     verifiedTeacher: bool
 

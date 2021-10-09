@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     id: str
@@ -12,7 +14,7 @@ class Account(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Accounts(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[Account]
+    items: _list[Account]
     kind: str
 
 @typing.type_check_only
@@ -26,7 +28,7 @@ class AdClient(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AdClients(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[AdClient]
+    items: _list[AdClient]
     kind: str
     nextPageToken: str
 
@@ -37,26 +39,26 @@ class AdCode(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AdStyle(typing_extensions.TypedDict, total=False):
-    colors: typing.Dict[str, typing.Any]
+    colors: dict[str, typing.Any]
     corners: str
-    font: typing.Dict[str, typing.Any]
+    font: dict[str, typing.Any]
     kind: str
 
 @typing.type_check_only
 class AdUnit(typing_extensions.TypedDict, total=False):
     code: str
-    contentAdsSettings: typing.Dict[str, typing.Any]
+    contentAdsSettings: dict[str, typing.Any]
     customStyle: AdStyle
     id: str
     kind: str
-    mobileContentAdsSettings: typing.Dict[str, typing.Any]
+    mobileContentAdsSettings: dict[str, typing.Any]
     name: str
     status: str
 
 @typing.type_check_only
 class AdUnits(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[AdUnit]
+    items: _list[AdUnit]
     kind: str
     nextPageToken: str
 
@@ -65,7 +67,7 @@ class AssociationSession(typing_extensions.TypedDict, total=False):
     accountId: str
     id: str
     kind: str
-    productCodes: typing.List[str]
+    productCodes: _list[str]
     redirectUrl: str
     status: str
     userLocale: str
@@ -82,19 +84,19 @@ class CustomChannel(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CustomChannels(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[CustomChannel]
+    items: _list[CustomChannel]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
 class Report(typing_extensions.TypedDict, total=False):
-    averages: typing.List[str]
-    headers: typing.List[typing.Dict[str, typing.Any]]
+    averages: _list[str]
+    headers: _list[dict[str, typing.Any]]
     kind: str
-    rows: typing.List[list]
+    rows: _list[list]
     totalMatchedRows: str
-    totals: typing.List[str]
-    warnings: typing.List[str]
+    totals: _list[str]
+    warnings: _list[str]
 
 @typing.type_check_only
 class UrlChannel(typing_extensions.TypedDict, total=False):
@@ -105,6 +107,6 @@ class UrlChannel(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UrlChannels(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[UrlChannel]
+    items: _list[UrlChannel]
     kind: str
     nextPageToken: str

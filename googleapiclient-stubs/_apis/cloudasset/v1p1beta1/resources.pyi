@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudAssetResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -27,7 +29,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             scope: str,
-            assetTypes: typing.Union[str, typing.List[str]] = ...,
+            assetTypes: str | _list[str] = ...,
             orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
@@ -41,9 +43,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
 class SearchAllIamPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchAllIamPoliciesResponse: ...
 
@@ -51,8 +51,6 @@ class SearchAllIamPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SearchAllResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchAllResourcesResponse: ...

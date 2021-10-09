@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Task(typing_extensions.TypedDict, total=False):
     completed: str
@@ -11,7 +13,7 @@ class Task(typing_extensions.TypedDict, total=False):
     hidden: bool
     id: str
     kind: str
-    links: typing.List[typing.Dict[str, typing.Any]]
+    links: _list[dict[str, typing.Any]]
     notes: str
     parent: str
     position: str
@@ -32,13 +34,13 @@ class TaskList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TaskLists(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[TaskList]
+    items: _list[TaskList]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
 class Tasks(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[Task]
+    items: _list[Task]
     kind: str
     nextPageToken: str

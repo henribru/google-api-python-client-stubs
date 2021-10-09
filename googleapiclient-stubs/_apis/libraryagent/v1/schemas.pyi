@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleExampleLibraryagentV1Book(typing_extensions.TypedDict, total=False):
     author: str
@@ -13,7 +15,7 @@ class GoogleExampleLibraryagentV1Book(typing_extensions.TypedDict, total=False):
 class GoogleExampleLibraryagentV1ListBooksResponse(
     typing_extensions.TypedDict, total=False
 ):
-    books: typing.List[GoogleExampleLibraryagentV1Book]
+    books: _list[GoogleExampleLibraryagentV1Book]
     nextPageToken: str
 
 @typing.type_check_only
@@ -21,7 +23,7 @@ class GoogleExampleLibraryagentV1ListShelvesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    shelves: typing.List[GoogleExampleLibraryagentV1Shelf]
+    shelves: _list[GoogleExampleLibraryagentV1Shelf]
 
 @typing.type_check_only
 class GoogleExampleLibraryagentV1Shelf(typing_extensions.TypedDict, total=False):

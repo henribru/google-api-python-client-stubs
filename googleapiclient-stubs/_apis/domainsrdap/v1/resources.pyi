@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class DomainsRDAPResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -53,9 +55,7 @@ class DomainsRDAPResource(googleapiclient.discovery.Resource):
 class HttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> HttpBody: ...
 
@@ -63,8 +63,6 @@ class HttpBodyHttpRequest(googleapiclient.http.HttpRequest):
 class RdapResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RdapResponse: ...

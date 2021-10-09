@@ -2,18 +2,20 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Addressable(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -26,7 +28,7 @@ class AuthorizedDomain(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -45,7 +47,7 @@ class ConfigMapKeySelector(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConfigMapVolumeSource(typing_extensions.TypedDict, total=False):
     defaultMode: int
-    items: typing.List[KeyToPath]
+    items: _list[KeyToPath]
     name: str
     optional: bool
 
@@ -63,29 +65,29 @@ class ConfigurationSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigurationStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[GoogleCloudRunV1Condition]
+    conditions: _list[GoogleCloudRunV1Condition]
     latestCreatedRevisionName: str
     latestReadyRevisionName: str
     observedGeneration: int
 
 @typing.type_check_only
 class Container(typing_extensions.TypedDict, total=False):
-    args: typing.List[str]
-    command: typing.List[str]
-    env: typing.List[EnvVar]
-    envFrom: typing.List[EnvFromSource]
+    args: _list[str]
+    command: _list[str]
+    env: _list[EnvVar]
+    envFrom: _list[EnvFromSource]
     image: str
     imagePullPolicy: str
     livenessProbe: Probe
     name: str
-    ports: typing.List[ContainerPort]
+    ports: _list[ContainerPort]
     readinessProbe: Probe
     resources: ResourceRequirements
     securityContext: SecurityContext
     startupProbe: Probe
     terminationMessagePath: str
     terminationMessagePolicy: str
-    volumeMounts: typing.List[VolumeMount]
+    volumeMounts: _list[VolumeMount]
     workingDir: str
 
 @typing.type_check_only
@@ -112,10 +114,10 @@ class DomainMappingSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DomainMappingStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[GoogleCloudRunV1Condition]
+    conditions: _list[GoogleCloudRunV1Condition]
     mappedRouteName: str
     observedGeneration: int
-    resourceRecords: typing.List[ResourceRecord]
+    resourceRecords: _list[ResourceRecord]
     url: str
 
 @typing.type_check_only
@@ -137,7 +139,7 @@ class EnvVarSource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecAction(typing_extensions.TypedDict, total=False):
-    command: typing.List[str]
+    command: _list[str]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -158,7 +160,7 @@ class GoogleCloudRunV1Condition(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HTTPGetAction(typing_extensions.TypedDict, total=False):
     host: str
-    httpHeaders: typing.List[HTTPHeader]
+    httpHeaders: _list[HTTPHeader]
     path: str
     scheme: str
 
@@ -175,28 +177,28 @@ class KeyToPath(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
-    domains: typing.List[AuthorizedDomain]
+    domains: _list[AuthorizedDomain]
     nextPageToken: str
 
 @typing.type_check_only
 class ListConfigurationsResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    items: typing.List[Configuration]
+    items: _list[Configuration]
     kind: str
     metadata: ListMeta
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    items: typing.List[DomainMapping]
+    items: _list[DomainMapping]
     kind: str
     metadata: ListMeta
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 AlternativeListMeta = typing_extensions.TypedDict(
@@ -215,26 +217,26 @@ class ListMeta(AlternativeListMeta): ...
 @typing.type_check_only
 class ListRevisionsResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    items: typing.List[Revision]
+    items: _list[Revision]
     kind: str
     metadata: ListMeta
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListRoutesResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    items: typing.List[Route]
+    items: _list[Route]
     kind: str
     metadata: ListMeta
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    items: typing.List[Service]
+    items: _list[Service]
     kind: str
     metadata: ListMeta
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class LocalObjectReference(typing_extensions.TypedDict, total=False):
@@ -243,25 +245,25 @@ class LocalObjectReference(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class ObjectMeta(typing_extensions.TypedDict, total=False):
-    annotations: typing.Dict[str, typing.Any]
+    annotations: dict[str, typing.Any]
     clusterName: str
     creationTimestamp: str
     deletionGracePeriodSeconds: int
     deletionTimestamp: str
-    finalizers: typing.List[str]
+    finalizers: _list[str]
     generateName: str
     generation: int
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     namespace: str
-    ownerReferences: typing.List[OwnerReference]
+    ownerReferences: _list[OwnerReference]
     resourceVersion: str
     selfLink: str
     uid: str
@@ -277,8 +279,8 @@ class OwnerReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -301,8 +303,8 @@ class ResourceRecord(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceRequirements(typing_extensions.TypedDict, total=False):
-    limits: typing.Dict[str, typing.Any]
-    requests: typing.Dict[str, typing.Any]
+    limits: dict[str, typing.Any]
+    requests: dict[str, typing.Any]
 
 @typing.type_check_only
 class Revision(typing_extensions.TypedDict, total=False):
@@ -315,14 +317,14 @@ class Revision(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RevisionSpec(typing_extensions.TypedDict, total=False):
     containerConcurrency: int
-    containers: typing.List[Container]
+    containers: _list[Container]
     serviceAccountName: str
     timeoutSeconds: int
-    volumes: typing.List[Volume]
+    volumes: _list[Volume]
 
 @typing.type_check_only
 class RevisionStatus(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[GoogleCloudRunV1Condition]
+    conditions: _list[GoogleCloudRunV1Condition]
     imageDigest: str
     logUrl: str
     observedGeneration: int
@@ -343,14 +345,14 @@ class Route(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RouteSpec(typing_extensions.TypedDict, total=False):
-    traffic: typing.List[TrafficTarget]
+    traffic: _list[TrafficTarget]
 
 @typing.type_check_only
 class RouteStatus(typing_extensions.TypedDict, total=False):
     address: Addressable
-    conditions: typing.List[GoogleCloudRunV1Condition]
+    conditions: _list[GoogleCloudRunV1Condition]
     observedGeneration: int
-    traffic: typing.List[TrafficTarget]
+    traffic: _list[TrafficTarget]
     url: str
 
 @typing.type_check_only
@@ -369,7 +371,7 @@ class SecretKeySelector(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SecretVolumeSource(typing_extensions.TypedDict, total=False):
     defaultMode: int
-    items: typing.List[KeyToPath]
+    items: _list[KeyToPath]
     optional: bool
     secretName: str
 
@@ -388,16 +390,16 @@ class Service(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceSpec(typing_extensions.TypedDict, total=False):
     template: RevisionTemplate
-    traffic: typing.List[TrafficTarget]
+    traffic: _list[TrafficTarget]
 
 @typing.type_check_only
 class ServiceStatus(typing_extensions.TypedDict, total=False):
     address: Addressable
-    conditions: typing.List[GoogleCloudRunV1Condition]
+    conditions: _list[GoogleCloudRunV1Condition]
     latestCreatedRevisionName: str
     latestReadyRevisionName: str
     observedGeneration: int
-    traffic: typing.List[TrafficTarget]
+    traffic: _list[TrafficTarget]
     url: str
 
 @typing.type_check_only
@@ -422,7 +424,7 @@ class StatusCause(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StatusDetails(typing_extensions.TypedDict, total=False):
-    causes: typing.List[StatusCause]
+    causes: _list[StatusCause]
     group: str
     kind: str
     name: str
@@ -436,11 +438,11 @@ class TCPSocketAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TrafficTarget(typing_extensions.TypedDict, total=False):

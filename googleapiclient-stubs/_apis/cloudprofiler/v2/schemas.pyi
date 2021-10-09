@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class CreateProfileRequest(typing_extensions.TypedDict, total=False):
     deployment: Deployment
-    profileType: typing.List[str]
+    profileType: _list[str]
 
 @typing.type_check_only
 class Deployment(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     projectId: str
     target: str
 
@@ -17,7 +19,7 @@ class Deployment(typing_extensions.TypedDict, total=False):
 class Profile(typing_extensions.TypedDict, total=False):
     deployment: Deployment
     duration: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     profileBytes: str
     profileType: typing_extensions.Literal[

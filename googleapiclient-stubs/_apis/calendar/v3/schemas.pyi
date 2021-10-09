@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Acl(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[AclRule]
+    items: _list[AclRule]
     kind: str
     nextPageToken: str
     nextSyncToken: str
@@ -16,7 +18,7 @@ class AclRule(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     role: str
-    scope: typing.Dict[str, typing.Any]
+    scope: dict[str, typing.Any]
 
 @typing.type_check_only
 class Calendar(typing_extensions.TypedDict, total=False):
@@ -32,7 +34,7 @@ class Calendar(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CalendarList(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[CalendarListEntry]
+    items: _list[CalendarListEntry]
     kind: str
     nextPageToken: str
     nextSyncToken: str
@@ -43,7 +45,7 @@ class CalendarListEntry(typing_extensions.TypedDict, total=False):
     backgroundColor: str
     colorId: str
     conferenceProperties: ConferenceProperties
-    defaultReminders: typing.List[EventReminder]
+    defaultReminders: _list[EventReminder]
     deleted: bool
     description: str
     etag: str
@@ -52,7 +54,7 @@ class CalendarListEntry(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     location: str
-    notificationSettings: typing.Dict[str, typing.Any]
+    notificationSettings: dict[str, typing.Any]
     primary: bool
     selected: bool
     summary: str
@@ -70,7 +72,7 @@ class Channel(typing_extensions.TypedDict, total=False):
     expiration: str
     id: str
     kind: str
-    params: typing.Dict[str, typing.Any]
+    params: dict[str, typing.Any]
     payload: bool
     resourceId: str
     resourceUri: str
@@ -84,8 +86,8 @@ class ColorDefinition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Colors(typing_extensions.TypedDict, total=False):
-    calendar: typing.Dict[str, typing.Any]
-    event: typing.Dict[str, typing.Any]
+    calendar: dict[str, typing.Any]
+    event: dict[str, typing.Any]
     kind: str
     updated: str
 
@@ -94,7 +96,7 @@ class ConferenceData(typing_extensions.TypedDict, total=False):
     conferenceId: str
     conferenceSolution: ConferenceSolution
     createRequest: CreateConferenceRequest
-    entryPoints: typing.List[EntryPoint]
+    entryPoints: _list[EntryPoint]
     notes: str
     parameters: ConferenceParameters
     signature: str
@@ -105,11 +107,11 @@ class ConferenceParameters(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConferenceParametersAddOnParameters(typing_extensions.TypedDict, total=False):
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class ConferenceProperties(typing_extensions.TypedDict, total=False):
-    allowedConferenceSolutionTypes: typing.List[str]
+    allowedConferenceSolutionTypes: _list[str]
 
 @typing.type_check_only
 class ConferenceRequestStatus(typing_extensions.TypedDict, total=False):
@@ -134,7 +136,7 @@ class CreateConferenceRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EntryPoint(typing_extensions.TypedDict, total=False):
     accessCode: str
-    entryPointFeatures: typing.List[str]
+    entryPointFeatures: _list[str]
     entryPointType: str
     label: str
     meetingCode: str
@@ -152,20 +154,20 @@ class Error(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Event(typing_extensions.TypedDict, total=False):
     anyoneCanAddSelf: bool
-    attachments: typing.List[EventAttachment]
-    attendees: typing.List[EventAttendee]
+    attachments: _list[EventAttachment]
+    attendees: _list[EventAttendee]
     attendeesOmitted: bool
     colorId: str
     conferenceData: ConferenceData
     created: str
-    creator: typing.Dict[str, typing.Any]
+    creator: dict[str, typing.Any]
     description: str
     end: EventDateTime
     endTimeUnspecified: bool
     etag: str
     eventType: str
-    extendedProperties: typing.Dict[str, typing.Any]
-    gadget: typing.Dict[str, typing.Any]
+    extendedProperties: dict[str, typing.Any]
+    gadget: dict[str, typing.Any]
     guestsCanInviteOthers: bool
     guestsCanModify: bool
     guestsCanSeeOtherGuests: bool
@@ -176,14 +178,14 @@ class Event(typing_extensions.TypedDict, total=False):
     kind: str
     location: str
     locked: bool
-    organizer: typing.Dict[str, typing.Any]
+    organizer: dict[str, typing.Any]
     originalStartTime: EventDateTime
     privateCopy: bool
-    recurrence: typing.List[str]
+    recurrence: _list[str]
     recurringEventId: str
-    reminders: typing.Dict[str, typing.Any]
+    reminders: dict[str, typing.Any]
     sequence: int
-    source: typing.Dict[str, typing.Any]
+    source: dict[str, typing.Any]
     start: EventDateTime
     status: str
     summary: str
@@ -226,10 +228,10 @@ class EventReminder(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Events(typing_extensions.TypedDict, total=False):
     accessRole: str
-    defaultReminders: typing.List[EventReminder]
+    defaultReminders: _list[EventReminder]
     description: str
     etag: str
-    items: typing.List[Event]
+    items: _list[Event]
     kind: str
     nextPageToken: str
     nextSyncToken: str
@@ -239,19 +241,19 @@ class Events(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FreeBusyCalendar(typing_extensions.TypedDict, total=False):
-    busy: typing.List[TimePeriod]
-    errors: typing.List[Error]
+    busy: _list[TimePeriod]
+    errors: _list[Error]
 
 @typing.type_check_only
 class FreeBusyGroup(typing_extensions.TypedDict, total=False):
-    calendars: typing.List[str]
-    errors: typing.List[Error]
+    calendars: _list[str]
+    errors: _list[Error]
 
 @typing.type_check_only
 class FreeBusyRequest(typing_extensions.TypedDict, total=False):
     calendarExpansionMax: int
     groupExpansionMax: int
-    items: typing.List[FreeBusyRequestItem]
+    items: _list[FreeBusyRequestItem]
     timeMax: str
     timeMin: str
     timeZone: str
@@ -262,8 +264,8 @@ class FreeBusyRequestItem(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FreeBusyResponse(typing_extensions.TypedDict, total=False):
-    calendars: typing.Dict[str, typing.Any]
-    groups: typing.Dict[str, typing.Any]
+    calendars: dict[str, typing.Any]
+    groups: dict[str, typing.Any]
     kind: str
     timeMax: str
     timeMin: str
@@ -278,7 +280,7 @@ class Setting(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[Setting]
+    items: _list[Setting]
     kind: str
     nextPageToken: str
     nextSyncToken: str

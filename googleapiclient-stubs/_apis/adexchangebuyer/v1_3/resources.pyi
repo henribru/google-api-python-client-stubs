@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -58,8 +60,8 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            accountId: typing.Union[int, typing.List[int]] = ...,
-            buyerCreativeId: typing.Union[str, typing.List[str]] = ...,
+            accountId: int | _list[int] = ...,
+            buyerCreativeId: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             statusFilter: typing_extensions.Literal[
@@ -129,9 +131,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
 class AccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Account: ...
 
@@ -139,9 +139,7 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
 class AccountsListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccountsList: ...
 
@@ -149,9 +147,7 @@ class AccountsListHttpRequest(googleapiclient.http.HttpRequest):
 class BillingInfoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BillingInfo: ...
 
@@ -159,9 +155,7 @@ class BillingInfoHttpRequest(googleapiclient.http.HttpRequest):
 class BillingInfoListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BillingInfoList: ...
 
@@ -169,9 +163,7 @@ class BillingInfoListHttpRequest(googleapiclient.http.HttpRequest):
 class BudgetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Budget: ...
 
@@ -179,9 +171,7 @@ class BudgetHttpRequest(googleapiclient.http.HttpRequest):
 class CreativeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Creative: ...
 
@@ -189,9 +179,7 @@ class CreativeHttpRequest(googleapiclient.http.HttpRequest):
 class CreativesListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreativesList: ...
 
@@ -199,9 +187,7 @@ class CreativesListHttpRequest(googleapiclient.http.HttpRequest):
 class DirectDealHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DirectDeal: ...
 
@@ -209,9 +195,7 @@ class DirectDealHttpRequest(googleapiclient.http.HttpRequest):
 class DirectDealsListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DirectDealsList: ...
 
@@ -219,9 +203,7 @@ class DirectDealsListHttpRequest(googleapiclient.http.HttpRequest):
 class PerformanceReportListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PerformanceReportList: ...
 
@@ -229,9 +211,7 @@ class PerformanceReportListHttpRequest(googleapiclient.http.HttpRequest):
 class PretargetingConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PretargetingConfig: ...
 
@@ -239,8 +219,6 @@ class PretargetingConfigHttpRequest(googleapiclient.http.HttpRequest):
 class PretargetingConfigListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PretargetingConfigList: ...

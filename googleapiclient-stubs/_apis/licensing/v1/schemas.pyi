@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
@@ -23,6 +25,6 @@ class LicenseAssignmentInsert(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LicenseAssignmentList(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[LicenseAssignment]
+    items: _list[LicenseAssignment]
     kind: str
     nextPageToken: str

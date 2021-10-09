@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Availability(typing_extensions.TypedDict, total=False):
     advertiserId: str
@@ -27,8 +29,8 @@ class Conversion(typing_extensions.TypedDict, total=False):
     countMillis: str
     criterionId: str
     currencyCode: str
-    customDimension: typing.List[CustomDimension]
-    customMetric: typing.List[CustomMetric]
+    customDimension: _list[CustomDimension]
+    customMetric: _list[CustomMetric]
     deviceType: str
     dsConversionId: str
     engineAccountId: str
@@ -49,7 +51,7 @@ class Conversion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConversionList(typing_extensions.TypedDict, total=False):
-    conversion: typing.List[Conversion]
+    conversion: _list[Conversion]
     kind: str
 
 @typing.type_check_only
@@ -64,13 +66,13 @@ class CustomMetric(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Report(typing_extensions.TypedDict, total=False):
-    files: typing.List[typing.Dict[str, typing.Any]]
+    files: _list[dict[str, typing.Any]]
     id: str
     isReportReady: bool
     kind: str
     request: ReportRequest
     rowCount: int
-    rows: typing.List[ReportRow]
+    rows: _list[ReportRow]
     statisticsCurrencyCode: str
     statisticsTimeZone: str
 
@@ -89,23 +91,23 @@ class ReportApiColumnSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReportRequest(typing_extensions.TypedDict, total=False):
-    columns: typing.List[ReportApiColumnSpec]
+    columns: _list[ReportApiColumnSpec]
     downloadFormat: str
-    filters: typing.List[typing.Dict[str, typing.Any]]
+    filters: _list[dict[str, typing.Any]]
     includeDeletedEntities: bool
     includeRemovedEntities: bool
     maxRowsPerFile: int
-    orderBy: typing.List[typing.Dict[str, typing.Any]]
-    reportScope: typing.Dict[str, typing.Any]
+    orderBy: _list[dict[str, typing.Any]]
+    reportScope: dict[str, typing.Any]
     reportType: str
     rowCount: int
     startRow: int
     statisticsCurrency: str
-    timeRange: typing.Dict[str, typing.Any]
+    timeRange: dict[str, typing.Any]
     verifySingleTimeZone: bool
 
 @typing.type_check_only
-class ReportRow(typing.Dict[str, typing.Any]): ...
+class ReportRow(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class SavedColumn(typing_extensions.TypedDict, total=False):
@@ -115,13 +117,13 @@ class SavedColumn(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SavedColumnList(typing_extensions.TypedDict, total=False):
-    items: typing.List[SavedColumn]
+    items: _list[SavedColumn]
     kind: str
 
 @typing.type_check_only
 class UpdateAvailabilityRequest(typing_extensions.TypedDict, total=False):
-    availabilities: typing.List[Availability]
+    availabilities: _list[Availability]
 
 @typing.type_check_only
 class UpdateAvailabilityResponse(typing_extensions.TypedDict, total=False):
-    availabilities: typing.List[Availability]
+    availabilities: _list[Availability]

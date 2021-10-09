@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AndroidAppAsset(typing_extensions.TypedDict, total=False):
     certificate: CertificateInfo
@@ -19,16 +21,16 @@ class CertificateInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckResponse(typing_extensions.TypedDict, total=False):
     debugString: str
-    errorCode: typing.List[str]
+    errorCode: _list[str]
     linked: bool
     maxAge: str
 
 @typing.type_check_only
 class ListResponse(typing_extensions.TypedDict, total=False):
     debugString: str
-    errorCode: typing.List[str]
+    errorCode: _list[str]
     maxAge: str
-    statements: typing.List[Statement]
+    statements: _list[Statement]
 
 @typing.type_check_only
 class Statement(typing_extensions.TypedDict, total=False):

@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudEssentialcontactsV1ComputeContactsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    contacts: typing.List[GoogleCloudEssentialcontactsV1Contact]
+    contacts: _list[GoogleCloudEssentialcontactsV1Contact]
     nextPageToken: str
 
 @typing.type_check_only
@@ -14,7 +16,7 @@ class GoogleCloudEssentialcontactsV1Contact(typing_extensions.TypedDict, total=F
     email: str
     languageTag: str
     name: str
-    notificationCategorySubscriptions: typing.List[str]
+    notificationCategorySubscriptions: _list[str]
     validateTime: str
     validationState: typing_extensions.Literal[
         "VALIDATION_STATE_UNSPECIFIED", "VALID", "INVALID"
@@ -24,14 +26,14 @@ class GoogleCloudEssentialcontactsV1Contact(typing_extensions.TypedDict, total=F
 class GoogleCloudEssentialcontactsV1ListContactsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    contacts: typing.List[GoogleCloudEssentialcontactsV1Contact]
+    contacts: _list[GoogleCloudEssentialcontactsV1Contact]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudEssentialcontactsV1SendTestMessageRequest(
     typing_extensions.TypedDict, total=False
 ):
-    contacts: typing.List[str]
+    contacts: _list[str]
     notificationCategory: typing_extensions.Literal[
         "NOTIFICATION_CATEGORY_UNSPECIFIED",
         "ALL",

@@ -2,18 +2,20 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ListPlaceActionLinksResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    placeActionLinks: typing.List[PlaceActionLink]
+    placeActionLinks: _list[PlaceActionLink]
 
 @typing.type_check_only
 class ListPlaceActionTypeMetadataResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    placeActionTypeMetadata: typing.List[PlaceActionTypeMetadata]
+    placeActionTypeMetadata: _list[PlaceActionTypeMetadata]
 
 @typing.type_check_only
 class PlaceActionLink(typing_extensions.TypedDict, total=False):

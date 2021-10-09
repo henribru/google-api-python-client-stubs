@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ActionParameter(typing_extensions.TypedDict, total=False):
     key: str
@@ -72,10 +74,10 @@ class Button(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Card(typing_extensions.TypedDict, total=False):
-    cardActions: typing.List[CardAction]
+    cardActions: _list[CardAction]
     header: CardHeader
     name: str
-    sections: typing.List[Section]
+    sections: _list[Section]
 
 @typing.type_check_only
 class CardAction(typing_extensions.TypedDict, total=False):
@@ -98,7 +100,7 @@ class Color(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommonEventObject(typing_extensions.TypedDict, total=False):
-    formInputs: typing.Dict[str, typing.Any]
+    formInputs: dict[str, typing.Any]
     hostApp: typing_extensions.Literal[
         "UNSPECIFIED_HOST_APP",
         "GMAIL",
@@ -113,7 +115,7 @@ class CommonEventObject(typing_extensions.TypedDict, total=False):
         "ALL_HOST_APPS",
     ]
     invokedFunction: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
     platform: typing_extensions.Literal["UNKNOWN_PLATFORM", "WEB", "IOS", "ANDROID"]
     timeZone: TimeZone
     userLocale: str
@@ -152,7 +154,7 @@ class Dialog(typing_extensions.TypedDict, total=False):
     body: GoogleAppsCardV1Card
 
 @typing.type_check_only
-class DialogAction(typing.Dict[str, typing.Any]): ...
+class DialogAction(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class DriveDataRef(typing_extensions.TypedDict, total=False):
@@ -164,13 +166,13 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class FormAction(typing_extensions.TypedDict, total=False):
     actionMethodName: str
-    parameters: typing.List[ActionParameter]
+    parameters: _list[ActionParameter]
 
 @typing.type_check_only
 class GoogleAppsCardV1Action(typing_extensions.TypedDict, total=False):
     function: str
     loadIndicator: typing_extensions.Literal["SPINNER", "NONE"]
-    parameters: typing.List[GoogleAppsCardV1ActionParameter]
+    parameters: _list[GoogleAppsCardV1ActionParameter]
     persistValues: bool
 
 @typing.type_check_only
@@ -195,16 +197,16 @@ class GoogleAppsCardV1Button(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleAppsCardV1ButtonList(typing_extensions.TypedDict, total=False):
-    buttons: typing.List[GoogleAppsCardV1Button]
+    buttons: _list[GoogleAppsCardV1Button]
 
 @typing.type_check_only
-class GoogleAppsCardV1Card(typing.Dict[str, typing.Any]): ...
+class GoogleAppsCardV1Card(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleAppsCardV1CardAction(typing.Dict[str, typing.Any]): ...
+class GoogleAppsCardV1CardAction(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleAppsCardV1CardFixedFooter(typing.Dict[str, typing.Any]): ...
+class GoogleAppsCardV1CardFixedFooter(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleAppsCardV1CardHeader(typing_extensions.TypedDict, total=False):
@@ -243,7 +245,7 @@ class GoogleAppsCardV1Divider(typing_extensions.TypedDict, total=False): ...
 class GoogleAppsCardV1Grid(typing_extensions.TypedDict, total=False):
     borderStyle: GoogleAppsCardV1BorderStyle
     columnCount: int
-    items: typing.List[GoogleAppsCardV1GridItem]
+    items: _list[GoogleAppsCardV1GridItem]
     onClick: GoogleAppsCardV1OnClick
     title: str
 
@@ -292,7 +294,7 @@ class GoogleAppsCardV1ImageCropStyle(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GoogleAppsCardV1OnClick(typing.Dict[str, typing.Any]): ...
+class GoogleAppsCardV1OnClick(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleAppsCardV1OpenLink(typing_extensions.TypedDict, total=False):
@@ -301,11 +303,11 @@ class GoogleAppsCardV1OpenLink(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class GoogleAppsCardV1Section(typing.Dict[str, typing.Any]): ...
+class GoogleAppsCardV1Section(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleAppsCardV1SelectionInput(typing_extensions.TypedDict, total=False):
-    items: typing.List[GoogleAppsCardV1SelectionItem]
+    items: _list[GoogleAppsCardV1SelectionItem]
     label: str
     name: str
     onChangeAction: GoogleAppsCardV1Action
@@ -323,7 +325,7 @@ class GoogleAppsCardV1SuggestionItem(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleAppsCardV1Suggestions(typing_extensions.TypedDict, total=False):
-    items: typing.List[GoogleAppsCardV1SuggestionItem]
+    items: _list[GoogleAppsCardV1SuggestionItem]
 
 @typing.type_check_only
 class GoogleAppsCardV1SwitchControl(typing_extensions.TypedDict, total=False):
@@ -349,7 +351,7 @@ class GoogleAppsCardV1TextParagraph(typing_extensions.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
-class GoogleAppsCardV1Widget(typing.Dict[str, typing.Any]): ...
+class GoogleAppsCardV1Widget(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
@@ -448,13 +450,13 @@ class KeyValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
-    memberships: typing.List[Membership]
+    memberships: _list[Membership]
     nextPageToken: str
 
 @typing.type_check_only
 class ListSpacesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    spaces: typing.List[Space]
+    spaces: _list[Space]
 
 @typing.type_check_only
 class Media(typing_extensions.TypedDict, total=False):
@@ -470,7 +472,7 @@ class Membership(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Message(typing.Dict[str, typing.Any]): ...
+class Message(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class OnClick(typing_extensions.TypedDict, total=False):
@@ -484,7 +486,7 @@ class OpenLink(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Section(typing_extensions.TypedDict, total=False):
     header: str
-    widgets: typing.List[WidgetMarkup]
+    widgets: _list[WidgetMarkup]
 
 @typing.type_check_only
 class SlashCommand(typing_extensions.TypedDict, total=False):
@@ -508,7 +510,7 @@ class Space(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StringInputs(typing_extensions.TypedDict, total=False):
-    value: typing.List[str]
+    value: _list[str]
 
 @typing.type_check_only
 class TextButton(typing_extensions.TypedDict, total=False):
@@ -548,7 +550,7 @@ class UserMentionMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WidgetMarkup(typing_extensions.TypedDict, total=False):
-    buttons: typing.List[Button]
+    buttons: _list[Button]
     image: Image
     keyValue: KeyValue
     textParagraph: TextParagraph

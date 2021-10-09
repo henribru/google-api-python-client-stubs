@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
@@ -9,7 +11,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class GoogleFirestoreAdminV1beta2ExportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    collectionIds: typing.List[str]
+    collectionIds: _list[str]
     endTime: str
     operationState: typing_extensions.Literal[
         "OPERATION_STATE_UNSPECIFIED",
@@ -30,7 +32,7 @@ class GoogleFirestoreAdminV1beta2ExportDocumentsMetadata(
 class GoogleFirestoreAdminV1beta2ExportDocumentsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    collectionIds: typing.List[str]
+    collectionIds: _list[str]
     outputUriPrefix: str
 
 @typing.type_check_only
@@ -52,7 +54,7 @@ class GoogleFirestoreAdminV1beta2FieldOperationMetadata(
     documentProgress: GoogleFirestoreAdminV1beta2Progress
     endTime: str
     field: str
-    indexConfigDeltas: typing.List[GoogleFirestoreAdminV1beta2IndexConfigDelta]
+    indexConfigDeltas: _list[GoogleFirestoreAdminV1beta2IndexConfigDelta]
     startTime: str
     state: typing_extensions.Literal[
         "OPERATION_STATE_UNSPECIFIED",
@@ -69,7 +71,7 @@ class GoogleFirestoreAdminV1beta2FieldOperationMetadata(
 class GoogleFirestoreAdminV1beta2ImportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    collectionIds: typing.List[str]
+    collectionIds: _list[str]
     endTime: str
     inputUriPrefix: str
     operationState: typing_extensions.Literal[
@@ -90,12 +92,12 @@ class GoogleFirestoreAdminV1beta2ImportDocumentsMetadata(
 class GoogleFirestoreAdminV1beta2ImportDocumentsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    collectionIds: typing.List[str]
+    collectionIds: _list[str]
     inputUriPrefix: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1beta2Index(typing_extensions.TypedDict, total=False):
-    fields: typing.List[GoogleFirestoreAdminV1beta2IndexField]
+    fields: _list[GoogleFirestoreAdminV1beta2IndexField]
     name: str
     queryScope: typing_extensions.Literal[
         "QUERY_SCOPE_UNSPECIFIED", "COLLECTION", "COLLECTION_GROUP"
@@ -107,7 +109,7 @@ class GoogleFirestoreAdminV1beta2Index(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class GoogleFirestoreAdminV1beta2IndexConfig(typing_extensions.TypedDict, total=False):
     ancestorField: str
-    indexes: typing.List[GoogleFirestoreAdminV1beta2Index]
+    indexes: _list[GoogleFirestoreAdminV1beta2Index]
     reverting: bool
     usesAncestorConfig: bool
 
@@ -148,14 +150,14 @@ class GoogleFirestoreAdminV1beta2IndexOperationMetadata(
 class GoogleFirestoreAdminV1beta2ListFieldsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    fields: typing.List[GoogleFirestoreAdminV1beta2Field]
+    fields: _list[GoogleFirestoreAdminV1beta2Field]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1beta2ListIndexesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    indexes: typing.List[GoogleFirestoreAdminV1beta2Index]
+    indexes: _list[GoogleFirestoreAdminV1beta2Index]
     nextPageToken: str
 
 @typing.type_check_only
@@ -167,12 +169,12 @@ class GoogleFirestoreAdminV1beta2Progress(typing_extensions.TypedDict, total=Fal
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

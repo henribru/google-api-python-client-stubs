@@ -2,22 +2,24 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Attachment(typing_extensions.TypedDict, total=False):
-    mimeType: typing.List[str]
+    mimeType: _list[str]
     name: str
 
 @typing.type_check_only
 class BatchCreatePermissionsRequest(typing_extensions.TypedDict, total=False):
-    requests: typing.List[CreatePermissionRequest]
+    requests: _list[CreatePermissionRequest]
 
 @typing.type_check_only
 class BatchCreatePermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[Permission]
+    permissions: _list[Permission]
 
 @typing.type_check_only
 class BatchDeletePermissionsRequest(typing_extensions.TypedDict, total=False):
-    names: typing.List[str]
+    names: _list[str]
 
 @typing.type_check_only
 class CreatePermissionRequest(typing_extensions.TypedDict, total=False):
@@ -36,18 +38,18 @@ class Group(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListContent(typing_extensions.TypedDict, total=False):
-    listItems: typing.List[ListItem]
+    listItems: _list[ListItem]
 
 @typing.type_check_only
-class ListItem(typing.Dict[str, typing.Any]): ...
+class ListItem(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ListNotesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    notes: typing.List[Note]
+    notes: _list[Note]
 
 @typing.type_check_only
-class Note(typing.Dict[str, typing.Any]): ...
+class Note(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Permission(typing_extensions.TypedDict, total=False):
@@ -60,7 +62,7 @@ class Permission(typing_extensions.TypedDict, total=False):
     user: User
 
 @typing.type_check_only
-class Section(typing.Dict[str, typing.Any]): ...
+class Section(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TextContent(typing_extensions.TypedDict, total=False):

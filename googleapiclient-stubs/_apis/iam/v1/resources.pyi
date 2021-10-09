@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class IamResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -241,15 +243,13 @@ class IamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    keyTypes: typing.Union[
+                    keyTypes: typing_extensions.Literal[
+                        "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
+                    ]
+                    | _list[
                         typing_extensions.Literal[
                             "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
-                        ],
-                        typing.List[
-                            typing_extensions.Literal[
-                                "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
-                            ]
-                        ],
+                        ]
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ListServiceAccountKeysResponseHttpRequest: ...
@@ -369,9 +369,7 @@ class IamResource(googleapiclient.discovery.Resource):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -379,9 +377,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class LintPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LintPolicyResponse: ...
 
@@ -389,9 +385,7 @@ class LintPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListRolesResponse: ...
 
@@ -399,9 +393,7 @@ class ListRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListServiceAccountKeysResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListServiceAccountKeysResponse: ...
 
@@ -409,9 +401,7 @@ class ListServiceAccountKeysResponseHttpRequest(googleapiclient.http.HttpRequest
 class ListServiceAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListServiceAccountsResponse: ...
 
@@ -421,9 +411,7 @@ class ListWorkloadIdentityPoolProvidersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListWorkloadIdentityPoolProvidersResponse: ...
 
@@ -431,9 +419,7 @@ class ListWorkloadIdentityPoolProvidersResponseHttpRequest(
 class ListWorkloadIdentityPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListWorkloadIdentityPoolsResponse: ...
 
@@ -441,9 +427,7 @@ class ListWorkloadIdentityPoolsResponseHttpRequest(googleapiclient.http.HttpRequ
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
 
@@ -451,9 +435,7 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
 
@@ -461,9 +443,7 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
 class QueryAuditableServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> QueryAuditableServicesResponse: ...
 
@@ -471,9 +451,7 @@ class QueryAuditableServicesResponseHttpRequest(googleapiclient.http.HttpRequest
 class QueryGrantableRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> QueryGrantableRolesResponse: ...
 
@@ -481,9 +459,7 @@ class QueryGrantableRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class QueryTestablePermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> QueryTestablePermissionsResponse: ...
 
@@ -491,9 +467,7 @@ class QueryTestablePermissionsResponseHttpRequest(googleapiclient.http.HttpReque
 class RoleHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Role: ...
 
@@ -501,9 +475,7 @@ class RoleHttpRequest(googleapiclient.http.HttpRequest):
 class ServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ServiceAccount: ...
 
@@ -511,9 +483,7 @@ class ServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
 class ServiceAccountKeyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ServiceAccountKey: ...
 
@@ -521,9 +491,7 @@ class ServiceAccountKeyHttpRequest(googleapiclient.http.HttpRequest):
 class SignBlobResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SignBlobResponse: ...
 
@@ -531,9 +499,7 @@ class SignBlobResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SignJwtResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SignJwtResponse: ...
 
@@ -541,9 +507,7 @@ class SignJwtResponseHttpRequest(googleapiclient.http.HttpRequest):
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
 
@@ -551,9 +515,7 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class UndeleteServiceAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UndeleteServiceAccountResponse: ...
 
@@ -561,9 +523,7 @@ class UndeleteServiceAccountResponseHttpRequest(googleapiclient.http.HttpRequest
 class WorkloadIdentityPoolHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> WorkloadIdentityPool: ...
 
@@ -571,8 +531,6 @@ class WorkloadIdentityPoolHttpRequest(googleapiclient.http.HttpRequest):
 class WorkloadIdentityPoolProviderHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> WorkloadIdentityPoolProvider: ...

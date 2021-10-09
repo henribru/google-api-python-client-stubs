@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Aggregation(typing_extensions.TypedDict, total=False):
     alignmentPeriod: str
@@ -21,7 +23,7 @@ class Aggregation(typing_extensions.TypedDict, total=False):
         "REDUCE_PERCENTILE_50",
         "REDUCE_PERCENTILE_05",
     ]
-    groupByFields: typing.List[str]
+    groupByFields: _list[str]
     perSeriesAligner: typing_extensions.Literal[
         "ALIGN_NONE",
         "ALIGN_DELTA",
@@ -50,15 +52,15 @@ class AlertPolicy(typing_extensions.TypedDict, total=False):
     combiner: typing_extensions.Literal[
         "COMBINE_UNSPECIFIED", "AND", "OR", "AND_WITH_MATCHING_RESOURCE"
     ]
-    conditions: typing.List[Condition]
+    conditions: _list[Condition]
     creationRecord: MutationRecord
     displayName: str
     documentation: Documentation
     enabled: bool
     mutationRecord: MutationRecord
     name: str
-    notificationChannels: typing.List[str]
-    userLabels: typing.Dict[str, typing.Any]
+    notificationChannels: _list[str]
+    userLabels: dict[str, typing.Any]
     validity: Status
 
 @typing.type_check_only
@@ -82,9 +84,9 @@ class BasicAuthentication(typing_extensions.TypedDict, total=False):
 class BasicSli(typing_extensions.TypedDict, total=False):
     availability: AvailabilityCriteria
     latency: LatencyCriteria
-    location: typing.List[str]
-    method: typing.List[str]
-    version: typing.List[str]
+    location: _list[str]
+    method: _list[str]
+    version: _list[str]
 
 @typing.type_check_only
 class BucketOptions(typing_extensions.TypedDict, total=False):
@@ -106,19 +108,19 @@ class ClusterIstio(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CollectdPayload(typing_extensions.TypedDict, total=False):
     endTime: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     plugin: str
     pluginInstance: str
     startTime: str
     type: str
     typeInstance: str
-    values: typing.List[CollectdValue]
+    values: _list[CollectdValue]
 
 @typing.type_check_only
 class CollectdPayloadError(typing_extensions.TypedDict, total=False):
     error: Status
     index: int
-    valueErrors: typing.List[CollectdValueError]
+    valueErrors: _list[CollectdValueError]
 
 @typing.type_check_only
 class CollectdValue(typing_extensions.TypedDict, total=False):
@@ -155,22 +157,22 @@ class ContentMatcher(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateCollectdTimeSeriesRequest(typing_extensions.TypedDict, total=False):
-    collectdPayloads: typing.List[CollectdPayload]
+    collectdPayloads: _list[CollectdPayload]
     collectdVersion: str
     resource: MonitoredResource
 
 @typing.type_check_only
 class CreateCollectdTimeSeriesResponse(typing_extensions.TypedDict, total=False):
-    payloadErrors: typing.List[CollectdPayloadError]
+    payloadErrors: _list[CollectdPayloadError]
     summary: CreateTimeSeriesSummary
 
 @typing.type_check_only
 class CreateTimeSeriesRequest(typing_extensions.TypedDict, total=False):
-    timeSeries: typing.List[TimeSeries]
+    timeSeries: _list[TimeSeries]
 
 @typing.type_check_only
 class CreateTimeSeriesSummary(typing_extensions.TypedDict, total=False):
-    errors: typing.List[Error]
+    errors: _list[Error]
     successPointCount: int
     totalPointCount: int
 
@@ -179,10 +181,10 @@ class Custom(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Distribution(typing_extensions.TypedDict, total=False):
-    bucketCounts: typing.List[str]
+    bucketCounts: _list[str]
     bucketOptions: BucketOptions
     count: str
-    exemplars: typing.List[Exemplar]
+    exemplars: _list[Exemplar]
     mean: float
     range: Range
     sumOfSquaredDeviation: float
@@ -199,7 +201,7 @@ class Documentation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DroppedLabels(typing_extensions.TypedDict, total=False):
-    label: typing.Dict[str, typing.Any]
+    label: dict[str, typing.Any]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -211,13 +213,13 @@ class Error(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Exemplar(typing_extensions.TypedDict, total=False):
-    attachments: typing.List[typing.Dict[str, typing.Any]]
+    attachments: _list[dict[str, typing.Any]]
     timestamp: str
     value: float
 
 @typing.type_check_only
 class Explicit(typing_extensions.TypedDict, total=False):
-    bounds: typing.List[float]
+    bounds: _list[float]
 
 @typing.type_check_only
 class Exponential(typing_extensions.TypedDict, total=False):
@@ -259,7 +261,7 @@ class Field(typing_extensions.TypedDict, total=False):
     name: str
     number: int
     oneofIndex: int
-    options: typing.List[Option]
+    options: _list[Option]
     packed: bool
     typeUrl: str
 
@@ -294,7 +296,7 @@ class HttpCheck(typing_extensions.TypedDict, total=False):
     authInfo: BasicAuthentication
     body: str
     contentType: typing_extensions.Literal["TYPE_UNSPECIFIED", "URL_ENCODED"]
-    headers: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
     maskHeaders: bool
     path: str
     port: int
@@ -341,24 +343,24 @@ class Linear(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAlertPoliciesResponse(typing_extensions.TypedDict, total=False):
-    alertPolicies: typing.List[AlertPolicy]
+    alertPolicies: _list[AlertPolicy]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
 class ListGroupMembersResponse(typing_extensions.TypedDict, total=False):
-    members: typing.List[MonitoredResource]
+    members: _list[MonitoredResource]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
 class ListGroupsResponse(typing_extensions.TypedDict, total=False):
-    group: typing.List[Group]
+    group: _list[Group]
     nextPageToken: str
 
 @typing.type_check_only
 class ListMetricDescriptorsResponse(typing_extensions.TypedDict, total=False):
-    metricDescriptors: typing.List[MetricDescriptor]
+    metricDescriptors: _list[MetricDescriptor]
     nextPageToken: str
 
 @typing.type_check_only
@@ -366,53 +368,53 @@ class ListMonitoredResourceDescriptorsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    resourceDescriptors: typing.List[MonitoredResourceDescriptor]
+    resourceDescriptors: _list[MonitoredResourceDescriptor]
 
 @typing.type_check_only
 class ListNotificationChannelDescriptorsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    channelDescriptors: typing.List[NotificationChannelDescriptor]
+    channelDescriptors: _list[NotificationChannelDescriptor]
     nextPageToken: str
 
 @typing.type_check_only
 class ListNotificationChannelsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    notificationChannels: typing.List[NotificationChannel]
+    notificationChannels: _list[NotificationChannel]
     totalSize: int
 
 @typing.type_check_only
 class ListServiceLevelObjectivesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    serviceLevelObjectives: typing.List[ServiceLevelObjective]
+    serviceLevelObjectives: _list[ServiceLevelObjective]
 
 @typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    services: typing.List[Service]
+    services: _list[Service]
 
 @typing.type_check_only
 class ListTimeSeriesResponse(typing_extensions.TypedDict, total=False):
-    executionErrors: typing.List[Status]
+    executionErrors: _list[Status]
     nextPageToken: str
-    timeSeries: typing.List[TimeSeries]
+    timeSeries: _list[TimeSeries]
     unit: str
 
 @typing.type_check_only
 class ListUptimeCheckConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     totalSize: int
-    uptimeCheckConfigs: typing.List[UptimeCheckConfig]
+    uptimeCheckConfigs: _list[UptimeCheckConfig]
 
 @typing.type_check_only
 class ListUptimeCheckIpsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    uptimeCheckIps: typing.List[UptimeCheckIp]
+    uptimeCheckIps: _list[UptimeCheckIp]
 
 @typing.type_check_only
 class LogMatch(typing_extensions.TypedDict, total=False):
     filter: str
-    labelExtractors: typing.Dict[str, typing.Any]
+    labelExtractors: dict[str, typing.Any]
 
 @typing.type_check_only
 class MeshIstio(typing_extensions.TypedDict, total=False):
@@ -422,12 +424,12 @@ class MeshIstio(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Metric(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     type: str
 
 @typing.type_check_only
 class MetricAbsence(typing_extensions.TypedDict, total=False):
-    aggregations: typing.List[Aggregation]
+    aggregations: _list[Aggregation]
     duration: str
     filter: str
     trigger: Trigger
@@ -436,7 +438,7 @@ class MetricAbsence(typing_extensions.TypedDict, total=False):
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -451,7 +453,7 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
     metricKind: typing_extensions.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
-    monitoredResourceTypes: typing.List[str]
+    monitoredResourceTypes: _list[str]
     name: str
     type: str
     unit: str
@@ -487,7 +489,7 @@ class MetricRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetricThreshold(typing_extensions.TypedDict, total=False):
-    aggregations: typing.List[Aggregation]
+    aggregations: _list[Aggregation]
     comparison: typing_extensions.Literal[
         "COMPARISON_UNSPECIFIED",
         "COMPARISON_GT",
@@ -497,7 +499,7 @@ class MetricThreshold(typing_extensions.TypedDict, total=False):
         "COMPARISON_EQ",
         "COMPARISON_NE",
     ]
-    denominatorAggregations: typing.List[Aggregation]
+    denominatorAggregations: _list[Aggregation]
     denominatorFilter: str
     duration: str
     filter: str
@@ -506,14 +508,14 @@ class MetricThreshold(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MonitoredResource(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     type: str
 
 @typing.type_check_only
 class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -529,8 +531,8 @@ class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MonitoredResourceMetadata(typing_extensions.TypedDict, total=False):
-    systemLabels: typing.Dict[str, typing.Any]
-    userLabels: typing.Dict[str, typing.Any]
+    systemLabels: dict[str, typing.Any]
+    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class MonitoringQueryLanguageCondition(typing_extensions.TypedDict, total=False):
@@ -549,11 +551,11 @@ class NotificationChannel(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     enabled: bool
-    labels: typing.Dict[str, typing.Any]
-    mutationRecords: typing.List[MutationRecord]
+    labels: dict[str, typing.Any]
+    mutationRecords: _list[MutationRecord]
     name: str
     type: str
-    userLabels: typing.Dict[str, typing.Any]
+    userLabels: dict[str, typing.Any]
     verificationStatus: typing_extensions.Literal[
         "VERIFICATION_STATUS_UNSPECIFIED", "UNVERIFIED", "VERIFIED"
     ]
@@ -562,7 +564,7 @@ class NotificationChannel(typing_extensions.TypedDict, total=False):
 class NotificationChannelDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -591,7 +593,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Option(typing_extensions.TypedDict, total=False):
     name: str
-    value: typing.Dict[str, typing.Any]
+    value: dict[str, typing.Any]
 
 @typing.type_check_only
 class PerformanceThreshold(typing_extensions.TypedDict, total=False):
@@ -607,7 +609,7 @@ class Point(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PointData(typing_extensions.TypedDict, total=False):
     timeInterval: TimeInterval
-    values: typing.List[TypedValue]
+    values: _list[TypedValue]
 
 @typing.type_check_only
 class QueryTimeSeriesRequest(typing_extensions.TypedDict, total=False):
@@ -618,8 +620,8 @@ class QueryTimeSeriesRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueryTimeSeriesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    partialErrors: typing.List[Status]
-    timeSeriesData: typing.List[TimeSeriesData]
+    partialErrors: _list[Status]
+    timeSeriesData: _list[TimeSeriesData]
     timeSeriesDescriptor: TimeSeriesDescriptor
 
 @typing.type_check_only
@@ -655,7 +657,7 @@ class Service(typing_extensions.TypedDict, total=False):
     meshIstio: MeshIstio
     name: str
     telemetry: Telemetry
-    userLabels: typing.Dict[str, typing.Any]
+    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class ServiceLevelIndicator(typing_extensions.TypedDict, total=False):
@@ -680,7 +682,7 @@ class ServiceLevelObjective(typing_extensions.TypedDict, total=False):
     name: str
     rollingPeriod: str
     serviceLevelIndicator: ServiceLevelIndicator
-    userLabels: typing.Dict[str, typing.Any]
+    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class SourceContext(typing_extensions.TypedDict, total=False):
@@ -693,7 +695,7 @@ class SpanContext(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -716,7 +718,7 @@ class TimeSeries(typing_extensions.TypedDict, total=False):
     metricKind: typing_extensions.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
-    points: typing.List[Point]
+    points: _list[Point]
     resource: MonitoredResource
     unit: str
     valueType: typing_extensions.Literal[
@@ -731,13 +733,13 @@ class TimeSeries(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TimeSeriesData(typing_extensions.TypedDict, total=False):
-    labelValues: typing.List[LabelValue]
-    pointData: typing.List[PointData]
+    labelValues: _list[LabelValue]
+    pointData: _list[PointData]
 
 @typing.type_check_only
 class TimeSeriesDescriptor(typing_extensions.TypedDict, total=False):
-    labelDescriptors: typing.List[LabelDescriptor]
-    pointDescriptors: typing.List[ValueDescriptor]
+    labelDescriptors: _list[LabelDescriptor]
+    pointDescriptors: _list[ValueDescriptor]
 
 @typing.type_check_only
 class TimeSeriesRatio(typing_extensions.TypedDict, total=False):
@@ -752,10 +754,10 @@ class Trigger(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
-    fields: typing.List[Field]
+    fields: _list[Field]
     name: str
-    oneofs: typing.List[str]
-    options: typing.List[Option]
+    oneofs: _list[str]
+    options: _list[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
 
@@ -769,16 +771,16 @@ class TypedValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UptimeCheckConfig(typing_extensions.TypedDict, total=False):
-    contentMatchers: typing.List[ContentMatcher]
+    contentMatchers: _list[ContentMatcher]
     displayName: str
     httpCheck: HttpCheck
-    internalCheckers: typing.List[InternalChecker]
+    internalCheckers: _list[InternalChecker]
     isInternal: bool
     monitoredResource: MonitoredResource
     name: str
     period: str
     resourceGroup: ResourceGroup
-    selectedRegions: typing.List[str]
+    selectedRegions: _list[str]
     tcpCheck: TcpCheck
     timeout: str
 

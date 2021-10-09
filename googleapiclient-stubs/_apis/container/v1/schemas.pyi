@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorCount: str
@@ -42,7 +44,7 @@ class AutoprovisioningNodePoolDefaults(typing_extensions.TypedDict, total=False)
     imageType: str
     management: NodeManagement
     minCpuPlatform: str
-    oauthScopes: typing.List[str]
+    oauthScopes: _list[str]
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
     upgradeSettings: UpgradeSettings
@@ -88,7 +90,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     autoscaling: ClusterAutoscaling
     binaryAuthorization: BinaryAuthorization
     clusterIpv4Cidr: str
-    conditions: typing.List[StatusCondition]
+    conditions: _list[StatusCondition]
     confidentialNodes: ConfidentialNodes
     createTime: str
     currentMasterVersion: str
@@ -104,12 +106,12 @@ class Cluster(typing_extensions.TypedDict, total=False):
     id: str
     initialClusterVersion: str
     initialNodeCount: int
-    instanceGroupUrls: typing.List[str]
+    instanceGroupUrls: _list[str]
     ipAllocationPolicy: IPAllocationPolicy
     labelFingerprint: str
     legacyAbac: LegacyAbac
     location: str
-    locations: typing.List[str]
+    locations: _list[str]
     loggingConfig: LoggingConfig
     loggingService: str
     maintenancePolicy: MaintenancePolicy
@@ -123,11 +125,11 @@ class Cluster(typing_extensions.TypedDict, total=False):
     networkPolicy: NetworkPolicy
     nodeConfig: NodeConfig
     nodeIpv4CidrSize: int
-    nodePools: typing.List[NodePool]
+    nodePools: _list[NodePool]
     notificationConfig: NotificationConfig
     privateClusterConfig: PrivateClusterConfig
     releaseChannel: ReleaseChannel
-    resourceLabels: typing.Dict[str, typing.Any]
+    resourceLabels: dict[str, typing.Any]
     resourceUsageExportConfig: ResourceUsageExportConfig
     selfLink: str
     servicesIpv4Cidr: str
@@ -150,13 +152,13 @@ class Cluster(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
-    autoprovisioningLocations: typing.List[str]
+    autoprovisioningLocations: _list[str]
     autoprovisioningNodePoolDefaults: AutoprovisioningNodePoolDefaults
     autoscalingProfile: typing_extensions.Literal[
         "PROFILE_UNSPECIFIED", "OPTIMIZE_UTILIZATION", "BALANCED"
     ]
     enableNodeAutoprovisioning: bool
-    resourceLimits: typing.List[ResourceLimit]
+    resourceLimits: _list[ResourceLimit]
 
 @typing.type_check_only
 class ClusterUpdate(typing_extensions.TypedDict, total=False):
@@ -173,7 +175,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredImageType: str
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
     desiredL4ilbSubsettingConfig: ILBSubsettingConfig
-    desiredLocations: typing.List[str]
+    desiredLocations: _list[str]
     desiredLoggingConfig: LoggingConfig
     desiredLoggingService: str
     desiredMasterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
@@ -263,18 +265,18 @@ class GcpFilestoreCsiDriverConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetJSONWebKeysResponse(typing_extensions.TypedDict, total=False):
     cacheHeader: HttpCacheControlResponseHeader
-    keys: typing.List[Jwk]
+    keys: _list[Jwk]
 
 @typing.type_check_only
 class GetOpenIDConfigResponse(typing_extensions.TypedDict, total=False):
     cacheHeader: HttpCacheControlResponseHeader
-    claims_supported: typing.List[str]
-    grant_types: typing.List[str]
-    id_token_signing_alg_values_supported: typing.List[str]
+    claims_supported: _list[str]
+    grant_types: _list[str]
+    id_token_signing_alg_values_supported: _list[str]
     issuer: str
     jwks_uri: str
-    response_types_supported: typing.List[str]
-    subject_types_supported: typing.List[str]
+    response_types_supported: _list[str]
+    subject_types_supported: _list[str]
 
 @typing.type_check_only
 class HorizontalPodAutoscaling(typing_extensions.TypedDict, total=False):
@@ -336,30 +338,30 @@ class LegacyAbac(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
-    sysctls: typing.Dict[str, typing.Any]
+    sysctls: dict[str, typing.Any]
 
 @typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
-    clusters: typing.List[Cluster]
-    missingZones: typing.List[str]
+    clusters: _list[Cluster]
+    missingZones: _list[str]
 
 @typing.type_check_only
 class ListNodePoolsResponse(typing_extensions.TypedDict, total=False):
-    nodePools: typing.List[NodePool]
+    nodePools: _list[NodePool]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    missingZones: typing.List[str]
-    operations: typing.List[Operation]
+    missingZones: _list[str]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListUsableSubnetworksResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    subnetworks: typing.List[UsableSubnetwork]
+    subnetworks: _list[UsableSubnetwork]
 
 @typing.type_check_only
 class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
-    enableComponents: typing.List[str]
+    enableComponents: _list[str]
 
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
@@ -373,7 +375,7 @@ class MaintenancePolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     dailyMaintenanceWindow: DailyMaintenanceWindow
-    maintenanceExclusions: typing.Dict[str, typing.Any]
+    maintenanceExclusions: dict[str, typing.Any]
     recurringWindow: RecurringTimeWindow
 
 @typing.type_check_only
@@ -387,7 +389,7 @@ class MasterAuth(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
-    cidrBlocks: typing.List[CidrBlock]
+    cidrBlocks: _list[CidrBlock]
     enabled: bool
 
 @typing.type_check_only
@@ -403,7 +405,7 @@ class Metric(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MonitoringComponentConfig(typing_extensions.TypedDict, total=False):
-    enableComponents: typing.List[str]
+    enableComponents: _list[str]
 
 @typing.type_check_only
 class MonitoringConfig(typing_extensions.TypedDict, total=False):
@@ -437,28 +439,28 @@ class NetworkPolicyConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
-    accelerators: typing.List[AcceleratorConfig]
+    accelerators: _list[AcceleratorConfig]
     bootDiskKmsKey: str
     diskSizeGb: int
     diskType: str
     gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     linuxNodeConfig: LinuxNodeConfig
     localSsdCount: int
     machineType: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     minCpuPlatform: str
     nodeGroup: str
-    oauthScopes: typing.List[str]
+    oauthScopes: _list[str]
     preemptible: bool
     reservationAffinity: ReservationAffinity
     sandboxConfig: SandboxConfig
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
-    tags: typing.List[str]
-    taints: typing.List[NodeTaint]
+    tags: _list[str]
+    taints: _list[NodeTaint]
     workloadMetadataConfig: WorkloadMetadataConfig
 
 @typing.type_check_only
@@ -482,11 +484,11 @@ class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodePool(typing_extensions.TypedDict, total=False):
     autoscaling: NodePoolAutoscaling
-    conditions: typing.List[StatusCondition]
+    conditions: _list[StatusCondition]
     config: NodeConfig
     initialNodeCount: int
-    instanceGroupUrls: typing.List[str]
-    locations: typing.List[str]
+    instanceGroupUrls: _list[str]
+    locations: _list[str]
     management: NodeManagement
     maxPodsConstraint: MaxPodsConstraint
     name: str
@@ -526,10 +528,10 @@ class NotificationConfig(typing_extensions.TypedDict, total=False):
     pubsub: PubSub
 
 @typing.type_check_only
-class Operation(typing.Dict[str, typing.Any]): ...
+class Operation(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class OperationProgress(typing.Dict[str, typing.Any]): ...
+class OperationProgress(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
@@ -563,7 +565,7 @@ class ReleaseChannel(typing_extensions.TypedDict, total=False):
 class ReleaseChannelConfig(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal["UNSPECIFIED", "RAPID", "REGULAR", "STABLE"]
     defaultVersion: str
-    validVersions: typing.List[str]
+    validVersions: _list[str]
 
 @typing.type_check_only
 class ReservationAffinity(typing_extensions.TypedDict, total=False):
@@ -571,7 +573,7 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
         "UNSPECIFIED", "NO_RESERVATION", "ANY_RESERVATION", "SPECIFIC_RESERVATION"
     ]
     key: str
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class ResourceLimit(typing_extensions.TypedDict, total=False):
@@ -599,12 +601,12 @@ class SandboxConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServerConfig(typing_extensions.TypedDict, total=False):
-    channels: typing.List[ReleaseChannelConfig]
+    channels: _list[ReleaseChannelConfig]
     defaultClusterVersion: str
     defaultImageType: str
-    validImageTypes: typing.List[str]
-    validMasterVersions: typing.List[str]
-    validNodeVersions: typing.List[str]
+    validImageTypes: _list[str]
+    validMasterVersions: _list[str]
+    validNodeVersions: _list[str]
 
 @typing.type_check_only
 class SetAddonsConfigRequest(typing_extensions.TypedDict, total=False):
@@ -620,7 +622,7 @@ class SetLabelsRequest(typing_extensions.TypedDict, total=False):
     labelFingerprint: str
     name: str
     projectId: str
-    resourceLabels: typing.Dict[str, typing.Any]
+    resourceLabels: dict[str, typing.Any]
     zone: str
 
 @typing.type_check_only
@@ -634,7 +636,7 @@ class SetLegacyAbacRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetLocationsRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
-    locations: typing.List[str]
+    locations: _list[str]
     name: str
     projectId: str
     zone: str
@@ -729,7 +731,7 @@ class StartIPRotationRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -792,7 +794,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     imageType: str
     kubeletConfig: NodeKubeletConfig
     linuxNodeConfig: LinuxNodeConfig
-    locations: typing.List[str]
+    locations: _list[str]
     name: str
     nodePoolId: str
     nodeVersion: str
@@ -830,7 +832,7 @@ class UpgradeSettings(typing_extensions.TypedDict, total=False):
 class UsableSubnetwork(typing_extensions.TypedDict, total=False):
     ipCidrRange: str
     network: str
-    secondaryIpRanges: typing.List[UsableSubnetworkSecondaryRange]
+    secondaryIpRanges: _list[UsableSubnetworkSecondaryRange]
     statusMessage: str
     subnetwork: str
 

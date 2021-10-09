@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class FirebaseDynamicLinksResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -47,9 +49,7 @@ class FirebaseDynamicLinksResource(googleapiclient.discovery.Resource):
 class CreateManagedShortLinkResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreateManagedShortLinkResponse: ...
 
@@ -57,9 +57,7 @@ class CreateManagedShortLinkResponseHttpRequest(googleapiclient.http.HttpRequest
 class CreateShortDynamicLinkResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreateShortDynamicLinkResponse: ...
 
@@ -67,9 +65,7 @@ class CreateShortDynamicLinkResponseHttpRequest(googleapiclient.http.HttpRequest
 class DynamicLinkStatsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DynamicLinkStats: ...
 
@@ -77,9 +73,7 @@ class DynamicLinkStatsHttpRequest(googleapiclient.http.HttpRequest):
 class GetIosPostInstallAttributionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetIosPostInstallAttributionResponse: ...
 
@@ -87,8 +81,6 @@ class GetIosPostInstallAttributionResponseHttpRequest(googleapiclient.http.HttpR
 class GetIosReopenAttributionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetIosReopenAttributionResponse: ...

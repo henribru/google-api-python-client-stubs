@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class SemanticTileResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -69,17 +71,13 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             clientInfo_userId: str = ...,
             maxElevationResolutionCells: int = ...,
             minElevationResolutionCells: int = ...,
-            terrainFormats: typing.Union[
+            terrainFormats: typing_extensions.Literal[
+                "TERRAIN_FORMAT_UNKNOWN", "FIRST_DERIVATIVE", "SECOND_DERIVATIVE"
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "TERRAIN_FORMAT_UNKNOWN", "FIRST_DERIVATIVE", "SECOND_DERIVATIVE"
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "TERRAIN_FORMAT_UNKNOWN",
-                        "FIRST_DERIVATIVE",
-                        "SECOND_DERIVATIVE",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> TerrainTileHttpRequest: ...
@@ -90,9 +88,7 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
 class FeatureTileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FeatureTile: ...
 
@@ -100,8 +96,6 @@ class FeatureTileHttpRequest(googleapiclient.http.HttpRequest):
 class TerrainTileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TerrainTile: ...

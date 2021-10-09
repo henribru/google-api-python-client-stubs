@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Authentication(typing_extensions.TypedDict, total=False):
     customAccount: CustomAccount
@@ -53,7 +55,7 @@ class FindingTypeStats(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Form(typing_extensions.TypedDict, total=False):
     actionUri: str
-    fields: typing.List[str]
+    fields: _list[str]
 
 @typing.type_check_only
 class GoogleAccount(typing_extensions.TypedDict, total=False):
@@ -75,38 +77,38 @@ class IapTestServiceAccountInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListCrawledUrlsResponse(typing_extensions.TypedDict, total=False):
-    crawledUrls: typing.List[CrawledUrl]
+    crawledUrls: _list[CrawledUrl]
     nextPageToken: str
 
 @typing.type_check_only
 class ListFindingTypeStatsResponse(typing_extensions.TypedDict, total=False):
-    findingTypeStats: typing.List[FindingTypeStats]
+    findingTypeStats: _list[FindingTypeStats]
 
 @typing.type_check_only
 class ListFindingsResponse(typing_extensions.TypedDict, total=False):
-    findings: typing.List[Finding]
+    findings: _list[Finding]
     nextPageToken: str
 
 @typing.type_check_only
 class ListScanConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    scanConfigs: typing.List[ScanConfig]
+    scanConfigs: _list[ScanConfig]
 
 @typing.type_check_only
 class ListScanRunsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    scanRuns: typing.List[ScanRun]
+    scanRuns: _list[ScanRun]
 
 @typing.type_check_only
 class OutdatedLibrary(typing_extensions.TypedDict, total=False):
-    learnMoreUrls: typing.List[str]
+    learnMoreUrls: _list[str]
     libraryName: str
     version: str
 
 @typing.type_check_only
 class ScanConfig(typing_extensions.TypedDict, total=False):
     authentication: Authentication
-    blacklistPatterns: typing.List[str]
+    blacklistPatterns: _list[str]
     displayName: str
     exportToSecurityCommandCenter: typing_extensions.Literal[
         "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED", "ENABLED", "DISABLED"
@@ -117,7 +119,7 @@ class ScanConfig(typing_extensions.TypedDict, total=False):
     name: str
     riskLevel: typing_extensions.Literal["RISK_LEVEL_UNSPECIFIED", "NORMAL", "LOW"]
     schedule: Schedule
-    startingUrls: typing.List[str]
+    startingUrls: _list[str]
     staticIpScan: bool
     userAgent: typing_extensions.Literal[
         "USER_AGENT_UNSPECIFIED", "CHROME_LINUX", "CHROME_ANDROID", "SAFARI_IPHONE"
@@ -187,7 +189,7 @@ class ScanRun(typing_extensions.TypedDict, total=False):
     startTime: str
     urlsCrawledCount: str
     urlsTestedCount: str
-    warningTraces: typing.List[ScanRunWarningTrace]
+    warningTraces: _list[ScanRunWarningTrace]
 
 @typing.type_check_only
 class ScanRunErrorTrace(typing_extensions.TypedDict, total=False):
@@ -232,12 +234,12 @@ class ViolatingResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VulnerableHeaders(typing_extensions.TypedDict, total=False):
-    headers: typing.List[Header]
-    missingHeaders: typing.List[Header]
+    headers: _list[Header]
+    missingHeaders: _list[Header]
 
 @typing.type_check_only
 class VulnerableParameters(typing_extensions.TypedDict, total=False):
-    parameterNames: typing.List[str]
+    parameterNames: _list[str]
 
 @typing.type_check_only
 class Xss(typing_extensions.TypedDict, total=False):
@@ -260,5 +262,5 @@ class Xss(typing_extensions.TypedDict, total=False):
         "USER_CONTROLLABLE_URL",
     ]
     errorMessage: str
-    stackTraces: typing.List[str]
+    stackTraces: _list[str]
     storedXssSeedingUrl: str

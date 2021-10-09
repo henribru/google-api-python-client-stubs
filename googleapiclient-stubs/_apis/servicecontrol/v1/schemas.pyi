@@ -2,9 +2,11 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AllocateInfo(typing_extensions.TypedDict, total=False):
-    unusedArguments: typing.List[str]
+    unusedArguments: _list[str]
 
 @typing.type_check_only
 class AllocateQuotaRequest(typing_extensions.TypedDict, total=False):
@@ -13,10 +15,10 @@ class AllocateQuotaRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AllocateQuotaResponse(typing_extensions.TypedDict, total=False):
-    allocateErrors: typing.List[QuotaError]
+    allocateErrors: _list[QuotaError]
     allocateInfo: AllocateInfo
     operationId: str
-    quotaMetrics: typing.List[MetricValueSet]
+    quotaMetrics: _list[MetricValueSet]
     serviceConfigId: str
 
 @typing.type_check_only
@@ -27,31 +29,31 @@ class AttributeValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Attributes(typing_extensions.TypedDict, total=False):
-    attributeMap: typing.Dict[str, typing.Any]
+    attributeMap: dict[str, typing.Any]
     droppedAttributesCount: int
 
 @typing.type_check_only
 class AuditLog(typing_extensions.TypedDict, total=False):
     authenticationInfo: AuthenticationInfo
-    authorizationInfo: typing.List[AuthorizationInfo]
-    metadata: typing.Dict[str, typing.Any]
+    authorizationInfo: _list[AuthorizationInfo]
+    metadata: dict[str, typing.Any]
     methodName: str
     numResponseItems: str
-    request: typing.Dict[str, typing.Any]
+    request: dict[str, typing.Any]
     requestMetadata: RequestMetadata
     resourceLocation: ResourceLocation
     resourceName: str
-    resourceOriginalState: typing.Dict[str, typing.Any]
-    response: typing.Dict[str, typing.Any]
-    serviceData: typing.Dict[str, typing.Any]
+    resourceOriginalState: dict[str, typing.Any]
+    response: dict[str, typing.Any]
+    serviceData: dict[str, typing.Any]
     serviceName: str
     status: Status
 
 @typing.type_check_only
 class Auth(typing_extensions.TypedDict, total=False):
-    accessLevels: typing.List[str]
-    audiences: typing.List[str]
-    claims: typing.Dict[str, typing.Any]
+    accessLevels: _list[str]
+    audiences: _list[str]
+    claims: dict[str, typing.Any]
     presenter: str
     principal: str
 
@@ -60,9 +62,9 @@ class AuthenticationInfo(typing_extensions.TypedDict, total=False):
     authoritySelector: str
     principalEmail: str
     principalSubject: str
-    serviceAccountDelegationInfo: typing.List[ServiceAccountDelegationInfo]
+    serviceAccountDelegationInfo: _list[ServiceAccountDelegationInfo]
     serviceAccountKeyName: str
-    thirdPartyPrincipal: typing.Dict[str, typing.Any]
+    thirdPartyPrincipal: dict[str, typing.Any]
 
 @typing.type_check_only
 class AuthorizationInfo(typing_extensions.TypedDict, total=False):
@@ -118,7 +120,7 @@ class CheckError(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckInfo(typing_extensions.TypedDict, total=False):
     consumerInfo: ConsumerInfo
-    unusedArguments: typing.List[str]
+    unusedArguments: _list[str]
 
 @typing.type_check_only
 class CheckRequest(typing_extensions.TypedDict, total=False):
@@ -129,7 +131,7 @@ class CheckRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CheckResponse(typing_extensions.TypedDict, total=False):
-    checkErrors: typing.List[CheckError]
+    checkErrors: _list[CheckError]
     checkInfo: CheckInfo
     operationId: str
     quotaInfo: QuotaInfo
@@ -150,9 +152,9 @@ class ConsumerInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Distribution(typing_extensions.TypedDict, total=False):
-    bucketCounts: typing.List[str]
+    bucketCounts: _list[str]
     count: str
-    exemplars: typing.List[Exemplar]
+    exemplars: _list[Exemplar]
     explicitBuckets: ExplicitBuckets
     exponentialBuckets: ExponentialBuckets
     linearBuckets: LinearBuckets
@@ -163,13 +165,13 @@ class Distribution(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Exemplar(typing_extensions.TypedDict, total=False):
-    attachments: typing.List[typing.Dict[str, typing.Any]]
+    attachments: _list[dict[str, typing.Any]]
     timestamp: str
     value: float
 
 @typing.type_check_only
 class ExplicitBuckets(typing_extensions.TypedDict, total=False):
-    bounds: typing.List[float]
+    bounds: _list[float]
 
 @typing.type_check_only
 class ExponentialBuckets(typing_extensions.TypedDict, total=False):
@@ -180,7 +182,7 @@ class ExponentialBuckets(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FirstPartyPrincipal(typing_extensions.TypedDict, total=False):
     principalEmail: str
-    serviceMetadata: typing.Dict[str, typing.Any]
+    serviceMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class HttpRequest(typing_extensions.TypedDict, total=False):
@@ -210,10 +212,10 @@ class LinearBuckets(typing_extensions.TypedDict, total=False):
 class LogEntry(typing_extensions.TypedDict, total=False):
     httpRequest: HttpRequest
     insertId: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     operation: LogEntryOperation
-    protoPayload: typing.Dict[str, typing.Any]
+    protoPayload: dict[str, typing.Any]
     severity: typing_extensions.Literal[
         "DEFAULT",
         "DEBUG",
@@ -226,7 +228,7 @@ class LogEntry(typing_extensions.TypedDict, total=False):
         "EMERGENCY",
     ]
     sourceLocation: LogEntrySourceLocation
-    structPayload: typing.Dict[str, typing.Any]
+    structPayload: dict[str, typing.Any]
     textPayload: str
     timestamp: str
     trace: str
@@ -251,7 +253,7 @@ class MetricValue(typing_extensions.TypedDict, total=False):
     doubleValue: float
     endTime: str
     int64Value: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     moneyValue: Money
     startTime: str
     stringValue: str
@@ -259,7 +261,7 @@ class MetricValue(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetricValueSet(typing_extensions.TypedDict, total=False):
     metricName: str
-    metricValues: typing.List[MetricValue]
+    metricValues: _list[MetricValue]
 
 @typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
@@ -271,23 +273,23 @@ class Money(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     consumerId: str
     endTime: str
-    extensions: typing.List[typing.Dict[str, typing.Any]]
+    extensions: _list[dict[str, typing.Any]]
     importance: typing_extensions.Literal["LOW", "HIGH", "DEBUG"]
-    labels: typing.Dict[str, typing.Any]
-    logEntries: typing.List[LogEntry]
-    metricValueSets: typing.List[MetricValueSet]
+    labels: dict[str, typing.Any]
+    logEntries: _list[LogEntry]
+    metricValueSets: _list[MetricValueSet]
     operationId: str
     operationName: str
     quotaProperties: QuotaProperties
-    resources: typing.List[ResourceInfo]
+    resources: _list[ResourceInfo]
     startTime: str
-    traceSpans: typing.List[TraceSpan]
-    userLabels: typing.Dict[str, typing.Any]
+    traceSpans: _list[TraceSpan]
+    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class Peer(typing_extensions.TypedDict, total=False):
     ip: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     port: str
     principal: str
     regionCode: str
@@ -316,17 +318,17 @@ class QuotaError(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QuotaInfo(typing_extensions.TypedDict, total=False):
-    limitExceeded: typing.List[str]
-    quotaConsumed: typing.Dict[str, typing.Any]
-    quotaMetrics: typing.List[MetricValueSet]
+    limitExceeded: _list[str]
+    quotaConsumed: dict[str, typing.Any]
+    quotaMetrics: _list[MetricValueSet]
 
 @typing.type_check_only
 class QuotaOperation(typing_extensions.TypedDict, total=False):
     consumerId: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     methodName: str
     operationId: str
-    quotaMetrics: typing.List[MetricValueSet]
+    quotaMetrics: _list[MetricValueSet]
     quotaMode: typing_extensions.Literal[
         "UNSPECIFIED",
         "NORMAL",
@@ -349,19 +351,19 @@ class ReportError(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReportRequest(typing_extensions.TypedDict, total=False):
-    operations: typing.List[Operation]
+    operations: _list[Operation]
     serviceConfigId: str
 
 @typing.type_check_only
 class ReportResponse(typing_extensions.TypedDict, total=False):
-    reportErrors: typing.List[ReportError]
+    reportErrors: _list[ReportError]
     serviceConfigId: str
     serviceRolloutId: str
 
 @typing.type_check_only
 class Request(typing_extensions.TypedDict, total=False):
     auth: Auth
-    headers: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
     host: str
     id: str
     method: str
@@ -383,12 +385,12 @@ class RequestMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
-    annotations: typing.Dict[str, typing.Any]
+    annotations: dict[str, typing.Any]
     createTime: str
     deleteTime: str
     displayName: str
     etag: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     location: str
     name: str
     service: str
@@ -404,8 +406,8 @@ class ResourceInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceLocation(typing_extensions.TypedDict, total=False):
-    currentLocations: typing.List[str]
-    originalLocations: typing.List[str]
+    currentLocations: _list[str]
+    originalLocations: _list[str]
 
 @typing.type_check_only
 class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
@@ -420,12 +422,12 @@ class SpanContext(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class ThirdPartyPrincipal(typing_extensions.TypedDict, total=False):
-    thirdPartyClaims: typing.Dict[str, typing.Any]
+    thirdPartyClaims: dict[str, typing.Any]
 
 @typing.type_check_only
 class TraceSpan(typing_extensions.TypedDict, total=False):

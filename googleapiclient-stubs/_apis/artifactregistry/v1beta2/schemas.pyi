@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AptArtifact(typing_extensions.TypedDict, total=False):
     architecture: str
@@ -16,7 +18,7 @@ class AptArtifact(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -34,7 +36,7 @@ class GoogleDevtoolsArtifactregistryV1beta2File(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
-    hashes: typing.List[Hash]
+    hashes: _list[Hash]
     name: str
     owner: str
     sizeBytes: str
@@ -52,7 +54,7 @@ class ImportAptArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportAptArtifactsGcsSource(typing_extensions.TypedDict, total=False):
-    uris: typing.List[str]
+    uris: _list[str]
     useWildcards: bool
 
 @typing.type_check_only
@@ -61,8 +63,8 @@ class ImportAptArtifactsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportAptArtifactsResponse(typing_extensions.TypedDict, total=False):
-    aptArtifacts: typing.List[AptArtifact]
-    errors: typing.List[ImportAptArtifactsErrorInfo]
+    aptArtifacts: _list[AptArtifact]
+    errors: _list[ImportAptArtifactsErrorInfo]
 
 @typing.type_check_only
 class ImportYumArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
@@ -71,7 +73,7 @@ class ImportYumArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportYumArtifactsGcsSource(typing_extensions.TypedDict, total=False):
-    uris: typing.List[str]
+    uris: _list[str]
     useWildcards: bool
 
 @typing.type_check_only
@@ -80,54 +82,54 @@ class ImportYumArtifactsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportYumArtifactsResponse(typing_extensions.TypedDict, total=False):
-    errors: typing.List[ImportYumArtifactsErrorInfo]
-    yumArtifacts: typing.List[YumArtifact]
+    errors: _list[ImportYumArtifactsErrorInfo]
+    yumArtifacts: _list[YumArtifact]
 
 @typing.type_check_only
 class ListFilesResponse(typing_extensions.TypedDict, total=False):
-    files: typing.List[GoogleDevtoolsArtifactregistryV1beta2File]
+    files: _list[GoogleDevtoolsArtifactregistryV1beta2File]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListPackagesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    packages: typing.List[Package]
+    packages: _list[Package]
 
 @typing.type_check_only
 class ListRepositoriesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    repositories: typing.List[Repository]
+    repositories: _list[Repository]
 
 @typing.type_check_only
 class ListTagsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tags: typing.List[Tag]
+    tags: _list[Tag]
 
 @typing.type_check_only
 class ListVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    versions: typing.List[Version]
+    versions: _list[Version]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Package(typing_extensions.TypedDict, total=False):
@@ -138,7 +140,7 @@ class Package(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -150,7 +152,7 @@ class Repository(typing_extensions.TypedDict, total=False):
         "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "PYPI", "APT", "YUM", "PYTHON"
     ]
     kmsKeyName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     updateTime: str
 
@@ -161,7 +163,7 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -171,11 +173,11 @@ class Tag(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class UploadAptArtifactMediaResponse(typing_extensions.TypedDict, total=False):
@@ -186,7 +188,7 @@ class UploadAptArtifactRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UploadAptArtifactResponse(typing_extensions.TypedDict, total=False):
-    aptArtifacts: typing.List[AptArtifact]
+    aptArtifacts: _list[AptArtifact]
 
 @typing.type_check_only
 class UploadYumArtifactMediaResponse(typing_extensions.TypedDict, total=False):
@@ -197,15 +199,15 @@ class UploadYumArtifactRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UploadYumArtifactResponse(typing_extensions.TypedDict, total=False):
-    yumArtifacts: typing.List[YumArtifact]
+    yumArtifacts: _list[YumArtifact]
 
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    relatedTags: typing.List[Tag]
+    relatedTags: _list[Tag]
     updateTime: str
 
 @typing.type_check_only

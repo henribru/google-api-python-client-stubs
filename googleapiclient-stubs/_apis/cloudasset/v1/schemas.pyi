@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AccessSelector(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
-    roles: typing.List[str]
+    permissions: _list[str]
+    roles: _list[str]
 
 @typing.type_check_only
 class AnalyzeIamPolicyLongrunningMetadata(typing_extensions.TypedDict, total=False):
@@ -23,21 +25,21 @@ class AnalyzeIamPolicyLongrunningResponse(typing_extensions.TypedDict, total=Fal
 class AnalyzeIamPolicyResponse(typing_extensions.TypedDict, total=False):
     fullyExplored: bool
     mainAnalysis: IamPolicyAnalysis
-    serviceAccountImpersonationAnalysis: typing.List[IamPolicyAnalysis]
+    serviceAccountImpersonationAnalysis: _list[IamPolicyAnalysis]
 
 @typing.type_check_only
 class AnalyzeMoveResponse(typing_extensions.TypedDict, total=False):
-    moveAnalysis: typing.List[MoveAnalysis]
+    moveAnalysis: _list[MoveAnalysis]
 
 @typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     accessLevel: GoogleIdentityAccesscontextmanagerV1AccessLevel
     accessPolicy: GoogleIdentityAccesscontextmanagerV1AccessPolicy
-    ancestors: typing.List[str]
+    ancestors: _list[str]
     assetType: str
     iamPolicy: Policy
     name: str
-    orgPolicy: typing.List[GoogleCloudOrgpolicyV1Policy]
+    orgPolicy: _list[GoogleCloudOrgpolicyV1Policy]
     osInventory: Inventory
     relatedAssets: RelatedAssets
     resource: Resource
@@ -47,23 +49,23 @@ class Asset(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AttachedResource(typing_extensions.TypedDict, total=False):
     assetType: str
-    versionedResources: typing.List[VersionedResource]
+    versionedResources: _list[VersionedResource]
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
 class BatchGetAssetsHistoryResponse(typing_extensions.TypedDict, total=False):
-    assets: typing.List[TemporalAsset]
+    assets: _list[TemporalAsset]
 
 @typing.type_check_only
 class BigQueryDestination(typing_extensions.TypedDict, total=False):
@@ -76,7 +78,7 @@ class BigQueryDestination(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -105,11 +107,11 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Explanation(typing_extensions.TypedDict, total=False):
-    matchedPermissions: typing.Dict[str, typing.Any]
+    matchedPermissions: dict[str, typing.Any]
 
 @typing.type_check_only
 class ExportAssetsRequest(typing_extensions.TypedDict, total=False):
-    assetTypes: typing.List[str]
+    assetTypes: _list[str]
     contentType: typing_extensions.Literal[
         "CONTENT_TYPE_UNSPECIFIED",
         "RESOURCE",
@@ -121,7 +123,7 @@ class ExportAssetsRequest(typing_extensions.TypedDict, total=False):
     ]
     outputConfig: OutputConfig
     readTime: str
-    relationshipTypes: typing.List[str]
+    relationshipTypes: _list[str]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -132,8 +134,8 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Feed(typing_extensions.TypedDict, total=False):
-    assetNames: typing.List[str]
-    assetTypes: typing.List[str]
+    assetNames: _list[str]
+    assetTypes: _list[str]
     condition: Expr
     contentType: typing_extensions.Literal[
         "CONTENT_TYPE_UNSPECIFIED",
@@ -146,7 +148,7 @@ class Feed(typing_extensions.TypedDict, total=False):
     ]
     feedOutputConfig: FeedOutputConfig
     name: str
-    relationshipTypes: typing.List[str]
+    relationshipTypes: _list[str]
 
 @typing.type_check_only
 class FeedOutputConfig(typing_extensions.TypedDict, total=False):
@@ -165,10 +167,10 @@ class GoogleCloudAssetV1Access(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudAssetV1AccessControlList(typing_extensions.TypedDict, total=False):
-    accesses: typing.List[GoogleCloudAssetV1Access]
+    accesses: _list[GoogleCloudAssetV1Access]
     conditionEvaluation: ConditionEvaluation
-    resourceEdges: typing.List[GoogleCloudAssetV1Edge]
-    resources: typing.List[GoogleCloudAssetV1Resource]
+    resourceEdges: _list[GoogleCloudAssetV1Edge]
+    resources: _list[GoogleCloudAssetV1Resource]
 
 @typing.type_check_only
 class GoogleCloudAssetV1BigQueryDestination(typing_extensions.TypedDict, total=False):
@@ -193,8 +195,8 @@ class GoogleCloudAssetV1Identity(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudAssetV1IdentityList(typing_extensions.TypedDict, total=False):
-    groupEdges: typing.List[GoogleCloudAssetV1Edge]
-    identities: typing.List[GoogleCloudAssetV1Identity]
+    groupEdges: _list[GoogleCloudAssetV1Edge]
+    identities: _list[GoogleCloudAssetV1Identity]
 
 @typing.type_check_only
 class GoogleCloudAssetV1Resource(typing_extensions.TypedDict, total=False):
@@ -205,11 +207,11 @@ class GoogleCloudAssetV1Resource(typing_extensions.TypedDict, total=False):
 class GoogleCloudAssetV1p7beta1Asset(typing_extensions.TypedDict, total=False):
     accessLevel: GoogleIdentityAccesscontextmanagerV1AccessLevel
     accessPolicy: GoogleIdentityAccesscontextmanagerV1AccessPolicy
-    ancestors: typing.List[str]
+    ancestors: _list[str]
     assetType: str
     iamPolicy: Policy
     name: str
-    orgPolicy: typing.List[GoogleCloudOrgpolicyV1Policy]
+    orgPolicy: _list[GoogleCloudOrgpolicyV1Policy]
     relatedAssets: GoogleCloudAssetV1p7beta1RelatedAssets
     resource: GoogleCloudAssetV1p7beta1Resource
     servicePerimeter: GoogleIdentityAccesscontextmanagerV1ServicePerimeter
@@ -217,13 +219,13 @@ class GoogleCloudAssetV1p7beta1Asset(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudAssetV1p7beta1RelatedAsset(typing_extensions.TypedDict, total=False):
-    ancestors: typing.List[str]
+    ancestors: _list[str]
     asset: str
     assetType: str
 
 @typing.type_check_only
 class GoogleCloudAssetV1p7beta1RelatedAssets(typing_extensions.TypedDict, total=False):
-    assets: typing.List[GoogleCloudAssetV1p7beta1RelatedAsset]
+    assets: _list[GoogleCloudAssetV1p7beta1RelatedAsset]
     relationshipAttributes: GoogleCloudAssetV1p7beta1RelationshipAttributes
 
 @typing.type_check_only
@@ -237,7 +239,7 @@ class GoogleCloudAssetV1p7beta1RelationshipAttributes(
 
 @typing.type_check_only
 class GoogleCloudAssetV1p7beta1Resource(typing_extensions.TypedDict, total=False):
-    data: typing.Dict[str, typing.Any]
+    data: dict[str, typing.Any]
     discoveryDocumentUri: str
     discoveryName: str
     location: str
@@ -252,8 +254,8 @@ class GoogleCloudOrgpolicyV1BooleanPolicy(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GoogleCloudOrgpolicyV1ListPolicy(typing_extensions.TypedDict, total=False):
     allValues: typing_extensions.Literal["ALL_VALUES_UNSPECIFIED", "ALLOW", "DENY"]
-    allowedValues: typing.List[str]
-    deniedValues: typing.List[str]
+    allowedValues: _list[str]
+    deniedValues: _list[str]
     inheritFromParent: bool
     suggestedValue: str
 
@@ -295,7 +297,7 @@ class GoogleIdentityAccesscontextmanagerV1AccessPolicy(
 class GoogleIdentityAccesscontextmanagerV1ApiOperation(
     typing_extensions.TypedDict, total=False
 ):
-    methodSelectors: typing.List[GoogleIdentityAccesscontextmanagerV1MethodSelector]
+    methodSelectors: _list[GoogleIdentityAccesscontextmanagerV1MethodSelector]
     serviceName: str
 
 @typing.type_check_only
@@ -303,18 +305,18 @@ class GoogleIdentityAccesscontextmanagerV1BasicLevel(
     typing_extensions.TypedDict, total=False
 ):
     combiningFunction: typing_extensions.Literal["AND", "OR"]
-    conditions: typing.List[GoogleIdentityAccesscontextmanagerV1Condition]
+    conditions: _list[GoogleIdentityAccesscontextmanagerV1Condition]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1Condition(
     typing_extensions.TypedDict, total=False
 ):
     devicePolicy: GoogleIdentityAccesscontextmanagerV1DevicePolicy
-    ipSubnetworks: typing.List[str]
-    members: typing.List[str]
+    ipSubnetworks: _list[str]
+    members: _list[str]
     negate: bool
-    regions: typing.List[str]
-    requiredAccessLevels: typing.List[str]
+    regions: _list[str]
+    requiredAccessLevels: _list[str]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1CustomLevel(
@@ -326,9 +328,9 @@ class GoogleIdentityAccesscontextmanagerV1CustomLevel(
 class GoogleIdentityAccesscontextmanagerV1DevicePolicy(
     typing_extensions.TypedDict, total=False
 ):
-    allowedDeviceManagementLevels: typing.List[str]
-    allowedEncryptionStatuses: typing.List[str]
-    osConstraints: typing.List[GoogleIdentityAccesscontextmanagerV1OsConstraint]
+    allowedDeviceManagementLevels: _list[str]
+    allowedEncryptionStatuses: _list[str]
+    osConstraints: _list[GoogleIdentityAccesscontextmanagerV1OsConstraint]
     requireAdminApproval: bool
     requireCorpOwned: bool
     requireScreenlock: bool
@@ -337,7 +339,7 @@ class GoogleIdentityAccesscontextmanagerV1DevicePolicy(
 class GoogleIdentityAccesscontextmanagerV1EgressFrom(
     typing_extensions.TypedDict, total=False
 ):
-    identities: typing.List[str]
+    identities: _list[str]
     identityType: typing_extensions.Literal[
         "IDENTITY_TYPE_UNSPECIFIED",
         "ANY_IDENTITY",
@@ -356,21 +358,21 @@ class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
 class GoogleIdentityAccesscontextmanagerV1EgressTo(
     typing_extensions.TypedDict, total=False
 ):
-    operations: typing.List[GoogleIdentityAccesscontextmanagerV1ApiOperation]
-    resources: typing.List[str]
+    operations: _list[GoogleIdentityAccesscontextmanagerV1ApiOperation]
+    resources: _list[str]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1IngressFrom(
     typing_extensions.TypedDict, total=False
 ):
-    identities: typing.List[str]
+    identities: _list[str]
     identityType: typing_extensions.Literal[
         "IDENTITY_TYPE_UNSPECIFIED",
         "ANY_IDENTITY",
         "ANY_USER_ACCOUNT",
         "ANY_SERVICE_ACCOUNT",
     ]
-    sources: typing.List[GoogleIdentityAccesscontextmanagerV1IngressSource]
+    sources: _list[GoogleIdentityAccesscontextmanagerV1IngressSource]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1IngressPolicy(
@@ -390,8 +392,8 @@ class GoogleIdentityAccesscontextmanagerV1IngressSource(
 class GoogleIdentityAccesscontextmanagerV1IngressTo(
     typing_extensions.TypedDict, total=False
 ):
-    operations: typing.List[GoogleIdentityAccesscontextmanagerV1ApiOperation]
-    resources: typing.List[str]
+    operations: _list[GoogleIdentityAccesscontextmanagerV1ApiOperation]
+    resources: _list[str]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1MethodSelector(
@@ -434,26 +436,26 @@ class GoogleIdentityAccesscontextmanagerV1ServicePerimeter(
 class GoogleIdentityAccesscontextmanagerV1ServicePerimeterConfig(
     typing_extensions.TypedDict, total=False
 ):
-    accessLevels: typing.List[str]
-    egressPolicies: typing.List[GoogleIdentityAccesscontextmanagerV1EgressPolicy]
-    ingressPolicies: typing.List[GoogleIdentityAccesscontextmanagerV1IngressPolicy]
-    resources: typing.List[str]
-    restrictedServices: typing.List[str]
+    accessLevels: _list[str]
+    egressPolicies: _list[GoogleIdentityAccesscontextmanagerV1EgressPolicy]
+    ingressPolicies: _list[GoogleIdentityAccesscontextmanagerV1IngressPolicy]
+    resources: _list[str]
+    restrictedServices: _list[str]
     vpcAccessibleServices: GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices(
     typing_extensions.TypedDict, total=False
 ):
-    allowedServices: typing.List[str]
+    allowedServices: _list[str]
     enableRestriction: bool
 
 @typing.type_check_only
 class IamPolicyAnalysis(typing_extensions.TypedDict, total=False):
     analysisQuery: IamPolicyAnalysisQuery
-    analysisResults: typing.List[IamPolicyAnalysisResult]
+    analysisResults: _list[IamPolicyAnalysisResult]
     fullyExplored: bool
-    nonCriticalErrors: typing.List[IamPolicyAnalysisState]
+    nonCriticalErrors: _list[IamPolicyAnalysisState]
 
 @typing.type_check_only
 class IamPolicyAnalysisOutputConfig(typing_extensions.TypedDict, total=False):
@@ -471,7 +473,7 @@ class IamPolicyAnalysisQuery(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IamPolicyAnalysisResult(typing_extensions.TypedDict, total=False):
-    accessControlLists: typing.List[GoogleCloudAssetV1AccessControlList]
+    accessControlLists: _list[GoogleCloudAssetV1AccessControlList]
     attachedResourceFullName: str
     fullyExplored: bool
     iamBinding: Binding
@@ -504,7 +506,7 @@ class IamPolicyAnalysisState(typing_extensions.TypedDict, total=False):
 class IamPolicySearchResult(typing_extensions.TypedDict, total=False):
     assetType: str
     explanation: Explanation
-    folders: typing.List[str]
+    folders: _list[str]
     organization: str
     policy: Policy
     project: str
@@ -516,7 +518,7 @@ class IdentitySelector(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Inventory(typing_extensions.TypedDict, total=False):
-    items: typing.Dict[str, typing.Any]
+    items: dict[str, typing.Any]
     name: str
     osInfo: OsInfo
     updateTime: str
@@ -535,13 +537,13 @@ class Item(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
-    assets: typing.List[Asset]
+    assets: _list[Asset]
     nextPageToken: str
     readTime: str
 
 @typing.type_check_only
 class ListFeedsResponse(typing_extensions.TypedDict, total=False):
-    feeds: typing.List[Feed]
+    feeds: _list[Feed]
 
 @typing.type_check_only
 class MoveAnalysis(typing_extensions.TypedDict, total=False):
@@ -551,8 +553,8 @@ class MoveAnalysis(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MoveAnalysisResult(typing_extensions.TypedDict, total=False):
-    blockers: typing.List[MoveImpact]
-    warnings: typing.List[MoveImpact]
+    blockers: _list[MoveImpact]
+    warnings: _list[MoveImpact]
 
 @typing.type_check_only
 class MoveImpact(typing_extensions.TypedDict, total=False):
@@ -562,9 +564,9 @@ class MoveImpact(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Options(typing_extensions.TypedDict, total=False):
@@ -599,12 +601,12 @@ class PartitionSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Permissions(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -614,13 +616,13 @@ class PubsubDestination(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RelatedAsset(typing_extensions.TypedDict, total=False):
-    ancestors: typing.List[str]
+    ancestors: _list[str]
     asset: str
     assetType: str
 
 @typing.type_check_only
 class RelatedAssets(typing_extensions.TypedDict, total=False):
-    assets: typing.List[RelatedAsset]
+    assets: _list[RelatedAsset]
     relationshipAttributes: RelationshipAttributes
 
 @typing.type_check_only
@@ -630,7 +632,7 @@ class RelatedResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RelatedResources(typing_extensions.TypedDict, total=False):
-    relatedResources: typing.List[RelatedResource]
+    relatedResources: _list[RelatedResource]
 
 @typing.type_check_only
 class RelationshipAttributes(typing_extensions.TypedDict, total=False):
@@ -641,7 +643,7 @@ class RelationshipAttributes(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
-    data: typing.Dict[str, typing.Any]
+    data: dict[str, typing.Any]
     discoveryDocumentUri: str
     discoveryName: str
     location: str
@@ -651,26 +653,26 @@ class Resource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceSearchResult(typing_extensions.TypedDict, total=False):
-    additionalAttributes: typing.Dict[str, typing.Any]
+    additionalAttributes: dict[str, typing.Any]
     assetType: str
-    attachedResources: typing.List[AttachedResource]
+    attachedResources: _list[AttachedResource]
     createTime: str
     description: str
     displayName: str
-    folders: typing.List[str]
+    folders: _list[str]
     kmsKey: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     location: str
     name: str
-    networkTags: typing.List[str]
+    networkTags: _list[str]
     organization: str
     parentAssetType: str
     parentFullResourceName: str
     project: str
-    relationships: typing.Dict[str, typing.Any]
+    relationships: dict[str, typing.Any]
     state: str
     updateTime: str
-    versionedResources: typing.List[VersionedResource]
+    versionedResources: _list[VersionedResource]
 
 @typing.type_check_only
 class ResourceSelector(typing_extensions.TypedDict, total=False):
@@ -679,12 +681,12 @@ class ResourceSelector(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchAllIamPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    results: typing.List[IamPolicySearchResult]
+    results: _list[IamPolicySearchResult]
 
 @typing.type_check_only
 class SearchAllResourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    results: typing.List[ResourceSearchResult]
+    results: _list[ResourceSearchResult]
 
 @typing.type_check_only
 class SoftwarePackage(typing_extensions.TypedDict, total=False):
@@ -701,7 +703,7 @@ class SoftwarePackage(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -736,7 +738,7 @@ class VersionedPackage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VersionedResource(typing_extensions.TypedDict, total=False):
-    resource: typing.Dict[str, typing.Any]
+    resource: dict[str, typing.Any]
     version: str
 
 @typing.type_check_only
@@ -761,11 +763,11 @@ class WindowsUpdateCategory(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WindowsUpdatePackage(typing_extensions.TypedDict, total=False):
-    categories: typing.List[WindowsUpdateCategory]
+    categories: _list[WindowsUpdateCategory]
     description: str
-    kbArticleIds: typing.List[str]
+    kbArticleIds: _list[str]
     lastDeploymentChangeTime: str
-    moreInfoUrls: typing.List[str]
+    moreInfoUrls: _list[str]
     revisionNumber: int
     supportUrl: str
     title: str

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -49,9 +51,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
 class ListQueriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListQueriesResponse: ...
 
@@ -59,9 +59,7 @@ class ListQueriesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListReportsResponse: ...
 
@@ -69,8 +67,6 @@ class ListReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class QueryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Query: ...

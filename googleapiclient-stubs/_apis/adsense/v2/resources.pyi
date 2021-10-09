@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class AdsenseResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -178,7 +180,55 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "LAST_7_DAYS",
                     "LAST_30_DAYS",
                 ] = ...,
-                dimensions: typing.Union[
+                dimensions: typing_extensions.Literal[
+                    "DIMENSION_UNSPECIFIED",
+                    "DATE",
+                    "WEEK",
+                    "MONTH",
+                    "ACCOUNT_NAME",
+                    "AD_CLIENT_ID",
+                    "PRODUCT_NAME",
+                    "PRODUCT_CODE",
+                    "AD_UNIT_NAME",
+                    "AD_UNIT_ID",
+                    "AD_UNIT_SIZE_NAME",
+                    "AD_UNIT_SIZE_CODE",
+                    "CUSTOM_CHANNEL_NAME",
+                    "CUSTOM_CHANNEL_ID",
+                    "OWNED_SITE_DOMAIN_NAME",
+                    "OWNED_SITE_ID",
+                    "URL_CHANNEL_NAME",
+                    "URL_CHANNEL_ID",
+                    "BUYER_NETWORK_NAME",
+                    "BUYER_NETWORK_ID",
+                    "BID_TYPE_NAME",
+                    "BID_TYPE_CODE",
+                    "CREATIVE_SIZE_NAME",
+                    "CREATIVE_SIZE_CODE",
+                    "DOMAIN_NAME",
+                    "DOMAIN_CODE",
+                    "COUNTRY_NAME",
+                    "COUNTRY_CODE",
+                    "PLATFORM_TYPE_NAME",
+                    "PLATFORM_TYPE_CODE",
+                    "TARGETING_TYPE_NAME",
+                    "TARGETING_TYPE_CODE",
+                    "CONTENT_PLATFORM_NAME",
+                    "CONTENT_PLATFORM_CODE",
+                    "AD_PLACEMENT_NAME",
+                    "AD_PLACEMENT_CODE",
+                    "REQUESTED_AD_TYPE_NAME",
+                    "REQUESTED_AD_TYPE_CODE",
+                    "SERVED_AD_TYPE_NAME",
+                    "SERVED_AD_TYPE_CODE",
+                    "AD_FORMAT_NAME",
+                    "AD_FORMAT_CODE",
+                    "CUSTOM_SEARCH_STYLE_NAME",
+                    "CUSTOM_SEARCH_STYLE_ID",
+                    "DOMAIN_REGISTRANT",
+                    "WEBSEARCH_QUERY_STRING",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "DIMENSION_UNSPECIFIED",
                         "DATE",
@@ -226,65 +276,50 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "CUSTOM_SEARCH_STYLE_ID",
                         "DOMAIN_REGISTRANT",
                         "WEBSEARCH_QUERY_STRING",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "DIMENSION_UNSPECIFIED",
-                            "DATE",
-                            "WEEK",
-                            "MONTH",
-                            "ACCOUNT_NAME",
-                            "AD_CLIENT_ID",
-                            "PRODUCT_NAME",
-                            "PRODUCT_CODE",
-                            "AD_UNIT_NAME",
-                            "AD_UNIT_ID",
-                            "AD_UNIT_SIZE_NAME",
-                            "AD_UNIT_SIZE_CODE",
-                            "CUSTOM_CHANNEL_NAME",
-                            "CUSTOM_CHANNEL_ID",
-                            "OWNED_SITE_DOMAIN_NAME",
-                            "OWNED_SITE_ID",
-                            "URL_CHANNEL_NAME",
-                            "URL_CHANNEL_ID",
-                            "BUYER_NETWORK_NAME",
-                            "BUYER_NETWORK_ID",
-                            "BID_TYPE_NAME",
-                            "BID_TYPE_CODE",
-                            "CREATIVE_SIZE_NAME",
-                            "CREATIVE_SIZE_CODE",
-                            "DOMAIN_NAME",
-                            "DOMAIN_CODE",
-                            "COUNTRY_NAME",
-                            "COUNTRY_CODE",
-                            "PLATFORM_TYPE_NAME",
-                            "PLATFORM_TYPE_CODE",
-                            "TARGETING_TYPE_NAME",
-                            "TARGETING_TYPE_CODE",
-                            "CONTENT_PLATFORM_NAME",
-                            "CONTENT_PLATFORM_CODE",
-                            "AD_PLACEMENT_NAME",
-                            "AD_PLACEMENT_CODE",
-                            "REQUESTED_AD_TYPE_NAME",
-                            "REQUESTED_AD_TYPE_CODE",
-                            "SERVED_AD_TYPE_NAME",
-                            "SERVED_AD_TYPE_CODE",
-                            "AD_FORMAT_NAME",
-                            "AD_FORMAT_CODE",
-                            "CUSTOM_SEARCH_STYLE_NAME",
-                            "CUSTOM_SEARCH_STYLE_ID",
-                            "DOMAIN_REGISTRANT",
-                            "WEBSEARCH_QUERY_STRING",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 endDate_day: int = ...,
                 endDate_month: int = ...,
                 endDate_year: int = ...,
-                filters: typing.Union[str, typing.List[str]] = ...,
+                filters: str | _list[str] = ...,
                 languageCode: str = ...,
                 limit: int = ...,
-                metrics: typing.Union[
+                metrics: typing_extensions.Literal[
+                    "METRIC_UNSPECIFIED",
+                    "PAGE_VIEWS",
+                    "AD_REQUESTS",
+                    "MATCHED_AD_REQUESTS",
+                    "TOTAL_IMPRESSIONS",
+                    "IMPRESSIONS",
+                    "INDIVIDUAL_AD_IMPRESSIONS",
+                    "CLICKS",
+                    "PAGE_VIEWS_SPAM_RATIO",
+                    "AD_REQUESTS_SPAM_RATIO",
+                    "MATCHED_AD_REQUESTS_SPAM_RATIO",
+                    "IMPRESSIONS_SPAM_RATIO",
+                    "INDIVIDUAL_AD_IMPRESSIONS_SPAM_RATIO",
+                    "CLICKS_SPAM_RATIO",
+                    "AD_REQUESTS_COVERAGE",
+                    "PAGE_VIEWS_CTR",
+                    "AD_REQUESTS_CTR",
+                    "MATCHED_AD_REQUESTS_CTR",
+                    "IMPRESSIONS_CTR",
+                    "INDIVIDUAL_AD_IMPRESSIONS_CTR",
+                    "ACTIVE_VIEW_MEASURABILITY",
+                    "ACTIVE_VIEW_VIEWABILITY",
+                    "ACTIVE_VIEW_TIME",
+                    "ESTIMATED_EARNINGS",
+                    "PAGE_VIEWS_RPM",
+                    "AD_REQUESTS_RPM",
+                    "MATCHED_AD_REQUESTS_RPM",
+                    "IMPRESSIONS_RPM",
+                    "INDIVIDUAL_AD_IMPRESSIONS_RPM",
+                    "COST_PER_CLICK",
+                    "ADS_PER_IMPRESSION",
+                    "TOTAL_EARNINGS",
+                    "WEBSEARCH_RESULT_PAGES",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "METRIC_UNSPECIFIED",
                         "PAGE_VIEWS",
@@ -319,46 +354,9 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "ADS_PER_IMPRESSION",
                         "TOTAL_EARNINGS",
                         "WEBSEARCH_RESULT_PAGES",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "METRIC_UNSPECIFIED",
-                            "PAGE_VIEWS",
-                            "AD_REQUESTS",
-                            "MATCHED_AD_REQUESTS",
-                            "TOTAL_IMPRESSIONS",
-                            "IMPRESSIONS",
-                            "INDIVIDUAL_AD_IMPRESSIONS",
-                            "CLICKS",
-                            "PAGE_VIEWS_SPAM_RATIO",
-                            "AD_REQUESTS_SPAM_RATIO",
-                            "MATCHED_AD_REQUESTS_SPAM_RATIO",
-                            "IMPRESSIONS_SPAM_RATIO",
-                            "INDIVIDUAL_AD_IMPRESSIONS_SPAM_RATIO",
-                            "CLICKS_SPAM_RATIO",
-                            "AD_REQUESTS_COVERAGE",
-                            "PAGE_VIEWS_CTR",
-                            "AD_REQUESTS_CTR",
-                            "MATCHED_AD_REQUESTS_CTR",
-                            "IMPRESSIONS_CTR",
-                            "INDIVIDUAL_AD_IMPRESSIONS_CTR",
-                            "ACTIVE_VIEW_MEASURABILITY",
-                            "ACTIVE_VIEW_VIEWABILITY",
-                            "ACTIVE_VIEW_TIME",
-                            "ESTIMATED_EARNINGS",
-                            "PAGE_VIEWS_RPM",
-                            "AD_REQUESTS_RPM",
-                            "MATCHED_AD_REQUESTS_RPM",
-                            "IMPRESSIONS_RPM",
-                            "INDIVIDUAL_AD_IMPRESSIONS_RPM",
-                            "COST_PER_CLICK",
-                            "ADS_PER_IMPRESSION",
-                            "TOTAL_EARNINGS",
-                            "WEBSEARCH_RESULT_PAGES",
-                        ]
-                    ],
+                    ]
                 ] = ...,
-                orderBy: typing.Union[str, typing.List[str]] = ...,
+                orderBy: str | _list[str] = ...,
                 reportingTimeZone: typing_extensions.Literal[
                     "REPORTING_TIME_ZONE_UNSPECIFIED",
                     "ACCOUNT_TIME_ZONE",
@@ -384,7 +382,55 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "LAST_7_DAYS",
                     "LAST_30_DAYS",
                 ] = ...,
-                dimensions: typing.Union[
+                dimensions: typing_extensions.Literal[
+                    "DIMENSION_UNSPECIFIED",
+                    "DATE",
+                    "WEEK",
+                    "MONTH",
+                    "ACCOUNT_NAME",
+                    "AD_CLIENT_ID",
+                    "PRODUCT_NAME",
+                    "PRODUCT_CODE",
+                    "AD_UNIT_NAME",
+                    "AD_UNIT_ID",
+                    "AD_UNIT_SIZE_NAME",
+                    "AD_UNIT_SIZE_CODE",
+                    "CUSTOM_CHANNEL_NAME",
+                    "CUSTOM_CHANNEL_ID",
+                    "OWNED_SITE_DOMAIN_NAME",
+                    "OWNED_SITE_ID",
+                    "URL_CHANNEL_NAME",
+                    "URL_CHANNEL_ID",
+                    "BUYER_NETWORK_NAME",
+                    "BUYER_NETWORK_ID",
+                    "BID_TYPE_NAME",
+                    "BID_TYPE_CODE",
+                    "CREATIVE_SIZE_NAME",
+                    "CREATIVE_SIZE_CODE",
+                    "DOMAIN_NAME",
+                    "DOMAIN_CODE",
+                    "COUNTRY_NAME",
+                    "COUNTRY_CODE",
+                    "PLATFORM_TYPE_NAME",
+                    "PLATFORM_TYPE_CODE",
+                    "TARGETING_TYPE_NAME",
+                    "TARGETING_TYPE_CODE",
+                    "CONTENT_PLATFORM_NAME",
+                    "CONTENT_PLATFORM_CODE",
+                    "AD_PLACEMENT_NAME",
+                    "AD_PLACEMENT_CODE",
+                    "REQUESTED_AD_TYPE_NAME",
+                    "REQUESTED_AD_TYPE_CODE",
+                    "SERVED_AD_TYPE_NAME",
+                    "SERVED_AD_TYPE_CODE",
+                    "AD_FORMAT_NAME",
+                    "AD_FORMAT_CODE",
+                    "CUSTOM_SEARCH_STYLE_NAME",
+                    "CUSTOM_SEARCH_STYLE_ID",
+                    "DOMAIN_REGISTRANT",
+                    "WEBSEARCH_QUERY_STRING",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "DIMENSION_UNSPECIFIED",
                         "DATE",
@@ -432,65 +478,50 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "CUSTOM_SEARCH_STYLE_ID",
                         "DOMAIN_REGISTRANT",
                         "WEBSEARCH_QUERY_STRING",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "DIMENSION_UNSPECIFIED",
-                            "DATE",
-                            "WEEK",
-                            "MONTH",
-                            "ACCOUNT_NAME",
-                            "AD_CLIENT_ID",
-                            "PRODUCT_NAME",
-                            "PRODUCT_CODE",
-                            "AD_UNIT_NAME",
-                            "AD_UNIT_ID",
-                            "AD_UNIT_SIZE_NAME",
-                            "AD_UNIT_SIZE_CODE",
-                            "CUSTOM_CHANNEL_NAME",
-                            "CUSTOM_CHANNEL_ID",
-                            "OWNED_SITE_DOMAIN_NAME",
-                            "OWNED_SITE_ID",
-                            "URL_CHANNEL_NAME",
-                            "URL_CHANNEL_ID",
-                            "BUYER_NETWORK_NAME",
-                            "BUYER_NETWORK_ID",
-                            "BID_TYPE_NAME",
-                            "BID_TYPE_CODE",
-                            "CREATIVE_SIZE_NAME",
-                            "CREATIVE_SIZE_CODE",
-                            "DOMAIN_NAME",
-                            "DOMAIN_CODE",
-                            "COUNTRY_NAME",
-                            "COUNTRY_CODE",
-                            "PLATFORM_TYPE_NAME",
-                            "PLATFORM_TYPE_CODE",
-                            "TARGETING_TYPE_NAME",
-                            "TARGETING_TYPE_CODE",
-                            "CONTENT_PLATFORM_NAME",
-                            "CONTENT_PLATFORM_CODE",
-                            "AD_PLACEMENT_NAME",
-                            "AD_PLACEMENT_CODE",
-                            "REQUESTED_AD_TYPE_NAME",
-                            "REQUESTED_AD_TYPE_CODE",
-                            "SERVED_AD_TYPE_NAME",
-                            "SERVED_AD_TYPE_CODE",
-                            "AD_FORMAT_NAME",
-                            "AD_FORMAT_CODE",
-                            "CUSTOM_SEARCH_STYLE_NAME",
-                            "CUSTOM_SEARCH_STYLE_ID",
-                            "DOMAIN_REGISTRANT",
-                            "WEBSEARCH_QUERY_STRING",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 endDate_day: int = ...,
                 endDate_month: int = ...,
                 endDate_year: int = ...,
-                filters: typing.Union[str, typing.List[str]] = ...,
+                filters: str | _list[str] = ...,
                 languageCode: str = ...,
                 limit: int = ...,
-                metrics: typing.Union[
+                metrics: typing_extensions.Literal[
+                    "METRIC_UNSPECIFIED",
+                    "PAGE_VIEWS",
+                    "AD_REQUESTS",
+                    "MATCHED_AD_REQUESTS",
+                    "TOTAL_IMPRESSIONS",
+                    "IMPRESSIONS",
+                    "INDIVIDUAL_AD_IMPRESSIONS",
+                    "CLICKS",
+                    "PAGE_VIEWS_SPAM_RATIO",
+                    "AD_REQUESTS_SPAM_RATIO",
+                    "MATCHED_AD_REQUESTS_SPAM_RATIO",
+                    "IMPRESSIONS_SPAM_RATIO",
+                    "INDIVIDUAL_AD_IMPRESSIONS_SPAM_RATIO",
+                    "CLICKS_SPAM_RATIO",
+                    "AD_REQUESTS_COVERAGE",
+                    "PAGE_VIEWS_CTR",
+                    "AD_REQUESTS_CTR",
+                    "MATCHED_AD_REQUESTS_CTR",
+                    "IMPRESSIONS_CTR",
+                    "INDIVIDUAL_AD_IMPRESSIONS_CTR",
+                    "ACTIVE_VIEW_MEASURABILITY",
+                    "ACTIVE_VIEW_VIEWABILITY",
+                    "ACTIVE_VIEW_TIME",
+                    "ESTIMATED_EARNINGS",
+                    "PAGE_VIEWS_RPM",
+                    "AD_REQUESTS_RPM",
+                    "MATCHED_AD_REQUESTS_RPM",
+                    "IMPRESSIONS_RPM",
+                    "INDIVIDUAL_AD_IMPRESSIONS_RPM",
+                    "COST_PER_CLICK",
+                    "ADS_PER_IMPRESSION",
+                    "TOTAL_EARNINGS",
+                    "WEBSEARCH_RESULT_PAGES",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "METRIC_UNSPECIFIED",
                         "PAGE_VIEWS",
@@ -525,46 +556,9 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "ADS_PER_IMPRESSION",
                         "TOTAL_EARNINGS",
                         "WEBSEARCH_RESULT_PAGES",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "METRIC_UNSPECIFIED",
-                            "PAGE_VIEWS",
-                            "AD_REQUESTS",
-                            "MATCHED_AD_REQUESTS",
-                            "TOTAL_IMPRESSIONS",
-                            "IMPRESSIONS",
-                            "INDIVIDUAL_AD_IMPRESSIONS",
-                            "CLICKS",
-                            "PAGE_VIEWS_SPAM_RATIO",
-                            "AD_REQUESTS_SPAM_RATIO",
-                            "MATCHED_AD_REQUESTS_SPAM_RATIO",
-                            "IMPRESSIONS_SPAM_RATIO",
-                            "INDIVIDUAL_AD_IMPRESSIONS_SPAM_RATIO",
-                            "CLICKS_SPAM_RATIO",
-                            "AD_REQUESTS_COVERAGE",
-                            "PAGE_VIEWS_CTR",
-                            "AD_REQUESTS_CTR",
-                            "MATCHED_AD_REQUESTS_CTR",
-                            "IMPRESSIONS_CTR",
-                            "INDIVIDUAL_AD_IMPRESSIONS_CTR",
-                            "ACTIVE_VIEW_MEASURABILITY",
-                            "ACTIVE_VIEW_VIEWABILITY",
-                            "ACTIVE_VIEW_TIME",
-                            "ESTIMATED_EARNINGS",
-                            "PAGE_VIEWS_RPM",
-                            "AD_REQUESTS_RPM",
-                            "MATCHED_AD_REQUESTS_RPM",
-                            "IMPRESSIONS_RPM",
-                            "INDIVIDUAL_AD_IMPRESSIONS_RPM",
-                            "COST_PER_CLICK",
-                            "ADS_PER_IMPRESSION",
-                            "TOTAL_EARNINGS",
-                            "WEBSEARCH_RESULT_PAGES",
-                        ]
-                    ],
+                    ]
                 ] = ...,
-                orderBy: typing.Union[str, typing.List[str]] = ...,
+                orderBy: str | _list[str] = ...,
                 reportingTimeZone: typing_extensions.Literal[
                     "REPORTING_TIME_ZONE_UNSPECIFIED",
                     "ACCOUNT_TIME_ZONE",
@@ -610,9 +604,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
 class AccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Account: ...
 
@@ -620,9 +612,7 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
 class AdClientAdCodeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdClientAdCode: ...
 
@@ -630,9 +620,7 @@ class AdClientAdCodeHttpRequest(googleapiclient.http.HttpRequest):
 class AdUnitHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdUnit: ...
 
@@ -640,9 +628,7 @@ class AdUnitHttpRequest(googleapiclient.http.HttpRequest):
 class AdUnitAdCodeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdUnitAdCode: ...
 
@@ -650,9 +636,7 @@ class AdUnitAdCodeHttpRequest(googleapiclient.http.HttpRequest):
 class CustomChannelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CustomChannel: ...
 
@@ -660,9 +644,7 @@ class CustomChannelHttpRequest(googleapiclient.http.HttpRequest):
 class HttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> HttpBody: ...
 
@@ -670,9 +652,7 @@ class HttpBodyHttpRequest(googleapiclient.http.HttpRequest):
 class ListAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAccountsResponse: ...
 
@@ -680,9 +660,7 @@ class ListAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListAdClientsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAdClientsResponse: ...
 
@@ -690,9 +668,7 @@ class ListAdClientsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListAdUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAdUnitsResponse: ...
 
@@ -700,9 +676,7 @@ class ListAdUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAlertsResponse: ...
 
@@ -710,9 +684,7 @@ class ListAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListChildAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListChildAccountsResponse: ...
 
@@ -720,9 +692,7 @@ class ListChildAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListCustomChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCustomChannelsResponse: ...
 
@@ -730,9 +700,7 @@ class ListCustomChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListLinkedAdUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListLinkedAdUnitsResponse: ...
 
@@ -740,9 +708,7 @@ class ListLinkedAdUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListLinkedCustomChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListLinkedCustomChannelsResponse: ...
 
@@ -750,9 +716,7 @@ class ListLinkedCustomChannelsResponseHttpRequest(googleapiclient.http.HttpReque
 class ListPaymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListPaymentsResponse: ...
 
@@ -760,9 +724,7 @@ class ListPaymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListSavedReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListSavedReportsResponse: ...
 
@@ -770,9 +732,7 @@ class ListSavedReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListSitesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListSitesResponse: ...
 
@@ -780,9 +740,7 @@ class ListSitesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListUrlChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListUrlChannelsResponse: ...
 
@@ -790,9 +748,7 @@ class ListUrlChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ReportResultHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ReportResult: ...
 
@@ -800,8 +756,6 @@ class ReportResultHttpRequest(googleapiclient.http.HttpRequest):
 class SiteHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Site: ...

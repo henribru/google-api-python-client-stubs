@@ -2,18 +2,20 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class DirectoryList(typing_extensions.TypedDict, total=False):
     discoveryVersion: str
-    items: typing.List[typing.Dict[str, typing.Any]]
+    items: _list[dict[str, typing.Any]]
     kind: str
 
 @typing.type_check_only
-class JsonSchema(typing.Dict[str, typing.Any]): ...
+class JsonSchema(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RestDescription(typing_extensions.TypedDict, total=False):
-    auth: typing.Dict[str, typing.Any]
+    auth: dict[str, typing.Any]
     basePath: str
     baseUrl: str
     batchPath: str
@@ -23,22 +25,22 @@ class RestDescription(typing_extensions.TypedDict, total=False):
     documentationLink: str
     etag: str
     exponentialBackoffDefault: bool
-    features: typing.List[str]
-    icons: typing.Dict[str, typing.Any]
+    features: _list[str]
+    icons: dict[str, typing.Any]
     id: str
     kind: str
-    labels: typing.List[str]
-    methods: typing.Dict[str, typing.Any]
+    labels: _list[str]
+    methods: dict[str, typing.Any]
     name: str
     ownerDomain: str
     ownerName: str
     packagePath: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
     protocol: str
-    resources: typing.Dict[str, typing.Any]
+    resources: dict[str, typing.Any]
     revision: str
     rootUrl: str
-    schemas: typing.Dict[str, typing.Any]
+    schemas: dict[str, typing.Any]
     servicePath: str
     title: str
     version: str
@@ -51,13 +53,13 @@ class RestMethod(typing_extensions.TypedDict, total=False):
     flatPath: str
     httpMethod: str
     id: str
-    mediaUpload: typing.Dict[str, typing.Any]
-    parameterOrder: typing.List[str]
-    parameters: typing.Dict[str, typing.Any]
+    mediaUpload: dict[str, typing.Any]
+    parameterOrder: _list[str]
+    parameters: dict[str, typing.Any]
     path: str
-    request: typing.Dict[str, typing.Any]
-    response: typing.Dict[str, typing.Any]
-    scopes: typing.List[str]
+    request: dict[str, typing.Any]
+    response: dict[str, typing.Any]
+    scopes: _list[str]
     supportsMediaDownload: bool
     supportsMediaUpload: bool
     supportsSubscription: bool
@@ -65,5 +67,5 @@ class RestMethod(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RestResource(typing_extensions.TypedDict, total=False):
-    methods: typing.Dict[str, typing.Any]
-    resources: typing.Dict[str, typing.Any]
+    methods: dict[str, typing.Any]
+    resources: dict[str, typing.Any]

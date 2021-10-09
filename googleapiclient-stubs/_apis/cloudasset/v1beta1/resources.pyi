@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudAssetResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -32,7 +34,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            assetNames: typing.Union[str, typing.List[str]] = ...,
+            assetNames: str | _list[str] = ...,
             contentType: typing_extensions.Literal[
                 "CONTENT_TYPE_UNSPECIFIED", "RESOURCE", "IAM_POLICY"
             ] = ...,
@@ -55,7 +57,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            assetNames: typing.Union[str, typing.List[str]] = ...,
+            assetNames: str | _list[str] = ...,
             contentType: typing_extensions.Literal[
                 "CONTENT_TYPE_UNSPECIFIED", "RESOURCE", "IAM_POLICY"
             ] = ...,
@@ -75,9 +77,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
 class BatchGetAssetsHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchGetAssetsHistoryResponse: ...
 
@@ -85,8 +85,6 @@ class BatchGetAssetsHistoryResponseHttpRequest(googleapiclient.http.HttpRequest)
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...

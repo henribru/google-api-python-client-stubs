@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class GamesManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -92,9 +94,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
 class AchievementResetAllResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementResetAllResponse: ...
 
@@ -102,9 +102,7 @@ class AchievementResetAllResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AchievementResetResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementResetResponse: ...
 
@@ -112,9 +110,7 @@ class AchievementResetResponseHttpRequest(googleapiclient.http.HttpRequest):
 class HiddenPlayerListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> HiddenPlayerList: ...
 
@@ -122,9 +118,7 @@ class HiddenPlayerListHttpRequest(googleapiclient.http.HttpRequest):
 class PlayerScoreResetAllResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlayerScoreResetAllResponse: ...
 
@@ -132,8 +126,6 @@ class PlayerScoreResetAllResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PlayerScoreResetResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlayerScoreResetResponse: ...

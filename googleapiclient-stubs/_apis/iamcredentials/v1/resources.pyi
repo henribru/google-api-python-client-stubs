@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class IAMCredentialsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -41,9 +43,7 @@ class IAMCredentialsResource(googleapiclient.discovery.Resource):
 class GenerateAccessTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GenerateAccessTokenResponse: ...
 
@@ -51,9 +51,7 @@ class GenerateAccessTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
 class GenerateIdTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GenerateIdTokenResponse: ...
 
@@ -61,9 +59,7 @@ class GenerateIdTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SignBlobResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SignBlobResponse: ...
 
@@ -71,8 +67,6 @@ class SignBlobResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SignJwtResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SignJwtResponse: ...

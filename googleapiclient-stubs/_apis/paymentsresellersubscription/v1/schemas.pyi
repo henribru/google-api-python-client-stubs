@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest(
     typing_extensions.TypedDict, total=False
@@ -69,14 +71,14 @@ class GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    products: typing.List[GoogleCloudPaymentsResellerSubscriptionV1Product]
+    products: _list[GoogleCloudPaymentsResellerSubscriptionV1Product]
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    promotions: typing.List[GoogleCloudPaymentsResellerSubscriptionV1Promotion]
+    promotions: _list[GoogleCloudPaymentsResellerSubscriptionV1Promotion]
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1Location(
@@ -90,21 +92,21 @@ class GoogleCloudPaymentsResellerSubscriptionV1Product(
     typing_extensions.TypedDict, total=False
 ):
     name: str
-    regionCodes: typing.List[str]
+    regionCodes: _list[str]
     subscriptionBillingCycleDuration: GoogleCloudPaymentsResellerSubscriptionV1Duration
-    titles: typing.List[GoogleTypeLocalizedText]
+    titles: _list[GoogleTypeLocalizedText]
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1Promotion(
     typing_extensions.TypedDict, total=False
 ):
-    applicableProducts: typing.List[str]
+    applicableProducts: _list[str]
     endTime: str
     freeTrialDuration: GoogleCloudPaymentsResellerSubscriptionV1Duration
     name: str
-    regionCodes: typing.List[str]
+    regionCodes: _list[str]
     startTime: str
-    titles: typing.List[GoogleTypeLocalizedText]
+    titles: _list[GoogleTypeLocalizedText]
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
@@ -122,8 +124,8 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
         "PROCESSING_STATE_CANCELLING",
         "PROCESSING_STATE_RECURRING",
     ]
-    products: typing.List[str]
-    promotions: typing.List[str]
+    products: _list[str]
+    promotions: _list[str]
     redirectUri: str
     serviceLocation: GoogleCloudPaymentsResellerSubscriptionV1Location
     state: typing_extensions.Literal[

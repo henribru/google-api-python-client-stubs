@@ -2,16 +2,18 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Blog(typing_extensions.TypedDict, total=False):
     customMetaData: str
     description: str
     id: str
     kind: str
-    locale: typing.Dict[str, typing.Any]
+    locale: dict[str, typing.Any]
     name: str
-    pages: typing.Dict[str, typing.Any]
-    posts: typing.Dict[str, typing.Any]
+    pages: dict[str, typing.Any]
+    posts: dict[str, typing.Any]
     published: str
     selfLink: str
     status: typing_extensions.Literal["LIVE", "DELETED"]
@@ -20,8 +22,8 @@ class Blog(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BlogList(typing_extensions.TypedDict, total=False):
-    blogUserInfos: typing.List[BlogUserInfo]
-    items: typing.List[Blog]
+    blogUserInfos: _list[BlogUserInfo]
+    items: _list[Blog]
     kind: str
 
 @typing.type_check_only
@@ -43,13 +45,13 @@ class BlogUserInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
-    author: typing.Dict[str, typing.Any]
-    blog: typing.Dict[str, typing.Any]
+    author: dict[str, typing.Any]
+    blog: dict[str, typing.Any]
     content: str
     id: str
-    inReplyTo: typing.Dict[str, typing.Any]
+    inReplyTo: dict[str, typing.Any]
     kind: str
-    post: typing.Dict[str, typing.Any]
+    post: dict[str, typing.Any]
     published: str
     selfLink: str
     status: typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
@@ -58,15 +60,15 @@ class Comment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CommentList(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[Comment]
+    items: _list[Comment]
     kind: str
     nextPageToken: str
     prevPageToken: str
 
 @typing.type_check_only
 class Page(typing_extensions.TypedDict, total=False):
-    author: typing.Dict[str, typing.Any]
-    blog: typing.Dict[str, typing.Any]
+    author: dict[str, typing.Any]
+    blog: dict[str, typing.Any]
     content: str
     etag: str
     id: str
@@ -81,33 +83,33 @@ class Page(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PageList(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[Page]
+    items: _list[Page]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
 class Pageviews(typing_extensions.TypedDict, total=False):
     blogId: str
-    counts: typing.List[typing.Dict[str, typing.Any]]
+    counts: _list[dict[str, typing.Any]]
     kind: str
 
 @typing.type_check_only
 class Post(typing_extensions.TypedDict, total=False):
-    author: typing.Dict[str, typing.Any]
-    blog: typing.Dict[str, typing.Any]
+    author: dict[str, typing.Any]
+    blog: dict[str, typing.Any]
     content: str
     customMetaData: str
     etag: str
     id: str
-    images: typing.List[typing.Dict[str, typing.Any]]
+    images: _list[dict[str, typing.Any]]
     kind: str
-    labels: typing.List[str]
-    location: typing.Dict[str, typing.Any]
+    labels: _list[str]
+    location: dict[str, typing.Any]
     published: str
     readerComments: typing_extensions.Literal[
         "ALLOW", "DONT_ALLOW_SHOW_EXISTING", "DONT_ALLOW_HIDE_EXISTING"
     ]
-    replies: typing.Dict[str, typing.Any]
+    replies: dict[str, typing.Any]
     selfLink: str
     status: typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]
     title: str
@@ -118,7 +120,7 @@ class Post(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PostList(typing_extensions.TypedDict, total=False):
     etag: str
-    items: typing.List[Post]
+    items: _list[Post]
     kind: str
     nextPageToken: str
     prevPageToken: str
@@ -139,18 +141,18 @@ class PostUserInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PostUserInfosList(typing_extensions.TypedDict, total=False):
-    items: typing.List[PostUserInfo]
+    items: _list[PostUserInfo]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
     about: str
-    blogs: typing.Dict[str, typing.Any]
+    blogs: dict[str, typing.Any]
     created: str
     displayName: str
     id: str
     kind: str
-    locale: typing.Dict[str, typing.Any]
+    locale: dict[str, typing.Any]
     selfLink: str
     url: str

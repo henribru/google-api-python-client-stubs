@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -20,7 +22,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     description: str
     endTime: str
     name: str
-    restoringServices: typing.List[str]
+    restoringServices: _list[str]
     serviceRevision: Service
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "DELETING", "ACTIVE", "FAILED", "RESTORING"
@@ -29,7 +31,7 @@ class Backup(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -45,7 +47,7 @@ class DatabaseDump(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataplexConfig(typing_extensions.TypedDict, total=False):
-    lakeResources: typing.Dict[str, typing.Any]
+    lakeResources: dict[str, typing.Any]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -69,7 +71,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HiveMetastoreConfig(typing_extensions.TypedDict, total=False):
-    configOverrides: typing.Dict[str, typing.Any]
+    configOverrides: dict[str, typing.Any]
     endpointProtocol: typing_extensions.Literal[
         "ENDPOINT_PROTOCOL_UNSPECIFIED", "THRIFT", "GRPC"
     ]
@@ -93,43 +95,43 @@ class Lake(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
-    backups: typing.List[Backup]
+    backups: _list[Backup]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListMetadataImportsResponse(typing_extensions.TypedDict, total=False):
-    metadataImports: typing.List[MetadataImport]
+    metadataImports: _list[MetadataImport]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    services: typing.List[Service]
-    unreachable: typing.List[str]
+    services: _list[Service]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
-    supportedHiveMetastoreVersions: typing.List[HiveMetastoreVersion]
+    supportedHiveMetastoreVersions: _list[HiveMetastoreVersion]
 
 @typing.type_check_only
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
@@ -174,16 +176,16 @@ class MetadataIntegration(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetadataManagementActivity(typing_extensions.TypedDict, total=False):
-    metadataExports: typing.List[MetadataExport]
-    restores: typing.List[Restore]
+    metadataExports: _list[MetadataExport]
+    restores: _list[Restore]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -197,8 +199,8 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -232,7 +234,7 @@ class Service(typing_extensions.TypedDict, total=False):
     encryptionConfig: EncryptionConfig
     endpointUri: str
     hiveMetastoreConfig: HiveMetastoreConfig
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     maintenanceWindow: MaintenanceWindow
     metadataIntegration: MetadataIntegration
     metadataManagementActivity: MetadataManagementActivity
@@ -265,13 +267,13 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]

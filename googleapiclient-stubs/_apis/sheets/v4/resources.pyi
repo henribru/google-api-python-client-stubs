@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class SheetsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -81,7 +83,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 majorDimension: typing_extensions.Literal[
                     "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
                 ] = ...,
-                ranges: typing.Union[str, typing.List[str]] = ...,
+                ranges: str | _list[str] = ...,
                 valueRenderOption: typing_extensions.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
                 ] = ...,
@@ -165,7 +167,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
             *,
             spreadsheetId: str,
             includeGridData: bool = ...,
-            ranges: typing.Union[str, typing.List[str]] = ...,
+            ranges: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> SpreadsheetHttpRequest: ...
         def getByDataFilter(
@@ -184,9 +186,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
 class AppendValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AppendValuesResponse: ...
 
@@ -194,9 +194,7 @@ class AppendValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchClearValuesByDataFilterResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchClearValuesByDataFilterResponse: ...
 
@@ -204,9 +202,7 @@ class BatchClearValuesByDataFilterResponseHttpRequest(googleapiclient.http.HttpR
 class BatchClearValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchClearValuesResponse: ...
 
@@ -214,9 +210,7 @@ class BatchClearValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchGetValuesByDataFilterResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchGetValuesByDataFilterResponse: ...
 
@@ -224,9 +218,7 @@ class BatchGetValuesByDataFilterResponseHttpRequest(googleapiclient.http.HttpReq
 class BatchGetValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchGetValuesResponse: ...
 
@@ -234,9 +226,7 @@ class BatchGetValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchUpdateSpreadsheetResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchUpdateSpreadsheetResponse: ...
 
@@ -246,9 +236,7 @@ class BatchUpdateValuesByDataFilterResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchUpdateValuesByDataFilterResponse: ...
 
@@ -256,9 +244,7 @@ class BatchUpdateValuesByDataFilterResponseHttpRequest(
 class BatchUpdateValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchUpdateValuesResponse: ...
 
@@ -266,9 +252,7 @@ class BatchUpdateValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ClearValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ClearValuesResponse: ...
 
@@ -276,9 +260,7 @@ class ClearValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DeveloperMetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DeveloperMetadata: ...
 
@@ -286,9 +268,7 @@ class DeveloperMetadataHttpRequest(googleapiclient.http.HttpRequest):
 class SearchDeveloperMetadataResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchDeveloperMetadataResponse: ...
 
@@ -296,9 +276,7 @@ class SearchDeveloperMetadataResponseHttpRequest(googleapiclient.http.HttpReques
 class SheetPropertiesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SheetProperties: ...
 
@@ -306,9 +284,7 @@ class SheetPropertiesHttpRequest(googleapiclient.http.HttpRequest):
 class SpreadsheetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Spreadsheet: ...
 
@@ -316,9 +292,7 @@ class SpreadsheetHttpRequest(googleapiclient.http.HttpRequest):
 class UpdateValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UpdateValuesResponse: ...
 
@@ -326,8 +300,6 @@ class UpdateValuesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ValueRangeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ValueRange: ...

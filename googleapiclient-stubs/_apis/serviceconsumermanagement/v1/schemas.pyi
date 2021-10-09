@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AddTenantProjectRequest(typing_extensions.TypedDict, total=False):
     projectConfig: TenantProjectConfig
@@ -9,10 +11,10 @@ class AddTenantProjectRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
-    methods: typing.List[Method]
-    mixins: typing.List[Mixin]
+    methods: _list[Method]
+    mixins: _list[Mixin]
     name: str
-    options: typing.List[Option]
+    options: _list[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
     version: str
@@ -35,7 +37,7 @@ class AuthProvider(typing_extensions.TypedDict, total=False):
     id: str
     issuer: str
     jwksUri: str
-    jwtLocations: typing.List[JwtLocation]
+    jwtLocations: _list[JwtLocation]
 
 @typing.type_check_only
 class AuthRequirement(typing_extensions.TypedDict, total=False):
@@ -44,19 +46,19 @@ class AuthRequirement(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Authentication(typing_extensions.TypedDict, total=False):
-    providers: typing.List[AuthProvider]
-    rules: typing.List[AuthenticationRule]
+    providers: _list[AuthProvider]
+    rules: _list[AuthenticationRule]
 
 @typing.type_check_only
 class AuthenticationRule(typing_extensions.TypedDict, total=False):
     allowWithoutCredential: bool
     oauth: OAuthRequirements
-    requirements: typing.List[AuthRequirement]
+    requirements: _list[AuthRequirement]
     selector: str
 
 @typing.type_check_only
 class Backend(typing_extensions.TypedDict, total=False):
-    rules: typing.List[BackendRule]
+    rules: _list[BackendRule]
 
 @typing.type_check_only
 class BackendRule(typing_extensions.TypedDict, total=False):
@@ -73,7 +75,7 @@ class BackendRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Billing(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[BillingDestination]
+    consumerDestinations: _list[BillingDestination]
 
 @typing.type_check_only
 class BillingConfig(typing_extensions.TypedDict, total=False):
@@ -81,7 +83,7 @@ class BillingConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BillingDestination(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[str]
+    metrics: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
@@ -89,14 +91,14 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Context(typing_extensions.TypedDict, total=False):
-    rules: typing.List[ContextRule]
+    rules: _list[ContextRule]
 
 @typing.type_check_only
 class ContextRule(typing_extensions.TypedDict, total=False):
-    allowedRequestExtensions: typing.List[str]
-    allowedResponseExtensions: typing.List[str]
-    provided: typing.List[str]
-    requested: typing.List[str]
+    allowedRequestExtensions: _list[str]
+    allowedResponseExtensions: _list[str]
+    provided: _list[str]
+    requested: _list[str]
     selector: str
 
 @typing.type_check_only
@@ -109,8 +111,8 @@ class CreateTenancyUnitRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomError(typing_extensions.TypedDict, total=False):
-    rules: typing.List[CustomErrorRule]
-    types: typing.List[str]
+    rules: _list[CustomErrorRule]
+    types: _list[str]
 
 @typing.type_check_only
 class CustomErrorRule(typing_extensions.TypedDict, total=False):
@@ -130,8 +132,8 @@ class DeleteTenantProjectRequest(typing_extensions.TypedDict, total=False):
 class Documentation(typing_extensions.TypedDict, total=False):
     documentationRootUrl: str
     overview: str
-    pages: typing.List[Page]
-    rules: typing.List[DocumentationRule]
+    pages: _list[Page]
+    rules: _list[DocumentationRule]
     serviceRootUrl: str
     summary: str
 
@@ -152,9 +154,9 @@ class Endpoint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Enum(typing_extensions.TypedDict, total=False):
-    enumvalue: typing.List[EnumValue]
+    enumvalue: _list[EnumValue]
     name: str
-    options: typing.List[Option]
+    options: _list[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
 
@@ -162,7 +164,7 @@ class Enum(typing_extensions.TypedDict, total=False):
 class EnumValue(typing_extensions.TypedDict, total=False):
     name: str
     number: int
-    options: typing.List[Option]
+    options: _list[Option]
 
 @typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
@@ -198,17 +200,17 @@ class Field(typing_extensions.TypedDict, total=False):
     name: str
     number: int
     oneofIndex: int
-    options: typing.List[Option]
+    options: _list[Option]
     packed: bool
     typeUrl: str
 
 @typing.type_check_only
 class Http(typing_extensions.TypedDict, total=False):
     fullyDecodeReservedExpansion: bool
-    rules: typing.List[HttpRule]
+    rules: _list[HttpRule]
 
 @typing.type_check_only
-class HttpRule(typing.Dict[str, typing.Any]): ...
+class HttpRule(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
@@ -225,34 +227,34 @@ class LabelDescriptor(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListTenancyUnitsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tenancyUnits: typing.List[TenancyUnit]
+    tenancyUnits: _list[TenancyUnit]
 
 @typing.type_check_only
 class LogDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     name: str
 
 @typing.type_check_only
 class Logging(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[LoggingDestination]
-    producerDestinations: typing.List[LoggingDestination]
+    consumerDestinations: _list[LoggingDestination]
+    producerDestinations: _list[LoggingDestination]
 
 @typing.type_check_only
 class LoggingDestination(typing_extensions.TypedDict, total=False):
-    logs: typing.List[str]
+    logs: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
 class Method(typing_extensions.TypedDict, total=False):
     name: str
-    options: typing.List[Option]
+    options: _list[Option]
     requestStreaming: bool
     requestTypeUrl: str
     responseStreaming: bool
@@ -263,7 +265,7 @@ class Method(typing_extensions.TypedDict, total=False):
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -278,7 +280,7 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
     metricKind: typing_extensions.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
-    monitoredResourceTypes: typing.List[str]
+    monitoredResourceTypes: _list[str]
     name: str
     type: str
     unit: str
@@ -309,7 +311,7 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetricRule(typing_extensions.TypedDict, total=False):
-    metricCosts: typing.Dict[str, typing.Any]
+    metricCosts: dict[str, typing.Any]
     selector: str
 
 @typing.type_check_only
@@ -321,7 +323,7 @@ class Mixin(typing_extensions.TypedDict, total=False):
 class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -337,12 +339,12 @@ class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Monitoring(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[MonitoringDestination]
-    producerDestinations: typing.List[MonitoringDestination]
+    consumerDestinations: _list[MonitoringDestination]
+    producerDestinations: _list[MonitoringDestination]
 
 @typing.type_check_only
 class MonitoringDestination(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[str]
+    metrics: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
@@ -353,27 +355,27 @@ class OAuthRequirements(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Option(typing_extensions.TypedDict, total=False):
     name: str
-    value: typing.Dict[str, typing.Any]
+    value: dict[str, typing.Any]
 
 @typing.type_check_only
-class Page(typing.Dict[str, typing.Any]): ...
+class Page(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class PolicyBinding(typing_extensions.TypedDict, total=False):
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
-    limits: typing.List[QuotaLimit]
-    metricRules: typing.List[MetricRule]
+    limits: _list[QuotaLimit]
+    metricRules: _list[MetricRule]
 
 @typing.type_check_only
 class QuotaLimit(typing_extensions.TypedDict, total=False):
@@ -386,7 +388,7 @@ class QuotaLimit(typing_extensions.TypedDict, total=False):
     metric: str
     name: str
     unit: str
-    values: typing.Dict[str, typing.Any]
+    values: dict[str, typing.Any]
 
 @typing.type_check_only
 class RemoveTenantProjectRequest(typing_extensions.TypedDict, total=False):
@@ -395,11 +397,11 @@ class RemoveTenantProjectRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchTenancyUnitsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tenancyUnits: typing.List[TenancyUnit]
+    tenancyUnits: _list[TenancyUnit]
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
-    apis: typing.List[Api]
+    apis: _list[Api]
     authentication: Authentication
     backend: Backend
     billing: Billing
@@ -408,29 +410,29 @@ class Service(typing_extensions.TypedDict, total=False):
     control: Control
     customError: CustomError
     documentation: Documentation
-    endpoints: typing.List[Endpoint]
-    enums: typing.List[Enum]
+    endpoints: _list[Endpoint]
+    enums: _list[Enum]
     http: Http
     id: str
     logging: Logging
-    logs: typing.List[LogDescriptor]
-    metrics: typing.List[MetricDescriptor]
-    monitoredResources: typing.List[MonitoredResourceDescriptor]
+    logs: _list[LogDescriptor]
+    metrics: _list[MetricDescriptor]
+    monitoredResources: _list[MonitoredResourceDescriptor]
     monitoring: Monitoring
     name: str
     producerProjectId: str
     quota: Quota
     sourceInfo: SourceInfo
     systemParameters: SystemParameters
-    systemTypes: typing.List[Type]
+    systemTypes: _list[Type]
     title: str
-    types: typing.List[Type]
+    types: _list[Type]
     usage: Usage
 
 @typing.type_check_only
 class ServiceAccountConfig(typing_extensions.TypedDict, total=False):
     accountId: str
-    tenantProjectRoles: typing.List[str]
+    tenantProjectRoles: _list[str]
 
 @typing.type_check_only
 class SourceContext(typing_extensions.TypedDict, total=False):
@@ -438,12 +440,12 @@ class SourceContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SourceInfo(typing_extensions.TypedDict, total=False):
-    sourceFiles: typing.List[typing.Dict[str, typing.Any]]
+    sourceFiles: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -454,12 +456,12 @@ class SystemParameter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SystemParameterRule(typing_extensions.TypedDict, total=False):
-    parameters: typing.List[SystemParameter]
+    parameters: _list[SystemParameter]
     selector: str
 
 @typing.type_check_only
 class SystemParameters(typing_extensions.TypedDict, total=False):
-    rules: typing.List[SystemParameterRule]
+    rules: _list[SystemParameterRule]
 
 @typing.type_check_only
 class TenancyUnit(typing_extensions.TypedDict, total=False):
@@ -467,20 +469,20 @@ class TenancyUnit(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
     service: str
-    tenantResources: typing.List[TenantResource]
+    tenantResources: _list[TenantResource]
 
 @typing.type_check_only
 class TenantProjectConfig(typing_extensions.TypedDict, total=False):
     billingConfig: BillingConfig
     folder: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     serviceAccountConfig: ServiceAccountConfig
-    services: typing.List[str]
+    services: _list[str]
     tenantProjectPolicy: TenantProjectPolicy
 
 @typing.type_check_only
 class TenantProjectPolicy(typing_extensions.TypedDict, total=False):
-    policyBindings: typing.List[PolicyBinding]
+    policyBindings: _list[PolicyBinding]
 
 @typing.type_check_only
 class TenantResource(typing_extensions.TypedDict, total=False):
@@ -497,10 +499,10 @@ class TenantResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
-    fields: typing.List[Field]
+    fields: _list[Field]
     name: str
-    oneofs: typing.List[str]
-    options: typing.List[Option]
+    oneofs: _list[str]
+    options: _list[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
 
@@ -511,8 +513,8 @@ class UndeleteTenantProjectRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Usage(typing_extensions.TypedDict, total=False):
     producerNotificationChannel: str
-    requirements: typing.List[str]
-    rules: typing.List[UsageRule]
+    requirements: _list[str]
+    rules: _list[UsageRule]
 
 @typing.type_check_only
 class UsageRule(typing_extensions.TypedDict, total=False):
@@ -522,13 +524,13 @@ class UsageRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class V1AddVisibilityLabelsResponse(typing_extensions.TypedDict, total=False):
-    labels: typing.List[str]
+    labels: _list[str]
 
 @typing.type_check_only
 class V1Beta1BatchCreateProducerOverridesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    overrides: typing.List[V1Beta1QuotaOverride]
+    overrides: _list[V1Beta1QuotaOverride]
 
 @typing.type_check_only
 class V1Beta1DisableConsumerResponse(typing_extensions.TypedDict, total=False): ...
@@ -542,18 +544,18 @@ class V1Beta1GenerateServiceIdentityResponse(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class V1Beta1ImportProducerOverridesResponse(typing_extensions.TypedDict, total=False):
-    overrides: typing.List[V1Beta1QuotaOverride]
+    overrides: _list[V1Beta1QuotaOverride]
 
 @typing.type_check_only
 class V1Beta1ImportProducerQuotaPoliciesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    policies: typing.List[V1Beta1ProducerQuotaPolicy]
+    policies: _list[V1Beta1ProducerQuotaPolicy]
 
 @typing.type_check_only
 class V1Beta1ProducerQuotaPolicy(typing_extensions.TypedDict, total=False):
     container: str
-    dimensions: typing.Dict[str, typing.Any]
+    dimensions: dict[str, typing.Any]
     metric: str
     name: str
     policyValue: str
@@ -562,7 +564,7 @@ class V1Beta1ProducerQuotaPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class V1Beta1QuotaOverride(typing_extensions.TypedDict, total=False):
     adminOverrideAncestor: str
-    dimensions: typing.Dict[str, typing.Any]
+    dimensions: dict[str, typing.Any]
     metric: str
     name: str
     overrideValue: str
@@ -612,7 +614,7 @@ class V1RefreshConsumerResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class V1RemoveVisibilityLabelsResponse(typing_extensions.TypedDict, total=False):
-    labels: typing.List[str]
+    labels: _list[str]
 
 @typing.type_check_only
 class V1ServiceAccount(typing_extensions.TypedDict, total=False):

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ScriptResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -23,7 +25,18 @@ class ScriptResource(googleapiclient.discovery.Resource):
             userProcessFilter_projectName: str = ...,
             userProcessFilter_scriptId: str = ...,
             userProcessFilter_startTime: str = ...,
-            userProcessFilter_statuses: typing.Union[
+            userProcessFilter_statuses: typing_extensions.Literal[
+                "PROCESS_STATUS_UNSPECIFIED",
+                "RUNNING",
+                "PAUSED",
+                "COMPLETED",
+                "CANCELED",
+                "FAILED",
+                "TIMED_OUT",
+                "UNKNOWN",
+                "DELAYED",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PROCESS_STATUS_UNSPECIFIED",
                     "RUNNING",
@@ -34,22 +47,21 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "TIMED_OUT",
                     "UNKNOWN",
                     "DELAYED",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "PROCESS_STATUS_UNSPECIFIED",
-                        "RUNNING",
-                        "PAUSED",
-                        "COMPLETED",
-                        "CANCELED",
-                        "FAILED",
-                        "TIMED_OUT",
-                        "UNKNOWN",
-                        "DELAYED",
-                    ]
-                ],
+                ]
             ] = ...,
-            userProcessFilter_types: typing.Union[
+            userProcessFilter_types: typing_extensions.Literal[
+                "PROCESS_TYPE_UNSPECIFIED",
+                "ADD_ON",
+                "EXECUTION_API",
+                "TIME_DRIVEN",
+                "TRIGGER",
+                "WEBAPP",
+                "EDITOR",
+                "SIMPLE_TRIGGER",
+                "MENU",
+                "BATCH_TASK",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PROCESS_TYPE_UNSPECIFIED",
                     "ADD_ON",
@@ -61,35 +73,15 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "SIMPLE_TRIGGER",
                     "MENU",
                     "BATCH_TASK",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "PROCESS_TYPE_UNSPECIFIED",
-                        "ADD_ON",
-                        "EXECUTION_API",
-                        "TIME_DRIVEN",
-                        "TRIGGER",
-                        "WEBAPP",
-                        "EDITOR",
-                        "SIMPLE_TRIGGER",
-                        "MENU",
-                        "BATCH_TASK",
-                    ]
-                ],
+                ]
             ] = ...,
-            userProcessFilter_userAccessLevels: typing.Union[
+            userProcessFilter_userAccessLevels: typing_extensions.Literal[
+                "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "USER_ACCESS_LEVEL_UNSPECIFIED",
-                        "NONE",
-                        "READ",
-                        "WRITE",
-                        "OWNER",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> ListUserProcessesResponseHttpRequest: ...
@@ -103,7 +95,18 @@ class ScriptResource(googleapiclient.discovery.Resource):
             scriptProcessFilter_endTime: str = ...,
             scriptProcessFilter_functionName: str = ...,
             scriptProcessFilter_startTime: str = ...,
-            scriptProcessFilter_statuses: typing.Union[
+            scriptProcessFilter_statuses: typing_extensions.Literal[
+                "PROCESS_STATUS_UNSPECIFIED",
+                "RUNNING",
+                "PAUSED",
+                "COMPLETED",
+                "CANCELED",
+                "FAILED",
+                "TIMED_OUT",
+                "UNKNOWN",
+                "DELAYED",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PROCESS_STATUS_UNSPECIFIED",
                     "RUNNING",
@@ -114,22 +117,21 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "TIMED_OUT",
                     "UNKNOWN",
                     "DELAYED",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "PROCESS_STATUS_UNSPECIFIED",
-                        "RUNNING",
-                        "PAUSED",
-                        "COMPLETED",
-                        "CANCELED",
-                        "FAILED",
-                        "TIMED_OUT",
-                        "UNKNOWN",
-                        "DELAYED",
-                    ]
-                ],
+                ]
             ] = ...,
-            scriptProcessFilter_types: typing.Union[
+            scriptProcessFilter_types: typing_extensions.Literal[
+                "PROCESS_TYPE_UNSPECIFIED",
+                "ADD_ON",
+                "EXECUTION_API",
+                "TIME_DRIVEN",
+                "TRIGGER",
+                "WEBAPP",
+                "EDITOR",
+                "SIMPLE_TRIGGER",
+                "MENU",
+                "BATCH_TASK",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PROCESS_TYPE_UNSPECIFIED",
                     "ADD_ON",
@@ -141,35 +143,15 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "SIMPLE_TRIGGER",
                     "MENU",
                     "BATCH_TASK",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "PROCESS_TYPE_UNSPECIFIED",
-                        "ADD_ON",
-                        "EXECUTION_API",
-                        "TIME_DRIVEN",
-                        "TRIGGER",
-                        "WEBAPP",
-                        "EDITOR",
-                        "SIMPLE_TRIGGER",
-                        "MENU",
-                        "BATCH_TASK",
-                    ]
-                ],
+                ]
             ] = ...,
-            scriptProcessFilter_userAccessLevels: typing.Union[
+            scriptProcessFilter_userAccessLevels: typing_extensions.Literal[
+                "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "USER_ACCESS_LEVEL_UNSPECIFIED",
-                        "NONE",
-                        "READ",
-                        "WRITE",
-                        "OWNER",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> ListScriptProcessesResponseHttpRequest: ...
@@ -257,9 +239,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
 class ContentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Content: ...
 
@@ -267,9 +247,7 @@ class ContentHttpRequest(googleapiclient.http.HttpRequest):
 class DeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Deployment: ...
 
@@ -277,9 +255,7 @@ class DeploymentHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -287,9 +263,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class ListDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDeploymentsResponse: ...
 
@@ -297,9 +271,7 @@ class ListDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListScriptProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListScriptProcessesResponse: ...
 
@@ -307,9 +279,7 @@ class ListScriptProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListUserProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListUserProcessesResponse: ...
 
@@ -317,9 +287,7 @@ class ListUserProcessesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListVersionsResponse: ...
 
@@ -327,9 +295,7 @@ class ListVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class MetricsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Metrics: ...
 
@@ -337,9 +303,7 @@ class MetricsHttpRequest(googleapiclient.http.HttpRequest):
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
 
@@ -347,9 +311,7 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
 class ProjectHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Project: ...
 
@@ -357,8 +319,6 @@ class ProjectHttpRequest(googleapiclient.http.HttpRequest):
 class VersionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Version: ...

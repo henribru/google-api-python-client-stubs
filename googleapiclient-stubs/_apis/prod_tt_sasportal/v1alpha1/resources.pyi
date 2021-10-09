@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class SASPortalTestingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -542,9 +544,7 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
 class SasPortalCustomerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalCustomer: ...
 
@@ -552,9 +552,7 @@ class SasPortalCustomerHttpRequest(googleapiclient.http.HttpRequest):
 class SasPortalDeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalDeployment: ...
 
@@ -562,9 +560,7 @@ class SasPortalDeploymentHttpRequest(googleapiclient.http.HttpRequest):
 class SasPortalDeviceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalDevice: ...
 
@@ -572,9 +568,7 @@ class SasPortalDeviceHttpRequest(googleapiclient.http.HttpRequest):
 class SasPortalEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalEmpty: ...
 
@@ -582,9 +576,7 @@ class SasPortalEmptyHttpRequest(googleapiclient.http.HttpRequest):
 class SasPortalGenerateSecretResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalGenerateSecretResponse: ...
 
@@ -592,9 +584,7 @@ class SasPortalGenerateSecretResponseHttpRequest(googleapiclient.http.HttpReques
 class SasPortalListCustomersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalListCustomersResponse: ...
 
@@ -602,9 +592,7 @@ class SasPortalListCustomersResponseHttpRequest(googleapiclient.http.HttpRequest
 class SasPortalListDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalListDeploymentsResponse: ...
 
@@ -612,9 +600,7 @@ class SasPortalListDeploymentsResponseHttpRequest(googleapiclient.http.HttpReque
 class SasPortalListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalListDevicesResponse: ...
 
@@ -622,9 +608,7 @@ class SasPortalListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SasPortalListNodesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalListNodesResponse: ...
 
@@ -632,9 +616,7 @@ class SasPortalListNodesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SasPortalNodeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalNode: ...
 
@@ -642,9 +624,7 @@ class SasPortalNodeHttpRequest(googleapiclient.http.HttpRequest):
 class SasPortalOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalOperation: ...
 
@@ -652,9 +632,7 @@ class SasPortalOperationHttpRequest(googleapiclient.http.HttpRequest):
 class SasPortalPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalPolicy: ...
 
@@ -662,9 +640,7 @@ class SasPortalPolicyHttpRequest(googleapiclient.http.HttpRequest):
 class SasPortalTestPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalTestPermissionsResponse: ...
 
@@ -672,8 +648,6 @@ class SasPortalTestPermissionsResponseHttpRequest(googleapiclient.http.HttpReque
 class SasPortalValidateInstallerResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalValidateInstallerResponse: ...

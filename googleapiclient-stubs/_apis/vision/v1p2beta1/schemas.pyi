@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AnnotateFileResponse(typing_extensions.TypedDict, total=False):
     error: Status
     inputConfig: InputConfig
-    responses: typing.List[AnnotateImageResponse]
+    responses: _list[AnnotateImageResponse]
     totalPages: int
 
 @typing.type_check_only
@@ -14,16 +16,16 @@ class AnnotateImageResponse(typing_extensions.TypedDict, total=False):
     context: ImageAnnotationContext
     cropHintsAnnotation: CropHintsAnnotation
     error: Status
-    faceAnnotations: typing.List[FaceAnnotation]
+    faceAnnotations: _list[FaceAnnotation]
     fullTextAnnotation: TextAnnotation
     imagePropertiesAnnotation: ImageProperties
-    labelAnnotations: typing.List[EntityAnnotation]
-    landmarkAnnotations: typing.List[EntityAnnotation]
-    localizedObjectAnnotations: typing.List[LocalizedObjectAnnotation]
-    logoAnnotations: typing.List[EntityAnnotation]
+    labelAnnotations: _list[EntityAnnotation]
+    landmarkAnnotations: _list[EntityAnnotation]
+    localizedObjectAnnotations: _list[LocalizedObjectAnnotation]
+    logoAnnotations: _list[EntityAnnotation]
     productSearchResults: ProductSearchResults
     safeSearchAnnotation: SafeSearchAnnotation
-    textAnnotations: typing.List[EntityAnnotation]
+    textAnnotations: _list[EntityAnnotation]
     webDetection: WebDetection
 
 @typing.type_check_only
@@ -32,7 +34,7 @@ class AsyncAnnotateFileResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AsyncBatchAnnotateFilesResponse(typing_extensions.TypedDict, total=False):
-    responses: typing.List[AsyncAnnotateFileResponse]
+    responses: _list[AsyncAnnotateFileResponse]
 
 @typing.type_check_only
 class AsyncBatchAnnotateImagesResponse(typing_extensions.TypedDict, total=False):
@@ -40,7 +42,7 @@ class AsyncBatchAnnotateImagesResponse(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class BatchAnnotateFilesResponse(typing_extensions.TypedDict, total=False):
-    responses: typing.List[AnnotateFileResponse]
+    responses: _list[AnnotateFileResponse]
 
 @typing.type_check_only
 class BatchOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -57,13 +59,13 @@ class Block(typing_extensions.TypedDict, total=False):
     ]
     boundingBox: BoundingPoly
     confidence: float
-    paragraphs: typing.List[Paragraph]
+    paragraphs: _list[Paragraph]
     property: TextProperty
 
 @typing.type_check_only
 class BoundingPoly(typing_extensions.TypedDict, total=False):
-    normalizedVertices: typing.List[NormalizedVertex]
-    vertices: typing.List[Vertex]
+    normalizedVertices: _list[NormalizedVertex]
+    vertices: _list[Vertex]
 
 @typing.type_check_only
 class Color(typing_extensions.TypedDict, total=False):
@@ -86,7 +88,7 @@ class CropHint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CropHintsAnnotation(typing_extensions.TypedDict, total=False):
-    cropHints: typing.List[CropHint]
+    cropHints: _list[CropHint]
 
 @typing.type_check_only
 class DetectedBreak(typing_extensions.TypedDict, total=False):
@@ -102,7 +104,7 @@ class DetectedLanguage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DominantColorsAnnotation(typing_extensions.TypedDict, total=False):
-    colors: typing.List[ColorInfo]
+    colors: _list[ColorInfo]
 
 @typing.type_check_only
 class EntityAnnotation(typing_extensions.TypedDict, total=False):
@@ -110,9 +112,9 @@ class EntityAnnotation(typing_extensions.TypedDict, total=False):
     confidence: float
     description: str
     locale: str
-    locations: typing.List[LocationInfo]
+    locations: _list[LocationInfo]
     mid: str
-    properties: typing.List[Property]
+    properties: _list[Property]
     score: float
     topicality: float
 
@@ -134,7 +136,7 @@ class FaceAnnotation(typing_extensions.TypedDict, total=False):
         "UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"
     ]
     landmarkingConfidence: float
-    landmarks: typing.List[Landmark]
+    landmarks: _list[Landmark]
     panAngle: float
     rollAngle: float
     sorrowLikelihood: typing_extensions.Literal[
@@ -162,7 +164,7 @@ class GoogleCloudVisionV1p1beta1AnnotateFileResponse(
 ):
     error: Status
     inputConfig: GoogleCloudVisionV1p1beta1InputConfig
-    responses: typing.List[GoogleCloudVisionV1p1beta1AnnotateImageResponse]
+    responses: _list[GoogleCloudVisionV1p1beta1AnnotateImageResponse]
     totalPages: int
 
 @typing.type_check_only
@@ -172,18 +174,18 @@ class GoogleCloudVisionV1p1beta1AnnotateImageResponse(
     context: GoogleCloudVisionV1p1beta1ImageAnnotationContext
     cropHintsAnnotation: GoogleCloudVisionV1p1beta1CropHintsAnnotation
     error: Status
-    faceAnnotations: typing.List[GoogleCloudVisionV1p1beta1FaceAnnotation]
+    faceAnnotations: _list[GoogleCloudVisionV1p1beta1FaceAnnotation]
     fullTextAnnotation: GoogleCloudVisionV1p1beta1TextAnnotation
     imagePropertiesAnnotation: GoogleCloudVisionV1p1beta1ImageProperties
-    labelAnnotations: typing.List[GoogleCloudVisionV1p1beta1EntityAnnotation]
-    landmarkAnnotations: typing.List[GoogleCloudVisionV1p1beta1EntityAnnotation]
-    localizedObjectAnnotations: typing.List[
+    labelAnnotations: _list[GoogleCloudVisionV1p1beta1EntityAnnotation]
+    landmarkAnnotations: _list[GoogleCloudVisionV1p1beta1EntityAnnotation]
+    localizedObjectAnnotations: _list[
         GoogleCloudVisionV1p1beta1LocalizedObjectAnnotation
     ]
-    logoAnnotations: typing.List[GoogleCloudVisionV1p1beta1EntityAnnotation]
+    logoAnnotations: _list[GoogleCloudVisionV1p1beta1EntityAnnotation]
     productSearchResults: GoogleCloudVisionV1p1beta1ProductSearchResults
     safeSearchAnnotation: GoogleCloudVisionV1p1beta1SafeSearchAnnotation
-    textAnnotations: typing.List[GoogleCloudVisionV1p1beta1EntityAnnotation]
+    textAnnotations: _list[GoogleCloudVisionV1p1beta1EntityAnnotation]
     webDetection: GoogleCloudVisionV1p1beta1WebDetection
 
 @typing.type_check_only
@@ -196,7 +198,7 @@ class GoogleCloudVisionV1p1beta1AsyncAnnotateFileResponse(
 class GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    responses: typing.List[GoogleCloudVisionV1p1beta1AsyncAnnotateFileResponse]
+    responses: _list[GoogleCloudVisionV1p1beta1AsyncAnnotateFileResponse]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1Block(typing_extensions.TypedDict, total=False):
@@ -205,13 +207,13 @@ class GoogleCloudVisionV1p1beta1Block(typing_extensions.TypedDict, total=False):
     ]
     boundingBox: GoogleCloudVisionV1p1beta1BoundingPoly
     confidence: float
-    paragraphs: typing.List[GoogleCloudVisionV1p1beta1Paragraph]
+    paragraphs: _list[GoogleCloudVisionV1p1beta1Paragraph]
     property: GoogleCloudVisionV1p1beta1TextAnnotationTextProperty
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1BoundingPoly(typing_extensions.TypedDict, total=False):
-    normalizedVertices: typing.List[GoogleCloudVisionV1p1beta1NormalizedVertex]
-    vertices: typing.List[GoogleCloudVisionV1p1beta1Vertex]
+    normalizedVertices: _list[GoogleCloudVisionV1p1beta1NormalizedVertex]
+    vertices: _list[GoogleCloudVisionV1p1beta1Vertex]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1ColorInfo(typing_extensions.TypedDict, total=False):
@@ -229,13 +231,13 @@ class GoogleCloudVisionV1p1beta1CropHint(typing_extensions.TypedDict, total=Fals
 class GoogleCloudVisionV1p1beta1CropHintsAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    cropHints: typing.List[GoogleCloudVisionV1p1beta1CropHint]
+    cropHints: _list[GoogleCloudVisionV1p1beta1CropHint]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1DominantColorsAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    colors: typing.List[GoogleCloudVisionV1p1beta1ColorInfo]
+    colors: _list[GoogleCloudVisionV1p1beta1ColorInfo]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1EntityAnnotation(
@@ -245,9 +247,9 @@ class GoogleCloudVisionV1p1beta1EntityAnnotation(
     confidence: float
     description: str
     locale: str
-    locations: typing.List[GoogleCloudVisionV1p1beta1LocationInfo]
+    locations: _list[GoogleCloudVisionV1p1beta1LocationInfo]
     mid: str
-    properties: typing.List[GoogleCloudVisionV1p1beta1Property]
+    properties: _list[GoogleCloudVisionV1p1beta1Property]
     score: float
     topicality: float
 
@@ -271,7 +273,7 @@ class GoogleCloudVisionV1p1beta1FaceAnnotation(
         "UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"
     ]
     landmarkingConfidence: float
-    landmarks: typing.List[GoogleCloudVisionV1p1beta1FaceAnnotationLandmark]
+    landmarks: _list[GoogleCloudVisionV1p1beta1FaceAnnotationLandmark]
     panAngle: float
     rollAngle: float
     sorrowLikelihood: typing_extensions.Literal[
@@ -397,7 +399,7 @@ class GoogleCloudVisionV1p1beta1OutputConfig(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1Page(typing_extensions.TypedDict, total=False):
-    blocks: typing.List[GoogleCloudVisionV1p1beta1Block]
+    blocks: _list[GoogleCloudVisionV1p1beta1Block]
     confidence: float
     height: int
     property: GoogleCloudVisionV1p1beta1TextAnnotationTextProperty
@@ -408,7 +410,7 @@ class GoogleCloudVisionV1p1beta1Paragraph(typing_extensions.TypedDict, total=Fal
     boundingBox: GoogleCloudVisionV1p1beta1BoundingPoly
     confidence: float
     property: GoogleCloudVisionV1p1beta1TextAnnotationTextProperty
-    words: typing.List[GoogleCloudVisionV1p1beta1Word]
+    words: _list[GoogleCloudVisionV1p1beta1Word]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1Position(typing_extensions.TypedDict, total=False):
@@ -422,7 +424,7 @@ class GoogleCloudVisionV1p1beta1Product(typing_extensions.TypedDict, total=False
     displayName: str
     name: str
     productCategory: str
-    productLabels: typing.List[GoogleCloudVisionV1p1beta1ProductKeyValue]
+    productLabels: _list[GoogleCloudVisionV1p1beta1ProductKeyValue]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1ProductKeyValue(
@@ -436,20 +438,20 @@ class GoogleCloudVisionV1p1beta1ProductSearchResults(
     typing_extensions.TypedDict, total=False
 ):
     indexTime: str
-    productGroupedResults: typing.List[
+    productGroupedResults: _list[
         GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult
     ]
-    results: typing.List[GoogleCloudVisionV1p1beta1ProductSearchResultsResult]
+    results: _list[GoogleCloudVisionV1p1beta1ProductSearchResultsResult]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1ProductSearchResultsGroupedResult(
     typing_extensions.TypedDict, total=False
 ):
     boundingPoly: GoogleCloudVisionV1p1beta1BoundingPoly
-    objectAnnotations: typing.List[
+    objectAnnotations: _list[
         GoogleCloudVisionV1p1beta1ProductSearchResultsObjectAnnotation
     ]
-    results: typing.List[GoogleCloudVisionV1p1beta1ProductSearchResultsResult]
+    results: _list[GoogleCloudVisionV1p1beta1ProductSearchResultsResult]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1ProductSearchResultsObjectAnnotation(
@@ -505,7 +507,7 @@ class GoogleCloudVisionV1p1beta1Symbol(typing_extensions.TypedDict, total=False)
 class GoogleCloudVisionV1p1beta1TextAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    pages: typing.List[GoogleCloudVisionV1p1beta1Page]
+    pages: _list[GoogleCloudVisionV1p1beta1Page]
     text: str
 
 @typing.type_check_only
@@ -529,9 +531,7 @@ class GoogleCloudVisionV1p1beta1TextAnnotationTextProperty(
     typing_extensions.TypedDict, total=False
 ):
     detectedBreak: GoogleCloudVisionV1p1beta1TextAnnotationDetectedBreak
-    detectedLanguages: typing.List[
-        GoogleCloudVisionV1p1beta1TextAnnotationDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudVisionV1p1beta1TextAnnotationDetectedLanguage]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1Vertex(typing_extensions.TypedDict, total=False):
@@ -540,12 +540,12 @@ class GoogleCloudVisionV1p1beta1Vertex(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1WebDetection(typing_extensions.TypedDict, total=False):
-    bestGuessLabels: typing.List[GoogleCloudVisionV1p1beta1WebDetectionWebLabel]
-    fullMatchingImages: typing.List[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
-    pagesWithMatchingImages: typing.List[GoogleCloudVisionV1p1beta1WebDetectionWebPage]
-    partialMatchingImages: typing.List[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
-    visuallySimilarImages: typing.List[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
-    webEntities: typing.List[GoogleCloudVisionV1p1beta1WebDetectionWebEntity]
+    bestGuessLabels: _list[GoogleCloudVisionV1p1beta1WebDetectionWebLabel]
+    fullMatchingImages: _list[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
+    pagesWithMatchingImages: _list[GoogleCloudVisionV1p1beta1WebDetectionWebPage]
+    partialMatchingImages: _list[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
+    visuallySimilarImages: _list[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
+    webEntities: _list[GoogleCloudVisionV1p1beta1WebDetectionWebEntity]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p1beta1WebDetectionWebEntity(
@@ -573,9 +573,9 @@ class GoogleCloudVisionV1p1beta1WebDetectionWebLabel(
 class GoogleCloudVisionV1p1beta1WebDetectionWebPage(
     typing_extensions.TypedDict, total=False
 ):
-    fullMatchingImages: typing.List[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
+    fullMatchingImages: _list[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
     pageTitle: str
-    partialMatchingImages: typing.List[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
+    partialMatchingImages: _list[GoogleCloudVisionV1p1beta1WebDetectionWebImage]
     score: float
     url: str
 
@@ -584,16 +584,16 @@ class GoogleCloudVisionV1p1beta1Word(typing_extensions.TypedDict, total=False):
     boundingBox: GoogleCloudVisionV1p1beta1BoundingPoly
     confidence: float
     property: GoogleCloudVisionV1p1beta1TextAnnotationTextProperty
-    symbols: typing.List[GoogleCloudVisionV1p1beta1Symbol]
+    symbols: _list[GoogleCloudVisionV1p1beta1Symbol]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1AnnotateFileRequest(
     typing_extensions.TypedDict, total=False
 ):
-    features: typing.List[GoogleCloudVisionV1p2beta1Feature]
+    features: _list[GoogleCloudVisionV1p2beta1Feature]
     imageContext: GoogleCloudVisionV1p2beta1ImageContext
     inputConfig: GoogleCloudVisionV1p2beta1InputConfig
-    pages: typing.List[int]
+    pages: _list[int]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1AnnotateFileResponse(
@@ -601,14 +601,14 @@ class GoogleCloudVisionV1p2beta1AnnotateFileResponse(
 ):
     error: Status
     inputConfig: GoogleCloudVisionV1p2beta1InputConfig
-    responses: typing.List[GoogleCloudVisionV1p2beta1AnnotateImageResponse]
+    responses: _list[GoogleCloudVisionV1p2beta1AnnotateImageResponse]
     totalPages: int
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1AnnotateImageRequest(
     typing_extensions.TypedDict, total=False
 ):
-    features: typing.List[GoogleCloudVisionV1p2beta1Feature]
+    features: _list[GoogleCloudVisionV1p2beta1Feature]
     image: GoogleCloudVisionV1p2beta1Image
     imageContext: GoogleCloudVisionV1p2beta1ImageContext
 
@@ -619,25 +619,25 @@ class GoogleCloudVisionV1p2beta1AnnotateImageResponse(
     context: GoogleCloudVisionV1p2beta1ImageAnnotationContext
     cropHintsAnnotation: GoogleCloudVisionV1p2beta1CropHintsAnnotation
     error: Status
-    faceAnnotations: typing.List[GoogleCloudVisionV1p2beta1FaceAnnotation]
+    faceAnnotations: _list[GoogleCloudVisionV1p2beta1FaceAnnotation]
     fullTextAnnotation: GoogleCloudVisionV1p2beta1TextAnnotation
     imagePropertiesAnnotation: GoogleCloudVisionV1p2beta1ImageProperties
-    labelAnnotations: typing.List[GoogleCloudVisionV1p2beta1EntityAnnotation]
-    landmarkAnnotations: typing.List[GoogleCloudVisionV1p2beta1EntityAnnotation]
-    localizedObjectAnnotations: typing.List[
+    labelAnnotations: _list[GoogleCloudVisionV1p2beta1EntityAnnotation]
+    landmarkAnnotations: _list[GoogleCloudVisionV1p2beta1EntityAnnotation]
+    localizedObjectAnnotations: _list[
         GoogleCloudVisionV1p2beta1LocalizedObjectAnnotation
     ]
-    logoAnnotations: typing.List[GoogleCloudVisionV1p2beta1EntityAnnotation]
+    logoAnnotations: _list[GoogleCloudVisionV1p2beta1EntityAnnotation]
     productSearchResults: GoogleCloudVisionV1p2beta1ProductSearchResults
     safeSearchAnnotation: GoogleCloudVisionV1p2beta1SafeSearchAnnotation
-    textAnnotations: typing.List[GoogleCloudVisionV1p2beta1EntityAnnotation]
+    textAnnotations: _list[GoogleCloudVisionV1p2beta1EntityAnnotation]
     webDetection: GoogleCloudVisionV1p2beta1WebDetection
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1AsyncAnnotateFileRequest(
     typing_extensions.TypedDict, total=False
 ):
-    features: typing.List[GoogleCloudVisionV1p2beta1Feature]
+    features: _list[GoogleCloudVisionV1p2beta1Feature]
     imageContext: GoogleCloudVisionV1p2beta1ImageContext
     inputConfig: GoogleCloudVisionV1p2beta1InputConfig
     outputConfig: GoogleCloudVisionV1p2beta1OutputConfig
@@ -653,13 +653,13 @@ class GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest(
     typing_extensions.TypedDict, total=False
 ):
     parent: str
-    requests: typing.List[GoogleCloudVisionV1p2beta1AsyncAnnotateFileRequest]
+    requests: _list[GoogleCloudVisionV1p2beta1AsyncAnnotateFileRequest]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    responses: typing.List[GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse]
+    responses: _list[GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest(
@@ -667,33 +667,33 @@ class GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest(
 ):
     outputConfig: GoogleCloudVisionV1p2beta1OutputConfig
     parent: str
-    requests: typing.List[GoogleCloudVisionV1p2beta1AnnotateImageRequest]
+    requests: _list[GoogleCloudVisionV1p2beta1AnnotateImageRequest]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest(
     typing_extensions.TypedDict, total=False
 ):
     parent: str
-    requests: typing.List[GoogleCloudVisionV1p2beta1AnnotateFileRequest]
+    requests: _list[GoogleCloudVisionV1p2beta1AnnotateFileRequest]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    responses: typing.List[GoogleCloudVisionV1p2beta1AnnotateFileResponse]
+    responses: _list[GoogleCloudVisionV1p2beta1AnnotateFileResponse]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest(
     typing_extensions.TypedDict, total=False
 ):
     parent: str
-    requests: typing.List[GoogleCloudVisionV1p2beta1AnnotateImageRequest]
+    requests: _list[GoogleCloudVisionV1p2beta1AnnotateImageRequest]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    responses: typing.List[GoogleCloudVisionV1p2beta1AnnotateImageResponse]
+    responses: _list[GoogleCloudVisionV1p2beta1AnnotateImageResponse]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1Block(typing_extensions.TypedDict, total=False):
@@ -702,13 +702,13 @@ class GoogleCloudVisionV1p2beta1Block(typing_extensions.TypedDict, total=False):
     ]
     boundingBox: GoogleCloudVisionV1p2beta1BoundingPoly
     confidence: float
-    paragraphs: typing.List[GoogleCloudVisionV1p2beta1Paragraph]
+    paragraphs: _list[GoogleCloudVisionV1p2beta1Paragraph]
     property: GoogleCloudVisionV1p2beta1TextAnnotationTextProperty
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1BoundingPoly(typing_extensions.TypedDict, total=False):
-    normalizedVertices: typing.List[GoogleCloudVisionV1p2beta1NormalizedVertex]
-    vertices: typing.List[GoogleCloudVisionV1p2beta1Vertex]
+    normalizedVertices: _list[GoogleCloudVisionV1p2beta1NormalizedVertex]
+    vertices: _list[GoogleCloudVisionV1p2beta1Vertex]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1ColorInfo(typing_extensions.TypedDict, total=False):
@@ -726,19 +726,19 @@ class GoogleCloudVisionV1p2beta1CropHint(typing_extensions.TypedDict, total=Fals
 class GoogleCloudVisionV1p2beta1CropHintsAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    cropHints: typing.List[GoogleCloudVisionV1p2beta1CropHint]
+    cropHints: _list[GoogleCloudVisionV1p2beta1CropHint]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1CropHintsParams(
     typing_extensions.TypedDict, total=False
 ):
-    aspectRatios: typing.List[float]
+    aspectRatios: _list[float]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1DominantColorsAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    colors: typing.List[GoogleCloudVisionV1p2beta1ColorInfo]
+    colors: _list[GoogleCloudVisionV1p2beta1ColorInfo]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1EntityAnnotation(
@@ -748,9 +748,9 @@ class GoogleCloudVisionV1p2beta1EntityAnnotation(
     confidence: float
     description: str
     locale: str
-    locations: typing.List[GoogleCloudVisionV1p2beta1LocationInfo]
+    locations: _list[GoogleCloudVisionV1p2beta1LocationInfo]
     mid: str
-    properties: typing.List[GoogleCloudVisionV1p2beta1Property]
+    properties: _list[GoogleCloudVisionV1p2beta1Property]
     score: float
     topicality: float
 
@@ -774,7 +774,7 @@ class GoogleCloudVisionV1p2beta1FaceAnnotation(
         "UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"
     ]
     landmarkingConfidence: float
-    landmarks: typing.List[GoogleCloudVisionV1p2beta1FaceAnnotationLandmark]
+    landmarks: _list[GoogleCloudVisionV1p2beta1FaceAnnotationLandmark]
     panAngle: float
     rollAngle: float
     sorrowLikelihood: typing_extensions.Literal[
@@ -878,7 +878,7 @@ class GoogleCloudVisionV1p2beta1ImageAnnotationContext(
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1ImageContext(typing_extensions.TypedDict, total=False):
     cropHintsParams: GoogleCloudVisionV1p2beta1CropHintsParams
-    languageHints: typing.List[str]
+    languageHints: _list[str]
     latLongRect: GoogleCloudVisionV1p2beta1LatLongRect
     productSearchParams: GoogleCloudVisionV1p2beta1ProductSearchParams
     textDetectionParams: GoogleCloudVisionV1p2beta1TextDetectionParams
@@ -944,7 +944,7 @@ class GoogleCloudVisionV1p2beta1OutputConfig(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1Page(typing_extensions.TypedDict, total=False):
-    blocks: typing.List[GoogleCloudVisionV1p2beta1Block]
+    blocks: _list[GoogleCloudVisionV1p2beta1Block]
     confidence: float
     height: int
     property: GoogleCloudVisionV1p2beta1TextAnnotationTextProperty
@@ -955,7 +955,7 @@ class GoogleCloudVisionV1p2beta1Paragraph(typing_extensions.TypedDict, total=Fal
     boundingBox: GoogleCloudVisionV1p2beta1BoundingPoly
     confidence: float
     property: GoogleCloudVisionV1p2beta1TextAnnotationTextProperty
-    words: typing.List[GoogleCloudVisionV1p2beta1Word]
+    words: _list[GoogleCloudVisionV1p2beta1Word]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1Position(typing_extensions.TypedDict, total=False):
@@ -969,7 +969,7 @@ class GoogleCloudVisionV1p2beta1Product(typing_extensions.TypedDict, total=False
     displayName: str
     name: str
     productCategory: str
-    productLabels: typing.List[GoogleCloudVisionV1p2beta1ProductKeyValue]
+    productLabels: _list[GoogleCloudVisionV1p2beta1ProductKeyValue]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1ProductKeyValue(
@@ -984,7 +984,7 @@ class GoogleCloudVisionV1p2beta1ProductSearchParams(
 ):
     boundingPoly: GoogleCloudVisionV1p2beta1BoundingPoly
     filter: str
-    productCategories: typing.List[str]
+    productCategories: _list[str]
     productSet: str
 
 @typing.type_check_only
@@ -992,20 +992,20 @@ class GoogleCloudVisionV1p2beta1ProductSearchResults(
     typing_extensions.TypedDict, total=False
 ):
     indexTime: str
-    productGroupedResults: typing.List[
+    productGroupedResults: _list[
         GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult
     ]
-    results: typing.List[GoogleCloudVisionV1p2beta1ProductSearchResultsResult]
+    results: _list[GoogleCloudVisionV1p2beta1ProductSearchResultsResult]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1ProductSearchResultsGroupedResult(
     typing_extensions.TypedDict, total=False
 ):
     boundingPoly: GoogleCloudVisionV1p2beta1BoundingPoly
-    objectAnnotations: typing.List[
+    objectAnnotations: _list[
         GoogleCloudVisionV1p2beta1ProductSearchResultsObjectAnnotation
     ]
-    results: typing.List[GoogleCloudVisionV1p2beta1ProductSearchResultsResult]
+    results: _list[GoogleCloudVisionV1p2beta1ProductSearchResultsResult]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1ProductSearchResultsObjectAnnotation(
@@ -1061,7 +1061,7 @@ class GoogleCloudVisionV1p2beta1Symbol(typing_extensions.TypedDict, total=False)
 class GoogleCloudVisionV1p2beta1TextAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    pages: typing.List[GoogleCloudVisionV1p2beta1Page]
+    pages: _list[GoogleCloudVisionV1p2beta1Page]
     text: str
 
 @typing.type_check_only
@@ -1085,9 +1085,7 @@ class GoogleCloudVisionV1p2beta1TextAnnotationTextProperty(
     typing_extensions.TypedDict, total=False
 ):
     detectedBreak: GoogleCloudVisionV1p2beta1TextAnnotationDetectedBreak
-    detectedLanguages: typing.List[
-        GoogleCloudVisionV1p2beta1TextAnnotationDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudVisionV1p2beta1TextAnnotationDetectedLanguage]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1TextDetectionParams(
@@ -1102,12 +1100,12 @@ class GoogleCloudVisionV1p2beta1Vertex(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1WebDetection(typing_extensions.TypedDict, total=False):
-    bestGuessLabels: typing.List[GoogleCloudVisionV1p2beta1WebDetectionWebLabel]
-    fullMatchingImages: typing.List[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
-    pagesWithMatchingImages: typing.List[GoogleCloudVisionV1p2beta1WebDetectionWebPage]
-    partialMatchingImages: typing.List[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
-    visuallySimilarImages: typing.List[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
-    webEntities: typing.List[GoogleCloudVisionV1p2beta1WebDetectionWebEntity]
+    bestGuessLabels: _list[GoogleCloudVisionV1p2beta1WebDetectionWebLabel]
+    fullMatchingImages: _list[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
+    pagesWithMatchingImages: _list[GoogleCloudVisionV1p2beta1WebDetectionWebPage]
+    partialMatchingImages: _list[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
+    visuallySimilarImages: _list[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
+    webEntities: _list[GoogleCloudVisionV1p2beta1WebDetectionWebEntity]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p2beta1WebDetectionParams(
@@ -1141,9 +1139,9 @@ class GoogleCloudVisionV1p2beta1WebDetectionWebLabel(
 class GoogleCloudVisionV1p2beta1WebDetectionWebPage(
     typing_extensions.TypedDict, total=False
 ):
-    fullMatchingImages: typing.List[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
+    fullMatchingImages: _list[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
     pageTitle: str
-    partialMatchingImages: typing.List[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
+    partialMatchingImages: _list[GoogleCloudVisionV1p2beta1WebDetectionWebImage]
     score: float
     url: str
 
@@ -1152,7 +1150,7 @@ class GoogleCloudVisionV1p2beta1Word(typing_extensions.TypedDict, total=False):
     boundingBox: GoogleCloudVisionV1p2beta1BoundingPoly
     confidence: float
     property: GoogleCloudVisionV1p2beta1TextAnnotationTextProperty
-    symbols: typing.List[GoogleCloudVisionV1p2beta1Symbol]
+    symbols: _list[GoogleCloudVisionV1p2beta1Symbol]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1AnnotateFileResponse(
@@ -1160,7 +1158,7 @@ class GoogleCloudVisionV1p3beta1AnnotateFileResponse(
 ):
     error: Status
     inputConfig: GoogleCloudVisionV1p3beta1InputConfig
-    responses: typing.List[GoogleCloudVisionV1p3beta1AnnotateImageResponse]
+    responses: _list[GoogleCloudVisionV1p3beta1AnnotateImageResponse]
     totalPages: int
 
 @typing.type_check_only
@@ -1170,18 +1168,18 @@ class GoogleCloudVisionV1p3beta1AnnotateImageResponse(
     context: GoogleCloudVisionV1p3beta1ImageAnnotationContext
     cropHintsAnnotation: GoogleCloudVisionV1p3beta1CropHintsAnnotation
     error: Status
-    faceAnnotations: typing.List[GoogleCloudVisionV1p3beta1FaceAnnotation]
+    faceAnnotations: _list[GoogleCloudVisionV1p3beta1FaceAnnotation]
     fullTextAnnotation: GoogleCloudVisionV1p3beta1TextAnnotation
     imagePropertiesAnnotation: GoogleCloudVisionV1p3beta1ImageProperties
-    labelAnnotations: typing.List[GoogleCloudVisionV1p3beta1EntityAnnotation]
-    landmarkAnnotations: typing.List[GoogleCloudVisionV1p3beta1EntityAnnotation]
-    localizedObjectAnnotations: typing.List[
+    labelAnnotations: _list[GoogleCloudVisionV1p3beta1EntityAnnotation]
+    landmarkAnnotations: _list[GoogleCloudVisionV1p3beta1EntityAnnotation]
+    localizedObjectAnnotations: _list[
         GoogleCloudVisionV1p3beta1LocalizedObjectAnnotation
     ]
-    logoAnnotations: typing.List[GoogleCloudVisionV1p3beta1EntityAnnotation]
+    logoAnnotations: _list[GoogleCloudVisionV1p3beta1EntityAnnotation]
     productSearchResults: GoogleCloudVisionV1p3beta1ProductSearchResults
     safeSearchAnnotation: GoogleCloudVisionV1p3beta1SafeSearchAnnotation
-    textAnnotations: typing.List[GoogleCloudVisionV1p3beta1EntityAnnotation]
+    textAnnotations: _list[GoogleCloudVisionV1p3beta1EntityAnnotation]
     webDetection: GoogleCloudVisionV1p3beta1WebDetection
 
 @typing.type_check_only
@@ -1194,7 +1192,7 @@ class GoogleCloudVisionV1p3beta1AsyncAnnotateFileResponse(
 class GoogleCloudVisionV1p3beta1AsyncBatchAnnotateFilesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    responses: typing.List[GoogleCloudVisionV1p3beta1AsyncAnnotateFileResponse]
+    responses: _list[GoogleCloudVisionV1p3beta1AsyncAnnotateFileResponse]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1BatchOperationMetadata(
@@ -1213,13 +1211,13 @@ class GoogleCloudVisionV1p3beta1Block(typing_extensions.TypedDict, total=False):
     ]
     boundingBox: GoogleCloudVisionV1p3beta1BoundingPoly
     confidence: float
-    paragraphs: typing.List[GoogleCloudVisionV1p3beta1Paragraph]
+    paragraphs: _list[GoogleCloudVisionV1p3beta1Paragraph]
     property: GoogleCloudVisionV1p3beta1TextAnnotationTextProperty
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1BoundingPoly(typing_extensions.TypedDict, total=False):
-    normalizedVertices: typing.List[GoogleCloudVisionV1p3beta1NormalizedVertex]
-    vertices: typing.List[GoogleCloudVisionV1p3beta1Vertex]
+    normalizedVertices: _list[GoogleCloudVisionV1p3beta1NormalizedVertex]
+    vertices: _list[GoogleCloudVisionV1p3beta1Vertex]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1ColorInfo(typing_extensions.TypedDict, total=False):
@@ -1237,13 +1235,13 @@ class GoogleCloudVisionV1p3beta1CropHint(typing_extensions.TypedDict, total=Fals
 class GoogleCloudVisionV1p3beta1CropHintsAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    cropHints: typing.List[GoogleCloudVisionV1p3beta1CropHint]
+    cropHints: _list[GoogleCloudVisionV1p3beta1CropHint]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1DominantColorsAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    colors: typing.List[GoogleCloudVisionV1p3beta1ColorInfo]
+    colors: _list[GoogleCloudVisionV1p3beta1ColorInfo]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1EntityAnnotation(
@@ -1253,9 +1251,9 @@ class GoogleCloudVisionV1p3beta1EntityAnnotation(
     confidence: float
     description: str
     locale: str
-    locations: typing.List[GoogleCloudVisionV1p3beta1LocationInfo]
+    locations: _list[GoogleCloudVisionV1p3beta1LocationInfo]
     mid: str
-    properties: typing.List[GoogleCloudVisionV1p3beta1Property]
+    properties: _list[GoogleCloudVisionV1p3beta1Property]
     score: float
     topicality: float
 
@@ -1279,7 +1277,7 @@ class GoogleCloudVisionV1p3beta1FaceAnnotation(
         "UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"
     ]
     landmarkingConfidence: float
-    landmarks: typing.List[GoogleCloudVisionV1p3beta1FaceAnnotationLandmark]
+    landmarks: _list[GoogleCloudVisionV1p3beta1FaceAnnotationLandmark]
     panAngle: float
     rollAngle: float
     sorrowLikelihood: typing_extensions.Literal[
@@ -1365,8 +1363,8 @@ class GoogleCloudVisionV1p3beta1ImageProperties(
 class GoogleCloudVisionV1p3beta1ImportProductSetsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    referenceImages: typing.List[GoogleCloudVisionV1p3beta1ReferenceImage]
-    statuses: typing.List[Status]
+    referenceImages: _list[GoogleCloudVisionV1p3beta1ReferenceImage]
+    statuses: _list[Status]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1InputConfig(typing_extensions.TypedDict, total=False):
@@ -1412,7 +1410,7 @@ class GoogleCloudVisionV1p3beta1OutputConfig(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1Page(typing_extensions.TypedDict, total=False):
-    blocks: typing.List[GoogleCloudVisionV1p3beta1Block]
+    blocks: _list[GoogleCloudVisionV1p3beta1Block]
     confidence: float
     height: int
     property: GoogleCloudVisionV1p3beta1TextAnnotationTextProperty
@@ -1423,7 +1421,7 @@ class GoogleCloudVisionV1p3beta1Paragraph(typing_extensions.TypedDict, total=Fal
     boundingBox: GoogleCloudVisionV1p3beta1BoundingPoly
     confidence: float
     property: GoogleCloudVisionV1p3beta1TextAnnotationTextProperty
-    words: typing.List[GoogleCloudVisionV1p3beta1Word]
+    words: _list[GoogleCloudVisionV1p3beta1Word]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1Position(typing_extensions.TypedDict, total=False):
@@ -1437,7 +1435,7 @@ class GoogleCloudVisionV1p3beta1Product(typing_extensions.TypedDict, total=False
     displayName: str
     name: str
     productCategory: str
-    productLabels: typing.List[GoogleCloudVisionV1p3beta1ProductKeyValue]
+    productLabels: _list[GoogleCloudVisionV1p3beta1ProductKeyValue]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1ProductKeyValue(
@@ -1451,20 +1449,20 @@ class GoogleCloudVisionV1p3beta1ProductSearchResults(
     typing_extensions.TypedDict, total=False
 ):
     indexTime: str
-    productGroupedResults: typing.List[
+    productGroupedResults: _list[
         GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult
     ]
-    results: typing.List[GoogleCloudVisionV1p3beta1ProductSearchResultsResult]
+    results: _list[GoogleCloudVisionV1p3beta1ProductSearchResultsResult]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1ProductSearchResultsGroupedResult(
     typing_extensions.TypedDict, total=False
 ):
     boundingPoly: GoogleCloudVisionV1p3beta1BoundingPoly
-    objectAnnotations: typing.List[
+    objectAnnotations: _list[
         GoogleCloudVisionV1p3beta1ProductSearchResultsObjectAnnotation
     ]
-    results: typing.List[GoogleCloudVisionV1p3beta1ProductSearchResultsResult]
+    results: _list[GoogleCloudVisionV1p3beta1ProductSearchResultsResult]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1ProductSearchResultsObjectAnnotation(
@@ -1493,7 +1491,7 @@ class GoogleCloudVisionV1p3beta1Property(typing_extensions.TypedDict, total=Fals
 class GoogleCloudVisionV1p3beta1ReferenceImage(
     typing_extensions.TypedDict, total=False
 ):
-    boundingPolys: typing.List[GoogleCloudVisionV1p3beta1BoundingPoly]
+    boundingPolys: _list[GoogleCloudVisionV1p3beta1BoundingPoly]
     name: str
     uri: str
 
@@ -1528,7 +1526,7 @@ class GoogleCloudVisionV1p3beta1Symbol(typing_extensions.TypedDict, total=False)
 class GoogleCloudVisionV1p3beta1TextAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    pages: typing.List[GoogleCloudVisionV1p3beta1Page]
+    pages: _list[GoogleCloudVisionV1p3beta1Page]
     text: str
 
 @typing.type_check_only
@@ -1552,9 +1550,7 @@ class GoogleCloudVisionV1p3beta1TextAnnotationTextProperty(
     typing_extensions.TypedDict, total=False
 ):
     detectedBreak: GoogleCloudVisionV1p3beta1TextAnnotationDetectedBreak
-    detectedLanguages: typing.List[
-        GoogleCloudVisionV1p3beta1TextAnnotationDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudVisionV1p3beta1TextAnnotationDetectedLanguage]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1Vertex(typing_extensions.TypedDict, total=False):
@@ -1563,12 +1559,12 @@ class GoogleCloudVisionV1p3beta1Vertex(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1WebDetection(typing_extensions.TypedDict, total=False):
-    bestGuessLabels: typing.List[GoogleCloudVisionV1p3beta1WebDetectionWebLabel]
-    fullMatchingImages: typing.List[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
-    pagesWithMatchingImages: typing.List[GoogleCloudVisionV1p3beta1WebDetectionWebPage]
-    partialMatchingImages: typing.List[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
-    visuallySimilarImages: typing.List[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
-    webEntities: typing.List[GoogleCloudVisionV1p3beta1WebDetectionWebEntity]
+    bestGuessLabels: _list[GoogleCloudVisionV1p3beta1WebDetectionWebLabel]
+    fullMatchingImages: _list[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
+    pagesWithMatchingImages: _list[GoogleCloudVisionV1p3beta1WebDetectionWebPage]
+    partialMatchingImages: _list[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
+    visuallySimilarImages: _list[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
+    webEntities: _list[GoogleCloudVisionV1p3beta1WebDetectionWebEntity]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p3beta1WebDetectionWebEntity(
@@ -1596,9 +1592,9 @@ class GoogleCloudVisionV1p3beta1WebDetectionWebLabel(
 class GoogleCloudVisionV1p3beta1WebDetectionWebPage(
     typing_extensions.TypedDict, total=False
 ):
-    fullMatchingImages: typing.List[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
+    fullMatchingImages: _list[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
     pageTitle: str
-    partialMatchingImages: typing.List[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
+    partialMatchingImages: _list[GoogleCloudVisionV1p3beta1WebDetectionWebImage]
     score: float
     url: str
 
@@ -1607,7 +1603,7 @@ class GoogleCloudVisionV1p3beta1Word(typing_extensions.TypedDict, total=False):
     boundingBox: GoogleCloudVisionV1p3beta1BoundingPoly
     confidence: float
     property: GoogleCloudVisionV1p3beta1TextAnnotationTextProperty
-    symbols: typing.List[GoogleCloudVisionV1p3beta1Symbol]
+    symbols: _list[GoogleCloudVisionV1p3beta1Symbol]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1AnnotateFileResponse(
@@ -1615,7 +1611,7 @@ class GoogleCloudVisionV1p4beta1AnnotateFileResponse(
 ):
     error: Status
     inputConfig: GoogleCloudVisionV1p4beta1InputConfig
-    responses: typing.List[GoogleCloudVisionV1p4beta1AnnotateImageResponse]
+    responses: _list[GoogleCloudVisionV1p4beta1AnnotateImageResponse]
     totalPages: int
 
 @typing.type_check_only
@@ -1625,18 +1621,18 @@ class GoogleCloudVisionV1p4beta1AnnotateImageResponse(
     context: GoogleCloudVisionV1p4beta1ImageAnnotationContext
     cropHintsAnnotation: GoogleCloudVisionV1p4beta1CropHintsAnnotation
     error: Status
-    faceAnnotations: typing.List[GoogleCloudVisionV1p4beta1FaceAnnotation]
+    faceAnnotations: _list[GoogleCloudVisionV1p4beta1FaceAnnotation]
     fullTextAnnotation: GoogleCloudVisionV1p4beta1TextAnnotation
     imagePropertiesAnnotation: GoogleCloudVisionV1p4beta1ImageProperties
-    labelAnnotations: typing.List[GoogleCloudVisionV1p4beta1EntityAnnotation]
-    landmarkAnnotations: typing.List[GoogleCloudVisionV1p4beta1EntityAnnotation]
-    localizedObjectAnnotations: typing.List[
+    labelAnnotations: _list[GoogleCloudVisionV1p4beta1EntityAnnotation]
+    landmarkAnnotations: _list[GoogleCloudVisionV1p4beta1EntityAnnotation]
+    localizedObjectAnnotations: _list[
         GoogleCloudVisionV1p4beta1LocalizedObjectAnnotation
     ]
-    logoAnnotations: typing.List[GoogleCloudVisionV1p4beta1EntityAnnotation]
+    logoAnnotations: _list[GoogleCloudVisionV1p4beta1EntityAnnotation]
     productSearchResults: GoogleCloudVisionV1p4beta1ProductSearchResults
     safeSearchAnnotation: GoogleCloudVisionV1p4beta1SafeSearchAnnotation
-    textAnnotations: typing.List[GoogleCloudVisionV1p4beta1EntityAnnotation]
+    textAnnotations: _list[GoogleCloudVisionV1p4beta1EntityAnnotation]
     webDetection: GoogleCloudVisionV1p4beta1WebDetection
 
 @typing.type_check_only
@@ -1649,7 +1645,7 @@ class GoogleCloudVisionV1p4beta1AsyncAnnotateFileResponse(
 class GoogleCloudVisionV1p4beta1AsyncBatchAnnotateFilesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    responses: typing.List[GoogleCloudVisionV1p4beta1AsyncAnnotateFileResponse]
+    responses: _list[GoogleCloudVisionV1p4beta1AsyncAnnotateFileResponse]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1AsyncBatchAnnotateImagesResponse(
@@ -1661,7 +1657,7 @@ class GoogleCloudVisionV1p4beta1AsyncBatchAnnotateImagesResponse(
 class GoogleCloudVisionV1p4beta1BatchAnnotateFilesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    responses: typing.List[GoogleCloudVisionV1p4beta1AnnotateFileResponse]
+    responses: _list[GoogleCloudVisionV1p4beta1AnnotateFileResponse]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1BatchOperationMetadata(
@@ -1680,13 +1676,13 @@ class GoogleCloudVisionV1p4beta1Block(typing_extensions.TypedDict, total=False):
     ]
     boundingBox: GoogleCloudVisionV1p4beta1BoundingPoly
     confidence: float
-    paragraphs: typing.List[GoogleCloudVisionV1p4beta1Paragraph]
+    paragraphs: _list[GoogleCloudVisionV1p4beta1Paragraph]
     property: GoogleCloudVisionV1p4beta1TextAnnotationTextProperty
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1BoundingPoly(typing_extensions.TypedDict, total=False):
-    normalizedVertices: typing.List[GoogleCloudVisionV1p4beta1NormalizedVertex]
-    vertices: typing.List[GoogleCloudVisionV1p4beta1Vertex]
+    normalizedVertices: _list[GoogleCloudVisionV1p4beta1NormalizedVertex]
+    vertices: _list[GoogleCloudVisionV1p4beta1Vertex]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1Celebrity(typing_extensions.TypedDict, total=False):
@@ -1710,13 +1706,13 @@ class GoogleCloudVisionV1p4beta1CropHint(typing_extensions.TypedDict, total=Fals
 class GoogleCloudVisionV1p4beta1CropHintsAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    cropHints: typing.List[GoogleCloudVisionV1p4beta1CropHint]
+    cropHints: _list[GoogleCloudVisionV1p4beta1CropHint]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1DominantColorsAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    colors: typing.List[GoogleCloudVisionV1p4beta1ColorInfo]
+    colors: _list[GoogleCloudVisionV1p4beta1ColorInfo]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1EntityAnnotation(
@@ -1726,9 +1722,9 @@ class GoogleCloudVisionV1p4beta1EntityAnnotation(
     confidence: float
     description: str
     locale: str
-    locations: typing.List[GoogleCloudVisionV1p4beta1LocationInfo]
+    locations: _list[GoogleCloudVisionV1p4beta1LocationInfo]
     mid: str
-    properties: typing.List[GoogleCloudVisionV1p4beta1Property]
+    properties: _list[GoogleCloudVisionV1p4beta1Property]
     score: float
     topicality: float
 
@@ -1752,9 +1748,9 @@ class GoogleCloudVisionV1p4beta1FaceAnnotation(
         "UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"
     ]
     landmarkingConfidence: float
-    landmarks: typing.List[GoogleCloudVisionV1p4beta1FaceAnnotationLandmark]
+    landmarks: _list[GoogleCloudVisionV1p4beta1FaceAnnotationLandmark]
     panAngle: float
-    recognitionResult: typing.List[GoogleCloudVisionV1p4beta1FaceRecognitionResult]
+    recognitionResult: _list[GoogleCloudVisionV1p4beta1FaceRecognitionResult]
     rollAngle: float
     sorrowLikelihood: typing_extensions.Literal[
         "UNKNOWN", "VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"
@@ -1846,8 +1842,8 @@ class GoogleCloudVisionV1p4beta1ImageProperties(
 class GoogleCloudVisionV1p4beta1ImportProductSetsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    referenceImages: typing.List[GoogleCloudVisionV1p4beta1ReferenceImage]
-    statuses: typing.List[Status]
+    referenceImages: _list[GoogleCloudVisionV1p4beta1ReferenceImage]
+    statuses: _list[Status]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1InputConfig(typing_extensions.TypedDict, total=False):
@@ -1893,7 +1889,7 @@ class GoogleCloudVisionV1p4beta1OutputConfig(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1Page(typing_extensions.TypedDict, total=False):
-    blocks: typing.List[GoogleCloudVisionV1p4beta1Block]
+    blocks: _list[GoogleCloudVisionV1p4beta1Block]
     confidence: float
     height: int
     property: GoogleCloudVisionV1p4beta1TextAnnotationTextProperty
@@ -1904,7 +1900,7 @@ class GoogleCloudVisionV1p4beta1Paragraph(typing_extensions.TypedDict, total=Fal
     boundingBox: GoogleCloudVisionV1p4beta1BoundingPoly
     confidence: float
     property: GoogleCloudVisionV1p4beta1TextAnnotationTextProperty
-    words: typing.List[GoogleCloudVisionV1p4beta1Word]
+    words: _list[GoogleCloudVisionV1p4beta1Word]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1Position(typing_extensions.TypedDict, total=False):
@@ -1918,7 +1914,7 @@ class GoogleCloudVisionV1p4beta1Product(typing_extensions.TypedDict, total=False
     displayName: str
     name: str
     productCategory: str
-    productLabels: typing.List[GoogleCloudVisionV1p4beta1ProductKeyValue]
+    productLabels: _list[GoogleCloudVisionV1p4beta1ProductKeyValue]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1ProductKeyValue(
@@ -1932,20 +1928,20 @@ class GoogleCloudVisionV1p4beta1ProductSearchResults(
     typing_extensions.TypedDict, total=False
 ):
     indexTime: str
-    productGroupedResults: typing.List[
+    productGroupedResults: _list[
         GoogleCloudVisionV1p4beta1ProductSearchResultsGroupedResult
     ]
-    results: typing.List[GoogleCloudVisionV1p4beta1ProductSearchResultsResult]
+    results: _list[GoogleCloudVisionV1p4beta1ProductSearchResultsResult]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1ProductSearchResultsGroupedResult(
     typing_extensions.TypedDict, total=False
 ):
     boundingPoly: GoogleCloudVisionV1p4beta1BoundingPoly
-    objectAnnotations: typing.List[
+    objectAnnotations: _list[
         GoogleCloudVisionV1p4beta1ProductSearchResultsObjectAnnotation
     ]
-    results: typing.List[GoogleCloudVisionV1p4beta1ProductSearchResultsResult]
+    results: _list[GoogleCloudVisionV1p4beta1ProductSearchResultsResult]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1ProductSearchResultsObjectAnnotation(
@@ -1974,7 +1970,7 @@ class GoogleCloudVisionV1p4beta1Property(typing_extensions.TypedDict, total=Fals
 class GoogleCloudVisionV1p4beta1ReferenceImage(
     typing_extensions.TypedDict, total=False
 ):
-    boundingPolys: typing.List[GoogleCloudVisionV1p4beta1BoundingPoly]
+    boundingPolys: _list[GoogleCloudVisionV1p4beta1BoundingPoly]
     name: str
     uri: str
 
@@ -2009,7 +2005,7 @@ class GoogleCloudVisionV1p4beta1Symbol(typing_extensions.TypedDict, total=False)
 class GoogleCloudVisionV1p4beta1TextAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    pages: typing.List[GoogleCloudVisionV1p4beta1Page]
+    pages: _list[GoogleCloudVisionV1p4beta1Page]
     text: str
 
 @typing.type_check_only
@@ -2033,9 +2029,7 @@ class GoogleCloudVisionV1p4beta1TextAnnotationTextProperty(
     typing_extensions.TypedDict, total=False
 ):
     detectedBreak: GoogleCloudVisionV1p4beta1TextAnnotationDetectedBreak
-    detectedLanguages: typing.List[
-        GoogleCloudVisionV1p4beta1TextAnnotationDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudVisionV1p4beta1TextAnnotationDetectedLanguage]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1Vertex(typing_extensions.TypedDict, total=False):
@@ -2044,12 +2038,12 @@ class GoogleCloudVisionV1p4beta1Vertex(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1WebDetection(typing_extensions.TypedDict, total=False):
-    bestGuessLabels: typing.List[GoogleCloudVisionV1p4beta1WebDetectionWebLabel]
-    fullMatchingImages: typing.List[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
-    pagesWithMatchingImages: typing.List[GoogleCloudVisionV1p4beta1WebDetectionWebPage]
-    partialMatchingImages: typing.List[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
-    visuallySimilarImages: typing.List[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
-    webEntities: typing.List[GoogleCloudVisionV1p4beta1WebDetectionWebEntity]
+    bestGuessLabels: _list[GoogleCloudVisionV1p4beta1WebDetectionWebLabel]
+    fullMatchingImages: _list[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
+    pagesWithMatchingImages: _list[GoogleCloudVisionV1p4beta1WebDetectionWebPage]
+    partialMatchingImages: _list[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
+    visuallySimilarImages: _list[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
+    webEntities: _list[GoogleCloudVisionV1p4beta1WebDetectionWebEntity]
 
 @typing.type_check_only
 class GoogleCloudVisionV1p4beta1WebDetectionWebEntity(
@@ -2077,9 +2071,9 @@ class GoogleCloudVisionV1p4beta1WebDetectionWebLabel(
 class GoogleCloudVisionV1p4beta1WebDetectionWebPage(
     typing_extensions.TypedDict, total=False
 ):
-    fullMatchingImages: typing.List[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
+    fullMatchingImages: _list[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
     pageTitle: str
-    partialMatchingImages: typing.List[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
+    partialMatchingImages: _list[GoogleCloudVisionV1p4beta1WebDetectionWebImage]
     score: float
     url: str
 
@@ -2088,13 +2082,13 @@ class GoogleCloudVisionV1p4beta1Word(typing_extensions.TypedDict, total=False):
     boundingBox: GoogleCloudVisionV1p4beta1BoundingPoly
     confidence: float
     property: GoogleCloudVisionV1p4beta1TextAnnotationTextProperty
-    symbols: typing.List[GoogleCloudVisionV1p4beta1Symbol]
+    symbols: _list[GoogleCloudVisionV1p4beta1Symbol]
 
 @typing.type_check_only
 class GroupedResult(typing_extensions.TypedDict, total=False):
     boundingPoly: BoundingPoly
-    objectAnnotations: typing.List[ObjectAnnotation]
-    results: typing.List[Result]
+    objectAnnotations: _list[ObjectAnnotation]
+    results: _list[Result]
 
 @typing.type_check_only
 class ImageAnnotationContext(typing_extensions.TypedDict, total=False):
@@ -2107,8 +2101,8 @@ class ImageProperties(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportProductSetsResponse(typing_extensions.TypedDict, total=False):
-    referenceImages: typing.List[ReferenceImage]
-    statuses: typing.List[Status]
+    referenceImages: _list[ReferenceImage]
+    statuses: _list[Status]
 
 @typing.type_check_only
 class InputConfig(typing_extensions.TypedDict, total=False):
@@ -2197,9 +2191,9 @@ class ObjectAnnotation(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -2216,7 +2210,7 @@ class OutputConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Page(typing_extensions.TypedDict, total=False):
-    blocks: typing.List[Block]
+    blocks: _list[Block]
     confidence: float
     height: int
     property: TextProperty
@@ -2227,7 +2221,7 @@ class Paragraph(typing_extensions.TypedDict, total=False):
     boundingBox: BoundingPoly
     confidence: float
     property: TextProperty
-    words: typing.List[Word]
+    words: _list[Word]
 
 @typing.type_check_only
 class Position(typing_extensions.TypedDict, total=False):
@@ -2241,13 +2235,13 @@ class Product(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     productCategory: str
-    productLabels: typing.List[KeyValue]
+    productLabels: _list[KeyValue]
 
 @typing.type_check_only
 class ProductSearchResults(typing_extensions.TypedDict, total=False):
     indexTime: str
-    productGroupedResults: typing.List[GroupedResult]
-    results: typing.List[Result]
+    productGroupedResults: _list[GroupedResult]
+    results: _list[Result]
 
 @typing.type_check_only
 class Property(typing_extensions.TypedDict, total=False):
@@ -2257,7 +2251,7 @@ class Property(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReferenceImage(typing_extensions.TypedDict, total=False):
-    boundingPolys: typing.List[BoundingPoly]
+    boundingPolys: _list[BoundingPoly]
     name: str
     uri: str
 
@@ -2288,7 +2282,7 @@ class SafeSearchAnnotation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -2300,13 +2294,13 @@ class Symbol(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TextAnnotation(typing_extensions.TypedDict, total=False):
-    pages: typing.List[Page]
+    pages: _list[Page]
     text: str
 
 @typing.type_check_only
 class TextProperty(typing_extensions.TypedDict, total=False):
     detectedBreak: DetectedBreak
-    detectedLanguages: typing.List[DetectedLanguage]
+    detectedLanguages: _list[DetectedLanguage]
 
 @typing.type_check_only
 class Vertex(typing_extensions.TypedDict, total=False):
@@ -2315,12 +2309,12 @@ class Vertex(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WebDetection(typing_extensions.TypedDict, total=False):
-    bestGuessLabels: typing.List[WebLabel]
-    fullMatchingImages: typing.List[WebImage]
-    pagesWithMatchingImages: typing.List[WebPage]
-    partialMatchingImages: typing.List[WebImage]
-    visuallySimilarImages: typing.List[WebImage]
-    webEntities: typing.List[WebEntity]
+    bestGuessLabels: _list[WebLabel]
+    fullMatchingImages: _list[WebImage]
+    pagesWithMatchingImages: _list[WebPage]
+    partialMatchingImages: _list[WebImage]
+    visuallySimilarImages: _list[WebImage]
+    webEntities: _list[WebEntity]
 
 @typing.type_check_only
 class WebEntity(typing_extensions.TypedDict, total=False):
@@ -2340,9 +2334,9 @@ class WebLabel(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WebPage(typing_extensions.TypedDict, total=False):
-    fullMatchingImages: typing.List[WebImage]
+    fullMatchingImages: _list[WebImage]
     pageTitle: str
-    partialMatchingImages: typing.List[WebImage]
+    partialMatchingImages: _list[WebImage]
     score: float
     url: str
 
@@ -2351,4 +2345,4 @@ class Word(typing_extensions.TypedDict, total=False):
     boundingBox: BoundingPoly
     confidence: float
     property: TextProperty
-    symbols: typing.List[Symbol]
+    symbols: _list[Symbol]

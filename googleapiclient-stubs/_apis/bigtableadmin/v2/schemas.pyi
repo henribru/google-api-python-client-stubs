@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AppProfile(typing_extensions.TypedDict, total=False):
     description: str
@@ -12,12 +14,12 @@ class AppProfile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -43,7 +45,7 @@ class BackupInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -69,7 +71,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClusterState(typing_extensions.TypedDict, total=False):
-    encryptionInfo: typing.List[EncryptionInfo]
+    encryptionInfo: _list[EncryptionInfo]
     replicationState: typing_extensions.Literal[
         "STATE_NOT_KNOWN",
         "INITIALIZING",
@@ -95,7 +97,7 @@ class CreateClusterMetadata(typing_extensions.TypedDict, total=False):
     finishTime: str
     originalRequest: CreateClusterRequest
     requestTime: str
-    tables: typing.Dict[str, typing.Any]
+    tables: dict[str, typing.Any]
 
 @typing.type_check_only
 class CreateClusterRequest(typing_extensions.TypedDict, total=False):
@@ -111,14 +113,14 @@ class CreateInstanceMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateInstanceRequest(typing_extensions.TypedDict, total=False):
-    clusters: typing.Dict[str, typing.Any]
+    clusters: dict[str, typing.Any]
     instance: Instance
     instanceId: str
     parent: str
 
 @typing.type_check_only
 class CreateTableRequest(typing_extensions.TypedDict, total=False):
-    initialSplits: typing.List[Split]
+    initialSplits: _list[Split]
     table: Table
     tableId: str
 
@@ -153,7 +155,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FailureTrace(typing_extensions.TypedDict, total=False):
-    frames: typing.List[Frame]
+    frames: _list[Frame]
 
 @typing.type_check_only
 class Frame(typing_extensions.TypedDict, total=False):
@@ -162,7 +164,7 @@ class Frame(typing_extensions.TypedDict, total=False):
     zoneId: str
 
 @typing.type_check_only
-class GcRule(typing.Dict[str, typing.Any]): ...
+class GcRule(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GenerateConsistencyTokenRequest(typing_extensions.TypedDict, total=False): ...
@@ -183,58 +185,58 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
 class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal["STATE_NOT_KNOWN", "READY", "CREATING"]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PRODUCTION", "DEVELOPMENT"]
 
 @typing.type_check_only
-class Intersection(typing.Dict[str, typing.Any]): ...
+class Intersection(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ListAppProfilesResponse(typing_extensions.TypedDict, total=False):
-    appProfiles: typing.List[AppProfile]
-    failedLocations: typing.List[str]
+    appProfiles: _list[AppProfile]
+    failedLocations: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
-    backups: typing.List[Backup]
+    backups: _list[Backup]
     nextPageToken: str
 
 @typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
-    clusters: typing.List[Cluster]
-    failedLocations: typing.List[str]
+    clusters: _list[Cluster]
+    failedLocations: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    failedLocations: typing.List[str]
-    instances: typing.List[Instance]
+    failedLocations: _list[str]
+    instances: _list[Instance]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListTablesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tables: typing.List[Table]
+    tables: _list[Table]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -246,7 +248,7 @@ class Modification(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ModifyColumnFamiliesRequest(typing_extensions.TypedDict, total=False):
-    modifications: typing.List[Modification]
+    modifications: _list[Modification]
 
 @typing.type_check_only
 class MultiClusterRoutingUseAny(typing_extensions.TypedDict, total=False): ...
@@ -255,9 +257,9 @@ class MultiClusterRoutingUseAny(typing_extensions.TypedDict, total=False): ...
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationProgress(typing_extensions.TypedDict, total=False):
@@ -277,8 +279,8 @@ class PartialUpdateInstanceRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -317,13 +319,13 @@ class Split(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
-    clusterStates: typing.Dict[str, typing.Any]
-    columnFamilies: typing.Dict[str, typing.Any]
+    clusterStates: dict[str, typing.Any]
+    columnFamilies: dict[str, typing.Any]
     granularity: typing_extensions.Literal[
         "TIMESTAMP_GRANULARITY_UNSPECIFIED", "MILLIS"
     ]
@@ -340,14 +342,14 @@ class TableProgress(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
-class Union(typing.Dict[str, typing.Any]): ...
+class Union(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class UpdateAppProfileMetadata(typing_extensions.TypedDict, total=False): ...

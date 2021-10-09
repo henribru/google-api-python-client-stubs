@@ -2,13 +2,15 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class EmptyResponse(typing_extensions.TypedDict, total=False):
     errors: Errors
 
 @typing.type_check_only
 class ErrorProto(typing_extensions.TypedDict, total=False):
-    argument: typing.List[str]
+    argument: _list[str]
     code: str
     debugInfo: str
     domain: str
@@ -28,7 +30,7 @@ class Errors(typing_extensions.TypedDict, total=False):
         "INTERNAL_ERROR",
         "SERVICE_UNAVAILABLE",
     ]
-    error: typing.List[ErrorProto]
+    error: _list[ErrorProto]
     requestId: str
 
 @typing.type_check_only
@@ -68,23 +70,23 @@ class GroupSnippet(typing_extensions.TypedDict, total=False):
 class ListGroupItemsResponse(typing_extensions.TypedDict, total=False):
     errors: Errors
     etag: str
-    items: typing.List[GroupItem]
+    items: _list[GroupItem]
     kind: str
 
 @typing.type_check_only
 class ListGroupsResponse(typing_extensions.TypedDict, total=False):
     errors: Errors
     etag: str
-    items: typing.List[Group]
+    items: _list[Group]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
 class QueryResponse(typing_extensions.TypedDict, total=False):
-    columnHeaders: typing.List[ResultTableColumnHeader]
+    columnHeaders: _list[ResultTableColumnHeader]
     errors: Errors
     kind: str
-    rows: typing.List[list]
+    rows: _list[list]
 
 @typing.type_check_only
 class ResultTableColumnHeader(typing_extensions.TypedDict, total=False):

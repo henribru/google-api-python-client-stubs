@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class AdMobResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -66,9 +68,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
 class GenerateMediationReportResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GenerateMediationReportResponse: ...
 
@@ -76,9 +76,7 @@ class GenerateMediationReportResponseHttpRequest(googleapiclient.http.HttpReques
 class GenerateNetworkReportResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GenerateNetworkReportResponse: ...
 
@@ -86,9 +84,7 @@ class GenerateNetworkReportResponseHttpRequest(googleapiclient.http.HttpRequest)
 class ListAdUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAdUnitsResponse: ...
 
@@ -96,9 +92,7 @@ class ListAdUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAppsResponse: ...
 
@@ -106,9 +100,7 @@ class ListAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListPublisherAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListPublisherAccountsResponse: ...
 
@@ -116,8 +108,6 @@ class ListPublisherAccountsResponseHttpRequest(googleapiclient.http.HttpRequest)
 class PublisherAccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PublisherAccount: ...

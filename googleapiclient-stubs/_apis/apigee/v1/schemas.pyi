@@ -2,9 +2,11 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class EdgeConfigstoreBundleBadBundle(typing_extensions.TypedDict, total=False):
-    violations: typing.List[EdgeConfigstoreBundleBadBundleViolation]
+    violations: _list[EdgeConfigstoreBundleBadBundleViolation]
 
 @typing.type_check_only
 class EdgeConfigstoreBundleBadBundleViolation(typing_extensions.TypedDict, total=False):
@@ -15,7 +17,7 @@ class EdgeConfigstoreBundleBadBundleViolation(typing_extensions.TypedDict, total
 class GoogleApiHttpBody(typing_extensions.TypedDict, total=False):
     contentType: str
     data: str
-    extensions: typing.List[typing.Dict[str, typing.Any]]
+    extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Access(typing_extensions.TypedDict, total=False):
@@ -82,22 +84,22 @@ class GoogleCloudApigeeV1ApiCategoryData(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
-    apiResources: typing.List[str]
+    apiResources: _list[str]
     approvalType: str
-    attributes: typing.List[GoogleCloudApigeeV1Attribute]
+    attributes: _list[GoogleCloudApigeeV1Attribute]
     createdAt: str
     description: str
     displayName: str
-    environments: typing.List[str]
+    environments: _list[str]
     graphqlOperationGroup: GoogleCloudApigeeV1GraphQLOperationGroup
     lastModifiedAt: str
     name: str
     operationGroup: GoogleCloudApigeeV1OperationGroup
-    proxies: typing.List[str]
+    proxies: _list[str]
     quota: str
     quotaInterval: str
     quotaTimeUnit: str
-    scopes: typing.List[str]
+    scopes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProductRef(typing_extensions.TypedDict, total=False):
@@ -106,35 +108,35 @@ class GoogleCloudApigeeV1ApiProductRef(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProxy(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     latestRevisionId: str
     metaData: GoogleCloudApigeeV1EntityMetadata
     name: str
-    revision: typing.List[str]
+    revision: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProxyRevision(typing_extensions.TypedDict, total=False):
-    basepaths: typing.List[str]
+    basepaths: _list[str]
     configurationVersion: GoogleCloudApigeeV1ConfigVersion
     contextInfo: str
     createdAt: str
     description: str
     displayName: str
-    entityMetaDataAsProperties: typing.Dict[str, typing.Any]
+    entityMetaDataAsProperties: dict[str, typing.Any]
     lastModifiedAt: str
     name: str
-    policies: typing.List[str]
-    proxies: typing.List[str]
-    proxyEndpoints: typing.List[str]
+    policies: _list[str]
+    proxies: _list[str]
+    proxyEndpoints: _list[str]
     resourceFiles: GoogleCloudApigeeV1ResourceFiles
-    resources: typing.List[str]
+    resources: _list[str]
     revision: str
-    sharedFlows: typing.List[str]
+    sharedFlows: _list[str]
     spec: str
-    targetEndpoints: typing.List[str]
-    targetServers: typing.List[str]
-    targets: typing.List[str]
-    teams: typing.List[str]
+    targetEndpoints: _list[str]
+    targetServers: _list[str]
+    targets: _list[str]
+    teams: _list[str]
     type: str
 
 @typing.type_check_only
@@ -146,25 +148,25 @@ class GoogleCloudApigeeV1ApiResponseWrapper(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleCloudApigeeV1App(typing_extensions.TypedDict, total=False):
-    apiProducts: typing.List[GoogleCloudApigeeV1ApiProductRef]
+    apiProducts: _list[GoogleCloudApigeeV1ApiProductRef]
     appId: str
-    attributes: typing.List[GoogleCloudApigeeV1Attribute]
+    attributes: _list[GoogleCloudApigeeV1Attribute]
     callbackUrl: str
     companyName: str
     createdAt: str
-    credentials: typing.List[GoogleCloudApigeeV1Credential]
+    credentials: _list[GoogleCloudApigeeV1Credential]
     developerId: str
     keyExpiresIn: str
     lastModifiedAt: str
     name: str
-    scopes: typing.List[str]
+    scopes: _list[str]
     status: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ArchiveDeployment(typing_extensions.TypedDict, total=False):
     createdAt: str
     gcsUri: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     operation: str
     updatedAt: str
@@ -195,7 +197,7 @@ class GoogleCloudApigeeV1AsyncQueryResultView(typing_extensions.TypedDict, total
     code: int
     error: str
     metadata: GoogleCloudApigeeV1QueryMetadata
-    rows: typing.List[typing.Any]
+    rows: _list[typing.Any]
     state: str
 
 @typing.type_check_only
@@ -205,7 +207,7 @@ class GoogleCloudApigeeV1Attribute(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Attributes(typing_extensions.TypedDict, total=False):
-    attribute: typing.List[GoogleCloudApigeeV1Attribute]
+    attribute: _list[GoogleCloudApigeeV1Attribute]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1CanaryEvaluation(typing_extensions.TypedDict, total=False):
@@ -237,13 +239,13 @@ class GoogleCloudApigeeV1CertInfo(typing_extensions.TypedDict, total=False):
     serialNumber: str
     sigAlgName: str
     subject: str
-    subjectAlternativeNames: typing.List[str]
+    subjectAlternativeNames: _list[str]
     validFrom: str
     version: int
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Certificate(typing_extensions.TypedDict, total=False):
-    certInfo: typing.List[GoogleCloudApigeeV1CertInfo]
+    certInfo: _list[GoogleCloudApigeeV1CertInfo]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1CommonNameConfig(typing_extensions.TypedDict, total=False):
@@ -257,13 +259,13 @@ class GoogleCloudApigeeV1ConfigVersion(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Credential(typing_extensions.TypedDict, total=False):
-    apiProducts: typing.List[GoogleCloudApigeeV1ApiProductRef]
-    attributes: typing.List[GoogleCloudApigeeV1Attribute]
+    apiProducts: _list[GoogleCloudApigeeV1ApiProductRef]
+    attributes: _list[GoogleCloudApigeeV1Attribute]
     consumerKey: str
     consumerSecret: str
     expiresAt: str
     issuedAt: str
-    scopes: typing.List[str]
+    scopes: _list[str]
     status: str
 
 @typing.type_check_only
@@ -276,9 +278,9 @@ class GoogleCloudApigeeV1CreditDeveloperBalanceRequest(
 @typing.type_check_only
 class GoogleCloudApigeeV1CustomReport(typing_extensions.TypedDict, total=False):
     chartType: str
-    comments: typing.List[str]
+    comments: _list[str]
     createdAt: str
-    dimensions: typing.List[str]
+    dimensions: _list[str]
     displayName: str
     environment: str
     filter: str
@@ -286,14 +288,14 @@ class GoogleCloudApigeeV1CustomReport(typing_extensions.TypedDict, total=False):
     lastModifiedAt: str
     lastViewedAt: str
     limit: str
-    metrics: typing.List[GoogleCloudApigeeV1CustomReportMetric]
+    metrics: _list[GoogleCloudApigeeV1CustomReportMetric]
     name: str
     offset: str
     organization: str
-    properties: typing.List[GoogleCloudApigeeV1ReportProperty]
-    sortByCols: typing.List[str]
+    properties: _list[GoogleCloudApigeeV1ReportProperty]
+    sortByCols: _list[str]
     sortOrder: str
-    tags: typing.List[str]
+    tags: _list[str]
     timeUnit: str
     toTime: str
     topk: str
@@ -345,15 +347,15 @@ class GoogleCloudApigeeV1DateRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DebugMask(typing_extensions.TypedDict, total=False):
-    faultJSONPaths: typing.List[str]
-    faultXPaths: typing.List[str]
+    faultJSONPaths: _list[str]
+    faultXPaths: _list[str]
     name: str
-    namespaces: typing.Dict[str, typing.Any]
-    requestJSONPaths: typing.List[str]
-    requestXPaths: typing.List[str]
-    responseJSONPaths: typing.List[str]
-    responseXPaths: typing.List[str]
-    variables: typing.List[str]
+    namespaces: dict[str, typing.Any]
+    requestJSONPaths: _list[str]
+    requestXPaths: _list[str]
+    responseJSONPaths: _list[str]
+    responseXPaths: _list[str]
+    variables: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DebugSession(typing_extensions.TypedDict, total=False):
@@ -369,7 +371,7 @@ class GoogleCloudApigeeV1DebugSessionTransaction(
     typing_extensions.TypedDict, total=False
 ):
     completed: bool
-    point: typing.List[GoogleCloudApigeeV1Point]
+    point: _list[GoogleCloudApigeeV1Point]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DeleteCustomReportResponse(
@@ -382,13 +384,11 @@ class GoogleCloudApigeeV1Deployment(typing_extensions.TypedDict, total=False):
     apiProxy: str
     deployStartTime: str
     environment: str
-    errors: typing.List[GoogleRpcStatus]
-    instances: typing.List[GoogleCloudApigeeV1InstanceDeploymentStatus]
-    pods: typing.List[GoogleCloudApigeeV1PodStatus]
+    errors: _list[GoogleRpcStatus]
+    instances: _list[GoogleCloudApigeeV1InstanceDeploymentStatus]
+    pods: _list[GoogleCloudApigeeV1PodStatus]
     revision: str
-    routeConflicts: typing.List[
-        GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict
-    ]
+    routeConflicts: _list[GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict]
     serviceAccount: str
     state: typing_extensions.Literal[
         "RUNTIME_STATE_UNSPECIFIED", "READY", "PROGRESSING", "ERROR"
@@ -398,10 +398,8 @@ class GoogleCloudApigeeV1Deployment(typing_extensions.TypedDict, total=False):
 class GoogleCloudApigeeV1DeploymentChangeReport(
     typing_extensions.TypedDict, total=False
 ):
-    routingChanges: typing.List[GoogleCloudApigeeV1DeploymentChangeReportRoutingChange]
-    routingConflicts: typing.List[
-        GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict
-    ]
+    routingChanges: _list[GoogleCloudApigeeV1DeploymentChangeReportRoutingChange]
+    routingConflicts: _list[GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict]
     validationErrors: GoogleRpcPreconditionFailure
 
 @typing.type_check_only
@@ -433,7 +431,7 @@ class GoogleCloudApigeeV1DeploymentChangeReportRoutingDeployment(
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DeploymentConfig(typing_extensions.TypedDict, total=False):
-    attributes: typing.Dict[str, typing.Any]
+    attributes: dict[str, typing.Any]
     basePath: str
     location: str
     name: str
@@ -445,9 +443,9 @@ class GoogleCloudApigeeV1DeploymentConfig(typing_extensions.TypedDict, total=Fal
 class GoogleCloudApigeeV1Developer(typing_extensions.TypedDict, total=False):
     accessType: str
     appFamily: str
-    apps: typing.List[str]
-    attributes: typing.List[GoogleCloudApigeeV1Attribute]
-    companies: typing.List[str]
+    apps: _list[str]
+    attributes: _list[GoogleCloudApigeeV1Attribute]
+    companies: _list[str]
     createdAt: str
     developerId: str
     email: str
@@ -460,35 +458,35 @@ class GoogleCloudApigeeV1Developer(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DeveloperApp(typing_extensions.TypedDict, total=False):
-    apiProducts: typing.List[str]
+    apiProducts: _list[str]
     appFamily: str
     appId: str
-    attributes: typing.List[GoogleCloudApigeeV1Attribute]
+    attributes: _list[GoogleCloudApigeeV1Attribute]
     callbackUrl: str
     createdAt: str
-    credentials: typing.List[GoogleCloudApigeeV1Credential]
+    credentials: _list[GoogleCloudApigeeV1Credential]
     developerId: str
     keyExpiresIn: str
     lastModifiedAt: str
     name: str
-    scopes: typing.List[str]
+    scopes: _list[str]
     status: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DeveloperAppKey(typing_extensions.TypedDict, total=False):
-    apiProducts: typing.List[typing.Any]
-    attributes: typing.List[GoogleCloudApigeeV1Attribute]
+    apiProducts: _list[typing.Any]
+    attributes: _list[GoogleCloudApigeeV1Attribute]
     consumerKey: str
     consumerSecret: str
     expiresAt: str
     expiresInSeconds: str
     issuedAt: str
-    scopes: typing.List[str]
+    scopes: _list[str]
     status: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DeveloperBalance(typing_extensions.TypedDict, total=False):
-    wallets: typing.List[GoogleCloudApigeeV1DeveloperBalanceWallet]
+    wallets: _list[GoogleCloudApigeeV1DeveloperBalanceWallet]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DeveloperBalanceWallet(
@@ -518,7 +516,7 @@ class GoogleCloudApigeeV1DeveloperSubscription(
 
 @typing.type_check_only
 class GoogleCloudApigeeV1DimensionMetric(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[GoogleCloudApigeeV1Metric]
+    metrics: _list[GoogleCloudApigeeV1Metric]
     name: str
 
 @typing.type_check_only
@@ -549,28 +547,28 @@ class GoogleCloudApigeeV1Environment(typing_extensions.TypedDict, total=False):
 class GoogleCloudApigeeV1EnvironmentConfig(typing_extensions.TypedDict, total=False):
     arcConfigLocation: str
     createTime: str
-    dataCollectors: typing.List[GoogleCloudApigeeV1DataCollectorConfig]
+    dataCollectors: _list[GoogleCloudApigeeV1DataCollectorConfig]
     debugMask: GoogleCloudApigeeV1DebugMask
-    deployments: typing.List[GoogleCloudApigeeV1DeploymentConfig]
-    featureFlags: typing.Dict[str, typing.Any]
-    flowhooks: typing.List[GoogleCloudApigeeV1FlowHookConfig]
+    deployments: _list[GoogleCloudApigeeV1DeploymentConfig]
+    featureFlags: dict[str, typing.Any]
+    flowhooks: _list[GoogleCloudApigeeV1FlowHookConfig]
     gatewayConfigLocation: str
-    keystores: typing.List[GoogleCloudApigeeV1KeystoreConfig]
+    keystores: _list[GoogleCloudApigeeV1KeystoreConfig]
     name: str
     provider: str
     pubsubTopic: str
-    resourceReferences: typing.List[GoogleCloudApigeeV1ReferenceConfig]
-    resources: typing.List[GoogleCloudApigeeV1ResourceConfig]
+    resourceReferences: _list[GoogleCloudApigeeV1ReferenceConfig]
+    resources: _list[GoogleCloudApigeeV1ResourceConfig]
     revisionId: str
     sequenceNumber: str
-    targets: typing.List[GoogleCloudApigeeV1TargetServerConfig]
+    targets: _list[GoogleCloudApigeeV1TargetServerConfig]
     traceConfig: GoogleCloudApigeeV1RuntimeTraceConfig
     uid: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1EnvironmentGroup(typing_extensions.TypedDict, total=False):
     createdAt: str
-    hostnames: typing.List[str]
+    hostnames: _list[str]
     lastModifiedAt: str
     name: str
     state: typing_extensions.Literal[
@@ -589,10 +587,10 @@ class GoogleCloudApigeeV1EnvironmentGroupAttachment(
 class GoogleCloudApigeeV1EnvironmentGroupConfig(
     typing_extensions.TypedDict, total=False
 ):
-    hostnames: typing.List[str]
+    hostnames: _list[str]
     name: str
     revisionId: str
-    routingRules: typing.List[GoogleCloudApigeeV1RoutingRule]
+    routingRules: _list[GoogleCloudApigeeV1RoutingRule]
     uid: str
 
 @typing.type_check_only
@@ -664,15 +662,15 @@ class GoogleCloudApigeeV1GetSyncAuthorizationRequest(
 @typing.type_check_only
 class GoogleCloudApigeeV1GraphQLOperation(typing_extensions.TypedDict, total=False):
     operation: str
-    operationTypes: typing.List[str]
+    operationTypes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1GraphQLOperationConfig(
     typing_extensions.TypedDict, total=False
 ):
     apiSource: str
-    attributes: typing.List[GoogleCloudApigeeV1Attribute]
-    operations: typing.List[GoogleCloudApigeeV1GraphQLOperation]
+    attributes: _list[GoogleCloudApigeeV1Attribute]
+    operations: _list[GoogleCloudApigeeV1GraphQLOperation]
     quota: GoogleCloudApigeeV1Quota
 
 @typing.type_check_only
@@ -680,11 +678,11 @@ class GoogleCloudApigeeV1GraphQLOperationGroup(
     typing_extensions.TypedDict, total=False
 ):
     operationConfigType: str
-    operationConfigs: typing.List[GoogleCloudApigeeV1GraphQLOperationConfig]
+    operationConfigs: _list[GoogleCloudApigeeV1GraphQLOperationConfig]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1IngressConfig(typing_extensions.TypedDict, total=False):
-    environmentGroups: typing.List[GoogleCloudApigeeV1EnvironmentGroupConfig]
+    environmentGroups: _list[GoogleCloudApigeeV1EnvironmentGroupConfig]
     name: str
     revisionCreateTime: str
     revisionId: str
@@ -726,12 +724,10 @@ class GoogleCloudApigeeV1InstanceAttachment(typing_extensions.TypedDict, total=F
 class GoogleCloudApigeeV1InstanceDeploymentStatus(
     typing_extensions.TypedDict, total=False
 ):
-    deployedRevisions: typing.List[
+    deployedRevisions: _list[
         GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRevision
     ]
-    deployedRoutes: typing.List[
-        GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRoute
-    ]
+    deployedRoutes: _list[GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRoute]
     instance: str
 
 @typing.type_check_only
@@ -762,19 +758,19 @@ class GoogleCloudApigeeV1KeyValueMap(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Keystore(typing_extensions.TypedDict, total=False):
-    aliases: typing.List[str]
+    aliases: _list[str]
     name: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1KeystoreConfig(typing_extensions.TypedDict, total=False):
-    aliases: typing.List[GoogleCloudApigeeV1AliasRevisionConfig]
+    aliases: _list[GoogleCloudApigeeV1AliasRevisionConfig]
     name: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListApiCategoriesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    data: typing.List[GoogleCloudApigeeV1ApiCategoryData]
+    data: _list[GoogleCloudApigeeV1ApiCategoryData]
     errorCode: str
     message: str
     requestId: str
@@ -784,170 +780,168 @@ class GoogleCloudApigeeV1ListApiCategoriesResponse(
 class GoogleCloudApigeeV1ListApiProductsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    apiProduct: typing.List[GoogleCloudApigeeV1ApiProduct]
+    apiProduct: _list[GoogleCloudApigeeV1ApiProduct]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListApiProxiesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    proxies: typing.List[GoogleCloudApigeeV1ApiProxy]
+    proxies: _list[GoogleCloudApigeeV1ApiProxy]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListAppsResponse(typing_extensions.TypedDict, total=False):
-    app: typing.List[GoogleCloudApigeeV1App]
+    app: _list[GoogleCloudApigeeV1App]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListArchiveDeploymentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    archiveDeployments: typing.List[GoogleCloudApigeeV1ArchiveDeployment]
+    archiveDeployments: _list[GoogleCloudApigeeV1ArchiveDeployment]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListAsyncQueriesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    queries: typing.List[GoogleCloudApigeeV1AsyncQuery]
+    queries: _list[GoogleCloudApigeeV1AsyncQuery]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListCustomReportsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    qualifier: typing.List[GoogleCloudApigeeV1CustomReport]
+    qualifier: _list[GoogleCloudApigeeV1CustomReport]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListDataCollectorsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    dataCollectors: typing.List[GoogleCloudApigeeV1DataCollector]
+    dataCollectors: _list[GoogleCloudApigeeV1DataCollector]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListDatastoresResponse(
     typing_extensions.TypedDict, total=False
 ):
-    datastores: typing.List[GoogleCloudApigeeV1Datastore]
+    datastores: _list[GoogleCloudApigeeV1Datastore]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListDebugSessionsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    sessions: typing.List[GoogleCloudApigeeV1Session]
+    sessions: _list[GoogleCloudApigeeV1Session]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListDeploymentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    deployments: typing.List[GoogleCloudApigeeV1Deployment]
+    deployments: _list[GoogleCloudApigeeV1Deployment]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListDeveloperAppsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    app: typing.List[GoogleCloudApigeeV1DeveloperApp]
+    app: _list[GoogleCloudApigeeV1DeveloperApp]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListDeveloperSubscriptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    developerSubscriptions: typing.List[GoogleCloudApigeeV1DeveloperSubscription]
+    developerSubscriptions: _list[GoogleCloudApigeeV1DeveloperSubscription]
     nextStartKey: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    environmentGroupAttachments: typing.List[
-        GoogleCloudApigeeV1EnvironmentGroupAttachment
-    ]
+    environmentGroupAttachments: _list[GoogleCloudApigeeV1EnvironmentGroupAttachment]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListEnvironmentGroupsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    environmentGroups: typing.List[GoogleCloudApigeeV1EnvironmentGroup]
+    environmentGroups: _list[GoogleCloudApigeeV1EnvironmentGroup]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListEnvironmentResourcesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    resourceFile: typing.List[GoogleCloudApigeeV1ResourceFile]
+    resourceFile: _list[GoogleCloudApigeeV1ResourceFile]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListExportsResponse(typing_extensions.TypedDict, total=False):
-    exports: typing.List[GoogleCloudApigeeV1Export]
+    exports: _list[GoogleCloudApigeeV1Export]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListHybridIssuersResponse(
     typing_extensions.TypedDict, total=False
 ):
-    issuers: typing.List[GoogleCloudApigeeV1ServiceIssuersMapping]
+    issuers: _list[GoogleCloudApigeeV1ServiceIssuersMapping]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListInstanceAttachmentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    attachments: typing.List[GoogleCloudApigeeV1InstanceAttachment]
+    attachments: _list[GoogleCloudApigeeV1InstanceAttachment]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListInstancesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    instances: typing.List[GoogleCloudApigeeV1Instance]
+    instances: _list[GoogleCloudApigeeV1Instance]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListNatAddressesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    natAddresses: typing.List[GoogleCloudApigeeV1NatAddress]
+    natAddresses: _list[GoogleCloudApigeeV1NatAddress]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListOfDevelopersResponse(
     typing_extensions.TypedDict, total=False
 ):
-    developer: typing.List[GoogleCloudApigeeV1Developer]
+    developer: _list[GoogleCloudApigeeV1Developer]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListOrganizationsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    organizations: typing.List[GoogleCloudApigeeV1OrganizationProjectMapping]
+    organizations: _list[GoogleCloudApigeeV1OrganizationProjectMapping]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListRatePlansResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextStartKey: str
-    ratePlans: typing.List[GoogleCloudApigeeV1RatePlan]
+    ratePlans: _list[GoogleCloudApigeeV1RatePlan]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListSharedFlowsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    sharedFlows: typing.List[GoogleCloudApigeeV1SharedFlow]
+    sharedFlows: _list[GoogleCloudApigeeV1SharedFlow]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListTraceConfigOverridesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    traceConfigOverrides: typing.List[GoogleCloudApigeeV1TraceConfigOverride]
+    traceConfigOverrides: _list[GoogleCloudApigeeV1TraceConfigOverride]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Metadata(typing_extensions.TypedDict, total=False):
-    errors: typing.List[str]
-    notices: typing.List[str]
+    errors: _list[str]
+    notices: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Metric(typing_extensions.TypedDict, total=False):
     name: str
-    values: typing.List[typing.Any]
+    values: _list[typing.Any]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1MonetizationConfig(typing_extensions.TypedDict, total=False):
@@ -963,20 +957,20 @@ class GoogleCloudApigeeV1NatAddress(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Operation(typing_extensions.TypedDict, total=False):
-    methods: typing.List[str]
+    methods: _list[str]
     resource: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1OperationConfig(typing_extensions.TypedDict, total=False):
     apiSource: str
-    attributes: typing.List[GoogleCloudApigeeV1Attribute]
-    operations: typing.List[GoogleCloudApigeeV1Operation]
+    attributes: _list[GoogleCloudApigeeV1Attribute]
+    operations: _list[GoogleCloudApigeeV1Operation]
     quota: GoogleCloudApigeeV1Quota
 
 @typing.type_check_only
 class GoogleCloudApigeeV1OperationGroup(typing_extensions.TypedDict, total=False):
     operationConfigType: str
-    operationConfigs: typing.List[GoogleCloudApigeeV1OperationConfig]
+    operationConfigs: _list[GoogleCloudApigeeV1OperationConfig]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -994,7 +988,7 @@ class GoogleCloudApigeeV1OperationMetadataProgress(
     typing_extensions.TypedDict, total=False
 ):
     description: str
-    details: typing.Dict[str, typing.Any]
+    details: dict[str, typing.Any]
     percentDone: int
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "FINISHED"
@@ -1006,13 +1000,13 @@ class GoogleCloudApigeeV1OptimizedStats(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GoogleCloudApigeeV1OptimizedStatsNode(typing_extensions.TypedDict, total=False):
-    data: typing.List[typing.Any]
+    data: _list[typing.Any]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1OptimizedStatsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    TimeUnit: typing.List[str]
+    TimeUnit: _list[str]
     metaData: GoogleCloudApigeeV1Metadata
     resultTruncated: bool
     stats: GoogleCloudApigeeV1OptimizedStatsNode
@@ -1021,7 +1015,7 @@ class GoogleCloudApigeeV1OptimizedStatsResponse(
 class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
     addonsConfig: GoogleCloudApigeeV1AddonsConfig
     analyticsRegion: str
-    attributes: typing.List[str]
+    attributes: _list[str]
     authorizedNetwork: str
     billingType: typing_extensions.Literal[
         "BILLING_TYPE_UNSPECIFIED", "SUBSCRIPTION", "EVALUATION"
@@ -1031,7 +1025,7 @@ class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
     customerName: str
     description: str
     displayName: str
-    environments: typing.List[str]
+    environments: _list[str]
     expiresAt: str
     lastModifiedAt: str
     name: str
@@ -1056,7 +1050,7 @@ class GoogleCloudApigeeV1OrganizationProjectMapping(
     typing_extensions.TypedDict, total=False
 ):
     organization: str
-    projectIds: typing.List[str]
+    projectIds: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1PodStatus(typing_extensions.TypedDict, total=False):
@@ -1073,11 +1067,11 @@ class GoogleCloudApigeeV1PodStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudApigeeV1Point(typing_extensions.TypedDict, total=False):
     id: str
-    results: typing.List[GoogleCloudApigeeV1Result]
+    results: _list[GoogleCloudApigeeV1Result]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Properties(typing_extensions.TypedDict, total=False):
-    property: typing.List[GoogleCloudApigeeV1Property]
+    property: _list[GoogleCloudApigeeV1Property]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Property(typing_extensions.TypedDict, total=False):
@@ -1095,12 +1089,12 @@ class GoogleCloudApigeeV1ProvisionOrganizationRequest(
 @typing.type_check_only
 class GoogleCloudApigeeV1Query(typing_extensions.TypedDict, total=False):
     csvDelimiter: str
-    dimensions: typing.List[str]
+    dimensions: _list[str]
     envgroupHostname: str
     filter: str
     groupByTimeUnit: str
     limit: int
-    metrics: typing.List[GoogleCloudApigeeV1QueryMetric]
+    metrics: _list[GoogleCloudApigeeV1QueryMetric]
     name: str
     outputFormat: str
     reportDefinitionId: str
@@ -1108,9 +1102,9 @@ class GoogleCloudApigeeV1Query(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApigeeV1QueryMetadata(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[str]
+    dimensions: _list[str]
     endTimestamp: str
-    metrics: typing.List[str]
+    metrics: _list[str]
     outputFormat: str
     startTimestamp: str
     timeUnit: str
@@ -1135,7 +1129,7 @@ class GoogleCloudApigeeV1RatePlan(typing_extensions.TypedDict, total=False):
     billingPeriod: typing_extensions.Literal[
         "BILLING_PERIOD_UNSPECIFIED", "WEEKLY", "MONTHLY"
     ]
-    consumptionPricingRates: typing.List[GoogleCloudApigeeV1RateRange]
+    consumptionPricingRates: _list[GoogleCloudApigeeV1RateRange]
     consumptionPricingType: typing_extensions.Literal[
         "CONSUMPTION_PRICING_TYPE_UNSPECIFIED",
         "FIXED_PER_UNIT",
@@ -1155,7 +1149,7 @@ class GoogleCloudApigeeV1RatePlan(typing_extensions.TypedDict, total=False):
     paymentFundingModel: typing_extensions.Literal[
         "PAYMENT_FUNDING_MODEL_UNSPECIFIED", "PREPAID", "POSTPAID"
     ]
-    revenueShareRates: typing.List[GoogleCloudApigeeV1RevenueShareRange]
+    revenueShareRates: _list[GoogleCloudApigeeV1RevenueShareRange]
     revenueShareType: typing_extensions.Literal[
         "REVENUE_SHARE_TYPE_UNSPECIFIED", "FIXED", "VOLUME_BANDED"
     ]
@@ -1187,7 +1181,7 @@ class GoogleCloudApigeeV1ReportInstanceStatusRequest(
 ):
     instanceUid: str
     reportTime: str
-    resources: typing.List[GoogleCloudApigeeV1ResourceStatus]
+    resources: _list[GoogleCloudApigeeV1ResourceStatus]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ReportInstanceStatusResponse(
@@ -1197,7 +1191,7 @@ class GoogleCloudApigeeV1ReportInstanceStatusResponse(
 @typing.type_check_only
 class GoogleCloudApigeeV1ReportProperty(typing_extensions.TypedDict, total=False):
     property: str
-    value: typing.List[GoogleCloudApigeeV1Attribute]
+    value: _list[GoogleCloudApigeeV1Attribute]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ResourceConfig(typing_extensions.TypedDict, total=False):
@@ -1211,21 +1205,21 @@ class GoogleCloudApigeeV1ResourceFile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ResourceFiles(typing_extensions.TypedDict, total=False):
-    resourceFile: typing.List[GoogleCloudApigeeV1ResourceFile]
+    resourceFile: _list[GoogleCloudApigeeV1ResourceFile]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ResourceStatus(typing_extensions.TypedDict, total=False):
     resource: str
-    revisions: typing.List[GoogleCloudApigeeV1RevisionStatus]
+    revisions: _list[GoogleCloudApigeeV1RevisionStatus]
     totalReplicas: int
     uid: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Result(typing_extensions.TypedDict, total=False):
     ActionResult: str
-    accessList: typing.List[GoogleCloudApigeeV1Access]
+    accessList: _list[GoogleCloudApigeeV1Access]
     content: str
-    headers: typing.List[GoogleCloudApigeeV1Property]
+    headers: _list[GoogleCloudApigeeV1Property]
     properties: GoogleCloudApigeeV1Properties
     reasonPhrase: str
     statusCode: str
@@ -1241,7 +1235,7 @@ class GoogleCloudApigeeV1RevenueShareRange(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleCloudApigeeV1RevisionStatus(typing_extensions.TypedDict, total=False):
-    errors: typing.List[GoogleCloudApigeeV1UpdateError]
+    errors: _list[GoogleCloudApigeeV1UpdateError]
     jsonSpec: str
     replicas: int
     revisionId: str
@@ -1266,7 +1260,7 @@ class GoogleCloudApigeeV1RuntimeTraceConfig(typing_extensions.TypedDict, total=F
     endpoint: str
     exporter: typing_extensions.Literal["EXPORTER_UNSPECIFIED", "JAEGER", "CLOUD_TRACE"]
     name: str
-    overrides: typing.List[GoogleCloudApigeeV1RuntimeTraceConfigOverride]
+    overrides: _list[GoogleCloudApigeeV1RuntimeTraceConfigOverride]
     revisionCreateTime: str
     revisionId: str
     samplingConfig: GoogleCloudApigeeV1RuntimeTraceSamplingConfig
@@ -1291,9 +1285,9 @@ class GoogleCloudApigeeV1RuntimeTraceSamplingConfig(
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Schema(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[GoogleCloudApigeeV1SchemaSchemaElement]
-    meta: typing.List[str]
-    metrics: typing.List[GoogleCloudApigeeV1SchemaSchemaElement]
+    dimensions: _list[GoogleCloudApigeeV1SchemaSchemaElement]
+    meta: _list[str]
+    metrics: _list[GoogleCloudApigeeV1SchemaSchemaElement]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SchemaSchemaElement(typing_extensions.TypedDict, total=False):
@@ -1310,7 +1304,7 @@ class GoogleCloudApigeeV1SchemaSchemaProperty(typing_extensions.TypedDict, total
 class GoogleCloudApigeeV1ServiceIssuersMapping(
     typing_extensions.TypedDict, total=False
 ):
-    emailIds: typing.List[str]
+    emailIds: _list[str]
     service: str
 
 @typing.type_check_only
@@ -1327,7 +1321,7 @@ class GoogleCloudApigeeV1SharedFlow(typing_extensions.TypedDict, total=False):
     latestRevisionId: str
     metaData: GoogleCloudApigeeV1EntityMetadata
     name: str
-    revision: typing.List[str]
+    revision: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SharedFlowRevision(typing_extensions.TypedDict, total=False):
@@ -1336,34 +1330,34 @@ class GoogleCloudApigeeV1SharedFlowRevision(typing_extensions.TypedDict, total=F
     createdAt: str
     description: str
     displayName: str
-    entityMetaDataAsProperties: typing.Dict[str, typing.Any]
+    entityMetaDataAsProperties: dict[str, typing.Any]
     lastModifiedAt: str
     name: str
-    policies: typing.List[str]
+    policies: _list[str]
     resourceFiles: GoogleCloudApigeeV1ResourceFiles
-    resources: typing.List[str]
+    resources: _list[str]
     revision: str
-    sharedFlows: typing.List[str]
+    sharedFlows: _list[str]
     type: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Stats(typing_extensions.TypedDict, total=False):
-    environments: typing.List[GoogleCloudApigeeV1StatsEnvironmentStats]
-    hosts: typing.List[GoogleCloudApigeeV1StatsHostStats]
+    environments: _list[GoogleCloudApigeeV1StatsEnvironmentStats]
+    hosts: _list[GoogleCloudApigeeV1StatsHostStats]
     metaData: GoogleCloudApigeeV1Metadata
 
 @typing.type_check_only
 class GoogleCloudApigeeV1StatsEnvironmentStats(
     typing_extensions.TypedDict, total=False
 ):
-    dimensions: typing.List[GoogleCloudApigeeV1DimensionMetric]
-    metrics: typing.List[GoogleCloudApigeeV1Metric]
+    dimensions: _list[GoogleCloudApigeeV1DimensionMetric]
+    metrics: _list[GoogleCloudApigeeV1Metric]
     name: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1StatsHostStats(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[GoogleCloudApigeeV1DimensionMetric]
-    metrics: typing.List[GoogleCloudApigeeV1Metric]
+    dimensions: _list[GoogleCloudApigeeV1DimensionMetric]
+    metrics: _list[GoogleCloudApigeeV1Metric]
     name: str
 
 @typing.type_check_only
@@ -1373,7 +1367,7 @@ class GoogleCloudApigeeV1Subscription(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudApigeeV1SyncAuthorization(typing_extensions.TypedDict, total=False):
     etag: str
-    identities: typing.List[str]
+    identities: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1TargetServer(typing_extensions.TypedDict, total=False):
@@ -1403,14 +1397,14 @@ class GoogleCloudApigeeV1TestDatastoreResponse(
 
 @typing.type_check_only
 class GoogleCloudApigeeV1TlsInfo(typing_extensions.TypedDict, total=False):
-    ciphers: typing.List[str]
+    ciphers: _list[str]
     clientAuthEnabled: bool
     commonName: GoogleCloudApigeeV1TlsInfoCommonName
     enabled: bool
     ignoreValidationErrors: bool
     keyAlias: str
     keyStore: str
-    protocols: typing.List[str]
+    protocols: _list[str]
     trustStore: str
 
 @typing.type_check_only
@@ -1420,14 +1414,14 @@ class GoogleCloudApigeeV1TlsInfoCommonName(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleCloudApigeeV1TlsInfoConfig(typing_extensions.TypedDict, total=False):
-    ciphers: typing.List[str]
+    ciphers: _list[str]
     clientAuthEnabled: bool
     commonName: GoogleCloudApigeeV1CommonNameConfig
     enabled: bool
     ignoreValidationErrors: bool
     keyAlias: str
     keyAliasReference: GoogleCloudApigeeV1KeyAliasReference
-    protocols: typing.List[str]
+    protocols: _list[str]
     trustStore: str
 
 @typing.type_check_only
@@ -1474,12 +1468,12 @@ class GoogleCloudApigeeV1UpdateError(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[GoogleIamV1AuditLogConfig]
+    auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -1487,13 +1481,13 @@ class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
     condition: GoogleTypeExpr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[GoogleIamV1AuditConfig]
-    bindings: typing.List[GoogleIamV1Binding]
+    auditConfigs: _list[GoogleIamV1AuditConfig]
+    bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
 
@@ -1504,31 +1498,31 @@ class GoogleIamV1SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleIamV1TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class GoogleIamV1TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleRpcPreconditionFailure(typing_extensions.TypedDict, total=False):
-    violations: typing.List[GoogleRpcPreconditionFailureViolation]
+    violations: _list[GoogleRpcPreconditionFailureViolation]
 
 @typing.type_check_only
 class GoogleRpcPreconditionFailureViolation(typing_extensions.TypedDict, total=False):
@@ -1539,7 +1533,7 @@ class GoogleRpcPreconditionFailureViolation(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

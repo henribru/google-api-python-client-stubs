@@ -2,9 +2,11 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Attributes(typing_extensions.TypedDict, total=False):
-    additionalImageLink: typing.List[Image]
+    additionalImageLink: _list[Image]
     ageGroup: str
     brand: str
     capacity: Capacity
@@ -12,35 +14,35 @@ class Attributes(typing_extensions.TypedDict, total=False):
     count: Count
     description: str
     disclosureDate: str
-    excludedDestination: typing.List[str]
-    featureDescription: typing.List[FeatureDescription]
+    excludedDestination: _list[str]
+    featureDescription: _list[FeatureDescription]
     flavor: str
     format: str
     gender: str
-    gtin: typing.List[str]
+    gtin: _list[str]
     imageLink: Image
-    includedDestination: typing.List[str]
+    includedDestination: _list[str]
     itemGroupId: str
     material: str
     mpn: str
     pattern: str
-    productDetail: typing.List[ProductDetail]
-    productHighlight: typing.List[str]
+    productDetail: _list[ProductDetail]
+    productHighlight: _list[str]
     productLine: str
     productName: str
     productPageUrl: str
-    productType: typing.List[str]
+    productType: _list[str]
     releaseDate: str
-    richProductContent: typing.List[str]
+    richProductContent: _list[str]
     scent: str
     size: str
     sizeSystem: str
-    sizeType: typing.List[str]
+    sizeType: _list[str]
     suggestedRetailPrice: Price
     targetClientId: str
     theme: str
     title: str
-    videoLink: typing.List[str]
+    videoLink: _list[str]
 
 @typing.type_check_only
 class Capacity(typing_extensions.TypedDict, total=False):
@@ -104,7 +106,7 @@ class Issue(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListProductsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    products: typing.List[Product]
+    products: _list[Product]
 
 @typing.type_check_only
 class Price(typing_extensions.TypedDict, total=False):
@@ -115,8 +117,8 @@ class Price(typing_extensions.TypedDict, total=False):
 class Product(typing_extensions.TypedDict, total=False):
     attributes: Attributes
     contentLanguage: str
-    destinationStatuses: typing.List[DestinationStatus]
-    issues: typing.List[Issue]
+    destinationStatuses: _list[DestinationStatus]
+    issues: _list[Issue]
     name: str
     parent: str
     productId: str

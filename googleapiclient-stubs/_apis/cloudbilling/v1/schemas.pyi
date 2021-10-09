@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AggregationInfo(typing_extensions.TypedDict, total=False):
     aggregationCount: int
@@ -14,12 +16,12 @@ class AggregationInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -34,7 +36,7 @@ class BillingAccount(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -53,30 +55,30 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GeoTaxonomy(typing_extensions.TypedDict, total=False):
-    regions: typing.List[str]
+    regions: _list[str]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "GLOBAL", "REGIONAL", "MULTI_REGIONAL"
     ]
 
 @typing.type_check_only
 class ListBillingAccountsResponse(typing_extensions.TypedDict, total=False):
-    billingAccounts: typing.List[BillingAccount]
+    billingAccounts: _list[BillingAccount]
     nextPageToken: str
 
 @typing.type_check_only
 class ListProjectBillingInfoResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    projectBillingInfo: typing.List[ProjectBillingInfo]
+    projectBillingInfo: _list[ProjectBillingInfo]
 
 @typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    services: typing.List[Service]
+    services: _list[Service]
 
 @typing.type_check_only
 class ListSkusResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    skus: typing.List[Sku]
+    skus: _list[Sku]
 
 @typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
@@ -86,8 +88,8 @@ class Money(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -97,7 +99,7 @@ class PricingExpression(typing_extensions.TypedDict, total=False):
     baseUnitConversionFactor: float
     baseUnitDescription: str
     displayQuantity: float
-    tieredRates: typing.List[TierRate]
+    tieredRates: _list[TierRate]
     usageUnit: str
     usageUnitDescription: str
 
@@ -134,18 +136,18 @@ class Sku(typing_extensions.TypedDict, total=False):
     description: str
     geoTaxonomy: GeoTaxonomy
     name: str
-    pricingInfo: typing.List[PricingInfo]
+    pricingInfo: _list[PricingInfo]
     serviceProviderName: str
-    serviceRegions: typing.List[str]
+    serviceRegions: _list[str]
     skuId: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TierRate(typing_extensions.TypedDict, total=False):

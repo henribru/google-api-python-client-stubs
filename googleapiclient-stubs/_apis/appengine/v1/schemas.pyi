@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ApiConfigHandler(typing_extensions.TypedDict, total=False):
     authFailAction: typing_extensions.Literal[
@@ -39,7 +41,7 @@ class Application(typing_extensions.TypedDict, total=False):
     defaultBucket: str
     defaultCookieExpiration: str
     defaultHostname: str
-    dispatchRules: typing.List[UrlDispatchRule]
+    dispatchRules: _list[UrlDispatchRule]
     featureSettings: FeatureSettings
     gcrDomain: str
     iap: IdentityAwareProxy
@@ -56,12 +58,12 @@ class AuthorizedCertificate(typing_extensions.TypedDict, total=False):
     certificateRawData: CertificateRawData
     displayName: str
     domainMappingsCount: int
-    domainNames: typing.List[str]
+    domainNames: _list[str]
     expireTime: str
     id: str
     managedCertificate: ManagedCertificate
     name: str
-    visibleDomainMappings: typing.List[str]
+    visibleDomainMappings: _list[str]
 
 @typing.type_check_only
 class AuthorizedDomain(typing_extensions.TypedDict, total=False):
@@ -91,11 +93,11 @@ class BasicScaling(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchUpdateIngressRulesRequest(typing_extensions.TypedDict, total=False):
-    ingressRules: typing.List[FirewallRule]
+    ingressRules: _list[FirewallRule]
 
 @typing.type_check_only
 class BatchUpdateIngressRulesResponse(typing_extensions.TypedDict, total=False):
-    ingressRules: typing.List[FirewallRule]
+    ingressRules: _list[FirewallRule]
 
 @typing.type_check_only
 class CertificateRawData(typing_extensions.TypedDict, total=False):
@@ -136,7 +138,7 @@ class DebugInstanceRequest(typing_extensions.TypedDict, total=False):
 class Deployment(typing_extensions.TypedDict, total=False):
     cloudBuildOptions: CloudBuildOptions
     container: ContainerInfo
-    files: typing.Dict[str, typing.Any]
+    files: dict[str, typing.Any]
     zip: ZipInfo
 
 @typing.type_check_only
@@ -150,7 +152,7 @@ class DiskUtilization(typing_extensions.TypedDict, total=False):
 class DomainMapping(typing_extensions.TypedDict, total=False):
     id: str
     name: str
-    resourceRecords: typing.List[ResourceRecord]
+    resourceRecords: _list[ResourceRecord]
     sslSettings: SslSettings
 
 @typing.type_check_only
@@ -215,7 +217,7 @@ class GoogleAppengineV2OperationMetadata(typing_extensions.TypedDict, total=Fals
     statusMessage: str
     target: str
     verb: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class GoogleAppengineV2mainOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -227,7 +229,7 @@ class GoogleAppengineV2mainOperationMetadata(typing_extensions.TypedDict, total=
     statusMessage: str
     target: str
     verb: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class HealthCheck(typing_extensions.TypedDict, total=False):
@@ -280,48 +282,48 @@ class Library(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAuthorizedCertificatesResponse(typing_extensions.TypedDict, total=False):
-    certificates: typing.List[AuthorizedCertificate]
+    certificates: _list[AuthorizedCertificate]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
-    domains: typing.List[AuthorizedDomain]
+    domains: _list[AuthorizedDomain]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
-    domainMappings: typing.List[DomainMapping]
+    domainMappings: _list[DomainMapping]
     nextPageToken: str
 
 @typing.type_check_only
 class ListIngressRulesResponse(typing_extensions.TypedDict, total=False):
-    ingressRules: typing.List[FirewallRule]
+    ingressRules: _list[FirewallRule]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
+    instances: _list[Instance]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    services: typing.List[Service]
+    services: _list[Service]
 
 @typing.type_check_only
 class ListVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    versions: typing.List[Version]
+    versions: _list[Version]
 
 @typing.type_check_only
 class LivenessCheck(typing_extensions.TypedDict, total=False):
@@ -336,9 +338,9 @@ class LivenessCheck(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -366,7 +368,7 @@ class ManualScaling(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Network(typing_extensions.TypedDict, total=False):
-    forwardedPorts: typing.List[str]
+    forwardedPorts: _list[str]
     instanceTag: str
     name: str
     sessionAffinity: bool
@@ -392,9 +394,9 @@ class NetworkUtilization(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadataV1(typing_extensions.TypedDict, total=False):
@@ -405,7 +407,7 @@ class OperationMetadataV1(typing_extensions.TypedDict, total=False):
     method: str
     target: str
     user: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
@@ -416,7 +418,7 @@ class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
     method: str
     target: str
     user: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
@@ -427,7 +429,7 @@ class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
     method: str
     target: str
     user: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class ReadinessCheck(typing_extensions.TypedDict, total=False):
@@ -459,7 +461,7 @@ class Resources(typing_extensions.TypedDict, total=False):
     diskGb: float
     kmsKeyReference: str
     memoryGb: float
-    volumes: typing.List[Volume]
+    volumes: _list[Volume]
 
 @typing.type_check_only
 class ScriptHandler(typing_extensions.TypedDict, total=False):
@@ -468,7 +470,7 @@ class ScriptHandler(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
     id: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     networkSettings: NetworkSettings
     split: TrafficSplit
@@ -492,7 +494,7 @@ class StandardSchedulerSettings(typing_extensions.TypedDict, total=False):
 class StaticFilesHandler(typing_extensions.TypedDict, total=False):
     applicationReadable: bool
     expiration: str
-    httpHeaders: typing.Dict[str, typing.Any]
+    httpHeaders: dict[str, typing.Any]
     mimeType: str
     path: str
     requireMatchingFile: bool
@@ -501,12 +503,12 @@ class StaticFilesHandler(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TrafficSplit(typing_extensions.TypedDict, total=False):
-    allocations: typing.Dict[str, typing.Any]
+    allocations: dict[str, typing.Any]
     shardBy: typing_extensions.Literal["UNSPECIFIED", "COOKIE", "IP", "RANDOM"]
 
 @typing.type_check_only
@@ -549,8 +551,8 @@ class Version(typing_extensions.TypedDict, total=False):
     apiConfig: ApiConfigHandler
     automaticScaling: AutomaticScaling
     basicScaling: BasicScaling
-    betaSettings: typing.Dict[str, typing.Any]
-    buildEnvVariables: typing.Dict[str, typing.Any]
+    betaSettings: dict[str, typing.Any]
+    buildEnvVariables: dict[str, typing.Any]
     createTime: str
     createdBy: str
     defaultExpiration: str
@@ -559,14 +561,14 @@ class Version(typing_extensions.TypedDict, total=False):
     endpointsApiService: EndpointsApiService
     entrypoint: Entrypoint
     env: str
-    envVariables: typing.Dict[str, typing.Any]
-    errorHandlers: typing.List[ErrorHandler]
-    handlers: typing.List[UrlMap]
+    envVariables: dict[str, typing.Any]
+    errorHandlers: _list[ErrorHandler]
+    handlers: _list[UrlMap]
     healthCheck: HealthCheck
     id: str
-    inboundServices: typing.List[str]
+    inboundServices: _list[str]
     instanceClass: str
-    libraries: typing.List[Library]
+    libraries: _list[Library]
     livenessCheck: LivenessCheck
     manualScaling: ManualScaling
     name: str
@@ -586,7 +588,7 @@ class Version(typing_extensions.TypedDict, total=False):
     versionUrl: str
     vm: bool
     vpcAccessConnector: VpcAccessConnector
-    zones: typing.List[str]
+    zones: _list[str]
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):

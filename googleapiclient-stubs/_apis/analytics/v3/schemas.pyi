@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
-    childLink: typing.Dict[str, typing.Any]
+    childLink: dict[str, typing.Any]
     created: str
     id: str
     kind: str
     name: str
-    permissions: typing.Dict[str, typing.Any]
+    permissions: dict[str, typing.Any]
     selfLink: str
     starred: bool
     updated: str
@@ -23,7 +25,7 @@ class AccountRef(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountSummaries(typing_extensions.TypedDict, total=False):
-    items: typing.List[AccountSummary]
+    items: _list[AccountSummary]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -38,7 +40,7 @@ class AccountSummary(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     starred: bool
-    webProperties: typing.List[WebPropertySummary]
+    webProperties: _list[WebPropertySummary]
 
 @typing.type_check_only
 class AccountTicket(typing_extensions.TypedDict, total=False):
@@ -67,7 +69,7 @@ class AccountTreeResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Accounts(typing_extensions.TypedDict, total=False):
-    items: typing.List[Account]
+    items: _list[Account]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -86,35 +88,35 @@ class AdWordsAccount(typing_extensions.TypedDict, total=False):
 class AnalyticsDataimportDeleteUploadDataRequest(
     typing_extensions.TypedDict, total=False
 ):
-    customDataImportUids: typing.List[str]
+    customDataImportUids: _list[str]
 
 @typing.type_check_only
 class Column(typing_extensions.TypedDict, total=False):
-    attributes: typing.Dict[str, typing.Any]
+    attributes: dict[str, typing.Any]
     id: str
     kind: str
 
 @typing.type_check_only
 class Columns(typing_extensions.TypedDict, total=False):
-    attributeNames: typing.List[str]
+    attributeNames: _list[str]
     etag: str
-    items: typing.List[Column]
+    items: _list[Column]
     kind: str
     totalResults: int
 
 @typing.type_check_only
 class CustomDataSource(typing_extensions.TypedDict, total=False):
     accountId: str
-    childLink: typing.Dict[str, typing.Any]
+    childLink: dict[str, typing.Any]
     created: str
     description: str
     id: str
     importBehavior: str
     kind: str
     name: str
-    parentLink: typing.Dict[str, typing.Any]
-    profilesLinked: typing.List[str]
-    schema: typing.List[str]
+    parentLink: dict[str, typing.Any]
+    profilesLinked: _list[str]
+    schema: _list[str]
     selfLink: str
     type: str
     updated: str
@@ -123,7 +125,7 @@ class CustomDataSource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomDataSources(typing_extensions.TypedDict, total=False):
-    items: typing.List[CustomDataSource]
+    items: _list[CustomDataSource]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -141,7 +143,7 @@ class CustomDimension(typing_extensions.TypedDict, total=False):
     index: int
     kind: str
     name: str
-    parentLink: typing.Dict[str, typing.Any]
+    parentLink: dict[str, typing.Any]
     scope: str
     selfLink: str
     updated: str
@@ -149,7 +151,7 @@ class CustomDimension(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomDimensions(typing_extensions.TypedDict, total=False):
-    items: typing.List[CustomDimension]
+    items: _list[CustomDimension]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -169,7 +171,7 @@ class CustomMetric(typing_extensions.TypedDict, total=False):
     max_value: str
     min_value: str
     name: str
-    parentLink: typing.Dict[str, typing.Any]
+    parentLink: dict[str, typing.Any]
     scope: str
     selfLink: str
     type: str
@@ -178,7 +180,7 @@ class CustomMetric(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomMetrics(typing_extensions.TypedDict, total=False):
-    items: typing.List[CustomMetric]
+    items: _list[CustomMetric]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -189,17 +191,17 @@ class CustomMetrics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EntityAdWordsLink(typing_extensions.TypedDict, total=False):
-    adWordsAccounts: typing.List[AdWordsAccount]
-    entity: typing.Dict[str, typing.Any]
+    adWordsAccounts: _list[AdWordsAccount]
+    entity: dict[str, typing.Any]
     id: str
     kind: str
     name: str
-    profileIds: typing.List[str]
+    profileIds: _list[str]
     selfLink: str
 
 @typing.type_check_only
 class EntityAdWordsLinks(typing_extensions.TypedDict, total=False):
-    items: typing.List[EntityAdWordsLink]
+    items: _list[EntityAdWordsLink]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -209,16 +211,16 @@ class EntityAdWordsLinks(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EntityUserLink(typing_extensions.TypedDict, total=False):
-    entity: typing.Dict[str, typing.Any]
+    entity: dict[str, typing.Any]
     id: str
     kind: str
-    permissions: typing.Dict[str, typing.Any]
+    permissions: dict[str, typing.Any]
     selfLink: str
     userRef: UserRef
 
 @typing.type_check_only
 class EntityUserLinks(typing_extensions.TypedDict, total=False):
-    items: typing.List[EntityUserLink]
+    items: _list[EntityUserLink]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -241,7 +243,7 @@ class Experiment(typing_extensions.TypedDict, total=False):
     name: str
     objectiveMetric: str
     optimizationType: str
-    parentLink: typing.Dict[str, typing.Any]
+    parentLink: dict[str, typing.Any]
     profileId: str
     reasonExperimentEnded: str
     rewriteVariationUrlsAsOriginal: bool
@@ -252,14 +254,14 @@ class Experiment(typing_extensions.TypedDict, total=False):
     status: str
     trafficCoverage: float
     updated: str
-    variations: typing.List[typing.Dict[str, typing.Any]]
+    variations: _list[dict[str, typing.Any]]
     webPropertyId: str
     winnerConfidenceLevel: float
     winnerFound: bool
 
 @typing.type_check_only
 class Experiments(typing_extensions.TypedDict, total=False):
-    items: typing.List[Experiment]
+    items: _list[Experiment]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -271,20 +273,20 @@ class Experiments(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Filter(typing_extensions.TypedDict, total=False):
     accountId: str
-    advancedDetails: typing.Dict[str, typing.Any]
+    advancedDetails: dict[str, typing.Any]
     created: str
     excludeDetails: FilterExpression
     id: str
     includeDetails: FilterExpression
     kind: str
-    lowercaseDetails: typing.Dict[str, typing.Any]
+    lowercaseDetails: dict[str, typing.Any]
     name: str
-    parentLink: typing.Dict[str, typing.Any]
-    searchAndReplaceDetails: typing.Dict[str, typing.Any]
+    parentLink: dict[str, typing.Any]
+    searchAndReplaceDetails: dict[str, typing.Any]
     selfLink: str
     type: str
     updated: str
-    uppercaseDetails: typing.Dict[str, typing.Any]
+    uppercaseDetails: dict[str, typing.Any]
 
 @typing.type_check_only
 class FilterExpression(typing_extensions.TypedDict, total=False):
@@ -305,7 +307,7 @@ class FilterRef(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Filters(typing_extensions.TypedDict, total=False):
-    items: typing.List[Filter]
+    items: _list[Filter]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -316,48 +318,48 @@ class Filters(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GaData(typing_extensions.TypedDict, total=False):
-    columnHeaders: typing.List[typing.Dict[str, typing.Any]]
+    columnHeaders: _list[dict[str, typing.Any]]
     containsSampledData: bool
     dataLastRefreshed: str
-    dataTable: typing.Dict[str, typing.Any]
+    dataTable: dict[str, typing.Any]
     id: str
     itemsPerPage: int
     kind: str
     nextLink: str
     previousLink: str
-    profileInfo: typing.Dict[str, typing.Any]
-    query: typing.Dict[str, typing.Any]
-    rows: typing.List[list]
+    profileInfo: dict[str, typing.Any]
+    query: dict[str, typing.Any]
+    rows: _list[list]
     sampleSize: str
     sampleSpace: str
     selfLink: str
     totalResults: int
-    totalsForAllResults: typing.Dict[str, typing.Any]
+    totalsForAllResults: dict[str, typing.Any]
 
 @typing.type_check_only
 class Goal(typing_extensions.TypedDict, total=False):
     accountId: str
     active: bool
     created: str
-    eventDetails: typing.Dict[str, typing.Any]
+    eventDetails: dict[str, typing.Any]
     id: str
     internalWebPropertyId: str
     kind: str
     name: str
-    parentLink: typing.Dict[str, typing.Any]
+    parentLink: dict[str, typing.Any]
     profileId: str
     selfLink: str
     type: str
     updated: str
-    urlDestinationDetails: typing.Dict[str, typing.Any]
+    urlDestinationDetails: dict[str, typing.Any]
     value: float
-    visitNumPagesDetails: typing.Dict[str, typing.Any]
-    visitTimeOnSiteDetails: typing.Dict[str, typing.Any]
+    visitNumPagesDetails: dict[str, typing.Any]
+    visitTimeOnSiteDetails: dict[str, typing.Any]
     webPropertyId: str
 
 @typing.type_check_only
 class Goals(typing_extensions.TypedDict, total=False):
-    items: typing.List[Goal]
+    items: _list[Goal]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -402,27 +404,27 @@ class LinkedForeignAccount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class McfData(typing_extensions.TypedDict, total=False):
-    columnHeaders: typing.List[typing.Dict[str, typing.Any]]
+    columnHeaders: _list[dict[str, typing.Any]]
     containsSampledData: bool
     id: str
     itemsPerPage: int
     kind: str
     nextLink: str
     previousLink: str
-    profileInfo: typing.Dict[str, typing.Any]
-    query: typing.Dict[str, typing.Any]
-    rows: typing.List[list]
+    profileInfo: dict[str, typing.Any]
+    query: dict[str, typing.Any]
+    rows: _list[list]
     sampleSize: str
     sampleSpace: str
     selfLink: str
     totalResults: int
-    totalsForAllResults: typing.Dict[str, typing.Any]
+    totalsForAllResults: dict[str, typing.Any]
 
 @typing.type_check_only
 class Profile(typing_extensions.TypedDict, total=False):
     accountId: str
     botFilteringEnabled: bool
-    childLink: typing.Dict[str, typing.Any]
+    childLink: dict[str, typing.Any]
     created: str
     currency: str
     defaultPage: str
@@ -433,8 +435,8 @@ class Profile(typing_extensions.TypedDict, total=False):
     internalWebPropertyId: str
     kind: str
     name: str
-    parentLink: typing.Dict[str, typing.Any]
-    permissions: typing.Dict[str, typing.Any]
+    parentLink: dict[str, typing.Any]
+    permissions: dict[str, typing.Any]
     selfLink: str
     siteSearchCategoryParameters: str
     siteSearchQueryParameters: str
@@ -458,7 +460,7 @@ class ProfileFilterLink(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProfileFilterLinks(typing_extensions.TypedDict, total=False):
-    items: typing.List[ProfileFilterLink]
+    items: _list[ProfileFilterLink]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -487,7 +489,7 @@ class ProfileSummary(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Profiles(typing_extensions.TypedDict, total=False):
-    items: typing.List[Profile]
+    items: _list[Profile]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -498,36 +500,36 @@ class Profiles(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RealtimeData(typing_extensions.TypedDict, total=False):
-    columnHeaders: typing.List[typing.Dict[str, typing.Any]]
+    columnHeaders: _list[dict[str, typing.Any]]
     id: str
     kind: str
-    profileInfo: typing.Dict[str, typing.Any]
-    query: typing.Dict[str, typing.Any]
-    rows: typing.List[list]
+    profileInfo: dict[str, typing.Any]
+    query: dict[str, typing.Any]
+    rows: _list[list]
     selfLink: str
     totalResults: int
-    totalsForAllResults: typing.Dict[str, typing.Any]
+    totalsForAllResults: dict[str, typing.Any]
 
 @typing.type_check_only
 class RemarketingAudience(typing_extensions.TypedDict, total=False):
     accountId: str
-    audienceDefinition: typing.Dict[str, typing.Any]
+    audienceDefinition: dict[str, typing.Any]
     audienceType: str
     created: str
     description: str
     id: str
     internalWebPropertyId: str
     kind: str
-    linkedAdAccounts: typing.List[LinkedForeignAccount]
-    linkedViews: typing.List[str]
+    linkedAdAccounts: _list[LinkedForeignAccount]
+    linkedViews: _list[str]
     name: str
-    stateBasedAudienceDefinition: typing.Dict[str, typing.Any]
+    stateBasedAudienceDefinition: dict[str, typing.Any]
     updated: str
     webPropertyId: str
 
 @typing.type_check_only
 class RemarketingAudiences(typing_extensions.TypedDict, total=False):
-    items: typing.List[RemarketingAudience]
+    items: _list[RemarketingAudience]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -550,7 +552,7 @@ class Segment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Segments(typing_extensions.TypedDict, total=False):
-    items: typing.List[Segment]
+    items: _list[Segment]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -563,11 +565,11 @@ AlternativeUnsampledReport = typing_extensions.TypedDict(
     "AlternativeUnsampledReport",
     {
         "accountId": str,
-        "cloudStorageDownloadDetails": typing.Dict[str, typing.Any],
+        "cloudStorageDownloadDetails": dict[str, typing.Any],
         "created": str,
         "dimensions": str,
         "downloadType": str,
-        "driveDownloadDetails": typing.Dict[str, typing.Any],
+        "driveDownloadDetails": dict[str, typing.Any],
         "end-date": str,
         "filters": str,
         "id": str,
@@ -590,7 +592,7 @@ class UnsampledReport(AlternativeUnsampledReport): ...
 
 @typing.type_check_only
 class UnsampledReports(typing_extensions.TypedDict, total=False):
-    items: typing.List[UnsampledReport]
+    items: _list[UnsampledReport]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -603,7 +605,7 @@ class UnsampledReports(typing_extensions.TypedDict, total=False):
 class Upload(typing_extensions.TypedDict, total=False):
     accountId: str
     customDataSourceId: str
-    errors: typing.List[str]
+    errors: _list[str]
     id: str
     kind: str
     status: str
@@ -611,7 +613,7 @@ class Upload(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Uploads(typing_extensions.TypedDict, total=False):
-    items: typing.List[Upload]
+    items: _list[Upload]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -623,7 +625,7 @@ class Uploads(typing_extensions.TypedDict, total=False):
 class UserDeletionRequest(typing_extensions.TypedDict, total=False):
     deletionRequestTime: str
     firebaseProjectId: str
-    id: typing.Dict[str, typing.Any]
+    id: dict[str, typing.Any]
     kind: str
     propertyId: str
     webPropertyId: str
@@ -650,13 +652,13 @@ class WebPropertySummary(typing_extensions.TypedDict, total=False):
     kind: str
     level: str
     name: str
-    profiles: typing.List[ProfileSummary]
+    profiles: _list[ProfileSummary]
     starred: bool
     websiteUrl: str
 
 @typing.type_check_only
 class Webproperties(typing_extensions.TypedDict, total=False):
-    items: typing.List[Webproperty]
+    items: _list[Webproperty]
     itemsPerPage: int
     kind: str
     nextLink: str
@@ -668,7 +670,7 @@ class Webproperties(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Webproperty(typing_extensions.TypedDict, total=False):
     accountId: str
-    childLink: typing.Dict[str, typing.Any]
+    childLink: dict[str, typing.Any]
     created: str
     dataRetentionResetOnNewActivity: bool
     dataRetentionTtl: str
@@ -679,8 +681,8 @@ class Webproperty(typing_extensions.TypedDict, total=False):
     kind: str
     level: str
     name: str
-    parentLink: typing.Dict[str, typing.Any]
-    permissions: typing.Dict[str, typing.Any]
+    parentLink: dict[str, typing.Any]
+    permissions: dict[str, typing.Any]
     profileCount: int
     selfLink: str
     starred: bool

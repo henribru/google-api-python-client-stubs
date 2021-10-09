@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleFirebaseFcmDataV1beta1AndroidDeliveryData(
     typing_extensions.TypedDict, total=False
@@ -32,7 +34,7 @@ class GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents(
 class GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse(
     typing_extensions.TypedDict, total=False
 ):
-    androidDeliveryData: typing.List[GoogleFirebaseFcmDataV1beta1AndroidDeliveryData]
+    androidDeliveryData: _list[GoogleFirebaseFcmDataV1beta1AndroidDeliveryData]
     nextPageToken: str
 
 @typing.type_check_only

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
@@ -35,7 +37,7 @@ class GoogleCloudCommonOperationMetadata(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudRedisV1beta1LocationMetadata(typing_extensions.TypedDict, total=False):
-    availableZones: typing.Dict[str, typing.Any]
+    availableZones: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRedisV1beta1ZoneMetadata(typing_extensions.TypedDict, total=False): ...
@@ -60,7 +62,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     currentLocationId: str
     displayName: str
     host: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
     maintenancePolicy: MaintenancePolicy
     maintenanceSchedule: MaintenanceSchedule
@@ -68,10 +70,10 @@ class Instance(typing_extensions.TypedDict, total=False):
     name: str
     persistenceIamIdentity: str
     port: int
-    redisConfigs: typing.Dict[str, typing.Any]
+    redisConfigs: dict[str, typing.Any]
     redisVersion: str
     reservedIpRange: str
-    serverCaCerts: typing.List[TlsCertificate]
+    serverCaCerts: _list[TlsCertificate]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -95,26 +97,26 @@ class InstanceAuthString(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
+    instances: _list[Instance]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -122,7 +124,7 @@ class MaintenancePolicy(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     updateTime: str
-    weeklyMaintenanceWindow: typing.List[WeeklyMaintenanceWindow]
+    weeklyMaintenanceWindow: _list[WeeklyMaintenanceWindow]
 
 @typing.type_check_only
 class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
@@ -135,9 +137,9 @@ class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OutputConfig(typing_extensions.TypedDict, total=False):
@@ -156,7 +158,7 @@ class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

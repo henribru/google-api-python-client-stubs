@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudDebuggerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -102,9 +104,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -112,9 +112,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class GetBreakpointResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetBreakpointResponse: ...
 
@@ -122,9 +120,7 @@ class GetBreakpointResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListActiveBreakpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListActiveBreakpointsResponse: ...
 
@@ -132,9 +128,7 @@ class ListActiveBreakpointsResponseHttpRequest(googleapiclient.http.HttpRequest)
 class ListBreakpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListBreakpointsResponse: ...
 
@@ -142,9 +136,7 @@ class ListBreakpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListDebuggeesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDebuggeesResponse: ...
 
@@ -152,9 +144,7 @@ class ListDebuggeesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RegisterDebuggeeResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RegisterDebuggeeResponse: ...
 
@@ -162,9 +152,7 @@ class RegisterDebuggeeResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SetBreakpointResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SetBreakpointResponse: ...
 
@@ -172,8 +160,6 @@ class SetBreakpointResponseHttpRequest(googleapiclient.http.HttpRequest):
 class UpdateActiveBreakpointResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UpdateActiveBreakpointResponse: ...

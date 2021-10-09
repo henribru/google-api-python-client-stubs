@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     accountId: str
@@ -11,11 +13,11 @@ class Account(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountAccess(typing_extensions.TypedDict, total=False):
-    permission: typing.List[str]
+    permission: _list[str]
 
 @typing.type_check_only
 class Condition(typing_extensions.TypedDict, total=False):
-    parameter: typing.List[Parameter]
+    parameter: _list[Parameter]
     type: typing_extensions.Literal[
         "equals",
         "contains",
@@ -34,20 +36,20 @@ class Condition(typing_extensions.TypedDict, total=False):
 class Container(typing_extensions.TypedDict, total=False):
     accountId: str
     containerId: str
-    domainName: typing.List[str]
-    enabledBuiltInVariable: typing.List[str]
+    domainName: _list[str]
+    enabledBuiltInVariable: _list[str]
     fingerprint: str
     name: str
     notes: str
     publicId: str
     timeZoneCountryId: str
     timeZoneId: str
-    usageContext: typing.List[str]
+    usageContext: _list[str]
 
 @typing.type_check_only
 class ContainerAccess(typing_extensions.TypedDict, total=False):
     containerId: str
-    permission: typing.List[str]
+    permission: _list[str]
 
 @typing.type_check_only
 class ContainerVersion(typing_extensions.TypedDict, total=False):
@@ -57,14 +59,14 @@ class ContainerVersion(typing_extensions.TypedDict, total=False):
     containerVersionId: str
     deleted: bool
     fingerprint: str
-    folder: typing.List[Folder]
-    macro: typing.List[Macro]
+    folder: _list[Folder]
+    macro: _list[Macro]
     name: str
     notes: str
-    rule: typing.List[Rule]
-    tag: typing.List[Tag]
-    trigger: typing.List[Trigger]
-    variable: typing.List[Variable]
+    rule: _list[Rule]
+    tag: _list[Tag]
+    trigger: _list[Trigger]
+    variable: _list[Variable]
 
 @typing.type_check_only
 class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
@@ -117,52 +119,52 @@ class Folder(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FolderEntities(typing_extensions.TypedDict, total=False):
-    tag: typing.List[Tag]
-    trigger: typing.List[Trigger]
-    variable: typing.List[Variable]
+    tag: _list[Tag]
+    trigger: _list[Trigger]
+    variable: _list[Variable]
 
 @typing.type_check_only
 class ListAccountUsersResponse(typing_extensions.TypedDict, total=False):
-    userAccess: typing.List[UserAccess]
+    userAccess: _list[UserAccess]
 
 @typing.type_check_only
 class ListAccountsResponse(typing_extensions.TypedDict, total=False):
-    accounts: typing.List[Account]
+    accounts: _list[Account]
 
 @typing.type_check_only
 class ListContainerVersionsResponse(typing_extensions.TypedDict, total=False):
-    containerVersion: typing.List[ContainerVersion]
-    containerVersionHeader: typing.List[ContainerVersionHeader]
+    containerVersion: _list[ContainerVersion]
+    containerVersionHeader: _list[ContainerVersionHeader]
 
 @typing.type_check_only
 class ListContainersResponse(typing_extensions.TypedDict, total=False):
-    containers: typing.List[Container]
+    containers: _list[Container]
 
 @typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
-    environments: typing.List[Environment]
+    environments: _list[Environment]
 
 @typing.type_check_only
 class ListFoldersResponse(typing_extensions.TypedDict, total=False):
-    folders: typing.List[Folder]
+    folders: _list[Folder]
 
 @typing.type_check_only
 class ListTagsResponse(typing_extensions.TypedDict, total=False):
-    tags: typing.List[Tag]
+    tags: _list[Tag]
 
 @typing.type_check_only
 class ListTriggersResponse(typing_extensions.TypedDict, total=False):
-    triggers: typing.List[Trigger]
+    triggers: _list[Trigger]
 
 @typing.type_check_only
 class ListVariablesResponse(typing_extensions.TypedDict, total=False):
-    variables: typing.List[Variable]
+    variables: _list[Variable]
 
 @typing.type_check_only
-class Macro(typing.Dict[str, typing.Any]): ...
+class Macro(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class Parameter(typing.Dict[str, typing.Any]): ...
+class Parameter(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
@@ -170,7 +172,7 @@ class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
     containerVersion: ContainerVersion
 
 @typing.type_check_only
-class Rule(typing.Dict[str, typing.Any]): ...
+class Rule(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class SetupTag(typing_extensions.TypedDict, total=False):
@@ -178,7 +180,7 @@ class SetupTag(typing_extensions.TypedDict, total=False):
     tagName: str
 
 @typing.type_check_only
-class Tag(typing.Dict[str, typing.Any]): ...
+class Tag(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TeardownTag(typing_extensions.TypedDict, total=False):
@@ -186,15 +188,15 @@ class TeardownTag(typing_extensions.TypedDict, total=False):
     tagName: str
 
 @typing.type_check_only
-class Trigger(typing.Dict[str, typing.Any]): ...
+class Trigger(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class UserAccess(typing_extensions.TypedDict, total=False):
     accountAccess: AccountAccess
     accountId: str
-    containerAccess: typing.List[ContainerAccess]
+    containerAccess: _list[ContainerAccess]
     emailAddress: str
     permissionId: str
 
 @typing.type_check_only
-class Variable(typing.Dict[str, typing.Any]): ...
+class Variable(dict[str, typing.Any]): ...

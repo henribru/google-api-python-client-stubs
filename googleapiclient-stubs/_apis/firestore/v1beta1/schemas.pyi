@@ -2,13 +2,15 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ArrayValue(typing_extensions.TypedDict, total=False):
-    values: typing.List[Value]
+    values: _list[Value]
 
 @typing.type_check_only
 class BatchGetDocumentsRequest(typing_extensions.TypedDict, total=False):
-    documents: typing.List[str]
+    documents: _list[str]
     mask: DocumentMask
     newTransaction: TransactionOptions
     readTime: str
@@ -23,13 +25,13 @@ class BatchGetDocumentsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchWriteRequest(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
-    writes: typing.List[Write]
+    labels: dict[str, typing.Any]
+    writes: _list[Write]
 
 @typing.type_check_only
 class BatchWriteResponse(typing_extensions.TypedDict, total=False):
-    status: typing.List[Status]
-    writeResults: typing.List[WriteResult]
+    status: _list[Status]
+    writeResults: _list[WriteResult]
 
 @typing.type_check_only
 class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
@@ -47,60 +49,60 @@ class CollectionSelector(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CommitRequest(typing_extensions.TypedDict, total=False):
     transaction: str
-    writes: typing.List[Write]
+    writes: _list[Write]
 
 @typing.type_check_only
 class CommitResponse(typing_extensions.TypedDict, total=False):
     commitTime: str
-    writeResults: typing.List[WriteResult]
+    writeResults: _list[WriteResult]
 
 @typing.type_check_only
 class CompositeFilter(typing_extensions.TypedDict, total=False):
-    filters: typing.List[Filter]
+    filters: _list[Filter]
     op: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND"]
 
 @typing.type_check_only
 class Cursor(typing_extensions.TypedDict, total=False):
     before: bool
-    values: typing.List[Value]
+    values: _list[Value]
 
 @typing.type_check_only
 class Document(typing_extensions.TypedDict, total=False):
     createTime: str
-    fields: typing.Dict[str, typing.Any]
+    fields: dict[str, typing.Any]
     name: str
     updateTime: str
 
 @typing.type_check_only
 class DocumentChange(typing_extensions.TypedDict, total=False):
     document: Document
-    removedTargetIds: typing.List[int]
-    targetIds: typing.List[int]
+    removedTargetIds: _list[int]
+    targetIds: _list[int]
 
 @typing.type_check_only
 class DocumentDelete(typing_extensions.TypedDict, total=False):
     document: str
     readTime: str
-    removedTargetIds: typing.List[int]
+    removedTargetIds: _list[int]
 
 @typing.type_check_only
 class DocumentMask(typing_extensions.TypedDict, total=False):
-    fieldPaths: typing.List[str]
+    fieldPaths: _list[str]
 
 @typing.type_check_only
 class DocumentRemove(typing_extensions.TypedDict, total=False):
     document: str
     readTime: str
-    removedTargetIds: typing.List[int]
+    removedTargetIds: _list[int]
 
 @typing.type_check_only
 class DocumentTransform(typing_extensions.TypedDict, total=False):
     document: str
-    fieldTransforms: typing.List[FieldTransform]
+    fieldTransforms: _list[FieldTransform]
 
 @typing.type_check_only
 class DocumentsTarget(typing_extensions.TypedDict, total=False):
-    documents: typing.List[str]
+    documents: _list[str]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -133,16 +135,16 @@ class FieldReference(typing_extensions.TypedDict, total=False):
     fieldPath: str
 
 @typing.type_check_only
-class FieldTransform(typing.Dict[str, typing.Any]): ...
+class FieldTransform(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class Filter(typing.Dict[str, typing.Any]): ...
+class Filter(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1beta1ExportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    collectionIds: typing.List[str]
+    collectionIds: _list[str]
     endTime: str
     operationState: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -163,7 +165,7 @@ class GoogleFirestoreAdminV1beta1ExportDocumentsMetadata(
 class GoogleFirestoreAdminV1beta1ExportDocumentsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    collectionIds: typing.List[str]
+    collectionIds: _list[str]
     outputUriPrefix: str
 
 @typing.type_check_only
@@ -176,7 +178,7 @@ class GoogleFirestoreAdminV1beta1ExportDocumentsResponse(
 class GoogleFirestoreAdminV1beta1ImportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    collectionIds: typing.List[str]
+    collectionIds: _list[str]
     endTime: str
     inputUriPrefix: str
     operationState: typing_extensions.Literal[
@@ -197,13 +199,13 @@ class GoogleFirestoreAdminV1beta1ImportDocumentsMetadata(
 class GoogleFirestoreAdminV1beta1ImportDocumentsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    collectionIds: typing.List[str]
+    collectionIds: _list[str]
     inputUriPrefix: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1beta1Index(typing_extensions.TypedDict, total=False):
     collectionId: str
-    fields: typing.List[GoogleFirestoreAdminV1beta1IndexField]
+    fields: _list[GoogleFirestoreAdminV1beta1IndexField]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY", "ERROR"]
 
@@ -231,7 +233,7 @@ class GoogleFirestoreAdminV1beta1IndexOperationMetadata(
 class GoogleFirestoreAdminV1beta1ListIndexesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    indexes: typing.List[GoogleFirestoreAdminV1beta1Index]
+    indexes: _list[GoogleFirestoreAdminV1beta1Index]
     nextPageToken: str
 
 @typing.type_check_only
@@ -248,9 +250,9 @@ class GoogleFirestoreAdminV1beta1Progress(typing_extensions.TypedDict, total=Fal
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class LatLng(typing_extensions.TypedDict, total=False):
@@ -264,18 +266,18 @@ class ListCollectionIdsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListCollectionIdsResponse(typing_extensions.TypedDict, total=False):
-    collectionIds: typing.List[str]
+    collectionIds: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDocumentsResponse(typing_extensions.TypedDict, total=False):
-    documents: typing.List[Document]
+    documents: _list[Document]
     nextPageToken: str
 
 @typing.type_check_only
 class ListenRequest(typing_extensions.TypedDict, total=False):
     addTarget: Target
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     removeTarget: int
 
 @typing.type_check_only
@@ -288,7 +290,7 @@ class ListenResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MapValue(typing_extensions.TypedDict, total=False):
-    fields: typing.Dict[str, typing.Any]
+    fields: dict[str, typing.Any]
 
 @typing.type_check_only
 class Order(typing_extensions.TypedDict, total=False):
@@ -307,7 +309,7 @@ class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PartitionQueryResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    partitions: typing.List[Cursor]
+    partitions: _list[Cursor]
 
 @typing.type_check_only
 class Precondition(typing_extensions.TypedDict, total=False):
@@ -316,7 +318,7 @@ class Precondition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Projection(typing_extensions.TypedDict, total=False):
-    fields: typing.List[FieldReference]
+    fields: _list[FieldReference]
 
 @typing.type_check_only
 class QueryTarget(typing_extensions.TypedDict, total=False):
@@ -352,14 +354,14 @@ class RunQueryResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StructuredQuery(typing.Dict[str, typing.Any]): ...
+class StructuredQuery(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class Target(typing.Dict[str, typing.Any]): ...
+class Target(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TargetChange(typing_extensions.TypedDict, total=False):
@@ -369,7 +371,7 @@ class TargetChange(typing_extensions.TypedDict, total=False):
     targetChangeType: typing_extensions.Literal[
         "NO_CHANGE", "ADD", "REMOVE", "CURRENT", "RESET"
     ]
-    targetIds: typing.List[int]
+    targetIds: _list[int]
 
 @typing.type_check_only
 class TransactionOptions(typing_extensions.TypedDict, total=False):
@@ -384,24 +386,24 @@ class UnaryFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Value(typing.Dict[str, typing.Any]): ...
+class Value(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class Write(typing.Dict[str, typing.Any]): ...
+class Write(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class WriteRequest(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     streamId: str
     streamToken: str
-    writes: typing.List[Write]
+    writes: _list[Write]
 
 @typing.type_check_only
 class WriteResponse(typing_extensions.TypedDict, total=False):
     commitTime: str
     streamId: str
     streamToken: str
-    writeResults: typing.List[WriteResult]
+    writeResults: _list[WriteResult]
 
 @typing.type_check_only
-class WriteResult(typing.Dict[str, typing.Any]): ...
+class WriteResult(dict[str, typing.Any]): ...

@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ComputeEngine(typing_extensions.TypedDict, total=False):
-    diskNames: typing.List[str]
+    diskNames: _list[str]
     instanceName: str
     machineType: str
     zone: str
@@ -20,7 +22,7 @@ class ContainerKilledEvent(typing_extensions.TypedDict, total=False):
 class ContainerStartedEvent(typing_extensions.TypedDict, total=False):
     actionId: int
     ipAddress: str
-    portMappings: typing.Dict[str, typing.Any]
+    portMappings: dict[str, typing.Any]
 
 @typing.type_check_only
 class ContainerStoppedEvent(typing_extensions.TypedDict, total=False):
@@ -31,18 +33,18 @@ class ContainerStoppedEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ControllerConfig(typing_extensions.TypedDict, total=False):
     cmd: str
-    disks: typing.Dict[str, typing.Any]
+    disks: dict[str, typing.Any]
     gcsLogPath: str
-    gcsSinks: typing.Dict[str, typing.Any]
-    gcsSources: typing.Dict[str, typing.Any]
+    gcsSinks: dict[str, typing.Any]
+    gcsSources: dict[str, typing.Any]
     image: str
     machineType: str
-    vars: typing.Dict[str, typing.Any]
+    vars: dict[str, typing.Any]
 
 @typing.type_check_only
 class DelayedEvent(typing_extensions.TypedDict, total=False):
     cause: str
-    metrics: typing.List[str]
+    metrics: _list[str]
 
 @typing.type_check_only
 class Disk(typing_extensions.TypedDict, total=False):
@@ -67,7 +69,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Event(typing_extensions.TypedDict, total=False):
     description: str
-    details: typing.Dict[str, typing.Any]
+    details: dict[str, typing.Any]
     timestamp: str
 
 @typing.type_check_only
@@ -96,12 +98,12 @@ class FailedEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListPipelinesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    pipelines: typing.List[Pipeline]
+    pipelines: _list[Pipeline]
 
 @typing.type_check_only
 class LocalCopy(typing_extensions.TypedDict, total=False):
@@ -116,9 +118,9 @@ class LoggingOptions(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationEvent(typing_extensions.TypedDict, total=False):
@@ -131,20 +133,20 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     clientId: str
     createTime: str
     endTime: str
-    events: typing.List[OperationEvent]
-    labels: typing.Dict[str, typing.Any]
+    events: _list[OperationEvent]
+    labels: dict[str, typing.Any]
     projectId: str
-    request: typing.Dict[str, typing.Any]
-    runtimeMetadata: typing.Dict[str, typing.Any]
+    request: dict[str, typing.Any]
+    runtimeMetadata: dict[str, typing.Any]
     startTime: str
 
 @typing.type_check_only
 class Pipeline(typing_extensions.TypedDict, total=False):
     description: str
     docker: DockerExecutor
-    inputParameters: typing.List[PipelineParameter]
+    inputParameters: _list[PipelineParameter]
     name: str
-    outputParameters: typing.List[PipelineParameter]
+    outputParameters: _list[PipelineParameter]
     pipelineId: str
     projectId: str
     resources: PipelineResources
@@ -161,12 +163,12 @@ class PipelineResources(typing_extensions.TypedDict, total=False):
     acceleratorCount: str
     acceleratorType: str
     bootDiskSizeGb: int
-    disks: typing.List[Disk]
+    disks: _list[Disk]
     minimumCpuCores: int
     minimumRamGb: float
     noAddress: bool
     preemptible: bool
-    zones: typing.List[str]
+    zones: _list[str]
 
 @typing.type_check_only
 class PullStartedEvent(typing_extensions.TypedDict, total=False):
@@ -178,16 +180,16 @@ class PullStoppedEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RepeatedString(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class RunPipelineArgs(typing_extensions.TypedDict, total=False):
     clientId: str
-    inputs: typing.Dict[str, typing.Any]
+    inputs: dict[str, typing.Any]
     keepVmAliveOnFailureDuration: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     logging: LoggingOptions
-    outputs: typing.Dict[str, typing.Any]
+    outputs: dict[str, typing.Any]
     projectId: str
     resources: PipelineResources
     serviceAccount: ServiceAccount
@@ -208,7 +210,7 @@ class RuntimeMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     email: str
-    scopes: typing.List[str]
+    scopes: _list[str]
 
 @typing.type_check_only
 class SetOperationStatusRequest(typing_extensions.TypedDict, total=False):
@@ -233,13 +235,13 @@ class SetOperationStatusRequest(typing_extensions.TypedDict, total=False):
     ]
     errorMessage: str
     operationId: str
-    timestampEvents: typing.List[TimestampEvent]
+    timestampEvents: _list[TimestampEvent]
     validationToken: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

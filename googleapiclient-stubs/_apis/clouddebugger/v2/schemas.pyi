@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AliasContext(typing_extensions.TypedDict, total=False):
     kind: typing_extensions.Literal["ANY", "FIXED", "MOVABLE", "OTHER"]
@@ -13,16 +15,16 @@ class Breakpoint(typing_extensions.TypedDict, total=False):
     canaryExpireTime: str
     condition: str
     createTime: str
-    evaluatedExpressions: typing.List[Variable]
-    expressions: typing.List[str]
+    evaluatedExpressions: _list[Variable]
+    expressions: _list[str]
     finalTime: str
     id: str
     isFinalState: bool
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     location: SourceLocation
     logLevel: typing_extensions.Literal["INFO", "WARNING", "ERROR"]
     logMessageFormat: str
-    stackFrames: typing.List[StackFrame]
+    stackFrames: _list[StackFrame]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "STATE_CANARY_PENDING_AGENTS",
@@ -32,7 +34,7 @@ class Breakpoint(typing_extensions.TypedDict, total=False):
     ]
     status: StatusMessage
     userEmail: str
-    variableTable: typing.List[Variable]
+    variableTable: _list[Variable]
 
 @typing.type_check_only
 class CloudRepoSourceContext(typing_extensions.TypedDict, total=False):
@@ -62,13 +64,13 @@ class Debuggee(typing_extensions.TypedDict, total=False):
         "CANARY_MODE_DEFAULT_DISABLED",
     ]
     description: str
-    extSourceContexts: typing.List[ExtendedSourceContext]
+    extSourceContexts: _list[ExtendedSourceContext]
     id: str
     isDisabled: bool
     isInactive: bool
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     project: str
-    sourceContexts: typing.List[SourceContext]
+    sourceContexts: _list[SourceContext]
     status: StatusMessage
     uniquifier: str
 
@@ -78,12 +80,12 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ExtendedSourceContext(typing_extensions.TypedDict, total=False):
     context: SourceContext
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class FormatMessage(typing_extensions.TypedDict, total=False):
     format: str
-    parameters: typing.List[str]
+    parameters: _list[str]
 
 @typing.type_check_only
 class GerritSourceContext(typing_extensions.TypedDict, total=False):
@@ -104,18 +106,18 @@ class GitSourceContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListActiveBreakpointsResponse(typing_extensions.TypedDict, total=False):
-    breakpoints: typing.List[Breakpoint]
+    breakpoints: _list[Breakpoint]
     nextWaitToken: str
     waitExpired: bool
 
 @typing.type_check_only
 class ListBreakpointsResponse(typing_extensions.TypedDict, total=False):
-    breakpoints: typing.List[Breakpoint]
+    breakpoints: _list[Breakpoint]
     nextWaitToken: str
 
 @typing.type_check_only
 class ListDebuggeesResponse(typing_extensions.TypedDict, total=False):
-    debuggees: typing.List[Debuggee]
+    debuggees: _list[Debuggee]
 
 @typing.type_check_only
 class ProjectRepoId(typing_extensions.TypedDict, total=False):
@@ -154,7 +156,7 @@ class SourceLocation(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class StackFrame(typing.Dict[str, typing.Any]): ...
+class StackFrame(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class StatusMessage(typing_extensions.TypedDict, total=False):
@@ -179,4 +181,4 @@ class UpdateActiveBreakpointRequest(typing_extensions.TypedDict, total=False):
 class UpdateActiveBreakpointResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Variable(typing.Dict[str, typing.Any]): ...
+class Variable(dict[str, typing.Any]): ...

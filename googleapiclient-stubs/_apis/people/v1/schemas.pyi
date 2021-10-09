@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Address(typing_extensions.TypedDict, total=False):
     city: str
@@ -29,32 +31,32 @@ class AgeRangeType(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchCreateContactsRequest(typing_extensions.TypedDict, total=False):
-    contacts: typing.List[ContactToCreate]
+    contacts: _list[ContactToCreate]
     readMask: str
-    sources: typing.List[str]
+    sources: _list[str]
 
 @typing.type_check_only
 class BatchCreateContactsResponse(typing_extensions.TypedDict, total=False):
-    createdPeople: typing.List[PersonResponse]
+    createdPeople: _list[PersonResponse]
 
 @typing.type_check_only
 class BatchDeleteContactsRequest(typing_extensions.TypedDict, total=False):
-    resourceNames: typing.List[str]
+    resourceNames: _list[str]
 
 @typing.type_check_only
 class BatchGetContactGroupsResponse(typing_extensions.TypedDict, total=False):
-    responses: typing.List[ContactGroupResponse]
+    responses: _list[ContactGroupResponse]
 
 @typing.type_check_only
 class BatchUpdateContactsRequest(typing_extensions.TypedDict, total=False):
-    contacts: typing.Dict[str, typing.Any]
+    contacts: dict[str, typing.Any]
     readMask: str
-    sources: typing.List[str]
+    sources: _list[str]
     updateMask: str
 
 @typing.type_check_only
 class BatchUpdateContactsResponse(typing_extensions.TypedDict, total=False):
-    updateResult: typing.Dict[str, typing.Any]
+    updateResult: dict[str, typing.Any]
 
 @typing.type_check_only
 class Biography(typing_extensions.TypedDict, total=False):
@@ -90,14 +92,14 @@ class ClientData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ContactGroup(typing_extensions.TypedDict, total=False):
-    clientData: typing.List[GroupClientData]
+    clientData: _list[GroupClientData]
     etag: str
     formattedName: str
     groupType: typing_extensions.Literal[
         "GROUP_TYPE_UNSPECIFIED", "USER_CONTACT_GROUP", "SYSTEM_CONTACT_GROUP"
     ]
     memberCount: int
-    memberResourceNames: typing.List[str]
+    memberResourceNames: _list[str]
     metadata: ContactGroupMetadata
     name: str
     resourceName: str
@@ -128,7 +130,7 @@ class CopyOtherContactToMyContactsGroupRequest(
 ):
     copyMask: str
     readMask: str
-    sources: typing.List[str]
+    sources: _list[str]
 
 @typing.type_check_only
 class CoverPhoto(typing_extensions.TypedDict, total=False):
@@ -201,7 +203,7 @@ class Gender(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetPeopleResponse(typing_extensions.TypedDict, total=False):
-    responses: typing.List[PersonResponse]
+    responses: _list[PersonResponse]
 
 @typing.type_check_only
 class GroupClientData(typing_extensions.TypedDict, total=False):
@@ -224,7 +226,7 @@ class Interest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
-    connections: typing.List[Person]
+    connections: _list[Person]
     nextPageToken: str
     nextSyncToken: str
     totalItems: int
@@ -232,7 +234,7 @@ class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListContactGroupsResponse(typing_extensions.TypedDict, total=False):
-    contactGroups: typing.List[ContactGroup]
+    contactGroups: _list[ContactGroup]
     nextPageToken: str
     nextSyncToken: str
     totalItems: int
@@ -241,13 +243,13 @@ class ListContactGroupsResponse(typing_extensions.TypedDict, total=False):
 class ListDirectoryPeopleResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     nextSyncToken: str
-    people: typing.List[Person]
+    people: _list[Person]
 
 @typing.type_check_only
 class ListOtherContactsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     nextSyncToken: str
-    otherContacts: typing.List[Person]
+    otherContacts: _list[Person]
     totalSize: int
 
 @typing.type_check_only
@@ -294,13 +296,13 @@ class MiscKeyword(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ModifyContactGroupMembersRequest(typing_extensions.TypedDict, total=False):
-    resourceNamesToAdd: typing.List[str]
-    resourceNamesToRemove: typing.List[str]
+    resourceNamesToAdd: _list[str]
+    resourceNamesToRemove: _list[str]
 
 @typing.type_check_only
 class ModifyContactGroupMembersResponse(typing_extensions.TypedDict, total=False):
-    canNotRemoveLastContactGroupResourceNames: typing.List[str]
-    notFoundResourceNames: typing.List[str]
+    canNotRemoveLastContactGroupResourceNames: _list[str]
+    notFoundResourceNames: _list[str]
 
 @typing.type_check_only
 class Name(typing_extensions.TypedDict, total=False):
@@ -360,57 +362,57 @@ class Organization(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Person(typing_extensions.TypedDict, total=False):
-    addresses: typing.List[Address]
+    addresses: _list[Address]
     ageRange: typing_extensions.Literal[
         "AGE_RANGE_UNSPECIFIED",
         "LESS_THAN_EIGHTEEN",
         "EIGHTEEN_TO_TWENTY",
         "TWENTY_ONE_OR_OLDER",
     ]
-    ageRanges: typing.List[AgeRangeType]
-    biographies: typing.List[Biography]
-    birthdays: typing.List[Birthday]
-    braggingRights: typing.List[BraggingRights]
-    calendarUrls: typing.List[CalendarUrl]
-    clientData: typing.List[ClientData]
-    coverPhotos: typing.List[CoverPhoto]
-    emailAddresses: typing.List[EmailAddress]
+    ageRanges: _list[AgeRangeType]
+    biographies: _list[Biography]
+    birthdays: _list[Birthday]
+    braggingRights: _list[BraggingRights]
+    calendarUrls: _list[CalendarUrl]
+    clientData: _list[ClientData]
+    coverPhotos: _list[CoverPhoto]
+    emailAddresses: _list[EmailAddress]
     etag: str
-    events: typing.List[Event]
-    externalIds: typing.List[ExternalId]
-    fileAses: typing.List[FileAs]
-    genders: typing.List[Gender]
-    imClients: typing.List[ImClient]
-    interests: typing.List[Interest]
-    locales: typing.List[Locale]
-    locations: typing.List[Location]
-    memberships: typing.List[Membership]
+    events: _list[Event]
+    externalIds: _list[ExternalId]
+    fileAses: _list[FileAs]
+    genders: _list[Gender]
+    imClients: _list[ImClient]
+    interests: _list[Interest]
+    locales: _list[Locale]
+    locations: _list[Location]
+    memberships: _list[Membership]
     metadata: PersonMetadata
-    miscKeywords: typing.List[MiscKeyword]
-    names: typing.List[Name]
-    nicknames: typing.List[Nickname]
-    occupations: typing.List[Occupation]
-    organizations: typing.List[Organization]
-    phoneNumbers: typing.List[PhoneNumber]
-    photos: typing.List[Photo]
-    relations: typing.List[Relation]
-    relationshipInterests: typing.List[RelationshipInterest]
-    relationshipStatuses: typing.List[RelationshipStatus]
-    residences: typing.List[Residence]
+    miscKeywords: _list[MiscKeyword]
+    names: _list[Name]
+    nicknames: _list[Nickname]
+    occupations: _list[Occupation]
+    organizations: _list[Organization]
+    phoneNumbers: _list[PhoneNumber]
+    photos: _list[Photo]
+    relations: _list[Relation]
+    relationshipInterests: _list[RelationshipInterest]
+    relationshipStatuses: _list[RelationshipStatus]
+    residences: _list[Residence]
     resourceName: str
-    sipAddresses: typing.List[SipAddress]
-    skills: typing.List[Skill]
-    taglines: typing.List[Tagline]
-    urls: typing.List[Url]
-    userDefined: typing.List[UserDefined]
+    sipAddresses: _list[SipAddress]
+    skills: _list[Skill]
+    taglines: _list[Tagline]
+    urls: _list[Url]
+    userDefined: _list[UserDefined]
 
 @typing.type_check_only
 class PersonMetadata(typing_extensions.TypedDict, total=False):
     deleted: bool
-    linkedPeopleResourceNames: typing.List[str]
+    linkedPeopleResourceNames: _list[str]
     objectType: typing_extensions.Literal["OBJECT_TYPE_UNSPECIFIED", "PERSON", "PAGE"]
-    previousResourceNames: typing.List[str]
-    sources: typing.List[Source]
+    previousResourceNames: _list[str]
+    sources: _list[Source]
 
 @typing.type_check_only
 class PersonResponse(typing_extensions.TypedDict, total=False):
@@ -436,7 +438,7 @@ class Photo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProfileMetadata(typing_extensions.TypedDict, total=False):
     objectType: typing_extensions.Literal["OBJECT_TYPE_UNSPECIFIED", "PERSON", "PAGE"]
-    userTypes: typing.List[str]
+    userTypes: _list[str]
 
 @typing.type_check_only
 class Relation(typing_extensions.TypedDict, total=False):
@@ -466,12 +468,12 @@ class Residence(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchDirectoryPeopleResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    people: typing.List[Person]
+    people: _list[Person]
     totalSize: int
 
 @typing.type_check_only
 class SearchResponse(typing_extensions.TypedDict, total=False):
-    results: typing.List[SearchResult]
+    results: _list[SearchResult]
 
 @typing.type_check_only
 class SearchResult(typing_extensions.TypedDict, total=False):
@@ -508,7 +510,7 @@ class Source(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -526,7 +528,7 @@ class UpdateContactGroupRequest(typing_extensions.TypedDict, total=False):
 class UpdateContactPhotoRequest(typing_extensions.TypedDict, total=False):
     personFields: str
     photoBytes: str
-    sources: typing.List[str]
+    sources: _list[str]
 
 @typing.type_check_only
 class UpdateContactPhotoResponse(typing_extensions.TypedDict, total=False):

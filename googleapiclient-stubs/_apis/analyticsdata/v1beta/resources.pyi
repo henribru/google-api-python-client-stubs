@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class AnalyticsDataResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -59,9 +61,7 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
 class BatchRunPivotReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchRunPivotReportsResponse: ...
 
@@ -69,9 +69,7 @@ class BatchRunPivotReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchRunReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchRunReportsResponse: ...
 
@@ -79,9 +77,7 @@ class BatchRunReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CheckCompatibilityResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CheckCompatibilityResponse: ...
 
@@ -89,9 +85,7 @@ class CheckCompatibilityResponseHttpRequest(googleapiclient.http.HttpRequest):
 class MetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Metadata: ...
 
@@ -99,9 +93,7 @@ class MetadataHttpRequest(googleapiclient.http.HttpRequest):
 class RunPivotReportResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RunPivotReportResponse: ...
 
@@ -109,9 +101,7 @@ class RunPivotReportResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RunRealtimeReportResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RunRealtimeReportResponse: ...
 
@@ -119,8 +109,6 @@ class RunRealtimeReportResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RunReportResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RunReportResponse: ...

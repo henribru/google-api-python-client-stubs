@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Activity(typing_extensions.TypedDict, total=False):
     activityTime: str
@@ -16,7 +18,7 @@ class Activity(typing_extensions.TypedDict, total=False):
     appview: ScreenviewData
     campaign: str
     channelGrouping: str
-    customDimension: typing.List[CustomDimension]
+    customDimension: _list[CustomDimension]
     ecommerce: EcommerceData
     event: EventData
     goals: GoalSetData
@@ -35,12 +37,12 @@ class Cohort(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CohortGroup(typing_extensions.TypedDict, total=False):
-    cohorts: typing.List[Cohort]
+    cohorts: _list[Cohort]
     lifetimeValue: bool
 
 @typing.type_check_only
 class ColumnHeader(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[str]
+    dimensions: _list[str]
     metricHeader: MetricHeader
 
 @typing.type_check_only
@@ -55,12 +57,12 @@ class DateRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DateRangeValues(typing_extensions.TypedDict, total=False):
-    pivotValueRegions: typing.List[PivotValueRegion]
-    values: typing.List[str]
+    pivotValueRegions: _list[PivotValueRegion]
+    values: _list[str]
 
 @typing.type_check_only
 class Dimension(typing_extensions.TypedDict, total=False):
-    histogramBuckets: typing.List[str]
+    histogramBuckets: _list[str]
     name: str
 
 AlternativeDimensionFilter = typing_extensions.TypedDict(
@@ -68,7 +70,7 @@ AlternativeDimensionFilter = typing_extensions.TypedDict(
     {
         "caseSensitive": bool,
         "dimensionName": str,
-        "expressions": typing.List[str],
+        "expressions": _list[str],
         "not": bool,
         "operator": typing_extensions.Literal[
             "OPERATOR_UNSPECIFIED",
@@ -91,7 +93,7 @@ class DimensionFilter(AlternativeDimensionFilter): ...
 
 @typing.type_check_only
 class DimensionFilterClause(typing_extensions.TypedDict, total=False):
-    filters: typing.List[DimensionFilter]
+    filters: _list[DimensionFilter]
     operator: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "OR", "AND"]
 
 @typing.type_check_only
@@ -116,7 +118,7 @@ class EcommerceData(typing_extensions.TypedDict, total=False):
     ecommerceType: typing_extensions.Literal[
         "ECOMMERCE_TYPE_UNSPECIFIED", "CLASSIC", "ENHANCED"
     ]
-    products: typing.List[ProductData]
+    products: _list[ProductData]
     transaction: TransactionData
 
 @typing.type_check_only
@@ -129,13 +131,13 @@ class EventData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetReportsRequest(typing_extensions.TypedDict, total=False):
-    reportRequests: typing.List[ReportRequest]
+    reportRequests: _list[ReportRequest]
     useResourceQuotas: bool
 
 @typing.type_check_only
 class GetReportsResponse(typing_extensions.TypedDict, total=False):
     queryCost: int
-    reports: typing.List[Report]
+    reports: _list[Report]
     resourceQuotasRemaining: ResourceQuotasRemaining
 
 @typing.type_check_only
@@ -151,7 +153,7 @@ class GoalData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoalSetData(typing_extensions.TypedDict, total=False):
-    goals: typing.List[GoalData]
+    goals: _list[GoalData]
 
 @typing.type_check_only
 class Metric(typing_extensions.TypedDict, total=False):
@@ -179,13 +181,13 @@ class MetricFilter(AlternativeMetricFilter): ...
 
 @typing.type_check_only
 class MetricFilterClause(typing_extensions.TypedDict, total=False):
-    filters: typing.List[MetricFilter]
+    filters: _list[MetricFilter]
     operator: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "OR", "AND"]
 
 @typing.type_check_only
 class MetricHeader(typing_extensions.TypedDict, total=False):
-    metricHeaderEntries: typing.List[MetricHeaderEntry]
-    pivotHeaders: typing.List[PivotHeader]
+    metricHeaderEntries: _list[MetricHeaderEntry]
+    pivotHeaders: _list[PivotHeader]
 
 @typing.type_check_only
 class MetricHeaderEntry(typing_extensions.TypedDict, total=False):
@@ -196,7 +198,7 @@ class MetricHeaderEntry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OrFiltersForSegment(typing_extensions.TypedDict, total=False):
-    segmentFilterClauses: typing.List[SegmentFilterClause]
+    segmentFilterClauses: _list[SegmentFilterClause]
 
 @typing.type_check_only
 class OrderBy(typing_extensions.TypedDict, total=False):
@@ -220,26 +222,26 @@ class PageviewData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Pivot(typing_extensions.TypedDict, total=False):
-    dimensionFilterClauses: typing.List[DimensionFilterClause]
-    dimensions: typing.List[Dimension]
+    dimensionFilterClauses: _list[DimensionFilterClause]
+    dimensions: _list[Dimension]
     maxGroupCount: int
-    metrics: typing.List[Metric]
+    metrics: _list[Metric]
     startGroup: int
 
 @typing.type_check_only
 class PivotHeader(typing_extensions.TypedDict, total=False):
-    pivotHeaderEntries: typing.List[PivotHeaderEntry]
+    pivotHeaderEntries: _list[PivotHeaderEntry]
     totalPivotGroupsCount: int
 
 @typing.type_check_only
 class PivotHeaderEntry(typing_extensions.TypedDict, total=False):
-    dimensionNames: typing.List[str]
-    dimensionValues: typing.List[str]
+    dimensionNames: _list[str]
+    dimensionValues: _list[str]
     metric: MetricHeaderEntry
 
 @typing.type_check_only
 class PivotValueRegion(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class ProductData(typing_extensions.TypedDict, total=False):
@@ -258,40 +260,40 @@ class Report(typing_extensions.TypedDict, total=False):
 class ReportData(typing_extensions.TypedDict, total=False):
     dataLastRefreshed: str
     isDataGolden: bool
-    maximums: typing.List[DateRangeValues]
-    minimums: typing.List[DateRangeValues]
+    maximums: _list[DateRangeValues]
+    minimums: _list[DateRangeValues]
     rowCount: int
-    rows: typing.List[ReportRow]
-    samplesReadCounts: typing.List[str]
-    samplingSpaceSizes: typing.List[str]
-    totals: typing.List[DateRangeValues]
+    rows: _list[ReportRow]
+    samplesReadCounts: _list[str]
+    samplingSpaceSizes: _list[str]
+    totals: _list[DateRangeValues]
 
 @typing.type_check_only
 class ReportRequest(typing_extensions.TypedDict, total=False):
     cohortGroup: CohortGroup
-    dateRanges: typing.List[DateRange]
-    dimensionFilterClauses: typing.List[DimensionFilterClause]
-    dimensions: typing.List[Dimension]
+    dateRanges: _list[DateRange]
+    dimensionFilterClauses: _list[DimensionFilterClause]
+    dimensions: _list[Dimension]
     filtersExpression: str
     hideTotals: bool
     hideValueRanges: bool
     includeEmptyRows: bool
-    metricFilterClauses: typing.List[MetricFilterClause]
-    metrics: typing.List[Metric]
-    orderBys: typing.List[OrderBy]
+    metricFilterClauses: _list[MetricFilterClause]
+    metrics: _list[Metric]
+    orderBys: _list[OrderBy]
     pageSize: int
     pageToken: str
-    pivots: typing.List[Pivot]
+    pivots: _list[Pivot]
     samplingLevel: typing_extensions.Literal[
         "SAMPLING_UNSPECIFIED", "DEFAULT", "SMALL", "LARGE"
     ]
-    segments: typing.List[Segment]
+    segments: _list[Segment]
     viewId: str
 
 @typing.type_check_only
 class ReportRow(typing_extensions.TypedDict, total=False):
-    dimensions: typing.List[str]
-    metrics: typing.List[DateRangeValues]
+    dimensions: _list[str]
+    metrics: _list[DateRangeValues]
 
 @typing.type_check_only
 class ResourceQuotasRemaining(typing_extensions.TypedDict, total=False):
@@ -307,7 +309,7 @@ class ScreenviewData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchUserActivityRequest(typing_extensions.TypedDict, total=False):
-    activityTypes: typing.List[str]
+    activityTypes: _list[str]
     dateRange: DateRange
     pageSize: int
     pageToken: str
@@ -318,7 +320,7 @@ class SearchUserActivityRequest(typing_extensions.TypedDict, total=False):
 class SearchUserActivityResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     sampleRate: float
-    sessions: typing.List[UserActivitySession]
+    sessions: _list[UserActivitySession]
     totalRows: int
 
 @typing.type_check_only
@@ -328,13 +330,13 @@ class Segment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SegmentDefinition(typing_extensions.TypedDict, total=False):
-    segmentFilters: typing.List[SegmentFilter]
+    segmentFilters: _list[SegmentFilter]
 
 @typing.type_check_only
 class SegmentDimensionFilter(typing_extensions.TypedDict, total=False):
     caseSensitive: bool
     dimensionName: str
-    expressions: typing.List[str]
+    expressions: _list[str]
     maxComparisonValue: str
     minComparisonValue: str
     operator: typing_extensions.Literal[
@@ -393,16 +395,16 @@ class SegmentSequenceStep(typing_extensions.TypedDict, total=False):
     matchType: typing_extensions.Literal[
         "UNSPECIFIED_MATCH_TYPE", "PRECEDES", "IMMEDIATELY_PRECEDES"
     ]
-    orFiltersForSegment: typing.List[OrFiltersForSegment]
+    orFiltersForSegment: _list[OrFiltersForSegment]
 
 @typing.type_check_only
 class SequenceSegment(typing_extensions.TypedDict, total=False):
     firstStepShouldMatchFirstHit: bool
-    segmentSequenceSteps: typing.List[SegmentSequenceStep]
+    segmentSequenceSteps: _list[SegmentSequenceStep]
 
 @typing.type_check_only
 class SimpleSegment(typing_extensions.TypedDict, total=False):
-    orFiltersForSegment: typing.List[OrFiltersForSegment]
+    orFiltersForSegment: _list[OrFiltersForSegment]
 
 @typing.type_check_only
 class TransactionData(typing_extensions.TypedDict, total=False):
@@ -418,7 +420,7 @@ class User(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UserActivitySession(typing_extensions.TypedDict, total=False):
-    activities: typing.List[Activity]
+    activities: _list[Activity]
     dataSource: str
     deviceCategory: str
     platform: str

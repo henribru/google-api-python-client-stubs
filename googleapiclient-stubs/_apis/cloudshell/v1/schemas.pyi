@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AddPublicKeyMetadata(typing_extensions.TypedDict, total=False): ...
 
@@ -42,7 +44,7 @@ class Environment(typing_extensions.TypedDict, total=False):
     dockerImage: str
     id: str
     name: str
-    publicKeys: typing.List[str]
+    publicKeys: _list[str]
     sshHost: str
     sshPort: int
     sshUsername: str
@@ -54,15 +56,15 @@ class Environment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class RemovePublicKeyMetadata(typing_extensions.TypedDict, total=False): ...
@@ -87,7 +89,7 @@ class StartEnvironmentMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StartEnvironmentRequest(typing_extensions.TypedDict, total=False):
     accessToken: str
-    publicKeys: typing.List[str]
+    publicKeys: _list[str]
 
 @typing.type_check_only
 class StartEnvironmentResponse(typing_extensions.TypedDict, total=False):
@@ -96,5 +98,5 @@ class StartEnvironmentResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

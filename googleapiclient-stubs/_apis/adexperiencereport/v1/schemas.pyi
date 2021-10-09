@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class PlatformSummary(typing_extensions.TypedDict, total=False):
     betterAdsStatus: typing_extensions.Literal[
@@ -10,7 +12,7 @@ class PlatformSummary(typing_extensions.TypedDict, total=False):
     enforcementTime: str
     filterStatus: typing_extensions.Literal["UNKNOWN", "ON", "OFF", "PAUSED", "PENDING"]
     lastChangeTime: str
-    region: typing.List[str]
+    region: _list[str]
     reportUrl: str
     underReview: bool
 
@@ -22,4 +24,4 @@ class SiteSummaryResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ViolatingSitesResponse(typing_extensions.TypedDict, total=False):
-    violatingSites: typing.List[SiteSummaryResponse]
+    violatingSites: _list[SiteSummaryResponse]

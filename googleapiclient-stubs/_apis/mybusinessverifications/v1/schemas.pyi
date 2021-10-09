@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AddressVerificationData(typing_extensions.TypedDict, total=False):
     address: PostalAddress
@@ -32,7 +34,7 @@ class FetchVerificationOptionsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FetchVerificationOptionsResponse(typing_extensions.TypedDict, total=False):
-    options: typing.List[VerificationOption]
+    options: _list[VerificationOption]
 
 @typing.type_check_only
 class GenerateVerificationTokenRequest(typing_extensions.TypedDict, total=False):
@@ -45,7 +47,7 @@ class GenerateVerificationTokenResponse(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class ListVerificationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    verifications: typing.List[Verification]
+    verifications: _list[Verification]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -57,13 +59,13 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PostalAddress(typing_extensions.TypedDict, total=False):
-    addressLines: typing.List[str]
+    addressLines: _list[str]
     administrativeArea: str
     languageCode: str
     locality: str
     organization: str
     postalCode: str
-    recipients: typing.List[str]
+    recipients: _list[str]
     regionCode: str
     revision: int
     sortingCode: str

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata(
     typing_extensions.TypedDict, total=False
@@ -151,9 +153,9 @@ class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidati
     typing_extensions.TypedDict, total=False
 ):
     datasetErrorCount: int
-    datasetErrors: typing.List[GoogleRpcStatus]
+    datasetErrors: _list[GoogleRpcStatus]
     documentErrorCount: int
-    documentErrors: typing.List[GoogleRpcStatus]
+    documentErrors: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionResponse(
@@ -202,7 +204,7 @@ class GoogleCloudDocumentaiV1BatchProcessMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
-    individualProcessStatuses: typing.List[
+    individualProcessStatuses: _list[
         GoogleCloudDocumentaiV1BatchProcessMetadataIndividualProcessStatus
     ]
     state: typing_extensions.Literal[
@@ -241,8 +243,8 @@ class GoogleCloudDocumentaiV1BatchProcessResponse(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1BoundingPoly(typing_extensions.TypedDict, total=False):
-    normalizedVertices: typing.List[GoogleCloudDocumentaiV1NormalizedVertex]
-    vertices: typing.List[GoogleCloudDocumentaiV1Vertex]
+    normalizedVertices: _list[GoogleCloudDocumentaiV1NormalizedVertex]
+    vertices: _list[GoogleCloudDocumentaiV1Vertex]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1CommonOperationMetadata(
@@ -302,20 +304,20 @@ class GoogleCloudDocumentaiV1DisableProcessorResponse(
 @typing.type_check_only
 class GoogleCloudDocumentaiV1Document(typing_extensions.TypedDict, total=False):
     content: str
-    entities: typing.List[GoogleCloudDocumentaiV1DocumentEntity]
-    entityRelations: typing.List[GoogleCloudDocumentaiV1DocumentEntityRelation]
+    entities: _list[GoogleCloudDocumentaiV1DocumentEntity]
+    entityRelations: _list[GoogleCloudDocumentaiV1DocumentEntityRelation]
     error: GoogleRpcStatus
     mimeType: str
-    pages: typing.List[GoogleCloudDocumentaiV1DocumentPage]
-    revisions: typing.List[GoogleCloudDocumentaiV1DocumentRevision]
+    pages: _list[GoogleCloudDocumentaiV1DocumentPage]
+    revisions: _list[GoogleCloudDocumentaiV1DocumentRevision]
     shardInfo: GoogleCloudDocumentaiV1DocumentShardInfo
     text: str
-    textChanges: typing.List[GoogleCloudDocumentaiV1DocumentTextChange]
-    textStyles: typing.List[GoogleCloudDocumentaiV1DocumentStyle]
+    textChanges: _list[GoogleCloudDocumentaiV1DocumentTextChange]
+    textStyles: _list[GoogleCloudDocumentaiV1DocumentStyle]
     uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentEntity(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1DocumentEntity(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentEntityNormalizedValue(
@@ -352,26 +354,26 @@ class GoogleCloudDocumentaiV1DocumentOutputConfigGcsOutputConfig(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPage(typing_extensions.TypedDict, total=False):
-    blocks: typing.List[GoogleCloudDocumentaiV1DocumentPageBlock]
-    detectedLanguages: typing.List[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
+    blocks: _list[GoogleCloudDocumentaiV1DocumentPageBlock]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     dimension: GoogleCloudDocumentaiV1DocumentPageDimension
-    formFields: typing.List[GoogleCloudDocumentaiV1DocumentPageFormField]
+    formFields: _list[GoogleCloudDocumentaiV1DocumentPageFormField]
     image: GoogleCloudDocumentaiV1DocumentPageImage
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
-    lines: typing.List[GoogleCloudDocumentaiV1DocumentPageLine]
+    lines: _list[GoogleCloudDocumentaiV1DocumentPageLine]
     pageNumber: int
-    paragraphs: typing.List[GoogleCloudDocumentaiV1DocumentPageParagraph]
+    paragraphs: _list[GoogleCloudDocumentaiV1DocumentPageParagraph]
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
-    tables: typing.List[GoogleCloudDocumentaiV1DocumentPageTable]
-    tokens: typing.List[GoogleCloudDocumentaiV1DocumentPageToken]
-    transforms: typing.List[GoogleCloudDocumentaiV1DocumentPageMatrix]
-    visualElements: typing.List[GoogleCloudDocumentaiV1DocumentPageVisualElement]
+    tables: _list[GoogleCloudDocumentaiV1DocumentPageTable]
+    tokens: _list[GoogleCloudDocumentaiV1DocumentPageToken]
+    transforms: _list[GoogleCloudDocumentaiV1DocumentPageMatrix]
+    visualElements: _list[GoogleCloudDocumentaiV1DocumentPageVisualElement]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageAnchor(
     typing_extensions.TypedDict, total=False
 ):
-    pageRefs: typing.List[GoogleCloudDocumentaiV1DocumentPageAnchorPageRef]
+    pageRefs: _list[GoogleCloudDocumentaiV1DocumentPageAnchorPageRef]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageAnchorPageRef(
@@ -396,7 +398,7 @@ class GoogleCloudDocumentaiV1DocumentPageAnchorPageRef(
 class GoogleCloudDocumentaiV1DocumentPageBlock(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
 
@@ -423,13 +425,9 @@ class GoogleCloudDocumentaiV1DocumentPageFormField(
     correctedValueText: str
     fieldName: GoogleCloudDocumentaiV1DocumentPageLayout
     fieldValue: GoogleCloudDocumentaiV1DocumentPageLayout
-    nameDetectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1DocumentPageDetectedLanguage
-    ]
+    nameDetectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
-    valueDetectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1DocumentPageDetectedLanguage
-    ]
+    valueDetectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     valueType: str
 
 @typing.type_check_only
@@ -454,7 +452,7 @@ class GoogleCloudDocumentaiV1DocumentPageLayout(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageLine(typing_extensions.TypedDict, total=False):
-    detectedLanguages: typing.List[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
 
@@ -471,7 +469,7 @@ class GoogleCloudDocumentaiV1DocumentPageMatrix(
 class GoogleCloudDocumentaiV1DocumentPageParagraph(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
 
@@ -479,9 +477,9 @@ class GoogleCloudDocumentaiV1DocumentPageParagraph(
 class GoogleCloudDocumentaiV1DocumentPageTable(
     typing_extensions.TypedDict, total=False
 ):
-    bodyRows: typing.List[GoogleCloudDocumentaiV1DocumentPageTableTableRow]
-    detectedLanguages: typing.List[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
-    headerRows: typing.List[GoogleCloudDocumentaiV1DocumentPageTableTableRow]
+    bodyRows: _list[GoogleCloudDocumentaiV1DocumentPageTableTableRow]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
+    headerRows: _list[GoogleCloudDocumentaiV1DocumentPageTableTableRow]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
 
 @typing.type_check_only
@@ -489,7 +487,7 @@ class GoogleCloudDocumentaiV1DocumentPageTableTableCell(
     typing_extensions.TypedDict, total=False
 ):
     colSpan: int
-    detectedLanguages: typing.List[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     rowSpan: int
 
@@ -497,14 +495,14 @@ class GoogleCloudDocumentaiV1DocumentPageTableTableCell(
 class GoogleCloudDocumentaiV1DocumentPageTableTableRow(
     typing_extensions.TypedDict, total=False
 ):
-    cells: typing.List[GoogleCloudDocumentaiV1DocumentPageTableTableCell]
+    cells: _list[GoogleCloudDocumentaiV1DocumentPageTableTableCell]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageToken(
     typing_extensions.TypedDict, total=False
 ):
     detectedBreak: GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreak
-    detectedLanguages: typing.List[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
 
@@ -518,7 +516,7 @@ class GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreak(
 class GoogleCloudDocumentaiV1DocumentPageVisualElement(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     type: str
 
@@ -527,7 +525,7 @@ class GoogleCloudDocumentaiV1DocumentProvenance(
     typing_extensions.TypedDict, total=False
 ):
     id: int
-    parents: typing.List[GoogleCloudDocumentaiV1DocumentProvenanceParent]
+    parents: _list[GoogleCloudDocumentaiV1DocumentProvenanceParent]
     revision: int
     type: typing_extensions.Literal[
         "OPERATION_TYPE_UNSPECIFIED",
@@ -553,7 +551,7 @@ class GoogleCloudDocumentaiV1DocumentRevision(typing_extensions.TypedDict, total
     createTime: str
     humanReview: GoogleCloudDocumentaiV1DocumentRevisionHumanReview
     id: str
-    parent: typing.List[int]
+    parent: _list[int]
     processor: str
 
 @typing.type_check_only
@@ -593,7 +591,7 @@ class GoogleCloudDocumentaiV1DocumentTextAnchor(
     typing_extensions.TypedDict, total=False
 ):
     content: str
-    textSegments: typing.List[GoogleCloudDocumentaiV1DocumentTextAnchorTextSegment]
+    textSegments: _list[GoogleCloudDocumentaiV1DocumentTextAnchorTextSegment]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentTextAnchorTextSegment(
@@ -607,7 +605,7 @@ class GoogleCloudDocumentaiV1DocumentTextChange(
     typing_extensions.TypedDict, total=False
 ):
     changedText: str
-    provenance: typing.List[GoogleCloudDocumentaiV1DocumentProvenance]
+    provenance: _list[GoogleCloudDocumentaiV1DocumentProvenance]
     textAnchor: GoogleCloudDocumentaiV1DocumentTextAnchor
 
 @typing.type_check_only
@@ -652,7 +650,7 @@ class GoogleCloudDocumentaiV1EvaluationReference(
 class GoogleCloudDocumentaiV1FetchProcessorTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    processorTypes: typing.List[GoogleCloudDocumentaiV1ProcessorType]
+    processorTypes: _list[GoogleCloudDocumentaiV1ProcessorType]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1GcsDocument(typing_extensions.TypedDict, total=False):
@@ -661,7 +659,7 @@ class GoogleCloudDocumentaiV1GcsDocument(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1GcsDocuments(typing_extensions.TypedDict, total=False):
-    documents: typing.List[GoogleCloudDocumentaiV1GcsDocument]
+    documents: _list[GoogleCloudDocumentaiV1GcsDocument]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1GcsPrefix(typing_extensions.TypedDict, total=False):
@@ -682,14 +680,14 @@ class GoogleCloudDocumentaiV1ListProcessorVersionsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    processorVersions: typing.List[GoogleCloudDocumentaiV1ProcessorVersion]
+    processorVersions: _list[GoogleCloudDocumentaiV1ProcessorVersion]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1ListProcessorsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    processors: typing.List[GoogleCloudDocumentaiV1Processor]
+    processors: _list[GoogleCloudDocumentaiV1Processor]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1NormalizedVertex(typing_extensions.TypedDict, total=False):
@@ -730,7 +728,7 @@ class GoogleCloudDocumentaiV1Processor(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class GoogleCloudDocumentaiV1ProcessorType(typing_extensions.TypedDict, total=False):
     allowCreation: bool
-    availableLocations: typing.List[GoogleCloudDocumentaiV1ProcessorTypeLocationInfo]
+    availableLocations: _list[GoogleCloudDocumentaiV1ProcessorTypeLocationInfo]
     category: str
     name: str
     type: str
@@ -742,7 +740,7 @@ class GoogleCloudDocumentaiV1ProcessorTypeLocationInfo(
     locationId: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1ProcessorVersion(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1ProcessorVersion(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1RawDocument(typing_extensions.TypedDict, total=False):
@@ -770,10 +768,10 @@ class GoogleCloudDocumentaiV1ReviewDocumentResponse(
     gcsDestination: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1Schema(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1Schema(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1SchemaEntityType(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1SchemaEntityType(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata(
@@ -817,32 +815,32 @@ class GoogleCloudDocumentaiV1Vertex(typing_extensions.TypedDict, total=False):
 class GoogleCloudDocumentaiV1beta1BatchProcessDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    responses: typing.List[GoogleCloudDocumentaiV1beta1ProcessDocumentResponse]
+    responses: _list[GoogleCloudDocumentaiV1beta1ProcessDocumentResponse]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1BoundingPoly(
     typing_extensions.TypedDict, total=False
 ):
-    normalizedVertices: typing.List[GoogleCloudDocumentaiV1beta1NormalizedVertex]
-    vertices: typing.List[GoogleCloudDocumentaiV1beta1Vertex]
+    normalizedVertices: _list[GoogleCloudDocumentaiV1beta1NormalizedVertex]
+    vertices: _list[GoogleCloudDocumentaiV1beta1Vertex]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1Document(typing_extensions.TypedDict, total=False):
     content: str
-    entities: typing.List[GoogleCloudDocumentaiV1beta1DocumentEntity]
-    entityRelations: typing.List[GoogleCloudDocumentaiV1beta1DocumentEntityRelation]
+    entities: _list[GoogleCloudDocumentaiV1beta1DocumentEntity]
+    entityRelations: _list[GoogleCloudDocumentaiV1beta1DocumentEntityRelation]
     error: GoogleRpcStatus
     mimeType: str
-    pages: typing.List[GoogleCloudDocumentaiV1beta1DocumentPage]
-    revisions: typing.List[GoogleCloudDocumentaiV1beta1DocumentRevision]
+    pages: _list[GoogleCloudDocumentaiV1beta1DocumentPage]
+    revisions: _list[GoogleCloudDocumentaiV1beta1DocumentRevision]
     shardInfo: GoogleCloudDocumentaiV1beta1DocumentShardInfo
     text: str
-    textChanges: typing.List[GoogleCloudDocumentaiV1beta1DocumentTextChange]
-    textStyles: typing.List[GoogleCloudDocumentaiV1beta1DocumentStyle]
+    textChanges: _list[GoogleCloudDocumentaiV1beta1DocumentTextChange]
+    textStyles: _list[GoogleCloudDocumentaiV1beta1DocumentStyle]
     uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1beta1DocumentEntity(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1beta1DocumentEntity(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue(
@@ -869,28 +867,26 @@ class GoogleCloudDocumentaiV1beta1DocumentEntityRelation(
 class GoogleCloudDocumentaiV1beta1DocumentPage(
     typing_extensions.TypedDict, total=False
 ):
-    blocks: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageBlock]
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
-    ]
+    blocks: _list[GoogleCloudDocumentaiV1beta1DocumentPageBlock]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
     dimension: GoogleCloudDocumentaiV1beta1DocumentPageDimension
-    formFields: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageFormField]
+    formFields: _list[GoogleCloudDocumentaiV1beta1DocumentPageFormField]
     image: GoogleCloudDocumentaiV1beta1DocumentPageImage
     layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
-    lines: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageLine]
+    lines: _list[GoogleCloudDocumentaiV1beta1DocumentPageLine]
     pageNumber: int
-    paragraphs: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageParagraph]
+    paragraphs: _list[GoogleCloudDocumentaiV1beta1DocumentPageParagraph]
     provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
-    tables: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageTable]
-    tokens: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageToken]
-    transforms: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageMatrix]
-    visualElements: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageVisualElement]
+    tables: _list[GoogleCloudDocumentaiV1beta1DocumentPageTable]
+    tokens: _list[GoogleCloudDocumentaiV1beta1DocumentPageToken]
+    transforms: _list[GoogleCloudDocumentaiV1beta1DocumentPageMatrix]
+    visualElements: _list[GoogleCloudDocumentaiV1beta1DocumentPageVisualElement]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentPageAnchor(
     typing_extensions.TypedDict, total=False
 ):
-    pageRefs: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageAnchorPageRef]
+    pageRefs: _list[GoogleCloudDocumentaiV1beta1DocumentPageAnchorPageRef]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentPageAnchorPageRef(
@@ -915,9 +911,7 @@ class GoogleCloudDocumentaiV1beta1DocumentPageAnchorPageRef(
 class GoogleCloudDocumentaiV1beta1DocumentPageBlock(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
 
@@ -944,11 +938,11 @@ class GoogleCloudDocumentaiV1beta1DocumentPageFormField(
     correctedValueText: str
     fieldName: GoogleCloudDocumentaiV1beta1DocumentPageLayout
     fieldValue: GoogleCloudDocumentaiV1beta1DocumentPageLayout
-    nameDetectedLanguages: typing.List[
+    nameDetectedLanguages: _list[
         GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
     ]
     provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
-    valueDetectedLanguages: typing.List[
+    valueDetectedLanguages: _list[
         GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
     ]
     valueType: str
@@ -977,9 +971,7 @@ class GoogleCloudDocumentaiV1beta1DocumentPageLayout(
 class GoogleCloudDocumentaiV1beta1DocumentPageLine(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
 
@@ -996,9 +988,7 @@ class GoogleCloudDocumentaiV1beta1DocumentPageMatrix(
 class GoogleCloudDocumentaiV1beta1DocumentPageParagraph(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
 
@@ -1006,11 +996,9 @@ class GoogleCloudDocumentaiV1beta1DocumentPageParagraph(
 class GoogleCloudDocumentaiV1beta1DocumentPageTable(
     typing_extensions.TypedDict, total=False
 ):
-    bodyRows: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow]
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
-    ]
-    headerRows: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow]
+    bodyRows: _list[GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
+    headerRows: _list[GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow]
     layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
 
 @typing.type_check_only
@@ -1018,9 +1006,7 @@ class GoogleCloudDocumentaiV1beta1DocumentPageTableTableCell(
     typing_extensions.TypedDict, total=False
 ):
     colSpan: int
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
     rowSpan: int
 
@@ -1028,16 +1014,14 @@ class GoogleCloudDocumentaiV1beta1DocumentPageTableTableCell(
 class GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow(
     typing_extensions.TypedDict, total=False
 ):
-    cells: typing.List[GoogleCloudDocumentaiV1beta1DocumentPageTableTableCell]
+    cells: _list[GoogleCloudDocumentaiV1beta1DocumentPageTableTableCell]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentPageToken(
     typing_extensions.TypedDict, total=False
 ):
     detectedBreak: GoogleCloudDocumentaiV1beta1DocumentPageTokenDetectedBreak
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
 
@@ -1051,9 +1035,7 @@ class GoogleCloudDocumentaiV1beta1DocumentPageTokenDetectedBreak(
 class GoogleCloudDocumentaiV1beta1DocumentPageVisualElement(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
     type: str
 
@@ -1062,7 +1044,7 @@ class GoogleCloudDocumentaiV1beta1DocumentProvenance(
     typing_extensions.TypedDict, total=False
 ):
     id: int
-    parents: typing.List[GoogleCloudDocumentaiV1beta1DocumentProvenanceParent]
+    parents: _list[GoogleCloudDocumentaiV1beta1DocumentProvenanceParent]
     revision: int
     type: typing_extensions.Literal[
         "OPERATION_TYPE_UNSPECIFIED",
@@ -1090,7 +1072,7 @@ class GoogleCloudDocumentaiV1beta1DocumentRevision(
     createTime: str
     humanReview: GoogleCloudDocumentaiV1beta1DocumentRevisionHumanReview
     id: str
-    parent: typing.List[int]
+    parent: _list[int]
     processor: str
 
 @typing.type_check_only
@@ -1132,7 +1114,7 @@ class GoogleCloudDocumentaiV1beta1DocumentTextAnchor(
     typing_extensions.TypedDict, total=False
 ):
     content: str
-    textSegments: typing.List[GoogleCloudDocumentaiV1beta1DocumentTextAnchorTextSegment]
+    textSegments: _list[GoogleCloudDocumentaiV1beta1DocumentTextAnchorTextSegment]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentTextAnchorTextSegment(
@@ -1146,7 +1128,7 @@ class GoogleCloudDocumentaiV1beta1DocumentTextChange(
     typing_extensions.TypedDict, total=False
 ):
     changedText: str
-    provenance: typing.List[GoogleCloudDocumentaiV1beta1DocumentProvenance]
+    provenance: _list[GoogleCloudDocumentaiV1beta1DocumentProvenance]
     textAnchor: GoogleCloudDocumentaiV1beta1DocumentTextAnchor
 
 @typing.type_check_only
@@ -1211,33 +1193,33 @@ class GoogleCloudDocumentaiV1beta1Vertex(typing_extensions.TypedDict, total=Fals
 class GoogleCloudDocumentaiV1beta2BatchProcessDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    responses: typing.List[GoogleCloudDocumentaiV1beta2ProcessDocumentResponse]
+    responses: _list[GoogleCloudDocumentaiV1beta2ProcessDocumentResponse]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2BoundingPoly(
     typing_extensions.TypedDict, total=False
 ):
-    normalizedVertices: typing.List[GoogleCloudDocumentaiV1beta2NormalizedVertex]
-    vertices: typing.List[GoogleCloudDocumentaiV1beta2Vertex]
+    normalizedVertices: _list[GoogleCloudDocumentaiV1beta2NormalizedVertex]
+    vertices: _list[GoogleCloudDocumentaiV1beta2Vertex]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2Document(typing_extensions.TypedDict, total=False):
     content: str
-    entities: typing.List[GoogleCloudDocumentaiV1beta2DocumentEntity]
-    entityRelations: typing.List[GoogleCloudDocumentaiV1beta2DocumentEntityRelation]
+    entities: _list[GoogleCloudDocumentaiV1beta2DocumentEntity]
+    entityRelations: _list[GoogleCloudDocumentaiV1beta2DocumentEntityRelation]
     error: GoogleRpcStatus
-    labels: typing.List[GoogleCloudDocumentaiV1beta2DocumentLabel]
+    labels: _list[GoogleCloudDocumentaiV1beta2DocumentLabel]
     mimeType: str
-    pages: typing.List[GoogleCloudDocumentaiV1beta2DocumentPage]
-    revisions: typing.List[GoogleCloudDocumentaiV1beta2DocumentRevision]
+    pages: _list[GoogleCloudDocumentaiV1beta2DocumentPage]
+    revisions: _list[GoogleCloudDocumentaiV1beta2DocumentRevision]
     shardInfo: GoogleCloudDocumentaiV1beta2DocumentShardInfo
     text: str
-    textChanges: typing.List[GoogleCloudDocumentaiV1beta2DocumentTextChange]
-    textStyles: typing.List[GoogleCloudDocumentaiV1beta2DocumentStyle]
+    textChanges: _list[GoogleCloudDocumentaiV1beta2DocumentTextChange]
+    textStyles: _list[GoogleCloudDocumentaiV1beta2DocumentStyle]
     uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1beta2DocumentEntity(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1beta2DocumentEntity(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue(
@@ -1272,28 +1254,26 @@ class GoogleCloudDocumentaiV1beta2DocumentLabel(
 class GoogleCloudDocumentaiV1beta2DocumentPage(
     typing_extensions.TypedDict, total=False
 ):
-    blocks: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageBlock]
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
-    ]
+    blocks: _list[GoogleCloudDocumentaiV1beta2DocumentPageBlock]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
     dimension: GoogleCloudDocumentaiV1beta2DocumentPageDimension
-    formFields: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageFormField]
+    formFields: _list[GoogleCloudDocumentaiV1beta2DocumentPageFormField]
     image: GoogleCloudDocumentaiV1beta2DocumentPageImage
     layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
-    lines: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageLine]
+    lines: _list[GoogleCloudDocumentaiV1beta2DocumentPageLine]
     pageNumber: int
-    paragraphs: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageParagraph]
+    paragraphs: _list[GoogleCloudDocumentaiV1beta2DocumentPageParagraph]
     provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
-    tables: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageTable]
-    tokens: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageToken]
-    transforms: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageMatrix]
-    visualElements: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageVisualElement]
+    tables: _list[GoogleCloudDocumentaiV1beta2DocumentPageTable]
+    tokens: _list[GoogleCloudDocumentaiV1beta2DocumentPageToken]
+    transforms: _list[GoogleCloudDocumentaiV1beta2DocumentPageMatrix]
+    visualElements: _list[GoogleCloudDocumentaiV1beta2DocumentPageVisualElement]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentPageAnchor(
     typing_extensions.TypedDict, total=False
 ):
-    pageRefs: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageAnchorPageRef]
+    pageRefs: _list[GoogleCloudDocumentaiV1beta2DocumentPageAnchorPageRef]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentPageAnchorPageRef(
@@ -1318,9 +1298,7 @@ class GoogleCloudDocumentaiV1beta2DocumentPageAnchorPageRef(
 class GoogleCloudDocumentaiV1beta2DocumentPageBlock(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
 
@@ -1347,11 +1325,11 @@ class GoogleCloudDocumentaiV1beta2DocumentPageFormField(
     correctedValueText: str
     fieldName: GoogleCloudDocumentaiV1beta2DocumentPageLayout
     fieldValue: GoogleCloudDocumentaiV1beta2DocumentPageLayout
-    nameDetectedLanguages: typing.List[
+    nameDetectedLanguages: _list[
         GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
     ]
     provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
-    valueDetectedLanguages: typing.List[
+    valueDetectedLanguages: _list[
         GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
     ]
     valueType: str
@@ -1380,9 +1358,7 @@ class GoogleCloudDocumentaiV1beta2DocumentPageLayout(
 class GoogleCloudDocumentaiV1beta2DocumentPageLine(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
 
@@ -1399,9 +1375,7 @@ class GoogleCloudDocumentaiV1beta2DocumentPageMatrix(
 class GoogleCloudDocumentaiV1beta2DocumentPageParagraph(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
 
@@ -1409,11 +1383,9 @@ class GoogleCloudDocumentaiV1beta2DocumentPageParagraph(
 class GoogleCloudDocumentaiV1beta2DocumentPageTable(
     typing_extensions.TypedDict, total=False
 ):
-    bodyRows: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow]
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
-    ]
-    headerRows: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow]
+    bodyRows: _list[GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
+    headerRows: _list[GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow]
     layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
 
 @typing.type_check_only
@@ -1421,9 +1393,7 @@ class GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell(
     typing_extensions.TypedDict, total=False
 ):
     colSpan: int
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
     rowSpan: int
 
@@ -1431,16 +1401,14 @@ class GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell(
 class GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow(
     typing_extensions.TypedDict, total=False
 ):
-    cells: typing.List[GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell]
+    cells: _list[GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentPageToken(
     typing_extensions.TypedDict, total=False
 ):
     detectedBreak: GoogleCloudDocumentaiV1beta2DocumentPageTokenDetectedBreak
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
 
@@ -1454,9 +1422,7 @@ class GoogleCloudDocumentaiV1beta2DocumentPageTokenDetectedBreak(
 class GoogleCloudDocumentaiV1beta2DocumentPageVisualElement(
     typing_extensions.TypedDict, total=False
 ):
-    detectedLanguages: typing.List[
-        GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage
-    ]
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
     type: str
 
@@ -1465,7 +1431,7 @@ class GoogleCloudDocumentaiV1beta2DocumentProvenance(
     typing_extensions.TypedDict, total=False
 ):
     id: int
-    parents: typing.List[GoogleCloudDocumentaiV1beta2DocumentProvenanceParent]
+    parents: _list[GoogleCloudDocumentaiV1beta2DocumentProvenanceParent]
     revision: int
     type: typing_extensions.Literal[
         "OPERATION_TYPE_UNSPECIFIED",
@@ -1493,7 +1459,7 @@ class GoogleCloudDocumentaiV1beta2DocumentRevision(
     createTime: str
     humanReview: GoogleCloudDocumentaiV1beta2DocumentRevisionHumanReview
     id: str
-    parent: typing.List[int]
+    parent: _list[int]
     processor: str
 
 @typing.type_check_only
@@ -1535,7 +1501,7 @@ class GoogleCloudDocumentaiV1beta2DocumentTextAnchor(
     typing_extensions.TypedDict, total=False
 ):
     content: str
-    textSegments: typing.List[GoogleCloudDocumentaiV1beta2DocumentTextAnchorTextSegment]
+    textSegments: _list[GoogleCloudDocumentaiV1beta2DocumentTextAnchorTextSegment]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentTextAnchorTextSegment(
@@ -1549,7 +1515,7 @@ class GoogleCloudDocumentaiV1beta2DocumentTextChange(
     typing_extensions.TypedDict, total=False
 ):
     changedText: str
-    provenance: typing.List[GoogleCloudDocumentaiV1beta2DocumentProvenance]
+    provenance: _list[GoogleCloudDocumentaiV1beta2DocumentProvenance]
     textAnchor: GoogleCloudDocumentaiV1beta2DocumentTextAnchor
 
 @typing.type_check_only
@@ -1616,7 +1582,7 @@ class GoogleCloudDocumentaiV1beta3BatchProcessMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
-    individualProcessStatuses: typing.List[
+    individualProcessStatuses: _list[
         GoogleCloudDocumentaiV1beta3BatchProcessMetadataIndividualProcessStatus
     ]
     state: typing_extensions.Literal[
@@ -1756,29 +1722,29 @@ class GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse(
 class GoogleCloudLocationListLocationsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    locations: typing.List[GoogleCloudLocationLocation]
+    locations: _list[GoogleCloudLocationLocation]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -1786,7 +1752,7 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -1822,13 +1788,13 @@ class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleTypePostalAddress(typing_extensions.TypedDict, total=False):
-    addressLines: typing.List[str]
+    addressLines: _list[str]
     administrativeArea: str
     languageCode: str
     locality: str
     organization: str
     postalCode: str
-    recipients: typing.List[str]
+    recipients: _list[str]
     regionCode: str
     revision: int
     sortingCode: str

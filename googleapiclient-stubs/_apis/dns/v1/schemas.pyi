@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Change(typing_extensions.TypedDict, total=False):
-    additions: typing.List[ResourceRecordSet]
-    deletions: typing.List[ResourceRecordSet]
+    additions: _list[ResourceRecordSet]
+    deletions: _list[ResourceRecordSet]
     id: str
     isServing: bool
     kind: str
@@ -14,7 +16,7 @@ class Change(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChangesListResponse(typing_extensions.TypedDict, total=False):
-    changes: typing.List[Change]
+    changes: _list[Change]
     header: ResponseHeader
     kind: str
     nextPageToken: str
@@ -26,7 +28,7 @@ class DnsKey(typing_extensions.TypedDict, total=False):
     ]
     creationTime: str
     description: str
-    digests: typing.List[DnsKeyDigest]
+    digests: _list[DnsKeyDigest]
     id: str
     isActive: bool
     keyLength: int
@@ -51,7 +53,7 @@ class DnsKeySpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DnsKeysListResponse(typing_extensions.TypedDict, total=False):
-    dnsKeys: typing.List[DnsKey]
+    dnsKeys: _list[DnsKey]
     header: ResponseHeader
     kind: str
     nextPageToken: str
@@ -65,10 +67,10 @@ class ManagedZone(typing_extensions.TypedDict, total=False):
     forwardingConfig: ManagedZoneForwardingConfig
     id: str
     kind: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     nameServerSet: str
-    nameServers: typing.List[str]
+    nameServers: _list[str]
     peeringConfig: ManagedZonePeeringConfig
     privateVisibilityConfig: ManagedZonePrivateVisibilityConfig
     reverseLookupConfig: ManagedZoneReverseLookupConfig
@@ -77,7 +79,7 @@ class ManagedZone(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ManagedZoneDnsSecConfig(typing_extensions.TypedDict, total=False):
-    defaultKeySpecs: typing.List[DnsKeySpec]
+    defaultKeySpecs: _list[DnsKeySpec]
     kind: str
     nonExistence: typing_extensions.Literal["nsec", "nsec3"]
     state: typing_extensions.Literal["off", "on", "transfer"]
@@ -85,7 +87,7 @@ class ManagedZoneDnsSecConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ManagedZoneForwardingConfig(typing_extensions.TypedDict, total=False):
     kind: str
-    targetNameServers: typing.List[ManagedZoneForwardingConfigNameServerTarget]
+    targetNameServers: _list[ManagedZoneForwardingConfigNameServerTarget]
 
 @typing.type_check_only
 class ManagedZoneForwardingConfigNameServerTarget(
@@ -100,7 +102,7 @@ class ManagedZoneOperationsListResponse(typing_extensions.TypedDict, total=False
     header: ResponseHeader
     kind: str
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ManagedZonePeeringConfig(typing_extensions.TypedDict, total=False):
@@ -116,7 +118,7 @@ class ManagedZonePeeringConfigTargetNetwork(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class ManagedZonePrivateVisibilityConfig(typing_extensions.TypedDict, total=False):
     kind: str
-    networks: typing.List[ManagedZonePrivateVisibilityConfigNetwork]
+    networks: _list[ManagedZonePrivateVisibilityConfigNetwork]
 
 @typing.type_check_only
 class ManagedZonePrivateVisibilityConfigNetwork(
@@ -146,7 +148,7 @@ class ManagedZoneServiceDirectoryConfigNamespace(
 class ManagedZonesListResponse(typing_extensions.TypedDict, total=False):
     header: ResponseHeader
     kind: str
-    managedZones: typing.List[ManagedZone]
+    managedZones: _list[ManagedZone]
     nextPageToken: str
 
 @typing.type_check_only
@@ -175,7 +177,7 @@ class PoliciesListResponse(typing_extensions.TypedDict, total=False):
     header: ResponseHeader
     kind: str
     nextPageToken: str
-    policies: typing.List[Policy]
+    policies: _list[Policy]
 
 @typing.type_check_only
 class PoliciesPatchResponse(typing_extensions.TypedDict, total=False):
@@ -196,12 +198,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
-    networks: typing.List[PolicyNetwork]
+    networks: _list[PolicyNetwork]
 
 @typing.type_check_only
 class PolicyAlternativeNameServerConfig(typing_extensions.TypedDict, total=False):
     kind: str
-    targetNameServers: typing.List[PolicyAlternativeNameServerConfigTargetNameServer]
+    targetNameServers: _list[PolicyAlternativeNameServerConfigTargetNameServer]
 
 @typing.type_check_only
 class PolicyAlternativeNameServerConfigTargetNameServer(
@@ -239,14 +241,14 @@ class Quota(typing_extensions.TypedDict, total=False):
     targetNameServersPerManagedZone: int
     targetNameServersPerPolicy: int
     totalRrdataSizePerChange: int
-    whitelistedKeySpecs: typing.List[DnsKeySpec]
+    whitelistedKeySpecs: _list[DnsKeySpec]
 
 @typing.type_check_only
 class ResourceRecordSet(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
-    rrdatas: typing.List[str]
-    signatureRrdatas: typing.List[str]
+    rrdatas: _list[str]
+    signatureRrdatas: _list[str]
     ttl: int
     type: str
 
@@ -258,7 +260,7 @@ class ResourceRecordSetsListResponse(typing_extensions.TypedDict, total=False):
     header: ResponseHeader
     kind: str
     nextPageToken: str
-    rrsets: typing.List[ResourceRecordSet]
+    rrsets: _list[ResourceRecordSet]
 
 @typing.type_check_only
 class ResponseHeader(typing_extensions.TypedDict, total=False):

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class BloggerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -41,20 +43,16 @@ class BloggerResource(googleapiclient.discovery.Resource):
             *,
             userId: str,
             fetchUserInfo: bool = ...,
-            role: typing.Union[
+            role: typing_extensions.Literal[
+                "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
-                    ]
-                ],
+                ]
             ] = ...,
-            status: typing.Union[
-                typing_extensions.Literal["LIVE", "DELETED"],
-                typing.List[typing_extensions.Literal["LIVE", "DELETED"]],
-            ] = ...,
+            status: typing_extensions.Literal["LIVE", "DELETED"]
+            | _list[typing_extensions.Literal["LIVE", "DELETED"]] = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ] = ...,
@@ -106,11 +104,9 @@ class BloggerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             startDate: str = ...,
-            status: typing.Union[
-                typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"],
-                typing.List[
-                    typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
-                ],
+            status: typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
+            | _list[
+                typing_extensions.Literal["LIVE", "EMPTIED", "PENDING", "SPAM"]
             ] = ...,
             **kwargs: typing.Any
         ) -> CommentListHttpRequest: ...
@@ -126,10 +122,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             self,
             *,
             blogId: str,
-            range: typing.Union[
-                typing_extensions.Literal["all", "30DAYS", "7DAYS"],
-                typing.List[typing_extensions.Literal["all", "30DAYS", "7DAYS"]],
-            ] = ...,
+            range: typing_extensions.Literal["all", "30DAYS", "7DAYS"]
+            | _list[typing_extensions.Literal["all", "30DAYS", "7DAYS"]] = ...,
             **kwargs: typing.Any
         ) -> PageviewsHttpRequest: ...
     @typing.type_check_only
@@ -162,10 +156,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             fetchBodies: bool = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            status: typing.Union[
-                typing_extensions.Literal["LIVE", "DRAFT"],
-                typing.List[typing_extensions.Literal["LIVE", "DRAFT"]],
-            ] = ...,
+            status: typing_extensions.Literal["LIVE", "DRAFT"]
+            | _list[typing_extensions.Literal["LIVE", "DRAFT"]] = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ] = ...,
@@ -222,10 +214,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             pageToken: str = ...,
             startDate: str = ...,
-            status: typing.Union[
-                typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"],
-                typing.List[typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]],
-            ] = ...,
+            status: typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]
+            | _list[typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]] = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ] = ...,
@@ -284,10 +274,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             pageToken: str = ...,
             startDate: str = ...,
-            status: typing.Union[
-                typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"],
-                typing.List[typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]],
-            ] = ...,
+            status: typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]
+            | _list[typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]] = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ] = ...,
@@ -357,9 +345,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
 class BlogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Blog: ...
 
@@ -367,9 +353,7 @@ class BlogHttpRequest(googleapiclient.http.HttpRequest):
 class BlogListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BlogList: ...
 
@@ -377,9 +361,7 @@ class BlogListHttpRequest(googleapiclient.http.HttpRequest):
 class BlogUserInfoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BlogUserInfo: ...
 
@@ -387,9 +369,7 @@ class BlogUserInfoHttpRequest(googleapiclient.http.HttpRequest):
 class CommentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Comment: ...
 
@@ -397,9 +377,7 @@ class CommentHttpRequest(googleapiclient.http.HttpRequest):
 class CommentListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CommentList: ...
 
@@ -407,9 +385,7 @@ class CommentListHttpRequest(googleapiclient.http.HttpRequest):
 class PageHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Page: ...
 
@@ -417,9 +393,7 @@ class PageHttpRequest(googleapiclient.http.HttpRequest):
 class PageListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PageList: ...
 
@@ -427,9 +401,7 @@ class PageListHttpRequest(googleapiclient.http.HttpRequest):
 class PageviewsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Pageviews: ...
 
@@ -437,9 +409,7 @@ class PageviewsHttpRequest(googleapiclient.http.HttpRequest):
 class PostHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Post: ...
 
@@ -447,9 +417,7 @@ class PostHttpRequest(googleapiclient.http.HttpRequest):
 class PostListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PostList: ...
 
@@ -457,9 +425,7 @@ class PostListHttpRequest(googleapiclient.http.HttpRequest):
 class PostUserInfoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PostUserInfo: ...
 
@@ -467,9 +433,7 @@ class PostUserInfoHttpRequest(googleapiclient.http.HttpRequest):
 class PostUserInfosListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PostUserInfosList: ...
 
@@ -477,8 +441,6 @@ class PostUserInfosListHttpRequest(googleapiclient.http.HttpRequest):
 class UserHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> User: ...

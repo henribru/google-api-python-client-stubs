@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ApigeeResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -1500,9 +1502,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
 class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleApiHttpBody: ...
 
@@ -1510,9 +1510,7 @@ class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1AliasHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Alias: ...
 
@@ -1520,9 +1518,7 @@ class GoogleCloudApigeeV1AliasHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1ApiCategoryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ApiCategory: ...
 
@@ -1530,9 +1526,7 @@ class GoogleCloudApigeeV1ApiCategoryHttpRequest(googleapiclient.http.HttpRequest
 class GoogleCloudApigeeV1ApiProductHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ApiProduct: ...
 
@@ -1540,9 +1534,7 @@ class GoogleCloudApigeeV1ApiProductHttpRequest(googleapiclient.http.HttpRequest)
 class GoogleCloudApigeeV1ApiProxyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ApiProxy: ...
 
@@ -1550,9 +1542,7 @@ class GoogleCloudApigeeV1ApiProxyHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1ApiProxyRevisionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ApiProxyRevision: ...
 
@@ -1562,9 +1552,7 @@ class GoogleCloudApigeeV1ApiResponseWrapperHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ApiResponseWrapper: ...
 
@@ -1572,9 +1560,7 @@ class GoogleCloudApigeeV1ApiResponseWrapperHttpRequest(
 class GoogleCloudApigeeV1AppHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1App: ...
 
@@ -1582,9 +1568,7 @@ class GoogleCloudApigeeV1AppHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1ArchiveDeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ArchiveDeployment: ...
 
@@ -1592,9 +1576,7 @@ class GoogleCloudApigeeV1ArchiveDeploymentHttpRequest(googleapiclient.http.HttpR
 class GoogleCloudApigeeV1AsyncQueryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1AsyncQuery: ...
 
@@ -1604,9 +1586,7 @@ class GoogleCloudApigeeV1AsyncQueryResultViewHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1AsyncQueryResultView: ...
 
@@ -1614,9 +1594,7 @@ class GoogleCloudApigeeV1AsyncQueryResultViewHttpRequest(
 class GoogleCloudApigeeV1AttributeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Attribute: ...
 
@@ -1624,9 +1602,7 @@ class GoogleCloudApigeeV1AttributeHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1AttributesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Attributes: ...
 
@@ -1634,9 +1610,7 @@ class GoogleCloudApigeeV1AttributesHttpRequest(googleapiclient.http.HttpRequest)
 class GoogleCloudApigeeV1CanaryEvaluationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1CanaryEvaluation: ...
 
@@ -1644,9 +1618,7 @@ class GoogleCloudApigeeV1CanaryEvaluationHttpRequest(googleapiclient.http.HttpRe
 class GoogleCloudApigeeV1CustomReportHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1CustomReport: ...
 
@@ -1654,9 +1626,7 @@ class GoogleCloudApigeeV1CustomReportHttpRequest(googleapiclient.http.HttpReques
 class GoogleCloudApigeeV1DataCollectorHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DataCollector: ...
 
@@ -1664,9 +1634,7 @@ class GoogleCloudApigeeV1DataCollectorHttpRequest(googleapiclient.http.HttpReque
 class GoogleCloudApigeeV1DatastoreHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Datastore: ...
 
@@ -1674,9 +1642,7 @@ class GoogleCloudApigeeV1DatastoreHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1DebugMaskHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DebugMask: ...
 
@@ -1684,9 +1650,7 @@ class GoogleCloudApigeeV1DebugMaskHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1DebugSessionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DebugSession: ...
 
@@ -1696,9 +1660,7 @@ class GoogleCloudApigeeV1DebugSessionTransactionHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DebugSessionTransaction: ...
 
@@ -1708,9 +1670,7 @@ class GoogleCloudApigeeV1DeleteCustomReportResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DeleteCustomReportResponse: ...
 
@@ -1718,9 +1678,7 @@ class GoogleCloudApigeeV1DeleteCustomReportResponseHttpRequest(
 class GoogleCloudApigeeV1DeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Deployment: ...
 
@@ -1730,9 +1688,7 @@ class GoogleCloudApigeeV1DeploymentChangeReportHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DeploymentChangeReport: ...
 
@@ -1740,9 +1696,7 @@ class GoogleCloudApigeeV1DeploymentChangeReportHttpRequest(
 class GoogleCloudApigeeV1DeveloperHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Developer: ...
 
@@ -1750,9 +1704,7 @@ class GoogleCloudApigeeV1DeveloperHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1DeveloperAppHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DeveloperApp: ...
 
@@ -1760,9 +1712,7 @@ class GoogleCloudApigeeV1DeveloperAppHttpRequest(googleapiclient.http.HttpReques
 class GoogleCloudApigeeV1DeveloperAppKeyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DeveloperAppKey: ...
 
@@ -1770,9 +1720,7 @@ class GoogleCloudApigeeV1DeveloperAppKeyHttpRequest(googleapiclient.http.HttpReq
 class GoogleCloudApigeeV1DeveloperBalanceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DeveloperBalance: ...
 
@@ -1782,9 +1730,7 @@ class GoogleCloudApigeeV1DeveloperMonetizationConfigHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DeveloperMonetizationConfig: ...
 
@@ -1794,9 +1740,7 @@ class GoogleCloudApigeeV1DeveloperSubscriptionHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1DeveloperSubscription: ...
 
@@ -1804,9 +1748,7 @@ class GoogleCloudApigeeV1DeveloperSubscriptionHttpRequest(
 class GoogleCloudApigeeV1EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Environment: ...
 
@@ -1814,9 +1756,7 @@ class GoogleCloudApigeeV1EnvironmentHttpRequest(googleapiclient.http.HttpRequest
 class GoogleCloudApigeeV1EnvironmentConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1EnvironmentConfig: ...
 
@@ -1824,9 +1764,7 @@ class GoogleCloudApigeeV1EnvironmentConfigHttpRequest(googleapiclient.http.HttpR
 class GoogleCloudApigeeV1EnvironmentGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1EnvironmentGroup: ...
 
@@ -1836,9 +1774,7 @@ class GoogleCloudApigeeV1EnvironmentGroupAttachmentHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1EnvironmentGroupAttachment: ...
 
@@ -1846,9 +1782,7 @@ class GoogleCloudApigeeV1EnvironmentGroupAttachmentHttpRequest(
 class GoogleCloudApigeeV1ExportHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Export: ...
 
@@ -1856,9 +1790,7 @@ class GoogleCloudApigeeV1ExportHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1FlowHookHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1FlowHook: ...
 
@@ -1868,9 +1800,7 @@ class GoogleCloudApigeeV1GenerateDownloadUrlResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1GenerateDownloadUrlResponse: ...
 
@@ -1880,9 +1810,7 @@ class GoogleCloudApigeeV1GenerateUploadUrlResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1GenerateUploadUrlResponse: ...
 
@@ -1890,9 +1818,7 @@ class GoogleCloudApigeeV1GenerateUploadUrlResponseHttpRequest(
 class GoogleCloudApigeeV1IngressConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1IngressConfig: ...
 
@@ -1900,9 +1826,7 @@ class GoogleCloudApigeeV1IngressConfigHttpRequest(googleapiclient.http.HttpReque
 class GoogleCloudApigeeV1InstanceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Instance: ...
 
@@ -1912,9 +1836,7 @@ class GoogleCloudApigeeV1InstanceAttachmentHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1InstanceAttachment: ...
 
@@ -1922,9 +1844,7 @@ class GoogleCloudApigeeV1InstanceAttachmentHttpRequest(
 class GoogleCloudApigeeV1KeyValueMapHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1KeyValueMap: ...
 
@@ -1932,9 +1852,7 @@ class GoogleCloudApigeeV1KeyValueMapHttpRequest(googleapiclient.http.HttpRequest
 class GoogleCloudApigeeV1KeystoreHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Keystore: ...
 
@@ -1944,9 +1862,7 @@ class GoogleCloudApigeeV1ListApiCategoriesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListApiCategoriesResponse: ...
 
@@ -1956,9 +1872,7 @@ class GoogleCloudApigeeV1ListApiProductsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListApiProductsResponse: ...
 
@@ -1968,9 +1882,7 @@ class GoogleCloudApigeeV1ListApiProxiesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListApiProxiesResponse: ...
 
@@ -1978,9 +1890,7 @@ class GoogleCloudApigeeV1ListApiProxiesResponseHttpRequest(
 class GoogleCloudApigeeV1ListAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListAppsResponse: ...
 
@@ -1990,9 +1900,7 @@ class GoogleCloudApigeeV1ListArchiveDeploymentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListArchiveDeploymentsResponse: ...
 
@@ -2002,9 +1910,7 @@ class GoogleCloudApigeeV1ListAsyncQueriesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListAsyncQueriesResponse: ...
 
@@ -2014,9 +1920,7 @@ class GoogleCloudApigeeV1ListCustomReportsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListCustomReportsResponse: ...
 
@@ -2026,9 +1930,7 @@ class GoogleCloudApigeeV1ListDataCollectorsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListDataCollectorsResponse: ...
 
@@ -2038,9 +1940,7 @@ class GoogleCloudApigeeV1ListDatastoresResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListDatastoresResponse: ...
 
@@ -2050,9 +1950,7 @@ class GoogleCloudApigeeV1ListDebugSessionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListDebugSessionsResponse: ...
 
@@ -2062,9 +1960,7 @@ class GoogleCloudApigeeV1ListDeploymentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListDeploymentsResponse: ...
 
@@ -2074,9 +1970,7 @@ class GoogleCloudApigeeV1ListDeveloperAppsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListDeveloperAppsResponse: ...
 
@@ -2086,9 +1980,7 @@ class GoogleCloudApigeeV1ListDeveloperSubscriptionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListDeveloperSubscriptionsResponse: ...
 
@@ -2098,9 +1990,7 @@ class GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse: ...
 
@@ -2110,9 +2000,7 @@ class GoogleCloudApigeeV1ListEnvironmentGroupsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListEnvironmentGroupsResponse: ...
 
@@ -2122,9 +2010,7 @@ class GoogleCloudApigeeV1ListEnvironmentResourcesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListEnvironmentResourcesResponse: ...
 
@@ -2134,9 +2020,7 @@ class GoogleCloudApigeeV1ListExportsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListExportsResponse: ...
 
@@ -2146,9 +2030,7 @@ class GoogleCloudApigeeV1ListHybridIssuersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListHybridIssuersResponse: ...
 
@@ -2158,9 +2040,7 @@ class GoogleCloudApigeeV1ListInstanceAttachmentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListInstanceAttachmentsResponse: ...
 
@@ -2170,9 +2050,7 @@ class GoogleCloudApigeeV1ListInstancesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListInstancesResponse: ...
 
@@ -2182,9 +2060,7 @@ class GoogleCloudApigeeV1ListNatAddressesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListNatAddressesResponse: ...
 
@@ -2194,9 +2070,7 @@ class GoogleCloudApigeeV1ListOfDevelopersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListOfDevelopersResponse: ...
 
@@ -2206,9 +2080,7 @@ class GoogleCloudApigeeV1ListOrganizationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListOrganizationsResponse: ...
 
@@ -2218,9 +2090,7 @@ class GoogleCloudApigeeV1ListRatePlansResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListRatePlansResponse: ...
 
@@ -2230,9 +2100,7 @@ class GoogleCloudApigeeV1ListSharedFlowsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListSharedFlowsResponse: ...
 
@@ -2242,9 +2110,7 @@ class GoogleCloudApigeeV1ListTraceConfigOverridesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListTraceConfigOverridesResponse: ...
 
@@ -2252,9 +2118,7 @@ class GoogleCloudApigeeV1ListTraceConfigOverridesResponseHttpRequest(
 class GoogleCloudApigeeV1NatAddressHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1NatAddress: ...
 
@@ -2262,9 +2126,7 @@ class GoogleCloudApigeeV1NatAddressHttpRequest(googleapiclient.http.HttpRequest)
 class GoogleCloudApigeeV1OptimizedStatsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1OptimizedStats: ...
 
@@ -2272,9 +2134,7 @@ class GoogleCloudApigeeV1OptimizedStatsHttpRequest(googleapiclient.http.HttpRequ
 class GoogleCloudApigeeV1OrganizationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Organization: ...
 
@@ -2282,9 +2142,7 @@ class GoogleCloudApigeeV1OrganizationHttpRequest(googleapiclient.http.HttpReques
 class GoogleCloudApigeeV1RatePlanHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1RatePlan: ...
 
@@ -2292,9 +2150,7 @@ class GoogleCloudApigeeV1RatePlanHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1ReferenceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Reference: ...
 
@@ -2304,9 +2160,7 @@ class GoogleCloudApigeeV1ReportInstanceStatusResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ReportInstanceStatusResponse: ...
 
@@ -2314,9 +2168,7 @@ class GoogleCloudApigeeV1ReportInstanceStatusResponseHttpRequest(
 class GoogleCloudApigeeV1ResourceFileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ResourceFile: ...
 
@@ -2324,9 +2176,7 @@ class GoogleCloudApigeeV1ResourceFileHttpRequest(googleapiclient.http.HttpReques
 class GoogleCloudApigeeV1RuntimeConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1RuntimeConfig: ...
 
@@ -2334,9 +2184,7 @@ class GoogleCloudApigeeV1RuntimeConfigHttpRequest(googleapiclient.http.HttpReque
 class GoogleCloudApigeeV1SchemaHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Schema: ...
 
@@ -2344,9 +2192,7 @@ class GoogleCloudApigeeV1SchemaHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1SharedFlowHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1SharedFlow: ...
 
@@ -2356,9 +2202,7 @@ class GoogleCloudApigeeV1SharedFlowRevisionHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1SharedFlowRevision: ...
 
@@ -2366,9 +2210,7 @@ class GoogleCloudApigeeV1SharedFlowRevisionHttpRequest(
 class GoogleCloudApigeeV1StatsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Stats: ...
 
@@ -2376,9 +2218,7 @@ class GoogleCloudApigeeV1StatsHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudApigeeV1SubscriptionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Subscription: ...
 
@@ -2386,9 +2226,7 @@ class GoogleCloudApigeeV1SubscriptionHttpRequest(googleapiclient.http.HttpReques
 class GoogleCloudApigeeV1SyncAuthorizationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1SyncAuthorization: ...
 
@@ -2396,9 +2234,7 @@ class GoogleCloudApigeeV1SyncAuthorizationHttpRequest(googleapiclient.http.HttpR
 class GoogleCloudApigeeV1TargetServerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1TargetServer: ...
 
@@ -2408,9 +2244,7 @@ class GoogleCloudApigeeV1TestDatastoreResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1TestDatastoreResponse: ...
 
@@ -2418,9 +2252,7 @@ class GoogleCloudApigeeV1TestDatastoreResponseHttpRequest(
 class GoogleCloudApigeeV1TraceConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1TraceConfig: ...
 
@@ -2430,9 +2262,7 @@ class GoogleCloudApigeeV1TraceConfigOverrideHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1TraceConfigOverride: ...
 
@@ -2440,9 +2270,7 @@ class GoogleCloudApigeeV1TraceConfigOverrideHttpRequest(
 class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleIamV1Policy: ...
 
@@ -2452,9 +2280,7 @@ class GoogleIamV1TestIamPermissionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleIamV1TestIamPermissionsResponse: ...
 
@@ -2464,9 +2290,7 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
@@ -2474,9 +2298,7 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningOperation: ...
 
@@ -2484,8 +2306,6 @@ class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

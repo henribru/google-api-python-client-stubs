@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class CreateSlotPoolMetadata(typing_extensions.TypedDict, total=False):
     slotPool: str
@@ -12,25 +14,25 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ListReservationGrantsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    reservationGrants: typing.List[ReservationGrant]
+    reservationGrants: _list[ReservationGrant]
 
 @typing.type_check_only
 class ListReservationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    reservations: typing.List[Reservation]
+    reservations: _list[Reservation]
 
 @typing.type_check_only
 class ListSlotPoolsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    slotPools: typing.List[SlotPool]
+    slotPools: _list[SlotPool]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Reservation(typing_extensions.TypedDict, total=False):
@@ -49,7 +51,7 @@ class ReservationGrant(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchReservationGrantsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    reservationGrants: typing.List[ReservationGrant]
+    reservationGrants: _list[ReservationGrant]
 
 @typing.type_check_only
 class SlotPool(typing_extensions.TypedDict, total=False):
@@ -65,5 +67,5 @@ class SlotPool(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

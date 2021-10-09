@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class CancelExecutionRequest(typing_extensions.TypedDict, total=False): ...
 
@@ -29,7 +31,7 @@ class Execution(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
-    executions: typing.List[Execution]
+    executions: _list[Execution]
     nextPageToken: str
 
 @typing.type_check_only
@@ -40,7 +42,7 @@ class Position(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StackTrace(typing_extensions.TypedDict, total=False):
-    elements: typing.List[StackTraceElement]
+    elements: _list[StackTraceElement]
 
 @typing.type_check_only
 class StackTraceElement(typing_extensions.TypedDict, total=False):

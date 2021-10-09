@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class FirestoreResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -51,7 +53,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     collectionId: str,
                     body: Document = ...,
                     documentId: str = ...,
-                    mask_fieldPaths: typing.Union[str, typing.List[str]] = ...,
+                    mask_fieldPaths: str | _list[str] = ...,
                     **kwargs: typing.Any
                 ) -> DocumentHttpRequest: ...
                 def delete(
@@ -66,7 +68,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    mask_fieldPaths: typing.Union[str, typing.List[str]] = ...,
+                    mask_fieldPaths: str | _list[str] = ...,
                     readTime: str = ...,
                     transaction: str = ...,
                     **kwargs: typing.Any
@@ -76,7 +78,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     collectionId: str,
-                    mask_fieldPaths: typing.Union[str, typing.List[str]] = ...,
+                    mask_fieldPaths: str | _list[str] = ...,
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
@@ -113,8 +115,8 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: Document = ...,
                     currentDocument_exists: bool = ...,
                     currentDocument_updateTime: str = ...,
-                    mask_fieldPaths: typing.Union[str, typing.List[str]] = ...,
-                    updateMask_fieldPaths: typing.Union[str, typing.List[str]] = ...,
+                    mask_fieldPaths: str | _list[str] = ...,
+                    updateMask_fieldPaths: str | _list[str] = ...,
                     **kwargs: typing.Any
                 ) -> DocumentHttpRequest: ...
                 def rollback(
@@ -185,9 +187,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
 class BatchGetDocumentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchGetDocumentsResponse: ...
 
@@ -195,9 +195,7 @@ class BatchGetDocumentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchWriteResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchWriteResponse: ...
 
@@ -205,9 +203,7 @@ class BatchWriteResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BeginTransactionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BeginTransactionResponse: ...
 
@@ -215,9 +211,7 @@ class BeginTransactionResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CommitResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CommitResponse: ...
 
@@ -225,9 +219,7 @@ class CommitResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DocumentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Document: ...
 
@@ -235,9 +227,7 @@ class DocumentHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -245,9 +235,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleFirestoreAdminV1beta1IndexHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleFirestoreAdminV1beta1Index: ...
 
@@ -257,9 +245,7 @@ class GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleFirestoreAdminV1beta1ListIndexesResponse: ...
 
@@ -267,9 +253,7 @@ class GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest(
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningOperation: ...
 
@@ -277,9 +261,7 @@ class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
 class ListCollectionIdsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCollectionIdsResponse: ...
 
@@ -287,9 +269,7 @@ class ListCollectionIdsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListDocumentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDocumentsResponse: ...
 
@@ -297,9 +277,7 @@ class ListDocumentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListenResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListenResponse: ...
 
@@ -307,9 +285,7 @@ class ListenResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PartitionQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PartitionQueryResponse: ...
 
@@ -317,9 +293,7 @@ class PartitionQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RunQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RunQueryResponse: ...
 
@@ -327,8 +301,6 @@ class RunQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
 class WriteResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> WriteResponse: ...

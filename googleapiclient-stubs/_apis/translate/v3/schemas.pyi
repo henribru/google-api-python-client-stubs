@@ -2,15 +2,17 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class BatchTranslateTextRequest(typing_extensions.TypedDict, total=False):
-    glossaries: typing.Dict[str, typing.Any]
-    inputConfigs: typing.List[InputConfig]
-    labels: typing.Dict[str, typing.Any]
-    models: typing.Dict[str, typing.Any]
+    glossaries: dict[str, typing.Any]
+    inputConfigs: _list[InputConfig]
+    labels: dict[str, typing.Any]
+    models: dict[str, typing.Any]
     outputConfig: OutputConfig
     sourceLanguageCode: str
-    targetLanguageCodes: typing.List[str]
+    targetLanguageCodes: _list[str]
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -18,13 +20,13 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class DetectLanguageRequest(typing_extensions.TypedDict, total=False):
     content: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     mimeType: str
     model: str
 
 @typing.type_check_only
 class DetectLanguageResponse(typing_extensions.TypedDict, total=False):
-    languages: typing.List[DetectedLanguage]
+    languages: _list[DetectedLanguage]
 
 @typing.type_check_only
 class DetectedLanguage(typing_extensions.TypedDict, total=False):
@@ -68,38 +70,38 @@ class LanguageCodePair(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LanguageCodesSet(typing_extensions.TypedDict, total=False):
-    languageCodes: typing.List[str]
+    languageCodes: _list[str]
 
 @typing.type_check_only
 class ListGlossariesResponse(typing_extensions.TypedDict, total=False):
-    glossaries: typing.List[Glossary]
+    glossaries: _list[Glossary]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OutputConfig(typing_extensions.TypedDict, total=False):
@@ -108,7 +110,7 @@ class OutputConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -120,7 +122,7 @@ class SupportedLanguage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SupportedLanguages(typing_extensions.TypedDict, total=False):
-    languages: typing.List[SupportedLanguage]
+    languages: _list[SupportedLanguage]
 
 @typing.type_check_only
 class TranslateTextGlossaryConfig(typing_extensions.TypedDict, total=False):
@@ -129,9 +131,9 @@ class TranslateTextGlossaryConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TranslateTextRequest(typing_extensions.TypedDict, total=False):
-    contents: typing.List[str]
+    contents: _list[str]
     glossaryConfig: TranslateTextGlossaryConfig
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     mimeType: str
     model: str
     sourceLanguageCode: str
@@ -139,8 +141,8 @@ class TranslateTextRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TranslateTextResponse(typing_extensions.TypedDict, total=False):
-    glossaryTranslations: typing.List[Translation]
-    translations: typing.List[Translation]
+    glossaryTranslations: _list[Translation]
+    translations: _list[Translation]
 
 @typing.type_check_only
 class Translation(typing_extensions.TypedDict, total=False):

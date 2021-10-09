@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AndroidKeySettings(
     typing_extensions.TypedDict, total=False
 ):
     allowAllPackageNames: bool
-    allowedPackageNames: typing.List[str]
+    allowedPackageNames: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
@@ -20,7 +22,7 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
         "PASSWORD_CORRECT",
         "PASSWORD_INCORRECT",
     ]
-    reasons: typing.List[str]
+    reasons: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse(
@@ -58,7 +60,7 @@ class GoogleCloudRecaptchaenterpriseV1IOSKeySettings(
     typing_extensions.TypedDict, total=False
 ):
     allowAllBundleIds: bool
-    allowedBundleIds: typing.List[str]
+    allowedBundleIds: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=False):
@@ -66,7 +68,7 @@ class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=Fal
     createTime: str
     displayName: str
     iosSettings: GoogleCloudRecaptchaenterpriseV1IOSKeySettings
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     testingOptions: GoogleCloudRecaptchaenterpriseV1TestingOptions
     webSettings: GoogleCloudRecaptchaenterpriseV1WebKeySettings
@@ -75,14 +77,14 @@ class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=Fal
 class GoogleCloudRecaptchaenterpriseV1ListKeysResponse(
     typing_extensions.TypedDict, total=False
 ):
-    keys: typing.List[GoogleCloudRecaptchaenterpriseV1Key]
+    keys: _list[GoogleCloudRecaptchaenterpriseV1Key]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Metrics(typing_extensions.TypedDict, total=False):
-    challengeMetrics: typing.List[GoogleCloudRecaptchaenterpriseV1ChallengeMetrics]
+    challengeMetrics: _list[GoogleCloudRecaptchaenterpriseV1ChallengeMetrics]
     name: str
-    scoreMetrics: typing.List[GoogleCloudRecaptchaenterpriseV1ScoreMetrics]
+    scoreMetrics: _list[GoogleCloudRecaptchaenterpriseV1ScoreMetrics]
     startTime: str
 
 @typing.type_check_only
@@ -94,20 +96,20 @@ class GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest(
 class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(
     typing_extensions.TypedDict, total=False
 ):
-    reasons: typing.List[str]
+    reasons: _list[str]
     score: float
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ScoreDistribution(
     typing_extensions.TypedDict, total=False
 ):
-    scoreBuckets: typing.Dict[str, typing.Any]
+    scoreBuckets: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ScoreMetrics(
     typing_extensions.TypedDict, total=False
 ):
-    actionMetrics: typing.Dict[str, typing.Any]
+    actionMetrics: dict[str, typing.Any]
     overallMetrics: GoogleCloudRecaptchaenterpriseV1ScoreDistribution
 
 @typing.type_check_only
@@ -143,7 +145,7 @@ class GoogleCloudRecaptchaenterpriseV1WebKeySettings(
 ):
     allowAllDomains: bool
     allowAmpTraffic: bool
-    allowedDomains: typing.List[str]
+    allowedDomains: _list[str]
     challengeSecurityPreference: typing_extensions.Literal[
         "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED", "USABILITY", "BALANCE", "SECURITY"
     ]

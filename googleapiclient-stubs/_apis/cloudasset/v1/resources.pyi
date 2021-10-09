@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudAssetResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -16,7 +18,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            assetTypes: typing.Union[str, typing.List[str]] = ...,
+            assetTypes: str | _list[str] = ...,
             contentType: typing_extensions.Literal[
                 "CONTENT_TYPE_UNSPECIFIED",
                 "RESOURCE",
@@ -29,7 +31,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             readTime: str = ...,
-            relationshipTypes: typing.Union[str, typing.List[str]] = ...,
+            relationshipTypes: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> ListAssetsResponseHttpRequest: ...
     @typing.type_check_only
@@ -54,12 +56,8 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             scope: str,
-            analysisQuery_accessSelector_permissions: typing.Union[
-                str, typing.List[str]
-            ] = ...,
-            analysisQuery_accessSelector_roles: typing.Union[
-                str, typing.List[str]
-            ] = ...,
+            analysisQuery_accessSelector_permissions: str | _list[str] = ...,
+            analysisQuery_accessSelector_roles: str | _list[str] = ...,
             analysisQuery_conditionContext_accessTime: str = ...,
             analysisQuery_identitySelector_identity: str = ...,
             analysisQuery_options_analyzeServiceAccountImpersonation: bool = ...,
@@ -93,7 +91,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            assetNames: typing.Union[str, typing.List[str]] = ...,
+            assetNames: str | _list[str] = ...,
             contentType: typing_extensions.Literal[
                 "CONTENT_TYPE_UNSPECIFIED",
                 "RESOURCE",
@@ -105,7 +103,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             ] = ...,
             readTimeWindow_endTime: str = ...,
             readTimeWindow_startTime: str = ...,
-            relationshipTypes: typing.Union[str, typing.List[str]] = ...,
+            relationshipTypes: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(
@@ -115,7 +113,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             scope: str,
-            assetTypes: typing.Union[str, typing.List[str]] = ...,
+            assetTypes: str | _list[str] = ...,
             orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
@@ -126,7 +124,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             scope: str,
-            assetTypes: typing.Union[str, typing.List[str]] = ...,
+            assetTypes: str | _list[str] = ...,
             orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
@@ -143,9 +141,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
 class AnalyzeIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnalyzeIamPolicyResponse: ...
 
@@ -153,9 +149,7 @@ class AnalyzeIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AnalyzeMoveResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnalyzeMoveResponse: ...
 
@@ -163,9 +157,7 @@ class AnalyzeMoveResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchGetAssetsHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchGetAssetsHistoryResponse: ...
 
@@ -173,9 +165,7 @@ class BatchGetAssetsHistoryResponseHttpRequest(googleapiclient.http.HttpRequest)
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -183,9 +173,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class FeedHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Feed: ...
 
@@ -193,9 +181,7 @@ class FeedHttpRequest(googleapiclient.http.HttpRequest):
 class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAssetsResponse: ...
 
@@ -203,9 +189,7 @@ class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListFeedsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListFeedsResponse: ...
 
@@ -213,9 +197,7 @@ class ListFeedsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
 
@@ -223,9 +205,7 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
 class SearchAllIamPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchAllIamPoliciesResponse: ...
 
@@ -233,8 +213,6 @@ class SearchAllIamPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SearchAllResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchAllResourcesResponse: ...

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -18,7 +20,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             instanceName: str,
             hash: str,
             sizeBytes: str,
-            inlineOutputFiles: typing.Union[str, typing.List[str]] = ...,
+            inlineOutputFiles: str | _list[str] = ...,
             inlineStderr: bool = ...,
             inlineStdout: bool = ...,
             **kwargs: typing.Any
@@ -101,9 +103,7 @@ class BuildBazelRemoteExecutionV2ActionResultHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BuildBazelRemoteExecutionV2ActionResult: ...
 
@@ -113,9 +113,7 @@ class BuildBazelRemoteExecutionV2BatchReadBlobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BuildBazelRemoteExecutionV2BatchReadBlobsResponse: ...
 
@@ -125,9 +123,7 @@ class BuildBazelRemoteExecutionV2BatchUpdateBlobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse: ...
 
@@ -137,9 +133,7 @@ class BuildBazelRemoteExecutionV2FindMissingBlobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BuildBazelRemoteExecutionV2FindMissingBlobsResponse: ...
 
@@ -149,9 +143,7 @@ class BuildBazelRemoteExecutionV2GetTreeResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BuildBazelRemoteExecutionV2GetTreeResponse: ...
 
@@ -161,9 +153,7 @@ class BuildBazelRemoteExecutionV2ServerCapabilitiesHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BuildBazelRemoteExecutionV2ServerCapabilities: ...
 
@@ -171,8 +161,6 @@ class BuildBazelRemoteExecutionV2ServerCapabilitiesHttpRequest(
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningOperation: ...

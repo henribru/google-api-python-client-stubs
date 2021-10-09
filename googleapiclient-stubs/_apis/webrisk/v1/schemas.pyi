@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudWebriskV1ComputeThreatListDiffResponse(
     typing_extensions.TypedDict, total=False
@@ -28,7 +30,7 @@ class GoogleCloudWebriskV1RawHashes(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudWebriskV1RawIndices(typing_extensions.TypedDict, total=False):
-    indices: typing.List[int]
+    indices: _list[int]
 
 @typing.type_check_only
 class GoogleCloudWebriskV1RiceDeltaEncoding(typing_extensions.TypedDict, total=False):
@@ -42,7 +44,7 @@ class GoogleCloudWebriskV1SearchHashesResponse(
     typing_extensions.TypedDict, total=False
 ):
     negativeExpireTime: str
-    threats: typing.List[GoogleCloudWebriskV1SearchHashesResponseThreatHash]
+    threats: _list[GoogleCloudWebriskV1SearchHashesResponseThreatHash]
 
 @typing.type_check_only
 class GoogleCloudWebriskV1SearchHashesResponseThreatHash(
@@ -50,7 +52,7 @@ class GoogleCloudWebriskV1SearchHashesResponseThreatHash(
 ):
     expireTime: str
     hash: str
-    threatTypes: typing.List[str]
+    threatTypes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudWebriskV1SearchUrisResponse(typing_extensions.TypedDict, total=False):
@@ -61,11 +63,11 @@ class GoogleCloudWebriskV1SearchUrisResponseThreatUri(
     typing_extensions.TypedDict, total=False
 ):
     expireTime: str
-    threatTypes: typing.List[str]
+    threatTypes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudWebriskV1Submission(typing_extensions.TypedDict, total=False):
-    threatTypes: typing.List[str]
+    threatTypes: _list[str]
     uri: str
 
 @typing.type_check_only
@@ -84,7 +86,7 @@ class GoogleCloudWebriskV1SubmitUriRequest(typing_extensions.TypedDict, total=Fa
 class GoogleCloudWebriskV1ThreatEntryAdditions(
     typing_extensions.TypedDict, total=False
 ):
-    rawHashes: typing.List[GoogleCloudWebriskV1RawHashes]
+    rawHashes: _list[GoogleCloudWebriskV1RawHashes]
     riceHashes: GoogleCloudWebriskV1RiceDeltaEncoding
 
 @typing.type_check_only
@@ -100,15 +102,15 @@ class GoogleLongrunningCancelOperationRequest(
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -116,5 +118,5 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

@@ -2,8 +2,10 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
-class AdministrationRegion(typing.Dict[str, typing.Any]): ...
+class AdministrationRegion(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class AdministrativeBody(typing_extensions.TypedDict, total=False):
@@ -13,20 +15,20 @@ class AdministrativeBody(typing_extensions.TypedDict, total=False):
     electionInfoUrl: str
     electionNoticeText: str
     electionNoticeUrl: str
-    electionOfficials: typing.List[ElectionOfficial]
+    electionOfficials: _list[ElectionOfficial]
     electionRegistrationConfirmationUrl: str
     electionRegistrationUrl: str
     electionRulesUrl: str
     hoursOfOperation: str
     name: str
     physicalAddress: SimpleAddressType
-    voter_services: typing.List[str]
+    voter_services: _list[str]
     votingLocationFinderUrl: str
 
 @typing.type_check_only
 class Candidate(typing_extensions.TypedDict, total=False):
     candidateUrl: str
-    channels: typing.List[Channel]
+    channels: _list[Channel]
     email: str
     name: str
     orderOnBallot: str
@@ -43,16 +45,16 @@ class Channel(typing_extensions.TypedDict, total=False):
 class Contest(typing_extensions.TypedDict, total=False):
     ballotPlacement: str
     ballotTitle: str
-    candidates: typing.List[Candidate]
+    candidates: _list[Candidate]
     district: ElectoralDistrict
     electorateSpecifications: str
-    level: typing.List[str]
+    level: _list[str]
     numberElected: str
     numberVotingFor: str
     office: str
-    primaryParties: typing.List[str]
+    primaryParties: _list[str]
     primaryParty: str
-    referendumBallotResponses: typing.List[str]
+    referendumBallotResponses: _list[str]
     referendumBrief: str
     referendumConStatement: str
     referendumEffectOfAbstain: str
@@ -62,19 +64,19 @@ class Contest(typing_extensions.TypedDict, total=False):
     referendumText: str
     referendumTitle: str
     referendumUrl: str
-    roles: typing.List[str]
-    sources: typing.List[Source]
+    roles: _list[str]
+    sources: _list[Source]
     special: str
     type: str
 
 @typing.type_check_only
 class DivisionSearchResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    results: typing.List[DivisionSearchResult]
+    results: _list[DivisionSearchResult]
 
 @typing.type_check_only
 class DivisionSearchResult(typing_extensions.TypedDict, total=False):
-    aliases: typing.List[str]
+    aliases: _list[str]
     name: str
     ocdId: str
 
@@ -95,7 +97,7 @@ class ElectionOfficial(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ElectionsQueryResponse(typing_extensions.TypedDict, total=False):
-    elections: typing.List[Election]
+    elections: _list[Election]
     kind: str
 
 @typing.type_check_only
@@ -121,29 +123,29 @@ class ElectoralDistrict(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GeographicDivision(typing_extensions.TypedDict, total=False):
-    alsoKnownAs: typing.List[str]
+    alsoKnownAs: _list[str]
     name: str
-    officeIndices: typing.List[int]
+    officeIndices: _list[int]
 
 @typing.type_check_only
 class Office(typing_extensions.TypedDict, total=False):
     divisionId: str
-    levels: typing.List[str]
+    levels: _list[str]
     name: str
-    officialIndices: typing.List[int]
-    roles: typing.List[str]
-    sources: typing.List[Source]
+    officialIndices: _list[int]
+    roles: _list[str]
+    sources: _list[Source]
 
 @typing.type_check_only
 class Official(typing_extensions.TypedDict, total=False):
-    address: typing.List[SimpleAddressType]
-    channels: typing.List[Channel]
-    emails: typing.List[str]
+    address: _list[SimpleAddressType]
+    channels: _list[Channel]
+    emails: _list[str]
     name: str
     party: str
-    phones: typing.List[str]
+    phones: _list[str]
     photoUrl: str
-    urls: typing.List[str]
+    urls: _list[str]
 
 @typing.type_check_only
 class PollingLocation(typing_extensions.TypedDict, total=False):
@@ -154,23 +156,23 @@ class PollingLocation(typing_extensions.TypedDict, total=False):
     name: str
     notes: str
     pollingHours: str
-    sources: typing.List[Source]
+    sources: _list[Source]
     startDate: str
     voterServices: str
 
 @typing.type_check_only
 class RepresentativeInfoData(typing_extensions.TypedDict, total=False):
-    divisions: typing.Dict[str, typing.Any]
-    offices: typing.List[Office]
-    officials: typing.List[Official]
+    divisions: dict[str, typing.Any]
+    offices: _list[Office]
+    officials: _list[Official]
 
 @typing.type_check_only
 class RepresentativeInfoResponse(typing_extensions.TypedDict, total=False):
-    divisions: typing.Dict[str, typing.Any]
+    divisions: dict[str, typing.Any]
     kind: str
     normalizedInput: SimpleAddressType
-    offices: typing.List[Office]
-    officials: typing.List[Official]
+    offices: _list[Office]
+    officials: _list[Official]
 
 @typing.type_check_only
 class SimpleAddressType(typing_extensions.TypedDict, total=False):
@@ -189,14 +191,14 @@ class Source(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VoterInfoResponse(typing_extensions.TypedDict, total=False):
-    contests: typing.List[Contest]
-    dropOffLocations: typing.List[PollingLocation]
-    earlyVoteSites: typing.List[PollingLocation]
+    contests: _list[Contest]
+    dropOffLocations: _list[PollingLocation]
+    earlyVoteSites: _list[PollingLocation]
     election: Election
     kind: str
     mailOnly: bool
     normalizedInput: SimpleAddressType
-    otherElections: typing.List[Election]
-    pollingLocations: typing.List[PollingLocation]
+    otherElections: _list[Election]
+    pollingLocations: _list[PollingLocation]
     precinctId: str
-    state: typing.List[AdministrationRegion]
+    state: _list[AdministrationRegion]

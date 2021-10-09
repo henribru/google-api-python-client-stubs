@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -17,7 +19,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -140,37 +142,37 @@ class Lien(typing_extensions.TypedDict, total=False):
     origin: str
     parent: str
     reason: str
-    restrictions: typing.List[str]
+    restrictions: _list[str]
 
 @typing.type_check_only
 class ListFoldersResponse(typing_extensions.TypedDict, total=False):
-    folders: typing.List[Folder]
+    folders: _list[Folder]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLiensResponse(typing_extensions.TypedDict, total=False):
-    liens: typing.List[Lien]
+    liens: _list[Lien]
     nextPageToken: str
 
 @typing.type_check_only
 class ListProjectsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    projects: typing.List[Project]
+    projects: _list[Project]
 
 @typing.type_check_only
 class ListTagBindingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tagBindings: typing.List[TagBinding]
+    tagBindings: _list[TagBinding]
 
 @typing.type_check_only
 class ListTagKeysResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tagKeys: typing.List[TagKey]
+    tagKeys: _list[TagKey]
 
 @typing.type_check_only
 class ListTagValuesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tagValues: typing.List[TagValue]
+    tagValues: _list[TagValue]
 
 @typing.type_check_only
 class MoveFolderMetadata(typing_extensions.TypedDict, total=False):
@@ -193,9 +195,9 @@ class MoveProjectRequest(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Organization(typing_extensions.TypedDict, total=False):
@@ -210,8 +212,8 @@ class Organization(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -221,7 +223,7 @@ class Project(typing_extensions.TypedDict, total=False):
     deleteTime: str
     displayName: str
     etag: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     parent: str
     projectId: str
@@ -236,18 +238,18 @@ class ProjectCreationStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchFoldersResponse(typing_extensions.TypedDict, total=False):
-    folders: typing.List[Folder]
+    folders: _list[Folder]
     nextPageToken: str
 
 @typing.type_check_only
 class SearchOrganizationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    organizations: typing.List[Organization]
+    organizations: _list[Organization]
 
 @typing.type_check_only
 class SearchProjectsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    projects: typing.List[Project]
+    projects: _list[Project]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -257,7 +259,7 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -290,11 +292,11 @@ class TagValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class UndeleteFolderMetadata(typing_extensions.TypedDict, total=False): ...

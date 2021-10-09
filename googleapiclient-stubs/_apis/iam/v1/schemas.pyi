@@ -2,13 +2,15 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AdminAuditData(typing_extensions.TypedDict, total=False):
     permissionDelta: PermissionDelta
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
@@ -17,7 +19,7 @@ class AuditData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -33,7 +35,7 @@ class Aws(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -91,7 +93,7 @@ class LintPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LintPolicyResponse(typing_extensions.TypedDict, total=False):
-    lintResults: typing.List[LintResult]
+    lintResults: _list[LintResult]
 
 @typing.type_check_only
 class LintResult(typing_extensions.TypedDict, total=False):
@@ -107,15 +109,15 @@ class LintResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListRolesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    roles: typing.List[Role]
+    roles: _list[Role]
 
 @typing.type_check_only
 class ListServiceAccountKeysResponse(typing_extensions.TypedDict, total=False):
-    keys: typing.List[ServiceAccountKey]
+    keys: _list[ServiceAccountKey]
 
 @typing.type_check_only
 class ListServiceAccountsResponse(typing_extensions.TypedDict, total=False):
-    accounts: typing.List[ServiceAccount]
+    accounts: _list[ServiceAccount]
     nextPageToken: str
 
 @typing.type_check_only
@@ -123,25 +125,25 @@ class ListWorkloadIdentityPoolProvidersResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    workloadIdentityPoolProviders: typing.List[WorkloadIdentityPoolProvider]
+    workloadIdentityPoolProviders: _list[WorkloadIdentityPoolProvider]
 
 @typing.type_check_only
 class ListWorkloadIdentityPoolsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    workloadIdentityPools: typing.List[WorkloadIdentityPool]
+    workloadIdentityPools: _list[WorkloadIdentityPool]
 
 @typing.type_check_only
 class Oidc(typing_extensions.TypedDict, total=False):
-    allowedAudiences: typing.List[str]
+    allowedAudiences: _list[str]
     issuerUri: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class PatchServiceAccountRequest(typing_extensions.TypedDict, total=False):
@@ -163,19 +165,19 @@ class Permission(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PermissionDelta(typing_extensions.TypedDict, total=False):
-    addedPermissions: typing.List[str]
-    removedPermissions: typing.List[str]
+    addedPermissions: _list[str]
+    removedPermissions: _list[str]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class PolicyDelta(typing_extensions.TypedDict, total=False):
-    bindingDeltas: typing.List[BindingDelta]
+    bindingDeltas: _list[BindingDelta]
 
 @typing.type_check_only
 class QueryAuditableServicesRequest(typing_extensions.TypedDict, total=False):
@@ -183,7 +185,7 @@ class QueryAuditableServicesRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryAuditableServicesResponse(typing_extensions.TypedDict, total=False):
-    services: typing.List[AuditableService]
+    services: _list[AuditableService]
 
 @typing.type_check_only
 class QueryGrantableRolesRequest(typing_extensions.TypedDict, total=False):
@@ -195,7 +197,7 @@ class QueryGrantableRolesRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueryGrantableRolesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    roles: typing.List[Role]
+    roles: _list[Role]
 
 @typing.type_check_only
 class QueryTestablePermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -206,14 +208,14 @@ class QueryTestablePermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueryTestablePermissionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    permissions: typing.List[Permission]
+    permissions: _list[Permission]
 
 @typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):
     deleted: bool
     description: str
     etag: str
-    includedPermissions: typing.List[str]
+    includedPermissions: _list[str]
     name: str
     stage: typing_extensions.Literal[
         "ALPHA", "BETA", "GA", "DEPRECATED", "DISABLED", "EAP"
@@ -279,16 +281,16 @@ class SignJwtResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class UndeleteRoleRequest(typing_extensions.TypedDict, total=False):
@@ -324,7 +326,7 @@ class WorkloadIdentityPool(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkloadIdentityPoolProvider(typing_extensions.TypedDict, total=False):
     attributeCondition: str
-    attributeMapping: typing.Dict[str, typing.Any]
+    attributeMapping: dict[str, typing.Any]
     aws: Aws
     description: str
     disabled: bool

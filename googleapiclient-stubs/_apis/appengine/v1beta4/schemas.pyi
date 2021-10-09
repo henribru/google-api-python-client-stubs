@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ApiConfigHandler(typing_extensions.TypedDict, total=False):
     authFailAction: typing_extensions.Literal[
@@ -33,7 +35,7 @@ class Application(typing_extensions.TypedDict, total=False):
     defaultBucket: str
     defaultCookieExpiration: str
     defaultHostname: str
-    dispatchRules: typing.List[UrlDispatchRule]
+    dispatchRules: _list[UrlDispatchRule]
     iap: IdentityAwareProxy
     id: str
     location: str
@@ -87,8 +89,8 @@ class DebugInstanceRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Deployment(typing_extensions.TypedDict, total=False):
     container: ContainerInfo
-    files: typing.Dict[str, typing.Any]
-    sourceReferences: typing.List[SourceReference]
+    files: dict[str, typing.Any]
+    sourceReferences: _list[SourceReference]
 
 @typing.type_check_only
 class DiskUtilization(typing_extensions.TypedDict, total=False):
@@ -167,35 +169,35 @@ class Library(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
+    instances: _list[Instance]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListModulesResponse(typing_extensions.TypedDict, total=False):
-    modules: typing.List[Module]
+    modules: _list[Module]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    versions: typing.List[Version]
+    versions: _list[Version]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -215,7 +217,7 @@ class Module(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Network(typing_extensions.TypedDict, total=False):
-    forwardedPorts: typing.List[str]
+    forwardedPorts: _list[str]
     instanceTag: str
     name: str
 
@@ -230,9 +232,9 @@ class NetworkUtilization(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -252,7 +254,7 @@ class OperationMetadataV1(typing_extensions.TypedDict, total=False):
     method: str
     target: str
     user: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
@@ -263,7 +265,7 @@ class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
     method: str
     target: str
     user: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
@@ -274,7 +276,7 @@ class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
     method: str
     target: str
     user: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class OperationMetadataV1Beta5(typing_extensions.TypedDict, total=False):
@@ -294,7 +296,7 @@ class Resources(typing_extensions.TypedDict, total=False):
     cpu: float
     diskGb: float
     memoryGb: float
-    volumes: typing.List[Volume]
+    volumes: _list[Volume]
 
 @typing.type_check_only
 class ScriptHandler(typing_extensions.TypedDict, total=False):
@@ -310,7 +312,7 @@ class StaticDirectoryHandler(typing_extensions.TypedDict, total=False):
     applicationReadable: bool
     directory: str
     expiration: str
-    httpHeaders: typing.Dict[str, typing.Any]
+    httpHeaders: dict[str, typing.Any]
     mimeType: str
     requireMatchingFile: bool
 
@@ -318,7 +320,7 @@ class StaticDirectoryHandler(typing_extensions.TypedDict, total=False):
 class StaticFilesHandler(typing_extensions.TypedDict, total=False):
     applicationReadable: bool
     expiration: str
-    httpHeaders: typing.Dict[str, typing.Any]
+    httpHeaders: dict[str, typing.Any]
     mimeType: str
     path: str
     requireMatchingFile: bool
@@ -327,12 +329,12 @@ class StaticFilesHandler(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TrafficSplit(typing_extensions.TypedDict, total=False):
-    allocations: typing.Dict[str, typing.Any]
+    allocations: dict[str, typing.Any]
     shardBy: typing_extensions.Literal["UNSPECIFIED", "COOKIE", "IP"]
 
 @typing.type_check_only
@@ -376,21 +378,21 @@ class Version(typing_extensions.TypedDict, total=False):
     apiConfig: ApiConfigHandler
     automaticScaling: AutomaticScaling
     basicScaling: BasicScaling
-    betaSettings: typing.Dict[str, typing.Any]
+    betaSettings: dict[str, typing.Any]
     creationTime: str
     defaultExpiration: str
     deployer: str
     deployment: Deployment
     endpointsApiService: EndpointsApiService
     env: str
-    envVariables: typing.Dict[str, typing.Any]
-    errorHandlers: typing.List[ErrorHandler]
-    handlers: typing.List[UrlMap]
+    envVariables: dict[str, typing.Any]
+    errorHandlers: _list[ErrorHandler]
+    handlers: _list[UrlMap]
     healthCheck: HealthCheck
     id: str
-    inboundServices: typing.List[str]
+    inboundServices: _list[str]
     instanceClass: str
-    libraries: typing.List[Library]
+    libraries: _list[Library]
     manualScaling: ManualScaling
     name: str
     network: Network
