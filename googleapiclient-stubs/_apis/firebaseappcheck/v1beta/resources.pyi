@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -233,6 +234,18 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
             ) -> GoogleFirebaseAppcheckV1betaServiceHttpRequest: ...
         def apps(self) -> AppsResource: ...
         def services(self) -> ServicesResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def jwks(self) -> JwksResource: ...
     def projects(self) -> ProjectsResource: ...
 

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -69,6 +70,18 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             body: GoogleSecuritySafebrowsingV4FindThreatMatchesRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV4FindThreatMatchesResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def encodedFullHashes(self) -> EncodedFullHashesResource: ...
     def encodedUpdates(self) -> EncodedUpdatesResource: ...
     def fullHashes(self) -> FullHashesResource: ...

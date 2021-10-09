@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -42,6 +43,18 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ListJobsResponseHttpRequest: ...
         def jobs(self) -> JobsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def namespaces(self) -> NamespacesResource: ...
 
 @typing.type_check_only

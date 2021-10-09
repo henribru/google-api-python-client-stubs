@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -76,6 +77,18 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def workloads(self) -> WorkloadsResource: ...
         def locations(self) -> LocationsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def organizations(self) -> OrganizationsResource: ...
 
 @typing.type_check_only

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -347,6 +348,18 @@ class CalendarResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def acl(self) -> AclResource: ...
     def calendarList(self) -> CalendarListResource: ...
     def calendars(self) -> CalendarsResource: ...

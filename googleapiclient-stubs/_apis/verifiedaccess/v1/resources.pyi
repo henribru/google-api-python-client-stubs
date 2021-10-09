@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -20,6 +21,18 @@ class VerifiedaccessResource(googleapiclient.discovery.Resource):
         def verify(
             self, *, body: VerifyChallengeResponseRequest = ..., **kwargs: typing.Any
         ) -> VerifyChallengeResponseResultHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def challenge(self) -> ChallengeResource: ...
 
 @typing.type_check_only

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -6895,6 +6896,18 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def list_next(
             self, previous_request: ZoneListHttpRequest, previous_response: ZoneList
         ) -> ZoneListHttpRequest | None: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def acceleratorTypes(self) -> AcceleratorTypesResource: ...
     def addresses(self) -> AddressesResource: ...
     def autoscalers(self) -> AutoscalersResource: ...

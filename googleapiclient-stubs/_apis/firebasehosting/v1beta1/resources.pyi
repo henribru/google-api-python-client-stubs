@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -444,6 +445,18 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
         def domains(self) -> DomainsResource: ...
         def releases(self) -> ReleasesResource: ...
         def versions(self) -> VersionsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
     def sites(self) -> SitesResource: ...
 

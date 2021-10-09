@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -26,6 +27,18 @@ class CloudNaturalLanguageResource(googleapiclient.discovery.Resource):
         def annotateText(
             self, *, body: AnnotateTextRequest = ..., **kwargs: typing.Any
         ) -> AnnotateTextResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def documents(self) -> DocumentsResource: ...
 
 @typing.type_check_only

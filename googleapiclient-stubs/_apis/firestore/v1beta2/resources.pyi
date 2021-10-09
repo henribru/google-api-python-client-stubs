@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -92,6 +93,18 @@ class FirestoreResource(googleapiclient.discovery.Resource):
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def collectionGroups(self) -> CollectionGroupsResource: ...
         def databases(self) -> DatabasesResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only

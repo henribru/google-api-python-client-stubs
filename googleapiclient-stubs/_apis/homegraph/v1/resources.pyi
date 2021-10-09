@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -31,6 +32,18 @@ class HomeGraphServiceResource(googleapiclient.discovery.Resource):
         def sync(
             self, *, body: SyncRequest = ..., **kwargs: typing.Any
         ) -> SyncResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def agentUsers(self) -> AgentUsersResource: ...
     def devices(self) -> DevicesResource: ...
 

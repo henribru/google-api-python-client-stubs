@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -359,6 +360,18 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
         def dataSources(self) -> DataSourcesResource: ...
         def locations(self) -> LocationsResource: ...
         def transferConfigs(self) -> TransferConfigsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only

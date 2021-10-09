@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -777,6 +778,18 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def iosAppDataStreams(self) -> IosAppDataStreamsResource: ...
         def userLinks(self) -> UserLinksResource: ...
         def webDataStreams(self) -> WebDataStreamsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def accountSummaries(self) -> AccountSummariesResource: ...
     def accounts(self) -> AccountsResource: ...
     def properties(self) -> PropertiesResource: ...

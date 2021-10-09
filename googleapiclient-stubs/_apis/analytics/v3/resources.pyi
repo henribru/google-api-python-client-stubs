@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -830,6 +831,18 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 self, *, body: UserDeletionRequest = ..., **kwargs: typing.Any
             ) -> UserDeletionRequestHttpRequest: ...
         def userDeletionRequest(self) -> UserDeletionRequestResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def data(self) -> DataResource: ...
     def management(self) -> ManagementResource: ...
     def metadata(self) -> MetadataResource: ...

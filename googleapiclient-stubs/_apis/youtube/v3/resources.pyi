@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -839,6 +840,18 @@ class YouTubeResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> CommentThreadHttpRequest: ...
         def v3(self) -> V3Resource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def abuseReports(self) -> AbuseReportsResource: ...
     def activities(self) -> ActivitiesResource: ...
     def captions(self) -> CaptionsResource: ...

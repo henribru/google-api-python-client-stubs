@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -293,6 +294,18 @@ class GamesResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class StatsResource(googleapiclient.discovery.Resource):
         def get(self, **kwargs: typing.Any) -> StatsResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def achievementDefinitions(self) -> AchievementDefinitionsResource: ...
     def achievements(self) -> AchievementsResource: ...
     def applications(self) -> ApplicationsResource: ...

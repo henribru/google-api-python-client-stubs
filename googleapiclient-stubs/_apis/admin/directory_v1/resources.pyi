@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -771,6 +772,18 @@ class DirectoryResource(googleapiclient.discovery.Resource):
         def list(
             self, *, userKey: str, **kwargs: typing.Any
         ) -> VerificationCodesHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def asps(self) -> AspsResource: ...
     def channels(self) -> ChannelsResource: ...
     def chromeosdevices(self) -> ChromeosdevicesResource: ...

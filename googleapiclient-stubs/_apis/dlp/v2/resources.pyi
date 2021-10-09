@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -838,6 +839,18 @@ class DLPResource(googleapiclient.discovery.Resource):
         def jobTriggers(self) -> JobTriggersResource: ...
         def locations(self) -> LocationsResource: ...
         def storedInfoTypes(self) -> StoredInfoTypesResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def infoTypes(self) -> InfoTypesResource: ...
     def locations(self) -> LocationsResource: ...
     def organizations(self) -> OrganizationsResource: ...

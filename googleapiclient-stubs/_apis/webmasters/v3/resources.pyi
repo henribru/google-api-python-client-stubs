@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -45,6 +46,18 @@ class WebmastersResource(googleapiclient.discovery.Resource):
         ) -> googleapiclient.http.HttpRequest: ...
         def get(self, *, siteUrl: str, **kwargs: typing.Any) -> WmxSiteHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> SitesListResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def searchanalytics(self) -> SearchanalyticsResource: ...
     def sitemaps(self) -> SitemapsResource: ...
     def sites(self) -> SitesResource: ...

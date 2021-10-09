@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -116,6 +117,18 @@ class SpeechResource(googleapiclient.discovery.Resource):
         def recognize(
             self, *, body: RecognizeRequest = ..., **kwargs: typing.Any
         ) -> RecognizeResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
     def speech(self) -> SpeechResource: ...

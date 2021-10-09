@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -632,6 +633,18 @@ class BooksResource(googleapiclient.discovery.Resource):
         def mybooks(self) -> MybooksResource: ...
         def recommended(self) -> RecommendedResource: ...
         def useruploaded(self) -> UseruploadedResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def bookshelves(self) -> BookshelvesResource: ...
     def cloudloading(self) -> CloudloadingResource: ...
     def dictionary(self) -> DictionaryResource: ...

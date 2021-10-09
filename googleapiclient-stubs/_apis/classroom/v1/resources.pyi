@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -528,6 +529,18 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         ) -> UserProfileHttpRequest: ...
         def guardianInvitations(self) -> GuardianInvitationsResource: ...
         def guardians(self) -> GuardiansResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def courses(self) -> CoursesResource: ...
     def invitations(self) -> InvitationsResource: ...
     def registrations(self) -> RegistrationsResource: ...

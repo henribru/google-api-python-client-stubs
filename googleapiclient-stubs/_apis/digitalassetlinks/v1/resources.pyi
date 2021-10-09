@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -37,6 +38,18 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
             source_web_site: str = ...,
             **kwargs: typing.Any
         ) -> ListResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def assetlinks(self) -> AssetlinksResource: ...
     def statements(self) -> StatementsResource: ...
 

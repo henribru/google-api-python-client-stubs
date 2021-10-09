@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -700,6 +701,18 @@ class DriveResource(googleapiclient.discovery.Resource):
             useDomainAdminAccess: bool = ...,
             **kwargs: typing.Any
         ) -> TeamDriveHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def about(self) -> AboutResource: ...
     def apps(self) -> AppsResource: ...
     def changes(self) -> ChangesResource: ...

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -89,6 +90,18 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
         def resetMultipleForAllPlayers(
             self, *, body: ScoresResetMultipleForAllRequest = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def achievements(self) -> AchievementsResource: ...
     def applications(self) -> ApplicationsResource: ...
     def events(self) -> EventsResource: ...

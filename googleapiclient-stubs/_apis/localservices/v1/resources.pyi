@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -54,6 +55,18 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             previous_request: GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest,
             previous_response: GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse,
         ) -> GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest | None: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def accountReports(self) -> AccountReportsResource: ...
     def detailedLeadReports(self) -> DetailedLeadReportsResource: ...
 

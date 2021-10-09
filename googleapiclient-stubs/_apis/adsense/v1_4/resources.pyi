@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -409,6 +410,18 @@ class AdSenseResource(googleapiclient.discovery.Resource):
             previous_request: UrlChannelsHttpRequest,
             previous_response: UrlChannels,
         ) -> UrlChannelsHttpRequest | None: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
     def adclients(self) -> AdclientsResource: ...
     def adunits(self) -> AdunitsResource: ...

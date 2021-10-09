@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -378,6 +379,18 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> UpdateContactPhotoResponseHttpRequest: ...
         def connections(self) -> ConnectionsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def contactGroups(self) -> ContactGroupsResource: ...
     def otherContacts(self) -> OtherContactsResource: ...
     def people(self) -> PeopleResource: ...

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -77,6 +78,18 @@ class PubsubResource(googleapiclient.discovery.Resource):
         def publishBatch(
             self, *, body: PublishBatchRequest = ..., **kwargs: typing.Any
         ) -> PublishBatchResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def subscriptions(self) -> SubscriptionsResource: ...
     def topics(self) -> TopicsResource: ...
 

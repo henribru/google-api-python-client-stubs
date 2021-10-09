@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -57,6 +58,18 @@ class GenomicsResource(googleapiclient.discovery.Resource):
         def checkIn(
             self, *, id: str, body: CheckInRequest = ..., **kwargs: typing.Any
         ) -> CheckInResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def pipelines(self) -> PipelinesResource: ...
     def projects(self) -> ProjectsResource: ...
     def workers(self) -> WorkersResource: ...

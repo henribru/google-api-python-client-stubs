@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -1836,6 +1837,18 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> VideoFormatsListResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def accountActiveAdSummaries(self) -> AccountActiveAdSummariesResource: ...
     def accountPermissionGroups(self) -> AccountPermissionGroupsResource: ...
     def accountPermissions(self) -> AccountPermissionsResource: ...

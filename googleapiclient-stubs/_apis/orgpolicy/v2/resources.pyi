@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -183,6 +184,18 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
         def constraints(self) -> ConstraintsResource: ...
         def policies(self) -> PoliciesResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -41,6 +42,18 @@ class FirebaseDynamicLinksResource(googleapiclient.discovery.Resource):
         def reopenAttribution(
             self, *, body: GetIosReopenAttributionRequest = ..., **kwargs: typing.Any
         ) -> GetIosReopenAttributionResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def managedShortLinks(self) -> ManagedShortLinksResource: ...
     def shortLinks(self) -> ShortLinksResource: ...
     def v1(self) -> V1Resource: ...

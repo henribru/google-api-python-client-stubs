@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -80,6 +81,18 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
             def rooms(self) -> RoomsResource: ...
         def devices(self) -> DevicesResource: ...
         def structures(self) -> StructuresResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def enterprises(self) -> EnterprisesResource: ...
 
 @typing.type_check_only

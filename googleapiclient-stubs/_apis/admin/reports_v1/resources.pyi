@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -158,6 +159,18 @@ class ReportsResource(googleapiclient.discovery.Resource):
             previous_request: UsageReportsHttpRequest,
             previous_response: UsageReports,
         ) -> UsageReportsHttpRequest | None: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def activities(self) -> ActivitiesResource: ...
     def channels(self) -> ChannelsResource: ...
     def customerUsageReports(self) -> CustomerUsageReportsResource: ...

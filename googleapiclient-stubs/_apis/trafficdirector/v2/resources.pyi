@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -17,6 +18,18 @@ class TrafficDirectorServiceResource(googleapiclient.discovery.Resource):
         def client_status(
             self, *, body: ClientStatusRequest = ..., **kwargs: typing.Any
         ) -> ClientStatusResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def discovery(self) -> DiscoveryResource: ...
 
 @typing.type_check_only

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -292,6 +293,18 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             previous_response: SearchGroupsResponse,
         ) -> SearchGroupsResponseHttpRequest | None: ...
         def memberships(self) -> MembershipsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def devices(self) -> DevicesResource: ...
     def groups(self) -> GroupsResource: ...
 

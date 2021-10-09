@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -414,6 +415,18 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             previous_response: GoogleCloudChannelV1ListProductsResponse,
         ) -> GoogleCloudChannelV1ListProductsResponseHttpRequest | None: ...
         def skus(self) -> SkusResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
     def operations(self) -> OperationsResource: ...
     def products(self) -> ProductsResource: ...

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -27,6 +28,18 @@ class ServiceControlResource(googleapiclient.discovery.Resource):
         def report(
             self, *, serviceName: str, body: ReportRequest = ..., **kwargs: typing.Any
         ) -> ReportResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def services(self) -> ServicesResource: ...
 
 @typing.type_check_only
