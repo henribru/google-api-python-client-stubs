@@ -32,6 +32,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> AdClientsHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: AdClientsHttpRequest,
+                previous_response: AdClients,
+            ) -> AdClientsHttpRequest | None: ...
         @typing.type_check_only
         class AdunitsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -46,6 +51,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> CustomChannelsHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: CustomChannelsHttpRequest,
+                    previous_response: CustomChannels,
+                ) -> CustomChannelsHttpRequest | None: ...
             def get(
                 self,
                 *,
@@ -72,6 +82,9 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> AdUnitsHttpRequest: ...
+            def list_next(
+                self, previous_request: AdUnitsHttpRequest, previous_response: AdUnits
+            ) -> AdUnitsHttpRequest | None: ...
             def customchannels(self) -> CustomchannelsResource: ...
         @typing.type_check_only
         class AlertsResource(googleapiclient.discovery.Resource):
@@ -96,6 +109,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> AdUnitsHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: AdUnitsHttpRequest,
+                    previous_response: AdUnits,
+                ) -> AdUnitsHttpRequest | None: ...
             def get(
                 self,
                 *,
@@ -113,6 +131,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> CustomChannelsHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: CustomChannelsHttpRequest,
+                previous_response: CustomChannels,
+            ) -> CustomChannelsHttpRequest | None: ...
             def adunits(self) -> AdunitsResource: ...
         @typing.type_check_only
         class PaymentsResource(googleapiclient.discovery.Resource):
@@ -141,6 +164,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SavedReportsHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: SavedReportsHttpRequest,
+                    previous_response: SavedReports,
+                ) -> SavedReportsHttpRequest | None: ...
             def generate(
                 self,
                 *,
@@ -172,6 +200,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> SavedAdStylesHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: SavedAdStylesHttpRequest,
+                previous_response: SavedAdStyles,
+            ) -> SavedAdStylesHttpRequest | None: ...
         @typing.type_check_only
         class UrlchannelsResource(googleapiclient.discovery.Resource):
             def list(
@@ -183,12 +216,20 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> UrlChannelsHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: UrlChannelsHttpRequest,
+                previous_response: UrlChannels,
+            ) -> UrlChannelsHttpRequest | None: ...
         def get(
             self, *, accountId: str, tree: bool = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
         def list(
             self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> AccountsHttpRequest: ...
+        def list_next(
+            self, previous_request: AccountsHttpRequest, previous_response: Accounts
+        ) -> AccountsHttpRequest | None: ...
         def adclients(self) -> AdclientsResource: ...
         def adunits(self) -> AdunitsResource: ...
         def alerts(self) -> AlertsResource: ...
@@ -202,6 +243,9 @@ class AdSenseResource(googleapiclient.discovery.Resource):
         def list(
             self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> AdClientsHttpRequest: ...
+        def list_next(
+            self, previous_request: AdClientsHttpRequest, previous_response: AdClients
+        ) -> AdClientsHttpRequest | None: ...
     @typing.type_check_only
     class AdunitsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -215,6 +259,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> CustomChannelsHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: CustomChannelsHttpRequest,
+                previous_response: CustomChannels,
+            ) -> CustomChannelsHttpRequest | None: ...
         def get(
             self, *, adClientId: str, adUnitId: str, **kwargs: typing.Any
         ) -> AdUnitHttpRequest: ...
@@ -230,6 +279,9 @@ class AdSenseResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> AdUnitsHttpRequest: ...
+        def list_next(
+            self, previous_request: AdUnitsHttpRequest, previous_response: AdUnits
+        ) -> AdUnitsHttpRequest | None: ...
         def customchannels(self) -> CustomchannelsResource: ...
     @typing.type_check_only
     class AlertsResource(googleapiclient.discovery.Resource):
@@ -253,6 +305,9 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> AdUnitsHttpRequest: ...
+            def list_next(
+                self, previous_request: AdUnitsHttpRequest, previous_response: AdUnits
+            ) -> AdUnitsHttpRequest | None: ...
         def get(
             self, *, adClientId: str, customChannelId: str, **kwargs: typing.Any
         ) -> CustomChannelHttpRequest: ...
@@ -264,6 +319,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> CustomChannelsHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CustomChannelsHttpRequest,
+            previous_response: CustomChannels,
+        ) -> CustomChannelsHttpRequest | None: ...
         def adunits(self) -> AdunitsResource: ...
     @typing.type_check_only
     class MetadataResource(googleapiclient.discovery.Resource):
@@ -298,6 +358,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> SavedReportsHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: SavedReportsHttpRequest,
+                previous_response: SavedReports,
+            ) -> SavedReportsHttpRequest | None: ...
         def generate(
             self,
             *,
@@ -324,6 +389,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
         def list(
             self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> SavedAdStylesHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SavedAdStylesHttpRequest,
+            previous_response: SavedAdStyles,
+        ) -> SavedAdStylesHttpRequest | None: ...
     @typing.type_check_only
     class UrlchannelsResource(googleapiclient.discovery.Resource):
         def list(
@@ -334,6 +404,11 @@ class AdSenseResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> UrlChannelsHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: UrlChannelsHttpRequest,
+            previous_response: UrlChannels,
+        ) -> UrlChannelsHttpRequest | None: ...
     def accounts(self) -> AccountsResource: ...
     def adclients(self) -> AdclientsResource: ...
     def adunits(self) -> AdunitsResource: ...

@@ -73,6 +73,11 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListMembershipsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMembershipsResponseHttpRequest,
+                    previous_response: ListMembershipsResponse,
+                ) -> ListMembershipsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -119,6 +124,11 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -131,6 +141,11 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def global_(self) -> GlobalResource: ...
             def memberships(self) -> MembershipsResource: ...
             def operations(self) -> OperationsResource: ...

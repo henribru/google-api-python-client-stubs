@@ -24,6 +24,11 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAdUnitsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAdUnitsResponseHttpRequest,
+                previous_response: ListAdUnitsResponse,
+            ) -> ListAdUnitsResponseHttpRequest | None: ...
         @typing.type_check_only
         class AppsResource(googleapiclient.discovery.Resource):
             def list(
@@ -34,6 +39,11 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAppsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAppsResponseHttpRequest,
+                previous_response: ListAppsResponse,
+            ) -> ListAppsResponseHttpRequest | None: ...
         @typing.type_check_only
         class MediationReportResource(googleapiclient.discovery.Resource):
             def generate(
@@ -58,6 +68,11 @@ class AdMobResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListPublisherAccountsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListPublisherAccountsResponseHttpRequest,
+            previous_response: ListPublisherAccountsResponse,
+        ) -> ListPublisherAccountsResponseHttpRequest | None: ...
         def adUnits(self) -> AdUnitsResource: ...
         def apps(self) -> AppsResource: ...
         def mediationReport(self) -> MediationReportResource: ...

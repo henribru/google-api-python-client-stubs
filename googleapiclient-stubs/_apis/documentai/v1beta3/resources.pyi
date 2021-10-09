@@ -33,6 +33,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class ProcessorsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -74,6 +79,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponseHttpRequest,
+                        previous_response: GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse,
+                    ) -> GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponseHttpRequest | None: ...
                     def process(
                         self,
                         *,
@@ -130,6 +140,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDocumentaiV1beta3ListProcessorsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDocumentaiV1beta3ListProcessorsResponseHttpRequest,
+                    previous_response: GoogleCloudDocumentaiV1beta3ListProcessorsResponse,
+                ) -> GoogleCloudDocumentaiV1beta3ListProcessorsResponseHttpRequest | None: ...
                 def process(
                     self,
                     *,
@@ -161,6 +176,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
+                previous_response: GoogleCloudLocationListLocationsResponse,
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def processors(self) -> ProcessorsResource: ...
         def locations(self) -> LocationsResource: ...

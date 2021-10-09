@@ -47,6 +47,11 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1betaListIdeasResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleSearchIdeahubV1betaListIdeasResponseHttpRequest,
+                    previous_response: GoogleSearchIdeahubV1betaListIdeasResponse,
+                ) -> GoogleSearchIdeahubV1betaListIdeasResponseHttpRequest | None: ...
             @typing.type_check_only
             class LocalesResource(googleapiclient.discovery.Resource):
                 def list(
@@ -57,6 +62,11 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1betaListAvailableLocalesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleSearchIdeahubV1betaListAvailableLocalesResponseHttpRequest,
+                    previous_response: GoogleSearchIdeahubV1betaListAvailableLocalesResponse,
+                ) -> GoogleSearchIdeahubV1betaListAvailableLocalesResponseHttpRequest | None: ...
             @typing.type_check_only
             class TopicStatesResource(googleapiclient.discovery.Resource):
                 def patch(

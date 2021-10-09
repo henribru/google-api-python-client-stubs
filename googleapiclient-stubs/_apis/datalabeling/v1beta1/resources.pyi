@@ -38,6 +38,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponseHttpRequest,
+                previous_response: GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse,
+            ) -> GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponseHttpRequest | None: ...
         @typing.type_check_only
         class DatasetsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -56,6 +61,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest,
+                        previous_response: GoogleCloudDatalabelingV1beta1ListDataItemsResponse,
+                    ) -> GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class ExamplesResource(googleapiclient.discovery.Resource):
                     def get(
@@ -70,6 +80,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatalabelingV1beta1ListExamplesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDatalabelingV1beta1ListExamplesResponseHttpRequest,
+                        previous_response: GoogleCloudDatalabelingV1beta1ListExamplesResponse,
+                    ) -> GoogleCloudDatalabelingV1beta1ListExamplesResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class FeedbackThreadsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -95,6 +110,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponseHttpRequest,
+                            previous_response: GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse,
+                        ) -> GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponseHttpRequest | None: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -109,6 +129,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponseHttpRequest,
+                        previous_response: GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse,
+                    ) -> GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponseHttpRequest | None: ...
                     def feedbackMessages(self) -> FeedbackMessagesResource: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -125,6 +150,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponseHttpRequest,
+                    previous_response: GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse,
+                ) -> GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponseHttpRequest | None: ...
                 def dataItems(self) -> DataItemsResource: ...
                 def examples(self) -> ExamplesResource: ...
                 def feedbackThreads(self) -> FeedbackThreadsResource: ...
@@ -142,6 +172,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest,
+                    previous_response: GoogleCloudDatalabelingV1beta1ListDataItemsResponse,
+                ) -> GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest | None: ...
             @typing.type_check_only
             class EvaluationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -153,6 +188,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDatalabelingV1beta1SearchExampleComparisonsRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponseHttpRequest: ...
+                    def search_next(
+                        self,
+                        previous_request: GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponseHttpRequest,
+                        previous_response: GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse,
+                    ) -> GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponseHttpRequest | None: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDatalabelingV1beta1EvaluationHttpRequest: ...
@@ -220,6 +260,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDatalabelingV1beta1ListDatasetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDatalabelingV1beta1ListDatasetsResponseHttpRequest,
+                previous_response: GoogleCloudDatalabelingV1beta1ListDatasetsResponse,
+            ) -> GoogleCloudDatalabelingV1beta1ListDatasetsResponseHttpRequest | None: ...
             def annotatedDatasets(self) -> AnnotatedDatasetsResource: ...
             def dataItems(self) -> DataItemsResource: ...
             def evaluations(self) -> EvaluationsResource: ...
@@ -250,6 +295,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponseHttpRequest,
+                previous_response: GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse,
+            ) -> GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -283,6 +333,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDatalabelingV1beta1SearchEvaluationsResponseHttpRequest: ...
+            def search_next(
+                self,
+                previous_request: GoogleCloudDatalabelingV1beta1SearchEvaluationsResponseHttpRequest,
+                previous_response: GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse,
+            ) -> GoogleCloudDatalabelingV1beta1SearchEvaluationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class InstructionsResource(googleapiclient.discovery.Resource):
             def create(
@@ -307,6 +362,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDatalabelingV1beta1ListInstructionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDatalabelingV1beta1ListInstructionsResponseHttpRequest,
+                previous_response: GoogleCloudDatalabelingV1beta1ListInstructionsResponse,
+            ) -> GoogleCloudDatalabelingV1beta1ListInstructionsResponseHttpRequest | None: ...
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -327,6 +387,11 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                previous_response: GoogleLongrunningListOperationsResponse,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
         def annotationSpecSets(self) -> AnnotationSpecSetsResource: ...
         def datasets(self) -> DatasetsResource: ...
         def evaluationJobs(self) -> EvaluationJobsResource: ...

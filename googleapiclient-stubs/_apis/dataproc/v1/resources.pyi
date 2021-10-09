@@ -46,6 +46,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAutoscalingPoliciesResponseHttpRequest,
+                    previous_response: ListAutoscalingPoliciesResponse,
+                ) -> ListAutoscalingPoliciesResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -112,6 +117,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListWorkflowTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWorkflowTemplatesResponseHttpRequest,
+                    previous_response: ListWorkflowTemplatesResponse,
+                ) -> ListWorkflowTemplatesResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -167,6 +177,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAutoscalingPoliciesResponseHttpRequest,
+                    previous_response: ListAutoscalingPoliciesResponse,
+                ) -> ListAutoscalingPoliciesResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -255,6 +270,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListClustersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListClustersResponseHttpRequest,
+                    previous_response: ListClustersResponse,
+                ) -> ListClustersResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -356,6 +376,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListJobsResponseHttpRequest,
+                    previous_response: ListJobsResponse,
+                ) -> ListJobsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -423,6 +448,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -482,6 +512,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListWorkflowTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWorkflowTemplatesResponseHttpRequest,
+                    previous_response: ListWorkflowTemplatesResponse,
+                ) -> ListWorkflowTemplatesResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,

@@ -41,6 +41,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> ListInventoriesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListInventoriesResponseHttpRequest,
+                        previous_response: ListInventoriesResponse,
+                    ) -> ListInventoriesResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class VulnerabilityReportsResource(googleapiclient.discovery.Resource):
                     def get(
@@ -55,6 +60,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListVulnerabilityReportsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListVulnerabilityReportsResponseHttpRequest,
+                        previous_response: ListVulnerabilityReportsResponse,
+                    ) -> ListVulnerabilityReportsResponseHttpRequest | None: ...
                 def inventories(self) -> InventoriesResource: ...
                 def vulnerabilityReports(self) -> VulnerabilityReportsResource: ...
             @typing.type_check_only
@@ -81,6 +91,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOSPolicyAssignmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOSPolicyAssignmentsResponseHttpRequest,
+                    previous_response: ListOSPolicyAssignmentsResponse,
+                ) -> ListOSPolicyAssignmentsResponseHttpRequest | None: ...
                 def listRevisions(
                     self,
                     *,
@@ -89,6 +104,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOSPolicyAssignmentRevisionsResponseHttpRequest: ...
+                def listRevisions_next(
+                    self,
+                    previous_request: ListOSPolicyAssignmentRevisionsResponseHttpRequest,
+                    previous_response: ListOSPolicyAssignmentRevisionsResponse,
+                ) -> ListOSPolicyAssignmentRevisionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -123,6 +143,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListPatchDeploymentsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPatchDeploymentsResponseHttpRequest,
+                previous_response: ListPatchDeploymentsResponse,
+            ) -> ListPatchDeploymentsResponseHttpRequest | None: ...
         @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -136,6 +161,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPatchJobInstanceDetailsResponseHttpRequest,
+                    previous_response: ListPatchJobInstanceDetailsResponse,
+                ) -> ListPatchJobInstanceDetailsResponseHttpRequest | None: ...
             def cancel(
                 self,
                 *,
@@ -162,6 +192,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListPatchJobsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPatchJobsResponseHttpRequest,
+                previous_response: ListPatchJobsResponse,
+            ) -> ListPatchJobsResponseHttpRequest | None: ...
             def instanceDetails(self) -> InstanceDetailsResource: ...
         def locations(self) -> LocationsResource: ...
         def patchDeployments(self) -> PatchDeploymentsResource: ...

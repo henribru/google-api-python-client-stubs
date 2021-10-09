@@ -40,6 +40,11 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListEnvironmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEnvironmentsResponseHttpRequest,
+                    previous_response: ListEnvironmentsResponse,
+                ) -> ListEnvironmentsResponseHttpRequest | None: ...
             @typing.type_check_only
             class ExecutionsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -66,6 +71,11 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListExecutionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListExecutionsResponseHttpRequest,
+                    previous_response: ListExecutionsResponse,
+                ) -> ListExecutionsResponseHttpRequest | None: ...
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -103,6 +113,11 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListInstancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInstancesResponseHttpRequest,
+                    previous_response: ListInstancesResponse,
+                ) -> ListInstancesResponseHttpRequest | None: ...
                 def register(
                     self,
                     *,
@@ -232,6 +247,11 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class RuntimesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -256,6 +276,11 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListRuntimesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRuntimesResponseHttpRequest,
+                    previous_response: ListRuntimesResponse,
+                ) -> ListRuntimesResponseHttpRequest | None: ...
                 def reportEvent(
                     self,
                     *,
@@ -317,6 +342,11 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListSchedulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSchedulesResponseHttpRequest,
+                    previous_response: ListSchedulesResponse,
+                ) -> ListSchedulesResponseHttpRequest | None: ...
                 def trigger(
                     self,
                     *,
@@ -336,6 +366,11 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def environments(self) -> EnvironmentsResource: ...
             def executions(self) -> ExecutionsResource: ...
             def instances(self) -> InstancesResource: ...

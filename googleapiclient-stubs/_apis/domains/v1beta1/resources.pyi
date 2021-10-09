@@ -30,6 +30,11 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class RegistrationsResource(googleapiclient.discovery.Resource):
                 def configureContactSettings(
@@ -82,6 +87,11 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListRegistrationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRegistrationsResponseHttpRequest,
+                    previous_response: ListRegistrationsResponse,
+                ) -> ListRegistrationsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -139,6 +149,11 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def registrations(self) -> RegistrationsResource: ...
         def locations(self) -> LocationsResource: ...

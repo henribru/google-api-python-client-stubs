@@ -39,6 +39,11 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListIdentityAwareProxyClientsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListIdentityAwareProxyClientsResponseHttpRequest,
+                    previous_response: ListIdentityAwareProxyClientsResponse,
+                ) -> ListIdentityAwareProxyClientsResponseHttpRequest | None: ...
                 def resetSecret(
                     self,
                     *,

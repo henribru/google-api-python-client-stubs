@@ -42,6 +42,11 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest,
+                        previous_response: GoogleCloudContactcenterinsightsV1ListAnalysesResponse,
+                    ) -> GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest | None: ...
                 def calculateStats(
                     self, *, location: str, filter: str = ..., **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1CalculateStatsResponseHttpRequest: ...
@@ -77,6 +82,11 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest,
+                    previous_response: GoogleCloudContactcenterinsightsV1ListConversationsResponse,
+                ) -> GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -172,6 +182,11 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class PhraseMatchersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -196,6 +211,11 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest,
+                    previous_response: GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse,
+                ) -> GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest | None: ...
             def getSettings(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudContactcenterinsightsV1SettingsHttpRequest: ...

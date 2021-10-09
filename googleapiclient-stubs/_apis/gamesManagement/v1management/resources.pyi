@@ -42,6 +42,11 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> HiddenPlayerListHttpRequest: ...
+        def listHidden_next(
+            self,
+            previous_request: HiddenPlayerListHttpRequest,
+            previous_response: HiddenPlayerList,
+        ) -> HiddenPlayerListHttpRequest | None: ...
     @typing.type_check_only
     class EventsResource(googleapiclient.discovery.Resource):
         def reset(

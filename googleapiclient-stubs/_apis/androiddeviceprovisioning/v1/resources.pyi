@@ -54,6 +54,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> CustomerListDevicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: CustomerListDevicesResponseHttpRequest,
+                previous_response: CustomerListDevicesResponse,
+            ) -> CustomerListDevicesResponseHttpRequest | None: ...
             def removeConfiguration(
                 self,
                 *,
@@ -76,6 +81,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> CustomerListCustomersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CustomerListCustomersResponseHttpRequest,
+            previous_response: CustomerListCustomersResponse,
+        ) -> CustomerListCustomersResponseHttpRequest | None: ...
         def configurations(self) -> ConfigurationsResource: ...
         def devices(self) -> DevicesResource: ...
         def dpcs(self) -> DpcsResource: ...
@@ -101,6 +111,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListCustomersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCustomersResponseHttpRequest,
+                previous_response: ListCustomersResponse,
+            ) -> ListCustomersResponseHttpRequest | None: ...
         @typing.type_check_only
         class DevicesResource(googleapiclient.discovery.Resource):
             def claim(
@@ -124,6 +139,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 body: FindDevicesByDeviceIdentifierRequest = ...,
                 **kwargs: typing.Any
             ) -> FindDevicesByDeviceIdentifierResponseHttpRequest: ...
+            def findByIdentifier_next(
+                self,
+                previous_request: FindDevicesByDeviceIdentifierResponseHttpRequest,
+                previous_response: FindDevicesByDeviceIdentifierResponse,
+            ) -> FindDevicesByDeviceIdentifierResponseHttpRequest | None: ...
             def findByOwner(
                 self,
                 *,
@@ -131,6 +151,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 body: FindDevicesByOwnerRequest = ...,
                 **kwargs: typing.Any
             ) -> FindDevicesByOwnerResponseHttpRequest: ...
+            def findByOwner_next(
+                self,
+                previous_request: FindDevicesByOwnerResponseHttpRequest,
+                previous_response: FindDevicesByOwnerResponse,
+            ) -> FindDevicesByOwnerResponseHttpRequest | None: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
             def metadata(
                 self,
@@ -173,6 +198,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListVendorCustomersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVendorCustomersResponseHttpRequest,
+                    previous_response: ListVendorCustomersResponse,
+                ) -> ListVendorCustomersResponseHttpRequest | None: ...
             def list(
                 self,
                 *,
@@ -181,6 +211,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListVendorsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListVendorsResponseHttpRequest,
+                previous_response: ListVendorsResponse,
+            ) -> ListVendorsResponseHttpRequest | None: ...
             def customers(self) -> CustomersResource: ...
         def customers(self) -> CustomersResource: ...
         def devices(self) -> DevicesResource: ...

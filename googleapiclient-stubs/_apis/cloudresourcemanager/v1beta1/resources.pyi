@@ -32,6 +32,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOrganizationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOrganizationsResponseHttpRequest,
+            previous_response: ListOrganizationsResponse,
+        ) -> ListOrganizationsResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,
@@ -86,6 +91,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListProjectsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListProjectsResponseHttpRequest,
+            previous_response: ListProjectsResponse,
+        ) -> ListProjectsResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,

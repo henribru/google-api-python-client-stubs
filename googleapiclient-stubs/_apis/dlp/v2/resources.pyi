@@ -64,6 +64,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest,
+                previous_response: GooglePrivacyDlpV2ListDeidentifyTemplatesResponse,
+            ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -96,6 +101,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest,
+                previous_response: GooglePrivacyDlpV2ListInspectTemplatesResponse,
+            ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -130,6 +140,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListDeidentifyTemplatesResponse,
+                ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -153,6 +168,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListDlpJobsResponse,
+                ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest | None: ...
             @typing.type_check_only
             class InspectTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -178,6 +198,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListInspectTemplatesResponse,
+                ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -214,6 +239,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListJobTriggersResponse,
+                ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -246,6 +276,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListStoredInfoTypesResponse,
+                ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -283,6 +318,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest,
+                previous_response: GooglePrivacyDlpV2ListStoredInfoTypesResponse,
+            ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -344,6 +384,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest,
+                previous_response: GooglePrivacyDlpV2ListDeidentifyTemplatesResponse,
+            ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -387,6 +432,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest,
+                previous_response: GooglePrivacyDlpV2ListDlpJobsResponse,
+            ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest | None: ...
         @typing.type_check_only
         class ImageResource(googleapiclient.discovery.Resource):
             def redact(
@@ -421,6 +471,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest,
+                previous_response: GooglePrivacyDlpV2ListInspectTemplatesResponse,
+            ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -464,6 +519,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest,
+                previous_response: GooglePrivacyDlpV2ListJobTriggersResponse,
+            ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -521,6 +581,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListDeidentifyTemplatesResponse,
+                ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -578,6 +643,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListDlpJobsResponse,
+                ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest | None: ...
             @typing.type_check_only
             class ImageResource(googleapiclient.discovery.Resource):
                 def redact(
@@ -612,6 +682,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListInspectTemplatesResponse,
+                ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -662,6 +737,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListJobTriggersResponse,
+                ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -694,6 +774,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListStoredInfoTypesResponse,
+                ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -733,6 +818,11 @@ class DLPResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest,
+                previous_response: GooglePrivacyDlpV2ListStoredInfoTypesResponse,
+            ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

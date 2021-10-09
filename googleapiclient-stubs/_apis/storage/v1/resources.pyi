@@ -138,6 +138,9 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketsHttpRequest: ...
+        def list_next(
+            self, previous_request: BucketsHttpRequest, previous_response: Buckets
+        ) -> BucketsHttpRequest | None: ...
         def lockRetentionPolicy(
             self,
             *,
@@ -524,6 +527,9 @@ class StorageResource(googleapiclient.discovery.Resource):
             versions: bool = ...,
             **kwargs: typing.Any
         ) -> ObjectsHttpRequest: ...
+        def list_next(
+            self, previous_request: ObjectsHttpRequest, previous_response: Objects
+        ) -> ObjectsHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -684,6 +690,11 @@ class StorageResource(googleapiclient.discovery.Resource):
                 userProject: str = ...,
                 **kwargs: typing.Any
             ) -> HmacKeysMetadataHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: HmacKeysMetadataHttpRequest,
+                previous_response: HmacKeysMetadata,
+            ) -> HmacKeysMetadataHttpRequest | None: ...
             def update(
                 self,
                 *,

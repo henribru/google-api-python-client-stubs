@@ -49,6 +49,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             ] = ...,
                             **kwargs: typing.Any
                         ) -> ListAnnotationsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListAnnotationsResponseHttpRequest,
+                            previous_response: ListAnnotationsResponse,
+                        ) -> ListAnnotationsResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -108,6 +113,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListAnnotationStoresResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAnnotationStoresResponseHttpRequest,
+                        previous_response: ListAnnotationStoresResponse,
+                    ) -> ListAnnotationStoresResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -160,6 +170,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListAttributeDefinitionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListAttributeDefinitionsResponseHttpRequest,
+                            previous_response: ListAttributeDefinitionsResponse,
+                        ) -> ListAttributeDefinitionsResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -192,6 +207,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListConsentArtifactsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListConsentArtifactsResponseHttpRequest,
+                            previous_response: ListConsentArtifactsResponse,
+                        ) -> ListConsentArtifactsResponseHttpRequest | None: ...
                     @typing.type_check_only
                     class ConsentsResource(googleapiclient.discovery.Resource):
                         def activate(
@@ -226,6 +246,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListConsentsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListConsentsResponseHttpRequest,
+                            previous_response: ListConsentsResponse,
+                        ) -> ListConsentsResponseHttpRequest | None: ...
                         def listRevisions(
                             self,
                             *,
@@ -235,6 +260,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListConsentRevisionsResponseHttpRequest: ...
+                        def listRevisions_next(
+                            self,
+                            previous_request: ListConsentRevisionsResponseHttpRequest,
+                            previous_response: ListConsentRevisionsResponse,
+                        ) -> ListConsentRevisionsResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -288,6 +318,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListUserDataMappingsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListUserDataMappingsResponseHttpRequest,
+                            previous_response: ListUserDataMappingsResponse,
+                        ) -> ListUserDataMappingsResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -321,6 +356,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         body: EvaluateUserConsentsRequest = ...,
                         **kwargs: typing.Any
                     ) -> EvaluateUserConsentsResponseHttpRequest: ...
+                    def evaluateUserConsents_next(
+                        self,
+                        previous_request: EvaluateUserConsentsResponseHttpRequest,
+                        previous_response: EvaluateUserConsentsResponse,
+                    ) -> EvaluateUserConsentsResponseHttpRequest | None: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> ConsentStoreHttpRequest: ...
@@ -340,6 +380,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListConsentStoresResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListConsentStoresResponseHttpRequest,
+                        previous_response: ListConsentStoresResponse,
+                    ) -> ListConsentStoresResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -552,6 +597,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListDicomStoresResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDicomStoresResponseHttpRequest,
+                        previous_response: ListDicomStoresResponse,
+                    ) -> ListDicomStoresResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -787,6 +837,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListFhirStoresResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListFhirStoresResponseHttpRequest,
+                        previous_response: ListFhirStoresResponse,
+                    ) -> ListFhirStoresResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -878,6 +933,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             ] = ...,
                             **kwargs: typing.Any
                         ) -> ListMessagesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListMessagesResponseHttpRequest,
+                            previous_response: ListMessagesResponse,
+                        ) -> ListMessagesResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -930,6 +990,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListHl7V2StoresResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListHl7V2StoresResponseHttpRequest,
+                        previous_response: ListHl7V2StoresResponse,
+                    ) -> ListHl7V2StoresResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -974,6 +1039,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
                 def create(
                     self,
                     *,
@@ -1010,6 +1080,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDatasetsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDatasetsResponseHttpRequest,
+                    previous_response: ListDatasetsResponse,
+                ) -> ListDatasetsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -1062,6 +1137,11 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def datasets(self) -> DatasetsResource: ...
             def services(self) -> ServicesResource: ...
         def locations(self) -> LocationsResource: ...

@@ -138,6 +138,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListCampaignAssignedTargetingOptionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCampaignAssignedTargetingOptionsResponseHttpRequest,
+                        previous_response: ListCampaignAssignedTargetingOptionsResponse,
+                    ) -> ListCampaignAssignedTargetingOptionsResponseHttpRequest | None: ...
                 def assignedTargetingOptions(
                     self,
                 ) -> AssignedTargetingOptionsResource: ...
@@ -152,6 +157,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> BulkListCampaignAssignedTargetingOptionsResponseHttpRequest: ...
+            def bulkListCampaignAssignedTargetingOptions_next(
+                self,
+                previous_request: BulkListCampaignAssignedTargetingOptionsResponseHttpRequest,
+                previous_response: BulkListCampaignAssignedTargetingOptionsResponse,
+            ) -> BulkListCampaignAssignedTargetingOptionsResponseHttpRequest | None: ...
             def create(
                 self, *, advertiserId: str, body: Campaign = ..., **kwargs: typing.Any
             ) -> CampaignHttpRequest: ...
@@ -171,6 +181,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListCampaignsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCampaignsResponseHttpRequest,
+                previous_response: ListCampaignsResponse,
+            ) -> ListCampaignsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -223,6 +238,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     partnerId: str = ...,
                     **kwargs: typing.Any
                 ) -> ListSitesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSitesResponseHttpRequest,
+                    previous_response: ListSitesResponse,
+                ) -> ListSitesResponseHttpRequest | None: ...
                 def replace(
                     self,
                     *,
@@ -258,6 +278,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 partnerId: str = ...,
                 **kwargs: typing.Any
             ) -> ListChannelsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListChannelsResponseHttpRequest,
+                previous_response: ListChannelsResponse,
+            ) -> ListChannelsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -290,6 +315,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListCreativesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCreativesResponseHttpRequest,
+                previous_response: ListCreativesResponse,
+            ) -> ListCreativesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -414,6 +444,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest,
+                        previous_response: ListInsertionOrderAssignedTargetingOptionsResponse,
+                    ) -> ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest | None: ...
                 def assignedTargetingOptions(
                     self,
                 ) -> AssignedTargetingOptionsResource: ...
@@ -428,6 +463,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest: ...
+            def bulkListInsertionOrderAssignedTargetingOptions_next(
+                self,
+                previous_request: BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest,
+                previous_response: BulkListInsertionOrderAssignedTargetingOptionsResponse,
+            ) -> BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -451,6 +491,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListInsertionOrdersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListInsertionOrdersResponseHttpRequest,
+                previous_response: ListInsertionOrdersResponse,
+            ) -> ListInsertionOrdersResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -477,6 +522,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListInvoicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListInvoicesResponseHttpRequest,
+                previous_response: ListInvoicesResponse,
+            ) -> ListInvoicesResponseHttpRequest | None: ...
             def lookupInvoiceCurrency(
                 self,
                 *,
@@ -703,6 +753,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListLineItemAssignedTargetingOptionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListLineItemAssignedTargetingOptionsResponseHttpRequest,
+                        previous_response: ListLineItemAssignedTargetingOptionsResponse,
+                    ) -> ListLineItemAssignedTargetingOptionsResponseHttpRequest | None: ...
                 def assignedTargetingOptions(
                     self,
                 ) -> AssignedTargetingOptionsResource: ...
@@ -725,6 +780,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> BulkListLineItemAssignedTargetingOptionsResponseHttpRequest: ...
+            def bulkListLineItemAssignedTargetingOptions_next(
+                self,
+                previous_request: BulkListLineItemAssignedTargetingOptionsResponseHttpRequest,
+                previous_response: BulkListLineItemAssignedTargetingOptionsResponse,
+            ) -> BulkListLineItemAssignedTargetingOptionsResponseHttpRequest | None: ...
             def create(
                 self, *, advertiserId: str, body: LineItem = ..., **kwargs: typing.Any
             ) -> LineItemHttpRequest: ...
@@ -751,6 +811,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLineItemsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLineItemsResponseHttpRequest,
+                previous_response: ListLineItemsResponse,
+            ) -> ListLineItemsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -800,6 +865,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAssignedLocationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAssignedLocationsResponseHttpRequest,
+                    previous_response: ListAssignedLocationsResponse,
+                ) -> ListAssignedLocationsResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -820,6 +890,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationListsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationListsResponseHttpRequest,
+                previous_response: ListLocationListsResponse,
+            ) -> ListLocationListsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -868,6 +943,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListManualTriggersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListManualTriggersResponseHttpRequest,
+                previous_response: ListManualTriggersResponse,
+            ) -> ListManualTriggersResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -916,6 +996,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListNegativeKeywordsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListNegativeKeywordsResponseHttpRequest,
+                    previous_response: ListNegativeKeywordsResponse,
+                ) -> ListNegativeKeywordsResponseHttpRequest | None: ...
                 def replace(
                     self,
                     *,
@@ -953,6 +1038,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListNegativeKeywordListsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListNegativeKeywordListsResponseHttpRequest,
+                previous_response: ListNegativeKeywordListsResponse,
+            ) -> ListNegativeKeywordListsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -1174,6 +1264,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAdvertiserAssignedTargetingOptionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAdvertiserAssignedTargetingOptionsResponseHttpRequest,
+                    previous_response: ListAdvertiserAssignedTargetingOptionsResponse,
+                ) -> ListAdvertiserAssignedTargetingOptionsResponseHttpRequest | None: ...
             def assignedTargetingOptions(self) -> AssignedTargetingOptionsResource: ...
         def audit(
             self, *, advertiserId: str, readMask: str = ..., **kwargs: typing.Any
@@ -1195,6 +1290,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> BulkListAdvertiserAssignedTargetingOptionsResponseHttpRequest: ...
+        def bulkListAdvertiserAssignedTargetingOptions_next(
+            self,
+            previous_request: BulkListAdvertiserAssignedTargetingOptionsResponseHttpRequest,
+            previous_response: BulkListAdvertiserAssignedTargetingOptionsResponse,
+        ) -> BulkListAdvertiserAssignedTargetingOptionsResponseHttpRequest | None: ...
         def create(
             self, *, body: Advertiser = ..., **kwargs: typing.Any
         ) -> AdvertiserHttpRequest: ...
@@ -1214,6 +1314,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             partnerId: str = ...,
             **kwargs: typing.Any
         ) -> ListAdvertisersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAdvertisersResponseHttpRequest,
+            previous_response: ListAdvertisersResponse,
+        ) -> ListAdvertisersResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -1254,6 +1359,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             partnerId: str = ...,
             **kwargs: typing.Any
         ) -> ListCombinedAudiencesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCombinedAudiencesResponseHttpRequest,
+            previous_response: ListCombinedAudiencesResponse,
+        ) -> ListCombinedAudiencesResponseHttpRequest | None: ...
     @typing.type_check_only
     class CustomBiddingAlgorithmsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1275,6 +1385,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             partnerId: str = ...,
             **kwargs: typing.Any
         ) -> ListCustomBiddingAlgorithmsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCustomBiddingAlgorithmsResponseHttpRequest,
+            previous_response: ListCustomBiddingAlgorithmsResponse,
+        ) -> ListCustomBiddingAlgorithmsResponseHttpRequest | None: ...
     @typing.type_check_only
     class CustomListsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1290,6 +1405,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListCustomListsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCustomListsResponseHttpRequest,
+            previous_response: ListCustomListsResponse,
+        ) -> ListCustomListsResponseHttpRequest | None: ...
     @typing.type_check_only
     class FirstAndThirdPartyAudiencesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1311,6 +1431,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             partnerId: str = ...,
             **kwargs: typing.Any
         ) -> ListFirstAndThirdPartyAudiencesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListFirstAndThirdPartyAudiencesResponseHttpRequest,
+            previous_response: ListFirstAndThirdPartyAudiencesResponse,
+        ) -> ListFirstAndThirdPartyAudiencesResponseHttpRequest | None: ...
     @typing.type_check_only
     class FloodlightGroupsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1346,6 +1471,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             partnerId: str = ...,
             **kwargs: typing.Any
         ) -> ListGoogleAudiencesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListGoogleAudiencesResponseHttpRequest,
+            previous_response: ListGoogleAudiencesResponse,
+        ) -> ListGoogleAudiencesResponseHttpRequest | None: ...
     @typing.type_check_only
     class InventorySourceGroupsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -1387,6 +1517,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 partnerId: str = ...,
                 **kwargs: typing.Any
             ) -> ListAssignedInventorySourcesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAssignedInventorySourcesResponseHttpRequest,
+                previous_response: ListAssignedInventorySourcesResponse,
+            ) -> ListAssignedInventorySourcesResponseHttpRequest | None: ...
         def create(
             self,
             *,
@@ -1422,6 +1557,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             partnerId: str = ...,
             **kwargs: typing.Any
         ) -> ListInventorySourceGroupsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListInventorySourceGroupsResponseHttpRequest,
+            previous_response: ListInventorySourceGroupsResponse,
+        ) -> ListInventorySourceGroupsResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -1449,6 +1589,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             partnerId: str = ...,
             **kwargs: typing.Any
         ) -> ListInventorySourcesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListInventorySourcesResponseHttpRequest,
+            previous_response: ListInventorySourcesResponse,
+        ) -> ListInventorySourcesResponseHttpRequest | None: ...
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
@@ -1498,6 +1643,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListSitesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSitesResponseHttpRequest,
+                    previous_response: ListSitesResponse,
+                ) -> ListSitesResponseHttpRequest | None: ...
                 def replace(
                     self,
                     *,
@@ -1533,6 +1683,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListChannelsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListChannelsResponseHttpRequest,
+                previous_response: ListChannelsResponse,
+            ) -> ListChannelsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -1755,6 +1910,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListPartnerAssignedTargetingOptionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPartnerAssignedTargetingOptionsResponseHttpRequest,
+                    previous_response: ListPartnerAssignedTargetingOptionsResponse,
+                ) -> ListPartnerAssignedTargetingOptionsResponseHttpRequest | None: ...
             def assignedTargetingOptions(self) -> AssignedTargetingOptionsResource: ...
         def bulkEditPartnerAssignedTargetingOptions(
             self,
@@ -1775,6 +1935,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListPartnersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListPartnersResponseHttpRequest,
+            previous_response: ListPartnersResponse,
+        ) -> ListPartnersResponseHttpRequest | None: ...
         def channels(self) -> ChannelsResource: ...
         def targetingTypes(self) -> TargetingTypesResource: ...
     @typing.type_check_only
@@ -1897,6 +2062,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTargetingOptionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTargetingOptionsResponseHttpRequest,
+                previous_response: ListTargetingOptionsResponse,
+            ) -> ListTargetingOptionsResponseHttpRequest | None: ...
             def search(
                 self,
                 *,
@@ -1947,6 +2117,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 body: SearchTargetingOptionsRequest = ...,
                 **kwargs: typing.Any
             ) -> SearchTargetingOptionsResponseHttpRequest: ...
+            def search_next(
+                self,
+                previous_request: SearchTargetingOptionsResponseHttpRequest,
+                previous_response: SearchTargetingOptionsResponse,
+            ) -> SearchTargetingOptionsResponseHttpRequest | None: ...
         def targetingOptions(self) -> TargetingOptionsResource: ...
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
@@ -1971,6 +2146,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListUsersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListUsersResponseHttpRequest,
+            previous_response: ListUsersResponse,
+        ) -> ListUsersResponseHttpRequest | None: ...
         def patch(
             self,
             *,

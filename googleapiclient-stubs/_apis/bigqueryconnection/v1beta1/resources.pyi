@@ -47,6 +47,11 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListConnectionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListConnectionsResponseHttpRequest,
+                    previous_response: ListConnectionsResponse,
+                ) -> ListConnectionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

@@ -30,6 +30,11 @@ class LibraryagentResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleExampleLibraryagentV1ListBooksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleExampleLibraryagentV1ListBooksResponseHttpRequest,
+                previous_response: GoogleExampleLibraryagentV1ListBooksResponse,
+            ) -> GoogleExampleLibraryagentV1ListBooksResponseHttpRequest | None: ...
             def return_(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleExampleLibraryagentV1BookHttpRequest: ...
@@ -39,6 +44,11 @@ class LibraryagentResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> GoogleExampleLibraryagentV1ListShelvesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleExampleLibraryagentV1ListShelvesResponseHttpRequest,
+            previous_response: GoogleExampleLibraryagentV1ListShelvesResponse,
+        ) -> GoogleExampleLibraryagentV1ListShelvesResponseHttpRequest | None: ...
         def books(self) -> BooksResource: ...
     def shelves(self) -> ShelvesResource: ...
 

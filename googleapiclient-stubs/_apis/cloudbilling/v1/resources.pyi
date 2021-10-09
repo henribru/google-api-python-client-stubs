@@ -24,6 +24,11 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListProjectBillingInfoResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListProjectBillingInfoResponseHttpRequest,
+                previous_response: ListProjectBillingInfoResponse,
+            ) -> ListProjectBillingInfoResponseHttpRequest | None: ...
         def create(
             self, *, body: BillingAccount = ..., **kwargs: typing.Any
         ) -> BillingAccountHttpRequest: ...
@@ -45,6 +50,11 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListBillingAccountsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListBillingAccountsResponseHttpRequest,
+            previous_response: ListBillingAccountsResponse,
+        ) -> ListBillingAccountsResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -91,9 +101,19 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 startTime: str = ...,
                 **kwargs: typing.Any
             ) -> ListSkusResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSkusResponseHttpRequest,
+                previous_response: ListSkusResponse,
+            ) -> ListSkusResponseHttpRequest | None: ...
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListServicesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListServicesResponseHttpRequest,
+            previous_response: ListServicesResponse,
+        ) -> ListServicesResponseHttpRequest | None: ...
         def skus(self) -> SkusResource: ...
     def billingAccounts(self) -> BillingAccountsResource: ...
     def projects(self) -> ProjectsResource: ...

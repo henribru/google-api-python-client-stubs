@@ -27,6 +27,11 @@ class ContainerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListUsableSubnetworksResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListUsableSubnetworksResponseHttpRequest,
+                    previous_response: ListUsableSubnetworksResponse,
+                ) -> ListUsableSubnetworksResponseHttpRequest | None: ...
             def usableSubnetworks(self) -> UsableSubnetworksResource: ...
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):

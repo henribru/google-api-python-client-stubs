@@ -27,6 +27,11 @@ class GenomicsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class PipelinesResource(googleapiclient.discovery.Resource):
         def create(
@@ -54,6 +59,11 @@ class GenomicsResource(googleapiclient.discovery.Resource):
             projectId: str = ...,
             **kwargs: typing.Any
         ) -> ListPipelinesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListPipelinesResponseHttpRequest,
+            previous_response: ListPipelinesResponse,
+        ) -> ListPipelinesResponseHttpRequest | None: ...
         def run(
             self, *, body: RunPipelineRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...

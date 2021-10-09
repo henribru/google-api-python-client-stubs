@@ -54,6 +54,11 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     returnValues: bool = ...,
                     **kwargs: typing.Any
                 ) -> ListVariablesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVariablesResponseHttpRequest,
+                    previous_response: ListVariablesResponse,
+                ) -> ListVariablesResponseHttpRequest | None: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -95,6 +100,11 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListWaitersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWaitersResponseHttpRequest,
+                    previous_response: ListWaitersResponse,
+                ) -> ListWaitersResponseHttpRequest | None: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -131,6 +141,11 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListConfigsResponseHttpRequest,
+                previous_response: ListConfigsResponse,
+            ) -> ListConfigsResponseHttpRequest | None: ...
             def setIamPolicy(
                 self,
                 *,

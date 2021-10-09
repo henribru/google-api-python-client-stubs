@@ -47,6 +47,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSubscriptionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSubscriptionsResponseHttpRequest,
+                previous_response: ListSubscriptionsResponse,
+            ) -> ListSubscriptionsResponseHttpRequest | None: ...
             def modifyAckDeadline(
                 self,
                 *,
@@ -94,6 +99,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListTopicSubscriptionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTopicSubscriptionsResponseHttpRequest,
+                    previous_response: ListTopicSubscriptionsResponse,
+                ) -> ListTopicSubscriptionsResponseHttpRequest | None: ...
             def create(
                 self, *, name: str, body: Topic = ..., **kwargs: typing.Any
             ) -> TopicHttpRequest: ...
@@ -116,6 +126,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTopicsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTopicsResponseHttpRequest,
+                previous_response: ListTopicsResponse,
+            ) -> ListTopicsResponseHttpRequest | None: ...
             def publish(
                 self, *, topic: str, body: PublishRequest = ..., **kwargs: typing.Any
             ) -> PublishResponseHttpRequest: ...

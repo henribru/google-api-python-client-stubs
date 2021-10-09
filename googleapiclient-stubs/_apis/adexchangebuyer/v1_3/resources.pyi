@@ -69,6 +69,11 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> CreativesListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CreativesListHttpRequest,
+            previous_response: CreativesList,
+        ) -> CreativesListHttpRequest | None: ...
     @typing.type_check_only
     class DirectDealsResource(googleapiclient.discovery.Resource):
         def get(self, *, id: str, **kwargs: typing.Any) -> DirectDealHttpRequest: ...

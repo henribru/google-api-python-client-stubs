@@ -33,6 +33,11 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class ServicesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -69,6 +74,11 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListBackupsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListBackupsResponseHttpRequest,
+                        previous_response: ListBackupsResponse,
+                    ) -> ListBackupsResponseHttpRequest | None: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -107,6 +117,11 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListMetadataImportsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListMetadataImportsResponseHttpRequest,
+                        previous_response: ListMetadataImportsResponse,
+                    ) -> ListMetadataImportsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -155,6 +170,11 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListServicesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListServicesResponseHttpRequest,
+                    previous_response: ListServicesResponse,
+                ) -> ListServicesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -199,6 +219,11 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def services(self) -> ServicesResource: ...
         def locations(self) -> LocationsResource: ...

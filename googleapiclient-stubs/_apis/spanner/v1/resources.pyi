@@ -27,6 +27,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListInstanceConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListInstanceConfigsResponseHttpRequest,
+                previous_response: ListInstanceConfigsResponse,
+            ) -> ListInstanceConfigsResponseHttpRequest | None: ...
         @typing.type_check_only
         class InstancesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -40,6 +45,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBackupOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBackupOperationsResponseHttpRequest,
+                    previous_response: ListBackupOperationsResponse,
+                ) -> ListBackupOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class BackupsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -62,6 +72,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
                 def create(
                     self,
                     *,
@@ -99,6 +114,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBackupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBackupsResponseHttpRequest,
+                    previous_response: ListBackupsResponse,
+                ) -> ListBackupsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -133,6 +153,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDatabaseOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDatabaseOperationsResponseHttpRequest,
+                    previous_response: ListDatabaseOperationsResponse,
+                ) -> ListDatabaseOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class DatabasesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -155,6 +180,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class SessionsResource(googleapiclient.discovery.Resource):
                     def batchCreate(
@@ -221,6 +251,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListSessionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListSessionsResponseHttpRequest,
+                        previous_response: ListSessionsResponse,
+                    ) -> ListSessionsResponseHttpRequest | None: ...
                     def partitionQuery(
                         self,
                         *,
@@ -298,6 +333,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDatabasesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDatabasesResponseHttpRequest,
+                    previous_response: ListDatabasesResponse,
+                ) -> ListDatabasesResponseHttpRequest | None: ...
                 def restore(
                     self,
                     *,
@@ -348,6 +388,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -378,6 +423,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListInstancesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListInstancesResponseHttpRequest,
+                previous_response: ListInstancesResponse,
+            ) -> ListInstancesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -420,6 +470,11 @@ class SpannerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> ListScansResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListScansResponseHttpRequest,
+            previous_response: ListScansResponse,
+        ) -> ListScansResponseHttpRequest | None: ...
     def projects(self) -> ProjectsResource: ...
     def scans(self) -> ScansResource: ...
 

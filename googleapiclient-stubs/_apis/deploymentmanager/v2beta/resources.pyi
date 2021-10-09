@@ -33,6 +33,11 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> CompositeTypesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CompositeTypesListResponseHttpRequest,
+            previous_response: CompositeTypesListResponse,
+        ) -> CompositeTypesListResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -99,6 +104,11 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> DeploymentsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: DeploymentsListResponseHttpRequest,
+            previous_response: DeploymentsListResponse,
+        ) -> DeploymentsListResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -165,6 +175,11 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ManifestsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ManifestsListResponseHttpRequest,
+            previous_response: ManifestsListResponse,
+        ) -> ManifestsListResponseHttpRequest | None: ...
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -180,6 +195,11 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> OperationsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: OperationsListResponseHttpRequest,
+            previous_response: OperationsListResponse,
+        ) -> OperationsListResponseHttpRequest | None: ...
     @typing.type_check_only
     class ResourcesResource(googleapiclient.discovery.Resource):
         def get(
@@ -196,6 +216,11 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ResourcesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ResourcesListResponseHttpRequest,
+            previous_response: ResourcesListResponse,
+        ) -> ResourcesListResponseHttpRequest | None: ...
     @typing.type_check_only
     class TypeProvidersResource(googleapiclient.discovery.Resource):
         def delete(
@@ -220,6 +245,11 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> TypeProvidersListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: TypeProvidersListResponseHttpRequest,
+            previous_response: TypeProvidersListResponse,
+        ) -> TypeProvidersListResponseHttpRequest | None: ...
         def listTypes(
             self,
             *,
@@ -231,6 +261,11 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> TypeProvidersListTypesResponseHttpRequest: ...
+        def listTypes_next(
+            self,
+            previous_request: TypeProvidersListTypesResponseHttpRequest,
+            previous_response: TypeProvidersListTypesResponse,
+        ) -> TypeProvidersListTypesResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -259,6 +294,11 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> TypesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: TypesListResponseHttpRequest,
+            previous_response: TypesListResponse,
+        ) -> TypesListResponseHttpRequest | None: ...
     def compositeTypes(self) -> CompositeTypesResource: ...
     def deployments(self) -> DeploymentsResource: ...
     def manifests(self) -> ManifestsResource: ...

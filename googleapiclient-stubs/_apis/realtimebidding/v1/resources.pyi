@@ -28,6 +28,11 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListCreativesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCreativesResponseHttpRequest,
+                previous_response: ListCreativesResponse,
+            ) -> ListCreativesResponseHttpRequest | None: ...
             def watch(
                 self,
                 *,
@@ -48,6 +53,11 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListEndpointsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListEndpointsResponseHttpRequest,
+                previous_response: ListEndpointsResponse,
+            ) -> ListEndpointsResponseHttpRequest | None: ...
         @typing.type_check_only
         class PretargetingConfigsResource(googleapiclient.discovery.Resource):
             def activate(
@@ -99,6 +109,11 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListPretargetingConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPretargetingConfigsResponseHttpRequest,
+                previous_response: ListPretargetingConfigsResponse,
+            ) -> ListPretargetingConfigsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -139,6 +154,11 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListBiddersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListBiddersResponseHttpRequest,
+            previous_response: ListBiddersResponse,
+        ) -> ListBiddersResponseHttpRequest | None: ...
         def creatives(self) -> CreativesResource: ...
         def endpoints(self) -> EndpointsResource: ...
         def pretargetingConfigs(self) -> PretargetingConfigsResource: ...
@@ -170,6 +190,11 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListCreativesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCreativesResponseHttpRequest,
+                previous_response: ListCreativesResponse,
+            ) -> ListCreativesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -198,6 +223,11 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListUserListsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListUserListsResponseHttpRequest,
+                previous_response: ListUserListsResponse,
+            ) -> ListUserListsResponseHttpRequest | None: ...
             def open(
                 self,
                 *,
@@ -215,6 +245,11 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListBuyersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListBuyersResponseHttpRequest,
+            previous_response: ListBuyersResponse,
+        ) -> ListBuyersResponseHttpRequest | None: ...
         def creatives(self) -> CreativesResource: ...
         def userLists(self) -> UserListsResource: ...
     def bidders(self) -> BiddersResource: ...

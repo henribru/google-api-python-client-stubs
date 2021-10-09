@@ -36,6 +36,11 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListEventsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListEventsResponseHttpRequest,
+                previous_response: ListEventsResponse,
+            ) -> ListEventsResponseHttpRequest | None: ...
             def report(
                 self,
                 *,
@@ -79,6 +84,11 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 timedCountDuration: str = ...,
                 **kwargs: typing.Any
             ) -> ListGroupStatsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListGroupStatsResponseHttpRequest,
+                previous_response: ListGroupStatsResponse,
+            ) -> ListGroupStatsResponseHttpRequest | None: ...
         @typing.type_check_only
         class GroupsResource(googleapiclient.discovery.Resource):
             def get(

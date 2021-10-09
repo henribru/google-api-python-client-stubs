@@ -54,6 +54,11 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ListContactGroupsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListContactGroupsResponseHttpRequest,
+            previous_response: ListContactGroupsResponse,
+        ) -> ListContactGroupsResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -95,6 +100,11 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOtherContactsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOtherContactsResponseHttpRequest,
+            previous_response: ListOtherContactsResponse,
+        ) -> ListOtherContactsResponseHttpRequest | None: ...
         def search(
             self,
             *,
@@ -139,6 +149,11 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 syncToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListConnectionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListConnectionsResponseHttpRequest,
+                previous_response: ListConnectionsResponse,
+            ) -> ListConnectionsResponseHttpRequest | None: ...
         def batchCreateContacts(
             self, *, body: BatchCreateContactsRequest = ..., **kwargs: typing.Any
         ) -> BatchCreateContactsResponseHttpRequest: ...
@@ -269,6 +284,11 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ListDirectoryPeopleResponseHttpRequest: ...
+        def listDirectoryPeople_next(
+            self,
+            previous_request: ListDirectoryPeopleResponseHttpRequest,
+            previous_response: ListDirectoryPeopleResponse,
+        ) -> ListDirectoryPeopleResponseHttpRequest | None: ...
         def searchContacts(
             self,
             *,
@@ -322,6 +342,11 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> SearchDirectoryPeopleResponseHttpRequest: ...
+        def searchDirectoryPeople_next(
+            self,
+            previous_request: SearchDirectoryPeopleResponseHttpRequest,
+            previous_response: SearchDirectoryPeopleResponse,
+        ) -> SearchDirectoryPeopleResponseHttpRequest | None: ...
         def updateContact(
             self,
             *,

@@ -34,6 +34,11 @@ class CloudCommercePartnerProcurementServiceResource(
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAccountsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAccountsResponseHttpRequest,
+                previous_response: ListAccountsResponse,
+            ) -> ListAccountsResponseHttpRequest | None: ...
             def reject(
                 self,
                 *,
@@ -76,6 +81,11 @@ class CloudCommercePartnerProcurementServiceResource(
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListEntitlementsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListEntitlementsResponseHttpRequest,
+                previous_response: ListEntitlementsResponse,
+            ) -> ListEntitlementsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

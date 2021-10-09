@@ -31,6 +31,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             readTime: str = ...,
             **kwargs: typing.Any
         ) -> ListAssetsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAssetsResponseHttpRequest,
+            previous_response: ListAssetsResponse,
+        ) -> ListAssetsResponseHttpRequest | None: ...
     def assets(self) -> AssetsResource: ...
 
 @typing.type_check_only

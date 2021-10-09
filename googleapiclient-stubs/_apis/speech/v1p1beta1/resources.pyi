@@ -24,6 +24,11 @@ class SpeechResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -51,6 +56,11 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListCustomClassesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCustomClassesResponseHttpRequest,
+                    previous_response: ListCustomClassesResponse,
+                ) -> ListCustomClassesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -82,6 +92,11 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListPhraseSetResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPhraseSetResponseHttpRequest,
+                    previous_response: ListPhraseSetResponse,
+                ) -> ListPhraseSetResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

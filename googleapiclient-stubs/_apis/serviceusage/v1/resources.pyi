@@ -28,6 +28,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         def batchEnable(
@@ -58,6 +63,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListServicesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListServicesResponseHttpRequest,
+            previous_response: ListServicesResponse,
+        ) -> ListServicesResponseHttpRequest | None: ...
     def operations(self) -> OperationsResource: ...
     def services(self) -> ServicesResource: ...
 

@@ -46,6 +46,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListCertificateRevocationListsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListCertificateRevocationListsResponseHttpRequest,
+                            previous_response: ListCertificateRevocationListsResponse,
+                        ) -> ListCertificateRevocationListsResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -123,6 +128,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListCertificateAuthoritiesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCertificateAuthoritiesResponseHttpRequest,
+                        previous_response: ListCertificateAuthoritiesResponse,
+                    ) -> ListCertificateAuthoritiesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -168,6 +178,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListCertificatesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCertificatesResponseHttpRequest,
+                        previous_response: ListCertificatesResponse,
+                    ) -> ListCertificatesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -223,6 +238,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListCaPoolsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCaPoolsResponseHttpRequest,
+                    previous_response: ListCaPoolsResponse,
+                ) -> ListCaPoolsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -282,6 +302,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListCertificateTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCertificateTemplatesResponseHttpRequest,
+                    previous_response: ListCertificateTemplatesResponse,
+                ) -> ListCertificateTemplatesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -329,6 +354,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -341,6 +371,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def caPools(self) -> CaPoolsResource: ...
             def certificateTemplates(self) -> CertificateTemplatesResource: ...
             def operations(self) -> OperationsResource: ...

@@ -47,6 +47,11 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAuthorizationPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAuthorizationPoliciesResponseHttpRequest,
+                    previous_response: ListAuthorizationPoliciesResponse,
+                ) -> ListAuthorizationPoliciesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -100,6 +105,11 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListClientTlsPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListClientTlsPoliciesResponseHttpRequest,
+                    previous_response: ListClientTlsPoliciesResponse,
+                ) -> ListClientTlsPoliciesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -146,6 +156,11 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class ServerTlsPoliciesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -177,6 +192,11 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListServerTlsPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListServerTlsPoliciesResponseHttpRequest,
+                    previous_response: ListServerTlsPoliciesResponse,
+                ) -> ListServerTlsPoliciesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -211,6 +231,11 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def authorizationPolicies(self) -> AuthorizationPoliciesResource: ...
             def clientTlsPolicies(self) -> ClientTlsPoliciesResource: ...
             def operations(self) -> OperationsResource: ...

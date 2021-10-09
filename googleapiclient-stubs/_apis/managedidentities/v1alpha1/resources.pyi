@@ -60,6 +60,11 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListSQLIntegrationsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListSQLIntegrationsResponseHttpRequest,
+                            previous_response: ListSQLIntegrationsResponse,
+                        ) -> ListSQLIntegrationsResponseHttpRequest | None: ...
                     def attachTrust(
                         self,
                         *,
@@ -108,6 +113,11 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListDomainsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDomainsResponseHttpRequest,
+                        previous_response: ListDomainsResponse,
+                    ) -> ListDomainsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -185,6 +195,11 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class PeeringsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -218,6 +233,11 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListPeeringsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListPeeringsResponseHttpRequest,
+                        previous_response: ListPeeringsResponse,
+                    ) -> ListPeeringsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -255,6 +275,11 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def global_(self) -> GlobalResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...

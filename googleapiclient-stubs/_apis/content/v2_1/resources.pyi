@@ -39,6 +39,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAccountLabelsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAccountLabelsResponseHttpRequest,
+                previous_response: ListAccountLabelsResponse,
+            ) -> ListAccountLabelsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -122,6 +127,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal["MERCHANT", "CSS"] = ...,
             **kwargs: typing.Any
         ) -> AccountsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: AccountsListResponseHttpRequest,
+            previous_response: AccountsListResponse,
+        ) -> AccountsListResponseHttpRequest | None: ...
         def listlinks(
             self,
             *,
@@ -131,6 +141,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> AccountsListLinksResponseHttpRequest: ...
+        def listlinks_next(
+            self,
+            previous_request: AccountsListLinksResponseHttpRequest,
+            previous_response: AccountsListLinksResponse,
+        ) -> AccountsListLinksResponseHttpRequest | None: ...
         def requestphoneverification(
             self,
             *,
@@ -189,6 +204,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> AccountstatusesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: AccountstatusesListResponseHttpRequest,
+            previous_response: AccountstatusesListResponse,
+        ) -> AccountstatusesListResponseHttpRequest | None: ...
     @typing.type_check_only
     class AccounttaxResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -205,6 +225,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> AccounttaxListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: AccounttaxListResponseHttpRequest,
+            previous_response: AccounttaxListResponse,
+        ) -> AccounttaxListResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -278,6 +303,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListCollectionsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCollectionsResponseHttpRequest,
+            previous_response: ListCollectionsResponse,
+        ) -> ListCollectionsResponseHttpRequest | None: ...
     @typing.type_check_only
     class CollectionstatusesResource(googleapiclient.discovery.Resource):
         def get(
@@ -291,6 +321,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListCollectionStatusesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCollectionStatusesResponseHttpRequest,
+            previous_response: ListCollectionStatusesResponse,
+        ) -> ListCollectionStatusesResponseHttpRequest | None: ...
     @typing.type_check_only
     class CssesResource(googleapiclient.discovery.Resource):
         def get(
@@ -304,6 +339,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListCssesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCssesResponseHttpRequest,
+            previous_response: ListCssesResponse,
+        ) -> ListCssesResponseHttpRequest | None: ...
         def updatelabels(
             self,
             *,
@@ -337,6 +377,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> DatafeedsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: DatafeedsListResponseHttpRequest,
+            previous_response: DatafeedsListResponse,
+        ) -> DatafeedsListResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -370,6 +415,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> DatafeedstatusesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: DatafeedstatusesListResponseHttpRequest,
+            previous_response: DatafeedstatusesListResponse,
+        ) -> DatafeedstatusesListResponseHttpRequest | None: ...
     @typing.type_check_only
     class FreelistingsprogramResource(googleapiclient.discovery.Resource):
         def get(
@@ -401,6 +451,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> LiasettingsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: LiasettingsListResponseHttpRequest,
+            previous_response: LiasettingsListResponse,
+        ) -> LiasettingsListResponseHttpRequest | None: ...
         def listposdataproviders(
             self, **kwargs: typing.Any
         ) -> LiasettingsListPosDataProvidersResponseHttpRequest: ...
@@ -487,6 +542,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> OrderreportsListDisbursementsResponseHttpRequest: ...
+        def listdisbursements_next(
+            self,
+            previous_request: OrderreportsListDisbursementsResponseHttpRequest,
+            previous_response: OrderreportsListDisbursementsResponse,
+        ) -> OrderreportsListDisbursementsResponseHttpRequest | None: ...
         def listtransactions(
             self,
             *,
@@ -498,6 +558,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             transactionStartDate: str = ...,
             **kwargs: typing.Any
         ) -> OrderreportsListTransactionsResponseHttpRequest: ...
+        def listtransactions_next(
+            self,
+            previous_request: OrderreportsListTransactionsResponseHttpRequest,
+            previous_response: OrderreportsListTransactionsResponse,
+        ) -> OrderreportsListTransactionsResponseHttpRequest | None: ...
     @typing.type_check_only
     class OrderreturnsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -562,6 +627,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> OrderreturnsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: OrderreturnsListResponseHttpRequest,
+            previous_response: OrderreturnsListResponse,
+        ) -> OrderreturnsListResponseHttpRequest | None: ...
         def process(
             self,
             *,
@@ -700,6 +770,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> OrdersListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: OrdersListResponseHttpRequest,
+            previous_response: OrdersListResponse,
+        ) -> OrdersListResponseHttpRequest | None: ...
         def refunditem(
             self,
             *,
@@ -861,6 +936,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ProductsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ProductsListResponseHttpRequest,
+            previous_response: ProductsListResponse,
+        ) -> ProductsListResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -886,6 +966,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
                 startDate: str = ...,
                 **kwargs: typing.Any
             ) -> ListRepricingProductReportsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListRepricingProductReportsResponseHttpRequest,
+                previous_response: ListRepricingProductReportsResponse,
+            ) -> ListRepricingProductReportsResponseHttpRequest | None: ...
         def custombatch(
             self, *, body: ProductstatusesCustomBatchRequest = ..., **kwargs: typing.Any
         ) -> ProductstatusesCustomBatchResponseHttpRequest: ...
@@ -906,6 +991,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ProductstatusesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ProductstatusesListResponseHttpRequest,
+            previous_response: ProductstatusesListResponse,
+        ) -> ProductstatusesListResponseHttpRequest | None: ...
         def repricingreports(self) -> RepricingreportsResource: ...
     @typing.type_check_only
     class PromotionsResource(googleapiclient.discovery.Resource):
@@ -964,6 +1054,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListRegionsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListRegionsResponseHttpRequest,
+            previous_response: ListRegionsResponse,
+        ) -> ListRegionsResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -978,6 +1073,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         def search(
             self, *, merchantId: str, body: SearchRequest = ..., **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchResponseHttpRequest,
+            previous_response: SearchResponse,
+        ) -> SearchResponseHttpRequest | None: ...
     @typing.type_check_only
     class RepricingrulesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -993,6 +1093,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
                 startDate: str = ...,
                 **kwargs: typing.Any
             ) -> ListRepricingRuleReportsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListRepricingRuleReportsResponseHttpRequest,
+                previous_response: ListRepricingRuleReportsResponse,
+            ) -> ListRepricingRuleReportsResponseHttpRequest | None: ...
         def create(
             self,
             *,
@@ -1017,6 +1122,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListRepricingRulesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListRepricingRulesResponseHttpRequest,
+            previous_response: ListRepricingRulesResponse,
+        ) -> ListRepricingRulesResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -1049,6 +1159,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ReturnaddressListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ReturnaddressListResponseHttpRequest,
+            previous_response: ReturnaddressListResponse,
+        ) -> ReturnaddressListResponseHttpRequest | None: ...
     @typing.type_check_only
     class ReturnpolicyResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -1107,6 +1222,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             transferStartDate: str = ...,
             **kwargs: typing.Any
         ) -> SettlementreportsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SettlementreportsListResponseHttpRequest,
+            previous_response: SettlementreportsListResponse,
+        ) -> SettlementreportsListResponseHttpRequest | None: ...
     @typing.type_check_only
     class SettlementtransactionsResource(googleapiclient.discovery.Resource):
         def list(
@@ -1119,6 +1239,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             transactionIds: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> SettlementtransactionsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SettlementtransactionsListResponseHttpRequest,
+            previous_response: SettlementtransactionsListResponse,
+        ) -> SettlementtransactionsListResponseHttpRequest | None: ...
     @typing.type_check_only
     class ShippingsettingsResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -1147,6 +1272,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ShippingsettingsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ShippingsettingsListResponseHttpRequest,
+            previous_response: ShippingsettingsListResponse,
+        ) -> ShippingsettingsListResponseHttpRequest | None: ...
         def update(
             self,
             *,

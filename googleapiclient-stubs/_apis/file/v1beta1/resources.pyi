@@ -42,6 +42,11 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBackupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBackupsResponseHttpRequest,
+                    previous_response: ListBackupsResponse,
+                ) -> ListBackupsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -78,6 +83,11 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListSnapshotsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListSnapshotsResponseHttpRequest,
+                        previous_response: ListSnapshotsResponse,
+                    ) -> ListSnapshotsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -110,6 +120,11 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListInstancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInstancesResponseHttpRequest,
+                    previous_response: ListInstancesResponse,
+                ) -> ListInstancesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -150,6 +165,11 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -163,6 +183,11 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def backups(self) -> BackupsResource: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...

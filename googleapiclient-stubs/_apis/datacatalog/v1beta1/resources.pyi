@@ -20,6 +20,11 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
             body: GoogleCloudDatacatalogV1beta1SearchCatalogRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudDatacatalogV1beta1SearchCatalogResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: GoogleCloudDatacatalogV1beta1SearchCatalogResponseHttpRequest,
+            previous_response: GoogleCloudDatacatalogV1beta1SearchCatalogResponse,
+        ) -> GoogleCloudDatacatalogV1beta1SearchCatalogResponseHttpRequest | None: ...
     @typing.type_check_only
     class EntriesResource(googleapiclient.discovery.Resource):
         def lookup(
@@ -57,6 +62,11 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest,
+                            previous_response: GoogleCloudDatacatalogV1beta1ListTagsResponse,
+                        ) -> GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -95,6 +105,11 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         readMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatacatalogV1beta1ListEntriesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDatacatalogV1beta1ListEntriesResponseHttpRequest,
+                        previous_response: GoogleCloudDatacatalogV1beta1ListEntriesResponse,
+                    ) -> GoogleCloudDatacatalogV1beta1ListEntriesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -131,6 +146,11 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest,
+                        previous_response: GoogleCloudDatacatalogV1beta1ListTagsResponse,
+                    ) -> GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -168,6 +188,11 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDatacatalogV1beta1ListEntryGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDatacatalogV1beta1ListEntryGroupsResponseHttpRequest,
+                    previous_response: GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse,
+                ) -> GoogleCloudDatacatalogV1beta1ListEntryGroupsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -308,6 +333,11 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatacatalogV1beta1ListPolicyTagsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDatacatalogV1beta1ListPolicyTagsResponseHttpRequest,
+                        previous_response: GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse,
+                    ) -> GoogleCloudDatacatalogV1beta1ListPolicyTagsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -373,6 +403,11 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDatacatalogV1beta1ListTaxonomiesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDatacatalogV1beta1ListTaxonomiesResponseHttpRequest,
+                    previous_response: GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse,
+                ) -> GoogleCloudDatacatalogV1beta1ListTaxonomiesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

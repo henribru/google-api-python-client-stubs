@@ -33,6 +33,11 @@ class VaultResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListExportsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListExportsResponseHttpRequest,
+                previous_response: ListExportsResponse,
+            ) -> ListExportsResponseHttpRequest | None: ...
         @typing.type_check_only
         class HoldsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -91,6 +96,11 @@ class VaultResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListHoldsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListHoldsResponseHttpRequest,
+                previous_response: ListHoldsResponse,
+            ) -> ListHoldsResponseHttpRequest | None: ...
             def removeHeldAccounts(
                 self,
                 *,
@@ -127,6 +137,11 @@ class VaultResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSavedQueriesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSavedQueriesResponseHttpRequest,
+                previous_response: ListSavedQueriesResponse,
+            ) -> ListSavedQueriesResponseHttpRequest | None: ...
         def addPermissions(
             self,
             *,
@@ -166,6 +181,11 @@ class VaultResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> ListMattersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListMattersResponseHttpRequest,
+            previous_response: ListMattersResponse,
+        ) -> ListMattersResponseHttpRequest | None: ...
         def removePermissions(
             self,
             *,
@@ -209,6 +229,11 @@ class VaultResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     def matters(self) -> MattersResource: ...
     def operations(self) -> OperationsResource: ...
 

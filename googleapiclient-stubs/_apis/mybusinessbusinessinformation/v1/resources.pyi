@@ -36,6 +36,11 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
                 readMask: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
         def locations(self) -> LocationsResource: ...
     @typing.type_check_only
     class AttributesResource(googleapiclient.discovery.Resource):
@@ -51,6 +56,11 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             showAll: bool = ...,
             **kwargs: typing.Any
         ) -> ListAttributeMetadataResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAttributeMetadataResponseHttpRequest,
+            previous_response: ListAttributeMetadataResponse,
+        ) -> ListAttributeMetadataResponseHttpRequest | None: ...
     @typing.type_check_only
     class CategoriesResource(googleapiclient.discovery.Resource):
         def batchGet(
@@ -77,6 +87,11 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> ListCategoriesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCategoriesResponseHttpRequest,
+            previous_response: ListCategoriesResponse,
+        ) -> ListCategoriesResponseHttpRequest | None: ...
     @typing.type_check_only
     class ChainsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> ChainHttpRequest: ...

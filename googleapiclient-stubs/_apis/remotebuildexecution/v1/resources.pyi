@@ -45,6 +45,11 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+            previous_response: GoogleLongrunningListOperationsResponse,
+        ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only

@@ -50,6 +50,11 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListProductsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListProductsResponseHttpRequest,
+                previous_response: ListProductsResponse,
+            ) -> ListProductsResponseHttpRequest | None: ...
             def update(
                 self,
                 *,

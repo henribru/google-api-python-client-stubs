@@ -35,6 +35,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             showDeleted: bool = ...,
             **kwargs: typing.Any
         ) -> ListFoldersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListFoldersResponseHttpRequest,
+            previous_response: ListFoldersResponse,
+        ) -> ListFoldersResponseHttpRequest | None: ...
         def move(
             self, *, name: str, body: MoveFolderRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -49,6 +54,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def search(
             self, *, body: SearchFoldersRequest = ..., **kwargs: typing.Any
         ) -> SearchFoldersResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchFoldersResponseHttpRequest,
+            previous_response: SearchFoldersResponse,
+        ) -> SearchFoldersResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,

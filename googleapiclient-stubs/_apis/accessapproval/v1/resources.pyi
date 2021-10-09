@@ -42,6 +42,11 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListApprovalRequestsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListApprovalRequestsResponseHttpRequest,
+                previous_response: ListApprovalRequestsResponse,
+            ) -> ListApprovalRequestsResponseHttpRequest | None: ...
         def deleteAccessApprovalSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
@@ -87,6 +92,11 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListApprovalRequestsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListApprovalRequestsResponseHttpRequest,
+                previous_response: ListApprovalRequestsResponse,
+            ) -> ListApprovalRequestsResponseHttpRequest | None: ...
         def deleteAccessApprovalSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
@@ -132,6 +142,11 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListApprovalRequestsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListApprovalRequestsResponseHttpRequest,
+                previous_response: ListApprovalRequestsResponse,
+            ) -> ListApprovalRequestsResponseHttpRequest | None: ...
         def deleteAccessApprovalSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...

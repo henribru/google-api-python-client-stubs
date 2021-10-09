@@ -27,6 +27,11 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
         def cancel(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
@@ -61,6 +66,11 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAppProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAppProfilesResponseHttpRequest,
+                    previous_response: ListAppProfilesResponse,
+                ) -> ListAppProfilesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -105,6 +115,11 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListBackupsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListBackupsResponseHttpRequest,
+                        previous_response: ListBackupsResponse,
+                    ) -> ListBackupsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -144,6 +159,11 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 def list(
                     self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                 ) -> ListClustersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListClustersResponseHttpRequest,
+                    previous_response: ListClustersResponse,
+                ) -> ListClustersResponseHttpRequest | None: ...
                 def partialUpdateCluster(
                     self,
                     *,
@@ -226,6 +246,11 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ListTablesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTablesResponseHttpRequest,
+                    previous_response: ListTablesResponse,
+                ) -> ListTablesResponseHttpRequest | None: ...
                 def modifyColumnFamilies(
                     self,
                     *,
@@ -277,6 +302,11 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
             ) -> ListInstancesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListInstancesResponseHttpRequest,
+                previous_response: ListInstancesResponse,
+            ) -> ListInstancesResponseHttpRequest | None: ...
             def partialUpdateInstance(
                 self,
                 *,
@@ -319,6 +349,11 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
         def instances(self) -> InstancesResource: ...
         def locations(self) -> LocationsResource: ...
     def operations(self) -> OperationsResource: ...

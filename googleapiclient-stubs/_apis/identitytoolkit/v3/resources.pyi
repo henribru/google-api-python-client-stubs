@@ -32,6 +32,11 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             body: IdentitytoolkitRelyingpartyDownloadAccountRequest = ...,
             **kwargs: typing.Any
         ) -> DownloadAccountResponseHttpRequest: ...
+        def downloadAccount_next(
+            self,
+            previous_request: DownloadAccountResponseHttpRequest,
+            previous_response: DownloadAccountResponse,
+        ) -> DownloadAccountResponseHttpRequest | None: ...
         def emailLinkSignin(
             self,
             *,

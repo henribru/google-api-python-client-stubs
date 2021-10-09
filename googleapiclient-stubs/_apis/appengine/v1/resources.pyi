@@ -51,6 +51,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAuthorizedCertificatesResponseHttpRequest,
+                previous_response: ListAuthorizedCertificatesResponse,
+            ) -> ListAuthorizedCertificatesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -70,6 +75,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAuthorizedDomainsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAuthorizedDomainsResponseHttpRequest,
+                previous_response: ListAuthorizedDomainsResponse,
+            ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
         @typing.type_check_only
         class DomainMappingsResource(googleapiclient.discovery.Resource):
             def create(
@@ -96,6 +106,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDomainMappingsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDomainMappingsResponseHttpRequest,
+                previous_response: ListDomainMappingsResponse,
+            ) -> ListDomainMappingsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -134,6 +149,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListIngressRulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListIngressRulesResponseHttpRequest,
+                    previous_response: ListIngressRulesResponse,
+                ) -> ListIngressRulesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -158,6 +178,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -172,6 +197,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOperationsResponseHttpRequest,
+                previous_response: ListOperationsResponse,
+            ) -> ListOperationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -216,6 +246,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListInstancesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListInstancesResponseHttpRequest,
+                        previous_response: ListInstancesResponse,
+                    ) -> ListInstancesResponseHttpRequest | None: ...
                 def create(
                     self,
                     *,
@@ -251,6 +286,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     view: typing_extensions.Literal["BASIC", "FULL"] = ...,
                     **kwargs: typing.Any
                 ) -> ListVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVersionsResponseHttpRequest,
+                    previous_response: ListVersionsResponse,
+                ) -> ListVersionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -276,6 +316,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListServicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListServicesResponseHttpRequest,
+                previous_response: ListServicesResponse,
+            ) -> ListServicesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

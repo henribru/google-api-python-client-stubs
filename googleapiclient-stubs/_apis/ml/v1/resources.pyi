@@ -49,6 +49,11 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudMlV1__ListJobsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudMlV1__ListJobsResponseHttpRequest,
+                previous_response: GoogleCloudMlV1__ListJobsResponse,
+            ) -> GoogleCloudMlV1__ListJobsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -172,6 +177,11 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudMlV1__ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudMlV1__ListLocationsResponseHttpRequest,
+                previous_response: GoogleCloudMlV1__ListLocationsResponse,
+            ) -> GoogleCloudMlV1__ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def studies(self) -> StudiesResource: ...
         @typing.type_check_only
@@ -200,6 +210,11 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudMlV1__ListVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudMlV1__ListVersionsResponseHttpRequest,
+                    previous_response: GoogleCloudMlV1__ListVersionsResponse,
+                ) -> GoogleCloudMlV1__ListVersionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -244,6 +259,11 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudMlV1__ListModelsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudMlV1__ListModelsResponseHttpRequest,
+                previous_response: GoogleCloudMlV1__ListModelsResponse,
+            ) -> GoogleCloudMlV1__ListModelsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -284,6 +304,11 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunning__ListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleLongrunning__ListOperationsResponseHttpRequest,
+                previous_response: GoogleLongrunning__ListOperationsResponse,
+            ) -> GoogleLongrunning__ListOperationsResponseHttpRequest | None: ...
         def explain(
             self,
             *,

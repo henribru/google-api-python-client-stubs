@@ -24,6 +24,11 @@ class IdeahubResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             **kwargs: typing.Any
         ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest,
+            previous_response: GoogleSearchIdeahubV1alphaListIdeasResponse,
+        ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest | None: ...
     @typing.type_check_only
     class PlatformsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -59,6 +64,11 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest,
+                    previous_response: GoogleSearchIdeahubV1alphaListIdeasResponse,
+                ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest | None: ...
             @typing.type_check_only
             class LocalesResource(googleapiclient.discovery.Resource):
                 def list(
@@ -69,6 +79,11 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest,
+                    previous_response: GoogleSearchIdeahubV1alphaListAvailableLocalesResponse,
+                ) -> GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest | None: ...
             @typing.type_check_only
             class TopicStatesResource(googleapiclient.discovery.Resource):
                 def patch(

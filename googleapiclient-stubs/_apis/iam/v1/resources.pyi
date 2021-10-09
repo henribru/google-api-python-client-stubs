@@ -45,6 +45,11 @@ class IamResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal["BASIC", "FULL"] = ...,
                 **kwargs: typing.Any
             ) -> ListRolesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListRolesResponseHttpRequest,
+                previous_response: ListRolesResponse,
+            ) -> ListRolesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -66,6 +71,11 @@ class IamResource(googleapiclient.discovery.Resource):
         def queryTestablePermissions(
             self, *, body: QueryTestablePermissionsRequest = ..., **kwargs: typing.Any
         ) -> QueryTestablePermissionsResponseHttpRequest: ...
+        def queryTestablePermissions_next(
+            self,
+            previous_request: QueryTestablePermissionsResponseHttpRequest,
+            previous_response: QueryTestablePermissionsResponse,
+        ) -> QueryTestablePermissionsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -107,6 +117,11 @@ class IamResource(googleapiclient.discovery.Resource):
                         showDeleted: bool = ...,
                         **kwargs: typing.Any
                     ) -> ListWorkloadIdentityPoolProvidersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListWorkloadIdentityPoolProvidersResponseHttpRequest,
+                        previous_response: ListWorkloadIdentityPoolProvidersResponse,
+                    ) -> ListWorkloadIdentityPoolProvidersResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -146,6 +161,11 @@ class IamResource(googleapiclient.discovery.Resource):
                     showDeleted: bool = ...,
                     **kwargs: typing.Any
                 ) -> ListWorkloadIdentityPoolsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWorkloadIdentityPoolsResponseHttpRequest,
+                    previous_response: ListWorkloadIdentityPoolsResponse,
+                ) -> ListWorkloadIdentityPoolsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -187,6 +207,11 @@ class IamResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal["BASIC", "FULL"] = ...,
                 **kwargs: typing.Any
             ) -> ListRolesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListRolesResponseHttpRequest,
+                previous_response: ListRolesResponse,
+            ) -> ListRolesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -302,6 +327,11 @@ class IamResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListServiceAccountsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListServiceAccountsResponseHttpRequest,
+                previous_response: ListServiceAccountsResponse,
+            ) -> ListServiceAccountsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -356,9 +386,19 @@ class IamResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> ListRolesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListRolesResponseHttpRequest,
+            previous_response: ListRolesResponse,
+        ) -> ListRolesResponseHttpRequest | None: ...
         def queryGrantableRoles(
             self, *, body: QueryGrantableRolesRequest = ..., **kwargs: typing.Any
         ) -> QueryGrantableRolesResponseHttpRequest: ...
+        def queryGrantableRoles_next(
+            self,
+            previous_request: QueryGrantableRolesResponseHttpRequest,
+            previous_response: QueryGrantableRolesResponse,
+        ) -> QueryGrantableRolesResponseHttpRequest | None: ...
     def iamPolicies(self) -> IamPoliciesResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def permissions(self) -> PermissionsResource: ...

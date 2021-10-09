@@ -44,6 +44,11 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListGameServerConfigsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListGameServerConfigsResponseHttpRequest,
+                        previous_response: ListGameServerConfigsResponse,
+                    ) -> ListGameServerConfigsResponseHttpRequest | None: ...
                 def create(
                     self,
                     *,
@@ -85,6 +90,11 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListGameServerDeploymentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGameServerDeploymentsResponseHttpRequest,
+                    previous_response: ListGameServerDeploymentsResponse,
+                ) -> ListGameServerDeploymentsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -149,6 +159,11 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class RealmsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -186,6 +201,11 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> ListGameServerClustersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListGameServerClustersResponseHttpRequest,
+                        previous_response: ListGameServerClustersResponse,
+                    ) -> ListGameServerClustersResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -242,6 +262,11 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListRealmsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRealmsResponseHttpRequest,
+                    previous_response: ListRealmsResponse,
+                ) -> ListRealmsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -273,6 +298,11 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def gameServerDeployments(self) -> GameServerDeploymentsResource: ...
             def operations(self) -> OperationsResource: ...
             def realms(self) -> RealmsResource: ...

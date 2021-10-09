@@ -56,6 +56,11 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     startTime: str = ...,
                     **kwargs: typing.Any
                 ) -> ListJobMessagesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListJobMessagesResponseHttpRequest,
+                    previous_response: ListJobMessagesResponse,
+                ) -> ListJobMessagesResponseHttpRequest | None: ...
             @typing.type_check_only
             class WorkItemsResource(googleapiclient.discovery.Resource):
                 def lease(
@@ -92,6 +97,11 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListJobsResponseHttpRequest: ...
+            def aggregated_next(
+                self,
+                previous_request: ListJobsResponseHttpRequest,
+                previous_response: ListJobsResponse,
+            ) -> ListJobsResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -148,6 +158,11 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListJobsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListJobsResponseHttpRequest,
+                previous_response: ListJobsResponse,
+            ) -> ListJobsResponseHttpRequest | None: ...
             def snapshot(
                 self,
                 *,
@@ -224,6 +239,11 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         startTime: str = ...,
                         **kwargs: typing.Any
                     ) -> ListJobMessagesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListJobMessagesResponseHttpRequest,
+                        previous_response: ListJobMessagesResponse,
+                    ) -> ListJobMessagesResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class SnapshotsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -249,6 +269,11 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         startTime: str = ...,
                         **kwargs: typing.Any
                     ) -> StageExecutionDetailsHttpRequest: ...
+                    def getExecutionDetails_next(
+                        self,
+                        previous_request: StageExecutionDetailsHttpRequest,
+                        previous_response: StageExecutionDetails,
+                    ) -> StageExecutionDetailsHttpRequest | None: ...
                 @typing.type_check_only
                 class WorkItemsResource(googleapiclient.discovery.Resource):
                     def lease(
@@ -308,6 +333,11 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> JobExecutionDetailsHttpRequest: ...
+                def getExecutionDetails_next(
+                    self,
+                    previous_request: JobExecutionDetailsHttpRequest,
+                    previous_response: JobExecutionDetails,
+                ) -> JobExecutionDetailsHttpRequest | None: ...
                 def getMetrics(
                     self,
                     *,
@@ -335,6 +365,11 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ListJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListJobsResponseHttpRequest,
+                    previous_response: ListJobsResponse,
+                ) -> ListJobsResponseHttpRequest | None: ...
                 def snapshot(
                     self,
                     *,

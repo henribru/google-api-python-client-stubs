@@ -33,6 +33,11 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class WorkflowsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -59,6 +64,11 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListWorkflowsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWorkflowsResponseHttpRequest,
+                    previous_response: ListWorkflowsResponse,
+                ) -> ListWorkflowsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -79,6 +89,11 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def workflows(self) -> WorkflowsResource: ...
         def locations(self) -> LocationsResource: ...

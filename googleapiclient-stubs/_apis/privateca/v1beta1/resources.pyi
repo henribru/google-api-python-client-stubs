@@ -42,6 +42,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListCertificateRevocationListsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCertificateRevocationListsResponseHttpRequest,
+                        previous_response: ListCertificateRevocationListsResponse,
+                    ) -> ListCertificateRevocationListsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -89,6 +94,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListCertificatesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCertificatesResponseHttpRequest,
+                        previous_response: ListCertificatesResponse,
+                    ) -> ListCertificatesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -158,6 +168,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListCertificateAuthoritiesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCertificateAuthoritiesResponseHttpRequest,
+                    previous_response: ListCertificateAuthoritiesResponse,
+                ) -> ListCertificateAuthoritiesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -223,6 +238,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class ReusableConfigsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -245,6 +265,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListReusableConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReusableConfigsResponseHttpRequest,
+                    previous_response: ListReusableConfigsResponse,
+                ) -> ListReusableConfigsResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -271,6 +296,11 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def certificateAuthorities(self) -> CertificateAuthoritiesResource: ...
             def operations(self) -> OperationsResource: ...
             def reusableConfigs(self) -> ReusableConfigsResource: ...

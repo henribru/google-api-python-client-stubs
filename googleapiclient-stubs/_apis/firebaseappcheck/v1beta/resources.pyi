@@ -64,6 +64,11 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest,
+                    previous_response: GoogleFirebaseAppcheckV1betaListDebugTokensResponse,
+                ) -> GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -213,6 +218,11 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleFirebaseAppcheckV1betaListServicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleFirebaseAppcheckV1betaListServicesResponseHttpRequest,
+                previous_response: GoogleFirebaseAppcheckV1betaListServicesResponse,
+            ) -> GoogleFirebaseAppcheckV1betaListServicesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

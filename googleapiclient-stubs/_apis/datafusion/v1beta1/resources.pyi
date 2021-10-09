@@ -35,6 +35,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListDnsPeeringsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDnsPeeringsResponseHttpRequest,
+                        previous_response: ListDnsPeeringsResponse,
+                    ) -> ListDnsPeeringsResponseHttpRequest | None: ...
                     def remove(
                         self,
                         *,
@@ -64,6 +69,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> ListNamespacesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListNamespacesResponseHttpRequest,
+                        previous_response: ListNamespacesResponse,
+                    ) -> ListNamespacesResponseHttpRequest | None: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -109,6 +119,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListInstancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInstancesResponseHttpRequest,
+                    previous_response: ListInstancesResponse,
+                ) -> ListInstancesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -171,6 +186,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -182,6 +202,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAvailableVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAvailableVersionsResponseHttpRequest,
+                    previous_response: ListAvailableVersionsResponse,
+                ) -> ListAvailableVersionsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -195,6 +220,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def removeIamPolicy(
                 self,
                 *,

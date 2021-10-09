@@ -31,6 +31,11 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListVerificationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListVerificationsResponseHttpRequest,
+                previous_response: ListVerificationsResponse,
+            ) -> ListVerificationsResponseHttpRequest | None: ...
         def fetchVerificationOptions(
             self,
             *,

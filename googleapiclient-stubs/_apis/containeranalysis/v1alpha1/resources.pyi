@@ -27,6 +27,11 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListNoteOccurrencesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListNoteOccurrencesResponseHttpRequest,
+                    previous_response: ListNoteOccurrencesResponse,
+                ) -> ListNoteOccurrencesResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -57,6 +62,11 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListNotesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListNotesResponseHttpRequest,
+                previous_response: ListNotesResponse,
+            ) -> ListNotesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -136,6 +146,11 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOccurrencesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOccurrencesResponseHttpRequest,
+                previous_response: ListOccurrencesResponse,
+            ) -> ListOccurrencesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -188,6 +203,11 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListScanConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListScanConfigsResponseHttpRequest,
+                previous_response: ListScanConfigsResponse,
+            ) -> ListScanConfigsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -215,6 +235,11 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListNoteOccurrencesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListNoteOccurrencesResponseHttpRequest,
+                    previous_response: ListNoteOccurrencesResponse,
+                ) -> ListNoteOccurrencesResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -245,6 +270,11 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 parent: str = ...,
                 **kwargs: typing.Any
             ) -> ListNotesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListNotesResponseHttpRequest,
+                previous_response: ListNotesResponse,
+            ) -> ListNotesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

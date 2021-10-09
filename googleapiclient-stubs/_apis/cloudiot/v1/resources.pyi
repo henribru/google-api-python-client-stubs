@@ -63,6 +63,11 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListDevicesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDevicesResponseHttpRequest,
+                        previous_response: ListDevicesResponse,
+                    ) -> ListDevicesResponseHttpRequest | None: ...
                     def modifyCloudToDeviceConfig(
                         self,
                         *,
@@ -107,6 +112,11 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListDevicesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListDevicesResponseHttpRequest,
+                            previous_response: ListDevicesResponse,
+                        ) -> ListDevicesResponseHttpRequest | None: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -164,6 +174,11 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDeviceRegistriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDeviceRegistriesResponseHttpRequest,
+                    previous_response: ListDeviceRegistriesResponse,
+                ) -> ListDeviceRegistriesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

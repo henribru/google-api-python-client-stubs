@@ -37,6 +37,11 @@ class LicensingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> LicenseAssignmentListHttpRequest: ...
+        def listForProduct_next(
+            self,
+            previous_request: LicenseAssignmentListHttpRequest,
+            previous_response: LicenseAssignmentList,
+        ) -> LicenseAssignmentListHttpRequest | None: ...
         def listForProductAndSku(
             self,
             *,
@@ -47,6 +52,11 @@ class LicensingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> LicenseAssignmentListHttpRequest: ...
+        def listForProductAndSku_next(
+            self,
+            previous_request: LicenseAssignmentListHttpRequest,
+            previous_response: LicenseAssignmentList,
+        ) -> LicenseAssignmentListHttpRequest | None: ...
         def patch(
             self,
             *,

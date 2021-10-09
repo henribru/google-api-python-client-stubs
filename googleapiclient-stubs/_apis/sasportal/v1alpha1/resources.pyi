@@ -41,6 +41,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: SasPortalListDevicesResponseHttpRequest,
+                    previous_response: SasPortalListDevicesResponse,
+                ) -> SasPortalListDevicesResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -63,6 +68,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> SasPortalListDeploymentsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: SasPortalListDeploymentsResponseHttpRequest,
+                previous_response: SasPortalListDeploymentsResponse,
+            ) -> SasPortalListDeploymentsResponseHttpRequest | None: ...
             def move(
                 self,
                 *,
@@ -106,6 +116,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> SasPortalListDevicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: SasPortalListDevicesResponseHttpRequest,
+                previous_response: SasPortalListDevicesResponse,
+            ) -> SasPortalListDevicesResponseHttpRequest | None: ...
             def move(
                 self,
                 *,
@@ -155,6 +170,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListDeploymentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: SasPortalListDeploymentsResponseHttpRequest,
+                    previous_response: SasPortalListDeploymentsResponse,
+                ) -> SasPortalListDeploymentsResponseHttpRequest | None: ...
             @typing.type_check_only
             class DevicesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -180,6 +200,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: SasPortalListDevicesResponseHttpRequest,
+                    previous_response: SasPortalListDevicesResponse,
+                ) -> SasPortalListDevicesResponseHttpRequest | None: ...
             @typing.type_check_only
             class NodesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -198,6 +223,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListNodesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: SasPortalListNodesResponseHttpRequest,
+                    previous_response: SasPortalListNodesResponse,
+                ) -> SasPortalListNodesResponseHttpRequest | None: ...
             def create(
                 self, *, parent: str, body: SasPortalNode = ..., **kwargs: typing.Any
             ) -> SasPortalNodeHttpRequest: ...
@@ -216,6 +246,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> SasPortalListNodesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: SasPortalListNodesResponseHttpRequest,
+                previous_response: SasPortalListNodesResponse,
+            ) -> SasPortalListNodesResponseHttpRequest | None: ...
             def move(
                 self,
                 *,
@@ -240,6 +275,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> SasPortalListCustomersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SasPortalListCustomersResponseHttpRequest,
+            previous_response: SasPortalListCustomersResponse,
+        ) -> SasPortalListCustomersResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -331,6 +371,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: SasPortalListDevicesResponseHttpRequest,
+                    previous_response: SasPortalListDevicesResponse,
+                ) -> SasPortalListDevicesResponseHttpRequest | None: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> SasPortalEmptyHttpRequest: ...
@@ -346,6 +391,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> SasPortalListDeploymentsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: SasPortalListDeploymentsResponseHttpRequest,
+                previous_response: SasPortalListDeploymentsResponse,
+            ) -> SasPortalListDeploymentsResponseHttpRequest | None: ...
             def move(
                 self,
                 *,
@@ -389,6 +439,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> SasPortalListDevicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: SasPortalListDevicesResponseHttpRequest,
+                previous_response: SasPortalListDevicesResponse,
+            ) -> SasPortalListDevicesResponseHttpRequest | None: ...
             def move(
                 self,
                 *,
@@ -438,6 +493,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListDeploymentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: SasPortalListDeploymentsResponseHttpRequest,
+                    previous_response: SasPortalListDeploymentsResponse,
+                ) -> SasPortalListDeploymentsResponseHttpRequest | None: ...
             @typing.type_check_only
             class DevicesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -463,6 +523,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: SasPortalListDevicesResponseHttpRequest,
+                    previous_response: SasPortalListDevicesResponse,
+                ) -> SasPortalListDevicesResponseHttpRequest | None: ...
             @typing.type_check_only
             class NodesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -481,6 +546,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> SasPortalListNodesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: SasPortalListNodesResponseHttpRequest,
+                    previous_response: SasPortalListNodesResponse,
+                ) -> SasPortalListNodesResponseHttpRequest | None: ...
             def create(
                 self, *, parent: str, body: SasPortalNode = ..., **kwargs: typing.Any
             ) -> SasPortalNodeHttpRequest: ...
@@ -499,6 +569,11 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> SasPortalListNodesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: SasPortalListNodesResponseHttpRequest,
+                previous_response: SasPortalListNodesResponse,
+            ) -> SasPortalListNodesResponseHttpRequest | None: ...
             def move(
                 self,
                 *,

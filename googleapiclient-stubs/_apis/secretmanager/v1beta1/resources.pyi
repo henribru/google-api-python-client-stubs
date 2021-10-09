@@ -28,6 +28,11 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class SecretsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -67,6 +72,11 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListSecretVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSecretVersionsResponseHttpRequest,
+                    previous_response: ListSecretVersionsResponse,
+                ) -> ListSecretVersionsResponseHttpRequest | None: ...
             def addVersion(
                 self,
                 *,
@@ -101,6 +111,11 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSecretsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSecretsResponseHttpRequest,
+                previous_response: ListSecretsResponse,
+            ) -> ListSecretsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

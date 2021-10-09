@@ -52,6 +52,11 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListHubsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListHubsResponseHttpRequest,
+                        previous_response: ListHubsResponse,
+                    ) -> ListHubsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -123,6 +128,11 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class SpokesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -157,6 +167,11 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListSpokesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSpokesResponseHttpRequest,
+                    previous_response: ListSpokesResponse,
+                ) -> ListSpokesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -192,6 +207,11 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def global_(self) -> GlobalResource: ...
             def internalRanges(self) -> InternalRangesResource: ...
             def operations(self) -> OperationsResource: ...

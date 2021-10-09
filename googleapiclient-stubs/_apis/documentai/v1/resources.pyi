@@ -38,6 +38,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class ProcessorsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -79,6 +84,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDocumentaiV1ListProcessorVersionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDocumentaiV1ListProcessorVersionsResponseHttpRequest,
+                        previous_response: GoogleCloudDocumentaiV1ListProcessorVersionsResponse,
+                    ) -> GoogleCloudDocumentaiV1ListProcessorVersionsResponseHttpRequest | None: ...
                     def process(
                         self,
                         *,
@@ -135,6 +145,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDocumentaiV1ListProcessorsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDocumentaiV1ListProcessorsResponseHttpRequest,
+                    previous_response: GoogleCloudDocumentaiV1ListProcessorsResponse,
+                ) -> GoogleCloudDocumentaiV1ListProcessorsResponseHttpRequest | None: ...
                 def process(
                     self,
                     *,
@@ -166,6 +181,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
+                previous_response: GoogleCloudLocationListLocationsResponse,
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def processors(self) -> ProcessorsResource: ...
         @typing.type_check_only
@@ -198,6 +218,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                        previous_response: GoogleLongrunningListOperationsResponse,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudLocationLocationHttpRequest: ...
@@ -210,6 +235,11 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
+                    previous_response: GoogleCloudLocationListLocationsResponse,
+                ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
                 def operations(self) -> OperationsResource: ...
             def locations(self) -> LocationsResource: ...
         def projects(self) -> ProjectsResource: ...

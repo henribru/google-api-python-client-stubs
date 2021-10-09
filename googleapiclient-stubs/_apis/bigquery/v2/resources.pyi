@@ -38,6 +38,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> DatasetListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: DatasetListHttpRequest,
+            previous_response: DatasetList,
+        ) -> DatasetListHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -92,6 +97,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             timeoutMs: int = ...,
             **kwargs: typing.Any
         ) -> GetQueryResultsResponseHttpRequest: ...
+        def getQueryResults_next(
+            self,
+            previous_request: GetQueryResultsResponseHttpRequest,
+            previous_response: GetQueryResultsResponse,
+        ) -> GetQueryResultsResponseHttpRequest | None: ...
         def insert(
             self, *, projectId: str, body: Job = ..., **kwargs: typing.Any
         ) -> JobHttpRequest: ...
@@ -110,6 +120,9 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             | _list[typing_extensions.Literal["done", "pending", "running"]] = ...,
             **kwargs: typing.Any
         ) -> JobListHttpRequest: ...
+        def list_next(
+            self, previous_request: JobListHttpRequest, previous_response: JobList
+        ) -> JobListHttpRequest | None: ...
         def query(
             self, *, projectId: str, body: QueryRequest = ..., **kwargs: typing.Any
         ) -> QueryResponseHttpRequest: ...
@@ -130,6 +143,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListModelsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListModelsResponseHttpRequest,
+            previous_response: ListModelsResponse,
+        ) -> ListModelsResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -147,6 +165,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
         def list(
             self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ProjectListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ProjectListHttpRequest,
+            previous_response: ProjectList,
+        ) -> ProjectListHttpRequest | None: ...
     @typing.type_check_only
     class RoutinesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -185,6 +208,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             readMask: str = ...,
             **kwargs: typing.Any
         ) -> ListRoutinesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListRoutinesResponseHttpRequest,
+            previous_response: ListRoutinesResponse,
+        ) -> ListRoutinesResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -213,6 +241,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListRowAccessPoliciesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListRowAccessPoliciesResponseHttpRequest,
+            previous_response: ListRowAccessPoliciesResponse,
+        ) -> ListRowAccessPoliciesResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,
@@ -250,6 +283,11 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             startIndex: str = ...,
             **kwargs: typing.Any
         ) -> TableDataListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: TableDataListHttpRequest,
+            previous_response: TableDataList,
+        ) -> TableDataListHttpRequest | None: ...
     @typing.type_check_only
     class TablesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -288,6 +326,9 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> TableListHttpRequest: ...
+        def list_next(
+            self, previous_request: TableListHttpRequest, previous_response: TableList
+        ) -> TableListHttpRequest | None: ...
         def patch(
             self,
             *,

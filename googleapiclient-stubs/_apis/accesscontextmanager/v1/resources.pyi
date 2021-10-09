@@ -42,6 +42,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAccessLevelsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAccessLevelsResponseHttpRequest,
+                previous_response: ListAccessLevelsResponse,
+            ) -> ListAccessLevelsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -83,6 +88,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListServicePerimetersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListServicePerimetersResponseHttpRequest,
+                previous_response: ListServicePerimetersResponse,
+            ) -> ListServicePerimetersResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -115,6 +125,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             **kwargs: typing.Any
         ) -> ListAccessPoliciesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAccessPoliciesResponseHttpRequest,
+            previous_response: ListAccessPoliciesResponse,
+        ) -> ListAccessPoliciesResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -141,6 +156,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -166,6 +186,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListGcpUserAccessBindingsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListGcpUserAccessBindingsResponseHttpRequest,
+                previous_response: ListGcpUserAccessBindingsResponse,
+            ) -> ListGcpUserAccessBindingsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

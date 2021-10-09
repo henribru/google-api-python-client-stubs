@@ -26,6 +26,9 @@ class TasksResource(googleapiclient.discovery.Resource):
         def list(
             self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> TaskListsHttpRequest: ...
+        def list_next(
+            self, previous_request: TaskListsHttpRequest, previous_response: TaskLists
+        ) -> TaskListsHttpRequest | None: ...
         def patch(
             self, *, tasklist: str, body: TaskList = ..., **kwargs: typing.Any
         ) -> TaskListHttpRequest: ...
@@ -68,6 +71,9 @@ class TasksResource(googleapiclient.discovery.Resource):
             updatedMin: str = ...,
             **kwargs: typing.Any
         ) -> TasksHttpRequest: ...
+        def list_next(
+            self, previous_request: TasksHttpRequest, previous_response: Tasks
+        ) -> TasksHttpRequest | None: ...
         def move(
             self,
             *,

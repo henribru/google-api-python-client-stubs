@@ -36,6 +36,11 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListGlossariesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGlossariesResponseHttpRequest,
+                    previous_response: ListGlossariesResponse,
+                ) -> ListGlossariesResponseHttpRequest | None: ...
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -60,6 +65,11 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
                 def wait(
                     self,
                     *,
@@ -108,6 +118,11 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def translateDocument(
                 self,
                 *,

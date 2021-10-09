@@ -60,6 +60,11 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListGroupsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListGroupsResponseHttpRequest,
+            previous_response: ListGroupsResponse,
+        ) -> ListGroupsResponseHttpRequest | None: ...
         def update(
             self,
             *,

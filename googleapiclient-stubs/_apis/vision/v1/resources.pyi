@@ -52,6 +52,11 @@ class VisionResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -137,6 +142,11 @@ class VisionResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListProductsInProductSetResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListProductsInProductSetResponseHttpRequest,
+                        previous_response: ListProductsInProductSetResponse,
+                    ) -> ListProductsInProductSetResponseHttpRequest | None: ...
                 def addProduct(
                     self,
                     *,
@@ -173,6 +183,11 @@ class VisionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListProductSetsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListProductSetsResponseHttpRequest,
+                    previous_response: ListProductSetsResponse,
+                ) -> ListProductSetsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -215,6 +230,11 @@ class VisionResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListReferenceImagesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListReferenceImagesResponseHttpRequest,
+                        previous_response: ListReferenceImagesResponse,
+                    ) -> ListReferenceImagesResponseHttpRequest | None: ...
                 def create(
                     self,
                     *,
@@ -237,6 +257,11 @@ class VisionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListProductsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListProductsResponseHttpRequest,
+                    previous_response: ListProductsResponse,
+                ) -> ListProductsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

@@ -23,6 +23,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             query: str = ...,
             **kwargs: typing.Any
         ) -> SearchAllIamPoliciesResponseHttpRequest: ...
+        def searchAll_next(
+            self,
+            previous_request: SearchAllIamPoliciesResponseHttpRequest,
+            previous_response: SearchAllIamPoliciesResponse,
+        ) -> SearchAllIamPoliciesResponseHttpRequest | None: ...
     @typing.type_check_only
     class ResourcesResource(googleapiclient.discovery.Resource):
         def searchAll(
@@ -36,6 +41,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             query: str = ...,
             **kwargs: typing.Any
         ) -> SearchAllResourcesResponseHttpRequest: ...
+        def searchAll_next(
+            self,
+            previous_request: SearchAllResourcesResponseHttpRequest,
+            previous_response: SearchAllResourcesResponse,
+        ) -> SearchAllResourcesResponseHttpRequest | None: ...
     def iamPolicies(self) -> IamPoliciesResource: ...
     def resources(self) -> ResourcesResource: ...
 

@@ -50,6 +50,11 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> ListTasksResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTasksResponseHttpRequest,
+                        previous_response: ListTasksResponse,
+                    ) -> ListTasksResponseHttpRequest | None: ...
                     def run(
                         self,
                         *,
@@ -83,6 +88,11 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                     readMask: str = ...,
                     **kwargs: typing.Any
                 ) -> ListQueuesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListQueuesResponseHttpRequest,
+                    previous_response: ListQueuesResponse,
+                ) -> ListQueuesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -139,6 +149,11 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def queues(self) -> QueuesResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...

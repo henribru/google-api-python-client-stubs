@@ -41,6 +41,11 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListCapacityCommitmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCapacityCommitmentsResponseHttpRequest,
+                    previous_response: ListCapacityCommitmentsResponse,
+                ) -> ListCapacityCommitmentsResponseHttpRequest | None: ...
                 def merge(
                     self,
                     *,
@@ -86,6 +91,11 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListAssignmentsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAssignmentsResponseHttpRequest,
+                        previous_response: ListAssignmentsResponse,
+                    ) -> ListAssignmentsResponseHttpRequest | None: ...
                     def move(
                         self,
                         *,
@@ -115,6 +125,11 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListReservationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReservationsResponseHttpRequest,
+                    previous_response: ListReservationsResponse,
+                ) -> ListReservationsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -136,6 +151,11 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 query: str = ...,
                 **kwargs: typing.Any
             ) -> SearchAllAssignmentsResponseHttpRequest: ...
+            def searchAllAssignments_next(
+                self,
+                previous_request: SearchAllAssignmentsResponseHttpRequest,
+                previous_response: SearchAllAssignmentsResponse,
+            ) -> SearchAllAssignmentsResponseHttpRequest | None: ...
             def searchAssignments(
                 self,
                 *,
@@ -145,6 +165,11 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 query: str = ...,
                 **kwargs: typing.Any
             ) -> SearchAssignmentsResponseHttpRequest: ...
+            def searchAssignments_next(
+                self,
+                previous_request: SearchAssignmentsResponseHttpRequest,
+                previous_response: SearchAssignmentsResponse,
+            ) -> SearchAssignmentsResponseHttpRequest | None: ...
             def updateBiReservation(
                 self,
                 *,

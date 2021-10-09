@@ -46,6 +46,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudChannelV1ListCustomersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudChannelV1ListCustomersResponseHttpRequest,
+                    previous_response: GoogleCloudChannelV1ListCustomersResponse,
+                ) -> GoogleCloudChannelV1ListCustomersResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -77,6 +82,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal["UNSPECIFIED", "BASIC", "FULL"] = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest,
+                previous_response: GoogleCloudChannelV1ListChannelPartnerLinksResponse,
+            ) -> GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -142,6 +152,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudChannelV1ListEntitlementsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudChannelV1ListEntitlementsResponseHttpRequest,
+                    previous_response: GoogleCloudChannelV1ListEntitlementsResponse,
+                ) -> GoogleCloudChannelV1ListEntitlementsResponseHttpRequest | None: ...
                 def lookupOffer(
                     self, *, entitlement: str, **kwargs: typing.Any
                 ) -> GoogleCloudChannelV1OfferHttpRequest: ...
@@ -187,6 +202,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudChannelV1ListCustomersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudChannelV1ListCustomersResponseHttpRequest,
+                previous_response: GoogleCloudChannelV1ListCustomersResponse,
+            ) -> GoogleCloudChannelV1ListCustomersResponseHttpRequest | None: ...
             def listPurchasableOffers(
                 self,
                 *,
@@ -199,6 +219,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudChannelV1ListPurchasableOffersResponseHttpRequest: ...
+            def listPurchasableOffers_next(
+                self,
+                previous_request: GoogleCloudChannelV1ListPurchasableOffersResponseHttpRequest,
+                previous_response: GoogleCloudChannelV1ListPurchasableOffersResponse,
+            ) -> GoogleCloudChannelV1ListPurchasableOffersResponseHttpRequest | None: ...
             def listPurchasableSkus(
                 self,
                 *,
@@ -213,6 +238,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudChannelV1ListPurchasableSkusResponseHttpRequest: ...
+            def listPurchasableSkus_next(
+                self,
+                previous_request: GoogleCloudChannelV1ListPurchasableSkusResponseHttpRequest,
+                previous_response: GoogleCloudChannelV1ListPurchasableSkusResponse,
+            ) -> GoogleCloudChannelV1ListPurchasableSkusResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -255,6 +285,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudChannelV1ListOffersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudChannelV1ListOffersResponseHttpRequest,
+                previous_response: GoogleCloudChannelV1ListOffersResponse,
+            ) -> GoogleCloudChannelV1ListOffersResponseHttpRequest | None: ...
         def checkCloudIdentityAccountsExist(
             self,
             *,
@@ -270,6 +305,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudChannelV1ListSubscribersResponseHttpRequest: ...
+        def listSubscribers_next(
+            self,
+            previous_request: GoogleCloudChannelV1ListSubscribersResponseHttpRequest,
+            previous_response: GoogleCloudChannelV1ListSubscribersResponse,
+        ) -> GoogleCloudChannelV1ListSubscribersResponseHttpRequest | None: ...
         def listTransferableOffers(
             self,
             *,
@@ -277,6 +317,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             body: GoogleCloudChannelV1ListTransferableOffersRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudChannelV1ListTransferableOffersResponseHttpRequest: ...
+        def listTransferableOffers_next(
+            self,
+            previous_request: GoogleCloudChannelV1ListTransferableOffersResponseHttpRequest,
+            previous_response: GoogleCloudChannelV1ListTransferableOffersResponse,
+        ) -> GoogleCloudChannelV1ListTransferableOffersResponseHttpRequest | None: ...
         def listTransferableSkus(
             self,
             *,
@@ -284,6 +329,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             body: GoogleCloudChannelV1ListTransferableSkusRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudChannelV1ListTransferableSkusResponseHttpRequest: ...
+        def listTransferableSkus_next(
+            self,
+            previous_request: GoogleCloudChannelV1ListTransferableSkusResponseHttpRequest,
+            previous_response: GoogleCloudChannelV1ListTransferableSkusResponse,
+        ) -> GoogleCloudChannelV1ListTransferableSkusResponseHttpRequest | None: ...
         def register(
             self,
             *,
@@ -325,6 +375,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+            previous_response: GoogleLongrunningListOperationsResponse,
+        ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ProductsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -339,6 +394,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudChannelV1ListSkusResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudChannelV1ListSkusResponseHttpRequest,
+                previous_response: GoogleCloudChannelV1ListSkusResponse,
+            ) -> GoogleCloudChannelV1ListSkusResponseHttpRequest | None: ...
         def list(
             self,
             *,
@@ -348,6 +408,11 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudChannelV1ListProductsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleCloudChannelV1ListProductsResponseHttpRequest,
+            previous_response: GoogleCloudChannelV1ListProductsResponse,
+        ) -> GoogleCloudChannelV1ListProductsResponseHttpRequest | None: ...
         def skus(self) -> SkusResource: ...
     def accounts(self) -> AccountsResource: ...
     def operations(self) -> OperationsResource: ...

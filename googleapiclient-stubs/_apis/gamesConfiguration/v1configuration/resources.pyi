@@ -35,6 +35,11 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> AchievementConfigurationListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: AchievementConfigurationListResponseHttpRequest,
+            previous_response: AchievementConfigurationListResponse,
+        ) -> AchievementConfigurationListResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -76,6 +81,11 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> LeaderboardConfigurationListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: LeaderboardConfigurationListResponseHttpRequest,
+            previous_response: LeaderboardConfigurationListResponse,
+        ) -> LeaderboardConfigurationListResponseHttpRequest | None: ...
         def update(
             self,
             *,

@@ -37,6 +37,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             showDeleted: bool = ...,
             **kwargs: typing.Any
         ) -> ListFoldersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListFoldersResponseHttpRequest,
+            previous_response: ListFoldersResponse,
+        ) -> ListFoldersResponseHttpRequest | None: ...
         def move(
             self, *, name: str, body: MoveFolderRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -56,6 +61,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             query: str = ...,
             **kwargs: typing.Any
         ) -> SearchFoldersResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchFoldersResponseHttpRequest,
+            previous_response: SearchFoldersResponse,
+        ) -> SearchFoldersResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,
@@ -88,6 +98,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             **kwargs: typing.Any
         ) -> ListLiensResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListLiensResponseHttpRequest,
+            previous_response: ListLiensResponse,
+        ) -> ListLiensResponseHttpRequest | None: ...
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
@@ -111,6 +126,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             query: str = ...,
             **kwargs: typing.Any
         ) -> SearchOrganizationsResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchOrganizationsResponseHttpRequest,
+            previous_response: SearchOrganizationsResponse,
+        ) -> SearchOrganizationsResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,
@@ -150,6 +170,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             showDeleted: bool = ...,
             **kwargs: typing.Any
         ) -> ListProjectsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListProjectsResponseHttpRequest,
+            previous_response: ListProjectsResponse,
+        ) -> ListProjectsResponseHttpRequest | None: ...
         def move(
             self, *, name: str, body: MoveProjectRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -169,6 +194,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             query: str = ...,
             **kwargs: typing.Any
         ) -> SearchProjectsResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchProjectsResponseHttpRequest,
+            previous_response: SearchProjectsResponse,
+        ) -> SearchProjectsResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,
@@ -206,6 +236,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             **kwargs: typing.Any
         ) -> ListTagBindingsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListTagBindingsResponseHttpRequest,
+            previous_response: ListTagBindingsResponse,
+        ) -> ListTagBindingsResponseHttpRequest | None: ...
     @typing.type_check_only
     class TagKeysResource(googleapiclient.discovery.Resource):
         def create(
@@ -235,6 +270,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             **kwargs: typing.Any
         ) -> ListTagKeysResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListTagKeysResponseHttpRequest,
+            previous_response: ListTagKeysResponse,
+        ) -> ListTagKeysResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -291,6 +331,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             **kwargs: typing.Any
         ) -> ListTagValuesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListTagValuesResponseHttpRequest,
+            previous_response: ListTagValuesResponse,
+        ) -> ListTagValuesResponseHttpRequest | None: ...
         def patch(
             self,
             *,

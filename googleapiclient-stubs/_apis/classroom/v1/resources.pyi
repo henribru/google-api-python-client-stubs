@@ -30,6 +30,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListCourseAliasesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCourseAliasesResponseHttpRequest,
+                previous_response: ListCourseAliasesResponse,
+            ) -> ListCourseAliasesResponseHttpRequest | None: ...
         @typing.type_check_only
         class AnnouncementsResource(googleapiclient.discovery.Resource):
             def create(
@@ -61,6 +66,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAnnouncementsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAnnouncementsResponseHttpRequest,
+                previous_response: ListAnnouncementsResponse,
+            ) -> ListAnnouncementsResponseHttpRequest | None: ...
             def modifyAssignees(
                 self,
                 *,
@@ -121,6 +131,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     userId: str = ...,
                     **kwargs: typing.Any
                 ) -> ListStudentSubmissionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListStudentSubmissionsResponseHttpRequest,
+                    previous_response: ListStudentSubmissionsResponse,
+                ) -> ListStudentSubmissionsResponseHttpRequest | None: ...
                 def modifyAttachments(
                     self,
                     *,
@@ -193,6 +208,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListCourseWorkResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCourseWorkResponseHttpRequest,
+                previous_response: ListCourseWorkResponse,
+            ) -> ListCourseWorkResponseHttpRequest | None: ...
             def modifyAssignees(
                 self,
                 *,
@@ -251,6 +271,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListCourseWorkMaterialResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCourseWorkMaterialResponseHttpRequest,
+                previous_response: ListCourseWorkMaterialResponse,
+            ) -> ListCourseWorkMaterialResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -284,6 +309,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListStudentsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListStudentsResponseHttpRequest,
+                previous_response: ListStudentsResponse,
+            ) -> ListStudentsResponseHttpRequest | None: ...
         @typing.type_check_only
         class TeachersResource(googleapiclient.discovery.Resource):
             def create(
@@ -303,6 +333,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTeachersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTeachersResponseHttpRequest,
+                previous_response: ListTeachersResponse,
+            ) -> ListTeachersResponseHttpRequest | None: ...
         @typing.type_check_only
         class TopicsResource(googleapiclient.discovery.Resource):
             def create(
@@ -322,6 +357,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTopicResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTopicResponseHttpRequest,
+                previous_response: ListTopicResponse,
+            ) -> ListTopicResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -363,6 +403,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             teacherId: str = ...,
             **kwargs: typing.Any
         ) -> ListCoursesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCoursesResponseHttpRequest,
+            previous_response: ListCoursesResponse,
+        ) -> ListCoursesResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -398,6 +443,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             userId: str = ...,
             **kwargs: typing.Any
         ) -> ListInvitationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListInvitationsResponseHttpRequest,
+            previous_response: ListInvitationsResponse,
+        ) -> ListInvitationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class RegistrationsResource(googleapiclient.discovery.Resource):
         def create(
@@ -437,6 +487,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListGuardianInvitationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListGuardianInvitationsResponseHttpRequest,
+                previous_response: ListGuardianInvitationsResponse,
+            ) -> ListGuardianInvitationsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -463,6 +518,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListGuardiansResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListGuardiansResponseHttpRequest,
+                previous_response: ListGuardiansResponse,
+            ) -> ListGuardiansResponseHttpRequest | None: ...
         def get(
             self, *, userId: str, **kwargs: typing.Any
         ) -> UserProfileHttpRequest: ...

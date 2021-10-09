@@ -78,6 +78,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListEntityTypesResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -104,6 +109,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListIntentsResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class UsersResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -131,6 +141,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                 pageToken: str = ...,
                                 **kwargs: typing.Any
                             ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
+                            def list_next(
+                                self,
+                                previous_request: GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest,
+                                previous_response: GoogleCloudDialogflowV2beta1ListContextsResponse,
+                            ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest | None: ...
                             def patch(
                                 self,
                                 *,
@@ -162,6 +177,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                 pageToken: str = ...,
                                 **kwargs: typing.Any
                             ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
+                            def list_next(
+                                self,
+                                previous_request: GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest,
+                                previous_response: GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse,
+                            ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest | None: ...
                             def patch(
                                 self,
                                 *,
@@ -205,6 +225,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1EnvironmentHistoryHttpRequest: ...
+                def getHistory_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1EnvironmentHistoryHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1EnvironmentHistory,
+                ) -> GoogleCloudDialogflowV2beta1EnvironmentHistoryHttpRequest | None: ...
                 def list(
                     self,
                     *,
@@ -213,6 +238,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListEnvironmentsResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -276,6 +306,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListIntentsResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -315,6 +350,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListDocumentsResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -352,6 +392,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -386,6 +431,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListContextsResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -417,6 +467,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -460,6 +515,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListVersionsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListVersionsResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListVersionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -503,6 +563,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest: ...
+            def search_next(
+                self,
+                previous_request: GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest,
+                previous_response: GoogleCloudDialogflowV2beta1SearchAgentsResponse,
+            ) -> GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest | None: ...
             def train(
                 self,
                 *,
@@ -537,6 +602,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest,
+                previous_response: GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse,
+            ) -> GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -568,6 +638,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1ListConversationProfilesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDialogflowV2beta1ListConversationProfilesResponseHttpRequest,
+                previous_response: GoogleCloudDialogflowV2beta1ListConversationProfilesResponse,
+            ) -> GoogleCloudDialogflowV2beta1ListConversationProfilesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -596,6 +671,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListMessagesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListMessagesResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListMessagesResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListMessagesResponseHttpRequest | None: ...
             @typing.type_check_only
             class ParticipantsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -616,6 +696,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListSuggestionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListSuggestionsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListSuggestionsResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListSuggestionsResponseHttpRequest | None: ...
                     def suggestArticles(
                         self,
                         *,
@@ -662,6 +747,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListParticipantsResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -698,6 +788,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1ListConversationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDialogflowV2beta1ListConversationsResponseHttpRequest,
+                previous_response: GoogleCloudDialogflowV2beta1ListConversationsResponse,
+            ) -> GoogleCloudDialogflowV2beta1ListConversationsResponseHttpRequest | None: ...
             def messages(self) -> MessagesResource: ...
             def participants(self) -> ParticipantsResource: ...
         @typing.type_check_only
@@ -734,6 +829,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListDocumentsResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -771,6 +871,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest,
+                previous_response: GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse,
+            ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -850,6 +955,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListEntityTypesResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListEntityTypesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -876,6 +986,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest,
+                            previous_response: GoogleCloudDialogflowV2beta1ListIntentsResponse,
+                        ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest | None: ...
                     @typing.type_check_only
                     class UsersResource(googleapiclient.discovery.Resource):
                         @typing.type_check_only
@@ -903,6 +1018,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                     pageToken: str = ...,
                                     **kwargs: typing.Any
                                 ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
+                                def list_next(
+                                    self,
+                                    previous_request: GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest,
+                                    previous_response: GoogleCloudDialogflowV2beta1ListContextsResponse,
+                                ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest | None: ...
                                 def patch(
                                     self,
                                     *,
@@ -936,6 +1056,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                     pageToken: str = ...,
                                     **kwargs: typing.Any
                                 ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
+                                def list_next(
+                                    self,
+                                    previous_request: GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest,
+                                    previous_response: GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse,
+                                ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest | None: ...
                                 def patch(
                                     self,
                                     *,
@@ -979,6 +1104,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1EnvironmentHistoryHttpRequest: ...
+                    def getHistory_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1EnvironmentHistoryHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1EnvironmentHistory,
+                    ) -> GoogleCloudDialogflowV2beta1EnvironmentHistoryHttpRequest | None: ...
                     def list(
                         self,
                         *,
@@ -987,6 +1117,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListEnvironmentsResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListEnvironmentsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -1050,6 +1185,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListIntentsResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListIntentsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -1087,6 +1227,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest,
+                            previous_response: GoogleCloudDialogflowV2beta1ListContextsResponse,
+                        ) -> GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -1118,6 +1263,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest,
+                            previous_response: GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse,
+                        ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -1161,6 +1311,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListVersionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListVersionsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListVersionsResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListVersionsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -1204,6 +1359,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest: ...
+                def search_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1SearchAgentsResponse,
+                ) -> GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest | None: ...
                 def train(
                     self,
                     *,
@@ -1237,6 +1397,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -1268,6 +1433,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListConversationProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListConversationProfilesResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListConversationProfilesResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListConversationProfilesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -1296,6 +1466,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListMessagesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListMessagesResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListMessagesResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListMessagesResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class ParticipantsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -1346,6 +1521,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListParticipantsResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -1382,6 +1562,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListConversationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListConversationsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListConversationsResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListConversationsResponseHttpRequest | None: ...
                 def messages(self) -> MessagesResource: ...
                 def participants(self) -> ParticipantsResource: ...
             @typing.type_check_only
@@ -1418,6 +1603,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2beta1ListDocumentsResponse,
+                    ) -> GoogleCloudDialogflowV2beta1ListDocumentsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -1455,6 +1645,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponse,
+                ) -> GoogleCloudDialogflowV2beta1ListKnowledgeBasesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -1481,6 +1676,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
             def deleteAgent(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -1499,6 +1699,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
+                previous_response: GoogleCloudLocationListLocationsResponse,
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
             def setAgent(
                 self,
                 *,
@@ -1530,6 +1735,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                previous_response: GoogleLongrunningListOperationsResponse,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
         def deleteAgent(
             self, *, parent: str, **kwargs: typing.Any
         ) -> GoogleProtobufEmptyHttpRequest: ...

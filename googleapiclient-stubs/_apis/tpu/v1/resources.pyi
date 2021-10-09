@@ -31,6 +31,11 @@ class TPUResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAcceleratorTypesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAcceleratorTypesResponseHttpRequest,
+                    previous_response: ListAcceleratorTypesResponse,
+                ) -> ListAcceleratorTypesResponseHttpRequest | None: ...
             @typing.type_check_only
             class NodesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -55,6 +60,11 @@ class TPUResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListNodesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListNodesResponseHttpRequest,
+                    previous_response: ListNodesResponse,
+                ) -> ListNodesResponseHttpRequest | None: ...
                 def reimage(
                     self,
                     *,
@@ -96,6 +106,11 @@ class TPUResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class TensorflowVersionsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -111,6 +126,11 @@ class TPUResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListTensorFlowVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTensorFlowVersionsResponseHttpRequest,
+                    previous_response: ListTensorFlowVersionsResponse,
+                ) -> ListTensorFlowVersionsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -123,6 +143,11 @@ class TPUResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def acceleratorTypes(self) -> AcceleratorTypesResource: ...
             def nodes(self) -> NodesResource: ...
             def operations(self) -> OperationsResource: ...

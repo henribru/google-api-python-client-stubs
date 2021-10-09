@@ -58,6 +58,11 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListEnvironmentsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListEnvironmentsResponseHttpRequest,
+                        previous_response: ListEnvironmentsResponse,
+                    ) -> ListEnvironmentsResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class StepsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -101,6 +106,11 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                 pageToken: str = ...,
                                 **kwargs: typing.Any
                             ) -> ListPerfSamplesResponseHttpRequest: ...
+                            def list_next(
+                                self,
+                                previous_request: ListPerfSamplesResponseHttpRequest,
+                                previous_response: ListPerfSamplesResponse,
+                            ) -> ListPerfSamplesResponseHttpRequest | None: ...
                         def create(
                             self,
                             *,
@@ -170,6 +180,11 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListTestCasesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListTestCasesResponseHttpRequest,
+                            previous_response: ListTestCasesResponse,
+                        ) -> ListTestCasesResponseHttpRequest | None: ...
                     @typing.type_check_only
                     class ThumbnailsResource(googleapiclient.discovery.Resource):
                         def list(
@@ -183,6 +198,11 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListStepThumbnailsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListStepThumbnailsResponseHttpRequest,
+                            previous_response: ListStepThumbnailsResponse,
+                        ) -> ListStepThumbnailsResponseHttpRequest | None: ...
                     def accessibilityClusters(
                         self, *, name: str, locale: str = ..., **kwargs: typing.Any
                     ) -> ListStepAccessibilityClustersResponseHttpRequest: ...
@@ -224,6 +244,11 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListStepsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListStepsResponseHttpRequest,
+                        previous_response: ListStepsResponse,
+                    ) -> ListStepsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -275,6 +300,11 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListExecutionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListExecutionsResponseHttpRequest,
+                    previous_response: ListExecutionsResponse,
+                ) -> ListExecutionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -308,6 +338,11 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListHistoriesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListHistoriesResponseHttpRequest,
+                previous_response: ListHistoriesResponse,
+            ) -> ListHistoriesResponseHttpRequest | None: ...
             def executions(self) -> ExecutionsResource: ...
         def getSettings(
             self, *, projectId: str, **kwargs: typing.Any

@@ -42,6 +42,11 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class ReservationsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -54,6 +59,11 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListReservationTopicsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListReservationTopicsResponseHttpRequest,
+                            previous_response: ListReservationTopicsResponse,
+                        ) -> ListReservationTopicsResponseHttpRequest | None: ...
                     def create(
                         self,
                         *,
@@ -76,6 +86,11 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListReservationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListReservationsResponseHttpRequest,
+                        previous_response: ListReservationsResponse,
+                    ) -> ListReservationsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -110,6 +125,11 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListSubscriptionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListSubscriptionsResponseHttpRequest,
+                        previous_response: ListSubscriptionsResponse,
+                    ) -> ListSubscriptionsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -137,6 +157,11 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListTopicSubscriptionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListTopicSubscriptionsResponseHttpRequest,
+                            previous_response: ListTopicSubscriptionsResponse,
+                        ) -> ListTopicSubscriptionsResponseHttpRequest | None: ...
                     def create(
                         self,
                         *,
@@ -162,6 +187,11 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListTopicsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTopicsResponseHttpRequest,
+                        previous_response: ListTopicsResponse,
+                    ) -> ListTopicsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -195,6 +225,11 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListPartitionCursorsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListPartitionCursorsResponseHttpRequest,
+                            previous_response: ListPartitionCursorsResponse,
+                        ) -> ListPartitionCursorsResponseHttpRequest | None: ...
                     def commitCursor(
                         self,
                         *,

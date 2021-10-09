@@ -56,6 +56,11 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest,
+                previous_response: GoogleCloudRecaptchaenterpriseV1ListKeysResponse,
+            ) -> GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest | None: ...
             def migrate(
                 self,
                 *,

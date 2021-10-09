@@ -48,6 +48,11 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDatabaseInstancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDatabaseInstancesResponseHttpRequest,
+                    previous_response: ListDatabaseInstancesResponse,
+                ) -> ListDatabaseInstancesResponseHttpRequest | None: ...
                 def reenable(
                     self,
                     *,

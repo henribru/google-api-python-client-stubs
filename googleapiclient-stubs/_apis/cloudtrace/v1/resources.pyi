@@ -34,6 +34,11 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListTracesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTracesResponseHttpRequest,
+                previous_response: ListTracesResponse,
+            ) -> ListTracesResponseHttpRequest | None: ...
         def patchTraces(
             self, *, projectId: str, body: Traces = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...

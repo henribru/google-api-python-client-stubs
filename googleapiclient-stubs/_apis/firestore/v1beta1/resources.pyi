@@ -87,6 +87,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     transaction: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDocumentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDocumentsResponseHttpRequest,
+                    previous_response: ListDocumentsResponse,
+                ) -> ListDocumentsResponseHttpRequest | None: ...
                 def listCollectionIds(
                     self,
                     *,
@@ -94,6 +99,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: ListCollectionIdsRequest = ...,
                     **kwargs: typing.Any
                 ) -> ListCollectionIdsResponseHttpRequest: ...
+                def listCollectionIds_next(
+                    self,
+                    previous_request: ListCollectionIdsResponseHttpRequest,
+                    previous_response: ListCollectionIdsResponse,
+                ) -> ListCollectionIdsResponseHttpRequest | None: ...
                 def listen(
                     self,
                     *,
@@ -108,6 +118,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: PartitionQueryRequest = ...,
                     **kwargs: typing.Any
                 ) -> PartitionQueryResponseHttpRequest: ...
+                def partitionQuery_next(
+                    self,
+                    previous_request: PartitionQueryResponseHttpRequest,
+                    previous_response: PartitionQueryResponse,
+                ) -> PartitionQueryResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -164,6 +179,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest,
+                    previous_response: GoogleFirestoreAdminV1beta1ListIndexesResponse,
+                ) -> GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest | None: ...
             def exportDocuments(
                 self,
                 *,

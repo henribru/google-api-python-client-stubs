@@ -58,6 +58,11 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 parent: str = ...,
                 **kwargs: typing.Any
             ) -> ListBuildsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListBuildsResponseHttpRequest,
+                previous_response: ListBuildsResponse,
+            ) -> ListBuildsResponseHttpRequest | None: ...
             def retry(
                 self,
                 *,
@@ -147,6 +152,11 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     projectId: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBuildsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBuildsResponseHttpRequest,
+                    previous_response: ListBuildsResponse,
+                ) -> ListBuildsResponseHttpRequest | None: ...
                 def retry(
                     self,
                     *,
@@ -238,6 +248,11 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     projectId: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBuildTriggersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBuildTriggersResponseHttpRequest,
+                    previous_response: ListBuildTriggersResponse,
+                ) -> ListBuildTriggersResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -295,6 +310,11 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListWorkerPoolsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWorkerPoolsResponseHttpRequest,
+                    previous_response: ListWorkerPoolsResponse,
+                ) -> ListWorkerPoolsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -344,6 +364,11 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 parent: str = ...,
                 **kwargs: typing.Any
             ) -> ListBuildTriggersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListBuildTriggersResponseHttpRequest,
+                previous_response: ListBuildTriggersResponse,
+            ) -> ListBuildTriggersResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

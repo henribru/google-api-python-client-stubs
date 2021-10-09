@@ -107,6 +107,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal["FULL", "HEADERS"] = ...,
                 **kwargs: typing.Any
             ) -> ListTimeSeriesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTimeSeriesResponseHttpRequest,
+                previous_response: ListTimeSeriesResponse,
+            ) -> ListTimeSeriesResponseHttpRequest | None: ...
         def timeSeries(self) -> TimeSeriesResource: ...
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
@@ -203,6 +208,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal["FULL", "HEADERS"] = ...,
                 **kwargs: typing.Any
             ) -> ListTimeSeriesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTimeSeriesResponseHttpRequest,
+                previous_response: ListTimeSeriesResponse,
+            ) -> ListTimeSeriesResponseHttpRequest | None: ...
         def timeSeries(self) -> TimeSeriesResource: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
@@ -227,6 +237,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAlertPoliciesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAlertPoliciesResponseHttpRequest,
+                previous_response: ListAlertPoliciesResponse,
+            ) -> ListAlertPoliciesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -259,6 +274,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListGroupMembersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListGroupMembersResponseHttpRequest,
+                    previous_response: ListGroupMembersResponse,
+                ) -> ListGroupMembersResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -282,6 +302,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListGroupsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListGroupsResponseHttpRequest,
+                previous_response: ListGroupsResponse,
+            ) -> ListGroupsResponseHttpRequest | None: ...
             def update(
                 self,
                 *,
@@ -311,6 +336,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListMetricDescriptorsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListMetricDescriptorsResponseHttpRequest,
+                previous_response: ListMetricDescriptorsResponse,
+            ) -> ListMetricDescriptorsResponseHttpRequest | None: ...
         @typing.type_check_only
         class MonitoredResourceDescriptorsResource(googleapiclient.discovery.Resource):
             def get(
@@ -325,6 +355,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListMonitoredResourceDescriptorsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListMonitoredResourceDescriptorsResponseHttpRequest,
+                previous_response: ListMonitoredResourceDescriptorsResponse,
+            ) -> ListMonitoredResourceDescriptorsResponseHttpRequest | None: ...
         @typing.type_check_only
         class NotificationChannelDescriptorsResource(
             googleapiclient.discovery.Resource
@@ -340,6 +375,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListNotificationChannelDescriptorsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListNotificationChannelDescriptorsResponseHttpRequest,
+                previous_response: ListNotificationChannelDescriptorsResponse,
+            ) -> ListNotificationChannelDescriptorsResponseHttpRequest | None: ...
         @typing.type_check_only
         class NotificationChannelsResource(googleapiclient.discovery.Resource):
             def create(
@@ -372,6 +412,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListNotificationChannelsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListNotificationChannelsResponseHttpRequest,
+                previous_response: ListNotificationChannelsResponse,
+            ) -> ListNotificationChannelsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -494,6 +539,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal["FULL", "HEADERS"] = ...,
                 **kwargs: typing.Any
             ) -> ListTimeSeriesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTimeSeriesResponseHttpRequest,
+                previous_response: ListTimeSeriesResponse,
+            ) -> ListTimeSeriesResponseHttpRequest | None: ...
             def query(
                 self,
                 *,
@@ -501,6 +551,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 body: QueryTimeSeriesRequest = ...,
                 **kwargs: typing.Any
             ) -> QueryTimeSeriesResponseHttpRequest: ...
+            def query_next(
+                self,
+                previous_request: QueryTimeSeriesResponseHttpRequest,
+                previous_response: QueryTimeSeriesResponse,
+            ) -> QueryTimeSeriesResponseHttpRequest | None: ...
         @typing.type_check_only
         class UptimeCheckConfigsResource(googleapiclient.discovery.Resource):
             def create(
@@ -524,6 +579,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListUptimeCheckConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListUptimeCheckConfigsResponseHttpRequest,
+                previous_response: ListUptimeCheckConfigsResponse,
+            ) -> ListUptimeCheckConfigsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -581,6 +641,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListServiceLevelObjectivesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListServiceLevelObjectivesResponseHttpRequest,
+                previous_response: ListServiceLevelObjectivesResponse,
+            ) -> ListServiceLevelObjectivesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -608,6 +673,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListServicesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListServicesResponseHttpRequest,
+            previous_response: ListServicesResponse,
+        ) -> ListServicesResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -622,6 +692,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListUptimeCheckIpsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListUptimeCheckIpsResponseHttpRequest,
+            previous_response: ListUptimeCheckIpsResponse,
+        ) -> ListUptimeCheckIpsResponseHttpRequest | None: ...
     def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...

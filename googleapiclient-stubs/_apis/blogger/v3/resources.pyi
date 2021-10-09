@@ -95,6 +95,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> CommentListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CommentListHttpRequest,
+            previous_response: CommentList,
+        ) -> CommentListHttpRequest | None: ...
         def listByBlog(
             self,
             *,
@@ -110,6 +115,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> CommentListHttpRequest: ...
+        def listByBlog_next(
+            self,
+            previous_request: CommentListHttpRequest,
+            previous_response: CommentList,
+        ) -> CommentListHttpRequest | None: ...
         def markAsSpam(
             self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
         ) -> CommentHttpRequest: ...
@@ -163,6 +173,9 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> PageListHttpRequest: ...
+        def list_next(
+            self, previous_request: PageListHttpRequest, previous_response: PageList
+        ) -> PageListHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -221,6 +234,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> PostUserInfosListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: PostUserInfosListHttpRequest,
+            previous_response: PostUserInfosList,
+        ) -> PostUserInfosListHttpRequest | None: ...
     @typing.type_check_only
     class PostsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -281,6 +299,9 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> PostListHttpRequest: ...
+        def list_next(
+            self, previous_request: PostListHttpRequest, previous_response: PostList
+        ) -> PostListHttpRequest | None: ...
         def patch(
             self,
             *,

@@ -65,6 +65,11 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             readMask: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudRetailV2betaListProductsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudRetailV2betaListProductsResponseHttpRequest,
+                            previous_response: GoogleCloudRetailV2betaListProductsResponse,
+                        ) -> GoogleCloudRetailV2betaListProductsResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -113,6 +118,11 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                        previous_response: GoogleLongrunningListOperationsResponse,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class PlacementsResource(googleapiclient.discovery.Resource):
                     def predict(
@@ -129,6 +139,11 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRetailV2betaSearchRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRetailV2betaSearchResponseHttpRequest: ...
+                    def search_next(
+                        self,
+                        previous_request: GoogleCloudRetailV2betaSearchResponseHttpRequest,
+                        previous_response: GoogleCloudRetailV2betaSearchResponse,
+                    ) -> GoogleCloudRetailV2betaSearchResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class UserEventsResource(googleapiclient.discovery.Resource):
                     def collect(
@@ -191,6 +206,11 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2betaListCatalogsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudRetailV2betaListCatalogsResponseHttpRequest,
+                    previous_response: GoogleCloudRetailV2betaListCatalogsResponse,
+                ) -> GoogleCloudRetailV2betaListCatalogsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -225,6 +245,11 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
             def catalogs(self) -> CatalogsResource: ...
             def operations(self) -> OperationsResource: ...
         def locations(self) -> LocationsResource: ...

@@ -45,6 +45,11 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAttestorsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAttestorsResponseHttpRequest,
+                previous_response: ListAttestorsResponse,
+            ) -> ListAttestorsResponseHttpRequest | None: ...
             def setIamPolicy(
                 self,
                 *,

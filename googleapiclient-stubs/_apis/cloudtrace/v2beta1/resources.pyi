@@ -33,6 +33,11 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTraceSinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTraceSinksResponseHttpRequest,
+                previous_response: ListTraceSinksResponse,
+            ) -> ListTraceSinksResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

@@ -90,6 +90,11 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> CreativesListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CreativesListHttpRequest,
+            previous_response: CreativesList,
+        ) -> CreativesListHttpRequest | None: ...
         def listDeals(
             self, *, accountId: int, buyerCreativeId: str, **kwargs: typing.Any
         ) -> CreativeDealIdsHttpRequest: ...

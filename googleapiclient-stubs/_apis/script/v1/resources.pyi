@@ -85,6 +85,11 @@ class ScriptResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> ListUserProcessesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListUserProcessesResponseHttpRequest,
+            previous_response: ListUserProcessesResponse,
+        ) -> ListUserProcessesResponseHttpRequest | None: ...
         def listScriptProcesses(
             self,
             *,
@@ -155,6 +160,11 @@ class ScriptResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> ListScriptProcessesResponseHttpRequest: ...
+        def listScriptProcesses_next(
+            self,
+            previous_request: ListScriptProcessesResponseHttpRequest,
+            previous_response: ListScriptProcessesResponse,
+        ) -> ListScriptProcessesResponseHttpRequest | None: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -180,6 +190,11 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDeploymentsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDeploymentsResponseHttpRequest,
+                previous_response: ListDeploymentsResponse,
+            ) -> ListDeploymentsResponseHttpRequest | None: ...
             def update(
                 self,
                 *,
@@ -204,6 +219,11 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListVersionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListVersionsResponseHttpRequest,
+                previous_response: ListVersionsResponse,
+            ) -> ListVersionsResponseHttpRequest | None: ...
         def create(
             self, *, body: CreateProjectRequest = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...

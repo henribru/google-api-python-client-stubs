@@ -65,6 +65,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             **kwargs: typing.Any
         ) -> ChromeOsDevicesHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ChromeOsDevicesHttpRequest,
+            previous_response: ChromeOsDevices,
+        ) -> ChromeOsDevicesHttpRequest | None: ...
         def moveDevicesToOu(
             self,
             *,
@@ -157,6 +162,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListPrintersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPrintersResponseHttpRequest,
+                    previous_response: ListPrintersResponse,
+                ) -> ListPrintersResponseHttpRequest | None: ...
                 def listPrinterModels(
                     self,
                     *,
@@ -166,6 +176,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListPrinterModelsResponseHttpRequest: ...
+                def listPrinterModels_next(
+                    self,
+                    previous_request: ListPrinterModelsResponseHttpRequest,
+                    previous_response: ListPrinterModelsResponse,
+                ) -> ListPrinterModelsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -247,6 +262,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             userKey: str = ...,
             **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
+        def list_next(
+            self, previous_request: GroupsHttpRequest, previous_response: Groups
+        ) -> GroupsHttpRequest | None: ...
         def patch(
             self, *, groupKey: str, body: Group = ..., **kwargs: typing.Any
         ) -> GroupHttpRequest: ...
@@ -278,6 +296,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             roles: str = ...,
             **kwargs: typing.Any
         ) -> MembersHttpRequest: ...
+        def list_next(
+            self, previous_request: MembersHttpRequest, previous_response: Members
+        ) -> MembersHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -329,6 +350,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             **kwargs: typing.Any
         ) -> MobileDevicesHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: MobileDevicesHttpRequest,
+            previous_response: MobileDevices,
+        ) -> MobileDevicesHttpRequest | None: ...
     @typing.type_check_only
     class OrgunitsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -397,6 +423,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> BuildingsHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: BuildingsHttpRequest,
+                previous_response: Buildings,
+            ) -> BuildingsHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -444,6 +475,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 query: str = ...,
                 **kwargs: typing.Any
             ) -> CalendarResourcesHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: CalendarResourcesHttpRequest,
+                previous_response: CalendarResources,
+            ) -> CalendarResourcesHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -479,6 +515,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> FeaturesHttpRequest: ...
+            def list_next(
+                self, previous_request: FeaturesHttpRequest, previous_response: Features
+            ) -> FeaturesHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -527,6 +566,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             userKey: str = ...,
             **kwargs: typing.Any
         ) -> RoleAssignmentsHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: RoleAssignmentsHttpRequest,
+            previous_response: RoleAssignments,
+        ) -> RoleAssignmentsHttpRequest | None: ...
     @typing.type_check_only
     class RolesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -546,6 +590,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> RolesHttpRequest: ...
+        def list_next(
+            self, previous_request: RolesHttpRequest, previous_response: Roles
+        ) -> RolesHttpRequest | None: ...
         def patch(
             self, *, customer: str, roleId: str, body: Role = ..., **kwargs: typing.Any
         ) -> RoleHttpRequest: ...
@@ -671,6 +718,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             viewType: typing_extensions.Literal["admin_view", "domain_public"] = ...,
             **kwargs: typing.Any
         ) -> UsersHttpRequest: ...
+        def list_next(
+            self, previous_request: UsersHttpRequest, previous_response: Users
+        ) -> UsersHttpRequest | None: ...
         def makeAdmin(
             self, *, userKey: str, body: UserMakeAdmin = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...

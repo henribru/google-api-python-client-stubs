@@ -55,6 +55,11 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListConnectionProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListConnectionProfilesResponseHttpRequest,
+                    previous_response: ListConnectionProfilesResponse,
+                ) -> ListConnectionProfilesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -124,6 +129,11 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListMigrationJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMigrationJobsResponseHttpRequest,
+                    previous_response: ListMigrationJobsResponse,
+                ) -> ListMigrationJobsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -213,6 +223,11 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -225,6 +240,11 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def connectionProfiles(self) -> ConnectionProfilesResource: ...
             def migrationJobs(self) -> MigrationJobsResource: ...
             def operations(self) -> OperationsResource: ...

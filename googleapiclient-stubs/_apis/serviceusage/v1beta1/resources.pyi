@@ -24,6 +24,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -79,6 +84,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListAdminOverridesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAdminOverridesResponseHttpRequest,
+                        previous_response: ListAdminOverridesResponse,
+                    ) -> ListAdminOverridesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -149,6 +159,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListConsumerOverridesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListConsumerOverridesResponseHttpRequest,
+                        previous_response: ListConsumerOverridesResponse,
+                    ) -> ListConsumerOverridesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -215,6 +230,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListConsumerQuotaMetricsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListConsumerQuotaMetricsResponseHttpRequest,
+                previous_response: ListConsumerQuotaMetricsResponse,
+            ) -> ListConsumerQuotaMetricsResponseHttpRequest | None: ...
             def limits(self) -> LimitsResource: ...
         def batchEnable(
             self,
@@ -242,6 +262,11 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListServicesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListServicesResponseHttpRequest,
+            previous_response: ListServicesResponse,
+        ) -> ListServicesResponseHttpRequest | None: ...
         def consumerQuotaMetrics(self) -> ConsumerQuotaMetricsResource: ...
     def operations(self) -> OperationsResource: ...
     def services(self) -> ServicesResource: ...
