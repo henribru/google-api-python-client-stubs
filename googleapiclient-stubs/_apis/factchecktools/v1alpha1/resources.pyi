@@ -26,6 +26,11 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             reviewPublisherSiteFilter: str = ...,
             **kwargs: typing.Any
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest,
+            previous_response: GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse,
+        ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest | None: ...
     @typing.type_check_only
     class PagesResource(googleapiclient.discovery.Resource):
         def create(
@@ -50,6 +55,11 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             url: str = ...,
             **kwargs: typing.Any
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest,
+            previous_response: GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse,
+        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest | None: ...
         def update(
             self,
             *,

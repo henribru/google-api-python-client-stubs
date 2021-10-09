@@ -43,6 +43,11 @@ class DnsResource(googleapiclient.discovery.Resource):
             sortOrder: str = ...,
             **kwargs: typing.Any
         ) -> ChangesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ChangesListResponseHttpRequest,
+            previous_response: ChangesListResponse,
+        ) -> ChangesListResponseHttpRequest | None: ...
     @typing.type_check_only
     class DnsKeysResource(googleapiclient.discovery.Resource):
         def get(
@@ -65,6 +70,11 @@ class DnsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> DnsKeysListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: DnsKeysListResponseHttpRequest,
+            previous_response: DnsKeysListResponse,
+        ) -> DnsKeysListResponseHttpRequest | None: ...
     @typing.type_check_only
     class ManagedZoneOperationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -86,6 +96,11 @@ class DnsResource(googleapiclient.discovery.Resource):
             sortBy: typing_extensions.Literal["startTime", "id"] = ...,
             **kwargs: typing.Any
         ) -> ManagedZoneOperationsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ManagedZoneOperationsListResponseHttpRequest,
+            previous_response: ManagedZoneOperationsListResponse,
+        ) -> ManagedZoneOperationsListResponseHttpRequest | None: ...
     @typing.type_check_only
     class ManagedZonesResource(googleapiclient.discovery.Resource):
         def create(
@@ -121,6 +136,11 @@ class DnsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ManagedZonesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ManagedZonesListResponseHttpRequest,
+            previous_response: ManagedZonesListResponse,
+        ) -> ManagedZonesListResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -173,6 +193,11 @@ class DnsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> PoliciesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: PoliciesListResponseHttpRequest,
+            previous_response: PoliciesListResponse,
+        ) -> PoliciesListResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -238,6 +263,11 @@ class DnsResource(googleapiclient.discovery.Resource):
             type: str = ...,
             **kwargs: typing.Any
         ) -> ResourceRecordSetsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ResourceRecordSetsListResponseHttpRequest,
+            previous_response: ResourceRecordSetsListResponse,
+        ) -> ResourceRecordSetsListResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -283,6 +313,11 @@ class DnsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ResponsePoliciesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ResponsePoliciesListResponseHttpRequest,
+            previous_response: ResponsePoliciesListResponse,
+        ) -> ResponsePoliciesListResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -339,6 +374,11 @@ class DnsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ResponsePolicyRulesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ResponsePolicyRulesListResponseHttpRequest,
+            previous_response: ResponsePolicyRulesListResponse,
+        ) -> ResponsePolicyRulesListResponseHttpRequest | None: ...
         def patch(
             self,
             *,

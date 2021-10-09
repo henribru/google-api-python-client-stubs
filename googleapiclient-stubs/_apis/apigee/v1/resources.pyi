@@ -265,6 +265,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1ListDataCollectorsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudApigeeV1ListDataCollectorsResponseHttpRequest,
+                previous_response: GoogleCloudApigeeV1ListDataCollectorsResponse,
+            ) -> GoogleCloudApigeeV1ListDataCollectorsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -518,6 +523,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponseHttpRequest,
+                    previous_response: GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse,
+                ) -> GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -540,6 +550,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1ListEnvironmentGroupsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudApigeeV1ListEnvironmentGroupsResponseHttpRequest,
+                previous_response: GoogleCloudApigeeV1ListEnvironmentGroupsResponse,
+            ) -> GoogleCloudApigeeV1ListEnvironmentGroupsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -618,6 +633,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudApigeeV1ListDebugSessionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudApigeeV1ListDebugSessionsResponseHttpRequest,
+                            previous_response: GoogleCloudApigeeV1ListDebugSessionsResponse,
+                        ) -> GoogleCloudApigeeV1ListDebugSessionsResponseHttpRequest | None: ...
                         def data(self) -> DataResource: ...
                     @typing.type_check_only
                     class DeploymentsResource(googleapiclient.discovery.Resource):
@@ -692,6 +712,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1ListArchiveDeploymentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudApigeeV1ListArchiveDeploymentsResponseHttpRequest,
+                    previous_response: GoogleCloudApigeeV1ListArchiveDeploymentsResponse,
+                ) -> GoogleCloudApigeeV1ListArchiveDeploymentsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -988,6 +1013,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudApigeeV1ListTraceConfigOverridesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudApigeeV1ListTraceConfigOverridesResponseHttpRequest,
+                        previous_response: GoogleCloudApigeeV1ListTraceConfigOverridesResponse,
+                    ) -> GoogleCloudApigeeV1ListTraceConfigOverridesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -1175,6 +1205,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1ListInstanceAttachmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudApigeeV1ListInstanceAttachmentsResponseHttpRequest,
+                    previous_response: GoogleCloudApigeeV1ListInstanceAttachmentsResponse,
+                ) -> GoogleCloudApigeeV1ListInstanceAttachmentsResponseHttpRequest | None: ...
             @typing.type_check_only
             class CanaryevaluationsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -1217,6 +1252,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1ListNatAddressesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudApigeeV1ListNatAddressesResponseHttpRequest,
+                    previous_response: GoogleCloudApigeeV1ListNatAddressesResponse,
+                ) -> GoogleCloudApigeeV1ListNatAddressesResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -1238,6 +1278,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1ListInstancesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudApigeeV1ListInstancesResponseHttpRequest,
+                previous_response: GoogleCloudApigeeV1ListInstancesResponse,
+            ) -> GoogleCloudApigeeV1ListInstancesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -1282,6 +1327,11 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                previous_response: GoogleLongrunningListOperationsResponse,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class OptimizedHostStatsResource(googleapiclient.discovery.Resource):
             def get(

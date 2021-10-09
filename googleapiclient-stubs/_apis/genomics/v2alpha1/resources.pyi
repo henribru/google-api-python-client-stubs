@@ -40,6 +40,11 @@ class GenomicsResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOperationsResponseHttpRequest,
+                previous_response: ListOperationsResponse,
+            ) -> ListOperationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class WorkersResource(googleapiclient.discovery.Resource):
             def checkIn(

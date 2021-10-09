@@ -38,6 +38,11 @@ class DatastoreResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleDatastoreAdminV1ListIndexesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleDatastoreAdminV1ListIndexesResponseHttpRequest,
+                previous_response: GoogleDatastoreAdminV1ListIndexesResponse,
+            ) -> GoogleDatastoreAdminV1ListIndexesResponseHttpRequest | None: ...
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -58,6 +63,11 @@ class DatastoreResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                previous_response: GoogleLongrunningListOperationsResponse,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
         def allocateIds(
             self,
             *,

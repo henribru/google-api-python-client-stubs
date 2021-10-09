@@ -40,6 +40,11 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListJobTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListJobTemplatesResponseHttpRequest,
+                    previous_response: ListJobTemplatesResponse,
+                ) -> ListJobTemplatesResponseHttpRequest | None: ...
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -57,6 +62,11 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListJobsResponseHttpRequest,
+                    previous_response: ListJobsResponse,
+                ) -> ListJobsResponseHttpRequest | None: ...
             def jobTemplates(self) -> JobTemplatesResource: ...
             def jobs(self) -> JobsResource: ...
         def locations(self) -> LocationsResource: ...

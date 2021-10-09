@@ -57,6 +57,11 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ApigatewayListApiConfigsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ApigatewayListApiConfigsResponseHttpRequest,
+                        previous_response: ApigatewayListApiConfigsResponse,
+                    ) -> ApigatewayListApiConfigsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -110,6 +115,11 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ApigatewayListApisResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ApigatewayListApisResponseHttpRequest,
+                    previous_response: ApigatewayListApisResponse,
+                ) -> ApigatewayListApisResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -166,6 +176,11 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ApigatewayListGatewaysResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ApigatewayListGatewaysResponseHttpRequest,
+                    previous_response: ApigatewayListGatewaysResponse,
+                ) -> ApigatewayListGatewaysResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -212,6 +227,11 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ApigatewayListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ApigatewayListOperationsResponseHttpRequest,
+                    previous_response: ApigatewayListOperationsResponse,
+                ) -> ApigatewayListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> ApigatewayLocationHttpRequest: ...
@@ -224,6 +244,11 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ApigatewayListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ApigatewayListLocationsResponseHttpRequest,
+                previous_response: ApigatewayListLocationsResponse,
+            ) -> ApigatewayListLocationsResponseHttpRequest | None: ...
             def apis(self) -> ApisResource: ...
             def gateways(self) -> GatewaysResource: ...
             def operations(self) -> OperationsResource: ...

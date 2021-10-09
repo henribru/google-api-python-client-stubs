@@ -49,6 +49,11 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponseHttpRequest,
+                        previous_response: GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse,
+                    ) -> GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -73,6 +78,11 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                            previous_response: GoogleLongrunningListOperationsResponse,
+                        ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
                     @typing.type_check_only
                     class PlacementsResource(googleapiclient.discovery.Resource):
                         def predict(
@@ -82,6 +92,11 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             body: GoogleCloudRecommendationengineV1beta1PredictRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudRecommendationengineV1beta1PredictResponseHttpRequest: ...
+                        def predict_next(
+                            self,
+                            previous_request: GoogleCloudRecommendationengineV1beta1PredictResponseHttpRequest,
+                            previous_response: GoogleCloudRecommendationengineV1beta1PredictResponse,
+                        ) -> GoogleCloudRecommendationengineV1beta1PredictResponseHttpRequest | None: ...
                     @typing.type_check_only
                     class PredictionApiKeyRegistrationsResource(
                         googleapiclient.discovery.Resource
@@ -104,6 +119,11 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponseHttpRequest,
+                            previous_response: GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse,
+                        ) -> GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponseHttpRequest | None: ...
                     @typing.type_check_only
                     class UserEventsResource(googleapiclient.discovery.Resource):
                         def collect(
@@ -131,6 +151,11 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudRecommendationengineV1beta1ListUserEventsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudRecommendationengineV1beta1ListUserEventsResponseHttpRequest,
+                            previous_response: GoogleCloudRecommendationengineV1beta1ListUserEventsResponse,
+                        ) -> GoogleCloudRecommendationengineV1beta1ListUserEventsResponseHttpRequest | None: ...
                         def purge(
                             self,
                             *,
@@ -172,6 +197,11 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                        previous_response: GoogleLongrunningListOperationsResponse,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
                 def list(
                     self,
                     *,
@@ -180,6 +210,11 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudRecommendationengineV1beta1ListCatalogsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudRecommendationengineV1beta1ListCatalogsResponseHttpRequest,
+                    previous_response: GoogleCloudRecommendationengineV1beta1ListCatalogsResponse,
+                ) -> GoogleCloudRecommendationengineV1beta1ListCatalogsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

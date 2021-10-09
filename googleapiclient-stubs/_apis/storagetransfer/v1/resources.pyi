@@ -33,6 +33,11 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListTransferJobsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListTransferJobsResponseHttpRequest,
+            previous_response: ListTransferJobsResponse,
+        ) -> ListTransferJobsResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -62,6 +67,11 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
         def pause(
             self,
             *,

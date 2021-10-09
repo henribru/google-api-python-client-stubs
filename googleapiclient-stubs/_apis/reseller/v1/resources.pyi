@@ -101,6 +101,11 @@ class ResellerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> SubscriptionsHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SubscriptionsHttpRequest,
+            previous_response: Subscriptions,
+        ) -> SubscriptionsHttpRequest | None: ...
         def startPaidService(
             self, *, customerId: str, subscriptionId: str, **kwargs: typing.Any
         ) -> SubscriptionHttpRequest: ...

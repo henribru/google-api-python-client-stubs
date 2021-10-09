@@ -28,6 +28,11 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             startDate_year: int = ...,
             **kwargs: typing.Any
         ) -> GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest,
+            previous_response: GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse,
+        ) -> GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest | None: ...
     @typing.type_check_only
     class DetailedLeadReportsResource(googleapiclient.discovery.Resource):
         def search(
@@ -44,6 +49,11 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             startDate_year: int = ...,
             **kwargs: typing.Any
         ) -> GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest,
+            previous_response: GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse,
+        ) -> GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest | None: ...
     def accountReports(self) -> AccountReportsResource: ...
     def detailedLeadReports(self) -> DetailedLeadReportsResource: ...
 

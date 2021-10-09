@@ -27,6 +27,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListCompanyJobsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCompanyJobsResponseHttpRequest,
+                previous_response: ListCompanyJobsResponse,
+            ) -> ListCompanyJobsResponseHttpRequest | None: ...
         def create(
             self, *, body: Company = ..., **kwargs: typing.Any
         ) -> CompanyHttpRequest: ...
@@ -40,6 +45,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListCompaniesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCompaniesResponseHttpRequest,
+            previous_response: ListCompaniesResponse,
+        ) -> ListCompaniesResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -76,15 +86,30 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListJobsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListJobsResponseHttpRequest,
+            previous_response: ListJobsResponse,
+        ) -> ListJobsResponseHttpRequest | None: ...
         def patch(
             self, *, name: str, body: UpdateJobRequest = ..., **kwargs: typing.Any
         ) -> JobHttpRequest: ...
         def search(
             self, *, body: SearchJobsRequest = ..., **kwargs: typing.Any
         ) -> SearchJobsResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchJobsResponseHttpRequest,
+            previous_response: SearchJobsResponse,
+        ) -> SearchJobsResponseHttpRequest | None: ...
         def searchForAlert(
             self, *, body: SearchJobsRequest = ..., **kwargs: typing.Any
         ) -> SearchJobsResponseHttpRequest: ...
+        def searchForAlert_next(
+            self,
+            previous_request: SearchJobsResponseHttpRequest,
+            previous_response: SearchJobsResponse,
+        ) -> SearchJobsResponseHttpRequest | None: ...
     @typing.type_check_only
     class V2Resource(googleapiclient.discovery.Resource):
         def complete(

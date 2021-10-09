@@ -76,6 +76,11 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             ] = ...,
                             **kwargs: typing.Any
                         ) -> ListCryptoKeyVersionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListCryptoKeyVersionsResponseHttpRequest,
+                            previous_response: ListCryptoKeyVersionsResponse,
+                        ) -> ListCryptoKeyVersionsResponseHttpRequest | None: ...
                         def macSign(
                             self,
                             *,
@@ -151,6 +156,11 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> ListCryptoKeysResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCryptoKeysResponseHttpRequest,
+                        previous_response: ListCryptoKeysResponse,
+                    ) -> ListCryptoKeysResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -211,6 +221,11 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListImportJobsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListImportJobsResponseHttpRequest,
+                        previous_response: ListImportJobsResponse,
+                    ) -> ListImportJobsResponseHttpRequest | None: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -253,6 +268,11 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListKeyRingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListKeyRingsResponseHttpRequest,
+                    previous_response: ListKeyRingsResponse,
+                ) -> ListKeyRingsResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -288,6 +308,11 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def keyRings(self) -> KeyRingsResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...

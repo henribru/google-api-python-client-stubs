@@ -28,6 +28,11 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -44,6 +49,11 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListDockerImagesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDockerImagesResponseHttpRequest,
+                        previous_response: ListDockerImagesResponse,
+                    ) -> ListDockerImagesResponseHttpRequest | None: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> RepositoryHttpRequest: ...
@@ -55,6 +65,11 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListRepositoriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRepositoriesResponseHttpRequest,
+                    previous_response: ListRepositoriesResponse,
+                ) -> ListRepositoriesResponseHttpRequest | None: ...
                 def dockerImages(self) -> DockerImagesResource: ...
             def repositories(self) -> RepositoriesResource: ...
         def locations(self) -> LocationsResource: ...

@@ -46,6 +46,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                     requireOpenJobs: bool = ...,
                     **kwargs: typing.Any
                 ) -> ListCompaniesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCompaniesResponseHttpRequest,
+                    previous_response: ListCompaniesResponse,
+                ) -> ListCompaniesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -100,6 +105,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListJobsResponseHttpRequest,
+                    previous_response: ListJobsResponse,
+                ) -> ListJobsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -115,6 +125,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                     body: SearchJobsRequest = ...,
                     **kwargs: typing.Any
                 ) -> SearchJobsResponseHttpRequest: ...
+                def search_next(
+                    self,
+                    previous_request: SearchJobsResponseHttpRequest,
+                    previous_response: SearchJobsResponse,
+                ) -> SearchJobsResponseHttpRequest | None: ...
                 def searchForAlert(
                     self,
                     *,
@@ -122,6 +137,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                     body: SearchJobsRequest = ...,
                     **kwargs: typing.Any
                 ) -> SearchJobsResponseHttpRequest: ...
+                def searchForAlert_next(
+                    self,
+                    previous_request: SearchJobsResponseHttpRequest,
+                    previous_response: SearchJobsResponse,
+                ) -> SearchJobsResponseHttpRequest | None: ...
             def completeQuery(
                 self,
                 *,
@@ -156,6 +176,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTenantsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTenantsResponseHttpRequest,
+                previous_response: ListTenantsResponse,
+            ) -> ListTenantsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

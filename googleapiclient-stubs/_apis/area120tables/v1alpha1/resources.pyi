@@ -72,6 +72,11 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListRowsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListRowsResponseHttpRequest,
+                previous_response: ListRowsResponse,
+            ) -> ListRowsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -92,6 +97,11 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListTablesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListTablesResponseHttpRequest,
+            previous_response: ListTablesResponse,
+        ) -> ListTablesResponseHttpRequest | None: ...
         def rows(self) -> RowsResource: ...
     @typing.type_check_only
     class WorkspacesResource(googleapiclient.discovery.Resource):
@@ -99,6 +109,11 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListWorkspacesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListWorkspacesResponseHttpRequest,
+            previous_response: ListWorkspacesResponse,
+        ) -> ListWorkspacesResponseHttpRequest | None: ...
     def tables(self) -> TablesResource: ...
     def workspaces(self) -> WorkspacesResource: ...
 

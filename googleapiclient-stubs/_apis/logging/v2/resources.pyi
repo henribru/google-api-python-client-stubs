@@ -44,6 +44,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListExclusionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListExclusionsResponseHttpRequest,
+                previous_response: ListExclusionsResponse,
+            ) -> ListExclusionsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -77,6 +82,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListViewsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListViewsResponseHttpRequest,
+                        previous_response: ListViewsResponse,
+                    ) -> ListViewsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -104,6 +114,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBucketsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBucketsResponseHttpRequest,
+                    previous_response: ListBucketsResponse,
+                ) -> ListBucketsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -138,6 +153,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -150,6 +170,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
         @typing.type_check_only
@@ -166,6 +191,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 resourceNames: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> ListLogsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLogsResponseHttpRequest,
+                previous_response: ListLogsResponse,
+            ) -> ListLogsResponseHttpRequest | None: ...
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -195,6 +225,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSinksResponseHttpRequest,
+                previous_response: ListSinksResponse,
+            ) -> ListSinksResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -227,6 +262,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, body: ListLogEntriesRequest = ..., **kwargs: typing.Any
         ) -> ListLogEntriesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListLogEntriesResponseHttpRequest,
+            previous_response: ListLogEntriesResponse,
+        ) -> ListLogEntriesResponseHttpRequest | None: ...
         def tail(
             self, *, body: TailLogEntriesRequest = ..., **kwargs: typing.Any
         ) -> TailLogEntriesResponseHttpRequest: ...
@@ -250,6 +290,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListExclusionsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListExclusionsResponseHttpRequest,
+            previous_response: ListExclusionsResponse,
+        ) -> ListExclusionsResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -279,6 +324,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListExclusionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListExclusionsResponseHttpRequest,
+                previous_response: ListExclusionsResponse,
+            ) -> ListExclusionsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -315,6 +365,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListViewsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListViewsResponseHttpRequest,
+                        previous_response: ListViewsResponse,
+                    ) -> ListViewsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -345,6 +400,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBucketsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBucketsResponseHttpRequest,
+                    previous_response: ListBucketsResponse,
+                ) -> ListBucketsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -382,6 +442,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -394,6 +459,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
         @typing.type_check_only
@@ -410,6 +480,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 resourceNames: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> ListLogsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLogsResponseHttpRequest,
+                previous_response: ListLogsResponse,
+            ) -> ListLogsResponseHttpRequest | None: ...
         @typing.type_check_only
         class SinksResource(googleapiclient.discovery.Resource):
             def create(
@@ -434,6 +509,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSinksResponseHttpRequest,
+                previous_response: ListSinksResponse,
+            ) -> ListSinksResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -484,6 +564,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListViewsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListViewsResponseHttpRequest,
+                    previous_response: ListViewsResponse,
+                ) -> ListViewsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -514,6 +599,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListBucketsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListBucketsResponseHttpRequest,
+                previous_response: ListBucketsResponse,
+            ) -> ListBucketsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -551,6 +641,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOperationsResponseHttpRequest,
+                previous_response: ListOperationsResponse,
+            ) -> ListOperationsResponseHttpRequest | None: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> LocationHttpRequest: ...
         def list(
             self,
@@ -561,6 +656,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListLocationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListLocationsResponseHttpRequest,
+            previous_response: ListLocationsResponse,
+        ) -> ListLocationsResponseHttpRequest | None: ...
         def buckets(self) -> BucketsResource: ...
         def operations(self) -> OperationsResource: ...
     @typing.type_check_only
@@ -575,11 +675,21 @@ class LoggingResource(googleapiclient.discovery.Resource):
             resourceNames: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> ListLogsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListLogsResponseHttpRequest,
+            previous_response: ListLogsResponse,
+        ) -> ListLogsResponseHttpRequest | None: ...
     @typing.type_check_only
     class MonitoredResourceDescriptorsResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListMonitoredResourceDescriptorsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListMonitoredResourceDescriptorsResponseHttpRequest,
+            previous_response: ListMonitoredResourceDescriptorsResponse,
+        ) -> ListMonitoredResourceDescriptorsResponseHttpRequest | None: ...
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -601,6 +711,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListExclusionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListExclusionsResponseHttpRequest,
+                previous_response: ListExclusionsResponse,
+            ) -> ListExclusionsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -637,6 +752,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListViewsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListViewsResponseHttpRequest,
+                        previous_response: ListViewsResponse,
+                    ) -> ListViewsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -667,6 +787,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBucketsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBucketsResponseHttpRequest,
+                    previous_response: ListBucketsResponse,
+                ) -> ListBucketsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -704,6 +829,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -716,6 +846,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
         @typing.type_check_only
@@ -732,6 +867,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 resourceNames: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> ListLogsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLogsResponseHttpRequest,
+                previous_response: ListLogsResponse,
+            ) -> ListLogsResponseHttpRequest | None: ...
         @typing.type_check_only
         class SinksResource(googleapiclient.discovery.Resource):
             def create(
@@ -756,6 +896,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSinksResponseHttpRequest,
+                previous_response: ListSinksResponse,
+            ) -> ListSinksResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -810,6 +955,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListExclusionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListExclusionsResponseHttpRequest,
+                previous_response: ListExclusionsResponse,
+            ) -> ListExclusionsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -846,6 +996,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListViewsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListViewsResponseHttpRequest,
+                        previous_response: ListViewsResponse,
+                    ) -> ListViewsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -876,6 +1031,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListBucketsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBucketsResponseHttpRequest,
+                    previous_response: ListBucketsResponse,
+                ) -> ListBucketsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -913,6 +1073,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -925,6 +1090,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
         @typing.type_check_only
@@ -941,6 +1111,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 resourceNames: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> ListLogsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLogsResponseHttpRequest,
+                previous_response: ListLogsResponse,
+            ) -> ListLogsResponseHttpRequest | None: ...
         @typing.type_check_only
         class MetricsResource(googleapiclient.discovery.Resource):
             def create(
@@ -960,6 +1135,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLogMetricsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLogMetricsResponseHttpRequest,
+                previous_response: ListLogMetricsResponse,
+            ) -> ListLogMetricsResponseHttpRequest | None: ...
             def update(
                 self, *, metricName: str, body: LogMetric = ..., **kwargs: typing.Any
             ) -> LogMetricHttpRequest: ...
@@ -987,6 +1167,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSinksResponseHttpRequest,
+                previous_response: ListSinksResponse,
+            ) -> ListSinksResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -1032,6 +1217,11 @@ class LoggingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListSinksResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListSinksResponseHttpRequest,
+            previous_response: ListSinksResponse,
+        ) -> ListSinksResponseHttpRequest | None: ...
         def update(
             self,
             *,

@@ -42,6 +42,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: ListAvailableOrgPolicyConstraintsRequest = ...,
             **kwargs: typing.Any
         ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest: ...
+        def listAvailableOrgPolicyConstraints_next(
+            self,
+            previous_request: ListAvailableOrgPolicyConstraintsResponseHttpRequest,
+            previous_response: ListAvailableOrgPolicyConstraintsResponse,
+        ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest | None: ...
         def listOrgPolicies(
             self,
             *,
@@ -49,6 +54,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: ListOrgPoliciesRequest = ...,
             **kwargs: typing.Any
         ) -> ListOrgPoliciesResponseHttpRequest: ...
+        def listOrgPolicies_next(
+            self,
+            previous_request: ListOrgPoliciesResponseHttpRequest,
+            previous_response: ListOrgPoliciesResponse,
+        ) -> ListOrgPoliciesResponseHttpRequest | None: ...
         def setOrgPolicy(
             self,
             *,
@@ -71,6 +81,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             **kwargs: typing.Any
         ) -> ListLiensResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListLiensResponseHttpRequest,
+            previous_response: ListLiensResponse,
+        ) -> ListLiensResponseHttpRequest | None: ...
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
@@ -114,6 +129,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: ListAvailableOrgPolicyConstraintsRequest = ...,
             **kwargs: typing.Any
         ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest: ...
+        def listAvailableOrgPolicyConstraints_next(
+            self,
+            previous_request: ListAvailableOrgPolicyConstraintsResponseHttpRequest,
+            previous_response: ListAvailableOrgPolicyConstraintsResponse,
+        ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest | None: ...
         def listOrgPolicies(
             self,
             *,
@@ -121,9 +141,19 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: ListOrgPoliciesRequest = ...,
             **kwargs: typing.Any
         ) -> ListOrgPoliciesResponseHttpRequest: ...
+        def listOrgPolicies_next(
+            self,
+            previous_request: ListOrgPoliciesResponseHttpRequest,
+            previous_response: ListOrgPoliciesResponse,
+        ) -> ListOrgPoliciesResponseHttpRequest | None: ...
         def search(
             self, *, body: SearchOrganizationsRequest = ..., **kwargs: typing.Any
         ) -> SearchOrganizationsResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchOrganizationsResponseHttpRequest,
+            previous_response: SearchOrganizationsResponse,
+        ) -> SearchOrganizationsResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,
@@ -199,6 +229,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListProjectsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListProjectsResponseHttpRequest,
+            previous_response: ListProjectsResponse,
+        ) -> ListProjectsResponseHttpRequest | None: ...
         def listAvailableOrgPolicyConstraints(
             self,
             *,
@@ -206,6 +241,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: ListAvailableOrgPolicyConstraintsRequest = ...,
             **kwargs: typing.Any
         ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest: ...
+        def listAvailableOrgPolicyConstraints_next(
+            self,
+            previous_request: ListAvailableOrgPolicyConstraintsResponseHttpRequest,
+            previous_response: ListAvailableOrgPolicyConstraintsResponse,
+        ) -> ListAvailableOrgPolicyConstraintsResponseHttpRequest | None: ...
         def listOrgPolicies(
             self,
             *,
@@ -213,6 +253,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: ListOrgPoliciesRequest = ...,
             **kwargs: typing.Any
         ) -> ListOrgPoliciesResponseHttpRequest: ...
+        def listOrgPolicies_next(
+            self,
+            previous_request: ListOrgPoliciesResponseHttpRequest,
+            previous_response: ListOrgPoliciesResponse,
+        ) -> ListOrgPoliciesResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,

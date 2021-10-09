@@ -53,6 +53,9 @@ class ReportsResource(googleapiclient.discovery.Resource):
             startTime: str = ...,
             **kwargs: typing.Any
         ) -> ActivitiesHttpRequest: ...
+        def list_next(
+            self, previous_request: ActivitiesHttpRequest, previous_response: Activities
+        ) -> ActivitiesHttpRequest | None: ...
         def watch(
             self,
             *,
@@ -109,6 +112,11 @@ class ReportsResource(googleapiclient.discovery.Resource):
             parameters: str = ...,
             **kwargs: typing.Any
         ) -> UsageReportsHttpRequest: ...
+        def get_next(
+            self,
+            previous_request: UsageReportsHttpRequest,
+            previous_response: UsageReports,
+        ) -> UsageReportsHttpRequest | None: ...
     @typing.type_check_only
     class EntityUsageReportsResource(googleapiclient.discovery.Resource):
         def get(
@@ -124,6 +132,11 @@ class ReportsResource(googleapiclient.discovery.Resource):
             parameters: str = ...,
             **kwargs: typing.Any
         ) -> UsageReportsHttpRequest: ...
+        def get_next(
+            self,
+            previous_request: UsageReportsHttpRequest,
+            previous_response: UsageReports,
+        ) -> UsageReportsHttpRequest | None: ...
     @typing.type_check_only
     class UserUsageReportResource(googleapiclient.discovery.Resource):
         def get(
@@ -140,6 +153,11 @@ class ReportsResource(googleapiclient.discovery.Resource):
             parameters: str = ...,
             **kwargs: typing.Any
         ) -> UsageReportsHttpRequest: ...
+        def get_next(
+            self,
+            previous_request: UsageReportsHttpRequest,
+            previous_response: UsageReports,
+        ) -> UsageReportsHttpRequest | None: ...
     def activities(self) -> ActivitiesResource: ...
     def channels(self) -> ChannelsResource: ...
     def customerUsageReports(self) -> CustomerUsageReportsResource: ...

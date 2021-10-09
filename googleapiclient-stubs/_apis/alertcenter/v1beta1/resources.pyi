@@ -57,6 +57,11 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListAlertsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAlertsResponseHttpRequest,
+            previous_response: ListAlertsResponse,
+        ) -> ListAlertsResponseHttpRequest | None: ...
         def undelete(
             self,
             *,

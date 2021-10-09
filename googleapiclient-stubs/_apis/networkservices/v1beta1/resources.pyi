@@ -47,6 +47,11 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListEndpointPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEndpointPoliciesResponseHttpRequest,
+                    previous_response: ListEndpointPoliciesResponse,
+                ) -> ListEndpointPoliciesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -93,6 +98,11 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -105,6 +115,11 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def endpointPolicies(self) -> EndpointPoliciesResource: ...
             def operations(self) -> OperationsResource: ...
         def locations(self) -> LocationsResource: ...

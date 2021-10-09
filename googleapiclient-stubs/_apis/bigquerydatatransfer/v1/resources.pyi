@@ -34,6 +34,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDataSourcesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDataSourcesResponseHttpRequest,
+                previous_response: ListDataSourcesResponse,
+            ) -> ListDataSourcesResponseHttpRequest | None: ...
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -56,6 +61,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDataSourcesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDataSourcesResponseHttpRequest,
+                    previous_response: ListDataSourcesResponse,
+                ) -> ListDataSourcesResponseHttpRequest | None: ...
             @typing.type_check_only
             class TransferConfigsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -84,6 +94,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListTransferLogsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListTransferLogsResponseHttpRequest,
+                            previous_response: ListTransferLogsResponse,
+                        ) -> ListTransferLogsResponseHttpRequest | None: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
@@ -119,6 +134,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> ListTransferRunsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTransferRunsResponseHttpRequest,
+                        previous_response: ListTransferRunsResponse,
+                    ) -> ListTransferRunsResponseHttpRequest | None: ...
                     def transferLogs(self) -> TransferLogsResource: ...
                 def create(
                     self,
@@ -145,6 +165,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListTransferConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTransferConfigsResponseHttpRequest,
+                    previous_response: ListTransferConfigsResponse,
+                ) -> ListTransferConfigsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -190,6 +215,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def dataSources(self) -> DataSourcesResource: ...
             def transferConfigs(self) -> TransferConfigsResource: ...
         @typing.type_check_only
@@ -217,6 +247,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListTransferLogsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTransferLogsResponseHttpRequest,
+                        previous_response: ListTransferLogsResponse,
+                    ) -> ListTransferLogsResponseHttpRequest | None: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -252,6 +287,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ListTransferRunsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTransferRunsResponseHttpRequest,
+                    previous_response: ListTransferRunsResponse,
+                ) -> ListTransferRunsResponseHttpRequest | None: ...
                 def transferLogs(self) -> TransferLogsResource: ...
             def create(
                 self,
@@ -278,6 +318,11 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTransferConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTransferConfigsResponseHttpRequest,
+                previous_response: ListTransferConfigsResponse,
+            ) -> ListTransferConfigsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

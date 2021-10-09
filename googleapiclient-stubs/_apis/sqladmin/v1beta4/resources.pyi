@@ -37,6 +37,11 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> BackupRunsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: BackupRunsListResponseHttpRequest,
+            previous_response: BackupRunsListResponse,
+        ) -> BackupRunsListResponseHttpRequest | None: ...
     @typing.type_check_only
     class ConnectResource(googleapiclient.discovery.Resource):
         def generateEphemeralCert(
@@ -160,6 +165,11 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> InstancesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: InstancesListResponseHttpRequest,
+            previous_response: InstancesListResponse,
+        ) -> InstancesListResponseHttpRequest | None: ...
         def listServerCas(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> InstancesListServerCasResponseHttpRequest: ...
@@ -232,6 +242,11 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> OperationsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: OperationsListResponseHttpRequest,
+            previous_response: OperationsListResponse,
+        ) -> OperationsListResponseHttpRequest | None: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only

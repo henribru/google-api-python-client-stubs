@@ -34,6 +34,11 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListPlaceActionLinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPlaceActionLinksResponseHttpRequest,
+                previous_response: ListPlaceActionLinksResponse,
+            ) -> ListPlaceActionLinksResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -54,6 +59,11 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListPlaceActionTypeMetadataResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListPlaceActionTypeMetadataResponseHttpRequest,
+            previous_response: ListPlaceActionTypeMetadataResponse,
+        ) -> ListPlaceActionTypeMetadataResponseHttpRequest | None: ...
     def locations(self) -> LocationsResource: ...
     def placeActionTypeMetadata(self) -> PlaceActionTypeMetadataResource: ...
 

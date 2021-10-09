@@ -30,6 +30,11 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class WorkloadsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -55,6 +60,11 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1ListWorkloadsResponse,
+                ) -> GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

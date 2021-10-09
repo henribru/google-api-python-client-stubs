@@ -39,6 +39,11 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListUserInvitationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListUserInvitationsResponseHttpRequest,
+                previous_response: ListUserInvitationsResponse,
+            ) -> ListUserInvitationsResponseHttpRequest | None: ...
             def send(
                 self,
                 *,
@@ -102,6 +107,11 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDeviceUsersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDeviceUsersResponseHttpRequest,
+                previous_response: ListDeviceUsersResponse,
+            ) -> ListDeviceUsersResponseHttpRequest | None: ...
             def lookup(
                 self,
                 *,
@@ -113,6 +123,11 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 userId: str = ...,
                 **kwargs: typing.Any
             ) -> LookupSelfDeviceUsersResponseHttpRequest: ...
+            def lookup_next(
+                self,
+                previous_request: LookupSelfDeviceUsersResponseHttpRequest,
+                previous_response: LookupSelfDeviceUsersResponse,
+            ) -> LookupSelfDeviceUsersResponseHttpRequest | None: ...
             def wipe(
                 self,
                 *,
@@ -147,6 +162,11 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> ListDevicesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListDevicesResponseHttpRequest,
+            previous_response: ListDevicesResponse,
+        ) -> ListDevicesResponseHttpRequest | None: ...
         def wipe(
             self, *, name: str, body: WipeDeviceRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -179,6 +199,11 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal["BASIC", "FULL"] = ...,
                 **kwargs: typing.Any
             ) -> ListMembershipsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListMembershipsResponseHttpRequest,
+                previous_response: ListMembershipsResponse,
+            ) -> ListMembershipsResponseHttpRequest | None: ...
             def lookup(
                 self,
                 *,
@@ -203,6 +228,11 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 query: str = ...,
                 **kwargs: typing.Any
             ) -> SearchTransitiveGroupsResponseHttpRequest: ...
+            def searchTransitiveGroups_next(
+                self,
+                previous_request: SearchTransitiveGroupsResponseHttpRequest,
+                previous_response: SearchTransitiveGroupsResponse,
+            ) -> SearchTransitiveGroupsResponseHttpRequest | None: ...
             def searchTransitiveMemberships(
                 self,
                 *,
@@ -211,6 +241,11 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> SearchTransitiveMembershipsResponseHttpRequest: ...
+            def searchTransitiveMemberships_next(
+                self,
+                previous_request: SearchTransitiveMembershipsResponseHttpRequest,
+                previous_response: SearchTransitiveMembershipsResponse,
+            ) -> SearchTransitiveMembershipsResponseHttpRequest | None: ...
         def create(
             self,
             *,
@@ -233,6 +268,11 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> ListGroupsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListGroupsResponseHttpRequest,
+            previous_response: ListGroupsResponse,
+        ) -> ListGroupsResponseHttpRequest | None: ...
         def lookup(
             self,
             *,
@@ -257,6 +297,11 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> SearchGroupsResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchGroupsResponseHttpRequest,
+            previous_response: SearchGroupsResponse,
+        ) -> SearchGroupsResponseHttpRequest | None: ...
         def memberships(self) -> MembershipsResource: ...
     def customers(self) -> CustomersResource: ...
     def devices(self) -> DevicesResource: ...

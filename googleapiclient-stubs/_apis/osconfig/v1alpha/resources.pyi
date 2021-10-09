@@ -32,6 +32,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListInstanceOSPoliciesCompliancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInstanceOSPoliciesCompliancesResponseHttpRequest,
+                    previous_response: ListInstanceOSPoliciesCompliancesResponse,
+                ) -> ListInstanceOSPoliciesCompliancesResponseHttpRequest | None: ...
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -57,6 +62,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> ListInventoriesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListInventoriesResponseHttpRequest,
+                        previous_response: ListInventoriesResponse,
+                    ) -> ListInventoriesResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -70,6 +80,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListOSPolicyAssignmentReportsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListOSPolicyAssignmentReportsResponseHttpRequest,
+                            previous_response: ListOSPolicyAssignmentReportsResponse,
+                        ) -> ListOSPolicyAssignmentReportsResponseHttpRequest | None: ...
                     def getReport(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OSPolicyAssignmentReportHttpRequest: ...
@@ -88,6 +103,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListVulnerabilityReportsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListVulnerabilityReportsResponseHttpRequest,
+                        previous_response: ListVulnerabilityReportsResponse,
+                    ) -> ListVulnerabilityReportsResponseHttpRequest | None: ...
                 def inventories(self) -> InventoriesResource: ...
                 def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
                 def vulnerabilityReports(self) -> VulnerabilityReportsResource: ...
@@ -127,6 +147,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOSPolicyAssignmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOSPolicyAssignmentsResponseHttpRequest,
+                    previous_response: ListOSPolicyAssignmentsResponse,
+                ) -> ListOSPolicyAssignmentsResponseHttpRequest | None: ...
                 def listRevisions(
                     self,
                     *,
@@ -135,6 +160,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOSPolicyAssignmentRevisionsResponseHttpRequest: ...
+                def listRevisions_next(
+                    self,
+                    previous_request: ListOSPolicyAssignmentRevisionsResponseHttpRequest,
+                    previous_response: ListOSPolicyAssignmentRevisionsResponse,
+                ) -> ListOSPolicyAssignmentRevisionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

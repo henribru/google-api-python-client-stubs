@@ -35,6 +35,11 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1ListDevicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleHomeEnterpriseSdmV1ListDevicesResponseHttpRequest,
+                previous_response: GoogleHomeEnterpriseSdmV1ListDevicesResponse,
+            ) -> GoogleHomeEnterpriseSdmV1ListDevicesResponseHttpRequest | None: ...
         @typing.type_check_only
         class StructuresResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -50,6 +55,11 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleHomeEnterpriseSdmV1ListRoomsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleHomeEnterpriseSdmV1ListRoomsResponseHttpRequest,
+                    previous_response: GoogleHomeEnterpriseSdmV1ListRoomsResponse,
+                ) -> GoogleHomeEnterpriseSdmV1ListRoomsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1StructureHttpRequest: ...
@@ -62,6 +72,11 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1ListStructuresResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleHomeEnterpriseSdmV1ListStructuresResponseHttpRequest,
+                previous_response: GoogleHomeEnterpriseSdmV1ListStructuresResponse,
+            ) -> GoogleHomeEnterpriseSdmV1ListStructuresResponseHttpRequest | None: ...
             def rooms(self) -> RoomsResource: ...
         def devices(self) -> DevicesResource: ...
         def structures(self) -> StructuresResource: ...

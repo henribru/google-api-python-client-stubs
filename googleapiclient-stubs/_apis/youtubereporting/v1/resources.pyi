@@ -36,6 +36,11 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
                 startTimeBefore: str = ...,
                 **kwargs: typing.Any
             ) -> ListReportsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListReportsResponseHttpRequest,
+                previous_response: ListReportsResponse,
+            ) -> ListReportsResponseHttpRequest | None: ...
         def create(
             self,
             *,
@@ -58,6 +63,11 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListJobsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListJobsResponseHttpRequest,
+            previous_response: ListJobsResponse,
+        ) -> ListJobsResponseHttpRequest | None: ...
         def reports(self) -> ReportsResource: ...
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
@@ -75,6 +85,11 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListReportTypesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListReportTypesResponseHttpRequest,
+            previous_response: ListReportTypesResponse,
+        ) -> ListReportTypesResponseHttpRequest | None: ...
     def jobs(self) -> JobsResource: ...
     def media(self) -> MediaResource: ...
     def reportTypes(self) -> ReportTypesResource: ...

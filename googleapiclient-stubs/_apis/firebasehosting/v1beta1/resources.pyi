@@ -41,6 +41,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListReleasesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListReleasesResponseHttpRequest,
+                        previous_response: ListReleasesResponse,
+                    ) -> ListReleasesResponseHttpRequest | None: ...
                 def create(
                     self,
                     *,
@@ -63,6 +68,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListChannelsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListChannelsResponseHttpRequest,
+                    previous_response: ListChannelsResponse,
+                ) -> ListChannelsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -91,6 +101,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDomainsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDomainsResponseHttpRequest,
+                    previous_response: ListDomainsResponse,
+                ) -> ListDomainsResponseHttpRequest | None: ...
                 def update(
                     self, *, name: str, body: Domain = ..., **kwargs: typing.Any
                 ) -> DomainHttpRequest: ...
@@ -112,6 +127,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListReleasesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReleasesResponseHttpRequest,
+                    previous_response: ListReleasesResponse,
+                ) -> ListReleasesResponseHttpRequest | None: ...
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -127,6 +147,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> ListVersionFilesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListVersionFilesResponseHttpRequest,
+                        previous_response: ListVersionFilesResponse,
+                    ) -> ListVersionFilesResponseHttpRequest | None: ...
                 def clone(
                     self,
                     *,
@@ -155,6 +180,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVersionsResponseHttpRequest,
+                    previous_response: ListVersionsResponse,
+                ) -> ListVersionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -194,6 +224,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSitesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSitesResponseHttpRequest,
+                previous_response: ListSitesResponse,
+            ) -> ListSitesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -238,6 +273,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListReleasesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReleasesResponseHttpRequest,
+                    previous_response: ListReleasesResponse,
+                ) -> ListReleasesResponseHttpRequest | None: ...
             def create(
                 self,
                 *,
@@ -258,6 +298,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListChannelsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListChannelsResponseHttpRequest,
+                previous_response: ListChannelsResponse,
+            ) -> ListChannelsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -284,6 +329,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDomainsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDomainsResponseHttpRequest,
+                previous_response: ListDomainsResponse,
+            ) -> ListDomainsResponseHttpRequest | None: ...
             def update(
                 self, *, name: str, body: Domain = ..., **kwargs: typing.Any
             ) -> DomainHttpRequest: ...
@@ -305,6 +355,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListReleasesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListReleasesResponseHttpRequest,
+                previous_response: ListReleasesResponse,
+            ) -> ListReleasesResponseHttpRequest | None: ...
         @typing.type_check_only
         class VersionsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -320,6 +375,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ListVersionFilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVersionFilesResponseHttpRequest,
+                    previous_response: ListVersionFilesResponse,
+                ) -> ListVersionFilesResponseHttpRequest | None: ...
             def clone(
                 self,
                 *,
@@ -348,6 +408,11 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListVersionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListVersionsResponseHttpRequest,
+                previous_response: ListVersionsResponse,
+            ) -> ListVersionsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

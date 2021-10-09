@@ -24,6 +24,11 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -79,6 +84,11 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListFunctionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFunctionsResponseHttpRequest,
+                    previous_response: ListFunctionsResponse,
+                ) -> ListFunctionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -110,6 +120,11 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def functions(self) -> FunctionsResource: ...
         def locations(self) -> LocationsResource: ...
     def operations(self) -> OperationsResource: ...

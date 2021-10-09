@@ -34,6 +34,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             relationshipTypes: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> ListAssetsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAssetsResponseHttpRequest,
+            previous_response: ListAssetsResponse,
+        ) -> ListAssetsResponseHttpRequest | None: ...
     @typing.type_check_only
     class FeedsResource(googleapiclient.discovery.Resource):
         def create(
@@ -120,6 +125,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             query: str = ...,
             **kwargs: typing.Any
         ) -> SearchAllIamPoliciesResponseHttpRequest: ...
+        def searchAllIamPolicies_next(
+            self,
+            previous_request: SearchAllIamPoliciesResponseHttpRequest,
+            previous_response: SearchAllIamPoliciesResponse,
+        ) -> SearchAllIamPoliciesResponseHttpRequest | None: ...
         def searchAllResources(
             self,
             *,
@@ -132,6 +142,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             readMask: str = ...,
             **kwargs: typing.Any
         ) -> SearchAllResourcesResponseHttpRequest: ...
+        def searchAllResources_next(
+            self,
+            previous_request: SearchAllResourcesResponseHttpRequest,
+            previous_response: SearchAllResourcesResponse,
+        ) -> SearchAllResourcesResponseHttpRequest | None: ...
     def assets(self) -> AssetsResource: ...
     def feeds(self) -> FeedsResource: ...
     def operations(self) -> OperationsResource: ...

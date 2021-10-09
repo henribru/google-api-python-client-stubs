@@ -49,6 +49,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListInstancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInstancesResponseHttpRequest,
+                    previous_response: ListInstancesResponse,
+                ) -> ListInstancesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -102,6 +107,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -113,6 +123,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAvailableVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAvailableVersionsResponseHttpRequest,
+                    previous_response: ListAvailableVersionsResponse,
+                ) -> ListAvailableVersionsResponseHttpRequest | None: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -126,6 +141,11 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
             def versions(self) -> VersionsResource: ...

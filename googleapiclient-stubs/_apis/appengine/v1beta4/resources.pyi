@@ -28,6 +28,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class ModulesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -72,6 +77,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListInstancesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListInstancesResponseHttpRequest,
+                        previous_response: ListInstancesResponse,
+                    ) -> ListInstancesResponseHttpRequest | None: ...
                 def create(
                     self,
                     *,
@@ -107,6 +117,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     view: typing_extensions.Literal["BASIC", "FULL"] = ...,
                     **kwargs: typing.Any
                 ) -> ListVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVersionsResponseHttpRequest,
+                    previous_response: ListVersionsResponse,
+                ) -> ListVersionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -132,6 +147,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListModulesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListModulesResponseHttpRequest,
+                previous_response: ListModulesResponse,
+            ) -> ListModulesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -157,6 +177,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOperationsResponseHttpRequest,
+                previous_response: ListOperationsResponse,
+            ) -> ListOperationsResponseHttpRequest | None: ...
         def create(
             self, *, body: Application = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...

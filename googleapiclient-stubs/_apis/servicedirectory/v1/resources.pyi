@@ -46,6 +46,11 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             **kwargs: typing.Any
                         ) -> ListEndpointsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListEndpointsResponseHttpRequest,
+                            previous_response: ListEndpointsResponse,
+                        ) -> ListEndpointsResponseHttpRequest | None: ...
                         def patch(
                             self,
                             *,
@@ -85,6 +90,11 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListServicesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListServicesResponseHttpRequest,
+                        previous_response: ListServicesResponse,
+                    ) -> ListServicesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -146,6 +156,11 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListNamespacesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListNamespacesResponseHttpRequest,
+                    previous_response: ListNamespacesResponse,
+                ) -> ListNamespacesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -181,6 +196,11 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def namespaces(self) -> NamespacesResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...

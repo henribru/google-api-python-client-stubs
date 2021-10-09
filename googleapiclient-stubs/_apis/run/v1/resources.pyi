@@ -24,6 +24,11 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAuthorizedDomainsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAuthorizedDomainsResponseHttpRequest,
+                previous_response: ListAuthorizedDomainsResponse,
+            ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
         @typing.type_check_only
         class ConfigurationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -177,6 +182,11 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAuthorizedDomainsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAuthorizedDomainsResponseHttpRequest,
+                previous_response: ListAuthorizedDomainsResponse,
+            ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -189,6 +199,11 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListAuthorizedDomainsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAuthorizedDomainsResponseHttpRequest,
+                    previous_response: ListAuthorizedDomainsResponse,
+                ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
             @typing.type_check_only
             class ConfigurationsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -358,6 +373,11 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def authorizeddomains(self) -> AuthorizeddomainsResource: ...
             def configurations(self) -> ConfigurationsResource: ...
             def domainmappings(self) -> DomainmappingsResource: ...

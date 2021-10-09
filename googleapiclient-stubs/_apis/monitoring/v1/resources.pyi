@@ -68,6 +68,11 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDashboardsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDashboardsResponseHttpRequest,
+                previous_response: ListDashboardsResponse,
+            ) -> ListDashboardsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

@@ -44,6 +44,11 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListReservationGrantsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReservationGrantsResponseHttpRequest,
+                    previous_response: ListReservationGrantsResponse,
+                ) -> ListReservationGrantsResponseHttpRequest | None: ...
             @typing.type_check_only
             class ReservationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -62,6 +67,11 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListSlotPoolsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListSlotPoolsResponseHttpRequest,
+                        previous_response: ListSlotPoolsResponse,
+                    ) -> ListSlotPoolsResponseHttpRequest | None: ...
                 def create(
                     self,
                     *,
@@ -93,6 +103,11 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListReservationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReservationsResponseHttpRequest,
+                    previous_response: ListReservationsResponse,
+                ) -> ListReservationsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -111,6 +126,11 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 query: str = ...,
                 **kwargs: typing.Any
             ) -> SearchReservationGrantsResponseHttpRequest: ...
+            def searchReservationGrants_next(
+                self,
+                previous_request: SearchReservationGrantsResponseHttpRequest,
+                previous_response: SearchReservationGrantsResponse,
+            ) -> SearchReservationGrantsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def reservationGrants(self) -> ReservationGrantsResource: ...
             def reservations(self) -> ReservationsResource: ...

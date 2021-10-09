@@ -38,6 +38,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListGuestPoliciesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListGuestPoliciesResponseHttpRequest,
+                previous_response: ListGuestPoliciesResponse,
+            ) -> ListGuestPoliciesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -70,6 +75,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListPatchDeploymentsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPatchDeploymentsResponseHttpRequest,
+                previous_response: ListPatchDeploymentsResponse,
+            ) -> ListPatchDeploymentsResponseHttpRequest | None: ...
         @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -83,6 +93,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPatchJobInstanceDetailsResponseHttpRequest,
+                    previous_response: ListPatchJobInstanceDetailsResponse,
+                ) -> ListPatchJobInstanceDetailsResponseHttpRequest | None: ...
             def cancel(
                 self,
                 *,
@@ -109,6 +124,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListPatchJobsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPatchJobsResponseHttpRequest,
+                previous_response: ListPatchJobsResponse,
+            ) -> ListPatchJobsResponseHttpRequest | None: ...
             def instanceDetails(self) -> InstanceDetailsResource: ...
         @typing.type_check_only
         class ZonesResource(googleapiclient.discovery.Resource):

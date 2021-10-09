@@ -43,6 +43,11 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListInstancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInstancesResponseHttpRequest,
+                    previous_response: ListInstancesResponse,
+                ) -> ListInstancesResponseHttpRequest | None: ...
                 def readSerialPortOutput(
                     self, *, instance: str, startByte: str = ..., **kwargs: typing.Any
                 ) -> SerialPortOutputHttpRequest: ...
@@ -64,6 +69,11 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListLunsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListLunsResponseHttpRequest,
+                    previous_response: ListLunsResponse,
+                ) -> ListLunsResponseHttpRequest | None: ...
             @typing.type_check_only
             class VolumesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -89,6 +99,11 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListVolumeSnapshotsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListVolumeSnapshotsResponseHttpRequest,
+                        previous_response: ListVolumeSnapshotsResponse,
+                    ) -> ListVolumeSnapshotsResponseHttpRequest | None: ...
                     def restore(
                         self,
                         *,
@@ -107,6 +122,11 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListVolumesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVolumesResponseHttpRequest,
+                    previous_response: ListVolumesResponse,
+                ) -> ListVolumesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -144,6 +164,11 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListProvisioningQuotasResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListProvisioningQuotasResponseHttpRequest,
+                previous_response: ListProvisioningQuotasResponse,
+            ) -> ListProvisioningQuotasResponseHttpRequest | None: ...
         @typing.type_check_only
         class SnapshotSchedulePoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -167,6 +192,11 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSnapshotSchedulePoliciesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSnapshotSchedulePoliciesResponseHttpRequest,
+                previous_response: ListSnapshotSchedulePoliciesResponse,
+            ) -> ListSnapshotSchedulePoliciesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -196,6 +226,11 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSSHKeysResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSSHKeysResponseHttpRequest,
+                previous_response: ListSSHKeysResponse,
+            ) -> ListSSHKeysResponseHttpRequest | None: ...
         def locations(self) -> LocationsResource: ...
         def provisioningQuotas(self) -> ProvisioningQuotasResource: ...
         def snapshotSchedulePolicies(self) -> SnapshotSchedulePoliciesResource: ...

@@ -59,6 +59,11 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> V2ListKeysResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: V2ListKeysResponseHttpRequest,
+                    previous_response: V2ListKeysResponse,
+                ) -> V2ListKeysResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

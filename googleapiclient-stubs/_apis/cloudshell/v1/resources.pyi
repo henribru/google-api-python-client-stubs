@@ -28,6 +28,11 @@ class CloudShellResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only

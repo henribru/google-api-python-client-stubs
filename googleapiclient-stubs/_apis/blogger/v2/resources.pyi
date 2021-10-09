@@ -32,6 +32,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             startDate: str = ...,
             **kwargs: typing.Any
         ) -> CommentListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CommentListHttpRequest,
+            previous_response: CommentList,
+        ) -> CommentListHttpRequest | None: ...
     @typing.type_check_only
     class PagesResource(googleapiclient.discovery.Resource):
         def get(
@@ -55,6 +60,9 @@ class BloggerResource(googleapiclient.discovery.Resource):
             startDate: str = ...,
             **kwargs: typing.Any
         ) -> PostListHttpRequest: ...
+        def list_next(
+            self, previous_request: PostListHttpRequest, previous_response: PostList
+        ) -> PostListHttpRequest | None: ...
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def get(self, *, userId: str, **kwargs: typing.Any) -> UserHttpRequest: ...

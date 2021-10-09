@@ -46,6 +46,11 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest: ...
+            def countChromeVersions_next(
+                self,
+                previous_request: GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1CountChromeVersionsResponse,
+            ) -> GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest | None: ...
             def countInstalledApps(
                 self,
                 *,
@@ -57,6 +62,11 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest: ...
+            def countInstalledApps_next(
+                self,
+                previous_request: GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1CountInstalledAppsResponse,
+            ) -> GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest | None: ...
             def findInstalledAppDevices(
                 self,
                 *,
@@ -77,6 +87,11 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest: ...
+            def findInstalledAppDevices_next(
+                self,
+                previous_request: GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FindInstalledAppDevicesResponse,
+            ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest | None: ...
         def apps(self) -> AppsResource: ...
         def reports(self) -> ReportsResource: ...
     def customers(self) -> CustomersResource: ...

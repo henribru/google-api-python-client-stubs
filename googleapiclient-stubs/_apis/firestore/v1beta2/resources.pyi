@@ -32,6 +32,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleFirestoreAdminV1beta2ListFieldsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleFirestoreAdminV1beta2ListFieldsResponseHttpRequest,
+                        previous_response: GoogleFirestoreAdminV1beta2ListFieldsResponse,
+                    ) -> GoogleFirestoreAdminV1beta2ListFieldsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -64,6 +69,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest,
+                        previous_response: GoogleFirestoreAdminV1beta2ListIndexesResponse,
+                    ) -> GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest | None: ...
                 def fields(self) -> FieldsResource: ...
                 def indexes(self) -> IndexesResource: ...
             def exportDocuments(

@@ -43,6 +43,11 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListReleasesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListReleasesResponseHttpRequest,
+                previous_response: ListReleasesResponse,
+            ) -> ListReleasesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -68,6 +73,11 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListRulesetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListRulesetsResponseHttpRequest,
+                previous_response: ListRulesetsResponse,
+            ) -> ListRulesetsResponseHttpRequest | None: ...
         def test(
             self, *, name: str, body: TestRulesetRequest = ..., **kwargs: typing.Any
         ) -> TestRulesetResponseHttpRequest: ...

@@ -77,6 +77,11 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> BuildBazelRemoteExecutionV2GetTreeResponseHttpRequest: ...
+        def getTree_next(
+            self,
+            previous_request: BuildBazelRemoteExecutionV2GetTreeResponseHttpRequest,
+            previous_response: BuildBazelRemoteExecutionV2GetTreeResponse,
+        ) -> BuildBazelRemoteExecutionV2GetTreeResponseHttpRequest | None: ...
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def waitExecution(

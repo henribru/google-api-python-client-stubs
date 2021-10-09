@@ -37,6 +37,11 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest,
+                previous_response: GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse,
+            ) -> GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

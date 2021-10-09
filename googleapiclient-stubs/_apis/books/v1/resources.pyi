@@ -114,6 +114,11 @@ class BooksResource(googleapiclient.discovery.Resource):
                 w: int = ...,
                 **kwargs: typing.Any
             ) -> AnnotationsdataHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: AnnotationsdataHttpRequest,
+                previous_response: Annotationsdata,
+            ) -> AnnotationsdataHttpRequest | None: ...
         @typing.type_check_only
         class VolumeAnnotationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -146,6 +151,11 @@ class BooksResource(googleapiclient.discovery.Resource):
                 volumeAnnotationsVersion: str = ...,
                 **kwargs: typing.Any
             ) -> VolumeannotationsHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: VolumeannotationsHttpRequest,
+                previous_response: Volumeannotations,
+            ) -> VolumeannotationsHttpRequest | None: ...
         def get(
             self,
             *,
@@ -243,6 +253,11 @@ class BooksResource(googleapiclient.discovery.Resource):
                 volumeId: str = ...,
                 **kwargs: typing.Any
             ) -> AnnotationsHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: AnnotationsHttpRequest,
+                previous_response: Annotations,
+            ) -> AnnotationsHttpRequest | None: ...
             def summary(
                 self, *, layerIds: str | _list[str], volumeId: str, **kwargs: typing.Any
             ) -> AnnotationsSummaryHttpRequest: ...
@@ -374,6 +389,9 @@ class BooksResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> Volume2HttpRequest: ...
+        def listCategoryVolumes_next(
+            self, previous_request: Volume2HttpRequest, previous_response: Volume2
+        ) -> Volume2HttpRequest | None: ...
     @typing.type_check_only
     class PersonalizedstreamResource(googleapiclient.discovery.Resource):
         def get(

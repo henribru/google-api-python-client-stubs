@@ -17,6 +17,11 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListAvailableProjectsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAvailableProjectsResponseHttpRequest,
+            previous_response: ListAvailableProjectsResponse,
+        ) -> ListAvailableProjectsResponseHttpRequest | None: ...
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
@@ -56,6 +61,11 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAndroidAppsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAndroidAppsResponseHttpRequest,
+                previous_response: ListAndroidAppsResponse,
+            ) -> ListAndroidAppsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -75,6 +85,11 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAvailableLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAvailableLocationsResponseHttpRequest,
+                previous_response: ListAvailableLocationsResponse,
+            ) -> ListAvailableLocationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class DefaultLocationResource(googleapiclient.discovery.Resource):
             def finalize(
@@ -101,6 +116,11 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListIosAppsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListIosAppsResponseHttpRequest,
+                previous_response: ListIosAppsResponse,
+            ) -> ListIosAppsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -126,6 +146,11 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListWebAppsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListWebAppsResponseHttpRequest,
+                previous_response: ListWebAppsResponse,
+            ) -> ListWebAppsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -156,6 +181,11 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListFirebaseProjectsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListFirebaseProjectsResponseHttpRequest,
+            previous_response: ListFirebaseProjectsResponse,
+        ) -> ListFirebaseProjectsResponseHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -180,6 +210,11 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> SearchFirebaseAppsResponseHttpRequest: ...
+        def searchApps_next(
+            self,
+            previous_request: SearchFirebaseAppsResponseHttpRequest,
+            previous_response: SearchFirebaseAppsResponse,
+        ) -> SearchFirebaseAppsResponseHttpRequest | None: ...
         def androidApps(self) -> AndroidAppsResource: ...
         def availableLocations(self) -> AvailableLocationsResource: ...
         def defaultLocation(self) -> DefaultLocationResource: ...

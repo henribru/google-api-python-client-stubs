@@ -51,6 +51,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAuthorizedCertificatesResponseHttpRequest,
+                previous_response: ListAuthorizedCertificatesResponse,
+            ) -> ListAuthorizedCertificatesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -70,6 +75,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListAuthorizedDomainsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAuthorizedDomainsResponseHttpRequest,
+                previous_response: ListAuthorizedDomainsResponse,
+            ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
         @typing.type_check_only
         class DomainMappingsResource(googleapiclient.discovery.Resource):
             def create(
@@ -97,6 +107,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDomainMappingsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDomainMappingsResponseHttpRequest,
+                previous_response: ListDomainMappingsResponse,
+            ) -> ListDomainMappingsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -121,6 +136,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -135,6 +155,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOperationsResponseHttpRequest,
+                previous_response: ListOperationsResponse,
+            ) -> ListOperationsResponseHttpRequest | None: ...
         def authorizedCertificates(self) -> AuthorizedCertificatesResource: ...
         def authorizedDomains(self) -> AuthorizedDomainsResource: ...
         def domainMappings(self) -> DomainMappingsResource: ...

@@ -54,6 +54,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ListSchemasResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSchemasResponseHttpRequest,
+                previous_response: ListSchemasResponse,
+            ) -> ListSchemasResponseHttpRequest | None: ...
             def setIamPolicy(
                 self,
                 *,
@@ -112,6 +117,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSnapshotsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSnapshotsResponseHttpRequest,
+                previous_response: ListSnapshotsResponse,
+            ) -> ListSnapshotsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -169,6 +179,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSubscriptionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSubscriptionsResponseHttpRequest,
+                previous_response: ListSubscriptionsResponse,
+            ) -> ListSubscriptionsResponseHttpRequest | None: ...
             def modifyAckDeadline(
                 self,
                 *,
@@ -230,6 +245,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListTopicSnapshotsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTopicSnapshotsResponseHttpRequest,
+                    previous_response: ListTopicSnapshotsResponse,
+                ) -> ListTopicSnapshotsResponseHttpRequest | None: ...
             @typing.type_check_only
             class SubscriptionsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -240,6 +260,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListTopicSubscriptionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTopicSubscriptionsResponseHttpRequest,
+                    previous_response: ListTopicSubscriptionsResponse,
+                ) -> ListTopicSubscriptionsResponseHttpRequest | None: ...
             def create(
                 self, *, name: str, body: Topic = ..., **kwargs: typing.Any
             ) -> TopicHttpRequest: ...
@@ -262,6 +287,11 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListTopicsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTopicsResponseHttpRequest,
+                previous_response: ListTopicsResponse,
+            ) -> ListTopicsResponseHttpRequest | None: ...
             def patch(
                 self, *, name: str, body: UpdateTopicRequest = ..., **kwargs: typing.Any
             ) -> TopicHttpRequest: ...

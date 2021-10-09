@@ -65,6 +65,11 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
             parentAccount: str = ...,
             **kwargs: typing.Any
         ) -> ListAccountsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAccountsResponseHttpRequest,
+            previous_response: ListAccountsResponse,
+        ) -> ListAccountsResponseHttpRequest | None: ...
         def patch(
             self,
             *,

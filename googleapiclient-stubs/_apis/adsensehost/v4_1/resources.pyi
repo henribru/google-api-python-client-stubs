@@ -27,6 +27,11 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> AdClientsHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: AdClientsHttpRequest,
+                previous_response: AdClients,
+            ) -> AdClientsHttpRequest | None: ...
         @typing.type_check_only
         class AdunitsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -72,6 +77,9 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> AdUnitsHttpRequest: ...
+            def list_next(
+                self, previous_request: AdUnitsHttpRequest, previous_response: AdUnits
+            ) -> AdUnitsHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -123,6 +131,9 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
         def list(
             self, *, maxResults: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> AdClientsHttpRequest: ...
+        def list_next(
+            self, previous_request: AdClientsHttpRequest, previous_response: AdClients
+        ) -> AdClientsHttpRequest | None: ...
     @typing.type_check_only
     class AssociationsessionsResource(googleapiclient.discovery.Resource):
         def start(
@@ -158,6 +169,11 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> CustomChannelsHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CustomChannelsHttpRequest,
+            previous_response: CustomChannels,
+        ) -> CustomChannelsHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -201,6 +217,11 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> UrlChannelsHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: UrlChannelsHttpRequest,
+            previous_response: UrlChannels,
+        ) -> UrlChannelsHttpRequest | None: ...
     def accounts(self) -> AccountsResource: ...
     def adclients(self) -> AdclientsResource: ...
     def associationsessions(self) -> AssociationsessionsResource: ...

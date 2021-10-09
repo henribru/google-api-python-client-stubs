@@ -44,6 +44,9 @@ class DriveResource(googleapiclient.discovery.Resource):
             teamDriveId: str = ...,
             **kwargs: typing.Any
         ) -> ChangeListHttpRequest: ...
+        def list_next(
+            self, previous_request: ChangeListHttpRequest, previous_response: ChangeList
+        ) -> ChangeListHttpRequest | None: ...
         def watch(
             self,
             *,
@@ -94,6 +97,11 @@ class DriveResource(googleapiclient.discovery.Resource):
             startModifiedTime: str = ...,
             **kwargs: typing.Any
         ) -> CommentListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CommentListHttpRequest,
+            previous_response: CommentList,
+        ) -> CommentListHttpRequest | None: ...
         def update(
             self,
             *,
@@ -127,6 +135,9 @@ class DriveResource(googleapiclient.discovery.Resource):
             useDomainAdminAccess: bool = ...,
             **kwargs: typing.Any
         ) -> DriveListHttpRequest: ...
+        def list_next(
+            self, previous_request: DriveListHttpRequest, previous_response: DriveList
+        ) -> DriveListHttpRequest | None: ...
         def unhide(self, *, driveId: str, **kwargs: typing.Any) -> DriveHttpRequest: ...
         def update(
             self,
@@ -218,6 +229,9 @@ class DriveResource(googleapiclient.discovery.Resource):
             teamDriveId: str = ...,
             **kwargs: typing.Any
         ) -> FileListHttpRequest: ...
+        def list_next(
+            self, previous_request: FileListHttpRequest, previous_response: FileList
+        ) -> FileListHttpRequest | None: ...
         def update(
             self,
             *,
@@ -294,6 +308,11 @@ class DriveResource(googleapiclient.discovery.Resource):
             useDomainAdminAccess: bool = ...,
             **kwargs: typing.Any
         ) -> PermissionListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: PermissionListHttpRequest,
+            previous_response: PermissionList,
+        ) -> PermissionListHttpRequest | None: ...
         def update(
             self,
             *,
@@ -339,6 +358,9 @@ class DriveResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ReplyListHttpRequest: ...
+        def list_next(
+            self, previous_request: ReplyListHttpRequest, previous_response: ReplyList
+        ) -> ReplyListHttpRequest | None: ...
         def update(
             self,
             *,
@@ -369,6 +391,11 @@ class DriveResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> RevisionListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: RevisionListHttpRequest,
+            previous_response: RevisionList,
+        ) -> RevisionListHttpRequest | None: ...
         def update(
             self,
             *,
@@ -401,6 +428,11 @@ class DriveResource(googleapiclient.discovery.Resource):
             useDomainAdminAccess: bool = ...,
             **kwargs: typing.Any
         ) -> TeamDriveListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: TeamDriveListHttpRequest,
+            previous_response: TeamDriveList,
+        ) -> TeamDriveListHttpRequest | None: ...
         def update(
             self,
             *,

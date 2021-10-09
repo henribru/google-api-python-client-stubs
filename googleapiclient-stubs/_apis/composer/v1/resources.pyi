@@ -35,6 +35,11 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListEnvironmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEnvironmentsResponseHttpRequest,
+                    previous_response: ListEnvironmentsResponse,
+                ) -> ListEnvironmentsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -54,6 +59,11 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListImageVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListImageVersionsResponseHttpRequest,
+                    previous_response: ListImageVersionsResponse,
+                ) -> ListImageVersionsResponseHttpRequest | None: ...
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -71,6 +81,11 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def environments(self) -> EnvironmentsResource: ...
             def imageVersions(self) -> ImageVersionsResource: ...
             def operations(self) -> OperationsResource: ...

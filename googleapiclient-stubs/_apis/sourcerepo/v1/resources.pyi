@@ -38,6 +38,11 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListReposResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListReposResponseHttpRequest,
+                previous_response: ListReposResponse,
+            ) -> ListReposResponseHttpRequest | None: ...
             def patch(
                 self, *, name: str, body: UpdateRepoRequest = ..., **kwargs: typing.Any
             ) -> RepoHttpRequest: ...

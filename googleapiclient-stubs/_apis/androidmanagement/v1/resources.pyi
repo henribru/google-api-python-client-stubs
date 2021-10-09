@@ -41,6 +41,11 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
             def delete(
                 self,
                 *,
@@ -72,6 +77,11 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDevicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDevicesResponseHttpRequest,
+                previous_response: ListDevicesResponse,
+            ) -> ListDevicesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -103,6 +113,11 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListPoliciesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPoliciesResponseHttpRequest,
+                previous_response: ListPoliciesResponse,
+            ) -> ListPoliciesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -128,6 +143,11 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListWebAppsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListWebAppsResponseHttpRequest,
+                previous_response: ListWebAppsResponse,
+            ) -> ListWebAppsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -164,6 +184,11 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> ListEnterprisesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListEnterprisesResponseHttpRequest,
+            previous_response: ListEnterprisesResponse,
+        ) -> ListEnterprisesResponseHttpRequest | None: ...
         def patch(
             self,
             *,

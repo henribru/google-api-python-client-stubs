@@ -42,6 +42,11 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest,
+                previous_response: GoogleCloudResourcesettingsV1ListSettingsResponse,
+            ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -80,6 +85,11 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest,
+                previous_response: GoogleCloudResourcesettingsV1ListSettingsResponse,
+            ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -118,6 +128,11 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest,
+                previous_response: GoogleCloudResourcesettingsV1ListSettingsResponse,
+            ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

@@ -90,6 +90,11 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListMembershipsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListMembershipsResponseHttpRequest,
+                previous_response: ListMembershipsResponse,
+            ) -> ListMembershipsResponseHttpRequest | None: ...
         @typing.type_check_only
         class MessagesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -122,6 +127,11 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListSpacesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListSpacesResponseHttpRequest,
+            previous_response: ListSpacesResponse,
+        ) -> ListSpacesResponseHttpRequest | None: ...
         def webhooks(
             self,
             *,

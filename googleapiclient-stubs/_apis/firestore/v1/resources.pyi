@@ -32,6 +32,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleFirestoreAdminV1ListFieldsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleFirestoreAdminV1ListFieldsResponseHttpRequest,
+                        previous_response: GoogleFirestoreAdminV1ListFieldsResponse,
+                    ) -> GoogleFirestoreAdminV1ListFieldsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -64,6 +69,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleFirestoreAdminV1ListIndexesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleFirestoreAdminV1ListIndexesResponseHttpRequest,
+                        previous_response: GoogleFirestoreAdminV1ListIndexesResponse,
+                    ) -> GoogleFirestoreAdminV1ListIndexesResponseHttpRequest | None: ...
                 def fields(self) -> FieldsResource: ...
                 def indexes(self) -> IndexesResource: ...
             @typing.type_check_only
@@ -137,6 +147,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     transaction: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDocumentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDocumentsResponseHttpRequest,
+                    previous_response: ListDocumentsResponse,
+                ) -> ListDocumentsResponseHttpRequest | None: ...
                 def listCollectionIds(
                     self,
                     *,
@@ -144,6 +159,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: ListCollectionIdsRequest = ...,
                     **kwargs: typing.Any
                 ) -> ListCollectionIdsResponseHttpRequest: ...
+                def listCollectionIds_next(
+                    self,
+                    previous_request: ListCollectionIdsResponseHttpRequest,
+                    previous_response: ListCollectionIdsResponse,
+                ) -> ListCollectionIdsResponseHttpRequest | None: ...
                 def listen(
                     self,
                     *,
@@ -158,6 +178,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: PartitionQueryRequest = ...,
                     **kwargs: typing.Any
                 ) -> PartitionQueryResponseHttpRequest: ...
+                def partitionQuery_next(
+                    self,
+                    previous_request: PartitionQueryResponseHttpRequest,
+                    previous_response: PartitionQueryResponse,
+                ) -> PartitionQueryResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -214,6 +239,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
             def exportDocuments(
                 self,
                 *,
@@ -259,6 +289,11 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
         def databases(self) -> DatabasesResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...

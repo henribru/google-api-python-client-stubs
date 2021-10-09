@@ -24,6 +24,11 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest,
+                previous_response: GoogleCloudOrgpolicyV2ListConstraintsResponse,
+            ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest | None: ...
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -50,6 +55,11 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest,
+                previous_response: GoogleCloudOrgpolicyV2ListPoliciesResponse,
+            ) -> GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -71,6 +81,11 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest,
+                previous_response: GoogleCloudOrgpolicyV2ListConstraintsResponse,
+            ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest | None: ...
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -97,6 +112,11 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest,
+                previous_response: GoogleCloudOrgpolicyV2ListPoliciesResponse,
+            ) -> GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -118,6 +138,11 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest,
+                previous_response: GoogleCloudOrgpolicyV2ListConstraintsResponse,
+            ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest | None: ...
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -144,6 +169,11 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest,
+                previous_response: GoogleCloudOrgpolicyV2ListPoliciesResponse,
+            ) -> GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

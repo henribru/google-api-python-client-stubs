@@ -24,6 +24,11 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest,
+                previous_response: GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse,
+            ) -> GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest | None: ...
         @typing.type_check_only
         class PromotionsResource(googleapiclient.discovery.Resource):
             def list(
@@ -35,6 +40,11 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest,
+                previous_response: GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse,
+            ) -> GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest | None: ...
         @typing.type_check_only
         class SubscriptionsResource(googleapiclient.discovery.Resource):
             def cancel(

@@ -39,6 +39,11 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                 body: GoogleChromePolicyV1ResolveRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleChromePolicyV1ResolveResponseHttpRequest: ...
+            def resolve_next(
+                self,
+                previous_request: GoogleChromePolicyV1ResolveResponseHttpRequest,
+                previous_response: GoogleChromePolicyV1ResolveResponse,
+            ) -> GoogleChromePolicyV1ResolveResponseHttpRequest | None: ...
             def orgunits(self) -> OrgunitsResource: ...
         @typing.type_check_only
         class PolicySchemasResource(googleapiclient.discovery.Resource):
@@ -54,6 +59,11 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleChromePolicyV1ListPolicySchemasResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleChromePolicyV1ListPolicySchemasResponseHttpRequest,
+                previous_response: GoogleChromePolicyV1ListPolicySchemasResponse,
+            ) -> GoogleChromePolicyV1ListPolicySchemasResponseHttpRequest | None: ...
         def policies(self) -> PoliciesResource: ...
         def policySchemas(self) -> PolicySchemasResource: ...
     @typing.type_check_only

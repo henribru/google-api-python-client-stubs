@@ -32,6 +32,11 @@ class FirebasestorageResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListBucketsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListBucketsResponseHttpRequest,
+                previous_response: ListBucketsResponse,
+            ) -> ListBucketsResponseHttpRequest | None: ...
             def removeFirebase(
                 self,
                 *,

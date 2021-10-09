@@ -63,6 +63,11 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
             @typing.type_check_only
             class TriggersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -102,6 +107,11 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListTriggersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTriggersResponseHttpRequest,
+                    previous_response: ListTriggersResponse,
+                ) -> ListTriggersResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -138,6 +148,11 @@ class EventarcResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def channels(self) -> ChannelsResource: ...
             def operations(self) -> OperationsResource: ...
             def triggers(self) -> TriggersResource: ...

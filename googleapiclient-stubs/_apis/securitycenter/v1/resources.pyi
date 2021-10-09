@@ -23,6 +23,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: GroupAssetsRequest = ...,
                 **kwargs: typing.Any
             ) -> GroupAssetsResponseHttpRequest: ...
+            def group_next(
+                self,
+                previous_request: GroupAssetsResponseHttpRequest,
+                previous_response: GroupAssetsResponse,
+            ) -> GroupAssetsResponseHttpRequest | None: ...
             def list(
                 self,
                 *,
@@ -36,6 +41,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 readTime: str = ...,
                 **kwargs: typing.Any
             ) -> ListAssetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAssetsResponseHttpRequest,
+                previous_response: ListAssetsResponse,
+            ) -> ListAssetsResponseHttpRequest | None: ...
             def updateSecurityMarks(
                 self,
                 *,
@@ -56,6 +66,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     body: GroupFindingsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GroupFindingsResponseHttpRequest: ...
+                def group_next(
+                    self,
+                    previous_request: GroupFindingsResponseHttpRequest,
+                    previous_response: GroupFindingsResponse,
+                ) -> GroupFindingsResponseHttpRequest | None: ...
                 def list(
                     self,
                     *,
@@ -69,6 +84,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     readTime: str = ...,
                     **kwargs: typing.Any
                 ) -> ListFindingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFindingsResponseHttpRequest,
+                    previous_response: ListFindingsResponse,
+                ) -> ListFindingsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -101,6 +121,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSourcesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSourcesResponseHttpRequest,
+                previous_response: ListSourcesResponse,
+            ) -> ListSourcesResponseHttpRequest | None: ...
             def findings(self) -> FindingsResource: ...
         def assets(self) -> AssetsResource: ...
         def sources(self) -> SourcesResource: ...
@@ -115,6 +140,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: GroupAssetsRequest = ...,
                 **kwargs: typing.Any
             ) -> GroupAssetsResponseHttpRequest: ...
+            def group_next(
+                self,
+                previous_request: GroupAssetsResponseHttpRequest,
+                previous_response: GroupAssetsResponse,
+            ) -> GroupAssetsResponseHttpRequest | None: ...
             def list(
                 self,
                 *,
@@ -128,6 +158,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 readTime: str = ...,
                 **kwargs: typing.Any
             ) -> ListAssetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAssetsResponseHttpRequest,
+                previous_response: ListAssetsResponse,
+            ) -> ListAssetsResponseHttpRequest | None: ...
             def runDiscovery(
                 self,
                 *,
@@ -168,6 +203,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListNotificationConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListNotificationConfigsResponseHttpRequest,
+                previous_response: ListNotificationConfigsResponse,
+            ) -> ListNotificationConfigsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -196,6 +236,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOperationsResponseHttpRequest,
+                previous_response: ListOperationsResponse,
+            ) -> ListOperationsResponseHttpRequest | None: ...
         @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -215,6 +260,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     body: GroupFindingsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GroupFindingsResponseHttpRequest: ...
+                def group_next(
+                    self,
+                    previous_request: GroupFindingsResponseHttpRequest,
+                    previous_response: GroupFindingsResponse,
+                ) -> GroupFindingsResponseHttpRequest | None: ...
                 def list(
                     self,
                     *,
@@ -228,6 +278,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     readTime: str = ...,
                     **kwargs: typing.Any
                 ) -> ListFindingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFindingsResponseHttpRequest,
+                    previous_response: ListFindingsResponse,
+                ) -> ListFindingsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -271,6 +326,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSourcesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSourcesResponseHttpRequest,
+                previous_response: ListSourcesResponse,
+            ) -> ListSourcesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -320,6 +380,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: GroupAssetsRequest = ...,
                 **kwargs: typing.Any
             ) -> GroupAssetsResponseHttpRequest: ...
+            def group_next(
+                self,
+                previous_request: GroupAssetsResponseHttpRequest,
+                previous_response: GroupAssetsResponse,
+            ) -> GroupAssetsResponseHttpRequest | None: ...
             def list(
                 self,
                 *,
@@ -333,6 +398,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 readTime: str = ...,
                 **kwargs: typing.Any
             ) -> ListAssetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAssetsResponseHttpRequest,
+                previous_response: ListAssetsResponse,
+            ) -> ListAssetsResponseHttpRequest | None: ...
             def updateSecurityMarks(
                 self,
                 *,
@@ -353,6 +423,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     body: GroupFindingsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GroupFindingsResponseHttpRequest: ...
+                def group_next(
+                    self,
+                    previous_request: GroupFindingsResponseHttpRequest,
+                    previous_response: GroupFindingsResponse,
+                ) -> GroupFindingsResponseHttpRequest | None: ...
                 def list(
                     self,
                     *,
@@ -366,6 +441,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     readTime: str = ...,
                     **kwargs: typing.Any
                 ) -> ListFindingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFindingsResponseHttpRequest,
+                    previous_response: ListFindingsResponse,
+                ) -> ListFindingsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -398,6 +478,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSourcesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSourcesResponseHttpRequest,
+                previous_response: ListSourcesResponse,
+            ) -> ListSourcesResponseHttpRequest | None: ...
             def findings(self) -> FindingsResource: ...
         def assets(self) -> AssetsResource: ...
         def sources(self) -> SourcesResource: ...

@@ -39,6 +39,11 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListJobsResponseHttpRequest,
+                    previous_response: ListJobsResponse,
+                ) -> ListJobsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -76,6 +81,11 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
             def jobs(self) -> JobsResource: ...
         def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...

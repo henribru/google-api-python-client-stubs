@@ -37,6 +37,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             regionCode: str = ...,
             **kwargs: typing.Any
         ) -> ActivityListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ActivityListResponseHttpRequest,
+            previous_response: ActivityListResponse,
+        ) -> ActivityListResponseHttpRequest | None: ...
     @typing.type_check_only
     class CaptionsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -149,6 +154,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ChannelListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ChannelListResponseHttpRequest,
+            previous_response: ChannelListResponse,
+        ) -> ChannelListResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -188,6 +198,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             videoId: str = ...,
             **kwargs: typing.Any
         ) -> CommentThreadListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CommentThreadListResponseHttpRequest,
+            previous_response: CommentThreadListResponse,
+        ) -> CommentThreadListResponseHttpRequest | None: ...
     @typing.type_check_only
     class CommentsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -209,6 +224,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> CommentListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CommentListResponseHttpRequest,
+            previous_response: CommentListResponse,
+        ) -> CommentListResponseHttpRequest | None: ...
         def markAsSpam(
             self, *, id: str | _list[str], **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -286,6 +306,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> LiveBroadcastListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: LiveBroadcastListResponseHttpRequest,
+            previous_response: LiveBroadcastListResponse,
+        ) -> LiveBroadcastListResponseHttpRequest | None: ...
         def transition(
             self,
             *,
@@ -342,6 +367,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             profileImageSize: int = ...,
             **kwargs: typing.Any
         ) -> LiveChatMessageListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: LiveChatMessageListResponseHttpRequest,
+            previous_response: LiveChatMessageListResponse,
+        ) -> LiveChatMessageListResponseHttpRequest | None: ...
     @typing.type_check_only
     class LiveChatModeratorsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -363,6 +393,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> LiveChatModeratorListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: LiveChatModeratorListResponseHttpRequest,
+            previous_response: LiveChatModeratorListResponse,
+        ) -> LiveChatModeratorListResponseHttpRequest | None: ...
     @typing.type_check_only
     class LiveStreamsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -394,6 +429,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> LiveStreamListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: LiveStreamListResponseHttpRequest,
+            previous_response: LiveStreamListResponse,
+        ) -> LiveStreamListResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -418,6 +458,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> MemberListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: MemberListResponseHttpRequest,
+            previous_response: MemberListResponse,
+        ) -> MemberListResponseHttpRequest | None: ...
     @typing.type_check_only
     class MembershipsLevelsResource(googleapiclient.discovery.Resource):
         def list(
@@ -448,6 +493,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             videoId: str = ...,
             **kwargs: typing.Any
         ) -> PlaylistItemListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: PlaylistItemListResponseHttpRequest,
+            previous_response: PlaylistItemListResponse,
+        ) -> PlaylistItemListResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -484,6 +534,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> PlaylistListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: PlaylistListResponseHttpRequest,
+            previous_response: PlaylistListResponse,
+        ) -> PlaylistListResponseHttpRequest | None: ...
         def update(
             self,
             *,
@@ -556,6 +611,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> SearchListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SearchListResponseHttpRequest,
+            previous_response: SearchListResponse,
+        ) -> SearchListResponseHttpRequest | None: ...
     @typing.type_check_only
     class SubscriptionsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -587,6 +647,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> SubscriptionListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SubscriptionListResponseHttpRequest,
+            previous_response: SubscriptionListResponse,
+        ) -> SubscriptionListResponseHttpRequest | None: ...
     @typing.type_check_only
     class SuperChatEventsResource(googleapiclient.discovery.Resource):
         def list(
@@ -598,6 +663,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> SuperChatEventListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SuperChatEventListResponseHttpRequest,
+            previous_response: SuperChatEventListResponse,
+        ) -> SuperChatEventListResponseHttpRequest | None: ...
     @typing.type_check_only
     class TestsResource(googleapiclient.discovery.Resource):
         def insert(
@@ -713,6 +783,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             videoCategoryId: str = ...,
             **kwargs: typing.Any
         ) -> VideoListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: VideoListResponseHttpRequest,
+            previous_response: VideoListResponse,
+        ) -> VideoListResponseHttpRequest | None: ...
         def rate(
             self,
             *,

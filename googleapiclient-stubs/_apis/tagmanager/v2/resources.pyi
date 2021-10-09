@@ -30,6 +30,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 def list(
                     self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                 ) -> ListEnvironmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEnvironmentsResponseHttpRequest,
+                    previous_response: ListEnvironmentsResponse,
+                ) -> ListEnvironmentsResponseHttpRequest | None: ...
                 def reauthorize(
                     self, *, path: str, body: Environment = ..., **kwargs: typing.Any
                 ) -> EnvironmentHttpRequest: ...
@@ -54,6 +59,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListContainerVersionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListContainerVersionsResponseHttpRequest,
+                    previous_response: ListContainerVersionsResponse,
+                ) -> ListContainerVersionsResponseHttpRequest | None: ...
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -569,6 +579,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     def list(
                         self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> ListEnabledBuiltInVariablesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListEnabledBuiltInVariablesResponseHttpRequest,
+                        previous_response: ListEnabledBuiltInVariablesResponse,
+                    ) -> ListEnabledBuiltInVariablesResponseHttpRequest | None: ...
                     def revert(
                         self,
                         *,
@@ -704,6 +719,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     def list(
                         self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> ListClientsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListClientsResponseHttpRequest,
+                        previous_response: ListClientsResponse,
+                    ) -> ListClientsResponseHttpRequest | None: ...
                     def revert(
                         self, *, path: str, fingerprint: str = ..., **kwargs: typing.Any
                     ) -> RevertClientResponseHttpRequest: ...
@@ -726,12 +746,22 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     def entities(
                         self, *, path: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> FolderEntitiesHttpRequest: ...
+                    def entities_next(
+                        self,
+                        previous_request: FolderEntitiesHttpRequest,
+                        previous_response: FolderEntities,
+                    ) -> FolderEntitiesHttpRequest | None: ...
                     def get(
                         self, *, path: str, **kwargs: typing.Any
                     ) -> FolderHttpRequest: ...
                     def list(
                         self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> ListFoldersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListFoldersResponseHttpRequest,
+                        previous_response: ListFoldersResponse,
+                    ) -> ListFoldersResponseHttpRequest | None: ...
                     def move_entities_to_folder(
                         self,
                         *,
@@ -767,6 +797,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     def list(
                         self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> ListTagsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTagsResponseHttpRequest,
+                        previous_response: ListTagsResponse,
+                    ) -> ListTagsResponseHttpRequest | None: ...
                     def revert(
                         self, *, path: str, fingerprint: str = ..., **kwargs: typing.Any
                     ) -> RevertTagResponseHttpRequest: ...
@@ -796,6 +831,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     def list(
                         self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> ListTemplatesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTemplatesResponseHttpRequest,
+                        previous_response: ListTemplatesResponse,
+                    ) -> ListTemplatesResponseHttpRequest | None: ...
                     def revert(
                         self, *, path: str, fingerprint: str = ..., **kwargs: typing.Any
                     ) -> RevertTemplateResponseHttpRequest: ...
@@ -821,6 +861,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     def list(
                         self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> ListTriggersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTriggersResponseHttpRequest,
+                        previous_response: ListTriggersResponse,
+                    ) -> ListTriggersResponseHttpRequest | None: ...
                     def revert(
                         self, *, path: str, fingerprint: str = ..., **kwargs: typing.Any
                     ) -> RevertTriggerResponseHttpRequest: ...
@@ -846,6 +891,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     def list(
                         self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> ListVariablesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListVariablesResponseHttpRequest,
+                        previous_response: ListVariablesResponse,
+                    ) -> ListVariablesResponseHttpRequest | None: ...
                     def revert(
                         self, *, path: str, fingerprint: str = ..., **kwargs: typing.Any
                     ) -> RevertVariableResponseHttpRequest: ...
@@ -871,6 +921,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     def list(
                         self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> ListZonesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListZonesResponseHttpRequest,
+                        previous_response: ListZonesResponse,
+                    ) -> ListZonesResponseHttpRequest | None: ...
                     def revert(
                         self, *, path: str, fingerprint: str = ..., **kwargs: typing.Any
                     ) -> RevertZoneResponseHttpRequest: ...
@@ -904,6 +959,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 def list(
                     self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                 ) -> ListWorkspacesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWorkspacesResponseHttpRequest,
+                    previous_response: ListWorkspacesResponse,
+                ) -> ListWorkspacesResponseHttpRequest | None: ...
                 def quick_preview(
                     self, *, path: str, **kwargs: typing.Any
                 ) -> QuickPreviewResponseHttpRequest: ...
@@ -946,6 +1006,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
             ) -> ListContainersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListContainersResponseHttpRequest,
+                previous_response: ListContainersResponse,
+            ) -> ListContainersResponseHttpRequest | None: ...
             def update(
                 self,
                 *,
@@ -972,6 +1037,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
             ) -> ListUserPermissionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListUserPermissionsResponseHttpRequest,
+                previous_response: ListUserPermissionsResponse,
+            ) -> ListUserPermissionsResponseHttpRequest | None: ...
             def update(
                 self, *, path: str, body: UserPermission = ..., **kwargs: typing.Any
             ) -> UserPermissionHttpRequest: ...
@@ -979,6 +1049,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageToken: str = ..., **kwargs: typing.Any
         ) -> ListAccountsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAccountsResponseHttpRequest,
+            previous_response: ListAccountsResponse,
+        ) -> ListAccountsResponseHttpRequest | None: ...
         def update(
             self,
             *,

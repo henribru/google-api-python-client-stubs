@@ -42,6 +42,11 @@ class GmailResource(googleapiclient.discovery.Resource):
                 q: str = ...,
                 **kwargs: typing.Any
             ) -> ListDraftsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDraftsResponseHttpRequest,
+                previous_response: ListDraftsResponse,
+            ) -> ListDraftsResponseHttpRequest | None: ...
             def send(
                 self, *, userId: str, body: Draft = ..., **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
@@ -68,6 +73,11 @@ class GmailResource(googleapiclient.discovery.Resource):
                 startHistoryId: str = ...,
                 **kwargs: typing.Any
             ) -> ListHistoryResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListHistoryResponseHttpRequest,
+                previous_response: ListHistoryResponse,
+            ) -> ListHistoryResponseHttpRequest | None: ...
         @typing.type_check_only
         class LabelsResource(googleapiclient.discovery.Resource):
             def create(
@@ -158,6 +168,11 @@ class GmailResource(googleapiclient.discovery.Resource):
                 q: str = ...,
                 **kwargs: typing.Any
             ) -> ListMessagesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListMessagesResponseHttpRequest,
+                previous_response: ListMessagesResponse,
+            ) -> ListMessagesResponseHttpRequest | None: ...
             def modify(
                 self,
                 *,
@@ -354,6 +369,11 @@ class GmailResource(googleapiclient.discovery.Resource):
                 q: str = ...,
                 **kwargs: typing.Any
             ) -> ListThreadsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListThreadsResponseHttpRequest,
+                previous_response: ListThreadsResponse,
+            ) -> ListThreadsResponseHttpRequest | None: ...
             def modify(
                 self,
                 *,

@@ -36,6 +36,11 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
                 def wait(
                     self, *, name: str, timeout: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -51,6 +56,11 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListVulnerabilitiesResponseV1HttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListVulnerabilitiesResponseV1HttpRequest,
+                        previous_response: ListVulnerabilitiesResponseV1,
+                    ) -> ListVulnerabilitiesResponseV1HttpRequest | None: ...
                 def analyzePackages(
                     self,
                     *,

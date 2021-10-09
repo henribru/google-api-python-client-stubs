@@ -45,6 +45,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 requireOpenJobs: bool = ...,
                 **kwargs: typing.Any
             ) -> ListCompaniesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCompaniesResponseHttpRequest,
+                previous_response: ListCompaniesResponse,
+            ) -> ListCompaniesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -84,6 +89,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListJobsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListJobsResponseHttpRequest,
+                previous_response: ListJobsResponse,
+            ) -> ListJobsResponseHttpRequest | None: ...
             def patch(
                 self, *, name: str, body: UpdateJobRequest = ..., **kwargs: typing.Any
             ) -> JobHttpRequest: ...
@@ -94,6 +104,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 body: SearchJobsRequest = ...,
                 **kwargs: typing.Any
             ) -> SearchJobsResponseHttpRequest: ...
+            def search_next(
+                self,
+                previous_request: SearchJobsResponseHttpRequest,
+                previous_response: SearchJobsResponse,
+            ) -> SearchJobsResponseHttpRequest | None: ...
             def searchForAlert(
                 self,
                 *,
@@ -101,6 +116,11 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 body: SearchJobsRequest = ...,
                 **kwargs: typing.Any
             ) -> SearchJobsResponseHttpRequest: ...
+            def searchForAlert_next(
+                self,
+                previous_request: SearchJobsResponseHttpRequest,
+                previous_response: SearchJobsResponse,
+            ) -> SearchJobsResponseHttpRequest | None: ...
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(

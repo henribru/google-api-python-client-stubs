@@ -24,6 +24,11 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -47,6 +52,11 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListServiceConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListServiceConfigsResponseHttpRequest,
+                previous_response: ListServiceConfigsResponse,
+            ) -> ListServiceConfigsResponseHttpRequest | None: ...
             def submit(
                 self,
                 *,
@@ -94,6 +104,11 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListServiceRolloutsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListServiceRolloutsResponseHttpRequest,
+                previous_response: ListServiceRolloutsResponse,
+            ) -> ListServiceRolloutsResponseHttpRequest | None: ...
         def create(
             self, *, body: ManagedService = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -130,6 +145,11 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             producerProjectId: str = ...,
             **kwargs: typing.Any
         ) -> ListServicesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListServicesResponseHttpRequest,
+            previous_response: ListServicesResponse,
+        ) -> ListServicesResponseHttpRequest | None: ...
         def setIamPolicy(
             self,
             *,

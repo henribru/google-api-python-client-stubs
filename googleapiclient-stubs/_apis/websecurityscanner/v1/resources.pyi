@@ -28,6 +28,11 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListCrawledUrlsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCrawledUrlsResponseHttpRequest,
+                        previous_response: ListCrawledUrlsResponse,
+                    ) -> ListCrawledUrlsResponseHttpRequest | None: ...
                 @typing.type_check_only
                 class FindingTypeStatsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -47,6 +52,11 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListFindingsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListFindingsResponseHttpRequest,
+                        previous_response: ListFindingsResponse,
+                    ) -> ListFindingsResponseHttpRequest | None: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ScanRunHttpRequest: ...
@@ -58,6 +68,11 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListScanRunsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListScanRunsResponseHttpRequest,
+                    previous_response: ListScanRunsResponse,
+                ) -> ListScanRunsResponseHttpRequest | None: ...
                 def stop(
                     self,
                     *,
@@ -85,6 +100,11 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListScanConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListScanConfigsResponseHttpRequest,
+                previous_response: ListScanConfigsResponse,
+            ) -> ListScanConfigsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

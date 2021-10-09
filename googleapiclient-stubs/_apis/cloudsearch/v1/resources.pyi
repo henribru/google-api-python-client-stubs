@@ -29,6 +29,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> ListUnmappedIdentitiesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListUnmappedIdentitiesResponseHttpRequest,
+                        previous_response: ListUnmappedIdentitiesResponse,
+                    ) -> ListUnmappedIdentitiesResponseHttpRequest | None: ...
                 def checkAccess(
                     self,
                     *,
@@ -44,6 +49,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     body: SearchItemsByViewUrlRequest = ...,
                     **kwargs: typing.Any
                 ) -> SearchItemsByViewUrlResponseHttpRequest: ...
+                def searchByViewUrl_next(
+                    self,
+                    previous_request: SearchItemsByViewUrlResponseHttpRequest,
+                    previous_response: SearchItemsByViewUrlResponse,
+                ) -> SearchItemsByViewUrlResponseHttpRequest | None: ...
                 def unmappedids(self) -> UnmappedidsResource: ...
             def items(self) -> ItemsResource: ...
         @typing.type_check_only
@@ -61,6 +71,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     userResourceName: str = ...,
                     **kwargs: typing.Any
                 ) -> ListItemNamesForUnmappedIdentityResponseHttpRequest: ...
+                def listForunmappedidentity_next(
+                    self,
+                    previous_request: ListItemNamesForUnmappedIdentityResponseHttpRequest,
+                    previous_response: ListItemNamesForUnmappedIdentityResponse,
+                ) -> ListItemNamesForUnmappedIdentityResponseHttpRequest | None: ...
             @typing.type_check_only
             class UnmappedidsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -80,6 +95,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> ListUnmappedIdentitiesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListUnmappedIdentitiesResponseHttpRequest,
+                    previous_response: ListUnmappedIdentitiesResponse,
+                ) -> ListUnmappedIdentitiesResponseHttpRequest | None: ...
             def items(self) -> ItemsResource: ...
             def unmappedids(self) -> UnmappedidsResource: ...
         def datasources(self) -> DatasourcesResource: ...
@@ -135,6 +155,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListItemsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListItemsResponseHttpRequest,
+                    previous_response: ListItemsResponse,
+                ) -> ListItemsResponseHttpRequest | None: ...
                 def poll(
                     self,
                     *,
@@ -204,6 +229,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOperationsResponseHttpRequest,
+                previous_response: ListOperationsResponse,
+            ) -> ListOperationsResponseHttpRequest | None: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def lro(self) -> LroResource: ...
     @typing.type_check_only
@@ -220,6 +250,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 requestOptions_timeZone: str = ...,
                 **kwargs: typing.Any
             ) -> ListQuerySourcesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListQuerySourcesResponseHttpRequest,
+                previous_response: ListQuerySourcesResponse,
+            ) -> ListQuerySourcesResponseHttpRequest | None: ...
         def search(
             self, *, body: SearchRequest = ..., **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
@@ -256,6 +291,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListDataSourceResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDataSourceResponseHttpRequest,
+                previous_response: ListDataSourceResponse,
+            ) -> ListDataSourceResponseHttpRequest | None: ...
             def update(
                 self,
                 *,
@@ -290,6 +330,11 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListSearchApplicationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSearchApplicationsResponseHttpRequest,
+                previous_response: ListSearchApplicationsResponse,
+            ) -> ListSearchApplicationsResponseHttpRequest | None: ...
             def reset(
                 self,
                 *,

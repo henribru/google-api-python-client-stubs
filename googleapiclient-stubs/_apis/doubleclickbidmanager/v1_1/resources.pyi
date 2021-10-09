@@ -26,6 +26,11 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
         def listqueries(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListQueriesResponseHttpRequest: ...
+        def listqueries_next(
+            self,
+            previous_request: ListQueriesResponseHttpRequest,
+            previous_response: ListQueriesResponse,
+        ) -> ListQueriesResponseHttpRequest | None: ...
         def runquery(
             self,
             *,
@@ -44,6 +49,11 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> ListReportsResponseHttpRequest: ...
+        def listreports_next(
+            self,
+            previous_request: ListReportsResponseHttpRequest,
+            previous_response: ListReportsResponse,
+        ) -> ListReportsResponseHttpRequest | None: ...
     def queries(self) -> QueriesResource: ...
     def reports(self) -> ReportsResource: ...
 

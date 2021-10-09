@@ -70,6 +70,11 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         **kwargs: typing.Any
                     ) -> V1Beta1ListProducerOverridesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: V1Beta1ListProducerOverridesResponseHttpRequest,
+                        previous_response: V1Beta1ListProducerOverridesResponse,
+                    ) -> V1Beta1ListProducerOverridesResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -128,6 +133,11 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> V1Beta1ListConsumerQuotaMetricsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: V1Beta1ListConsumerQuotaMetricsResponseHttpRequest,
+                previous_response: V1Beta1ListConsumerQuotaMetricsResponse,
+            ) -> V1Beta1ListConsumerQuotaMetricsResponseHttpRequest | None: ...
             def limits(self) -> LimitsResource: ...
         def consumerQuotaMetrics(self) -> ConsumerQuotaMetricsResource: ...
     def operations(self) -> OperationsResource: ...

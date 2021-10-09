@@ -27,6 +27,11 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> ListDataPointChangesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDataPointChangesResponseHttpRequest,
+                    previous_response: ListDataPointChangesResponse,
+                ) -> ListDataPointChangesResponseHttpRequest | None: ...
             @typing.type_check_only
             class DatasetsResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -47,6 +52,11 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any
                 ) -> DatasetHttpRequest: ...
+                def get_next(
+                    self,
+                    previous_request: DatasetHttpRequest,
+                    previous_response: Dataset,
+                ) -> DatasetHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -56,6 +66,11 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     body: Dataset = ...,
                     **kwargs: typing.Any
                 ) -> DatasetHttpRequest: ...
+                def patch_next(
+                    self,
+                    previous_request: DatasetHttpRequest,
+                    previous_response: Dataset,
+                ) -> DatasetHttpRequest | None: ...
             def create(
                 self, *, userId: str, body: DataSource = ..., **kwargs: typing.Any
             ) -> DataSourceHttpRequest: ...
@@ -103,6 +118,11 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 startTime: str = ...,
                 **kwargs: typing.Any
             ) -> ListSessionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSessionsResponseHttpRequest,
+                previous_response: ListSessionsResponse,
+            ) -> ListSessionsResponseHttpRequest | None: ...
             def update(
                 self,
                 *,

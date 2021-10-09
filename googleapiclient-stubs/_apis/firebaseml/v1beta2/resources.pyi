@@ -35,6 +35,11 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 **kwargs: typing.Any
             ) -> ListModelsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListModelsResponseHttpRequest,
+                previous_response: ListModelsResponse,
+            ) -> ListModelsResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,

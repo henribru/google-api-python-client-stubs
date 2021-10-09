@@ -38,6 +38,9 @@ class CalendarResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> AclHttpRequest: ...
+        def list_next(
+            self, previous_request: AclHttpRequest, previous_response: Acl
+        ) -> AclHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -95,6 +98,11 @@ class CalendarResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> CalendarListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: CalendarListHttpRequest,
+            previous_response: CalendarList,
+        ) -> CalendarListHttpRequest | None: ...
         def patch(
             self,
             *,
@@ -211,6 +219,9 @@ class CalendarResource(googleapiclient.discovery.Resource):
             timeZone: str = ...,
             **kwargs: typing.Any
         ) -> EventsHttpRequest: ...
+        def instances_next(
+            self, previous_request: EventsHttpRequest, previous_response: Events
+        ) -> EventsHttpRequest | None: ...
         def list(
             self,
             *,
@@ -234,6 +245,9 @@ class CalendarResource(googleapiclient.discovery.Resource):
             updatedMin: str = ...,
             **kwargs: typing.Any
         ) -> EventsHttpRequest: ...
+        def list_next(
+            self, previous_request: EventsHttpRequest, previous_response: Events
+        ) -> EventsHttpRequest | None: ...
         def move(
             self,
             *,
@@ -321,6 +335,9 @@ class CalendarResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> SettingsHttpRequest: ...
+        def list_next(
+            self, previous_request: SettingsHttpRequest, previous_response: Settings
+        ) -> SettingsHttpRequest | None: ...
         def watch(
             self,
             *,
