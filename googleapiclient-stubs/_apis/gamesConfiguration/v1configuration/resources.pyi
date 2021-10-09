@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class GamesConfigurationResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -89,9 +91,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
 class AchievementConfigurationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementConfiguration: ...
 
@@ -99,9 +99,7 @@ class AchievementConfigurationHttpRequest(googleapiclient.http.HttpRequest):
 class AchievementConfigurationListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementConfigurationListResponse: ...
 
@@ -109,9 +107,7 @@ class AchievementConfigurationListResponseHttpRequest(googleapiclient.http.HttpR
 class ImageConfigurationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ImageConfiguration: ...
 
@@ -119,9 +115,7 @@ class ImageConfigurationHttpRequest(googleapiclient.http.HttpRequest):
 class LeaderboardConfigurationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LeaderboardConfiguration: ...
 
@@ -129,8 +123,6 @@ class LeaderboardConfigurationHttpRequest(googleapiclient.http.HttpRequest):
 class LeaderboardConfigurationListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LeaderboardConfigurationListResponse: ...

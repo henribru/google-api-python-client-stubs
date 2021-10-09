@@ -2,18 +2,20 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Ancestor(typing_extensions.TypedDict, total=False):
     resourceId: ResourceId
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -21,7 +23,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -147,7 +149,7 @@ class GetAncestryRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GetAncestryResponse(typing_extensions.TypedDict, total=False):
-    ancestor: typing.List[Ancestor]
+    ancestor: _list[Ancestor]
 
 @typing.type_check_only
 class GetEffectiveOrgPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -172,7 +174,7 @@ class Lien(typing_extensions.TypedDict, total=False):
     origin: str
     parent: str
     reason: str
-    restrictions: typing.List[str]
+    restrictions: _list[str]
 
 @typing.type_check_only
 class ListAvailableOrgPolicyConstraintsRequest(
@@ -185,7 +187,7 @@ class ListAvailableOrgPolicyConstraintsRequest(
 class ListAvailableOrgPolicyConstraintsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    constraints: typing.List[Constraint]
+    constraints: _list[Constraint]
     nextPageToken: str
 
 @typing.type_check_only
@@ -195,7 +197,7 @@ class ListConstraint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListLiensResponse(typing_extensions.TypedDict, total=False):
-    liens: typing.List[Lien]
+    liens: _list[Lien]
     nextPageToken: str
 
 @typing.type_check_only
@@ -206,20 +208,20 @@ class ListOrgPoliciesRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListOrgPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    policies: typing.List[OrgPolicy]
+    policies: _list[OrgPolicy]
 
 @typing.type_check_only
 class ListPolicy(typing_extensions.TypedDict, total=False):
     allValues: typing_extensions.Literal["ALL_VALUES_UNSPECIFIED", "ALLOW", "DENY"]
-    allowedValues: typing.List[str]
-    deniedValues: typing.List[str]
+    allowedValues: _list[str]
+    deniedValues: _list[str]
     inheritFromParent: bool
     suggestedValue: str
 
 @typing.type_check_only
 class ListProjectsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    projects: typing.List[Project]
+    projects: _list[Project]
 
 @typing.type_check_only
 class MoveFolderMetadata(typing_extensions.TypedDict, total=False):
@@ -234,9 +236,9 @@ class MoveProjectMetadata(typing_extensions.TypedDict, total=False): ...
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OrgPolicy(typing_extensions.TypedDict, total=False):
@@ -264,15 +266,15 @@ class OrganizationOwner(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class Project(typing_extensions.TypedDict, total=False):
     createTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     lifecycleState: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "ACTIVE",
@@ -307,7 +309,7 @@ class SearchOrganizationsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchOrganizationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    organizations: typing.List[Organization]
+    organizations: _list[Organization]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -321,16 +323,16 @@ class SetOrgPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class UndeleteFolderMetadata(typing_extensions.TypedDict, total=False): ...

@@ -2,28 +2,30 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Advice(typing_extensions.TypedDict, total=False):
     description: str
 
 @typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
-    methods: typing.List[Method]
-    mixins: typing.List[Mixin]
+    methods: _list[Method]
+    mixins: _list[Mixin]
     name: str
-    options: typing.List[Option]
+    options: _list[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
     version: str
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -35,7 +37,7 @@ class AuthProvider(typing_extensions.TypedDict, total=False):
     id: str
     issuer: str
     jwksUri: str
-    jwtLocations: typing.List[JwtLocation]
+    jwtLocations: _list[JwtLocation]
 
 @typing.type_check_only
 class AuthRequirement(typing_extensions.TypedDict, total=False):
@@ -44,19 +46,19 @@ class AuthRequirement(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Authentication(typing_extensions.TypedDict, total=False):
-    providers: typing.List[AuthProvider]
-    rules: typing.List[AuthenticationRule]
+    providers: _list[AuthProvider]
+    rules: _list[AuthenticationRule]
 
 @typing.type_check_only
 class AuthenticationRule(typing_extensions.TypedDict, total=False):
     allowWithoutCredential: bool
     oauth: OAuthRequirements
-    requirements: typing.List[AuthRequirement]
+    requirements: _list[AuthRequirement]
     selector: str
 
 @typing.type_check_only
 class Backend(typing_extensions.TypedDict, total=False):
-    rules: typing.List[BackendRule]
+    rules: _list[BackendRule]
 
 @typing.type_check_only
 class BackendRule(typing_extensions.TypedDict, total=False):
@@ -73,26 +75,26 @@ class BackendRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Billing(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[BillingDestination]
+    consumerDestinations: _list[BillingDestination]
 
 @typing.type_check_only
 class BillingDestination(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[str]
+    metrics: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class ChangeReport(typing_extensions.TypedDict, total=False):
-    configChanges: typing.List[ConfigChange]
+    configChanges: _list[ConfigChange]
 
 @typing.type_check_only
 class ConfigChange(typing_extensions.TypedDict, total=False):
-    advices: typing.List[Advice]
+    advices: _list[Advice]
     changeType: typing_extensions.Literal[
         "CHANGE_TYPE_UNSPECIFIED", "ADDED", "REMOVED", "MODIFIED"
     ]
@@ -119,19 +121,19 @@ class ConfigRef(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigSource(typing_extensions.TypedDict, total=False):
-    files: typing.List[ConfigFile]
+    files: _list[ConfigFile]
     id: str
 
 @typing.type_check_only
 class Context(typing_extensions.TypedDict, total=False):
-    rules: typing.List[ContextRule]
+    rules: _list[ContextRule]
 
 @typing.type_check_only
 class ContextRule(typing_extensions.TypedDict, total=False):
-    allowedRequestExtensions: typing.List[str]
-    allowedResponseExtensions: typing.List[str]
-    provided: typing.List[str]
-    requested: typing.List[str]
+    allowedRequestExtensions: _list[str]
+    allowedResponseExtensions: _list[str]
+    provided: _list[str]
+    requested: _list[str]
     selector: str
 
 @typing.type_check_only
@@ -140,8 +142,8 @@ class Control(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomError(typing_extensions.TypedDict, total=False):
-    rules: typing.List[CustomErrorRule]
-    types: typing.List[str]
+    rules: _list[CustomErrorRule]
+    types: _list[str]
 
 @typing.type_check_only
 class CustomErrorRule(typing_extensions.TypedDict, total=False):
@@ -166,8 +168,8 @@ class Diagnostic(typing_extensions.TypedDict, total=False):
 class Documentation(typing_extensions.TypedDict, total=False):
     documentationRootUrl: str
     overview: str
-    pages: typing.List[Page]
-    rules: typing.List[DocumentationRule]
+    pages: _list[Page]
+    rules: _list[DocumentationRule]
     serviceRootUrl: str
     summary: str
 
@@ -188,9 +190,9 @@ class Endpoint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Enum(typing_extensions.TypedDict, total=False):
-    enumvalue: typing.List[EnumValue]
+    enumvalue: _list[EnumValue]
     name: str
-    options: typing.List[Option]
+    options: _list[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
 
@@ -198,7 +200,7 @@ class Enum(typing_extensions.TypedDict, total=False):
 class EnumValue(typing_extensions.TypedDict, total=False):
     name: str
     number: int
-    options: typing.List[Option]
+    options: _list[Option]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -241,7 +243,7 @@ class Field(typing_extensions.TypedDict, total=False):
     name: str
     number: int
     oneofIndex: int
-    options: typing.List[Option]
+    options: _list[Option]
     packed: bool
     typeUrl: str
 
@@ -252,13 +254,13 @@ class FlowErrorDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GenerateConfigReportRequest(typing_extensions.TypedDict, total=False):
-    newConfig: typing.Dict[str, typing.Any]
-    oldConfig: typing.Dict[str, typing.Any]
+    newConfig: dict[str, typing.Any]
+    oldConfig: dict[str, typing.Any]
 
 @typing.type_check_only
 class GenerateConfigReportResponse(typing_extensions.TypedDict, total=False):
-    changeReports: typing.List[ChangeReport]
-    diagnostics: typing.List[Diagnostic]
+    changeReports: _list[ChangeReport]
+    diagnostics: _list[Diagnostic]
     id: str
     serviceName: str
 
@@ -273,10 +275,10 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Http(typing_extensions.TypedDict, total=False):
     fullyDecodeReservedExpansion: bool
-    rules: typing.List[HttpRule]
+    rules: _list[HttpRule]
 
 @typing.type_check_only
-class HttpRule(typing.Dict[str, typing.Any]): ...
+class HttpRule(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
@@ -293,38 +295,38 @@ class LabelDescriptor(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListServiceConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    serviceConfigs: typing.List[Service]
+    serviceConfigs: _list[Service]
 
 @typing.type_check_only
 class ListServiceRolloutsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    rollouts: typing.List[Rollout]
+    rollouts: _list[Rollout]
 
 @typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    services: typing.List[ManagedService]
+    services: _list[ManagedService]
 
 @typing.type_check_only
 class LogDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     name: str
 
 @typing.type_check_only
 class Logging(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[LoggingDestination]
-    producerDestinations: typing.List[LoggingDestination]
+    consumerDestinations: _list[LoggingDestination]
+    producerDestinations: _list[LoggingDestination]
 
 @typing.type_check_only
 class LoggingDestination(typing_extensions.TypedDict, total=False):
-    logs: typing.List[str]
+    logs: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
@@ -335,7 +337,7 @@ class ManagedService(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Method(typing_extensions.TypedDict, total=False):
     name: str
-    options: typing.List[Option]
+    options: _list[Option]
     requestStreaming: bool
     requestTypeUrl: str
     responseStreaming: bool
@@ -346,7 +348,7 @@ class Method(typing_extensions.TypedDict, total=False):
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -361,7 +363,7 @@ class MetricDescriptor(typing_extensions.TypedDict, total=False):
     metricKind: typing_extensions.Literal[
         "METRIC_KIND_UNSPECIFIED", "GAUGE", "DELTA", "CUMULATIVE"
     ]
-    monitoredResourceTypes: typing.List[str]
+    monitoredResourceTypes: _list[str]
     name: str
     type: str
     unit: str
@@ -392,7 +394,7 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetricRule(typing_extensions.TypedDict, total=False):
-    metricCosts: typing.Dict[str, typing.Any]
+    metricCosts: dict[str, typing.Any]
     selector: str
 
 @typing.type_check_only
@@ -404,7 +406,7 @@ class Mixin(typing_extensions.TypedDict, total=False):
 class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    labels: typing.List[LabelDescriptor]
+    labels: _list[LabelDescriptor]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",
@@ -420,12 +422,12 @@ class MonitoredResourceDescriptor(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Monitoring(typing_extensions.TypedDict, total=False):
-    consumerDestinations: typing.List[MonitoringDestination]
-    producerDestinations: typing.List[MonitoringDestination]
+    consumerDestinations: _list[MonitoringDestination]
+    producerDestinations: _list[MonitoringDestination]
 
 @typing.type_check_only
 class MonitoringDestination(typing_extensions.TypedDict, total=False):
-    metrics: typing.List[str]
+    metrics: _list[str]
     monitoredResource: str
 
 @typing.type_check_only
@@ -436,9 +438,9 @@ class OAuthRequirements(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationInfo(typing_extensions.TypedDict, total=False):
@@ -448,29 +450,29 @@ class OperationInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
     progressPercentage: int
-    resourceNames: typing.List[str]
+    resourceNames: _list[str]
     startTime: str
-    steps: typing.List[Step]
+    steps: _list[Step]
 
 @typing.type_check_only
 class Option(typing_extensions.TypedDict, total=False):
     name: str
-    value: typing.Dict[str, typing.Any]
+    value: dict[str, typing.Any]
 
 @typing.type_check_only
-class Page(typing.Dict[str, typing.Any]): ...
+class Page(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
-    limits: typing.List[QuotaLimit]
-    metricRules: typing.List[MetricRule]
+    limits: _list[QuotaLimit]
+    metricRules: _list[MetricRule]
 
 @typing.type_check_only
 class QuotaLimit(typing_extensions.TypedDict, total=False):
@@ -483,7 +485,7 @@ class QuotaLimit(typing_extensions.TypedDict, total=False):
     metric: str
     name: str
     unit: str
-    values: typing.Dict[str, typing.Any]
+    values: dict[str, typing.Any]
 
 @typing.type_check_only
 class ResourceReference(typing_extensions.TypedDict, total=False):
@@ -509,7 +511,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     trafficPercentStrategy: TrafficPercentStrategy
 
 @typing.type_check_only
-class Service(typing.Dict[str, typing.Any]): ...
+class Service(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -522,12 +524,12 @@ class SourceContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SourceInfo(typing_extensions.TypedDict, total=False):
-    sourceFiles: typing.List[typing.Dict[str, typing.Any]]
+    sourceFiles: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -559,31 +561,31 @@ class SystemParameter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SystemParameterRule(typing_extensions.TypedDict, total=False):
-    parameters: typing.List[SystemParameter]
+    parameters: _list[SystemParameter]
     selector: str
 
 @typing.type_check_only
 class SystemParameters(typing_extensions.TypedDict, total=False):
-    rules: typing.List[SystemParameterRule]
+    rules: _list[SystemParameterRule]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TrafficPercentStrategy(typing_extensions.TypedDict, total=False):
-    percentages: typing.Dict[str, typing.Any]
+    percentages: dict[str, typing.Any]
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
-    fields: typing.List[Field]
+    fields: _list[Field]
     name: str
-    oneofs: typing.List[str]
-    options: typing.List[Option]
+    oneofs: _list[str]
+    options: _list[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
 
@@ -594,8 +596,8 @@ class UndeleteServiceResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Usage(typing_extensions.TypedDict, total=False):
     producerNotificationChannel: str
-    requirements: typing.List[str]
-    rules: typing.List[UsageRule]
+    requirements: _list[str]
+    rules: _list[UsageRule]
 
 @typing.type_check_only
 class UsageRule(typing_extensions.TypedDict, total=False):

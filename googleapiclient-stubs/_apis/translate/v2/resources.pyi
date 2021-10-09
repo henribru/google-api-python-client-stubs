@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class TranslateResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -16,7 +18,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
             self, *, body: DetectLanguageRequest = ..., **kwargs: typing.Any
         ) -> DetectionsListResponseHttpRequest: ...
         def list(
-            self, *, q: typing.Union[str, typing.List[str]], **kwargs: typing.Any
+            self, *, q: str | _list[str], **kwargs: typing.Any
         ) -> DetectionsListResponseHttpRequest: ...
     @typing.type_check_only
     class LanguagesResource(googleapiclient.discovery.Resource):
@@ -28,9 +30,9 @@ class TranslateResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            q: typing.Union[str, typing.List[str]],
+            q: str | _list[str],
             target: str,
-            cid: typing.Union[str, typing.List[str]] = ...,
+            cid: str | _list[str] = ...,
             format: typing_extensions.Literal["html", "text"] = ...,
             model: str = ...,
             source: str = ...,
@@ -47,9 +49,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
 class DetectionsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DetectionsListResponse: ...
 
@@ -57,9 +57,7 @@ class DetectionsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LanguagesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LanguagesListResponse: ...
 
@@ -67,8 +65,6 @@ class LanguagesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class TranslationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TranslationsListResponse: ...

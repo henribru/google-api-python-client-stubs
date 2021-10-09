@@ -2,9 +2,11 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleChromeManagementV1AndroidAppInfo(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[GoogleChromeManagementV1AndroidAppPermission]
+    permissions: _list[GoogleChromeManagementV1AndroidAppPermission]
 
 @typing.type_check_only
 class GoogleChromeManagementV1AndroidAppPermission(
@@ -61,8 +63,8 @@ class GoogleChromeManagementV1ChromeAppInfo(typing_extensions.TypedDict, total=F
     isCwsHosted: bool
     isTheme: bool
     minUserCount: int
-    permissions: typing.List[GoogleChromeManagementV1ChromeAppPermission]
-    siteAccess: typing.List[GoogleChromeManagementV1ChromeAppSiteAccess]
+    permissions: _list[GoogleChromeManagementV1ChromeAppPermission]
+    siteAccess: _list[GoogleChromeManagementV1ChromeAppSiteAccess]
     supportEnabled: bool
 
 @typing.type_check_only
@@ -83,7 +85,7 @@ class GoogleChromeManagementV1ChromeAppSiteAccess(
 class GoogleChromeManagementV1CountChromeVersionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    browserVersions: typing.List[GoogleChromeManagementV1BrowserVersion]
+    browserVersions: _list[GoogleChromeManagementV1BrowserVersion]
     nextPageToken: str
     totalSize: int
 
@@ -91,7 +93,7 @@ class GoogleChromeManagementV1CountChromeVersionsResponse(
 class GoogleChromeManagementV1CountInstalledAppsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    installedApps: typing.List[GoogleChromeManagementV1InstalledApp]
+    installedApps: _list[GoogleChromeManagementV1InstalledApp]
     nextPageToken: str
     totalSize: int
 
@@ -104,7 +106,7 @@ class GoogleChromeManagementV1Device(typing_extensions.TypedDict, total=False):
 class GoogleChromeManagementV1FindInstalledAppDevicesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    devices: typing.List[GoogleChromeManagementV1Device]
+    devices: _list[GoogleChromeManagementV1Device]
     nextPageToken: str
     totalSize: int
 
@@ -132,10 +134,10 @@ class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=Fa
     displayName: str
     homepageUri: str
     osUserCount: str
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

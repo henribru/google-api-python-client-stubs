@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class IdeahubResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -92,9 +94,7 @@ class GoogleSearchIdeahubV1alphaIdeaActivityHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleSearchIdeahubV1alphaIdeaActivity: ...
 
@@ -102,9 +102,7 @@ class GoogleSearchIdeahubV1alphaIdeaActivityHttpRequest(
 class GoogleSearchIdeahubV1alphaIdeaStateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleSearchIdeahubV1alphaIdeaState: ...
 
@@ -114,9 +112,7 @@ class GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleSearchIdeahubV1alphaListAvailableLocalesResponse: ...
 
@@ -126,9 +122,7 @@ class GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleSearchIdeahubV1alphaListIdeasResponse: ...
 
@@ -136,8 +130,6 @@ class GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest(
 class GoogleSearchIdeahubV1alphaTopicStateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleSearchIdeahubV1alphaTopicState: ...

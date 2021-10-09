@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Administrator(typing_extensions.TypedDict, total=False):
     email: str
@@ -14,7 +16,7 @@ class AdministratorWebToken(typing_extensions.TypedDict, total=False):
 class AdministratorWebTokenSpec(typing_extensions.TypedDict, total=False):
     managedConfigurations: AdministratorWebTokenSpecManagedConfigurations
     parent: str
-    permission: typing.List[str]
+    permission: _list[str]
     playSearch: AdministratorWebTokenSpecPlaySearch
     privateApps: AdministratorWebTokenSpecPrivateApps
     storeBuilder: AdministratorWebTokenSpecStoreBuilder
@@ -51,14 +53,14 @@ class AdministratorWebTokenSpecZeroTouch(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class AppRestrictionsSchema(typing_extensions.TypedDict, total=False):
     kind: str
-    restrictions: typing.List[AppRestrictionsSchemaRestriction]
+    restrictions: _list[AppRestrictionsSchemaRestriction]
 
 @typing.type_check_only
 class AppRestrictionsSchemaChangeEvent(typing_extensions.TypedDict, total=False):
     productId: str
 
 @typing.type_check_only
-class AppRestrictionsSchemaRestriction(typing.Dict[str, typing.Any]): ...
+class AppRestrictionsSchemaRestriction(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class AppRestrictionsSchemaRestrictionRestrictionValue(
@@ -76,12 +78,12 @@ class AppRestrictionsSchemaRestrictionRestrictionValue(
     ]
     valueBool: bool
     valueInteger: int
-    valueMultiselect: typing.List[str]
+    valueMultiselect: _list[str]
     valueString: str
 
 @typing.type_check_only
 class AppState(typing_extensions.TypedDict, total=False):
-    keyedAppState: typing.List[KeyedAppState]
+    keyedAppState: _list[KeyedAppState]
     packageName: str
 
 @typing.type_check_only
@@ -94,7 +96,7 @@ class AppVersion(typing_extensions.TypedDict, total=False):
     track: typing_extensions.Literal[
         "appTrackUnspecified", "production", "beta", "alpha"
     ]
-    trackId: typing.List[str]
+    trackId: _list[str]
     versionCode: int
     versionString: str
 
@@ -122,7 +124,7 @@ class AutoInstallConstraint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AutoInstallPolicy(typing_extensions.TypedDict, total=False):
-    autoInstallConstraint: typing.List[AutoInstallConstraint]
+    autoInstallConstraint: _list[AutoInstallConstraint]
     autoInstallMode: typing_extensions.Literal[
         "autoInstallModeUnspecified",
         "doNotAutoInstall",
@@ -135,7 +137,7 @@ class AutoInstallPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConfigurationVariables(typing_extensions.TypedDict, total=False):
     mcmId: str
-    variableSet: typing.List[VariableSet]
+    variableSet: _list[VariableSet]
 
 @typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
@@ -148,7 +150,7 @@ class Device(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceReport(typing_extensions.TypedDict, total=False):
-    appState: typing.List[AppState]
+    appState: _list[AppState]
     lastUpdatedTimestampMillis: str
 
 @typing.type_check_only
@@ -163,11 +165,11 @@ class DeviceState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DevicesListResponse(typing_extensions.TypedDict, total=False):
-    device: typing.List[Device]
+    device: _list[Device]
 
 @typing.type_check_only
 class Enterprise(typing_extensions.TypedDict, total=False):
-    administrator: typing.List[Administrator]
+    administrator: _list[Administrator]
     id: str
     name: str
     primaryDomain: str
@@ -178,7 +180,7 @@ class EnterpriseAccount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EnterprisesListResponse(typing_extensions.TypedDict, total=False):
-    enterprise: typing.List[Enterprise]
+    enterprise: _list[Enterprise]
 
 @typing.type_check_only
 class EnterprisesSendTestPushNotificationResponse(
@@ -194,7 +196,7 @@ class Entitlement(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EntitlementsListResponse(typing_extensions.TypedDict, total=False):
-    entitlement: typing.List[Entitlement]
+    entitlement: _list[Entitlement]
 
 @typing.type_check_only
 class GroupLicense(typing_extensions.TypedDict, total=False):
@@ -209,11 +211,11 @@ class GroupLicense(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GroupLicenseUsersListResponse(typing_extensions.TypedDict, total=False):
-    user: typing.List[User]
+    user: _list[User]
 
 @typing.type_check_only
 class GroupLicensesListResponse(typing_extensions.TypedDict, total=False):
-    groupLicense: typing.List[GroupLicense]
+    groupLicense: _list[GroupLicense]
 
 @typing.type_check_only
 class Install(typing_extensions.TypedDict, total=False):
@@ -231,7 +233,7 @@ class InstallFailureEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstallsListResponse(typing_extensions.TypedDict, total=False):
-    install: typing.List[Install]
+    install: _list[Install]
 
 @typing.type_check_only
 class KeyedAppState(typing_extensions.TypedDict, total=False):
@@ -257,20 +259,20 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
 class ManagedConfiguration(typing_extensions.TypedDict, total=False):
     configurationVariables: ConfigurationVariables
     kind: str
-    managedProperty: typing.List[ManagedProperty]
+    managedProperty: _list[ManagedProperty]
     productId: str
 
 @typing.type_check_only
 class ManagedConfigurationsForDeviceListResponse(
     typing_extensions.TypedDict, total=False
 ):
-    managedConfigurationForDevice: typing.List[ManagedConfiguration]
+    managedConfigurationForDevice: _list[ManagedConfiguration]
 
 @typing.type_check_only
 class ManagedConfigurationsForUserListResponse(
     typing_extensions.TypedDict, total=False
 ):
-    managedConfigurationForUser: typing.List[ManagedConfiguration]
+    managedConfigurationForUser: _list[ManagedConfiguration]
 
 @typing.type_check_only
 class ManagedConfigurationsSettings(typing_extensions.TypedDict, total=False):
@@ -282,13 +284,13 @@ class ManagedConfigurationsSettings(typing_extensions.TypedDict, total=False):
 class ManagedConfigurationsSettingsListResponse(
     typing_extensions.TypedDict, total=False
 ):
-    managedConfigurationsSettings: typing.List[ManagedConfigurationsSettings]
+    managedConfigurationsSettings: _list[ManagedConfigurationsSettings]
 
 @typing.type_check_only
-class ManagedProperty(typing.Dict[str, typing.Any]): ...
+class ManagedProperty(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class ManagedPropertyBundle(typing.Dict[str, typing.Any]): ...
+class ManagedPropertyBundle(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class NewDeviceEvent(typing_extensions.TypedDict, total=False):
@@ -299,9 +301,9 @@ class NewDeviceEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NewPermissionsEvent(typing_extensions.TypedDict, total=False):
-    approvedPermissions: typing.List[str]
+    approvedPermissions: _list[str]
     productId: str
-    requestedPermissions: typing.List[str]
+    requestedPermissions: _list[str]
 
 @typing.type_check_only
 class Notification(typing_extensions.TypedDict, total=False):
@@ -330,7 +332,7 @@ class Notification(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NotificationSet(typing_extensions.TypedDict, total=False):
-    notification: typing.List[Notification]
+    notification: _list[Notification]
     notificationSetId: str
 
 @typing.type_check_only
@@ -346,15 +348,15 @@ class Permission(typing_extensions.TypedDict, total=False):
     permissionId: str
 
 @typing.type_check_only
-class Policy(typing.Dict[str, typing.Any]): ...
+class Policy(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
-    appTracks: typing.List[TrackInfo]
-    appVersion: typing.List[AppVersion]
+    appTracks: _list[TrackInfo]
+    appVersion: _list[AppVersion]
     authorName: str
-    availableCountries: typing.List[str]
-    availableTracks: typing.List[str]
+    availableCountries: _list[str]
+    availableTracks: _list[str]
     category: str
     contentRating: typing_extensions.Literal[
         "ratingUnknown", "all", "preTeen", "teen", "mature"
@@ -364,18 +366,18 @@ class Product(typing_extensions.TypedDict, total=False):
     distributionChannel: typing_extensions.Literal[
         "publicGoogleHosted", "privateGoogleHosted", "privateSelfHosted"
     ]
-    features: typing.List[str]
+    features: _list[str]
     iconUrl: str
     lastUpdatedTimestampMillis: str
     minAndroidSdkVersion: int
-    permissions: typing.List[ProductPermission]
+    permissions: _list[ProductPermission]
     productId: str
     productPricing: typing_extensions.Literal[
         "unknown", "free", "freeWithInAppPurchase", "paid"
     ]
     recentChanges: str
     requiresContainerApp: bool
-    screenshotUrls: typing.List[str]
+    screenshotUrls: _list[str]
     signingCertificate: ProductSigningCertificate
     smallIconUrl: str
     title: str
@@ -400,19 +402,19 @@ class ProductPermission(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProductPermissions(typing_extensions.TypedDict, total=False):
-    permission: typing.List[ProductPermission]
+    permission: _list[ProductPermission]
     productId: str
 
 @typing.type_check_only
-class ProductPolicy(typing.Dict[str, typing.Any]): ...
+class ProductPolicy(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ProductSet(typing_extensions.TypedDict, total=False):
-    productId: typing.List[str]
+    productId: _list[str]
     productSetBehavior: typing_extensions.Literal[
         "unknown", "whitelist", "includeAll", "allApproved"
     ]
-    productVisibility: typing.List[ProductVisibility]
+    productVisibility: _list[ProductVisibility]
 
 @typing.type_check_only
 class ProductSigningCertificate(typing_extensions.TypedDict, total=False):
@@ -422,8 +424,8 @@ class ProductSigningCertificate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductVisibility(typing_extensions.TypedDict, total=False):
     productId: str
-    trackIds: typing.List[str]
-    tracks: typing.List[str]
+    trackIds: _list[str]
+    tracks: _list[str]
 
 @typing.type_check_only
 class ProductsApproveRequest(typing_extensions.TypedDict, total=False):
@@ -439,7 +441,7 @@ class ProductsGenerateApprovalUrlResponse(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class ProductsListResponse(typing_extensions.TypedDict, total=False):
     pageInfo: PageInfo
-    product: typing.List[Product]
+    product: _list[Product]
     tokenPagination: TokenPagination
 
 @typing.type_check_only
@@ -456,7 +458,7 @@ class ServiceAccountKey(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceAccountKeysListResponse(typing_extensions.TypedDict, total=False):
-    serviceAccountKey: typing.List[ServiceAccountKey]
+    serviceAccountKey: _list[ServiceAccountKey]
 
 @typing.type_check_only
 class SignupInfo(typing_extensions.TypedDict, total=False):
@@ -467,9 +469,9 @@ class SignupInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StoreCluster(typing_extensions.TypedDict, total=False):
     id: str
-    name: typing.List[LocalizedText]
+    name: _list[LocalizedText]
     orderInPage: str
-    productId: typing.List[str]
+    productId: _list[str]
 
 @typing.type_check_only
 class StoreLayout(typing_extensions.TypedDict, total=False):
@@ -478,17 +480,17 @@ class StoreLayout(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StoreLayoutClustersListResponse(typing_extensions.TypedDict, total=False):
-    cluster: typing.List[StoreCluster]
+    cluster: _list[StoreCluster]
 
 @typing.type_check_only
 class StoreLayoutPagesListResponse(typing_extensions.TypedDict, total=False):
-    page: typing.List[StorePage]
+    page: _list[StorePage]
 
 @typing.type_check_only
 class StorePage(typing_extensions.TypedDict, total=False):
     id: str
-    link: typing.List[str]
-    name: typing.List[LocalizedText]
+    link: _list[str]
+    name: _list[LocalizedText]
 
 @typing.type_check_only
 class TokenPagination(typing_extensions.TypedDict, total=False):
@@ -511,7 +513,7 @@ class User(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UsersListResponse(typing_extensions.TypedDict, total=False):
-    user: typing.List[User]
+    user: _list[User]
 
 @typing.type_check_only
 class VariableSet(typing_extensions.TypedDict, total=False):
@@ -523,7 +525,7 @@ class WebApp(typing_extensions.TypedDict, total=False):
     displayMode: typing_extensions.Literal[
         "displayModeUnspecified", "minimalUi", "standalone", "fullScreen"
     ]
-    icons: typing.List[WebAppIcon]
+    icons: _list[WebAppIcon]
     isPublished: bool
     startUrl: str
     title: str
@@ -536,4 +538,4 @@ class WebAppIcon(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WebAppsListResponse(typing_extensions.TypedDict, total=False):
-    webApp: typing.List[WebApp]
+    webApp: _list[WebApp]

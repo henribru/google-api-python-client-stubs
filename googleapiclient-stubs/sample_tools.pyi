@@ -1,12 +1,12 @@
-from typing import Any, Optional
+from typing import Any
 
 def init(
-    argv: Any,
-    name: Any,
-    version: Any,
-    doc: Any,
-    filename: Any,
-    scope: Optional[Any] = ...,
-    parents: Any = ...,
-    discovery_filename: Optional[Any] = ...,
+    argv,
+    name,
+    version,
+    doc,
+    filename,
+    scope: Any | None = ...,
+    parents=...,
+    discovery_filename: Any | None = ...,
 ): ...

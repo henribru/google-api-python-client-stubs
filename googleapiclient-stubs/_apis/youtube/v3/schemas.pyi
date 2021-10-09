@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AbuseReport(typing_extensions.TypedDict, total=False):
-    abuseTypes: typing.List[AbuseType]
+    abuseTypes: _list[AbuseType]
     description: str
-    relatedEntities: typing.List[RelatedEntity]
+    relatedEntities: _list[RelatedEntity]
     subject: Entity
 
 @typing.type_check_only
@@ -16,7 +18,7 @@ class AbuseType(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AccessPolicy(typing_extensions.TypedDict, total=False):
     allowed: bool
-    exception: typing.List[str]
+    exception: _list[str]
 
 @typing.type_check_only
 class Activity(typing_extensions.TypedDict, total=False):
@@ -75,8 +77,8 @@ class ActivityContentDetailsPromotedItem(typing_extensions.TypedDict, total=Fals
     customCtaButtonText: str
     descriptionText: str
     destinationUrl: str
-    forecastingUrl: typing.List[str]
-    impressionUrl: typing.List[str]
+    forecastingUrl: _list[str]
+    impressionUrl: _list[str]
     videoId: str
 
 @typing.type_check_only
@@ -107,7 +109,7 @@ class ActivityContentDetailsUpload(typing_extensions.TypedDict, total=False):
 class ActivityListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[Activity]
+    items: _list[Activity]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -150,7 +152,7 @@ class Caption(typing_extensions.TypedDict, total=False):
 class CaptionListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[Caption]
+    items: _list[Caption]
     kind: str
     visitorId: str
 
@@ -194,7 +196,7 @@ class Channel(typing_extensions.TypedDict, total=False):
     etag: str
     id: str
     kind: str
-    localizations: typing.Dict[str, typing.Any]
+    localizations: dict[str, typing.Any]
     snippet: ChannelSnippet
     statistics: ChannelStatistics
     status: ChannelStatus
@@ -215,13 +217,13 @@ class ChannelBannerResource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ChannelBrandingSettings(typing_extensions.TypedDict, total=False):
     channel: ChannelSettings
-    hints: typing.List[PropertyValue]
+    hints: _list[PropertyValue]
     image: ImageSettings
     watch: WatchSettings
 
 @typing.type_check_only
 class ChannelContentDetails(typing_extensions.TypedDict, total=False):
-    relatedPlaylists: typing.Dict[str, typing.Any]
+    relatedPlaylists: dict[str, typing.Any]
 
 @typing.type_check_only
 class ChannelContentOwnerDetails(typing_extensions.TypedDict, total=False):
@@ -235,13 +237,13 @@ class ChannelConversionPing(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChannelConversionPings(typing_extensions.TypedDict, total=False):
-    pings: typing.List[ChannelConversionPing]
+    pings: _list[ChannelConversionPing]
 
 @typing.type_check_only
 class ChannelListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[Channel]
+    items: _list[Channel]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -267,20 +269,20 @@ class ChannelSection(typing_extensions.TypedDict, total=False):
     etag: str
     id: str
     kind: str
-    localizations: typing.Dict[str, typing.Any]
+    localizations: dict[str, typing.Any]
     snippet: ChannelSectionSnippet
     targeting: ChannelSectionTargeting
 
 @typing.type_check_only
 class ChannelSectionContentDetails(typing_extensions.TypedDict, total=False):
-    channels: typing.List[str]
-    playlists: typing.List[str]
+    channels: _list[str]
+    playlists: _list[str]
 
 @typing.type_check_only
 class ChannelSectionListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[ChannelSection]
+    items: _list[ChannelSection]
     kind: str
     visitorId: str
 
@@ -320,9 +322,9 @@ class ChannelSectionSnippet(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChannelSectionTargeting(typing_extensions.TypedDict, total=False):
-    countries: typing.List[str]
-    languages: typing.List[str]
-    regions: typing.List[str]
+    countries: _list[str]
+    languages: _list[str]
+    regions: _list[str]
 
 @typing.type_check_only
 class ChannelSettings(typing_extensions.TypedDict, total=False):
@@ -331,7 +333,7 @@ class ChannelSettings(typing_extensions.TypedDict, total=False):
     defaultTab: str
     description: str
     featuredChannelsTitle: str
-    featuredChannelsUrls: typing.List[str]
+    featuredChannelsUrls: _list[str]
     keywords: str
     moderateComments: bool
     profileColor: str
@@ -377,8 +379,8 @@ class ChannelToStoreLinkDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChannelTopicDetails(typing_extensions.TypedDict, total=False):
-    topicCategories: typing.List[str]
-    topicIds: typing.List[str]
+    topicCategories: _list[str]
+    topicIds: _list[str]
 
 @typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
@@ -391,7 +393,7 @@ class Comment(typing_extensions.TypedDict, total=False):
 class CommentListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[Comment]
+    items: _list[Comment]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -434,7 +436,7 @@ class CommentThread(typing_extensions.TypedDict, total=False):
 class CommentThreadListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[CommentThread]
+    items: _list[CommentThread]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -443,7 +445,7 @@ class CommentThreadListResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommentThreadReplies(typing_extensions.TypedDict, total=False):
-    comments: typing.List[Comment]
+    comments: _list[Comment]
 
 @typing.type_check_only
 class CommentThreadSnippet(typing_extensions.TypedDict, total=False):
@@ -650,7 +652,7 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "djctq1618",
         "djctqUnrated",
     ]
-    djctqRatingReasons: typing.List[str]
+    djctqRatingReasons: _list[str]
     ecbmctRating: typing_extensions.Literal[
         "ecbmctUnspecified",
         "ecbmctG",
@@ -725,7 +727,7 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "fpbUnrated",
         "fpb10",
     ]
-    fpbRatingReasons: typing.List[str]
+    fpbRatingReasons: _list[str]
     fskRating: typing_extensions.Literal[
         "fskUnspecified", "fsk0", "fsk6", "fsk12", "fsk16", "fsk18", "fskUnrated"
     ]
@@ -1100,7 +1102,7 @@ class I18nLanguage(typing_extensions.TypedDict, total=False):
 class I18nLanguageListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[I18nLanguage]
+    items: _list[I18nLanguage]
     kind: str
     visitorId: str
 
@@ -1120,7 +1122,7 @@ class I18nRegion(typing_extensions.TypedDict, total=False):
 class I18nRegionListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[I18nRegion]
+    items: _list[I18nRegion]
     kind: str
     visitorId: str
 
@@ -1236,7 +1238,7 @@ class LiveBroadcastContentDetails(typing_extensions.TypedDict, total=False):
 class LiveBroadcastListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[LiveBroadcast]
+    items: _list[LiveBroadcast]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -1344,7 +1346,7 @@ class LiveChatMessageDeletedDetails(typing_extensions.TypedDict, total=False):
 class LiveChatMessageListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[LiveChatMessage]
+    items: _list[LiveChatMessage]
     kind: str
     nextPageToken: str
     offlineAt: str
@@ -1401,7 +1403,7 @@ class LiveChatModerator(typing_extensions.TypedDict, total=False):
 class LiveChatModeratorListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[LiveChatModerator]
+    items: _list[LiveChatModerator]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -1504,7 +1506,7 @@ class LiveStreamContentDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LiveStreamHealthStatus(typing_extensions.TypedDict, total=False):
-    configurationIssues: typing.List[LiveStreamConfigurationIssue]
+    configurationIssues: _list[LiveStreamConfigurationIssue]
     lastUpdateTimeSeconds: str
     status: typing_extensions.Literal["good", "ok", "bad", "noData", "revoked"]
 
@@ -1512,7 +1514,7 @@ class LiveStreamHealthStatus(typing_extensions.TypedDict, total=False):
 class LiveStreamListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[LiveStream]
+    items: _list[LiveStream]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -1539,7 +1541,7 @@ class LiveStreamStatus(typing_extensions.TypedDict, total=False):
 class LocalizedProperty(typing_extensions.TypedDict, total=False):
     default: str
     defaultLanguage: LanguageTag
-    localized: typing.List[LocalizedString]
+    localized: _list[LocalizedString]
 
 @typing.type_check_only
 class LocalizedString(typing_extensions.TypedDict, total=False):
@@ -1556,7 +1558,7 @@ class Member(typing_extensions.TypedDict, total=False):
 class MemberListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[Member]
+    items: _list[Member]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -1571,11 +1573,11 @@ class MemberSnippet(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MembershipsDetails(typing_extensions.TypedDict, total=False):
-    accessibleLevels: typing.List[str]
+    accessibleLevels: _list[str]
     highestAccessibleLevel: str
     highestAccessibleLevelDisplayName: str
     membershipsDuration: MembershipsDuration
-    membershipsDurationAtLevels: typing.List[MembershipsDurationAtLevel]
+    membershipsDurationAtLevels: _list[MembershipsDurationAtLevel]
 
 @typing.type_check_only
 class MembershipsDuration(typing_extensions.TypedDict, total=False):
@@ -1599,7 +1601,7 @@ class MembershipsLevel(typing_extensions.TypedDict, total=False):
 class MembershipsLevelListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[MembershipsLevel]
+    items: _list[MembershipsLevel]
     kind: str
     visitorId: str
 
@@ -1625,7 +1627,7 @@ class Playlist(typing_extensions.TypedDict, total=False):
     etag: str
     id: str
     kind: str
-    localizations: typing.Dict[str, typing.Any]
+    localizations: dict[str, typing.Any]
     player: PlaylistPlayer
     snippet: PlaylistSnippet
     status: PlaylistStatus
@@ -1655,7 +1657,7 @@ class PlaylistItemContentDetails(typing_extensions.TypedDict, total=False):
 class PlaylistItemListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[PlaylistItem]
+    items: _list[PlaylistItem]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -1685,7 +1687,7 @@ class PlaylistItemStatus(typing_extensions.TypedDict, total=False):
 class PlaylistListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[Playlist]
+    items: _list[Playlist]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -1710,7 +1712,7 @@ class PlaylistSnippet(typing_extensions.TypedDict, total=False):
     description: str
     localized: PlaylistLocalization
     publishedAt: str
-    tags: typing.List[str]
+    tags: _list[str]
     thumbnailVideoId: str
     thumbnails: ThumbnailDetails
     title: str
@@ -1739,7 +1741,7 @@ class ResourceId(typing_extensions.TypedDict, total=False):
 class SearchListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[SearchResult]
+    items: _list[SearchResult]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -1788,7 +1790,7 @@ class SubscriptionContentDetails(typing_extensions.TypedDict, total=False):
 class SubscriptionListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[Subscription]
+    items: _list[Subscription]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -1824,7 +1826,7 @@ class SuperChatEvent(typing_extensions.TypedDict, total=False):
 class SuperChatEventListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[SuperChatEvent]
+    items: _list[SuperChatEvent]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -1895,7 +1897,7 @@ class ThumbnailDetails(typing_extensions.TypedDict, total=False):
 class ThumbnailSetResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[ThumbnailDetails]
+    items: _list[ThumbnailDetails]
     kind: str
     visitorId: str
 
@@ -1911,7 +1913,7 @@ class Video(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     liveStreamingDetails: VideoLiveStreamingDetails
-    localizations: typing.Dict[str, typing.Any]
+    localizations: dict[str, typing.Any]
     monetizationDetails: VideoMonetizationDetails
     player: VideoPlayer
     processingDetails: VideoProcessingDetails
@@ -1942,14 +1944,14 @@ class VideoAbuseReportReason(typing_extensions.TypedDict, total=False):
 class VideoAbuseReportReasonListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[VideoAbuseReportReason]
+    items: _list[VideoAbuseReportReason]
     kind: str
     visitorId: str
 
 @typing.type_check_only
 class VideoAbuseReportReasonSnippet(typing_extensions.TypedDict, total=False):
     label: str
-    secondaryReasons: typing.List[VideoAbuseReportSecondaryReason]
+    secondaryReasons: _list[VideoAbuseReportSecondaryReason]
 
 @typing.type_check_only
 class VideoAbuseReportSecondaryReason(typing_extensions.TypedDict, total=False):
@@ -1975,7 +1977,7 @@ class VideoCategory(typing_extensions.TypedDict, total=False):
 class VideoCategoryListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[VideoCategory]
+    items: _list[VideoCategory]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -2004,12 +2006,12 @@ class VideoContentDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VideoContentDetailsRegionRestriction(typing_extensions.TypedDict, total=False):
-    allowed: typing.List[str]
-    blocked: typing.List[str]
+    allowed: _list[str]
+    blocked: _list[str]
 
 @typing.type_check_only
 class VideoFileDetails(typing_extensions.TypedDict, total=False):
-    audioStreams: typing.List[VideoFileDetailsAudioStream]
+    audioStreams: _list[VideoFileDetailsAudioStream]
     bitrateBps: str
     container: str
     creationTime: str
@@ -2019,7 +2021,7 @@ class VideoFileDetails(typing_extensions.TypedDict, total=False):
     fileType: typing_extensions.Literal[
         "video", "audio", "image", "archive", "document", "project", "other"
     ]
-    videoStreams: typing.List[VideoFileDetailsVideoStream]
+    videoStreams: _list[VideoFileDetailsVideoStream]
 
 @typing.type_check_only
 class VideoFileDetailsAudioStream(typing_extensions.TypedDict, total=False):
@@ -2045,7 +2047,7 @@ class VideoFileDetailsVideoStream(typing_extensions.TypedDict, total=False):
 class VideoGetRatingResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[VideoRating]
+    items: _list[VideoRating]
     kind: str
     visitorId: str
 
@@ -2053,7 +2055,7 @@ class VideoGetRatingResponse(typing_extensions.TypedDict, total=False):
 class VideoListResponse(typing_extensions.TypedDict, total=False):
     etag: str
     eventId: str
-    items: typing.List[Video]
+    items: _list[Video]
     kind: str
     nextPageToken: str
     pageInfo: PageInfo
@@ -2135,7 +2137,7 @@ class VideoSnippet(typing_extensions.TypedDict, total=False):
     ]
     localized: VideoLocalization
     publishedAt: str
-    tags: typing.List[str]
+    tags: _list[str]
     thumbnails: ThumbnailDetails
     title: str
 
@@ -2177,22 +2179,22 @@ class VideoStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VideoSuggestions(typing_extensions.TypedDict, total=False):
-    editorSuggestions: typing.List[str]
-    processingErrors: typing.List[str]
-    processingHints: typing.List[str]
-    processingWarnings: typing.List[str]
-    tagSuggestions: typing.List[VideoSuggestionsTagSuggestion]
+    editorSuggestions: _list[str]
+    processingErrors: _list[str]
+    processingHints: _list[str]
+    processingWarnings: _list[str]
+    tagSuggestions: _list[VideoSuggestionsTagSuggestion]
 
 @typing.type_check_only
 class VideoSuggestionsTagSuggestion(typing_extensions.TypedDict, total=False):
-    categoryRestricts: typing.List[str]
+    categoryRestricts: _list[str]
     tag: str
 
 @typing.type_check_only
 class VideoTopicDetails(typing_extensions.TypedDict, total=False):
-    relevantTopicIds: typing.List[str]
-    topicCategories: typing.List[str]
-    topicIds: typing.List[str]
+    relevantTopicIds: _list[str]
+    topicCategories: _list[str]
+    topicIds: _list[str]
 
 @typing.type_check_only
 class WatchSettings(typing_extensions.TypedDict, total=False):

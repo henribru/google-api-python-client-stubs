@@ -2,17 +2,19 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuthorizedCertificate(typing_extensions.TypedDict, total=False):
     certificateRawData: CertificateRawData
     displayName: str
     domainMappingsCount: int
-    domainNames: typing.List[str]
+    domainNames: _list[str]
     expireTime: str
     id: str
     managedCertificate: ManagedCertificate
     name: str
-    visibleDomainMappings: typing.List[str]
+    visibleDomainMappings: _list[str]
 
 @typing.type_check_only
 class AuthorizedDomain(typing_extensions.TypedDict, total=False):
@@ -40,7 +42,7 @@ class CreateVersionMetadataV1Beta(typing_extensions.TypedDict, total=False):
 class DomainMapping(typing_extensions.TypedDict, total=False):
     id: str
     name: str
-    resourceRecords: typing.List[ResourceRecord]
+    resourceRecords: _list[ResourceRecord]
     sslSettings: SslSettings
 
 @typing.type_check_only
@@ -62,7 +64,7 @@ class GoogleAppengineV2OperationMetadata(typing_extensions.TypedDict, total=Fals
     statusMessage: str
     target: str
     verb: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class GoogleAppengineV2mainOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -74,39 +76,39 @@ class GoogleAppengineV2mainOperationMetadata(typing_extensions.TypedDict, total=
     statusMessage: str
     target: str
     verb: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class ListAuthorizedCertificatesResponse(typing_extensions.TypedDict, total=False):
-    certificates: typing.List[AuthorizedCertificate]
+    certificates: _list[AuthorizedCertificate]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
-    domains: typing.List[AuthorizedDomain]
+    domains: _list[AuthorizedDomain]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
-    domainMappings: typing.List[DomainMapping]
+    domainMappings: _list[DomainMapping]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -133,9 +135,9 @@ class ManagedCertificate(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadataV1(typing_extensions.TypedDict, total=False):
@@ -146,7 +148,7 @@ class OperationMetadataV1(typing_extensions.TypedDict, total=False):
     method: str
     target: str
     user: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
@@ -157,7 +159,7 @@ class OperationMetadataV1Alpha(typing_extensions.TypedDict, total=False):
     method: str
     target: str
     user: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
@@ -168,7 +170,7 @@ class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
     method: str
     target: str
     user: str
-    warning: typing.List[str]
+    warning: _list[str]
 
 @typing.type_check_only
 class ResourceRecord(typing_extensions.TypedDict, total=False):
@@ -184,5 +186,5 @@ class SslSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

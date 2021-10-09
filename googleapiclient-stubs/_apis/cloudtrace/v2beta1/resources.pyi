@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudTraceResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -46,9 +48,7 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -56,9 +56,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class ListTraceSinksResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTraceSinksResponse: ...
 
@@ -66,8 +64,6 @@ class ListTraceSinksResponseHttpRequest(googleapiclient.http.HttpRequest):
 class TraceSinkHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TraceSink: ...

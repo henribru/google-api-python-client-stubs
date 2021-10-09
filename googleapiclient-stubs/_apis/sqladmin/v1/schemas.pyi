@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AclEntry(typing_extensions.TypedDict, total=False):
     expirationTime: str
@@ -75,7 +77,7 @@ class BackupRun(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BackupRunsListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[BackupRun]
+    items: _list[BackupRun]
     kind: str
     nextPageToken: str
 
@@ -118,7 +120,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "SQLSERVER_2019_EXPRESS",
         "SQLSERVER_2019_WEB",
     ]
-    ipAddresses: typing.List[IpMapping]
+    ipAddresses: _list[IpMapping]
     kind: str
     region: str
     serverCaCert: SslCert
@@ -171,7 +173,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     diskEncryptionConfiguration: DiskEncryptionConfiguration
     diskEncryptionStatus: DiskEncryptionStatus
     etag: str
-    failoverReplica: typing.Dict[str, typing.Any]
+    failoverReplica: dict[str, typing.Any]
     gceZone: str
     instanceType: typing_extensions.Literal[
         "SQL_INSTANCE_TYPE_UNSPECIFIED",
@@ -179,7 +181,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "ON_PREMISES_INSTANCE",
         "READ_REPLICA_INSTANCE",
     ]
-    ipAddresses: typing.List[IpMapping]
+    ipAddresses: _list[IpMapping]
     ipv6Address: str
     kind: str
     masterInstanceName: str
@@ -190,7 +192,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     project: str
     region: str
     replicaConfiguration: ReplicaConfiguration
-    replicaNames: typing.List[str]
+    replicaNames: _list[str]
     rootPassword: str
     satisfiesPzs: bool
     scheduledMaintenance: SqlScheduledMaintenance
@@ -209,11 +211,11 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "FAILED",
         "ONLINE_MAINTENANCE",
     ]
-    suspensionReason: typing.List[str]
+    suspensionReason: _list[str]
 
 @typing.type_check_only
 class DatabasesListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Database]
+    items: _list[Database]
     kind: str
 
 @typing.type_check_only
@@ -256,14 +258,14 @@ class DiskEncryptionStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExportContext(typing_extensions.TypedDict, total=False):
-    csvExportOptions: typing.Dict[str, typing.Any]
-    databases: typing.List[str]
+    csvExportOptions: dict[str, typing.Any]
+    databases: _list[str]
     fileType: typing_extensions.Literal[
         "SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK"
     ]
     kind: str
     offload: bool
-    sqlExportOptions: typing.Dict[str, typing.Any]
+    sqlExportOptions: dict[str, typing.Any]
     uri: str
 
 @typing.type_check_only
@@ -273,9 +275,9 @@ class FailoverContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Flag(typing_extensions.TypedDict, total=False):
-    allowedIntValues: typing.List[str]
-    allowedStringValues: typing.List[str]
-    appliesTo: typing.List[str]
+    allowedIntValues: _list[str]
+    allowedStringValues: _list[str]
+    appliesTo: _list[str]
     inBeta: bool
     kind: str
     maxValue: str
@@ -295,7 +297,7 @@ class Flag(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FlagsListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Flag]
+    items: _list[Flag]
     kind: str
 
 @typing.type_check_only
@@ -310,8 +312,8 @@ class GenerateEphemeralCertResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportContext(typing_extensions.TypedDict, total=False):
-    bakImportOptions: typing.Dict[str, typing.Any]
-    csvImportOptions: typing.Dict[str, typing.Any]
+    bakImportOptions: dict[str, typing.Any]
+    csvImportOptions: dict[str, typing.Any]
     database: str
     fileType: typing_extensions.Literal[
         "SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK"
@@ -356,15 +358,15 @@ class InstancesImportRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstancesListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[DatabaseInstance]
+    items: _list[DatabaseInstance]
     kind: str
     nextPageToken: str
-    warnings: typing.List[ApiWarning]
+    warnings: _list[ApiWarning]
 
 @typing.type_check_only
 class InstancesListServerCasResponse(typing_extensions.TypedDict, total=False):
     activeVersion: str
-    certs: typing.List[SslCert]
+    certs: _list[SslCert]
     kind: str
 
 @typing.type_check_only
@@ -382,7 +384,7 @@ class InstancesTruncateLogRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class IpConfiguration(typing_extensions.TypedDict, total=False):
     allocatedIpRange: str
-    authorizedNetworks: typing.List[AclEntry]
+    authorizedNetworks: _list[AclEntry]
     ipv4Enabled: bool
     privateNetwork: str
     requireSsl: bool
@@ -431,7 +433,7 @@ class MySqlReplicaConfiguration(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MySqlSyncConfig(typing_extensions.TypedDict, total=False):
-    initialSyncFlags: typing.List[SyncFlags]
+    initialSyncFlags: _list[SyncFlags]
 
 @typing.type_check_only
 class OnPremisesConfiguration(typing_extensions.TypedDict, total=False):
@@ -510,12 +512,12 @@ class OperationError(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OperationErrors(typing_extensions.TypedDict, total=False):
-    errors: typing.List[OperationError]
+    errors: _list[OperationError]
     kind: str
 
 @typing.type_check_only
 class OperationsListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Operation]
+    items: _list[Operation]
     kind: str
     nextPageToken: str
 
@@ -553,7 +555,7 @@ class Settings(typing_extensions.TypedDict, total=False):
         "SQL_ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER", "ON_DEMAND"
     ]
     activeDirectoryConfig: SqlActiveDirectoryConfig
-    authorizedGaeApplications: typing.List[str]
+    authorizedGaeApplications: _list[str]
     availabilityType: typing_extensions.Literal[
         "SQL_AVAILABILITY_TYPE_UNSPECIFIED", "ZONAL", "REGIONAL"
     ]
@@ -564,9 +566,9 @@ class Settings(typing_extensions.TypedDict, total=False):
     dataDiskType: typing_extensions.Literal[
         "SQL_DATA_DISK_TYPE_UNSPECIFIED", "PD_SSD", "PD_HDD", "OBSOLETE_LOCAL_SSD"
     ]
-    databaseFlags: typing.List[DatabaseFlags]
+    databaseFlags: _list[DatabaseFlags]
     databaseReplicationEnabled: bool
-    denyMaintenancePeriods: typing.List[DenyMaintenancePeriod]
+    denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     insightsConfig: InsightsConfig
     ipConfiguration: IpConfiguration
     kind: str
@@ -583,7 +585,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     storageAutoResize: bool
     storageAutoResizeLimit: str
     tier: str
-    userLabels: typing.Dict[str, typing.Any]
+    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class SqlActiveDirectoryConfig(typing_extensions.TypedDict, total=False):
@@ -650,9 +652,9 @@ class SqlInstancesVerifyExternalSyncSettingsRequest(
 class SqlInstancesVerifyExternalSyncSettingsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    errors: typing.List[SqlExternalSyncSettingError]
+    errors: _list[SqlExternalSyncSettingError]
     kind: str
-    warnings: typing.List[SqlExternalSyncSettingError]
+    warnings: _list[SqlExternalSyncSettingError]
 
 @typing.type_check_only
 class SqlOutOfDiskReport(typing_extensions.TypedDict, total=False):
@@ -681,7 +683,7 @@ class SqlServerDatabaseDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SqlServerUserDetails(typing_extensions.TypedDict, total=False):
     disabled: bool
-    serverRoles: typing.List[str]
+    serverRoles: _list[str]
 
 @typing.type_check_only
 class SslCert(typing_extensions.TypedDict, total=False):
@@ -718,7 +720,7 @@ class SslCertsInsertResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SslCertsListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[SslCert]
+    items: _list[SslCert]
     kind: str
 
 @typing.type_check_only
@@ -731,12 +733,12 @@ class Tier(typing_extensions.TypedDict, total=False):
     DiskQuota: str
     RAM: str
     kind: str
-    region: typing.List[str]
+    region: _list[str]
     tier: str
 
 @typing.type_check_only
 class TiersListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Tier]
+    items: _list[Tier]
     kind: str
 
 @typing.type_check_only
@@ -760,6 +762,6 @@ class User(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UsersListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[User]
+    items: _list[User]
     kind: str
     nextPageToken: str

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GooglePrivacyDlpV2Action(typing_extensions.TypedDict, total=False):
     jobNotificationEmails: GooglePrivacyDlpV2JobNotificationEmails
@@ -32,7 +34,7 @@ class GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails(
 
 @typing.type_check_only
 class GooglePrivacyDlpV2AuxiliaryTable(typing_extensions.TypedDict, total=False):
-    quasiIds: typing.List[GooglePrivacyDlpV2QuasiIdField]
+    quasiIds: _list[GooglePrivacyDlpV2QuasiIdField]
     relativeFrequency: GooglePrivacyDlpV2FieldId
     table: GooglePrivacyDlpV2BigQueryTable
 
@@ -48,8 +50,8 @@ class GooglePrivacyDlpV2BigQueryKey(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2BigQueryOptions(typing_extensions.TypedDict, total=False):
-    excludedFields: typing.List[GooglePrivacyDlpV2FieldId]
-    identifyingFields: typing.List[GooglePrivacyDlpV2FieldId]
+    excludedFields: _list[GooglePrivacyDlpV2FieldId]
+    identifyingFields: _list[GooglePrivacyDlpV2FieldId]
     rowsLimit: str
     rowsLimitPercent: int
     sampleMethod: typing_extensions.Literal[
@@ -78,7 +80,7 @@ class GooglePrivacyDlpV2Bucket(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2BucketingConfig(typing_extensions.TypedDict, total=False):
-    buckets: typing.List[GooglePrivacyDlpV2Bucket]
+    buckets: _list[GooglePrivacyDlpV2Bucket]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ByteContentItem(typing_extensions.TypedDict, total=False):
@@ -115,7 +117,7 @@ class GooglePrivacyDlpV2CategoricalStatsHistogramBucket(
 ):
     bucketSize: str
     bucketValueCount: str
-    bucketValues: typing.List[GooglePrivacyDlpV2ValueFrequency]
+    bucketValues: _list[GooglePrivacyDlpV2ValueFrequency]
     valueFrequencyLowerBound: str
     valueFrequencyUpperBound: str
 
@@ -123,13 +125,13 @@ class GooglePrivacyDlpV2CategoricalStatsHistogramBucket(
 class GooglePrivacyDlpV2CategoricalStatsResult(
     typing_extensions.TypedDict, total=False
 ):
-    valueFrequencyHistogramBuckets: typing.List[
+    valueFrequencyHistogramBuckets: _list[
         GooglePrivacyDlpV2CategoricalStatsHistogramBucket
     ]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2CharacterMaskConfig(typing_extensions.TypedDict, total=False):
-    charactersToIgnore: typing.List[GooglePrivacyDlpV2CharsToIgnore]
+    charactersToIgnore: _list[GooglePrivacyDlpV2CharsToIgnore]
     maskingCharacter: str
     numberToMask: int
     reverseOrder: bool
@@ -155,7 +157,7 @@ class GooglePrivacyDlpV2CloudStorageOptions(typing_extensions.TypedDict, total=F
     bytesLimitPerFile: str
     bytesLimitPerFilePercent: int
     fileSet: GooglePrivacyDlpV2FileSet
-    fileTypes: typing.List[str]
+    fileTypes: _list[str]
     filesLimitPercent: int
     sampleMethod: typing_extensions.Literal[
         "SAMPLE_METHOD_UNSPECIFIED", "TOP", "RANDOM_START"
@@ -170,8 +172,8 @@ class GooglePrivacyDlpV2CloudStorageRegexFileSet(
     typing_extensions.TypedDict, total=False
 ):
     bucketName: str
-    excludeRegex: typing.List[str]
-    includeRegex: typing.List[str]
+    excludeRegex: _list[str]
+    includeRegex: _list[str]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Color(typing_extensions.TypedDict, total=False):
@@ -196,7 +198,7 @@ class GooglePrivacyDlpV2Condition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Conditions(typing_extensions.TypedDict, total=False):
-    conditions: typing.List[GooglePrivacyDlpV2Condition]
+    conditions: _list[GooglePrivacyDlpV2Condition]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Container(typing_extensions.TypedDict, total=False):
@@ -300,7 +302,7 @@ class GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig(
 
 @typing.type_check_only
 class GooglePrivacyDlpV2CustomInfoType(typing_extensions.TypedDict, total=False):
-    detectionRules: typing.List[GooglePrivacyDlpV2DetectionRule]
+    detectionRules: _list[GooglePrivacyDlpV2DetectionRule]
     dictionary: GooglePrivacyDlpV2Dictionary
     exclusionType: typing_extensions.Literal[
         "EXCLUSION_TYPE_UNSPECIFIED", "EXCLUSION_TYPE_EXCLUDE"
@@ -387,8 +389,8 @@ class GooglePrivacyDlpV2DeidentifyTemplate(typing_extensions.TypedDict, total=Fa
 class GooglePrivacyDlpV2DeltaPresenceEstimationConfig(
     typing_extensions.TypedDict, total=False
 ):
-    auxiliaryTables: typing.List[GooglePrivacyDlpV2StatisticalTable]
-    quasiIds: typing.List[GooglePrivacyDlpV2QuasiId]
+    auxiliaryTables: _list[GooglePrivacyDlpV2StatisticalTable]
+    quasiIds: _list[GooglePrivacyDlpV2QuasiId]
     regionCode: str
 
 @typing.type_check_only
@@ -397,7 +399,7 @@ class GooglePrivacyDlpV2DeltaPresenceEstimationHistogramBucket(
 ):
     bucketSize: str
     bucketValueCount: str
-    bucketValues: typing.List[GooglePrivacyDlpV2DeltaPresenceEstimationQuasiIdValues]
+    bucketValues: _list[GooglePrivacyDlpV2DeltaPresenceEstimationQuasiIdValues]
     maxProbability: float
     minProbability: float
 
@@ -406,13 +408,13 @@ class GooglePrivacyDlpV2DeltaPresenceEstimationQuasiIdValues(
     typing_extensions.TypedDict, total=False
 ):
     estimatedProbability: float
-    quasiIdsValues: typing.List[GooglePrivacyDlpV2Value]
+    quasiIdsValues: _list[GooglePrivacyDlpV2Value]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DeltaPresenceEstimationResult(
     typing_extensions.TypedDict, total=False
 ):
-    deltaPresenceEstimationHistogram: typing.List[
+    deltaPresenceEstimationHistogram: _list[
         GooglePrivacyDlpV2DeltaPresenceEstimationHistogramBucket
     ]
 
@@ -429,7 +431,7 @@ class GooglePrivacyDlpV2Dictionary(typing_extensions.TypedDict, total=False):
 class GooglePrivacyDlpV2DlpJob(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
-    errors: typing.List[GooglePrivacyDlpV2Error]
+    errors: _list[GooglePrivacyDlpV2Error]
     inspectDetails: GooglePrivacyDlpV2InspectDataSourceDetails
     jobTriggerName: str
     name: str
@@ -459,11 +461,11 @@ class GooglePrivacyDlpV2EntityId(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2Error(typing_extensions.TypedDict, total=False):
     details: GoogleRpcStatus
-    timestamps: typing.List[str]
+    timestamps: _list[str]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ExcludeInfoTypes(typing_extensions.TypedDict, total=False):
-    infoTypes: typing.List[GooglePrivacyDlpV2InfoType]
+    infoTypes: _list[GooglePrivacyDlpV2InfoType]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ExclusionRule(typing_extensions.TypedDict, total=False):
@@ -489,7 +491,7 @@ class GooglePrivacyDlpV2FieldId(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2FieldTransformation(typing_extensions.TypedDict, total=False):
     condition: GooglePrivacyDlpV2RecordCondition
-    fields: typing.List[GooglePrivacyDlpV2FieldId]
+    fields: _list[GooglePrivacyDlpV2FieldId]
     infoTypeTransformations: GooglePrivacyDlpV2InfoTypeTransformations
     primitiveTransformation: GooglePrivacyDlpV2PrimitiveTransformation
 
@@ -505,7 +507,7 @@ class GooglePrivacyDlpV2Finding(typing_extensions.TypedDict, total=False):
     infoType: GooglePrivacyDlpV2InfoType
     jobCreateTime: str
     jobName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     likelihood: typing_extensions.Literal[
         "LIKELIHOOD_UNSPECIFIED",
         "VERY_UNLIKELY",
@@ -523,7 +525,7 @@ class GooglePrivacyDlpV2Finding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2FindingLimits(typing_extensions.TypedDict, total=False):
-    maxFindingsPerInfoType: typing.List[GooglePrivacyDlpV2InfoTypeLimit]
+    maxFindingsPerInfoType: _list[GooglePrivacyDlpV2InfoTypeLimit]
     maxFindingsPerItem: int
     maxFindingsPerRequest: int
 
@@ -555,7 +557,7 @@ class GooglePrivacyDlpV2HybridContentItem(typing_extensions.TypedDict, total=Fal
 class GooglePrivacyDlpV2HybridFindingDetails(typing_extensions.TypedDict, total=False):
     containerDetails: GooglePrivacyDlpV2Container
     fileOffset: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     rowOffset: str
     tableOptions: GooglePrivacyDlpV2TableOptions
 
@@ -587,13 +589,13 @@ class GooglePrivacyDlpV2HybridInspectStatistics(
 @typing.type_check_only
 class GooglePrivacyDlpV2HybridOptions(typing_extensions.TypedDict, total=False):
     description: str
-    labels: typing.Dict[str, typing.Any]
-    requiredFindingLabelKeys: typing.List[str]
+    labels: dict[str, typing.Any]
+    requiredFindingLabelKeys: _list[str]
     tableOptions: GooglePrivacyDlpV2TableOptions
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ImageLocation(typing_extensions.TypedDict, total=False):
-    boundingBoxes: typing.List[GooglePrivacyDlpV2BoundingBox]
+    boundingBoxes: _list[GooglePrivacyDlpV2BoundingBox]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ImageRedactionConfig(typing_extensions.TypedDict, total=False):
@@ -610,7 +612,7 @@ class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=F
     description: str
     displayName: str
     name: str
-    supportedBy: typing.List[str]
+    supportedBy: _list[str]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InfoTypeLimit(typing_extensions.TypedDict, total=False):
@@ -626,22 +628,22 @@ class GooglePrivacyDlpV2InfoTypeStats(typing_extensions.TypedDict, total=False):
 class GooglePrivacyDlpV2InfoTypeTransformation(
     typing_extensions.TypedDict, total=False
 ):
-    infoTypes: typing.List[GooglePrivacyDlpV2InfoType]
+    infoTypes: _list[GooglePrivacyDlpV2InfoType]
     primitiveTransformation: GooglePrivacyDlpV2PrimitiveTransformation
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InfoTypeTransformations(
     typing_extensions.TypedDict, total=False
 ):
-    transformations: typing.List[GooglePrivacyDlpV2InfoTypeTransformation]
+    transformations: _list[GooglePrivacyDlpV2InfoTypeTransformation]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InspectConfig(typing_extensions.TypedDict, total=False):
-    contentOptions: typing.List[str]
-    customInfoTypes: typing.List[GooglePrivacyDlpV2CustomInfoType]
+    contentOptions: _list[str]
+    customInfoTypes: _list[GooglePrivacyDlpV2CustomInfoType]
     excludeInfoTypes: bool
     includeQuote: bool
-    infoTypes: typing.List[GooglePrivacyDlpV2InfoType]
+    infoTypes: _list[GooglePrivacyDlpV2InfoType]
     limits: GooglePrivacyDlpV2FindingLimits
     minLikelihood: typing_extensions.Literal[
         "LIKELIHOOD_UNSPECIFIED",
@@ -651,7 +653,7 @@ class GooglePrivacyDlpV2InspectConfig(typing_extensions.TypedDict, total=False):
         "LIKELY",
         "VERY_LIKELY",
     ]
-    ruleSet: typing.List[GooglePrivacyDlpV2InspectionRuleSet]
+    ruleSet: _list[GooglePrivacyDlpV2InspectionRuleSet]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InspectContentRequest(typing_extensions.TypedDict, total=False):
@@ -675,14 +677,14 @@ class GooglePrivacyDlpV2InspectDataSourceDetails(
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InspectJobConfig(typing_extensions.TypedDict, total=False):
-    actions: typing.List[GooglePrivacyDlpV2Action]
+    actions: _list[GooglePrivacyDlpV2Action]
     inspectConfig: GooglePrivacyDlpV2InspectConfig
     inspectTemplateName: str
     storageConfig: GooglePrivacyDlpV2StorageConfig
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InspectResult(typing_extensions.TypedDict, total=False):
-    findings: typing.List[GooglePrivacyDlpV2Finding]
+    findings: _list[GooglePrivacyDlpV2Finding]
     findingsTruncated: bool
 
 @typing.type_check_only
@@ -701,8 +703,8 @@ class GooglePrivacyDlpV2InspectionRule(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InspectionRuleSet(typing_extensions.TypedDict, total=False):
-    infoTypes: typing.List[GooglePrivacyDlpV2InfoType]
-    rules: typing.List[GooglePrivacyDlpV2InspectionRule]
+    infoTypes: _list[GooglePrivacyDlpV2InfoType]
+    rules: _list[GooglePrivacyDlpV2InspectionRule]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2JobNotificationEmails(
@@ -714,27 +716,27 @@ class GooglePrivacyDlpV2JobTrigger(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
-    errors: typing.List[GooglePrivacyDlpV2Error]
+    errors: _list[GooglePrivacyDlpV2Error]
     inspectJob: GooglePrivacyDlpV2InspectJobConfig
     lastRunTime: str
     name: str
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "HEALTHY", "PAUSED", "CANCELLED"
     ]
-    triggers: typing.List[GooglePrivacyDlpV2Trigger]
+    triggers: _list[GooglePrivacyDlpV2Trigger]
     updateTime: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2KAnonymityConfig(typing_extensions.TypedDict, total=False):
     entityId: GooglePrivacyDlpV2EntityId
-    quasiIds: typing.List[GooglePrivacyDlpV2FieldId]
+    quasiIds: _list[GooglePrivacyDlpV2FieldId]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2KAnonymityEquivalenceClass(
     typing_extensions.TypedDict, total=False
 ):
     equivalenceClassSize: str
-    quasiIdsValues: typing.List[GooglePrivacyDlpV2Value]
+    quasiIdsValues: _list[GooglePrivacyDlpV2Value]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2KAnonymityHistogramBucket(
@@ -742,20 +744,18 @@ class GooglePrivacyDlpV2KAnonymityHistogramBucket(
 ):
     bucketSize: str
     bucketValueCount: str
-    bucketValues: typing.List[GooglePrivacyDlpV2KAnonymityEquivalenceClass]
+    bucketValues: _list[GooglePrivacyDlpV2KAnonymityEquivalenceClass]
     equivalenceClassSizeLowerBound: str
     equivalenceClassSizeUpperBound: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2KAnonymityResult(typing_extensions.TypedDict, total=False):
-    equivalenceClassHistogramBuckets: typing.List[
-        GooglePrivacyDlpV2KAnonymityHistogramBucket
-    ]
+    equivalenceClassHistogramBuckets: _list[GooglePrivacyDlpV2KAnonymityHistogramBucket]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2KMapEstimationConfig(typing_extensions.TypedDict, total=False):
-    auxiliaryTables: typing.List[GooglePrivacyDlpV2AuxiliaryTable]
-    quasiIds: typing.List[GooglePrivacyDlpV2TaggedField]
+    auxiliaryTables: _list[GooglePrivacyDlpV2AuxiliaryTable]
+    quasiIds: _list[GooglePrivacyDlpV2TaggedField]
     regionCode: str
 
 @typing.type_check_only
@@ -764,7 +764,7 @@ class GooglePrivacyDlpV2KMapEstimationHistogramBucket(
 ):
     bucketSize: str
     bucketValueCount: str
-    bucketValues: typing.List[GooglePrivacyDlpV2KMapEstimationQuasiIdValues]
+    bucketValues: _list[GooglePrivacyDlpV2KMapEstimationQuasiIdValues]
     maxAnonymity: str
     minAnonymity: str
 
@@ -773,18 +773,16 @@ class GooglePrivacyDlpV2KMapEstimationQuasiIdValues(
     typing_extensions.TypedDict, total=False
 ):
     estimatedAnonymity: str
-    quasiIdsValues: typing.List[GooglePrivacyDlpV2Value]
+    quasiIdsValues: _list[GooglePrivacyDlpV2Value]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2KMapEstimationResult(typing_extensions.TypedDict, total=False):
-    kMapEstimationHistogram: typing.List[
-        GooglePrivacyDlpV2KMapEstimationHistogramBucket
-    ]
+    kMapEstimationHistogram: _list[GooglePrivacyDlpV2KMapEstimationHistogramBucket]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Key(typing_extensions.TypedDict, total=False):
     partitionId: GooglePrivacyDlpV2PartitionId
-    path: typing.List[GooglePrivacyDlpV2PathElement]
+    path: _list[GooglePrivacyDlpV2PathElement]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2KindExpression(typing_extensions.TypedDict, total=False):
@@ -797,7 +795,7 @@ class GooglePrivacyDlpV2KmsWrappedCryptoKey(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GooglePrivacyDlpV2LDiversityConfig(typing_extensions.TypedDict, total=False):
-    quasiIds: typing.List[GooglePrivacyDlpV2FieldId]
+    quasiIds: _list[GooglePrivacyDlpV2FieldId]
     sensitiveAttribute: GooglePrivacyDlpV2FieldId
 
 @typing.type_check_only
@@ -806,8 +804,8 @@ class GooglePrivacyDlpV2LDiversityEquivalenceClass(
 ):
     equivalenceClassSize: str
     numDistinctSensitiveValues: str
-    quasiIdsValues: typing.List[GooglePrivacyDlpV2Value]
-    topSensitiveValues: typing.List[GooglePrivacyDlpV2ValueFrequency]
+    quasiIdsValues: _list[GooglePrivacyDlpV2Value]
+    topSensitiveValues: _list[GooglePrivacyDlpV2ValueFrequency]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2LDiversityHistogramBucket(
@@ -815,13 +813,13 @@ class GooglePrivacyDlpV2LDiversityHistogramBucket(
 ):
     bucketSize: str
     bucketValueCount: str
-    bucketValues: typing.List[GooglePrivacyDlpV2LDiversityEquivalenceClass]
+    bucketValues: _list[GooglePrivacyDlpV2LDiversityEquivalenceClass]
     sensitiveValueFrequencyLowerBound: str
     sensitiveValueFrequencyUpperBound: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2LDiversityResult(typing_extensions.TypedDict, total=False):
-    sensitiveValueFrequencyHistogramBuckets: typing.List[
+    sensitiveValueFrequencyHistogramBuckets: _list[
         GooglePrivacyDlpV2LDiversityHistogramBucket
     ]
 
@@ -860,30 +858,30 @@ class GooglePrivacyDlpV2LikelihoodAdjustment(typing_extensions.TypedDict, total=
 class GooglePrivacyDlpV2ListDeidentifyTemplatesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    deidentifyTemplates: typing.List[GooglePrivacyDlpV2DeidentifyTemplate]
+    deidentifyTemplates: _list[GooglePrivacyDlpV2DeidentifyTemplate]
     nextPageToken: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ListDlpJobsResponse(typing_extensions.TypedDict, total=False):
-    jobs: typing.List[GooglePrivacyDlpV2DlpJob]
+    jobs: _list[GooglePrivacyDlpV2DlpJob]
     nextPageToken: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ListInfoTypesResponse(typing_extensions.TypedDict, total=False):
-    infoTypes: typing.List[GooglePrivacyDlpV2InfoTypeDescription]
+    infoTypes: _list[GooglePrivacyDlpV2InfoTypeDescription]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ListInspectTemplatesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    inspectTemplates: typing.List[GooglePrivacyDlpV2InspectTemplate]
+    inspectTemplates: _list[GooglePrivacyDlpV2InspectTemplate]
     nextPageToken: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ListJobTriggersResponse(
     typing_extensions.TypedDict, total=False
 ):
-    jobTriggers: typing.List[GooglePrivacyDlpV2JobTrigger]
+    jobTriggers: _list[GooglePrivacyDlpV2JobTrigger]
     nextPageToken: str
 
 @typing.type_check_only
@@ -891,14 +889,14 @@ class GooglePrivacyDlpV2ListStoredInfoTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    storedInfoTypes: typing.List[GooglePrivacyDlpV2StoredInfoType]
+    storedInfoTypes: _list[GooglePrivacyDlpV2StoredInfoType]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Location(typing_extensions.TypedDict, total=False):
     byteRange: GooglePrivacyDlpV2Range
     codepointRange: GooglePrivacyDlpV2Range
     container: GooglePrivacyDlpV2Container
-    contentLocations: typing.List[GooglePrivacyDlpV2ContentLocation]
+    contentLocations: _list[GooglePrivacyDlpV2ContentLocation]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Manual(typing_extensions.TypedDict, total=False): ...
@@ -916,7 +914,7 @@ class GooglePrivacyDlpV2NumericalStatsConfig(typing_extensions.TypedDict, total=
 class GooglePrivacyDlpV2NumericalStatsResult(typing_extensions.TypedDict, total=False):
     maxValue: GooglePrivacyDlpV2Value
     minValue: GooglePrivacyDlpV2Value
-    quantileValues: typing.List[GooglePrivacyDlpV2Value]
+    quantileValues: _list[GooglePrivacyDlpV2Value]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2OutputStorageConfig(typing_extensions.TypedDict, total=False):
@@ -1024,7 +1022,7 @@ class GooglePrivacyDlpV2RecordCondition(typing_extensions.TypedDict, total=False
 class GooglePrivacyDlpV2RecordKey(typing_extensions.TypedDict, total=False):
     bigQueryKey: GooglePrivacyDlpV2BigQueryKey
     datastoreKey: GooglePrivacyDlpV2DatastoreKey
-    idValues: typing.List[str]
+    idValues: _list[str]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2RecordLocation(typing_extensions.TypedDict, total=False):
@@ -1038,8 +1036,8 @@ class GooglePrivacyDlpV2RecordSuppression(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GooglePrivacyDlpV2RecordTransformations(typing_extensions.TypedDict, total=False):
-    fieldTransformations: typing.List[GooglePrivacyDlpV2FieldTransformation]
-    recordSuppressions: typing.List[GooglePrivacyDlpV2RecordSuppression]
+    fieldTransformations: _list[GooglePrivacyDlpV2FieldTransformation]
+    recordSuppressions: _list[GooglePrivacyDlpV2RecordSuppression]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2RedactConfig(typing_extensions.TypedDict, total=False): ...
@@ -1047,7 +1045,7 @@ class GooglePrivacyDlpV2RedactConfig(typing_extensions.TypedDict, total=False): 
 @typing.type_check_only
 class GooglePrivacyDlpV2RedactImageRequest(typing_extensions.TypedDict, total=False):
     byteItem: GooglePrivacyDlpV2ByteContentItem
-    imageRedactionConfigs: typing.List[GooglePrivacyDlpV2ImageRedactionConfig]
+    imageRedactionConfigs: _list[GooglePrivacyDlpV2ImageRedactionConfig]
     includeFindings: bool
     inspectConfig: GooglePrivacyDlpV2InspectConfig
     locationId: str
@@ -1060,7 +1058,7 @@ class GooglePrivacyDlpV2RedactImageResponse(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Regex(typing_extensions.TypedDict, total=False):
-    groupIndexes: typing.List[int]
+    groupIndexes: _list[int]
     pattern: str
 
 @typing.type_check_only
@@ -1104,19 +1102,19 @@ class GooglePrivacyDlpV2RequestedRiskAnalysisOptions(
 @typing.type_check_only
 class GooglePrivacyDlpV2Result(typing_extensions.TypedDict, total=False):
     hybridStats: GooglePrivacyDlpV2HybridInspectStatistics
-    infoTypeStats: typing.List[GooglePrivacyDlpV2InfoTypeStats]
+    infoTypeStats: _list[GooglePrivacyDlpV2InfoTypeStats]
     processedBytes: str
     totalEstimatedBytes: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2RiskAnalysisJobConfig(typing_extensions.TypedDict, total=False):
-    actions: typing.List[GooglePrivacyDlpV2Action]
+    actions: _list[GooglePrivacyDlpV2Action]
     privacyMetric: GooglePrivacyDlpV2PrivacyMetric
     sourceTable: GooglePrivacyDlpV2BigQueryTable
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Row(typing_extensions.TypedDict, total=False):
-    values: typing.List[GooglePrivacyDlpV2Value]
+    values: _list[GooglePrivacyDlpV2Value]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2SaveFindings(typing_extensions.TypedDict, total=False):
@@ -1128,7 +1126,7 @@ class GooglePrivacyDlpV2Schedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2StatisticalTable(typing_extensions.TypedDict, total=False):
-    quasiIds: typing.List[GooglePrivacyDlpV2QuasiIdentifierField]
+    quasiIds: _list[GooglePrivacyDlpV2QuasiIdentifierField]
     relativeFrequency: GooglePrivacyDlpV2FieldId
     table: GooglePrivacyDlpV2BigQueryTable
 
@@ -1148,7 +1146,7 @@ class GooglePrivacyDlpV2StorageMetadataLabel(typing_extensions.TypedDict, total=
 class GooglePrivacyDlpV2StoredInfoType(typing_extensions.TypedDict, total=False):
     currentVersion: GooglePrivacyDlpV2StoredInfoTypeVersion
     name: str
-    pendingVersions: typing.List[GooglePrivacyDlpV2StoredInfoTypeVersion]
+    pendingVersions: _list[GooglePrivacyDlpV2StoredInfoTypeVersion]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2StoredInfoTypeConfig(typing_extensions.TypedDict, total=False):
@@ -1166,7 +1164,7 @@ class GooglePrivacyDlpV2StoredInfoTypeStats(typing_extensions.TypedDict, total=F
 class GooglePrivacyDlpV2StoredInfoTypeVersion(typing_extensions.TypedDict, total=False):
     config: GooglePrivacyDlpV2StoredInfoTypeConfig
     createTime: str
-    errors: typing.List[GooglePrivacyDlpV2Error]
+    errors: _list[GooglePrivacyDlpV2Error]
     state: typing_extensions.Literal[
         "STORED_INFO_TYPE_STATE_UNSPECIFIED", "PENDING", "READY", "FAILED", "INVALID"
     ]
@@ -1190,8 +1188,8 @@ class GooglePrivacyDlpV2SurrogateType(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Table(typing_extensions.TypedDict, total=False):
-    headers: typing.List[GooglePrivacyDlpV2FieldId]
-    rows: typing.List[GooglePrivacyDlpV2Row]
+    headers: _list[GooglePrivacyDlpV2FieldId]
+    rows: _list[GooglePrivacyDlpV2Row]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TableLocation(typing_extensions.TypedDict, total=False):
@@ -1199,7 +1197,7 @@ class GooglePrivacyDlpV2TableLocation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TableOptions(typing_extensions.TypedDict, total=False):
-    identifyingFields: typing.List[GooglePrivacyDlpV2FieldId]
+    identifyingFields: _list[GooglePrivacyDlpV2FieldId]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TaggedField(typing_extensions.TypedDict, total=False):
@@ -1245,16 +1243,16 @@ class GooglePrivacyDlpV2TransformationErrorHandling(
 class GooglePrivacyDlpV2TransformationOverview(
     typing_extensions.TypedDict, total=False
 ):
-    transformationSummaries: typing.List[GooglePrivacyDlpV2TransformationSummary]
+    transformationSummaries: _list[GooglePrivacyDlpV2TransformationSummary]
     transformedBytes: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TransformationSummary(typing_extensions.TypedDict, total=False):
     field: GooglePrivacyDlpV2FieldId
-    fieldTransformations: typing.List[GooglePrivacyDlpV2FieldTransformation]
+    fieldTransformations: _list[GooglePrivacyDlpV2FieldTransformation]
     infoType: GooglePrivacyDlpV2InfoType
     recordSuppress: GooglePrivacyDlpV2RecordSuppression
-    results: typing.List[GooglePrivacyDlpV2SummaryResult]
+    results: _list[GooglePrivacyDlpV2SummaryResult]
     transformation: GooglePrivacyDlpV2PrimitiveTransformation
     transformedBytes: str
 
@@ -1326,7 +1324,7 @@ class GooglePrivacyDlpV2ValueFrequency(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GooglePrivacyDlpV2WordList(typing_extensions.TypedDict, total=False):
-    words: typing.List[str]
+    words: _list[str]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -1334,7 +1332,7 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

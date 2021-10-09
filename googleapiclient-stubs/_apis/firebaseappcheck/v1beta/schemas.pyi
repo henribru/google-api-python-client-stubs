@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse(
     typing_extensions.TypedDict, total=False
@@ -27,38 +29,38 @@ class GoogleFirebaseAppcheckV1betaAttestationTokenResponse(
 class GoogleFirebaseAppcheckV1betaBatchGetAppAttestConfigsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    configs: typing.List[GoogleFirebaseAppcheckV1betaAppAttestConfig]
+    configs: _list[GoogleFirebaseAppcheckV1betaAppAttestConfig]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetDeviceCheckConfigsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    configs: typing.List[GoogleFirebaseAppcheckV1betaDeviceCheckConfig]
+    configs: _list[GoogleFirebaseAppcheckV1betaDeviceCheckConfig]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    configs: typing.List[GoogleFirebaseAppcheckV1betaRecaptchaConfig]
+    configs: _list[GoogleFirebaseAppcheckV1betaRecaptchaConfig]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    configs: typing.List[GoogleFirebaseAppcheckV1betaSafetyNetConfig]
+    configs: _list[GoogleFirebaseAppcheckV1betaSafetyNetConfig]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchUpdateServicesRequest(
     typing_extensions.TypedDict, total=False
 ):
-    requests: typing.List[GoogleFirebaseAppcheckV1betaUpdateServiceRequest]
+    requests: _list[GoogleFirebaseAppcheckV1betaUpdateServiceRequest]
     updateMask: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchUpdateServicesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    services: typing.List[GoogleFirebaseAppcheckV1betaService]
+    services: _list[GoogleFirebaseAppcheckV1betaService]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaDebugToken(typing_extensions.TypedDict, total=False):
@@ -138,7 +140,7 @@ class GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest(
 class GoogleFirebaseAppcheckV1betaListDebugTokensResponse(
     typing_extensions.TypedDict, total=False
 ):
-    debugTokens: typing.List[GoogleFirebaseAppcheckV1betaDebugToken]
+    debugTokens: _list[GoogleFirebaseAppcheckV1betaDebugToken]
     nextPageToken: str
 
 @typing.type_check_only
@@ -146,7 +148,7 @@ class GoogleFirebaseAppcheckV1betaListServicesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    services: typing.List[GoogleFirebaseAppcheckV1betaService]
+    services: _list[GoogleFirebaseAppcheckV1betaService]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaPublicJwk(typing_extensions.TypedDict, total=False):
@@ -161,7 +163,7 @@ class GoogleFirebaseAppcheckV1betaPublicJwk(typing_extensions.TypedDict, total=F
 class GoogleFirebaseAppcheckV1betaPublicJwkSet(
     typing_extensions.TypedDict, total=False
 ):
-    keys: typing.List[GoogleFirebaseAppcheckV1betaPublicJwk]
+    keys: _list[GoogleFirebaseAppcheckV1betaPublicJwk]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaRecaptchaConfig(

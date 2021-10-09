@@ -2,20 +2,22 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
     condition: GoogleTypeExpr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class GoogleIdentityStsV1AccessBoundary(typing_extensions.TypedDict, total=False):
-    accessBoundaryRules: typing.List[GoogleIdentityStsV1AccessBoundaryRule]
+    accessBoundaryRules: _list[GoogleIdentityStsV1AccessBoundaryRule]
 
 @typing.type_check_only
 class GoogleIdentityStsV1AccessBoundaryRule(typing_extensions.TypedDict, total=False):
     availabilityCondition: GoogleTypeExpr
-    availablePermissions: typing.List[str]
+    availablePermissions: _list[str]
     availableResource: str
 
 @typing.type_check_only
@@ -60,25 +62,25 @@ class GoogleIdentityStsV1IntrospectTokenResponse(
 @typing.type_check_only
 class GoogleIdentityStsV1Options(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1AccessBoundary
-    audiences: typing.List[str]
+    audiences: _list[str]
     userProject: str
 
 @typing.type_check_only
 class GoogleIdentityStsV1betaAccessBoundary(typing_extensions.TypedDict, total=False):
-    accessBoundaryRules: typing.List[GoogleIdentityStsV1betaAccessBoundaryRule]
+    accessBoundaryRules: _list[GoogleIdentityStsV1betaAccessBoundaryRule]
 
 @typing.type_check_only
 class GoogleIdentityStsV1betaAccessBoundaryRule(
     typing_extensions.TypedDict, total=False
 ):
     availabilityCondition: GoogleTypeExpr
-    availablePermissions: typing.List[str]
+    availablePermissions: _list[str]
     availableResource: str
 
 @typing.type_check_only
 class GoogleIdentityStsV1betaOptions(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1betaAccessBoundary
-    audiences: typing.List[str]
+    audiences: _list[str]
     userProject: str
 
 @typing.type_check_only

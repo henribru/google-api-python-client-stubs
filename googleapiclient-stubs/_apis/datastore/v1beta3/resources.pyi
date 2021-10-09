@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class DatastoreResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -47,9 +49,7 @@ class DatastoreResource(googleapiclient.discovery.Resource):
 class AllocateIdsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AllocateIdsResponse: ...
 
@@ -57,9 +57,7 @@ class AllocateIdsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BeginTransactionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BeginTransactionResponse: ...
 
@@ -67,9 +65,7 @@ class BeginTransactionResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CommitResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CommitResponse: ...
 
@@ -77,9 +73,7 @@ class CommitResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LookupResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LookupResponse: ...
 
@@ -87,9 +81,7 @@ class LookupResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ReserveIdsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ReserveIdsResponse: ...
 
@@ -97,9 +89,7 @@ class ReserveIdsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RollbackResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RollbackResponse: ...
 
@@ -107,8 +97,6 @@ class RollbackResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RunQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RunQueryResponse: ...

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ActingUser(typing_extensions.TypedDict, total=False):
     email: str
@@ -21,7 +23,7 @@ class CertHttpChallenge(typing_extensions.TypedDict, total=False):
 class Channel(typing_extensions.TypedDict, total=False):
     createTime: str
     expireTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     release: Release
     retainedReleaseCount: int
@@ -58,7 +60,7 @@ class Domain(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DomainProvisioning(typing_extensions.TypedDict, total=False):
-    certChallengeDiscoveredTxt: typing.List[str]
+    certChallengeDiscoveredTxt: _list[str]
     certChallengeDns: CertDnsChallenge
     certChallengeHttp: CertHttpChallenge
     certStatus: typing_extensions.Literal[
@@ -70,7 +72,7 @@ class DomainProvisioning(typing_extensions.TypedDict, total=False):
         "CERT_ACTIVE",
         "CERT_ERROR",
     ]
-    discoveredIps: typing.List[str]
+    discoveredIps: _list[str]
     dnsFetchTime: str
     dnsStatus: typing_extensions.Literal[
         "DNS_STATUS_UNSPECIFIED",
@@ -80,7 +82,7 @@ class DomainProvisioning(typing_extensions.TypedDict, total=False):
         "DNS_MATCH",
         "DNS_EXTRANEOUS_MATCH",
     ]
-    expectedIps: typing.List[str]
+    expectedIps: _list[str]
 
 @typing.type_check_only
 class DomainRedirect(typing_extensions.TypedDict, total=False):
@@ -93,7 +95,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Header(typing_extensions.TypedDict, total=False):
     glob: str
-    headers: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
     regex: str
 
 @typing.type_check_only
@@ -102,53 +104,53 @@ class I18nConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListChannelsResponse(typing_extensions.TypedDict, total=False):
-    channels: typing.List[Channel]
+    channels: _list[Channel]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDomainsResponse(typing_extensions.TypedDict, total=False):
-    domains: typing.List[Domain]
+    domains: _list[Domain]
     nextPageToken: str
 
 @typing.type_check_only
 class ListReleasesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    releases: typing.List[Release]
+    releases: _list[Release]
 
 @typing.type_check_only
 class ListSitesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sites: typing.List[Site]
+    sites: _list[Site]
 
 @typing.type_check_only
 class ListVersionFilesResponse(typing_extensions.TypedDict, total=False):
-    files: typing.List[VersionFile]
+    files: _list[VersionFile]
     nextPageToken: str
 
 @typing.type_check_only
 class ListVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    versions: typing.List[Version]
+    versions: _list[Version]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class PathFilter(typing_extensions.TypedDict, total=False):
-    regexes: typing.List[str]
+    regexes: _list[str]
 
 @typing.type_check_only
 class PopulateVersionFilesRequest(typing_extensions.TypedDict, total=False):
-    files: typing.Dict[str, typing.Any]
+    files: dict[str, typing.Any]
 
 @typing.type_check_only
 class PopulateVersionFilesResponse(typing_extensions.TypedDict, total=False):
-    uploadRequiredHashes: typing.List[str]
+    uploadRequiredHashes: _list[str]
     uploadUrl: str
 
 @typing.type_check_only
@@ -182,10 +184,10 @@ class Rewrite(typing_extensions.TypedDict, total=False):
 class ServingConfig(typing_extensions.TypedDict, total=False):
     appAssociation: typing_extensions.Literal["AUTO", "NONE"]
     cleanUrls: bool
-    headers: typing.List[Header]
+    headers: _list[Header]
     i18n: I18nConfig
-    redirects: typing.List[Redirect]
-    rewrites: typing.List[Rewrite]
+    redirects: _list[Redirect]
+    rewrites: _list[Rewrite]
     trailingSlashBehavior: typing_extensions.Literal[
         "TRAILING_SLASH_BEHAVIOR_UNSPECIFIED", "ADD", "REMOVE"
     ]
@@ -194,7 +196,7 @@ class ServingConfig(typing_extensions.TypedDict, total=False):
 class Site(typing_extensions.TypedDict, total=False):
     appId: str
     defaultUrl: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DEFAULT_SITE", "USER_SITE"]
 
@@ -206,7 +208,7 @@ class SiteConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -219,7 +221,7 @@ class Version(typing_extensions.TypedDict, total=False):
     fileCount: str
     finalizeTime: str
     finalizeUser: ActingUser
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     status: typing_extensions.Literal[
         "VERSION_STATUS_UNSPECIFIED",

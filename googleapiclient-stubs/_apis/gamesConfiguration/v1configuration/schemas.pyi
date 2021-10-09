@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AchievementConfiguration(typing_extensions.TypedDict, total=False):
     achievementType: typing_extensions.Literal[
@@ -28,7 +30,7 @@ class AchievementConfigurationDetail(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AchievementConfigurationListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[AchievementConfiguration]
+    items: _list[AchievementConfiguration]
     kind: str
     nextPageToken: str
 
@@ -82,7 +84,7 @@ class LeaderboardConfigurationDetail(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LeaderboardConfigurationListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[LeaderboardConfiguration]
+    items: _list[LeaderboardConfiguration]
     kind: str
     nextPageToken: str
 
@@ -95,4 +97,4 @@ class LocalizedString(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LocalizedStringBundle(typing_extensions.TypedDict, total=False):
     kind: str
-    translations: typing.List[LocalizedString]
+    translations: _list[LocalizedString]

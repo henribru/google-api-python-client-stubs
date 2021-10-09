@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class StreetViewPublishResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -44,7 +46,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             self,
             *,
             languageCode: str = ...,
-            photoIds: typing.Union[str, typing.List[str]] = ...,
+            photoIds: str | _list[str] = ...,
             view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
             **kwargs: typing.Any
         ) -> BatchGetPhotosResponseHttpRequest: ...
@@ -68,9 +70,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
 class BatchDeletePhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchDeletePhotosResponse: ...
 
@@ -78,9 +78,7 @@ class BatchDeletePhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchGetPhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchGetPhotosResponse: ...
 
@@ -88,9 +86,7 @@ class BatchGetPhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchUpdatePhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchUpdatePhotosResponse: ...
 
@@ -98,9 +94,7 @@ class BatchUpdatePhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -108,9 +102,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class ListPhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListPhotosResponse: ...
 
@@ -118,9 +110,7 @@ class ListPhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PhotoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Photo: ...
 
@@ -128,8 +118,6 @@ class PhotoHttpRequest(googleapiclient.http.HttpRequest):
 class UploadRefHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UploadRef: ...

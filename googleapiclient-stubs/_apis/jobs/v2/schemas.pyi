@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class BatchDeleteJobsRequest(typing_extensions.TypedDict, total=False):
     filter: str
@@ -44,7 +46,7 @@ class CommutePreference(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Company(typing_extensions.TypedDict, total=False):
     careerPageLink: str
-    companyInfoSources: typing.List[CompanyInfoSource]
+    companyInfoSources: _list[CompanyInfoSource]
     companySize: typing_extensions.Literal[
         "COMPANY_SIZE_UNSPECIFIED",
         "MINI",
@@ -63,8 +65,8 @@ class Company(typing_extensions.TypedDict, total=False):
     hiringAgency: bool
     hqLocation: str
     imageUrl: str
-    keywordSearchableCustomAttributes: typing.List[str]
-    keywordSearchableCustomFields: typing.List[int]
+    keywordSearchableCustomAttributes: _list[str]
+    keywordSearchableCustomFields: _list[int]
     name: str
     structuredCompanyHqLocation: JobLocation
     suspended: bool
@@ -117,7 +119,7 @@ class CompensationFilter(typing_extensions.TypedDict, total=False):
         "ANNUALIZED_BASE_AMOUNT",
         "ANNUALIZED_TOTAL_AMOUNT",
     ]
-    units: typing.List[str]
+    units: _list[str]
 
 @typing.type_check_only
 class CompensationHistogramRequest(typing_extensions.TypedDict, total=False):
@@ -144,7 +146,7 @@ class CompensationInfo(typing_extensions.TypedDict, total=False):
     amount: Money
     annualizedBaseCompensationRange: CompensationRange
     annualizedTotalCompensationRange: CompensationRange
-    entries: typing.List[CompensationEntry]
+    entries: _list[CompensationEntry]
     max: Money
     min: Money
     type: typing_extensions.Literal[
@@ -163,7 +165,7 @@ class CompensationRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CompleteQueryResponse(typing_extensions.TypedDict, total=False):
-    completionResults: typing.List[CompletionResult]
+    completionResults: _list[CompletionResult]
     metadata: ResponseMetadata
 
 @typing.type_check_only
@@ -196,15 +198,15 @@ class CustomAttributeHistogramRequest(typing_extensions.TypedDict, total=False):
 class CustomAttributeHistogramResult(typing_extensions.TypedDict, total=False):
     key: str
     longValueHistogramResult: NumericBucketingResult
-    stringValueHistogramResult: typing.Dict[str, typing.Any]
+    stringValueHistogramResult: dict[str, typing.Any]
 
 @typing.type_check_only
 class CustomField(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class CustomFieldFilter(typing_extensions.TypedDict, total=False):
-    queries: typing.List[str]
+    queries: _list[str]
     type: typing_extensions.Literal["FILTER_TYPE_UNSPECIFIED", "OR", "AND", "NOT"]
 
 @typing.type_check_only
@@ -231,7 +233,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ExtendedCompensationFilter(typing_extensions.TypedDict, total=False):
     compensationRange: ExtendedCompensationInfoCompensationRange
-    compensationUnits: typing.List[str]
+    compensationUnits: _list[str]
     currency: str
     includeJobWithUnspecifiedCompensationRange: bool
     type: typing_extensions.Literal[
@@ -249,7 +251,7 @@ class ExtendedCompensationInfo(typing_extensions.TypedDict, total=False):
     annualizedTotalCompensationRange: ExtendedCompensationInfoCompensationRange
     annualizedTotalCompensationUnspecified: bool
     currency: str
-    entries: typing.List[ExtendedCompensationInfoCompensationEntry]
+    entries: _list[ExtendedCompensationInfoCompensationEntry]
 
 @typing.type_check_only
 class ExtendedCompensationInfoCompensationEntry(
@@ -304,24 +306,24 @@ class GetHistogramRequest(typing_extensions.TypedDict, total=False):
     filters: JobFilters
     query: JobQuery
     requestMetadata: RequestMetadata
-    searchTypes: typing.List[str]
+    searchTypes: _list[str]
 
 @typing.type_check_only
 class GetHistogramResponse(typing_extensions.TypedDict, total=False):
     metadata: ResponseMetadata
-    results: typing.List[HistogramResult]
+    results: _list[HistogramResult]
 
 @typing.type_check_only
 class GoogleCloudTalentV4BatchCreateJobsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    jobResults: typing.List[GoogleCloudTalentV4JobResult]
+    jobResults: _list[GoogleCloudTalentV4JobResult]
 
 @typing.type_check_only
 class GoogleCloudTalentV4BatchDeleteJobsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    jobResults: typing.List[GoogleCloudTalentV4JobResult]
+    jobResults: _list[GoogleCloudTalentV4JobResult]
 
 @typing.type_check_only
 class GoogleCloudTalentV4BatchOperationMetadata(
@@ -348,13 +350,13 @@ class GoogleCloudTalentV4BatchOperationMetadata(
 class GoogleCloudTalentV4BatchUpdateJobsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    jobResults: typing.List[GoogleCloudTalentV4JobResult]
+    jobResults: _list[GoogleCloudTalentV4JobResult]
 
 @typing.type_check_only
 class GoogleCloudTalentV4CompensationInfo(typing_extensions.TypedDict, total=False):
     annualizedBaseCompensationRange: GoogleCloudTalentV4CompensationInfoCompensationRange
     annualizedTotalCompensationRange: GoogleCloudTalentV4CompensationInfoCompensationRange
-    entries: typing.List[GoogleCloudTalentV4CompensationInfoCompensationEntry]
+    entries: _list[GoogleCloudTalentV4CompensationInfoCompensationEntry]
 
 @typing.type_check_only
 class GoogleCloudTalentV4CompensationInfoCompensationEntry(
@@ -397,24 +399,24 @@ class GoogleCloudTalentV4CompensationInfoCompensationRange(
 class GoogleCloudTalentV4CustomAttribute(typing_extensions.TypedDict, total=False):
     filterable: bool
     keywordSearchable: bool
-    longValues: typing.List[str]
-    stringValues: typing.List[str]
+    longValues: _list[str]
+    stringValues: _list[str]
 
 @typing.type_check_only
 class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
-    addresses: typing.List[str]
+    addresses: _list[str]
     applicationInfo: GoogleCloudTalentV4JobApplicationInfo
     company: str
     companyDisplayName: str
     compensationInfo: GoogleCloudTalentV4CompensationInfo
-    customAttributes: typing.Dict[str, typing.Any]
-    degreeTypes: typing.List[str]
+    customAttributes: dict[str, typing.Any]
+    degreeTypes: _list[str]
     department: str
     derivedInfo: GoogleCloudTalentV4JobDerivedInfo
     description: str
-    employmentTypes: typing.List[str]
+    employmentTypes: _list[str]
     incentives: str
-    jobBenefits: typing.List[str]
+    jobBenefits: _list[str]
     jobEndTime: str
     jobLevel: typing_extensions.Literal[
         "JOB_LEVEL_UNSPECIFIED",
@@ -449,14 +451,14 @@ class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudTalentV4JobApplicationInfo(typing_extensions.TypedDict, total=False):
-    emails: typing.List[str]
+    emails: _list[str]
     instruction: str
-    uris: typing.List[str]
+    uris: _list[str]
 
 @typing.type_check_only
 class GoogleCloudTalentV4JobDerivedInfo(typing_extensions.TypedDict, total=False):
-    jobCategories: typing.List[str]
-    locations: typing.List[GoogleCloudTalentV4Location]
+    jobCategories: _list[str]
+    locations: _list[GoogleCloudTalentV4Location]
 
 @typing.type_check_only
 class GoogleCloudTalentV4JobProcessingOptions(typing_extensions.TypedDict, total=False):
@@ -493,9 +495,9 @@ class GoogleCloudTalentV4Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HistogramFacets(typing_extensions.TypedDict, total=False):
-    compensationHistogramFacets: typing.List[CompensationHistogramRequest]
-    customAttributeHistogramFacets: typing.List[CustomAttributeHistogramRequest]
-    simpleHistogramFacets: typing.List[str]
+    compensationHistogramFacets: _list[CompensationHistogramRequest]
+    customAttributeHistogramFacets: _list[CustomAttributeHistogramRequest]
+    simpleHistogramFacets: _list[str]
 
 @typing.type_check_only
 class HistogramResult(typing_extensions.TypedDict, total=False):
@@ -539,38 +541,38 @@ class HistogramResult(typing_extensions.TypedDict, total=False):
         "COMPANY_DISPLAY_NAME",
         "BASE_COMPENSATION_UNIT",
     ]
-    values: typing.Dict[str, typing.Any]
+    values: dict[str, typing.Any]
 
 @typing.type_check_only
 class HistogramResults(typing_extensions.TypedDict, total=False):
-    compensationHistogramResults: typing.List[CompensationHistogramResult]
-    customAttributeHistogramResults: typing.List[CustomAttributeHistogramResult]
-    simpleHistogramResults: typing.List[HistogramResult]
+    compensationHistogramResults: _list[CompensationHistogramResult]
+    customAttributeHistogramResults: _list[CustomAttributeHistogramResult]
+    simpleHistogramResults: _list[HistogramResult]
 
 @typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
-    applicationEmailList: typing.List[str]
+    applicationEmailList: _list[str]
     applicationInstruction: str
-    applicationUrls: typing.List[str]
-    benefits: typing.List[str]
+    applicationUrls: _list[str]
+    benefits: _list[str]
     companyDisplayName: str
     companyName: str
     companyTitle: str
     compensationInfo: CompensationInfo
     createTime: str
-    customAttributes: typing.Dict[str, typing.Any]
+    customAttributes: dict[str, typing.Any]
     department: str
     description: str
     distributorCompanyId: str
-    educationLevels: typing.List[str]
-    employmentTypes: typing.List[str]
+    educationLevels: _list[str]
+    employmentTypes: _list[str]
     endDate: Date
     expireTime: str
     expiryDate: Date
     extendedCompensationInfo: ExtendedCompensationInfo
-    filterableCustomFields: typing.Dict[str, typing.Any]
+    filterableCustomFields: dict[str, typing.Any]
     incentives: str
-    jobLocations: typing.List[JobLocation]
+    jobLocations: _list[JobLocation]
     jobTitle: str
     languageCode: str
     level: typing_extensions.Literal[
@@ -581,7 +583,7 @@ class Job(typing_extensions.TypedDict, total=False):
         "DIRECTOR",
         "EXECUTIVE",
     ]
-    locations: typing.List[str]
+    locations: _list[str]
     name: str
     promotionValue: int
     publishDate: Date
@@ -593,7 +595,7 @@ class Job(typing_extensions.TypedDict, total=False):
     requisitionId: str
     responsibilities: str
     startDate: Date
-    unindexedCustomFields: typing.Dict[str, typing.Any]
+    unindexedCustomFields: dict[str, typing.Any]
     updateTime: str
     visibility: typing_extensions.Literal[
         "JOB_VISIBILITY_UNSPECIFIED", "PRIVATE", "GOOGLE", "PUBLIC"
@@ -601,18 +603,18 @@ class Job(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobFilters(typing_extensions.TypedDict, total=False):
-    categories: typing.List[str]
+    categories: _list[str]
     commuteFilter: CommutePreference
-    companyNames: typing.List[str]
-    companyTitles: typing.List[str]
+    companyNames: _list[str]
+    companyTitles: _list[str]
     compensationFilter: CompensationFilter
     customAttributeFilter: str
-    customFieldFilters: typing.Dict[str, typing.Any]
+    customFieldFilters: dict[str, typing.Any]
     disableSpellCheck: bool
-    employmentTypes: typing.List[str]
+    employmentTypes: _list[str]
     extendedCompensationFilter: ExtendedCompensationFilter
-    languageCodes: typing.List[str]
-    locationFilters: typing.List[LocationFilter]
+    languageCodes: _list[str]
+    locationFilters: _list[LocationFilter]
     publishDateRange: typing_extensions.Literal[
         "DATE_RANGE_UNSPECIFIED",
         "PAST_24_HOURS",
@@ -654,16 +656,16 @@ class JobProcessingOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobQuery(typing_extensions.TypedDict, total=False):
-    categories: typing.List[str]
+    categories: _list[str]
     commuteFilter: CommutePreference
-    companyDisplayNames: typing.List[str]
-    companyNames: typing.List[str]
+    companyDisplayNames: _list[str]
+    companyNames: _list[str]
     compensationFilter: CompensationFilter
     customAttributeFilter: str
     disableSpellCheck: bool
-    employmentTypes: typing.List[str]
-    languageCodes: typing.List[str]
-    locationFilters: typing.List[LocationFilter]
+    employmentTypes: _list[str]
+    languageCodes: _list[str]
+    locationFilters: _list[LocationFilter]
     publishDateRange: typing_extensions.Literal[
         "DATE_RANGE_UNSPECIFIED",
         "PAST_24_HOURS",
@@ -681,20 +683,20 @@ class LatLng(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListCompaniesResponse(typing_extensions.TypedDict, total=False):
-    companies: typing.List[Company]
+    companies: _list[Company]
     metadata: ResponseMetadata
     nextPageToken: str
 
 @typing.type_check_only
 class ListCompanyJobsResponse(typing_extensions.TypedDict, total=False):
-    jobs: typing.List[Job]
+    jobs: _list[Job]
     metadata: ResponseMetadata
     nextPageToken: str
     totalSize: str
 
 @typing.type_check_only
 class ListJobsResponse(typing_extensions.TypedDict, total=False):
-    jobs: typing.List[Job]
+    jobs: _list[Job]
     metadata: ResponseMetadata
     nextPageToken: str
 
@@ -716,7 +718,7 @@ class MatchingJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MendelDebugInput(typing_extensions.TypedDict, total=False):
-    namespacedDebugInput: typing.Dict[str, typing.Any]
+    namespacedDebugInput: dict[str, typing.Any]
 
 @typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
@@ -726,41 +728,41 @@ class Money(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NamespacedDebugInput(typing_extensions.TypedDict, total=False):
-    absolutelyForcedExpNames: typing.List[str]
-    absolutelyForcedExpTags: typing.List[str]
-    absolutelyForcedExps: typing.List[int]
-    conditionallyForcedExpNames: typing.List[str]
-    conditionallyForcedExpTags: typing.List[str]
-    conditionallyForcedExps: typing.List[int]
+    absolutelyForcedExpNames: _list[str]
+    absolutelyForcedExpTags: _list[str]
+    absolutelyForcedExps: _list[int]
+    conditionallyForcedExpNames: _list[str]
+    conditionallyForcedExpTags: _list[str]
+    conditionallyForcedExps: _list[int]
     disableAutomaticEnrollmentSelection: bool
-    disableExpNames: typing.List[str]
-    disableExpTags: typing.List[str]
-    disableExps: typing.List[int]
+    disableExpNames: _list[str]
+    disableExpTags: _list[str]
+    disableExps: _list[int]
     disableManualEnrollmentSelection: bool
     disableOrganicSelection: bool
-    forcedFlags: typing.Dict[str, typing.Any]
-    forcedRollouts: typing.Dict[str, typing.Any]
+    forcedFlags: dict[str, typing.Any]
+    forcedRollouts: dict[str, typing.Any]
 
 @typing.type_check_only
 class NumericBucketingOption(typing_extensions.TypedDict, total=False):
-    bucketBounds: typing.List[float]
+    bucketBounds: _list[float]
     requiresMinMax: bool
 
 @typing.type_check_only
 class NumericBucketingResult(typing_extensions.TypedDict, total=False):
-    counts: typing.List[BucketizedCount]
+    counts: _list[BucketizedCount]
     maxValue: float
     minValue: float
 
 @typing.type_check_only
 class PostalAddress(typing_extensions.TypedDict, total=False):
-    addressLines: typing.List[str]
+    addressLines: _list[str]
     administrativeArea: str
     languageCode: str
     locality: str
     organization: str
     postalCode: str
-    recipients: typing.List[str]
+    recipients: _list[str]
     regionCode: str
     revision: int
     sortingCode: str
@@ -775,7 +777,7 @@ class RequestMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResponseMetadata(typing_extensions.TypedDict, total=False):
-    experimentIdList: typing.List[int]
+    experimentIdList: _list[int]
     mode: typing_extensions.Literal[
         "SEARCH_MODE_UNSPECIFIED",
         "JOB_SEARCH",
@@ -833,13 +835,13 @@ class SearchJobsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchJobsResponse(typing_extensions.TypedDict, total=False):
     appliedCommuteFilter: CommutePreference
-    appliedJobLocationFilters: typing.List[JobLocation]
+    appliedJobLocationFilters: _list[JobLocation]
     estimatedTotalSize: str
     histogramResults: HistogramResults
     jobView: typing_extensions.Literal[
         "JOB_VIEW_UNSPECIFIED", "SMALL", "MINIMAL", "FULL"
     ]
-    matchingJobs: typing.List[MatchingJob]
+    matchingJobs: _list[MatchingJob]
     metadata: ResponseMetadata
     nextPageToken: str
     numJobsFromBroadenedQuery: int
@@ -854,12 +856,12 @@ class SpellingCorrection(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class StringValues(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class UpdateJobRequest(typing_extensions.TypedDict, total=False):

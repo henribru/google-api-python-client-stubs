@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -21,12 +23,12 @@ class AuthorizationCode(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class ConfigureContactSettingsRequest(typing_extensions.TypedDict, total=False):
-    contactNotices: typing.List[str]
+    contactNotices: _list[str]
     contactSettings: ContactSettings
     updateMask: str
     validateOnly: bool
@@ -63,13 +65,13 @@ class ContactSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomDns(typing_extensions.TypedDict, total=False):
-    dsRecords: typing.List[DsRecord]
-    nameServers: typing.List[str]
+    dsRecords: _list[DsRecord]
+    nameServers: _list[str]
 
 @typing.type_check_only
 class DnsSettings(typing_extensions.TypedDict, total=False):
     customDns: CustomDns
-    glueRecords: typing.List[GlueRecord]
+    glueRecords: _list[GlueRecord]
     googleDomainsDns: GoogleDomainsDns
 
 @typing.type_check_only
@@ -108,38 +110,38 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GlueRecord(typing_extensions.TypedDict, total=False):
     hostName: str
-    ipv4Addresses: typing.List[str]
-    ipv6Addresses: typing.List[str]
+    ipv4Addresses: _list[str]
+    ipv6Addresses: _list[str]
 
 @typing.type_check_only
 class GoogleDomainsDns(typing_extensions.TypedDict, total=False):
-    dsRecords: typing.List[DsRecord]
+    dsRecords: _list[DsRecord]
     dsState: typing_extensions.Literal[
         "DS_STATE_UNSPECIFIED", "DS_RECORDS_UNPUBLISHED", "DS_RECORDS_PUBLISHED"
     ]
-    nameServers: typing.List[str]
+    nameServers: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListRegistrationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    registrations: typing.List[Registration]
+    registrations: _list[Registration]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -161,9 +163,9 @@ class Money(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -176,20 +178,20 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class PostalAddress(typing_extensions.TypedDict, total=False):
-    addressLines: typing.List[str]
+    addressLines: _list[str]
     administrativeArea: str
     languageCode: str
     locality: str
     organization: str
     postalCode: str
-    recipients: typing.List[str]
+    recipients: _list[str]
     regionCode: str
     revision: int
     sortingCode: str
@@ -197,8 +199,8 @@ class PostalAddress(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RegisterDomainRequest(typing_extensions.TypedDict, total=False):
-    contactNotices: typing.List[str]
-    domainNotices: typing.List[str]
+    contactNotices: _list[str]
+    domainNotices: _list[str]
     registration: Registration
     validateOnly: bool
     yearlyPrice: Money
@@ -209,8 +211,8 @@ class RegisterParameters(typing_extensions.TypedDict, total=False):
         "AVAILABILITY_UNSPECIFIED", "AVAILABLE", "UNAVAILABLE", "UNSUPPORTED", "UNKNOWN"
     ]
     domainName: str
-    domainNotices: typing.List[str]
-    supportedPrivacy: typing.List[str]
+    domainNotices: _list[str]
+    supportedPrivacy: _list[str]
     yearlyPrice: Money
 
 @typing.type_check_only
@@ -220,8 +222,8 @@ class Registration(typing_extensions.TypedDict, total=False):
     dnsSettings: DnsSettings
     domainName: str
     expireTime: str
-    issues: typing.List[str]
-    labels: typing.Dict[str, typing.Any]
+    issues: _list[str]
+    labels: dict[str, typing.Any]
     managementSettings: ManagementSettings
     name: str
     pendingContactSettings: ContactSettings
@@ -233,7 +235,7 @@ class Registration(typing_extensions.TypedDict, total=False):
         "SUSPENDED",
         "EXPORTED",
     ]
-    supportedPrivacy: typing.List[str]
+    supportedPrivacy: _list[str]
 
 @typing.type_check_only
 class ResetAuthorizationCodeRequest(typing_extensions.TypedDict, total=False): ...
@@ -244,7 +246,7 @@ class RetrieveRegisterParametersResponse(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class SearchDomainsResponse(typing_extensions.TypedDict, total=False):
-    registerParameters: typing.List[RegisterParameters]
+    registerParameters: _list[RegisterParameters]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -254,13 +256,13 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]

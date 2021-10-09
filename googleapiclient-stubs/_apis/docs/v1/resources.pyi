@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class DocsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -40,9 +42,7 @@ class DocsResource(googleapiclient.discovery.Resource):
 class BatchUpdateDocumentResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchUpdateDocumentResponse: ...
 
@@ -50,8 +50,6 @@ class BatchUpdateDocumentResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DocumentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Document: ...

@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -17,7 +19,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -66,13 +68,13 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
-    connections: typing.List[Connection]
+    connections: _list[Connection]
     nextPageToken: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -83,8 +85,8 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]

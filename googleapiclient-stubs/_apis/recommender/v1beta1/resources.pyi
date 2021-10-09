@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class RecommenderResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -295,9 +297,7 @@ class RecommenderResource(googleapiclient.discovery.Resource):
 class GoogleCloudRecommenderV1beta1InsightHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1beta1Insight: ...
 
@@ -307,9 +307,7 @@ class GoogleCloudRecommenderV1beta1ListInsightsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1beta1ListInsightsResponse: ...
 
@@ -319,9 +317,7 @@ class GoogleCloudRecommenderV1beta1ListRecommendationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1beta1ListRecommendationsResponse: ...
 
@@ -331,8 +327,6 @@ class GoogleCloudRecommenderV1beta1RecommendationHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1beta1Recommendation: ...

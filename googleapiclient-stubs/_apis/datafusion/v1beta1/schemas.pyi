@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Accelerator(typing_extensions.TypedDict, total=False):
     acceleratorType: typing_extensions.Literal[
@@ -17,12 +19,12 @@ class AddDnsPeeringResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -30,7 +32,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -65,9 +67,9 @@ class IAMPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
-    accelerators: typing.List[Accelerator]
+    accelerators: _list[Accelerator]
     apiEndpoint: str
-    availableVersion: typing.List[Version]
+    availableVersion: _list[Version]
     createTime: str
     cryptoKeyConfig: CryptoKeyConfig
     dataprocServiceAccount: str
@@ -77,10 +79,10 @@ class Instance(typing_extensions.TypedDict, total=False):
     enableStackdriverLogging: bool
     enableStackdriverMonitoring: bool
     gcsBucket: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     networkConfig: NetworkConfig
-    options: typing.Dict[str, typing.Any]
+    options: dict[str, typing.Any]
     p4ServiceAccount: str
     privateInstance: bool
     serviceAccount: str
@@ -108,41 +110,41 @@ class Instance(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAvailableVersionsResponse(typing_extensions.TypedDict, total=False):
-    availableVersions: typing.List[Version]
+    availableVersions: _list[Version]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDnsPeeringsResponse(typing_extensions.TypedDict, total=False):
-    dnsPeerings: typing.List[DnsPeering]
+    dnsPeerings: _list[DnsPeering]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
+    instances: _list[Instance]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListNamespacesResponse(typing_extensions.TypedDict, total=False):
-    namespaces: typing.List[Namespace]
+    namespaces: _list[Namespace]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -159,9 +161,9 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -175,8 +177,8 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -204,22 +206,22 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
-    availableFeatures: typing.List[str]
+    availableFeatures: _list[str]
     defaultVersion: bool
     versionNumber: str

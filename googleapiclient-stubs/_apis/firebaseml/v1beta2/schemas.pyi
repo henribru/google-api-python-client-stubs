@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class DownloadModelResponse(typing_extensions.TypedDict, total=False):
     downloadUri: str
@@ -14,19 +16,19 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ListModelsResponse(typing_extensions.TypedDict, total=False):
-    models: typing.List[Model]
+    models: _list[Model]
     nextPageToken: str
 
 @typing.type_check_only
 class Model(typing_extensions.TypedDict, total=False):
-    activeOperations: typing.List[Operation]
+    activeOperations: _list[Operation]
     createTime: str
     displayName: str
     etag: str
     modelHash: str
     name: str
     state: ModelState
-    tags: typing.List[str]
+    tags: _list[str]
     tfliteModel: TfLiteModel
     updateTime: str
 
@@ -48,14 +50,14 @@ class ModelState(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

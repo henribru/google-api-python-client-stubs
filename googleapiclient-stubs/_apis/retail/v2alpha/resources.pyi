@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudRetailResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -173,7 +175,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     catalog: str,
                     dataset: str = ...,
                     deviceType: str = ...,
-                    languageCodes: typing.Union[str, typing.List[str]] = ...,
+                    languageCodes: str | _list[str] = ...,
                     maxSuggestions: int = ...,
                     query: str = ...,
                     visitorId: str = ...,
@@ -233,9 +235,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
 class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleApiHttpBody: ...
 
@@ -243,9 +243,7 @@ class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleCloudRetailV2alphaCatalogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaCatalog: ...
 
@@ -255,9 +253,7 @@ class GoogleCloudRetailV2alphaCompleteQueryResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaCompleteQueryResponse: ...
 
@@ -267,9 +263,7 @@ class GoogleCloudRetailV2alphaGetDefaultBranchResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaGetDefaultBranchResponse: ...
 
@@ -279,9 +273,7 @@ class GoogleCloudRetailV2alphaListCatalogsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaListCatalogsResponse: ...
 
@@ -291,9 +283,7 @@ class GoogleCloudRetailV2alphaListProductsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaListProductsResponse: ...
 
@@ -303,9 +293,7 @@ class GoogleCloudRetailV2alphaPredictResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaPredictResponse: ...
 
@@ -313,9 +301,7 @@ class GoogleCloudRetailV2alphaPredictResponseHttpRequest(
 class GoogleCloudRetailV2alphaProductHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaProduct: ...
 
@@ -325,9 +311,7 @@ class GoogleCloudRetailV2alphaSearchResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaSearchResponse: ...
 
@@ -335,9 +319,7 @@ class GoogleCloudRetailV2alphaSearchResponseHttpRequest(
 class GoogleCloudRetailV2alphaUserEventHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaUserEvent: ...
 
@@ -347,9 +329,7 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
@@ -357,9 +337,7 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningOperation: ...
 
@@ -367,8 +345,6 @@ class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

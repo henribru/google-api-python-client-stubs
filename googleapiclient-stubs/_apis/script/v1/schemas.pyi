@@ -2,9 +2,11 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Content(typing_extensions.TypedDict, total=False):
-    files: typing.List[File]
+    files: _list[File]
     scriptId: str
 
 @typing.type_check_only
@@ -16,7 +18,7 @@ class CreateProjectRequest(typing_extensions.TypedDict, total=False):
 class Deployment(typing_extensions.TypedDict, total=False):
     deploymentConfig: DeploymentConfig
     deploymentId: str
-    entryPoints: typing.List[EntryPoint]
+    entryPoints: _list[EntryPoint]
     updateTime: str
 
 @typing.type_check_only
@@ -46,13 +48,13 @@ class ExecuteStreamResponse(typing_extensions.TypedDict, total=False):
 class ExecutionError(typing_extensions.TypedDict, total=False):
     errorMessage: str
     errorType: str
-    scriptStackTraceElements: typing.List[ScriptStackTraceElement]
+    scriptStackTraceElements: _list[ScriptStackTraceElement]
 
 @typing.type_check_only
 class ExecutionRequest(typing_extensions.TypedDict, total=False):
     devMode: bool
     function: str
-    parameters: typing.List[typing.Any]
+    parameters: _list[typing.Any]
     sessionState: str
 
 @typing.type_check_only
@@ -98,7 +100,7 @@ class GoogleAppsScriptTypeFunction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleAppsScriptTypeFunctionSet(typing_extensions.TypedDict, total=False):
-    values: typing.List[GoogleAppsScriptTypeFunction]
+    values: _list[GoogleAppsScriptTypeFunction]
 
 @typing.type_check_only
 class GoogleAppsScriptTypeProcess(typing_extensions.TypedDict, total=False):
@@ -156,33 +158,33 @@ class GoogleAppsScriptTypeWebAppEntryPoint(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class ListDeploymentsResponse(typing_extensions.TypedDict, total=False):
-    deployments: typing.List[Deployment]
+    deployments: _list[Deployment]
     nextPageToken: str
 
 @typing.type_check_only
 class ListScriptProcessesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    processes: typing.List[GoogleAppsScriptTypeProcess]
+    processes: _list[GoogleAppsScriptTypeProcess]
 
 @typing.type_check_only
 class ListUserProcessesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    processes: typing.List[GoogleAppsScriptTypeProcess]
+    processes: _list[GoogleAppsScriptTypeProcess]
 
 @typing.type_check_only
 class ListValue(typing_extensions.TypedDict, total=False):
-    values: typing.List[Value]
+    values: _list[Value]
 
 @typing.type_check_only
 class ListVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    versions: typing.List[Version]
+    versions: _list[Version]
 
 @typing.type_check_only
 class Metrics(typing_extensions.TypedDict, total=False):
-    activeUsers: typing.List[MetricsValue]
-    failedExecutions: typing.List[MetricsValue]
-    totalExecutions: typing.List[MetricsValue]
+    activeUsers: _list[MetricsValue]
+    failedExecutions: _list[MetricsValue]
+    totalExecutions: _list[MetricsValue]
 
 @typing.type_check_only
 class MetricsValue(typing_extensions.TypedDict, total=False):
@@ -194,7 +196,7 @@ class MetricsValue(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Project(typing_extensions.TypedDict, total=False):
@@ -207,7 +209,7 @@ class Project(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ScriptExecutionResult(typing.Dict[str, typing.Any]): ...
+class ScriptExecutionResult(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ScriptStackTraceElement(typing_extensions.TypedDict, total=False):
@@ -217,19 +219,19 @@ class ScriptStackTraceElement(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class Struct(typing_extensions.TypedDict, total=False):
-    fields: typing.Dict[str, typing.Any]
+    fields: dict[str, typing.Any]
 
 @typing.type_check_only
 class UpdateDeploymentRequest(typing_extensions.TypedDict, total=False):
     deploymentConfig: DeploymentConfig
 
 @typing.type_check_only
-class Value(typing.Dict[str, typing.Any]): ...
+class Value(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):

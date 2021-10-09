@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ServiceUsageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -36,11 +38,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def batchGet(
-            self,
-            *,
-            parent: str,
-            names: typing.Union[str, typing.List[str]] = ...,
-            **kwargs: typing.Any
+            self, *, parent: str, names: str | _list[str] = ..., **kwargs: typing.Any
         ) -> BatchGetServicesResponseHttpRequest: ...
         def disable(
             self, *, name: str, body: DisableServiceRequest = ..., **kwargs: typing.Any
@@ -67,9 +65,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
 class BatchGetServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchGetServicesResponse: ...
 
@@ -77,9 +73,7 @@ class BatchGetServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -87,9 +81,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleApiServiceusageV1ServiceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleApiServiceusageV1Service: ...
 
@@ -97,9 +89,7 @@ class GoogleApiServiceusageV1ServiceHttpRequest(googleapiclient.http.HttpRequest
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListOperationsResponse: ...
 
@@ -107,9 +97,7 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListServicesResponse: ...
 
@@ -117,8 +105,6 @@ class ListServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...

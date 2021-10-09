@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class EssentialcontactsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -18,7 +20,18 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                notificationCategories: typing.Union[
+                notificationCategories: typing_extensions.Literal[
+                    "NOTIFICATION_CATEGORY_UNSPECIFIED",
+                    "ALL",
+                    "SUSPENSION",
+                    "SECURITY",
+                    "TECHNICAL",
+                    "BILLING",
+                    "LEGAL",
+                    "PRODUCT_UPDATES",
+                    "TECHNICAL_INCIDENTS",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "NOTIFICATION_CATEGORY_UNSPECIFIED",
                         "ALL",
@@ -29,20 +42,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                         "LEGAL",
                         "PRODUCT_UPDATES",
                         "TECHNICAL_INCIDENTS",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "NOTIFICATION_CATEGORY_UNSPECIFIED",
-                            "ALL",
-                            "SUSPENSION",
-                            "SECURITY",
-                            "TECHNICAL",
-                            "BILLING",
-                            "LEGAL",
-                            "PRODUCT_UPDATES",
-                            "TECHNICAL_INCIDENTS",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -93,7 +93,18 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                notificationCategories: typing.Union[
+                notificationCategories: typing_extensions.Literal[
+                    "NOTIFICATION_CATEGORY_UNSPECIFIED",
+                    "ALL",
+                    "SUSPENSION",
+                    "SECURITY",
+                    "TECHNICAL",
+                    "BILLING",
+                    "LEGAL",
+                    "PRODUCT_UPDATES",
+                    "TECHNICAL_INCIDENTS",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "NOTIFICATION_CATEGORY_UNSPECIFIED",
                         "ALL",
@@ -104,20 +115,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                         "LEGAL",
                         "PRODUCT_UPDATES",
                         "TECHNICAL_INCIDENTS",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "NOTIFICATION_CATEGORY_UNSPECIFIED",
-                            "ALL",
-                            "SUSPENSION",
-                            "SECURITY",
-                            "TECHNICAL",
-                            "BILLING",
-                            "LEGAL",
-                            "PRODUCT_UPDATES",
-                            "TECHNICAL_INCIDENTS",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -168,7 +166,18 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                notificationCategories: typing.Union[
+                notificationCategories: typing_extensions.Literal[
+                    "NOTIFICATION_CATEGORY_UNSPECIFIED",
+                    "ALL",
+                    "SUSPENSION",
+                    "SECURITY",
+                    "TECHNICAL",
+                    "BILLING",
+                    "LEGAL",
+                    "PRODUCT_UPDATES",
+                    "TECHNICAL_INCIDENTS",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "NOTIFICATION_CATEGORY_UNSPECIFIED",
                         "ALL",
@@ -179,20 +188,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                         "LEGAL",
                         "PRODUCT_UPDATES",
                         "TECHNICAL_INCIDENTS",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "NOTIFICATION_CATEGORY_UNSPECIFIED",
-                            "ALL",
-                            "SUSPENSION",
-                            "SECURITY",
-                            "TECHNICAL",
-                            "BILLING",
-                            "LEGAL",
-                            "PRODUCT_UPDATES",
-                            "TECHNICAL_INCIDENTS",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -245,9 +241,7 @@ class GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudEssentialcontactsV1ComputeContactsResponse: ...
 
@@ -257,9 +251,7 @@ class GoogleCloudEssentialcontactsV1ContactHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudEssentialcontactsV1Contact: ...
 
@@ -269,9 +261,7 @@ class GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudEssentialcontactsV1ListContactsResponse: ...
 
@@ -279,8 +269,6 @@ class GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest(
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

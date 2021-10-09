@@ -2,13 +2,15 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     capacityGb: str
     createTime: str
     description: str
     downloadBytes: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     satisfiesPzs: bool
     sourceFileShare: str
@@ -54,7 +56,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class FileShareConfig(typing_extensions.TypedDict, total=False):
     capacityGb: str
     name: str
-    nfsExportOptions: typing.List[NfsExportOptions]
+    nfsExportOptions: _list[NfsExportOptions]
     sourceBackup: str
 
 @typing.type_check_only
@@ -63,18 +65,18 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
 ):
     consumerDefinedName: str
     createTime: str
-    labels: typing.Dict[str, typing.Any]
-    maintenancePolicyNames: typing.Dict[str, typing.Any]
-    maintenanceSchedules: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
+    maintenancePolicyNames: dict[str, typing.Any]
+    maintenanceSchedules: dict[str, typing.Any]
     maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
     name: str
-    producerMetadata: typing.Dict[str, typing.Any]
-    provisionedResources: typing.List[
+    producerMetadata: dict[str, typing.Any]
+    provisionedResources: _list[
         GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource
     ]
     slmInstanceTemplate: str
     sloMetadata: GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata
-    softwareVersions: typing.Dict[str, typing.Any]
+    softwareVersions: dict[str, typing.Any]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -103,7 +105,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
 ):
     exclude: bool
     isRollback: bool
-    maintenancePolicies: typing.Dict[str, typing.Any]
+    maintenancePolicies: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
@@ -117,7 +119,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
     typing_extensions.TypedDict, total=False
 ):
-    eligibilities: typing.Dict[str, typing.Any]
+    eligibilities: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource(
@@ -137,7 +139,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility(
 class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
+    nodes: _list[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
     tier: str
 
@@ -146,11 +148,11 @@ class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     etag: str
-    fileShares: typing.List[FileShareConfig]
+    fileShares: _list[FileShareConfig]
     kmsKeyName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
-    networks: typing.List[NetworkConfig]
+    networks: _list[NetworkConfig]
     satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -163,7 +165,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "SUSPENDED",
     ]
     statusMessage: str
-    suspensionReasons: typing.List[str]
+    suspensionReasons: _list[str]
     tier: typing_extensions.Literal[
         "TIER_UNSPECIFIED",
         "STANDARD",
@@ -176,44 +178,44 @@ class Instance(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
-    backups: typing.List[Backup]
+    backups: _list[Backup]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
+    instances: _list[Instance]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    snapshots: typing.List[Snapshot]
+    snapshots: _list[Snapshot]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
     updatePolicy: UpdatePolicy
@@ -229,8 +231,8 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     connectMode: typing_extensions.Literal[
         "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
     ]
-    ipAddresses: typing.List[str]
-    modes: typing.List[str]
+    ipAddresses: _list[str]
+    modes: _list[str]
     network: str
     reservedIpRange: str
 
@@ -241,7 +243,7 @@ class NfsExportOptions(typing_extensions.TypedDict, total=False):
     ]
     anonGid: str
     anonUid: str
-    ipRanges: typing.List[str]
+    ipRanges: _list[str]
     squashMode: typing_extensions.Literal[
         "SQUASH_MODE_UNSPECIFIED", "NO_ROOT_SQUASH", "ROOT_SQUASH"
     ]
@@ -250,9 +252,9 @@ class NfsExportOptions(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -290,7 +292,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     filesystemUsedBytes: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING"
@@ -299,7 +301,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -312,9 +314,9 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal["UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER"]
-    denyMaintenancePeriods: typing.List[DenyMaintenancePeriod]
+    denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 
 @typing.type_check_only
 class WeeklyCycle(typing_extensions.TypedDict, total=False):
-    schedule: typing.List[Schedule]
+    schedule: _list[Schedule]

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -291,9 +293,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
 class ContainerThreatDetectionSettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ContainerThreatDetectionSettings: ...
 
@@ -301,9 +301,7 @@ class ContainerThreatDetectionSettingsHttpRequest(googleapiclient.http.HttpReque
 class EventThreatDetectionSettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EventThreatDetectionSettings: ...
 
@@ -311,9 +309,7 @@ class EventThreatDetectionSettingsHttpRequest(googleapiclient.http.HttpRequest):
 class SecurityCenterSettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SecurityCenterSettings: ...
 
@@ -321,9 +317,7 @@ class SecurityCenterSettingsHttpRequest(googleapiclient.http.HttpRequest):
 class SecurityHealthAnalyticsSettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SecurityHealthAnalyticsSettings: ...
 
@@ -331,9 +325,7 @@ class SecurityHealthAnalyticsSettingsHttpRequest(googleapiclient.http.HttpReques
 class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Subscription: ...
 
@@ -341,8 +333,6 @@ class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):
 class WebSecurityScannerSettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> WebSecurityScannerSettings: ...

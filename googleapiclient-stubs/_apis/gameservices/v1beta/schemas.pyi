@@ -2,15 +2,17 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
-    exemptedMembers: typing.List[str]
+    auditLogConfigs: _list[AuditLogConfig]
+    exemptedMembers: _list[str]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     ignoreChildExemptions: bool
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
@@ -30,7 +32,7 @@ class AuthorizationLoggingOptions(typing_extensions.TypedDict, total=False):
 class Binding(typing_extensions.TypedDict, total=False):
     bindingId: str
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -60,11 +62,11 @@ class Condition(typing_extensions.TypedDict, total=False):
     ]
     svc: str
     sys: typing_extensions.Literal["NO_ATTR", "REGION", "SERVICE", "NAME", "IP"]
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class CounterOptions(typing_extensions.TypedDict, total=False):
-    customFields: typing.List[CustomField]
+    customFields: _list[CustomField]
     field: str
     metric: str
 
@@ -80,7 +82,7 @@ class DataAccessOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeployedClusterState(typing_extensions.TypedDict, total=False):
     cluster: str
-    fleetDetails: typing.List[DeployedFleetDetails]
+    fleetDetails: _list[DeployedFleetDetails]
 
 @typing.type_check_only
 class DeployedFleet(typing_extensions.TypedDict, total=False):
@@ -122,8 +124,8 @@ class FetchDeploymentStateRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class FetchDeploymentStateResponse(typing_extensions.TypedDict, total=False):
-    clusterState: typing.List[DeployedClusterState]
-    unavailable: typing.List[str]
+    clusterState: _list[DeployedClusterState]
+    unavailable: _list[str]
 
 @typing.type_check_only
 class FleetConfig(typing_extensions.TypedDict, total=False):
@@ -140,7 +142,7 @@ class GameServerCluster(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     etag: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     updateTime: str
 
@@ -154,10 +156,10 @@ class GameServerClusterConnectionInfo(typing_extensions.TypedDict, total=False):
 class GameServerConfig(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
-    fleetConfigs: typing.List[FleetConfig]
-    labels: typing.Dict[str, typing.Any]
+    fleetConfigs: _list[FleetConfig]
+    labels: dict[str, typing.Any]
     name: str
-    scalingConfigs: typing.List[ScalingConfig]
+    scalingConfigs: _list[ScalingConfig]
     updateTime: str
 
 @typing.type_check_only
@@ -170,7 +172,7 @@ class GameServerDeployment(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     etag: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     updateTime: str
 
@@ -179,7 +181,7 @@ class GameServerDeploymentRollout(typing_extensions.TypedDict, total=False):
     createTime: str
     defaultGameServerConfig: str
     etag: str
-    gameServerConfigOverrides: typing.List[GameServerConfigOverride]
+    gameServerConfigOverrides: _list[GameServerConfigOverride]
     name: str
     updateTime: str
 
@@ -211,48 +213,48 @@ class KubernetesClusterState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LabelSelector(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class ListGameServerClustersResponse(typing_extensions.TypedDict, total=False):
-    gameServerClusters: typing.List[GameServerCluster]
+    gameServerClusters: _list[GameServerCluster]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListGameServerConfigsResponse(typing_extensions.TypedDict, total=False):
-    gameServerConfigs: typing.List[GameServerConfig]
+    gameServerConfigs: _list[GameServerConfig]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListGameServerDeploymentsResponse(typing_extensions.TypedDict, total=False):
-    gameServerDeployments: typing.List[GameServerDeployment]
+    gameServerDeployments: _list[GameServerDeployment]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListRealmsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    realms: typing.List[Realm]
-    unreachable: typing.List[str]
+    realms: _list[Realm]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -265,20 +267,20 @@ class LogConfig(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
-    operationStatus: typing.Dict[str, typing.Any]
+    operationStatus: dict[str, typing.Any]
     requestedCancellation: bool
     statusMessage: str
     target: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
     verb: str
 
 @typing.type_check_only
@@ -294,11 +296,11 @@ class OperationStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     iamOwned: bool
-    rules: typing.List[Rule]
+    rules: _list[Rule]
     version: int
 
 @typing.type_check_only
@@ -318,7 +320,7 @@ class PreviewGameServerDeploymentRolloutResponse(
 ):
     etag: str
     targetState: TargetState
-    unavailable: typing.List[str]
+    unavailable: _list[str]
 
 @typing.type_check_only
 class PreviewRealmUpdateResponse(typing_extensions.TypedDict, total=False):
@@ -335,14 +337,14 @@ class Realm(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     etag: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     timeZone: str
     updateTime: str
 
 @typing.type_check_only
 class RealmSelector(typing_extensions.TypedDict, total=False):
-    realms: typing.List[str]
+    realms: _list[str]
 
 AlternativeRule = typing_extensions.TypedDict(
     "AlternativeRule",
@@ -350,12 +352,12 @@ AlternativeRule = typing_extensions.TypedDict(
         "action": typing_extensions.Literal[
             "NO_ACTION", "ALLOW", "ALLOW_WITH_LOG", "DENY", "DENY_WITH_LOG", "LOG"
         ],
-        "conditions": typing.List[Condition],
+        "conditions": _list[Condition],
         "description": str,
-        "in": typing.List[str],
-        "logConfig": typing.List[LogConfig],
-        "notIn": typing.List[str],
-        "permissions": typing.List[str],
+        "in": _list[str],
+        "logConfig": _list[LogConfig],
+        "notIn": _list[str],
+        "permissions": _list[str],
     },
     total=False,
 )
@@ -367,8 +369,8 @@ class Rule(AlternativeRule): ...
 class ScalingConfig(typing_extensions.TypedDict, total=False):
     fleetAutoscalerSpec: str
     name: str
-    schedules: typing.List[Schedule]
-    selectors: typing.List[LabelSelector]
+    schedules: _list[Schedule]
+    selectors: _list[LabelSelector]
 
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
@@ -390,12 +392,12 @@ class SpecSource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TargetDetails(typing_extensions.TypedDict, total=False):
-    fleetDetails: typing.List[TargetFleetDetails]
+    fleetDetails: _list[TargetFleetDetails]
     gameServerClusterName: str
     gameServerDeploymentName: str
 
@@ -416,12 +418,12 @@ class TargetFleetDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TargetState(typing_extensions.TypedDict, total=False):
-    details: typing.List[TargetDetails]
+    details: _list[TargetDetails]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2Action(typing_extensions.TypedDict, total=False):
     commandDigest: BuildBazelRemoteExecutionV2Digest
@@ -15,11 +17,11 @@ class BuildBazelRemoteExecutionV2Action(typing_extensions.TypedDict, total=False
 class BuildBazelRemoteExecutionV2ActionResult(typing_extensions.TypedDict, total=False):
     executionMetadata: BuildBazelRemoteExecutionV2ExecutedActionMetadata
     exitCode: int
-    outputDirectories: typing.List[BuildBazelRemoteExecutionV2OutputDirectory]
-    outputDirectorySymlinks: typing.List[BuildBazelRemoteExecutionV2OutputSymlink]
-    outputFileSymlinks: typing.List[BuildBazelRemoteExecutionV2OutputSymlink]
-    outputFiles: typing.List[BuildBazelRemoteExecutionV2OutputFile]
-    outputSymlinks: typing.List[BuildBazelRemoteExecutionV2OutputSymlink]
+    outputDirectories: _list[BuildBazelRemoteExecutionV2OutputDirectory]
+    outputDirectorySymlinks: _list[BuildBazelRemoteExecutionV2OutputSymlink]
+    outputFileSymlinks: _list[BuildBazelRemoteExecutionV2OutputSymlink]
+    outputFiles: _list[BuildBazelRemoteExecutionV2OutputFile]
+    outputSymlinks: _list[BuildBazelRemoteExecutionV2OutputSymlink]
     stderrDigest: BuildBazelRemoteExecutionV2Digest
     stderrRaw: str
     stdoutDigest: BuildBazelRemoteExecutionV2Digest
@@ -27,14 +29,12 @@ class BuildBazelRemoteExecutionV2ActionResult(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2Command(typing_extensions.TypedDict, total=False):
-    arguments: typing.List[str]
-    environmentVariables: typing.List[
-        BuildBazelRemoteExecutionV2CommandEnvironmentVariable
-    ]
-    outputDirectories: typing.List[str]
-    outputFiles: typing.List[str]
-    outputNodeProperties: typing.List[str]
-    outputPaths: typing.List[str]
+    arguments: _list[str]
+    environmentVariables: _list[BuildBazelRemoteExecutionV2CommandEnvironmentVariable]
+    outputDirectories: _list[str]
+    outputFiles: _list[str]
+    outputNodeProperties: _list[str]
+    outputPaths: _list[str]
     platform: BuildBazelRemoteExecutionV2Platform
     workingDirectory: str
 
@@ -52,10 +52,10 @@ class BuildBazelRemoteExecutionV2Digest(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2Directory(typing_extensions.TypedDict, total=False):
-    directories: typing.List[BuildBazelRemoteExecutionV2DirectoryNode]
-    files: typing.List[BuildBazelRemoteExecutionV2FileNode]
+    directories: _list[BuildBazelRemoteExecutionV2DirectoryNode]
+    files: _list[BuildBazelRemoteExecutionV2FileNode]
     nodeProperties: BuildBazelRemoteExecutionV2NodeProperties
-    symlinks: typing.List[BuildBazelRemoteExecutionV2SymlinkNode]
+    symlinks: _list[BuildBazelRemoteExecutionV2SymlinkNode]
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2DirectoryNode(
@@ -82,14 +82,14 @@ class BuildBazelRemoteExecutionV2ExecuteResponse(
     cachedResult: bool
     message: str
     result: BuildBazelRemoteExecutionV2ActionResult
-    serverLogs: typing.Dict[str, typing.Any]
+    serverLogs: dict[str, typing.Any]
     status: GoogleRpcStatus
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2ExecutedActionMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    auxiliaryMetadata: typing.List[typing.Dict[str, typing.Any]]
+    auxiliaryMetadata: _list[dict[str, typing.Any]]
     executionCompletedTimestamp: str
     executionStartTimestamp: str
     inputFetchCompletedTimestamp: str
@@ -118,7 +118,7 @@ class BuildBazelRemoteExecutionV2NodeProperties(
     typing_extensions.TypedDict, total=False
 ):
     mtime: str
-    properties: typing.List[BuildBazelRemoteExecutionV2NodeProperty]
+    properties: _list[BuildBazelRemoteExecutionV2NodeProperty]
     unixMode: int
 
 @typing.type_check_only
@@ -151,7 +151,7 @@ class BuildBazelRemoteExecutionV2OutputSymlink(
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2Platform(typing_extensions.TypedDict, total=False):
-    properties: typing.List[BuildBazelRemoteExecutionV2PlatformProperty]
+    properties: _list[BuildBazelRemoteExecutionV2PlatformProperty]
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2PlatformProperty(
@@ -185,7 +185,7 @@ class BuildBazelRemoteExecutionV2ToolDetails(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class BuildBazelRemoteExecutionV2Tree(typing_extensions.TypedDict, total=False):
-    children: typing.List[BuildBazelRemoteExecutionV2Directory]
+    children: _list[BuildBazelRemoteExecutionV2Directory]
     root: BuildBazelRemoteExecutionV2Directory
 
 @typing.type_check_only
@@ -371,7 +371,7 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicy(
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature(
     typing_extensions.TypedDict, total=False
 ):
-    allowedValues: typing.List[str]
+    allowedValues: _list[str]
     policy: typing_extensions.Literal[
         "POLICY_UNSPECIFIED", "ALLOWED", "FORBIDDEN", "RESTRICTED"
     ]
@@ -410,7 +410,7 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesRequest(
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    instances: typing.List[GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance]
+    instances: _list[GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance]
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest(
@@ -423,7 +423,7 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest(
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    workerPools: typing.List[GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool]
+    workerPools: _list[GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool]
 
 @typing.type_check_only
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest(
@@ -448,7 +448,7 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerConfig(
     accelerator: GoogleDevtoolsRemotebuildexecutionAdminV1alphaAcceleratorConfig
     diskSizeGb: str
     diskType: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     machineType: str
     maxConcurrentActions: str
     minCpuPlatform: str
@@ -504,7 +504,7 @@ class GoogleDevtoolsRemoteworkersV1test2CommandResult(
 ):
     duration: str
     exitCode: int
-    metadata: typing.List[typing.Dict[str, typing.Any]]
+    metadata: _list[dict[str, typing.Any]]
     outputs: GoogleDevtoolsRemoteworkersV1test2Digest
     overhead: str
     status: GoogleRpcStatus
@@ -521,12 +521,12 @@ class GoogleDevtoolsRemoteworkersV1test2CommandTask(
 class GoogleDevtoolsRemoteworkersV1test2CommandTaskInputs(
     typing_extensions.TypedDict, total=False
 ):
-    arguments: typing.List[str]
-    environmentVariables: typing.List[
+    arguments: _list[str]
+    environmentVariables: _list[
         GoogleDevtoolsRemoteworkersV1test2CommandTaskInputsEnvironmentVariable
     ]
-    files: typing.List[GoogleDevtoolsRemoteworkersV1test2Digest]
-    inlineBlobs: typing.List[GoogleDevtoolsRemoteworkersV1test2Blob]
+    files: _list[GoogleDevtoolsRemoteworkersV1test2Digest]
+    inlineBlobs: _list[GoogleDevtoolsRemoteworkersV1test2Blob]
     workingDirectory: str
 
 @typing.type_check_only
@@ -540,8 +540,8 @@ class GoogleDevtoolsRemoteworkersV1test2CommandTaskInputsEnvironmentVariable(
 class GoogleDevtoolsRemoteworkersV1test2CommandTaskOutputs(
     typing_extensions.TypedDict, total=False
 ):
-    directories: typing.List[str]
-    files: typing.List[str]
+    directories: _list[str]
+    files: _list[str]
     stderrDestination: str
     stdoutDestination: str
 
@@ -564,8 +564,8 @@ class GoogleDevtoolsRemoteworkersV1test2Digest(
 class GoogleDevtoolsRemoteworkersV1test2Directory(
     typing_extensions.TypedDict, total=False
 ):
-    directories: typing.List[GoogleDevtoolsRemoteworkersV1test2DirectoryMetadata]
-    files: typing.List[GoogleDevtoolsRemoteworkersV1test2FileMetadata]
+    directories: _list[GoogleDevtoolsRemoteworkersV1test2DirectoryMetadata]
+    files: _list[GoogleDevtoolsRemoteworkersV1test2FileMetadata]
 
 @typing.type_check_only
 class GoogleDevtoolsRemoteworkersV1test2DirectoryMetadata(
@@ -591,15 +591,15 @@ class GoogleLongrunningCancelOperationRequest(
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -607,5 +607,5 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

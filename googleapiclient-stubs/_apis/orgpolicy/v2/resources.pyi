@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -161,9 +163,7 @@ class GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudOrgpolicyV2ListConstraintsResponse: ...
 
@@ -173,9 +173,7 @@ class GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudOrgpolicyV2ListPoliciesResponse: ...
 
@@ -183,9 +181,7 @@ class GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest(
 class GoogleCloudOrgpolicyV2PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudOrgpolicyV2Policy: ...
 
@@ -193,8 +189,6 @@ class GoogleCloudOrgpolicyV2PolicyHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

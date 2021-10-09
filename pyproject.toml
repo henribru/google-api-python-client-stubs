@@ -17,10 +17,10 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.7"
 google-api-python-client = "^2.23.0"
-typing-extensions = "^3.7.4.3"
+typing-extensions = "^3.10.0"
 
 [tool.poetry.dev-dependencies]
-mypy = "^0.812"
+mypy = "^0.910"
 black = "^21.4b2"
 isort = "^5.7.0"
 

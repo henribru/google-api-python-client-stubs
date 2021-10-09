@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleChromePolicyV1AdditionalTargetKeyName(
     typing_extensions.TypedDict, total=False
@@ -13,13 +15,13 @@ class GoogleChromePolicyV1AdditionalTargetKeyName(
 class GoogleChromePolicyV1BatchInheritOrgUnitPoliciesRequest(
     typing_extensions.TypedDict, total=False
 ):
-    requests: typing.List[GoogleChromePolicyV1InheritOrgUnitPolicyRequest]
+    requests: _list[GoogleChromePolicyV1InheritOrgUnitPolicyRequest]
 
 @typing.type_check_only
 class GoogleChromePolicyV1BatchModifyOrgUnitPoliciesRequest(
     typing_extensions.TypedDict, total=False
 ):
-    requests: typing.List[GoogleChromePolicyV1ModifyOrgUnitPolicyRequest]
+    requests: _list[GoogleChromePolicyV1ModifyOrgUnitPolicyRequest]
 
 @typing.type_check_only
 class GoogleChromePolicyV1InheritOrgUnitPolicyRequest(
@@ -33,7 +35,7 @@ class GoogleChromePolicyV1ListPolicySchemasResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    policySchemas: typing.List[GoogleChromePolicyV1PolicySchema]
+    policySchemas: _list[GoogleChromePolicyV1PolicySchema]
 
 @typing.type_check_only
 class GoogleChromePolicyV1ModifyOrgUnitPolicyRequest(
@@ -44,7 +46,7 @@ class GoogleChromePolicyV1ModifyOrgUnitPolicyRequest(
     updateMask: str
 
 @typing.type_check_only
-class GoogleChromePolicyV1PolicySchema(typing.Dict[str, typing.Any]): ...
+class GoogleChromePolicyV1PolicySchema(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleChromePolicyV1PolicySchemaFieldDependencies(
@@ -54,9 +56,7 @@ class GoogleChromePolicyV1PolicySchemaFieldDependencies(
     sourceFieldValue: str
 
 @typing.type_check_only
-class GoogleChromePolicyV1PolicySchemaFieldDescription(
-    typing.Dict[str, typing.Any]
-): ...
+class GoogleChromePolicyV1PolicySchemaFieldDescription(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleChromePolicyV1PolicySchemaFieldKnownValueDescription(
@@ -76,13 +76,13 @@ class GoogleChromePolicyV1PolicySchemaNoticeDescription(
 
 @typing.type_check_only
 class GoogleChromePolicyV1PolicyTargetKey(typing_extensions.TypedDict, total=False):
-    additionalTargetKeys: typing.Dict[str, typing.Any]
+    additionalTargetKeys: dict[str, typing.Any]
     targetResource: str
 
 @typing.type_check_only
 class GoogleChromePolicyV1PolicyValue(typing_extensions.TypedDict, total=False):
     policySchema: str
-    value: typing.Dict[str, typing.Any]
+    value: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleChromePolicyV1ResolveRequest(typing_extensions.TypedDict, total=False):
@@ -94,7 +94,7 @@ class GoogleChromePolicyV1ResolveRequest(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class GoogleChromePolicyV1ResolveResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    resolvedPolicies: typing.List[GoogleChromePolicyV1ResolvedPolicy]
+    resolvedPolicies: _list[GoogleChromePolicyV1ResolvedPolicy]
 
 @typing.type_check_only
 class GoogleChromePolicyV1ResolvedPolicy(typing_extensions.TypedDict, total=False):
@@ -118,12 +118,12 @@ class GoogleChromePolicyV1UploadPolicyFileResponse(
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Proto2DescriptorProto(typing.Dict[str, typing.Any]): ...
+class Proto2DescriptorProto(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Proto2EnumDescriptorProto(typing_extensions.TypedDict, total=False):
     name: str
-    value: typing.List[Proto2EnumValueDescriptorProto]
+    value: _list[Proto2EnumValueDescriptorProto]
 
 @typing.type_check_only
 class Proto2EnumValueDescriptorProto(typing_extensions.TypedDict, total=False):
@@ -164,7 +164,7 @@ class Proto2FieldDescriptorProto(typing_extensions.TypedDict, total=False):
     typeName: str
 
 @typing.type_check_only
-class Proto2FileDescriptorProto(typing.Dict[str, typing.Any]): ...
+class Proto2FileDescriptorProto(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Proto2OneofDescriptorProto(typing_extensions.TypedDict, total=False):

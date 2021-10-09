@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ClaimDeviceRequest(typing_extensions.TypedDict, total=False):
     customerId: str
@@ -18,16 +20,16 @@ class ClaimDeviceResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClaimDevicesRequest(typing_extensions.TypedDict, total=False):
-    claims: typing.List[PartnerClaim]
+    claims: _list[PartnerClaim]
 
 @typing.type_check_only
 class Company(typing_extensions.TypedDict, total=False):
-    adminEmails: typing.List[str]
+    adminEmails: _list[str]
     companyId: str
     companyName: str
     languageCode: str
     name: str
-    ownerEmails: typing.List[str]
+    ownerEmails: _list[str]
     skipWelcomeEmail: bool
     termsStatus: typing_extensions.Literal[
         "TERMS_STATUS_UNSPECIFIED",
@@ -60,21 +62,21 @@ class CustomerApplyConfigurationRequest(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class CustomerListConfigurationsResponse(typing_extensions.TypedDict, total=False):
-    configurations: typing.List[Configuration]
+    configurations: _list[Configuration]
 
 @typing.type_check_only
 class CustomerListCustomersResponse(typing_extensions.TypedDict, total=False):
-    customers: typing.List[Company]
+    customers: _list[Company]
     nextPageToken: str
 
 @typing.type_check_only
 class CustomerListDevicesResponse(typing_extensions.TypedDict, total=False):
-    devices: typing.List[Device]
+    devices: _list[Device]
     nextPageToken: str
 
 @typing.type_check_only
 class CustomerListDpcsResponse(typing_extensions.TypedDict, total=False):
-    dpcs: typing.List[Dpc]
+    dpcs: _list[Dpc]
 
 @typing.type_check_only
 class CustomerRemoveConfigurationRequest(typing_extensions.TypedDict, total=False):
@@ -86,7 +88,7 @@ class CustomerUnclaimDeviceRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
-    claims: typing.List[DeviceClaim]
+    claims: _list[DeviceClaim]
     configuration: str
     deviceId: str
     deviceIdentifier: DeviceIdentifier
@@ -116,7 +118,7 @@ class DeviceIdentifier(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceMetadata(typing_extensions.TypedDict, total=False):
-    entries: typing.Dict[str, typing.Any]
+    entries: dict[str, typing.Any]
 
 @typing.type_check_only
 class DeviceReference(typing_extensions.TypedDict, total=False):
@@ -136,7 +138,7 @@ class DevicesLongRunningOperationMetadata(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class DevicesLongRunningOperationResponse(typing_extensions.TypedDict, total=False):
-    perDeviceStatus: typing.List[OperationPerDevice]
+    perDeviceStatus: _list[OperationPerDevice]
     successCount: int
 
 @typing.type_check_only
@@ -156,13 +158,13 @@ class FindDevicesByDeviceIdentifierRequest(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class FindDevicesByDeviceIdentifierResponse(typing_extensions.TypedDict, total=False):
-    devices: typing.List[Device]
+    devices: _list[Device]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
 class FindDevicesByOwnerRequest(typing_extensions.TypedDict, total=False):
-    customerId: typing.List[str]
+    customerId: _list[str]
     limit: str
     pageToken: str
     sectionType: typing_extensions.Literal[
@@ -171,19 +173,19 @@ class FindDevicesByOwnerRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FindDevicesByOwnerResponse(typing_extensions.TypedDict, total=False):
-    devices: typing.List[Device]
+    devices: _list[Device]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
 class ListCustomersResponse(typing_extensions.TypedDict, total=False):
-    customers: typing.List[Company]
+    customers: _list[Company]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
 class ListVendorCustomersResponse(typing_extensions.TypedDict, total=False):
-    customers: typing.List[Company]
+    customers: _list[Company]
     nextPageToken: str
     totalSize: int
 
@@ -191,15 +193,15 @@ class ListVendorCustomersResponse(typing_extensions.TypedDict, total=False):
 class ListVendorsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     totalSize: int
-    vendors: typing.List[Company]
+    vendors: _list[Company]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationPerDevice(typing_extensions.TypedDict, total=False):
@@ -246,7 +248,7 @@ class PerDeviceStatusInBatch(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -261,11 +263,11 @@ class UnclaimDeviceRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UnclaimDevicesRequest(typing_extensions.TypedDict, total=False):
-    unclaims: typing.List[PartnerUnclaim]
+    unclaims: _list[PartnerUnclaim]
 
 @typing.type_check_only
 class UpdateDeviceMetadataInBatchRequest(typing_extensions.TypedDict, total=False):
-    updates: typing.List[UpdateMetadataArguments]
+    updates: _list[UpdateMetadataArguments]
 
 @typing.type_check_only
 class UpdateDeviceMetadataRequest(typing_extensions.TypedDict, total=False):

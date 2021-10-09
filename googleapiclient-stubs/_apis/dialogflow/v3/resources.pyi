@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class DialogflowResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -802,9 +804,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
 class GoogleCloudDialogflowCxV3AgentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Agent: ...
 
@@ -814,9 +814,7 @@ class GoogleCloudDialogflowCxV3AgentValidationResultHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3AgentValidationResult: ...
 
@@ -826,9 +824,7 @@ class GoogleCloudDialogflowCxV3CalculateCoverageResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3CalculateCoverageResponse: ...
 
@@ -836,9 +832,7 @@ class GoogleCloudDialogflowCxV3CalculateCoverageResponseHttpRequest(
 class GoogleCloudDialogflowCxV3DeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Deployment: ...
 
@@ -848,9 +842,7 @@ class GoogleCloudDialogflowCxV3DetectIntentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3DetectIntentResponse: ...
 
@@ -858,9 +850,7 @@ class GoogleCloudDialogflowCxV3DetectIntentResponseHttpRequest(
 class GoogleCloudDialogflowCxV3EntityTypeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3EntityType: ...
 
@@ -868,9 +858,7 @@ class GoogleCloudDialogflowCxV3EntityTypeHttpRequest(googleapiclient.http.HttpRe
 class GoogleCloudDialogflowCxV3EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Environment: ...
 
@@ -878,9 +866,7 @@ class GoogleCloudDialogflowCxV3EnvironmentHttpRequest(googleapiclient.http.HttpR
 class GoogleCloudDialogflowCxV3ExperimentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Experiment: ...
 
@@ -888,9 +874,7 @@ class GoogleCloudDialogflowCxV3ExperimentHttpRequest(googleapiclient.http.HttpRe
 class GoogleCloudDialogflowCxV3FlowHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Flow: ...
 
@@ -900,9 +884,7 @@ class GoogleCloudDialogflowCxV3FlowValidationResultHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3FlowValidationResult: ...
 
@@ -912,9 +894,7 @@ class GoogleCloudDialogflowCxV3FulfillIntentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3FulfillIntentResponse: ...
 
@@ -922,9 +902,7 @@ class GoogleCloudDialogflowCxV3FulfillIntentResponseHttpRequest(
 class GoogleCloudDialogflowCxV3IntentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Intent: ...
 
@@ -934,9 +912,7 @@ class GoogleCloudDialogflowCxV3ListAgentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListAgentsResponse: ...
 
@@ -946,9 +922,7 @@ class GoogleCloudDialogflowCxV3ListContinuousTestResultsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse: ...
 
@@ -958,9 +932,7 @@ class GoogleCloudDialogflowCxV3ListDeploymentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListDeploymentsResponse: ...
 
@@ -970,9 +942,7 @@ class GoogleCloudDialogflowCxV3ListEntityTypesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListEntityTypesResponse: ...
 
@@ -982,9 +952,7 @@ class GoogleCloudDialogflowCxV3ListEnvironmentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListEnvironmentsResponse: ...
 
@@ -994,9 +962,7 @@ class GoogleCloudDialogflowCxV3ListExperimentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListExperimentsResponse: ...
 
@@ -1006,9 +972,7 @@ class GoogleCloudDialogflowCxV3ListFlowsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListFlowsResponse: ...
 
@@ -1018,9 +982,7 @@ class GoogleCloudDialogflowCxV3ListIntentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListIntentsResponse: ...
 
@@ -1030,9 +992,7 @@ class GoogleCloudDialogflowCxV3ListPagesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListPagesResponse: ...
 
@@ -1042,9 +1002,7 @@ class GoogleCloudDialogflowCxV3ListSecuritySettingsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListSecuritySettingsResponse: ...
 
@@ -1054,9 +1012,7 @@ class GoogleCloudDialogflowCxV3ListSessionEntityTypesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListSessionEntityTypesResponse: ...
 
@@ -1066,9 +1022,7 @@ class GoogleCloudDialogflowCxV3ListTestCaseResultsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListTestCaseResultsResponse: ...
 
@@ -1078,9 +1032,7 @@ class GoogleCloudDialogflowCxV3ListTestCasesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListTestCasesResponse: ...
 
@@ -1090,9 +1042,7 @@ class GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponse: ...
 
@@ -1102,9 +1052,7 @@ class GoogleCloudDialogflowCxV3ListVersionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListVersionsResponse: ...
 
@@ -1114,9 +1062,7 @@ class GoogleCloudDialogflowCxV3ListWebhooksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListWebhooksResponse: ...
 
@@ -1126,9 +1072,7 @@ class GoogleCloudDialogflowCxV3LookupEnvironmentHistoryResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3LookupEnvironmentHistoryResponse: ...
 
@@ -1138,9 +1082,7 @@ class GoogleCloudDialogflowCxV3MatchIntentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3MatchIntentResponse: ...
 
@@ -1148,9 +1090,7 @@ class GoogleCloudDialogflowCxV3MatchIntentResponseHttpRequest(
 class GoogleCloudDialogflowCxV3PageHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Page: ...
 
@@ -1160,9 +1100,7 @@ class GoogleCloudDialogflowCxV3SecuritySettingsHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3SecuritySettings: ...
 
@@ -1172,9 +1110,7 @@ class GoogleCloudDialogflowCxV3SessionEntityTypeHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3SessionEntityType: ...
 
@@ -1182,9 +1118,7 @@ class GoogleCloudDialogflowCxV3SessionEntityTypeHttpRequest(
 class GoogleCloudDialogflowCxV3TestCaseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3TestCase: ...
 
@@ -1194,9 +1128,7 @@ class GoogleCloudDialogflowCxV3TestCaseResultHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3TestCaseResult: ...
 
@@ -1206,9 +1138,7 @@ class GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3TransitionRouteGroup: ...
 
@@ -1216,9 +1146,7 @@ class GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest(
 class GoogleCloudDialogflowCxV3VersionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Version: ...
 
@@ -1226,9 +1154,7 @@ class GoogleCloudDialogflowCxV3VersionHttpRequest(googleapiclient.http.HttpReque
 class GoogleCloudDialogflowCxV3WebhookHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3Webhook: ...
 
@@ -1238,9 +1164,7 @@ class GoogleCloudLocationListLocationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudLocationListLocationsResponse: ...
 
@@ -1248,9 +1172,7 @@ class GoogleCloudLocationListLocationsResponseHttpRequest(
 class GoogleCloudLocationLocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudLocationLocation: ...
 
@@ -1260,9 +1182,7 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
@@ -1270,9 +1190,7 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningOperation: ...
 
@@ -1280,8 +1198,6 @@ class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

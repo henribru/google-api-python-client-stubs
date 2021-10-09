@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -25,7 +27,7 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -35,8 +37,8 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]

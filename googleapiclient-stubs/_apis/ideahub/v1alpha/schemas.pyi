@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleSearchIdeahubV1alphaAvailableLocale(
     typing_extensions.TypedDict, total=False
@@ -13,13 +15,13 @@ class GoogleSearchIdeahubV1alphaAvailableLocale(
 class GoogleSearchIdeahubV1alphaIdea(typing_extensions.TypedDict, total=False):
     name: str
     text: str
-    topics: typing.List[GoogleSearchIdeahubV1alphaTopic]
+    topics: _list[GoogleSearchIdeahubV1alphaTopic]
 
 @typing.type_check_only
 class GoogleSearchIdeahubV1alphaIdeaActivity(typing_extensions.TypedDict, total=False):
-    ideas: typing.List[str]
+    ideas: _list[str]
     name: str
-    topics: typing.List[str]
+    topics: _list[str]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
         "POST_DRAFTED",
@@ -39,14 +41,14 @@ class GoogleSearchIdeahubV1alphaIdeaState(typing_extensions.TypedDict, total=Fal
 class GoogleSearchIdeahubV1alphaListAvailableLocalesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    availableLocales: typing.List[GoogleSearchIdeahubV1alphaAvailableLocale]
+    availableLocales: _list[GoogleSearchIdeahubV1alphaAvailableLocale]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleSearchIdeahubV1alphaListIdeasResponse(
     typing_extensions.TypedDict, total=False
 ):
-    ideas: typing.List[GoogleSearchIdeahubV1alphaIdea]
+    ideas: _list[GoogleSearchIdeahubV1alphaIdea]
     nextPageToken: str
 
 @typing.type_check_only

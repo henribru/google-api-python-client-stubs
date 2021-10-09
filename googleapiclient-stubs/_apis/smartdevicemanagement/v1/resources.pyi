@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -69,9 +71,7 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
 class GoogleHomeEnterpriseSdmV1DeviceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleHomeEnterpriseSdmV1Device: ...
 
@@ -81,9 +81,7 @@ class GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse: ...
 
@@ -93,9 +91,7 @@ class GoogleHomeEnterpriseSdmV1ListDevicesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleHomeEnterpriseSdmV1ListDevicesResponse: ...
 
@@ -105,9 +101,7 @@ class GoogleHomeEnterpriseSdmV1ListRoomsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleHomeEnterpriseSdmV1ListRoomsResponse: ...
 
@@ -117,9 +111,7 @@ class GoogleHomeEnterpriseSdmV1ListStructuresResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleHomeEnterpriseSdmV1ListStructuresResponse: ...
 
@@ -127,9 +119,7 @@ class GoogleHomeEnterpriseSdmV1ListStructuresResponseHttpRequest(
 class GoogleHomeEnterpriseSdmV1RoomHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleHomeEnterpriseSdmV1Room: ...
 
@@ -137,8 +127,6 @@ class GoogleHomeEnterpriseSdmV1RoomHttpRequest(googleapiclient.http.HttpRequest)
 class GoogleHomeEnterpriseSdmV1StructureHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleHomeEnterpriseSdmV1Structure: ...

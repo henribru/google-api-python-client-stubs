@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class SiteSummaryResponse(typing_extensions.TypedDict, total=False):
     abusiveStatus: typing_extensions.Literal["UNKNOWN", "PASSING", "FAILING"]
@@ -14,4 +16,4 @@ class SiteSummaryResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ViolatingSitesResponse(typing_extensions.TypedDict, total=False):
-    violatingSites: typing.List[SiteSummaryResponse]
+    violatingSites: _list[SiteSummaryResponse]

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AnalyticsInfo(typing_extensions.TypedDict, total=False):
     googlePlayAnalytics: GooglePlayAnalytics
@@ -26,7 +28,7 @@ class CreateManagedShortLinkRequest(typing_extensions.TypedDict, total=False):
 class CreateManagedShortLinkResponse(typing_extensions.TypedDict, total=False):
     managedShortLink: ManagedShortLink
     previewLink: str
-    warning: typing.List[DynamicLinkWarning]
+    warning: _list[DynamicLinkWarning]
 
 @typing.type_check_only
 class CreateShortDynamicLinkRequest(typing_extensions.TypedDict, total=False):
@@ -39,7 +41,7 @@ class CreateShortDynamicLinkRequest(typing_extensions.TypedDict, total=False):
 class CreateShortDynamicLinkResponse(typing_extensions.TypedDict, total=False):
     previewLink: str
     shortLink: str
-    warning: typing.List[DynamicLinkWarning]
+    warning: _list[DynamicLinkWarning]
 
 @typing.type_check_only
 class DesktopInfo(typing_extensions.TypedDict, total=False):
@@ -84,7 +86,7 @@ class DynamicLinkInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DynamicLinkStats(typing_extensions.TypedDict, total=False):
-    linkEventStats: typing.List[DynamicLinkEventStat]
+    linkEventStats: _list[DynamicLinkEventStat]
 
 @typing.type_check_only
 class DynamicLinkWarning(typing_extensions.TypedDict, total=False):
@@ -208,7 +210,7 @@ class IosInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ManagedShortLink(typing_extensions.TypedDict, total=False):
     creationTime: str
-    flaggedAttribute: typing.List[str]
+    flaggedAttribute: _list[str]
     info: DynamicLinkInfo
     link: str
     linkName: str

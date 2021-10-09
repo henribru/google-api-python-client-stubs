@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ReportsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -148,9 +150,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
 class ActivitiesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Activities: ...
 
@@ -158,9 +158,7 @@ class ActivitiesHttpRequest(googleapiclient.http.HttpRequest):
 class ChannelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Channel: ...
 
@@ -168,8 +166,6 @@ class ChannelHttpRequest(googleapiclient.http.HttpRequest):
 class UsageReportsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UsageReports: ...

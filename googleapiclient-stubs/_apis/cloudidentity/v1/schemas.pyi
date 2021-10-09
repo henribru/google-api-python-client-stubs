@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class CheckTransitiveMembershipResponse(typing_extensions.TypedDict, total=False):
     hasMembership: bool
@@ -20,7 +22,7 @@ class DeleteMembershipMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DynamicGroupMetadata(typing_extensions.TypedDict, total=False):
-    queries: typing.List[DynamicGroupQuery]
+    queries: _list[DynamicGroupQuery]
     status: DynamicGroupStatus
 
 @typing.type_check_only
@@ -49,8 +51,8 @@ class GetMembershipGraphMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GetMembershipGraphResponse(typing_extensions.TypedDict, total=False):
-    adjacencyList: typing.List[MembershipAdjacencyList]
-    groups: typing.List[Group]
+    adjacencyList: _list[MembershipAdjacencyList]
+    groups: _list[Group]
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1AndroidAttributes(
@@ -138,7 +140,7 @@ class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserResponse(
 class GoogleAppsCloudidentityDevicesV1ClientState(
     typing_extensions.TypedDict, total=False
 ):
-    assetTags: typing.List[str]
+    assetTags: _list[str]
     complianceState: typing_extensions.Literal[
         "COMPLIANCE_STATE_UNSPECIFIED", "COMPLIANT", "NON_COMPLIANT"
     ]
@@ -148,7 +150,7 @@ class GoogleAppsCloudidentityDevicesV1ClientState(
     healthScore: typing_extensions.Literal[
         "HEALTH_SCORE_UNSPECIFIED", "VERY_POOR", "POOR", "NEUTRAL", "GOOD", "VERY_GOOD"
     ]
-    keyValuePairs: typing.Dict[str, typing.Any]
+    keyValuePairs: dict[str, typing.Any]
     lastUpdateTime: str
     managed: typing_extensions.Literal[
         "MANAGED_STATE_UNSPECIFIED", "MANAGED", "UNMANAGED"
@@ -230,14 +232,14 @@ class GoogleAppsCloudidentityDevicesV1Device(typing_extensions.TypedDict, total=
     name: str
     networkOperator: str
     osVersion: str
-    otherAccounts: typing.List[str]
+    otherAccounts: _list[str]
     ownerType: typing_extensions.Literal[
         "DEVICE_OWNERSHIP_UNSPECIFIED", "COMPANY", "BYOD"
     ]
     releaseVersion: str
     securityPatchTime: str
     serialNumber: str
-    wifiMacAddresses: typing.List[str]
+    wifiMacAddresses: _list[str]
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1DeviceUser(
@@ -270,21 +272,21 @@ class GoogleAppsCloudidentityDevicesV1DeviceUser(
 class GoogleAppsCloudidentityDevicesV1ListClientStatesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    clientStates: typing.List[GoogleAppsCloudidentityDevicesV1ClientState]
+    clientStates: _list[GoogleAppsCloudidentityDevicesV1ClientState]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse(
     typing_extensions.TypedDict, total=False
 ):
-    deviceUsers: typing.List[GoogleAppsCloudidentityDevicesV1DeviceUser]
+    deviceUsers: _list[GoogleAppsCloudidentityDevicesV1DeviceUser]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1ListDevicesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    devices: typing.List[GoogleAppsCloudidentityDevicesV1Device]
+    devices: _list[GoogleAppsCloudidentityDevicesV1Device]
     nextPageToken: str
 
 @typing.type_check_only
@@ -297,7 +299,7 @@ class GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse(
     typing_extensions.TypedDict, total=False
 ):
     customer: str
-    names: typing.List[str]
+    names: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
@@ -356,7 +358,7 @@ class Group(typing_extensions.TypedDict, total=False):
     displayName: str
     dynamicGroupMetadata: DynamicGroupMetadata
     groupKey: EntityKey
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     parent: str
     updateTime: str
@@ -366,20 +368,20 @@ class GroupRelation(typing_extensions.TypedDict, total=False):
     displayName: str
     group: str
     groupKey: EntityKey
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     relationType: typing_extensions.Literal[
         "RELATION_TYPE_UNSPECIFIED", "DIRECT", "INDIRECT", "DIRECT_AND_INDIRECT"
     ]
-    roles: typing.List[TransitiveMembershipRole]
+    roles: _list[TransitiveMembershipRole]
 
 @typing.type_check_only
 class ListGroupsResponse(typing_extensions.TypedDict, total=False):
-    groups: typing.List[Group]
+    groups: _list[Group]
     nextPageToken: str
 
 @typing.type_check_only
 class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
-    memberships: typing.List[Membership]
+    memberships: _list[Membership]
     nextPageToken: str
 
 @typing.type_check_only
@@ -393,18 +395,18 @@ class LookupMembershipNameResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MemberRelation(typing_extensions.TypedDict, total=False):
     member: str
-    preferredMemberKey: typing.List[EntityKey]
+    preferredMemberKey: _list[EntityKey]
     relationType: typing_extensions.Literal[
         "RELATION_TYPE_UNSPECIFIED", "DIRECT", "INDIRECT", "DIRECT_AND_INDIRECT"
     ]
-    roles: typing.List[TransitiveMembershipRole]
+    roles: _list[TransitiveMembershipRole]
 
 @typing.type_check_only
 class Membership(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
     preferredMemberKey: EntityKey
-    roles: typing.List[MembershipRole]
+    roles: _list[MembershipRole]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "USER", "SERVICE_ACCOUNT", "GROUP", "SHARED_DRIVE", "OTHER"
     ]
@@ -412,7 +414,7 @@ class Membership(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MembershipAdjacencyList(typing_extensions.TypedDict, total=False):
-    edges: typing.List[Membership]
+    edges: _list[Membership]
     group: str
 
 @typing.type_check_only
@@ -422,9 +424,9 @@ class MembershipRole(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ModifyMembershipRolesRequest(typing_extensions.TypedDict, total=False):
-    addRoles: typing.List[MembershipRole]
-    removeRoles: typing.List[str]
-    updateRolesParams: typing.List[UpdateMembershipRolesParams]
+    addRoles: _list[MembershipRole]
+    removeRoles: _list[str]
+    updateRolesParams: _list[UpdateMembershipRolesParams]
 
 @typing.type_check_only
 class ModifyMembershipRolesResponse(typing_extensions.TypedDict, total=False):
@@ -434,29 +436,29 @@ class ModifyMembershipRolesResponse(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class SearchGroupsResponse(typing_extensions.TypedDict, total=False):
-    groups: typing.List[Group]
+    groups: _list[Group]
     nextPageToken: str
 
 @typing.type_check_only
 class SearchTransitiveGroupsResponse(typing_extensions.TypedDict, total=False):
-    memberships: typing.List[GroupRelation]
+    memberships: _list[GroupRelation]
     nextPageToken: str
 
 @typing.type_check_only
 class SearchTransitiveMembershipsResponse(typing_extensions.TypedDict, total=False):
-    memberships: typing.List[MemberRelation]
+    memberships: _list[MemberRelation]
     nextPageToken: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AbortInfo(typing_extensions.TypedDict, total=False):
     cause: typing_extensions.Literal[
@@ -25,12 +27,12 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -38,7 +40,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -59,11 +61,11 @@ class ConnectivityTest(typing_extensions.TypedDict, total=False):
     description: str
     destination: Endpoint
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     protocol: str
     reachabilityDetails: ReachabilityDetails
-    relatedProjects: typing.List[str]
+    relatedProjects: _list[str]
     source: Endpoint
     updateTime: str
 
@@ -154,8 +156,8 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
     networkUri: str
     policy: str
     priority: int
-    targetServiceAccounts: typing.List[str]
-    targetTags: typing.List[str]
+    targetServiceAccounts: _list[str]
+    targetTags: _list[str]
     uri: str
 
 @typing.type_check_only
@@ -194,7 +196,7 @@ class InstanceInfo(typing_extensions.TypedDict, total=False):
     externalIp: str
     interface: str
     internalIp: str
-    networkTags: typing.List[str]
+    networkTags: _list[str]
     networkUri: str
     serviceAccount: str
     uri: str
@@ -202,24 +204,24 @@ class InstanceInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListConnectivityTestsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    resources: typing.List[ConnectivityTest]
-    unreachable: typing.List[str]
+    resources: _list[ConnectivityTest]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
     displayName: str
-    healthCheckAllowingFirewallRules: typing.List[str]
-    healthCheckBlockingFirewallRules: typing.List[str]
+    healthCheckAllowingFirewallRules: _list[str]
+    healthCheckBlockingFirewallRules: _list[str]
     healthCheckFirewallState: typing_extensions.Literal[
         "HEALTH_CHECK_FIREWALL_STATE_UNSPECIFIED", "CONFIGURED", "MISCONFIGURED"
     ]
@@ -231,7 +233,7 @@ class LoadBalancerInfo(typing_extensions.TypedDict, total=False):
         "BACKEND_TYPE_UNSPECIFIED", "BACKEND_SERVICE", "TARGET_POOL"
     ]
     backendUri: str
-    backends: typing.List[LoadBalancerBackend]
+    backends: _list[LoadBalancerBackend]
     healthCheckUri: str
     loadBalancerType: typing_extensions.Literal[
         "LOAD_BALANCER_TYPE_UNSPECIFIED",
@@ -245,9 +247,9 @@ class LoadBalancerInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -260,9 +262,9 @@ class NetworkInfo(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -276,8 +278,8 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -287,7 +289,7 @@ class ReachabilityDetails(typing_extensions.TypedDict, total=False):
     result: typing_extensions.Literal[
         "RESULT_UNSPECIFIED", "REACHABLE", "UNREACHABLE", "AMBIGUOUS", "UNDETERMINED"
     ]
-    traces: typing.List[Trace]
+    traces: _list[Trace]
     verifyTime: str
 
 @typing.type_check_only
@@ -297,7 +299,7 @@ class RerunConnectivityTestRequest(typing_extensions.TypedDict, total=False): ..
 class RouteInfo(typing_extensions.TypedDict, total=False):
     destIpRange: str
     displayName: str
-    instanceTags: typing.List[str]
+    instanceTags: _list[str]
     networkUri: str
     nextHop: str
     nextHopType: typing_extensions.Literal[
@@ -334,7 +336,7 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -385,16 +387,16 @@ class Step(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class Trace(typing_extensions.TypedDict, total=False):
     endpointInfo: EndpointInfo
-    steps: typing.List[Step]
+    steps: _list[Step]
 
 @typing.type_check_only
 class VpnGatewayInfo(typing_extensions.TypedDict, total=False):

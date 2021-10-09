@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Address(typing_extensions.TypedDict, total=False):
     pipe: Pipe
@@ -9,27 +11,27 @@ class Address(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildVersion(typing_extensions.TypedDict, total=False):
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     version: SemanticVersion
 
 @typing.type_check_only
 class ClientConfig(typing_extensions.TypedDict, total=False):
     node: Node
-    xdsConfig: typing.List[PerXdsConfig]
+    xdsConfig: _list[PerXdsConfig]
 
 @typing.type_check_only
 class ClientStatusRequest(typing_extensions.TypedDict, total=False):
-    nodeMatchers: typing.List[NodeMatcher]
+    nodeMatchers: _list[NodeMatcher]
 
 @typing.type_check_only
 class ClientStatusResponse(typing_extensions.TypedDict, total=False):
-    config: typing.List[ClientConfig]
+    config: _list[ClientConfig]
 
 @typing.type_check_only
 class ClustersConfigDump(typing_extensions.TypedDict, total=False):
-    dynamicActiveClusters: typing.List[DynamicCluster]
-    dynamicWarmingClusters: typing.List[DynamicCluster]
-    staticClusters: typing.List[StaticCluster]
+    dynamicActiveClusters: _list[DynamicCluster]
+    dynamicWarmingClusters: _list[DynamicCluster]
+    staticClusters: _list[StaticCluster]
     versionInfo: str
 
 @typing.type_check_only
@@ -44,7 +46,7 @@ class DoubleRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DynamicCluster(typing_extensions.TypedDict, total=False):
-    cluster: typing.Dict[str, typing.Any]
+    cluster: dict[str, typing.Any]
     lastUpdated: str
     versionInfo: str
 
@@ -59,20 +61,20 @@ class DynamicListener(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DynamicListenerState(typing_extensions.TypedDict, total=False):
     lastUpdated: str
-    listener: typing.Dict[str, typing.Any]
+    listener: dict[str, typing.Any]
     versionInfo: str
 
 @typing.type_check_only
 class DynamicRouteConfig(typing_extensions.TypedDict, total=False):
     lastUpdated: str
-    routeConfig: typing.Dict[str, typing.Any]
+    routeConfig: dict[str, typing.Any]
     versionInfo: str
 
 @typing.type_check_only
 class DynamicScopedRouteConfigs(typing_extensions.TypedDict, total=False):
     lastUpdated: str
     name: str
-    scopedRouteConfigs: typing.List[typing.Dict[str, typing.Any]]
+    scopedRouteConfigs: _list[dict[str, typing.Any]]
     versionInfo: str
 
 @typing.type_check_only
@@ -91,7 +93,7 @@ class GoogleRE2(typing_extensions.TypedDict, total=False):
 class InlineScopedRouteConfigs(typing_extensions.TypedDict, total=False):
     lastUpdated: str
     name: str
-    scopedRouteConfigs: typing.List[typing.Dict[str, typing.Any]]
+    scopedRouteConfigs: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class ListMatcher(typing_extensions.TypedDict, total=False):
@@ -99,8 +101,8 @@ class ListMatcher(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListenersConfigDump(typing_extensions.TypedDict, total=False):
-    dynamicListeners: typing.List[DynamicListener]
-    staticListeners: typing.List[StaticListener]
+    dynamicListeners: _list[DynamicListener]
+    staticListeners: _list[StaticListener]
     versionInfo: str
 
 @typing.type_check_only
@@ -112,19 +114,19 @@ class Locality(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Node(typing_extensions.TypedDict, total=False):
     buildVersion: str
-    clientFeatures: typing.List[str]
+    clientFeatures: _list[str]
     cluster: str
-    extensions: typing.List[Extension]
+    extensions: _list[Extension]
     id: str
-    listeningAddresses: typing.List[Address]
+    listeningAddresses: _list[Address]
     locality: Locality
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     userAgentBuildVersion: BuildVersion
     userAgentName: str
     userAgentVersion: str
 
 @typing.type_check_only
-class NodeMatcher(typing.Dict[str, typing.Any]): ...
+class NodeMatcher(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class NullMatch(typing_extensions.TypedDict, total=False): ...
@@ -153,13 +155,13 @@ class RegexMatcher(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RoutesConfigDump(typing_extensions.TypedDict, total=False):
-    dynamicRouteConfigs: typing.List[DynamicRouteConfig]
-    staticRouteConfigs: typing.List[StaticRouteConfig]
+    dynamicRouteConfigs: _list[DynamicRouteConfig]
+    staticRouteConfigs: _list[StaticRouteConfig]
 
 @typing.type_check_only
 class ScopedRoutesConfigDump(typing_extensions.TypedDict, total=False):
-    dynamicScopedRouteConfigs: typing.List[DynamicScopedRouteConfigs]
-    inlineScopedRouteConfigs: typing.List[InlineScopedRouteConfigs]
+    dynamicScopedRouteConfigs: _list[DynamicScopedRouteConfigs]
+    inlineScopedRouteConfigs: _list[InlineScopedRouteConfigs]
 
 @typing.type_check_only
 class SemanticVersion(typing_extensions.TypedDict, total=False):
@@ -178,18 +180,18 @@ class SocketAddress(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StaticCluster(typing_extensions.TypedDict, total=False):
-    cluster: typing.Dict[str, typing.Any]
+    cluster: dict[str, typing.Any]
     lastUpdated: str
 
 @typing.type_check_only
 class StaticListener(typing_extensions.TypedDict, total=False):
     lastUpdated: str
-    listener: typing.Dict[str, typing.Any]
+    listener: dict[str, typing.Any]
 
 @typing.type_check_only
 class StaticRouteConfig(typing_extensions.TypedDict, total=False):
     lastUpdated: str
-    routeConfig: typing.Dict[str, typing.Any]
+    routeConfig: dict[str, typing.Any]
 
 @typing.type_check_only
 class StringMatcher(typing_extensions.TypedDict, total=False):
@@ -201,13 +203,13 @@ class StringMatcher(typing_extensions.TypedDict, total=False):
     suffix: str
 
 @typing.type_check_only
-class StructMatcher(typing.Dict[str, typing.Any]): ...
+class StructMatcher(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class UpdateFailureState(typing_extensions.TypedDict, total=False):
     details: str
-    failedConfiguration: typing.Dict[str, typing.Any]
+    failedConfiguration: dict[str, typing.Any]
     lastUpdateAttempt: str
 
 @typing.type_check_only
-class ValueMatcher(typing.Dict[str, typing.Any]): ...
+class ValueMatcher(dict[str, typing.Any]): ...

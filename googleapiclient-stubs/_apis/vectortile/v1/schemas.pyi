@@ -2,13 +2,15 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Area(typing_extensions.TypedDict, total=False):
     basemapZOrder: BasemapZOrder
     hasExternalEdges: bool
-    internalEdges: typing.List[int]
-    loopBreaks: typing.List[int]
-    triangleIndices: typing.List[int]
+    internalEdges: _list[int]
+    loopBreaks: _list[int]
+    triangleIndices: _list[int]
     type: typing_extensions.Literal[
         "TRIANGLE_FAN", "INDEXED_TRIANGLES", "TRIANGLE_STRIP"
     ]
@@ -32,7 +34,7 @@ class Feature(typing_extensions.TypedDict, total=False):
     displayName: str
     geometry: Geometry
     placeId: str
-    relations: typing.List[Relation]
+    relations: _list[Relation]
     segmentInfo: SegmentInfo
     type: typing_extensions.Literal[
         "FEATURE_TYPE_UNSPECIFIED",
@@ -69,23 +71,23 @@ class Feature(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FeatureTile(typing_extensions.TypedDict, total=False):
     coordinates: TileCoordinates
-    features: typing.List[Feature]
+    features: _list[Feature]
     name: str
-    providers: typing.List[ProviderInfo]
+    providers: _list[ProviderInfo]
     status: typing_extensions.Literal["STATUS_OK", "STATUS_OK_DATA_UNCHANGED"]
     versionId: str
 
 @typing.type_check_only
 class FirstDerivativeElevationGrid(typing_extensions.TypedDict, total=False):
     altitudeMultiplier: float
-    rows: typing.List[Row]
+    rows: _list[Row]
 
 @typing.type_check_only
 class Geometry(typing_extensions.TypedDict, total=False):
-    areas: typing.List[Area]
-    extrudedAreas: typing.List[ExtrudedArea]
-    lines: typing.List[Line]
-    modeledVolumes: typing.List[ModeledVolume]
+    areas: _list[Area]
+    extrudedAreas: _list[ExtrudedArea]
+    lines: _list[Line]
+    modeledVolumes: _list[ModeledVolume]
 
 @typing.type_check_only
 class Line(typing_extensions.TypedDict, total=False):
@@ -95,7 +97,7 @@ class Line(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ModeledVolume(typing_extensions.TypedDict, total=False):
-    strips: typing.List[TriangleStrip]
+    strips: _list[TriangleStrip]
     vertexOffsets: Vertex3DList
 
 @typing.type_check_only
@@ -115,7 +117,7 @@ class RoadInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Row(typing_extensions.TypedDict, total=False):
-    altitudeDiffs: typing.List[int]
+    altitudeDiffs: _list[int]
 
 @typing.type_check_only
 class SecondDerivativeElevationGrid(typing_extensions.TypedDict, total=False):
@@ -143,15 +145,15 @@ class TileCoordinates(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TriangleStrip(typing_extensions.TypedDict, total=False):
-    vertexIndices: typing.List[int]
+    vertexIndices: _list[int]
 
 @typing.type_check_only
 class Vertex2DList(typing_extensions.TypedDict, total=False):
-    xOffsets: typing.List[int]
-    yOffsets: typing.List[int]
+    xOffsets: _list[int]
+    yOffsets: _list[int]
 
 @typing.type_check_only
 class Vertex3DList(typing_extensions.TypedDict, total=False):
-    xOffsets: typing.List[int]
-    yOffsets: typing.List[int]
-    zOffsets: typing.List[int]
+    xOffsets: _list[int]
+    yOffsets: _list[int]
+    zOffsets: _list[int]

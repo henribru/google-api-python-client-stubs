@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AudioConfig(typing_extensions.TypedDict, total=False):
     audioEncoding: typing_extensions.Literal[
@@ -13,7 +15,7 @@ class AudioConfig(typing_extensions.TypedDict, total=False):
         "MULAW",
         "ALAW",
     ]
-    effectsProfileId: typing.List[str]
+    effectsProfileId: _list[str]
     pitch: float
     sampleRateHertz: int
     speakingRate: float
@@ -21,7 +23,7 @@ class AudioConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListVoicesResponse(typing_extensions.TypedDict, total=False):
-    voices: typing.List[Voice]
+    voices: _list[Voice]
 
 @typing.type_check_only
 class SynthesisInput(typing_extensions.TypedDict, total=False):
@@ -31,7 +33,7 @@ class SynthesisInput(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SynthesizeSpeechRequest(typing_extensions.TypedDict, total=False):
     audioConfig: AudioConfig
-    enableTimePointing: typing.List[str]
+    enableTimePointing: _list[str]
     input: SynthesisInput
     voice: VoiceSelectionParams
 
@@ -39,7 +41,7 @@ class SynthesizeSpeechRequest(typing_extensions.TypedDict, total=False):
 class SynthesizeSpeechResponse(typing_extensions.TypedDict, total=False):
     audioConfig: AudioConfig
     audioContent: str
-    timepoints: typing.List[Timepoint]
+    timepoints: _list[Timepoint]
 
 @typing.type_check_only
 class Timepoint(typing_extensions.TypedDict, total=False):
@@ -48,7 +50,7 @@ class Timepoint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Voice(typing_extensions.TypedDict, total=False):
-    languageCodes: typing.List[str]
+    languageCodes: _list[str]
     name: str
     naturalSampleRateHertz: int
     ssmlGender: typing_extensions.Literal[

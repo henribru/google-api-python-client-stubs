@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudAssetResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -16,12 +18,8 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
-            analysisQuery_accessSelector_permissions: typing.Union[
-                str, typing.List[str]
-            ] = ...,
-            analysisQuery_accessSelector_roles: typing.Union[
-                str, typing.List[str]
-            ] = ...,
+            analysisQuery_accessSelector_permissions: str | _list[str] = ...,
+            analysisQuery_accessSelector_roles: str | _list[str] = ...,
             analysisQuery_identitySelector_identity: str = ...,
             analysisQuery_resourceSelector_fullResourceName: str = ...,
             options_analyzeServiceAccountImpersonation: bool = ...,
@@ -46,9 +44,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
 class AnalyzeIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnalyzeIamPolicyResponse: ...
 
@@ -56,8 +52,6 @@ class AnalyzeIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...

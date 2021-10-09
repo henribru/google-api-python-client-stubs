@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AggregateBucket(typing_extensions.TypedDict, total=False):
     activity: int
-    dataset: typing.List[Dataset]
+    dataset: _list[Dataset]
     endTimeMillis: str
     session: Session
     startTimeMillis: str
@@ -20,18 +22,18 @@ class AggregateBy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AggregateRequest(typing_extensions.TypedDict, total=False):
-    aggregateBy: typing.List[AggregateBy]
+    aggregateBy: _list[AggregateBy]
     bucketByActivitySegment: BucketByActivity
     bucketByActivityType: BucketByActivity
     bucketBySession: BucketBySession
     bucketByTime: BucketByTime
     endTimeMillis: str
-    filteredDataQualityStandard: typing.List[str]
+    filteredDataQualityStandard: _list[str]
     startTimeMillis: str
 
 @typing.type_check_only
 class AggregateResponse(typing_extensions.TypedDict, total=False):
-    bucket: typing.List[AggregateBucket]
+    bucket: _list[AggregateBucket]
 
 @typing.type_check_only
 class Application(typing_extensions.TypedDict, total=False):
@@ -69,12 +71,12 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     originDataSourceId: str
     rawTimestampNanos: str
     startTimeNanos: str
-    value: typing.List[Value]
+    value: _list[Value]
 
 @typing.type_check_only
 class DataSource(typing_extensions.TypedDict, total=False):
     application: Application
-    dataQualityStandard: typing.List[str]
+    dataQualityStandard: _list[str]
     dataStreamId: str
     dataStreamName: str
     dataType: DataType
@@ -84,7 +86,7 @@ class DataSource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataType(typing_extensions.TypedDict, total=False):
-    field: typing.List[DataTypeField]
+    field: _list[DataTypeField]
     name: str
 
 @typing.type_check_only
@@ -101,7 +103,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     maxEndTimeNs: str
     minStartTimeNs: str
     nextPageToken: str
-    point: typing.List[DataPoint]
+    point: _list[DataPoint]
 
 @typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
@@ -123,20 +125,20 @@ class Device(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListDataPointChangesResponse(typing_extensions.TypedDict, total=False):
     dataSourceId: str
-    deletedDataPoint: typing.List[DataPoint]
-    insertedDataPoint: typing.List[DataPoint]
+    deletedDataPoint: _list[DataPoint]
+    insertedDataPoint: _list[DataPoint]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDataSourcesResponse(typing_extensions.TypedDict, total=False):
-    dataSource: typing.List[DataSource]
+    dataSource: _list[DataSource]
 
 @typing.type_check_only
 class ListSessionsResponse(typing_extensions.TypedDict, total=False):
-    deletedSession: typing.List[Session]
+    deletedSession: _list[Session]
     hasMoreData: bool
     nextPageToken: str
-    session: typing.List[Session]
+    session: _list[Session]
 
 @typing.type_check_only
 class MapValue(typing_extensions.TypedDict, total=False):
@@ -158,7 +160,7 @@ class Session(typing_extensions.TypedDict, total=False):
 class Value(typing_extensions.TypedDict, total=False):
     fpVal: float
     intVal: int
-    mapVal: typing.List[ValueMapValEntry]
+    mapVal: _list[ValueMapValEntry]
     stringVal: str
 
 @typing.type_check_only

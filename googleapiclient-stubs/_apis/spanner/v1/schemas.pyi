@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
@@ -9,7 +11,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     encryptionInfo: EncryptionInfo
     expireTime: str
     name: str
-    referencingDatabases: typing.List[str]
+    referencingDatabases: _list[str]
     sizeBytes: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
     versionTime: str
@@ -28,7 +30,7 @@ class BatchCreateSessionsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchCreateSessionsResponse(typing_extensions.TypedDict, total=False):
-    session: typing.List[Session]
+    session: _list[Session]
 
 @typing.type_check_only
 class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
@@ -38,7 +40,7 @@ class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -49,7 +51,7 @@ class ChildLink(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommitRequest(typing_extensions.TypedDict, total=False):
-    mutations: typing.List[Mutation]
+    mutations: _list[Mutation]
     requestOptions: RequestOptions
     returnCommitStats: bool
     singleUseTransaction: TransactionOptions
@@ -88,7 +90,7 @@ class CreateDatabaseMetadata(typing_extensions.TypedDict, total=False):
 class CreateDatabaseRequest(typing_extensions.TypedDict, total=False):
     createStatement: str
     encryptionConfig: EncryptionConfig
-    extraStatements: typing.List[str]
+    extraStatements: _list[str]
 
 @typing.type_check_only
 class CreateInstanceMetadata(typing_extensions.TypedDict, total=False):
@@ -112,7 +114,7 @@ class Database(typing_extensions.TypedDict, total=False):
     defaultLeader: str
     earliestVersionTime: str
     encryptionConfig: EncryptionConfig
-    encryptionInfo: typing.List[EncryptionInfo]
+    encryptionInfo: _list[EncryptionInfo]
     name: str
     restoreInfo: RestoreInfo
     state: typing_extensions.Literal[
@@ -159,18 +161,18 @@ class EncryptionInfo(typing_extensions.TypedDict, total=False):
 class ExecuteBatchDmlRequest(typing_extensions.TypedDict, total=False):
     requestOptions: RequestOptions
     seqno: str
-    statements: typing.List[Statement]
+    statements: _list[Statement]
     transaction: TransactionSelector
 
 @typing.type_check_only
 class ExecuteBatchDmlResponse(typing_extensions.TypedDict, total=False):
-    resultSets: typing.List[ResultSet]
+    resultSets: _list[ResultSet]
     status: Status
 
 @typing.type_check_only
 class ExecuteSqlRequest(typing_extensions.TypedDict, total=False):
-    paramTypes: typing.Dict[str, typing.Any]
-    params: typing.Dict[str, typing.Any]
+    paramTypes: dict[str, typing.Any]
+    params: dict[str, typing.Any]
     partitionToken: str
     queryMode: typing_extensions.Literal["NORMAL", "PLAN", "PROFILE"]
     queryOptions: QueryOptions
@@ -194,7 +196,7 @@ class Field(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetDatabaseDdlResponse(typing_extensions.TypedDict, total=False):
-    statements: typing.List[str]
+    statements: _list[str]
 
 @typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -206,18 +208,18 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IndexedHotKey(typing_extensions.TypedDict, total=False):
-    sparseHotKeys: typing.Dict[str, typing.Any]
+    sparseHotKeys: dict[str, typing.Any]
 
 @typing.type_check_only
 class IndexedKeyRangeInfos(typing_extensions.TypedDict, total=False):
-    keyRangeInfos: typing.Dict[str, typing.Any]
+    keyRangeInfos: dict[str, typing.Any]
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     config: str
     displayName: str
-    endpointUris: typing.List[str]
-    labels: typing.Dict[str, typing.Any]
+    endpointUris: _list[str]
+    labels: dict[str, typing.Any]
     name: str
     nodeCount: int
     processingUnits: int
@@ -226,20 +228,20 @@ class Instance(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstanceConfig(typing_extensions.TypedDict, total=False):
     displayName: str
-    leaderOptions: typing.List[str]
+    leaderOptions: _list[str]
     name: str
-    replicas: typing.List[ReplicaInfo]
+    replicas: _list[ReplicaInfo]
 
 @typing.type_check_only
 class KeyRange(typing_extensions.TypedDict, total=False):
-    endClosed: typing.List[typing.Any]
-    endOpen: typing.List[typing.Any]
-    startClosed: typing.List[typing.Any]
-    startOpen: typing.List[typing.Any]
+    endClosed: _list[typing.Any]
+    endOpen: _list[typing.Any]
+    startClosed: _list[typing.Any]
+    startOpen: _list[typing.Any]
 
 @typing.type_check_only
 class KeyRangeInfo(typing_extensions.TypedDict, total=False):
-    contextValues: typing.List[ContextValue]
+    contextValues: _list[ContextValue]
     endKeyIndex: int
     info: LocalizedString
     keysCount: str
@@ -251,64 +253,64 @@ class KeyRangeInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class KeyRangeInfos(typing_extensions.TypedDict, total=False):
-    infos: typing.List[KeyRangeInfo]
+    infos: _list[KeyRangeInfo]
     totalSize: int
 
 @typing.type_check_only
 class KeySet(typing_extensions.TypedDict, total=False):
     all: bool
-    keys: typing.List[list]
-    ranges: typing.List[KeyRange]
+    keys: _list[list]
+    ranges: _list[KeyRange]
 
 @typing.type_check_only
 class ListBackupOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
-    backups: typing.List[Backup]
+    backups: _list[Backup]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDatabaseOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListDatabasesResponse(typing_extensions.TypedDict, total=False):
-    databases: typing.List[Database]
+    databases: _list[Database]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInstanceConfigsResponse(typing_extensions.TypedDict, total=False):
-    instanceConfigs: typing.List[InstanceConfig]
+    instanceConfigs: _list[InstanceConfig]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
-    instances: typing.List[Instance]
+    instances: _list[Instance]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListScansResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    scans: typing.List[Scan]
+    scans: _list[Scan]
 
 @typing.type_check_only
 class ListSessionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sessions: typing.List[Session]
+    sessions: _list[Session]
 
 @typing.type_check_only
 class LocalizedString(typing_extensions.TypedDict, total=False):
-    args: typing.Dict[str, typing.Any]
+    args: dict[str, typing.Any]
     message: str
     token: str
 
@@ -320,8 +322,8 @@ class Metric(typing_extensions.TypedDict, total=False):
     displayLabel: LocalizedString
     hasNonzeroData: bool
     hotValue: float
-    indexedHotKeys: typing.Dict[str, typing.Any]
-    indexedKeyRangeInfos: typing.Dict[str, typing.Any]
+    indexedHotKeys: dict[str, typing.Any]
+    indexedKeyRangeInfos: dict[str, typing.Any]
     info: LocalizedString
     matrix: MetricMatrix
     unit: LocalizedString
@@ -329,11 +331,11 @@ class Metric(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetricMatrix(typing_extensions.TypedDict, total=False):
-    rows: typing.List[MetricMatrixRow]
+    rows: _list[MetricMatrixRow]
 
 @typing.type_check_only
 class MetricMatrixRow(typing_extensions.TypedDict, total=False):
-    cols: typing.List[float]
+    cols: _list[float]
 
 @typing.type_check_only
 class Mutation(typing_extensions.TypedDict, total=False):
@@ -347,9 +349,9 @@ class Mutation(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationProgress(typing_extensions.TypedDict, total=False):
@@ -368,7 +370,7 @@ class PartialResultSet(typing_extensions.TypedDict, total=False):
     metadata: ResultSetMetadata
     resumeToken: str
     stats: ResultSetStats
-    values: typing.List[typing.Any]
+    values: _list[typing.Any]
 
 @typing.type_check_only
 class Partition(typing_extensions.TypedDict, total=False):
@@ -381,15 +383,15 @@ class PartitionOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
-    paramTypes: typing.Dict[str, typing.Any]
-    params: typing.Dict[str, typing.Any]
+    paramTypes: dict[str, typing.Any]
+    params: dict[str, typing.Any]
     partitionOptions: PartitionOptions
     sql: str
     transaction: TransactionSelector
 
 @typing.type_check_only
 class PartitionReadRequest(typing_extensions.TypedDict, total=False):
-    columns: typing.List[str]
+    columns: _list[str]
     index: str
     keySet: KeySet
     partitionOptions: PartitionOptions
@@ -398,7 +400,7 @@ class PartitionReadRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PartitionResponse(typing_extensions.TypedDict, total=False):
-    partitions: typing.List[Partition]
+    partitions: _list[Partition]
     transaction: Transaction
 
 @typing.type_check_only
@@ -406,17 +408,17 @@ class PartitionedDml(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PlanNode(typing_extensions.TypedDict, total=False):
-    childLinks: typing.List[ChildLink]
+    childLinks: _list[ChildLink]
     displayName: str
-    executionStats: typing.Dict[str, typing.Any]
+    executionStats: dict[str, typing.Any]
     index: int
     kind: typing_extensions.Literal["KIND_UNSPECIFIED", "RELATIONAL", "SCALAR"]
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     shortRepresentation: ShortRepresentation
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -435,7 +437,7 @@ class QueryOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryPlan(typing_extensions.TypedDict, total=False):
-    planNodes: typing.List[PlanNode]
+    planNodes: _list[PlanNode]
 
 @typing.type_check_only
 class ReadOnly(typing_extensions.TypedDict, total=False):
@@ -448,7 +450,7 @@ class ReadOnly(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReadRequest(typing_extensions.TypedDict, total=False):
-    columns: typing.List[str]
+    columns: _list[str]
     index: str
     keySet: KeySet
     limit: str
@@ -508,15 +510,15 @@ class RestoreInfo(typing_extensions.TypedDict, total=False):
     sourceType: typing_extensions.Literal["TYPE_UNSPECIFIED", "BACKUP"]
 
 @typing.type_check_only
-class ResultSet(typing.Dict[str, typing.Any]): ...
+class ResultSet(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class ResultSetMetadata(typing.Dict[str, typing.Any]): ...
+class ResultSetMetadata(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ResultSetStats(typing_extensions.TypedDict, total=False):
     queryPlan: QueryPlan
-    queryStats: typing.Dict[str, typing.Any]
+    queryStats: dict[str, typing.Any]
     rowCountExact: str
     rowCountLowerBound: str
 
@@ -526,7 +528,7 @@ class RollbackRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Scan(typing_extensions.TypedDict, total=False):
-    details: typing.Dict[str, typing.Any]
+    details: dict[str, typing.Any]
     endTime: str
     name: str
     scanData: ScanData
@@ -542,7 +544,7 @@ class ScanData(typing_extensions.TypedDict, total=False):
 class Session(typing_extensions.TypedDict, total=False):
     approximateLastUseTime: str
     createTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -552,30 +554,30 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ShortRepresentation(typing_extensions.TypedDict, total=False):
     description: str
-    subqueries: typing.Dict[str, typing.Any]
+    subqueries: dict[str, typing.Any]
 
 @typing.type_check_only
 class Statement(typing_extensions.TypedDict, total=False):
-    paramTypes: typing.Dict[str, typing.Any]
-    params: typing.Dict[str, typing.Any]
+    paramTypes: dict[str, typing.Any]
+    params: dict[str, typing.Any]
     sql: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StructType(typing.Dict[str, typing.Any]): ...
+class StructType(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class Transaction(typing_extensions.TypedDict, total=False):
@@ -595,20 +597,20 @@ class TransactionSelector(typing_extensions.TypedDict, total=False):
     singleUse: TransactionOptions
 
 @typing.type_check_only
-class Type(typing.Dict[str, typing.Any]): ...
+class Type(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class UpdateDatabaseDdlMetadata(typing_extensions.TypedDict, total=False):
-    commitTimestamps: typing.List[str]
+    commitTimestamps: _list[str]
     database: str
-    progress: typing.List[OperationProgress]
-    statements: typing.List[str]
+    progress: _list[OperationProgress]
+    statements: _list[str]
     throttled: bool
 
 @typing.type_check_only
 class UpdateDatabaseDdlRequest(typing_extensions.TypedDict, total=False):
     operationId: str
-    statements: typing.List[str]
+    statements: _list[str]
 
 @typing.type_check_only
 class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):
@@ -626,17 +628,17 @@ class UpdateInstanceRequest(typing_extensions.TypedDict, total=False):
 class VisualizationData(typing_extensions.TypedDict, total=False):
     dataSourceEndToken: str
     dataSourceSeparatorToken: str
-    diagnosticMessages: typing.List[DiagnosticMessage]
-    endKeyStrings: typing.List[str]
+    diagnosticMessages: _list[DiagnosticMessage]
+    endKeyStrings: _list[str]
     hasPii: bool
-    indexedKeys: typing.List[str]
+    indexedKeys: _list[str]
     keySeparator: str
     keyUnit: typing_extensions.Literal["KEY_UNIT_UNSPECIFIED", "KEY", "CHUNK"]
-    metrics: typing.List[Metric]
-    prefixNodes: typing.List[PrefixNode]
+    metrics: _list[Metric]
+    prefixNodes: _list[PrefixNode]
 
 @typing.type_check_only
 class Write(typing_extensions.TypedDict, total=False):
-    columns: typing.List[str]
+    columns: _list[str]
     table: str
-    values: typing.List[list]
+    values: _list[list]

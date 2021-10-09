@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ServiceControlResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -31,9 +33,7 @@ class ServiceControlResource(googleapiclient.discovery.Resource):
 class AllocateQuotaResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AllocateQuotaResponse: ...
 
@@ -41,9 +41,7 @@ class AllocateQuotaResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CheckResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CheckResponse: ...
 
@@ -51,8 +49,6 @@ class CheckResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ReportResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ReportResponse: ...

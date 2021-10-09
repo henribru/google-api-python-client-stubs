@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -55,9 +57,7 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
 class CompleteVerificationResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CompleteVerificationResponse: ...
 
@@ -65,9 +65,7 @@ class CompleteVerificationResponseHttpRequest(googleapiclient.http.HttpRequest):
 class FetchVerificationOptionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FetchVerificationOptionsResponse: ...
 
@@ -75,9 +73,7 @@ class FetchVerificationOptionsResponseHttpRequest(googleapiclient.http.HttpReque
 class GenerateVerificationTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GenerateVerificationTokenResponse: ...
 
@@ -85,9 +81,7 @@ class GenerateVerificationTokenResponseHttpRequest(googleapiclient.http.HttpRequ
 class ListVerificationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListVerificationsResponse: ...
 
@@ -95,9 +89,7 @@ class ListVerificationsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class VerifyLocationResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VerifyLocationResponse: ...
 
@@ -105,8 +97,6 @@ class VerifyLocationResponseHttpRequest(googleapiclient.http.HttpRequest):
 class VoiceOfMerchantStateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VoiceOfMerchantState: ...

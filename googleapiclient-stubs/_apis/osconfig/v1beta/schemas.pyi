@@ -2,31 +2,33 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AptRepository(typing_extensions.TypedDict, total=False):
     archiveType: typing_extensions.Literal["ARCHIVE_TYPE_UNSPECIFIED", "DEB", "DEB_SRC"]
-    components: typing.List[str]
+    components: _list[str]
     distribution: str
     gpgKey: str
     uri: str
 
 @typing.type_check_only
 class AptSettings(typing_extensions.TypedDict, total=False):
-    excludes: typing.List[str]
-    exclusivePackages: typing.List[str]
+    excludes: _list[str]
+    exclusivePackages: _list[str]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DIST", "UPGRADE"]
 
 @typing.type_check_only
 class Assignment(typing_extensions.TypedDict, total=False):
-    groupLabels: typing.List[AssignmentGroupLabel]
-    instanceNamePrefixes: typing.List[str]
-    instances: typing.List[str]
-    osTypes: typing.List[AssignmentOsType]
-    zones: typing.List[str]
+    groupLabels: _list[AssignmentGroupLabel]
+    instanceNamePrefixes: _list[str]
+    instances: _list[str]
+    osTypes: _list[AssignmentOsType]
+    zones: _list[str]
 
 @typing.type_check_only
 class AssignmentGroupLabel(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class AssignmentOsType(typing_extensions.TypedDict, total=False):
@@ -39,9 +41,9 @@ class CancelPatchJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EffectiveGuestPolicy(typing_extensions.TypedDict, total=False):
-    packageRepositories: typing.List[EffectiveGuestPolicySourcedPackageRepository]
-    packages: typing.List[EffectiveGuestPolicySourcedPackage]
-    softwareRecipes: typing.List[EffectiveGuestPolicySourcedSoftwareRecipe]
+    packageRepositories: _list[EffectiveGuestPolicySourcedPackageRepository]
+    packages: _list[EffectiveGuestPolicySourcedPackage]
+    softwareRecipes: _list[EffectiveGuestPolicySourcedSoftwareRecipe]
 
 @typing.type_check_only
 class EffectiveGuestPolicySourcedPackage(typing_extensions.TypedDict, total=False):
@@ -72,7 +74,7 @@ class ExecStep(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecStepConfig(typing_extensions.TypedDict, total=False):
-    allowedSuccessCodes: typing.List[int]
+    allowedSuccessCodes: _list[int]
     gcsObject: GcsObject
     interpreter: typing_extensions.Literal[
         "INTERPRETER_UNSPECIFIED", "SHELL", "POWERSHELL"
@@ -115,30 +117,30 @@ class GuestPolicy(typing_extensions.TypedDict, total=False):
     description: str
     etag: str
     name: str
-    packageRepositories: typing.List[PackageRepository]
-    packages: typing.List[Package]
-    recipes: typing.List[SoftwareRecipe]
+    packageRepositories: _list[PackageRepository]
+    packages: _list[Package]
+    recipes: _list[SoftwareRecipe]
     updateTime: str
 
 @typing.type_check_only
 class ListGuestPoliciesResponse(typing_extensions.TypedDict, total=False):
-    guestPolicies: typing.List[GuestPolicy]
+    guestPolicies: _list[GuestPolicy]
     nextPageToken: str
 
 @typing.type_check_only
 class ListPatchDeploymentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    patchDeployments: typing.List[PatchDeployment]
+    patchDeployments: _list[PatchDeployment]
 
 @typing.type_check_only
 class ListPatchJobInstanceDetailsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    patchJobInstanceDetails: typing.List[PatchJobInstanceDetails]
+    patchJobInstanceDetails: _list[PatchJobInstanceDetails]
 
 @typing.type_check_only
 class ListPatchJobsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    patchJobs: typing.List[PatchJob]
+    patchJobs: _list[PatchJob]
 
 @typing.type_check_only
 class LookupEffectiveGuestPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -218,14 +220,14 @@ class PatchDeployment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PatchInstanceFilter(typing_extensions.TypedDict, total=False):
     all: bool
-    groupLabels: typing.List[PatchInstanceFilterGroupLabel]
-    instanceNamePrefixes: typing.List[str]
-    instances: typing.List[str]
-    zones: typing.List[str]
+    groupLabels: _list[PatchInstanceFilterGroupLabel]
+    instanceNamePrefixes: _list[str]
+    instances: _list[str]
+    zones: _list[str]
 
 @typing.type_check_only
 class PatchInstanceFilterGroupLabel(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class PatchJob(typing_extensions.TypedDict, total=False):
@@ -318,13 +320,13 @@ class RecurringSchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SoftwareRecipe(typing_extensions.TypedDict, total=False):
-    artifacts: typing.List[SoftwareRecipeArtifact]
+    artifacts: _list[SoftwareRecipeArtifact]
     desiredState: typing_extensions.Literal[
         "DESIRED_STATE_UNSPECIFIED", "INSTALLED", "UPDATED", "REMOVED"
     ]
-    installSteps: typing.List[SoftwareRecipeStep]
+    installSteps: _list[SoftwareRecipeStep]
     name: str
-    updateSteps: typing.List[SoftwareRecipeStep]
+    updateSteps: _list[SoftwareRecipeStep]
     version: str
 
 @typing.type_check_only
@@ -364,8 +366,8 @@ class SoftwareRecipeStepCopyFile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SoftwareRecipeStepExecFile(typing_extensions.TypedDict, total=False):
-    allowedExitCodes: typing.List[int]
-    args: typing.List[str]
+    allowedExitCodes: _list[int]
+    args: _list[str]
     artifactId: str
     localPath: str
 
@@ -389,9 +391,9 @@ class SoftwareRecipeStepInstallDpkg(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SoftwareRecipeStepInstallMsi(typing_extensions.TypedDict, total=False):
-    allowedExitCodes: typing.List[int]
+    allowedExitCodes: _list[int]
     artifactId: str
-    flags: typing.List[str]
+    flags: _list[str]
 
 @typing.type_check_only
 class SoftwareRecipeStepInstallRpm(typing_extensions.TypedDict, total=False):
@@ -399,7 +401,7 @@ class SoftwareRecipeStepInstallRpm(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SoftwareRecipeStepRunScript(typing_extensions.TypedDict, total=False):
-    allowedExitCodes: typing.List[int]
+    allowedExitCodes: _list[int]
     interpreter: typing_extensions.Literal[
         "INTERPRETER_UNSPECIFIED", "SHELL", "POWERSHELL"
     ]
@@ -446,21 +448,21 @@ class WeeklySchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WindowsUpdateSettings(typing_extensions.TypedDict, total=False):
-    classifications: typing.List[str]
-    excludes: typing.List[str]
-    exclusivePatches: typing.List[str]
+    classifications: _list[str]
+    excludes: _list[str]
+    exclusivePatches: _list[str]
 
 @typing.type_check_only
 class YumRepository(typing_extensions.TypedDict, total=False):
     baseUrl: str
     displayName: str
-    gpgKeys: typing.List[str]
+    gpgKeys: _list[str]
     id: str
 
 @typing.type_check_only
 class YumSettings(typing_extensions.TypedDict, total=False):
-    excludes: typing.List[str]
-    exclusivePackages: typing.List[str]
+    excludes: _list[str]
+    exclusivePackages: _list[str]
     minimal: bool
     security: bool
 
@@ -468,14 +470,14 @@ class YumSettings(typing_extensions.TypedDict, total=False):
 class ZypperRepository(typing_extensions.TypedDict, total=False):
     baseUrl: str
     displayName: str
-    gpgKeys: typing.List[str]
+    gpgKeys: _list[str]
     id: str
 
 @typing.type_check_only
 class ZypperSettings(typing_extensions.TypedDict, total=False):
-    categories: typing.List[str]
-    excludes: typing.List[str]
-    exclusivePatches: typing.List[str]
-    severities: typing.List[str]
+    categories: _list[str]
+    excludes: _list[str]
+    exclusivePatches: _list[str]
+    severities: _list[str]
     withOptional: bool
     withUpdate: bool

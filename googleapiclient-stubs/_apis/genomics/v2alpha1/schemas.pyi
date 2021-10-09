@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Accelerator(typing_extensions.TypedDict, total=False):
     count: str
@@ -9,18 +11,18 @@ class Accelerator(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Action(typing_extensions.TypedDict, total=False):
-    commands: typing.List[str]
+    commands: _list[str]
     credentials: Secret
     encryptedEnvironment: Secret
     entrypoint: str
-    environment: typing.Dict[str, typing.Any]
-    flags: typing.List[str]
+    environment: dict[str, typing.Any]
+    flags: _list[str]
     imageUri: str
-    labels: typing.Dict[str, typing.Any]
-    mounts: typing.List[Mount]
+    labels: dict[str, typing.Any]
+    mounts: _list[Mount]
     name: str
     pidNamespace: str
-    portMappings: typing.Dict[str, typing.Any]
+    portMappings: dict[str, typing.Any]
     timeout: str
 
 @typing.type_check_only
@@ -29,8 +31,8 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class CheckInRequest(typing_extensions.TypedDict, total=False):
     deadlineExpired: Empty
-    event: typing.Dict[str, typing.Any]
-    events: typing.List[TimestampedEvent]
+    event: dict[str, typing.Any]
+    events: _list[TimestampedEvent]
     result: Status
     sosReport: str
     workerStatus: WorkerStatus
@@ -38,8 +40,8 @@ class CheckInRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckInResponse(typing_extensions.TypedDict, total=False):
     deadline: str
-    features: typing.Dict[str, typing.Any]
-    metadata: typing.Dict[str, typing.Any]
+    features: dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class ContainerKilledEvent(typing_extensions.TypedDict, total=False):
@@ -49,7 +51,7 @@ class ContainerKilledEvent(typing_extensions.TypedDict, total=False):
 class ContainerStartedEvent(typing_extensions.TypedDict, total=False):
     actionId: int
     ipAddress: str
-    portMappings: typing.Dict[str, typing.Any]
+    portMappings: dict[str, typing.Any]
 
 @typing.type_check_only
 class ContainerStoppedEvent(typing_extensions.TypedDict, total=False):
@@ -60,7 +62,7 @@ class ContainerStoppedEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DelayedEvent(typing_extensions.TypedDict, total=False):
     cause: str
-    metrics: typing.List[str]
+    metrics: _list[str]
 
 @typing.type_check_only
 class Disk(typing_extensions.TypedDict, total=False):
@@ -80,7 +82,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Event(typing_extensions.TypedDict, total=False):
     description: str
-    details: typing.Dict[str, typing.Any]
+    details: dict[str, typing.Any]
     timestamp: str
 
 @typing.type_check_only
@@ -113,14 +115,14 @@ class FailedEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
-    events: typing.List[Event]
-    labels: typing.Dict[str, typing.Any]
+    events: _list[Event]
+    labels: dict[str, typing.Any]
     pipeline: Pipeline
     startTime: str
 
@@ -144,9 +146,9 @@ class Network(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class PersistentDisk(typing_extensions.TypedDict, total=False):
@@ -156,9 +158,9 @@ class PersistentDisk(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Pipeline(typing_extensions.TypedDict, total=False):
-    actions: typing.List[Action]
+    actions: _list[Action]
     encryptedEnvironment: Secret
-    environment: typing.Dict[str, typing.Any]
+    environment: dict[str, typing.Any]
     resources: Resources
     timeout: str
 
@@ -173,13 +175,13 @@ class PullStoppedEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Resources(typing_extensions.TypedDict, total=False):
     projectId: str
-    regions: typing.List[str]
+    regions: _list[str]
     virtualMachine: VirtualMachine
-    zones: typing.List[str]
+    zones: _list[str]
 
 @typing.type_check_only
 class RunPipelineRequest(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     pipeline: Pipeline
     pubSubTopic: str
 
@@ -194,17 +196,17 @@ class Secret(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     email: str
-    scopes: typing.List[str]
+    scopes: _list[str]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TimestampedEvent(typing_extensions.TypedDict, total=False):
-    data: typing.Dict[str, typing.Any]
+    data: dict[str, typing.Any]
     timestamp: str
 
 @typing.type_check_only
@@ -214,21 +216,21 @@ class UnexpectedExitStatusEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VirtualMachine(typing_extensions.TypedDict, total=False):
-    accelerators: typing.List[Accelerator]
+    accelerators: _list[Accelerator]
     bootDiskSizeGb: int
     bootImage: str
     cpuPlatform: str
-    disks: typing.List[Disk]
-    dockerCacheImages: typing.List[str]
+    disks: _list[Disk]
+    dockerCacheImages: _list[str]
     enableStackdriverMonitoring: bool
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     machineType: str
     network: Network
     nvidiaDriverVersion: str
     preemptible: bool
     reservation: str
     serviceAccount: ServiceAccount
-    volumes: typing.List[Volume]
+    volumes: _list[Volume]
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
@@ -250,7 +252,7 @@ class WorkerReleasedEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkerStatus(typing_extensions.TypedDict, total=False):
-    attachedDisks: typing.Dict[str, typing.Any]
+    attachedDisks: dict[str, typing.Any]
     bootDisk: DiskStatus
     freeRamBytes: str
     totalRamBytes: str

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ANR(typing_extensions.TypedDict, total=False):
     stackTrace: StackTrace
@@ -17,7 +19,7 @@ class AndroidAppInfo(typing_extensions.TypedDict, total=False):
 class AndroidInstrumentationTest(typing_extensions.TypedDict, total=False):
     testPackageId: str
     testRunnerClass: str
-    testTargets: typing.List[str]
+    testTargets: _list[str]
     useOrchestrator: bool
 
 @typing.type_check_only
@@ -83,11 +85,11 @@ class BasicPerfSampleSeries(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchCreatePerfSamplesRequest(typing_extensions.TypedDict, total=False):
-    perfSamples: typing.List[PerfSample]
+    perfSamples: _list[PerfSample]
 
 @typing.type_check_only
 class BatchCreatePerfSamplesResponse(typing_extensions.TypedDict, total=False):
-    perfSamples: typing.List[PerfSample]
+    perfSamples: _list[PerfSample]
 
 @typing.type_check_only
 class BlankScreen(typing_extensions.TypedDict, total=False):
@@ -114,18 +116,18 @@ class Duration(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EncounteredLoginScreen(typing_extensions.TypedDict, total=False):
     distinctScreens: int
-    screenIds: typing.List[str]
+    screenIds: _list[str]
 
 @typing.type_check_only
 class EncounteredNonAndroidUiWidgetScreen(typing_extensions.TypedDict, total=False):
     distinctScreens: int
-    screenIds: typing.List[str]
+    screenIds: _list[str]
 
 @typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
     completionTime: Timestamp
     creationTime: Timestamp
-    dimensionValue: typing.List[EnvironmentDimensionValueEntry]
+    dimensionValue: _list[EnvironmentDimensionValueEntry]
     displayName: str
     environmentId: str
     environmentResult: MergedResult
@@ -133,7 +135,7 @@ class Environment(typing_extensions.TypedDict, total=False):
     historyId: str
     projectId: str
     resultsStorage: ResultsStorage
-    shardSummaries: typing.List[ShardSummary]
+    shardSummaries: _list[ShardSummary]
 
 @typing.type_check_only
 class EnvironmentDimensionValueEntry(typing_extensions.TypedDict, total=False):
@@ -144,7 +146,7 @@ class EnvironmentDimensionValueEntry(typing_extensions.TypedDict, total=False):
 class Execution(typing_extensions.TypedDict, total=False):
     completionTime: Timestamp
     creationTime: Timestamp
-    dimensionDefinitions: typing.List[MatrixDimensionDefinition]
+    dimensionDefinitions: _list[MatrixDimensionDefinition]
     executionId: str
     outcome: Outcome
     specification: Specification
@@ -176,7 +178,7 @@ class FileReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GraphicsStats(typing_extensions.TypedDict, total=False):
-    buckets: typing.List[GraphicsStatsBucket]
+    buckets: _list[GraphicsStatsBucket]
     highInputLatencyCount: str
     jankyFrames: str
     missedVsyncCount: str
@@ -264,7 +266,7 @@ class LauncherActivityNotFound(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
-    environments: typing.List[Environment]
+    environments: _list[Environment]
     executionId: str
     historyId: str
     nextPageToken: str
@@ -272,46 +274,46 @@ class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
-    executions: typing.List[Execution]
+    executions: _list[Execution]
     nextPageToken: str
 
 @typing.type_check_only
 class ListHistoriesResponse(typing_extensions.TypedDict, total=False):
-    histories: typing.List[History]
+    histories: _list[History]
     nextPageToken: str
 
 @typing.type_check_only
 class ListPerfSampleSeriesResponse(typing_extensions.TypedDict, total=False):
-    perfSampleSeries: typing.List[PerfSampleSeries]
+    perfSampleSeries: _list[PerfSampleSeries]
 
 @typing.type_check_only
 class ListPerfSamplesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    perfSamples: typing.List[PerfSample]
+    perfSamples: _list[PerfSample]
 
 @typing.type_check_only
 class ListScreenshotClustersResponse(typing_extensions.TypedDict, total=False):
-    clusters: typing.List[ScreenshotCluster]
+    clusters: _list[ScreenshotCluster]
 
 @typing.type_check_only
 class ListStepAccessibilityClustersResponse(typing_extensions.TypedDict, total=False):
-    clusters: typing.List[SuggestionClusterProto]
+    clusters: _list[SuggestionClusterProto]
     name: str
 
 @typing.type_check_only
 class ListStepThumbnailsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    thumbnails: typing.List[Image]
+    thumbnails: _list[Image]
 
 @typing.type_check_only
 class ListStepsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    steps: typing.List[Step]
+    steps: _list[Step]
 
 @typing.type_check_only
 class ListTestCasesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    testCases: typing.List[TestCase]
+    testCases: _list[TestCase]
 
 @typing.type_check_only
 class LogcatCollectionError(typing_extensions.TypedDict, total=False): ...
@@ -330,7 +332,7 @@ class MergedResult(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "unknownState", "pending", "inProgress", "complete"
     ]
-    testSuiteOverviews: typing.List[TestSuiteOverview]
+    testSuiteOverviews: _list[TestSuiteOverview]
 
 @typing.type_check_only
 class MultiStep(typing_extensions.TypedDict, total=False):
@@ -345,8 +347,8 @@ class NativeCrash(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NonSdkApi(typing_extensions.TypedDict, total=False):
     apiSignature: str
-    exampleStackTraces: typing.List[str]
-    insights: typing.List[NonSdkApiInsight]
+    exampleStackTraces: _list[str]
+    insights: _list[NonSdkApiInsight]
     invocationCount: int
     list: typing_extensions.Literal[
         "NONE",
@@ -361,19 +363,19 @@ class NonSdkApi(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NonSdkApiInsight(typing_extensions.TypedDict, total=False):
-    exampleTraceMessages: typing.List[str]
+    exampleTraceMessages: _list[str]
     matcherId: str
     pendingGoogleUpdateInsight: PendingGoogleUpdateInsight
     upgradeInsight: UpgradeInsight
 
 @typing.type_check_only
 class NonSdkApiUsageViolation(typing_extensions.TypedDict, total=False):
-    apiSignatures: typing.List[str]
+    apiSignatures: _list[str]
     uniqueApis: int
 
 @typing.type_check_only
 class NonSdkApiUsageViolationReport(typing_extensions.TypedDict, total=False):
-    exampleApis: typing.List[NonSdkApi]
+    exampleApis: _list[NonSdkApi]
     minSdkVersion: int
     targetSdkVersion: int
     uniqueApis: int
@@ -390,7 +392,7 @@ class Outcome(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OverlappingUIElements(typing_extensions.TypedDict, total=False):
-    resourceName: typing.List[str]
+    resourceName: _list[str]
     screenId: str
 
 @typing.type_check_only
@@ -409,7 +411,7 @@ class PerfMetricsSummary(typing_extensions.TypedDict, total=False):
     graphicsStats: GraphicsStats
     historyId: str
     perfEnvironment: PerfEnvironment
-    perfMetrics: typing.List[str]
+    perfMetrics: _list[str]
     projectId: str
     stepId: str
 
@@ -436,7 +438,7 @@ class PerformedMonkeyActions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PrimaryStep(typing_extensions.TypedDict, total=False):
-    individualOutcome: typing.List[IndividualOutcome]
+    individualOutcome: _list[IndividualOutcome]
     rollUp: typing_extensions.Literal[
         "unset", "success", "failure", "inconclusive", "skipped", "flaky"
     ]
@@ -448,7 +450,7 @@ class ProjectSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PublishXunitXmlFilesRequest(typing_extensions.TypedDict, total=False):
-    xunitXmlFiles: typing.List[FileReference]
+    xunitXmlFiles: _list[FileReference]
 
 @typing.type_check_only
 class RegionProto(typing_extensions.TypedDict, total=False):
@@ -483,11 +485,11 @@ class ScreenshotCluster(typing_extensions.TypedDict, total=False):
     activity: str
     clusterId: str
     keyScreen: Screen
-    screens: typing.List[Screen]
+    screens: _list[Screen]
 
 @typing.type_check_only
 class ShardSummary(typing_extensions.TypedDict, total=False):
-    runs: typing.List[StepSummary]
+    runs: _list[StepSummary]
     shardResult: MergedResult
 
 @typing.type_check_only
@@ -513,7 +515,7 @@ class StartActivityNotFound(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -522,9 +524,9 @@ class Step(typing_extensions.TypedDict, total=False):
     creationTime: Timestamp
     description: str
     deviceUsageDuration: Duration
-    dimensionValue: typing.List[StepDimensionValueEntry]
+    dimensionValue: _list[StepDimensionValueEntry]
     hasImages: bool
-    labels: typing.List[StepLabelsEntry]
+    labels: _list[StepLabelsEntry]
     multiStep: MultiStep
     name: str
     outcome: Outcome
@@ -562,7 +564,7 @@ class SuggestionClusterProto(typing_extensions.TypedDict, total=False):
         "lowContrast",
         "implementation",
     ]
-    suggestions: typing.List[SuggestionProto]
+    suggestions: _list[SuggestionProto]
 
 @typing.type_check_only
 class SuggestionProto(typing_extensions.TypedDict, total=False):
@@ -582,12 +584,12 @@ class TestCase(typing_extensions.TypedDict, total=False):
     elapsedTime: Duration
     endTime: Timestamp
     skippedMessage: str
-    stackTraces: typing.List[StackTrace]
+    stackTraces: _list[StackTrace]
     startTime: Timestamp
     status: typing_extensions.Literal["passed", "failed", "error", "skipped", "flaky"]
     testCaseId: str
     testCaseReference: TestCaseReference
-    toolOutputs: typing.List[ToolOutputReference]
+    toolOutputs: _list[ToolOutputReference]
 
 @typing.type_check_only
 class TestCaseReference(typing_extensions.TypedDict, total=False):
@@ -597,8 +599,8 @@ class TestCaseReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestExecutionStep(typing_extensions.TypedDict, total=False):
-    testIssues: typing.List[TestIssue]
-    testSuiteOverviews: typing.List[TestSuiteOverview]
+    testIssues: _list[TestIssue]
+    testSuiteOverviews: _list[TestSuiteOverview]
     testTiming: TestTiming
     toolExecution: ToolExecution
 
@@ -674,10 +676,10 @@ class Timestamp(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ToolExecution(typing_extensions.TypedDict, total=False):
-    commandLineArguments: typing.List[str]
+    commandLineArguments: _list[str]
     exitCode: ToolExitCode
-    toolLogs: typing.List[FileReference]
-    toolOutputs: typing.List[ToolOutputReference]
+    toolLogs: _list[FileReference]
+    toolOutputs: _list[ToolOutputReference]
 
 @typing.type_check_only
 class ToolExecutionStep(typing_extensions.TypedDict, total=False):

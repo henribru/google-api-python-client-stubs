@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class PublishUrlNotificationResponse(typing_extensions.TypedDict, total=False):
     urlNotificationMetadata: UrlNotificationMetadata

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Bin(typing_extensions.TypedDict, total=False):
     density: float
@@ -19,7 +21,7 @@ class Key(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Metric(typing_extensions.TypedDict, total=False):
-    histogram: typing.List[Bin]
+    histogram: _list[Bin]
     percentiles: Percentiles
 
 @typing.type_check_only
@@ -32,7 +34,7 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
     formFactor: typing_extensions.Literal[
         "ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"
     ]
-    metrics: typing.List[str]
+    metrics: _list[str]
     origin: str
     url: str
 
@@ -44,7 +46,7 @@ class QueryResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Record(typing_extensions.TypedDict, total=False):
     key: Key
-    metrics: typing.Dict[str, typing.Any]
+    metrics: dict[str, typing.Any]
 
 @typing.type_check_only
 class UrlNormalization(typing_extensions.TypedDict, total=False):

@@ -2,9 +2,11 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
-    bidderLocation: typing.List[typing.Dict[str, typing.Any]]
+    bidderLocation: _list[dict[str, typing.Any]]
     cookieMatchingNid: str
     cookieMatchingUrl: str
     id: int
@@ -15,37 +17,37 @@ class Account(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountsList(typing_extensions.TypedDict, total=False):
-    items: typing.List[Account]
+    items: _list[Account]
     kind: str
 
 @typing.type_check_only
 class Creative(typing_extensions.TypedDict, total=False):
     HTMLSnippet: str
     accountId: int
-    advertiserId: typing.List[str]
+    advertiserId: _list[str]
     advertiserName: str
     agencyId: str
     apiUploadTimestamp: str
-    attribute: typing.List[int]
+    attribute: _list[int]
     buyerCreativeId: str
-    clickThroughUrl: typing.List[str]
-    corrections: typing.List[typing.Dict[str, typing.Any]]
-    disapprovalReasons: typing.List[typing.Dict[str, typing.Any]]
-    filteringReasons: typing.Dict[str, typing.Any]
+    clickThroughUrl: _list[str]
+    corrections: _list[dict[str, typing.Any]]
+    disapprovalReasons: _list[dict[str, typing.Any]]
+    filteringReasons: dict[str, typing.Any]
     height: int
-    impressionTrackingUrl: typing.List[str]
+    impressionTrackingUrl: _list[str]
     kind: str
-    productCategories: typing.List[int]
-    restrictedCategories: typing.List[int]
-    sensitiveCategories: typing.List[int]
+    productCategories: _list[int]
+    restrictedCategories: _list[int]
+    sensitiveCategories: _list[int]
     status: str
-    vendorType: typing.List[int]
+    vendorType: _list[int]
     version: int
     videoURL: str
     width: int
 
 @typing.type_check_only
 class CreativesList(typing_extensions.TypedDict, total=False):
-    items: typing.List[Creative]
+    items: _list[Creative]
     kind: str
     nextPageToken: str

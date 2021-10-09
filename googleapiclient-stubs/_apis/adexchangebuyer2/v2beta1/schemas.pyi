@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AbsoluteDateRange(typing_extensions.TypedDict, total=False):
     endDate: Date
@@ -21,7 +23,7 @@ class AdSize(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AdTechnologyProviders(typing_extensions.TypedDict, total=False):
-    detectedProviderIds: typing.List[str]
+    detectedProviderIds: _list[str]
     hasUnidentifiedProvider: bool
 
 @typing.type_check_only
@@ -34,11 +36,11 @@ class AddNoteRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AppContext(typing_extensions.TypedDict, total=False):
-    appTypes: typing.List[str]
+    appTypes: _list[str]
 
 @typing.type_check_only
 class AuctionContext(typing_extensions.TypedDict, total=False):
-    auctionTypes: typing.List[str]
+    auctionTypes: _list[str]
 
 @typing.type_check_only
 class BidMetricsRow(typing_extensions.TypedDict, total=False):
@@ -123,8 +125,8 @@ class ContactInformation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Correction(typing_extensions.TypedDict, total=False):
-    contexts: typing.List[ServingContext]
-    details: typing.List[str]
+    contexts: _list[ServingContext]
+    details: _list[str]
     type: typing_extensions.Literal[
         "CORRECTION_TYPE_UNSPECIFIED",
         "VENDOR_IDS_ADDED",
@@ -148,9 +150,9 @@ class Creative(typing_extensions.TypedDict, total=False):
     advertiserName: str
     agencyId: str
     apiUpdateTime: str
-    attributes: typing.List[str]
-    clickThroughUrls: typing.List[str]
-    corrections: typing.List[Correction]
+    attributes: _list[str]
+    clickThroughUrls: _list[str]
+    corrections: _list[Correction]
     creativeId: str
     dealsStatus: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -161,14 +163,14 @@ class Creative(typing_extensions.TypedDict, total=False):
         "PENDING_REVIEW",
         "STATUS_TYPE_UNSPECIFIED",
     ]
-    declaredClickThroughUrls: typing.List[str]
-    detectedAdvertiserIds: typing.List[str]
-    detectedDomains: typing.List[str]
-    detectedLanguages: typing.List[str]
-    detectedProductCategories: typing.List[int]
-    detectedSensitiveCategories: typing.List[int]
+    declaredClickThroughUrls: _list[str]
+    detectedAdvertiserIds: _list[str]
+    detectedDomains: _list[str]
+    detectedLanguages: _list[str]
+    detectedProductCategories: _list[int]
+    detectedSensitiveCategories: _list[int]
     html: HtmlContent
-    impressionTrackingUrls: typing.List[str]
+    impressionTrackingUrls: _list[str]
     native: NativeContent
     openAuctionStatus: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -179,9 +181,9 @@ class Creative(typing_extensions.TypedDict, total=False):
         "PENDING_REVIEW",
         "STATUS_TYPE_UNSPECIFIED",
     ]
-    restrictedCategories: typing.List[str]
-    servingRestrictions: typing.List[ServingRestriction]
-    vendorIds: typing.List[int]
+    restrictedCategories: _list[str]
+    servingRestrictions: _list[ServingRestriction]
+    vendorIds: _list[int]
     version: int
     video: VideoContent
 
@@ -196,15 +198,15 @@ class CreativeRestrictions(typing_extensions.TypedDict, total=False):
     creativeFormat: typing_extensions.Literal[
         "CREATIVE_FORMAT_UNSPECIFIED", "DISPLAY", "VIDEO"
     ]
-    creativeSpecifications: typing.List[CreativeSpecification]
+    creativeSpecifications: _list[CreativeSpecification]
     skippableAdType: typing_extensions.Literal[
         "SKIPPABLE_AD_TYPE_UNSPECIFIED", "SKIPPABLE", "INSTREAM_SELECT", "NOT_SKIPPABLE"
     ]
 
 @typing.type_check_only
 class CreativeSize(typing_extensions.TypedDict, total=False):
-    allowedFormats: typing.List[str]
-    companionSizes: typing.List[Size]
+    allowedFormats: _list[str]
+    companionSizes: _list[Size]
     creativeSizeType: typing_extensions.Literal[
         "CREATIVE_SIZE_TYPE_UNSPECIFIED", "REGULAR", "INTERSTITIAL", "VIDEO", "NATIVE"
     ]
@@ -222,7 +224,7 @@ class CreativeSize(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreativeSpecification(typing_extensions.TypedDict, total=False):
-    creativeCompanionSizes: typing.List[AdSize]
+    creativeCompanionSizes: _list[AdSize]
     creativeSize: AdSize
 
 @typing.type_check_only
@@ -233,8 +235,8 @@ class CreativeStatusRow(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CriteriaTargeting(typing_extensions.TypedDict, total=False):
-    excludedCriteriaIds: typing.List[str]
-    targetedCriteriaIds: typing.List[str]
+    excludedCriteriaIds: _list[str]
+    targetedCriteriaIds: _list[str]
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -259,7 +261,7 @@ class DayPart(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DayPartTargeting(typing_extensions.TypedDict, total=False):
-    dayParts: typing.List[DayPart]
+    dayParts: _list[DayPart]
     timeZoneType: typing_extensions.Literal[
         "TIME_ZONE_SOURCE_UNSPECIFIED", "PUBLISHER", "USER"
     ]
@@ -293,12 +295,12 @@ class Deal(typing_extensions.TypedDict, total=False):
         "PROGRAMMATIC_CREATIVE_SOURCE_UNSPECIFIED", "ADVERTISER", "PUBLISHER"
     ]
     proposalId: str
-    sellerContacts: typing.List[ContactInformation]
+    sellerContacts: _list[ContactInformation]
     syndicationProduct: typing_extensions.Literal[
         "SYNDICATION_PRODUCT_UNSPECIFIED", "CONTENT", "MOBILE", "VIDEO", "GAMES"
     ]
     targeting: MarketplaceTargeting
-    targetingCriterion: typing.List[TargetingCriteria]
+    targetingCriterion: _list[TargetingCriteria]
     updateTime: str
     webPropertyCode: str
 
@@ -342,11 +344,11 @@ class DeliveryControl(typing_extensions.TypedDict, total=False):
         "FRONT_LOADED",
         "AS_FAST_AS_POSSIBLE",
     ]
-    frequencyCaps: typing.List[FrequencyCap]
+    frequencyCaps: _list[FrequencyCap]
 
 @typing.type_check_only
 class Disapproval(typing_extensions.TypedDict, total=False):
-    details: typing.List[str]
+    details: _list[str]
     reason: typing_extensions.Literal[
         "LENGTH_OF_IMAGE_ANIMATION",
         "BROKEN_URL",
@@ -458,7 +460,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class FilterSet(typing_extensions.TypedDict, total=False):
     absoluteDateRange: AbsoluteDateRange
-    breakdownDimensions: typing.List[str]
+    breakdownDimensions: _list[str]
     creativeId: str
     dealId: str
     environment: typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "WEB", "APP"]
@@ -469,13 +471,13 @@ class FilterSet(typing_extensions.TypedDict, total=False):
         "NON_NATIVE_DISPLAY",
         "NON_NATIVE_VIDEO",
     ]
-    formats: typing.List[str]
+    formats: _list[str]
     name: str
-    platforms: typing.List[str]
-    publisherIdentifiers: typing.List[str]
+    platforms: _list[str]
+    publisherIdentifiers: _list[str]
     realtimeTimeRange: RealtimeTimeRange
     relativeDateRange: RelativeDateRange
-    sellerNetworkIds: typing.List[int]
+    sellerNetworkIds: _list[int]
     timeSeriesGranularity: typing_extensions.Literal[
         "TIME_SERIES_GRANULARITY_UNSPECIFIED", "HOURLY", "DAILY"
     ]
@@ -495,8 +497,8 @@ class FilteredBidDetailRow(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FirstPartyMobileApplicationTargeting(typing_extensions.TypedDict, total=False):
-    excludedAppIds: typing.List[str]
-    targetedAppIds: typing.List[str]
+    excludedAppIds: _list[str]
+    targetedAppIds: _list[str]
 
 @typing.type_check_only
 class FrequencyCap(typing_extensions.TypedDict, total=False):
@@ -516,7 +518,7 @@ class FrequencyCap(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
-    fixedPrices: typing.List[PricePerBuyer]
+    fixedPrices: _list[PricePerBuyer]
     guaranteedImpressions: str
     guaranteedLooks: str
     impressionCap: str
@@ -549,44 +551,44 @@ class ImpressionMetricsRow(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InventorySizeTargeting(typing_extensions.TypedDict, total=False):
-    excludedInventorySizes: typing.List[AdSize]
-    targetedInventorySizes: typing.List[AdSize]
+    excludedInventorySizes: _list[AdSize]
+    targetedInventorySizes: _list[AdSize]
 
 @typing.type_check_only
 class ListBidMetricsResponse(typing_extensions.TypedDict, total=False):
-    bidMetricsRows: typing.List[BidMetricsRow]
+    bidMetricsRows: _list[BidMetricsRow]
     nextPageToken: str
 
 @typing.type_check_only
 class ListBidResponseErrorsResponse(typing_extensions.TypedDict, total=False):
-    calloutStatusRows: typing.List[CalloutStatusRow]
+    calloutStatusRows: _list[CalloutStatusRow]
     nextPageToken: str
 
 @typing.type_check_only
 class ListBidResponsesWithoutBidsResponse(typing_extensions.TypedDict, total=False):
-    bidResponseWithoutBidsStatusRows: typing.List[BidResponseWithoutBidsStatusRow]
+    bidResponseWithoutBidsStatusRows: _list[BidResponseWithoutBidsStatusRow]
     nextPageToken: str
 
 @typing.type_check_only
 class ListClientUserInvitationsResponse(typing_extensions.TypedDict, total=False):
-    invitations: typing.List[ClientUserInvitation]
+    invitations: _list[ClientUserInvitation]
     nextPageToken: str
 
 @typing.type_check_only
 class ListClientUsersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    users: typing.List[ClientUser]
+    users: _list[ClientUser]
 
 @typing.type_check_only
 class ListClientsResponse(typing_extensions.TypedDict, total=False):
-    clients: typing.List[Client]
+    clients: _list[Client]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCreativeStatusBreakdownByCreativeResponse(
     typing_extensions.TypedDict, total=False
 ):
-    filteredBidCreativeRows: typing.List[FilteredBidCreativeRow]
+    filteredBidCreativeRows: _list[FilteredBidCreativeRow]
     nextPageToken: str
 
 @typing.type_check_only
@@ -605,67 +607,67 @@ class ListCreativeStatusBreakdownByDetailResponse(
         "VENDOR_DOMAIN",
         "GVL_ID",
     ]
-    filteredBidDetailRows: typing.List[FilteredBidDetailRow]
+    filteredBidDetailRows: _list[FilteredBidDetailRow]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCreativesResponse(typing_extensions.TypedDict, total=False):
-    creatives: typing.List[Creative]
+    creatives: _list[Creative]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDealAssociationsResponse(typing_extensions.TypedDict, total=False):
-    associations: typing.List[CreativeDealAssociation]
+    associations: _list[CreativeDealAssociation]
     nextPageToken: str
 
 @typing.type_check_only
 class ListFilterSetsResponse(typing_extensions.TypedDict, total=False):
-    filterSets: typing.List[FilterSet]
+    filterSets: _list[FilterSet]
     nextPageToken: str
 
 @typing.type_check_only
 class ListFilteredBidRequestsResponse(typing_extensions.TypedDict, total=False):
-    calloutStatusRows: typing.List[CalloutStatusRow]
+    calloutStatusRows: _list[CalloutStatusRow]
     nextPageToken: str
 
 @typing.type_check_only
 class ListFilteredBidsResponse(typing_extensions.TypedDict, total=False):
-    creativeStatusRows: typing.List[CreativeStatusRow]
+    creativeStatusRows: _list[CreativeStatusRow]
     nextPageToken: str
 
 @typing.type_check_only
 class ListImpressionMetricsResponse(typing_extensions.TypedDict, total=False):
-    impressionMetricsRows: typing.List[ImpressionMetricsRow]
+    impressionMetricsRows: _list[ImpressionMetricsRow]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLosingBidsResponse(typing_extensions.TypedDict, total=False):
-    creativeStatusRows: typing.List[CreativeStatusRow]
+    creativeStatusRows: _list[CreativeStatusRow]
     nextPageToken: str
 
 @typing.type_check_only
 class ListNonBillableWinningBidsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    nonBillableWinningBidStatusRows: typing.List[NonBillableWinningBidStatusRow]
+    nonBillableWinningBidStatusRows: _list[NonBillableWinningBidStatusRow]
 
 @typing.type_check_only
 class ListProductsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    products: typing.List[Product]
+    products: _list[Product]
 
 @typing.type_check_only
 class ListProposalsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    proposals: typing.List[Proposal]
+    proposals: _list[Proposal]
 
 @typing.type_check_only
 class ListPublisherProfilesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    publisherProfiles: typing.List[PublisherProfile]
+    publisherProfiles: _list[PublisherProfile]
 
 @typing.type_check_only
 class LocationContext(typing_extensions.TypedDict, total=False):
-    geoCriteriaIds: typing.List[int]
+    geoCriteriaIds: _list[int]
 
 @typing.type_check_only
 class MarketplaceTargeting(typing_extensions.TypedDict, total=False):
@@ -721,11 +723,11 @@ class NonBillableWinningBidStatusRow(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NonGuaranteedAuctionTerms(typing_extensions.TypedDict, total=False):
     autoOptimizePrivateAuction: bool
-    reservePricesPerBuyer: typing.List[PricePerBuyer]
+    reservePricesPerBuyer: _list[PricePerBuyer]
 
 @typing.type_check_only
 class NonGuaranteedFixedPriceTerms(typing_extensions.TypedDict, total=False):
-    fixedPrices: typing.List[PricePerBuyer]
+    fixedPrices: _list[PricePerBuyer]
 
 @typing.type_check_only
 class Note(typing_extensions.TypedDict, total=False):
@@ -744,7 +746,7 @@ class OperatingSystemTargeting(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PauseProposalDealsRequest(typing_extensions.TypedDict, total=False):
-    externalDealIds: typing.List[str]
+    externalDealIds: _list[str]
     reason: str
 
 @typing.type_check_only
@@ -758,7 +760,7 @@ class PlacementTargeting(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PlatformContext(typing_extensions.TypedDict, total=False):
-    platforms: typing.List[str]
+    platforms: _list[str]
 
 @typing.type_check_only
 class Price(typing_extensions.TypedDict, total=False):
@@ -769,7 +771,7 @@ class Price(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PricePerBuyer(typing_extensions.TypedDict, total=False):
-    advertiserIds: typing.List[str]
+    advertiserIds: _list[str]
     buyer: Buyer
     price: Price
 
@@ -782,7 +784,7 @@ class Product(typing_extensions.TypedDict, total=False):
     availableEndTime: str
     availableStartTime: str
     createTime: str
-    creatorContacts: typing.List[ContactInformation]
+    creatorContacts: _list[ContactInformation]
     displayName: str
     hasCreatorSignedOff: bool
     productId: str
@@ -792,7 +794,7 @@ class Product(typing_extensions.TypedDict, total=False):
     syndicationProduct: typing_extensions.Literal[
         "SYNDICATION_PRODUCT_UNSPECIFIED", "CONTENT", "MOBILE", "VIDEO", "GAMES"
     ]
-    targetingCriterion: typing.List[TargetingCriteria]
+    targetingCriterion: _list[TargetingCriteria]
     terms: DealTerms
     updateTime: str
     webPropertyCode: str
@@ -801,16 +803,16 @@ class Product(typing_extensions.TypedDict, total=False):
 class Proposal(typing_extensions.TypedDict, total=False):
     billedBuyer: Buyer
     buyer: Buyer
-    buyerContacts: typing.List[ContactInformation]
+    buyerContacts: _list[ContactInformation]
     buyerPrivateData: PrivateData
-    deals: typing.List[Deal]
+    deals: _list[Deal]
     displayName: str
     isRenegotiating: bool
     isSetupComplete: bool
     lastUpdaterOrCommentorRole: typing_extensions.Literal[
         "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
     ]
-    notes: typing.List[Note]
+    notes: _list[Note]
     originatorRole: typing_extensions.Literal[
         "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
     ]
@@ -826,7 +828,7 @@ class Proposal(typing_extensions.TypedDict, total=False):
         "FINALIZED",
     ]
     seller: Seller
-    sellerContacts: typing.List[ContactInformation]
+    sellerContacts: _list[ContactInformation]
     termsAndConditions: str
     updateTime: str
 
@@ -836,19 +838,19 @@ class PublisherProfile(typing_extensions.TypedDict, total=False):
     buyerPitchStatement: str
     directDealsContact: str
     displayName: str
-    domains: typing.List[str]
+    domains: _list[str]
     googlePlusUrl: str
     isParent: bool
     logoUrl: str
     mediaKitUrl: str
-    mobileApps: typing.List[PublisherProfileMobileApplication]
+    mobileApps: _list[PublisherProfileMobileApplication]
     overview: str
     programmaticDealsContact: str
     publisherProfileId: str
     rateCardInfoUrl: str
     samplePageUrl: str
     seller: Seller
-    topHeadlines: typing.List[str]
+    topHeadlines: _list[str]
 
 @typing.type_check_only
 class PublisherProfileMobileApplication(typing_extensions.TypedDict, total=False):
@@ -885,7 +887,7 @@ class RemoveDealAssociationRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResumeProposalDealsRequest(typing_extensions.TypedDict, total=False):
-    externalDealIds: typing.List[str]
+    externalDealIds: _list[str]
 
 @typing.type_check_only
 class ResumeProposalRequest(typing_extensions.TypedDict, total=False): ...
@@ -897,7 +899,7 @@ class RowDimensions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityContext(typing_extensions.TypedDict, total=False):
-    securities: typing.List[str]
+    securities: _list[str]
 
 @typing.type_check_only
 class Seller(typing_extensions.TypedDict, total=False):
@@ -915,9 +917,9 @@ class ServingContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServingRestriction(typing_extensions.TypedDict, total=False):
-    contexts: typing.List[ServingContext]
+    contexts: _list[ServingContext]
     disapproval: Disapproval
-    disapprovalReasons: typing.List[Disapproval]
+    disapprovalReasons: _list[Disapproval]
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "DISAPPROVAL", "PENDING_REVIEW"
     ]
@@ -932,8 +934,8 @@ class StopWatchingCreativeRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class TargetingCriteria(typing_extensions.TypedDict, total=False):
-    exclusions: typing.List[TargetingValue]
-    inclusions: typing.List[TargetingValue]
+    exclusions: _list[TargetingValue]
+    inclusions: _list[TargetingValue]
     key: str
 
 @typing.type_check_only
@@ -963,8 +965,8 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UrlTargeting(typing_extensions.TypedDict, total=False):
-    excludedUrls: typing.List[str]
-    targetedUrls: typing.List[str]
+    excludedUrls: _list[str]
+    targetedUrls: _list[str]
 
 @typing.type_check_only
 class VideoContent(typing_extensions.TypedDict, total=False):
@@ -973,8 +975,8 @@ class VideoContent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VideoTargeting(typing_extensions.TypedDict, total=False):
-    excludedPositionTypes: typing.List[str]
-    targetedPositionTypes: typing.List[str]
+    excludedPositionTypes: _list[str]
+    targetedPositionTypes: _list[str]
 
 @typing.type_check_only
 class WatchCreativeRequest(typing_extensions.TypedDict, total=False):

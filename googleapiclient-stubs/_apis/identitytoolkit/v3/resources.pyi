@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class IdentityToolkitResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -130,9 +132,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
 class CreateAuthUriResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreateAuthUriResponse: ...
 
@@ -140,9 +140,7 @@ class CreateAuthUriResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DeleteAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DeleteAccountResponse: ...
 
@@ -150,9 +148,7 @@ class DeleteAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DownloadAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DownloadAccountResponse: ...
 
@@ -160,9 +156,7 @@ class DownloadAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
 class EmailLinkSigninResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EmailLinkSigninResponse: ...
 
@@ -170,9 +164,7 @@ class EmailLinkSigninResponseHttpRequest(googleapiclient.http.HttpRequest):
 class GetAccountInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetAccountInfoResponse: ...
 
@@ -180,9 +172,7 @@ class GetAccountInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
 class GetOobConfirmationCodeResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetOobConfirmationCodeResponse: ...
 
@@ -190,9 +180,7 @@ class GetOobConfirmationCodeResponseHttpRequest(googleapiclient.http.HttpRequest
 class GetRecaptchaParamResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetRecaptchaParamResponse: ...
 
@@ -202,9 +190,7 @@ class IdentitytoolkitRelyingpartyGetProjectConfigResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> IdentitytoolkitRelyingpartyGetProjectConfigResponse: ...
 
@@ -214,9 +200,7 @@ class IdentitytoolkitRelyingpartyGetPublicKeysResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> IdentitytoolkitRelyingpartyGetPublicKeysResponse: ...
 
@@ -226,9 +210,7 @@ class IdentitytoolkitRelyingpartySendVerificationCodeResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> IdentitytoolkitRelyingpartySendVerificationCodeResponse: ...
 
@@ -238,9 +220,7 @@ class IdentitytoolkitRelyingpartySetProjectConfigResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> IdentitytoolkitRelyingpartySetProjectConfigResponse: ...
 
@@ -250,9 +230,7 @@ class IdentitytoolkitRelyingpartySignOutUserResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> IdentitytoolkitRelyingpartySignOutUserResponse: ...
 
@@ -262,9 +240,7 @@ class IdentitytoolkitRelyingpartyVerifyPhoneNumberResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse: ...
 
@@ -272,9 +248,7 @@ class IdentitytoolkitRelyingpartyVerifyPhoneNumberResponseHttpRequest(
 class ResetPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ResetPasswordResponse: ...
 
@@ -282,9 +256,7 @@ class ResetPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SetAccountInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SetAccountInfoResponse: ...
 
@@ -292,9 +264,7 @@ class SetAccountInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SignupNewUserResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SignupNewUserResponse: ...
 
@@ -302,9 +272,7 @@ class SignupNewUserResponseHttpRequest(googleapiclient.http.HttpRequest):
 class UploadAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UploadAccountResponse: ...
 
@@ -312,9 +280,7 @@ class UploadAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
 class VerifyAssertionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VerifyAssertionResponse: ...
 
@@ -322,9 +288,7 @@ class VerifyAssertionResponseHttpRequest(googleapiclient.http.HttpRequest):
 class VerifyCustomTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VerifyCustomTokenResponse: ...
 
@@ -332,8 +296,6 @@ class VerifyCustomTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
 class VerifyPasswordResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VerifyPasswordResponse: ...

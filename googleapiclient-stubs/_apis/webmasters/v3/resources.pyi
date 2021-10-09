@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class WebmastersResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -51,9 +53,7 @@ class WebmastersResource(googleapiclient.discovery.Resource):
 class SearchAnalyticsQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchAnalyticsQueryResponse: ...
 
@@ -61,9 +61,7 @@ class SearchAnalyticsQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SitemapsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SitemapsListResponse: ...
 
@@ -71,9 +69,7 @@ class SitemapsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SitesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SitesListResponse: ...
 
@@ -81,9 +77,7 @@ class SitesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class WmxSiteHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> WmxSite: ...
 
@@ -91,8 +85,6 @@ class WmxSiteHttpRequest(googleapiclient.http.HttpRequest):
 class WmxSitemapHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> WmxSitemap: ...

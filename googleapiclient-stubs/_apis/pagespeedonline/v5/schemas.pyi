@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditRefs(typing_extensions.TypedDict, total=False):
     acronym: str
     group: str
     id: str
-    relevantAudits: typing.List[str]
+    relevantAudits: _list[str]
     weight: float
 
 @typing.type_check_only
@@ -57,7 +59,7 @@ class I18n(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LighthouseAuditResultV5(typing_extensions.TypedDict, total=False):
     description: str
-    details: typing.Dict[str, typing.Any]
+    details: dict[str, typing.Any]
     displayValue: str
     errorMessage: str
     explanation: str
@@ -71,7 +73,7 @@ class LighthouseAuditResultV5(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LighthouseCategoryV5(typing_extensions.TypedDict, total=False):
-    auditRefs: typing.List[AuditRefs]
+    auditRefs: _list[AuditRefs]
     description: str
     id: str
     manualDescription: str
@@ -80,9 +82,9 @@ class LighthouseCategoryV5(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LighthouseResultV5(typing_extensions.TypedDict, total=False):
-    audits: typing.Dict[str, typing.Any]
+    audits: dict[str, typing.Any]
     categories: Categories
-    categoryGroups: typing.Dict[str, typing.Any]
+    categoryGroups: dict[str, typing.Any]
     configSettings: ConfigSettings
     environment: Environment
     fetchTime: str
@@ -90,9 +92,9 @@ class LighthouseResultV5(typing_extensions.TypedDict, total=False):
     i18n: I18n
     lighthouseVersion: str
     requestedUrl: str
-    runWarnings: typing.List[typing.Any]
+    runWarnings: _list[typing.Any]
     runtimeError: RuntimeError
-    stackPacks: typing.List[StackPack]
+    stackPacks: _list[StackPack]
     timing: Timing
     userAgent: str
 
@@ -100,7 +102,7 @@ class LighthouseResultV5(typing_extensions.TypedDict, total=False):
 class PagespeedApiLoadingExperienceV5(typing_extensions.TypedDict, total=False):
     id: str
     initial_url: str
-    metrics: typing.Dict[str, typing.Any]
+    metrics: dict[str, typing.Any]
     origin_fallback: bool
     overall_category: str
 
@@ -178,7 +180,7 @@ class RuntimeError(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StackPack(typing_extensions.TypedDict, total=False):
-    descriptions: typing.Dict[str, typing.Any]
+    descriptions: dict[str, typing.Any]
     iconDataURL: str
     id: str
     title: str
@@ -190,7 +192,7 @@ class Timing(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UserPageLoadMetricV5(typing_extensions.TypedDict, total=False):
     category: str
-    distributions: typing.List[Bucket]
+    distributions: _list[Bucket]
     formFactor: str
     median: int
     metricId: str

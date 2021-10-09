@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AddBandingRequest(typing_extensions.TypedDict, total=False):
     bandedRange: BandedRange
@@ -38,7 +40,7 @@ class AddDimensionGroupRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AddDimensionGroupResponse(typing_extensions.TypedDict, total=False):
-    dimensionGroups: typing.List[DimensionGroup]
+    dimensionGroups: _list[DimensionGroup]
 
 @typing.type_check_only
 class AddFilterViewRequest(typing_extensions.TypedDict, total=False):
@@ -83,7 +85,7 @@ class AddSlicerResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AppendCellsRequest(typing_extensions.TypedDict, total=False):
     fields: str
-    rows: typing.List[RowData]
+    rows: _list[RowData]
     sheetId: int
 
 @typing.type_check_only
@@ -166,7 +168,7 @@ class BasicChartSeries(typing_extensions.TypedDict, total=False):
     lineStyle: LineStyle
     pointStyle: PointStyle
     series: ChartData
-    styleOverrides: typing.List[BasicSeriesDataPointStyleOverride]
+    styleOverrides: _list[BasicSeriesDataPointStyleOverride]
     targetAxis: typing_extensions.Literal[
         "BASIC_CHART_AXIS_POSITION_UNSPECIFIED",
         "BOTTOM_AXIS",
@@ -186,7 +188,7 @@ class BasicChartSeries(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BasicChartSpec(typing_extensions.TypedDict, total=False):
-    axis: typing.List[BasicChartAxis]
+    axis: _list[BasicChartAxis]
     chartType: typing_extensions.Literal[
         "BASIC_CHART_TYPE_UNSPECIFIED",
         "BAR",
@@ -200,7 +202,7 @@ class BasicChartSpec(typing_extensions.TypedDict, total=False):
     compareMode: typing_extensions.Literal[
         "BASIC_CHART_COMPARE_MODE_UNSPECIFIED", "DATUM", "CATEGORY"
     ]
-    domains: typing.List[BasicChartDomain]
+    domains: _list[BasicChartDomain]
     headerCount: int
     interpolateNulls: bool
     legendPosition: typing_extensions.Literal[
@@ -212,7 +214,7 @@ class BasicChartSpec(typing_extensions.TypedDict, total=False):
         "NO_LEGEND",
     ]
     lineSmoothing: bool
-    series: typing.List[BasicChartSeries]
+    series: _list[BasicChartSeries]
     stackedType: typing_extensions.Literal[
         "BASIC_CHART_STACKED_TYPE_UNSPECIFIED",
         "NOT_STACKED",
@@ -224,10 +226,10 @@ class BasicChartSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BasicFilter(typing_extensions.TypedDict, total=False):
-    criteria: typing.Dict[str, typing.Any]
-    filterSpecs: typing.List[FilterSpec]
+    criteria: dict[str, typing.Any]
+    filterSpecs: _list[FilterSpec]
     range: GridRange
-    sortSpecs: typing.List[SortSpec]
+    sortSpecs: _list[SortSpec]
 
 @typing.type_check_only
 class BasicSeriesDataPointStyleOverride(typing_extensions.TypedDict, total=False):
@@ -238,25 +240,25 @@ class BasicSeriesDataPointStyleOverride(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class BatchClearValuesByDataFilterRequest(typing_extensions.TypedDict, total=False):
-    dataFilters: typing.List[DataFilter]
+    dataFilters: _list[DataFilter]
 
 @typing.type_check_only
 class BatchClearValuesByDataFilterResponse(typing_extensions.TypedDict, total=False):
-    clearedRanges: typing.List[str]
+    clearedRanges: _list[str]
     spreadsheetId: str
 
 @typing.type_check_only
 class BatchClearValuesRequest(typing_extensions.TypedDict, total=False):
-    ranges: typing.List[str]
+    ranges: _list[str]
 
 @typing.type_check_only
 class BatchClearValuesResponse(typing_extensions.TypedDict, total=False):
-    clearedRanges: typing.List[str]
+    clearedRanges: _list[str]
     spreadsheetId: str
 
 @typing.type_check_only
 class BatchGetValuesByDataFilterRequest(typing_extensions.TypedDict, total=False):
-    dataFilters: typing.List[DataFilter]
+    dataFilters: _list[DataFilter]
     dateTimeRenderOption: typing_extensions.Literal["SERIAL_NUMBER", "FORMATTED_STRING"]
     majorDimension: typing_extensions.Literal[
         "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
@@ -268,29 +270,29 @@ class BatchGetValuesByDataFilterRequest(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class BatchGetValuesByDataFilterResponse(typing_extensions.TypedDict, total=False):
     spreadsheetId: str
-    valueRanges: typing.List[MatchedValueRange]
+    valueRanges: _list[MatchedValueRange]
 
 @typing.type_check_only
 class BatchGetValuesResponse(typing_extensions.TypedDict, total=False):
     spreadsheetId: str
-    valueRanges: typing.List[ValueRange]
+    valueRanges: _list[ValueRange]
 
 @typing.type_check_only
 class BatchUpdateSpreadsheetRequest(typing_extensions.TypedDict, total=False):
     includeSpreadsheetInResponse: bool
-    requests: typing.List[Request]
+    requests: _list[Request]
     responseIncludeGridData: bool
-    responseRanges: typing.List[str]
+    responseRanges: _list[str]
 
 @typing.type_check_only
 class BatchUpdateSpreadsheetResponse(typing_extensions.TypedDict, total=False):
-    replies: typing.List[Response]
+    replies: _list[Response]
     spreadsheetId: str
     updatedSpreadsheet: Spreadsheet
 
 @typing.type_check_only
 class BatchUpdateValuesByDataFilterRequest(typing_extensions.TypedDict, total=False):
-    data: typing.List[DataFilterValueRange]
+    data: _list[DataFilterValueRange]
     includeValuesInResponse: bool
     responseDateTimeRenderOption: typing_extensions.Literal[
         "SERIAL_NUMBER", "FORMATTED_STRING"
@@ -304,7 +306,7 @@ class BatchUpdateValuesByDataFilterRequest(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class BatchUpdateValuesByDataFilterResponse(typing_extensions.TypedDict, total=False):
-    responses: typing.List[UpdateValuesByDataFilterResponse]
+    responses: _list[UpdateValuesByDataFilterResponse]
     spreadsheetId: str
     totalUpdatedCells: int
     totalUpdatedColumns: int
@@ -313,7 +315,7 @@ class BatchUpdateValuesByDataFilterResponse(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class BatchUpdateValuesRequest(typing_extensions.TypedDict, total=False):
-    data: typing.List[ValueRange]
+    data: _list[ValueRange]
     includeValuesInResponse: bool
     responseDateTimeRenderOption: typing_extensions.Literal[
         "SERIAL_NUMBER", "FORMATTED_STRING"
@@ -327,7 +329,7 @@ class BatchUpdateValuesRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchUpdateValuesResponse(typing_extensions.TypedDict, total=False):
-    responses: typing.List[UpdateValuesResponse]
+    responses: _list[UpdateValuesResponse]
     spreadsheetId: str
     totalUpdatedCells: int
     totalUpdatedColumns: int
@@ -386,7 +388,7 @@ class BooleanCondition(typing_extensions.TypedDict, total=False):
         "TEXT_NOT_EQ",
         "DATE_NOT_EQ",
     ]
-    values: typing.List[ConditionValue]
+    values: _list[ConditionValue]
 
 @typing.type_check_only
 class BooleanRule(typing_extensions.TypedDict, total=False):
@@ -441,7 +443,7 @@ class BubbleChartSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CandlestickChartSpec(typing_extensions.TypedDict, total=False):
-    data: typing.List[CandlestickData]
+    data: _list[CandlestickData]
     domain: CandlestickDomain
 
 @typing.type_check_only
@@ -471,7 +473,7 @@ class CellData(typing_extensions.TypedDict, total=False):
     hyperlink: str
     note: str
     pivotTable: PivotTable
-    textFormatRuns: typing.List[TextFormatRun]
+    textFormatRuns: _list[TextFormatRun]
     userEnteredFormat: CellFormat
     userEnteredValue: ExtendedValue
 
@@ -562,7 +564,7 @@ class ChartHistogramRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChartSourceRange(typing_extensions.TypedDict, total=False):
-    sources: typing.List[GridRange]
+    sources: _list[GridRange]
 
 @typing.type_check_only
 class ChartSpec(typing_extensions.TypedDict, total=False):
@@ -573,7 +575,7 @@ class ChartSpec(typing_extensions.TypedDict, total=False):
     bubbleChart: BubbleChartSpec
     candlestickChart: CandlestickChartSpec
     dataSourceChartProperties: DataSourceChartProperties
-    filterSpecs: typing.List[FilterSpec]
+    filterSpecs: _list[FilterSpec]
     fontName: str
     hiddenDimensionStrategy: typing_extensions.Literal[
         "CHART_HIDDEN_DIMENSION_STRATEGY_UNSPECIFIED",
@@ -587,7 +589,7 @@ class ChartSpec(typing_extensions.TypedDict, total=False):
     orgChart: OrgChartSpec
     pieChart: PieChartSpec
     scorecardChart: ScorecardChartSpec
-    sortSpecs: typing.List[SortSpec]
+    sortSpecs: _list[SortSpec]
     subtitle: str
     subtitleTextFormat: TextFormat
     subtitleTextPosition: TextPosition
@@ -649,7 +651,7 @@ class ConditionValue(typing_extensions.TypedDict, total=False):
 class ConditionalFormatRule(typing_extensions.TypedDict, total=False):
     booleanRule: BooleanRule
     gradientRule: GradientRule
-    ranges: typing.List[GridRange]
+    ranges: _list[GridRange]
 
 @typing.type_check_only
 class CopyPasteRequest(typing_extensions.TypedDict, total=False):
@@ -736,7 +738,7 @@ class DataFilterValueRange(typing_extensions.TypedDict, total=False):
     majorDimension: typing_extensions.Literal[
         "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
     ]
-    values: typing.List[list]
+    values: _list[list]
 
 @typing.type_check_only
 class DataLabel(typing_extensions.TypedDict, total=False):
@@ -759,7 +761,7 @@ class DataLabel(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSource(typing_extensions.TypedDict, total=False):
-    calculatedColumns: typing.List[DataSourceColumn]
+    calculatedColumns: _list[DataSourceColumn]
     dataSourceId: str
     sheetId: int
     spec: DataSourceSpec
@@ -793,7 +795,7 @@ class DataSourceObjectReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSourceObjectReferences(typing_extensions.TypedDict, total=False):
-    references: typing.List[DataSourceObjectReference]
+    references: _list[DataSourceObjectReference]
 
 @typing.type_check_only
 class DataSourceParameter(typing_extensions.TypedDict, total=False):
@@ -807,7 +809,7 @@ class DataSourceRefreshDailySchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSourceRefreshMonthlySchedule(typing_extensions.TypedDict, total=False):
-    daysOfMonth: typing.List[int]
+    daysOfMonth: _list[int]
     startTime: TimeOfDay
 
 @typing.type_check_only
@@ -823,36 +825,36 @@ class DataSourceRefreshSchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSourceRefreshWeeklySchedule(typing_extensions.TypedDict, total=False):
-    daysOfWeek: typing.List[str]
+    daysOfWeek: _list[str]
     startTime: TimeOfDay
 
 @typing.type_check_only
 class DataSourceSheetDimensionRange(typing_extensions.TypedDict, total=False):
-    columnReferences: typing.List[DataSourceColumnReference]
+    columnReferences: _list[DataSourceColumnReference]
     sheetId: int
 
 @typing.type_check_only
 class DataSourceSheetProperties(typing_extensions.TypedDict, total=False):
-    columns: typing.List[DataSourceColumn]
+    columns: _list[DataSourceColumn]
     dataExecutionStatus: DataExecutionStatus
     dataSourceId: str
 
 @typing.type_check_only
 class DataSourceSpec(typing_extensions.TypedDict, total=False):
     bigQuery: BigQueryDataSourceSpec
-    parameters: typing.List[DataSourceParameter]
+    parameters: _list[DataSourceParameter]
 
 @typing.type_check_only
 class DataSourceTable(typing_extensions.TypedDict, total=False):
     columnSelectionType: typing_extensions.Literal[
         "DATA_SOURCE_TABLE_COLUMN_SELECTION_TYPE_UNSPECIFIED", "SELECTED", "SYNC_ALL"
     ]
-    columns: typing.List[DataSourceColumnReference]
+    columns: _list[DataSourceColumnReference]
     dataExecutionStatus: DataExecutionStatus
     dataSourceId: str
-    filterSpecs: typing.List[FilterSpec]
+    filterSpecs: _list[FilterSpec]
     rowLimit: int
-    sortSpecs: typing.List[SortSpec]
+    sortSpecs: _list[SortSpec]
 
 @typing.type_check_only
 class DataValidationRule(typing_extensions.TypedDict, total=False):
@@ -905,7 +907,7 @@ class DeleteDeveloperMetadataRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeleteDeveloperMetadataResponse(typing_extensions.TypedDict, total=False):
-    deletedDeveloperMetadata: typing.List[DeveloperMetadata]
+    deletedDeveloperMetadata: _list[DeveloperMetadata]
 
 @typing.type_check_only
 class DeleteDimensionGroupRequest(typing_extensions.TypedDict, total=False):
@@ -913,7 +915,7 @@ class DeleteDimensionGroupRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeleteDimensionGroupResponse(typing_extensions.TypedDict, total=False):
-    dimensionGroups: typing.List[DimensionGroup]
+    dimensionGroups: _list[DimensionGroup]
 
 @typing.type_check_only
 class DeleteDimensionRequest(typing_extensions.TypedDict, total=False):
@@ -921,7 +923,7 @@ class DeleteDimensionRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeleteDuplicatesRequest(typing_extensions.TypedDict, total=False):
-    comparisonColumns: typing.List[DimensionRange]
+    comparisonColumns: _list[DimensionRange]
     range: GridRange
 
 @typing.type_check_only
@@ -1009,7 +1011,7 @@ class DimensionGroup(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DimensionProperties(typing_extensions.TypedDict, total=False):
     dataSourceColumnReference: DataSourceColumnReference
-    developerMetadata: typing.List[DeveloperMetadata]
+    developerMetadata: _list[DeveloperMetadata]
     hiddenByFilter: bool
     hiddenByUser: bool
     pixelSize: int
@@ -1043,8 +1045,8 @@ class DuplicateSheetResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Editors(typing_extensions.TypedDict, total=False):
     domainUsersCanEdit: bool
-    groups: typing.List[str]
-    users: typing.List[str]
+    groups: _list[str]
+    users: _list[str]
 
 @typing.type_check_only
 class EmbeddedChart(typing_extensions.TypedDict, total=False):
@@ -1091,7 +1093,7 @@ class ExtendedValue(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FilterCriteria(typing_extensions.TypedDict, total=False):
     condition: BooleanCondition
-    hiddenValues: typing.List[str]
+    hiddenValues: _list[str]
     visibleBackgroundColor: Color
     visibleBackgroundColorStyle: ColorStyle
     visibleForegroundColor: Color
@@ -1105,12 +1107,12 @@ class FilterSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FilterView(typing_extensions.TypedDict, total=False):
-    criteria: typing.Dict[str, typing.Any]
-    filterSpecs: typing.List[FilterSpec]
+    criteria: dict[str, typing.Any]
+    filterSpecs: _list[FilterSpec]
     filterViewId: int
     namedRangeId: str
     range: GridRange
-    sortSpecs: typing.List[SortSpec]
+    sortSpecs: _list[SortSpec]
     title: str
 
 @typing.type_check_only
@@ -1135,7 +1137,7 @@ class FindReplaceResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetSpreadsheetByDataFilterRequest(typing_extensions.TypedDict, total=False):
-    dataFilters: typing.List[DataFilter]
+    dataFilters: _list[DataFilter]
     includeGridData: bool
 
 @typing.type_check_only
@@ -1152,9 +1154,9 @@ class GridCoordinate(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GridData(typing_extensions.TypedDict, total=False):
-    columnMetadata: typing.List[DimensionProperties]
-    rowData: typing.List[RowData]
-    rowMetadata: typing.List[DimensionProperties]
+    columnMetadata: _list[DimensionProperties]
+    rowData: _list[RowData]
+    rowMetadata: _list[DimensionProperties]
     startColumn: int
     startRow: int
 
@@ -1189,7 +1191,7 @@ class HistogramChartSpec(typing_extensions.TypedDict, total=False):
         "INSIDE_LEGEND",
     ]
     outlierPercentile: float
-    series: typing.List[HistogramSeries]
+    series: _list[HistogramSeries]
     showItemDividers: bool
 
 @typing.type_check_only
@@ -1266,21 +1268,21 @@ class Link(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ManualRule(typing_extensions.TypedDict, total=False):
-    groups: typing.List[ManualRuleGroup]
+    groups: _list[ManualRuleGroup]
 
 @typing.type_check_only
 class ManualRuleGroup(typing_extensions.TypedDict, total=False):
     groupName: ExtendedValue
-    items: typing.List[ExtendedValue]
+    items: _list[ExtendedValue]
 
 @typing.type_check_only
 class MatchedDeveloperMetadata(typing_extensions.TypedDict, total=False):
-    dataFilters: typing.List[DataFilter]
+    dataFilters: _list[DataFilter]
     developerMetadata: DeveloperMetadata
 
 @typing.type_check_only
 class MatchedValueRange(typing_extensions.TypedDict, total=False):
-    dataFilters: typing.List[DataFilter]
+    dataFilters: _list[DataFilter]
     valueRange: ValueRange
 
 @typing.type_check_only
@@ -1378,7 +1380,7 @@ class PieChartSpec(typing_extensions.TypedDict, total=False):
 class PivotFilterCriteria(typing_extensions.TypedDict, total=False):
     condition: BooleanCondition
     visibleByDefault: bool
-    visibleValues: typing.List[str]
+    visibleValues: _list[str]
 
 @typing.type_check_only
 class PivotFilterSpec(typing_extensions.TypedDict, total=False):
@@ -1399,7 +1401,7 @@ class PivotGroup(typing_extensions.TypedDict, total=False):
     ]
     sourceColumnOffset: int
     valueBucket: PivotGroupSortValueBucket
-    valueMetadata: typing.List[PivotGroupValueMetadata]
+    valueMetadata: _list[PivotGroupValueMetadata]
 
 @typing.type_check_only
 class PivotGroupLimit(typing_extensions.TypedDict, total=False):
@@ -1414,7 +1416,7 @@ class PivotGroupRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PivotGroupSortValueBucket(typing_extensions.TypedDict, total=False):
-    buckets: typing.List[ExtendedValue]
+    buckets: _list[ExtendedValue]
     valuesIndex: int
 
 @typing.type_check_only
@@ -1424,15 +1426,15 @@ class PivotGroupValueMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PivotTable(typing_extensions.TypedDict, total=False):
-    columns: typing.List[PivotGroup]
-    criteria: typing.Dict[str, typing.Any]
+    columns: _list[PivotGroup]
+    criteria: dict[str, typing.Any]
     dataExecutionStatus: DataExecutionStatus
     dataSourceId: str
-    filterSpecs: typing.List[PivotFilterSpec]
-    rows: typing.List[PivotGroup]
+    filterSpecs: _list[PivotFilterSpec]
+    rows: _list[PivotGroup]
     source: GridRange
     valueLayout: typing_extensions.Literal["HORIZONTAL", "VERTICAL"]
-    values: typing.List[PivotValue]
+    values: _list[PivotValue]
 
 @typing.type_check_only
 class PivotValue(typing_extensions.TypedDict, total=False):
@@ -1487,7 +1489,7 @@ class ProtectedRange(typing_extensions.TypedDict, total=False):
     protectedRangeId: int
     range: GridRange
     requestingUserCanEdit: bool
-    unprotectedRanges: typing.List[GridRange]
+    unprotectedRanges: _list[GridRange]
     warningOnly: bool
 
 @typing.type_check_only
@@ -1508,7 +1510,7 @@ class RefreshDataSourceRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RefreshDataSourceResponse(typing_extensions.TypedDict, total=False):
-    statuses: typing.List[RefreshDataSourceObjectExecutionStatus]
+    statuses: _list[RefreshDataSourceObjectExecutionStatus]
 
 @typing.type_check_only
 class RepeatCellRequest(typing_extensions.TypedDict, total=False):
@@ -1612,7 +1614,7 @@ class Response(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RowData(typing_extensions.TypedDict, total=False):
-    values: typing.List[CellData]
+    values: _list[CellData]
 
 @typing.type_check_only
 class ScorecardChartSpec(typing_extensions.TypedDict, total=False):
@@ -1637,11 +1639,11 @@ class ScorecardChartSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchDeveloperMetadataRequest(typing_extensions.TypedDict, total=False):
-    dataFilters: typing.List[DataFilter]
+    dataFilters: _list[DataFilter]
 
 @typing.type_check_only
 class SearchDeveloperMetadataResponse(typing_extensions.TypedDict, total=False):
-    matchedDeveloperMetadata: typing.List[MatchedDeveloperMetadata]
+    matchedDeveloperMetadata: _list[MatchedDeveloperMetadata]
 
 @typing.type_check_only
 class SetBasicFilterRequest(typing_extensions.TypedDict, total=False):
@@ -1654,19 +1656,19 @@ class SetDataValidationRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Sheet(typing_extensions.TypedDict, total=False):
-    bandedRanges: typing.List[BandedRange]
+    bandedRanges: _list[BandedRange]
     basicFilter: BasicFilter
-    charts: typing.List[EmbeddedChart]
-    columnGroups: typing.List[DimensionGroup]
-    conditionalFormats: typing.List[ConditionalFormatRule]
-    data: typing.List[GridData]
-    developerMetadata: typing.List[DeveloperMetadata]
-    filterViews: typing.List[FilterView]
-    merges: typing.List[GridRange]
+    charts: _list[EmbeddedChart]
+    columnGroups: _list[DimensionGroup]
+    conditionalFormats: _list[ConditionalFormatRule]
+    data: _list[GridData]
+    developerMetadata: _list[DeveloperMetadata]
+    filterViews: _list[FilterView]
+    merges: _list[GridRange]
     properties: SheetProperties
-    protectedRanges: typing.List[ProtectedRange]
-    rowGroups: typing.List[DimensionGroup]
-    slicers: typing.List[Slicer]
+    protectedRanges: _list[ProtectedRange]
+    rowGroups: _list[DimensionGroup]
+    slicers: _list[Slicer]
 
 @typing.type_check_only
 class SheetProperties(typing_extensions.TypedDict, total=False):
@@ -1706,7 +1708,7 @@ class SlicerSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SortRangeRequest(typing_extensions.TypedDict, total=False):
     range: GridRange
-    sortSpecs: typing.List[SortSpec]
+    sortSpecs: _list[SortSpec]
 
 @typing.type_check_only
 class SortSpec(typing_extensions.TypedDict, total=False):
@@ -1728,12 +1730,12 @@ class SourceAndDestination(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Spreadsheet(typing_extensions.TypedDict, total=False):
-    dataSourceSchedules: typing.List[DataSourceRefreshSchedule]
-    dataSources: typing.List[DataSource]
-    developerMetadata: typing.List[DeveloperMetadata]
-    namedRanges: typing.List[NamedRange]
+    dataSourceSchedules: _list[DataSourceRefreshSchedule]
+    dataSources: _list[DataSource]
+    developerMetadata: _list[DeveloperMetadata]
+    namedRanges: _list[NamedRange]
     properties: SpreadsheetProperties
-    sheets: typing.List[Sheet]
+    sheets: _list[Sheet]
     spreadsheetId: str
     spreadsheetUrl: str
 
@@ -1752,7 +1754,7 @@ class SpreadsheetProperties(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SpreadsheetTheme(typing_extensions.TypedDict, total=False):
     primaryFontFamily: str
-    themeColors: typing.List[ThemeColorPair]
+    themeColors: _list[ThemeColorPair]
 
 @typing.type_check_only
 class TextFormat(typing_extensions.TypedDict, total=False):
@@ -1877,7 +1879,7 @@ class UpdateBordersRequest(typing_extensions.TypedDict, total=False):
 class UpdateCellsRequest(typing_extensions.TypedDict, total=False):
     fields: str
     range: GridRange
-    rows: typing.List[RowData]
+    rows: _list[RowData]
     start: GridCoordinate
 
 @typing.type_check_only
@@ -1911,13 +1913,13 @@ class UpdateDataSourceResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdateDeveloperMetadataRequest(typing_extensions.TypedDict, total=False):
-    dataFilters: typing.List[DataFilter]
+    dataFilters: _list[DataFilter]
     developerMetadata: DeveloperMetadata
     fields: str
 
 @typing.type_check_only
 class UpdateDeveloperMetadataResponse(typing_extensions.TypedDict, total=False):
-    developerMetadata: typing.List[DeveloperMetadata]
+    developerMetadata: _list[DeveloperMetadata]
 
 @typing.type_check_only
 class UpdateDimensionGroupRequest(typing_extensions.TypedDict, total=False):
@@ -2002,7 +2004,7 @@ class ValueRange(typing_extensions.TypedDict, total=False):
         "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
     ]
     range: str
-    values: typing.List[list]
+    values: _list[list]
 
 @typing.type_check_only
 class WaterfallChartColumnStyle(typing_extensions.TypedDict, total=False):
@@ -2023,7 +2025,7 @@ class WaterfallChartDomain(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WaterfallChartSeries(typing_extensions.TypedDict, total=False):
-    customSubtotals: typing.List[WaterfallChartCustomSubtotal]
+    customSubtotals: _list[WaterfallChartCustomSubtotal]
     data: ChartData
     dataLabel: DataLabel
     hideTrailingSubtotal: bool
@@ -2037,7 +2039,7 @@ class WaterfallChartSpec(typing_extensions.TypedDict, total=False):
     domain: WaterfallChartDomain
     firstValueIsTotal: bool
     hideConnectorLines: bool
-    series: typing.List[WaterfallChartSeries]
+    series: _list[WaterfallChartSeries]
     stackedType: typing_extensions.Literal[
         "WATERFALL_STACKED_TYPE_UNSPECIFIED", "STACKED", "SEQUENTIAL"
     ]

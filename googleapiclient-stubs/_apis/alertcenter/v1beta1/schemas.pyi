@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AccountSuspensionDetails(typing_extensions.TypedDict, total=False):
     abuseReason: typing_extensions.Literal[
@@ -26,7 +28,7 @@ class AccountSuspensionWarning(typing_extensions.TypedDict, total=False):
         "APPEAL_APPROVED",
         "APPEAL_SUBMITTED",
     ]
-    suspensionDetails: typing.List[AccountSuspensionDetails]
+    suspensionDetails: _list[AccountSuspensionDetails]
 
 @typing.type_check_only
 class AccountWarning(typing_extensions.TypedDict, total=False):
@@ -38,13 +40,13 @@ class ActionInfo(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ActivityRule(typing_extensions.TypedDict, total=False):
-    actionNames: typing.List[str]
+    actionNames: _list[str]
     createTime: str
     description: str
     displayName: str
     name: str
     query: str
-    supersededAlerts: typing.List[str]
+    supersededAlerts: _list[str]
     supersedingAlert: str
     threshold: str
     triggerSource: str
@@ -56,7 +58,7 @@ class Alert(typing_extensions.TypedDict, total=False):
     alertId: str
     createTime: str
     customerId: str
-    data: typing.Dict[str, typing.Any]
+    data: dict[str, typing.Any]
     deleted: bool
     endTime: str
     etag: str
@@ -93,7 +95,7 @@ class AlertMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AppMakerSqlSetupNotification(typing_extensions.TypedDict, total=False):
-    requestInfo: typing.List[RequestInfo]
+    requestInfo: _list[RequestInfo]
 
 @typing.type_check_only
 class AppSettingsChanged(typing_extensions.TypedDict, total=False):
@@ -104,7 +106,7 @@ class AppSettingsChanged(typing_extensions.TypedDict, total=False):
 class AppsOutage(typing_extensions.TypedDict, total=False):
     dashboardUri: str
     nextUpdateTime: str
-    products: typing.List[str]
+    products: _list[str]
     resolutionTime: str
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "NEW", "ONGOING", "RESOLVED"
@@ -118,28 +120,28 @@ class Attachment(typing_extensions.TypedDict, total=False):
 class BadWhitelist(typing_extensions.TypedDict, total=False):
     domainId: DomainId
     maliciousEntity: MaliciousEntity
-    messages: typing.List[GmailMessageInfo]
+    messages: _list[GmailMessageInfo]
     sourceIp: str
 
 @typing.type_check_only
 class BatchDeleteAlertsRequest(typing_extensions.TypedDict, total=False):
-    alertId: typing.List[str]
+    alertId: _list[str]
     customerId: str
 
 @typing.type_check_only
 class BatchDeleteAlertsResponse(typing_extensions.TypedDict, total=False):
-    failedAlertStatus: typing.Dict[str, typing.Any]
-    successAlertIds: typing.List[str]
+    failedAlertStatus: dict[str, typing.Any]
+    successAlertIds: _list[str]
 
 @typing.type_check_only
 class BatchUndeleteAlertsRequest(typing_extensions.TypedDict, total=False):
-    alertId: typing.List[str]
+    alertId: _list[str]
     customerId: str
 
 @typing.type_check_only
 class BatchUndeleteAlertsResponse(typing_extensions.TypedDict, total=False):
-    failedAlertStatus: typing.Dict[str, typing.Any]
-    successAlertIds: typing.List[str]
+    failedAlertStatus: dict[str, typing.Any]
+    successAlertIds: _list[str]
 
 @typing.type_check_only
 class CloudPubsubTopic(typing_extensions.TypedDict, total=False):
@@ -148,17 +150,17 @@ class CloudPubsubTopic(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Csv(typing_extensions.TypedDict, total=False):
-    dataRows: typing.List[CsvRow]
-    headers: typing.List[str]
+    dataRows: _list[CsvRow]
+    headers: _list[str]
 
 @typing.type_check_only
 class CsvRow(typing_extensions.TypedDict, total=False):
-    entries: typing.List[str]
+    entries: _list[str]
 
 @typing.type_check_only
 class DeviceCompromised(typing_extensions.TypedDict, total=False):
     email: str
-    events: typing.List[DeviceCompromisedSecurityDetail]
+    events: _list[DeviceCompromisedSecurityDetail]
 
 @typing.type_check_only
 class DeviceCompromisedSecurityDetail(typing_extensions.TypedDict, total=False):
@@ -188,7 +190,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GmailMessageInfo(typing_extensions.TypedDict, total=False):
-    attachmentsSha256Hash: typing.List[str]
+    attachmentsSha256Hash: _list[str]
     date: str
     md5HashMessageBody: str
     md5HashSubject: str
@@ -199,7 +201,7 @@ class GmailMessageInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleOperations(typing_extensions.TypedDict, total=False):
-    affectedUserEmails: typing.List[str]
+    affectedUserEmails: _list[str]
     attachmentData: Attachment
     description: str
     header: str
@@ -207,11 +209,11 @@ class GoogleOperations(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAlertFeedbackResponse(typing_extensions.TypedDict, total=False):
-    feedback: typing.List[AlertFeedback]
+    feedback: _list[AlertFeedback]
 
 @typing.type_check_only
 class ListAlertsResponse(typing_extensions.TypedDict, total=False):
-    alerts: typing.List[Alert]
+    alerts: _list[Alert]
     nextPageToken: str
 
 @typing.type_check_only
@@ -224,7 +226,7 @@ class MailPhishing(typing_extensions.TypedDict, total=False):
     domainId: DomainId
     isInternal: bool
     maliciousEntity: MaliciousEntity
-    messages: typing.List[GmailMessageInfo]
+    messages: _list[GmailMessageInfo]
     systemActionType: typing_extensions.Literal[
         "SYSTEM_ACTION_TYPE_UNSPECIFIED", "NO_OPERATION", "REMOVED_FROM_INBOX"
     ]
@@ -249,7 +251,7 @@ class PhishingSpike(typing_extensions.TypedDict, total=False):
     domainId: DomainId
     isInternal: bool
     maliciousEntity: MaliciousEntity
-    messages: typing.List[GmailMessageInfo]
+    messages: _list[GmailMessageInfo]
 
 @typing.type_check_only
 class PredefinedDetectorInfo(typing_extensions.TypedDict, total=False):
@@ -263,7 +265,7 @@ class ReportingRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RequestInfo(typing_extensions.TypedDict, total=False):
-    appDeveloperEmail: typing.List[str]
+    appDeveloperEmail: _list[str]
     appKey: str
     numberOfRequests: str
 
@@ -280,19 +282,19 @@ class RuleInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RuleViolationInfo(typing_extensions.TypedDict, total=False):
     dataSource: typing_extensions.Literal["DATA_SOURCE_UNSPECIFIED", "DRIVE"]
-    matchInfo: typing.List[MatchInfo]
-    recipients: typing.List[str]
+    matchInfo: _list[MatchInfo]
+    recipients: _list[str]
     resourceInfo: ResourceInfo
     ruleInfo: RuleInfo
-    suppressedActionTypes: typing.List[str]
+    suppressedActionTypes: _list[str]
     trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "DRIVE_SHARE"]
-    triggeredActionInfo: typing.List[ActionInfo]
-    triggeredActionTypes: typing.List[str]
+    triggeredActionInfo: _list[ActionInfo]
+    triggeredActionTypes: _list[str]
     triggeringUserEmail: str
 
 @typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
-    notifications: typing.List[Notification]
+    notifications: _list[Notification]
 
 @typing.type_check_only
 class StateSponsoredAttack(typing_extensions.TypedDict, total=False):
@@ -301,13 +303,13 @@ class StateSponsoredAttack(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class SuspiciousActivity(typing_extensions.TypedDict, total=False):
     email: str
-    events: typing.List[SuspiciousActivitySecurityDetail]
+    events: _list[SuspiciousActivitySecurityDetail]
 
 @typing.type_check_only
 class SuspiciousActivitySecurityDetail(typing_extensions.TypedDict, total=False):

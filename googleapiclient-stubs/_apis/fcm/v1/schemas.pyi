@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AndroidConfig(typing_extensions.TypedDict, total=False):
     collapseKey: str
-    data: typing.Dict[str, typing.Any]
+    data: dict[str, typing.Any]
     directBootOk: bool
     fcmOptions: AndroidFcmOptions
     notification: AndroidNotification
@@ -20,7 +22,7 @@ class AndroidFcmOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AndroidNotification(typing_extensions.TypedDict, total=False):
     body: str
-    bodyLocArgs: typing.List[str]
+    bodyLocArgs: _list[str]
     bodyLocKey: str
     channelId: str
     clickAction: str
@@ -47,9 +49,9 @@ class AndroidNotification(typing_extensions.TypedDict, total=False):
     tag: str
     ticker: str
     title: str
-    titleLocArgs: typing.List[str]
+    titleLocArgs: _list[str]
     titleLocKey: str
-    vibrateTimings: typing.List[str]
+    vibrateTimings: _list[str]
     visibility: typing_extensions.Literal[
         "VISIBILITY_UNSPECIFIED", "PRIVATE", "PUBLIC", "SECRET"
     ]
@@ -57,8 +59,8 @@ class AndroidNotification(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApnsConfig(typing_extensions.TypedDict, total=False):
     fcmOptions: ApnsFcmOptions
-    headers: typing.Dict[str, typing.Any]
-    payload: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
+    payload: dict[str, typing.Any]
 
 @typing.type_check_only
 class ApnsFcmOptions(typing_extensions.TypedDict, total=False):
@@ -87,7 +89,7 @@ class Message(typing_extensions.TypedDict, total=False):
     android: AndroidConfig
     apns: ApnsConfig
     condition: str
-    data: typing.Dict[str, typing.Any]
+    data: dict[str, typing.Any]
     fcmOptions: FcmOptions
     name: str
     notification: Notification
@@ -108,10 +110,10 @@ class SendMessageRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WebpushConfig(typing_extensions.TypedDict, total=False):
-    data: typing.Dict[str, typing.Any]
+    data: dict[str, typing.Any]
     fcmOptions: WebpushFcmOptions
-    headers: typing.Dict[str, typing.Any]
-    notification: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
+    notification: dict[str, typing.Any]
 
 @typing.type_check_only
 class WebpushFcmOptions(typing_extensions.TypedDict, total=False):

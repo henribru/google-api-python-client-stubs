@@ -2,16 +2,18 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Config(typing_extensions.TypedDict, total=False):
     moduleEnablementState: typing_extensions.Literal[
         "ENABLEMENT_STATE_UNSPECIFIED", "INHERITED", "ENABLED", "DISABLED"
     ]
-    value: typing.Dict[str, typing.Any]
+    value: dict[str, typing.Any]
 
 @typing.type_check_only
 class ContainerThreatDetectionSettings(typing_extensions.TypedDict, total=False):
-    modules: typing.Dict[str, typing.Any]
+    modules: dict[str, typing.Any]
     name: str
     serviceAccount: str
     serviceEnablementState: typing_extensions.Literal[
@@ -23,7 +25,7 @@ class ContainerThreatDetectionSettings(typing_extensions.TypedDict, total=False)
 class Cve(typing_extensions.TypedDict, total=False):
     cvssv3: Cvssv3
     id: str
-    references: typing.List[Reference]
+    references: _list[Reference]
 
 @typing.type_check_only
 class Cvssv3(typing_extensions.TypedDict, total=False):
@@ -74,7 +76,7 @@ class Details(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EventThreatDetectionSettings(typing_extensions.TypedDict, total=False):
-    modules: typing.Dict[str, typing.Any]
+    modules: dict[str, typing.Any]
     name: str
     serviceEnablementState: typing_extensions.Literal[
         "ENABLEMENT_STATE_UNSPECIFIED", "INHERITED", "ENABLED", "DISABLED"
@@ -103,7 +105,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
-    sourceProperties: typing.Dict[str, typing.Any]
+    sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     vulnerability: Vulnerability
 
@@ -122,7 +124,7 @@ class GoogleCloudSecuritycenterV1NotificationMessage(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
-    folders: typing.List[Folder]
+    folders: _list[Folder]
     name: str
     parent: str
     parentDisplayName: str
@@ -164,7 +166,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding(
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
-    sourceProperties: typing.Dict[str, typing.Any]
+    sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
@@ -186,7 +188,7 @@ class GoogleCloudSecuritycenterV1p1beta1NotificationMessage(
 class GoogleCloudSecuritycenterV1p1beta1Resource(
     typing_extensions.TypedDict, total=False
 ):
-    folders: typing.List[GoogleCloudSecuritycenterV1p1beta1Folder]
+    folders: _list[GoogleCloudSecuritycenterV1p1beta1Folder]
     name: str
     parent: str
     parentDisplayName: str
@@ -207,13 +209,13 @@ class GoogleCloudSecuritycenterV1p1beta1SecurityMarks(
     typing_extensions.TypedDict, total=False
 ):
     canonicalName: str
-    marks: typing.Dict[str, typing.Any]
+    marks: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class Indicator(typing_extensions.TypedDict, total=False):
-    domains: typing.List[str]
-    ipAddresses: typing.List[str]
+    domains: _list[str]
+    ipAddresses: _list[str]
 
 @typing.type_check_only
 class Reference(typing_extensions.TypedDict, total=False):
@@ -228,7 +230,7 @@ class SecurityCenterSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityHealthAnalyticsSettings(typing_extensions.TypedDict, total=False):
-    modules: typing.Dict[str, typing.Any]
+    modules: dict[str, typing.Any]
     name: str
     serviceAccount: str
     serviceEnablementState: typing_extensions.Literal[
@@ -239,7 +241,7 @@ class SecurityHealthAnalyticsSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SecurityMarks(typing_extensions.TypedDict, total=False):
     canonicalName: str
-    marks: typing.Dict[str, typing.Any]
+    marks: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -254,7 +256,7 @@ class Vulnerability(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WebSecurityScannerSettings(typing_extensions.TypedDict, total=False):
-    modules: typing.Dict[str, typing.Any]
+    modules: dict[str, typing.Any]
     name: str
     serviceEnablementState: typing_extensions.Literal[
         "ENABLEMENT_STATE_UNSPECIFIED", "INHERITED", "ENABLED", "DISABLED"

@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ApiDataRow(typing_extensions.TypedDict, total=False):
     clicks: float
     ctr: float
     impressions: float
-    keys: typing.List[str]
+    keys: _list[str]
     position: float
 
 @typing.type_check_only
@@ -18,15 +20,15 @@ class ApiDimensionFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ApiDimensionFilterGroup(typing_extensions.TypedDict, total=False):
-    filters: typing.List[ApiDimensionFilter]
+    filters: _list[ApiDimensionFilter]
     groupType: str
 
 @typing.type_check_only
 class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
     aggregationType: str
     dataState: str
-    dimensionFilterGroups: typing.List[ApiDimensionFilterGroup]
-    dimensions: typing.List[str]
+    dimensionFilterGroups: _list[ApiDimensionFilterGroup]
+    dimensions: _list[str]
     endDate: str
     rowLimit: int
     searchType: str
@@ -36,15 +38,15 @@ class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchAnalyticsQueryResponse(typing_extensions.TypedDict, total=False):
     responseAggregationType: str
-    rows: typing.List[ApiDataRow]
+    rows: _list[ApiDataRow]
 
 @typing.type_check_only
 class SitemapsListResponse(typing_extensions.TypedDict, total=False):
-    sitemap: typing.List[WmxSitemap]
+    sitemap: _list[WmxSitemap]
 
 @typing.type_check_only
 class SitesListResponse(typing_extensions.TypedDict, total=False):
-    siteEntry: typing.List[WmxSite]
+    siteEntry: _list[WmxSite]
 
 @typing.type_check_only
 class WmxSite(typing_extensions.TypedDict, total=False):
@@ -53,7 +55,7 @@ class WmxSite(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WmxSitemap(typing_extensions.TypedDict, total=False):
-    contents: typing.List[WmxSitemapContent]
+    contents: _list[WmxSitemapContent]
     errors: str
     isPending: bool
     isSitemapsIndex: bool

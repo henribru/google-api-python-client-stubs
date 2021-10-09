@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AffineTransform(typing_extensions.TypedDict, total=False):
     scaleX: float
@@ -28,13 +30,13 @@ class Autofit(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchUpdatePresentationRequest(typing_extensions.TypedDict, total=False):
-    requests: typing.List[Request]
+    requests: _list[Request]
     writeControl: WriteControl
 
 @typing.type_check_only
 class BatchUpdatePresentationResponse(typing_extensions.TypedDict, total=False):
     presentationId: str
-    replies: typing.List[Response]
+    replies: _list[Response]
     writeControl: WriteControl
 
 @typing.type_check_only
@@ -46,7 +48,7 @@ class Bullet(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ColorScheme(typing_extensions.TypedDict, total=False):
-    colors: typing.List[ThemeColorPair]
+    colors: _list[ThemeColorPair]
 
 @typing.type_check_only
 class ColorStop(typing_extensions.TypedDict, total=False):
@@ -270,7 +272,7 @@ class CreateSheetsChartResponse(typing_extensions.TypedDict, total=False):
 class CreateSlideRequest(typing_extensions.TypedDict, total=False):
     insertionIndex: int
     objectId: str
-    placeholderIdMappings: typing.List[LayoutPlaceholderIdMapping]
+    placeholderIdMappings: _list[LayoutPlaceholderIdMapping]
     slideLayoutReference: LayoutReference
 
 @typing.type_check_only
@@ -341,7 +343,7 @@ class Dimension(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DuplicateObjectRequest(typing_extensions.TypedDict, total=False):
     objectId: str
-    objectIds: typing.Dict[str, typing.Any]
+    objectIds: dict[str, typing.Any]
 
 @typing.type_check_only
 class DuplicateObjectResponse(typing_extensions.TypedDict, total=False):
@@ -349,11 +351,11 @@ class DuplicateObjectResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Group(typing_extensions.TypedDict, total=False):
-    children: typing.List[PageElement]
+    children: _list[PageElement]
 
 @typing.type_check_only
 class GroupObjectsRequest(typing_extensions.TypedDict, total=False):
-    childrenObjectIds: typing.List[str]
+    childrenObjectIds: _list[str]
     groupObjectId: str
 
 @typing.type_check_only
@@ -517,7 +519,7 @@ class Link(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class List(typing_extensions.TypedDict, total=False):
     listId: str
-    nestingLevel: typing.Dict[str, typing.Any]
+    nestingLevel: dict[str, typing.Any]
 
 @typing.type_check_only
 class MasterProperties(typing_extensions.TypedDict, total=False):
@@ -588,7 +590,7 @@ class Page(typing_extensions.TypedDict, total=False):
     masterProperties: MasterProperties
     notesProperties: NotesProperties
     objectId: str
-    pageElements: typing.List[PageElement]
+    pageElements: _list[PageElement]
     pageProperties: PageProperties
     pageType: typing_extensions.Literal[
         "SLIDE", "MASTER", "LAYOUT", "NOTES", "NOTES_MASTER"
@@ -603,7 +605,7 @@ class PageBackgroundFill(typing_extensions.TypedDict, total=False):
     stretchedPictureFill: StretchedPictureFill
 
 @typing.type_check_only
-class PageElement(typing.Dict[str, typing.Any]): ...
+class PageElement(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class PageElementProperties(typing_extensions.TypedDict, total=False):
@@ -665,14 +667,14 @@ class Placeholder(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Presentation(typing_extensions.TypedDict, total=False):
-    layouts: typing.List[Page]
+    layouts: _list[Page]
     locale: str
-    masters: typing.List[Page]
+    masters: _list[Page]
     notesMaster: Page
     pageSize: Size
     presentationId: str
     revisionId: str
-    slides: typing.List[Page]
+    slides: _list[Page]
     title: str
 
 @typing.type_check_only
@@ -712,7 +714,7 @@ class Recolor(typing_extensions.TypedDict, total=False):
         "SEPIA",
         "CUSTOM",
     ]
-    recolorStops: typing.List[ColorStop]
+    recolorStops: _list[ColorStop]
 
 @typing.type_check_only
 class RefreshSheetsChartRequest(typing_extensions.TypedDict, total=False):
@@ -725,7 +727,7 @@ class ReplaceAllShapesWithImageRequest(typing_extensions.TypedDict, total=False)
         "IMAGE_REPLACE_METHOD_UNSPECIFIED", "CENTER_INSIDE", "CENTER_CROP"
     ]
     imageUrl: str
-    pageObjectIds: typing.List[str]
+    pageObjectIds: _list[str]
     replaceMethod: typing_extensions.Literal["CENTER_INSIDE", "CENTER_CROP"]
 
 @typing.type_check_only
@@ -737,7 +739,7 @@ class ReplaceAllShapesWithSheetsChartRequest(typing_extensions.TypedDict, total=
     chartId: int
     containsText: SubstringMatchCriteria
     linkingMode: typing_extensions.Literal["NOT_LINKED_IMAGE", "LINKED"]
-    pageObjectIds: typing.List[str]
+    pageObjectIds: _list[str]
     spreadsheetId: str
 
 @typing.type_check_only
@@ -747,7 +749,7 @@ class ReplaceAllShapesWithSheetsChartResponse(typing_extensions.TypedDict, total
 @typing.type_check_only
 class ReplaceAllTextRequest(typing_extensions.TypedDict, total=False):
     containsText: SubstringMatchCriteria
-    pageObjectIds: typing.List[str]
+    pageObjectIds: _list[str]
     replaceText: str
 
 @typing.type_check_only
@@ -763,7 +765,7 @@ class ReplaceImageRequest(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class Request(typing.Dict[str, typing.Any]): ...
+class Request(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RerouteLineRequest(typing_extensions.TypedDict, total=False):
@@ -1000,7 +1002,7 @@ class Size(typing_extensions.TypedDict, total=False):
     width: Dimension
 
 @typing.type_check_only
-class SlideProperties(typing.Dict[str, typing.Any]): ...
+class SlideProperties(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class SolidFill(typing_extensions.TypedDict, total=False):
@@ -1020,11 +1022,11 @@ class SubstringMatchCriteria(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
     columns: int
-    horizontalBorderRows: typing.List[TableBorderRow]
+    horizontalBorderRows: _list[TableBorderRow]
     rows: int
-    tableColumns: typing.List[TableColumnProperties]
-    tableRows: typing.List[TableRow]
-    verticalBorderRows: typing.List[TableBorderRow]
+    tableColumns: _list[TableColumnProperties]
+    tableRows: _list[TableRow]
+    verticalBorderRows: _list[TableBorderRow]
 
 @typing.type_check_only
 class TableBorderCell(typing_extensions.TypedDict, total=False):
@@ -1051,7 +1053,7 @@ class TableBorderProperties(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TableBorderRow(typing_extensions.TypedDict, total=False):
-    tableBorderCells: typing.List[TableBorderCell]
+    tableBorderCells: _list[TableBorderCell]
 
 @typing.type_check_only
 class TableCell(typing_extensions.TypedDict, total=False):
@@ -1095,7 +1097,7 @@ class TableRange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TableRow(typing_extensions.TypedDict, total=False):
     rowHeight: Dimension
-    tableCells: typing.List[TableCell]
+    tableCells: _list[TableCell]
     tableRowProperties: TableRowProperties
 
 @typing.type_check_only
@@ -1104,8 +1106,8 @@ class TableRowProperties(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TextContent(typing_extensions.TypedDict, total=False):
-    lists: typing.Dict[str, typing.Any]
-    textElements: typing.List[TextElement]
+    lists: dict[str, typing.Any]
+    textElements: _list[TextElement]
 
 @typing.type_check_only
 class TextElement(typing_extensions.TypedDict, total=False):
@@ -1168,7 +1170,7 @@ class Thumbnail(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UngroupObjectsRequest(typing_extensions.TypedDict, total=False):
-    objectIds: typing.List[str]
+    objectIds: _list[str]
 
 @typing.type_check_only
 class UnmergeTableCellsRequest(typing_extensions.TypedDict, total=False):
@@ -1217,7 +1219,7 @@ class UpdatePageElementsZOrderRequest(typing_extensions.TypedDict, total=False):
         "SEND_BACKWARD",
         "SEND_TO_BACK",
     ]
-    pageElementObjectIds: typing.List[str]
+    pageElementObjectIds: _list[str]
 
 @typing.type_check_only
 class UpdatePagePropertiesRequest(typing_extensions.TypedDict, total=False):
@@ -1240,12 +1242,12 @@ class UpdateShapePropertiesRequest(typing_extensions.TypedDict, total=False):
     shapeProperties: ShapeProperties
 
 @typing.type_check_only
-class UpdateSlidePropertiesRequest(typing.Dict[str, typing.Any]): ...
+class UpdateSlidePropertiesRequest(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class UpdateSlidesPositionRequest(typing_extensions.TypedDict, total=False):
     insertionIndex: int
-    slideObjectIds: typing.List[str]
+    slideObjectIds: _list[str]
 
 @typing.type_check_only
 class UpdateTableBorderPropertiesRequest(typing_extensions.TypedDict, total=False):
@@ -1274,7 +1276,7 @@ class UpdateTableCellPropertiesRequest(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class UpdateTableColumnPropertiesRequest(typing_extensions.TypedDict, total=False):
-    columnIndices: typing.List[int]
+    columnIndices: _list[int]
     fields: str
     objectId: str
     tableColumnProperties: TableColumnProperties
@@ -1283,7 +1285,7 @@ class UpdateTableColumnPropertiesRequest(typing_extensions.TypedDict, total=Fals
 class UpdateTableRowPropertiesRequest(typing_extensions.TypedDict, total=False):
     fields: str
     objectId: str
-    rowIndices: typing.List[int]
+    rowIndices: _list[int]
     tableRowProperties: TableRowProperties
 
 @typing.type_check_only

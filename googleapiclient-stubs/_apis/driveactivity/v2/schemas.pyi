@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Action(typing_extensions.TypedDict, total=False):
     actor: Actor
@@ -62,7 +64,7 @@ class Assignment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
     assignment: Assignment
-    mentionedUsers: typing.List[User]
+    mentionedUsers: _list[User]
     post: Post
     suggestion: Suggestion
 
@@ -105,10 +107,10 @@ class Drive(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DriveActivity(typing_extensions.TypedDict, total=False):
-    actions: typing.List[Action]
-    actors: typing.List[Actor]
+    actions: _list[Action]
+    actors: _list[Actor]
     primaryActionDetail: ActionDetail
-    targets: typing.List[Target]
+    targets: _list[Target]
     timeRange: TimeRange
     timestamp: str
 
@@ -184,8 +186,8 @@ class Legacy(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Move(typing_extensions.TypedDict, total=False):
-    addedParents: typing.List[TargetReference]
-    removedParents: typing.List[TargetReference]
+    addedParents: _list[TargetReference]
+    removedParents: _list[TargetReference]
 
 @typing.type_check_only
 class New(typing_extensions.TypedDict, total=False): ...
@@ -220,8 +222,8 @@ class Permission(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PermissionChange(typing_extensions.TypedDict, total=False):
-    addedPermissions: typing.List[Permission]
-    removedPermissions: typing.List[Permission]
+    addedPermissions: _list[Permission]
+    removedPermissions: _list[Permission]
 
 @typing.type_check_only
 class Post(typing_extensions.TypedDict, total=False):
@@ -246,7 +248,7 @@ class QueryDriveActivityRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryDriveActivityResponse(typing_extensions.TypedDict, total=False):
-    activities: typing.List[DriveActivity]
+    activities: _list[DriveActivity]
     nextPageToken: str
 
 @typing.type_check_only
@@ -273,7 +275,7 @@ class RestrictionChange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SettingsChange(typing_extensions.TypedDict, total=False):
-    restrictionChanges: typing.List[RestrictionChange]
+    restrictionChanges: _list[RestrictionChange]
 
 @typing.type_check_only
 class Suggestion(typing_extensions.TypedDict, total=False):

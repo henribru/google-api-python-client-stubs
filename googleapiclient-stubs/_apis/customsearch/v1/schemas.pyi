@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Promotion(typing_extensions.TypedDict, total=False):
-    bodyLines: typing.List[typing.Dict[str, typing.Any]]
+    bodyLines: _list[dict[str, typing.Any]]
     displayLink: str
     htmlTitle: str
-    image: typing.Dict[str, typing.Any]
+    image: dict[str, typing.Any]
     link: str
     title: str
 
@@ -20,22 +22,22 @@ class Result(typing_extensions.TypedDict, total=False):
     htmlFormattedUrl: str
     htmlSnippet: str
     htmlTitle: str
-    image: typing.Dict[str, typing.Any]
+    image: dict[str, typing.Any]
     kind: str
-    labels: typing.List[typing.Dict[str, typing.Any]]
+    labels: _list[dict[str, typing.Any]]
     link: str
     mime: str
-    pagemap: typing.Dict[str, typing.Any]
+    pagemap: dict[str, typing.Any]
     snippet: str
     title: str
 
 @typing.type_check_only
 class Search(typing_extensions.TypedDict, total=False):
-    context: typing.Dict[str, typing.Any]
-    items: typing.List[Result]
+    context: dict[str, typing.Any]
+    items: _list[Result]
     kind: str
-    promotions: typing.List[Promotion]
-    queries: typing.Dict[str, typing.Any]
-    searchInformation: typing.Dict[str, typing.Any]
-    spelling: typing.Dict[str, typing.Any]
-    url: typing.Dict[str, typing.Any]
+    promotions: _list[Promotion]
+    queries: dict[str, typing.Any]
+    searchInformation: dict[str, typing.Any]
+    spelling: dict[str, typing.Any]
+    url: dict[str, typing.Any]

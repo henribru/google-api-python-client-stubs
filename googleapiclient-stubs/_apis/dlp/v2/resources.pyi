@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class DLPResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -757,9 +759,7 @@ class GooglePrivacyDlpV2DeidentifyContentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2DeidentifyContentResponse: ...
 
@@ -767,9 +767,7 @@ class GooglePrivacyDlpV2DeidentifyContentResponseHttpRequest(
 class GooglePrivacyDlpV2DeidentifyTemplateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2DeidentifyTemplate: ...
 
@@ -777,9 +775,7 @@ class GooglePrivacyDlpV2DeidentifyTemplateHttpRequest(googleapiclient.http.HttpR
 class GooglePrivacyDlpV2DlpJobHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2DlpJob: ...
 
@@ -789,9 +785,7 @@ class GooglePrivacyDlpV2HybridInspectResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2HybridInspectResponse: ...
 
@@ -801,9 +795,7 @@ class GooglePrivacyDlpV2InspectContentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2InspectContentResponse: ...
 
@@ -811,9 +803,7 @@ class GooglePrivacyDlpV2InspectContentResponseHttpRequest(
 class GooglePrivacyDlpV2InspectTemplateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2InspectTemplate: ...
 
@@ -821,9 +811,7 @@ class GooglePrivacyDlpV2InspectTemplateHttpRequest(googleapiclient.http.HttpRequ
 class GooglePrivacyDlpV2JobTriggerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2JobTrigger: ...
 
@@ -833,9 +821,7 @@ class GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponse: ...
 
@@ -845,9 +831,7 @@ class GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2ListDlpJobsResponse: ...
 
@@ -857,9 +841,7 @@ class GooglePrivacyDlpV2ListInfoTypesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2ListInfoTypesResponse: ...
 
@@ -869,9 +851,7 @@ class GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2ListInspectTemplatesResponse: ...
 
@@ -881,9 +861,7 @@ class GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2ListJobTriggersResponse: ...
 
@@ -893,9 +871,7 @@ class GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponse: ...
 
@@ -905,9 +881,7 @@ class GooglePrivacyDlpV2RedactImageResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2RedactImageResponse: ...
 
@@ -917,9 +891,7 @@ class GooglePrivacyDlpV2ReidentifyContentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2ReidentifyContentResponse: ...
 
@@ -927,9 +899,7 @@ class GooglePrivacyDlpV2ReidentifyContentResponseHttpRequest(
 class GooglePrivacyDlpV2StoredInfoTypeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2StoredInfoType: ...
 
@@ -937,8 +907,6 @@ class GooglePrivacyDlpV2StoredInfoTypeHttpRequest(googleapiclient.http.HttpReque
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

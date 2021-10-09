@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ActivateBiddingFunctionRequest(typing_extensions.TypedDict, total=False): ...
 
@@ -21,5 +23,5 @@ class BiddingFunction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListBiddingFunctionsResponse(typing_extensions.TypedDict, total=False):
-    biddingFunctions: typing.List[BiddingFunction]
+    biddingFunctions: _list[BiddingFunction]
     nextPageToken: str

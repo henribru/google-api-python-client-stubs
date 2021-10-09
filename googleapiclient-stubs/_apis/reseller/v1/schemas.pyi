@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Address(typing_extensions.TypedDict, total=False):
     addressLine1: str
@@ -49,7 +51,7 @@ class RenewalSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResellernotifyGetwatchdetailsResponse(typing_extensions.TypedDict, total=False):
-    serviceAccountEmailAddresses: typing.List[str]
+    serviceAccountEmailAddresses: _list[str]
     topicName: str
 
 @typing.type_check_only
@@ -71,7 +73,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     customerId: str
     dealCode: str
     kind: str
-    plan: typing.Dict[str, typing.Any]
+    plan: dict[str, typing.Any]
     purchaseOrderId: str
     renewalSettings: RenewalSettings
     resourceUiUrl: str
@@ -80,12 +82,12 @@ class Subscription(typing_extensions.TypedDict, total=False):
     skuName: str
     status: str
     subscriptionId: str
-    suspensionReasons: typing.List[str]
-    transferInfo: typing.Dict[str, typing.Any]
-    trialSettings: typing.Dict[str, typing.Any]
+    suspensionReasons: _list[str]
+    transferInfo: dict[str, typing.Any]
+    trialSettings: dict[str, typing.Any]
 
 @typing.type_check_only
 class Subscriptions(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    subscriptions: typing.List[Subscription]
+    subscriptions: _list[Subscription]

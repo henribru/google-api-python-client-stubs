@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ApiDataRow(typing_extensions.TypedDict, total=False):
     clicks: float
     ctr: float
     impressions: float
-    keys: typing.List[str]
+    keys: _list[str]
     position: float
 
 @typing.type_check_only
@@ -22,7 +24,7 @@ class ApiDimensionFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ApiDimensionFilterGroup(typing_extensions.TypedDict, total=False):
-    filters: typing.List[ApiDimensionFilter]
+    filters: _list[ApiDimensionFilter]
     groupType: typing_extensions.Literal["AND"]
 
 @typing.type_check_only
@@ -62,8 +64,8 @@ class RunMobileFriendlyTestResponse(typing_extensions.TypedDict, total=False):
         "MOBILE_FRIENDLY",
         "NOT_MOBILE_FRIENDLY",
     ]
-    mobileFriendlyIssues: typing.List[MobileFriendlyIssue]
-    resourceIssues: typing.List[ResourceIssue]
+    mobileFriendlyIssues: _list[MobileFriendlyIssue]
+    resourceIssues: _list[ResourceIssue]
     screenshot: Image
     testStatus: TestStatus
 
@@ -71,8 +73,8 @@ class RunMobileFriendlyTestResponse(typing_extensions.TypedDict, total=False):
 class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
     aggregationType: typing_extensions.Literal["AUTO", "BY_PROPERTY", "BY_PAGE"]
     dataState: typing_extensions.Literal["DATA_STATE_UNSPECIFIED", "FINAL", "ALL"]
-    dimensionFilterGroups: typing.List[ApiDimensionFilterGroup]
-    dimensions: typing.List[str]
+    dimensionFilterGroups: _list[ApiDimensionFilterGroup]
+    dimensions: _list[str]
     endDate: str
     rowLimit: int
     searchType: typing_extensions.Literal["WEB", "IMAGE", "VIDEO", "NEWS"]
@@ -82,15 +84,15 @@ class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchAnalyticsQueryResponse(typing_extensions.TypedDict, total=False):
     responseAggregationType: typing_extensions.Literal["AUTO", "BY_PROPERTY", "BY_PAGE"]
-    rows: typing.List[ApiDataRow]
+    rows: _list[ApiDataRow]
 
 @typing.type_check_only
 class SitemapsListResponse(typing_extensions.TypedDict, total=False):
-    sitemap: typing.List[WmxSitemap]
+    sitemap: _list[WmxSitemap]
 
 @typing.type_check_only
 class SitesListResponse(typing_extensions.TypedDict, total=False):
-    siteEntry: typing.List[WmxSite]
+    siteEntry: _list[WmxSite]
 
 @typing.type_check_only
 class TestStatus(typing_extensions.TypedDict, total=False):
@@ -112,7 +114,7 @@ class WmxSite(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WmxSitemap(typing_extensions.TypedDict, total=False):
-    contents: typing.List[WmxSitemapContent]
+    contents: _list[WmxSitemapContent]
     errors: str
     isPending: bool
     isSitemapsIndex: bool

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ApprovalConfig(typing_extensions.TypedDict, total=False):
     approvalRequired: bool
@@ -17,17 +19,17 @@ class ApprovalResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ArtifactObjects(typing_extensions.TypedDict, total=False):
     location: str
-    paths: typing.List[str]
+    paths: _list[str]
     timing: TimeSpan
 
 @typing.type_check_only
 class ArtifactResult(typing_extensions.TypedDict, total=False):
-    fileHash: typing.List[FileHashes]
+    fileHash: _list[FileHashes]
     location: str
 
 @typing.type_check_only
 class Artifacts(typing_extensions.TypedDict, total=False):
-    images: typing.List[str]
+    images: _list[str]
     objects: ArtifactObjects
 
 @typing.type_check_only
@@ -40,7 +42,7 @@ class Build(typing_extensions.TypedDict, total=False):
     failureInfo: FailureInfo
     finishTime: str
     id: str
-    images: typing.List[str]
+    images: _list[str]
     logUrl: str
     logsBucket: str
     name: str
@@ -48,7 +50,7 @@ class Build(typing_extensions.TypedDict, total=False):
     projectId: str
     queueTtl: str
     results: Results
-    secrets: typing.List[Secret]
+    secrets: _list[Secret]
     serviceAccount: str
     source: Source
     sourceProvenance: SourceProvenance
@@ -66,12 +68,12 @@ class Build(typing_extensions.TypedDict, total=False):
         "EXPIRED",
     ]
     statusDetail: str
-    steps: typing.List[BuildStep]
-    substitutions: typing.Dict[str, typing.Any]
-    tags: typing.List[str]
+    steps: _list[BuildStep]
+    substitutions: dict[str, typing.Any]
+    tags: _list[str]
     timeout: str
-    timing: typing.Dict[str, typing.Any]
-    warnings: typing.List[Warning]
+    timing: dict[str, typing.Any]
+    warnings: _list[Warning]
 
 @typing.type_check_only
 class BuildApproval(typing_extensions.TypedDict, total=False):
@@ -89,7 +91,7 @@ class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
 class BuildOptions(typing_extensions.TypedDict, total=False):
     diskSizeGb: str
     dynamicSubstitutions: bool
-    env: typing.List[str]
+    env: _list[str]
     logStreamingOption: typing_extensions.Literal[
         "STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"
     ]
@@ -106,23 +108,23 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
     ]
     pool: PoolOption
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
-    secretEnv: typing.List[str]
-    sourceProvenanceHash: typing.List[str]
+    secretEnv: _list[str]
+    sourceProvenanceHash: _list[str]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
-    volumes: typing.List[Volume]
+    volumes: _list[Volume]
     workerPool: str
 
 @typing.type_check_only
 class BuildStep(typing_extensions.TypedDict, total=False):
-    args: typing.List[str]
+    args: _list[str]
     dir: str
     entrypoint: str
-    env: typing.List[str]
+    env: _list[str]
     id: str
     name: str
     pullTiming: TimeSpan
     script: str
-    secretEnv: typing.List[str]
+    secretEnv: _list[str]
     status: typing_extensions.Literal[
         "STATUS_UNKNOWN",
         "PENDING",
@@ -137,8 +139,8 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     ]
     timeout: str
     timing: TimeSpan
-    volumes: typing.List[Volume]
-    waitFor: typing.List[str]
+    volumes: _list[Volume]
+    waitFor: _list[str]
 
 @typing.type_check_only
 class BuiltImage(typing_extensions.TypedDict, total=False):
@@ -195,7 +197,7 @@ class FailureInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
-    fileHash: typing.List[Hash]
+    fileHash: _list[Hash]
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV2OperationMetadata(
@@ -220,12 +222,12 @@ class Hash(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InlineSecret(typing_extensions.TypedDict, total=False):
-    envMap: typing.Dict[str, typing.Any]
+    envMap: dict[str, typing.Any]
     kmsKeyName: str
 
 @typing.type_check_only
 class ListWorkerPoolsResponse(typing_extensions.TypedDict, total=False):
-    workerPools: typing.List[WorkerPool]
+    workerPools: _list[WorkerPool]
 
 @typing.type_check_only
 class Network(typing_extensions.TypedDict, total=False):
@@ -239,7 +241,7 @@ class Notification(typing_extensions.TypedDict, total=False):
     httpDelivery: HTTPDelivery
     slackDelivery: SlackDelivery
     smtpDelivery: SMTPDelivery
-    structDelivery: typing.Dict[str, typing.Any]
+    structDelivery: dict[str, typing.Any]
 
 @typing.type_check_only
 class NotifierConfig(typing_extensions.TypedDict, total=False):
@@ -265,15 +267,15 @@ class NotifierSecretRef(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NotifierSpec(typing_extensions.TypedDict, total=False):
     notification: Notification
-    secrets: typing.List[NotifierSecret]
+    secrets: _list[NotifierSecret]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -305,16 +307,16 @@ class RepoSource(typing_extensions.TypedDict, total=False):
     invertRegex: bool
     projectId: str
     repoName: str
-    substitutions: typing.Dict[str, typing.Any]
+    substitutions: dict[str, typing.Any]
     tagName: str
 
 @typing.type_check_only
 class Results(typing_extensions.TypedDict, total=False):
     artifactManifest: str
     artifactTiming: TimeSpan
-    buildStepImages: typing.List[str]
-    buildStepOutputs: typing.List[str]
-    images: typing.List[BuiltImage]
+    buildStepImages: _list[str]
+    buildStepOutputs: _list[str]
+    images: _list[BuiltImage]
     numArtifacts: str
 
 @typing.type_check_only
@@ -322,14 +324,14 @@ class SMTPDelivery(typing_extensions.TypedDict, total=False):
     fromAddress: str
     password: NotifierSecretRef
     port: str
-    recipientAddresses: typing.List[str]
+    recipientAddresses: _list[str]
     senderAddress: str
     server: str
 
 @typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
-    secretEnv: typing.Dict[str, typing.Any]
+    secretEnv: dict[str, typing.Any]
 
 @typing.type_check_only
 class SecretManagerSecret(typing_extensions.TypedDict, total=False):
@@ -338,8 +340,8 @@ class SecretManagerSecret(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Secrets(typing_extensions.TypedDict, total=False):
-    inline: typing.List[InlineSecret]
-    secretManager: typing.List[SecretManagerSecret]
+    inline: _list[InlineSecret]
+    secretManager: _list[SecretManagerSecret]
 
 @typing.type_check_only
 class SlackDelivery(typing_extensions.TypedDict, total=False):
@@ -353,7 +355,7 @@ class Source(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SourceProvenance(typing_extensions.TypedDict, total=False):
-    fileHashes: typing.Dict[str, typing.Any]
+    fileHashes: dict[str, typing.Any]
     resolvedRepoSource: RepoSource
     resolvedStorageSource: StorageSource
     resolvedStorageSourceManifest: StorageSourceManifest
@@ -361,7 +363,7 @@ class SourceProvenance(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -420,7 +422,7 @@ class WorkerPool(typing_extensions.TypedDict, total=False):
     deleteTime: str
     name: str
     projectId: str
-    regions: typing.List[str]
+    regions: _list[str]
     serviceAccountEmail: str
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "CREATING", "RUNNING", "DELETING", "DELETED"

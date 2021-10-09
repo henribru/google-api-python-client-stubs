@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class AccessContextManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -112,9 +114,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
 class AccessLevelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccessLevel: ...
 
@@ -122,9 +122,7 @@ class AccessLevelHttpRequest(googleapiclient.http.HttpRequest):
 class AccessPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccessPolicy: ...
 
@@ -132,9 +130,7 @@ class AccessPolicyHttpRequest(googleapiclient.http.HttpRequest):
 class ListAccessLevelsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAccessLevelsResponse: ...
 
@@ -142,9 +138,7 @@ class ListAccessLevelsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListAccessPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAccessPoliciesResponse: ...
 
@@ -152,9 +146,7 @@ class ListAccessPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListServicePerimetersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListServicePerimetersResponse: ...
 
@@ -162,9 +154,7 @@ class ListServicePerimetersResponseHttpRequest(googleapiclient.http.HttpRequest)
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
 
@@ -172,8 +162,6 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
 class ServicePerimeterHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ServicePerimeter: ...

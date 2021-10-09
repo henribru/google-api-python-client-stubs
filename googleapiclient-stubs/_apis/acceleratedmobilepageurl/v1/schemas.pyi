@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AmpUrl(typing_extensions.TypedDict, total=False):
     ampUrl: str
@@ -24,9 +26,9 @@ class AmpUrlError(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BatchGetAmpUrlsRequest(typing_extensions.TypedDict, total=False):
     lookupStrategy: typing_extensions.Literal["FETCH_LIVE_DOC", "IN_INDEX_DOC"]
-    urls: typing.List[str]
+    urls: _list[str]
 
 @typing.type_check_only
 class BatchGetAmpUrlsResponse(typing_extensions.TypedDict, total=False):
-    ampUrls: typing.List[AmpUrl]
-    urlErrors: typing.List[AmpUrlError]
+    ampUrls: _list[AmpUrl]
+    urlErrors: _list[AmpUrlError]

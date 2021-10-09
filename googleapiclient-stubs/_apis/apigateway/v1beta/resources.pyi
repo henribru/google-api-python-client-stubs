@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ApigatewayResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -232,9 +234,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
 class ApigatewayApiHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayApi: ...
 
@@ -242,9 +242,7 @@ class ApigatewayApiHttpRequest(googleapiclient.http.HttpRequest):
 class ApigatewayApiConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayApiConfig: ...
 
@@ -252,9 +250,7 @@ class ApigatewayApiConfigHttpRequest(googleapiclient.http.HttpRequest):
 class ApigatewayGatewayHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayGateway: ...
 
@@ -262,9 +258,7 @@ class ApigatewayGatewayHttpRequest(googleapiclient.http.HttpRequest):
 class ApigatewayListApiConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayListApiConfigsResponse: ...
 
@@ -272,9 +266,7 @@ class ApigatewayListApiConfigsResponseHttpRequest(googleapiclient.http.HttpReque
 class ApigatewayListApisResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayListApisResponse: ...
 
@@ -282,9 +274,7 @@ class ApigatewayListApisResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ApigatewayListGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayListGatewaysResponse: ...
 
@@ -292,9 +282,7 @@ class ApigatewayListGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest
 class ApigatewayListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayListLocationsResponse: ...
 
@@ -302,9 +290,7 @@ class ApigatewayListLocationsResponseHttpRequest(googleapiclient.http.HttpReques
 class ApigatewayListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayListOperationsResponse: ...
 
@@ -312,9 +298,7 @@ class ApigatewayListOperationsResponseHttpRequest(googleapiclient.http.HttpReque
 class ApigatewayLocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayLocation: ...
 
@@ -322,9 +306,7 @@ class ApigatewayLocationHttpRequest(googleapiclient.http.HttpRequest):
 class ApigatewayOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayOperation: ...
 
@@ -332,9 +314,7 @@ class ApigatewayOperationHttpRequest(googleapiclient.http.HttpRequest):
 class ApigatewayPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayPolicy: ...
 
@@ -342,9 +322,7 @@ class ApigatewayPolicyHttpRequest(googleapiclient.http.HttpRequest):
 class ApigatewayTestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApigatewayTestIamPermissionsResponse: ...
 
@@ -352,8 +330,6 @@ class ApigatewayTestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpR
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class BigQueryReservationResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -160,9 +162,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
 class AssignmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Assignment: ...
 
@@ -170,9 +170,7 @@ class AssignmentHttpRequest(googleapiclient.http.HttpRequest):
 class BiReservationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BiReservation: ...
 
@@ -180,9 +178,7 @@ class BiReservationHttpRequest(googleapiclient.http.HttpRequest):
 class CapacityCommitmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CapacityCommitment: ...
 
@@ -190,9 +186,7 @@ class CapacityCommitmentHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -200,9 +194,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class ListAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAssignmentsResponse: ...
 
@@ -210,9 +202,7 @@ class ListAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListCapacityCommitmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCapacityCommitmentsResponse: ...
 
@@ -220,9 +210,7 @@ class ListCapacityCommitmentsResponseHttpRequest(googleapiclient.http.HttpReques
 class ListReservationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListReservationsResponse: ...
 
@@ -230,9 +218,7 @@ class ListReservationsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ReservationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Reservation: ...
 
@@ -240,9 +226,7 @@ class ReservationHttpRequest(googleapiclient.http.HttpRequest):
 class SearchAllAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchAllAssignmentsResponse: ...
 
@@ -250,9 +234,7 @@ class SearchAllAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SearchAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchAssignmentsResponse: ...
 
@@ -260,8 +242,6 @@ class SearchAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SplitCapacityCommitmentResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SplitCapacityCommitmentResponse: ...

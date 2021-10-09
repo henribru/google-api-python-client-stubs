@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -93,9 +95,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponseHttpReq
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse: ...
 
@@ -105,9 +105,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponseHttpRe
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse: ...
 
@@ -117,9 +115,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponseHttpReq
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse: ...
 
@@ -129,9 +125,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse: ...
 
@@ -141,9 +135,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse: ...
 
@@ -153,9 +145,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1Subscription: ...
 
@@ -165,8 +155,6 @@ class GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponseHtt
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse: ...

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ApiKeysServiceResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -82,9 +84,7 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
 
@@ -92,9 +92,7 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
 class V2GetKeyStringResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> V2GetKeyStringResponse: ...
 
@@ -102,9 +100,7 @@ class V2GetKeyStringResponseHttpRequest(googleapiclient.http.HttpRequest):
 class V2KeyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> V2Key: ...
 
@@ -112,9 +108,7 @@ class V2KeyHttpRequest(googleapiclient.http.HttpRequest):
 class V2ListKeysResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> V2ListKeysResponse: ...
 
@@ -122,8 +116,6 @@ class V2ListKeysResponseHttpRequest(googleapiclient.http.HttpRequest):
 class V2LookupKeyResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> V2LookupKeyResponse: ...

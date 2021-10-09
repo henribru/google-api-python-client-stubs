@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class AdSenseHostResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -49,7 +51,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 adClientId: str,
                 adUnitId: str,
-                hostCustomChannelId: typing.Union[str, typing.List[str]] = ...,
+                hostCustomChannelId: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> AdCodeHttpRequest: ...
             def insert(
@@ -95,12 +97,12 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 accountId: str,
                 startDate: str,
                 endDate: str,
-                dimension: typing.Union[str, typing.List[str]] = ...,
-                filter: typing.Union[str, typing.List[str]] = ...,
+                dimension: str | _list[str] = ...,
+                filter: str | _list[str] = ...,
                 locale: str = ...,
                 maxResults: int = ...,
-                metric: typing.Union[str, typing.List[str]] = ...,
-                sort: typing.Union[str, typing.List[str]] = ...,
+                metric: str | _list[str] = ...,
+                sort: str | _list[str] = ...,
                 startIndex: int = ...,
                 **kwargs: typing.Any
             ) -> ReportHttpRequest: ...
@@ -108,10 +110,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             self, *, accountId: str, **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
         def list(
-            self,
-            *,
-            filterAdClientId: typing.Union[str, typing.List[str]],
-            **kwargs: typing.Any
+            self, *, filterAdClientId: str | _list[str], **kwargs: typing.Any
         ) -> AccountsHttpRequest: ...
         def adclients(self) -> AdclientsResource: ...
         def adunits(self) -> AdunitsResource: ...
@@ -129,12 +128,8 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
         def start(
             self,
             *,
-            productCode: typing.Union[
-                typing_extensions.Literal["AFC", "AFG", "AFMC", "AFS", "AFV"],
-                typing.List[
-                    typing_extensions.Literal["AFC", "AFG", "AFMC", "AFS", "AFV"]
-                ],
-            ],
+            productCode: typing_extensions.Literal["AFC", "AFG", "AFMC", "AFS", "AFV"]
+            | _list[typing_extensions.Literal["AFC", "AFG", "AFMC", "AFS", "AFV"]],
             websiteUrl: str,
             callbackUrl: str = ...,
             userLocale: str = ...,
@@ -181,12 +176,12 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             *,
             startDate: str,
             endDate: str,
-            dimension: typing.Union[str, typing.List[str]] = ...,
-            filter: typing.Union[str, typing.List[str]] = ...,
+            dimension: str | _list[str] = ...,
+            filter: str | _list[str] = ...,
             locale: str = ...,
             maxResults: int = ...,
-            metric: typing.Union[str, typing.List[str]] = ...,
-            sort: typing.Union[str, typing.List[str]] = ...,
+            metric: str | _list[str] = ...,
+            sort: str | _list[str] = ...,
             startIndex: int = ...,
             **kwargs: typing.Any
         ) -> ReportHttpRequest: ...
@@ -217,9 +212,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
 class AccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Account: ...
 
@@ -227,9 +220,7 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
 class AccountsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Accounts: ...
 
@@ -237,9 +228,7 @@ class AccountsHttpRequest(googleapiclient.http.HttpRequest):
 class AdClientHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdClient: ...
 
@@ -247,9 +236,7 @@ class AdClientHttpRequest(googleapiclient.http.HttpRequest):
 class AdClientsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdClients: ...
 
@@ -257,9 +244,7 @@ class AdClientsHttpRequest(googleapiclient.http.HttpRequest):
 class AdCodeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdCode: ...
 
@@ -267,9 +252,7 @@ class AdCodeHttpRequest(googleapiclient.http.HttpRequest):
 class AdUnitHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdUnit: ...
 
@@ -277,9 +260,7 @@ class AdUnitHttpRequest(googleapiclient.http.HttpRequest):
 class AdUnitsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdUnits: ...
 
@@ -287,9 +268,7 @@ class AdUnitsHttpRequest(googleapiclient.http.HttpRequest):
 class AssociationSessionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AssociationSession: ...
 
@@ -297,9 +276,7 @@ class AssociationSessionHttpRequest(googleapiclient.http.HttpRequest):
 class CustomChannelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CustomChannel: ...
 
@@ -307,9 +284,7 @@ class CustomChannelHttpRequest(googleapiclient.http.HttpRequest):
 class CustomChannelsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CustomChannels: ...
 
@@ -317,9 +292,7 @@ class CustomChannelsHttpRequest(googleapiclient.http.HttpRequest):
 class ReportHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Report: ...
 
@@ -327,9 +300,7 @@ class ReportHttpRequest(googleapiclient.http.HttpRequest):
 class UrlChannelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UrlChannel: ...
 
@@ -337,8 +308,6 @@ class UrlChannelHttpRequest(googleapiclient.http.HttpRequest):
 class UrlChannelsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UrlChannels: ...

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AsyncOptions(typing_extensions.TypedDict, total=False):
     methodMatch: str
@@ -9,19 +11,19 @@ class AsyncOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
 class BaseType(typing_extensions.TypedDict, total=False):
-    collectionOverrides: typing.List[CollectionOverride]
+    collectionOverrides: _list[CollectionOverride]
     credential: Credential
     descriptorUrl: str
     options: Options
@@ -34,7 +36,7 @@ class BasicAuth(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -47,7 +49,7 @@ class CompositeType(typing_extensions.TypedDict, total=False):
     description: str
     id: str
     insertTime: str
-    labels: typing.List[CompositeTypeLabelEntry]
+    labels: _list[CompositeTypeLabelEntry]
     name: str
     operation: Operation
     selfLink: str
@@ -63,7 +65,7 @@ class CompositeTypeLabelEntry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CompositeTypesListResponse(typing_extensions.TypedDict, total=False):
-    compositeTypes: typing.List[CompositeType]
+    compositeTypes: _list[CompositeType]
     nextPageToken: str
 
 @typing.type_check_only
@@ -82,7 +84,7 @@ class Deployment(typing_extensions.TypedDict, total=False):
     fingerprint: str
     id: str
     insertTime: str
-    labels: typing.List[DeploymentLabelEntry]
+    labels: _list[DeploymentLabelEntry]
     manifest: str
     name: str
     operation: Operation
@@ -99,7 +101,7 @@ class DeploymentLabelEntry(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeploymentUpdate(typing_extensions.TypedDict, total=False):
     description: str
-    labels: typing.List[DeploymentUpdateLabelEntry]
+    labels: _list[DeploymentUpdateLabelEntry]
     manifest: str
 
 @typing.type_check_only
@@ -113,7 +115,7 @@ class DeploymentsCancelPreviewRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeploymentsListResponse(typing_extensions.TypedDict, total=False):
-    deployments: typing.List[Deployment]
+    deployments: _list[Deployment]
     nextPageToken: str
 
 @typing.type_check_only
@@ -134,7 +136,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GlobalSetPolicyRequest(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     policy: Policy
 
@@ -155,7 +157,7 @@ class Manifest(typing_extensions.TypedDict, total=False):
     config: ConfigFile
     expandedConfig: str
     id: str
-    imports: typing.List[ImportFile]
+    imports: _list[ImportFile]
     insertTime: str
     layout: str
     manifestSizeBytes: str
@@ -165,7 +167,7 @@ class Manifest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ManifestsListResponse(typing_extensions.TypedDict, total=False):
-    manifests: typing.List[Manifest]
+    manifests: _list[Manifest]
     nextPageToken: str
 
 @typing.type_check_only
@@ -174,7 +176,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     description: str
     endTime: str
-    error: typing.Dict[str, typing.Any]
+    error: dict[str, typing.Any]
     httpErrorMessage: str
     httpErrorStatusCode: int
     id: str
@@ -192,31 +194,31 @@ class Operation(typing_extensions.TypedDict, total=False):
     targetId: str
     targetLink: str
     user: str
-    warnings: typing.List[typing.Dict[str, typing.Any]]
+    warnings: _list[dict[str, typing.Any]]
     zone: str
 
 @typing.type_check_only
 class OperationsListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Options(typing_extensions.TypedDict, total=False):
-    asyncOptions: typing.List[AsyncOptions]
-    inputMappings: typing.List[InputMapping]
+    asyncOptions: _list[AsyncOptions]
+    inputMappings: _list[InputMapping]
     validationOptions: ValidationOptions
     virtualProperties: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class PollingOptions(typing_extensions.TypedDict, total=False):
-    diagnostics: typing.List[Diagnostic]
+    diagnostics: _list[Diagnostic]
     failCondition: str
     finishCondition: str
     pollingLink: str
@@ -235,7 +237,7 @@ class Resource(typing_extensions.TypedDict, total=False):
     update: ResourceUpdate
     updateTime: str
     url: str
-    warnings: typing.List[typing.Dict[str, typing.Any]]
+    warnings: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class ResourceAccessControl(typing_extensions.TypedDict, total=False):
@@ -244,7 +246,7 @@ class ResourceAccessControl(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResourceUpdate(typing_extensions.TypedDict, total=False):
     accessControl: ResourceAccessControl
-    error: typing.Dict[str, typing.Any]
+    error: dict[str, typing.Any]
     finalProperties: str
     intent: typing_extensions.Literal[
         "CREATE_OR_ACQUIRE", "DELETE", "ACQUIRE", "UPDATE", "ABANDON", "CREATE"
@@ -254,12 +256,12 @@ class ResourceUpdate(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "PENDING", "IN_PROGRESS", "IN_PREVIEW", "FAILED", "ABORTED"
     ]
-    warnings: typing.List[typing.Dict[str, typing.Any]]
+    warnings: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class ResourcesListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    resources: typing.List[Resource]
+    resources: _list[Resource]
 
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
@@ -268,11 +270,11 @@ class ServiceAccount(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TargetConfiguration(typing_extensions.TypedDict, total=False):
     config: ConfigFile
-    imports: typing.List[ImportFile]
+    imports: _list[ImportFile]
 
 @typing.type_check_only
 class TemplateContents(typing_extensions.TypedDict, total=False):
-    imports: typing.List[ImportFile]
+    imports: _list[ImportFile]
     interpreter: typing_extensions.Literal["UNKNOWN_INTERPRETER", "PYTHON", "JINJA"]
     mainTemplate: str
     schema: str
@@ -280,11 +282,11 @@ class TemplateContents(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
@@ -292,7 +294,7 @@ class Type(typing_extensions.TypedDict, total=False):
     description: str
     id: str
     insertTime: str
-    labels: typing.List[TypeLabelEntry]
+    labels: _list[TypeLabelEntry]
     name: str
     operation: Operation
     selfLink: str
@@ -319,14 +321,14 @@ class TypeLabelEntry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TypeProvider(typing_extensions.TypedDict, total=False):
-    collectionOverrides: typing.List[CollectionOverride]
+    collectionOverrides: _list[CollectionOverride]
     credential: Credential
-    customCertificateAuthorityRoots: typing.List[str]
+    customCertificateAuthorityRoots: _list[str]
     description: str
     descriptorUrl: str
     id: str
     insertTime: str
-    labels: typing.List[TypeProviderLabelEntry]
+    labels: _list[TypeProviderLabelEntry]
     name: str
     operation: Operation
     options: Options
@@ -340,17 +342,17 @@ class TypeProviderLabelEntry(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TypeProvidersListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    typeProviders: typing.List[TypeProvider]
+    typeProviders: _list[TypeProvider]
 
 @typing.type_check_only
 class TypeProvidersListTypesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    types: typing.List[TypeInfo]
+    types: _list[TypeInfo]
 
 @typing.type_check_only
 class TypesListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    types: typing.List[Type]
+    types: _list[Type]
 
 @typing.type_check_only
 class ValidationOptions(typing_extensions.TypedDict, total=False):

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class TestingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -58,9 +60,7 @@ class TestingResource(googleapiclient.discovery.Resource):
 class CancelTestMatrixResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CancelTestMatrixResponse: ...
 
@@ -68,9 +68,7 @@ class CancelTestMatrixResponseHttpRequest(googleapiclient.http.HttpRequest):
 class GetApkDetailsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetApkDetailsResponse: ...
 
@@ -78,9 +76,7 @@ class GetApkDetailsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class TestEnvironmentCatalogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestEnvironmentCatalog: ...
 
@@ -88,8 +84,6 @@ class TestEnvironmentCatalogHttpRequest(googleapiclient.http.HttpRequest):
 class TestMatrixHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestMatrix: ...

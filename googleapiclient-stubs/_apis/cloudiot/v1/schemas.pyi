@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class BindDeviceToGatewayRequest(typing_extensions.TypedDict, total=False):
     deviceId: str
@@ -13,14 +15,14 @@ class BindDeviceToGatewayResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
     blocked: bool
     config: DeviceConfig
-    credentials: typing.List[DeviceCredential]
+    credentials: _list[DeviceCredential]
     gatewayConfig: GatewayConfig
     id: str
     lastConfigAckTime: str
@@ -33,7 +35,7 @@ class Device(typing_extensions.TypedDict, total=False):
     logLevel: typing_extensions.Literal[
         "LOG_LEVEL_UNSPECIFIED", "NONE", "ERROR", "INFO", "DEBUG"
     ]
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
     numId: str
     state: DeviceState
@@ -52,8 +54,8 @@ class DeviceCredential(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceRegistry(typing_extensions.TypedDict, total=False):
-    credentials: typing.List[RegistryCredential]
-    eventNotificationConfigs: typing.List[EventNotificationConfig]
+    credentials: _list[RegistryCredential]
+    eventNotificationConfigs: _list[EventNotificationConfig]
     httpConfig: HttpConfig
     id: str
     logLevel: typing_extensions.Literal[
@@ -113,20 +115,20 @@ class HttpConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListDeviceConfigVersionsResponse(typing_extensions.TypedDict, total=False):
-    deviceConfigs: typing.List[DeviceConfig]
+    deviceConfigs: _list[DeviceConfig]
 
 @typing.type_check_only
 class ListDeviceRegistriesResponse(typing_extensions.TypedDict, total=False):
-    deviceRegistries: typing.List[DeviceRegistry]
+    deviceRegistries: _list[DeviceRegistry]
     nextPageToken: str
 
 @typing.type_check_only
 class ListDeviceStatesResponse(typing_extensions.TypedDict, total=False):
-    deviceStates: typing.List[DeviceState]
+    deviceStates: _list[DeviceState]
 
 @typing.type_check_only
 class ListDevicesResponse(typing_extensions.TypedDict, total=False):
-    devices: typing.List[Device]
+    devices: _list[Device]
     nextPageToken: str
 
 @typing.type_check_only
@@ -142,7 +144,7 @@ class MqttConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -188,16 +190,16 @@ class StateNotificationConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class UnbindDeviceFromGatewayRequest(typing_extensions.TypedDict, total=False):

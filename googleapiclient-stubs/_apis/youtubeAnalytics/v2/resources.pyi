@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -91,9 +93,7 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
 class EmptyResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EmptyResponse: ...
 
@@ -101,9 +101,7 @@ class EmptyResponseHttpRequest(googleapiclient.http.HttpRequest):
 class GroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Group: ...
 
@@ -111,9 +109,7 @@ class GroupHttpRequest(googleapiclient.http.HttpRequest):
 class GroupItemHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GroupItem: ...
 
@@ -121,9 +117,7 @@ class GroupItemHttpRequest(googleapiclient.http.HttpRequest):
 class ListGroupItemsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGroupItemsResponse: ...
 
@@ -131,9 +125,7 @@ class ListGroupItemsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGroupsResponse: ...
 
@@ -141,8 +133,6 @@ class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class QueryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> QueryResponse: ...

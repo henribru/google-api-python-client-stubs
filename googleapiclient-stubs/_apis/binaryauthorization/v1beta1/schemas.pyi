@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AdmissionRule(typing_extensions.TypedDict, total=False):
     enforcementMode: typing_extensions.Literal[
@@ -15,7 +17,7 @@ class AdmissionRule(typing_extensions.TypedDict, total=False):
         "REQUIRE_ATTESTATION",
         "ALWAYS_DENY",
     ]
-    requireAttestationsBy: typing.List[str]
+    requireAttestationsBy: _list[str]
 
 @typing.type_check_only
 class AdmissionWhitelistPattern(typing_extensions.TypedDict, total=False):
@@ -23,9 +25,9 @@ class AdmissionWhitelistPattern(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AttestationOccurrence(typing_extensions.TypedDict, total=False):
-    jwts: typing.List[Jwt]
+    jwts: _list[Jwt]
     serializedPayload: str
-    signatures: typing.List[Signature]
+    signatures: _list[Signature]
 
 @typing.type_check_only
 class Attestor(typing_extensions.TypedDict, total=False):
@@ -44,7 +46,7 @@ class AttestorPublicKey(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -59,7 +61,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IamPolicy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -69,7 +71,7 @@ class Jwt(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAttestorsResponse(typing_extensions.TypedDict, total=False):
-    attestors: typing.List[Attestor]
+    attestors: _list[Attestor]
     nextPageToken: str
 
 @typing.type_check_only
@@ -95,16 +97,16 @@ class PkixPublicKey(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    admissionWhitelistPatterns: typing.List[AdmissionWhitelistPattern]
-    clusterAdmissionRules: typing.Dict[str, typing.Any]
+    admissionWhitelistPatterns: _list[AdmissionWhitelistPattern]
+    clusterAdmissionRules: dict[str, typing.Any]
     defaultAdmissionRule: AdmissionRule
     description: str
     globalPolicyEvaluationMode: typing_extensions.Literal[
         "GLOBAL_POLICY_EVALUATION_MODE_UNSPECIFIED", "ENABLE", "DISABLE"
     ]
-    istioServiceIdentityAdmissionRules: typing.Dict[str, typing.Any]
-    kubernetesNamespaceAdmissionRules: typing.Dict[str, typing.Any]
-    kubernetesServiceAccountAdmissionRules: typing.Dict[str, typing.Any]
+    istioServiceIdentityAdmissionRules: dict[str, typing.Any]
+    kubernetesNamespaceAdmissionRules: dict[str, typing.Any]
+    kubernetesServiceAccountAdmissionRules: dict[str, typing.Any]
     name: str
     updateTime: str
 
@@ -119,17 +121,17 @@ class Signature(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class UserOwnedDrydockNote(typing_extensions.TypedDict, total=False):
     delegationServiceAccountEmail: str
     noteReference: str
-    publicKeys: typing.List[AttestorPublicKey]
+    publicKeys: _list[AttestorPublicKey]
 
 @typing.type_check_only
 class ValidateAttestationOccurrenceRequest(typing_extensions.TypedDict, total=False):

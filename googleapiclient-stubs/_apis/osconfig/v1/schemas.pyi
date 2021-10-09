@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AptSettings(typing_extensions.TypedDict, total=False):
-    excludes: typing.List[str]
-    exclusivePackages: typing.List[str]
+    excludes: _list[str]
+    exclusivePackages: _list[str]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DIST", "UPGRADE"]
 
 @typing.type_check_only
@@ -68,7 +70,7 @@ class ExecStep(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecStepConfig(typing_extensions.TypedDict, total=False):
-    allowedSuccessCodes: typing.List[int]
+    allowedSuccessCodes: _list[int]
     gcsObject: GcsObject
     interpreter: typing_extensions.Literal[
         "INTERPRETER_UNSPECIFIED", "SHELL", "POWERSHELL"
@@ -101,7 +103,7 @@ class GooSettings(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Inventory(typing_extensions.TypedDict, total=False):
-    items: typing.Dict[str, typing.Any]
+    items: dict[str, typing.Any]
     name: str
     osInfo: InventoryOsInfo
     updateTime: str
@@ -166,11 +168,11 @@ class InventoryWindowsQuickFixEngineeringPackage(
 
 @typing.type_check_only
 class InventoryWindowsUpdatePackage(typing_extensions.TypedDict, total=False):
-    categories: typing.List[InventoryWindowsUpdatePackageWindowsUpdateCategory]
+    categories: _list[InventoryWindowsUpdatePackageWindowsUpdateCategory]
     description: str
-    kbArticleIds: typing.List[str]
+    kbArticleIds: _list[str]
     lastDeploymentChangeTime: str
-    moreInfoUrls: typing.List[str]
+    moreInfoUrls: _list[str]
     revisionNumber: int
     supportUrl: str
     title: str
@@ -192,38 +194,38 @@ class InventoryZypperPatch(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListInventoriesResponse(typing_extensions.TypedDict, total=False):
-    inventories: typing.List[Inventory]
+    inventories: _list[Inventory]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOSPolicyAssignmentRevisionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    osPolicyAssignments: typing.List[OSPolicyAssignment]
+    osPolicyAssignments: _list[OSPolicyAssignment]
 
 @typing.type_check_only
 class ListOSPolicyAssignmentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    osPolicyAssignments: typing.List[OSPolicyAssignment]
+    osPolicyAssignments: _list[OSPolicyAssignment]
 
 @typing.type_check_only
 class ListPatchDeploymentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    patchDeployments: typing.List[PatchDeployment]
+    patchDeployments: _list[PatchDeployment]
 
 @typing.type_check_only
 class ListPatchJobInstanceDetailsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    patchJobInstanceDetails: typing.List[PatchJobInstanceDetails]
+    patchJobInstanceDetails: _list[PatchJobInstanceDetails]
 
 @typing.type_check_only
 class ListPatchJobsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    patchJobs: typing.List[PatchJob]
+    patchJobs: _list[PatchJob]
 
 @typing.type_check_only
 class ListVulnerabilityReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    vulnerabilityReports: typing.List[VulnerabilityReport]
+    vulnerabilityReports: _list[VulnerabilityReport]
 
 @typing.type_check_only
 class MonthlySchedule(typing_extensions.TypedDict, total=False):
@@ -236,7 +238,7 @@ class OSPolicy(typing_extensions.TypedDict, total=False):
     description: str
     id: str
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "VALIDATION", "ENFORCEMENT"]
-    resourceGroups: typing.List[OSPolicyResourceGroup]
+    resourceGroups: _list[OSPolicyResourceGroup]
 
 @typing.type_check_only
 class OSPolicyAssignment(typing_extensions.TypedDict, total=False):
@@ -246,7 +248,7 @@ class OSPolicyAssignment(typing_extensions.TypedDict, total=False):
     etag: str
     instanceFilter: OSPolicyAssignmentInstanceFilter
     name: str
-    osPolicies: typing.List[OSPolicy]
+    osPolicies: _list[OSPolicy]
     reconciling: bool
     revisionCreateTime: str
     revisionId: str
@@ -263,9 +265,9 @@ class OSPolicyAssignment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OSPolicyAssignmentInstanceFilter(typing_extensions.TypedDict, total=False):
     all: bool
-    exclusionLabels: typing.List[OSPolicyAssignmentLabelSet]
-    inclusionLabels: typing.List[OSPolicyAssignmentLabelSet]
-    inventories: typing.List[OSPolicyAssignmentInstanceFilterInventory]
+    exclusionLabels: _list[OSPolicyAssignmentLabelSet]
+    inclusionLabels: _list[OSPolicyAssignmentLabelSet]
+    inventories: _list[OSPolicyAssignmentInstanceFilterInventory]
 
 @typing.type_check_only
 class OSPolicyAssignmentInstanceFilterInventory(
@@ -276,7 +278,7 @@ class OSPolicyAssignmentInstanceFilterInventory(
 
 @typing.type_check_only
 class OSPolicyAssignmentLabelSet(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class OSPolicyAssignmentOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -319,7 +321,7 @@ class OSPolicyResourceExecResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OSPolicyResourceExecResourceExec(typing_extensions.TypedDict, total=False):
-    args: typing.List[str]
+    args: _list[str]
     file: OSPolicyResourceFile
     interpreter: typing_extensions.Literal[
         "INTERPRETER_UNSPECIFIED", "NONE", "SHELL", "POWERSHELL"
@@ -357,8 +359,8 @@ class OSPolicyResourceFileResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OSPolicyResourceGroup(typing_extensions.TypedDict, total=False):
-    inventoryFilters: typing.List[OSPolicyInventoryFilter]
-    resources: typing.List[OSPolicyResource]
+    inventoryFilters: _list[OSPolicyInventoryFilter]
+    resources: _list[OSPolicyResource]
 
 @typing.type_check_only
 class OSPolicyResourcePackageResource(typing_extensions.TypedDict, total=False):
@@ -388,7 +390,7 @@ class OSPolicyResourcePackageResourceGooGet(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class OSPolicyResourcePackageResourceMSI(typing_extensions.TypedDict, total=False):
-    properties: typing.List[str]
+    properties: _list[str]
     source: OSPolicyResourceFile
 
 @typing.type_check_only
@@ -416,7 +418,7 @@ class OSPolicyResourceRepositoryResourceAptRepository(
     typing_extensions.TypedDict, total=False
 ):
     archiveType: typing_extensions.Literal["ARCHIVE_TYPE_UNSPECIFIED", "DEB", "DEB_SRC"]
-    components: typing.List[str]
+    components: _list[str]
     distribution: str
     gpgKey: str
     uri: str
@@ -434,7 +436,7 @@ class OSPolicyResourceRepositoryResourceYumRepository(
 ):
     baseUrl: str
     displayName: str
-    gpgKeys: typing.List[str]
+    gpgKeys: _list[str]
     id: str
 
 @typing.type_check_only
@@ -443,7 +445,7 @@ class OSPolicyResourceRepositoryResourceZypperRepository(
 ):
     baseUrl: str
     displayName: str
-    gpgKeys: typing.List[str]
+    gpgKeys: _list[str]
     id: str
 
 @typing.type_check_only
@@ -454,9 +456,9 @@ class OneTimeSchedule(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class PatchConfig(typing_extensions.TypedDict, total=False):
@@ -488,14 +490,14 @@ class PatchDeployment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PatchInstanceFilter(typing_extensions.TypedDict, total=False):
     all: bool
-    groupLabels: typing.List[PatchInstanceFilterGroupLabel]
-    instanceNamePrefixes: typing.List[str]
-    instances: typing.List[str]
-    zones: typing.List[str]
+    groupLabels: _list[PatchInstanceFilterGroupLabel]
+    instanceNamePrefixes: _list[str]
+    instances: _list[str]
+    zones: _list[str]
 
 @typing.type_check_only
 class PatchInstanceFilterGroupLabel(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class PatchJob(typing_extensions.TypedDict, total=False):
@@ -589,7 +591,7 @@ class RecurringSchedule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -608,14 +610,14 @@ class TimeZone(typing_extensions.TypedDict, total=False):
 class VulnerabilityReport(typing_extensions.TypedDict, total=False):
     name: str
     updateTime: str
-    vulnerabilities: typing.List[VulnerabilityReportVulnerability]
+    vulnerabilities: _list[VulnerabilityReportVulnerability]
 
 @typing.type_check_only
 class VulnerabilityReportVulnerability(typing_extensions.TypedDict, total=False):
-    availableInventoryItemIds: typing.List[str]
+    availableInventoryItemIds: _list[str]
     createTime: str
     details: VulnerabilityReportVulnerabilityDetails
-    installedInventoryItemIds: typing.List[str]
+    installedInventoryItemIds: _list[str]
     updateTime: str
 
 @typing.type_check_only
@@ -624,7 +626,7 @@ class VulnerabilityReportVulnerabilityDetails(typing_extensions.TypedDict, total
     cvssV2Score: float
     cvssV3: CVSSv3
     description: str
-    references: typing.List[VulnerabilityReportVulnerabilityDetailsReference]
+    references: _list[VulnerabilityReportVulnerabilityDetailsReference]
     severity: str
 
 @typing.type_check_only
@@ -663,22 +665,22 @@ class WeeklySchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WindowsUpdateSettings(typing_extensions.TypedDict, total=False):
-    classifications: typing.List[str]
-    excludes: typing.List[str]
-    exclusivePatches: typing.List[str]
+    classifications: _list[str]
+    excludes: _list[str]
+    exclusivePatches: _list[str]
 
 @typing.type_check_only
 class YumSettings(typing_extensions.TypedDict, total=False):
-    excludes: typing.List[str]
-    exclusivePackages: typing.List[str]
+    excludes: _list[str]
+    exclusivePackages: _list[str]
     minimal: bool
     security: bool
 
 @typing.type_check_only
 class ZypperSettings(typing_extensions.TypedDict, total=False):
-    categories: typing.List[str]
-    excludes: typing.List[str]
-    exclusivePatches: typing.List[str]
-    severities: typing.List[str]
+    categories: _list[str]
+    excludes: _list[str]
+    exclusivePatches: _list[str]
+    severities: _list[str]
     withOptional: bool
     withUpdate: bool

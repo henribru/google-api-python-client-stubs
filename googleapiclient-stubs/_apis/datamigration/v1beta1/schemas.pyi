@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -17,7 +19,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -40,7 +42,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
     dataDiskType: typing_extensions.Literal[
         "SQL_DATA_DISK_TYPE_UNSPECIFIED", "PD_SSD", "PD_HDD"
     ]
-    databaseFlags: typing.Dict[str, typing.Any]
+    databaseFlags: dict[str, typing.Any]
     databaseVersion: typing_extensions.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED", "MYSQL_5_6", "MYSQL_5_7", "MYSQL_8_0"
     ]
@@ -50,7 +52,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
     sourceId: str
     storageAutoResizeLimit: str
     tier: str
-    userLabels: typing.Dict[str, typing.Any]
+    userLabels: dict[str, typing.Any]
     zone: str
 
 @typing.type_check_only
@@ -59,7 +61,7 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
     error: Status
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     mysql: MySqlConnectionProfile
     name: str
     provider: typing_extensions.Literal[
@@ -115,32 +117,32 @@ class GoogleCloudClouddmsV1beta1OperationMetadata(
 
 @typing.type_check_only
 class ListConnectionProfilesResponse(typing_extensions.TypedDict, total=False):
-    connectionProfiles: typing.List[ConnectionProfile]
+    connectionProfiles: _list[ConnectionProfile]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListMigrationJobsResponse(typing_extensions.TypedDict, total=False):
-    migrationJobs: typing.List[MigrationJob]
+    migrationJobs: _list[MigrationJob]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -153,7 +155,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     duration: str
     endTime: str
     error: Status
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     phase: typing_extensions.Literal[
         "PHASE_UNSPECIFIED",
@@ -219,14 +221,14 @@ class MySqlConnectionProfile(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -260,7 +262,7 @@ class SqlAclEntry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SqlIpConfig(typing_extensions.TypedDict, total=False):
-    authorizedNetworks: typing.List[SqlAclEntry]
+    authorizedNetworks: _list[SqlAclEntry]
     enableIpv4: bool
     privateNetwork: str
     requireSsl: bool
@@ -287,7 +289,7 @@ class StaticIpConnectivity(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -295,11 +297,11 @@ class StopMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class VerifyMigrationJobRequest(typing_extensions.TypedDict, total=False): ...

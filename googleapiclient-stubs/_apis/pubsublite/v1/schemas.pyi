@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
@@ -66,45 +68,45 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListPartitionCursorsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    partitionCursors: typing.List[PartitionCursor]
+    partitionCursors: _list[PartitionCursor]
 
 @typing.type_check_only
 class ListReservationTopicsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    topics: typing.List[str]
+    topics: _list[str]
 
 @typing.type_check_only
 class ListReservationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    reservations: typing.List[Reservation]
+    reservations: _list[Reservation]
 
 @typing.type_check_only
 class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    subscriptions: typing.List[Subscription]
+    subscriptions: _list[Subscription]
 
 @typing.type_check_only
 class ListTopicSubscriptionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    subscriptions: typing.List[str]
+    subscriptions: _list[str]
 
 @typing.type_check_only
 class ListTopicsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    topics: typing.List[Topic]
+    topics: _list[Topic]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -149,7 +151,7 @@ class SeekSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

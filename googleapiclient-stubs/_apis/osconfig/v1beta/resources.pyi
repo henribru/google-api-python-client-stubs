@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class OSConfigResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -130,9 +132,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
 class EffectiveGuestPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EffectiveGuestPolicy: ...
 
@@ -140,9 +140,7 @@ class EffectiveGuestPolicyHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -150,9 +148,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class GuestPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GuestPolicy: ...
 
@@ -160,9 +156,7 @@ class GuestPolicyHttpRequest(googleapiclient.http.HttpRequest):
 class ListGuestPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGuestPoliciesResponse: ...
 
@@ -170,9 +164,7 @@ class ListGuestPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListPatchDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListPatchDeploymentsResponse: ...
 
@@ -180,9 +172,7 @@ class ListPatchDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListPatchJobInstanceDetailsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListPatchJobInstanceDetailsResponse: ...
 
@@ -190,9 +180,7 @@ class ListPatchJobInstanceDetailsResponseHttpRequest(googleapiclient.http.HttpRe
 class ListPatchJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListPatchJobsResponse: ...
 
@@ -200,9 +188,7 @@ class ListPatchJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PatchDeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PatchDeployment: ...
 
@@ -210,8 +196,6 @@ class PatchDeploymentHttpRequest(googleapiclient.http.HttpRequest):
 class PatchJobHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PatchJob: ...

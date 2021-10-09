@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AcceptInvitationRequest(typing_extensions.TypedDict, total=False): ...
 
@@ -64,20 +66,20 @@ class Invitation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAccountAdminsResponse(typing_extensions.TypedDict, total=False):
-    accountAdmins: typing.List[Admin]
+    accountAdmins: _list[Admin]
 
 @typing.type_check_only
 class ListAccountsResponse(typing_extensions.TypedDict, total=False):
-    accounts: typing.List[Account]
+    accounts: _list[Account]
     nextPageToken: str
 
 @typing.type_check_only
 class ListInvitationsResponse(typing_extensions.TypedDict, total=False):
-    invitations: typing.List[Invitation]
+    invitations: _list[Invitation]
 
 @typing.type_check_only
 class ListLocationAdminsResponse(typing_extensions.TypedDict, total=False):
-    admins: typing.List[Admin]
+    admins: _list[Admin]
 
 @typing.type_check_only
 class OrganizationInfo(typing_extensions.TypedDict, total=False):
@@ -87,13 +89,13 @@ class OrganizationInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PostalAddress(typing_extensions.TypedDict, total=False):
-    addressLines: typing.List[str]
+    addressLines: _list[str]
     administrativeArea: str
     languageCode: str
     locality: str
     organization: str
     postalCode: str
-    recipients: typing.List[str]
+    recipients: _list[str]
     regionCode: str
     revision: int
     sortingCode: str

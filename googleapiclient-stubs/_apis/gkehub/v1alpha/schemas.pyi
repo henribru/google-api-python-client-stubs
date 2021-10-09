@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -17,7 +19,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -25,7 +27,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CloudAuditLoggingFeatureSpec(typing_extensions.TypedDict, total=False):
-    allowlistedServiceAccounts: typing.List[str]
+    allowlistedServiceAccounts: _list[str]
 
 @typing.type_check_only
 class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
@@ -55,7 +57,7 @@ class ConfigManagementBinauthzVersion(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     git: ConfigManagementGitConfig
-    resourceRequirements: typing.Dict[str, typing.Any]
+    resourceRequirements: dict[str, typing.Any]
     sourceFormat: str
 
 @typing.type_check_only
@@ -208,14 +210,14 @@ class ConfigManagementOperatorState(typing_extensions.TypedDict, total=False):
     deploymentState: typing_extensions.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
     ]
-    errors: typing.List[ConfigManagementInstallError]
+    errors: _list[ConfigManagementInstallError]
     version: str
 
 @typing.type_check_only
 class ConfigManagementPolicyController(typing_extensions.TypedDict, total=False):
     auditIntervalSeconds: str
     enabled: bool
-    exemptableNamespaces: typing.List[str]
+    exemptableNamespaces: _list[str]
     logDeniesEnabled: bool
     mutationEnabled: bool
     referentialRulesEnabled: bool
@@ -238,7 +240,7 @@ class ConfigManagementQuantity(typing_extensions.TypedDict, total=False):
 class ConfigManagementSyncError(typing_extensions.TypedDict, total=False):
     code: str
     errorMessage: str
-    errorResources: typing.List[ConfigManagementErrorResource]
+    errorResources: _list[ConfigManagementErrorResource]
 
 @typing.type_check_only
 class ConfigManagementSyncState(typing_extensions.TypedDict, total=False):
@@ -252,7 +254,7 @@ class ConfigManagementSyncState(typing_extensions.TypedDict, total=False):
         "UNAUTHORIZED",
         "UNREACHABLE",
     ]
-    errors: typing.List[ConfigManagementSyncError]
+    errors: _list[ConfigManagementSyncError]
     importToken: str
     lastSync: str
     lastSyncTime: str
@@ -273,9 +275,9 @@ class Expr(typing_extensions.TypedDict, total=False):
 class Feature(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
-    labels: typing.Dict[str, typing.Any]
-    membershipSpecs: typing.Dict[str, typing.Any]
-    membershipStates: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
+    membershipSpecs: dict[str, typing.Any]
+    membershipStates: dict[str, typing.Any]
     name: str
     resourceState: FeatureResourceState
     spec: CommonFeatureSpec
@@ -302,7 +304,7 @@ class FeatureState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -313,7 +315,7 @@ class IdentityServiceAuthMethod(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IdentityServiceMembershipSpec(typing_extensions.TypedDict, total=False):
-    authMethods: typing.List[IdentityServiceAuthMethod]
+    authMethods: _list[IdentityServiceAuthMethod]
 
 @typing.type_check_only
 class IdentityServiceMembershipState(typing_extensions.TypedDict, total=False):
@@ -339,24 +341,24 @@ class IdentityServiceOidcConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListFeaturesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    resources: typing.List[Feature]
+    resources: _list[Feature]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -388,9 +390,9 @@ class MultiClusterIngressFeatureSpec(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -404,17 +406,17 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class ServiceMeshAnalysisMessage(typing_extensions.TypedDict, total=False):
-    args: typing.Dict[str, typing.Any]
+    args: dict[str, typing.Any]
     description: str
     messageBase: ServiceMeshAnalysisMessageBase
-    resourcePaths: typing.List[str]
+    resourcePaths: _list[str]
 
 @typing.type_check_only
 class ServiceMeshAnalysisMessageBase(typing_extensions.TypedDict, total=False):
@@ -424,11 +426,11 @@ class ServiceMeshAnalysisMessageBase(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceMeshFeatureState(typing_extensions.TypedDict, total=False):
-    analysisMessages: typing.List[ServiceMeshAnalysisMessage]
+    analysisMessages: _list[ServiceMeshAnalysisMessage]
 
 @typing.type_check_only
 class ServiceMeshMembershipState(typing_extensions.TypedDict, total=False):
-    analysisMessages: typing.List[ServiceMeshAnalysisMessage]
+    analysisMessages: _list[ServiceMeshAnalysisMessage]
 
 @typing.type_check_only
 class ServiceMeshType(typing_extensions.TypedDict, total=False):
@@ -442,8 +444,8 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]

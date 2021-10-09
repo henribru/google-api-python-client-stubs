@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AddFirebaseRequest(typing_extensions.TypedDict, total=False): ...
 
@@ -58,7 +60,7 @@ class GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadat
 
 @typing.type_check_only
 class ListBucketsResponse(typing_extensions.TypedDict, total=False):
-    buckets: typing.List[Bucket]
+    buckets: _list[Bucket]
     nextPageToken: str
 
 @typing.type_check_only

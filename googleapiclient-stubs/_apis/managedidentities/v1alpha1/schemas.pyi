@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AttachTrustRequest(typing_extensions.TypedDict, total=False):
     trust: Trust
@@ -9,14 +11,14 @@ class AttachTrustRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Certificate(typing.Dict[str, typing.Any]): ...
+class Certificate(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class DailyCycle(typing_extensions.TypedDict, total=False):
@@ -42,11 +44,11 @@ class DetachTrustRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Domain(typing_extensions.TypedDict, total=False):
     auditLogsEnabled: bool
-    authorizedNetworks: typing.List[str]
+    authorizedNetworks: _list[str]
     createTime: str
     fqdn: str
-    labels: typing.Dict[str, typing.Any]
-    locations: typing.List[str]
+    labels: dict[str, typing.Any]
+    locations: _list[str]
     managedIdentitiesAdminName: str
     name: str
     reservedIpRange: str
@@ -61,7 +63,7 @@ class Domain(typing_extensions.TypedDict, total=False):
         "DOWN",
     ]
     statusMessage: str
-    trusts: typing.List[Trust]
+    trusts: _list[Trust]
     updateTime: str
 
 @typing.type_check_only
@@ -113,18 +115,18 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
 ):
     consumerDefinedName: str
     createTime: str
-    labels: typing.Dict[str, typing.Any]
-    maintenancePolicyNames: typing.Dict[str, typing.Any]
-    maintenanceSchedules: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
+    maintenancePolicyNames: dict[str, typing.Any]
+    maintenanceSchedules: dict[str, typing.Any]
     maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
     name: str
-    producerMetadata: typing.Dict[str, typing.Any]
-    provisionedResources: typing.List[
+    producerMetadata: dict[str, typing.Any]
+    provisionedResources: _list[
         GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource
     ]
     slmInstanceTemplate: str
     sloMetadata: GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata
-    softwareVersions: typing.Dict[str, typing.Any]
+    softwareVersions: dict[str, typing.Any]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -153,7 +155,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
 ):
     exclude: bool
     isRollback: bool
-    maintenancePolicies: typing.Dict[str, typing.Any]
+    maintenancePolicies: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
@@ -167,7 +169,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
     typing_extensions.TypedDict, total=False
 ):
-    eligibilities: typing.Dict[str, typing.Any]
+    eligibilities: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource(
@@ -187,7 +189,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility(
 class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
+    nodes: _list[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
     tier: str
 
@@ -204,45 +206,45 @@ class LDAPSSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListDomainsResponse(typing_extensions.TypedDict, total=False):
-    domains: typing.List[Domain]
+    domains: _list[Domain]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListPeeringsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    peerings: typing.List[Peering]
-    unreachable: typing.List[str]
+    peerings: _list[Peering]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSQLIntegrationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sqlIntegrations: typing.List[SQLIntegration]
-    unreachable: typing.List[str]
+    sqlIntegrations: _list[SQLIntegration]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
     updatePolicy: UpdatePolicy
@@ -257,9 +259,9 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -276,7 +278,7 @@ class Peering(typing_extensions.TypedDict, total=False):
     authorizedNetwork: str
     createTime: str
     domainResource: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CONNECTED", "DISCONNECTED", "DELETING"
@@ -286,7 +288,7 @@ class Peering(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -333,16 +335,16 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):
@@ -365,7 +367,7 @@ class Trust(typing_extensions.TypedDict, total=False):
         "DISCONNECTED",
     ]
     stateDescription: str
-    targetDnsIpAddresses: typing.List[str]
+    targetDnsIpAddresses: _list[str]
     targetDomainName: str
     trustDirection: typing_extensions.Literal[
         "TRUST_DIRECTION_UNSPECIFIED", "INBOUND", "OUTBOUND", "BIDIRECTIONAL"
@@ -377,7 +379,7 @@ class Trust(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal["UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER"]
-    denyMaintenancePeriods: typing.List[DenyMaintenancePeriod]
+    denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 
 @typing.type_check_only
@@ -386,4 +388,4 @@ class ValidateTrustRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WeeklyCycle(typing_extensions.TypedDict, total=False):
-    schedule: typing.List[Schedule]
+    schedule: _list[Schedule]

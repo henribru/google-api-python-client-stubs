@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudPolicysimulatorV1Replay(typing_extensions.TypedDict, total=False):
     config: GoogleCloudPolicysimulatorV1ReplayConfig
@@ -16,7 +18,7 @@ class GoogleCloudPolicysimulatorV1ReplayConfig(
     typing_extensions.TypedDict, total=False
 ):
     logSource: typing_extensions.Literal["LOG_SOURCE_UNSPECIFIED", "RECENT_ACCESSES"]
-    policyOverlay: typing.Dict[str, typing.Any]
+    policyOverlay: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudPolicysimulatorV1ReplayOperationMetadata(
@@ -71,7 +73,7 @@ class GoogleCloudPolicysimulatorV1beta1BindingExplanation(
         "UNKNOWN_INFO_DENIED",
     ]
     condition: GoogleTypeExpr
-    memberships: typing.Dict[str, typing.Any]
+    memberships: dict[str, typing.Any]
     relevance: typing_extensions.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
     ]
@@ -112,8 +114,8 @@ class GoogleCloudPolicysimulatorV1beta1ExplainedAccess(
         "UNKNOWN_CONDITIONAL",
         "UNKNOWN_INFO_DENIED",
     ]
-    errors: typing.List[GoogleRpcStatus]
-    policies: typing.List[GoogleCloudPolicysimulatorV1beta1ExplainedPolicy]
+    errors: _list[GoogleRpcStatus]
+    policies: _list[GoogleCloudPolicysimulatorV1beta1ExplainedPolicy]
 
 @typing.type_check_only
 class GoogleCloudPolicysimulatorV1beta1ExplainedPolicy(
@@ -126,9 +128,7 @@ class GoogleCloudPolicysimulatorV1beta1ExplainedPolicy(
         "UNKNOWN_CONDITIONAL",
         "UNKNOWN_INFO_DENIED",
     ]
-    bindingExplanations: typing.List[
-        GoogleCloudPolicysimulatorV1beta1BindingExplanation
-    ]
+    bindingExplanations: _list[GoogleCloudPolicysimulatorV1beta1BindingExplanation]
     fullResourceName: str
     policy: GoogleIamV1Policy
     relevance: typing_extensions.Literal[
@@ -140,7 +140,7 @@ class GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    replayResults: typing.List[GoogleCloudPolicysimulatorV1beta1ReplayResult]
+    replayResults: _list[GoogleCloudPolicysimulatorV1beta1ReplayResult]
 
 @typing.type_check_only
 class GoogleCloudPolicysimulatorV1beta1Replay(typing_extensions.TypedDict, total=False):
@@ -156,7 +156,7 @@ class GoogleCloudPolicysimulatorV1beta1ReplayConfig(
     typing_extensions.TypedDict, total=False
 ):
     logSource: typing_extensions.Literal["LOG_SOURCE_UNSPECIFIED", "RECENT_ACCESSES"]
-    policyOverlay: typing.Dict[str, typing.Any]
+    policyOverlay: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudPolicysimulatorV1beta1ReplayDiff(
@@ -194,12 +194,12 @@ class GoogleCloudPolicysimulatorV1beta1ReplayResultsSummary(
 
 @typing.type_check_only
 class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[GoogleIamV1AuditLogConfig]
+    auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -207,33 +207,33 @@ class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
     condition: GoogleTypeExpr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[GoogleIamV1AuditConfig]
-    bindings: typing.List[GoogleIamV1Binding]
+    auditConfigs: _list[GoogleIamV1AuditConfig]
+    bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudIotResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -49,8 +51,8 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        deviceIds: typing.Union[str, typing.List[str]] = ...,
-                        deviceNumIds: typing.Union[str, typing.List[str]] = ...,
+                        deviceIds: str | _list[str] = ...,
+                        deviceNumIds: str | _list[str] = ...,
                         fieldMask: str = ...,
                         gatewayListOptions_associationsDeviceId: str = ...,
                         gatewayListOptions_associationsGatewayId: str = ...,
@@ -93,8 +95,8 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            deviceIds: typing.Union[str, typing.List[str]] = ...,
-                            deviceNumIds: typing.Union[str, typing.List[str]] = ...,
+                            deviceIds: str | _list[str] = ...,
+                            deviceNumIds: str | _list[str] = ...,
                             fieldMask: str = ...,
                             gatewayListOptions_associationsDeviceId: str = ...,
                             gatewayListOptions_associationsGatewayId: str = ...,
@@ -201,9 +203,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
 class BindDeviceToGatewayResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BindDeviceToGatewayResponse: ...
 
@@ -211,9 +211,7 @@ class BindDeviceToGatewayResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DeviceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Device: ...
 
@@ -221,9 +219,7 @@ class DeviceHttpRequest(googleapiclient.http.HttpRequest):
 class DeviceConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DeviceConfig: ...
 
@@ -231,9 +227,7 @@ class DeviceConfigHttpRequest(googleapiclient.http.HttpRequest):
 class DeviceRegistryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DeviceRegistry: ...
 
@@ -241,9 +235,7 @@ class DeviceRegistryHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -251,9 +243,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class ListDeviceConfigVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDeviceConfigVersionsResponse: ...
 
@@ -261,9 +251,7 @@ class ListDeviceConfigVersionsResponseHttpRequest(googleapiclient.http.HttpReque
 class ListDeviceRegistriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDeviceRegistriesResponse: ...
 
@@ -271,9 +259,7 @@ class ListDeviceRegistriesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListDeviceStatesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDeviceStatesResponse: ...
 
@@ -281,9 +267,7 @@ class ListDeviceStatesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDevicesResponse: ...
 
@@ -291,9 +275,7 @@ class ListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
 
@@ -301,9 +283,7 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
 class SendCommandToDeviceResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SendCommandToDeviceResponse: ...
 
@@ -311,9 +291,7 @@ class SendCommandToDeviceResponseHttpRequest(googleapiclient.http.HttpRequest):
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
 
@@ -321,8 +299,6 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class UnbindDeviceFromGatewayResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UnbindDeviceFromGatewayResponse: ...

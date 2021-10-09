@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class DfareportingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -48,7 +50,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             active: bool = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -83,7 +85,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             active: bool = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -112,8 +114,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             active: bool = ...,
             advertiserId: str = ...,
             archived: bool = ...,
-            audienceSegmentIds: typing.Union[str, typing.List[str]] = ...,
-            campaignIds: typing.Union[str, typing.List[str]] = ...,
+            audienceSegmentIds: str | _list[str] = ...,
+            campaignIds: str | _list[str] = ...,
             compatibility: typing_extensions.Literal[
                 "DISPLAY",
                 "DISPLAY_INTERSTITIAL",
@@ -122,41 +124,37 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 "IN_STREAM_VIDEO",
                 "IN_STREAM_AUDIO",
             ] = ...,
-            creativeIds: typing.Union[str, typing.List[str]] = ...,
-            creativeOptimizationConfigurationIds: typing.Union[
-                str, typing.List[str]
-            ] = ...,
+            creativeIds: str | _list[str] = ...,
+            creativeOptimizationConfigurationIds: str | _list[str] = ...,
             dynamicClickTracker: bool = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
-            landingPageIds: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
+            landingPageIds: str | _list[str] = ...,
             maxResults: int = ...,
             overriddenEventTagId: str = ...,
             pageToken: str = ...,
-            placementIds: typing.Union[str, typing.List[str]] = ...,
-            remarketingListIds: typing.Union[str, typing.List[str]] = ...,
+            placementIds: str | _list[str] = ...,
+            remarketingListIds: str | _list[str] = ...,
             searchString: str = ...,
-            sizeIds: typing.Union[str, typing.List[str]] = ...,
+            sizeIds: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             sslCompliant: bool = ...,
             sslRequired: bool = ...,
-            type: typing.Union[
+            type: typing_extensions.Literal[
+                "AD_SERVING_STANDARD_AD",
+                "AD_SERVING_DEFAULT_AD",
+                "AD_SERVING_CLICK_TRACKER",
+                "AD_SERVING_TRACKING",
+                "AD_SERVING_BRAND_SAFE_AD",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "AD_SERVING_STANDARD_AD",
                     "AD_SERVING_DEFAULT_AD",
                     "AD_SERVING_CLICK_TRACKER",
                     "AD_SERVING_TRACKING",
                     "AD_SERVING_BRAND_SAFE_AD",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "AD_SERVING_STANDARD_AD",
-                        "AD_SERVING_DEFAULT_AD",
-                        "AD_SERVING_CLICK_TRACKER",
-                        "AD_SERVING_TRACKING",
-                        "AD_SERVING_BRAND_SAFE_AD",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> AdsListResponseHttpRequest: ...
@@ -181,7 +179,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -212,10 +210,10 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            advertiserIds: typing.Union[str, typing.List[str]] = ...,
+            advertiserIds: str | _list[str] = ...,
             archived: bool = ...,
-            campaignIds: typing.Union[str, typing.List[str]] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            campaignIds: str | _list[str] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -247,9 +245,9 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            advertiserGroupIds: typing.Union[str, typing.List[str]] = ...,
-            floodlightConfigurationIds: typing.Union[str, typing.List[str]] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            advertiserGroupIds: str | _list[str] = ...,
+            floodlightConfigurationIds: str | _list[str] = ...,
+            ids: str | _list[str] = ...,
             includeAdvertisersWithoutGroupsOnly: bool = ...,
             maxResults: int = ...,
             onlyParent: bool = ...,
@@ -309,12 +307,12 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            advertiserGroupIds: typing.Union[str, typing.List[str]] = ...,
-            advertiserIds: typing.Union[str, typing.List[str]] = ...,
+            advertiserGroupIds: str | _list[str] = ...,
+            advertiserIds: str | _list[str] = ...,
             archived: bool = ...,
             atLeastOneOptimizationActivity: bool = ...,
-            excludedIds: typing.Union[str, typing.List[str]] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            excludedIds: str | _list[str] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             overriddenEventTagId: str = ...,
             pageToken: str = ...,
@@ -358,11 +356,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 "ACTION_EMAIL_TAGS",
                 "ACTION_SHARE",
             ] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxChangeTime: str = ...,
             maxResults: int = ...,
             minChangeTime: str = ...,
-            objectIds: typing.Union[str, typing.List[str]] = ...,
+            objectIds: str | _list[str] = ...,
             objectType: typing_extensions.Literal[
                 "OBJECT_ADVERTISER",
                 "OBJECT_FLOODLIGHT_CONFIGURATION",
@@ -407,7 +405,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             ] = ...,
             pageToken: str = ...,
             searchString: str = ...,
-            userProfileIds: typing.Union[str, typing.List[str]] = ...,
+            userProfileIds: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> ChangeLogsListResponseHttpRequest: ...
     @typing.type_check_only
@@ -416,10 +414,10 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            countryDartIds: typing.Union[str, typing.List[str]] = ...,
-            dartIds: typing.Union[str, typing.List[str]] = ...,
+            countryDartIds: str | _list[str] = ...,
+            dartIds: str | _list[str] = ...,
             namePrefix: str = ...,
-            regionDartIds: typing.Union[str, typing.List[str]] = ...,
+            regionDartIds: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> CitiesListResponseHttpRequest: ...
     @typing.type_check_only
@@ -445,7 +443,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -519,7 +517,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             creativeFieldId: str,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -559,8 +557,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            advertiserIds: typing.Union[str, typing.List[str]] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            advertiserIds: str | _list[str] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -591,9 +589,9 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            advertiserIds: typing.Union[str, typing.List[str]] = ...,
+            advertiserIds: str | _list[str] = ...,
             groupNumber: int = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -628,18 +626,45 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             advertiserId: str = ...,
             archived: bool = ...,
             campaignId: str = ...,
-            companionCreativeIds: typing.Union[str, typing.List[str]] = ...,
-            creativeFieldIds: typing.Union[str, typing.List[str]] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            companionCreativeIds: str | _list[str] = ...,
+            creativeFieldIds: str | _list[str] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            renderingIds: typing.Union[str, typing.List[str]] = ...,
+            renderingIds: str | _list[str] = ...,
             searchString: str = ...,
-            sizeIds: typing.Union[str, typing.List[str]] = ...,
+            sizeIds: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             studioCreativeId: str = ...,
-            types: typing.Union[
+            types: typing_extensions.Literal[
+                "IMAGE",
+                "DISPLAY_REDIRECT",
+                "CUSTOM_DISPLAY",
+                "INTERNAL_REDIRECT",
+                "CUSTOM_DISPLAY_INTERSTITIAL",
+                "INTERSTITIAL_INTERNAL_REDIRECT",
+                "TRACKING_TEXT",
+                "RICH_MEDIA_DISPLAY_BANNER",
+                "RICH_MEDIA_INPAGE_FLOATING",
+                "RICH_MEDIA_IM_EXPAND",
+                "RICH_MEDIA_DISPLAY_EXPANDING",
+                "RICH_MEDIA_DISPLAY_INTERSTITIAL",
+                "RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL",
+                "RICH_MEDIA_MOBILE_IN_APP",
+                "FLASH_INPAGE",
+                "INSTREAM_VIDEO",
+                "VPAID_LINEAR_VIDEO",
+                "VPAID_NON_LINEAR_VIDEO",
+                "INSTREAM_VIDEO_REDIRECT",
+                "RICH_MEDIA_PEEL_DOWN",
+                "HTML5_BANNER",
+                "DISPLAY",
+                "DISPLAY_IMAGE_GALLERY",
+                "BRAND_SAFE_DEFAULT_INSTREAM_VIDEO",
+                "INSTREAM_AUDIO",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "IMAGE",
                     "DISPLAY_REDIRECT",
@@ -666,36 +691,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "DISPLAY_IMAGE_GALLERY",
                     "BRAND_SAFE_DEFAULT_INSTREAM_VIDEO",
                     "INSTREAM_AUDIO",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "IMAGE",
-                        "DISPLAY_REDIRECT",
-                        "CUSTOM_DISPLAY",
-                        "INTERNAL_REDIRECT",
-                        "CUSTOM_DISPLAY_INTERSTITIAL",
-                        "INTERSTITIAL_INTERNAL_REDIRECT",
-                        "TRACKING_TEXT",
-                        "RICH_MEDIA_DISPLAY_BANNER",
-                        "RICH_MEDIA_INPAGE_FLOATING",
-                        "RICH_MEDIA_IM_EXPAND",
-                        "RICH_MEDIA_DISPLAY_EXPANDING",
-                        "RICH_MEDIA_DISPLAY_INTERSTITIAL",
-                        "RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL",
-                        "RICH_MEDIA_MOBILE_IN_APP",
-                        "FLASH_INPAGE",
-                        "INSTREAM_VIDEO",
-                        "VPAID_LINEAR_VIDEO",
-                        "VPAID_NON_LINEAR_VIDEO",
-                        "INSTREAM_VIDEO_REDIRECT",
-                        "RICH_MEDIA_PEEL_DOWN",
-                        "HTML5_BANNER",
-                        "DISPLAY",
-                        "DISPLAY_IMAGE_GALLERY",
-                        "BRAND_SAFE_DEFAULT_INSTREAM_VIDEO",
-                        "INSTREAM_AUDIO",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> CreativesListResponseHttpRequest: ...
@@ -742,7 +738,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             acceptsPublisherPaidPlacements: bool = ...,
             active: bool = ...,
             dfpNetworkCode: str = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -775,7 +771,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             advertiserId: str = ...,
-            names: typing.Union[str, typing.List[str]] = ...,
+            names: str | _list[str] = ...,
             objectId: str = ...,
             objectType: typing_extensions.Literal[
                 "OBJECT_ADVERTISER", "OBJECT_AD", "OBJECT_CREATIVE", "OBJECT_PLACEMENT"
@@ -802,21 +798,19 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             campaignId: str = ...,
             definitionsOnly: bool = ...,
             enabled: bool = ...,
-            eventTagTypes: typing.Union[
+            eventTagTypes: typing_extensions.Literal[
+                "IMPRESSION_IMAGE_EVENT_TAG",
+                "IMPRESSION_JAVASCRIPT_EVENT_TAG",
+                "CLICK_THROUGH_EVENT_TAG",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "IMPRESSION_IMAGE_EVENT_TAG",
                     "IMPRESSION_JAVASCRIPT_EVENT_TAG",
                     "CLICK_THROUGH_EVENT_TAG",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "IMPRESSION_IMAGE_EVENT_TAG",
-                        "IMPRESSION_JAVASCRIPT_EVENT_TAG",
-                        "CLICK_THROUGH_EVENT_TAG",
-                    ]
-                ],
+                ]
             ] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
@@ -871,14 +865,14 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             advertiserId: str = ...,
-            floodlightActivityGroupIds: typing.Union[str, typing.List[str]] = ...,
+            floodlightActivityGroupIds: str | _list[str] = ...,
             floodlightActivityGroupName: str = ...,
             floodlightActivityGroupTagString: str = ...,
             floodlightActivityGroupType: typing_extensions.Literal[
                 "COUNTER", "SALE"
             ] = ...,
             floodlightConfigurationId: str = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -920,7 +914,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             advertiserId: str = ...,
             floodlightConfigurationId: str = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -950,11 +944,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self, *, profileId: str, id: str, **kwargs: typing.Any
         ) -> FloodlightConfigurationHttpRequest: ...
         def list(
-            self,
-            *,
-            profileId: str,
-            ids: typing.Union[str, typing.List[str]] = ...,
-            **kwargs: typing.Any
+            self, *, profileId: str, ids: str | _list[str] = ..., **kwargs: typing.Any
         ) -> FloodlightConfigurationsListResponseHttpRequest: ...
         def patch(
             self,
@@ -981,12 +971,12 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             projectId: str,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             inPlan: bool = ...,
             maxResults: int = ...,
-            orderId: typing.Union[str, typing.List[str]] = ...,
+            orderId: str | _list[str] = ...,
             pageToken: str = ...,
-            siteId: typing.Union[str, typing.List[str]] = ...,
+            siteId: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             type: typing_extensions.Literal[
@@ -1013,17 +1003,15 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            directories: typing.Union[
+            directories: typing_extensions.Literal[
+                "UNKNOWN", "APPLE_APP_STORE", "GOOGLE_PLAY_STORE"
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "UNKNOWN", "APPLE_APP_STORE", "GOOGLE_PLAY_STORE"
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "UNKNOWN", "APPLE_APP_STORE", "GOOGLE_PLAY_STORE"
-                    ]
-                ],
+                ]
             ] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -1064,12 +1052,12 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             projectId: str,
             approved: bool = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
-            orderId: typing.Union[str, typing.List[str]] = ...,
+            orderId: str | _list[str] = ...,
             pageToken: str = ...,
             searchString: str = ...,
-            siteId: typing.Union[str, typing.List[str]] = ...,
+            siteId: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             **kwargs: typing.Any
@@ -1084,11 +1072,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             projectId: str,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
-            siteId: typing.Union[str, typing.List[str]] = ...,
+            siteId: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             **kwargs: typing.Any
@@ -1105,12 +1093,12 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            advertiserIds: typing.Union[str, typing.List[str]] = ...,
+            advertiserIds: str | _list[str] = ...,
             archived: bool = ...,
-            campaignIds: typing.Union[str, typing.List[str]] = ...,
-            contentCategoryIds: typing.Union[str, typing.List[str]] = ...,
-            directorySiteIds: typing.Union[str, typing.List[str]] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            campaignIds: str | _list[str] = ...,
+            contentCategoryIds: str | _list[str] = ...,
+            directorySiteIds: str | _list[str] = ...,
+            ids: str | _list[str] = ...,
             maxEndDate: str = ...,
             maxResults: int = ...,
             maxStartDate: str = ...,
@@ -1120,8 +1108,16 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             placementGroupType: typing_extensions.Literal[
                 "PLACEMENT_PACKAGE", "PLACEMENT_ROADBLOCK"
             ] = ...,
-            placementStrategyIds: typing.Union[str, typing.List[str]] = ...,
-            pricingTypes: typing.Union[
+            placementStrategyIds: str | _list[str] = ...,
+            pricingTypes: typing_extensions.Literal[
+                "PRICING_TYPE_CPM",
+                "PRICING_TYPE_CPC",
+                "PRICING_TYPE_CPA",
+                "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
+                "PRICING_TYPE_FLAT_RATE_CLICKS",
+                "PRICING_TYPE_CPM_ACTIVEVIEW",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PRICING_TYPE_CPM",
                     "PRICING_TYPE_CPC",
@@ -1129,20 +1125,10 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
                     "PRICING_TYPE_FLAT_RATE_CLICKS",
                     "PRICING_TYPE_CPM_ACTIVEVIEW",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "PRICING_TYPE_CPM",
-                        "PRICING_TYPE_CPC",
-                        "PRICING_TYPE_CPA",
-                        "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
-                        "PRICING_TYPE_FLAT_RATE_CLICKS",
-                        "PRICING_TYPE_CPM_ACTIVEVIEW",
-                    ]
-                ],
+                ]
             ] = ...,
             searchString: str = ...,
-            siteIds: typing.Union[str, typing.List[str]] = ...,
+            siteIds: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             **kwargs: typing.Any
@@ -1173,7 +1159,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -1199,8 +1185,29 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             campaignId: str = ...,
-            placementIds: typing.Union[str, typing.List[str]] = ...,
-            tagFormats: typing.Union[
+            placementIds: str | _list[str] = ...,
+            tagFormats: typing_extensions.Literal[
+                "PLACEMENT_TAG_STANDARD",
+                "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
+                "PLACEMENT_TAG_IFRAME_ILAYER",
+                "PLACEMENT_TAG_INTERNAL_REDIRECT",
+                "PLACEMENT_TAG_JAVASCRIPT",
+                "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT",
+                "PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT",
+                "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT",
+                "PLACEMENT_TAG_CLICK_COMMANDS",
+                "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH",
+                "PLACEMENT_TAG_TRACKING",
+                "PLACEMENT_TAG_TRACKING_IFRAME",
+                "PLACEMENT_TAG_TRACKING_JAVASCRIPT",
+                "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3",
+                "PLACEMENT_TAG_IFRAME_JAVASCRIPT_LEGACY",
+                "PLACEMENT_TAG_JAVASCRIPT_LEGACY",
+                "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT_LEGACY",
+                "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
+                "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PLACEMENT_TAG_STANDARD",
                     "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
@@ -1221,30 +1228,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT_LEGACY",
                     "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
                     "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "PLACEMENT_TAG_STANDARD",
-                        "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
-                        "PLACEMENT_TAG_IFRAME_ILAYER",
-                        "PLACEMENT_TAG_INTERNAL_REDIRECT",
-                        "PLACEMENT_TAG_JAVASCRIPT",
-                        "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT",
-                        "PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT",
-                        "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT",
-                        "PLACEMENT_TAG_CLICK_COMMANDS",
-                        "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH",
-                        "PLACEMENT_TAG_TRACKING",
-                        "PLACEMENT_TAG_TRACKING_IFRAME",
-                        "PLACEMENT_TAG_TRACKING_JAVASCRIPT",
-                        "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3",
-                        "PLACEMENT_TAG_IFRAME_JAVASCRIPT_LEGACY",
-                        "PLACEMENT_TAG_JAVASCRIPT_LEGACY",
-                        "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT_LEGACY",
-                        "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
-                        "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> PlacementsGenerateTagsResponseHttpRequest: ...
@@ -1258,10 +1242,18 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            advertiserIds: typing.Union[str, typing.List[str]] = ...,
+            advertiserIds: str | _list[str] = ...,
             archived: bool = ...,
-            campaignIds: typing.Union[str, typing.List[str]] = ...,
-            compatibilities: typing.Union[
+            campaignIds: str | _list[str] = ...,
+            compatibilities: typing_extensions.Literal[
+                "DISPLAY",
+                "DISPLAY_INTERSTITIAL",
+                "APP",
+                "APP_INTERSTITIAL",
+                "IN_STREAM_VIDEO",
+                "IN_STREAM_AUDIO",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "DISPLAY",
                     "DISPLAY_INTERSTITIAL",
@@ -1269,22 +1261,12 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "APP_INTERSTITIAL",
                     "IN_STREAM_VIDEO",
                     "IN_STREAM_AUDIO",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "DISPLAY",
-                        "DISPLAY_INTERSTITIAL",
-                        "APP",
-                        "APP_INTERSTITIAL",
-                        "IN_STREAM_VIDEO",
-                        "IN_STREAM_AUDIO",
-                    ]
-                ],
+                ]
             ] = ...,
-            contentCategoryIds: typing.Union[str, typing.List[str]] = ...,
-            directorySiteIds: typing.Union[str, typing.List[str]] = ...,
-            groupIds: typing.Union[str, typing.List[str]] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            contentCategoryIds: str | _list[str] = ...,
+            directorySiteIds: str | _list[str] = ...,
+            groupIds: str | _list[str] = ...,
+            ids: str | _list[str] = ...,
             maxEndDate: str = ...,
             maxResults: int = ...,
             maxStartDate: str = ...,
@@ -1294,8 +1276,16 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             paymentSource: typing_extensions.Literal[
                 "PLACEMENT_AGENCY_PAID", "PLACEMENT_PUBLISHER_PAID"
             ] = ...,
-            placementStrategyIds: typing.Union[str, typing.List[str]] = ...,
-            pricingTypes: typing.Union[
+            placementStrategyIds: str | _list[str] = ...,
+            pricingTypes: typing_extensions.Literal[
+                "PRICING_TYPE_CPM",
+                "PRICING_TYPE_CPC",
+                "PRICING_TYPE_CPA",
+                "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
+                "PRICING_TYPE_FLAT_RATE_CLICKS",
+                "PRICING_TYPE_CPM_ACTIVEVIEW",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PRICING_TYPE_CPM",
                     "PRICING_TYPE_CPC",
@@ -1303,21 +1293,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
                     "PRICING_TYPE_FLAT_RATE_CLICKS",
                     "PRICING_TYPE_CPM_ACTIVEVIEW",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "PRICING_TYPE_CPM",
-                        "PRICING_TYPE_CPC",
-                        "PRICING_TYPE_CPA",
-                        "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
-                        "PRICING_TYPE_FLAT_RATE_CLICKS",
-                        "PRICING_TYPE_CPM_ACTIVEVIEW",
-                    ]
-                ],
+                ]
             ] = ...,
             searchString: str = ...,
-            siteIds: typing.Union[str, typing.List[str]] = ...,
-            sizeIds: typing.Union[str, typing.List[str]] = ...,
+            siteIds: str | _list[str] = ...,
+            sizeIds: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             **kwargs: typing.Any
@@ -1358,8 +1338,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            advertiserIds: typing.Union[str, typing.List[str]] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            advertiserIds: str | _list[str] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -1518,9 +1498,9 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             acceptsPublisherPaidPlacements: bool = ...,
             adWordsSite: bool = ...,
             approved: bool = ...,
-            campaignIds: typing.Union[str, typing.List[str]] = ...,
-            directorySiteIds: typing.Union[str, typing.List[str]] = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            campaignIds: str | _list[str] = ...,
+            directorySiteIds: str | _list[str] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -1550,7 +1530,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             height: int = ...,
             iabStandard: bool = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             width: int = ...,
             **kwargs: typing.Any
         ) -> SizesListResponseHttpRequest: ...
@@ -1566,7 +1546,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -1616,7 +1596,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             advertiserId: str = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -1655,11 +1635,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self, *, profileId: str, id: str, **kwargs: typing.Any
         ) -> UserRolePermissionHttpRequest: ...
         def list(
-            self,
-            *,
-            profileId: str,
-            ids: typing.Union[str, typing.List[str]] = ...,
-            **kwargs: typing.Any
+            self, *, profileId: str, ids: str | _list[str] = ..., **kwargs: typing.Any
         ) -> UserRolePermissionsListResponseHttpRequest: ...
     @typing.type_check_only
     class UserRolesResource(googleapiclient.discovery.Resource):
@@ -1677,7 +1653,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             accountUserRoleOnly: bool = ...,
-            ids: typing.Union[str, typing.List[str]] = ...,
+            ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -1766,9 +1742,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
 class AccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Account: ...
 
@@ -1776,9 +1750,7 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
 class AccountActiveAdSummaryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccountActiveAdSummary: ...
 
@@ -1786,9 +1758,7 @@ class AccountActiveAdSummaryHttpRequest(googleapiclient.http.HttpRequest):
 class AccountPermissionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccountPermission: ...
 
@@ -1796,9 +1766,7 @@ class AccountPermissionHttpRequest(googleapiclient.http.HttpRequest):
 class AccountPermissionGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccountPermissionGroup: ...
 
@@ -1806,9 +1774,7 @@ class AccountPermissionGroupHttpRequest(googleapiclient.http.HttpRequest):
 class AccountPermissionGroupsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccountPermissionGroupsListResponse: ...
 
@@ -1816,9 +1782,7 @@ class AccountPermissionGroupsListResponseHttpRequest(googleapiclient.http.HttpRe
 class AccountPermissionsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccountPermissionsListResponse: ...
 
@@ -1826,9 +1790,7 @@ class AccountPermissionsListResponseHttpRequest(googleapiclient.http.HttpRequest
 class AccountUserProfileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccountUserProfile: ...
 
@@ -1836,9 +1798,7 @@ class AccountUserProfileHttpRequest(googleapiclient.http.HttpRequest):
 class AccountUserProfilesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccountUserProfilesListResponse: ...
 
@@ -1846,9 +1806,7 @@ class AccountUserProfilesListResponseHttpRequest(googleapiclient.http.HttpReques
 class AccountsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AccountsListResponse: ...
 
@@ -1856,9 +1814,7 @@ class AccountsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AdHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Ad: ...
 
@@ -1866,9 +1822,7 @@ class AdHttpRequest(googleapiclient.http.HttpRequest):
 class AdsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdsListResponse: ...
 
@@ -1876,9 +1830,7 @@ class AdsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AdvertiserHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Advertiser: ...
 
@@ -1886,9 +1838,7 @@ class AdvertiserHttpRequest(googleapiclient.http.HttpRequest):
 class AdvertiserGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdvertiserGroup: ...
 
@@ -1896,9 +1846,7 @@ class AdvertiserGroupHttpRequest(googleapiclient.http.HttpRequest):
 class AdvertiserGroupsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdvertiserGroupsListResponse: ...
 
@@ -1906,9 +1854,7 @@ class AdvertiserGroupsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AdvertiserLandingPagesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdvertiserLandingPagesListResponse: ...
 
@@ -1916,9 +1862,7 @@ class AdvertiserLandingPagesListResponseHttpRequest(googleapiclient.http.HttpReq
 class AdvertisersListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AdvertisersListResponse: ...
 
@@ -1926,9 +1870,7 @@ class AdvertisersListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BrowsersListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BrowsersListResponse: ...
 
@@ -1936,9 +1878,7 @@ class BrowsersListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CampaignHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Campaign: ...
 
@@ -1946,9 +1886,7 @@ class CampaignHttpRequest(googleapiclient.http.HttpRequest):
 class CampaignCreativeAssociationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CampaignCreativeAssociation: ...
 
@@ -1958,9 +1896,7 @@ class CampaignCreativeAssociationsListResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CampaignCreativeAssociationsListResponse: ...
 
@@ -1968,9 +1904,7 @@ class CampaignCreativeAssociationsListResponseHttpRequest(
 class CampaignsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CampaignsListResponse: ...
 
@@ -1978,9 +1912,7 @@ class CampaignsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ChangeLogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ChangeLog: ...
 
@@ -1988,9 +1920,7 @@ class ChangeLogHttpRequest(googleapiclient.http.HttpRequest):
 class ChangeLogsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ChangeLogsListResponse: ...
 
@@ -1998,9 +1928,7 @@ class ChangeLogsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CitiesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CitiesListResponse: ...
 
@@ -2008,9 +1936,7 @@ class CitiesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CompatibleFieldsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CompatibleFields: ...
 
@@ -2018,9 +1944,7 @@ class CompatibleFieldsHttpRequest(googleapiclient.http.HttpRequest):
 class ConnectionTypeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ConnectionType: ...
 
@@ -2028,9 +1952,7 @@ class ConnectionTypeHttpRequest(googleapiclient.http.HttpRequest):
 class ConnectionTypesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ConnectionTypesListResponse: ...
 
@@ -2038,9 +1960,7 @@ class ConnectionTypesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ContentCategoriesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ContentCategoriesListResponse: ...
 
@@ -2048,9 +1968,7 @@ class ContentCategoriesListResponseHttpRequest(googleapiclient.http.HttpRequest)
 class ContentCategoryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ContentCategory: ...
 
@@ -2058,9 +1976,7 @@ class ContentCategoryHttpRequest(googleapiclient.http.HttpRequest):
 class ConversionsBatchInsertResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ConversionsBatchInsertResponse: ...
 
@@ -2068,9 +1984,7 @@ class ConversionsBatchInsertResponseHttpRequest(googleapiclient.http.HttpRequest
 class ConversionsBatchUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ConversionsBatchUpdateResponse: ...
 
@@ -2078,9 +1992,7 @@ class ConversionsBatchUpdateResponseHttpRequest(googleapiclient.http.HttpRequest
 class CountriesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CountriesListResponse: ...
 
@@ -2088,9 +2000,7 @@ class CountriesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CountryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Country: ...
 
@@ -2098,9 +2008,7 @@ class CountryHttpRequest(googleapiclient.http.HttpRequest):
 class CreativeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Creative: ...
 
@@ -2108,9 +2016,7 @@ class CreativeHttpRequest(googleapiclient.http.HttpRequest):
 class CreativeAssetMetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreativeAssetMetadata: ...
 
@@ -2118,9 +2024,7 @@ class CreativeAssetMetadataHttpRequest(googleapiclient.http.HttpRequest):
 class CreativeFieldHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreativeField: ...
 
@@ -2128,9 +2032,7 @@ class CreativeFieldHttpRequest(googleapiclient.http.HttpRequest):
 class CreativeFieldValueHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreativeFieldValue: ...
 
@@ -2138,9 +2040,7 @@ class CreativeFieldValueHttpRequest(googleapiclient.http.HttpRequest):
 class CreativeFieldValuesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreativeFieldValuesListResponse: ...
 
@@ -2148,9 +2048,7 @@ class CreativeFieldValuesListResponseHttpRequest(googleapiclient.http.HttpReques
 class CreativeFieldsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreativeFieldsListResponse: ...
 
@@ -2158,9 +2056,7 @@ class CreativeFieldsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CreativeGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreativeGroup: ...
 
@@ -2168,9 +2064,7 @@ class CreativeGroupHttpRequest(googleapiclient.http.HttpRequest):
 class CreativeGroupsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreativeGroupsListResponse: ...
 
@@ -2178,9 +2072,7 @@ class CreativeGroupsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CreativesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CreativesListResponse: ...
 
@@ -2188,9 +2080,7 @@ class CreativesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CustomEventsBatchInsertResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CustomEventsBatchInsertResponse: ...
 
@@ -2198,9 +2088,7 @@ class CustomEventsBatchInsertResponseHttpRequest(googleapiclient.http.HttpReques
 class DimensionValueListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DimensionValueList: ...
 
@@ -2208,9 +2096,7 @@ class DimensionValueListHttpRequest(googleapiclient.http.HttpRequest):
 class DirectorySiteHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DirectorySite: ...
 
@@ -2218,9 +2104,7 @@ class DirectorySiteHttpRequest(googleapiclient.http.HttpRequest):
 class DirectorySitesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DirectorySitesListResponse: ...
 
@@ -2228,9 +2112,7 @@ class DirectorySitesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DynamicTargetingKeyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DynamicTargetingKey: ...
 
@@ -2238,9 +2120,7 @@ class DynamicTargetingKeyHttpRequest(googleapiclient.http.HttpRequest):
 class DynamicTargetingKeysListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DynamicTargetingKeysListResponse: ...
 
@@ -2248,9 +2128,7 @@ class DynamicTargetingKeysListResponseHttpRequest(googleapiclient.http.HttpReque
 class EventTagHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EventTag: ...
 
@@ -2258,9 +2136,7 @@ class EventTagHttpRequest(googleapiclient.http.HttpRequest):
 class EventTagsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EventTagsListResponse: ...
 
@@ -2268,9 +2144,7 @@ class EventTagsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class FileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> File: ...
 
@@ -2278,9 +2152,7 @@ class FileHttpRequest(googleapiclient.http.HttpRequest):
 class FileListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FileList: ...
 
@@ -2290,9 +2162,7 @@ class FloodlightActivitiesGenerateTagResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FloodlightActivitiesGenerateTagResponse: ...
 
@@ -2300,9 +2170,7 @@ class FloodlightActivitiesGenerateTagResponseHttpRequest(
 class FloodlightActivitiesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FloodlightActivitiesListResponse: ...
 
@@ -2310,9 +2178,7 @@ class FloodlightActivitiesListResponseHttpRequest(googleapiclient.http.HttpReque
 class FloodlightActivityHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FloodlightActivity: ...
 
@@ -2320,9 +2186,7 @@ class FloodlightActivityHttpRequest(googleapiclient.http.HttpRequest):
 class FloodlightActivityGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FloodlightActivityGroup: ...
 
@@ -2330,9 +2194,7 @@ class FloodlightActivityGroupHttpRequest(googleapiclient.http.HttpRequest):
 class FloodlightActivityGroupsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FloodlightActivityGroupsListResponse: ...
 
@@ -2340,9 +2202,7 @@ class FloodlightActivityGroupsListResponseHttpRequest(googleapiclient.http.HttpR
 class FloodlightConfigurationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FloodlightConfiguration: ...
 
@@ -2350,9 +2210,7 @@ class FloodlightConfigurationHttpRequest(googleapiclient.http.HttpRequest):
 class FloodlightConfigurationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FloodlightConfigurationsListResponse: ...
 
@@ -2360,9 +2218,7 @@ class FloodlightConfigurationsListResponseHttpRequest(googleapiclient.http.HttpR
 class InventoryItemHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> InventoryItem: ...
 
@@ -2370,9 +2226,7 @@ class InventoryItemHttpRequest(googleapiclient.http.HttpRequest):
 class InventoryItemsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> InventoryItemsListResponse: ...
 
@@ -2380,9 +2234,7 @@ class InventoryItemsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LandingPageHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LandingPage: ...
 
@@ -2390,9 +2242,7 @@ class LandingPageHttpRequest(googleapiclient.http.HttpRequest):
 class LanguagesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LanguagesListResponse: ...
 
@@ -2400,9 +2250,7 @@ class LanguagesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class MetrosListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> MetrosListResponse: ...
 
@@ -2410,9 +2258,7 @@ class MetrosListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class MobileAppHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> MobileApp: ...
 
@@ -2420,9 +2266,7 @@ class MobileAppHttpRequest(googleapiclient.http.HttpRequest):
 class MobileAppsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> MobileAppsListResponse: ...
 
@@ -2430,9 +2274,7 @@ class MobileAppsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class MobileCarrierHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> MobileCarrier: ...
 
@@ -2440,9 +2282,7 @@ class MobileCarrierHttpRequest(googleapiclient.http.HttpRequest):
 class MobileCarriersListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> MobileCarriersListResponse: ...
 
@@ -2450,9 +2290,7 @@ class MobileCarriersListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class OperatingSystemHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OperatingSystem: ...
 
@@ -2460,9 +2298,7 @@ class OperatingSystemHttpRequest(googleapiclient.http.HttpRequest):
 class OperatingSystemVersionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OperatingSystemVersion: ...
 
@@ -2470,9 +2306,7 @@ class OperatingSystemVersionHttpRequest(googleapiclient.http.HttpRequest):
 class OperatingSystemVersionsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OperatingSystemVersionsListResponse: ...
 
@@ -2480,9 +2314,7 @@ class OperatingSystemVersionsListResponseHttpRequest(googleapiclient.http.HttpRe
 class OperatingSystemsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OperatingSystemsListResponse: ...
 
@@ -2490,9 +2322,7 @@ class OperatingSystemsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class OrderHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Order: ...
 
@@ -2500,9 +2330,7 @@ class OrderHttpRequest(googleapiclient.http.HttpRequest):
 class OrderDocumentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OrderDocument: ...
 
@@ -2510,9 +2338,7 @@ class OrderDocumentHttpRequest(googleapiclient.http.HttpRequest):
 class OrderDocumentsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OrderDocumentsListResponse: ...
 
@@ -2520,9 +2346,7 @@ class OrderDocumentsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class OrdersListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OrdersListResponse: ...
 
@@ -2530,9 +2354,7 @@ class OrdersListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PlacementHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Placement: ...
 
@@ -2540,9 +2362,7 @@ class PlacementHttpRequest(googleapiclient.http.HttpRequest):
 class PlacementGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlacementGroup: ...
 
@@ -2550,9 +2370,7 @@ class PlacementGroupHttpRequest(googleapiclient.http.HttpRequest):
 class PlacementGroupsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlacementGroupsListResponse: ...
 
@@ -2560,9 +2378,7 @@ class PlacementGroupsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PlacementStrategiesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlacementStrategiesListResponse: ...
 
@@ -2570,9 +2386,7 @@ class PlacementStrategiesListResponseHttpRequest(googleapiclient.http.HttpReques
 class PlacementStrategyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlacementStrategy: ...
 
@@ -2580,9 +2394,7 @@ class PlacementStrategyHttpRequest(googleapiclient.http.HttpRequest):
 class PlacementsGenerateTagsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlacementsGenerateTagsResponse: ...
 
@@ -2590,9 +2402,7 @@ class PlacementsGenerateTagsResponseHttpRequest(googleapiclient.http.HttpRequest
 class PlacementsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlacementsListResponse: ...
 
@@ -2600,9 +2410,7 @@ class PlacementsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PlatformTypeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlatformType: ...
 
@@ -2610,9 +2418,7 @@ class PlatformTypeHttpRequest(googleapiclient.http.HttpRequest):
 class PlatformTypesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlatformTypesListResponse: ...
 
@@ -2620,9 +2426,7 @@ class PlatformTypesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PostalCodeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PostalCode: ...
 
@@ -2630,9 +2434,7 @@ class PostalCodeHttpRequest(googleapiclient.http.HttpRequest):
 class PostalCodesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PostalCodesListResponse: ...
 
@@ -2640,9 +2442,7 @@ class PostalCodesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ProjectHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Project: ...
 
@@ -2650,9 +2450,7 @@ class ProjectHttpRequest(googleapiclient.http.HttpRequest):
 class ProjectsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ProjectsListResponse: ...
 
@@ -2660,9 +2458,7 @@ class ProjectsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RegionsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RegionsListResponse: ...
 
@@ -2670,9 +2466,7 @@ class RegionsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class RemarketingListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RemarketingList: ...
 
@@ -2680,9 +2474,7 @@ class RemarketingListHttpRequest(googleapiclient.http.HttpRequest):
 class RemarketingListShareHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RemarketingListShare: ...
 
@@ -2690,9 +2482,7 @@ class RemarketingListShareHttpRequest(googleapiclient.http.HttpRequest):
 class RemarketingListsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RemarketingListsListResponse: ...
 
@@ -2700,9 +2490,7 @@ class RemarketingListsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ReportHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Report: ...
 
@@ -2710,9 +2498,7 @@ class ReportHttpRequest(googleapiclient.http.HttpRequest):
 class ReportListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ReportList: ...
 
@@ -2720,9 +2506,7 @@ class ReportListHttpRequest(googleapiclient.http.HttpRequest):
 class SiteHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Site: ...
 
@@ -2730,9 +2514,7 @@ class SiteHttpRequest(googleapiclient.http.HttpRequest):
 class SitesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SitesListResponse: ...
 
@@ -2740,9 +2522,7 @@ class SitesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SizeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Size: ...
 
@@ -2750,9 +2530,7 @@ class SizeHttpRequest(googleapiclient.http.HttpRequest):
 class SizesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SizesListResponse: ...
 
@@ -2760,9 +2538,7 @@ class SizesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SubaccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Subaccount: ...
 
@@ -2770,9 +2546,7 @@ class SubaccountHttpRequest(googleapiclient.http.HttpRequest):
 class SubaccountsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SubaccountsListResponse: ...
 
@@ -2780,9 +2554,7 @@ class SubaccountsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class TargetableRemarketingListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TargetableRemarketingList: ...
 
@@ -2792,9 +2564,7 @@ class TargetableRemarketingListsListResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TargetableRemarketingListsListResponse: ...
 
@@ -2802,9 +2572,7 @@ class TargetableRemarketingListsListResponseHttpRequest(
 class TargetingTemplateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TargetingTemplate: ...
 
@@ -2812,9 +2580,7 @@ class TargetingTemplateHttpRequest(googleapiclient.http.HttpRequest):
 class TargetingTemplatesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TargetingTemplatesListResponse: ...
 
@@ -2822,9 +2588,7 @@ class TargetingTemplatesListResponseHttpRequest(googleapiclient.http.HttpRequest
 class UserProfileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserProfile: ...
 
@@ -2832,9 +2596,7 @@ class UserProfileHttpRequest(googleapiclient.http.HttpRequest):
 class UserProfileListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserProfileList: ...
 
@@ -2842,9 +2604,7 @@ class UserProfileListHttpRequest(googleapiclient.http.HttpRequest):
 class UserRoleHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserRole: ...
 
@@ -2852,9 +2612,7 @@ class UserRoleHttpRequest(googleapiclient.http.HttpRequest):
 class UserRolePermissionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserRolePermission: ...
 
@@ -2862,9 +2620,7 @@ class UserRolePermissionHttpRequest(googleapiclient.http.HttpRequest):
 class UserRolePermissionGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserRolePermissionGroup: ...
 
@@ -2872,9 +2628,7 @@ class UserRolePermissionGroupHttpRequest(googleapiclient.http.HttpRequest):
 class UserRolePermissionGroupsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserRolePermissionGroupsListResponse: ...
 
@@ -2882,9 +2636,7 @@ class UserRolePermissionGroupsListResponseHttpRequest(googleapiclient.http.HttpR
 class UserRolePermissionsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserRolePermissionsListResponse: ...
 
@@ -2892,9 +2644,7 @@ class UserRolePermissionsListResponseHttpRequest(googleapiclient.http.HttpReques
 class UserRolesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UserRolesListResponse: ...
 
@@ -2902,9 +2652,7 @@ class UserRolesListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class VideoFormatHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VideoFormat: ...
 
@@ -2912,8 +2660,6 @@ class VideoFormatHttpRequest(googleapiclient.http.HttpRequest):
 class VideoFormatsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VideoFormatsListResponse: ...

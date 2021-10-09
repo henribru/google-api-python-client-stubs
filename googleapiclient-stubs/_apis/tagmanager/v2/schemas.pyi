@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     accountId: str
@@ -148,7 +150,7 @@ class Client(typing_extensions.TypedDict, total=False):
     fingerprint: str
     name: str
     notes: str
-    parameter: typing.List[Parameter]
+    parameter: _list[Parameter]
     parentFolderId: str
     path: str
     priority: int
@@ -158,7 +160,7 @@ class Client(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Condition(typing_extensions.TypedDict, total=False):
-    parameter: typing.List[Parameter]
+    parameter: _list[Parameter]
     type: typing_extensions.Literal[
         "conditionTypeUnspecified",
         "equals",
@@ -178,14 +180,14 @@ class Condition(typing_extensions.TypedDict, total=False):
 class Container(typing_extensions.TypedDict, total=False):
     accountId: str
     containerId: str
-    domainName: typing.List[str]
+    domainName: _list[str]
     fingerprint: str
     name: str
     notes: str
     path: str
     publicId: str
     tagManagerUrl: str
-    usageContext: typing.List[str]
+    usageContext: _list[str]
 
 @typing.type_check_only
 class ContainerAccess(typing_extensions.TypedDict, total=False):
@@ -202,23 +204,23 @@ class ContainerAccess(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ContainerVersion(typing_extensions.TypedDict, total=False):
     accountId: str
-    builtInVariable: typing.List[BuiltInVariable]
-    client: typing.List[Client]
+    builtInVariable: _list[BuiltInVariable]
+    client: _list[Client]
     container: Container
     containerId: str
     containerVersionId: str
-    customTemplate: typing.List[CustomTemplate]
+    customTemplate: _list[CustomTemplate]
     deleted: bool
     description: str
     fingerprint: str
-    folder: typing.List[Folder]
+    folder: _list[Folder]
     name: str
     path: str
-    tag: typing.List[Tag]
+    tag: _list[Tag]
     tagManagerUrl: str
-    trigger: typing.List[Trigger]
-    variable: typing.List[Variable]
-    zone: typing.List[Zone]
+    trigger: _list[Trigger]
+    variable: _list[Variable]
+    zone: _list[Zone]
 
 @typing.type_check_only
 class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
@@ -239,7 +241,7 @@ class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateBuiltInVariableResponse(typing_extensions.TypedDict, total=False):
-    builtInVariable: typing.List[BuiltInVariable]
+    builtInVariable: _list[BuiltInVariable]
 
 @typing.type_check_only
 class CreateContainerVersionRequestVersionOptions(
@@ -312,9 +314,9 @@ class Folder(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FolderEntities(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tag: typing.List[Tag]
-    trigger: typing.List[Trigger]
-    variable: typing.List[Variable]
+    tag: _list[Tag]
+    trigger: _list[Trigger]
+    variable: _list[Variable]
 
 @typing.type_check_only
 class GalleryReference(typing_extensions.TypedDict, total=False):
@@ -327,84 +329,84 @@ class GalleryReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetWorkspaceStatusResponse(typing_extensions.TypedDict, total=False):
-    mergeConflict: typing.List[MergeConflict]
-    workspaceChange: typing.List[Entity]
+    mergeConflict: _list[MergeConflict]
+    workspaceChange: _list[Entity]
 
 @typing.type_check_only
 class ListAccountsResponse(typing_extensions.TypedDict, total=False):
-    account: typing.List[Account]
+    account: _list[Account]
     nextPageToken: str
 
 @typing.type_check_only
 class ListClientsResponse(typing_extensions.TypedDict, total=False):
-    client: typing.List[Client]
+    client: _list[Client]
     nextPageToken: str
 
 @typing.type_check_only
 class ListContainerVersionsResponse(typing_extensions.TypedDict, total=False):
-    containerVersionHeader: typing.List[ContainerVersionHeader]
+    containerVersionHeader: _list[ContainerVersionHeader]
     nextPageToken: str
 
 @typing.type_check_only
 class ListContainersResponse(typing_extensions.TypedDict, total=False):
-    container: typing.List[Container]
+    container: _list[Container]
     nextPageToken: str
 
 @typing.type_check_only
 class ListEnabledBuiltInVariablesResponse(typing_extensions.TypedDict, total=False):
-    builtInVariable: typing.List[BuiltInVariable]
+    builtInVariable: _list[BuiltInVariable]
     nextPageToken: str
 
 @typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
-    environment: typing.List[Environment]
+    environment: _list[Environment]
     nextPageToken: str
 
 @typing.type_check_only
 class ListFoldersResponse(typing_extensions.TypedDict, total=False):
-    folder: typing.List[Folder]
+    folder: _list[Folder]
     nextPageToken: str
 
 @typing.type_check_only
 class ListTagsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    tag: typing.List[Tag]
+    tag: _list[Tag]
 
 @typing.type_check_only
 class ListTemplatesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    template: typing.List[CustomTemplate]
+    template: _list[CustomTemplate]
 
 @typing.type_check_only
 class ListTriggersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    trigger: typing.List[Trigger]
+    trigger: _list[Trigger]
 
 @typing.type_check_only
 class ListUserPermissionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    userPermission: typing.List[UserPermission]
+    userPermission: _list[UserPermission]
 
 @typing.type_check_only
 class ListVariablesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    variable: typing.List[Variable]
+    variable: _list[Variable]
 
 @typing.type_check_only
 class ListWorkspacesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    workspace: typing.List[Workspace]
+    workspace: _list[Workspace]
 
 @typing.type_check_only
 class ListZonesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    zone: typing.List[Zone]
+    zone: _list[Zone]
 
 @typing.type_check_only
-class MergeConflict(typing.Dict[str, typing.Any]): ...
+class MergeConflict(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class Parameter(typing.Dict[str, typing.Any]): ...
+class Parameter(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
@@ -461,14 +463,14 @@ class SyncStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SyncWorkspaceResponse(typing_extensions.TypedDict, total=False):
-    mergeConflict: typing.List[MergeConflict]
+    mergeConflict: _list[MergeConflict]
     syncStatus: SyncStatus
 
 @typing.type_check_only
-class Tag(typing.Dict[str, typing.Any]): ...
+class Tag(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class TagConsentSetting(typing.Dict[str, typing.Any]): ...
+class TagConsentSetting(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TeardownTag(typing_extensions.TypedDict, total=False):
@@ -476,21 +478,21 @@ class TeardownTag(typing_extensions.TypedDict, total=False):
     tagName: str
 
 @typing.type_check_only
-class Trigger(typing.Dict[str, typing.Any]): ...
+class Trigger(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class UserPermission(typing_extensions.TypedDict, total=False):
     accountAccess: AccountAccess
     accountId: str
-    containerAccess: typing.List[ContainerAccess]
+    containerAccess: _list[ContainerAccess]
     emailAddress: str
     path: str
 
 @typing.type_check_only
-class Variable(typing.Dict[str, typing.Any]): ...
+class Variable(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class VariableFormatValue(typing.Dict[str, typing.Any]): ...
+class VariableFormatValue(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Workspace(typing_extensions.TypedDict, total=False):
@@ -504,10 +506,10 @@ class Workspace(typing_extensions.TypedDict, total=False):
     workspaceId: str
 
 @typing.type_check_only
-class Zone(typing.Dict[str, typing.Any]): ...
+class Zone(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class ZoneBoundary(typing.Dict[str, typing.Any]): ...
+class ZoneBoundary(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ZoneChildContainer(typing_extensions.TypedDict, total=False):
@@ -517,4 +519,4 @@ class ZoneChildContainer(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ZoneTypeRestriction(typing_extensions.TypedDict, total=False):
     enable: bool
-    whitelistedTypeId: typing.List[str]
+    whitelistedTypeId: _list[str]

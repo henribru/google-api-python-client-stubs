@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AccessContextManagerOperationMetadata(
     typing_extensions.TypedDict, total=False
@@ -24,16 +26,16 @@ class AccessPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BasicLevel(typing_extensions.TypedDict, total=False):
     combiningFunction: typing_extensions.Literal["AND", "OR"]
-    conditions: typing.List[Condition]
+    conditions: _list[Condition]
 
 @typing.type_check_only
 class Condition(typing_extensions.TypedDict, total=False):
     devicePolicy: DevicePolicy
-    ipSubnetworks: typing.List[str]
-    members: typing.List[str]
+    ipSubnetworks: _list[str]
+    members: _list[str]
     negate: bool
-    regions: typing.List[str]
-    requiredAccessLevels: typing.List[str]
+    regions: _list[str]
+    requiredAccessLevels: _list[str]
 
 @typing.type_check_only
 class CustomLevel(typing_extensions.TypedDict, total=False):
@@ -41,9 +43,9 @@ class CustomLevel(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DevicePolicy(typing_extensions.TypedDict, total=False):
-    allowedDeviceManagementLevels: typing.List[str]
-    allowedEncryptionStatuses: typing.List[str]
-    osConstraints: typing.List[OsConstraint]
+    allowedDeviceManagementLevels: _list[str]
+    allowedEncryptionStatuses: _list[str]
+    osConstraints: _list[OsConstraint]
     requireAdminApproval: bool
     requireCorpOwned: bool
     requireScreenlock: bool
@@ -57,26 +59,26 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAccessLevelsResponse(typing_extensions.TypedDict, total=False):
-    accessLevels: typing.List[AccessLevel]
+    accessLevels: _list[AccessLevel]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAccessPoliciesResponse(typing_extensions.TypedDict, total=False):
-    accessPolicies: typing.List[AccessPolicy]
+    accessPolicies: _list[AccessPolicy]
     nextPageToken: str
 
 @typing.type_check_only
 class ListServicePerimetersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    servicePerimeters: typing.List[ServicePerimeter]
+    servicePerimeters: _list[ServicePerimeter]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OsConstraint(typing_extensions.TypedDict, total=False):
@@ -104,19 +106,19 @@ class ServicePerimeter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServicePerimeterConfig(typing_extensions.TypedDict, total=False):
-    accessLevels: typing.List[str]
-    resources: typing.List[str]
-    restrictedServices: typing.List[str]
-    unrestrictedServices: typing.List[str]
+    accessLevels: _list[str]
+    resources: _list[str]
+    restrictedServices: _list[str]
+    unrestrictedServices: _list[str]
     vpcAccessibleServices: VpcAccessibleServices
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class VpcAccessibleServices(typing_extensions.TypedDict, total=False):
-    allowedServices: typing.List[str]
+    allowedServices: _list[str]
     enableRestriction: bool

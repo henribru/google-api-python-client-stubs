@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3Impression(typing_extensions.TypedDict, total=False):
     gameObjectType: int
@@ -15,7 +17,7 @@ class GoogleMapsPlayablelocationsV3LogImpressionsRequest(
     typing_extensions.TypedDict, total=False
 ):
     clientInfo: GoogleMapsUnityClientInfo
-    impressions: typing.List[GoogleMapsPlayablelocationsV3Impression]
+    impressions: _list[GoogleMapsPlayablelocationsV3Impression]
     requestId: str
 
 @typing.type_check_only
@@ -28,7 +30,7 @@ class GoogleMapsPlayablelocationsV3LogPlayerReportsRequest(
     typing_extensions.TypedDict, total=False
 ):
     clientInfo: GoogleMapsUnityClientInfo
-    playerReports: typing.List[GoogleMapsPlayablelocationsV3PlayerReport]
+    playerReports: _list[GoogleMapsPlayablelocationsV3PlayerReport]
     requestId: str
 
 @typing.type_check_only
@@ -43,7 +45,7 @@ class GoogleMapsPlayablelocationsV3PlayerReport(
     languageCode: str
     locationName: str
     reasonDetails: str
-    reasons: typing.List[str]
+    reasons: _list[str]
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3SampleAreaFilter(
@@ -63,7 +65,7 @@ class GoogleMapsPlayablelocationsV3SampleCriterion(
 class GoogleMapsPlayablelocationsV3SampleFilter(
     typing_extensions.TypedDict, total=False
 ):
-    includedTypes: typing.List[str]
+    includedTypes: _list[str]
     maxLocationCount: int
     spacing: GoogleMapsPlayablelocationsV3SampleSpacingOptions
 
@@ -76,26 +78,26 @@ class GoogleMapsPlayablelocationsV3SamplePlayableLocation(
     placeId: str
     plusCode: str
     snappedPoint: GoogleTypeLatLng
-    types: typing.List[str]
+    types: _list[str]
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3SamplePlayableLocationList(
     typing_extensions.TypedDict, total=False
 ):
-    locations: typing.List[GoogleMapsPlayablelocationsV3SamplePlayableLocation]
+    locations: _list[GoogleMapsPlayablelocationsV3SamplePlayableLocation]
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest(
     typing_extensions.TypedDict, total=False
 ):
     areaFilter: GoogleMapsPlayablelocationsV3SampleAreaFilter
-    criteria: typing.List[GoogleMapsPlayablelocationsV3SampleCriterion]
+    criteria: _list[GoogleMapsPlayablelocationsV3SampleCriterion]
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    locationsPerGameObjectType: typing.Dict[str, typing.Any]
+    locationsPerGameObjectType: dict[str, typing.Any]
     ttl: str
 
 @typing.type_check_only

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class ClouderrorreportingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -53,7 +55,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     "ALIGNMENT_EQUAL_AT_END",
                 ] = ...,
                 alignmentTime: str = ...,
-                groupId: typing.Union[str, typing.List[str]] = ...,
+                groupId: str | _list[str] = ...,
                 order: typing_extensions.Literal[
                     "GROUP_ORDER_UNSPECIFIED",
                     "COUNT_DESC",
@@ -97,9 +99,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
 class DeleteEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DeleteEventsResponse: ...
 
@@ -107,9 +107,7 @@ class DeleteEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ErrorGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ErrorGroup: ...
 
@@ -117,9 +115,7 @@ class ErrorGroupHttpRequest(googleapiclient.http.HttpRequest):
 class ListEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListEventsResponse: ...
 
@@ -127,9 +123,7 @@ class ListEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListGroupStatsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGroupStatsResponse: ...
 
@@ -137,8 +131,6 @@ class ListGroupStatsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ReportErrorEventResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ReportErrorEventResponse: ...

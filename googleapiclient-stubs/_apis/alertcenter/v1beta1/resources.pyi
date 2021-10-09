@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class AlertCenterResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -78,9 +80,7 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
 class AlertHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Alert: ...
 
@@ -88,9 +88,7 @@ class AlertHttpRequest(googleapiclient.http.HttpRequest):
 class AlertFeedbackHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AlertFeedback: ...
 
@@ -98,9 +96,7 @@ class AlertFeedbackHttpRequest(googleapiclient.http.HttpRequest):
 class AlertMetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AlertMetadata: ...
 
@@ -108,9 +104,7 @@ class AlertMetadataHttpRequest(googleapiclient.http.HttpRequest):
 class BatchDeleteAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchDeleteAlertsResponse: ...
 
@@ -118,9 +112,7 @@ class BatchDeleteAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchUndeleteAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchUndeleteAlertsResponse: ...
 
@@ -128,9 +120,7 @@ class BatchUndeleteAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -138,9 +128,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class ListAlertFeedbackResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAlertFeedbackResponse: ...
 
@@ -148,9 +136,7 @@ class ListAlertFeedbackResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAlertsResponse: ...
 
@@ -158,8 +144,6 @@ class ListAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Settings: ...

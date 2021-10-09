@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class PagespeedInsightsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -17,7 +19,15 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
             *,
             url: str,
             captchaToken: str = ...,
-            category: typing.Union[
+            category: typing_extensions.Literal[
+                "CATEGORY_UNSPECIFIED",
+                "ACCESSIBILITY",
+                "BEST_PRACTICES",
+                "PERFORMANCE",
+                "PWA",
+                "SEO",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "CATEGORY_UNSPECIFIED",
                     "ACCESSIBILITY",
@@ -25,17 +35,7 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
                     "PERFORMANCE",
                     "PWA",
                     "SEO",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "CATEGORY_UNSPECIFIED",
-                        "ACCESSIBILITY",
-                        "BEST_PRACTICES",
-                        "PERFORMANCE",
-                        "PWA",
-                        "SEO",
-                    ]
-                ],
+                ]
             ] = ...,
             locale: str = ...,
             strategy: typing_extensions.Literal[
@@ -51,8 +51,6 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
 class PagespeedApiPagespeedResponseV5HttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PagespeedApiPagespeedResponseV5: ...

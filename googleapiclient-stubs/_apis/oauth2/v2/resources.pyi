@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class Oauth2Resource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -44,9 +46,7 @@ class Oauth2Resource(googleapiclient.discovery.Resource):
 class TokeninfoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Tokeninfo: ...
 
@@ -54,8 +54,6 @@ class TokeninfoHttpRequest(googleapiclient.http.HttpRequest):
 class UserinfoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Userinfo: ...

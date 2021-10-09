@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
-    resourceProperties: typing.Dict[str, typing.Any]
+    resourceProperties: dict[str, typing.Any]
     securityCenterProperties: SecurityCenterProperties
     securityMarks: GoogleCloudSecuritycenterV1beta1SecurityMarks
     updateTime: str
@@ -16,16 +18,16 @@ class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
     inclusionMode: typing_extensions.Literal[
         "INCLUSION_MODE_UNSPECIFIED", "INCLUDE_ONLY", "EXCLUDE"
     ]
-    projectIds: typing.List[str]
+    projectIds: _list[str]
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -33,7 +35,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -43,7 +45,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 class Cve(typing_extensions.TypedDict, total=False):
     cvssv3: Cvssv3
     id: str
-    references: typing.List[Reference]
+    references: _list[Reference]
 
 @typing.type_check_only
 class Cvssv3(typing_extensions.TypedDict, total=False):
@@ -116,7 +118,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
-    sourceProperties: typing.Dict[str, typing.Any]
+    sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     vulnerability: Vulnerability
 
@@ -143,7 +145,7 @@ class GoogleCloudSecuritycenterV1NotificationMessage(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
-    folders: typing.List[Folder]
+    folders: _list[Folder]
     name: str
     parent: str
     parentDisplayName: str
@@ -170,7 +172,7 @@ class GoogleCloudSecuritycenterV1beta1Finding(typing_extensions.TypedDict, total
     parent: str
     resourceName: str
     securityMarks: GoogleCloudSecuritycenterV1beta1SecurityMarks
-    sourceProperties: typing.Dict[str, typing.Any]
+    sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
@@ -186,7 +188,7 @@ class GoogleCloudSecuritycenterV1beta1RunAssetDiscoveryResponse(
 class GoogleCloudSecuritycenterV1beta1SecurityMarks(
     typing_extensions.TypedDict, total=False
 ):
-    marks: typing.Dict[str, typing.Any]
+    marks: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -205,7 +207,7 @@ class GoogleCloudSecuritycenterV1p1beta1Finding(
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
-    sourceProperties: typing.Dict[str, typing.Any]
+    sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
@@ -227,7 +229,7 @@ class GoogleCloudSecuritycenterV1p1beta1NotificationMessage(
 class GoogleCloudSecuritycenterV1p1beta1Resource(
     typing_extensions.TypedDict, total=False
 ):
-    folders: typing.List[GoogleCloudSecuritycenterV1p1beta1Folder]
+    folders: _list[GoogleCloudSecuritycenterV1p1beta1Folder]
     name: str
     parent: str
     parentDisplayName: str
@@ -248,7 +250,7 @@ class GoogleCloudSecuritycenterV1p1beta1SecurityMarks(
     typing_extensions.TypedDict, total=False
 ):
     canonicalName: str
-    marks: typing.Dict[str, typing.Any]
+    marks: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -262,7 +264,7 @@ class GroupAssetsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GroupAssetsResponse(typing_extensions.TypedDict, total=False):
-    groupByResults: typing.List[GroupResult]
+    groupByResults: _list[GroupResult]
     nextPageToken: str
     readTime: str
 
@@ -276,23 +278,23 @@ class GroupFindingsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GroupFindingsResponse(typing_extensions.TypedDict, total=False):
-    groupByResults: typing.List[GroupResult]
+    groupByResults: _list[GroupResult]
     nextPageToken: str
     readTime: str
 
 @typing.type_check_only
 class GroupResult(typing_extensions.TypedDict, total=False):
     count: str
-    properties: typing.Dict[str, typing.Any]
+    properties: dict[str, typing.Any]
 
 @typing.type_check_only
 class Indicator(typing_extensions.TypedDict, total=False):
-    domains: typing.List[str]
-    ipAddresses: typing.List[str]
+    domains: _list[str]
+    ipAddresses: _list[str]
 
 @typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
-    listAssetsResults: typing.List[ListAssetsResult]
+    listAssetsResults: _list[ListAssetsResult]
     nextPageToken: str
     readTime: str
     totalSize: int
@@ -306,7 +308,7 @@ class ListAssetsResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListFindingsResponse(typing_extensions.TypedDict, total=False):
-    findings: typing.List[GoogleCloudSecuritycenterV1beta1Finding]
+    findings: _list[GoogleCloudSecuritycenterV1beta1Finding]
     nextPageToken: str
     readTime: str
     totalSize: int
@@ -314,20 +316,20 @@ class ListFindingsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListSourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sources: typing.List[Source]
+    sources: _list[Source]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OrganizationSettings(typing_extensions.TypedDict, total=False):
@@ -337,8 +339,8 @@ class OrganizationSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -353,7 +355,7 @@ class RunAssetDiscoveryRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class SecurityCenterProperties(typing_extensions.TypedDict, total=False):
     resourceName: str
-    resourceOwners: typing.List[str]
+    resourceOwners: _list[str]
     resourceParent: str
     resourceProject: str
     resourceType: str
@@ -361,7 +363,7 @@ class SecurityCenterProperties(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SecurityMarks(typing_extensions.TypedDict, total=False):
     canonicalName: str
-    marks: typing.Dict[str, typing.Any]
+    marks: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -383,16 +385,16 @@ class Source(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class Vulnerability(typing_extensions.TypedDict, total=False):

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class PolyServiceResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -66,9 +68,7 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
 class AssetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Asset: ...
 
@@ -76,9 +76,7 @@ class AssetHttpRequest(googleapiclient.http.HttpRequest):
 class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAssetsResponse: ...
 
@@ -86,9 +84,7 @@ class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListLikedAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListLikedAssetsResponse: ...
 
@@ -96,8 +92,6 @@ class ListLikedAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListUserAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListUserAssetsResponse: ...

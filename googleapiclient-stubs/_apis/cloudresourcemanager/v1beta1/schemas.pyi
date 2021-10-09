@@ -2,18 +2,20 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Ancestor(typing_extensions.TypedDict, total=False):
     resourceId: ResourceId
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -21,7 +23,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -123,7 +125,7 @@ class GetAncestryRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GetAncestryResponse(typing_extensions.TypedDict, total=False):
-    ancestor: typing.List[Ancestor]
+    ancestor: _list[Ancestor]
 
 @typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -136,12 +138,12 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListOrganizationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    organizations: typing.List[Organization]
+    organizations: _list[Organization]
 
 @typing.type_check_only
 class ListProjectsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    projects: typing.List[Project]
+    projects: _list[Project]
 
 @typing.type_check_only
 class MoveFolderMetadata(typing_extensions.TypedDict, total=False):
@@ -169,15 +171,15 @@ class OrganizationOwner(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
 class Project(typing_extensions.TypedDict, total=False):
     createTime: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     lifecycleState: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "ACTIVE",
@@ -207,11 +209,11 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class UndeleteFolderMetadata(typing_extensions.TypedDict, total=False): ...

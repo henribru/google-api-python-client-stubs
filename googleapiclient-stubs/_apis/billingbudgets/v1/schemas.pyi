@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1Budget(typing_extensions.TypedDict, total=False):
     amount: GoogleCloudBillingBudgetsV1BudgetAmount
@@ -10,7 +12,7 @@ class GoogleCloudBillingBudgetsV1Budget(typing_extensions.TypedDict, total=False
     etag: str
     name: str
     notificationsRule: GoogleCloudBillingBudgetsV1NotificationsRule
-    thresholdRules: typing.List[GoogleCloudBillingBudgetsV1ThresholdRule]
+    thresholdRules: _list[GoogleCloudBillingBudgetsV1ThresholdRule]
 
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1BudgetAmount(typing_extensions.TypedDict, total=False):
@@ -27,7 +29,7 @@ class GoogleCloudBillingBudgetsV1Filter(typing_extensions.TypedDict, total=False
     calendarPeriod: typing_extensions.Literal[
         "CALENDAR_PERIOD_UNSPECIFIED", "MONTH", "QUARTER", "YEAR"
     ]
-    creditTypes: typing.List[str]
+    creditTypes: _list[str]
     creditTypesTreatment: typing_extensions.Literal[
         "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
         "INCLUDE_ALL_CREDITS",
@@ -35,10 +37,10 @@ class GoogleCloudBillingBudgetsV1Filter(typing_extensions.TypedDict, total=False
         "INCLUDE_SPECIFIED_CREDITS",
     ]
     customPeriod: GoogleCloudBillingBudgetsV1CustomPeriod
-    labels: typing.Dict[str, typing.Any]
-    projects: typing.List[str]
-    services: typing.List[str]
-    subaccounts: typing.List[str]
+    labels: dict[str, typing.Any]
+    projects: _list[str]
+    services: _list[str]
+    subaccounts: _list[str]
 
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1LastPeriodAmount(
@@ -49,7 +51,7 @@ class GoogleCloudBillingBudgetsV1LastPeriodAmount(
 class GoogleCloudBillingBudgetsV1ListBudgetsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    budgets: typing.List[GoogleCloudBillingBudgetsV1Budget]
+    budgets: _list[GoogleCloudBillingBudgetsV1Budget]
     nextPageToken: str
 
 @typing.type_check_only
@@ -57,7 +59,7 @@ class GoogleCloudBillingBudgetsV1NotificationsRule(
     typing_extensions.TypedDict, total=False
 ):
     disableDefaultIamRecipients: bool
-    monitoringNotificationChannels: typing.List[str]
+    monitoringNotificationChannels: _list[str]
     pubsubTopic: str
     schemaVersion: str
 

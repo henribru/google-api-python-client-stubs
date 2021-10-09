@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AccessApprovalSettings(typing_extensions.TypedDict, total=False):
     enrolledAncestor: bool
-    enrolledServices: typing.List[EnrolledService]
+    enrolledServices: _list[EnrolledService]
     name: str
-    notificationEmails: typing.List[str]
+    notificationEmails: _list[str]
 
 @typing.type_check_only
 class AccessLocations(typing_extensions.TypedDict, total=False):
@@ -65,7 +67,7 @@ class EnrolledService(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListApprovalRequestsResponse(typing_extensions.TypedDict, total=False):
-    approvalRequests: typing.List[ApprovalRequest]
+    approvalRequests: _list[ApprovalRequest]
     nextPageToken: str
 
 @typing.type_check_only

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Aggregation(typing_extensions.TypedDict, total=False):
     alignmentPeriod: str
@@ -21,7 +23,7 @@ class Aggregation(typing_extensions.TypedDict, total=False):
         "REDUCE_PERCENTILE_50",
         "REDUCE_PERCENTILE_05",
     ]
-    groupByFields: typing.List[str]
+    groupByFields: _list[str]
     perSeriesAligner: typing_extensions.Literal[
         "ALIGN_NONE",
         "ALIGN_DELTA",
@@ -60,11 +62,11 @@ class ChartOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Column(typing_extensions.TypedDict, total=False):
     weight: str
-    widgets: typing.List[Widget]
+    widgets: _list[Widget]
 
 @typing.type_check_only
 class ColumnLayout(typing_extensions.TypedDict, total=False):
-    columns: typing.List[Column]
+    columns: _list[Column]
 
 @typing.type_check_only
 class Dashboard(typing_extensions.TypedDict, total=False):
@@ -88,7 +90,7 @@ class DataSet(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DroppedLabels(typing_extensions.TypedDict, total=False):
-    label: typing.Dict[str, typing.Any]
+    label: dict[str, typing.Any]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -127,7 +129,7 @@ class Field(typing_extensions.TypedDict, total=False):
     name: str
     number: int
     oneofIndex: int
-    options: typing.List[Option]
+    options: _list[Option]
     packed: bool
     typeUrl: str
 
@@ -139,23 +141,23 @@ class GaugeView(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GridLayout(typing_extensions.TypedDict, total=False):
     columns: str
-    widgets: typing.List[Widget]
+    widgets: _list[Widget]
 
 @typing.type_check_only
 class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
-    dashboards: typing.List[Dashboard]
+    dashboards: _list[Dashboard]
     nextPageToken: str
 
 @typing.type_check_only
 class ListMetricsScopesByMonitoredProjectResponse(
     typing_extensions.TypedDict, total=False
 ):
-    metricsScopes: typing.List[MetricsScope]
+    metricsScopes: _list[MetricsScope]
 
 @typing.type_check_only
 class MetricsScope(typing_extensions.TypedDict, total=False):
     createTime: str
-    monitoredProjects: typing.List[MonitoredProject]
+    monitoredProjects: _list[MonitoredProject]
     name: str
     updateTime: str
 
@@ -167,15 +169,15 @@ class MonitoredProject(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MosaicLayout(typing_extensions.TypedDict, total=False):
     columns: int
-    tiles: typing.List[Tile]
+    tiles: _list[Tile]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -188,7 +190,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Option(typing_extensions.TypedDict, total=False):
     name: str
-    value: typing.Dict[str, typing.Any]
+    value: dict[str, typing.Any]
 
 @typing.type_check_only
 class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
@@ -211,17 +213,17 @@ class RatioPart(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Row(typing_extensions.TypedDict, total=False):
     weight: str
-    widgets: typing.List[Widget]
+    widgets: _list[Widget]
 
 @typing.type_check_only
 class RowLayout(typing_extensions.TypedDict, total=False):
-    rows: typing.List[Row]
+    rows: _list[Row]
 
 @typing.type_check_only
 class Scorecard(typing_extensions.TypedDict, total=False):
     gaugeView: GaugeView
     sparkChartView: SparkChartView
-    thresholds: typing.List[Threshold]
+    thresholds: _list[Threshold]
     timeSeriesQuery: TimeSeriesQuery
 
 @typing.type_check_only
@@ -249,7 +251,7 @@ class StatisticalTimeSeriesFilter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -261,7 +263,7 @@ class TableDataSet(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TableDisplayOptions(typing_extensions.TypedDict, total=False):
-    shownColumns: typing.List[str]
+    shownColumns: _list[str]
 
 @typing.type_check_only
 class Text(typing_extensions.TypedDict, total=False):
@@ -309,14 +311,14 @@ class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TimeSeriesTable(typing_extensions.TypedDict, total=False):
-    dataSets: typing.List[TableDataSet]
+    dataSets: _list[TableDataSet]
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
-    fields: typing.List[Field]
+    fields: _list[Field]
     name: str
-    oneofs: typing.List[str]
-    options: typing.List[Option]
+    oneofs: _list[str]
+    options: _list[Option]
     sourceContext: SourceContext
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
 
@@ -333,8 +335,8 @@ class Widget(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class XyChart(typing_extensions.TypedDict, total=False):
     chartOptions: ChartOptions
-    dataSets: typing.List[DataSet]
-    thresholds: typing.List[Threshold]
+    dataSets: _list[DataSet]
+    thresholds: _list[Threshold]
     timeshiftDuration: str
     xAxis: Axis
     y2Axis: Axis

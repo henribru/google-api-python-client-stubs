@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class SafebrowsingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -79,9 +81,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...
 
@@ -91,9 +91,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse: ...
 
@@ -103,9 +101,7 @@ class GoogleSecuritySafebrowsingV4FindFullHashesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleSecuritySafebrowsingV4FindFullHashesResponse: ...
 
@@ -115,9 +111,7 @@ class GoogleSecuritySafebrowsingV4FindThreatMatchesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleSecuritySafebrowsingV4FindThreatMatchesResponse: ...
 
@@ -127,8 +121,6 @@ class GoogleSecuritySafebrowsingV4ListThreatListsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleSecuritySafebrowsingV4ListThreatListsResponse: ...

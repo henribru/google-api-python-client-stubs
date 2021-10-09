@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 
@@ -19,7 +21,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest(
     typing_extensions.TypedDict, total=False
 ):
     client: GoogleSecuritySafebrowsingV4ClientInfo
-    listUpdateRequests: typing.List[
+    listUpdateRequests: _list[
         GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
     ]
 
@@ -79,13 +81,13 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
     maxDatabaseEntries: int
     maxUpdateEntries: int
     region: str
-    supportedCompressions: typing.List[str]
+    supportedCompressions: _list[str]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    listUpdateResponses: typing.List[
+    listUpdateResponses: _list[
         GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponse
     ]
     minimumWaitDuration: str
@@ -94,7 +96,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse(
 class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponse(
     typing_extensions.TypedDict, total=False
 ):
-    additions: typing.List[GoogleSecuritySafebrowsingV4ThreatEntrySet]
+    additions: _list[GoogleSecuritySafebrowsingV4ThreatEntrySet]
     checksum: GoogleSecuritySafebrowsingV4Checksum
     newClientState: str
     platformType: typing_extensions.Literal[
@@ -108,7 +110,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateRespon
         "ALL_PLATFORMS",
         "CHROME",
     ]
-    removals: typing.List[GoogleSecuritySafebrowsingV4ThreatEntrySet]
+    removals: _list[GoogleSecuritySafebrowsingV4ThreatEntrySet]
     responseType: typing_extensions.Literal[
         "RESPONSE_TYPE_UNSPECIFIED", "PARTIAL_UPDATE", "FULL_UPDATE"
     ]
@@ -148,14 +150,14 @@ class GoogleSecuritySafebrowsingV4FindFullHashesRequest(
 ):
     apiClient: GoogleSecuritySafebrowsingV4ClientInfo
     client: GoogleSecuritySafebrowsingV4ClientInfo
-    clientStates: typing.List[str]
+    clientStates: _list[str]
     threatInfo: GoogleSecuritySafebrowsingV4ThreatInfo
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FindFullHashesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    matches: typing.List[GoogleSecuritySafebrowsingV4ThreatMatch]
+    matches: _list[GoogleSecuritySafebrowsingV4ThreatMatch]
     minimumWaitDuration: str
     negativeCacheDuration: str
 
@@ -170,13 +172,13 @@ class GoogleSecuritySafebrowsingV4FindThreatMatchesRequest(
 class GoogleSecuritySafebrowsingV4FindThreatMatchesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    matches: typing.List[GoogleSecuritySafebrowsingV4ThreatMatch]
+    matches: _list[GoogleSecuritySafebrowsingV4ThreatMatch]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4ListThreatListsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    threatLists: typing.List[GoogleSecuritySafebrowsingV4ThreatListDescriptor]
+    threatLists: _list[GoogleSecuritySafebrowsingV4ThreatListDescriptor]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4RawHashes(typing_extensions.TypedDict, total=False):
@@ -185,7 +187,7 @@ class GoogleSecuritySafebrowsingV4RawHashes(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4RawIndices(typing_extensions.TypedDict, total=False):
-    indices: typing.List[int]
+    indices: _list[int]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4RiceDeltaEncoding(
@@ -206,7 +208,7 @@ class GoogleSecuritySafebrowsingV4ThreatEntry(typing_extensions.TypedDict, total
 class GoogleSecuritySafebrowsingV4ThreatEntryMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    entries: typing.List[GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry]
+    entries: _list[GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry(
@@ -242,7 +244,7 @@ class GoogleSecuritySafebrowsingV4ThreatHit(typing_extensions.TypedDict, total=F
         "ALL_PLATFORMS",
         "CHROME",
     ]
-    resources: typing.List[GoogleSecuritySafebrowsingV4ThreatHitThreatSource]
+    resources: _list[GoogleSecuritySafebrowsingV4ThreatHitThreatSource]
     threatType: typing_extensions.Literal[
         "THREAT_TYPE_UNSPECIFIED",
         "MALWARE",
@@ -289,10 +291,10 @@ class GoogleSecuritySafebrowsingV4ThreatHitUserInfo(
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4ThreatInfo(typing_extensions.TypedDict, total=False):
-    platformTypes: typing.List[str]
-    threatEntries: typing.List[GoogleSecuritySafebrowsingV4ThreatEntry]
-    threatEntryTypes: typing.List[str]
-    threatTypes: typing.List[str]
+    platformTypes: _list[str]
+    threatEntries: _list[GoogleSecuritySafebrowsingV4ThreatEntry]
+    threatEntryTypes: _list[str]
+    threatTypes: _list[str]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4ThreatListDescriptor(

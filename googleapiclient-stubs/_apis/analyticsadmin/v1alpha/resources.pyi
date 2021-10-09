@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -44,7 +46,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                names: typing.Union[str, typing.List[str]] = ...,
+                names: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponseHttpRequest: ...
             def batchUpdate(
@@ -484,7 +486,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                names: typing.Union[str, typing.List[str]] = ...,
+                names: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponseHttpRequest: ...
             def batchUpdate(
@@ -678,9 +680,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
 class GoogleAnalyticsAdminV1alphaAccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaAccount: ...
 
@@ -690,9 +690,7 @@ class GoogleAnalyticsAdminV1alphaAndroidAppDataStreamHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaAndroidAppDataStream: ...
 
@@ -702,9 +700,7 @@ class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRes
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponse: ...
 
@@ -714,9 +710,7 @@ class GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaAuditUserLinksResponse: ...
 
@@ -726,9 +720,7 @@ class GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse: ...
 
@@ -738,9 +730,7 @@ class GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse: ...
 
@@ -750,9 +740,7 @@ class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse: ...
 
@@ -762,9 +750,7 @@ class GoogleAnalyticsAdminV1alphaConversionEventHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaConversionEvent: ...
 
@@ -774,9 +760,7 @@ class GoogleAnalyticsAdminV1alphaCustomDimensionHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaCustomDimension: ...
 
@@ -786,9 +770,7 @@ class GoogleAnalyticsAdminV1alphaCustomMetricHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaCustomMetric: ...
 
@@ -798,9 +780,7 @@ class GoogleAnalyticsAdminV1alphaDataRetentionSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaDataRetentionSettings: ...
 
@@ -810,9 +790,7 @@ class GoogleAnalyticsAdminV1alphaDataSharingSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaDataSharingSettings: ...
 
@@ -822,9 +800,7 @@ class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink: ...
 
@@ -834,9 +810,7 @@ class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposalHttpReques
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal: ...
 
@@ -846,9 +820,7 @@ class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings: ...
 
@@ -858,9 +830,7 @@ class GoogleAnalyticsAdminV1alphaFirebaseLinkHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaFirebaseLink: ...
 
@@ -870,9 +840,7 @@ class GoogleAnalyticsAdminV1alphaGlobalSiteTagHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaGlobalSiteTag: ...
 
@@ -882,9 +850,7 @@ class GoogleAnalyticsAdminV1alphaGoogleAdsLinkHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaGoogleAdsLink: ...
 
@@ -894,9 +860,7 @@ class GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaGoogleSignalsSettings: ...
 
@@ -906,9 +870,7 @@ class GoogleAnalyticsAdminV1alphaIosAppDataStreamHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaIosAppDataStream: ...
 
@@ -918,9 +880,7 @@ class GoogleAnalyticsAdminV1alphaListAccountSummariesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListAccountSummariesResponse: ...
 
@@ -930,9 +890,7 @@ class GoogleAnalyticsAdminV1alphaListAccountsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListAccountsResponse: ...
 
@@ -942,9 +900,7 @@ class GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse: ...
 
@@ -954,9 +910,7 @@ class GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListConversionEventsResponse: ...
 
@@ -966,9 +920,7 @@ class GoogleAnalyticsAdminV1alphaListCustomDimensionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListCustomDimensionsResponse: ...
 
@@ -978,9 +930,7 @@ class GoogleAnalyticsAdminV1alphaListCustomMetricsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListCustomMetricsResponse: ...
 
@@ -990,9 +940,7 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsRespo
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse: ...
 
@@ -1002,9 +950,7 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponseHttpR
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse: ...
 
@@ -1014,9 +960,7 @@ class GoogleAnalyticsAdminV1alphaListFirebaseLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse: ...
 
@@ -1026,9 +970,7 @@ class GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse: ...
 
@@ -1038,9 +980,7 @@ class GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse: ...
 
@@ -1050,9 +990,7 @@ class GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpReque
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse: ...
 
@@ -1062,9 +1000,7 @@ class GoogleAnalyticsAdminV1alphaListPropertiesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListPropertiesResponse: ...
 
@@ -1074,9 +1010,7 @@ class GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListUserLinksResponse: ...
 
@@ -1086,9 +1020,7 @@ class GoogleAnalyticsAdminV1alphaListWebDataStreamsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse: ...
 
@@ -1098,9 +1030,7 @@ class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret: ...
 
@@ -1108,9 +1038,7 @@ class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest(
 class GoogleAnalyticsAdminV1alphaPropertyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaProperty: ...
 
@@ -1120,9 +1048,7 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse: ...
 
@@ -1132,9 +1058,7 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse: ...
 
@@ -1142,9 +1066,7 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest(
 class GoogleAnalyticsAdminV1alphaUserLinkHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaUserLink: ...
 
@@ -1154,9 +1076,7 @@ class GoogleAnalyticsAdminV1alphaWebDataStreamHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaWebDataStream: ...
 
@@ -1164,8 +1084,6 @@ class GoogleAnalyticsAdminV1alphaWebDataStreamHttpRequest(
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

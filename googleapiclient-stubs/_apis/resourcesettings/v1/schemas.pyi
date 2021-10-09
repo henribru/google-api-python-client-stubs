@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudResourcesettingsV1ListSettingsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    settings: typing.List[GoogleCloudResourcesettingsV1Setting]
+    settings: _list[GoogleCloudResourcesettingsV1Setting]
 
 @typing.type_check_only
 class GoogleCloudResourcesettingsV1Setting(typing_extensions.TypedDict, total=False):
@@ -54,10 +56,10 @@ class GoogleCloudResourcesettingsV1ValueEnumValue(
 class GoogleCloudResourcesettingsV1ValueStringMap(
     typing_extensions.TypedDict, total=False
 ):
-    mappings: typing.Dict[str, typing.Any]
+    mappings: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudResourcesettingsV1ValueStringSet(
     typing_extensions.TypedDict, total=False
 ):
-    values: typing.List[str]
+    values: _list[str]

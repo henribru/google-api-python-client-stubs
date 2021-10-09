@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Assignment(typing_extensions.TypedDict, total=False):
     assignee: str
@@ -37,22 +39,22 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ListAssignmentsResponse(typing_extensions.TypedDict, total=False):
-    assignments: typing.List[Assignment]
+    assignments: _list[Assignment]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCapacityCommitmentsResponse(typing_extensions.TypedDict, total=False):
-    capacityCommitments: typing.List[CapacityCommitment]
+    capacityCommitments: _list[CapacityCommitment]
     nextPageToken: str
 
 @typing.type_check_only
 class ListReservationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    reservations: typing.List[Reservation]
+    reservations: _list[Reservation]
 
 @typing.type_check_only
 class MergeCapacityCommitmentsRequest(typing_extensions.TypedDict, total=False):
-    capacityCommitmentIds: typing.List[str]
+    capacityCommitmentIds: _list[str]
 
 @typing.type_check_only
 class MoveAssignmentRequest(typing_extensions.TypedDict, total=False):
@@ -68,7 +70,7 @@ class Reservation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchAssignmentsResponse(typing_extensions.TypedDict, total=False):
-    assignments: typing.List[Assignment]
+    assignments: _list[Assignment]
     nextPageToken: str
 
 @typing.type_check_only
@@ -83,5 +85,5 @@ class SplitCapacityCommitmentResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

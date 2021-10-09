@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class SiteVerificationWebResourceGettokenRequest(
     typing_extensions.TypedDict, total=False
 ):
-    site: typing.Dict[str, typing.Any]
+    site: dict[str, typing.Any]
     verificationMethod: str
 
 @typing.type_check_only
@@ -18,10 +20,10 @@ class SiteVerificationWebResourceGettokenResponse(
 
 @typing.type_check_only
 class SiteVerificationWebResourceListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[SiteVerificationWebResourceResource]
+    items: _list[SiteVerificationWebResourceResource]
 
 @typing.type_check_only
 class SiteVerificationWebResourceResource(typing_extensions.TypedDict, total=False):
     id: str
-    owners: typing.List[str]
-    site: typing.Dict[str, typing.Any]
+    owners: _list[str]
+    site: dict[str, typing.Any]

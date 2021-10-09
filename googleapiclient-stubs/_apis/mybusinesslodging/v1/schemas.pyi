@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Accessibility(typing_extensions.TypedDict, total=False):
     mobilityAccessible: bool
@@ -535,7 +537,7 @@ class GuestUnitFeatures(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GuestUnitType(typing_extensions.TypedDict, total=False):
-    codes: typing.List[str]
+    codes: _list[str]
     features: GuestUnitFeatures
     label: str
 
@@ -1101,7 +1103,7 @@ class Lodging(typing_extensions.TypedDict, total=False):
     connectivity: Connectivity
     families: Families
     foodAndDrink: FoodAndDrink
-    guestUnits: typing.List[GuestUnitType]
+    guestUnits: _list[GuestUnitType]
     healthAndSafety: HealthAndSafety
     housekeeping: Housekeeping
     metadata: LodgingMetadata
@@ -1613,7 +1615,7 @@ class Services(typing_extensions.TypedDict, total=False):
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
-    languagesSpoken: typing.List[LanguageSpoken]
+    languagesSpoken: _list[LanguageSpoken]
     selfServiceLaundry: bool
     selfServiceLaundryException: typing_extensions.Literal[
         "EXCEPTION_UNSPECIFIED",
@@ -1668,7 +1670,7 @@ class SustainabilityCertifications(typing_extensions.TypedDict, total=False):
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
-    ecoCertifications: typing.List[EcoCertification]
+    ecoCertifications: _list[EcoCertification]
     leedCertification: typing_extensions.Literal[
         "LEED_CERTIFICATION_UNSPECIFIED",
         "NO_LEED_CERTIFICATION",

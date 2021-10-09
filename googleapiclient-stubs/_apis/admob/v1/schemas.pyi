@@ -2,10 +2,12 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AdUnit(typing_extensions.TypedDict, total=False):
     adFormat: str
-    adTypes: typing.List[str]
+    adTypes: _list[str]
     adUnitId: str
     appId: str
     displayName: str
@@ -61,17 +63,17 @@ class GenerateNetworkReportResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAdUnitsResponse(typing_extensions.TypedDict, total=False):
-    adUnits: typing.List[AdUnit]
+    adUnits: _list[AdUnit]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAppsResponse(typing_extensions.TypedDict, total=False):
-    apps: typing.List[App]
+    apps: _list[App]
     nextPageToken: str
 
 @typing.type_check_only
 class ListPublisherAccountsResponse(typing_extensions.TypedDict, total=False):
-    account: typing.List[PublisherAccount]
+    account: _list[PublisherAccount]
     nextPageToken: str
 
 @typing.type_check_only
@@ -82,12 +84,12 @@ class LocalizationSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MediationReportSpec(typing_extensions.TypedDict, total=False):
     dateRange: DateRange
-    dimensionFilters: typing.List[MediationReportSpecDimensionFilter]
-    dimensions: typing.List[str]
+    dimensionFilters: _list[MediationReportSpecDimensionFilter]
+    dimensions: _list[str]
     localizationSettings: LocalizationSettings
     maxReportRows: int
-    metrics: typing.List[str]
-    sortConditions: typing.List[MediationReportSpecSortCondition]
+    metrics: _list[str]
+    sortConditions: _list[MediationReportSpecSortCondition]
     timeZone: str
 
 @typing.type_check_only
@@ -150,12 +152,12 @@ class MediationReportSpecSortCondition(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class NetworkReportSpec(typing_extensions.TypedDict, total=False):
     dateRange: DateRange
-    dimensionFilters: typing.List[NetworkReportSpecDimensionFilter]
-    dimensions: typing.List[str]
+    dimensionFilters: _list[NetworkReportSpecDimensionFilter]
+    dimensions: _list[str]
     localizationSettings: LocalizationSettings
     maxReportRows: int
-    metrics: typing.List[str]
-    sortConditions: typing.List[NetworkReportSpecSortCondition]
+    metrics: _list[str]
+    sortConditions: _list[NetworkReportSpecSortCondition]
     timeZone: str
 
 @typing.type_check_only
@@ -222,7 +224,7 @@ class PublisherAccount(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReportFooter(typing_extensions.TypedDict, total=False):
     matchingRowCount: str
-    warnings: typing.List[ReportWarning]
+    warnings: _list[ReportWarning]
 
 @typing.type_check_only
 class ReportHeader(typing_extensions.TypedDict, total=False):
@@ -232,8 +234,8 @@ class ReportHeader(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReportRow(typing_extensions.TypedDict, total=False):
-    dimensionValues: typing.Dict[str, typing.Any]
-    metricValues: typing.Dict[str, typing.Any]
+    dimensionValues: dict[str, typing.Any]
+    metricValues: dict[str, typing.Any]
 
 @typing.type_check_only
 class ReportRowDimensionValue(typing_extensions.TypedDict, total=False):
@@ -259,4 +261,4 @@ class ReportWarning(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StringList(typing_extensions.TypedDict, total=False):
-    values: typing.List[str]
+    values: _list[str]

@@ -2,13 +2,15 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudDatalabelingV1alpha1CreateInstructionMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
     instruction: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1alpha1ExportDataOperationMetadata(
@@ -17,7 +19,7 @@ class GoogleCloudDatalabelingV1alpha1ExportDataOperationMetadata(
     annotatedDataset: str
     createTime: str
     dataset: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1alpha1ExportDataOperationResponse(
@@ -49,7 +51,7 @@ class GoogleCloudDatalabelingV1alpha1HumanAnnotationConfig(
 ):
     annotatedDatasetDescription: str
     annotatedDatasetDisplayName: str
-    contributorEmails: typing.List[str]
+    contributorEmails: _list[str]
     instruction: str
     labelGroup: str
     languageCode: str
@@ -63,7 +65,7 @@ class GoogleCloudDatalabelingV1alpha1ImportDataOperationMetadata(
 ):
     createTime: str
     dataset: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1alpha1ImportDataOperationResponse(
@@ -122,7 +124,7 @@ class GoogleCloudDatalabelingV1alpha1LabelOperationMetadata(
     imageOrientedBoundingBoxDetails: GoogleCloudDatalabelingV1alpha1LabelImageOrientedBoundingBoxOperationMetadata
     imagePolylineDetails: GoogleCloudDatalabelingV1alpha1LabelImagePolylineOperationMetadata
     imageSegmentationDetails: GoogleCloudDatalabelingV1alpha1LabelImageSegmentationOperationMetadata
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
     progressPercent: int
     textClassificationDetails: GoogleCloudDatalabelingV1alpha1LabelTextClassificationOperationMetadata
     textEntityExtractionDetails: GoogleCloudDatalabelingV1alpha1LabelTextEntityExtractionOperationMetadata
@@ -135,7 +137,7 @@ class GoogleCloudDatalabelingV1alpha1LabelOperationMetadata(
 class GoogleCloudDatalabelingV1alpha1LabelStats(
     typing_extensions.TypedDict, total=False
 ):
-    exampleCount: typing.Dict[str, typing.Any]
+    exampleCount: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1alpha1LabelTextClassificationOperationMetadata(
@@ -203,7 +205,7 @@ class GoogleCloudDatalabelingV1beta1AnnotatedDataset(
         "TEXT_ENTITY_EXTRACTION_ANNOTATION",
         "GENERAL_CLASSIFICATION_ANNOTATION",
     ]
-    blockingResources: typing.List[str]
+    blockingResources: _list[str]
     completedExampleCount: str
     createTime: str
     description: str
@@ -261,8 +263,8 @@ class GoogleCloudDatalabelingV1beta1AnnotationSpec(
 class GoogleCloudDatalabelingV1beta1AnnotationSpecSet(
     typing_extensions.TypedDict, total=False
 ):
-    annotationSpecs: typing.List[GoogleCloudDatalabelingV1beta1AnnotationSpec]
-    blockingResources: typing.List[str]
+    annotationSpecs: _list[GoogleCloudDatalabelingV1beta1AnnotationSpec]
+    blockingResources: _list[str]
     description: str
     displayName: str
     name: str
@@ -291,7 +293,7 @@ class GoogleCloudDatalabelingV1beta1AnnotationValue(
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1Attempt(typing_extensions.TypedDict, total=False):
     attemptTime: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1BigQuerySource(
@@ -309,7 +311,7 @@ class GoogleCloudDatalabelingV1beta1BoundingBoxEvaluationOptions(
 class GoogleCloudDatalabelingV1beta1BoundingPoly(
     typing_extensions.TypedDict, total=False
 ):
-    vertices: typing.List[GoogleCloudDatalabelingV1beta1Vertex]
+    vertices: _list[GoogleCloudDatalabelingV1beta1Vertex]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1BoundingPolyConfig(
@@ -350,7 +352,7 @@ class GoogleCloudDatalabelingV1beta1ConfidenceMetricsEntry(
 class GoogleCloudDatalabelingV1beta1ConfusionMatrix(
     typing_extensions.TypedDict, total=False
 ):
-    row: typing.List[GoogleCloudDatalabelingV1beta1Row]
+    row: _list[GoogleCloudDatalabelingV1beta1Row]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ConfusionMatrixEntry(
@@ -383,7 +385,7 @@ class GoogleCloudDatalabelingV1beta1CreateInstructionMetadata(
 ):
     createTime: str
     instruction: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1CreateInstructionRequest(
@@ -406,12 +408,12 @@ class GoogleCloudDatalabelingV1beta1DataItem(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1Dataset(typing_extensions.TypedDict, total=False):
-    blockingResources: typing.List[str]
+    blockingResources: _list[str]
     createTime: str
     dataItemCount: str
     description: str
     displayName: str
-    inputConfigs: typing.List[GoogleCloudDatalabelingV1beta1InputConfig]
+    inputConfigs: _list[GoogleCloudDatalabelingV1beta1InputConfig]
     lastMigrateTime: str
     name: str
 
@@ -453,7 +455,7 @@ class GoogleCloudDatalabelingV1beta1EvaluationJob(
     typing_extensions.TypedDict, total=False
 ):
     annotationSpecSet: str
-    attempts: typing.List[GoogleCloudDatalabelingV1beta1Attempt]
+    attempts: _list[GoogleCloudDatalabelingV1beta1Attempt]
     createTime: str
     description: str
     evaluationJobConfig: GoogleCloudDatalabelingV1beta1EvaluationJobConfig
@@ -476,7 +478,7 @@ class GoogleCloudDatalabelingV1beta1EvaluationJobAlertConfig(
 class GoogleCloudDatalabelingV1beta1EvaluationJobConfig(
     typing_extensions.TypedDict, total=False
 ):
-    bigqueryImportKeys: typing.Dict[str, typing.Any]
+    bigqueryImportKeys: dict[str, typing.Any]
     boundingPolyConfig: GoogleCloudDatalabelingV1beta1BoundingPolyConfig
     evaluationConfig: GoogleCloudDatalabelingV1beta1EvaluationConfig
     evaluationJobAlertConfig: GoogleCloudDatalabelingV1beta1EvaluationJobAlertConfig
@@ -498,13 +500,13 @@ class GoogleCloudDatalabelingV1beta1EvaluationMetrics(
 class GoogleCloudDatalabelingV1beta1EventConfig(
     typing_extensions.TypedDict, total=False
 ):
-    annotationSpecSets: typing.List[str]
+    annotationSpecSets: _list[str]
     clipLength: int
     overlapLength: int
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1Example(typing_extensions.TypedDict, total=False):
-    annotations: typing.List[GoogleCloudDatalabelingV1beta1Annotation]
+    annotations: _list[GoogleCloudDatalabelingV1beta1Annotation]
     imagePayload: GoogleCloudDatalabelingV1beta1ImagePayload
     name: str
     textPayload: GoogleCloudDatalabelingV1beta1TextPayload
@@ -515,7 +517,7 @@ class GoogleCloudDatalabelingV1beta1ExampleComparison(
     typing_extensions.TypedDict, total=False
 ):
     groundTruthExample: GoogleCloudDatalabelingV1beta1Example
-    modelCreatedExamples: typing.List[GoogleCloudDatalabelingV1beta1Example]
+    modelCreatedExamples: _list[GoogleCloudDatalabelingV1beta1Example]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ExportDataOperationMetadata(
@@ -524,7 +526,7 @@ class GoogleCloudDatalabelingV1beta1ExportDataOperationMetadata(
     annotatedDataset: str
     createTime: str
     dataset: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ExportDataOperationResponse(
@@ -599,7 +601,7 @@ class GoogleCloudDatalabelingV1beta1HumanAnnotationConfig(
 ):
     annotatedDatasetDescription: str
     annotatedDatasetDisplayName: str
-    contributorEmails: typing.List[str]
+    contributorEmails: _list[str]
     instruction: str
     labelGroup: str
     languageCode: str
@@ -655,7 +657,7 @@ class GoogleCloudDatalabelingV1beta1ImagePolylineAnnotation(
 class GoogleCloudDatalabelingV1beta1ImageSegmentationAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    annotationColors: typing.Dict[str, typing.Any]
+    annotationColors: dict[str, typing.Any]
     imageBytes: str
     mimeType: str
 
@@ -665,7 +667,7 @@ class GoogleCloudDatalabelingV1beta1ImportDataOperationMetadata(
 ):
     createTime: str
     dataset: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ImportDataOperationResponse(
@@ -714,7 +716,7 @@ class GoogleCloudDatalabelingV1beta1InputConfig(
 class GoogleCloudDatalabelingV1beta1Instruction(
     typing_extensions.TypedDict, total=False
 ):
-    blockingResources: typing.List[str]
+    blockingResources: _list[str]
     createTime: str
     csvInstruction: GoogleCloudDatalabelingV1beta1CsvInstruction
     dataType: typing_extensions.Literal[
@@ -794,7 +796,7 @@ class GoogleCloudDatalabelingV1beta1LabelOperationMetadata(
     imageOrientedBoundingBoxDetails: GoogleCloudDatalabelingV1beta1LabelImageOrientedBoundingBoxOperationMetadata
     imagePolylineDetails: GoogleCloudDatalabelingV1beta1LabelImagePolylineOperationMetadata
     imageSegmentationDetails: GoogleCloudDatalabelingV1beta1LabelImageSegmentationOperationMetadata
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
     progressPercent: int
     textClassificationDetails: GoogleCloudDatalabelingV1beta1LabelTextClassificationOperationMetadata
     textEntityExtractionDetails: GoogleCloudDatalabelingV1beta1LabelTextEntityExtractionOperationMetadata
@@ -807,7 +809,7 @@ class GoogleCloudDatalabelingV1beta1LabelOperationMetadata(
 class GoogleCloudDatalabelingV1beta1LabelStats(
     typing_extensions.TypedDict, total=False
 ):
-    exampleCount: typing.Dict[str, typing.Any]
+    exampleCount: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1LabelTextClassificationOperationMetadata(
@@ -877,76 +879,76 @@ class GoogleCloudDatalabelingV1beta1LabelVideoRequest(
 class GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    annotatedDatasets: typing.List[GoogleCloudDatalabelingV1beta1AnnotatedDataset]
+    annotatedDatasets: _list[GoogleCloudDatalabelingV1beta1AnnotatedDataset]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    annotationSpecSets: typing.List[GoogleCloudDatalabelingV1beta1AnnotationSpecSet]
+    annotationSpecSets: _list[GoogleCloudDatalabelingV1beta1AnnotationSpecSet]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ListDataItemsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    dataItems: typing.List[GoogleCloudDatalabelingV1beta1DataItem]
+    dataItems: _list[GoogleCloudDatalabelingV1beta1DataItem]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ListDatasetsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    datasets: typing.List[GoogleCloudDatalabelingV1beta1Dataset]
+    datasets: _list[GoogleCloudDatalabelingV1beta1Dataset]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    evaluationJobs: typing.List[GoogleCloudDatalabelingV1beta1EvaluationJob]
+    evaluationJobs: _list[GoogleCloudDatalabelingV1beta1EvaluationJob]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ListExamplesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    examples: typing.List[GoogleCloudDatalabelingV1beta1Example]
+    examples: _list[GoogleCloudDatalabelingV1beta1Example]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    feedbackMessages: typing.List[GoogleCloudDatalabelingV1beta1FeedbackMessage]
+    feedbackMessages: _list[GoogleCloudDatalabelingV1beta1FeedbackMessage]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    feedbackThreads: typing.List[GoogleCloudDatalabelingV1beta1FeedbackThread]
+    feedbackThreads: _list[GoogleCloudDatalabelingV1beta1FeedbackThread]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1ListInstructionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    instructions: typing.List[GoogleCloudDatalabelingV1beta1Instruction]
+    instructions: _list[GoogleCloudDatalabelingV1beta1Instruction]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1NormalizedBoundingPoly(
     typing_extensions.TypedDict, total=False
 ):
-    normalizedVertices: typing.List[GoogleCloudDatalabelingV1beta1NormalizedVertex]
+    normalizedVertices: _list[GoogleCloudDatalabelingV1beta1NormalizedVertex]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1NormalizedPolyline(
     typing_extensions.TypedDict, total=False
 ):
-    normalizedVertices: typing.List[GoogleCloudDatalabelingV1beta1NormalizedVertex]
+    normalizedVertices: _list[GoogleCloudDatalabelingV1beta1NormalizedVertex]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1NormalizedVertex(
@@ -993,7 +995,7 @@ class GoogleCloudDatalabelingV1beta1OperatorFeedbackMetadata(
 class GoogleCloudDatalabelingV1beta1OperatorMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    comments: typing.List[str]
+    comments: _list[str]
     labelVotes: int
     score: float
     totalVotes: int
@@ -1018,7 +1020,7 @@ class GoogleCloudDatalabelingV1beta1PdfInstruction(
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1Polyline(typing_extensions.TypedDict, total=False):
-    vertices: typing.List[GoogleCloudDatalabelingV1beta1Vertex]
+    vertices: _list[GoogleCloudDatalabelingV1beta1Vertex]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1PolylineConfig(
@@ -1031,7 +1033,7 @@ class GoogleCloudDatalabelingV1beta1PolylineConfig(
 class GoogleCloudDatalabelingV1beta1PrCurve(typing_extensions.TypedDict, total=False):
     annotationSpec: GoogleCloudDatalabelingV1beta1AnnotationSpec
     areaUnderCurve: float
-    confidenceMetricsEntries: typing.List[
+    confidenceMetricsEntries: _list[
         GoogleCloudDatalabelingV1beta1ConfidenceMetricsEntry
     ]
     meanAveragePrecision: float
@@ -1049,13 +1051,13 @@ class GoogleCloudDatalabelingV1beta1ResumeEvaluationJobRequest(
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1Row(typing_extensions.TypedDict, total=False):
     annotationSpec: GoogleCloudDatalabelingV1beta1AnnotationSpec
-    entries: typing.List[GoogleCloudDatalabelingV1beta1ConfusionMatrixEntry]
+    entries: _list[GoogleCloudDatalabelingV1beta1ConfusionMatrixEntry]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    evaluations: typing.List[GoogleCloudDatalabelingV1beta1Evaluation]
+    evaluations: _list[GoogleCloudDatalabelingV1beta1Evaluation]
     nextPageToken: str
 
 @typing.type_check_only
@@ -1069,7 +1071,7 @@ class GoogleCloudDatalabelingV1beta1SearchExampleComparisonsRequest(
 class GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    exampleComparisons: typing.List[GoogleCloudDatalabelingV1beta1ExampleComparison]
+    exampleComparisons: _list[GoogleCloudDatalabelingV1beta1ExampleComparison]
     nextPageToken: str
 
 @typing.type_check_only
@@ -1154,7 +1156,7 @@ class GoogleCloudDatalabelingV1beta1VideoClassificationAnnotation(
 class GoogleCloudDatalabelingV1beta1VideoClassificationConfig(
     typing_extensions.TypedDict, total=False
 ):
-    annotationSpecSetConfigs: typing.List[
+    annotationSpecSetConfigs: _list[
         GoogleCloudDatalabelingV1beta1AnnotationSpecSetConfig
     ]
     applyShotDetection: bool
@@ -1171,7 +1173,7 @@ class GoogleCloudDatalabelingV1beta1VideoObjectTrackingAnnotation(
     typing_extensions.TypedDict, total=False
 ):
     annotationSpec: GoogleCloudDatalabelingV1beta1AnnotationSpec
-    objectTrackingFrames: typing.List[GoogleCloudDatalabelingV1beta1ObjectTrackingFrame]
+    objectTrackingFrames: _list[GoogleCloudDatalabelingV1beta1ObjectTrackingFrame]
     timeSegment: GoogleCloudDatalabelingV1beta1TimeSegment
 
 @typing.type_check_only
@@ -1181,7 +1183,7 @@ class GoogleCloudDatalabelingV1beta1VideoPayload(
     frameRate: float
     mimeType: str
     signedUri: str
-    videoThumbnails: typing.List[GoogleCloudDatalabelingV1beta1VideoThumbnail]
+    videoThumbnails: _list[GoogleCloudDatalabelingV1beta1VideoThumbnail]
     videoUri: str
 
 @typing.type_check_only
@@ -1197,7 +1199,7 @@ class GoogleCloudDatalabelingV1p1alpha1CreateInstructionMetadata(
 ):
     createTime: str
     instruction: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p1alpha1ExportDataOperationMetadata(
@@ -1206,7 +1208,7 @@ class GoogleCloudDatalabelingV1p1alpha1ExportDataOperationMetadata(
     annotatedDataset: str
     createTime: str
     dataset: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p1alpha1ExportDataOperationResponse(
@@ -1245,7 +1247,7 @@ class GoogleCloudDatalabelingV1p1alpha1HumanAnnotationConfig(
 ):
     annotatedDatasetDescription: str
     annotatedDatasetDisplayName: str
-    contributorEmails: typing.List[str]
+    contributorEmails: _list[str]
     instruction: str
     labelGroup: str
     languageCode: str
@@ -1259,7 +1261,7 @@ class GoogleCloudDatalabelingV1p1alpha1ImportDataOperationMetadata(
 ):
     createTime: str
     dataset: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p1alpha1ImportDataOperationResponse(
@@ -1318,7 +1320,7 @@ class GoogleCloudDatalabelingV1p1alpha1LabelOperationMetadata(
     imageOrientedBoundingBoxDetails: GoogleCloudDatalabelingV1p1alpha1LabelImageOrientedBoundingBoxOperationMetadata
     imagePolylineDetails: GoogleCloudDatalabelingV1p1alpha1LabelImagePolylineOperationMetadata
     imageSegmentationDetails: GoogleCloudDatalabelingV1p1alpha1LabelImageSegmentationOperationMetadata
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
     progressPercent: int
     textClassificationDetails: GoogleCloudDatalabelingV1p1alpha1LabelTextClassificationOperationMetadata
     textEntityExtractionDetails: GoogleCloudDatalabelingV1p1alpha1LabelTextEntityExtractionOperationMetadata
@@ -1331,7 +1333,7 @@ class GoogleCloudDatalabelingV1p1alpha1LabelOperationMetadata(
 class GoogleCloudDatalabelingV1p1alpha1LabelStats(
     typing_extensions.TypedDict, total=False
 ):
-    exampleCount: typing.Dict[str, typing.Any]
+    exampleCount: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p1alpha1LabelTextClassificationOperationMetadata(
@@ -1382,7 +1384,7 @@ class GoogleCloudDatalabelingV1p2alpha1CreateInstructionMetadata(
 ):
     createTime: str
     instruction: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p2alpha1ExportDataOperationMetadata(
@@ -1391,7 +1393,7 @@ class GoogleCloudDatalabelingV1p2alpha1ExportDataOperationMetadata(
     annotatedDataset: str
     createTime: str
     dataset: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p2alpha1ExportDataOperationResponse(
@@ -1423,7 +1425,7 @@ class GoogleCloudDatalabelingV1p2alpha1HumanAnnotationConfig(
 ):
     annotatedDatasetDescription: str
     annotatedDatasetDisplayName: str
-    contributorEmails: typing.List[str]
+    contributorEmails: _list[str]
     instruction: str
     labelGroup: str
     languageCode: str
@@ -1437,7 +1439,7 @@ class GoogleCloudDatalabelingV1p2alpha1ImportDataOperationMetadata(
 ):
     createTime: str
     dataset: str
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p2alpha1ImportDataOperationResponse(
@@ -1496,7 +1498,7 @@ class GoogleCloudDatalabelingV1p2alpha1LabelOperationMetadata(
     imageOrientedBoundingBoxDetails: GoogleCloudDatalabelingV1p2alpha1LabelImageOrientedBoundingBoxOperationMetadata
     imagePolylineDetails: GoogleCloudDatalabelingV1p2alpha1LabelImagePolylineOperationMetadata
     imageSegmentationDetails: GoogleCloudDatalabelingV1p2alpha1LabelImageSegmentationOperationMetadata
-    partialFailures: typing.List[GoogleRpcStatus]
+    partialFailures: _list[GoogleRpcStatus]
     progressPercent: int
     textClassificationDetails: GoogleCloudDatalabelingV1p2alpha1LabelTextClassificationOperationMetadata
     textEntityExtractionDetails: GoogleCloudDatalabelingV1p2alpha1LabelTextEntityExtractionOperationMetadata
@@ -1509,7 +1511,7 @@ class GoogleCloudDatalabelingV1p2alpha1LabelOperationMetadata(
 class GoogleCloudDatalabelingV1p2alpha1LabelStats(
     typing_extensions.TypedDict, total=False
 ):
-    exampleCount: typing.Dict[str, typing.Any]
+    exampleCount: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p2alpha1LabelTextClassificationOperationMetadata(
@@ -1557,15 +1559,15 @@ class GoogleCloudDatalabelingV1p2alpha1OutputConfig(
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -1573,5 +1575,5 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str

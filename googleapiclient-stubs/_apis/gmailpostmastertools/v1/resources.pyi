@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class PostmasterToolsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -42,9 +44,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
 class DomainHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Domain: ...
 
@@ -52,9 +52,7 @@ class DomainHttpRequest(googleapiclient.http.HttpRequest):
 class ListDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDomainsResponse: ...
 
@@ -62,9 +60,7 @@ class ListDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListTrafficStatsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTrafficStatsResponse: ...
 
@@ -72,8 +68,6 @@ class ListTrafficStatsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class TrafficStatsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TrafficStats: ...

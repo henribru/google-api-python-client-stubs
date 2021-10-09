@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3AdvancedSettings(
     typing_extensions.TypedDict, total=False
@@ -28,14 +30,14 @@ class GoogleCloudDialogflowCxV3Agent(typing_extensions.TypedDict, total=False):
     securitySettings: str
     speechToTextSettings: GoogleCloudDialogflowCxV3SpeechToTextSettings
     startFlow: str
-    supportedLanguageCodes: typing.List[str]
+    supportedLanguageCodes: _list[str]
     timeZone: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3AgentValidationResult(
     typing_extensions.TypedDict, total=False
 ):
-    flowValidationResults: typing.List[GoogleCloudDialogflowCxV3FlowValidationResult]
+    flowValidationResults: _list[GoogleCloudDialogflowCxV3FlowValidationResult]
     name: str
 
 @typing.type_check_only
@@ -47,26 +49,26 @@ class GoogleCloudDialogflowCxV3AudioInput(typing_extensions.TypedDict, total=Fal
 class GoogleCloudDialogflowCxV3BatchDeleteTestCasesRequest(
     typing_extensions.TypedDict, total=False
 ):
-    names: typing.List[str]
+    names: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3BatchRunTestCasesMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    errors: typing.List[GoogleCloudDialogflowCxV3TestError]
+    errors: _list[GoogleCloudDialogflowCxV3TestError]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3BatchRunTestCasesRequest(
     typing_extensions.TypedDict, total=False
 ):
     environment: str
-    testCases: typing.List[str]
+    testCases: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3BatchRunTestCasesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    results: typing.List[GoogleCloudDialogflowCxV3TestCaseResult]
+    results: _list[GoogleCloudDialogflowCxV3TestCaseResult]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3CalculateCoverageResponse(
@@ -86,7 +88,7 @@ class GoogleCloudDialogflowCxV3ContinuousTestResult(
         "AGGREGATED_TEST_RESULT_UNSPECIFIED", "PASSED", "FAILED"
     ]
     runTime: str
-    testCaseResults: typing.List[str]
+    testCaseResults: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ConversationTurn(
@@ -100,13 +102,13 @@ class GoogleCloudDialogflowCxV3ConversationTurnUserInput(
     typing_extensions.TypedDict, total=False
 ):
     enableSentimentAnalysis: bool
-    injectedParameters: typing.Dict[str, typing.Any]
+    injectedParameters: dict[str, typing.Any]
     input: GoogleCloudDialogflowCxV3QueryInput
     isWebhookEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
@@ -131,7 +133,7 @@ class GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata(
 class GoogleCloudDialogflowCxV3DeployFlowMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    testErrors: typing.List[GoogleCloudDialogflowCxV3TestError]
+    testErrors: _list[GoogleCloudDialogflowCxV3TestError]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3DeployFlowRequest(
@@ -161,7 +163,7 @@ class GoogleCloudDialogflowCxV3Deployment(typing_extensions.TypedDict, total=Fal
 class GoogleCloudDialogflowCxV3DeploymentResult(
     typing_extensions.TypedDict, total=False
 ):
-    deploymentTestResults: typing.List[str]
+    deploymentTestResults: _list[str]
     experiment: str
 
 @typing.type_check_only
@@ -197,8 +199,8 @@ class GoogleCloudDialogflowCxV3EntityType(typing_extensions.TypedDict, total=Fal
     ]
     displayName: str
     enableFuzzyExtraction: bool
-    entities: typing.List[GoogleCloudDialogflowCxV3EntityTypeEntity]
-    excludedPhrases: typing.List[GoogleCloudDialogflowCxV3EntityTypeExcludedPhrase]
+    entities: _list[GoogleCloudDialogflowCxV3EntityTypeEntity]
+    excludedPhrases: _list[GoogleCloudDialogflowCxV3EntityTypeExcludedPhrase]
     kind: typing_extensions.Literal[
         "KIND_UNSPECIFIED", "KIND_MAP", "KIND_LIST", "KIND_REGEXP"
     ]
@@ -209,7 +211,7 @@ class GoogleCloudDialogflowCxV3EntityType(typing_extensions.TypedDict, total=Fal
 class GoogleCloudDialogflowCxV3EntityTypeEntity(
     typing_extensions.TypedDict, total=False
 ):
-    synonyms: typing.List[str]
+    synonyms: _list[str]
     value: str
 
 @typing.type_check_only
@@ -225,7 +227,7 @@ class GoogleCloudDialogflowCxV3Environment(typing_extensions.TypedDict, total=Fa
     name: str
     testCasesConfig: GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig
     updateTime: str
-    versionConfigs: typing.List[GoogleCloudDialogflowCxV3EnvironmentVersionConfig]
+    versionConfigs: _list[GoogleCloudDialogflowCxV3EnvironmentVersionConfig]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig(
@@ -233,7 +235,7 @@ class GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig(
 ):
     enableContinuousRun: bool
     enablePredeploymentRun: bool
-    testCases: typing.List[str]
+    testCases: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3EnvironmentVersionConfig(
@@ -271,7 +273,7 @@ class GoogleCloudDialogflowCxV3Experiment(typing_extensions.TypedDict, total=Fal
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "DRAFT", "RUNNING", "DONE", "ROLLOUT_FAILED"
     ]
-    variantsHistory: typing.List[GoogleCloudDialogflowCxV3VariantsHistory]
+    variantsHistory: _list[GoogleCloudDialogflowCxV3VariantsHistory]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ExperimentDefinition(
@@ -285,7 +287,7 @@ class GoogleCloudDialogflowCxV3ExperimentResult(
     typing_extensions.TypedDict, total=False
 ):
     lastUpdateTime: str
-    versionMetrics: typing.List[GoogleCloudDialogflowCxV3ExperimentResultVersionMetrics]
+    versionMetrics: _list[GoogleCloudDialogflowCxV3ExperimentResultVersionMetrics]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ExperimentResultConfidenceInterval(
@@ -322,7 +324,7 @@ class GoogleCloudDialogflowCxV3ExperimentResultMetric(
 class GoogleCloudDialogflowCxV3ExperimentResultVersionMetrics(
     typing_extensions.TypedDict, total=False
 ):
-    metrics: typing.List[GoogleCloudDialogflowCxV3ExperimentResultMetric]
+    metrics: _list[GoogleCloudDialogflowCxV3ExperimentResultMetric]
     sessionCount: int
     version: str
 
@@ -378,11 +380,11 @@ class GoogleCloudDialogflowCxV3ExportTestCasesResponse(
 class GoogleCloudDialogflowCxV3Flow(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
-    eventHandlers: typing.List[GoogleCloudDialogflowCxV3EventHandler]
+    eventHandlers: _list[GoogleCloudDialogflowCxV3EventHandler]
     name: str
     nluSettings: GoogleCloudDialogflowCxV3NluSettings
-    transitionRouteGroups: typing.List[str]
-    transitionRoutes: typing.List[GoogleCloudDialogflowCxV3TransitionRoute]
+    transitionRouteGroups: _list[str]
+    transitionRoutes: _list[GoogleCloudDialogflowCxV3TransitionRoute]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3FlowValidationResult(
@@ -390,19 +392,17 @@ class GoogleCloudDialogflowCxV3FlowValidationResult(
 ):
     name: str
     updateTime: str
-    validationMessages: typing.List[GoogleCloudDialogflowCxV3ValidationMessage]
+    validationMessages: _list[GoogleCloudDialogflowCxV3ValidationMessage]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3Form(typing_extensions.TypedDict, total=False):
-    parameters: typing.List[GoogleCloudDialogflowCxV3FormParameter]
+    parameters: _list[GoogleCloudDialogflowCxV3FormParameter]
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3FormParameter(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3FormParameter(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3FormParameterFillBehavior(
-    typing.Dict[str, typing.Any]
-): ...
+class GoogleCloudDialogflowCxV3FormParameterFillBehavior(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3FulfillIntentRequest(
@@ -422,21 +422,19 @@ class GoogleCloudDialogflowCxV3FulfillIntentResponse(
     responseId: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3Fulfillment(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3Fulfillment(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3FulfillmentConditionalCases(
-    typing.Dict[str, typing.Any]
-): ...
+class GoogleCloudDialogflowCxV3FulfillmentConditionalCases(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCase(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCaseCaseContent(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
@@ -462,7 +460,7 @@ class GoogleCloudDialogflowCxV3ImportDocumentsOperationMetadata(
 class GoogleCloudDialogflowCxV3ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    warnings: typing.List[GoogleRpcStatus]
+    warnings: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ImportFlowRequest(
@@ -484,7 +482,7 @@ class GoogleCloudDialogflowCxV3ImportFlowResponse(
 class GoogleCloudDialogflowCxV3ImportTestCasesMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    errors: typing.List[GoogleCloudDialogflowCxV3TestCaseError]
+    errors: _list[GoogleCloudDialogflowCxV3TestCaseError]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ImportTestCasesRequest(
@@ -497,7 +495,7 @@ class GoogleCloudDialogflowCxV3ImportTestCasesRequest(
 class GoogleCloudDialogflowCxV3ImportTestCasesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    names: typing.List[str]
+    names: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3InputAudioConfig(
@@ -521,7 +519,7 @@ class GoogleCloudDialogflowCxV3InputAudioConfig(
         "USE_STANDARD",
         "USE_ENHANCED",
     ]
-    phraseHints: typing.List[str]
+    phraseHints: _list[str]
     sampleRateHertz: int
     singleUtterance: bool
 
@@ -530,16 +528,16 @@ class GoogleCloudDialogflowCxV3Intent(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     isFallback: bool
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
-    parameters: typing.List[GoogleCloudDialogflowCxV3IntentParameter]
+    parameters: _list[GoogleCloudDialogflowCxV3IntentParameter]
     priority: int
-    trainingPhrases: typing.List[GoogleCloudDialogflowCxV3IntentTrainingPhrase]
+    trainingPhrases: _list[GoogleCloudDialogflowCxV3IntentTrainingPhrase]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3IntentCoverage(typing_extensions.TypedDict, total=False):
     coverageScore: float
-    intents: typing.List[GoogleCloudDialogflowCxV3IntentCoverageIntent]
+    intents: _list[GoogleCloudDialogflowCxV3IntentCoverageIntent]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3IntentCoverageIntent(
@@ -566,7 +564,7 @@ class GoogleCloudDialogflowCxV3IntentTrainingPhrase(
     typing_extensions.TypedDict, total=False
 ):
     id: str
-    parts: typing.List[GoogleCloudDialogflowCxV3IntentTrainingPhrasePart]
+    parts: _list[GoogleCloudDialogflowCxV3IntentTrainingPhrasePart]
     repeatCount: int
 
 @typing.type_check_only
@@ -580,56 +578,56 @@ class GoogleCloudDialogflowCxV3IntentTrainingPhrasePart(
 class GoogleCloudDialogflowCxV3ListAgentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    agents: typing.List[GoogleCloudDialogflowCxV3Agent]
+    agents: _list[GoogleCloudDialogflowCxV3Agent]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    continuousTestResults: typing.List[GoogleCloudDialogflowCxV3ContinuousTestResult]
+    continuousTestResults: _list[GoogleCloudDialogflowCxV3ContinuousTestResult]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListDeploymentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    deployments: typing.List[GoogleCloudDialogflowCxV3Deployment]
+    deployments: _list[GoogleCloudDialogflowCxV3Deployment]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListEntityTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    entityTypes: typing.List[GoogleCloudDialogflowCxV3EntityType]
+    entityTypes: _list[GoogleCloudDialogflowCxV3EntityType]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListEnvironmentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    environments: typing.List[GoogleCloudDialogflowCxV3Environment]
+    environments: _list[GoogleCloudDialogflowCxV3Environment]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListExperimentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    experiments: typing.List[GoogleCloudDialogflowCxV3Experiment]
+    experiments: _list[GoogleCloudDialogflowCxV3Experiment]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListFlowsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    flows: typing.List[GoogleCloudDialogflowCxV3Flow]
+    flows: _list[GoogleCloudDialogflowCxV3Flow]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListIntentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    intents: typing.List[GoogleCloudDialogflowCxV3Intent]
+    intents: _list[GoogleCloudDialogflowCxV3Intent]
     nextPageToken: str
 
 @typing.type_check_only
@@ -637,56 +635,56 @@ class GoogleCloudDialogflowCxV3ListPagesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    pages: typing.List[GoogleCloudDialogflowCxV3Page]
+    pages: _list[GoogleCloudDialogflowCxV3Page]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListSecuritySettingsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    securitySettings: typing.List[GoogleCloudDialogflowCxV3SecuritySettings]
+    securitySettings: _list[GoogleCloudDialogflowCxV3SecuritySettings]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListSessionEntityTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    sessionEntityTypes: typing.List[GoogleCloudDialogflowCxV3SessionEntityType]
+    sessionEntityTypes: _list[GoogleCloudDialogflowCxV3SessionEntityType]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListTestCaseResultsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    testCaseResults: typing.List[GoogleCloudDialogflowCxV3TestCaseResult]
+    testCaseResults: _list[GoogleCloudDialogflowCxV3TestCaseResult]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListTestCasesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    testCases: typing.List[GoogleCloudDialogflowCxV3TestCase]
+    testCases: _list[GoogleCloudDialogflowCxV3TestCase]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    transitionRouteGroups: typing.List[GoogleCloudDialogflowCxV3TransitionRouteGroup]
+    transitionRouteGroups: _list[GoogleCloudDialogflowCxV3TransitionRouteGroup]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListVersionsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    versions: typing.List[GoogleCloudDialogflowCxV3Version]
+    versions: _list[GoogleCloudDialogflowCxV3Version]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListWebhooksResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    webhooks: typing.List[GoogleCloudDialogflowCxV3Webhook]
+    webhooks: _list[GoogleCloudDialogflowCxV3Webhook]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3LoadVersionRequest(
@@ -698,7 +696,7 @@ class GoogleCloudDialogflowCxV3LoadVersionRequest(
 class GoogleCloudDialogflowCxV3LookupEnvironmentHistoryResponse(
     typing_extensions.TypedDict, total=False
 ):
-    environments: typing.List[GoogleCloudDialogflowCxV3Environment]
+    environments: _list[GoogleCloudDialogflowCxV3Environment]
     nextPageToken: str
 
 @typing.type_check_only
@@ -715,7 +713,7 @@ class GoogleCloudDialogflowCxV3Match(typing_extensions.TypedDict, total=False):
         "NO_INPUT",
         "EVENT",
     ]
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
     resolvedInput: str
 
 @typing.type_check_only
@@ -730,7 +728,7 @@ class GoogleCloudDialogflowCxV3MatchIntentResponse(
     typing_extensions.TypedDict, total=False
 ):
     currentPage: GoogleCloudDialogflowCxV3Page
-    matches: typing.List[GoogleCloudDialogflowCxV3Match]
+    matches: _list[GoogleCloudDialogflowCxV3Match]
     text: str
     transcript: str
     triggerEvent: str
@@ -764,7 +762,7 @@ class GoogleCloudDialogflowCxV3OutputAudioConfig(
     synthesizeSpeechConfig: GoogleCloudDialogflowCxV3SynthesizeSpeechConfig
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3Page(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3Page(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3PageInfo(typing_extensions.TypedDict, total=False):
@@ -775,7 +773,7 @@ class GoogleCloudDialogflowCxV3PageInfo(typing_extensions.TypedDict, total=False
 class GoogleCloudDialogflowCxV3PageInfoFormInfo(
     typing_extensions.TypedDict, total=False
 ):
-    parameterInfo: typing.List[GoogleCloudDialogflowCxV3PageInfoFormInfoParameterInfo]
+    parameterInfo: _list[GoogleCloudDialogflowCxV3PageInfoFormInfoParameterInfo]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3PageInfoFormInfoParameterInfo(
@@ -805,16 +803,16 @@ class GoogleCloudDialogflowCxV3QueryParameters(
     analyzeQueryTextSentiment: bool
     currentPage: str
     disableWebhook: bool
-    flowVersions: typing.List[str]
+    flowVersions: _list[str]
     geoLocation: GoogleTypeLatLng
-    parameters: typing.Dict[str, typing.Any]
-    payload: typing.Dict[str, typing.Any]
-    sessionEntityTypes: typing.List[GoogleCloudDialogflowCxV3SessionEntityType]
+    parameters: dict[str, typing.Any]
+    payload: dict[str, typing.Any]
+    sessionEntityTypes: _list[GoogleCloudDialogflowCxV3SessionEntityType]
     timeZone: str
-    webhookHeaders: typing.Dict[str, typing.Any]
+    webhookHeaders: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3QueryResult(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3QueryResult(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ReloadDocumentOperationMetadata(
@@ -836,7 +834,7 @@ class GoogleCloudDialogflowCxV3ResponseMessage(
     liveAgentHandoff: GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff
     mixedAudio: GoogleCloudDialogflowCxV3ResponseMessageMixedAudio
     outputAudioText: GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     playAudio: GoogleCloudDialogflowCxV3ResponseMessagePlayAudio
     text: GoogleCloudDialogflowCxV3ResponseMessageText
 
@@ -844,7 +842,7 @@ class GoogleCloudDialogflowCxV3ResponseMessage(
 class GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess(
     typing_extensions.TypedDict, total=False
 ):
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ResponseMessageEndInteraction(
@@ -855,13 +853,13 @@ class GoogleCloudDialogflowCxV3ResponseMessageEndInteraction(
 class GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff(
     typing_extensions.TypedDict, total=False
 ):
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ResponseMessageMixedAudio(
     typing_extensions.TypedDict, total=False
 ):
-    segments: typing.List[GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment]
+    segments: _list[GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment(
@@ -891,7 +889,7 @@ class GoogleCloudDialogflowCxV3ResponseMessageText(
     typing_extensions.TypedDict, total=False
 ):
     allowPlaybackInterruption: bool
-    text: typing.List[str]
+    text: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3RestoreAgentRequest(
@@ -907,7 +905,7 @@ class GoogleCloudDialogflowCxV3RestoreAgentRequest(
 class GoogleCloudDialogflowCxV3RolloutConfig(typing_extensions.TypedDict, total=False):
     failureCondition: str
     rolloutCondition: str
-    rolloutSteps: typing.List[GoogleCloudDialogflowCxV3RolloutConfigRolloutStep]
+    rolloutSteps: _list[GoogleCloudDialogflowCxV3RolloutConfigRolloutStep]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3RolloutConfigRolloutStep(
@@ -927,7 +925,7 @@ class GoogleCloudDialogflowCxV3RolloutState(typing_extensions.TypedDict, total=F
 class GoogleCloudDialogflowCxV3RunContinuousTestMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    errors: typing.List[GoogleCloudDialogflowCxV3TestError]
+    errors: _list[GoogleCloudDialogflowCxV3TestError]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3RunContinuousTestRequest(
@@ -966,7 +964,7 @@ class GoogleCloudDialogflowCxV3SecuritySettings(
     insightsExportSettings: GoogleCloudDialogflowCxV3SecuritySettingsInsightsExportSettings
     inspectTemplate: str
     name: str
-    purgeDataTypes: typing.List[str]
+    purgeDataTypes: _list[str]
     redactionScope: typing_extensions.Literal[
         "REDACTION_SCOPE_UNSPECIFIED", "REDACT_DISK_STORAGE"
     ]
@@ -992,7 +990,7 @@ class GoogleCloudDialogflowCxV3SentimentAnalysisResult(
 class GoogleCloudDialogflowCxV3SessionEntityType(
     typing_extensions.TypedDict, total=False
 ):
-    entities: typing.List[GoogleCloudDialogflowCxV3EntityTypeEntity]
+    entities: _list[GoogleCloudDialogflowCxV3EntityTypeEntity]
     entityOverrideMode: typing_extensions.Literal[
         "ENTITY_OVERRIDE_MODE_UNSPECIFIED",
         "ENTITY_OVERRIDE_MODE_OVERRIDE",
@@ -1002,7 +1000,7 @@ class GoogleCloudDialogflowCxV3SessionEntityType(
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3SessionInfo(typing_extensions.TypedDict, total=False):
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
     session: str
 
 @typing.type_check_only
@@ -1025,25 +1023,25 @@ class GoogleCloudDialogflowCxV3StopExperimentRequest(
 class GoogleCloudDialogflowCxV3SynthesizeSpeechConfig(
     typing_extensions.TypedDict, total=False
 ):
-    effectsProfileId: typing.List[str]
+    effectsProfileId: _list[str]
     pitch: float
     speakingRate: float
     voice: GoogleCloudDialogflowCxV3VoiceSelectionParams
     volumeGainDb: float
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TestCase(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3TestCase(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TestCaseError(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3TestCaseError(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TestCaseResult(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3TestCaseResult(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TestConfig(typing_extensions.TypedDict, total=False):
     flow: str
-    trackingParameters: typing.List[str]
+    trackingParameters: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TestError(typing_extensions.TypedDict, total=False):
@@ -1070,37 +1068,33 @@ class GoogleCloudDialogflowCxV3TrainFlowRequest(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TransitionCoverage(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3TransitionCoverage(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TransitionCoverageTransition(
-    typing.Dict[str, typing.Any]
-): ...
+class GoogleCloudDialogflowCxV3TransitionCoverageTransition(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TransitionCoverageTransitionNode(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TransitionRoute(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3TransitionRoute(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TransitionRouteGroup(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3TransitionRouteGroup(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TransitionRouteGroupCoverage(
-    typing.Dict[str, typing.Any]
-): ...
+class GoogleCloudDialogflowCxV3TransitionRouteGroupCoverage(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TransitionRouteGroupCoverageCoverage(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TransitionRouteGroupCoverageCoverageTransition(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
@@ -1126,7 +1120,7 @@ class GoogleCloudDialogflowCxV3ValidationMessage(
     typing_extensions.TypedDict, total=False
 ):
     detail: str
-    resourceNames: typing.List[GoogleCloudDialogflowCxV3ResourceName]
+    resourceNames: _list[GoogleCloudDialogflowCxV3ResourceName]
     resourceType: typing_extensions.Literal[
         "RESOURCE_TYPE_UNSPECIFIED",
         "AGENT",
@@ -1143,7 +1137,7 @@ class GoogleCloudDialogflowCxV3ValidationMessage(
         "PAGES",
         "TRANSITION_ROUTE_GROUP",
     ]
-    resources: typing.List[str]
+    resources: _list[str]
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "INFO", "WARNING", "ERROR"
     ]
@@ -1170,7 +1164,7 @@ class GoogleCloudDialogflowCxV3Version(typing_extensions.TypedDict, total=False)
 class GoogleCloudDialogflowCxV3VersionVariants(
     typing_extensions.TypedDict, total=False
 ):
-    variants: typing.List[GoogleCloudDialogflowCxV3VersionVariantsVariant]
+    variants: _list[GoogleCloudDialogflowCxV3VersionVariantsVariant]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3VersionVariantsVariant(
@@ -1206,7 +1200,7 @@ class GoogleCloudDialogflowCxV3WebhookGenericWebService(
     typing_extensions.TypedDict, total=False
 ):
     password: str
-    requestHeaders: typing.Dict[str, typing.Any]
+    requestHeaders: dict[str, typing.Any]
     uri: str
     username: str
 
@@ -1216,9 +1210,9 @@ class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total
     fulfillmentInfo: GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3WebhookRequestIntentInfo
     languageCode: str
-    messages: typing.List[GoogleCloudDialogflowCxV3ResponseMessage]
+    messages: _list[GoogleCloudDialogflowCxV3ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3PageInfo
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     sentimentAnalysisResult: GoogleCloudDialogflowCxV3WebhookRequestSentimentAnalysisResult
     sessionInfo: GoogleCloudDialogflowCxV3SessionInfo
     text: str
@@ -1239,7 +1233,7 @@ class GoogleCloudDialogflowCxV3WebhookRequestIntentInfo(
     confidence: float
     displayName: str
     lastMatchedIntent: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3WebhookRequestIntentInfoIntentParameterValue(
@@ -1261,7 +1255,7 @@ class GoogleCloudDialogflowCxV3WebhookResponse(
 ):
     fulfillmentResponse: GoogleCloudDialogflowCxV3WebhookResponseFulfillmentResponse
     pageInfo: GoogleCloudDialogflowCxV3PageInfo
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     sessionInfo: GoogleCloudDialogflowCxV3SessionInfo
     targetFlow: str
     targetPage: str
@@ -1273,7 +1267,7 @@ class GoogleCloudDialogflowCxV3WebhookResponseFulfillmentResponse(
     mergeBehavior: typing_extensions.Literal[
         "MERGE_BEHAVIOR_UNSPECIFIED", "APPEND", "REPLACE"
     ]
-    messages: typing.List[GoogleCloudDialogflowCxV3ResponseMessage]
+    messages: _list[GoogleCloudDialogflowCxV3ResponseMessage]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3WebhookServiceDirectoryConfig(
@@ -1293,13 +1287,13 @@ class GoogleCloudDialogflowCxV3beta1AudioInput(
 class GoogleCloudDialogflowCxV3beta1BatchRunTestCasesMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    errors: typing.List[GoogleCloudDialogflowCxV3beta1TestError]
+    errors: _list[GoogleCloudDialogflowCxV3beta1TestError]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1BatchRunTestCasesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    results: typing.List[GoogleCloudDialogflowCxV3beta1TestCaseResult]
+    results: _list[GoogleCloudDialogflowCxV3beta1TestCaseResult]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ContinuousTestResult(
@@ -1310,7 +1304,7 @@ class GoogleCloudDialogflowCxV3beta1ContinuousTestResult(
         "AGGREGATED_TEST_RESULT_UNSPECIFIED", "PASSED", "FAILED"
     ]
     runTime: str
-    testCaseResults: typing.List[str]
+    testCaseResults: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ConversationTurn(
@@ -1324,13 +1318,13 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnUserInput(
     typing_extensions.TypedDict, total=False
 ):
     enableSentimentAnalysis: bool
-    injectedParameters: typing.Dict[str, typing.Any]
+    injectedParameters: dict[str, typing.Any]
     input: GoogleCloudDialogflowCxV3beta1QueryInput
     isWebhookEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
@@ -1355,7 +1349,7 @@ class GoogleCloudDialogflowCxV3beta1DeleteDocumentOperationMetadata(
 class GoogleCloudDialogflowCxV3beta1DeployFlowMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    testErrors: typing.List[GoogleCloudDialogflowCxV3beta1TestError]
+    testErrors: _list[GoogleCloudDialogflowCxV3beta1TestError]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1DeployFlowResponse(
@@ -1378,7 +1372,7 @@ class GoogleCloudDialogflowCxV3beta1Environment(
     name: str
     testCasesConfig: GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig
     updateTime: str
-    versionConfigs: typing.List[GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig]
+    versionConfigs: _list[GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig(
@@ -1386,7 +1380,7 @@ class GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig(
 ):
     enableContinuousRun: bool
     enablePredeploymentRun: bool
-    testCases: typing.List[str]
+    testCases: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig(
@@ -1438,32 +1432,32 @@ class GoogleCloudDialogflowCxV3beta1ExportTestCasesResponse(
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1Form(typing_extensions.TypedDict, total=False):
-    parameters: typing.List[GoogleCloudDialogflowCxV3beta1FormParameter]
+    parameters: _list[GoogleCloudDialogflowCxV3beta1FormParameter]
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1FormParameter(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1FormParameter(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1FormParameterFillBehavior(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1Fulfillment(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1Fulfillment(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCase(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCaseCaseContent(
-    typing.Dict[str, typing.Any]
+    dict[str, typing.Any]
 ): ...
 
 @typing.type_check_only
@@ -1489,7 +1483,7 @@ class GoogleCloudDialogflowCxV3beta1ImportDocumentsOperationMetadata(
 class GoogleCloudDialogflowCxV3beta1ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    warnings: typing.List[GoogleRpcStatus]
+    warnings: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ImportFlowResponse(
@@ -1501,13 +1495,13 @@ class GoogleCloudDialogflowCxV3beta1ImportFlowResponse(
 class GoogleCloudDialogflowCxV3beta1ImportTestCasesMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    errors: typing.List[GoogleCloudDialogflowCxV3beta1TestCaseError]
+    errors: _list[GoogleCloudDialogflowCxV3beta1TestCaseError]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ImportTestCasesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    names: typing.List[str]
+    names: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1InputAudioConfig(
@@ -1531,7 +1525,7 @@ class GoogleCloudDialogflowCxV3beta1InputAudioConfig(
         "USE_STANDARD",
         "USE_ENHANCED",
     ]
-    phraseHints: typing.List[str]
+    phraseHints: _list[str]
     sampleRateHertz: int
     singleUtterance: bool
 
@@ -1540,11 +1534,11 @@ class GoogleCloudDialogflowCxV3beta1Intent(typing_extensions.TypedDict, total=Fa
     description: str
     displayName: str
     isFallback: bool
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
-    parameters: typing.List[GoogleCloudDialogflowCxV3beta1IntentParameter]
+    parameters: _list[GoogleCloudDialogflowCxV3beta1IntentParameter]
     priority: int
-    trainingPhrases: typing.List[GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase]
+    trainingPhrases: _list[GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1IntentInput(
@@ -1566,7 +1560,7 @@ class GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase(
     typing_extensions.TypedDict, total=False
 ):
     id: str
-    parts: typing.List[GoogleCloudDialogflowCxV3beta1IntentTrainingPhrasePart]
+    parts: _list[GoogleCloudDialogflowCxV3beta1IntentTrainingPhrasePart]
     repeatCount: int
 
 @typing.type_check_only
@@ -1577,7 +1571,7 @@ class GoogleCloudDialogflowCxV3beta1IntentTrainingPhrasePart(
     text: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1Page(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1Page(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1PageInfo(typing_extensions.TypedDict, total=False):
@@ -1588,9 +1582,7 @@ class GoogleCloudDialogflowCxV3beta1PageInfo(typing_extensions.TypedDict, total=
 class GoogleCloudDialogflowCxV3beta1PageInfoFormInfo(
     typing_extensions.TypedDict, total=False
 ):
-    parameterInfo: typing.List[
-        GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo
-    ]
+    parameterInfo: _list[GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1PageInfoFormInfoParameterInfo(
@@ -1630,7 +1622,7 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessage(
     liveAgentHandoff: GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff
     mixedAudio: GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudio
     outputAudioText: GoogleCloudDialogflowCxV3beta1ResponseMessageOutputAudioText
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     playAudio: GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio
     text: GoogleCloudDialogflowCxV3beta1ResponseMessageText
 
@@ -1638,7 +1630,7 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessage(
 class GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess(
     typing_extensions.TypedDict, total=False
 ):
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction(
@@ -1649,15 +1641,13 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction(
 class GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff(
     typing_extensions.TypedDict, total=False
 ):
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudio(
     typing_extensions.TypedDict, total=False
 ):
-    segments: typing.List[
-        GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment
-    ]
+    segments: _list[GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment(
@@ -1687,13 +1677,13 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessageText(
     typing_extensions.TypedDict, total=False
 ):
     allowPlaybackInterruption: bool
-    text: typing.List[str]
+    text: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1RunContinuousTestMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    errors: typing.List[GoogleCloudDialogflowCxV3beta1TestError]
+    errors: _list[GoogleCloudDialogflowCxV3beta1TestError]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1RunContinuousTestResponse(
@@ -1716,7 +1706,7 @@ class GoogleCloudDialogflowCxV3beta1RunTestCaseResponse(
 class GoogleCloudDialogflowCxV3beta1SessionInfo(
     typing_extensions.TypedDict, total=False
 ):
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
     session: str
 
 @typing.type_check_only
@@ -1726,24 +1716,22 @@ class GoogleCloudDialogflowCxV3beta1TestCase(typing_extensions.TypedDict, total=
     lastTestResult: GoogleCloudDialogflowCxV3beta1TestCaseResult
     name: str
     notes: str
-    tags: typing.List[str]
-    testCaseConversationTurns: typing.List[
-        GoogleCloudDialogflowCxV3beta1ConversationTurn
-    ]
+    tags: _list[str]
+    testCaseConversationTurns: _list[GoogleCloudDialogflowCxV3beta1ConversationTurn]
     testConfig: GoogleCloudDialogflowCxV3beta1TestConfig
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1TestCaseError(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1TestCaseError(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1TestCaseResult(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1TestCaseResult(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1TestConfig(
     typing_extensions.TypedDict, total=False
 ):
     flow: str
-    trackingParameters: typing.List[str]
+    trackingParameters: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1TestError(typing_extensions.TypedDict, total=False):
@@ -1765,7 +1753,7 @@ class GoogleCloudDialogflowCxV3beta1TextInput(typing_extensions.TypedDict, total
     text: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1TransitionRoute(typing.Dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1TransitionRoute(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1UpdateDocumentOperationMetadata(
@@ -1781,9 +1769,9 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest(
     fulfillmentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo
     languageCode: str
-    messages: typing.List[GoogleCloudDialogflowCxV3beta1ResponseMessage]
+    messages: _list[GoogleCloudDialogflowCxV3beta1ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3beta1PageInfo
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     sentimentAnalysisResult: GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult
     sessionInfo: GoogleCloudDialogflowCxV3beta1SessionInfo
     text: str
@@ -1804,7 +1792,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo(
     confidence: float
     displayName: str
     lastMatchedIntent: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfoIntentParameterValue(
@@ -1826,7 +1814,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookResponse(
 ):
     fulfillmentResponse: GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse
     pageInfo: GoogleCloudDialogflowCxV3beta1PageInfo
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     sessionInfo: GoogleCloudDialogflowCxV3beta1SessionInfo
     targetFlow: str
     targetPage: str
@@ -1838,7 +1826,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse(
     mergeBehavior: typing_extensions.Literal[
         "MERGE_BEHAVIOR_UNSPECIFIED", "APPEND", "REPLACE"
     ]
-    messages: typing.List[GoogleCloudDialogflowCxV3beta1ResponseMessage]
+    messages: _list[GoogleCloudDialogflowCxV3beta1ResponseMessage]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2AnnotatedMessagePart(
@@ -1852,8 +1840,8 @@ class GoogleCloudDialogflowV2AnnotatedMessagePart(
 class GoogleCloudDialogflowV2ArticleAnswer(typing_extensions.TypedDict, total=False):
     answerRecord: str
     confidence: float
-    metadata: typing.Dict[str, typing.Any]
-    snippets: typing.List[str]
+    metadata: dict[str, typing.Any]
+    snippets: _list[str]
     title: str
     uri: str
 
@@ -1861,19 +1849,19 @@ class GoogleCloudDialogflowV2ArticleAnswer(typing_extensions.TypedDict, total=Fa
 class GoogleCloudDialogflowV2BatchUpdateEntityTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    entityTypes: typing.List[GoogleCloudDialogflowV2EntityType]
+    entityTypes: _list[GoogleCloudDialogflowV2EntityType]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2BatchUpdateIntentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    intents: typing.List[GoogleCloudDialogflowV2Intent]
+    intents: _list[GoogleCloudDialogflowV2Intent]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2Context(typing_extensions.TypedDict, total=False):
     lifespanCount: int
     name: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ConversationEvent(
@@ -1898,7 +1886,7 @@ class GoogleCloudDialogflowV2EntityType(typing_extensions.TypedDict, total=False
     ]
     displayName: str
     enableFuzzyExtraction: bool
-    entities: typing.List[GoogleCloudDialogflowV2EntityTypeEntity]
+    entities: _list[GoogleCloudDialogflowV2EntityTypeEntity]
     kind: typing_extensions.Literal[
         "KIND_UNSPECIFIED", "KIND_MAP", "KIND_LIST", "KIND_REGEXP"
     ]
@@ -1906,14 +1894,14 @@ class GoogleCloudDialogflowV2EntityType(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2EntityTypeEntity(typing_extensions.TypedDict, total=False):
-    synonyms: typing.List[str]
+    synonyms: _list[str]
     value: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2EventInput(typing_extensions.TypedDict, total=False):
     languageCode: str
     name: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ExportAgentResponse(
@@ -1927,7 +1915,7 @@ class GoogleCloudDialogflowV2FaqAnswer(typing_extensions.TypedDict, total=False)
     answer: str
     answerRecord: str
     confidence: float
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     question: str
     source: str
 
@@ -1937,29 +1925,29 @@ class GoogleCloudDialogflowV2HumanAgentAssistantEvent(
 ):
     conversation: str
     participant: str
-    suggestionResults: typing.List[GoogleCloudDialogflowV2SuggestionResult]
+    suggestionResults: _list[GoogleCloudDialogflowV2SuggestionResult]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2Intent(typing_extensions.TypedDict, total=False):
     action: str
-    defaultResponsePlatforms: typing.List[str]
+    defaultResponsePlatforms: _list[str]
     displayName: str
     endInteraction: bool
-    events: typing.List[str]
-    followupIntentInfo: typing.List[GoogleCloudDialogflowV2IntentFollowupIntentInfo]
-    inputContextNames: typing.List[str]
+    events: _list[str]
+    followupIntentInfo: _list[GoogleCloudDialogflowV2IntentFollowupIntentInfo]
+    inputContextNames: _list[str]
     isFallback: bool
     liveAgentHandoff: bool
-    messages: typing.List[GoogleCloudDialogflowV2IntentMessage]
+    messages: _list[GoogleCloudDialogflowV2IntentMessage]
     mlDisabled: bool
     name: str
-    outputContexts: typing.List[GoogleCloudDialogflowV2Context]
-    parameters: typing.List[GoogleCloudDialogflowV2IntentParameter]
+    outputContexts: _list[GoogleCloudDialogflowV2Context]
+    parameters: _list[GoogleCloudDialogflowV2IntentParameter]
     parentFollowupIntentName: str
     priority: int
     resetContexts: bool
     rootFollowupIntentName: str
-    trainingPhrases: typing.List[GoogleCloudDialogflowV2IntentTrainingPhrase]
+    trainingPhrases: _list[GoogleCloudDialogflowV2IntentTrainingPhrase]
     webhookState: typing_extensions.Literal[
         "WEBHOOK_STATE_UNSPECIFIED",
         "WEBHOOK_STATE_ENABLED",
@@ -1983,7 +1971,7 @@ class GoogleCloudDialogflowV2IntentMessage(typing_extensions.TypedDict, total=Fa
     linkOutSuggestion: GoogleCloudDialogflowV2IntentMessageLinkOutSuggestion
     listSelect: GoogleCloudDialogflowV2IntentMessageListSelect
     mediaContent: GoogleCloudDialogflowV2IntentMessageMediaContent
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     platform: typing_extensions.Literal[
         "PLATFORM_UNSPECIFIED",
         "FACEBOOK",
@@ -2006,7 +1994,7 @@ class GoogleCloudDialogflowV2IntentMessage(typing_extensions.TypedDict, total=Fa
 class GoogleCloudDialogflowV2IntentMessageBasicCard(
     typing_extensions.TypedDict, total=False
 ):
-    buttons: typing.List[GoogleCloudDialogflowV2IntentMessageBasicCardButton]
+    buttons: _list[GoogleCloudDialogflowV2IntentMessageBasicCardButton]
     formattedText: str
     image: GoogleCloudDialogflowV2IntentMessageImage
     subtitle: str
@@ -2036,7 +2024,7 @@ class GoogleCloudDialogflowV2IntentMessageBrowseCarouselCard(
         "CROPPED",
         "BLURRED_BACKGROUND",
     ]
-    items: typing.List[
+    items: _list[
         GoogleCloudDialogflowV2IntentMessageBrowseCarouselCardBrowseCarouselCardItem
     ]
 
@@ -2063,7 +2051,7 @@ class GoogleCloudDialogflowV2IntentMessageBrowseCarouselCardBrowseCarouselCardIt
 class GoogleCloudDialogflowV2IntentMessageCard(
     typing_extensions.TypedDict, total=False
 ):
-    buttons: typing.List[GoogleCloudDialogflowV2IntentMessageCardButton]
+    buttons: _list[GoogleCloudDialogflowV2IntentMessageCardButton]
     imageUri: str
     subtitle: str
     title: str
@@ -2079,7 +2067,7 @@ class GoogleCloudDialogflowV2IntentMessageCardButton(
 class GoogleCloudDialogflowV2IntentMessageCarouselSelect(
     typing_extensions.TypedDict, total=False
 ):
-    items: typing.List[GoogleCloudDialogflowV2IntentMessageCarouselSelectItem]
+    items: _list[GoogleCloudDialogflowV2IntentMessageCarouselSelectItem]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2IntentMessageCarouselSelectItem(
@@ -2117,7 +2105,7 @@ class GoogleCloudDialogflowV2IntentMessageLinkOutSuggestion(
 class GoogleCloudDialogflowV2IntentMessageListSelect(
     typing_extensions.TypedDict, total=False
 ):
-    items: typing.List[GoogleCloudDialogflowV2IntentMessageListSelectItem]
+    items: _list[GoogleCloudDialogflowV2IntentMessageListSelectItem]
     subtitle: str
     title: str
 
@@ -2134,7 +2122,7 @@ class GoogleCloudDialogflowV2IntentMessageListSelectItem(
 class GoogleCloudDialogflowV2IntentMessageMediaContent(
     typing_extensions.TypedDict, total=False
 ):
-    mediaObjects: typing.List[
+    mediaObjects: _list[
         GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject
     ]
     mediaType: typing_extensions.Literal["RESPONSE_MEDIA_TYPE_UNSPECIFIED", "AUDIO"]
@@ -2153,7 +2141,7 @@ class GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject(
 class GoogleCloudDialogflowV2IntentMessageQuickReplies(
     typing_extensions.TypedDict, total=False
 ):
-    quickReplies: typing.List[str]
+    quickReplies: _list[str]
     title: str
 
 @typing.type_check_only
@@ -2161,7 +2149,7 @@ class GoogleCloudDialogflowV2IntentMessageSelectItemInfo(
     typing_extensions.TypedDict, total=False
 ):
     key: str
-    synonyms: typing.List[str]
+    synonyms: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2IntentMessageSimpleResponse(
@@ -2175,7 +2163,7 @@ class GoogleCloudDialogflowV2IntentMessageSimpleResponse(
 class GoogleCloudDialogflowV2IntentMessageSimpleResponses(
     typing_extensions.TypedDict, total=False
 ):
-    simpleResponses: typing.List[GoogleCloudDialogflowV2IntentMessageSimpleResponse]
+    simpleResponses: _list[GoogleCloudDialogflowV2IntentMessageSimpleResponse]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2IntentMessageSuggestion(
@@ -2187,16 +2175,16 @@ class GoogleCloudDialogflowV2IntentMessageSuggestion(
 class GoogleCloudDialogflowV2IntentMessageSuggestions(
     typing_extensions.TypedDict, total=False
 ):
-    suggestions: typing.List[GoogleCloudDialogflowV2IntentMessageSuggestion]
+    suggestions: _list[GoogleCloudDialogflowV2IntentMessageSuggestion]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2IntentMessageTableCard(
     typing_extensions.TypedDict, total=False
 ):
-    buttons: typing.List[GoogleCloudDialogflowV2IntentMessageBasicCardButton]
-    columnProperties: typing.List[GoogleCloudDialogflowV2IntentMessageColumnProperties]
+    buttons: _list[GoogleCloudDialogflowV2IntentMessageBasicCardButton]
+    columnProperties: _list[GoogleCloudDialogflowV2IntentMessageColumnProperties]
     image: GoogleCloudDialogflowV2IntentMessageImage
-    rows: typing.List[GoogleCloudDialogflowV2IntentMessageTableCardRow]
+    rows: _list[GoogleCloudDialogflowV2IntentMessageTableCardRow]
     subtitle: str
     title: str
 
@@ -2210,14 +2198,14 @@ class GoogleCloudDialogflowV2IntentMessageTableCardCell(
 class GoogleCloudDialogflowV2IntentMessageTableCardRow(
     typing_extensions.TypedDict, total=False
 ):
-    cells: typing.List[GoogleCloudDialogflowV2IntentMessageTableCardCell]
+    cells: _list[GoogleCloudDialogflowV2IntentMessageTableCardCell]
     dividerAfter: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2IntentMessageText(
     typing_extensions.TypedDict, total=False
 ):
-    text: typing.List[str]
+    text: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2IntentParameter(typing_extensions.TypedDict, total=False):
@@ -2227,7 +2215,7 @@ class GoogleCloudDialogflowV2IntentParameter(typing_extensions.TypedDict, total=
     isList: bool
     mandatory: bool
     name: str
-    prompts: typing.List[str]
+    prompts: _list[str]
     value: str
 
 @typing.type_check_only
@@ -2235,7 +2223,7 @@ class GoogleCloudDialogflowV2IntentTrainingPhrase(
     typing_extensions.TypedDict, total=False
 ):
     name: str
-    parts: typing.List[GoogleCloudDialogflowV2IntentTrainingPhrasePart]
+    parts: _list[GoogleCloudDialogflowV2IntentTrainingPhrasePart]
     timesAddedCount: int
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "EXAMPLE", "TEMPLATE"]
 
@@ -2271,13 +2259,13 @@ class GoogleCloudDialogflowV2MessageAnnotation(
     typing_extensions.TypedDict, total=False
 ):
     containEntities: bool
-    parts: typing.List[GoogleCloudDialogflowV2AnnotatedMessagePart]
+    parts: _list[GoogleCloudDialogflowV2AnnotatedMessagePart]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2OriginalDetectIntentRequest(
     typing_extensions.TypedDict, total=False
 ):
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     source: str
     version: str
 
@@ -2286,18 +2274,18 @@ class GoogleCloudDialogflowV2QueryResult(typing_extensions.TypedDict, total=Fals
     action: str
     allRequiredParamsPresent: bool
     cancelsSlotFilling: bool
-    diagnosticInfo: typing.Dict[str, typing.Any]
-    fulfillmentMessages: typing.List[GoogleCloudDialogflowV2IntentMessage]
+    diagnosticInfo: dict[str, typing.Any]
+    fulfillmentMessages: _list[GoogleCloudDialogflowV2IntentMessage]
     fulfillmentText: str
     intent: GoogleCloudDialogflowV2Intent
     intentDetectionConfidence: float
     languageCode: str
-    outputContexts: typing.List[GoogleCloudDialogflowV2Context]
-    parameters: typing.Dict[str, typing.Any]
+    outputContexts: _list[GoogleCloudDialogflowV2Context]
+    parameters: dict[str, typing.Any]
     queryText: str
     sentimentAnalysisResult: GoogleCloudDialogflowV2SentimentAnalysisResult
     speechRecognitionConfidence: float
-    webhookPayload: typing.Dict[str, typing.Any]
+    webhookPayload: dict[str, typing.Any]
     webhookSource: str
 
 @typing.type_check_only
@@ -2315,7 +2303,7 @@ class GoogleCloudDialogflowV2SentimentAnalysisResult(
 class GoogleCloudDialogflowV2SessionEntityType(
     typing_extensions.TypedDict, total=False
 ):
-    entities: typing.List[GoogleCloudDialogflowV2EntityTypeEntity]
+    entities: _list[GoogleCloudDialogflowV2EntityTypeEntity]
     entityOverrideMode: typing_extensions.Literal[
         "ENTITY_OVERRIDE_MODE_UNSPECIFIED",
         "ENTITY_OVERRIDE_MODE_OVERRIDE",
@@ -2327,7 +2315,7 @@ class GoogleCloudDialogflowV2SessionEntityType(
 class GoogleCloudDialogflowV2SuggestArticlesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    articleAnswers: typing.List[GoogleCloudDialogflowV2ArticleAnswer]
+    articleAnswers: _list[GoogleCloudDialogflowV2ArticleAnswer]
     contextSize: int
     latestMessage: str
 
@@ -2336,7 +2324,7 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponse(
     typing_extensions.TypedDict, total=False
 ):
     contextSize: int
-    faqAnswers: typing.List[GoogleCloudDialogflowV2FaqAnswer]
+    faqAnswers: _list[GoogleCloudDialogflowV2FaqAnswer]
     latestMessage: str
 
 @typing.type_check_only
@@ -2355,11 +2343,11 @@ class GoogleCloudDialogflowV2WebhookRequest(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class GoogleCloudDialogflowV2WebhookResponse(typing_extensions.TypedDict, total=False):
     followupEventInput: GoogleCloudDialogflowV2EventInput
-    fulfillmentMessages: typing.List[GoogleCloudDialogflowV2IntentMessage]
+    fulfillmentMessages: _list[GoogleCloudDialogflowV2IntentMessage]
     fulfillmentText: str
-    outputContexts: typing.List[GoogleCloudDialogflowV2Context]
-    payload: typing.Dict[str, typing.Any]
-    sessionEntityTypes: typing.List[GoogleCloudDialogflowV2SessionEntityType]
+    outputContexts: _list[GoogleCloudDialogflowV2Context]
+    payload: dict[str, typing.Any]
+    sessionEntityTypes: _list[GoogleCloudDialogflowV2SessionEntityType]
     source: str
 
 @typing.type_check_only
@@ -2375,8 +2363,8 @@ class GoogleCloudDialogflowV2beta1ArticleAnswer(
     typing_extensions.TypedDict, total=False
 ):
     answerRecord: str
-    metadata: typing.Dict[str, typing.Any]
-    snippets: typing.List[str]
+    metadata: dict[str, typing.Any]
+    snippets: _list[str]
     title: str
     uri: str
 
@@ -2384,19 +2372,19 @@ class GoogleCloudDialogflowV2beta1ArticleAnswer(
 class GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    entityTypes: typing.List[GoogleCloudDialogflowV2beta1EntityType]
+    entityTypes: _list[GoogleCloudDialogflowV2beta1EntityType]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1BatchUpdateIntentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    intents: typing.List[GoogleCloudDialogflowV2beta1Intent]
+    intents: _list[GoogleCloudDialogflowV2beta1Intent]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1Context(typing_extensions.TypedDict, total=False):
     lifespanCount: int
     name: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ConversationEvent(
@@ -2420,7 +2408,7 @@ class GoogleCloudDialogflowV2beta1EntityType(typing_extensions.TypedDict, total=
     ]
     displayName: str
     enableFuzzyExtraction: bool
-    entities: typing.List[GoogleCloudDialogflowV2beta1EntityTypeEntity]
+    entities: _list[GoogleCloudDialogflowV2beta1EntityTypeEntity]
     kind: typing_extensions.Literal[
         "KIND_UNSPECIFIED", "KIND_MAP", "KIND_LIST", "KIND_REGEXP"
     ]
@@ -2430,14 +2418,14 @@ class GoogleCloudDialogflowV2beta1EntityType(typing_extensions.TypedDict, total=
 class GoogleCloudDialogflowV2beta1EntityTypeEntity(
     typing_extensions.TypedDict, total=False
 ):
-    synonyms: typing.List[str]
+    synonyms: _list[str]
     value: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1EventInput(typing_extensions.TypedDict, total=False):
     languageCode: str
     name: str
-    parameters: typing.Dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ExportAgentResponse(
@@ -2451,7 +2439,7 @@ class GoogleCloudDialogflowV2beta1FaqAnswer(typing_extensions.TypedDict, total=F
     answer: str
     answerRecord: str
     confidence: float
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     question: str
     source: str
 
@@ -2461,38 +2449,36 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantEvent(
 ):
     conversation: str
     participant: str
-    suggestionResults: typing.List[GoogleCloudDialogflowV2beta1SuggestionResult]
+    suggestionResults: _list[GoogleCloudDialogflowV2beta1SuggestionResult]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    warnings: typing.List[GoogleRpcStatus]
+    warnings: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1Intent(typing_extensions.TypedDict, total=False):
     action: str
-    defaultResponsePlatforms: typing.List[str]
+    defaultResponsePlatforms: _list[str]
     displayName: str
     endInteraction: bool
-    events: typing.List[str]
-    followupIntentInfo: typing.List[
-        GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo
-    ]
-    inputContextNames: typing.List[str]
+    events: _list[str]
+    followupIntentInfo: _list[GoogleCloudDialogflowV2beta1IntentFollowupIntentInfo]
+    inputContextNames: _list[str]
     isFallback: bool
     liveAgentHandoff: bool
-    messages: typing.List[GoogleCloudDialogflowV2beta1IntentMessage]
+    messages: _list[GoogleCloudDialogflowV2beta1IntentMessage]
     mlDisabled: bool
     mlEnabled: bool
     name: str
-    outputContexts: typing.List[GoogleCloudDialogflowV2beta1Context]
-    parameters: typing.List[GoogleCloudDialogflowV2beta1IntentParameter]
+    outputContexts: _list[GoogleCloudDialogflowV2beta1Context]
+    parameters: _list[GoogleCloudDialogflowV2beta1IntentParameter]
     parentFollowupIntentName: str
     priority: int
     resetContexts: bool
     rootFollowupIntentName: str
-    trainingPhrases: typing.List[GoogleCloudDialogflowV2beta1IntentTrainingPhrase]
+    trainingPhrases: _list[GoogleCloudDialogflowV2beta1IntentTrainingPhrase]
     webhookState: typing_extensions.Literal[
         "WEBHOOK_STATE_UNSPECIFIED",
         "WEBHOOK_STATE_ENABLED",
@@ -2518,7 +2504,7 @@ class GoogleCloudDialogflowV2beta1IntentMessage(
     linkOutSuggestion: GoogleCloudDialogflowV2beta1IntentMessageLinkOutSuggestion
     listSelect: GoogleCloudDialogflowV2beta1IntentMessageListSelect
     mediaContent: GoogleCloudDialogflowV2beta1IntentMessageMediaContent
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     platform: typing_extensions.Literal[
         "PLATFORM_UNSPECIFIED",
         "FACEBOOK",
@@ -2548,7 +2534,7 @@ class GoogleCloudDialogflowV2beta1IntentMessage(
 class GoogleCloudDialogflowV2beta1IntentMessageBasicCard(
     typing_extensions.TypedDict, total=False
 ):
-    buttons: typing.List[GoogleCloudDialogflowV2beta1IntentMessageBasicCardButton]
+    buttons: _list[GoogleCloudDialogflowV2beta1IntentMessageBasicCardButton]
     formattedText: str
     image: GoogleCloudDialogflowV2beta1IntentMessageImage
     subtitle: str
@@ -2578,7 +2564,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCard(
         "CROPPED",
         "BLURRED_BACKGROUND",
     ]
-    items: typing.List[
+    items: _list[
         GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCardBrowseCarouselCardItem
     ]
 
@@ -2605,7 +2591,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageBrowseCarouselCardBrowseCarouselC
 class GoogleCloudDialogflowV2beta1IntentMessageCard(
     typing_extensions.TypedDict, total=False
 ):
-    buttons: typing.List[GoogleCloudDialogflowV2beta1IntentMessageCardButton]
+    buttons: _list[GoogleCloudDialogflowV2beta1IntentMessageCardButton]
     imageUri: str
     subtitle: str
     title: str
@@ -2621,7 +2607,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageCardButton(
 class GoogleCloudDialogflowV2beta1IntentMessageCarouselSelect(
     typing_extensions.TypedDict, total=False
 ):
-    items: typing.List[GoogleCloudDialogflowV2beta1IntentMessageCarouselSelectItem]
+    items: _list[GoogleCloudDialogflowV2beta1IntentMessageCarouselSelectItem]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1IntentMessageCarouselSelectItem(
@@ -2659,7 +2645,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageLinkOutSuggestion(
 class GoogleCloudDialogflowV2beta1IntentMessageListSelect(
     typing_extensions.TypedDict, total=False
 ):
-    items: typing.List[GoogleCloudDialogflowV2beta1IntentMessageListSelectItem]
+    items: _list[GoogleCloudDialogflowV2beta1IntentMessageListSelectItem]
     subtitle: str
     title: str
 
@@ -2676,7 +2662,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageListSelectItem(
 class GoogleCloudDialogflowV2beta1IntentMessageMediaContent(
     typing_extensions.TypedDict, total=False
 ):
-    mediaObjects: typing.List[
+    mediaObjects: _list[
         GoogleCloudDialogflowV2beta1IntentMessageMediaContentResponseMediaObject
     ]
     mediaType: typing_extensions.Literal["RESPONSE_MEDIA_TYPE_UNSPECIFIED", "AUDIO"]
@@ -2695,7 +2681,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageMediaContentResponseMediaObject(
 class GoogleCloudDialogflowV2beta1IntentMessageQuickReplies(
     typing_extensions.TypedDict, total=False
 ):
-    quickReplies: typing.List[str]
+    quickReplies: _list[str]
     title: str
 
 @typing.type_check_only
@@ -2704,7 +2690,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent(
 ):
     description: str
     media: GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia
-    suggestions: typing.List[GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion]
+    suggestions: _list[GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion]
     title: str
 
 @typing.type_check_only
@@ -2719,7 +2705,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia(
 class GoogleCloudDialogflowV2beta1IntentMessageRbmCarouselCard(
     typing_extensions.TypedDict, total=False
 ):
-    cardContents: typing.List[GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent]
+    cardContents: _list[GoogleCloudDialogflowV2beta1IntentMessageRbmCardContent]
     cardWidth: typing_extensions.Literal["CARD_WIDTH_UNSPECIFIED", "SMALL", "MEDIUM"]
 
 @typing.type_check_only
@@ -2779,7 +2765,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion(
 class GoogleCloudDialogflowV2beta1IntentMessageRbmText(
     typing_extensions.TypedDict, total=False
 ):
-    rbmSuggestion: typing.List[GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion]
+    rbmSuggestion: _list[GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestion]
     text: str
 
 @typing.type_check_only
@@ -2787,7 +2773,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageSelectItemInfo(
     typing_extensions.TypedDict, total=False
 ):
     key: str
-    synonyms: typing.List[str]
+    synonyms: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1IntentMessageSimpleResponse(
@@ -2801,9 +2787,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageSimpleResponse(
 class GoogleCloudDialogflowV2beta1IntentMessageSimpleResponses(
     typing_extensions.TypedDict, total=False
 ):
-    simpleResponses: typing.List[
-        GoogleCloudDialogflowV2beta1IntentMessageSimpleResponse
-    ]
+    simpleResponses: _list[GoogleCloudDialogflowV2beta1IntentMessageSimpleResponse]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1IntentMessageSuggestion(
@@ -2815,18 +2799,16 @@ class GoogleCloudDialogflowV2beta1IntentMessageSuggestion(
 class GoogleCloudDialogflowV2beta1IntentMessageSuggestions(
     typing_extensions.TypedDict, total=False
 ):
-    suggestions: typing.List[GoogleCloudDialogflowV2beta1IntentMessageSuggestion]
+    suggestions: _list[GoogleCloudDialogflowV2beta1IntentMessageSuggestion]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1IntentMessageTableCard(
     typing_extensions.TypedDict, total=False
 ):
-    buttons: typing.List[GoogleCloudDialogflowV2beta1IntentMessageBasicCardButton]
-    columnProperties: typing.List[
-        GoogleCloudDialogflowV2beta1IntentMessageColumnProperties
-    ]
+    buttons: _list[GoogleCloudDialogflowV2beta1IntentMessageBasicCardButton]
+    columnProperties: _list[GoogleCloudDialogflowV2beta1IntentMessageColumnProperties]
     image: GoogleCloudDialogflowV2beta1IntentMessageImage
-    rows: typing.List[GoogleCloudDialogflowV2beta1IntentMessageTableCardRow]
+    rows: _list[GoogleCloudDialogflowV2beta1IntentMessageTableCardRow]
     subtitle: str
     title: str
 
@@ -2840,7 +2822,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTableCardCell(
 class GoogleCloudDialogflowV2beta1IntentMessageTableCardRow(
     typing_extensions.TypedDict, total=False
 ):
-    cells: typing.List[GoogleCloudDialogflowV2beta1IntentMessageTableCardCell]
+    cells: _list[GoogleCloudDialogflowV2beta1IntentMessageTableCardCell]
     dividerAfter: bool
 
 @typing.type_check_only
@@ -2866,7 +2848,7 @@ class GoogleCloudDialogflowV2beta1IntentMessageTelephonyTransferCall(
 class GoogleCloudDialogflowV2beta1IntentMessageText(
     typing_extensions.TypedDict, total=False
 ):
-    text: typing.List[str]
+    text: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1IntentParameter(
@@ -2878,7 +2860,7 @@ class GoogleCloudDialogflowV2beta1IntentParameter(
     isList: bool
     mandatory: bool
     name: str
-    prompts: typing.List[str]
+    prompts: _list[str]
     value: str
 
 @typing.type_check_only
@@ -2886,7 +2868,7 @@ class GoogleCloudDialogflowV2beta1IntentTrainingPhrase(
     typing_extensions.TypedDict, total=False
 ):
     name: str
-    parts: typing.List[GoogleCloudDialogflowV2beta1IntentTrainingPhrasePart]
+    parts: _list[GoogleCloudDialogflowV2beta1IntentTrainingPhrasePart]
     timesAddedCount: int
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "EXAMPLE", "TEMPLATE"]
 
@@ -2903,7 +2885,7 @@ class GoogleCloudDialogflowV2beta1IntentTrainingPhrasePart(
 class GoogleCloudDialogflowV2beta1KnowledgeAnswers(
     typing_extensions.TypedDict, total=False
 ):
-    answers: typing.List[GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer]
+    answers: _list[GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer(
@@ -2942,13 +2924,13 @@ class GoogleCloudDialogflowV2beta1MessageAnnotation(
     typing_extensions.TypedDict, total=False
 ):
     containEntities: bool
-    parts: typing.List[GoogleCloudDialogflowV2beta1AnnotatedMessagePart]
+    parts: _list[GoogleCloudDialogflowV2beta1AnnotatedMessagePart]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest(
     typing_extensions.TypedDict, total=False
 ):
-    payload: typing.Dict[str, typing.Any]
+    payload: dict[str, typing.Any]
     source: str
     version: str
 
@@ -2957,19 +2939,19 @@ class GoogleCloudDialogflowV2beta1QueryResult(typing_extensions.TypedDict, total
     action: str
     allRequiredParamsPresent: bool
     cancelsSlotFilling: bool
-    diagnosticInfo: typing.Dict[str, typing.Any]
-    fulfillmentMessages: typing.List[GoogleCloudDialogflowV2beta1IntentMessage]
+    diagnosticInfo: dict[str, typing.Any]
+    fulfillmentMessages: _list[GoogleCloudDialogflowV2beta1IntentMessage]
     fulfillmentText: str
     intent: GoogleCloudDialogflowV2beta1Intent
     intentDetectionConfidence: float
     knowledgeAnswers: GoogleCloudDialogflowV2beta1KnowledgeAnswers
     languageCode: str
-    outputContexts: typing.List[GoogleCloudDialogflowV2beta1Context]
-    parameters: typing.Dict[str, typing.Any]
+    outputContexts: _list[GoogleCloudDialogflowV2beta1Context]
+    parameters: dict[str, typing.Any]
     queryText: str
     sentimentAnalysisResult: GoogleCloudDialogflowV2beta1SentimentAnalysisResult
     speechRecognitionConfidence: float
-    webhookPayload: typing.Dict[str, typing.Any]
+    webhookPayload: dict[str, typing.Any]
     webhookSource: str
 
 @typing.type_check_only
@@ -2987,7 +2969,7 @@ class GoogleCloudDialogflowV2beta1SentimentAnalysisResult(
 class GoogleCloudDialogflowV2beta1SessionEntityType(
     typing_extensions.TypedDict, total=False
 ):
-    entities: typing.List[GoogleCloudDialogflowV2beta1EntityTypeEntity]
+    entities: _list[GoogleCloudDialogflowV2beta1EntityTypeEntity]
     entityOverrideMode: typing_extensions.Literal[
         "ENTITY_OVERRIDE_MODE_UNSPECIFIED",
         "ENTITY_OVERRIDE_MODE_OVERRIDE",
@@ -3007,7 +2989,7 @@ class GoogleCloudDialogflowV2beta1SmartReplyAnswer(
 class GoogleCloudDialogflowV2beta1SuggestArticlesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    articleAnswers: typing.List[GoogleCloudDialogflowV2beta1ArticleAnswer]
+    articleAnswers: _list[GoogleCloudDialogflowV2beta1ArticleAnswer]
     contextSize: int
     latestMessage: str
 
@@ -3016,7 +2998,7 @@ class GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse(
     typing_extensions.TypedDict, total=False
 ):
     contextSize: int
-    faqAnswers: typing.List[GoogleCloudDialogflowV2beta1FaqAnswer]
+    faqAnswers: _list[GoogleCloudDialogflowV2beta1FaqAnswer]
     latestMessage: str
 
 @typing.type_check_only
@@ -3025,7 +3007,7 @@ class GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse(
 ):
     contextSize: int
     latestMessage: str
-    smartReplyAnswers: typing.List[GoogleCloudDialogflowV2beta1SmartReplyAnswer]
+    smartReplyAnswers: _list[GoogleCloudDialogflowV2beta1SmartReplyAnswer]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SuggestionResult(
@@ -3040,7 +3022,7 @@ class GoogleCloudDialogflowV2beta1SuggestionResult(
 class GoogleCloudDialogflowV2beta1WebhookRequest(
     typing_extensions.TypedDict, total=False
 ):
-    alternativeQueryResults: typing.List[GoogleCloudDialogflowV2beta1QueryResult]
+    alternativeQueryResults: _list[GoogleCloudDialogflowV2beta1QueryResult]
     originalDetectIntentRequest: GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest
     queryResult: GoogleCloudDialogflowV2beta1QueryResult
     responseId: str
@@ -3052,12 +3034,12 @@ class GoogleCloudDialogflowV2beta1WebhookResponse(
 ):
     endInteraction: bool
     followupEventInput: GoogleCloudDialogflowV2beta1EventInput
-    fulfillmentMessages: typing.List[GoogleCloudDialogflowV2beta1IntentMessage]
+    fulfillmentMessages: _list[GoogleCloudDialogflowV2beta1IntentMessage]
     fulfillmentText: str
     liveAgentHandoff: bool
-    outputContexts: typing.List[GoogleCloudDialogflowV2beta1Context]
-    payload: typing.Dict[str, typing.Any]
-    sessionEntityTypes: typing.List[GoogleCloudDialogflowV2beta1SessionEntityType]
+    outputContexts: _list[GoogleCloudDialogflowV2beta1Context]
+    payload: dict[str, typing.Any]
+    sessionEntityTypes: _list[GoogleCloudDialogflowV2beta1SessionEntityType]
     source: str
 
 @typing.type_check_only
@@ -3088,7 +3070,7 @@ class GoogleCloudDialogflowV3alpha1ImportDocumentsOperationMetadata(
 class GoogleCloudDialogflowV3alpha1ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    warnings: typing.List[GoogleRpcStatus]
+    warnings: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV3alpha1ReloadDocumentOperationMetadata(
@@ -3106,29 +3088,29 @@ class GoogleCloudDialogflowV3alpha1UpdateDocumentOperationMetadata(
 class GoogleCloudLocationListLocationsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    locations: typing.List[GoogleCloudLocationLocation]
+    locations: _list[GoogleCloudLocationLocation]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[GoogleLongrunningOperation]
+    operations: _list[GoogleLongrunningOperation]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
@@ -3136,7 +3118,7 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

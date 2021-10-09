@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class PeopleServiceResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -26,7 +28,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             *,
             groupFields: str = ...,
             maxMembers: int = ...,
-            resourceNames: typing.Union[str, typing.List[str]] = ...,
+            resourceNames: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> BatchGetContactGroupsResponseHttpRequest: ...
         def create(
@@ -76,21 +78,19 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             readMask: str = ...,
             requestSyncToken: bool = ...,
-            sources: typing.Union[
+            sources: typing_extensions.Literal[
+                "READ_SOURCE_TYPE_UNSPECIFIED",
+                "READ_SOURCE_TYPE_PROFILE",
+                "READ_SOURCE_TYPE_CONTACT",
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "READ_SOURCE_TYPE_UNSPECIFIED",
-                        "READ_SOURCE_TYPE_PROFILE",
-                        "READ_SOURCE_TYPE_CONTACT",
-                        "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                    ]
-                ],
+                ]
             ] = ...,
             syncToken: str = ...,
             **kwargs: typing.Any
@@ -122,21 +122,19 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "FIRST_NAME_ASCENDING",
                     "LAST_NAME_ASCENDING",
                 ] = ...,
-                sources: typing.Union[
+                sources: typing_extensions.Literal[
+                    "READ_SOURCE_TYPE_UNSPECIFIED",
+                    "READ_SOURCE_TYPE_PROFILE",
+                    "READ_SOURCE_TYPE_CONTACT",
+                    "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "READ_SOURCE_TYPE_UNSPECIFIED",
                         "READ_SOURCE_TYPE_PROFILE",
                         "READ_SOURCE_TYPE_CONTACT",
                         "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "READ_SOURCE_TYPE_UNSPECIFIED",
-                            "READ_SOURCE_TYPE_PROFILE",
-                            "READ_SOURCE_TYPE_CONTACT",
-                            "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 syncToken: str = ...,
                 **kwargs: typing.Any
@@ -155,21 +153,19 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             *,
             body: Person = ...,
             personFields: str = ...,
-            sources: typing.Union[
+            sources: typing_extensions.Literal[
+                "READ_SOURCE_TYPE_UNSPECIFIED",
+                "READ_SOURCE_TYPE_PROFILE",
+                "READ_SOURCE_TYPE_CONTACT",
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "READ_SOURCE_TYPE_UNSPECIFIED",
-                        "READ_SOURCE_TYPE_PROFILE",
-                        "READ_SOURCE_TYPE_CONTACT",
-                        "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> PersonHttpRequest: ...
@@ -181,21 +177,19 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             *,
             resourceName: str,
             personFields: str = ...,
-            sources: typing.Union[
+            sources: typing_extensions.Literal[
+                "READ_SOURCE_TYPE_UNSPECIFIED",
+                "READ_SOURCE_TYPE_PROFILE",
+                "READ_SOURCE_TYPE_CONTACT",
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "READ_SOURCE_TYPE_UNSPECIFIED",
-                        "READ_SOURCE_TYPE_PROFILE",
-                        "READ_SOURCE_TYPE_CONTACT",
-                        "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> DeleteContactPhotoResponseHttpRequest: ...
@@ -205,21 +199,19 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             resourceName: str,
             personFields: str = ...,
             requestMask_includeField: str = ...,
-            sources: typing.Union[
+            sources: typing_extensions.Literal[
+                "READ_SOURCE_TYPE_UNSPECIFIED",
+                "READ_SOURCE_TYPE_PROFILE",
+                "READ_SOURCE_TYPE_CONTACT",
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "READ_SOURCE_TYPE_UNSPECIFIED",
-                        "READ_SOURCE_TYPE_PROFILE",
-                        "READ_SOURCE_TYPE_CONTACT",
-                        "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> PersonHttpRequest: ...
@@ -228,57 +220,51 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             *,
             personFields: str = ...,
             requestMask_includeField: str = ...,
-            resourceNames: typing.Union[str, typing.List[str]] = ...,
-            sources: typing.Union[
+            resourceNames: str | _list[str] = ...,
+            sources: typing_extensions.Literal[
+                "READ_SOURCE_TYPE_UNSPECIFIED",
+                "READ_SOURCE_TYPE_PROFILE",
+                "READ_SOURCE_TYPE_CONTACT",
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "READ_SOURCE_TYPE_UNSPECIFIED",
-                        "READ_SOURCE_TYPE_PROFILE",
-                        "READ_SOURCE_TYPE_CONTACT",
-                        "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> GetPeopleResponseHttpRequest: ...
         def listDirectoryPeople(
             self,
             *,
-            mergeSources: typing.Union[
+            mergeSources: typing_extensions.Literal[
+                "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED",
+                "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED",
                     "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED",
-                        "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT",
-                    ]
-                ],
+                ]
             ] = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             readMask: str = ...,
             requestSyncToken: bool = ...,
-            sources: typing.Union[
+            sources: typing_extensions.Literal[
+                "DIRECTORY_SOURCE_TYPE_UNSPECIFIED",
+                "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT",
+                "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "DIRECTORY_SOURCE_TYPE_UNSPECIFIED",
                     "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT",
                     "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "DIRECTORY_SOURCE_TYPE_UNSPECIFIED",
-                        "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT",
-                        "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE",
-                    ]
-                ],
+                ]
             ] = ...,
             syncToken: str = ...,
             **kwargs: typing.Any
@@ -289,56 +275,50 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             query: str = ...,
             readMask: str = ...,
-            sources: typing.Union[
+            sources: typing_extensions.Literal[
+                "READ_SOURCE_TYPE_UNSPECIFIED",
+                "READ_SOURCE_TYPE_PROFILE",
+                "READ_SOURCE_TYPE_CONTACT",
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "READ_SOURCE_TYPE_UNSPECIFIED",
-                        "READ_SOURCE_TYPE_PROFILE",
-                        "READ_SOURCE_TYPE_CONTACT",
-                        "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
         def searchDirectoryPeople(
             self,
             *,
-            mergeSources: typing.Union[
+            mergeSources: typing_extensions.Literal[
+                "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED",
+                "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED",
                     "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "DIRECTORY_MERGE_SOURCE_TYPE_UNSPECIFIED",
-                        "DIRECTORY_MERGE_SOURCE_TYPE_CONTACT",
-                    ]
-                ],
+                ]
             ] = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
             readMask: str = ...,
-            sources: typing.Union[
+            sources: typing_extensions.Literal[
+                "DIRECTORY_SOURCE_TYPE_UNSPECIFIED",
+                "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT",
+                "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "DIRECTORY_SOURCE_TYPE_UNSPECIFIED",
                     "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT",
                     "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "DIRECTORY_SOURCE_TYPE_UNSPECIFIED",
-                        "DIRECTORY_SOURCE_TYPE_DOMAIN_CONTACT",
-                        "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> SearchDirectoryPeopleResponseHttpRequest: ...
@@ -348,21 +328,19 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             resourceName: str,
             body: Person = ...,
             personFields: str = ...,
-            sources: typing.Union[
+            sources: typing_extensions.Literal[
+                "READ_SOURCE_TYPE_UNSPECIFIED",
+                "READ_SOURCE_TYPE_PROFILE",
+                "READ_SOURCE_TYPE_CONTACT",
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "READ_SOURCE_TYPE_UNSPECIFIED",
-                        "READ_SOURCE_TYPE_PROFILE",
-                        "READ_SOURCE_TYPE_CONTACT",
-                        "READ_SOURCE_TYPE_DOMAIN_CONTACT",
-                    ]
-                ],
+                ]
             ] = ...,
             updatePersonFields: str = ...,
             **kwargs: typing.Any
@@ -383,9 +361,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
 class BatchCreateContactsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchCreateContactsResponse: ...
 
@@ -393,9 +369,7 @@ class BatchCreateContactsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class BatchGetContactGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchGetContactGroupsResponse: ...
 
@@ -403,9 +377,7 @@ class BatchGetContactGroupsResponseHttpRequest(googleapiclient.http.HttpRequest)
 class BatchUpdateContactsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchUpdateContactsResponse: ...
 
@@ -413,9 +385,7 @@ class BatchUpdateContactsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ContactGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ContactGroup: ...
 
@@ -423,9 +393,7 @@ class ContactGroupHttpRequest(googleapiclient.http.HttpRequest):
 class DeleteContactPhotoResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DeleteContactPhotoResponse: ...
 
@@ -433,9 +401,7 @@ class DeleteContactPhotoResponseHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -443,9 +409,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class GetPeopleResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetPeopleResponse: ...
 
@@ -453,9 +417,7 @@ class GetPeopleResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListConnectionsResponse: ...
 
@@ -463,9 +425,7 @@ class ListConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListContactGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListContactGroupsResponse: ...
 
@@ -473,9 +433,7 @@ class ListContactGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListDirectoryPeopleResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDirectoryPeopleResponse: ...
 
@@ -483,9 +441,7 @@ class ListDirectoryPeopleResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ListOtherContactsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListOtherContactsResponse: ...
 
@@ -493,9 +449,7 @@ class ListOtherContactsResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ModifyContactGroupMembersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ModifyContactGroupMembersResponse: ...
 
@@ -503,9 +457,7 @@ class ModifyContactGroupMembersResponseHttpRequest(googleapiclient.http.HttpRequ
 class PersonHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Person: ...
 
@@ -513,9 +465,7 @@ class PersonHttpRequest(googleapiclient.http.HttpRequest):
 class SearchDirectoryPeopleResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchDirectoryPeopleResponse: ...
 
@@ -523,9 +473,7 @@ class SearchDirectoryPeopleResponseHttpRequest(googleapiclient.http.HttpRequest)
 class SearchResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchResponse: ...
 
@@ -533,8 +481,6 @@ class SearchResponseHttpRequest(googleapiclient.http.HttpRequest):
 class UpdateContactPhotoResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UpdateContactPhotoResponse: ...

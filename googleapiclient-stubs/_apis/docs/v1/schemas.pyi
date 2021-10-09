@@ -2,11 +2,13 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AutoText(typing_extensions.TypedDict, total=False):
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PAGE_NUMBER", "PAGE_COUNT"]
 
@@ -20,18 +22,18 @@ class BackgroundSuggestionState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchUpdateDocumentRequest(typing_extensions.TypedDict, total=False):
-    requests: typing.List[Request]
+    requests: _list[Request]
     writeControl: WriteControl
 
 @typing.type_check_only
 class BatchUpdateDocumentResponse(typing_extensions.TypedDict, total=False):
     documentId: str
-    replies: typing.List[Response]
+    replies: _list[Response]
     writeControl: WriteControl
 
 @typing.type_check_only
 class Body(typing_extensions.TypedDict, total=False):
-    content: typing.List[StructuralElement]
+    content: _list[StructuralElement]
 
 @typing.type_check_only
 class Bullet(typing_extensions.TypedDict, total=False):
@@ -51,9 +53,9 @@ class Color(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ColumnBreak(typing_extensions.TypedDict, total=False):
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
 
 @typing.type_check_only
@@ -173,17 +175,17 @@ class Document(typing_extensions.TypedDict, total=False):
     body: Body
     documentId: str
     documentStyle: DocumentStyle
-    footers: typing.Dict[str, typing.Any]
-    footnotes: typing.Dict[str, typing.Any]
-    headers: typing.Dict[str, typing.Any]
-    inlineObjects: typing.Dict[str, typing.Any]
-    lists: typing.Dict[str, typing.Any]
-    namedRanges: typing.Dict[str, typing.Any]
+    footers: dict[str, typing.Any]
+    footnotes: dict[str, typing.Any]
+    headers: dict[str, typing.Any]
+    inlineObjects: dict[str, typing.Any]
+    lists: dict[str, typing.Any]
+    namedRanges: dict[str, typing.Any]
     namedStyles: NamedStyles
-    positionedObjects: typing.Dict[str, typing.Any]
+    positionedObjects: dict[str, typing.Any]
     revisionId: str
-    suggestedDocumentStyleChanges: typing.Dict[str, typing.Any]
-    suggestedNamedStylesChanges: typing.Dict[str, typing.Any]
+    suggestedDocumentStyleChanges: dict[str, typing.Any]
+    suggestedNamedStylesChanges: dict[str, typing.Any]
     suggestionsViewMode: typing_extensions.Literal[
         "DEFAULT_FOR_CURRENT_ACCESS",
         "SUGGESTIONS_INLINE",
@@ -292,38 +294,38 @@ class EndOfSegmentLocation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Equation(typing_extensions.TypedDict, total=False):
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
 
 @typing.type_check_only
 class Footer(typing_extensions.TypedDict, total=False):
-    content: typing.List[StructuralElement]
+    content: _list[StructuralElement]
     footerId: str
 
 @typing.type_check_only
 class Footnote(typing_extensions.TypedDict, total=False):
-    content: typing.List[StructuralElement]
+    content: _list[StructuralElement]
     footnoteId: str
 
 @typing.type_check_only
 class FootnoteReference(typing_extensions.TypedDict, total=False):
     footnoteId: str
     footnoteNumber: str
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
 
 @typing.type_check_only
 class Header(typing_extensions.TypedDict, total=False):
-    content: typing.List[StructuralElement]
+    content: _list[StructuralElement]
     headerId: str
 
 @typing.type_check_only
 class HorizontalRule(typing_extensions.TypedDict, total=False):
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
 
 @typing.type_check_only
@@ -350,16 +352,16 @@ class ImagePropertiesSuggestionState(typing_extensions.TypedDict, total=False):
 class InlineObject(typing_extensions.TypedDict, total=False):
     inlineObjectProperties: InlineObjectProperties
     objectId: str
-    suggestedDeletionIds: typing.List[str]
-    suggestedInlineObjectPropertiesChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInlineObjectPropertiesChanges: dict[str, typing.Any]
     suggestedInsertionId: str
 
 @typing.type_check_only
 class InlineObjectElement(typing_extensions.TypedDict, total=False):
     inlineObjectId: str
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
 
 @typing.type_check_only
@@ -438,17 +440,17 @@ class LinkedContentReferenceSuggestionState(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class List(typing_extensions.TypedDict, total=False):
     listProperties: ListProperties
-    suggestedDeletionIds: typing.List[str]
+    suggestedDeletionIds: _list[str]
     suggestedInsertionId: str
-    suggestedListPropertiesChanges: typing.Dict[str, typing.Any]
+    suggestedListPropertiesChanges: dict[str, typing.Any]
 
 @typing.type_check_only
 class ListProperties(typing_extensions.TypedDict, total=False):
-    nestingLevels: typing.List[NestingLevel]
+    nestingLevels: _list[NestingLevel]
 
 @typing.type_check_only
 class ListPropertiesSuggestionState(typing_extensions.TypedDict, total=False):
-    nestingLevelsSuggestionStates: typing.List[NestingLevelSuggestionState]
+    nestingLevelsSuggestionStates: _list[NestingLevelSuggestionState]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -463,12 +465,12 @@ class MergeTableCellsRequest(typing_extensions.TypedDict, total=False):
 class NamedRange(typing_extensions.TypedDict, total=False):
     name: str
     namedRangeId: str
-    ranges: typing.List[Range]
+    ranges: _list[Range]
 
 @typing.type_check_only
 class NamedRanges(typing_extensions.TypedDict, total=False):
     name: str
-    namedRanges: typing.List[NamedRange]
+    namedRanges: _list[NamedRange]
 
 @typing.type_check_only
 class NamedStyle(typing_extensions.TypedDict, total=False):
@@ -506,11 +508,11 @@ class NamedStyleSuggestionState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NamedStyles(typing_extensions.TypedDict, total=False):
-    styles: typing.List[NamedStyle]
+    styles: _list[NamedStyle]
 
 @typing.type_check_only
 class NamedStylesSuggestionState(typing_extensions.TypedDict, total=False):
-    stylesSuggestionStates: typing.List[NamedStyleSuggestionState]
+    stylesSuggestionStates: _list[NamedStyleSuggestionState]
 
 @typing.type_check_only
 class NestingLevel(typing_extensions.TypedDict, total=False):
@@ -547,7 +549,7 @@ class NestingLevelSuggestionState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ObjectReferences(typing_extensions.TypedDict, total=False):
-    objectIds: typing.List[str]
+    objectIds: _list[str]
 
 @typing.type_check_only
 class OptionalColor(typing_extensions.TypedDict, total=False):
@@ -555,20 +557,20 @@ class OptionalColor(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PageBreak(typing_extensions.TypedDict, total=False):
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
 
 @typing.type_check_only
 class Paragraph(typing_extensions.TypedDict, total=False):
     bullet: Bullet
-    elements: typing.List[ParagraphElement]
+    elements: _list[ParagraphElement]
     paragraphStyle: ParagraphStyle
-    positionedObjectIds: typing.List[str]
-    suggestedBulletChanges: typing.Dict[str, typing.Any]
-    suggestedParagraphStyleChanges: typing.Dict[str, typing.Any]
-    suggestedPositionedObjectIds: typing.Dict[str, typing.Any]
+    positionedObjectIds: _list[str]
+    suggestedBulletChanges: dict[str, typing.Any]
+    suggestedParagraphStyleChanges: dict[str, typing.Any]
+    suggestedPositionedObjectIds: dict[str, typing.Any]
 
 @typing.type_check_only
 class ParagraphBorder(typing_extensions.TypedDict, total=False):
@@ -633,7 +635,7 @@ class ParagraphStyle(typing_extensions.TypedDict, total=False):
     spacingMode: typing_extensions.Literal[
         "SPACING_MODE_UNSPECIFIED", "NEVER_COLLAPSE", "COLLAPSE_LISTS"
     ]
-    tabStops: typing.List[TabStop]
+    tabStops: _list[TabStop]
 
 @typing.type_check_only
 class ParagraphStyleSuggestionState(typing_extensions.TypedDict, total=False):
@@ -662,9 +664,9 @@ class ParagraphStyleSuggestionState(typing_extensions.TypedDict, total=False):
 class Person(typing_extensions.TypedDict, total=False):
     personId: str
     personProperties: PersonProperties
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
 
 @typing.type_check_only
@@ -676,9 +678,9 @@ class PersonProperties(typing_extensions.TypedDict, total=False):
 class PositionedObject(typing_extensions.TypedDict, total=False):
     objectId: str
     positionedObjectProperties: PositionedObjectProperties
-    suggestedDeletionIds: typing.List[str]
+    suggestedDeletionIds: _list[str]
     suggestedInsertionId: str
-    suggestedPositionedObjectPropertiesChanges: typing.Dict[str, typing.Any]
+    suggestedPositionedObjectPropertiesChanges: dict[str, typing.Any]
 
 @typing.type_check_only
 class PositionedObjectPositioning(typing_extensions.TypedDict, total=False):
@@ -798,9 +800,9 @@ class RgbColor(typing_extensions.TypedDict, total=False):
 class RichLink(typing_extensions.TypedDict, total=False):
     richLinkId: str
     richLinkProperties: RichLinkProperties
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
 
 @typing.type_check_only
@@ -812,8 +814,8 @@ class RichLinkProperties(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SectionBreak(typing_extensions.TypedDict, total=False):
     sectionStyle: SectionStyle
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
 
 @typing.type_check_only
 class SectionColumnProperties(typing_extensions.TypedDict, total=False):
@@ -822,7 +824,7 @@ class SectionColumnProperties(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SectionStyle(typing_extensions.TypedDict, total=False):
-    columnProperties: typing.List[SectionColumnProperties]
+    columnProperties: _list[SectionColumnProperties]
     columnSeparatorStyle: typing_extensions.Literal[
         "COLUMN_SEPARATOR_STYLE_UNSPECIFIED", "NONE", "BETWEEN_EACH_COLUMN"
     ]
@@ -876,7 +878,7 @@ class SizeSuggestionState(typing_extensions.TypedDict, total=False):
     widthSuggested: bool
 
 @typing.type_check_only
-class StructuralElement(typing.Dict[str, typing.Any]): ...
+class StructuralElement(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class SubstringMatchCriteria(typing_extensions.TypedDict, total=False):
@@ -941,16 +943,16 @@ class TabStop(typing_extensions.TypedDict, total=False):
     offset: Dimension
 
 @typing.type_check_only
-class Table(typing.Dict[str, typing.Any]): ...
+class Table(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TableCell(typing_extensions.TypedDict, total=False):
-    content: typing.List[StructuralElement]
+    content: _list[StructuralElement]
     endIndex: int
     startIndex: int
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTableCellStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTableCellStyleChanges: dict[str, typing.Any]
     tableCellStyle: TableCellStyle
 
 @typing.type_check_only
@@ -1011,7 +1013,7 @@ class TableColumnProperties(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TableOfContents(typing.Dict[str, typing.Any]): ...
+class TableOfContents(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TableRange(typing_extensions.TypedDict, total=False):
@@ -1020,7 +1022,7 @@ class TableRange(typing_extensions.TypedDict, total=False):
     tableCellLocation: TableCellLocation
 
 @typing.type_check_only
-class TableRow(typing.Dict[str, typing.Any]): ...
+class TableRow(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TableRowStyle(typing_extensions.TypedDict, total=False):
@@ -1032,14 +1034,14 @@ class TableRowStyleSuggestionState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TableStyle(typing_extensions.TypedDict, total=False):
-    tableColumnProperties: typing.List[TableColumnProperties]
+    tableColumnProperties: _list[TableColumnProperties]
 
 @typing.type_check_only
 class TextRun(typing_extensions.TypedDict, total=False):
     content: str
-    suggestedDeletionIds: typing.List[str]
-    suggestedInsertionIds: typing.List[str]
-    suggestedTextStyleChanges: typing.Dict[str, typing.Any]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
 
 @typing.type_check_only
@@ -1102,7 +1104,7 @@ class UpdateTableCellStyleRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdateTableColumnPropertiesRequest(typing_extensions.TypedDict, total=False):
-    columnIndices: typing.List[int]
+    columnIndices: _list[int]
     fields: str
     tableColumnProperties: TableColumnProperties
     tableStartLocation: Location
@@ -1110,7 +1112,7 @@ class UpdateTableColumnPropertiesRequest(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class UpdateTableRowStyleRequest(typing_extensions.TypedDict, total=False):
     fields: str
-    rowIndices: typing.List[int]
+    rowIndices: _list[int]
     tableRowStyle: TableRowStyle
     tableStartLocation: Location
 

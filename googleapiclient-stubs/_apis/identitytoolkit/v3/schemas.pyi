@@ -2,9 +2,11 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class CreateAuthUriResponse(typing_extensions.TypedDict, total=False):
-    allProviders: typing.List[str]
+    allProviders: _list[str]
     authUri: str
     captchaRequired: bool
     forExistingProvider: bool
@@ -12,7 +14,7 @@ class CreateAuthUriResponse(typing_extensions.TypedDict, total=False):
     providerId: str
     registered: bool
     sessionId: str
-    signinMethods: typing.List[str]
+    signinMethods: _list[str]
 
 @typing.type_check_only
 class DeleteAccountResponse(typing_extensions.TypedDict, total=False):
@@ -22,7 +24,7 @@ class DeleteAccountResponse(typing_extensions.TypedDict, total=False):
 class DownloadAccountResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    users: typing.List[UserInfo]
+    users: _list[UserInfo]
 
 @typing.type_check_only
 class EmailLinkSigninResponse(typing_extensions.TypedDict, total=False):
@@ -53,7 +55,7 @@ class EmailTemplate(AlternativeEmailTemplate): ...
 @typing.type_check_only
 class GetAccountInfoResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    users: typing.List[UserInfo]
+    users: _list[UserInfo]
 
 @typing.type_check_only
 class GetOobConfirmationCodeResponse(typing_extensions.TypedDict, total=False):
@@ -76,7 +78,7 @@ class IdentitytoolkitRelyingpartyCreateAuthUriRequest(
     clientId: str
     context: str
     continueUri: str
-    customParameter: typing.Dict[str, typing.Any]
+    customParameter: dict[str, typing.Any]
     hostedDomain: str
     identifier: str
     oauthConsumerKey: str
@@ -118,10 +120,10 @@ class IdentitytoolkitRelyingpartyGetAccountInfoRequest(
     typing_extensions.TypedDict, total=False
 ):
     delegatedProjectNumber: str
-    email: typing.List[str]
+    email: _list[str]
     idToken: str
-    localId: typing.List[str]
-    phoneNumber: typing.List[str]
+    localId: _list[str]
+    phoneNumber: _list[str]
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartyGetProjectConfigResponse(
@@ -129,11 +131,11 @@ class IdentitytoolkitRelyingpartyGetProjectConfigResponse(
 ):
     allowPasswordUser: bool
     apiKey: str
-    authorizedDomains: typing.List[str]
+    authorizedDomains: _list[str]
     changeEmailTemplate: EmailTemplate
     dynamicLinksDomain: str
     enableAnonymousUser: bool
-    idpConfig: typing.List[IdpConfig]
+    idpConfig: _list[IdpConfig]
     legacyResetPasswordTemplate: EmailTemplate
     projectId: str
     resetPasswordTemplate: EmailTemplate
@@ -141,9 +143,7 @@ class IdentitytoolkitRelyingpartyGetProjectConfigResponse(
     verifyEmailTemplate: EmailTemplate
 
 @typing.type_check_only
-class IdentitytoolkitRelyingpartyGetPublicKeysResponse(
-    typing.Dict[str, typing.Any]
-): ...
+class IdentitytoolkitRelyingpartyGetPublicKeysResponse(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartyResetPasswordRequest(
@@ -178,8 +178,8 @@ class IdentitytoolkitRelyingpartySetAccountInfoRequest(
     createdAt: str
     customAttributes: str
     delegatedProjectNumber: str
-    deleteAttribute: typing.List[str]
-    deleteProvider: typing.List[str]
+    deleteAttribute: _list[str]
+    deleteProvider: _list[str]
     disableUser: bool
     displayName: str
     email: str
@@ -192,7 +192,7 @@ class IdentitytoolkitRelyingpartySetAccountInfoRequest(
     password: str
     phoneNumber: str
     photoUrl: str
-    provider: typing.List[str]
+    provider: _list[str]
     returnSecureToken: bool
     upgradeToFederatedLogin: bool
     validSince: str
@@ -203,11 +203,11 @@ class IdentitytoolkitRelyingpartySetProjectConfigRequest(
 ):
     allowPasswordUser: bool
     apiKey: str
-    authorizedDomains: typing.List[str]
+    authorizedDomains: _list[str]
     changeEmailTemplate: EmailTemplate
     delegatedProjectNumber: str
     enableAnonymousUser: bool
-    idpConfig: typing.List[IdpConfig]
+    idpConfig: _list[IdpConfig]
     legacyResetPasswordTemplate: EmailTemplate
     resetPasswordTemplate: EmailTemplate
     useEmailSending: bool
@@ -268,7 +268,7 @@ class IdentitytoolkitRelyingpartyUploadAccountRequest(
     sanityCheck: bool
     signerKey: str
     targetProjectId: str
-    users: typing.List[UserInfo]
+    users: _list[UserInfo]
 
 @typing.type_check_only
 class IdentitytoolkitRelyingpartyVerifyAssertionRequest(
@@ -347,7 +347,7 @@ class IdpConfig(typing_extensions.TypedDict, total=False):
     experimentPercent: int
     provider: str
     secret: str
-    whitelistedAudiences: typing.List[str]
+    whitelistedAudiences: _list[str]
 
 @typing.type_check_only
 class Relyingparty(typing_extensions.TypedDict, total=False):
@@ -386,7 +386,7 @@ class SetAccountInfoResponse(typing_extensions.TypedDict, total=False):
     newEmail: str
     passwordHash: str
     photoUrl: str
-    providerUserInfo: typing.List[typing.Dict[str, typing.Any]]
+    providerUserInfo: _list[dict[str, typing.Any]]
     refreshToken: str
 
 @typing.type_check_only
@@ -401,7 +401,7 @@ class SignupNewUserResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UploadAccountResponse(typing_extensions.TypedDict, total=False):
-    error: typing.List[typing.Dict[str, typing.Any]]
+    error: _list[dict[str, typing.Any]]
     kind: str
 
 @typing.type_check_only
@@ -419,7 +419,7 @@ class UserInfo(typing_extensions.TypedDict, total=False):
     passwordUpdatedAt: float
     phoneNumber: str
     photoUrl: str
-    providerUserInfo: typing.List[typing.Dict[str, typing.Any]]
+    providerUserInfo: _list[dict[str, typing.Any]]
     rawPassword: str
     salt: str
     screenName: str
@@ -466,7 +466,7 @@ class VerifyAssertionResponse(typing_extensions.TypedDict, total=False):
     refreshToken: str
     screenName: str
     timeZone: str
-    verifiedProvider: typing.List[str]
+    verifiedProvider: _list[str]
 
 @typing.type_check_only
 class VerifyCustomTokenResponse(typing_extensions.TypedDict, total=False):

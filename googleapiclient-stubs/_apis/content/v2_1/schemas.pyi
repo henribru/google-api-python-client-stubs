@@ -2,23 +2,25 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     accountManagement: str
-    adsLinks: typing.List[AccountAdsLink]
+    adsLinks: _list[AccountAdsLink]
     adultContent: bool
-    automaticLabelIds: typing.List[str]
+    automaticLabelIds: _list[str]
     businessInformation: AccountBusinessInformation
     cssId: str
     googleMyBusinessLink: AccountGoogleMyBusinessLink
     id: str
     kind: str
-    labelIds: typing.List[str]
+    labelIds: _list[str]
     name: str
     sellerId: str
-    users: typing.List[AccountUser]
+    users: _list[AccountUser]
     websiteUrl: str
-    youtubeChannelLinks: typing.List[AccountYouTubeChannelLink]
+    youtubeChannelLinks: _list[AccountYouTubeChannelLink]
 
 @typing.type_check_only
 class AccountAddress(typing_extensions.TypedDict, total=False):
@@ -87,10 +89,10 @@ class AccountReturnCarrier(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AccountStatus(typing_extensions.TypedDict, total=False):
     accountId: str
-    accountLevelIssues: typing.List[AccountStatusAccountLevelIssue]
+    accountLevelIssues: _list[AccountStatusAccountLevelIssue]
     accountManagement: str
     kind: str
-    products: typing.List[AccountStatusProducts]
+    products: _list[AccountStatusProducts]
     websiteClaimed: bool
 
 @typing.type_check_only
@@ -119,7 +121,7 @@ class AccountStatusProducts(typing_extensions.TypedDict, total=False):
     channel: str
     country: str
     destination: str
-    itemLevelIssues: typing.List[AccountStatusItemLevelIssue]
+    itemLevelIssues: _list[AccountStatusItemLevelIssue]
     statistics: AccountStatusStatistics
 
 @typing.type_check_only
@@ -133,7 +135,7 @@ class AccountStatusStatistics(typing_extensions.TypedDict, total=False):
 class AccountTax(typing_extensions.TypedDict, total=False):
     accountId: str
     kind: str
-    rules: typing.List[AccountTaxTaxRule]
+    rules: _list[AccountTaxTaxRule]
 
 @typing.type_check_only
 class AccountTaxTaxRule(typing_extensions.TypedDict, total=False):
@@ -158,7 +160,7 @@ class AccountYouTubeChannelLink(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountsAuthInfoResponse(typing_extensions.TypedDict, total=False):
-    accountIdentifiers: typing.List[AccountIdentifier]
+    accountIdentifiers: _list[AccountIdentifier]
     kind: str
 
 @typing.type_check_only
@@ -167,7 +169,7 @@ class AccountsClaimWebsiteResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountsCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[AccountsCustomBatchRequestEntry]
+    entries: _list[AccountsCustomBatchRequestEntry]
 
 @typing.type_check_only
 class AccountsCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -175,7 +177,7 @@ class AccountsCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
     accountId: str
     batchId: int
     force: bool
-    labelIds: typing.List[str]
+    labelIds: _list[str]
     linkRequest: AccountsCustomBatchRequestEntryLinkRequest
     merchantId: str
     method: str
@@ -189,11 +191,11 @@ class AccountsCustomBatchRequestEntryLinkRequest(
     action: str
     linkType: str
     linkedAccountId: str
-    services: typing.List[str]
+    services: _list[str]
 
 @typing.type_check_only
 class AccountsCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[AccountsCustomBatchResponseEntry]
+    entries: _list[AccountsCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -210,7 +212,7 @@ class AccountsLinkRequest(typing_extensions.TypedDict, total=False):
     linkType: str
     linkedAccountId: str
     paymentServiceProviderLinkInfo: PaymentServiceProviderLinkInfo
-    services: typing.List[str]
+    services: _list[str]
 
 @typing.type_check_only
 class AccountsLinkResponse(typing_extensions.TypedDict, total=False):
@@ -219,18 +221,18 @@ class AccountsLinkResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AccountsListLinksResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    links: typing.List[LinkedAccount]
+    links: _list[LinkedAccount]
     nextPageToken: str
 
 @typing.type_check_only
 class AccountsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[Account]
+    resources: _list[Account]
 
 @typing.type_check_only
 class AccountsUpdateLabelsRequest(typing_extensions.TypedDict, total=False):
-    labelIds: typing.List[str]
+    labelIds: _list[str]
 
 @typing.type_check_only
 class AccountsUpdateLabelsResponse(typing_extensions.TypedDict, total=False):
@@ -238,19 +240,19 @@ class AccountsUpdateLabelsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountstatusesCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[AccountstatusesCustomBatchRequestEntry]
+    entries: _list[AccountstatusesCustomBatchRequestEntry]
 
 @typing.type_check_only
 class AccountstatusesCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
     accountId: str
     batchId: int
-    destinations: typing.List[str]
+    destinations: _list[str]
     merchantId: str
     method: str
 
 @typing.type_check_only
 class AccountstatusesCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[AccountstatusesCustomBatchResponseEntry]
+    entries: _list[AccountstatusesCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -263,11 +265,11 @@ class AccountstatusesCustomBatchResponseEntry(typing_extensions.TypedDict, total
 class AccountstatusesListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[AccountStatus]
+    resources: _list[AccountStatus]
 
 @typing.type_check_only
 class AccounttaxCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[AccounttaxCustomBatchRequestEntry]
+    entries: _list[AccounttaxCustomBatchRequestEntry]
 
 @typing.type_check_only
 class AccounttaxCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -279,7 +281,7 @@ class AccounttaxCustomBatchRequestEntry(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class AccounttaxCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[AccounttaxCustomBatchResponseEntry]
+    entries: _list[AccounttaxCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -293,7 +295,7 @@ class AccounttaxCustomBatchResponseEntry(typing_extensions.TypedDict, total=Fals
 class AccounttaxListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[AccountTax]
+    resources: _list[AccountTax]
 
 @typing.type_check_only
 class ActivateBuyOnGoogleProgramRequest(typing_extensions.TypedDict, total=False): ...
@@ -305,11 +307,11 @@ class Amount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BusinessDayConfig(typing_extensions.TypedDict, total=False):
-    businessDays: typing.List[str]
+    businessDays: _list[str]
 
 @typing.type_check_only
 class BuyOnGoogleProgramStatus(typing_extensions.TypedDict, total=False):
-    businessModel: typing.List[str]
+    businessModel: _list[str]
     customerServicePendingEmail: str
     customerServicePendingPhoneNumber: str
     customerServicePendingPhoneRegionCode: str
@@ -354,9 +356,9 @@ class CarrierRate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CarriersCarrier(typing_extensions.TypedDict, total=False):
     country: str
-    eddServices: typing.List[str]
+    eddServices: _list[str]
     name: str
-    services: typing.List[str]
+    services: _list[str]
 
 @typing.type_check_only
 class Collection(typing_extensions.TypedDict, total=False):
@@ -365,10 +367,10 @@ class Collection(typing_extensions.TypedDict, total=False):
     customLabel2: str
     customLabel3: str
     customLabel4: str
-    featuredProduct: typing.List[CollectionFeaturedProduct]
-    headline: typing.List[str]
+    featuredProduct: _list[CollectionFeaturedProduct]
+    headline: _list[str]
     id: str
-    imageLink: typing.List[str]
+    imageLink: _list[str]
     language: str
     link: str
     mobileLink: str
@@ -382,9 +384,9 @@ class CollectionFeaturedProduct(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CollectionStatus(typing_extensions.TypedDict, total=False):
-    collectionLevelIssuses: typing.List[CollectionStatusItemLevelIssue]
+    collectionLevelIssuses: _list[CollectionStatusItemLevelIssue]
     creationDate: str
-    destinationStatuses: typing.List[CollectionStatusDestinationStatus]
+    destinationStatuses: _list[CollectionStatusDestinationStatus]
     id: str
     lastUpdateDate: str
 
@@ -411,10 +413,10 @@ class Css(typing_extensions.TypedDict, total=False):
     displayName: str
     fullName: str
     homepageUri: str
-    labelIds: typing.List[str]
+    labelIds: _list[str]
 
 @typing.type_check_only
-class CustomAttribute(typing.Dict[str, typing.Any]): ...
+class CustomAttribute(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class CustomerReturnReason(typing_extensions.TypedDict, total=False):
@@ -437,7 +439,7 @@ class Datafeed(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
-    targets: typing.List[DatafeedTarget]
+    targets: _list[DatafeedTarget]
 
 @typing.type_check_only
 class DatafeedFetchSchedule(typing_extensions.TypedDict, total=False):
@@ -461,20 +463,20 @@ class DatafeedFormat(typing_extensions.TypedDict, total=False):
 class DatafeedStatus(typing_extensions.TypedDict, total=False):
     country: str
     datafeedId: str
-    errors: typing.List[DatafeedStatusError]
+    errors: _list[DatafeedStatusError]
     itemsTotal: str
     itemsValid: str
     kind: str
     language: str
     lastUploadDate: str
     processingStatus: str
-    warnings: typing.List[DatafeedStatusError]
+    warnings: _list[DatafeedStatusError]
 
 @typing.type_check_only
 class DatafeedStatusError(typing_extensions.TypedDict, total=False):
     code: str
     count: str
-    examples: typing.List[DatafeedStatusExample]
+    examples: _list[DatafeedStatusExample]
     message: str
 
 @typing.type_check_only
@@ -486,13 +488,13 @@ class DatafeedStatusExample(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DatafeedTarget(typing_extensions.TypedDict, total=False):
     country: str
-    excludedDestinations: typing.List[str]
-    includedDestinations: typing.List[str]
+    excludedDestinations: _list[str]
+    includedDestinations: _list[str]
     language: str
 
 @typing.type_check_only
 class DatafeedsCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[DatafeedsCustomBatchRequestEntry]
+    entries: _list[DatafeedsCustomBatchRequestEntry]
 
 @typing.type_check_only
 class DatafeedsCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -504,7 +506,7 @@ class DatafeedsCustomBatchRequestEntry(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class DatafeedsCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[DatafeedsCustomBatchResponseEntry]
+    entries: _list[DatafeedsCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -521,11 +523,11 @@ class DatafeedsFetchNowResponse(typing_extensions.TypedDict, total=False):
 class DatafeedsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[Datafeed]
+    resources: _list[Datafeed]
 
 @typing.type_check_only
 class DatafeedstatusesCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[DatafeedstatusesCustomBatchRequestEntry]
+    entries: _list[DatafeedstatusesCustomBatchRequestEntry]
 
 @typing.type_check_only
 class DatafeedstatusesCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -538,7 +540,7 @@ class DatafeedstatusesCustomBatchRequestEntry(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class DatafeedstatusesCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[DatafeedstatusesCustomBatchResponseEntry]
+    entries: _list[DatafeedstatusesCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -553,7 +555,7 @@ class DatafeedstatusesCustomBatchResponseEntry(
 class DatafeedstatusesListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[DatafeedStatus]
+    resources: _list[DatafeedStatus]
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -577,14 +579,14 @@ class DateTime(typing_extensions.TypedDict, total=False):
 class DeliveryTime(typing_extensions.TypedDict, total=False):
     cutoffTime: CutoffTime
     handlingBusinessDayConfig: BusinessDayConfig
-    holidayCutoffs: typing.List[HolidayCutoff]
+    holidayCutoffs: _list[HolidayCutoff]
     maxHandlingTimeInDays: int
     maxTransitTimeInDays: int
     minHandlingTimeInDays: int
     minTransitTimeInDays: int
     transitBusinessDayConfig: BusinessDayConfig
     transitTimeTable: TransitTable
-    warehouseBasedDeliveryTimes: typing.List[WarehouseBasedDeliveryTime]
+    warehouseBasedDeliveryTimes: _list[WarehouseBasedDeliveryTime]
 
 @typing.type_check_only
 class ECommercePlatformLinkInfo(typing_extensions.TypedDict, total=False):
@@ -599,12 +601,12 @@ class Error(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Errors(typing_extensions.TypedDict, total=False):
     code: int
-    errors: typing.List[Error]
+    errors: _list[Error]
     message: str
 
 @typing.type_check_only
 class FreeListingsProgramStatus(typing_extensions.TypedDict, total=False):
-    regionStatuses: typing.List[FreeListingsProgramStatusRegionStatus]
+    regionStatuses: _list[FreeListingsProgramStatusRegionStatus]
     state: typing_extensions.Literal[
         "PROGRAM_STATE_UNSPECIFIED", "ONBOARDED", "NOT_ONBOARDED"
     ]
@@ -631,16 +633,16 @@ class FreeListingsProgramStatusRegionStatus(typing_extensions.TypedDict, total=F
         "ONBOARDING",
     ]
     ineligibilityReason: str
-    regionCodes: typing.List[str]
+    regionCodes: _list[str]
     reviewEligibilityStatus: typing_extensions.Literal[
         "REVIEW_ELIGIBILITY_UNSPECIFIED", "ELIGIBLE", "INELIGIBLE"
     ]
-    reviewIssues: typing.List[str]
+    reviewIssues: _list[str]
 
 @typing.type_check_only
 class GmbAccounts(typing_extensions.TypedDict, total=False):
     accountId: str
-    gmbAccounts: typing.List[GmbAccountsGmbAccount]
+    gmbAccounts: _list[GmbAccountsGmbAccount]
 
 @typing.type_check_only
 class GmbAccountsGmbAccount(typing_extensions.TypedDict, total=False):
@@ -651,11 +653,11 @@ class GmbAccountsGmbAccount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Headers(typing_extensions.TypedDict, total=False):
-    locations: typing.List[LocationIdSet]
-    numberOfItems: typing.List[str]
-    postalCodeGroupNames: typing.List[str]
-    prices: typing.List[Price]
-    weights: typing.List[Weight]
+    locations: _list[LocationIdSet]
+    numberOfItems: _list[str]
+    postalCodeGroupNames: _list[str]
+    prices: _list[Price]
+    weights: _list[Weight]
 
 @typing.type_check_only
 class HolidayCutoff(typing_extensions.TypedDict, total=False):
@@ -696,7 +698,7 @@ class Installment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InvoiceSummary(typing_extensions.TypedDict, total=False):
-    additionalChargeSummaries: typing.List[InvoiceSummaryAdditionalChargeSummary]
+    additionalChargeSummaries: _list[InvoiceSummaryAdditionalChargeSummary]
     productTotal: Amount
 
 @typing.type_check_only
@@ -706,7 +708,7 @@ class InvoiceSummaryAdditionalChargeSummary(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class LabelIds(typing_extensions.TypedDict, total=False):
-    labelIds: typing.List[str]
+    labelIds: _list[str]
 
 @typing.type_check_only
 class LiaAboutPageSettings(typing_extensions.TypedDict, total=False):
@@ -743,12 +745,12 @@ class LiaPosDataProvider(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LiaSettings(typing_extensions.TypedDict, total=False):
     accountId: str
-    countrySettings: typing.List[LiaCountrySettings]
+    countrySettings: _list[LiaCountrySettings]
     kind: str
 
 @typing.type_check_only
 class LiasettingsCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[LiasettingsCustomBatchRequestEntry]
+    entries: _list[LiasettingsCustomBatchRequestEntry]
 
 @typing.type_check_only
 class LiasettingsCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -766,7 +768,7 @@ class LiasettingsCustomBatchRequestEntry(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class LiasettingsCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[LiasettingsCustomBatchResponseEntry]
+    entries: _list[LiasettingsCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -776,26 +778,26 @@ class LiasettingsCustomBatchResponseEntry(typing_extensions.TypedDict, total=Fal
     gmbAccounts: GmbAccounts
     kind: str
     liaSettings: LiaSettings
-    posDataProviders: typing.List[PosDataProviders]
+    posDataProviders: _list[PosDataProviders]
 
 @typing.type_check_only
 class LiasettingsGetAccessibleGmbAccountsResponse(
     typing_extensions.TypedDict, total=False
 ):
     accountId: str
-    gmbAccounts: typing.List[GmbAccountsGmbAccount]
+    gmbAccounts: _list[GmbAccountsGmbAccount]
     kind: str
 
 @typing.type_check_only
 class LiasettingsListPosDataProvidersResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    posDataProviders: typing.List[PosDataProviders]
+    posDataProviders: _list[PosDataProviders]
 
 @typing.type_check_only
 class LiasettingsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[LiaSettings]
+    resources: _list[LiaSettings]
 
 @typing.type_check_only
 class LiasettingsRequestGmbAccessResponse(typing_extensions.TypedDict, total=False):
@@ -825,55 +827,55 @@ class LinkService(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LinkedAccount(typing_extensions.TypedDict, total=False):
     linkedAccountId: str
-    services: typing.List[LinkService]
+    services: _list[LinkService]
 
 @typing.type_check_only
 class ListAccountLabelsResponse(typing_extensions.TypedDict, total=False):
-    accountLabels: typing.List[AccountLabel]
+    accountLabels: _list[AccountLabel]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAccountReturnCarrierResponse(typing_extensions.TypedDict, total=False):
-    accountReturnCarriers: typing.List[AccountReturnCarrier]
+    accountReturnCarriers: _list[AccountReturnCarrier]
 
 @typing.type_check_only
 class ListCollectionStatusesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    resources: typing.List[CollectionStatus]
+    resources: _list[CollectionStatus]
 
 @typing.type_check_only
 class ListCollectionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    resources: typing.List[Collection]
+    resources: _list[Collection]
 
 @typing.type_check_only
 class ListCssesResponse(typing_extensions.TypedDict, total=False):
-    csses: typing.List[Css]
+    csses: _list[Css]
     nextPageToken: str
 
 @typing.type_check_only
 class ListRegionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    regions: typing.List[Region]
+    regions: _list[Region]
 
 @typing.type_check_only
 class ListRepricingProductReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    repricingProductReports: typing.List[RepricingProductReport]
+    repricingProductReports: _list[RepricingProductReport]
 
 @typing.type_check_only
 class ListRepricingRuleReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    repricingRuleReports: typing.List[RepricingRuleReport]
+    repricingRuleReports: _list[RepricingRuleReport]
 
 @typing.type_check_only
 class ListRepricingRulesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    repricingRules: typing.List[RepricingRule]
+    repricingRules: _list[RepricingRule]
 
 @typing.type_check_only
 class ListReturnPolicyOnlineResponse(typing_extensions.TypedDict, total=False):
-    returnPolicies: typing.List[ReturnPolicyOnline]
+    returnPolicies: _list[ReturnPolicyOnline]
 
 @typing.type_check_only
 class LocalInventory(typing_extensions.TypedDict, total=False):
@@ -890,7 +892,7 @@ class LocalInventory(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocalinventoryCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[LocalinventoryCustomBatchRequestEntry]
+    entries: _list[LocalinventoryCustomBatchRequestEntry]
 
 @typing.type_check_only
 class LocalinventoryCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -902,7 +904,7 @@ class LocalinventoryCustomBatchRequestEntry(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class LocalinventoryCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[LocalinventoryCustomBatchResponseEntry]
+    entries: _list[LocalinventoryCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -913,7 +915,7 @@ class LocalinventoryCustomBatchResponseEntry(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class LocationIdSet(typing_extensions.TypedDict, total=False):
-    locationIds: typing.List[str]
+    locationIds: _list[str]
 
 @typing.type_check_only
 class LoyaltyPoints(typing_extensions.TypedDict, total=False):
@@ -927,9 +929,9 @@ class MerchantOrderReturn(typing_extensions.TypedDict, total=False):
     merchantOrderId: str
     orderId: str
     orderReturnId: str
-    returnItems: typing.List[MerchantOrderReturnItem]
+    returnItems: _list[MerchantOrderReturnItem]
     returnPricingInfo: ReturnPricingInfo
-    returnShipments: typing.List[ReturnShipment]
+    returnShipments: _list[ReturnShipment]
 
 @typing.type_check_only
 class MerchantOrderReturnItem(typing_extensions.TypedDict, total=False):
@@ -940,7 +942,7 @@ class MerchantOrderReturnItem(typing_extensions.TypedDict, total=False):
     product: OrderLineItemProduct
     refundableAmount: MonetaryAmount
     returnItemId: str
-    returnShipmentIds: typing.List[str]
+    returnShipmentIds: _list[str]
     shipmentGroupId: str
     shipmentUnitId: str
     state: str
@@ -975,13 +977,13 @@ class Metrics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MinimumOrderValueTable(typing_extensions.TypedDict, total=False):
-    storeCodeSetWithMovs: typing.List[MinimumOrderValueTableStoreCodeSetWithMov]
+    storeCodeSetWithMovs: _list[MinimumOrderValueTableStoreCodeSetWithMov]
 
 @typing.type_check_only
 class MinimumOrderValueTableStoreCodeSetWithMov(
     typing_extensions.TypedDict, total=False
 ):
-    storeCodes: typing.List[str]
+    storeCodes: _list[str]
     value: Price
 
 @typing.type_check_only
@@ -996,13 +998,13 @@ class OnboardBuyOnGoogleProgramRequest(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class Order(typing_extensions.TypedDict, total=False):
     acknowledged: bool
-    annotations: typing.List[OrderOrderAnnotation]
+    annotations: _list[OrderOrderAnnotation]
     billingAddress: OrderAddress
     customer: OrderCustomer
     deliveryDetails: OrderDeliveryDetails
     id: str
     kind: str
-    lineItems: typing.List[OrderLineItem]
+    lineItems: _list[OrderLineItem]
     merchantId: str
     merchantOrderId: str
     netPriceAmount: Price
@@ -1010,9 +1012,9 @@ class Order(typing_extensions.TypedDict, total=False):
     paymentStatus: str
     pickupDetails: OrderPickupDetails
     placedDate: str
-    promotions: typing.List[OrderPromotion]
-    refunds: typing.List[OrderRefund]
-    shipments: typing.List[OrderShipment]
+    promotions: _list[OrderPromotion]
+    refunds: _list[OrderRefund]
+    shipments: _list[OrderShipment]
     shippingCost: Price
     shippingCostTax: Price
     status: str
@@ -1021,13 +1023,13 @@ class Order(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OrderAddress(typing_extensions.TypedDict, total=False):
     country: str
-    fullAddress: typing.List[str]
+    fullAddress: _list[str]
     isPostOfficeBox: bool
     locality: str
     postalCode: str
     recipientName: str
     region: str
-    streetAddress: typing.List[str]
+    streetAddress: _list[str]
 
 @typing.type_check_only
 class OrderCancellation(typing_extensions.TypedDict, total=False):
@@ -1062,9 +1064,9 @@ class OrderDeliveryDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OrderLineItem(typing_extensions.TypedDict, total=False):
-    adjustments: typing.List[OrderLineItemAdjustment]
-    annotations: typing.List[OrderMerchantProvidedAnnotation]
-    cancellations: typing.List[OrderCancellation]
+    adjustments: _list[OrderLineItemAdjustment]
+    annotations: _list[OrderMerchantProvidedAnnotation]
+    cancellations: _list[OrderCancellation]
     id: str
     price: Price
     product: OrderLineItemProduct
@@ -1077,7 +1079,7 @@ class OrderLineItem(typing_extensions.TypedDict, total=False):
     quantityShipped: int
     quantityUndeliverable: int
     returnInfo: OrderLineItemReturnInfo
-    returns: typing.List[OrderReturn]
+    returns: _list[OrderReturn]
     shippingDetails: OrderLineItemShippingDetails
     tax: Price
 
@@ -1092,7 +1094,7 @@ class OrderLineItemProduct(typing_extensions.TypedDict, total=False):
     brand: str
     condition: str
     contentLanguage: str
-    fees: typing.List[OrderLineItemProductFee]
+    fees: _list[OrderLineItemProductFee]
     gtin: str
     id: str
     imageLink: str
@@ -1103,7 +1105,7 @@ class OrderLineItemProduct(typing_extensions.TypedDict, total=False):
     shownImage: str
     targetCountry: str
     title: str
-    variantAttributes: typing.List[OrderLineItemProductVariantAttribute]
+    variantAttributes: _list[OrderLineItemProductVariantAttribute]
 
 @typing.type_check_only
 class OrderLineItemProductFee(typing_extensions.TypedDict, total=False):
@@ -1149,7 +1151,7 @@ class OrderOrderAnnotation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OrderPickupDetails(typing_extensions.TypedDict, total=False):
     address: OrderAddress
-    collectors: typing.List[OrderPickupDetailsCollector]
+    collectors: _list[OrderPickupDetailsCollector]
     locationId: str
     pickupType: str
 
@@ -1160,8 +1162,8 @@ class OrderPickupDetailsCollector(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OrderPromotion(typing_extensions.TypedDict, total=False):
-    applicableItems: typing.List[OrderPromotionItem]
-    appliedItems: typing.List[OrderPromotionItem]
+    applicableItems: _list[OrderPromotionItem]
+    appliedItems: _list[OrderPromotionItem]
     endTime: str
     funder: str
     merchantPromotionId: str
@@ -1222,7 +1224,7 @@ class OrderShipment(typing_extensions.TypedDict, total=False):
     creationDate: str
     deliveryDate: str
     id: str
-    lineItems: typing.List[OrderShipmentLineItemShipment]
+    lineItems: _list[OrderShipmentLineItemShipment]
     scheduledDeliveryDetails: OrderShipmentScheduledDeliveryDetails
     shipmentGroupId: str
     status: str
@@ -1244,13 +1246,13 @@ class OrderTrackingSignal(typing_extensions.TypedDict, total=False):
     customerShippingFee: PriceAmount
     deliveryPostalCode: str
     deliveryRegionCode: str
-    lineItems: typing.List[OrderTrackingSignalLineItemDetails]
+    lineItems: _list[OrderTrackingSignalLineItemDetails]
     merchantId: str
     orderCreatedTime: DateTime
     orderId: str
     orderTrackingSignalId: str
-    shipmentLineItemMapping: typing.List[OrderTrackingSignalShipmentLineItemMapping]
-    shippingInfo: typing.List[OrderTrackingSignalShippingInfo]
+    shipmentLineItemMapping: _list[OrderTrackingSignalShipmentLineItemMapping]
+    shippingInfo: _list[OrderTrackingSignalShippingInfo]
 
 @typing.type_check_only
 class OrderTrackingSignalLineItemDetails(typing_extensions.TypedDict, total=False):
@@ -1288,7 +1290,7 @@ class OrderTrackingSignalShippingInfo(typing_extensions.TypedDict, total=False):
 class OrderinvoicesCreateChargeInvoiceRequest(typing_extensions.TypedDict, total=False):
     invoiceId: str
     invoiceSummary: InvoiceSummary
-    lineItemInvoices: typing.List[ShipmentInvoiceLineItemInvoice]
+    lineItemInvoices: _list[ShipmentInvoiceLineItemInvoice]
     operationId: str
     shipmentGroupId: str
 
@@ -1305,7 +1307,7 @@ class OrderinvoicesCreateRefundInvoiceRequest(typing_extensions.TypedDict, total
     operationId: str
     refundOnlyOption: OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption
     returnOption: OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption
-    shipmentInvoices: typing.List[ShipmentInvoice]
+    shipmentInvoices: _list[ShipmentInvoice]
 
 @typing.type_check_only
 class OrderinvoicesCreateRefundInvoiceResponse(
@@ -1330,7 +1332,7 @@ class OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption(
 
 @typing.type_check_only
 class OrderreportsListDisbursementsResponse(typing_extensions.TypedDict, total=False):
-    disbursements: typing.List[OrderReportDisbursement]
+    disbursements: _list[OrderReportDisbursement]
     kind: str
     nextPageToken: str
 
@@ -1338,7 +1340,7 @@ class OrderreportsListDisbursementsResponse(typing_extensions.TypedDict, total=F
 class OrderreportsListTransactionsResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    transactions: typing.List[OrderReportTransaction]
+    transactions: _list[OrderReportTransaction]
 
 @typing.type_check_only
 class OrderreturnsAcknowledgeRequest(typing_extensions.TypedDict, total=False):
@@ -1351,7 +1353,7 @@ class OrderreturnsAcknowledgeResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OrderreturnsCreateOrderReturnRequest(typing_extensions.TypedDict, total=False):
-    lineItems: typing.List[OrderreturnsLineItem]
+    lineItems: _list[OrderreturnsLineItem]
     operationId: str
     orderId: str
     returnMethodType: str
@@ -1372,7 +1374,7 @@ class OrderreturnsLineItem(typing_extensions.TypedDict, total=False):
 class OrderreturnsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[MerchantOrderReturn]
+    resources: _list[MerchantOrderReturn]
 
 @typing.type_check_only
 class OrderreturnsPartialRefund(typing_extensions.TypedDict, total=False):
@@ -1384,7 +1386,7 @@ class OrderreturnsProcessRequest(typing_extensions.TypedDict, total=False):
     fullChargeReturnShippingCost: bool
     operationId: str
     refundShippingFee: OrderreturnsRefundOperation
-    returnItems: typing.List[OrderreturnsReturnItem]
+    returnItems: _list[OrderreturnsReturnItem]
 
 @typing.type_check_only
 class OrderreturnsProcessResponse(typing_extensions.TypedDict, total=False):
@@ -1469,7 +1471,7 @@ class OrdersCreateTestOrderResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OrdersCreateTestReturnRequest(typing_extensions.TypedDict, total=False):
-    items: typing.List[OrdersCustomBatchRequestEntryCreateTestReturnReturnItem]
+    items: _list[OrdersCustomBatchRequestEntryCreateTestReturnReturnItem]
 
 @typing.type_check_only
 class OrdersCreateTestReturnResponse(typing_extensions.TypedDict, total=False):
@@ -1545,11 +1547,11 @@ class OrdersInStoreRefundLineItemResponse(typing_extensions.TypedDict, total=Fal
 class OrdersListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[Order]
+    resources: _list[Order]
 
 @typing.type_check_only
 class OrdersRefundItemRequest(typing_extensions.TypedDict, total=False):
-    items: typing.List[OrdersCustomBatchRequestEntryRefundItemItem]
+    items: _list[OrdersCustomBatchRequestEntryRefundItemItem]
     operationId: str
     reason: str
     reasonText: str
@@ -1605,7 +1607,7 @@ class OrdersReturnRefundLineItemResponse(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class OrdersSetLineItemMetadataRequest(typing_extensions.TypedDict, total=False):
-    annotations: typing.List[OrderMerchantProvidedAnnotation]
+    annotations: _list[OrderMerchantProvidedAnnotation]
     lineItemId: str
     operationId: str
     productId: str
@@ -1617,10 +1619,10 @@ class OrdersSetLineItemMetadataResponse(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class OrdersShipLineItemsRequest(typing_extensions.TypedDict, total=False):
-    lineItems: typing.List[OrderShipmentLineItemShipment]
+    lineItems: _list[OrderShipmentLineItemShipment]
     operationId: str
     shipmentGroupId: str
-    shipmentInfos: typing.List[OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo]
+    shipmentInfos: _list[OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo]
 
 @typing.type_check_only
 class OrdersShipLineItemsResponse(typing_extensions.TypedDict, total=False):
@@ -1693,7 +1695,7 @@ class PickupServicesPickupService(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PosCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[PosCustomBatchRequestEntry]
+    entries: _list[PosCustomBatchRequestEntry]
 
 @typing.type_check_only
 class PosCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -1708,7 +1710,7 @@ class PosCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PosCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[PosCustomBatchResponseEntry]
+    entries: _list[PosCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -1723,7 +1725,7 @@ class PosCustomBatchResponseEntry(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PosDataProviders(typing_extensions.TypedDict, total=False):
     country: str
-    posDataProviders: typing.List[PosDataProvidersPosDataProvider]
+    posDataProviders: _list[PosDataProvidersPosDataProvider]
 
 @typing.type_check_only
 class PosDataProvidersPosDataProvider(typing_extensions.TypedDict, total=False):
@@ -1769,7 +1771,7 @@ class PosInventoryResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PosListResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    resources: typing.List[PosStore]
+    resources: _list[PosStore]
 
 @typing.type_check_only
 class PosSale(typing_extensions.TypedDict, total=False):
@@ -1819,7 +1821,7 @@ class PosStore(typing_extensions.TypedDict, total=False):
 class PostalCodeGroup(typing_extensions.TypedDict, total=False):
     country: str
     name: str
-    postalCodeRanges: typing.List[PostalCodeRange]
+    postalCodeRanges: _list[PostalCodeRange]
 
 @typing.type_check_only
 class PostalCodeRange(typing_extensions.TypedDict, total=False):
@@ -1838,10 +1840,10 @@ class PriceAmount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
-    additionalImageLinks: typing.List[str]
+    additionalImageLinks: _list[str]
     additionalSizeType: str
     adsGrouping: str
-    adsLabels: typing.List[str]
+    adsLabels: _list[str]
     adsRedirect: str
     adult: bool
     ageGroup: str
@@ -1854,7 +1856,7 @@ class Product(typing_extensions.TypedDict, total=False):
     condition: str
     contentLanguage: str
     costOfGoodsSold: Price
-    customAttributes: typing.List[CustomAttribute]
+    customAttributes: _list[CustomAttribute]
     customLabel0: str
     customLabel1: str
     customLabel2: str
@@ -1863,11 +1865,11 @@ class Product(typing_extensions.TypedDict, total=False):
     description: str
     displayAdsId: str
     displayAdsLink: str
-    displayAdsSimilarIds: typing.List[str]
+    displayAdsSimilarIds: _list[str]
     displayAdsTitle: str
     displayAdsValue: float
     energyEfficiencyClass: str
-    excludedDestinations: typing.List[str]
+    excludedDestinations: _list[str]
     expirationDate: str
     gender: str
     googleProductCategory: str
@@ -1875,7 +1877,7 @@ class Product(typing_extensions.TypedDict, total=False):
     id: str
     identifierExists: bool
     imageLink: str
-    includedDestinations: typing.List[str]
+    includedDestinations: _list[str]
     installment: Installment
     isBundle: bool
     itemGroupId: str
@@ -1897,32 +1899,32 @@ class Product(typing_extensions.TypedDict, total=False):
     pickupMethod: str
     pickupSla: str
     price: Price
-    productDetails: typing.List[ProductProductDetail]
+    productDetails: _list[ProductProductDetail]
     productHeight: ProductDimension
-    productHighlights: typing.List[str]
+    productHighlights: _list[str]
     productLength: ProductDimension
-    productTypes: typing.List[str]
+    productTypes: _list[str]
     productWeight: ProductWeight
     productWidth: ProductDimension
-    promotionIds: typing.List[str]
+    promotionIds: _list[str]
     salePrice: Price
     salePriceEffectiveDate: str
     sellOnGoogleQuantity: str
-    shipping: typing.List[ProductShipping]
+    shipping: _list[ProductShipping]
     shippingHeight: ProductShippingDimension
     shippingLabel: str
     shippingLength: ProductShippingDimension
     shippingWeight: ProductShippingWeight
     shippingWidth: ProductShippingDimension
-    shoppingAdsExcludedCountries: typing.List[str]
+    shoppingAdsExcludedCountries: _list[str]
     sizeSystem: str
     sizeType: str
-    sizes: typing.List[str]
+    sizes: _list[str]
     source: str
     subscriptionCost: ProductSubscriptionCost
     targetCountry: str
     taxCategory: str
-    taxes: typing.List[ProductTax]
+    taxes: _list[ProductTax]
     title: str
     transitTimeLabel: str
     unitPricingBaseMeasure: ProductUnitPricingBaseMeasure
@@ -1972,9 +1974,9 @@ class ProductShippingWeight(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductStatus(typing_extensions.TypedDict, total=False):
     creationDate: str
-    destinationStatuses: typing.List[ProductStatusDestinationStatus]
+    destinationStatuses: _list[ProductStatusDestinationStatus]
     googleExpirationDate: str
-    itemLevelIssues: typing.List[ProductStatusItemLevelIssue]
+    itemLevelIssues: _list[ProductStatusItemLevelIssue]
     kind: str
     lastUpdateDate: str
     link: str
@@ -1983,15 +1985,15 @@ class ProductStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProductStatusDestinationStatus(typing_extensions.TypedDict, total=False):
-    approvedCountries: typing.List[str]
+    approvedCountries: _list[str]
     destination: str
-    disapprovedCountries: typing.List[str]
-    pendingCountries: typing.List[str]
+    disapprovedCountries: _list[str]
+    pendingCountries: _list[str]
     status: str
 
 @typing.type_check_only
 class ProductStatusItemLevelIssue(typing_extensions.TypedDict, total=False):
-    applicableCountries: typing.List[str]
+    applicableCountries: _list[str]
     attributeName: str
     code: str
     description: str
@@ -2033,33 +2035,33 @@ class ProductWeight(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProductsCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ProductsCustomBatchRequestEntry]
+    entries: _list[ProductsCustomBatchRequestEntry]
 
 @typing.type_check_only
-class ProductsCustomBatchRequestEntry(typing.Dict[str, typing.Any]): ...
+class ProductsCustomBatchRequestEntry(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ProductsCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ProductsCustomBatchResponseEntry]
+    entries: _list[ProductsCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
-class ProductsCustomBatchResponseEntry(typing.Dict[str, typing.Any]): ...
+class ProductsCustomBatchResponseEntry(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ProductsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[Product]
+    resources: _list[Product]
 
 @typing.type_check_only
 class ProductstatusesCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ProductstatusesCustomBatchRequestEntry]
+    entries: _list[ProductstatusesCustomBatchRequestEntry]
 
 @typing.type_check_only
 class ProductstatusesCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
     batchId: int
-    destinations: typing.List[str]
+    destinations: _list[str]
     includeAttributes: bool
     merchantId: str
     method: str
@@ -2067,7 +2069,7 @@ class ProductstatusesCustomBatchRequestEntry(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class ProductstatusesCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ProductstatusesCustomBatchResponseEntry]
+    entries: _list[ProductstatusesCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -2081,12 +2083,12 @@ class ProductstatusesCustomBatchResponseEntry(typing_extensions.TypedDict, total
 class ProductstatusesListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[ProductStatus]
+    resources: _list[ProductStatus]
 
 @typing.type_check_only
 class Promotion(typing_extensions.TypedDict, total=False):
-    brand: typing.List[str]
-    brandExclusion: typing.List[str]
+    brand: _list[str]
+    brandExclusion: _list[str]
     contentLanguage: str
     couponValueType: typing_extensions.Literal[
         "COUPON_VALUE_TYPE_UNSPECIFIED",
@@ -2109,10 +2111,10 @@ class Promotion(typing_extensions.TypedDict, total=False):
     genericRedemptionCode: str
     getThisQuantityDiscounted: int
     id: str
-    itemGroupId: typing.List[str]
-    itemGroupIdExclusion: typing.List[str]
-    itemId: typing.List[str]
-    itemIdExclusion: typing.List[str]
+    itemGroupId: _list[str]
+    itemGroupIdExclusion: _list[str]
+    itemId: _list[str]
+    itemIdExclusion: _list[str]
     limitQuantity: int
     limitValue: PriceAmount
     longTitle: str
@@ -2128,30 +2130,30 @@ class Promotion(typing_extensions.TypedDict, total=False):
     productApplicability: typing_extensions.Literal[
         "PRODUCT_APPLICABILITY_UNSPECIFIED", "ALL_PRODUCTS", "PRODUCT_SPECIFIC"
     ]
-    productType: typing.List[str]
-    productTypeExclusion: typing.List[str]
-    promotionDestinationIds: typing.List[str]
+    productType: _list[str]
+    productTypeExclusion: _list[str]
+    promotionDestinationIds: _list[str]
     promotionDisplayDates: str
     promotionEffectiveDates: str
     promotionId: str
-    redemptionChannel: typing.List[str]
-    shippingServiceNames: typing.List[str]
+    redemptionChannel: _list[str]
+    shippingServiceNames: _list[str]
     targetCountry: str
 
 @typing.type_check_only
 class PubsubNotificationSettings(typing_extensions.TypedDict, total=False):
     cloudTopicName: str
     kind: str
-    registeredEvents: typing.List[str]
+    registeredEvents: _list[str]
 
 @typing.type_check_only
 class RateGroup(typing_extensions.TypedDict, total=False):
-    applicableShippingLabels: typing.List[str]
-    carrierRates: typing.List[CarrierRate]
+    applicableShippingLabels: _list[str]
+    carrierRates: _list[CarrierRate]
     mainTable: Table
     name: str
     singleValue: Value
-    subtables: typing.List[Table]
+    subtables: _list[Table]
 
 @typing.type_check_only
 class RefundReason(typing_extensions.TypedDict, total=False):
@@ -2170,11 +2172,11 @@ class Region(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RegionGeoTargetArea(typing_extensions.TypedDict, total=False):
-    geotargetCriteriaIds: typing.List[str]
+    geotargetCriteriaIds: _list[str]
 
 @typing.type_check_only
 class RegionPostalCodeArea(typing_extensions.TypedDict, total=False):
-    postalCodes: typing.List[RegionPostalCodeAreaPostalCodeRange]
+    postalCodes: _list[RegionPostalCodeAreaPostalCodeRange]
     regionCode: str
 
 @typing.type_check_only
@@ -2185,7 +2187,7 @@ class RegionPostalCodeAreaPostalCodeRange(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class RegionalInventory(typing_extensions.TypedDict, total=False):
     availability: str
-    customAttributes: typing.List[CustomAttribute]
+    customAttributes: _list[CustomAttribute]
     kind: str
     price: Price
     regionId: str
@@ -2194,18 +2196,18 @@ class RegionalInventory(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RegionalinventoryCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[RegionalinventoryCustomBatchRequestEntry]
+    entries: _list[RegionalinventoryCustomBatchRequestEntry]
 
 @typing.type_check_only
-class RegionalinventoryCustomBatchRequestEntry(typing.Dict[str, typing.Any]): ...
+class RegionalinventoryCustomBatchRequestEntry(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class RegionalinventoryCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[RegionalinventoryCustomBatchResponseEntry]
+    entries: _list[RegionalinventoryCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
-class RegionalinventoryCustomBatchResponseEntry(typing.Dict[str, typing.Any]): ...
+class RegionalinventoryCustomBatchResponseEntry(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class ReportRow(typing_extensions.TypedDict, total=False):
@@ -2218,10 +2220,10 @@ class RepricingProductReport(typing_extensions.TypedDict, total=False):
     buyboxWinningProductStats: RepricingProductReportBuyboxWinningProductStats
     date: Date
     highWatermark: PriceAmount
-    inapplicabilityDetails: typing.List[InapplicabilityDetails]
+    inapplicabilityDetails: _list[InapplicabilityDetails]
     lowWatermark: PriceAmount
     orderItemCount: int
-    ruleIds: typing.List[str]
+    ruleIds: _list[str]
     totalGmv: PriceAmount
     type: typing_extensions.Literal[
         "REPRICING_RULE_TYPE_UNSPECIFIED",
@@ -2265,7 +2267,7 @@ class RepricingRuleCostOfGoodsSaleRule(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class RepricingRuleEffectiveTime(typing_extensions.TypedDict, total=False):
-    fixedTimePeriods: typing.List[RepricingRuleEffectiveTimeFixedTimePeriod]
+    fixedTimePeriods: _list[RepricingRuleEffectiveTimeFixedTimePeriod]
 
 @typing.type_check_only
 class RepricingRuleEffectiveTimeFixedTimePeriod(
@@ -2291,15 +2293,15 @@ class RepricingRuleEligibleOfferMatcher(typing_extensions.TypedDict, total=False
 class RepricingRuleEligibleOfferMatcherStringMatcher(
     typing_extensions.TypedDict, total=False
 ):
-    strAttributes: typing.List[str]
+    strAttributes: _list[str]
 
 @typing.type_check_only
 class RepricingRuleReport(typing_extensions.TypedDict, total=False):
     buyboxWinningRuleStats: RepricingRuleReportBuyboxWinningRuleStats
     date: Date
-    impactedProducts: typing.List[str]
-    inapplicabilityDetails: typing.List[InapplicabilityDetails]
-    inapplicableProducts: typing.List[str]
+    impactedProducts: _list[str]
+    inapplicabilityDetails: _list[InapplicabilityDetails]
+    inapplicableProducts: _list[str]
     orderItemCount: int
     ruleId: str
     totalGmv: PriceAmount
@@ -2374,7 +2376,7 @@ class ReturnAddressAddress(typing_extensions.TypedDict, total=False):
     postalCode: str
     recipientName: str
     region: str
-    streetAddress: typing.List[str]
+    streetAddress: _list[str]
 
 @typing.type_check_only
 class ReturnPolicy(typing_extensions.TypedDict, total=False):
@@ -2382,24 +2384,24 @@ class ReturnPolicy(typing_extensions.TypedDict, total=False):
     kind: str
     label: str
     name: str
-    nonFreeReturnReasons: typing.List[str]
+    nonFreeReturnReasons: _list[str]
     policy: ReturnPolicyPolicy
     returnPolicyId: str
     returnShippingFee: Price
-    seasonalOverrides: typing.List[ReturnPolicySeasonalOverride]
+    seasonalOverrides: _list[ReturnPolicySeasonalOverride]
 
 @typing.type_check_only
 class ReturnPolicyOnline(typing_extensions.TypedDict, total=False):
-    countries: typing.List[str]
-    itemConditions: typing.List[str]
+    countries: _list[str]
+    itemConditions: _list[str]
     label: str
     name: str
     policy: ReturnPolicyOnlinePolicy
     restockingFee: ReturnPolicyOnlineRestockingFee
-    returnMethods: typing.List[str]
+    returnMethods: _list[str]
     returnPolicyId: str
     returnPolicyUri: str
-    returnReasonCategoryInfo: typing.List[ReturnPolicyOnlineReturnReasonCategoryInfo]
+    returnReasonCategoryInfo: _list[ReturnPolicyOnlineReturnReasonCategoryInfo]
 
 @typing.type_check_only
 class ReturnPolicyOnlinePolicy(typing_extensions.TypedDict, total=False):
@@ -2465,7 +2467,7 @@ class ReturnShipment(typing_extensions.TypedDict, total=False):
     deliveryDate: str
     returnMethodType: str
     shipmentId: str
-    shipmentTrackingInfos: typing.List[ShipmentTrackingInfo]
+    shipmentTrackingInfos: _list[ShipmentTrackingInfo]
     shippingDate: str
     state: str
 
@@ -2477,7 +2479,7 @@ class ReturnShippingLabel(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReturnaddressCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ReturnaddressCustomBatchRequestEntry]
+    entries: _list[ReturnaddressCustomBatchRequestEntry]
 
 @typing.type_check_only
 class ReturnaddressCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -2489,7 +2491,7 @@ class ReturnaddressCustomBatchRequestEntry(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class ReturnaddressCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ReturnaddressCustomBatchResponseEntry]
+    entries: _list[ReturnaddressCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -2503,11 +2505,11 @@ class ReturnaddressCustomBatchResponseEntry(typing_extensions.TypedDict, total=F
 class ReturnaddressListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[ReturnAddress]
+    resources: _list[ReturnAddress]
 
 @typing.type_check_only
 class ReturnpolicyCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ReturnpolicyCustomBatchRequestEntry]
+    entries: _list[ReturnpolicyCustomBatchRequestEntry]
 
 @typing.type_check_only
 class ReturnpolicyCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -2519,7 +2521,7 @@ class ReturnpolicyCustomBatchRequestEntry(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class ReturnpolicyCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ReturnpolicyCustomBatchResponseEntry]
+    entries: _list[ReturnpolicyCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -2532,11 +2534,11 @@ class ReturnpolicyCustomBatchResponseEntry(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class ReturnpolicyListResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    resources: typing.List[ReturnPolicy]
+    resources: _list[ReturnPolicy]
 
 @typing.type_check_only
 class Row(typing_extensions.TypedDict, total=False):
-    cells: typing.List[Value]
+    cells: _list[Value]
 
 @typing.type_check_only
 class SearchRequest(typing_extensions.TypedDict, total=False):
@@ -2547,7 +2549,7 @@ class SearchRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SearchResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    results: typing.List[ReportRow]
+    results: _list[ReportRow]
 
 @typing.type_check_only
 class Segments(typing_extensions.TypedDict, total=False):
@@ -2591,7 +2593,7 @@ class Service(typing_extensions.TypedDict, total=False):
     minimumOrderValueTable: MinimumOrderValueTable
     name: str
     pickupService: PickupCarrierService
-    rateGroups: typing.List[RateGroup]
+    rateGroups: _list[RateGroup]
     shipmentType: str
 
 @typing.type_check_only
@@ -2603,7 +2605,7 @@ class SettlementReport(typing_extensions.TypedDict, total=False):
     startDate: str
     transferAmount: Price
     transferDate: str
-    transferIds: typing.List[str]
+    transferIds: _list[str]
 
 @typing.type_check_only
 class SettlementTransaction(typing_extensions.TypedDict, total=False):
@@ -2630,7 +2632,7 @@ class SettlementTransactionIdentifiers(typing_extensions.TypedDict, total=False)
     merchantOrderId: str
     orderItemId: str
     settlementEntryId: str
-    shipmentIds: typing.List[str]
+    shipmentIds: _list[str]
     transactionId: str
 
 @typing.type_check_only
@@ -2642,25 +2644,25 @@ class SettlementTransactionTransaction(typing_extensions.TypedDict, total=False)
 class SettlementreportsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[SettlementReport]
+    resources: _list[SettlementReport]
 
 @typing.type_check_only
 class SettlementtransactionsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[SettlementTransaction]
+    resources: _list[SettlementTransaction]
 
 @typing.type_check_only
 class ShipmentInvoice(typing_extensions.TypedDict, total=False):
     invoiceSummary: InvoiceSummary
-    lineItemInvoices: typing.List[ShipmentInvoiceLineItemInvoice]
+    lineItemInvoices: _list[ShipmentInvoiceLineItemInvoice]
     shipmentGroupId: str
 
 @typing.type_check_only
 class ShipmentInvoiceLineItemInvoice(typing_extensions.TypedDict, total=False):
     lineItemId: str
     productId: str
-    shipmentUnitIds: typing.List[str]
+    shipmentUnitIds: _list[str]
     unitInvoice: UnitInvoice
 
 @typing.type_check_only
@@ -2671,12 +2673,12 @@ class ShipmentTrackingInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ShippingSettings(typing_extensions.TypedDict, total=False):
     accountId: str
-    postalCodeGroups: typing.List[PostalCodeGroup]
-    services: typing.List[Service]
+    postalCodeGroups: _list[PostalCodeGroup]
+    services: _list[Service]
 
 @typing.type_check_only
 class ShippingsettingsCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ShippingsettingsCustomBatchRequestEntry]
+    entries: _list[ShippingsettingsCustomBatchRequestEntry]
 
 @typing.type_check_only
 class ShippingsettingsCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
@@ -2688,7 +2690,7 @@ class ShippingsettingsCustomBatchRequestEntry(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class ShippingsettingsCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: typing.List[ShippingsettingsCustomBatchResponseEntry]
+    entries: _list[ShippingsettingsCustomBatchResponseEntry]
     kind: str
 
 @typing.type_check_only
@@ -2704,14 +2706,14 @@ class ShippingsettingsCustomBatchResponseEntry(
 class ShippingsettingsGetSupportedCarriersResponse(
     typing_extensions.TypedDict, total=False
 ):
-    carriers: typing.List[CarriersCarrier]
+    carriers: _list[CarriersCarrier]
     kind: str
 
 @typing.type_check_only
 class ShippingsettingsGetSupportedHolidaysResponse(
     typing_extensions.TypedDict, total=False
 ):
-    holidays: typing.List[HolidaysHoliday]
+    holidays: _list[HolidaysHoliday]
     kind: str
 
 @typing.type_check_only
@@ -2719,17 +2721,17 @@ class ShippingsettingsGetSupportedPickupServicesResponse(
     typing_extensions.TypedDict, total=False
 ):
     kind: str
-    pickupServices: typing.List[PickupServicesPickupService]
+    pickupServices: _list[PickupServicesPickupService]
 
 @typing.type_check_only
 class ShippingsettingsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    resources: typing.List[ShippingSettings]
+    resources: _list[ShippingSettings]
 
 @typing.type_check_only
 class ShoppingAdsProgramStatus(typing_extensions.TypedDict, total=False):
-    regionStatuses: typing.List[ShoppingAdsProgramStatusRegionStatus]
+    regionStatuses: _list[ShoppingAdsProgramStatusRegionStatus]
     state: typing_extensions.Literal[
         "PROGRAM_STATE_UNSPECIFIED", "ONBOARDED", "NOT_ONBOARDED"
     ]
@@ -2747,45 +2749,45 @@ class ShoppingAdsProgramStatusRegionStatus(typing_extensions.TypedDict, total=Fa
         "ONBOARDING",
     ]
     ineligibilityReason: str
-    regionCodes: typing.List[str]
+    regionCodes: _list[str]
     reviewEligibilityStatus: typing_extensions.Literal[
         "REVIEW_ELIGIBILITY_UNSPECIFIED", "ELIGIBLE", "INELIGIBLE"
     ]
-    reviewIssues: typing.List[str]
+    reviewIssues: _list[str]
 
 @typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
     columnHeaders: Headers
     name: str
     rowHeaders: Headers
-    rows: typing.List[Row]
+    rows: _list[Row]
 
 @typing.type_check_only
 class TestOrder(typing_extensions.TypedDict, total=False):
     deliveryDetails: TestOrderDeliveryDetails
     enableOrderinvoices: bool
     kind: str
-    lineItems: typing.List[TestOrderLineItem]
+    lineItems: _list[TestOrderLineItem]
     notificationMode: str
     pickupDetails: TestOrderPickupDetails
     predefinedBillingAddress: str
     predefinedDeliveryAddress: str
     predefinedEmail: str
     predefinedPickupDetails: str
-    promotions: typing.List[OrderPromotion]
+    promotions: _list[OrderPromotion]
     shippingCost: Price
     shippingOption: str
 
 @typing.type_check_only
 class TestOrderAddress(typing_extensions.TypedDict, total=False):
     country: str
-    fullAddress: typing.List[str]
+    fullAddress: _list[str]
     isPostOfficeBox: bool
     locality: str
     postalCode: str
     recipientName: str
     region: str
-    streetAddress: typing.List[str]
+    streetAddress: _list[str]
 
 @typing.type_check_only
 class TestOrderDeliveryDetails(typing_extensions.TypedDict, total=False):
@@ -2805,7 +2807,7 @@ class TestOrderLineItemProduct(typing_extensions.TypedDict, total=False):
     brand: str
     condition: str
     contentLanguage: str
-    fees: typing.List[OrderLineItemProductFee]
+    fees: _list[OrderLineItemProductFee]
     gtin: str
     imageLink: str
     itemGroupId: str
@@ -2814,14 +2816,14 @@ class TestOrderLineItemProduct(typing_extensions.TypedDict, total=False):
     price: Price
     targetCountry: str
     title: str
-    variantAttributes: typing.List[OrderLineItemProductVariantAttribute]
+    variantAttributes: _list[OrderLineItemProductVariantAttribute]
 
 @typing.type_check_only
 class TestOrderPickupDetails(typing_extensions.TypedDict, total=False):
     locationCode: str
     pickupLocationAddress: TestOrderAddress
     pickupLocationType: str
-    pickupPersons: typing.List[TestOrderPickupDetailsPickupPerson]
+    pickupPersons: _list[TestOrderPickupDetailsPickupPerson]
 
 @typing.type_check_only
 class TestOrderPickupDetailsPickupPerson(typing_extensions.TypedDict, total=False):
@@ -2835,13 +2837,13 @@ class TimeZone(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TransitTable(typing_extensions.TypedDict, total=False):
-    postalCodeGroupNames: typing.List[str]
-    rows: typing.List[TransitTableTransitTimeRow]
-    transitTimeLabels: typing.List[str]
+    postalCodeGroupNames: _list[str]
+    rows: _list[TransitTableTransitTimeRow]
+    transitTimeLabels: _list[str]
 
 @typing.type_check_only
 class TransitTableTransitTimeRow(typing_extensions.TypedDict, total=False):
-    values: typing.List[TransitTableTransitTimeRowTransitTimeValue]
+    values: _list[TransitTableTransitTimeRowTransitTimeValue]
 
 @typing.type_check_only
 class TransitTableTransitTimeRowTransitTimeValue(
@@ -2852,9 +2854,9 @@ class TransitTableTransitTimeRowTransitTimeValue(
 
 @typing.type_check_only
 class UnitInvoice(typing_extensions.TypedDict, total=False):
-    additionalCharges: typing.List[UnitInvoiceAdditionalCharge]
+    additionalCharges: _list[UnitInvoiceAdditionalCharge]
     unitPrice: Price
-    unitPriceTaxes: typing.List[UnitInvoiceTaxLine]
+    unitPriceTaxes: _list[UnitInvoiceTaxLine]
 
 @typing.type_check_only
 class UnitInvoiceAdditionalCharge(typing_extensions.TypedDict, total=False):

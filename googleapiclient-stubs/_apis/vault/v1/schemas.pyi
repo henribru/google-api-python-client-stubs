@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AccountCount(typing_extensions.TypedDict, total=False):
     account: UserInfo
@@ -21,7 +23,7 @@ class AccountCountError(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountInfo(typing_extensions.TypedDict, total=False):
-    emails: typing.List[str]
+    emails: _list[str]
 
 @typing.type_check_only
 class AddHeldAccountResult(typing_extensions.TypedDict, total=False):
@@ -30,12 +32,12 @@ class AddHeldAccountResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AddHeldAccountsRequest(typing_extensions.TypedDict, total=False):
-    accountIds: typing.List[str]
-    emails: typing.List[str]
+    accountIds: _list[str]
+    emails: _list[str]
 
 @typing.type_check_only
 class AddHeldAccountsResponse(typing_extensions.TypedDict, total=False):
-    responses: typing.List[AddHeldAccountResult]
+    responses: _list[AddHeldAccountResult]
 
 @typing.type_check_only
 class AddMatterPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -62,7 +64,7 @@ class CloudStorageFile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CloudStorageSink(typing_extensions.TypedDict, total=False):
-    files: typing.List[CloudStorageFile]
+    files: _list[CloudStorageFile]
 
 @typing.type_check_only
 class CorpusQuery(typing_extensions.TypedDict, total=False):
@@ -139,10 +141,10 @@ class ExportStats(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GroupsCountResult(typing_extensions.TypedDict, total=False):
-    accountCountErrors: typing.List[AccountCountError]
-    accountCounts: typing.List[AccountCount]
+    accountCountErrors: _list[AccountCountError]
+    accountCounts: _list[AccountCount]
     matchingAccountsCount: str
-    nonQueryableAccounts: typing.List[str]
+    nonQueryableAccounts: _list[str]
     queriedAccountsCount: str
 
 @typing.type_check_only
@@ -155,7 +157,7 @@ class HangoutsChatExportOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HangoutsChatInfo(typing_extensions.TypedDict, total=False):
-    roomId: typing.List[str]
+    roomId: _list[str]
 
 @typing.type_check_only
 class HangoutsChatOptions(typing_extensions.TypedDict, total=False):
@@ -197,11 +199,11 @@ class HeldOrgUnit(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HeldVoiceQuery(typing_extensions.TypedDict, total=False):
-    coveredData: typing.List[str]
+    coveredData: _list[str]
 
 @typing.type_check_only
 class Hold(typing_extensions.TypedDict, total=False):
-    accounts: typing.List[HeldAccount]
+    accounts: _list[HeldAccount]
     corpus: typing_extensions.Literal[
         "CORPUS_TYPE_UNSPECIFIED", "DRIVE", "MAIL", "GROUPS", "HANGOUTS_CHAT", "VOICE"
     ]
@@ -213,39 +215,39 @@ class Hold(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListExportsResponse(typing_extensions.TypedDict, total=False):
-    exports: typing.List[Export]
+    exports: _list[Export]
     nextPageToken: str
 
 @typing.type_check_only
 class ListHeldAccountsResponse(typing_extensions.TypedDict, total=False):
-    accounts: typing.List[HeldAccount]
+    accounts: _list[HeldAccount]
 
 @typing.type_check_only
 class ListHoldsResponse(typing_extensions.TypedDict, total=False):
-    holds: typing.List[Hold]
+    holds: _list[Hold]
     nextPageToken: str
 
 @typing.type_check_only
 class ListMattersResponse(typing_extensions.TypedDict, total=False):
-    matters: typing.List[Matter]
+    matters: _list[Matter]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListSavedQueriesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    savedQueries: typing.List[SavedQuery]
+    savedQueries: _list[SavedQuery]
 
 @typing.type_check_only
 class MailCountResult(typing_extensions.TypedDict, total=False):
-    accountCountErrors: typing.List[AccountCountError]
-    accountCounts: typing.List[AccountCount]
+    accountCountErrors: _list[AccountCountError]
+    accountCounts: _list[AccountCount]
     matchingAccountsCount: str
-    nonQueryableAccounts: typing.List[str]
+    nonQueryableAccounts: _list[str]
     queriedAccountsCount: str
 
 @typing.type_check_only
@@ -261,7 +263,7 @@ class MailOptions(typing_extensions.TypedDict, total=False):
 class Matter(typing_extensions.TypedDict, total=False):
     description: str
     matterId: str
-    matterPermissions: typing.List[MatterPermission]
+    matterPermissions: _list[MatterPermission]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED", "DELETED"]
 
@@ -274,9 +276,9 @@ class MatterPermission(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OrgUnitInfo(typing_extensions.TypedDict, total=False):
@@ -324,11 +326,11 @@ class Query(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RemoveHeldAccountsRequest(typing_extensions.TypedDict, total=False):
-    accountIds: typing.List[str]
+    accountIds: _list[str]
 
 @typing.type_check_only
 class RemoveHeldAccountsResponse(typing_extensions.TypedDict, total=False):
-    statuses: typing.List[Status]
+    statuses: _list[Status]
 
 @typing.type_check_only
 class RemoveMatterPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -351,17 +353,17 @@ class SavedQuery(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SharedDriveInfo(typing_extensions.TypedDict, total=False):
-    sharedDriveIds: typing.List[str]
+    sharedDriveIds: _list[str]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TeamDriveInfo(typing_extensions.TypedDict, total=False):
-    teamDriveIds: typing.List[str]
+    teamDriveIds: _list[str]
 
 @typing.type_check_only
 class UndeleteMatterRequest(typing_extensions.TypedDict, total=False): ...
@@ -377,4 +379,4 @@ class VoiceExportOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VoiceOptions(typing_extensions.TypedDict, total=False):
-    coveredData: typing.List[str]
+    coveredData: _list[str]

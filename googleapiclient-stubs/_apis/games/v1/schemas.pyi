@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AchievementDefinition(typing_extensions.TypedDict, total=False):
     achievementType: typing_extensions.Literal[
@@ -24,7 +26,7 @@ class AchievementDefinition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AchievementDefinitionsListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[AchievementDefinition]
+    items: _list[AchievementDefinition]
     kind: str
     nextPageToken: str
 
@@ -55,12 +57,12 @@ class AchievementUnlockResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AchievementUpdateMultipleRequest(typing_extensions.TypedDict, total=False):
     kind: str
-    updates: typing.List[AchievementUpdateRequest]
+    updates: _list[AchievementUpdateRequest]
 
 @typing.type_check_only
 class AchievementUpdateMultipleResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    updatedAchievements: typing.List[AchievementUpdateResponse]
+    updatedAchievements: _list[AchievementUpdateResponse]
 
 @typing.type_check_only
 class AchievementUpdateRequest(typing_extensions.TypedDict, total=False):
@@ -90,13 +92,13 @@ class AchievementUpdateResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Application(typing_extensions.TypedDict, total=False):
     achievement_count: int
-    assets: typing.List[ImageAsset]
+    assets: _list[ImageAsset]
     author: str
     category: ApplicationCategory
     description: str
-    enabledFeatures: typing.List[str]
+    enabledFeatures: _list[str]
     id: str
-    instances: typing.List[Instance]
+    instances: _list[Instance]
     kind: str
     lastUpdatedTimestamp: str
     leaderboard_count: int
@@ -123,7 +125,7 @@ class Category(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CategoryListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Category]
+    items: _list[Category]
     kind: str
     nextPageToken: str
 
@@ -152,7 +154,7 @@ class EventChild(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EventDefinition(typing_extensions.TypedDict, total=False):
-    childEvents: typing.List[EventChild]
+    childEvents: _list[EventChild]
     description: str
     displayName: str
     id: str
@@ -165,7 +167,7 @@ class EventDefinition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EventDefinitionListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[EventDefinition]
+    items: _list[EventDefinition]
     kind: str
     nextPageToken: str
 
@@ -179,7 +181,7 @@ class EventPeriodRange(typing_extensions.TypedDict, total=False):
 class EventPeriodUpdate(typing_extensions.TypedDict, total=False):
     kind: str
     timePeriod: EventPeriodRange
-    updates: typing.List[EventUpdateRequest]
+    updates: _list[EventUpdateRequest]
 
 @typing.type_check_only
 class EventRecordFailure(typing_extensions.TypedDict, total=False):
@@ -194,7 +196,7 @@ class EventRecordRequest(typing_extensions.TypedDict, total=False):
     currentTimeMillis: str
     kind: str
     requestId: str
-    timePeriods: typing.List[EventPeriodUpdate]
+    timePeriods: _list[EventPeriodUpdate]
 
 @typing.type_check_only
 class EventUpdateRequest(typing_extensions.TypedDict, total=False):
@@ -204,10 +206,10 @@ class EventUpdateRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EventUpdateResponse(typing_extensions.TypedDict, total=False):
-    batchFailures: typing.List[EventBatchRecordFailure]
-    eventFailures: typing.List[EventRecordFailure]
+    batchFailures: _list[EventBatchRecordFailure]
+    eventFailures: _list[EventRecordFailure]
     kind: str
-    playerEvents: typing.List[PlayerEvent]
+    playerEvents: _list[PlayerEvent]
 
 @typing.type_check_only
 class GamesAchievementIncrement(typing_extensions.TypedDict, total=False):
@@ -292,7 +294,7 @@ class LeaderboardEntry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LeaderboardListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Leaderboard]
+    items: _list[Leaderboard]
     kind: str
     nextPageToken: str
 
@@ -306,7 +308,7 @@ class LeaderboardScoreRank(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LeaderboardScores(typing_extensions.TypedDict, total=False):
-    items: typing.List[LeaderboardEntry]
+    items: _list[LeaderboardEntry]
     kind: str
     nextPageToken: str
     numScores: str
@@ -317,7 +319,7 @@ class LeaderboardScores(typing_extensions.TypedDict, total=False):
 class MetagameConfig(typing_extensions.TypedDict, total=False):
     currentVersion: int
     kind: str
-    playerLevels: typing.List[PlayerLevel]
+    playerLevels: _list[PlayerLevel]
 
 @typing.type_check_only
 class Player(typing_extensions.TypedDict, total=False):
@@ -330,7 +332,7 @@ class Player(typing_extensions.TypedDict, total=False):
         "FRIEND_STATUS_UNSPECIFIED", "NO_RELATIONSHIP", "FRIEND"
     ]
     kind: str
-    name: typing.Dict[str, typing.Any]
+    name: dict[str, typing.Any]
     originalPlayerId: str
     playerId: str
     profileSettings: ProfileSettings
@@ -350,7 +352,7 @@ class PlayerAchievement(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PlayerAchievementListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[PlayerAchievement]
+    items: _list[PlayerAchievement]
     kind: str
     nextPageToken: str
 
@@ -364,7 +366,7 @@ class PlayerEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PlayerEventListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[PlayerEvent]
+    items: _list[PlayerEvent]
     kind: str
     nextPageToken: str
 
@@ -393,7 +395,7 @@ class PlayerLeaderboardScore(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PlayerLeaderboardScoreListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[PlayerLeaderboardScore]
+    items: _list[PlayerLeaderboardScore]
     kind: str
     nextPageToken: str
     player: Player
@@ -407,7 +409,7 @@ class PlayerLevel(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PlayerListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Player]
+    items: _list[Player]
     kind: str
     nextPageToken: str
 
@@ -424,21 +426,21 @@ class PlayerScore(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PlayerScoreListResponse(typing_extensions.TypedDict, total=False):
     kind: str
-    submittedScores: typing.List[PlayerScoreResponse]
+    submittedScores: _list[PlayerScoreResponse]
 
 @typing.type_check_only
 class PlayerScoreResponse(typing_extensions.TypedDict, total=False):
-    beatenScoreTimeSpans: typing.List[str]
+    beatenScoreTimeSpans: _list[str]
     formattedScore: str
     kind: str
     leaderboardId: str
     scoreTag: str
-    unbeatenScores: typing.List[PlayerScore]
+    unbeatenScores: _list[PlayerScore]
 
 @typing.type_check_only
 class PlayerScoreSubmissionList(typing_extensions.TypedDict, total=False):
     kind: str
-    scores: typing.List[ScoreSubmission]
+    scores: _list[ScoreSubmission]
 
 @typing.type_check_only
 class ProfileSettings(typing_extensions.TypedDict, total=False):
@@ -491,7 +493,7 @@ class SnapshotImage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SnapshotListResponse(typing_extensions.TypedDict, total=False):
-    items: typing.List[Snapshot]
+    items: _list[Snapshot]
     kind: str
     nextPageToken: str
 

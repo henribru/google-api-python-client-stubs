@@ -2,15 +2,17 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ChannelGrouping(typing_extensions.TypedDict, total=False):
     fallbackName: str
     name: str
-    rules: typing.List[Rule]
+    rules: _list[Rule]
 
 @typing.type_check_only
 class DisjunctiveMatchStatement(typing_extensions.TypedDict, total=False):
-    eventFilters: typing.List[EventFilter]
+    eventFilters: _list[EventFilter]
 
 @typing.type_check_only
 class EventFilter(typing_extensions.TypedDict, total=False):
@@ -316,13 +318,13 @@ class FilterPair(typing_extensions.TypedDict, total=False):
 class ListQueriesResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    queries: typing.List[Query]
+    queries: _list[Query]
 
 @typing.type_check_only
 class ListReportsResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
-    reports: typing.List[Report]
+    reports: _list[Report]
 
 @typing.type_check_only
 class Options(typing_extensions.TypedDict, total=False):
@@ -331,10 +333,10 @@ class Options(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Parameters(typing_extensions.TypedDict, total=False):
-    filters: typing.List[FilterPair]
-    groupBys: typing.List[str]
+    filters: _list[FilterPair]
+    groupBys: _list[str]
     includeInviteData: bool
-    metrics: typing.List[str]
+    metrics: _list[str]
     options: Options
     type: typing_extensions.Literal[
         "TYPE_GENERAL",
@@ -375,13 +377,13 @@ class Parameters(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PathFilter(typing_extensions.TypedDict, total=False):
-    eventFilters: typing.List[EventFilter]
+    eventFilters: _list[EventFilter]
     pathMatchPosition: typing_extensions.Literal["ANY", "FIRST", "LAST"]
 
 @typing.type_check_only
 class PathQueryOptions(typing_extensions.TypedDict, total=False):
     channelGrouping: ChannelGrouping
-    pathFilters: typing.List[PathFilter]
+    pathFilters: _list[PathFilter]
 
 @typing.type_check_only
 class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
@@ -680,7 +682,7 @@ class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
     match: typing_extensions.Literal[
         "UNKNOWN", "EXACT", "PARTIAL", "BEGINS_WITH", "WILDCARD_EXPRESSION"
     ]
-    values: typing.List[str]
+    values: _list[str]
 
 @typing.type_check_only
 class Query(typing_extensions.TypedDict, total=False):
@@ -725,7 +727,7 @@ class QueryMetadata(typing_extensions.TypedDict, total=False):
     reportCount: int
     running: bool
     sendNotification: bool
-    shareEmailAddress: typing.List[str]
+    shareEmailAddress: _list[str]
     title: str
 
 @typing.type_check_only
@@ -788,7 +790,7 @@ class ReportStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Rule(typing_extensions.TypedDict, total=False):
-    disjunctiveMatchStatements: typing.List[DisjunctiveMatchStatement]
+    disjunctiveMatchStatements: _list[DisjunctiveMatchStatement]
     name: str
 
 @typing.type_check_only

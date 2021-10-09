@@ -2,15 +2,17 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class ApplyParametersRequest(typing_extensions.TypedDict, total=False):
     applyAll: bool
-    nodeIds: typing.List[str]
+    nodeIds: _list[str]
 
 @typing.type_check_only
 class ApplySoftwareUpdateRequest(typing_extensions.TypedDict, total=False):
     applyAll: bool
-    nodeIds: typing.List[str]
+    nodeIds: _list[str]
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -39,7 +41,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class GoogleCloudMemcacheV1beta2LocationMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    availableZones: typing.Dict[str, typing.Any]
+    availableZones: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudMemcacheV1beta2OperationMetadata(
@@ -64,18 +66,18 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
 ):
     consumerDefinedName: str
     createTime: str
-    labels: typing.Dict[str, typing.Any]
-    maintenancePolicyNames: typing.Dict[str, typing.Any]
-    maintenanceSchedules: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
+    maintenancePolicyNames: dict[str, typing.Any]
+    maintenanceSchedules: dict[str, typing.Any]
     maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
     name: str
-    producerMetadata: typing.Dict[str, typing.Any]
-    provisionedResources: typing.List[
+    producerMetadata: dict[str, typing.Any]
+    provisionedResources: _list[
         GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource
     ]
     slmInstanceTemplate: str
     sloMetadata: GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata
-    softwareVersions: typing.Dict[str, typing.Any]
+    softwareVersions: dict[str, typing.Any]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -104,7 +106,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
 ):
     exclude: bool
     isRollback: bool
-    maintenancePolicies: typing.Dict[str, typing.Any]
+    maintenancePolicies: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
@@ -118,7 +120,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
     typing_extensions.TypedDict, total=False
 ):
-    eligibilities: typing.Dict[str, typing.Any]
+    eligibilities: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource(
@@ -138,7 +140,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility(
 class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    nodes: typing.List[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
+    nodes: _list[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
     tier: str
 
@@ -148,10 +150,10 @@ class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     discoveryEndpoint: str
     displayName: str
-    instanceMessages: typing.List[InstanceMessage]
-    labels: typing.Dict[str, typing.Any]
+    instanceMessages: _list[InstanceMessage]
+    labels: dict[str, typing.Any]
     memcacheFullVersion: str
-    memcacheNodes: typing.List[Node]
+    memcacheNodes: _list[Node]
     memcacheVersion: typing_extensions.Literal[
         "MEMCACHE_VERSION_UNSPECIFIED", "MEMCACHE_1_5"
     ]
@@ -169,7 +171,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
     updateAvailable: bool
     updateTime: str
-    zones: typing.List[str]
+    zones: _list[str]
 
 @typing.type_check_only
 class InstanceMessage(typing_extensions.TypedDict, total=False):
@@ -179,36 +181,36 @@ class InstanceMessage(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    resources: typing.List[Instance]
-    unreachable: typing.List[str]
+    resources: _list[Instance]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
-    availableZones: typing.Dict[str, typing.Any]
+    availableZones: dict[str, typing.Any]
 
 @typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
     updatePolicy: UpdatePolicy
@@ -222,7 +224,7 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MemcacheParameters(typing_extensions.TypedDict, total=False):
     id: str
-    params: typing.Dict[str, typing.Any]
+    params: dict[str, typing.Any]
 
 @typing.type_check_only
 class Node(typing_extensions.TypedDict, total=False):
@@ -245,9 +247,9 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -277,7 +279,7 @@ class Schedule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -295,12 +297,12 @@ class UpdateParametersRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal["UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER"]
-    denyMaintenancePeriods: typing.List[DenyMaintenancePeriod]
+    denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 
 @typing.type_check_only
 class WeeklyCycle(typing_extensions.TypedDict, total=False):
-    schedule: typing.List[Schedule]
+    schedule: _list[Schedule]
 
 @typing.type_check_only
 class ZoneMetadata(typing_extensions.TypedDict, total=False): ...

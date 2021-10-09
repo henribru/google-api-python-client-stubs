@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     encryptionInfo: EncryptionInfo
@@ -45,7 +47,7 @@ class CreateClusterMetadata(typing_extensions.TypedDict, total=False):
     finishTime: str
     originalRequest: CreateClusterRequest
     requestTime: str
-    tables: typing.Dict[str, typing.Any]
+    tables: dict[str, typing.Any]
 
 @typing.type_check_only
 class CreateClusterRequest(typing_extensions.TypedDict, total=False):
@@ -61,7 +63,7 @@ class CreateInstanceMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateInstanceRequest(typing_extensions.TypedDict, total=False):
-    clusters: typing.Dict[str, typing.Any]
+    clusters: dict[str, typing.Any]
     instance: Instance
     instanceId: str
     parent: str
@@ -82,7 +84,7 @@ class EncryptionInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FailureTrace(typing_extensions.TypedDict, total=False):
-    frames: typing.List[Frame]
+    frames: _list[Frame]
 
 @typing.type_check_only
 class Frame(typing_extensions.TypedDict, total=False):
@@ -94,7 +96,7 @@ class Frame(typing_extensions.TypedDict, total=False):
 class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal["STATE_NOT_KNOWN", "READY", "CREATING"]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PRODUCTION", "DEVELOPMENT"]
@@ -126,7 +128,7 @@ class RestoreTableMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class DeleteEventsResponse(typing_extensions.TypedDict, total=False): ...
 
@@ -9,7 +11,7 @@ class DeleteEventsResponse(typing_extensions.TypedDict, total=False): ...
 class ErrorContext(typing_extensions.TypedDict, total=False):
     httpRequest: HttpRequestContext
     reportLocation: SourceLocation
-    sourceReferences: typing.List[SourceReference]
+    sourceReferences: _list[SourceReference]
     user: str
 
 @typing.type_check_only
@@ -26,11 +28,11 @@ class ErrorGroup(typing_extensions.TypedDict, total=False):
     resolutionStatus: typing_extensions.Literal[
         "RESOLUTION_STATUS_UNSPECIFIED", "OPEN", "ACKNOWLEDGED", "RESOLVED", "MUTED"
     ]
-    trackingIssues: typing.List[TrackingIssue]
+    trackingIssues: _list[TrackingIssue]
 
 @typing.type_check_only
 class ErrorGroupStats(typing_extensions.TypedDict, total=False):
-    affectedServices: typing.List[ServiceContext]
+    affectedServices: _list[ServiceContext]
     affectedUsersCount: str
     count: str
     firstSeenTime: str
@@ -38,7 +40,7 @@ class ErrorGroupStats(typing_extensions.TypedDict, total=False):
     lastSeenTime: str
     numAffectedServices: int
     representative: ErrorEvent
-    timedCounts: typing.List[TimedCount]
+    timedCounts: _list[TimedCount]
 
 @typing.type_check_only
 class HttpRequestContext(typing_extensions.TypedDict, total=False):
@@ -51,13 +53,13 @@ class HttpRequestContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListEventsResponse(typing_extensions.TypedDict, total=False):
-    errorEvents: typing.List[ErrorEvent]
+    errorEvents: _list[ErrorEvent]
     nextPageToken: str
     timeRangeBegin: str
 
 @typing.type_check_only
 class ListGroupStatsResponse(typing_extensions.TypedDict, total=False):
-    errorGroupStats: typing.List[ErrorGroupStats]
+    errorGroupStats: _list[ErrorGroupStats]
     nextPageToken: str
     timeRangeBegin: str
 

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2Constraint(typing_extensions.TypedDict, total=False):
     booleanConstraint: GoogleCloudOrgpolicyV2ConstraintBooleanConstraint
@@ -29,7 +31,7 @@ class GoogleCloudOrgpolicyV2ConstraintListConstraint(
 class GoogleCloudOrgpolicyV2ListConstraintsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    constraints: typing.List[GoogleCloudOrgpolicyV2Constraint]
+    constraints: _list[GoogleCloudOrgpolicyV2Constraint]
     nextPageToken: str
 
 @typing.type_check_only
@@ -37,7 +39,7 @@ class GoogleCloudOrgpolicyV2ListPoliciesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
-    policies: typing.List[GoogleCloudOrgpolicyV2Policy]
+    policies: _list[GoogleCloudOrgpolicyV2Policy]
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2Policy(typing_extensions.TypedDict, total=False):
@@ -49,7 +51,7 @@ class GoogleCloudOrgpolicyV2PolicySpec(typing_extensions.TypedDict, total=False)
     etag: str
     inheritFromParent: bool
     reset: bool
-    rules: typing.List[GoogleCloudOrgpolicyV2PolicySpecPolicyRule]
+    rules: _list[GoogleCloudOrgpolicyV2PolicySpecPolicyRule]
     updateTime: str
 
 @typing.type_check_only
@@ -66,8 +68,8 @@ class GoogleCloudOrgpolicyV2PolicySpecPolicyRule(
 class GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues(
     typing_extensions.TypedDict, total=False
 ):
-    allowedValues: typing.List[str]
-    deniedValues: typing.List[str]
+    allowedValues: _list[str]
+    deniedValues: _list[str]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AdWordsLocationExtensions(typing_extensions.TypedDict, total=False):
     adPhone: str
@@ -14,11 +16,11 @@ class AssociateLocationRequest(typing_extensions.TypedDict, total=False):
 class Attribute(typing_extensions.TypedDict, total=False):
     name: str
     repeatedEnumValue: RepeatedEnumAttributeValue
-    uriValues: typing.List[UriAttributeValue]
+    uriValues: _list[UriAttributeValue]
     valueType: typing_extensions.Literal[
         "ATTRIBUTE_VALUE_TYPE_UNSPECIFIED", "BOOL", "ENUM", "URL", "REPEATED_ENUM"
     ]
-    values: typing.List[typing.Any]
+    values: _list[typing.Any]
 
 @typing.type_check_only
 class AttributeMetadata(typing_extensions.TypedDict, total=False):
@@ -27,7 +29,7 @@ class AttributeMetadata(typing_extensions.TypedDict, total=False):
     groupDisplayName: str
     parent: str
     repeatable: bool
-    valueMetadata: typing.List[AttributeValueMetadata]
+    valueMetadata: _list[AttributeValueMetadata]
     valueType: typing_extensions.Literal[
         "ATTRIBUTE_VALUE_TYPE_UNSPECIFIED", "BOOL", "ENUM", "URL", "REPEATED_ENUM"
     ]
@@ -39,35 +41,35 @@ class AttributeValueMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Attributes(typing_extensions.TypedDict, total=False):
-    attributes: typing.List[Attribute]
+    attributes: _list[Attribute]
     name: str
 
 @typing.type_check_only
 class BatchGetCategoriesResponse(typing_extensions.TypedDict, total=False):
-    categories: typing.List[Category]
+    categories: _list[Category]
 
 @typing.type_check_only
 class BusinessHours(typing_extensions.TypedDict, total=False):
-    periods: typing.List[TimePeriod]
+    periods: _list[TimePeriod]
 
 @typing.type_check_only
 class Categories(typing_extensions.TypedDict, total=False):
-    additionalCategories: typing.List[Category]
+    additionalCategories: _list[Category]
     primaryCategory: Category
 
 @typing.type_check_only
 class Category(typing_extensions.TypedDict, total=False):
     displayName: str
-    moreHoursTypes: typing.List[MoreHoursType]
+    moreHoursTypes: _list[MoreHoursType]
     name: str
-    serviceTypes: typing.List[ServiceType]
+    serviceTypes: _list[ServiceType]
 
 @typing.type_check_only
 class Chain(typing_extensions.TypedDict, total=False):
-    chainNames: typing.List[ChainName]
+    chainNames: _list[ChainName]
     locationCount: int
     name: str
-    websites: typing.List[ChainUri]
+    websites: _list[ChainUri]
 
 @typing.type_check_only
 class ChainName(typing_extensions.TypedDict, total=False):
@@ -120,17 +122,17 @@ class LatLng(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAttributeMetadataResponse(typing_extensions.TypedDict, total=False):
-    attributeMetadata: typing.List[AttributeMetadata]
+    attributeMetadata: _list[AttributeMetadata]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCategoriesResponse(typing_extensions.TypedDict, total=False):
-    categories: typing.List[Category]
+    categories: _list[Category]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
     totalSize: int
 
@@ -138,11 +140,11 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class Location(typing_extensions.TypedDict, total=False):
     adWordsLocationExtensions: AdWordsLocationExtensions
     categories: Categories
-    labels: typing.List[str]
+    labels: _list[str]
     languageCode: str
     latlng: LatLng
     metadata: Metadata
-    moreHours: typing.List[MoreHours]
+    moreHours: _list[MoreHours]
     name: str
     openInfo: OpenInfo
     phoneNumbers: PhoneNumbers
@@ -150,7 +152,7 @@ class Location(typing_extensions.TypedDict, total=False):
     regularHours: BusinessHours
     relationshipData: RelationshipData
     serviceArea: ServiceAreaBusiness
-    serviceItems: typing.List[ServiceItem]
+    serviceItems: _list[ServiceItem]
     specialHours: SpecialHours
     storeCode: str
     storefrontAddress: PostalAddress
@@ -181,7 +183,7 @@ class Money(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MoreHours(typing_extensions.TypedDict, total=False):
     hoursTypeId: str
-    periods: typing.List[TimePeriod]
+    periods: _list[TimePeriod]
 
 @typing.type_check_only
 class MoreHoursType(typing_extensions.TypedDict, total=False):
@@ -202,7 +204,7 @@ class OpenInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PhoneNumbers(typing_extensions.TypedDict, total=False):
-    additionalPhones: typing.List[str]
+    additionalPhones: _list[str]
     primaryPhone: str
 
 @typing.type_check_only
@@ -212,17 +214,17 @@ class PlaceInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Places(typing_extensions.TypedDict, total=False):
-    placeInfos: typing.List[PlaceInfo]
+    placeInfos: _list[PlaceInfo]
 
 @typing.type_check_only
 class PostalAddress(typing_extensions.TypedDict, total=False):
-    addressLines: typing.List[str]
+    addressLines: _list[str]
     administrativeArea: str
     languageCode: str
     locality: str
     organization: str
     postalCode: str
-    recipients: typing.List[str]
+    recipients: _list[str]
     regionCode: str
     revision: int
     sortingCode: str
@@ -234,7 +236,7 @@ class Profile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RelationshipData(typing_extensions.TypedDict, total=False):
-    childrenLocations: typing.List[RelevantLocation]
+    childrenLocations: _list[RelevantLocation]
     parentChain: str
     parentLocation: RelevantLocation
 
@@ -247,12 +249,12 @@ class RelevantLocation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RepeatedEnumAttributeValue(typing_extensions.TypedDict, total=False):
-    setValues: typing.List[str]
-    unsetValues: typing.List[str]
+    setValues: _list[str]
+    unsetValues: _list[str]
 
 @typing.type_check_only
 class SearchChainsResponse(typing_extensions.TypedDict, total=False):
-    chains: typing.List[Chain]
+    chains: _list[Chain]
 
 @typing.type_check_only
 class SearchGoogleLocationsRequest(typing_extensions.TypedDict, total=False):
@@ -262,7 +264,7 @@ class SearchGoogleLocationsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchGoogleLocationsResponse(typing_extensions.TypedDict, total=False):
-    googleLocations: typing.List[GoogleLocation]
+    googleLocations: _list[GoogleLocation]
 
 @typing.type_check_only
 class ServiceAreaBusiness(typing_extensions.TypedDict, total=False):
@@ -295,7 +297,7 @@ class SpecialHourPeriod(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SpecialHours(typing_extensions.TypedDict, total=False):
-    specialHourPeriods: typing.List[SpecialHourPeriod]
+    specialHourPeriods: _list[SpecialHourPeriod]
 
 @typing.type_check_only
 class StructuredServiceItem(typing_extensions.TypedDict, total=False):

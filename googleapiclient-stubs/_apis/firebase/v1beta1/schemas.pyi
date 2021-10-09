@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AddFirebaseRequest(typing_extensions.TypedDict, total=False):
     locationId: str
@@ -21,7 +23,7 @@ class AdminSdkConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AnalyticsDetails(typing_extensions.TypedDict, total=False):
     analyticsProperty: AnalyticsProperty
-    streamMappings: typing.List[StreamMapping]
+    streamMappings: _list[StreamMapping]
 
 @typing.type_check_only
 class AnalyticsProperty(typing_extensions.TypedDict, total=False):
@@ -88,41 +90,41 @@ class IosAppConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListAndroidAppsResponse(typing_extensions.TypedDict, total=False):
-    apps: typing.List[AndroidApp]
+    apps: _list[AndroidApp]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAvailableLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAvailableProjectsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    projectInfo: typing.List[ProjectInfo]
+    projectInfo: _list[ProjectInfo]
 
 @typing.type_check_only
 class ListFirebaseProjectsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    results: typing.List[FirebaseProject]
+    results: _list[FirebaseProject]
 
 @typing.type_check_only
 class ListIosAppsResponse(typing_extensions.TypedDict, total=False):
-    apps: typing.List[IosApp]
+    apps: _list[IosApp]
     nextPageToken: str
 
 @typing.type_check_only
 class ListShaCertificatesResponse(typing_extensions.TypedDict, total=False):
-    certificates: typing.List[ShaCertificate]
+    certificates: _list[ShaCertificate]
 
 @typing.type_check_only
 class ListWebAppsResponse(typing_extensions.TypedDict, total=False):
-    apps: typing.List[WebApp]
+    apps: _list[WebApp]
     nextPageToken: str
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
-    features: typing.List[str]
+    features: _list[str]
     locationId: str
     type: typing_extensions.Literal[
         "LOCATION_TYPE_UNSPECIFIED", "REGIONAL", "MULTI_REGIONAL"
@@ -135,9 +137,9 @@ class MessageSet(typing_extensions.TypedDict, total=False): ...
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class ProjectInfo(typing_extensions.TypedDict, total=False):
@@ -151,7 +153,7 @@ class RemoveAnalyticsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchFirebaseAppsResponse(typing_extensions.TypedDict, total=False):
-    apps: typing.List[FirebaseAppInfo]
+    apps: _list[FirebaseAppInfo]
     nextPageToken: str
 
 @typing.type_check_only
@@ -165,7 +167,7 @@ class ShaCertificate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -185,7 +187,7 @@ class StreamMapping(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WebApp(typing_extensions.TypedDict, total=False):
     appId: str
-    appUrls: typing.List[str]
+    appUrls: _list[str]
     displayName: str
     name: str
     projectId: str

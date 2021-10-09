@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AudioConfig(typing_extensions.TypedDict, total=False):
     audioEncoding: typing_extensions.Literal[
         "AUDIO_ENCODING_UNSPECIFIED", "LINEAR16", "MP3", "OGG_OPUS", "MULAW", "ALAW"
     ]
-    effectsProfileId: typing.List[str]
+    effectsProfileId: _list[str]
     pitch: float
     sampleRateHertz: int
     speakingRate: float
@@ -15,7 +17,7 @@ class AudioConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListVoicesResponse(typing_extensions.TypedDict, total=False):
-    voices: typing.List[Voice]
+    voices: _list[Voice]
 
 @typing.type_check_only
 class SynthesisInput(typing_extensions.TypedDict, total=False):
@@ -34,7 +36,7 @@ class SynthesizeSpeechResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Voice(typing_extensions.TypedDict, total=False):
-    languageCodes: typing.List[str]
+    languageCodes: _list[str]
     name: str
     naturalSampleRateHertz: int
     ssmlGender: typing_extensions.Literal[

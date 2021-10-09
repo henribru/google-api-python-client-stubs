@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class YouTubeResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -15,7 +17,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: AbuseReport = ...,
             **kwargs: typing.Any
         ) -> AbuseReportHttpRequest: ...
@@ -24,7 +26,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             channelId: str = ...,
             home: bool = ...,
             maxResults: int = ...,
@@ -58,7 +60,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: Caption = ...,
             onBehalfOf: str = ...,
             onBehalfOfContentOwner: str = ...,
@@ -68,9 +70,9 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             videoId: str,
-            id: typing.Union[str, typing.List[str]] = ...,
+            id: str | _list[str] = ...,
             onBehalfOf: str = ...,
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
@@ -78,7 +80,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: Caption = ...,
             onBehalfOf: str = ...,
             onBehalfOfContentOwner: str = ...,
@@ -104,7 +106,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: ChannelSection = ...,
             onBehalfOfContentOwner: str = ...,
             onBehalfOfContentOwnerChannel: str = ...,
@@ -113,10 +115,10 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             channelId: str = ...,
             hl: str = ...,
-            id: typing.Union[str, typing.List[str]] = ...,
+            id: str | _list[str] = ...,
             mine: bool = ...,
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
@@ -124,7 +126,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: ChannelSection = ...,
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
@@ -134,11 +136,11 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             categoryId: str = ...,
             forUsername: str = ...,
             hl: str = ...,
-            id: typing.Union[str, typing.List[str]] = ...,
+            id: str | _list[str] = ...,
             managedByMe: bool = ...,
             maxResults: int = ...,
             mine: bool = ...,
@@ -150,7 +152,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: Channel = ...,
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
@@ -160,17 +162,17 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: CommentThread = ...,
             **kwargs: typing.Any
         ) -> CommentThreadHttpRequest: ...
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             allThreadsRelatedToChannelId: str = ...,
             channelId: str = ...,
-            id: typing.Union[str, typing.List[str]] = ...,
+            id: str | _list[str] = ...,
             maxResults: int = ...,
             moderationStatus: typing_extensions.Literal[
                 "published", "heldForReview", "likelySpam", "rejected"
@@ -192,17 +194,13 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self, *, id: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def insert(
-            self,
-            *,
-            part: typing.Union[str, typing.List[str]],
-            body: Comment = ...,
-            **kwargs: typing.Any
+            self, *, part: str | _list[str], body: Comment = ..., **kwargs: typing.Any
         ) -> CommentHttpRequest: ...
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
-            id: typing.Union[str, typing.List[str]] = ...,
+            part: str | _list[str],
+            id: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             parentId: str = ...,
@@ -212,12 +210,12 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> CommentListResponseHttpRequest: ...
         def markAsSpam(
-            self, *, id: typing.Union[str, typing.List[str]], **kwargs: typing.Any
+            self, *, id: str | _list[str], **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def setModerationStatus(
             self,
             *,
-            id: typing.Union[str, typing.List[str]],
+            id: str | _list[str],
             moderationStatus: typing_extensions.Literal[
                 "published", "heldForReview", "likelySpam", "rejected"
             ],
@@ -225,29 +223,17 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def update(
-            self,
-            *,
-            part: typing.Union[str, typing.List[str]],
-            body: Comment = ...,
-            **kwargs: typing.Any
+            self, *, part: str | _list[str], body: Comment = ..., **kwargs: typing.Any
         ) -> CommentHttpRequest: ...
     @typing.type_check_only
     class I18nLanguagesResource(googleapiclient.discovery.Resource):
         def list(
-            self,
-            *,
-            part: typing.Union[str, typing.List[str]],
-            hl: str = ...,
-            **kwargs: typing.Any
+            self, *, part: str | _list[str], hl: str = ..., **kwargs: typing.Any
         ) -> I18nLanguageListResponseHttpRequest: ...
     @typing.type_check_only
     class I18nRegionsResource(googleapiclient.discovery.Resource):
         def list(
-            self,
-            *,
-            part: typing.Union[str, typing.List[str]],
-            hl: str = ...,
-            **kwargs: typing.Any
+            self, *, part: str | _list[str], hl: str = ..., **kwargs: typing.Any
         ) -> I18nRegionListResponseHttpRequest: ...
     @typing.type_check_only
     class LiveBroadcastsResource(googleapiclient.discovery.Resource):
@@ -255,7 +241,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             id: str,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             onBehalfOfContentOwner: str = ...,
             onBehalfOfContentOwnerChannel: str = ...,
             streamId: str = ...,
@@ -272,7 +258,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: LiveBroadcast = ...,
             onBehalfOfContentOwner: str = ...,
             onBehalfOfContentOwnerChannel: str = ...,
@@ -281,7 +267,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             broadcastStatus: typing_extensions.Literal[
                 "broadcastStatusFilterUnspecified",
                 "all",
@@ -292,7 +278,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             broadcastType: typing_extensions.Literal[
                 "broadcastTypeFilterUnspecified", "all", "event", "persistent"
             ] = ...,
-            id: typing.Union[str, typing.List[str]] = ...,
+            id: str | _list[str] = ...,
             maxResults: int = ...,
             mine: bool = ...,
             onBehalfOfContentOwner: str = ...,
@@ -307,7 +293,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
                 "statusUnspecified", "testing", "live", "complete"
             ],
             id: str,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             onBehalfOfContentOwner: str = ...,
             onBehalfOfContentOwnerChannel: str = ...,
             **kwargs: typing.Any
@@ -315,7 +301,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: LiveBroadcast = ...,
             onBehalfOfContentOwner: str = ...,
             onBehalfOfContentOwnerChannel: str = ...,
@@ -329,7 +315,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: LiveChatBan = ...,
             **kwargs: typing.Any
         ) -> LiveChatBanHttpRequest: ...
@@ -341,7 +327,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: LiveChatMessage = ...,
             **kwargs: typing.Any
         ) -> LiveChatMessageHttpRequest: ...
@@ -349,7 +335,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             liveChatId: str,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             hl: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
@@ -364,7 +350,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: LiveChatModerator = ...,
             **kwargs: typing.Any
         ) -> LiveChatModeratorHttpRequest: ...
@@ -372,7 +358,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             self,
             *,
             liveChatId: str,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             maxResults: int = ...,
             pageToken: str = ...,
             **kwargs: typing.Any
@@ -390,7 +376,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: LiveStream = ...,
             onBehalfOfContentOwner: str = ...,
             onBehalfOfContentOwnerChannel: str = ...,
@@ -399,8 +385,8 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
-            id: typing.Union[str, typing.List[str]] = ...,
+            part: str | _list[str],
+            id: str | _list[str] = ...,
             maxResults: int = ...,
             mine: bool = ...,
             onBehalfOfContentOwner: str = ...,
@@ -411,7 +397,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: LiveStream = ...,
             onBehalfOfContentOwner: str = ...,
             onBehalfOfContentOwnerChannel: str = ...,
@@ -422,7 +408,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             filterByMemberChannelId: str = ...,
             hasAccessToLevel: str = ...,
             maxResults: int = ...,
@@ -435,7 +421,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class MembershipsLevelsResource(googleapiclient.discovery.Resource):
         def list(
-            self, *, part: typing.Union[str, typing.List[str]], **kwargs: typing.Any
+            self, *, part: str | _list[str], **kwargs: typing.Any
         ) -> MembershipsLevelListResponseHttpRequest: ...
     @typing.type_check_only
     class PlaylistItemsResource(googleapiclient.discovery.Resource):
@@ -445,7 +431,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: PlaylistItem = ...,
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
@@ -453,8 +439,8 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
-            id: typing.Union[str, typing.List[str]] = ...,
+            part: str | _list[str],
+            id: str | _list[str] = ...,
             maxResults: int = ...,
             onBehalfOfContentOwner: str = ...,
             pageToken: str = ...,
@@ -465,7 +451,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: PlaylistItem = ...,
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
@@ -478,7 +464,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: Playlist = ...,
             onBehalfOfContentOwner: str = ...,
             onBehalfOfContentOwnerChannel: str = ...,
@@ -487,10 +473,10 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             channelId: str = ...,
             hl: str = ...,
-            id: typing.Union[str, typing.List[str]] = ...,
+            id: str | _list[str] = ...,
             maxResults: int = ...,
             mine: bool = ...,
             onBehalfOfContentOwner: str = ...,
@@ -501,7 +487,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: Playlist = ...,
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
@@ -511,7 +497,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             channelId: str = ...,
             channelType: typing_extensions.Literal[
                 "channelTypeUnspecified", "any", "show"
@@ -546,7 +532,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
                 "safeSearchSettingUnspecified", "none", "moderate", "strict"
             ] = ...,
             topicId: str = ...,
-            type: typing.Union[str, typing.List[str]] = ...,
+            type: str | _list[str] = ...,
             videoCaption: typing_extensions.Literal[
                 "videoCaptionUnspecified", "any", "closedCaption", "none"
             ] = ...,
@@ -578,17 +564,17 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: Subscription = ...,
             **kwargs: typing.Any
         ) -> SubscriptionHttpRequest: ...
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             channelId: str = ...,
             forChannelId: str = ...,
-            id: typing.Union[str, typing.List[str]] = ...,
+            id: str | _list[str] = ...,
             maxResults: int = ...,
             mine: bool = ...,
             myRecentSubscribers: bool = ...,
@@ -606,7 +592,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             hl: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
@@ -617,7 +603,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: TestItem = ...,
             externalChannelId: str = ...,
             **kwargs: typing.Any
@@ -630,13 +616,13 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             linkingToken: str,
             type: typing_extensions.Literal["linkUnspecified", "channelToStoreLink"],
             externalChannelId: str = ...,
-            part: typing.Union[str, typing.List[str]] = ...,
+            part: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: ThirdPartyLink = ...,
             externalChannelId: str = ...,
             **kwargs: typing.Any
@@ -644,7 +630,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             externalChannelId: str = ...,
             linkingToken: str = ...,
             type: typing_extensions.Literal[
@@ -655,7 +641,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: ThirdPartyLink = ...,
             externalChannelId: str = ...,
             **kwargs: typing.Any
@@ -672,20 +658,16 @@ class YouTubeResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class VideoAbuseReportReasonsResource(googleapiclient.discovery.Resource):
         def list(
-            self,
-            *,
-            part: typing.Union[str, typing.List[str]],
-            hl: str = ...,
-            **kwargs: typing.Any
+            self, *, part: str | _list[str], hl: str = ..., **kwargs: typing.Any
         ) -> VideoAbuseReportReasonListResponseHttpRequest: ...
     @typing.type_check_only
     class VideoCategoriesResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             hl: str = ...,
-            id: typing.Union[str, typing.List[str]] = ...,
+            id: str | _list[str] = ...,
             regionCode: str = ...,
             **kwargs: typing.Any
         ) -> VideoCategoryListResponseHttpRequest: ...
@@ -697,14 +679,14 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def getRating(
             self,
             *,
-            id: typing.Union[str, typing.List[str]],
+            id: str | _list[str],
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
         ) -> VideoGetRatingResponseHttpRequest: ...
         def insert(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: Video = ...,
             autoLevels: bool = ...,
             notifySubscribers: bool = ...,
@@ -716,10 +698,10 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             chart: typing_extensions.Literal["chartUnspecified", "mostPopular"] = ...,
             hl: str = ...,
-            id: typing.Union[str, typing.List[str]] = ...,
+            id: str | _list[str] = ...,
             locale: str = ...,
             maxHeight: int = ...,
             maxResults: int = ...,
@@ -748,7 +730,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         def update(
             self,
             *,
-            part: typing.Union[str, typing.List[str]],
+            part: str | _list[str],
             body: Video = ...,
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
@@ -778,7 +760,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 body: CommentThread = ...,
-                part: typing.Union[str, typing.List[str]] = ...,
+                part: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> CommentThreadHttpRequest: ...
         def v3(self) -> V3Resource: ...
@@ -817,9 +799,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
 class AbuseReportHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AbuseReport: ...
 
@@ -827,9 +807,7 @@ class AbuseReportHttpRequest(googleapiclient.http.HttpRequest):
 class ActivityListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ActivityListResponse: ...
 
@@ -837,9 +815,7 @@ class ActivityListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CaptionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Caption: ...
 
@@ -847,9 +823,7 @@ class CaptionHttpRequest(googleapiclient.http.HttpRequest):
 class CaptionListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CaptionListResponse: ...
 
@@ -857,9 +831,7 @@ class CaptionListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ChannelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Channel: ...
 
@@ -867,9 +839,7 @@ class ChannelHttpRequest(googleapiclient.http.HttpRequest):
 class ChannelBannerResourceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ChannelBannerResource: ...
 
@@ -877,9 +847,7 @@ class ChannelBannerResourceHttpRequest(googleapiclient.http.HttpRequest):
 class ChannelListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ChannelListResponse: ...
 
@@ -887,9 +855,7 @@ class ChannelListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ChannelSectionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ChannelSection: ...
 
@@ -897,9 +863,7 @@ class ChannelSectionHttpRequest(googleapiclient.http.HttpRequest):
 class ChannelSectionListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ChannelSectionListResponse: ...
 
@@ -907,9 +871,7 @@ class ChannelSectionListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CommentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Comment: ...
 
@@ -917,9 +879,7 @@ class CommentHttpRequest(googleapiclient.http.HttpRequest):
 class CommentListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CommentListResponse: ...
 
@@ -927,9 +887,7 @@ class CommentListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class CommentThreadHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CommentThread: ...
 
@@ -937,9 +895,7 @@ class CommentThreadHttpRequest(googleapiclient.http.HttpRequest):
 class CommentThreadListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CommentThreadListResponse: ...
 
@@ -947,9 +903,7 @@ class CommentThreadListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class I18nLanguageListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> I18nLanguageListResponse: ...
 
@@ -957,9 +911,7 @@ class I18nLanguageListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class I18nRegionListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> I18nRegionListResponse: ...
 
@@ -967,9 +919,7 @@ class I18nRegionListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LiveBroadcastHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LiveBroadcast: ...
 
@@ -977,9 +927,7 @@ class LiveBroadcastHttpRequest(googleapiclient.http.HttpRequest):
 class LiveBroadcastListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LiveBroadcastListResponse: ...
 
@@ -987,9 +935,7 @@ class LiveBroadcastListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LiveChatBanHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LiveChatBan: ...
 
@@ -997,9 +943,7 @@ class LiveChatBanHttpRequest(googleapiclient.http.HttpRequest):
 class LiveChatMessageHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LiveChatMessage: ...
 
@@ -1007,9 +951,7 @@ class LiveChatMessageHttpRequest(googleapiclient.http.HttpRequest):
 class LiveChatMessageListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LiveChatMessageListResponse: ...
 
@@ -1017,9 +959,7 @@ class LiveChatMessageListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class LiveChatModeratorHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LiveChatModerator: ...
 
@@ -1027,9 +967,7 @@ class LiveChatModeratorHttpRequest(googleapiclient.http.HttpRequest):
 class LiveChatModeratorListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LiveChatModeratorListResponse: ...
 
@@ -1037,9 +975,7 @@ class LiveChatModeratorListResponseHttpRequest(googleapiclient.http.HttpRequest)
 class LiveStreamHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LiveStream: ...
 
@@ -1047,9 +983,7 @@ class LiveStreamHttpRequest(googleapiclient.http.HttpRequest):
 class LiveStreamListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LiveStreamListResponse: ...
 
@@ -1057,9 +991,7 @@ class LiveStreamListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class MemberListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> MemberListResponse: ...
 
@@ -1067,9 +999,7 @@ class MemberListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class MembershipsLevelListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> MembershipsLevelListResponse: ...
 
@@ -1077,9 +1007,7 @@ class MembershipsLevelListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PlaylistHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Playlist: ...
 
@@ -1087,9 +1015,7 @@ class PlaylistHttpRequest(googleapiclient.http.HttpRequest):
 class PlaylistItemHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlaylistItem: ...
 
@@ -1097,9 +1023,7 @@ class PlaylistItemHttpRequest(googleapiclient.http.HttpRequest):
 class PlaylistItemListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlaylistItemListResponse: ...
 
@@ -1107,9 +1031,7 @@ class PlaylistItemListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class PlaylistListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PlaylistListResponse: ...
 
@@ -1117,9 +1039,7 @@ class PlaylistListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SearchListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchListResponse: ...
 
@@ -1127,9 +1047,7 @@ class SearchListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Subscription: ...
 
@@ -1137,9 +1055,7 @@ class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):
 class SubscriptionListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SubscriptionListResponse: ...
 
@@ -1147,9 +1063,7 @@ class SubscriptionListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class SuperChatEventListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SuperChatEventListResponse: ...
 
@@ -1157,9 +1071,7 @@ class SuperChatEventListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class TestItemHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestItem: ...
 
@@ -1167,9 +1079,7 @@ class TestItemHttpRequest(googleapiclient.http.HttpRequest):
 class ThirdPartyLinkHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ThirdPartyLink: ...
 
@@ -1177,9 +1087,7 @@ class ThirdPartyLinkHttpRequest(googleapiclient.http.HttpRequest):
 class ThumbnailSetResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ThumbnailSetResponse: ...
 
@@ -1187,9 +1095,7 @@ class ThumbnailSetResponseHttpRequest(googleapiclient.http.HttpRequest):
 class VideoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Video: ...
 
@@ -1197,9 +1103,7 @@ class VideoHttpRequest(googleapiclient.http.HttpRequest):
 class VideoAbuseReportReasonListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VideoAbuseReportReasonListResponse: ...
 
@@ -1207,9 +1111,7 @@ class VideoAbuseReportReasonListResponseHttpRequest(googleapiclient.http.HttpReq
 class VideoCategoryListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VideoCategoryListResponse: ...
 
@@ -1217,9 +1119,7 @@ class VideoCategoryListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class VideoGetRatingResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VideoGetRatingResponse: ...
 
@@ -1227,8 +1127,6 @@ class VideoGetRatingResponseHttpRequest(googleapiclient.http.HttpRequest):
 class VideoListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VideoListResponse: ...

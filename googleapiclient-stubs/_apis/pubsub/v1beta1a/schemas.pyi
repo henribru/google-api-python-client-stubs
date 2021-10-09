@@ -2,9 +2,11 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
-    ackId: typing.List[str]
+    ackId: _list[str]
     subscription: str
 
 @typing.type_check_only
@@ -19,18 +21,18 @@ class Label(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    subscription: typing.List[Subscription]
+    subscription: _list[Subscription]
 
 @typing.type_check_only
 class ListTopicsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    topic: typing.List[Topic]
+    topic: _list[Topic]
 
 @typing.type_check_only
 class ModifyAckDeadlineRequest(typing_extensions.TypedDict, total=False):
     ackDeadlineSeconds: int
     ackId: str
-    ackIds: typing.List[str]
+    ackIds: _list[str]
     subscription: str
 
 @typing.type_check_only
@@ -40,12 +42,12 @@ class ModifyPushConfigRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PublishBatchRequest(typing_extensions.TypedDict, total=False):
-    messages: typing.List[PubsubMessage]
+    messages: _list[PubsubMessage]
     topic: str
 
 @typing.type_check_only
 class PublishBatchResponse(typing_extensions.TypedDict, total=False):
-    messageIds: typing.List[str]
+    messageIds: _list[str]
 
 @typing.type_check_only
 class PublishRequest(typing_extensions.TypedDict, total=False):
@@ -62,7 +64,7 @@ class PubsubEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PubsubMessage(typing_extensions.TypedDict, total=False):
     data: str
-    label: typing.List[Label]
+    label: _list[Label]
     messageId: str
     publishTime: str
 
@@ -74,7 +76,7 @@ class PullBatchRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PullBatchResponse(typing_extensions.TypedDict, total=False):
-    pullResponses: typing.List[PullResponse]
+    pullResponses: _list[PullResponse]
 
 @typing.type_check_only
 class PullRequest(typing_extensions.TypedDict, total=False):

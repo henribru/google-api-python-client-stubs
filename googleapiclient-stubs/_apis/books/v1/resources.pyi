@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class BooksResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -100,7 +102,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 volumeId: str,
                 layerId: str,
                 contentVersion: str,
-                annotationDataId: typing.Union[str, typing.List[str]] = ...,
+                annotationDataId: str | _list[str] = ...,
                 h: int = ...,
                 locale: str = ...,
                 maxResults: int = ...,
@@ -174,7 +176,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             self,
             *,
             cpksver: str,
-            volumeIds: typing.Union[str, typing.List[str]],
+            volumeIds: str | _list[str],
             locale: str = ...,
             source: str = ...,
             **kwargs: typing.Any
@@ -198,14 +200,12 @@ class BooksResource(googleapiclient.discovery.Resource):
             cpksver: str,
             nonce: str,
             source: str,
-            features: typing.Union[
-                typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"],
-                typing.List[typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]],
-            ] = ...,
+            features: typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]
+            | _list[typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]] = ...,
             includeNonComicsSeries: bool = ...,
             locale: str = ...,
             showPreorders: bool = ...,
-            volumeIds: typing.Union[str, typing.List[str]] = ...,
+            volumeIds: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> VolumesHttpRequest: ...
         def updateUserSettings(
@@ -233,7 +233,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 contentVersion: str = ...,
                 layerId: str = ...,
-                layerIds: typing.Union[str, typing.List[str]] = ...,
+                layerIds: str | _list[str] = ...,
                 maxResults: int = ...,
                 pageToken: str = ...,
                 showDeleted: bool = ...,
@@ -244,11 +244,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> AnnotationsHttpRequest: ...
             def summary(
-                self,
-                *,
-                layerIds: typing.Union[str, typing.List[str]],
-                volumeId: str,
-                **kwargs: typing.Any
+                self, *, layerIds: str | _list[str], volumeId: str, **kwargs: typing.Any
             ) -> AnnotationsSummaryHttpRequest: ...
             def update(
                 self,
@@ -369,7 +365,7 @@ class BooksResource(googleapiclient.discovery.Resource):
         def listCategoryVolumes(
             self,
             *,
-            categoryId: typing.Union[str, typing.List[str]] = ...,
+            categoryId: str | _list[str] = ...,
             locale: str = ...,
             maxAllowedMaturityRating: typing_extensions.Literal[
                 "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
@@ -441,10 +437,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> SeriesmembershipHttpRequest: ...
         def get(
-            self,
-            *,
-            series_id: typing.Union[str, typing.List[str]],
-            **kwargs: typing.Any
+            self, *, series_id: str | _list[str], **kwargs: typing.Any
         ) -> SeriesHttpRequest: ...
         def membership(self) -> MembershipResource: ...
     @typing.type_check_only
@@ -473,7 +466,18 @@ class BooksResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                acquireMethod: typing.Union[
+                acquireMethod: typing_extensions.Literal[
+                    "ACQUIRE_METHOD_UNDEFINED",
+                    "FAMILY_SHARED",
+                    "PREORDERED",
+                    "PREVIOUSLY_RENTED",
+                    "PUBLIC_DOMAIN",
+                    "PURCHASED",
+                    "RENTED",
+                    "SAMPLE",
+                    "UPLOADED",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "ACQUIRE_METHOD_UNDEFINED",
                         "FAMILY_SHARED",
@@ -484,39 +488,24 @@ class BooksResource(googleapiclient.discovery.Resource):
                         "RENTED",
                         "SAMPLE",
                         "UPLOADED",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "ACQUIRE_METHOD_UNDEFINED",
-                            "FAMILY_SHARED",
-                            "PREORDERED",
-                            "PREVIOUSLY_RENTED",
-                            "PUBLIC_DOMAIN",
-                            "PURCHASED",
-                            "RENTED",
-                            "SAMPLE",
-                            "UPLOADED",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 country: str = ...,
                 locale: str = ...,
                 maxResults: int = ...,
-                processingState: typing.Union[
+                processingState: typing_extensions.Literal[
+                    "PROCESSING_STATE_UNDEFINED",
+                    "COMPLETED_FAILED",
+                    "COMPLETED_SUCCESS",
+                    "RUNNING",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "PROCESSING_STATE_UNDEFINED",
                         "COMPLETED_FAILED",
                         "COMPLETED_SUCCESS",
                         "RUNNING",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "PROCESSING_STATE_UNDEFINED",
-                            "COMPLETED_FAILED",
-                            "COMPLETED_SUCCESS",
-                            "RUNNING",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 source: str = ...,
                 startIndex: int = ...,
@@ -552,25 +541,23 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 locale: str = ...,
                 maxResults: int = ...,
-                processingState: typing.Union[
+                processingState: typing_extensions.Literal[
+                    "PROCESSING_STATE_UNDEFINED",
+                    "COMPLETED_FAILED",
+                    "COMPLETED_SUCCESS",
+                    "RUNNING",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "PROCESSING_STATE_UNDEFINED",
                         "COMPLETED_FAILED",
                         "COMPLETED_SUCCESS",
                         "RUNNING",
-                    ],
-                    typing.List[
-                        typing_extensions.Literal[
-                            "PROCESSING_STATE_UNDEFINED",
-                            "COMPLETED_FAILED",
-                            "COMPLETED_SUCCESS",
-                            "RUNNING",
-                        ]
-                    ],
+                    ]
                 ] = ...,
                 source: str = ...,
                 startIndex: int = ...,
-                volumeId: typing.Union[str, typing.List[str]] = ...,
+                volumeId: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> VolumesHttpRequest: ...
         def get(
@@ -645,9 +632,7 @@ class BooksResource(googleapiclient.discovery.Resource):
 class AnnotationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Annotation: ...
 
@@ -655,9 +640,7 @@ class AnnotationHttpRequest(googleapiclient.http.HttpRequest):
 class AnnotationsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Annotations: ...
 
@@ -665,9 +648,7 @@ class AnnotationsHttpRequest(googleapiclient.http.HttpRequest):
 class AnnotationsSummaryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnnotationsSummary: ...
 
@@ -675,9 +656,7 @@ class AnnotationsSummaryHttpRequest(googleapiclient.http.HttpRequest):
 class AnnotationsdataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Annotationsdata: ...
 
@@ -685,9 +664,7 @@ class AnnotationsdataHttpRequest(googleapiclient.http.HttpRequest):
 class BooksCloudloadingResourceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BooksCloudloadingResource: ...
 
@@ -695,9 +672,7 @@ class BooksCloudloadingResourceHttpRequest(googleapiclient.http.HttpRequest):
 class BooksVolumesRecommendedRateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BooksVolumesRecommendedRateResponse: ...
 
@@ -705,9 +680,7 @@ class BooksVolumesRecommendedRateResponseHttpRequest(googleapiclient.http.HttpRe
 class BookshelfHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Bookshelf: ...
 
@@ -715,9 +688,7 @@ class BookshelfHttpRequest(googleapiclient.http.HttpRequest):
 class BookshelvesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Bookshelves: ...
 
@@ -725,9 +696,7 @@ class BookshelvesHttpRequest(googleapiclient.http.HttpRequest):
 class CategoryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Category: ...
 
@@ -735,9 +704,7 @@ class CategoryHttpRequest(googleapiclient.http.HttpRequest):
 class DictionaryAnnotationdataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DictionaryAnnotationdata: ...
 
@@ -745,9 +712,7 @@ class DictionaryAnnotationdataHttpRequest(googleapiclient.http.HttpRequest):
 class DiscoveryclustersHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Discoveryclusters: ...
 
@@ -755,9 +720,7 @@ class DiscoveryclustersHttpRequest(googleapiclient.http.HttpRequest):
 class DownloadAccessesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DownloadAccesses: ...
 
@@ -765,9 +728,7 @@ class DownloadAccessesHttpRequest(googleapiclient.http.HttpRequest):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
 
@@ -775,9 +736,7 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
 class FamilyInfoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FamilyInfo: ...
 
@@ -785,9 +744,7 @@ class FamilyInfoHttpRequest(googleapiclient.http.HttpRequest):
 class LayersummariesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Layersummaries: ...
 
@@ -795,9 +752,7 @@ class LayersummariesHttpRequest(googleapiclient.http.HttpRequest):
 class LayersummaryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Layersummary: ...
 
@@ -805,9 +760,7 @@ class LayersummaryHttpRequest(googleapiclient.http.HttpRequest):
 class MetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Metadata: ...
 
@@ -815,9 +768,7 @@ class MetadataHttpRequest(googleapiclient.http.HttpRequest):
 class NotificationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Notification: ...
 
@@ -825,9 +776,7 @@ class NotificationHttpRequest(googleapiclient.http.HttpRequest):
 class OffersHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Offers: ...
 
@@ -835,9 +784,7 @@ class OffersHttpRequest(googleapiclient.http.HttpRequest):
 class ReadingPositionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ReadingPosition: ...
 
@@ -845,9 +792,7 @@ class ReadingPositionHttpRequest(googleapiclient.http.HttpRequest):
 class RequestAccessDataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RequestAccessData: ...
 
@@ -855,9 +800,7 @@ class RequestAccessDataHttpRequest(googleapiclient.http.HttpRequest):
 class SeriesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Series: ...
 
@@ -865,9 +808,7 @@ class SeriesHttpRequest(googleapiclient.http.HttpRequest):
 class SeriesmembershipHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Seriesmembership: ...
 
@@ -875,9 +816,7 @@ class SeriesmembershipHttpRequest(googleapiclient.http.HttpRequest):
 class UsersettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Usersettings: ...
 
@@ -885,9 +824,7 @@ class UsersettingsHttpRequest(googleapiclient.http.HttpRequest):
 class VolumeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Volume: ...
 
@@ -895,9 +832,7 @@ class VolumeHttpRequest(googleapiclient.http.HttpRequest):
 class Volume2HttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Volume2: ...
 
@@ -905,9 +840,7 @@ class Volume2HttpRequest(googleapiclient.http.HttpRequest):
 class VolumeannotationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Volumeannotation: ...
 
@@ -915,9 +848,7 @@ class VolumeannotationHttpRequest(googleapiclient.http.HttpRequest):
 class VolumeannotationsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Volumeannotations: ...
 
@@ -925,8 +856,6 @@ class VolumeannotationsHttpRequest(googleapiclient.http.HttpRequest):
 class VolumesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Volumes: ...

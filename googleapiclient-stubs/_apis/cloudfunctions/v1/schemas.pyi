@@ -2,14 +2,16 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[AuditLogConfig]
+    auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -17,7 +19,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -33,13 +35,13 @@ class CallFunctionResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CloudFunction(typing_extensions.TypedDict, total=False):
     availableMemoryMb: int
-    buildEnvironmentVariables: typing.Dict[str, typing.Any]
+    buildEnvironmentVariables: dict[str, typing.Any]
     buildId: str
     buildName: str
     buildWorkerPool: str
     description: str
     entryPoint: str
-    environmentVariables: typing.Dict[str, typing.Any]
+    environmentVariables: dict[str, typing.Any]
     eventTrigger: EventTrigger
     httpsTrigger: HttpsTrigger
     ingressSettings: typing_extensions.Literal[
@@ -48,14 +50,14 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
         "ALLOW_INTERNAL_ONLY",
         "ALLOW_INTERNAL_AND_GCLB",
     ]
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     maxInstances: int
     minInstances: int
     name: str
     network: str
     runtime: str
-    secretEnvironmentVariables: typing.List[SecretEnvVar]
-    secretVolumes: typing.List[SecretVolume]
+    secretEnvironmentVariables: _list[SecretEnvVar]
+    secretVolumes: _list[SecretVolume]
     serviceAccountEmail: str
     sourceArchiveUrl: str
     sourceRepository: SourceRepository
@@ -121,41 +123,41 @@ class HttpsTrigger(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListFunctionsResponse(typing_extensions.TypedDict, total=False):
-    functions: typing.List[CloudFunction]
+    functions: _list[CloudFunction]
     nextPageToken: str
-    unreachable: typing.List[str]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    operations: typing.List[Operation]
+    operations: _list[Operation]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadataV1(typing_extensions.TypedDict, total=False):
     buildId: str
     buildName: str
-    request: typing.Dict[str, typing.Any]
+    request: dict[str, typing.Any]
     sourceToken: str
     target: str
     type: typing_extensions.Literal[
@@ -166,8 +168,8 @@ class OperationMetadataV1(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[AuditConfig]
-    bindings: typing.List[Binding]
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -191,7 +193,7 @@ class SecretVolume(typing_extensions.TypedDict, total=False):
     mountPath: str
     projectId: str
     secret: str
-    versions: typing.List[SecretVersion]
+    versions: _list[SecretVersion]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -206,13 +208,13 @@ class SourceRepository(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]

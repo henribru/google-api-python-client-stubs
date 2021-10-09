@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleFactcheckingFactchecktoolsV1alpha1Claim(
     typing_extensions.TypedDict, total=False
 ):
     claimDate: str
-    claimReview: typing.List[GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview]
+    claimReview: _list[GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview]
     claimant: str
     text: str
 
@@ -53,7 +55,7 @@ class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor(
 class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup(
     typing_extensions.TypedDict, total=False
 ):
-    claimAppearances: typing.List[str]
+    claimAppearances: _list[str]
     claimAuthor: GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor
     claimDate: str
     claimFirstAppearance: str
@@ -67,9 +69,7 @@ class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage(
     typing_extensions.TypedDict, total=False
 ):
     claimReviewAuthor: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor
-    claimReviewMarkups: typing.List[
-        GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup
-    ]
+    claimReviewMarkups: _list[GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup]
     name: str
     pageUrl: str
     publishDate: str
@@ -79,14 +79,14 @@ class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage(
 class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse(
     typing_extensions.TypedDict, total=False
 ):
-    claims: typing.List[GoogleFactcheckingFactchecktoolsV1alpha1Claim]
+    claims: _list[GoogleFactcheckingFactchecktoolsV1alpha1Claim]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    claimReviewMarkupPages: typing.List[
+    claimReviewMarkupPages: _list[
         GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
     ]
     nextPageToken: str

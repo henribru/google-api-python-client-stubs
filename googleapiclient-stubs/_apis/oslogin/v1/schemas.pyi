@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
@@ -13,8 +15,8 @@ class ImportSshPublicKeyResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LoginProfile(typing_extensions.TypedDict, total=False):
     name: str
-    posixAccounts: typing.List[PosixAccount]
-    sshPublicKeys: typing.Dict[str, typing.Any]
+    posixAccounts: _list[PosixAccount]
+    sshPublicKeys: dict[str, typing.Any]
 
 @typing.type_check_only
 class PosixAccount(typing_extensions.TypedDict, total=False):

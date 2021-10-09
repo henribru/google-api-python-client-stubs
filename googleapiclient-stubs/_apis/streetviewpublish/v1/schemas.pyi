@@ -2,25 +2,27 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class BatchDeletePhotosRequest(typing_extensions.TypedDict, total=False):
-    photoIds: typing.List[str]
+    photoIds: _list[str]
 
 @typing.type_check_only
 class BatchDeletePhotosResponse(typing_extensions.TypedDict, total=False):
-    status: typing.List[Status]
+    status: _list[Status]
 
 @typing.type_check_only
 class BatchGetPhotosResponse(typing_extensions.TypedDict, total=False):
-    results: typing.List[PhotoResponse]
+    results: _list[PhotoResponse]
 
 @typing.type_check_only
 class BatchUpdatePhotosRequest(typing_extensions.TypedDict, total=False):
-    updatePhotoRequests: typing.List[UpdatePhotoRequest]
+    updatePhotoRequests: _list[UpdatePhotoRequest]
 
 @typing.type_check_only
 class BatchUpdatePhotosResponse(typing_extensions.TypedDict, total=False):
-    results: typing.List[PhotoResponse]
+    results: _list[PhotoResponse]
 
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
@@ -42,26 +44,26 @@ class Level(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListPhotosResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    photos: typing.List[Photo]
+    photos: _list[Photo]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
-    response: typing.Dict[str, typing.Any]
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Photo(typing_extensions.TypedDict, total=False):
     captureTime: str
-    connections: typing.List[Connection]
+    connections: _list[Connection]
     downloadUrl: str
     mapsPublishStatus: typing_extensions.Literal[
         "UNSPECIFIED_MAPS_PUBLISH_STATUS", "PUBLISHED", "REJECTED_UNKNOWN"
     ]
     photoId: PhotoId
-    places: typing.List[Place]
+    places: _list[Place]
     pose: Pose
     shareLink: str
     thumbnailUrl: str
@@ -107,7 +109,7 @@ class Pose(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only

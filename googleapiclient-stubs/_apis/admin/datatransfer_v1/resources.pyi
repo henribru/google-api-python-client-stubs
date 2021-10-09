@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class DataTransferResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -49,9 +51,7 @@ class DataTransferResource(googleapiclient.discovery.Resource):
 class ApplicationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Application: ...
 
@@ -59,9 +59,7 @@ class ApplicationHttpRequest(googleapiclient.http.HttpRequest):
 class ApplicationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ApplicationsListResponse: ...
 
@@ -69,9 +67,7 @@ class ApplicationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
 class DataTransferHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DataTransfer: ...
 
@@ -79,8 +75,6 @@ class DataTransferHttpRequest(googleapiclient.http.HttpRequest):
 class DataTransfersListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DataTransfersListResponse: ...

@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class GoogleCloudPolicytroubleshooterV1betaAccessTuple(
     typing_extensions.TypedDict, total=False
@@ -22,7 +24,7 @@ class GoogleCloudPolicytroubleshooterV1betaBindingExplanation(
         "UNKNOWN_INFO_DENIED",
     ]
     condition: GoogleTypeExpr
-    memberships: typing.Dict[str, typing.Any]
+    memberships: dict[str, typing.Any]
     relevance: typing_extensions.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
     ]
@@ -63,9 +65,7 @@ class GoogleCloudPolicytroubleshooterV1betaExplainedPolicy(
         "UNKNOWN_CONDITIONAL",
         "UNKNOWN_INFO_DENIED",
     ]
-    bindingExplanations: typing.List[
-        GoogleCloudPolicytroubleshooterV1betaBindingExplanation
-    ]
+    bindingExplanations: _list[GoogleCloudPolicytroubleshooterV1betaBindingExplanation]
     fullResourceName: str
     policy: GoogleIamV1Policy
     relevance: typing_extensions.Literal[
@@ -89,16 +89,16 @@ class GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponse(
         "UNKNOWN_CONDITIONAL",
         "UNKNOWN_INFO_DENIED",
     ]
-    explainedPolicies: typing.List[GoogleCloudPolicytroubleshooterV1betaExplainedPolicy]
+    explainedPolicies: _list[GoogleCloudPolicytroubleshooterV1betaExplainedPolicy]
 
 @typing.type_check_only
 class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: typing.List[GoogleIamV1AuditLogConfig]
+    auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
     service: str
 
 @typing.type_check_only
 class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: typing.List[str]
+    exemptedMembers: _list[str]
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
@@ -106,13 +106,13 @@ class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
     condition: GoogleTypeExpr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
 class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: typing.List[GoogleIamV1AuditConfig]
-    bindings: typing.List[GoogleIamV1Binding]
+    auditConfigs: _list[GoogleIamV1AuditConfig]
+    bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
 

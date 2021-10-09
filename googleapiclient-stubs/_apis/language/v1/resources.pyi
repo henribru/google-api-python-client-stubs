@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class CloudNaturalLanguageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -36,9 +38,7 @@ class CloudNaturalLanguageResource(googleapiclient.discovery.Resource):
 class AnalyzeEntitiesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnalyzeEntitiesResponse: ...
 
@@ -46,9 +46,7 @@ class AnalyzeEntitiesResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AnalyzeEntitySentimentResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnalyzeEntitySentimentResponse: ...
 
@@ -56,9 +54,7 @@ class AnalyzeEntitySentimentResponseHttpRequest(googleapiclient.http.HttpRequest
 class AnalyzeSentimentResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnalyzeSentimentResponse: ...
 
@@ -66,9 +62,7 @@ class AnalyzeSentimentResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AnalyzeSyntaxResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnalyzeSyntaxResponse: ...
 
@@ -76,9 +70,7 @@ class AnalyzeSyntaxResponseHttpRequest(googleapiclient.http.HttpRequest):
 class AnnotateTextResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AnnotateTextResponse: ...
 
@@ -86,8 +78,6 @@ class AnnotateTextResponseHttpRequest(googleapiclient.http.HttpRequest):
 class ClassifyTextResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ClassifyTextResponse: ...

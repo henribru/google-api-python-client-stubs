@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class CheckValidCredsRequest(typing_extensions.TypedDict, total=False): ...
 
@@ -30,8 +32,8 @@ class DataSource(typing_extensions.TypedDict, total=False):
     manualRunsDisabled: bool
     minimumScheduleInterval: str
     name: str
-    parameters: typing.List[DataSourceParameter]
-    scopes: typing.List[str]
+    parameters: _list[DataSourceParameter]
+    scopes: _list[str]
     supportsCustomSchedule: bool
     supportsMultipleTransfers: bool
     transferType: typing_extensions.Literal[
@@ -40,7 +42,7 @@ class DataSource(typing_extensions.TypedDict, total=False):
     updateDeadlineSeconds: int
 
 @typing.type_check_only
-class DataSourceParameter(typing.Dict[str, typing.Any]): ...
+class DataSourceParameter(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class EmailPreferences(typing_extensions.TypedDict, total=False):
@@ -51,39 +53,39 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EnrollDataSourcesRequest(typing_extensions.TypedDict, total=False):
-    dataSourceIds: typing.List[str]
+    dataSourceIds: _list[str]
 
 @typing.type_check_only
 class ListDataSourcesResponse(typing_extensions.TypedDict, total=False):
-    dataSources: typing.List[DataSource]
+    dataSources: _list[DataSource]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
-    locations: typing.List[Location]
+    locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
 class ListTransferConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    transferConfigs: typing.List[TransferConfig]
+    transferConfigs: _list[TransferConfig]
 
 @typing.type_check_only
 class ListTransferLogsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    transferMessages: typing.List[TransferMessage]
+    transferMessages: _list[TransferMessage]
 
 @typing.type_check_only
 class ListTransferRunsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    transferRuns: typing.List[TransferRun]
+    transferRuns: _list[TransferRun]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     locationId: str
-    metadata: typing.Dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -99,7 +101,7 @@ class ScheduleTransferRunsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ScheduleTransferRunsResponse(typing_extensions.TypedDict, total=False):
-    runs: typing.List[TransferRun]
+    runs: _list[TransferRun]
 
 @typing.type_check_only
 class StartManualTransferRunsRequest(typing_extensions.TypedDict, total=False):
@@ -108,12 +110,12 @@ class StartManualTransferRunsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StartManualTransferRunsResponse(typing_extensions.TypedDict, total=False):
-    runs: typing.List[TransferRun]
+    runs: _list[TransferRun]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
@@ -134,7 +136,7 @@ class TransferConfig(typing_extensions.TypedDict, total=False):
     nextRunTime: str
     notificationPubsubTopic: str
     ownerInfo: UserInfo
-    params: typing.Dict[str, typing.Any]
+    params: dict[str, typing.Any]
     schedule: str
     scheduleOptions: ScheduleOptions
     state: typing_extensions.Literal[
@@ -165,7 +167,7 @@ class TransferRun(typing_extensions.TypedDict, total=False):
     errorStatus: Status
     name: str
     notificationPubsubTopic: str
-    params: typing.Dict[str, typing.Any]
+    params: dict[str, typing.Any]
     runTime: str
     schedule: str
     scheduleTime: str

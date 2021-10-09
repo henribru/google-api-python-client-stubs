@@ -2,12 +2,14 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
     name: str
-    pendingTasks: typing.List[str]
+    pendingTasks: _list[str]
     premium: bool
     timeZone: TimeZone
 
@@ -85,65 +87,65 @@ class Header(typing_extensions.TypedDict, total=False):
 class HttpBody(typing_extensions.TypedDict, total=False):
     contentType: str
     data: str
-    extensions: typing.List[typing.Dict[str, typing.Any]]
+    extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class ListAccountsResponse(typing_extensions.TypedDict, total=False):
-    accounts: typing.List[Account]
+    accounts: _list[Account]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAdClientsResponse(typing_extensions.TypedDict, total=False):
-    adClients: typing.List[AdClient]
+    adClients: _list[AdClient]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAdUnitsResponse(typing_extensions.TypedDict, total=False):
-    adUnits: typing.List[AdUnit]
+    adUnits: _list[AdUnit]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAlertsResponse(typing_extensions.TypedDict, total=False):
-    alerts: typing.List[Alert]
+    alerts: _list[Alert]
 
 @typing.type_check_only
 class ListChildAccountsResponse(typing_extensions.TypedDict, total=False):
-    accounts: typing.List[Account]
+    accounts: _list[Account]
     nextPageToken: str
 
 @typing.type_check_only
 class ListCustomChannelsResponse(typing_extensions.TypedDict, total=False):
-    customChannels: typing.List[CustomChannel]
+    customChannels: _list[CustomChannel]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLinkedAdUnitsResponse(typing_extensions.TypedDict, total=False):
-    adUnits: typing.List[AdUnit]
+    adUnits: _list[AdUnit]
     nextPageToken: str
 
 @typing.type_check_only
 class ListLinkedCustomChannelsResponse(typing_extensions.TypedDict, total=False):
-    customChannels: typing.List[CustomChannel]
+    customChannels: _list[CustomChannel]
     nextPageToken: str
 
 @typing.type_check_only
 class ListPaymentsResponse(typing_extensions.TypedDict, total=False):
-    payments: typing.List[Payment]
+    payments: _list[Payment]
 
 @typing.type_check_only
 class ListSavedReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    savedReports: typing.List[SavedReport]
+    savedReports: _list[SavedReport]
 
 @typing.type_check_only
 class ListSitesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    sites: typing.List[Site]
+    sites: _list[Site]
 
 @typing.type_check_only
 class ListUrlChannelsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    urlChannels: typing.List[UrlChannel]
+    urlChannels: _list[UrlChannel]
 
 @typing.type_check_only
 class Payment(typing_extensions.TypedDict, total=False):
@@ -155,16 +157,16 @@ class Payment(typing_extensions.TypedDict, total=False):
 class ReportResult(typing_extensions.TypedDict, total=False):
     averages: Row
     endDate: Date
-    headers: typing.List[Header]
-    rows: typing.List[Row]
+    headers: _list[Header]
+    rows: _list[Row]
     startDate: Date
     totalMatchedRows: str
     totals: Row
-    warnings: typing.List[str]
+    warnings: _list[str]
 
 @typing.type_check_only
 class Row(typing_extensions.TypedDict, total=False):
-    cells: typing.List[Cell]
+    cells: _list[Cell]
 
 @typing.type_check_only
 class SavedReport(typing_extensions.TypedDict, total=False):

@@ -8,6 +8,8 @@ import googleapiclient.http  # type: ignore
 
 from .schemas import *
 
+_list = list
+
 @typing.type_check_only
 class WebRiskResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
@@ -16,21 +18,19 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             self,
             *,
             hashPrefix: str = ...,
-            threatTypes: typing.Union[
+            threatTypes: typing_extensions.Literal[
+                "THREAT_TYPE_UNSPECIFIED",
+                "MALWARE",
+                "SOCIAL_ENGINEERING",
+                "UNWANTED_SOFTWARE",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "THREAT_TYPE_UNSPECIFIED",
                     "MALWARE",
                     "SOCIAL_ENGINEERING",
                     "UNWANTED_SOFTWARE",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "THREAT_TYPE_UNSPECIFIED",
-                        "MALWARE",
-                        "SOCIAL_ENGINEERING",
-                        "UNWANTED_SOFTWARE",
-                    ]
-                ],
+                ]
             ] = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudWebriskV1SearchHashesResponseHttpRequest: ...
@@ -88,15 +88,11 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             *,
             constraints_maxDatabaseEntries: int = ...,
             constraints_maxDiffEntries: int = ...,
-            constraints_supportedCompressions: typing.Union[
-                typing_extensions.Literal[
-                    "COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"
-                    ]
-                ],
+            constraints_supportedCompressions: typing_extensions.Literal[
+                "COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"
+            ]
+            | _list[
+                typing_extensions.Literal["COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"]
             ] = ...,
             threatType: typing_extensions.Literal[
                 "THREAT_TYPE_UNSPECIFIED",
@@ -112,21 +108,19 @@ class WebRiskResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            threatTypes: typing.Union[
+            threatTypes: typing_extensions.Literal[
+                "THREAT_TYPE_UNSPECIFIED",
+                "MALWARE",
+                "SOCIAL_ENGINEERING",
+                "UNWANTED_SOFTWARE",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "THREAT_TYPE_UNSPECIFIED",
                     "MALWARE",
                     "SOCIAL_ENGINEERING",
                     "UNWANTED_SOFTWARE",
-                ],
-                typing.List[
-                    typing_extensions.Literal[
-                        "THREAT_TYPE_UNSPECIFIED",
-                        "MALWARE",
-                        "SOCIAL_ENGINEERING",
-                        "UNWANTED_SOFTWARE",
-                    ]
-                ],
+                ]
             ] = ...,
             uri: str = ...,
             **kwargs: typing.Any
@@ -142,9 +136,7 @@ class GoogleCloudWebriskV1ComputeThreatListDiffResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudWebriskV1ComputeThreatListDiffResponse: ...
 
@@ -154,9 +146,7 @@ class GoogleCloudWebriskV1SearchHashesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudWebriskV1SearchHashesResponse: ...
 
@@ -166,9 +156,7 @@ class GoogleCloudWebriskV1SearchUrisResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudWebriskV1SearchUrisResponse: ...
 
@@ -176,9 +164,7 @@ class GoogleCloudWebriskV1SearchUrisResponseHttpRequest(
 class GoogleCloudWebriskV1SubmissionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudWebriskV1Submission: ...
 
@@ -188,9 +174,7 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
@@ -198,9 +182,7 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleLongrunningOperation: ...
 
@@ -208,8 +190,6 @@ class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: typing.Optional[
-            typing.Union[httplib2.Http, googleapiclient.http.HttpMock]
-        ] = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleProtobufEmpty: ...

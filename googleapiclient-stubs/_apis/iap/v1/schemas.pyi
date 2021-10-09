@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class AccessDeniedPageSettings(typing_extensions.TypedDict, total=False):
     accessDeniedPageUri: str
@@ -23,7 +25,7 @@ class ApplicationSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
-    members: typing.List[str]
+    members: _list[str]
     role: str
 
 @typing.type_check_only
@@ -54,7 +56,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GcipSettings(typing_extensions.TypedDict, total=False):
     loginPageUri: str
-    tenantIds: typing.List[str]
+    tenantIds: _list[str]
 
 @typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -78,11 +80,11 @@ class IdentityAwareProxyClient(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListBrandsResponse(typing_extensions.TypedDict, total=False):
-    brands: typing.List[Brand]
+    brands: _list[Brand]
 
 @typing.type_check_only
 class ListIdentityAwareProxyClientsResponse(typing_extensions.TypedDict, total=False):
-    identityAwareProxyClients: typing.List[IdentityAwareProxyClient]
+    identityAwareProxyClients: _list[IdentityAwareProxyClient]
     nextPageToken: str
 
 @typing.type_check_only
@@ -91,7 +93,7 @@ class OAuthSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    bindings: typing.List[Binding]
+    bindings: _list[Binding]
     etag: str
     version: int
 
@@ -115,7 +117,7 @@ class ResetIdentityAwareProxyClientSecretRequest(
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     name: str
     service: str
     type: str
@@ -126,8 +128,8 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: typing.List[str]
+    permissions: _list[str]

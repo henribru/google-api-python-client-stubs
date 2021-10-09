@@ -2,6 +2,8 @@ import typing
 
 import typing_extensions
 
+_list = list
+
 @typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
     operation: str
@@ -13,7 +15,7 @@ class Api(typing_extensions.TypedDict, total=False):
 class AttributeContext(typing_extensions.TypedDict, total=False):
     api: Api
     destination: Peer
-    extensions: typing.List[typing.Dict[str, typing.Any]]
+    extensions: _list[dict[str, typing.Any]]
     origin: Peer
     request: Request
     resource: Resource
@@ -23,25 +25,25 @@ class AttributeContext(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AuditLog(typing_extensions.TypedDict, total=False):
     authenticationInfo: AuthenticationInfo
-    authorizationInfo: typing.List[AuthorizationInfo]
-    metadata: typing.Dict[str, typing.Any]
+    authorizationInfo: _list[AuthorizationInfo]
+    metadata: dict[str, typing.Any]
     methodName: str
     numResponseItems: str
-    request: typing.Dict[str, typing.Any]
+    request: dict[str, typing.Any]
     requestMetadata: RequestMetadata
     resourceLocation: ResourceLocation
     resourceName: str
-    resourceOriginalState: typing.Dict[str, typing.Any]
-    response: typing.Dict[str, typing.Any]
-    serviceData: typing.Dict[str, typing.Any]
+    resourceOriginalState: dict[str, typing.Any]
+    response: dict[str, typing.Any]
+    serviceData: dict[str, typing.Any]
     serviceName: str
     status: Status
 
 @typing.type_check_only
 class Auth(typing_extensions.TypedDict, total=False):
-    accessLevels: typing.List[str]
-    audiences: typing.List[str]
-    claims: typing.Dict[str, typing.Any]
+    accessLevels: _list[str]
+    audiences: _list[str]
+    claims: dict[str, typing.Any]
     presenter: str
     principal: str
 
@@ -50,9 +52,9 @@ class AuthenticationInfo(typing_extensions.TypedDict, total=False):
     authoritySelector: str
     principalEmail: str
     principalSubject: str
-    serviceAccountDelegationInfo: typing.List[ServiceAccountDelegationInfo]
+    serviceAccountDelegationInfo: _list[ServiceAccountDelegationInfo]
     serviceAccountKeyName: str
-    thirdPartyPrincipal: typing.Dict[str, typing.Any]
+    thirdPartyPrincipal: dict[str, typing.Any]
 
 @typing.type_check_only
 class AuthorizationInfo(typing_extensions.TypedDict, total=False):
@@ -65,30 +67,30 @@ class AuthorizationInfo(typing_extensions.TypedDict, total=False):
 class CheckRequest(typing_extensions.TypedDict, total=False):
     attributes: AttributeContext
     flags: str
-    resources: typing.List[ResourceInfo]
+    resources: _list[ResourceInfo]
     serviceConfigId: str
 
 @typing.type_check_only
 class CheckResponse(typing_extensions.TypedDict, total=False):
-    headers: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
     status: Status
 
 @typing.type_check_only
 class FirstPartyPrincipal(typing_extensions.TypedDict, total=False):
     principalEmail: str
-    serviceMetadata: typing.Dict[str, typing.Any]
+    serviceMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class Peer(typing_extensions.TypedDict, total=False):
     ip: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     port: str
     principal: str
     regionCode: str
 
 @typing.type_check_only
 class ReportRequest(typing_extensions.TypedDict, total=False):
-    operations: typing.List[AttributeContext]
+    operations: _list[AttributeContext]
     serviceConfigId: str
 
 @typing.type_check_only
@@ -97,7 +99,7 @@ class ReportResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Request(typing_extensions.TypedDict, total=False):
     auth: Auth
-    headers: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
     host: str
     id: str
     method: str
@@ -119,12 +121,12 @@ class RequestMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
-    annotations: typing.Dict[str, typing.Any]
+    annotations: dict[str, typing.Any]
     createTime: str
     deleteTime: str
     displayName: str
     etag: str
-    labels: typing.Dict[str, typing.Any]
+    labels: dict[str, typing.Any]
     location: str
     name: str
     service: str
@@ -142,14 +144,14 @@ class ResourceInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceLocation(typing_extensions.TypedDict, total=False):
-    currentLocations: typing.List[str]
-    originalLocations: typing.List[str]
+    currentLocations: _list[str]
+    originalLocations: _list[str]
 
 @typing.type_check_only
 class Response(typing_extensions.TypedDict, total=False):
     backendLatency: str
     code: str
-    headers: typing.Dict[str, typing.Any]
+    headers: dict[str, typing.Any]
     size: str
     time: str
 
@@ -166,9 +168,9 @@ class SpanContext(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
-    details: typing.List[typing.Dict[str, typing.Any]]
+    details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
 class ThirdPartyPrincipal(typing_extensions.TypedDict, total=False):
-    thirdPartyClaims: typing.Dict[str, typing.Any]
+    thirdPartyClaims: dict[str, typing.Any]
