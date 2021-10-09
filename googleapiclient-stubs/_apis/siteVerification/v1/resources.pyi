@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -50,6 +51,18 @@ class SiteVerificationResource(googleapiclient.discovery.Resource):
             body: SiteVerificationWebResourceResource = ...,
             **kwargs: typing.Any
         ) -> SiteVerificationWebResourceResourceHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def webResource(self) -> WebResourceResource: ...
 
 @typing.type_check_only

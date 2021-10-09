@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -220,6 +221,18 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
         def customers(self) -> CustomersResource: ...
         def devices(self) -> DevicesResource: ...
         def vendors(self) -> VendorsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def customers(self) -> CustomersResource: ...
     def operations(self) -> OperationsResource: ...
     def partners(self) -> PartnersResource: ...

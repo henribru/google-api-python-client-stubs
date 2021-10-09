@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -66,6 +67,18 @@ class BloggerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def get(self, *, userId: str, **kwargs: typing.Any) -> UserHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def blogs(self) -> BlogsResource: ...
     def comments(self) -> CommentsResource: ...
     def pages(self) -> PagesResource: ...

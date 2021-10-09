@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -26,6 +27,18 @@ class KgsearchResource(googleapiclient.discovery.Resource):
             types: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def entities(self) -> EntitiesResource: ...
 
 @typing.type_check_only

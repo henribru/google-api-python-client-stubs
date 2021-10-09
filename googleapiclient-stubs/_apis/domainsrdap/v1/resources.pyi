@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -44,6 +45,18 @@ class DomainsRDAPResource(googleapiclient.discovery.Resource):
         def getHelp(self, **kwargs: typing.Any) -> HttpBodyHttpRequest: ...
         def getIp(self, **kwargs: typing.Any) -> HttpBodyHttpRequest: ...
         def getNameservers(self, **kwargs: typing.Any) -> RdapResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def autnum(self) -> AutnumResource: ...
     def domain(self) -> DomainResource: ...
     def entity(self) -> EntityResource: ...

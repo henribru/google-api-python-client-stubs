@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -89,6 +90,18 @@ class TasksResource(googleapiclient.discovery.Resource):
         def update(
             self, *, tasklist: str, task: str, body: Task = ..., **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def tasklists(self) -> TasklistsResource: ...
     def tasks(self) -> TasksResource: ...
 

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -540,6 +541,18 @@ class DataflowResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
         def snapshots(self) -> SnapshotsResource: ...
         def templates(self) -> TemplatesResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only

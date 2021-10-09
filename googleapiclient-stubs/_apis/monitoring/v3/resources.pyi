@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -697,6 +698,18 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             previous_request: ListUptimeCheckIpsResponseHttpRequest,
             previous_response: ListUptimeCheckIpsResponse,
         ) -> ListUptimeCheckIpsResponseHttpRequest | None: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...

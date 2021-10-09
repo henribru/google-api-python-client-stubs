@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -117,6 +118,18 @@ class CloudCommercePartnerProcurementServiceResource(
             ) -> EmptyHttpRequest: ...
         def accounts(self) -> AccountsResource: ...
         def entitlements(self) -> EntitlementsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def providers(self) -> ProvidersResource: ...
 
 @typing.type_check_only

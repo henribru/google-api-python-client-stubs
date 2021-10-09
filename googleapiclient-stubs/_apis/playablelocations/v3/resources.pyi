@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -32,6 +33,18 @@ class PlayableLocationsResource(googleapiclient.discovery.Resource):
             body: GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def v3(self) -> V3Resource: ...
 
 @typing.type_check_only

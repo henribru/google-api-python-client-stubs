@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -20,6 +21,18 @@ class PlaycustomappResource(googleapiclient.discovery.Resource):
                 self, *, account: str, body: CustomApp = ..., **kwargs: typing.Any
             ) -> CustomAppHttpRequest: ...
         def customApps(self) -> CustomAppsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
 
 @typing.type_check_only

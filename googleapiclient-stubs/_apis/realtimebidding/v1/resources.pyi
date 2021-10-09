@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -252,6 +253,18 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
         ) -> ListBuyersResponseHttpRequest | None: ...
         def creatives(self) -> CreativesResource: ...
         def userLists(self) -> UserListsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def bidders(self) -> BiddersResource: ...
     def buyers(self) -> BuyersResource: ...
 

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -399,6 +400,18 @@ class DnsResource(googleapiclient.discovery.Resource):
             clientOperationId: str = ...,
             **kwargs: typing.Any
         ) -> ResponsePolicyRulesUpdateResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def changes(self) -> ChangesResource: ...
     def dnsKeys(self) -> DnsKeysResource: ...
     def managedZoneOperations(self) -> ManagedZoneOperationsResource: ...

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -114,6 +115,18 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
             previous_request: ListWorkspacesResponseHttpRequest,
             previous_response: ListWorkspacesResponse,
         ) -> ListWorkspacesResponseHttpRequest | None: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def tables(self) -> TablesResource: ...
     def workspaces(self) -> WorkspacesResource: ...
 

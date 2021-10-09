@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -64,6 +65,18 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
         def products(self) -> ProductsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
 
 @typing.type_check_only

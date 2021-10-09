@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -208,6 +209,18 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         def create(
             self, *, callbackUrl: str = ..., projectId: str = ..., **kwargs: typing.Any
         ) -> SignupUrlHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def enterprises(self) -> EnterprisesResource: ...
     def signupUrls(self) -> SignupUrlsResource: ...
 

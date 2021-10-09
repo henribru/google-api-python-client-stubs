@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -23,6 +24,18 @@ class GroupssettingsResource(googleapiclient.discovery.Resource):
         def update(
             self, *, groupUniqueId: str, body: Groups = ..., **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def groups(self) -> GroupsResource: ...
 
 @typing.type_check_only

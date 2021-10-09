@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -48,6 +49,18 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
             previous_response: ListDomainsResponse,
         ) -> ListDomainsResponseHttpRequest | None: ...
         def trafficStats(self) -> TrafficStatsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def domains(self) -> DomainsResource: ...
 
 @typing.type_check_only

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -536,6 +537,18 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 self, *, packageName: str, versionCode: str, **kwargs: typing.Any
             ) -> SystemApksListResponseHttpRequest: ...
         def variants(self) -> VariantsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def edits(self) -> EditsResource: ...
     def inappproducts(self) -> InappproductsResource: ...
     def internalappsharingartifacts(self) -> InternalappsharingartifactsResource: ...

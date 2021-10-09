@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -78,6 +79,18 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
         def updateSettings(
             self, *, body: Settings = ..., customerId: str = ..., **kwargs: typing.Any
         ) -> SettingsHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def alerts(self) -> AlertsResource: ...
     def v1beta1(self) -> V1beta1Resource: ...
 

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -55,6 +56,18 @@ class CloudShellResource(googleapiclient.discovery.Resource):
             ) -> OperationHttpRequest: ...
             def publicKeys(self) -> PublicKeysResource: ...
         def environments(self) -> EnvironmentsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def users(self) -> UsersResource: ...
 
 @typing.type_check_only

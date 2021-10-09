@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -17,6 +18,18 @@ class AcceleratedmobilepageurlResource(googleapiclient.discovery.Resource):
         def batchGet(
             self, *, body: BatchGetAmpUrlsRequest = ..., **kwargs: typing.Any
         ) -> BatchGetAmpUrlsResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def ampUrls(self) -> AmpUrlsResource: ...
 
 @typing.type_check_only

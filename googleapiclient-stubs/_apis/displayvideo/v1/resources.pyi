@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -2159,6 +2160,18 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> UserHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def advertisers(self) -> AdvertisersResource: ...
     def combinedAudiences(self) -> CombinedAudiencesResource: ...
     def customBiddingAlgorithms(self) -> CustomBiddingAlgorithmsResource: ...

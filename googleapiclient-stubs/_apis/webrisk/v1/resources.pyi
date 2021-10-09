@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -130,6 +131,18 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             uri: str = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudWebriskV1SearchUrisResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def hashes(self) -> HashesResource: ...
     def projects(self) -> ProjectsResource: ...
     def threatLists(self) -> ThreatListsResource: ...

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -37,6 +38,18 @@ class IAMCredentialsResource(googleapiclient.discovery.Resource):
                 self, *, name: str, body: SignJwtRequest = ..., **kwargs: typing.Any
             ) -> SignJwtResponseHttpRequest: ...
         def serviceAccounts(self) -> ServiceAccountsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only

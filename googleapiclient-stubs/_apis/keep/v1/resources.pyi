@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -54,6 +55,18 @@ class KeepResource(googleapiclient.discovery.Resource):
             previous_response: ListNotesResponse,
         ) -> ListNotesResponseHttpRequest | None: ...
         def permissions(self) -> PermissionsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def media(self) -> MediaResource: ...
     def notes(self) -> NotesResource: ...
 

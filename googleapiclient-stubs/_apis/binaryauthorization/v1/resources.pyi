@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -110,6 +111,18 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
         def getPolicy(
             self, *, name: str, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
     def systempolicy(self) -> SystempolicyResource: ...
 

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -20,6 +21,18 @@ class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
             body: GoogleIdentityStsV1betaExchangeTokenRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleIdentityStsV1betaExchangeTokenResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def v1beta(self) -> V1betaResource: ...
 
 @typing.type_check_only

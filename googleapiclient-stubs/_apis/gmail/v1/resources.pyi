@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -403,6 +404,18 @@ class GmailResource(googleapiclient.discovery.Resource):
         def messages(self) -> MessagesResource: ...
         def settings(self) -> SettingsResource: ...
         def threads(self) -> ThreadsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def users(self) -> UsersResource: ...
 
 @typing.type_check_only

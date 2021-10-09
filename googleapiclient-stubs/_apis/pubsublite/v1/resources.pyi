@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -273,6 +274,18 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                 def topics(self) -> TopicsResource: ...
             def locations(self) -> LocationsResource: ...
         def projects(self) -> ProjectsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def admin(self) -> AdminResource: ...
     def cursor(self) -> CursorResource: ...
     def topicStats(self) -> TopicStatsResource: ...

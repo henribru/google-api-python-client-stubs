@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -53,6 +54,18 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
                 self, *, body: RunMobileFriendlyTestRequest = ..., **kwargs: typing.Any
             ) -> RunMobileFriendlyTestResponseHttpRequest: ...
         def mobileFriendlyTest(self) -> MobileFriendlyTestResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def searchanalytics(self) -> SearchanalyticsResource: ...
     def sitemaps(self) -> SitemapsResource: ...
     def sites(self) -> SitesResource: ...

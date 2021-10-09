@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -386,6 +387,18 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             def services(self) -> ServicesResource: ...
         def authorizeddomains(self) -> AuthorizeddomainsResource: ...
         def locations(self) -> LocationsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def namespaces(self) -> NamespacesResource: ...
     def projects(self) -> ProjectsResource: ...
 

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -17,6 +18,18 @@ class ChromeUXReportResource(googleapiclient.discovery.Resource):
         def queryRecord(
             self, *, body: QueryRequest = ..., **kwargs: typing.Any
         ) -> QueryResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def records(self) -> RecordsResource: ...
 
 @typing.type_check_only

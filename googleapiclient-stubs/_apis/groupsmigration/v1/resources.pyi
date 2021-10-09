@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -17,6 +18,18 @@ class GroupsMigrationResource(googleapiclient.discovery.Resource):
         def insert(
             self, *, groupId: str, **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def archive(self) -> ArchiveResource: ...
 
 @typing.type_check_only

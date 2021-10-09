@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -382,6 +383,18 @@ class TagManagerResource(googleapiclient.discovery.Resource):
         ) -> AccountHttpRequest: ...
         def containers(self) -> ContainersResource: ...
         def permissions(self) -> PermissionsResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
 
 @typing.type_check_only

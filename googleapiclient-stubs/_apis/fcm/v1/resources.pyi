@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -24,6 +25,18 @@ class FirebaseCloudMessagingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
         def messages(self) -> MessagesResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -609,6 +610,18 @@ class SasportalResource(googleapiclient.discovery.Resource):
         def test(
             self, *, body: SasPortalTestPermissionsRequest = ..., **kwargs: typing.Any
         ) -> SasPortalTestPermissionsResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def customers(self) -> CustomersResource: ...
     def deployments(self) -> DeploymentsResource: ...
     def installer(self) -> InstallerResource: ...

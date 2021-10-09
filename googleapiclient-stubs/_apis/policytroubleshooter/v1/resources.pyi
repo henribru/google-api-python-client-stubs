@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -20,6 +21,18 @@ class PolicyTroubleshooterResource(googleapiclient.discovery.Resource):
             body: GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def iam(self) -> IamResource: ...
 
 @typing.type_check_only

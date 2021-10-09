@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -180,6 +181,18 @@ class SheetsResource(googleapiclient.discovery.Resource):
         def developerMetadata(self) -> DeveloperMetadataResource: ...
         def sheets(self) -> SheetsResource: ...
         def values(self) -> ValuesResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def spreadsheets(self) -> SpreadsheetsResource: ...
 
 @typing.type_check_only

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -258,6 +259,18 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def list(
             self, *, accountId: int, **kwargs: typing.Any
         ) -> GetPublisherProfilesByAccountIdResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
     def billingInfo(self) -> BillingInfoResource: ...
     def budget(self) -> BudgetResource: ...

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -75,6 +76,18 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
             body: GoogleChromePolicyV1UploadPolicyFileRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleChromePolicyV1UploadPolicyFileResponseHttpRequest: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def customers(self) -> CustomersResource: ...
     def media(self) -> MediaResource: ...
 

@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -50,6 +51,18 @@ class LibraryagentResource(googleapiclient.discovery.Resource):
             previous_response: GoogleExampleLibraryagentV1ListShelvesResponse,
         ) -> GoogleExampleLibraryagentV1ListShelvesResponseHttpRequest | None: ...
         def books(self) -> BooksResource: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def shelves(self) -> ShelvesResource: ...
 
 @typing.type_check_only

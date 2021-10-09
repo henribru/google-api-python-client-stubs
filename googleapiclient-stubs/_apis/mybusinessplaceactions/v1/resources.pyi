@@ -1,3 +1,4 @@
+import collections.abc
 import typing
 
 import httplib2  # type: ignore
@@ -64,6 +65,18 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
             previous_request: ListPlaceActionTypeMetadataResponseHttpRequest,
             previous_response: ListPlaceActionTypeMetadataResponse,
         ) -> ListPlaceActionTypeMetadataResponseHttpRequest | None: ...
+    def new_batch_http_request(
+        self,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = ...,
+    ) -> googleapiclient.http.BatchHttpRequest: ...
     def locations(self) -> LocationsResource: ...
     def placeActionTypeMetadata(self) -> PlaceActionTypeMetadataResource: ...
 
