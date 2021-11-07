@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "google-api-python-client-stubs"
-version = "1.7.1"
+version = "1.8.0"
 description = "Type stubs for google-api-python-client"
 authors = ["Henrik Bruådal <henrik.bruasdal@gmail.com>"]
 readme = "README.md"
