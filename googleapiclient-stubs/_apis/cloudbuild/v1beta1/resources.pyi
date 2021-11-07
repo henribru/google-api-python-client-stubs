@@ -40,7 +40,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any

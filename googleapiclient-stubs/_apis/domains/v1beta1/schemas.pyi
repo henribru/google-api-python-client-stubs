@@ -78,6 +78,8 @@ class DnsSettings(typing_extensions.TypedDict, total=False):
 class DsRecord(typing_extensions.TypedDict, total=False):
     algorithm: typing_extensions.Literal[
         "ALGORITHM_UNSPECIFIED",
+        "RSAMD5",
+        "DH",
         "DSA",
         "ECC",
         "RSASHA1",
@@ -90,6 +92,9 @@ class DsRecord(typing_extensions.TypedDict, total=False):
         "ECDSAP384SHA384",
         "ED25519",
         "ED448",
+        "INDIRECT",
+        "PRIVATEDNS",
+        "PRIVATEOID",
     ]
     digest: str
     digestType: typing_extensions.Literal[
@@ -231,6 +236,8 @@ class Registration(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED",
         "REGISTRATION_PENDING",
         "REGISTRATION_FAILED",
+        "TRANSFER_PENDING",
+        "TRANSFER_FAILED",
         "ACTIVE",
         "SUSPENDED",
         "EXPORTED",
@@ -243,6 +250,10 @@ class ResetAuthorizationCodeRequest(typing_extensions.TypedDict, total=False): .
 @typing.type_check_only
 class RetrieveRegisterParametersResponse(typing_extensions.TypedDict, total=False):
     registerParameters: RegisterParameters
+
+@typing.type_check_only
+class RetrieveTransferParametersResponse(typing_extensions.TypedDict, total=False):
+    transferParameters: TransferParameters
 
 @typing.type_check_only
 class SearchDomainsResponse(typing_extensions.TypedDict, total=False):
@@ -266,3 +277,22 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TransferDomainRequest(typing_extensions.TypedDict, total=False):
+    authorizationCode: AuthorizationCode
+    contactNotices: _list[str]
+    registration: Registration
+    validateOnly: bool
+    yearlyPrice: Money
+
+@typing.type_check_only
+class TransferParameters(typing_extensions.TypedDict, total=False):
+    currentRegistrar: str
+    domainName: str
+    nameServers: _list[str]
+    supportedPrivacy: _list[str]
+    transferLockState: typing_extensions.Literal[
+        "TRANSFER_LOCK_STATE_UNSPECIFIED", "UNLOCKED", "LOCKED"
+    ]
+    yearlyPrice: Money

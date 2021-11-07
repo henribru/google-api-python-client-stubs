@@ -326,6 +326,22 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         def testers(self) -> TestersResource: ...
         def tracks(self) -> TracksResource: ...
     @typing.type_check_only
+    class GrantsResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, parent: str, body: Grant = ..., **kwargs: typing.Any
+        ) -> GrantHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: Grant = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> GrantHttpRequest: ...
+    @typing.type_check_only
     class InappproductsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, packageName: str, sku: str, **kwargs: typing.Any
@@ -377,6 +393,15 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         def uploadbundle(
             self, *, packageName: str, **kwargs: typing.Any
         ) -> InternalAppSharingArtifactHttpRequest: ...
+    @typing.type_check_only
+    class MonetizationResource(googleapiclient.discovery.Resource):
+        def convertRegionPrices(
+            self,
+            *,
+            packageName: str,
+            body: ConvertRegionPricesRequest = ...,
+            **kwargs: typing.Any
+        ) -> ConvertRegionPricesResponseHttpRequest: ...
     @typing.type_check_only
     class OrdersResource(googleapiclient.discovery.Resource):
         def refund(
@@ -537,6 +562,35 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 self, *, packageName: str, versionCode: str, **kwargs: typing.Any
             ) -> SystemApksListResponseHttpRequest: ...
         def variants(self) -> VariantsResource: ...
+    @typing.type_check_only
+    class UsersResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, parent: str, body: User = ..., **kwargs: typing.Any
+        ) -> UserHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def list(
+            self,
+            *,
+            parent: str,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListUsersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListUsersResponseHttpRequest,
+            previous_response: ListUsersResponse,
+        ) -> ListUsersResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: User = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> UserHttpRequest: ...
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -550,12 +604,15 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def edits(self) -> EditsResource: ...
+    def grants(self) -> GrantsResource: ...
     def inappproducts(self) -> InappproductsResource: ...
     def internalappsharingartifacts(self) -> InternalappsharingartifactsResource: ...
+    def monetization(self) -> MonetizationResource: ...
     def orders(self) -> OrdersResource: ...
     def purchases(self) -> PurchasesResource: ...
     def reviews(self) -> ReviewsResource: ...
     def systemapks(self) -> SystemapksResource: ...
+    def users(self) -> UsersResource: ...
 
 @typing.type_check_only
 class ApkHttpRequest(googleapiclient.http.HttpRequest):
@@ -614,6 +671,14 @@ class BundlesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> BundlesListResponse: ...
 
 @typing.type_check_only
+class ConvertRegionPricesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ConvertRegionPricesResponse: ...
+
+@typing.type_check_only
 class DeobfuscationFilesUploadResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -636,6 +701,14 @@ class ExpansionFilesUploadResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ExpansionFilesUploadResponse: ...
+
+@typing.type_check_only
+class GrantHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Grant: ...
 
 @typing.type_check_only
 class ImagesDeleteAllResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -684,6 +757,14 @@ class InternalAppSharingArtifactHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> InternalAppSharingArtifact: ...
+
+@typing.type_check_only
+class ListUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListUsersResponse: ...
 
 @typing.type_check_only
 class ListingHttpRequest(googleapiclient.http.HttpRequest):
@@ -780,6 +861,14 @@ class TracksListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TracksListResponse: ...
+
+@typing.type_check_only
+class UserHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> User: ...
 
 @typing.type_check_only
 class VariantHttpRequest(googleapiclient.http.HttpRequest):

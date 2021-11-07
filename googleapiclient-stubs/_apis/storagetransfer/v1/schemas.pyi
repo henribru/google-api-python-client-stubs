@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AgentPool(typing_extensions.TypedDict, total=False):
+    bandwidthLimit: BandwidthLimit
+    displayName: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "CREATED", "DELETING"
+    ]
+
+@typing.type_check_only
 class AwsAccessKey(typing_extensions.TypedDict, total=False):
     accessKeyId: str
     secretAccessKey: str
@@ -26,6 +35,10 @@ class AzureBlobStorageData(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AzureCredentials(typing_extensions.TypedDict, total=False):
     sasToken: str
+
+@typing.type_check_only
+class BandwidthLimit(typing_extensions.TypedDict, total=False):
+    limitMbps: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -81,6 +94,11 @@ class GoogleServiceAccount(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HttpData(typing_extensions.TypedDict, total=False):
     listUrl: str
+
+@typing.type_check_only
+class ListAgentPoolsResponse(typing_extensions.TypedDict, total=False):
+    agentPools: _list[AgentPool]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -169,6 +187,8 @@ class TransferCounters(typing_extensions.TypedDict, total=False):
     directoriesFailedToListFromSource: str
     directoriesFoundFromSource: str
     directoriesSuccessfullyListedFromSource: str
+    intermediateObjectsCleanedUp: str
+    intermediateObjectsFailedCleanedUp: str
     objectsCopiedToSink: str
     objectsDeletedFromSink: str
     objectsDeletedFromSource: str

@@ -107,6 +107,7 @@ class ExecutionTemplate(typing_extensions.TypedDict, total=False):
     dataprocParameters: DataprocParameters
     inputNotebookFile: str
     jobType: typing_extensions.Literal["JOB_TYPE_UNSPECIFIED", "VERTEX_AI", "DATAPROC"]
+    kernelSpec: str
     labels: dict[str, typing.Any]
     masterType: str
     outputNotebookFolder: str
@@ -193,6 +194,8 @@ class Instance(typing_extensions.TypedDict, total=False):
         "UPGRADING",
         "INITIALIZING",
         "REGISTERING",
+        "SUSPENDING",
+        "SUSPENDED",
     ]
     subnet: str
     tags: _list[str]
@@ -447,6 +450,7 @@ class SchedulerAcceleratorConfig(typing_extensions.TypedDict, total=False):
         "NVIDIA_TESLA_V100",
         "NVIDIA_TESLA_P4",
         "NVIDIA_TESLA_T4",
+        "NVIDIA_TESLA_A100",
         "TPU_V2",
         "TPU_V3",
     ]
@@ -553,6 +557,7 @@ class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class VertexAIParameters(typing_extensions.TypedDict, total=False):
+    env: dict[str, typing.Any]
     network: str
 
 @typing.type_check_only

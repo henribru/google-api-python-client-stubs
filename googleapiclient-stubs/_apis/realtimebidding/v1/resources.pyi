@@ -59,6 +59,14 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 previous_request: ListEndpointsResponseHttpRequest,
                 previous_response: ListEndpointsResponse,
             ) -> ListEndpointsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Endpoint = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> EndpointHttpRequest: ...
         @typing.type_check_only
         class PretargetingConfigsResource(googleapiclient.discovery.Resource):
             def activate(

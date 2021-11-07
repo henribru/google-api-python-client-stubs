@@ -259,6 +259,7 @@ class Report(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReportData(typing_extensions.TypedDict, total=False):
     dataLastRefreshed: str
+    emptyReason: str
     isDataGolden: bool
     maximums: _list[DateRangeValues]
     minimums: _list[DateRangeValues]

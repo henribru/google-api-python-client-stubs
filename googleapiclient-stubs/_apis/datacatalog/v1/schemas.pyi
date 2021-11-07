@@ -43,6 +43,7 @@ class GoogleCloudDatacatalogV1BigQueryDateShardedSpec(
     typing_extensions.TypedDict, total=False
 ):
     dataset: str
+    latestShardResource: str
     shardCount: str
     tablePrefix: str
 
@@ -319,6 +320,8 @@ class GoogleCloudDatacatalogV1SearchCatalogResponse(
 class GoogleCloudDatacatalogV1SearchCatalogResult(
     typing_extensions.TypedDict, total=False
 ):
+    description: str
+    displayName: str
     fullyQualifiedName: str
     integratedSystem: typing_extensions.Literal[
         "INTEGRATED_SYSTEM_UNSPECIFIED",

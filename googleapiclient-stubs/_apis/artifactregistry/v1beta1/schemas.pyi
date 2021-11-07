@@ -42,7 +42,7 @@ class File(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["HASH_TYPE_UNSPECIFIED", "SHA256"]
+    type: typing_extensions.Literal["HASH_TYPE_UNSPECIFIED", "SHA256", "MD5"]
     value: str
 
 @typing.type_check_only

@@ -31,6 +31,7 @@ class GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
+    resource: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
     ]
@@ -251,6 +252,7 @@ class GoogleCloudDocumentaiV1CommonOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
+    resource: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
     ]
@@ -730,6 +732,16 @@ class GoogleCloudDocumentaiV1ProcessorType(typing_extensions.TypedDict, total=Fa
     allowCreation: bool
     availableLocations: _list[GoogleCloudDocumentaiV1ProcessorTypeLocationInfo]
     category: str
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+    ]
     name: str
     type: str
 
@@ -1617,6 +1629,7 @@ class GoogleCloudDocumentaiV1beta3CommonOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
+    resource: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
     ]

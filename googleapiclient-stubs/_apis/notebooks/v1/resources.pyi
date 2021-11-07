@@ -269,6 +269,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> RuntimeHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -296,6 +303,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: ResetRuntimeRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
                 def start(
                     self,
                     *,
@@ -317,6 +331,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: SwitchRuntimeRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
             @typing.type_check_only
             class SchedulesResource(googleapiclient.discovery.Resource):
                 def create(

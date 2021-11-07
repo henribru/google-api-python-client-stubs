@@ -302,6 +302,9 @@ class IndexItemRequest(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"]
 
 @typing.type_check_only
+class InitializeCustomerRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class IntegerOperatorOptions(typing_extensions.TypedDict, total=False):
     greaterThanOperatorName: str
     lessThanOperatorName: str

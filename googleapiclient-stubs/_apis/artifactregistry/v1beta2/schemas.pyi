@@ -44,7 +44,7 @@ class GoogleDevtoolsArtifactregistryV1beta2File(
 
 @typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["HASH_TYPE_UNSPECIFIED", "SHA256"]
+    type: typing_extensions.Literal["HASH_TYPE_UNSPECIFIED", "SHA256", "MD5"]
     value: str
 
 @typing.type_check_only
@@ -124,6 +124,13 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MavenRepositoryConfig(typing_extensions.TypedDict, total=False):
+    allowSnapshotOverwrites: bool
+    versionPolicy: typing_extensions.Literal[
+        "VERSION_POLICY_UNSPECIFIED", "RELEASE", "SNAPSHOT"
+    ]
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -153,6 +160,7 @@ class Repository(typing_extensions.TypedDict, total=False):
     ]
     kmsKeyName: str
     labels: dict[str, typing.Any]
+    mavenConfig: MavenRepositoryConfig
     name: str
     updateTime: str
 

@@ -309,7 +309,9 @@ class PatchRollout(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RecurringSchedule(typing_extensions.TypedDict, total=False):
     endTime: str
-    frequency: typing_extensions.Literal["FREQUENCY_UNSPECIFIED", "WEEKLY", "MONTHLY"]
+    frequency: typing_extensions.Literal[
+        "FREQUENCY_UNSPECIFIED", "WEEKLY", "MONTHLY", "DAILY"
+    ]
     lastExecuteTime: str
     monthly: MonthlySchedule
     nextExecuteTime: str

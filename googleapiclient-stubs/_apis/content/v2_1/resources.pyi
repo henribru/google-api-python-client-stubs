@@ -1003,6 +1003,9 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         def create(
             self, *, merchantId: str, body: Promotion = ..., **kwargs: typing.Any
         ) -> PromotionHttpRequest: ...
+        def get(
+            self, *, merchantId: str, id: str, **kwargs: typing.Any
+        ) -> PromotionHttpRequest: ...
     @typing.type_check_only
     class PubsubnotificationsettingsResource(googleapiclient.discovery.Resource):
         def get(

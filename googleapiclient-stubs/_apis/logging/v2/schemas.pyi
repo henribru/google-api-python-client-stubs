@@ -278,7 +278,12 @@ class LogSink(typing_extensions.TypedDict, total=False):
     writerIdentity: str
 
 @typing.type_check_only
-class LogView(dict[str, typing.Any]): ...
+class LogView(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    filter: str
+    name: str
+    updateTime: str
 
 @typing.type_check_only
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
@@ -423,12 +428,6 @@ class SuppressionInfo(typing_extensions.TypedDict, total=False):
         "REASON_UNSPECIFIED", "RATE_LIMIT", "NOT_CONSUMED"
     ]
     suppressedCount: int
-
-@typing.type_check_only
-class TableFieldSchema(dict[str, typing.Any]): ...
-
-@typing.type_check_only
-class TableSchema(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class TailLogEntriesRequest(typing_extensions.TypedDict, total=False):

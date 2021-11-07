@@ -384,6 +384,9 @@ class GoogleCloudRetailV2SearchRequest(typing_extensions.TypedDict, total=False)
     pageToken: str
     query: str
     queryExpansionSpec: GoogleCloudRetailV2SearchRequestQueryExpansionSpec
+    searchMode: typing_extensions.Literal[
+        "SEARCH_MODE_UNSPECIFIED", "PRODUCT_SEARCH_ONLY", "FACETED_SEARCH_ONLY"
+    ]
     userInfo: GoogleCloudRetailV2UserInfo
     variantRollupKeys: _list[str]
     visitorId: str
@@ -529,11 +532,6 @@ class GoogleCloudRetailV2alphaAddFulfillmentPlacesMetadata(
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaAddFulfillmentPlacesResponse(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudRetailV2alphaEnrollSolutionMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
 

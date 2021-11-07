@@ -27,6 +27,7 @@ class AnalyticsDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AnalyticsProperty(typing_extensions.TypedDict, total=False):
+    analyticsAccountId: str
     displayName: str
     id: str
 
@@ -82,6 +83,7 @@ class IosApp(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     projectId: str
+    teamId: str
 
 @typing.type_check_only
 class IosAppConfig(typing_extensions.TypedDict, total=False):

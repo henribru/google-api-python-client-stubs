@@ -761,6 +761,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        name: str,
+                        body: ExportMessagesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> Hl7V2StoreHttpRequest: ...
@@ -771,6 +778,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any
                     ) -> PolicyHttpRequest: ...
+                    def import_(
+                        self,
+                        *,
+                        name: str,
+                        body: ImportMessagesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def list(
                         self,
                         *,

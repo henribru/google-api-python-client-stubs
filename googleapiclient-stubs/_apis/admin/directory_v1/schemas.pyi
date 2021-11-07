@@ -139,6 +139,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     annotatedUser: str
     autoUpdateExpiration: str
     bootMode: str
+    cpuInfo: _list[dict[str, typing.Any]]
     cpuStatusReports: _list[dict[str, typing.Any]]
     deviceFiles: _list[dict[str, typing.Any]]
     deviceId: str

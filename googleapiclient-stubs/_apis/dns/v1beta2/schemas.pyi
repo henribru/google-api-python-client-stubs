@@ -268,7 +268,6 @@ class RRSetRoutingPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RRSetRoutingPolicyGeoPolicy(typing_extensions.TypedDict, total=False):
-    failovers: _list[RRSetRoutingPolicyGeoPolicyGeoPolicyItem]
     items: _list[RRSetRoutingPolicyGeoPolicyGeoPolicyItem]
     kind: str
 

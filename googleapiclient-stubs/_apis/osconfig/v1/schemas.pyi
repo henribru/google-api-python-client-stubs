@@ -52,6 +52,9 @@ class CVSSv3(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CancelPatchJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -198,6 +201,11 @@ class ListInventoriesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListOSPolicyAssignmentReportsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    osPolicyAssignmentReports: _list[OSPolicyAssignmentReport]
+
+@typing.type_check_only
 class ListOSPolicyAssignmentRevisionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     osPolicyAssignments: _list[OSPolicyAssignment]
@@ -295,6 +303,57 @@ class OSPolicyAssignmentOperationMetadata(typing_extensions.TypedDict, total=Fal
         "SUCCEEDED",
     ]
     rolloutUpdateTime: str
+
+@typing.type_check_only
+class OSPolicyAssignmentReport(typing_extensions.TypedDict, total=False):
+    instance: str
+    lastRunId: str
+    name: str
+    osPolicyAssignment: str
+    osPolicyCompliances: _list[OSPolicyAssignmentReportOSPolicyCompliance]
+    updateTime: str
+
+@typing.type_check_only
+class OSPolicyAssignmentReportOSPolicyCompliance(
+    typing_extensions.TypedDict, total=False
+):
+    complianceState: typing_extensions.Literal["UNKNOWN", "COMPLIANT", "NON_COMPLIANT"]
+    complianceStateReason: str
+    osPolicyId: str
+    osPolicyResourceCompliances: _list[
+        OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance
+    ]
+
+@typing.type_check_only
+class OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance(
+    typing_extensions.TypedDict, total=False
+):
+    complianceState: typing_extensions.Literal["UNKNOWN", "COMPLIANT", "NON_COMPLIANT"]
+    complianceStateReason: str
+    configSteps: _list[
+        OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep
+    ]
+    execResourceOutput: OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput
+    osPolicyResourceId: str
+
+@typing.type_check_only
+class OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput(
+    typing_extensions.TypedDict, total=False
+):
+    enforcementOutput: str
+
+@typing.type_check_only
+class OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep(
+    typing_extensions.TypedDict, total=False
+):
+    errorMessage: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "VALIDATION",
+        "DESIRED_STATE_CHECK",
+        "DESIRED_STATE_ENFORCEMENT",
+        "DESIRED_STATE_CHECK_POST_ENFORCEMENT",
+    ]
 
 @typing.type_check_only
 class OSPolicyAssignmentRollout(typing_extensions.TypedDict, total=False):
@@ -579,7 +638,9 @@ class PatchRollout(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RecurringSchedule(typing_extensions.TypedDict, total=False):
     endTime: str
-    frequency: typing_extensions.Literal["FREQUENCY_UNSPECIFIED", "WEEKLY", "MONTHLY"]
+    frequency: typing_extensions.Literal[
+        "FREQUENCY_UNSPECIFIED", "WEEKLY", "MONTHLY", "DAILY"
+    ]
     lastExecuteTime: str
     monthly: MonthlySchedule
     nextExecuteTime: str

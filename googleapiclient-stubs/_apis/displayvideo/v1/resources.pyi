@@ -1367,6 +1367,45 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         ) -> ListCombinedAudiencesResponseHttpRequest | None: ...
     @typing.type_check_only
     class CustomBiddingAlgorithmsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class ScriptsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                customBiddingAlgorithmId: str,
+                body: CustomBiddingScript = ...,
+                advertiserId: str = ...,
+                partnerId: str = ...,
+                **kwargs: typing.Any
+            ) -> CustomBiddingScriptHttpRequest: ...
+            def get(
+                self,
+                *,
+                customBiddingAlgorithmId: str,
+                customBiddingScriptId: str,
+                advertiserId: str = ...,
+                partnerId: str = ...,
+                **kwargs: typing.Any
+            ) -> CustomBiddingScriptHttpRequest: ...
+            def list(
+                self,
+                *,
+                customBiddingAlgorithmId: str,
+                advertiserId: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                partnerId: str = ...,
+                **kwargs: typing.Any
+            ) -> ListCustomBiddingScriptsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCustomBiddingScriptsResponseHttpRequest,
+                previous_response: ListCustomBiddingScriptsResponse,
+            ) -> ListCustomBiddingScriptsResponseHttpRequest | None: ...
+        def create(
+            self, *, body: CustomBiddingAlgorithm = ..., **kwargs: typing.Any
+        ) -> CustomBiddingAlgorithmHttpRequest: ...
         def get(
             self,
             *,
@@ -1391,6 +1430,23 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             previous_request: ListCustomBiddingAlgorithmsResponseHttpRequest,
             previous_response: ListCustomBiddingAlgorithmsResponse,
         ) -> ListCustomBiddingAlgorithmsResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            customBiddingAlgorithmId: str,
+            body: CustomBiddingAlgorithm = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> CustomBiddingAlgorithmHttpRequest: ...
+        def uploadScript(
+            self,
+            *,
+            customBiddingAlgorithmId: str,
+            advertiserId: str = ...,
+            partnerId: str = ...,
+            **kwargs: typing.Any
+        ) -> CustomBiddingScriptRefHttpRequest: ...
+        def scripts(self) -> ScriptsResource: ...
     @typing.type_check_only
     class CustomListsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1599,6 +1655,13 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
+        ) -> GoogleBytestreamMediaHttpRequest: ...
+        def upload(
+            self,
+            *,
+            resourceName: str,
+            body: GoogleBytestreamMedia = ...,
+            **kwargs: typing.Any
         ) -> GoogleBytestreamMediaHttpRequest: ...
     @typing.type_check_only
     class PartnersResource(googleapiclient.discovery.Resource):
@@ -2388,6 +2451,22 @@ class CustomBiddingAlgorithmHttpRequest(googleapiclient.http.HttpRequest):
     ) -> CustomBiddingAlgorithm: ...
 
 @typing.type_check_only
+class CustomBiddingScriptHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CustomBiddingScript: ...
+
+@typing.type_check_only
+class CustomBiddingScriptRefHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CustomBiddingScriptRef: ...
+
+@typing.type_check_only
 class CustomListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2550,6 +2629,14 @@ class ListCustomBiddingAlgorithmsResponseHttpRequest(googleapiclient.http.HttpRe
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCustomBiddingAlgorithmsResponse: ...
+
+@typing.type_check_only
+class ListCustomBiddingScriptsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListCustomBiddingScriptsResponse: ...
 
 @typing.type_check_only
 class ListCustomListsResponseHttpRequest(googleapiclient.http.HttpRequest):

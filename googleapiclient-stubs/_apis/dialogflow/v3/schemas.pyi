@@ -80,6 +80,31 @@ class GoogleCloudDialogflowCxV3CalculateCoverageResponse(
     transitionCoverage: GoogleCloudDialogflowCxV3TransitionCoverage
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3Changelog(typing_extensions.TypedDict, total=False):
+    action: str
+    createTime: str
+    displayName: str
+    name: str
+    resource: str
+    type: str
+    userEmail: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3CompareVersionsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    languageCode: str
+    targetVersion: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3CompareVersionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    baseVersionContentJson: str
+    compareTime: str
+    targetVersionContentJson: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3ContinuousTestResult(
     typing_extensions.TypedDict, total=False
 ):
@@ -579,6 +604,13 @@ class GoogleCloudDialogflowCxV3ListAgentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     agents: _list[GoogleCloudDialogflowCxV3Agent]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ListChangelogsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    changelogs: _list[GoogleCloudDialogflowCxV3Changelog]
     nextPageToken: str
 
 @typing.type_check_only

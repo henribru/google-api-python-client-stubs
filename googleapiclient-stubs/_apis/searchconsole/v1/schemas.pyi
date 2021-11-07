@@ -19,7 +19,12 @@ class ApiDimensionFilter(typing_extensions.TypedDict, total=False):
     ]
     expression: str
     operator: typing_extensions.Literal[
-        "EQUALS", "NOT_EQUALS", "CONTAINS", "NOT_CONTAINS"
+        "EQUALS",
+        "NOT_EQUALS",
+        "CONTAINS",
+        "NOT_CONTAINS",
+        "INCLUDING_REGEX",
+        "EXCLUDING_REGEX",
     ]
 
 @typing.type_check_only
@@ -77,9 +82,14 @@ class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
     dimensions: _list[str]
     endDate: str
     rowLimit: int
-    searchType: typing_extensions.Literal["WEB", "IMAGE", "VIDEO", "NEWS"]
+    searchType: typing_extensions.Literal[
+        "WEB", "IMAGE", "VIDEO", "NEWS", "DISCOVER", "GOOGLE_NEWS"
+    ]
     startDate: str
     startRow: int
+    type: typing_extensions.Literal[
+        "WEB", "IMAGE", "VIDEO", "NEWS", "DISCOVER", "GOOGLE_NEWS"
+    ]
 
 @typing.type_check_only
 class SearchAnalyticsQueryResponse(typing_extensions.TypedDict, total=False):

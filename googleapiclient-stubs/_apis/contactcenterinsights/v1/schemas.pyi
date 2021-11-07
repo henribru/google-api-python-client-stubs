@@ -181,12 +181,21 @@ class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegment(
 ):
     channelTag: int
     confidence: float
+    dialogflowSegmentMetadata: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata
     languageCode: str
+    messageTime: str
     segmentParticipant: GoogleCloudContactcenterinsightsV1ConversationParticipant
+    sentiment: GoogleCloudContactcenterinsightsV1SentimentData
     text: str
     words: _list[
         GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfo
     ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    smartReplyAllowlistCovered: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfo(

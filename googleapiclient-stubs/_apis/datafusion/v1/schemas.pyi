@@ -57,6 +57,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     cryptoKeyConfig: CryptoKeyConfig
     dataprocServiceAccount: str
     description: str
+    disabledReason: _list[str]
     displayName: str
     enableRbac: bool
     enableStackdriverLogging: bool
@@ -81,6 +82,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "AUTO_UPDATING",
         "AUTO_UPGRADING",
+        "DISABLED",
     ]
     stateMessage: str
     tenantProjectId: str
@@ -177,4 +179,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class Version(typing_extensions.TypedDict, total=False):
     availableFeatures: _list[str]
     defaultVersion: bool
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "TYPE_PREVIEW", "TYPE_GENERAL_AVAILABILITY"
+    ]
     versionNumber: str

@@ -669,9 +669,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaWebDataStreamHttpRequest: ...
-            def getEnhancedMeasurementSettings(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest: ...
             def getGlobalSiteTag(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaGlobalSiteTagHttpRequest: ...
@@ -696,17 +693,16 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaWebDataStreamHttpRequest: ...
-            def updateEnhancedMeasurementSettings(
-                self,
-                *,
-                name: str,
-                body: GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest: ...
             def measurementProtocolSecrets(
                 self,
             ) -> MeasurementProtocolSecretsResource: ...
+        def acknowledgeUserDataCollection(
+            self,
+            *,
+            property: str,
+            body: GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponseHttpRequest: ...
         def create(
             self,
             *,
@@ -801,6 +797,16 @@ class GoogleAnalyticsAdminV1alphaAccountHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaAccount: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAndroidAppDataStreamHttpRequest(
@@ -931,16 +937,6 @@ class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposalHttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaFirebaseLinkHttpRequest(

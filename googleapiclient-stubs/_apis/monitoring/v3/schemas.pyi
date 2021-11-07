@@ -576,6 +576,7 @@ class NotificationChannelDescriptor(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     name: str
+    supportedTiers: _list[str]
     type: str
 
 @typing.type_check_only

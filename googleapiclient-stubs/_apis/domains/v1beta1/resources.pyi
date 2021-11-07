@@ -121,6 +121,9 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                 def retrieveRegisterParameters(
                     self, *, location: str, domainName: str = ..., **kwargs: typing.Any
                 ) -> RetrieveRegisterParametersResponseHttpRequest: ...
+                def retrieveTransferParameters(
+                    self, *, location: str, domainName: str = ..., **kwargs: typing.Any
+                ) -> RetrieveTransferParametersResponseHttpRequest: ...
                 def searchDomains(
                     self, *, location: str, query: str = ..., **kwargs: typing.Any
                 ) -> SearchDomainsResponseHttpRequest: ...
@@ -138,6 +141,13 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def transfer(
+                    self,
+                    *,
+                    parent: str,
+                    body: TransferDomainRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -243,6 +253,14 @@ class RetrieveRegisterParametersResponseHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RetrieveRegisterParametersResponse: ...
+
+@typing.type_check_only
+class RetrieveTransferParametersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RetrieveTransferParametersResponse: ...
 
 @typing.type_check_only
 class SearchDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):

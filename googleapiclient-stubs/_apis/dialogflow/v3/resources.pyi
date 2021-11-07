@@ -20,6 +20,25 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AgentsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class ChangelogsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowCxV3ChangelogHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowCxV3ListChangelogsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowCxV3ListChangelogsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowCxV3ListChangelogsResponse,
+                    ) -> GoogleCloudDialogflowCxV3ListChangelogsResponseHttpRequest | None: ...
+                @typing.type_check_only
                 class EntityTypesResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -368,6 +387,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         ) -> GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest: ...
                     @typing.type_check_only
                     class VersionsResource(googleapiclient.discovery.Resource):
+                        def compareVersions(
+                            self,
+                            *,
+                            baseVersion: str,
+                            body: GoogleCloudDialogflowCxV3CompareVersionsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowCxV3CompareVersionsResponseHttpRequest: ...
                         def create(
                             self,
                             *,
@@ -795,6 +821,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDialogflowCxV3ValidateAgentRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowCxV3AgentValidationResultHttpRequest: ...
+                def changelogs(self) -> ChangelogsResource: ...
                 def entityTypes(self) -> EntityTypesResource: ...
                 def environments(self) -> EnvironmentsResource: ...
                 def flows(self) -> FlowsResource: ...
@@ -947,6 +974,24 @@ class GoogleCloudDialogflowCxV3CalculateCoverageResponseHttpRequest(
     ) -> GoogleCloudDialogflowCxV3CalculateCoverageResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3ChangelogHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowCxV3Changelog: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3CompareVersionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowCxV3CompareVersionsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3DeploymentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1033,6 +1078,16 @@ class GoogleCloudDialogflowCxV3ListAgentsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowCxV3ListAgentsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ListChangelogsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowCxV3ListChangelogsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListContinuousTestResultsResponseHttpRequest(

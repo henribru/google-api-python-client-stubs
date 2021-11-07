@@ -15,6 +15,7 @@ class AccountSuspensionDetails(typing_extensions.TypedDict, total=False):
         "FRAUD",
         "NUMBER_HARVESTING",
         "PAYMENTS_FRAUD",
+        "UNWANTED_CONTENT",
     ]
     productName: str
 

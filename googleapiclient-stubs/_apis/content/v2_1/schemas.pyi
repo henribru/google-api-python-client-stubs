@@ -41,6 +41,7 @@ class AccountBusinessInformation(typing_extensions.TypedDict, total=False):
     customerService: AccountCustomerService
     koreanBusinessRegistrationNumber: str
     phoneNumber: str
+    phoneVerificationStatus: str
 
 @typing.type_check_only
 class AccountCredentials(typing_extensions.TypedDict, total=False):
@@ -299,6 +300,14 @@ class AccounttaxListResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ActivateBuyOnGoogleProgramRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Address(typing_extensions.TypedDict, total=False):
+    administrativeArea: str
+    city: str
+    country: str
+    postalCode: str
+    streetAddress: str
 
 @typing.type_check_only
 class Amount(typing_extensions.TypedDict, total=False):
@@ -1256,11 +1265,16 @@ class OrderTrackingSignal(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OrderTrackingSignalLineItemDetails(typing_extensions.TypedDict, total=False):
+    brand: str
     gtin: str
     lineItemId: str
     mpn: str
+    productDescription: str
     productId: str
+    productTitle: str
     quantity: str
+    sku: str
+    upc: str
 
 @typing.type_check_only
 class OrderTrackingSignalShipmentLineItemMapping(
@@ -2128,13 +2142,15 @@ class Promotion(typing_extensions.TypedDict, total=False):
     orderLimit: int
     percentOff: int
     productApplicability: typing_extensions.Literal[
-        "PRODUCT_APPLICABILITY_UNSPECIFIED", "ALL_PRODUCTS", "PRODUCT_SPECIFIC"
+        "PRODUCT_APPLICABILITY_UNSPECIFIED", "ALL_PRODUCTS", "SPECIFIC_PRODUCTS"
     ]
     productType: _list[str]
     productTypeExclusion: _list[str]
     promotionDestinationIds: _list[str]
     promotionDisplayDates: str
+    promotionDisplayTimePeriod: TimePeriod
     promotionEffectiveDates: str
+    promotionEffectiveTimePeriod: TimePeriod
     promotionId: str
     redemptionChannel: _list[str]
     shippingServiceNames: _list[str]
@@ -2675,6 +2691,7 @@ class ShippingSettings(typing_extensions.TypedDict, total=False):
     accountId: str
     postalCodeGroups: _list[PostalCodeGroup]
     services: _list[Service]
+    warehouses: _list[Warehouse]
 
 @typing.type_check_only
 class ShippingsettingsCustomBatchRequest(typing_extensions.TypedDict, total=False):
@@ -2831,6 +2848,11 @@ class TestOrderPickupDetailsPickupPerson(typing_extensions.TypedDict, total=Fals
     phoneNumber: str
 
 @typing.type_check_only
+class TimePeriod(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
 class TimeZone(typing_extensions.TypedDict, total=False):
     id: str
     version: str
@@ -2890,6 +2912,14 @@ class VerifyPhoneNumberResponse(typing_extensions.TypedDict, total=False):
     verifiedPhoneNumber: str
 
 @typing.type_check_only
+class Warehouse(typing_extensions.TypedDict, total=False):
+    businessDayConfig: BusinessDayConfig
+    cutoffTime: WarehouseCutoffTime
+    handlingDays: str
+    name: str
+    shippingAddress: Address
+
+@typing.type_check_only
 class WarehouseBasedDeliveryTime(typing_extensions.TypedDict, total=False):
     carrier: str
     carrierService: str
@@ -2898,6 +2928,12 @@ class WarehouseBasedDeliveryTime(typing_extensions.TypedDict, total=False):
     originCountry: str
     originPostalCode: str
     originStreetAddress: str
+    warehouseName: str
+
+@typing.type_check_only
+class WarehouseCutoffTime(typing_extensions.TypedDict, total=False):
+    hour: int
+    minute: int
 
 @typing.type_check_only
 class Weight(typing_extensions.TypedDict, total=False):

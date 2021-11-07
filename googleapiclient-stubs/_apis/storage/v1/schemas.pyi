@@ -7,6 +7,7 @@ _list = list
 @typing.type_check_only
 class Bucket(typing_extensions.TypedDict, total=False):
     acl: _list[BucketAccessControl]
+    autoclass: dict[str, typing.Any]
     billing: dict[str, typing.Any]
     cors: _list[dict[str, typing.Any]]
     customPlacementConfig: dict[str, typing.Any]

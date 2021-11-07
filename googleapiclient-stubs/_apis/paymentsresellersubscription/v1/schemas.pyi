@@ -58,6 +58,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse(
 ):
     cycleEndTime: str
     freeTrialEndTime: str
+    renewalTime: str
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1Extension(

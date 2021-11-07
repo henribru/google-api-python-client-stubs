@@ -217,6 +217,14 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest,
                     previous_response: GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse,
                 ) -> GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudContactcenterinsightsV1PhraseMatcher = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1PhraseMatcherHttpRequest: ...
             def getSettings(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudContactcenterinsightsV1SettingsHttpRequest: ...

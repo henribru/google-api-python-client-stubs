@@ -233,11 +233,6 @@ class GoogleCloudRetailV2alphaCustomAttribute(typing_extensions.TypedDict, total
     text: _list[str]
 
 @typing.type_check_only
-class GoogleCloudRetailV2alphaEnrollSolutionMetadata(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
 class GoogleCloudRetailV2alphaExportErrorsConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -543,6 +538,9 @@ class GoogleCloudRetailV2alphaSearchRequest(typing_extensions.TypedDict, total=F
     queryExpansionSpec: GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec
     relevanceThreshold: typing_extensions.Literal[
         "RELEVANCE_THRESHOLD_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "LOWEST"
+    ]
+    searchMode: typing_extensions.Literal[
+        "SEARCH_MODE_UNSPECIFIED", "PRODUCT_SEARCH_ONLY", "FACETED_SEARCH_ONLY"
     ]
     userInfo: GoogleCloudRetailV2alphaUserInfo
     variantRollupKeys: _list[str]

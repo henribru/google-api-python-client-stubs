@@ -154,6 +154,9 @@ class BuildTrigger(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     disabled: bool
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED", "REPO", "WEBHOOK", "PUBSUB", "MANUAL"
+    ]
     filename: str
     filter: str
     gitFileSource: GitFileSource

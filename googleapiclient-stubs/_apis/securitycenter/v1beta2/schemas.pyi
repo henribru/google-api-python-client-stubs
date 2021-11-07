@@ -96,6 +96,7 @@ class Finding(typing_extensions.TypedDict, total=False):
         "VULNERABILITY",
         "MISCONFIGURATION",
         "OBSERVATION",
+        "SCC_ERROR",
     ]
     indicator: Indicator
     name: str
@@ -124,6 +125,7 @@ class GoogleCloudSecuritycenterV1NotificationMessage(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
+    displayName: str
     folders: _list[Folder]
     name: str
     parent: str

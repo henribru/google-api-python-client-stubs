@@ -307,6 +307,7 @@ class GenerateEphemeralCertRequest(typing_extensions.TypedDict, total=False):
     access_token: str
     public_key: str
     readTime: str
+    validDuration: str
 
 @typing.type_check_only
 class GenerateEphemeralCertResponse(typing_extensions.TypedDict, total=False):
@@ -623,6 +624,8 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_DEFINER",
         "SQLSERVER_SERVERNAME_MISMATCH",
         "PRIMARY_ALREADY_SETUP",
+        "UNSUPPORTED_BINLOG_FORMAT",
+        "BINLOG_RETENTION_SETTING",
     ]
 
 @typing.type_check_only

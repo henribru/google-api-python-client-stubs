@@ -449,6 +449,13 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 body: CreateTimeSeriesRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def createService(
+                self,
+                *,
+                name: str,
+                body: CreateTimeSeriesRequest = ...,
+                **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
             def list(
                 self,
                 *,

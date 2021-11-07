@@ -23,6 +23,10 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     networkPolicyConfig: NetworkPolicyConfig
 
 @typing.type_check_only
+class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
+    threadsPerCore: str
+
+@typing.type_check_only
 class AuthenticatorGroupsConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
     securityGroup: str
@@ -117,6 +121,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     maintenancePolicy: MaintenancePolicy
     masterAuth: MasterAuth
     masterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
+    meshCertificates: MeshCertificates
     monitoringConfig: MonitoringConfig
     monitoringService: str
     name: str
@@ -125,6 +130,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     networkPolicy: NetworkPolicy
     nodeConfig: NodeConfig
     nodeIpv4CidrSize: int
+    nodePoolDefaults: NodePoolDefaults
     nodePools: _list[NodePool]
     notificationConfig: NotificationConfig
     privateClusterConfig: PrivateClusterConfig
@@ -164,7 +170,6 @@ class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
 class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredAddonsConfig: AddonsConfig
     desiredAuthenticatorGroupsConfig: AuthenticatorGroupsConfig
-    desiredAutopilot: Autopilot
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
     desiredDatabaseEncryption: DatabaseEncryption
@@ -172,6 +177,8 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
     desiredDefaultSnatStatus: DefaultSnatStatus
+    desiredDnsConfig: DNSConfig
+    desiredGcfsConfig: GcfsConfig
     desiredImageType: str
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
     desiredL4ilbSubsettingConfig: ILBSubsettingConfig
@@ -180,6 +187,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredLoggingService: str
     desiredMasterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
     desiredMasterVersion: str
+    desiredMeshCertificates: MeshCertificates
     desiredMonitoringConfig: MonitoringConfig
     desiredMonitoringService: str
     desiredNodePoolAutoscaling: NodePoolAutoscaling
@@ -234,6 +242,14 @@ class CreateNodePoolRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class DNSConfig(typing_extensions.TypedDict, total=False):
+    clusterDns: typing_extensions.Literal[
+        "PROVIDER_UNSPECIFIED", "PLATFORM_DEFAULT", "CLOUD_DNS"
+    ]
+    clusterDnsDomain: str
+    clusterDnsScope: typing_extensions.Literal["DNS_SCOPE_UNSPECIFIED", "VPC_SCOPE"]
+
+@typing.type_check_only
 class DailyMaintenanceWindow(typing_extensions.TypedDict, total=False):
     duration: str
     startTime: str
@@ -256,6 +272,10 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class GcfsConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
@@ -397,6 +417,10 @@ class MaxPodsConstraint(typing_extensions.TypedDict, total=False):
     maxPodsPerNode: str
 
 @typing.type_check_only
+class MeshCertificates(typing_extensions.TypedDict, total=False):
+    enableCertificates: bool
+
+@typing.type_check_only
 class Metric(typing_extensions.TypedDict, total=False):
     doubleValue: float
     intValue: str
@@ -417,6 +441,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
     defaultSnatStatus: DefaultSnatStatus
+    dnsConfig: DNSConfig
     enableIntraNodeVisibility: bool
     enableL4ilbSubsetting: bool
     network: str
@@ -440,9 +465,11 @@ class NetworkPolicyConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
     accelerators: _list[AcceleratorConfig]
+    advancedMachineFeatures: AdvancedMachineFeatures
     bootDiskKmsKey: str
     diskSizeGb: int
     diskType: str
+    gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig
@@ -462,6 +489,10 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     tags: _list[str]
     taints: _list[NodeTaint]
     workloadMetadataConfig: WorkloadMetadataConfig
+
+@typing.type_check_only
+class NodeConfigDefaults(typing_extensions.TypedDict, total=False):
+    gcfsConfig: GcfsConfig
 
 @typing.type_check_only
 class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
@@ -514,6 +545,10 @@ class NodePoolAutoscaling(typing_extensions.TypedDict, total=False):
     enabled: bool
     maxNodeCount: int
     minNodeCount: int
+
+@typing.type_check_only
+class NodePoolDefaults(typing_extensions.TypedDict, total=False):
+    nodeConfigDefaults: NodeConfigDefaults
 
 @typing.type_check_only
 class NodeTaint(typing_extensions.TypedDict, total=False):
@@ -790,6 +825,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
+    gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig

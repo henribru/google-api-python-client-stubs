@@ -512,6 +512,11 @@ class MemberRelation(typing_extensions.TypedDict, total=False):
     roles: _list[TransitiveMembershipRole]
 
 @typing.type_check_only
+class MemberRestriction(typing_extensions.TypedDict, total=False):
+    evaluation: RestrictionEvaluation
+    query: str
+
+@typing.type_check_only
 class Membership(typing_extensions.TypedDict, total=False):
     createTime: str
     memberKey: EntityKey
@@ -532,6 +537,17 @@ class MembershipAdjacencyList(typing_extensions.TypedDict, total=False):
 class MembershipRole(typing_extensions.TypedDict, total=False):
     expiryDetail: ExpiryDetail
     name: str
+    restrictionEvaluations: RestrictionEvaluations
+
+@typing.type_check_only
+class MembershipRoleRestrictionEvaluation(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "COMPLIANT",
+        "FORWARD_COMPLIANT",
+        "NON_COMPLIANT",
+        "EVALUATING",
+    ]
 
 @typing.type_check_only
 class ModifyMembershipRolesRequest(typing_extensions.TypedDict, total=False):
@@ -558,6 +574,20 @@ class PosixGroup(typing_extensions.TypedDict, total=False):
     systemId: str
 
 @typing.type_check_only
+class RestrictionEvaluation(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "EVALUATING",
+        "COMPLIANT",
+        "FORWARD_COMPLIANT",
+        "NON_COMPLIANT",
+    ]
+
+@typing.type_check_only
+class RestrictionEvaluations(typing_extensions.TypedDict, total=False):
+    memberRestrictionEvaluation: MembershipRoleRestrictionEvaluation
+
+@typing.type_check_only
 class SearchGroupsResponse(typing_extensions.TypedDict, total=False):
     groups: _list[Group]
     nextPageToken: str
@@ -571,6 +601,11 @@ class SearchTransitiveGroupsResponse(typing_extensions.TypedDict, total=False):
 class SearchTransitiveMembershipsResponse(typing_extensions.TypedDict, total=False):
     memberships: _list[MemberRelation]
     nextPageToken: str
+
+@typing.type_check_only
+class SecuritySettings(typing_extensions.TypedDict, total=False):
+    memberRestriction: MemberRestriction
+    name: str
 
 @typing.type_check_only
 class SendUserInvitationRequest(typing_extensions.TypedDict, total=False): ...

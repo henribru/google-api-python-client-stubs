@@ -33,7 +33,7 @@ class DynamicGroupQuery(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DynamicGroupStatus(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "UP_TO_DATE", "UPDATING_MEMBERSHIPS"
+        "STATUS_UNSPECIFIED", "UP_TO_DATE", "UPDATING_MEMBERSHIPS", "INVALID_QUERY"
     ]
     statusTime: str
 

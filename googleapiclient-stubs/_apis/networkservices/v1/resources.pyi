@@ -87,6 +87,64 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
             @typing.type_check_only
+            class EndpointPoliciesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: EndpointPolicy = ...,
+                    endpointPolicyId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EndpointPolicyHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListEndpointPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEndpointPoliciesResponseHttpRequest,
+                    previous_response: ListEndpointPoliciesResponse,
+                ) -> ListEndpointPoliciesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: EndpointPolicy = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -135,6 +193,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
             def edgeCacheKeysets(self) -> EdgeCacheKeysetsResource: ...
             def edgeCacheOrigins(self) -> EdgeCacheOriginsResource: ...
             def edgeCacheServices(self) -> EdgeCacheServicesResource: ...
+            def endpointPolicies(self) -> EndpointPoliciesResource: ...
             def operations(self) -> OperationsResource: ...
         def locations(self) -> LocationsResource: ...
     def new_batch_http_request(
@@ -158,6 +217,22 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
+
+@typing.type_check_only
+class EndpointPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> EndpointPolicy: ...
+
+@typing.type_check_only
+class ListEndpointPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListEndpointPoliciesResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
