@@ -9,6 +9,18 @@ class AttachTrustRequest(typing_extensions.TypedDict, total=False):
     trust: Trust
 
 @typing.type_check_only
+class Backup(typing_extensions.TypedDict, total=False):
+    createTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "DELETING"
+    ]
+    statusMessage: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ON_DEMAND", "SCHEDULED"]
+    updateTime: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -205,6 +217,12 @@ class LDAPSSettings(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ListBackupsResponse(typing_extensions.TypedDict, total=False):
+    backups: _list[Backup]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListDomainsResponse(typing_extensions.TypedDict, total=False):
     domains: _list[Domain]
     nextPageToken: str
@@ -303,6 +321,10 @@ class ResetAdminPasswordRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ResetAdminPasswordResponse(typing_extensions.TypedDict, total=False):
     password: str
+
+@typing.type_check_only
+class RestoreDomainRequest(typing_extensions.TypedDict, total=False):
+    backupId: str
 
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):

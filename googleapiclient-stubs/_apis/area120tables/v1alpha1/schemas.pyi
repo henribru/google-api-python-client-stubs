@@ -27,6 +27,7 @@ class BatchUpdateRowsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ColumnDescription(typing_extensions.TypedDict, total=False):
     dataType: str
+    dateDetails: DateDetails
     id: str
     labels: _list[LabeledItem]
     lookupDetails: LookupDetails
@@ -40,6 +41,10 @@ class CreateRowRequest(typing_extensions.TypedDict, total=False):
     parent: str
     row: Row
     view: typing_extensions.Literal["VIEW_UNSPECIFIED", "COLUMN_ID_VIEW"]
+
+@typing.type_check_only
+class DateDetails(typing_extensions.TypedDict, total=False):
+    hasTime: bool
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -92,6 +97,7 @@ class Table(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     savedViews: _list[SavedView]
+    timeZone: str
     updateTime: str
 
 @typing.type_check_only

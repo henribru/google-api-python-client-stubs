@@ -29,11 +29,50 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EndpointMatcher(typing_extensions.TypedDict, total=False):
+    metadataLabelMatcher: EndpointMatcherMetadataLabelMatcher
+
+@typing.type_check_only
+class EndpointMatcherMetadataLabelMatcher(typing_extensions.TypedDict, total=False):
+    metadataLabelMatchCriteria: typing_extensions.Literal[
+        "METADATA_LABEL_MATCH_CRITERIA_UNSPECIFIED", "MATCH_ANY", "MATCH_ALL"
+    ]
+    metadataLabels: _list[EndpointMatcherMetadataLabelMatcherMetadataLabels]
+
+@typing.type_check_only
+class EndpointMatcherMetadataLabelMatcherMetadataLabels(
+    typing_extensions.TypedDict, total=False
+):
+    labelName: str
+    labelValue: str
+
+@typing.type_check_only
+class EndpointPolicy(typing_extensions.TypedDict, total=False):
+    authorizationPolicy: str
+    clientTlsPolicy: str
+    createTime: str
+    description: str
+    endpointMatcher: EndpointMatcher
+    labels: dict[str, typing.Any]
+    name: str
+    serverTlsPolicy: str
+    trafficPortSelector: TrafficPortSelector
+    type: typing_extensions.Literal[
+        "ENDPOINT_POLICY_TYPE_UNSPECIFIED", "SIDECAR_PROXY", "GRPC_SERVER"
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class ListEndpointPoliciesResponse(typing_extensions.TypedDict, total=False):
+    endpointPolicies: _list[EndpointPolicy]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -96,3 +135,7 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TrafficPortSelector(typing_extensions.TypedDict, total=False):
+    ports: _list[str]

@@ -81,6 +81,14 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 previous_request: ListPatchDeploymentsResponseHttpRequest,
                 previous_response: ListPatchDeploymentsResponse,
             ) -> ListPatchDeploymentsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: PatchDeployment = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> PatchDeploymentHttpRequest: ...
         @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only

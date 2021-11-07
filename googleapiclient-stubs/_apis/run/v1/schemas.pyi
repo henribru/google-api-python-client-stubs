@@ -121,6 +121,9 @@ class DomainMappingStatus(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class EnvFromSource(typing_extensions.TypedDict, total=False):
     configMapRef: ConfigMapEnvSource
     prefix: str
@@ -156,6 +159,11 @@ class GoogleCloudRunV1Condition(typing_extensions.TypedDict, total=False):
     severity: str
     status: str
     type: str
+
+@typing.type_check_only
+class GoogleLongrunningCancelOperationRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class HTTPGetAction(typing_extensions.TypedDict, total=False):

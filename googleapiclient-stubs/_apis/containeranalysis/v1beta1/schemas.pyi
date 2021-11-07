@@ -248,6 +248,7 @@ class Discovery(typing_extensions.TypedDict, total=False):
         "SBOM",
         "SPDX_PACKAGE",
         "SPDX_FILE",
+        "SPDX_RELATIONSHIP",
     ]
 
 @typing.type_check_only
@@ -330,8 +331,7 @@ class FileOccurrence(typing_extensions.TypedDict, total=False):
     copyright: str
     filesLicenseInfo: _list[str]
     id: str
-    licenseComments: str
-    licenseConcluded: str
+    licenseConcluded: License
     notice: str
 
 @typing.type_check_only
@@ -488,6 +488,11 @@ class Layer(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class License(typing_extensions.TypedDict, total=False):
+    comments: str
+    expression: str
+
+@typing.type_check_only
 class Link(typing_extensions.TypedDict, total=False):
     byproducts: ByProducts
     command: _list[str]
@@ -544,6 +549,7 @@ class Note(typing_extensions.TypedDict, total=False):
         "SBOM",
         "SPDX_PACKAGE",
         "SPDX_FILE",
+        "SPDX_RELATIONSHIP",
     ]
     longDescription: str
     name: str
@@ -553,7 +559,7 @@ class Note(typing_extensions.TypedDict, total=False):
     sbom: DocumentNote
     shortDescription: str
     spdxFile: FileNote
-    spdxPackage: PackageNote
+    spdxPackage: PackageInfoNote
     spdxRelationship: RelationshipNote
     updateTime: str
     vulnerability: Vulnerability
@@ -581,6 +587,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "SBOM",
         "SPDX_PACKAGE",
         "SPDX_FILE",
+        "SPDX_RELATIONSHIP",
     ]
     name: str
     noteName: str
@@ -588,7 +595,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     resource: Resource
     sbom: DocumentOccurrence
     spdxFile: FileOccurrence
-    spdxPackage: PackageOccurrence
+    spdxPackage: PackageInfoOccurrence
     spdxRelationship: RelationshipOccurrence
     updateTime: str
     vulnerability: GrafeasV1beta1VulnerabilityDetails
@@ -599,17 +606,7 @@ class Package(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class PackageIssue(typing_extensions.TypedDict, total=False):
-    affectedLocation: VulnerabilityLocation
-    effectiveSeverity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
-    ]
-    fixedLocation: VulnerabilityLocation
-    packageType: str
-    severityName: str
-
-@typing.type_check_only
-class PackageNote(typing_extensions.TypedDict, total=False):
+class PackageInfoNote(typing_extensions.TypedDict, total=False):
     analyzed: bool
     attribution: str
     checksum: str
@@ -619,8 +616,9 @@ class PackageNote(typing_extensions.TypedDict, total=False):
     externalRefs: _list[ExternalRef]
     filesLicenseInfo: _list[str]
     homePage: str
-    licenseDeclared: str
+    licenseDeclared: License
     originator: str
+    packageType: str
     summaryDescription: str
     supplier: str
     title: str
@@ -628,13 +626,27 @@ class PackageNote(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class PackageOccurrence(typing_extensions.TypedDict, total=False):
+class PackageInfoOccurrence(typing_extensions.TypedDict, total=False):
     comment: str
     filename: str
+    homePage: str
     id: str
-    licenseComments: str
-    licenseConcluded: str
+    licenseConcluded: License
+    packageType: str
     sourceInfo: str
+    summaryDescription: str
+    title: str
+    version: str
+
+@typing.type_check_only
+class PackageIssue(typing_extensions.TypedDict, total=False):
+    affectedLocation: VulnerabilityLocation
+    effectiveSeverity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
+    ]
+    fixedLocation: VulnerabilityLocation
+    packageType: str
+    severityName: str
 
 @typing.type_check_only
 class PgpSignedAttestation(typing_extensions.TypedDict, total=False):
@@ -661,7 +673,53 @@ class RelatedUrl(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class RelationshipNote(typing_extensions.TypedDict, total=False): ...
+class RelationshipNote(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "RELATIONSHIP_TYPE_UNSPECIFIED",
+        "DESCRIBES",
+        "DESCRIBED_BY",
+        "CONTAINS",
+        "CONTAINED_BY",
+        "DEPENDS_ON",
+        "DEPENDENCY_OF",
+        "DEPENDENCY_MANIFEST_OF",
+        "BUILD_DEPENDENCY_OF",
+        "DEV_DEPENDENCY_OF",
+        "OPTIONAL_DEPENDENCY_OF",
+        "PROVIDED_DEPENDENCY_OF",
+        "TEST_DEPENDENCY_OF",
+        "RUNTIME_DEPENDENCY_OF",
+        "EXAMPLE_OF",
+        "GENERATES",
+        "GENERATED_FROM",
+        "ANCESTOR_OF",
+        "DESCENDANT_OF",
+        "VARIANT_OF",
+        "DISTRIBUTION_ARTIFACT",
+        "PATCH_FOR",
+        "PATCH_APPLIED",
+        "COPY_OF",
+        "FILE_ADDED",
+        "FILE_DELETED",
+        "FILE_MODIFIED",
+        "EXPANDED_FROM_ARCHIVE",
+        "DYNAMIC_LINK",
+        "STATIC_LINK",
+        "DATA_FILE_OF",
+        "TEST_CASE_OF",
+        "BUILD_TOOL_OF",
+        "DEV_TOOL_OF",
+        "TEST_OF",
+        "TEST_TOOL_OF",
+        "DOCUMENTATION_OF",
+        "OPTIONAL_COMPONENT_OF",
+        "METAFILE_OF",
+        "PACKAGE_OF",
+        "AMENDS",
+        "PREREQUISITE_FOR",
+        "HAS_PREREQUISITE",
+        "OTHER",
+    ]
 
 @typing.type_check_only
 class RelationshipOccurrence(typing_extensions.TypedDict, total=False):
@@ -669,7 +727,7 @@ class RelationshipOccurrence(typing_extensions.TypedDict, total=False):
     source: str
     target: str
     type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED",
+        "RELATIONSHIP_TYPE_UNSPECIFIED",
         "DESCRIBES",
         "DESCRIBED_BY",
         "CONTAINS",

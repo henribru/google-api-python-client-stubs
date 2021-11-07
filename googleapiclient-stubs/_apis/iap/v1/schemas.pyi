@@ -15,6 +15,7 @@ class AccessSettings(typing_extensions.TypedDict, total=False):
     gcipSettings: GcipSettings
     oauthSettings: OAuthSettings
     policyDelegationSettings: PolicyDelegationSettings
+    reauthSettings: ReauthSettings
 
 @typing.type_check_only
 class ApplicationSettings(typing_extensions.TypedDict, total=False):
@@ -109,6 +110,16 @@ class PolicyName(typing_extensions.TypedDict, total=False):
     id: str
     region: str
     type: str
+
+@typing.type_check_only
+class ReauthSettings(typing_extensions.TypedDict, total=False):
+    maxAge: str
+    method: typing_extensions.Literal[
+        "METHOD_UNSPECIFIED", "LOGIN", "PASSWORD", "SECURE_KEY"
+    ]
+    policyType: typing_extensions.Literal[
+        "POLICY_TYPE_UNSPECIFIED", "MINIMUM", "DEFAULT"
+    ]
 
 @typing.type_check_only
 class ResetIdentityAwareProxyClientSecretRequest(

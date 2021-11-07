@@ -447,6 +447,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
         "HTTP_COOKIE",
         "NONE",
     ]
+    subsetting: Subsetting
     timeoutSec: int
 
 @typing.type_check_only
@@ -2050,6 +2051,7 @@ class Interconnect(typing_extensions.TypedDict, total=False):
     peerIpAddress: str
     provisionedLinkCount: int
     requestedLinkCount: int
+    satisfiesPzs: bool
     selfLink: str
     state: typing_extensions.Literal["ACTIVE", "UNPROVISIONED"]
 
@@ -2094,6 +2096,7 @@ class InterconnectAttachment(typing_extensions.TypedDict, total=False):
     privateInterconnectInfo: InterconnectAttachmentPrivateInfo
     region: str
     router: str
+    satisfiesPzs: bool
     selfLink: str
     state: typing_extensions.Literal[
         "ACTIVE",
@@ -2217,6 +2220,7 @@ class InterconnectLocation(typing_extensions.TypedDict, total=False):
     regionInfos: _list[InterconnectLocationRegionInfo]
     selfLink: str
     status: typing_extensions.Literal["AVAILABLE", "CLOSED"]
+    supportsPzs: bool
 
 @typing.type_check_only
 class InterconnectLocationList(typing_extensions.TypedDict, total=False):
@@ -3759,6 +3763,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class Route(typing_extensions.TypedDict, total=False):
+    asPaths: _list[RouteAsPath]
     creationTimestamp: str
     description: str
     destRange: str
@@ -3774,9 +3779,17 @@ class Route(typing_extensions.TypedDict, total=False):
     nextHopPeering: str
     nextHopVpnTunnel: str
     priority: int
+    routeType: typing_extensions.Literal["BGP", "STATIC", "SUBNET", "TRANSIT"]
     selfLink: str
     tags: _list[str]
     warnings: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
+class RouteAsPath(typing_extensions.TypedDict, total=False):
+    asLists: _list[int]
+    pathSegmentType: typing_extensions.Literal[
+        "AS_CONFED_SEQUENCE", "AS_CONFED_SET", "AS_SEQUENCE", "AS_SET"
+    ]
 
 @typing.type_check_only
 class RouteList(typing_extensions.TypedDict, total=False):
@@ -3885,6 +3898,7 @@ class RouterNat(typing_extensions.TypedDict, total=False):
     name: str
     natIpAllocateOption: typing_extensions.Literal["AUTO_ONLY", "MANUAL_ONLY"]
     natIps: _list[str]
+    rules: _list[RouterNatRule]
     sourceSubnetworkIpRangesToNat: typing_extensions.Literal[
         "ALL_SUBNETWORKS_ALL_IP_RANGES",
         "ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES",
@@ -3892,6 +3906,7 @@ class RouterNat(typing_extensions.TypedDict, total=False):
     ]
     subnetworks: _list[RouterNatSubnetworkToNat]
     tcpEstablishedIdleTimeoutSec: int
+    tcpTimeWaitTimeoutSec: int
     tcpTransitoryIdleTimeoutSec: int
     udpIdleTimeoutSec: int
 
@@ -3899,6 +3914,18 @@ class RouterNat(typing_extensions.TypedDict, total=False):
 class RouterNatLogConfig(typing_extensions.TypedDict, total=False):
     enable: bool
     filter: typing_extensions.Literal["ALL", "ERRORS_ONLY", "TRANSLATIONS_ONLY"]
+
+@typing.type_check_only
+class RouterNatRule(typing_extensions.TypedDict, total=False):
+    action: RouterNatRuleAction
+    description: str
+    match: str
+    ruleNumber: int
+
+@typing.type_check_only
+class RouterNatRuleAction(typing_extensions.TypedDict, total=False):
+    sourceNatActiveIps: _list[str]
+    sourceNatDrainIps: _list[str]
 
 @typing.type_check_only
 class RouterNatSubnetworkToNat(typing_extensions.TypedDict, total=False):
@@ -3936,8 +3963,17 @@ class RouterStatusNatStatus(typing_extensions.TypedDict, total=False):
     minExtraNatIpsNeeded: int
     name: str
     numVmEndpointsWithNatMappings: int
+    ruleStatus: _list[RouterStatusNatStatusNatRuleStatus]
     userAllocatedNatIpResources: _list[str]
     userAllocatedNatIps: _list[str]
+
+@typing.type_check_only
+class RouterStatusNatStatusNatRuleStatus(typing_extensions.TypedDict, total=False):
+    activeNatIps: _list[str]
+    drainNatIps: _list[str]
+    minExtraIpsNeeded: int
+    numVmEndpointsWithNatMappings: int
+    ruleNumber: int
 
 @typing.type_check_only
 class RouterStatusResponse(typing_extensions.TypedDict, total=False):
@@ -4425,6 +4461,10 @@ class SubnetworksSetPrivateIpGoogleAccessRequest(
     typing_extensions.TypedDict, total=False
 ):
     privateIpGoogleAccess: bool
+
+@typing.type_check_only
+class Subsetting(typing_extensions.TypedDict, total=False):
+    policy: typing_extensions.Literal["CONSISTENT_HASH_SUBSETTING", "NONE"]
 
 @typing.type_check_only
 class TCPHealthCheck(typing_extensions.TypedDict, total=False):

@@ -22,6 +22,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "MISMATCHED_SOURCE_NETWORK",
         "DESTINATION_ENDPOINT_NOT_FOUND",
         "MISMATCHED_DESTINATION_NETWORK",
+        "UNSUPPORTED",
     ]
     resourceUri: str
 

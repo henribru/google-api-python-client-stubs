@@ -22,6 +22,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "MISMATCHED_SOURCE_NETWORK",
         "DESTINATION_ENDPOINT_NOT_FOUND",
         "MISMATCHED_DESTINATION_NETWORK",
+        "UNSUPPORTED",
     ]
     resourceUri: str
 
@@ -45,6 +46,10 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudFunctionEndpoint(typing_extensions.TypedDict, total=False):
+    uri: str
 
 @typing.type_check_only
 class CloudSQLInstanceInfo(typing_extensions.TypedDict, total=False):
@@ -115,6 +120,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
+    cloudFunction: CloudFunctionEndpoint
     cloudSqlInstance: str
     gkeMasterCluster: str
     instance: str
@@ -132,6 +138,7 @@ class EndpointInfo(typing_extensions.TypedDict, total=False):
     destinationNetworkUri: str
     destinationPort: int
     protocol: str
+    sourceAgentUri: str
     sourceIp: str
     sourceNetworkUri: str
     sourcePort: int

@@ -44,6 +44,12 @@ class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponse(
     configs: _list[GoogleFirebaseAppcheckV1betaRecaptchaConfig]
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    configs: _list[GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig]
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -120,6 +126,12 @@ class GoogleFirebaseAppcheckV1betaExchangeDeviceCheckTokenRequest(
     deviceToken: str
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest(
+    typing_extensions.TypedDict, total=False
+):
+    recaptchaEnterpriseToken: str
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -172,6 +184,14 @@ class GoogleFirebaseAppcheckV1betaRecaptchaConfig(
     name: str
     siteSecret: str
     siteSecretSet: bool
+    tokenTtl: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    siteKey: str
     tokenTtl: str
 
 @typing.type_check_only

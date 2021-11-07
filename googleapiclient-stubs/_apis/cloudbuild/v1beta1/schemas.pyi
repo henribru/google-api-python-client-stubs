@@ -415,12 +415,16 @@ class WorkerConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkerPool(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     createTime: str
     deleteTime: str
+    displayName: str
+    etag: str
     name: str
     networkConfig: NetworkConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "RUNNING", "DELETING", "DELETED"
     ]
+    uid: str
     updateTime: str
     workerConfig: WorkerConfig

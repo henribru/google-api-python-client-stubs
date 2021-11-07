@@ -291,7 +291,6 @@ class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
-    iamOwned: bool
     rules: _list[Rule]
     version: int
 

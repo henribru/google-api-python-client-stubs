@@ -23,6 +23,17 @@ class GoogleAnalyticsAdminV1alphaAccountSummary(
     propertySummaries: _list[GoogleAnalyticsAdminV1alphaPropertySummary]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    acknowledgement: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAndroidAppDataStream(
     typing_extensions.TypedDict, total=False
 ):
@@ -268,23 +279,6 @@ class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal(
     linkProposalStatusDetails: GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails
     name: str
     validationEmail: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings(
-    typing_extensions.TypedDict, total=False
-):
-    fileDownloadsEnabled: bool
-    name: str
-    outboundClicksEnabled: bool
-    pageChangesEnabled: bool
-    pageLoadsEnabled: bool
-    pageViewsEnabled: bool
-    scrollsEnabled: bool
-    searchQueryParameter: str
-    siteSearchEnabled: bool
-    streamEnabled: bool
-    uriQueryParameter: str
-    videoEngagementEnabled: bool
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaFirebaseLink(typing_extensions.TypedDict, total=False):

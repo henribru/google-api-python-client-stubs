@@ -172,6 +172,15 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         def routes(self) -> RoutesResource: ...
         def services(self) -> ServicesResource: ...
     @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self,
+            *,
+            name: str,
+            body: GoogleLongrunningCancelOperationRequest = ...,
+            **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AuthorizeddomainsResource(googleapiclient.discovery.Resource):
@@ -400,6 +409,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def namespaces(self) -> NamespacesResource: ...
+    def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -417,6 +427,14 @@ class DomainMappingHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DomainMapping: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Empty: ...
 
 @typing.type_check_only
 class ListAuthorizedDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):

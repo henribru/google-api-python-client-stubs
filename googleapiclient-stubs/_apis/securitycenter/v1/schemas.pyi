@@ -109,6 +109,7 @@ class Finding(typing_extensions.TypedDict, total=False):
         "VULNERABILITY",
         "MISCONFIGURATION",
         "OBSERVATION",
+        "SCC_ERROR",
     ]
     indicator: Indicator
     name: str
@@ -145,6 +146,7 @@ class GoogleCloudSecuritycenterV1NotificationMessage(
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
+    displayName: str
     folders: _list[Folder]
     name: str
     parent: str
@@ -357,12 +359,14 @@ class Reference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
+    displayName: str
     folders: _list[Folder]
     name: str
     parentDisplayName: str
     parentName: str
     projectDisplayName: str
     projectName: str
+    type: str
 
 @typing.type_check_only
 class RunAssetDiscoveryRequest(typing_extensions.TypedDict, total=False): ...

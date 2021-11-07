@@ -2665,6 +2665,23 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class InstantSnapshotsResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> InstantSnapshotAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: InstantSnapshotAggregatedListHttpRequest,
+            previous_response: InstantSnapshotAggregatedList,
+        ) -> InstantSnapshotAggregatedListHttpRequest | None: ...
         def delete(
             self,
             *,
@@ -4859,88 +4876,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-    @typing.type_check_only
-    class RegionInPlaceSnapshotsResource(googleapiclient.discovery.Resource):
-        def delete(
-            self,
-            *,
-            project: str,
-            region: str,
-            inPlaceSnapshot: str,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def get(
-            self,
-            *,
-            project: str,
-            region: str,
-            inPlaceSnapshot: str,
-            **kwargs: typing.Any
-        ) -> InPlaceSnapshotHttpRequest: ...
-        def getIamPolicy(
-            self,
-            *,
-            project: str,
-            region: str,
-            resource: str,
-            optionsRequestedPolicyVersion: int = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
-        def insert(
-            self,
-            *,
-            project: str,
-            region: str,
-            body: InPlaceSnapshot = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            project: str,
-            region: str,
-            filter: str = ...,
-            maxResults: int = ...,
-            orderBy: str = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
-            **kwargs: typing.Any
-        ) -> InPlaceSnapshotListHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: InPlaceSnapshotListHttpRequest,
-            previous_response: InPlaceSnapshotList,
-        ) -> InPlaceSnapshotListHttpRequest | None: ...
-        def setIamPolicy(
-            self,
-            *,
-            project: str,
-            region: str,
-            resource: str,
-            body: RegionSetPolicyRequest = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
-        def setLabels(
-            self,
-            *,
-            project: str,
-            region: str,
-            resource: str,
-            body: RegionSetLabelsRequest = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def testIamPermissions(
-            self,
-            *,
-            project: str,
-            region: str,
-            resource: str,
-            body: TestPermissionsRequest = ...,
-            **kwargs: typing.Any
-        ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
     class RegionInstanceGroupManagersResource(googleapiclient.discovery.Resource):
         def abandonInstances(
@@ -7897,83 +7832,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> TestPermissionsResponseHttpRequest: ...
     @typing.type_check_only
-    class ZoneInPlaceSnapshotsResource(googleapiclient.discovery.Resource):
-        def delete(
-            self,
-            *,
-            project: str,
-            zone: str,
-            inPlaceSnapshot: str,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def get(
-            self, *, project: str, zone: str, inPlaceSnapshot: str, **kwargs: typing.Any
-        ) -> InPlaceSnapshotHttpRequest: ...
-        def getIamPolicy(
-            self,
-            *,
-            project: str,
-            zone: str,
-            resource: str,
-            optionsRequestedPolicyVersion: int = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
-        def insert(
-            self,
-            *,
-            project: str,
-            zone: str,
-            body: InPlaceSnapshot = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            project: str,
-            zone: str,
-            filter: str = ...,
-            maxResults: int = ...,
-            orderBy: str = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
-            **kwargs: typing.Any
-        ) -> InPlaceSnapshotListHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: InPlaceSnapshotListHttpRequest,
-            previous_response: InPlaceSnapshotList,
-        ) -> InPlaceSnapshotListHttpRequest | None: ...
-        def setIamPolicy(
-            self,
-            *,
-            project: str,
-            zone: str,
-            resource: str,
-            body: ZoneSetPolicyRequest = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
-        def setLabels(
-            self,
-            *,
-            project: str,
-            zone: str,
-            resource: str,
-            body: ZoneSetLabelsRequest = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def testIamPermissions(
-            self,
-            *,
-            project: str,
-            zone: str,
-            resource: str,
-            body: TestPermissionsRequest = ...,
-            **kwargs: typing.Any
-        ) -> TestPermissionsResponseHttpRequest: ...
-    @typing.type_check_only
     class ZoneOperationsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, project: str, zone: str, operation: str, **kwargs: typing.Any
@@ -8088,7 +7946,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionDisks(self) -> RegionDisksResource: ...
     def regionHealthCheckServices(self) -> RegionHealthCheckServicesResource: ...
     def regionHealthChecks(self) -> RegionHealthChecksResource: ...
-    def regionInPlaceSnapshots(self) -> RegionInPlaceSnapshotsResource: ...
     def regionInstanceGroupManagers(self) -> RegionInstanceGroupManagersResource: ...
     def regionInstanceGroups(self) -> RegionInstanceGroupsResource: ...
     def regionInstances(self) -> RegionInstancesResource: ...
@@ -8126,7 +7983,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def urlMaps(self) -> UrlMapsResource: ...
     def vpnGateways(self) -> VpnGatewaysResource: ...
     def vpnTunnels(self) -> VpnTunnelsResource: ...
-    def zoneInPlaceSnapshots(self) -> ZoneInPlaceSnapshotsResource: ...
     def zoneOperations(self) -> ZoneOperationsResource: ...
     def zones(self) -> ZonesResource: ...
 
@@ -8575,22 +8431,6 @@ class ImageListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ImageList: ...
 
 @typing.type_check_only
-class InPlaceSnapshotHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> InPlaceSnapshot: ...
-
-@typing.type_check_only
-class InPlaceSnapshotListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> InPlaceSnapshotList: ...
-
-@typing.type_check_only
 class InstanceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -8741,6 +8581,14 @@ class InstantSnapshotHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> InstantSnapshot: ...
+
+@typing.type_check_only
+class InstantSnapshotAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> InstantSnapshotAggregatedList: ...
 
 @typing.type_check_only
 class InstantSnapshotListHttpRequest(googleapiclient.http.HttpRequest):

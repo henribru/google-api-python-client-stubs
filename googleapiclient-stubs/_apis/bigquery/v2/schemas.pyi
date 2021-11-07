@@ -271,6 +271,7 @@ class DatasetReference(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DestinationTableProperties(typing_extensions.TypedDict, total=False):
     description: str
+    expirationTime: str
     friendlyName: str
     labels: dict[str, typing.Any]
 
@@ -415,8 +416,6 @@ class HivePartitioningOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IterationResult(typing_extensions.TypedDict, total=False):
-    arimaResult: ArimaResult
-    clusterInfos: _list[ClusterInfo]
     durationMs: str
     evalLoss: float
     index: int
@@ -541,6 +540,11 @@ class MaterializedViewDefinition(typing_extensions.TypedDict, total=False):
     lastRefreshTime: str
     query: str
     refreshIntervalMs: str
+
+@typing.type_check_only
+class MlStatistics(typing_extensions.TypedDict, total=False):
+    iterationResults: _list[IterationResult]
+    maxIterations: str
 
 @typing.type_check_only
 class Model(dict[str, typing.Any]): ...

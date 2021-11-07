@@ -19,6 +19,47 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             self, *, projectId: str, **kwargs: typing.Any
         ) -> GoogleServiceAccountHttpRequest: ...
     @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class AgentPoolsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                projectId: str,
+                body: AgentPool = ...,
+                agentPoolId: str = ...,
+                **kwargs: typing.Any
+            ) -> AgentPoolHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AgentPoolHttpRequest: ...
+            def list(
+                self,
+                *,
+                projectId: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListAgentPoolsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAgentPoolsResponseHttpRequest,
+                previous_response: ListAgentPoolsResponse,
+            ) -> ListAgentPoolsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: AgentPool = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> AgentPoolHttpRequest: ...
+        def agentPools(self) -> AgentPoolsResource: ...
+    @typing.type_check_only
     class TransferJobsResource(googleapiclient.discovery.Resource):
         def create(
             self, *, body: TransferJob = ..., **kwargs: typing.Any
@@ -100,8 +141,17 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def googleServiceAccounts(self) -> GoogleServiceAccountsResource: ...
+    def projects(self) -> ProjectsResource: ...
     def transferJobs(self) -> TransferJobsResource: ...
     def transferOperations(self) -> TransferOperationsResource: ...
+
+@typing.type_check_only
+class AgentPoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AgentPool: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -118,6 +168,14 @@ class GoogleServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleServiceAccount: ...
+
+@typing.type_check_only
+class ListAgentPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListAgentPoolsResponse: ...
 
 @typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):

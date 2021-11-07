@@ -22,6 +22,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Message = ...,
+                requestId: str = ...,
                 threadKey: str = ...,
                 **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
@@ -30,6 +31,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any
         ) -> MessageHttpRequest: ...
@@ -38,6 +40,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any
         ) -> MessageHttpRequest: ...
@@ -56,6 +59,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Message = ...,
+                requestId: str = ...,
                 threadKey: str = ...,
                 **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
@@ -64,6 +68,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any
         ) -> MessageHttpRequest: ...
@@ -72,6 +77,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any
         ) -> MessageHttpRequest: ...
@@ -108,6 +114,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Message = ...,
+                requestId: str = ...,
                 threadKey: str = ...,
                 **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
@@ -138,6 +145,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any
         ) -> MessageHttpRequest: ...

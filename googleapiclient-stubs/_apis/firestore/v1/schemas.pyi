@@ -148,6 +148,7 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
         "PESSIMISTIC",
         "OPTIMISTIC_WITH_ENTITY_GROUPS",
     ]
+    earliestVersionTime: str
     etag: str
     locationId: str
     name: str

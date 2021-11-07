@@ -246,6 +246,15 @@ class ExportDicomDataRequest(typing_extensions.TypedDict, total=False):
 class ExportDicomDataResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExportMessagesRequest(typing_extensions.TypedDict, total=False):
+    endTime: str
+    gcsDestination: GcsDestination
+    startTime: str
+
+@typing.type_check_only
+class ExportMessagesResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ExportResourcesRequest(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1FhirBigQueryDestination
     gcsDestination: GoogleCloudHealthcareV1FhirGcsDestination
@@ -301,6 +310,25 @@ class FieldMetadata(typing_extensions.TypedDict, total=False):
     paths: _list[str]
 
 @typing.type_check_only
+class GcsDestination(typing_extensions.TypedDict, total=False):
+    contentStructure: typing_extensions.Literal[
+        "CONTENT_STRUCTURE_UNSPECIFIED", "MESSAGE_JSON"
+    ]
+    messageView: typing_extensions.Literal[
+        "MESSAGE_VIEW_UNSPECIFIED",
+        "RAW_ONLY",
+        "PARSED_ONLY",
+        "FULL",
+        "SCHEMATIZED_ONLY",
+        "BASIC",
+    ]
+    uriPrefix: str
+
+@typing.type_check_only
+class GcsSource(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
 class GoogleCloudHealthcareV1ConsentGcsDestination(
     typing_extensions.TypedDict, total=False
 ):
@@ -327,6 +355,9 @@ class GoogleCloudHealthcareV1DicomBigQueryDestination(
 ):
     force: bool
     tableUri: str
+    writeDisposition: typing_extensions.Literal[
+        "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
+    ]
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1DicomGcsDestination(
@@ -414,6 +445,13 @@ class ImportDicomDataRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportDicomDataResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ImportMessagesRequest(typing_extensions.TypedDict, total=False):
+    gcsSource: GcsSource
+
+@typing.type_check_only
+class ImportMessagesResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ImportResourcesRequest(typing_extensions.TypedDict, total=False):

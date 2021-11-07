@@ -76,10 +76,30 @@ class GoogleChromeManagementV1ChromeAppPermission(
     type: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1ChromeAppRequest(
+    typing_extensions.TypedDict, total=False
+):
+    appDetails: str
+    appId: str
+    detailUri: str
+    displayName: str
+    iconUri: str
+    latestRequestTime: str
+    requestCount: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1ChromeAppSiteAccess(
     typing_extensions.TypedDict, total=False
 ):
     hostMatch: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountChromeAppRequestsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    requestedApps: _list[GoogleChromeManagementV1ChromeAppRequest]
+    totalSize: int
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeVersionsResponse(

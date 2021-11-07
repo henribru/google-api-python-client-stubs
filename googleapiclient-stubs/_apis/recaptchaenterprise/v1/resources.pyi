@@ -77,8 +77,59 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
+        @typing.type_check_only
+        class RelatedaccountgroupmembershipsResource(
+            googleapiclient.discovery.Resource
+        ):
+            def search(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest: ...
+            def search_next(
+                self,
+                previous_request: GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest,
+                previous_response: GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse,
+            ) -> GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest | None: ...
+        @typing.type_check_only
+        class RelatedaccountgroupsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class MembershipsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponseHttpRequest,
+                    previous_response: GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse,
+                ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponseHttpRequest | None: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponseHttpRequest,
+                previous_response: GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse,
+            ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponseHttpRequest | None: ...
+            def memberships(self) -> MembershipsResource: ...
         def assessments(self) -> AssessmentsResource: ...
         def keys(self) -> KeysResource: ...
+        def relatedaccountgroupmemberships(
+            self,
+        ) -> RelatedaccountgroupmembershipsResource: ...
+        def relatedaccountgroups(self) -> RelatedaccountgroupsResource: ...
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -132,6 +183,26 @@ class GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest(
     ) -> GoogleCloudRecaptchaenterpriseV1ListKeysResponse: ...
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -140,6 +211,16 @@ class GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecaptchaenterpriseV1Metrics: ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

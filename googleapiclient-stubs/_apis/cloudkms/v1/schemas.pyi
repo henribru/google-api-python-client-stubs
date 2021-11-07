@@ -20,6 +20,8 @@ class AsymmetricDecryptResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AsymmetricSignRequest(typing_extensions.TypedDict, total=False):
+    data: str
+    dataCrc32c: str
     digest: Digest
     digestCrc32c: str
 
@@ -31,6 +33,7 @@ class AsymmetricSignResponse(typing_extensions.TypedDict, total=False):
     ]
     signature: str
     signatureCrc32c: str
+    verifiedDataCrc32c: bool
     verifiedDigestCrc32c: bool
 
 @typing.type_check_only
@@ -89,10 +92,16 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "RSA_SIGN_PKCS1_3072_SHA256",
         "RSA_SIGN_PKCS1_4096_SHA256",
         "RSA_SIGN_PKCS1_4096_SHA512",
+        "RSA_SIGN_RAW_PKCS1_2048",
+        "RSA_SIGN_RAW_PKCS1_3072",
+        "RSA_SIGN_RAW_PKCS1_4096",
         "RSA_DECRYPT_OAEP_2048_SHA256",
         "RSA_DECRYPT_OAEP_3072_SHA256",
         "RSA_DECRYPT_OAEP_4096_SHA256",
         "RSA_DECRYPT_OAEP_4096_SHA512",
+        "RSA_DECRYPT_OAEP_2048_SHA1",
+        "RSA_DECRYPT_OAEP_3072_SHA1",
+        "RSA_DECRYPT_OAEP_4096_SHA1",
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
@@ -137,10 +146,16 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "RSA_SIGN_PKCS1_3072_SHA256",
         "RSA_SIGN_PKCS1_4096_SHA256",
         "RSA_SIGN_PKCS1_4096_SHA512",
+        "RSA_SIGN_RAW_PKCS1_2048",
+        "RSA_SIGN_RAW_PKCS1_3072",
+        "RSA_SIGN_RAW_PKCS1_4096",
         "RSA_DECRYPT_OAEP_2048_SHA256",
         "RSA_DECRYPT_OAEP_3072_SHA256",
         "RSA_DECRYPT_OAEP_4096_SHA256",
         "RSA_DECRYPT_OAEP_4096_SHA512",
+        "RSA_DECRYPT_OAEP_2048_SHA1",
+        "RSA_DECRYPT_OAEP_3072_SHA1",
+        "RSA_DECRYPT_OAEP_4096_SHA1",
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
@@ -230,10 +245,16 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
         "RSA_SIGN_PKCS1_3072_SHA256",
         "RSA_SIGN_PKCS1_4096_SHA256",
         "RSA_SIGN_PKCS1_4096_SHA512",
+        "RSA_SIGN_RAW_PKCS1_2048",
+        "RSA_SIGN_RAW_PKCS1_3072",
+        "RSA_SIGN_RAW_PKCS1_4096",
         "RSA_DECRYPT_OAEP_2048_SHA256",
         "RSA_DECRYPT_OAEP_3072_SHA256",
         "RSA_DECRYPT_OAEP_4096_SHA256",
         "RSA_DECRYPT_OAEP_4096_SHA512",
+        "RSA_DECRYPT_OAEP_2048_SHA1",
+        "RSA_DECRYPT_OAEP_3072_SHA1",
+        "RSA_DECRYPT_OAEP_4096_SHA1",
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
@@ -373,10 +394,16 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "RSA_SIGN_PKCS1_3072_SHA256",
         "RSA_SIGN_PKCS1_4096_SHA256",
         "RSA_SIGN_PKCS1_4096_SHA512",
+        "RSA_SIGN_RAW_PKCS1_2048",
+        "RSA_SIGN_RAW_PKCS1_3072",
+        "RSA_SIGN_RAW_PKCS1_4096",
         "RSA_DECRYPT_OAEP_2048_SHA256",
         "RSA_DECRYPT_OAEP_3072_SHA256",
         "RSA_DECRYPT_OAEP_4096_SHA256",
         "RSA_DECRYPT_OAEP_4096_SHA512",
+        "RSA_DECRYPT_OAEP_2048_SHA1",
+        "RSA_DECRYPT_OAEP_3072_SHA1",
+        "RSA_DECRYPT_OAEP_4096_SHA1",
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",

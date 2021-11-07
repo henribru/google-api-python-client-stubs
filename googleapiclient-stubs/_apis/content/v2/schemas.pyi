@@ -271,6 +271,14 @@ class AccounttaxListResponse(typing_extensions.TypedDict, total=False):
     resources: _list[AccountTax]
 
 @typing.type_check_only
+class Address(typing_extensions.TypedDict, total=False):
+    administrativeArea: str
+    city: str
+    country: str
+    postalCode: str
+    streetAddress: str
+
+@typing.type_check_only
 class Amount(typing_extensions.TypedDict, total=False):
     pretax: Price
     tax: Price
@@ -1893,6 +1901,7 @@ class ShippingSettings(typing_extensions.TypedDict, total=False):
     accountId: str
     postalCodeGroups: _list[PostalCodeGroup]
     services: _list[Service]
+    warehouses: _list[Warehouse]
 
 @typing.type_check_only
 class ShippingsettingsCustomBatchRequest(typing_extensions.TypedDict, total=False):
@@ -2059,6 +2068,14 @@ class Value(typing_extensions.TypedDict, total=False):
     subtableName: str
 
 @typing.type_check_only
+class Warehouse(typing_extensions.TypedDict, total=False):
+    businessDayConfig: BusinessDayConfig
+    cutoffTime: WarehouseCutoffTime
+    handlingDays: str
+    name: str
+    shippingAddress: Address
+
+@typing.type_check_only
 class WarehouseBasedDeliveryTime(typing_extensions.TypedDict, total=False):
     carrier: str
     carrierService: str
@@ -2067,6 +2084,12 @@ class WarehouseBasedDeliveryTime(typing_extensions.TypedDict, total=False):
     originCountry: str
     originPostalCode: str
     originStreetAddress: str
+    warehouseName: str
+
+@typing.type_check_only
+class WarehouseCutoffTime(typing_extensions.TypedDict, total=False):
+    hour: int
+    minute: int
 
 @typing.type_check_only
 class Weight(typing_extensions.TypedDict, total=False):

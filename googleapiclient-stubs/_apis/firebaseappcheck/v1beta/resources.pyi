@@ -119,6 +119,26 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaRecaptchaConfigHttpRequest: ...
             @typing.type_check_only
+            class RecaptchaEnterpriseConfigResource(googleapiclient.discovery.Resource):
+                def batchGet(
+                    self,
+                    *,
+                    parent: str,
+                    names: str | _list[str] = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest: ...
+            @typing.type_check_only
             class SafetyNetConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
                     self,
@@ -173,6 +193,13 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 body: GoogleFirebaseAppcheckV1betaExchangeDeviceCheckTokenRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest: ...
+            def exchangeRecaptchaEnterpriseToken(
+                self,
+                *,
+                app: str,
+                body: GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest: ...
             def exchangeRecaptchaToken(
                 self,
                 *,
@@ -198,6 +225,9 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
             def debugTokens(self) -> DebugTokensResource: ...
             def deviceCheckConfig(self) -> DeviceCheckConfigResource: ...
             def recaptchaConfig(self) -> RecaptchaConfigResource: ...
+            def recaptchaEnterpriseConfig(
+                self,
+            ) -> RecaptchaEnterpriseConfigResource: ...
             def safetyNetConfig(self) -> SafetyNetConfigResource: ...
         @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
@@ -310,6 +340,16 @@ class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponseHttpRequest(
     ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponse: ...
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponse: ...
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -398,6 +438,16 @@ class GoogleFirebaseAppcheckV1betaRecaptchaConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleFirebaseAppcheckV1betaRecaptchaConfig: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaSafetyNetConfigHttpRequest(

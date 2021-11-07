@@ -22,6 +22,13 @@ class AudioConfig(typing_extensions.TypedDict, total=False):
     volumeGainDb: float
 
 @typing.type_check_only
+class CustomVoiceParams(typing_extensions.TypedDict, total=False):
+    model: str
+    reportedUsage: typing_extensions.Literal[
+        "REPORTED_USAGE_UNSPECIFIED", "REALTIME", "OFFLINE"
+    ]
+
+@typing.type_check_only
 class ListVoicesResponse(typing_extensions.TypedDict, total=False):
     voices: _list[Voice]
 
@@ -59,6 +66,7 @@ class Voice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VoiceSelectionParams(typing_extensions.TypedDict, total=False):
+    customVoice: CustomVoiceParams
     languageCode: str
     name: str
     ssmlGender: typing_extensions.Literal[

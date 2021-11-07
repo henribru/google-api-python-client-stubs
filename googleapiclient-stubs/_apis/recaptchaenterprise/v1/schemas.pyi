@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment(
+    typing_extensions.TypedDict, total=False
+):
+    labels: _list[str]
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AndroidKeySettings(
     typing_extensions.TypedDict, total=False
 ):
@@ -22,6 +28,7 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
         "PASSWORD_CORRECT",
         "PASSWORD_INCORRECT",
     ]
+    hashedAccountId: str
     reasons: _list[str]
 
 @typing.type_check_only
@@ -33,6 +40,7 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse(
 class GoogleCloudRecaptchaenterpriseV1Assessment(
     typing_extensions.TypedDict, total=False
 ):
+    accountDefenderAssessment: GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment
     event: GoogleCloudRecaptchaenterpriseV1Event
     name: str
     riskAnalysis: GoogleCloudRecaptchaenterpriseV1RiskAnalysis
@@ -50,6 +58,7 @@ class GoogleCloudRecaptchaenterpriseV1ChallengeMetrics(
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=False):
     expectedAction: str
+    hashedAccountId: str
     siteKey: str
     token: str
     userAgent: str
@@ -81,6 +90,22 @@ class GoogleCloudRecaptchaenterpriseV1ListKeysResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    relatedAccountGroupMemberships: _list[
+        GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership
+    ]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    relatedAccountGroups: _list[GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup]
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Metrics(typing_extensions.TypedDict, total=False):
     challengeMetrics: _list[GoogleCloudRecaptchaenterpriseV1ChallengeMetrics]
     name: str
@@ -91,6 +116,19 @@ class GoogleCloudRecaptchaenterpriseV1Metrics(typing_extensions.TypedDict, total
 class GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership(
+    typing_extensions.TypedDict, total=False
+):
+    hashedAccountId: str
+    name: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(
@@ -111,6 +149,23 @@ class GoogleCloudRecaptchaenterpriseV1ScoreMetrics(
 ):
     actionMetrics: dict[str, typing.Any]
     overallMetrics: GoogleCloudRecaptchaenterpriseV1ScoreDistribution
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    hashedAccountId: str
+    pageSize: int
+    pageToken: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    relatedAccountGroupMemberships: _list[
+        GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership
+    ]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1TestingOptions(

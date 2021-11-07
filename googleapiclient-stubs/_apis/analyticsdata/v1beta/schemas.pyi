@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ActiveMetricRestriction(typing_extensions.TypedDict, total=False):
+    metricName: str
+    restrictedMetricTypes: _list[str]
+
+@typing.type_check_only
 class BatchRunPivotReportsRequest(typing_extensions.TypedDict, total=False):
     requests: _list[RunPivotReportRequest]
 
@@ -186,6 +191,7 @@ class MetricHeader(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetricMetadata(typing_extensions.TypedDict, total=False):
     apiName: str
+    blockedReasons: _list[str]
     category: str
     customDefinition: bool
     deprecatedApiNames: _list[str]
@@ -290,6 +296,8 @@ class QuotaStatus(typing_extensions.TypedDict, total=False):
 class ResponseMetaData(typing_extensions.TypedDict, total=False):
     currencyCode: str
     dataLossFromOtherRow: bool
+    emptyReason: str
+    schemaRestrictionResponse: SchemaRestrictionResponse
     timeZone: str
 
 @typing.type_check_only
@@ -350,6 +358,10 @@ class RunReportResponse(typing_extensions.TypedDict, total=False):
     rowCount: int
     rows: _list[Row]
     totals: _list[Row]
+
+@typing.type_check_only
+class SchemaRestrictionResponse(typing_extensions.TypedDict, total=False):
+    activeMetricRestrictions: _list[ActiveMetricRestriction]
 
 @typing.type_check_only
 class StringFilter(typing_extensions.TypedDict, total=False):

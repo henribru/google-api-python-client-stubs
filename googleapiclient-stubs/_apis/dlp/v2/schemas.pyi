@@ -606,6 +606,7 @@ class GooglePrivacyDlpV2ImageRedactionConfig(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GooglePrivacyDlpV2InfoType(typing_extensions.TypedDict, total=False):
     name: str
+    version: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=False):

@@ -251,7 +251,8 @@ class ModifyColumnFamiliesRequest(typing_extensions.TypedDict, total=False):
     modifications: _list[Modification]
 
 @typing.type_check_only
-class MultiClusterRoutingUseAny(typing_extensions.TypedDict, total=False): ...
+class MultiClusterRoutingUseAny(typing_extensions.TypedDict, total=False):
+    clusterIds: _list[str]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

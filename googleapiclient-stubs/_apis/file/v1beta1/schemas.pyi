@@ -163,6 +163,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "ERROR",
         "RESTORING",
         "SUSPENDED",
+        "REVERTING",
     ]
     statusMessage: str
     suspensionReasons: _list[str]
@@ -271,6 +272,10 @@ class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):
     fileShare: str
     sourceBackup: str
     sourceSnapshot: str
+
+@typing.type_check_only
+class RevertInstanceRequest(typing_extensions.TypedDict, total=False):
+    targetSnapshotId: str
 
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):

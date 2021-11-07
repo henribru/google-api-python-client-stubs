@@ -68,10 +68,20 @@ class Instance(typing_extensions.TypedDict, total=False):
     maintenanceSchedule: MaintenanceSchedule
     memorySizeGb: int
     name: str
+    nodes: _list[NodeInfo]
+    persistenceConfig: PersistenceConfig
     persistenceIamIdentity: str
     port: int
+    readEndpoint: str
+    readEndpointPort: int
+    readReplicasMode: typing_extensions.Literal[
+        "READ_REPLICAS_MODE_UNSPECIFIED",
+        "READ_REPLICAS_DISABLED",
+        "READ_REPLICAS_ENABLED",
+    ]
     redisConfigs: dict[str, typing.Any]
     redisVersion: str
+    replicaCount: int
     reservedIpRange: str
     serverCaCerts: _list[TlsCertificate]
     state: typing_extensions.Literal[
@@ -134,6 +144,11 @@ class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class NodeInfo(typing_extensions.TypedDict, total=False):
+    id: str
+    zone: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -144,6 +159,21 @@ class Operation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OutputConfig(typing_extensions.TypedDict, total=False):
     gcsDestination: GcsDestination
+
+@typing.type_check_only
+class PersistenceConfig(typing_extensions.TypedDict, total=False):
+    persistenceMode: typing_extensions.Literal[
+        "PERSISTENCE_MODE_UNSPECIFIED", "DISABLED", "RDB"
+    ]
+    rdbNextSnapshotTime: str
+    rdbSnapshotPeriod: typing_extensions.Literal[
+        "SNAPSHOT_PERIOD_UNSPECIFIED",
+        "ONE_HOUR",
+        "SIX_HOURS",
+        "TWELVE_HOURS",
+        "TWENTY_FOUR_HOURS",
+    ]
+    rdbSnapshotStartTime: str
 
 @typing.type_check_only
 class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):

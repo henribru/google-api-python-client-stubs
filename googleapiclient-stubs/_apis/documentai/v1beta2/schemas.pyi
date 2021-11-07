@@ -31,6 +31,7 @@ class GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
+    resource: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
     ]
@@ -231,6 +232,7 @@ class GoogleCloudDocumentaiV1CommonOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
+    resource: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
     ]
@@ -1200,6 +1202,7 @@ class GoogleCloudDocumentaiV1beta3CommonOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
+    resource: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
     ]

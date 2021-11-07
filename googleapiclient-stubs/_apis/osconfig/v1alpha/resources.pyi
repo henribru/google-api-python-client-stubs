@@ -72,6 +72,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class ReportsResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> OSPolicyAssignmentReportHttpRequest: ...
                         def list(
                             self,
                             *,
@@ -86,9 +89,6 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                             previous_request: ListOSPolicyAssignmentReportsResponseHttpRequest,
                             previous_response: ListOSPolicyAssignmentReportsResponse,
                         ) -> ListOSPolicyAssignmentReportsResponseHttpRequest | None: ...
-                    def getReport(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> OSPolicyAssignmentReportHttpRequest: ...
                     def reports(self) -> ReportsResource: ...
                 @typing.type_check_only
                 class VulnerabilityReportsResource(googleapiclient.discovery.Resource):

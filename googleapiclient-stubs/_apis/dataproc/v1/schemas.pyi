@@ -17,6 +17,7 @@ class AutoscalingConfig(typing_extensions.TypedDict, total=False):
 class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
     basicAlgorithm: BasicAutoscalingAlgorithm
     id: str
+    labels: dict[str, typing.Any]
     name: str
     secondaryWorkerConfig: InstanceGroupAutoscalingPolicyConfig
     workerConfig: InstanceGroupAutoscalingPolicyConfig
@@ -24,6 +25,7 @@ class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BasicAutoscalingAlgorithm(typing_extensions.TypedDict, total=False):
     cooldownPeriod: str
+    sparkStandaloneConfig: SparkStandaloneAutoscalingConfig
     yarnConfig: BasicYarnAutoscalingConfig
 
 @typing.type_check_only
@@ -566,6 +568,14 @@ class SparkSqlJob(typing_extensions.TypedDict, total=False):
     queryFileUri: str
     queryList: QueryList
     scriptVariables: dict[str, typing.Any]
+
+@typing.type_check_only
+class SparkStandaloneAutoscalingConfig(typing_extensions.TypedDict, total=False):
+    gracefulDecommissionTimeout: str
+    scaleDownFactor: float
+    scaleDownMinWorkerFraction: float
+    scaleUpFactor: float
+    scaleUpMinWorkerFraction: float
 
 @typing.type_check_only
 class StartClusterRequest(typing_extensions.TypedDict, total=False):

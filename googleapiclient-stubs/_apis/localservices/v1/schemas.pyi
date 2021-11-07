@@ -33,11 +33,22 @@ class GoogleAdsHomeservicesLocalservicesV1AggregatorInfo(
     aggregatorProviderId: str
 
 @typing.type_check_only
+class GoogleAdsHomeservicesLocalservicesV1BookingLead(
+    typing_extensions.TypedDict, total=False
+):
+    bookingAppointmentTimestamp: str
+    consumerEmail: str
+    consumerPhoneNumber: str
+    customerName: str
+    jobType: str
+
+@typing.type_check_only
 class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport(
     typing_extensions.TypedDict, total=False
 ):
     accountId: str
     aggregatorInfo: GoogleAdsHomeservicesLocalservicesV1AggregatorInfo
+    bookingLead: GoogleAdsHomeservicesLocalservicesV1BookingLead
     businessName: str
     chargeStatus: typing_extensions.Literal[
         "CHARGE_STATUS_UNSPECIFIED", "CHARGED", "NOT_CHARGED"
@@ -50,7 +61,7 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport(
     leadId: str
     leadPrice: float
     leadType: typing_extensions.Literal[
-        "LEAD_TYPE_UNSPECIFIED", "MESSAGE", "PHONE_CALL"
+        "LEAD_TYPE_UNSPECIFIED", "MESSAGE", "PHONE_CALL", "BOOKING"
     ]
     messageLead: GoogleAdsHomeservicesLocalservicesV1MessageLead
     phoneLead: GoogleAdsHomeservicesLocalservicesV1PhoneLead

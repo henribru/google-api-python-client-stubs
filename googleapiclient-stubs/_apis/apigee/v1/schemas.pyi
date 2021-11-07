@@ -49,6 +49,8 @@ class GoogleCloudApigeeV1ActivateNatAddressRequest(
 @typing.type_check_only
 class GoogleCloudApigeeV1AddonsConfig(typing_extensions.TypedDict, total=False):
     advancedApiOpsConfig: GoogleCloudApigeeV1AdvancedApiOpsConfig
+    connectorsPlatformConfig: GoogleCloudApigeeV1ConnectorsPlatformConfig
+    integrationConfig: GoogleCloudApigeeV1IntegrationConfig
     monetizationConfig: GoogleCloudApigeeV1MonetizationConfig
 
 @typing.type_check_only
@@ -123,6 +125,7 @@ class GoogleCloudApigeeV1ApiProxyRevision(typing_extensions.TypedDict, total=Fal
     description: str
     displayName: str
     entityMetaDataAsProperties: dict[str, typing.Any]
+    integrationEndpoints: _list[str]
     lastModifiedAt: str
     name: str
     policies: _list[str]
@@ -256,6 +259,13 @@ class GoogleCloudApigeeV1CommonNameConfig(typing_extensions.TypedDict, total=Fal
 class GoogleCloudApigeeV1ConfigVersion(typing_extensions.TypedDict, total=False):
     majorVersion: int
     minorVersion: int
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ConnectorsPlatformConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enabled: bool
+    expiresAt: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Credential(typing_extensions.TypedDict, total=False):
@@ -747,6 +757,10 @@ class GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRoute(
     percentage: int
 
 @typing.type_check_only
+class GoogleCloudApigeeV1IntegrationConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class GoogleCloudApigeeV1KeyAliasReference(typing_extensions.TypedDict, total=False):
     aliasId: str
     reference: str
@@ -1029,6 +1043,7 @@ class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
     expiresAt: str
     lastModifiedAt: str
     name: str
+    portalDisabled: bool
     projectId: str
     properties: GoogleCloudApigeeV1Properties
     runtimeDatabaseEncryptionKeyName: str

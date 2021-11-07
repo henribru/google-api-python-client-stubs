@@ -25,6 +25,10 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     networkPolicyConfig: NetworkPolicyConfig
 
 @typing.type_check_only
+class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
+    threadsPerCore: str
+
+@typing.type_check_only
 class AuthenticatorGroupsConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
     securityGroup: str
@@ -128,6 +132,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     masterAuth: MasterAuth
     masterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
     masterIpv4CidrBlock: str
+    meshCertificates: MeshCertificates
     monitoringConfig: MonitoringConfig
     monitoringService: str
     name: str
@@ -184,7 +189,6 @@ class ClusterTelemetry(typing_extensions.TypedDict, total=False):
 class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredAddonsConfig: AddonsConfig
     desiredAuthenticatorGroupsConfig: AuthenticatorGroupsConfig
-    desiredAutopilot: Autopilot
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
     desiredClusterTelemetry: ClusterTelemetry
@@ -194,6 +198,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     ]
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredDnsConfig: DNSConfig
+    desiredGcfsConfig: GcfsConfig
     desiredIdentityServiceConfig: IdentityServiceConfig
     desiredImageType: str
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
@@ -204,6 +209,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredMaster: Master
     desiredMasterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
     desiredMasterVersion: str
+    desiredMeshCertificates: MeshCertificates
     desiredMonitoringConfig: MonitoringConfig
     desiredMonitoringService: str
     desiredNodePoolAutoscaling: NodePoolAutoscaling
@@ -304,6 +310,10 @@ class EphemeralStorageConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class GcfsConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
@@ -473,6 +483,10 @@ class MaxPodsConstraint(typing_extensions.TypedDict, total=False):
     maxPodsPerNode: str
 
 @typing.type_check_only
+class MeshCertificates(typing_extensions.TypedDict, total=False):
+    enableCertificates: bool
+
+@typing.type_check_only
 class Metric(typing_extensions.TypedDict, total=False):
     doubleValue: float
     intValue: str
@@ -522,10 +536,12 @@ class NetworkTags(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
     accelerators: _list[AcceleratorConfig]
+    advancedMachineFeatures: AdvancedMachineFeatures
     bootDiskKmsKey: str
     diskSizeGb: int
     diskType: str
     ephemeralStorageConfig: EphemeralStorageConfig
+    gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig
@@ -542,12 +558,14 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     sandboxConfig: SandboxConfig
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
+    spot: bool
     tags: _list[str]
     taints: _list[NodeTaint]
     workloadMetadataConfig: WorkloadMetadataConfig
 
 @typing.type_check_only
-class NodeConfigDefaults(typing_extensions.TypedDict, total=False): ...
+class NodeConfigDefaults(typing_extensions.TypedDict, total=False):
+    gcfsConfig: GcfsConfig
 
 @typing.type_check_only
 class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
@@ -905,6 +923,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
+    gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig

@@ -79,6 +79,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GitHubEnterpriseConfig = ...,
+                gheConfigId: str = ...,
                 projectId: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
@@ -172,6 +173,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GitHubEnterpriseConfig = ...,
+                    gheConfigId: str = ...,
                     projectId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...

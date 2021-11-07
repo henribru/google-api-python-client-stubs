@@ -5,6 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AppDevExperienceFeatureSpec(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AppDevExperienceFeatureState(typing_extensions.TypedDict, total=False):
+    networkingInstallSucceeded: Status
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -27,10 +34,12 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
+    appdevexperience: AppDevExperienceFeatureSpec
     multiclusteringress: MultiClusterIngressFeatureSpec
 
 @typing.type_check_only
 class CommonFeatureState(typing_extensions.TypedDict, total=False):
+    appdevexperience: AppDevExperienceFeatureState
     state: FeatureState
 
 @typing.type_check_only
@@ -50,8 +59,8 @@ class ConfigManagementBinauthzVersion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
+    enabled: bool
     git: ConfigManagementGitConfig
-    resourceRequirements: dict[str, typing.Any]
     sourceFormat: str
 
 @typing.type_check_only
@@ -97,14 +106,6 @@ class ConfigManagementConfigSyncVersion(typing_extensions.TypedDict, total=False
     syncer: str
 
 @typing.type_check_only
-class ConfigManagementContainerResourceRequirements(
-    typing_extensions.TypedDict, total=False
-):
-    containerName: str
-    cpuLimit: ConfigManagementQuantity
-    memoryLimit: ConfigManagementQuantity
-
-@typing.type_check_only
 class ConfigManagementErrorResource(typing_extensions.TypedDict, total=False):
     resourceGvk: ConfigManagementGroupVersionKind
     resourceName: str
@@ -126,11 +127,9 @@ class ConfigManagementGatekeeperDeploymentState(
 class ConfigManagementGitConfig(typing_extensions.TypedDict, total=False):
     gcpServiceAccountEmail: str
     httpsProxy: str
-    noSslVerify: bool
     policyDir: str
     secretType: str
     syncBranch: str
-    syncDepth: str
     syncRepo: str
     syncRev: str
     syncWaitSecs: str
@@ -221,10 +220,6 @@ class ConfigManagementPolicyControllerState(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class ConfigManagementPolicyControllerVersion(typing_extensions.TypedDict, total=False):
     version: str
-
-@typing.type_check_only
-class ConfigManagementQuantity(typing_extensions.TypedDict, total=False):
-    string: str
 
 @typing.type_check_only
 class ConfigManagementSyncError(typing_extensions.TypedDict, total=False):
@@ -358,6 +353,7 @@ class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MembershipFeatureState(typing_extensions.TypedDict, total=False):
+    appdevexperience: AppDevExperienceFeatureState
     configmanagement: ConfigManagementMembershipState
     identityservice: IdentityServiceMembershipState
     metering: MeteringMembershipState
@@ -404,6 +400,11 @@ class Policy(typing_extensions.TypedDict, total=False):
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal["CODE_UNSPECIFIED", "OK", "FAILED", "UNKNOWN"]
+    description: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

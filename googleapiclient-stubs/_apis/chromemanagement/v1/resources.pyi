@@ -32,6 +32,21 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
+            def countChromeAppRequests(
+                self,
+                *,
+                customer: str,
+                orderBy: str = ...,
+                orgUnitId: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest: ...
+            def countChromeAppRequests_next(
+                self,
+                previous_request: GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1CountChromeAppRequestsResponse,
+            ) -> GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest | None: ...
             def android(self) -> AndroidResource: ...
             def chrome(self) -> ChromeResource: ...
             def web(self) -> WebResource: ...
@@ -116,6 +131,16 @@ class GoogleChromeManagementV1AppDetailsHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleChromeManagementV1AppDetails: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromeManagementV1CountChromeAppRequestsResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest(

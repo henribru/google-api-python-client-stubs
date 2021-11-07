@@ -5,6 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AppDevExperienceFeatureSpec(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AppDevExperienceFeatureState(typing_extensions.TypedDict, total=False):
+    networkingInstallSucceeded: Status
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -15,6 +22,13 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
+
+@typing.type_check_only
+class Authority(typing_extensions.TypedDict, total=False):
+    identityProvider: str
+    issuer: str
+    oidcJwks: str
+    workloadIdentityPool: str
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -31,11 +45,13 @@ class CloudAuditLoggingFeatureSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
+    appdevexperience: AppDevExperienceFeatureSpec
     cloudauditlogging: CloudAuditLoggingFeatureSpec
     multiclusteringress: MultiClusterIngressFeatureSpec
 
 @typing.type_check_only
 class CommonFeatureState(typing_extensions.TypedDict, total=False):
+    appdevexperience: AppDevExperienceFeatureState
     servicemesh: ServiceMeshFeatureState
     state: FeatureState
 
@@ -56,8 +72,8 @@ class ConfigManagementBinauthzVersion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
+    enabled: bool
     git: ConfigManagementGitConfig
-    resourceRequirements: dict[str, typing.Any]
     sourceFormat: str
 
 @typing.type_check_only
@@ -103,14 +119,6 @@ class ConfigManagementConfigSyncVersion(typing_extensions.TypedDict, total=False
     syncer: str
 
 @typing.type_check_only
-class ConfigManagementContainerResourceRequirements(
-    typing_extensions.TypedDict, total=False
-):
-    containerName: str
-    cpuLimit: ConfigManagementQuantity
-    memoryLimit: ConfigManagementQuantity
-
-@typing.type_check_only
 class ConfigManagementErrorResource(typing_extensions.TypedDict, total=False):
     resourceGvk: ConfigManagementGroupVersionKind
     resourceName: str
@@ -135,11 +143,9 @@ class ConfigManagementGatekeeperDeploymentState(
 class ConfigManagementGitConfig(typing_extensions.TypedDict, total=False):
     gcpServiceAccountEmail: str
     httpsProxy: str
-    noSslVerify: bool
     policyDir: str
     secretType: str
     syncBranch: str
-    syncDepth: str
     syncRepo: str
     syncRev: str
     syncWaitSecs: str
@@ -233,10 +239,6 @@ class ConfigManagementPolicyControllerVersion(typing_extensions.TypedDict, total
     version: str
 
 @typing.type_check_only
-class ConfigManagementQuantity(typing_extensions.TypedDict, total=False):
-    string: str
-
-@typing.type_check_only
 class ConfigManagementSyncError(typing_extensions.TypedDict, total=False):
     code: str
     errorMessage: str
@@ -260,6 +262,11 @@ class ConfigManagementSyncState(typing_extensions.TypedDict, total=False):
     lastSyncTime: str
     sourceToken: str
     syncToken: str
+
+@typing.type_check_only
+class ConnectAgentResource(typing_extensions.TypedDict, total=False):
+    manifest: str
+    type: TypeMeta
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -302,6 +309,15 @@ class FeatureState(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
+    manifest: _list[ConnectAgentResource]
+
+@typing.type_check_only
+class GkeCluster(typing_extensions.TypedDict, total=False):
+    clusterMissing: bool
+    resourceLink: str
+
+@typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -339,6 +355,21 @@ class IdentityServiceOidcConfig(typing_extensions.TypedDict, total=False):
     userPrefix: str
 
 @typing.type_check_only
+class KubernetesMetadata(typing_extensions.TypedDict, total=False):
+    kubernetesApiServerVersion: str
+    memoryMb: int
+    nodeCount: int
+    nodeProviderId: str
+    updateTime: str
+    vcpuCount: int
+
+@typing.type_check_only
+class ListAdminClusterMembershipsResponse(typing_extensions.TypedDict, total=False):
+    adminClusterMemberships: _list[Membership]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListFeaturesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Feature]
@@ -347,6 +378,12 @@ class ListFeaturesResponse(typing_extensions.TypedDict, total=False):
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
+
+@typing.type_check_only
+class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resources: _list[Membership]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -362,12 +399,36 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Membership(typing_extensions.TypedDict, total=False):
+    authority: Authority
+    createTime: str
+    deleteTime: str
+    description: str
+    endpoint: MembershipEndpoint
+    externalId: str
+    labels: dict[str, typing.Any]
+    lastConnectionTime: str
+    name: str
+    state: MembershipState
+    uniqueId: str
+    updateTime: str
+
+@typing.type_check_only
+class MembershipEndpoint(typing_extensions.TypedDict, total=False):
+    gkeCluster: GkeCluster
+    kubernetesMetadata: KubernetesMetadata
+    multiCloudCluster: MultiCloudCluster
+    onPremCluster: OnPremCluster
+
+@typing.type_check_only
 class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
     configmanagement: ConfigManagementMembershipSpec
     identityservice: IdentityServiceMembershipSpec
+    mesh: ServiceMeshMembershipSpec
 
 @typing.type_check_only
 class MembershipFeatureState(typing_extensions.TypedDict, total=False):
+    appdevexperience: AppDevExperienceFeatureState
     configmanagement: ConfigManagementMembershipState
     identityservice: IdentityServiceMembershipState
     metering: MeteringMembershipState
@@ -375,9 +436,25 @@ class MembershipFeatureState(typing_extensions.TypedDict, total=False):
     state: FeatureState
 
 @typing.type_check_only
+class MembershipState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "CREATING",
+        "READY",
+        "DELETING",
+        "UPDATING",
+        "SERVICE_UPDATING",
+    ]
+
+@typing.type_check_only
 class MeteringMembershipState(typing_extensions.TypedDict, total=False):
     lastMeasurementTime: str
     preciseLastMeasuredClusterVcpuCapacity: float
+
+@typing.type_check_only
+class MultiCloudCluster(typing_extensions.TypedDict, total=False):
+    clusterMissing: bool
+    resourceLink: str
 
 @typing.type_check_only
 class MultiClusterIngressFeatureSpec(typing_extensions.TypedDict, total=False):
@@ -385,6 +462,12 @@ class MultiClusterIngressFeatureSpec(typing_extensions.TypedDict, total=False):
         "BILLING_UNSPECIFIED", "PAY_AS_YOU_GO", "ANTHOS_LICENSE"
     ]
     configMembership: str
+
+@typing.type_check_only
+class OnPremCluster(typing_extensions.TypedDict, total=False):
+    adminCluster: bool
+    clusterMissing: bool
+    resourceLink: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -429,6 +512,9 @@ class ServiceMeshFeatureState(typing_extensions.TypedDict, total=False):
     analysisMessages: _list[ServiceMeshAnalysisMessage]
 
 @typing.type_check_only
+class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ServiceMeshMembershipState(typing_extensions.TypedDict, total=False):
     analysisMessages: _list[ServiceMeshAnalysisMessage]
 
@@ -443,9 +529,19 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal["CODE_UNSPECIFIED", "OK", "FAILED", "UNKNOWN"]
+    description: str
+
+@typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TypeMeta(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str

@@ -835,6 +835,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_1",
         "SDF_VERSION_5_2",
         "SDF_VERSION_5_3",
+        "SDF_VERSION_5_4",
     ]
 
 @typing.type_check_only
@@ -977,6 +978,23 @@ class CustomBiddingAlgorithm(typing_extensions.TypedDict, total=False):
     name: str
     partnerId: str
     sharedAdvertiserIds: _list[str]
+
+@typing.type_check_only
+class CustomBiddingScript(typing_extensions.TypedDict, total=False):
+    active: bool
+    createTime: str
+    customBiddingAlgorithmId: str
+    customBiddingScriptId: str
+    errors: _list[ScriptError]
+    name: str
+    script: CustomBiddingScriptRef
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACCEPTED", "REJECTED", "PENDING"
+    ]
+
+@typing.type_check_only
+class CustomBiddingScriptRef(typing_extensions.TypedDict, total=False):
+    resourceName: str
 
 @typing.type_check_only
 class CustomList(typing_extensions.TypedDict, total=False):
@@ -2218,6 +2236,11 @@ class ListCustomBiddingAlgorithmsResponse(typing_extensions.TypedDict, total=Fal
     nextPageToken: str
 
 @typing.type_check_only
+class ListCustomBiddingScriptsResponse(typing_extensions.TypedDict, total=False):
+    customBiddingScripts: _list[CustomBiddingScript]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListCustomListsResponse(typing_extensions.TypedDict, total=False):
     customLists: _list[CustomList]
     nextPageToken: str
@@ -2801,6 +2824,15 @@ class ReviewStatusInfo(typing_extensions.TypedDict, total=False):
     publisherReviewStatuses: _list[PublisherReviewStatus]
 
 @typing.type_check_only
+class ScriptError(typing_extensions.TypedDict, total=False):
+    column: str
+    errorCode: typing_extensions.Literal[
+        "ERROR_CODE_UNSPECIFIED", "SYNTAX_ERROR", "DEPRECATED_SYNTAX", "INTERNAL_ERROR"
+    ]
+    errorMessage: str
+    line: str
+
+@typing.type_check_only
 class SdfConfig(typing_extensions.TypedDict, total=False):
     adminEmail: str
     version: typing_extensions.Literal[
@@ -2813,6 +2845,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_1",
         "SDF_VERSION_5_2",
         "SDF_VERSION_5_3",
+        "SDF_VERSION_5_4",
     ]
 
 @typing.type_check_only
@@ -2833,6 +2866,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_1",
         "SDF_VERSION_5_2",
         "SDF_VERSION_5_3",
+        "SDF_VERSION_5_4",
     ]
 
 @typing.type_check_only

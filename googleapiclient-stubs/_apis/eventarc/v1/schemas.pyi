@@ -31,6 +31,7 @@ class CloudRun(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Destination(typing_extensions.TypedDict, total=False):
     cloudRun: CloudRun
+    gke: GKE
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -46,6 +47,14 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class GKE(typing_extensions.TypedDict, total=False):
+    cluster: str
+    location: str
+    namespace: str
+    path: str
+    service: str
 
 @typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(

@@ -56,6 +56,26 @@ class Comment(typing_extensions.TypedDict, total=False):
     userComment: UserComment
 
 @typing.type_check_only
+class ConvertRegionPricesRequest(typing_extensions.TypedDict, total=False):
+    price: Money
+
+@typing.type_check_only
+class ConvertRegionPricesResponse(typing_extensions.TypedDict, total=False):
+    convertedOtherRegionsPrice: ConvertedOtherRegionsPrice
+    convertedRegionPrices: dict[str, typing.Any]
+
+@typing.type_check_only
+class ConvertedOtherRegionsPrice(typing_extensions.TypedDict, total=False):
+    eurPrice: Money
+    usdPrice: Money
+
+@typing.type_check_only
+class ConvertedRegionPrice(typing_extensions.TypedDict, total=False):
+    price: Money
+    regionCode: str
+    taxAmount: Money
+
+@typing.type_check_only
 class CountryTargeting(typing_extensions.TypedDict, total=False):
     countries: _list[str]
     includeRestOfWorld: bool
@@ -123,6 +143,12 @@ class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
     versionName: str
 
 @typing.type_check_only
+class Grant(typing_extensions.TypedDict, total=False):
+    appLevelPermissions: _list[str]
+    name: str
+    packageName: str
+
+@typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
     id: str
     sha1: str
@@ -147,6 +173,7 @@ class InAppProduct(typing_extensions.TypedDict, total=False):
     defaultPrice: Price
     gracePeriod: str
     listings: dict[str, typing.Any]
+    managedProductTaxesAndComplianceSettings: ManagedProductTaxAndComplianceSettings
     packageName: str
     prices: dict[str, typing.Any]
     purchaseType: typing_extensions.Literal[
@@ -155,6 +182,7 @@ class InAppProduct(typing_extensions.TypedDict, total=False):
     sku: str
     status: typing_extensions.Literal["statusUnspecified", "active", "inactive"]
     subscriptionPeriod: str
+    subscriptionTaxesAndComplianceSettings: SubscriptionTaxAndComplianceSettings
     trialPeriod: str
 
 @typing.type_check_only
@@ -184,6 +212,11 @@ class IntroductoryPriceInfo(typing_extensions.TypedDict, total=False):
     introductoryPricePeriod: str
 
 @typing.type_check_only
+class ListUsersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    users: _list[User]
+
+@typing.type_check_only
 class Listing(typing_extensions.TypedDict, total=False):
     fullDescription: str
     language: str
@@ -200,6 +233,21 @@ class ListingsListResponse(typing_extensions.TypedDict, total=False):
 class LocalizedText(typing_extensions.TypedDict, total=False):
     language: str
     text: str
+
+@typing.type_check_only
+class ManagedProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
+    eeaWithdrawalRightType: typing_extensions.Literal[
+        "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED",
+        "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
+        "WITHDRAWAL_RIGHT_SERVICE",
+    ]
+    taxRateInfoByRegionCode: dict[str, typing.Any]
+
+@typing.type_check_only
+class Money(typing_extensions.TypedDict, total=False):
+    currencyCode: str
+    nanos: int
+    units: str
 
 @typing.type_check_only
 class PageInfo(typing_extensions.TypedDict, total=False):
@@ -232,6 +280,13 @@ class ProductPurchase(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=False):
     developerPayload: str
+
+@typing.type_check_only
+class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
+    eligibleForStreamingServiceTaxRate: bool
+    taxTier: typing_extensions.Literal[
+        "TAX_TIER_UNSPECIFIED", "TAX_TIER_BOOKS_1", "TAX_TIER_NEWS_1", "TAX_TIER_NEWS_2"
+    ]
 
 @typing.type_check_only
 class Review(typing_extensions.TypedDict, total=False):
@@ -318,6 +373,15 @@ class SubscriptionPurchasesDeferResponse(typing_extensions.TypedDict, total=Fals
     newExpiryTimeMillis: str
 
 @typing.type_check_only
+class SubscriptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
+    eeaWithdrawalRightType: typing_extensions.Literal[
+        "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED",
+        "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
+        "WITHDRAWAL_RIGHT_SERVICE",
+    ]
+    taxRateInfoByRegionCode: dict[str, typing.Any]
+
+@typing.type_check_only
 class SystemApksListResponse(typing_extensions.TypedDict, total=False):
     variants: _list[Variant]
 
@@ -356,6 +420,22 @@ class TrackRelease(typing_extensions.TypedDict, total=False):
 class TracksListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     tracks: _list[Track]
+
+@typing.type_check_only
+class User(typing_extensions.TypedDict, total=False):
+    accessState: typing_extensions.Literal[
+        "ACCESS_STATE_UNSPECIFIED",
+        "INVITED",
+        "INVITATION_EXPIRED",
+        "ACCESS_GRANTED",
+        "ACCESS_EXPIRED",
+    ]
+    developerAccountPermissions: _list[str]
+    email: str
+    expirationTime: str
+    grants: _list[Grant]
+    name: str
+    partial: bool
 
 @typing.type_check_only
 class UserComment(typing_extensions.TypedDict, total=False):

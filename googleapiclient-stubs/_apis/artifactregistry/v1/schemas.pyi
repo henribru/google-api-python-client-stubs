@@ -16,9 +16,6 @@ class AptArtifact(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class DockerImage(typing_extensions.TypedDict, total=False):
     buildTime: str
     imageSizeBytes: str
@@ -27,9 +24,6 @@ class DockerImage(typing_extensions.TypedDict, total=False):
     tags: _list[str]
     uploadTime: str
     uri: str
-
-@typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ImportAptArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
@@ -65,11 +59,6 @@ class ImportYumArtifactsResponse(typing_extensions.TypedDict, total=False):
 class ListDockerImagesResponse(typing_extensions.TypedDict, total=False):
     dockerImages: _list[DockerImage]
     nextPageToken: str
-
-@typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: _list[Operation]
 
 @typing.type_check_only
 class ListRepositoriesResponse(typing_extensions.TypedDict, total=False):

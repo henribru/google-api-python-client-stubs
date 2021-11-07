@@ -24,6 +24,8 @@ class LongRunningRecognizeRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LongRunningRecognizeResponse(typing_extensions.TypedDict, total=False):
+    outputConfig: TranscriptOutputConfig
+    outputError: Status
     results: _list[SpeechRecognitionResult]
     totalBilledTime: str
 
@@ -42,10 +44,14 @@ class RecognitionAudio(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RecognitionConfig(typing_extensions.TypedDict, total=False):
+    alternativeLanguageCodes: _list[str]
     audioChannelCount: int
     diarizationConfig: SpeakerDiarizationConfig
     enableAutomaticPunctuation: bool
     enableSeparateRecognitionPerChannel: bool
+    enableSpokenEmojis: bool
+    enableSpokenPunctuation: bool
+    enableWordConfidence: bool
     enableWordTimeOffsets: bool
     encoding: typing_extensions.Literal[
         "ENCODING_UNSPECIFIED",
@@ -56,6 +62,7 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
         "AMR_WB",
         "OGG_OPUS",
         "SPEEX_WITH_HEADER_BYTE",
+        "WEBM_OPUS",
     ]
     languageCode: str
     maxAlternatives: int
@@ -130,6 +137,7 @@ class SpeechRecognitionAlternative(typing_extensions.TypedDict, total=False):
 class SpeechRecognitionResult(typing_extensions.TypedDict, total=False):
     alternatives: _list[SpeechRecognitionAlternative]
     channelTag: int
+    languageCode: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -143,6 +151,7 @@ class TranscriptOutputConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WordInfo(typing_extensions.TypedDict, total=False):
+    confidence: float
     endTime: str
     speakerTag: int
     startTime: str

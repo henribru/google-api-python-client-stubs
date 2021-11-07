@@ -49,6 +49,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             self,
             *,
             customerId: str,
+            includeChildOrgunits: bool = ...,
             maxResults: int = ...,
             orderBy: typing_extensions.Literal[
                 "annotatedLocation",

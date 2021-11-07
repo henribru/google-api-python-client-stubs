@@ -74,6 +74,7 @@ class Dashboard(typing_extensions.TypedDict, total=False):
     displayName: str
     etag: str
     gridLayout: GridLayout
+    labels: dict[str, typing.Any]
     mosaicLayout: MosaicLayout
     name: str
     rowLayout: RowLayout
@@ -144,6 +145,12 @@ class GridLayout(typing_extensions.TypedDict, total=False):
     widgets: _list[Widget]
 
 @typing.type_check_only
+class HttpBody(typing_extensions.TypedDict, total=False):
+    contentType: str
+    data: str
+    extensions: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
 class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
     dashboards: _list[Dashboard]
     nextPageToken: str
@@ -204,6 +211,25 @@ class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
         "METHOD_SUM",
         "METHOD_LATEST",
     ]
+
+@typing.type_check_only
+class QueryInstantRequest(typing_extensions.TypedDict, total=False):
+    query: str
+    time: str
+    timeout: str
+
+@typing.type_check_only
+class QueryRangeRequest(typing_extensions.TypedDict, total=False):
+    end: str
+    query: str
+    start: str
+    step: str
+    timeout: str
+
+@typing.type_check_only
+class QuerySeriesRequest(typing_extensions.TypedDict, total=False):
+    end: str
+    start: str
 
 @typing.type_check_only
 class RatioPart(typing_extensions.TypedDict, total=False):
