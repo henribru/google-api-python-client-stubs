@@ -74,6 +74,7 @@ class ConfigManagementBinauthzVersion(typing_extensions.TypedDict, total=False):
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     enabled: bool
     git: ConfigManagementGitConfig
+    preventDrift: bool
     sourceFormat: str
 
 @typing.type_check_only
@@ -309,6 +310,16 @@ class FeatureState(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class Fleet(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    displayName: str
+    fleetName: str
+    name: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
     manifest: _list[ConnectAgentResource]
 
@@ -364,6 +375,13 @@ class KubernetesMetadata(typing_extensions.TypedDict, total=False):
     vcpuCount: int
 
 @typing.type_check_only
+class KubernetesResource(typing_extensions.TypedDict, total=False):
+    connectResources: _list[ResourceManifest]
+    membershipCrManifest: str
+    membershipResources: _list[ResourceManifest]
+    resourceOptions: ResourceOptions
+
+@typing.type_check_only
 class ListAdminClusterMembershipsResponse(typing_extensions.TypedDict, total=False):
     adminClusterMemberships: _list[Membership]
     nextPageToken: str
@@ -417,6 +435,7 @@ class Membership(typing_extensions.TypedDict, total=False):
 class MembershipEndpoint(typing_extensions.TypedDict, total=False):
     gkeCluster: GkeCluster
     kubernetesMetadata: KubernetesMetadata
+    kubernetesResource: KubernetesResource
     multiCloudCluster: MultiCloudCluster
     onPremCluster: OnPremCluster
 
@@ -493,6 +512,16 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class ResourceManifest(typing_extensions.TypedDict, total=False):
+    clusterScoped: bool
+    manifest: str
+
+@typing.type_check_only
+class ResourceOptions(typing_extensions.TypedDict, total=False):
+    connectVersion: str
+    v1beta1Crd: bool
 
 @typing.type_check_only
 class ServiceMeshAnalysisMessage(typing_extensions.TypedDict, total=False):

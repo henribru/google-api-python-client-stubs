@@ -57,6 +57,40 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
     @typing.type_check_only
+    class SavedQueriesResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            parent: str,
+            body: SavedQuery = ...,
+            savedQueryId: str = ...,
+            **kwargs: typing.Any
+        ) -> SavedQueryHttpRequest: ...
+        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> SavedQueryHttpRequest: ...
+        def list(
+            self,
+            *,
+            parent: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListSavedQueriesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListSavedQueriesResponseHttpRequest,
+            previous_response: ListSavedQueriesResponse,
+        ) -> ListSavedQueriesResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: SavedQuery = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SavedQueryHttpRequest: ...
+    @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def analyzeIamPolicy(
             self,
@@ -74,6 +108,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             analysisQuery_options_outputResourceEdges: bool = ...,
             analysisQuery_resourceSelector_fullResourceName: str = ...,
             executionTimeout: str = ...,
+            savedAnalysisQuery: str = ...,
             **kwargs: typing.Any
         ) -> AnalyzeIamPolicyResponseHttpRequest: ...
         def analyzeIamPolicyLongrunning(
@@ -163,6 +198,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
     def assets(self) -> AssetsResource: ...
     def feeds(self) -> FeedsResource: ...
     def operations(self) -> OperationsResource: ...
+    def savedQueries(self) -> SavedQueriesResource: ...
     def v1(self) -> V1Resource: ...
 
 @typing.type_check_only
@@ -222,12 +258,28 @@ class ListFeedsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListFeedsResponse: ...
 
 @typing.type_check_only
+class ListSavedQueriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSavedQueriesResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SavedQueryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SavedQuery: ...
 
 @typing.type_check_only
 class SearchAllIamPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):

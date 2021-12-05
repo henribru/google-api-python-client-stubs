@@ -202,6 +202,7 @@ class SpeechRecognitionResult(typing_extensions.TypedDict, total=False):
     alternatives: _list[SpeechRecognitionAlternative]
     channelTag: int
     languageCode: str
+    resultEndTime: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

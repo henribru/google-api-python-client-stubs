@@ -24,6 +24,11 @@ class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
     pypiDependencies: dict[str, typing.Any]
 
 @typing.type_check_only
+class CidrBlock(typing_extensions.TypedDict, total=False):
+    cidrBlock: str
+    displayName: str
+
+@typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):
     machineType: str
 
@@ -66,6 +71,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     ]
     gkeCluster: str
     maintenanceWindow: MaintenanceWindow
+    masterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
     nodeConfig: NodeConfig
     nodeCount: int
     privateEnvironmentConfig: PrivateEnvironmentConfig
@@ -107,10 +113,18 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class LoadEnvironmentStateResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     endTime: str
     recurrence: str
     startTime: str
+
+@typing.type_check_only
+class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
+    cidrBlocks: _list[CidrBlock]
+    enabled: bool
 
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
@@ -139,7 +153,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
     operationType: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "CREATE", "DELETE", "UPDATE", "CHECK"
+        "TYPE_UNSPECIFIED", "CREATE", "DELETE", "UPDATE", "CHECK", "STORE_STATE"
     ]
     resource: str
     resourceUuid: str
@@ -155,6 +169,7 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
+    cloudComposerConnectionSubnetwork: str
     cloudComposerNetworkIpv4CidrBlock: str
     cloudComposerNetworkIpv4ReservedRange: str
     cloudSqlIpv4CidrBlock: str
@@ -188,6 +203,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StoreEnvironmentStateResponse(typing_extensions.TypedDict, total=False):
+    snapshotLocation: str
 
 @typing.type_check_only
 class WebServerConfig(typing_extensions.TypedDict, total=False):

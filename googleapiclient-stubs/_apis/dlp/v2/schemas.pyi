@@ -953,6 +953,7 @@ class GooglePrivacyDlpV2PrimitiveTransformation(
     fixedSizeBucketingConfig: GooglePrivacyDlpV2FixedSizeBucketingConfig
     redactConfig: GooglePrivacyDlpV2RedactConfig
     replaceConfig: GooglePrivacyDlpV2ReplaceValueConfig
+    replaceDictionaryConfig: GooglePrivacyDlpV2ReplaceDictionaryConfig
     replaceWithInfoTypeConfig: GooglePrivacyDlpV2ReplaceWithInfoTypeConfig
     timePartConfig: GooglePrivacyDlpV2TimePartConfig
 
@@ -1079,6 +1080,12 @@ class GooglePrivacyDlpV2ReidentifyContentResponse(
 ):
     item: GooglePrivacyDlpV2ContentItem
     overview: GooglePrivacyDlpV2TransformationOverview
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ReplaceDictionaryConfig(
+    typing_extensions.TypedDict, total=False
+):
+    wordList: GooglePrivacyDlpV2WordList
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ReplaceValueConfig(typing_extensions.TypedDict, total=False):

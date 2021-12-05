@@ -188,6 +188,7 @@ class Permission(typing_extensions.TypedDict, total=False):
     expirationTime: str
     id: str
     kind: str
+    pendingOwner: bool
     permissionDetails: _list[dict[str, typing.Any]]
     photoLink: str
     role: str

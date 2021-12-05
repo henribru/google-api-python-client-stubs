@@ -105,6 +105,24 @@ class GcsObject(typing_extensions.TypedDict, total=False):
 class GooSettings(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiMethod: typing_extensions.Literal[
+        "API_METHOD_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
+    ]
+    osPolicyAssignment: str
+    rolloutStartTime: str
+    rolloutState: typing_extensions.Literal[
+        "ROLLOUT_STATE_UNSPECIFIED",
+        "IN_PROGRESS",
+        "CANCELLING",
+        "CANCELLED",
+        "SUCCEEDED",
+    ]
+    rolloutUpdateTime: str
+
+@typing.type_check_only
 class Inventory(typing_extensions.TypedDict, total=False):
     items: dict[str, typing.Any]
     name: str
@@ -679,6 +697,7 @@ class VulnerabilityReportVulnerability(typing_extensions.TypedDict, total=False)
     createTime: str
     details: VulnerabilityReportVulnerabilityDetails
     installedInventoryItemIds: _list[str]
+    items: _list[VulnerabilityReportVulnerabilityItem]
     updateTime: str
 
 @typing.type_check_only
@@ -698,6 +717,13 @@ class VulnerabilityReportVulnerabilityDetailsReference(
     url: str
 
 @typing.type_check_only
+class VulnerabilityReportVulnerabilityItem(typing_extensions.TypedDict, total=False):
+    availableInventoryItemId: str
+    fixedCpeUri: str
+    installedInventoryItemId: str
+    upstreamFix: str
+
+@typing.type_check_only
 class WeekDayOfMonth(typing_extensions.TypedDict, total=False):
     dayOfWeek: typing_extensions.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
@@ -709,6 +735,7 @@ class WeekDayOfMonth(typing_extensions.TypedDict, total=False):
         "SATURDAY",
         "SUNDAY",
     ]
+    dayOffset: int
     weekOrdinal: int
 
 @typing.type_check_only

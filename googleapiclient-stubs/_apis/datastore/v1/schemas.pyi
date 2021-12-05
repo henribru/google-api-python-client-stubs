@@ -83,6 +83,24 @@ class GoogleDatastoreAdminV1CommonMetadata(typing_extensions.TypedDict, total=Fa
     ]
 
 @typing.type_check_only
+class GoogleDatastoreAdminV1DatastoreFirestoreMigrationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    migrationState: typing_extensions.Literal[
+        "MIGRATION_STATE_UNSPECIFIED", "RUNNING", "PAUSED", "COMPLETE"
+    ]
+    migrationStep: typing_extensions.Literal[
+        "MIGRATION_STEP_UNSPECIFIED",
+        "PREPARE",
+        "START",
+        "APPLY_WRITES_SYNCHRONOUSLY",
+        "COPY_AND_VERIFY",
+        "REDIRECT_EVENTUALLY_CONSISTENT_READS",
+        "REDIRECT_STRONGLY_CONSISTENT_READS",
+        "REDIRECT_WRITES",
+    ]
+
+@typing.type_check_only
 class GoogleDatastoreAdminV1EntityFilter(typing_extensions.TypedDict, total=False):
     kinds: _list[str]
     namespaceIds: _list[str]

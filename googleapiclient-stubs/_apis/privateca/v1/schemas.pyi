@@ -45,13 +45,11 @@ class CaOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CaPool(typing_extensions.TypedDict, total=False):
-    createTime: str
     issuancePolicy: IssuancePolicy
     labels: dict[str, typing.Any]
     name: str
     publishingOptions: PublishingOptions
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "ENTERPRISE", "DEVOPS"]
-    updateTime: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...

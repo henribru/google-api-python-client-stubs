@@ -78,6 +78,13 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     body: WaitOperationRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+            def batchTranslateDocument(
+                self,
+                *,
+                parent: str,
+                body: BatchTranslateDocumentRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def batchTranslateText(
                 self,
                 *,
@@ -117,6 +124,13 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def translateDocument(
+                self,
+                *,
+                parent: str,
+                body: TranslateDocumentRequest = ...,
+                **kwargs: typing.Any
+            ) -> TranslateDocumentResponseHttpRequest: ...
             def translateText(
                 self,
                 *,
@@ -230,6 +244,14 @@ class SupportedLanguagesHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SupportedLanguages: ...
+
+@typing.type_check_only
+class TranslateDocumentResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> TranslateDocumentResponse: ...
 
 @typing.type_check_only
 class TranslateTextResponseHttpRequest(googleapiclient.http.HttpRequest):

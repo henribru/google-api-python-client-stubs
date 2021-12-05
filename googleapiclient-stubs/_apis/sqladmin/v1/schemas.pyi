@@ -115,7 +115,10 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_10",
         "POSTGRES_12",
         "MYSQL_8_0",
+        "MYSQL_8_0_18",
+        "MYSQL_8_0_26",
         "POSTGRES_13",
+        "POSTGRES_14",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -151,6 +154,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     connectionName: str
     createTime: str
     currentDiskSize: str
+    databaseInstalledVersion: str
     databaseVersion: typing_extensions.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
         "MYSQL_5_1",
@@ -166,7 +170,10 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "POSTGRES_10",
         "POSTGRES_12",
         "MYSQL_8_0",
+        "MYSQL_8_0_18",
+        "MYSQL_8_0_26",
         "POSTGRES_13",
+        "POSTGRES_14",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -525,6 +532,21 @@ class OperationsListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class PasswordStatus(typing_extensions.TypedDict, total=False):
+    locked: bool
+    passwordExpirationTime: str
+
+@typing.type_check_only
+class PasswordValidationPolicy(typing_extensions.TypedDict, total=False):
+    complexity: typing_extensions.Literal[
+        "COMPLEXITY_UNSPECIFIED", "COMPLEXITY_DEFAULT"
+    ]
+    disallowUsernameSubstring: bool
+    minLength: int
+    passwordChangeInterval: str
+    reuseInterval: int
+
+@typing.type_check_only
 class ReplicaConfiguration(typing_extensions.TypedDict, total=False):
     failoverTarget: bool
     kind: str
@@ -577,6 +599,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     kind: str
     locationPreference: LocationPreference
     maintenanceWindow: MaintenanceWindow
+    passwordValidationPolicy: PasswordValidationPolicy
     pricingPlan: typing_extensions.Literal[
         "SQL_PRICING_PLAN_UNSPECIFIED", "PACKAGE", "PER_USE"
     ]
@@ -759,11 +782,19 @@ class User(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     password: str
+    passwordPolicy: UserPasswordValidationPolicy
     project: str
     sqlserverUserDetails: SqlServerUserDetails
     type: typing_extensions.Literal[
         "BUILT_IN", "CLOUD_IAM_USER", "CLOUD_IAM_SERVICE_ACCOUNT"
     ]
+
+@typing.type_check_only
+class UserPasswordValidationPolicy(typing_extensions.TypedDict, total=False):
+    allowedFailedAttempts: int
+    enableFailedAttemptsCheck: bool
+    passwordExpirationDuration: str
+    status: PasswordStatus
 
 @typing.type_check_only
 class UsersListResponse(typing_extensions.TypedDict, total=False):

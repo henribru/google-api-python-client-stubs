@@ -357,6 +357,7 @@ class HardwareInfo(typing_extensions.TypedDict, total=False):
     cpuShutdownTemperatures: _list[float]
     cpuThrottlingTemperatures: _list[float]
     deviceBasebandVersion: str
+    enterpriseSpecificId: str
     gpuShutdownTemperatures: _list[float]
     gpuThrottlingTemperatures: _list[float]
     hardware: str
@@ -707,6 +708,11 @@ class Policy(typing_extensions.TypedDict, total=False):
         "PLAY_STORE_MODE_UNSPECIFIED", "WHITELIST", "BLACKLIST"
     ]
     policyEnforcementRules: _list[PolicyEnforcementRule]
+    preferentialNetworkService: typing_extensions.Literal[
+        "PREFERENTIAL_NETWORK_SERVICE_UNSPECIFIED",
+        "PREFERENTIAL_NETWORK_SERVICE_DISABLED",
+        "PREFERENTIAL_NETWORK_SERVICE_ENABLED",
+    ]
     privateKeySelectionEnabled: bool
     recommendedGlobalProxy: ProxyInfo
     removeUserDisabled: bool

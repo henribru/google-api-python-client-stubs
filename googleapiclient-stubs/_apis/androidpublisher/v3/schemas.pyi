@@ -143,6 +143,41 @@ class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
     versionName: str
 
 @typing.type_check_only
+class GeneratedApksListResponse(typing_extensions.TypedDict, total=False):
+    generatedApks: _list[GeneratedApksPerSigningKey]
+
+@typing.type_check_only
+class GeneratedApksPerSigningKey(typing_extensions.TypedDict, total=False):
+    certificateSha256Hash: str
+    generatedAssetPackSlices: _list[GeneratedAssetPackSlice]
+    generatedSplitApks: _list[GeneratedSplitApk]
+    generatedStandaloneApks: _list[GeneratedStandaloneApk]
+    generatedUniversalApk: GeneratedUniversalApk
+
+@typing.type_check_only
+class GeneratedAssetPackSlice(typing_extensions.TypedDict, total=False):
+    downloadId: str
+    moduleName: str
+    sliceId: str
+    version: str
+
+@typing.type_check_only
+class GeneratedSplitApk(typing_extensions.TypedDict, total=False):
+    downloadId: str
+    moduleName: str
+    splitId: str
+    variantId: int
+
+@typing.type_check_only
+class GeneratedStandaloneApk(typing_extensions.TypedDict, total=False):
+    downloadId: str
+    variantId: int
+
+@typing.type_check_only
+class GeneratedUniversalApk(typing_extensions.TypedDict, total=False):
+    downloadId: str
+
+@typing.type_check_only
 class Grant(typing_extensions.TypedDict, total=False):
     appLevelPermissions: _list[str]
     name: str
@@ -405,6 +440,12 @@ class Track(typing_extensions.TypedDict, total=False):
     track: str
 
 @typing.type_check_only
+class TrackCountryAvailability(typing_extensions.TypedDict, total=False):
+    countries: _list[TrackTargetedCountry]
+    restOfWorld: bool
+    syncWithProduction: bool
+
+@typing.type_check_only
 class TrackRelease(typing_extensions.TypedDict, total=False):
     countryTargeting: CountryTargeting
     inAppUpdatePriority: int
@@ -415,6 +456,10 @@ class TrackRelease(typing_extensions.TypedDict, total=False):
     ]
     userFraction: float
     versionCodes: _list[str]
+
+@typing.type_check_only
+class TrackTargetedCountry(typing_extensions.TypedDict, total=False):
+    countryCode: str
 
 @typing.type_check_only
 class TracksListResponse(typing_extensions.TypedDict, total=False):

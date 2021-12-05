@@ -161,6 +161,25 @@ class GoogleCloudRetailV2alphaAddFulfillmentPlacesResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaAddLocalInventoriesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaAddLocalInventoriesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    addMask: str
+    addTime: str
+    allowMissing: bool
+    localInventories: _list[GoogleCloudRetailV2alphaLocalInventory]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaAddLocalInventoriesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaAudience(typing_extensions.TypedDict, total=False):
     ageGroups: _list[str]
     genders: _list[str]
@@ -367,6 +386,12 @@ class GoogleCloudRetailV2alphaListProductsResponse(
     totalSize: int
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaLocalInventory(typing_extensions.TypedDict, total=False):
+    attributes: dict[str, typing.Any]
+    placeId: str
+    priceInfo: GoogleCloudRetailV2alphaPriceInfo
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaMerchantCenterLink(
     typing_extensions.TypedDict, total=False
 ):
@@ -518,6 +543,24 @@ class GoogleCloudRetailV2alphaRemoveFulfillmentPlacesRequest(
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaRemoveFulfillmentPlacesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRemoveLocalInventoriesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRemoveLocalInventoriesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    allowMissing: bool
+    placeIds: _list[str]
+    removeTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRemoveLocalInventoriesResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 

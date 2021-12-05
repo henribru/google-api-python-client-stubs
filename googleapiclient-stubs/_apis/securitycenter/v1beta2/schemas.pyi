@@ -89,6 +89,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     category: str
     createTime: str
     eventTime: str
+    externalSystems: dict[str, typing.Any]
     externalUri: str
     findingClass: typing_extensions.Literal[
         "FINDING_CLASS_UNSPECIFIED",
@@ -99,6 +100,9 @@ class Finding(typing_extensions.TypedDict, total=False):
         "SCC_ERROR",
     ]
     indicator: Indicator
+    mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
+    muteInitiator: str
+    muteUpdateTime: str
     name: str
     parent: str
     resourceName: str
@@ -114,6 +118,26 @@ class Finding(typing_extensions.TypedDict, total=False):
 class Folder(typing_extensions.TypedDict, total=False):
     resourceFolder: str
     resourceFolderDisplayName: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ExternalSystem(
+    typing_extensions.TypedDict, total=False
+):
+    assignees: _list[str]
+    externalSystemUpdateTime: str
+    externalUid: str
+    name: str
+    status: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1MuteConfig(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    filter: str
+    mostRecentEditor: str
+    name: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1NotificationMessage(

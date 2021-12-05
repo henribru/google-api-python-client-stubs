@@ -31,9 +31,7 @@ class Customer(typing_extensions.TypedDict, total=False):
     customerDomain: str
     customerDomainVerified: bool
     customerId: str
-    customerType: typing_extensions.Literal[
-        "CUSTOMER_TYPE_UNSPECIFIED", "DOMAIN", "TEAM"
-    ]
+    customerType: typing_extensions.Literal["customerTypeUnspecified", "domain", "team"]
     kind: str
     phoneNumber: str
     postalAddress: Address

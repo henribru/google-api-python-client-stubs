@@ -78,6 +78,7 @@ class GoogleCloudContactcenterinsightsV1CalculateStatsResponse(
     conversationCountTimeSeries: GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeries
     customHighlighterMatches: dict[str, typing.Any]
     issueMatches: dict[str, typing.Any]
+    issueMatchesStats: dict[str, typing.Any]
     smartHighlighterMatches: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -446,6 +447,7 @@ class GoogleCloudContactcenterinsightsV1IssueModelLabelStats(
 class GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStats(
     typing_extensions.TypedDict, total=False
 ):
+    displayName: str
     issue: str
     labeledConversationsCount: str
 
@@ -747,6 +749,7 @@ class GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStats(
 class GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStats(
     typing_extensions.TypedDict, total=False
 ):
+    displayName: str
     issue: str
     labeledConversationsCount: str
 

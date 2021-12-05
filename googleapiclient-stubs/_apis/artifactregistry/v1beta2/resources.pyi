@@ -252,6 +252,17 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def repositories(self) -> RepositoriesResource: ...
+        def getProjectSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> ProjectSettingsHttpRequest: ...
+        def updateProjectSettings(
+            self,
+            *,
+            name: str,
+            body: ProjectSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> ProjectSettingsHttpRequest: ...
         def locations(self) -> LocationsResource: ...
     def new_batch_http_request(
         self,
@@ -364,6 +375,14 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class ProjectSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ProjectSettings: ...
 
 @typing.type_check_only
 class RepositoryHttpRequest(googleapiclient.http.HttpRequest):

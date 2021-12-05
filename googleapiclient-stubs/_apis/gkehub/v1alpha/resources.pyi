@@ -85,6 +85,25 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
             @typing.type_check_only
+            class FleetsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self, *, parent: str, body: Fleet = ..., **kwargs: typing.Any
+                ) -> FleetHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FleetHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Fleet = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> FleetHttpRequest: ...
+            @typing.type_check_only
             class MembershipsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -220,6 +239,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def features(self) -> FeaturesResource: ...
+            def fleets(self) -> FleetsResource: ...
             def memberships(self) -> MembershipsResource: ...
             def operations(self) -> OperationsResource: ...
         def locations(self) -> LocationsResource: ...
@@ -252,6 +272,14 @@ class FeatureHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Feature: ...
+
+@typing.type_check_only
+class FleetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Fleet: ...
 
 @typing.type_check_only
 class GenerateConnectManifestResponseHttpRequest(googleapiclient.http.HttpRequest):

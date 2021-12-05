@@ -108,8 +108,29 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest,
                 previous_response: GoogleChromeManagementV1FindInstalledAppDevicesResponse,
             ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest | None: ...
+        @typing.type_check_only
+        class TelemetryResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class DevicesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    readMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest,
+                    previous_response: GoogleChromeManagementV1ListTelemetryDevicesResponse,
+                ) -> GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest | None: ...
+            def devices(self) -> DevicesResource: ...
         def apps(self) -> AppsResource: ...
         def reports(self) -> ReportsResource: ...
+        def telemetry(self) -> TelemetryResource: ...
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -171,3 +192,13 @@ class GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromeManagementV1ListTelemetryDevicesResponse: ...

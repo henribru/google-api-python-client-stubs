@@ -61,6 +61,7 @@ class ConfigManagementBinauthzVersion(typing_extensions.TypedDict, total=False):
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     enabled: bool
     git: ConfigManagementGitConfig
+    preventDrift: bool
     sourceFormat: str
 
 @typing.type_check_only

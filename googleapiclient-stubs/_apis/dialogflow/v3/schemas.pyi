@@ -1231,6 +1231,7 @@ class GoogleCloudDialogflowCxV3Webhook(typing_extensions.TypedDict, total=False)
 class GoogleCloudDialogflowCxV3WebhookGenericWebService(
     typing_extensions.TypedDict, total=False
 ):
+    allowedCaCerts: _list[str]
     password: str
     requestHeaders: dict[str, typing.Any]
     uri: str

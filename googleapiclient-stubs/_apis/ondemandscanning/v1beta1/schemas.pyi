@@ -47,6 +47,7 @@ class AttestationOccurrence(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BuildOccurrence(typing_extensions.TypedDict, total=False):
     intotoProvenance: InTotoProvenance
+    intotoStatement: InTotoStatement
     provenance: BuildProvenance
     provenanceBytes: str
 
@@ -195,10 +196,11 @@ class InTotoProvenance(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InTotoStatement(typing_extensions.TypedDict, total=False):
+    _type: str
     predicateType: str
     provenance: InTotoProvenance
+    slsaProvenance: SlsaProvenance
     subject: _list[Subject]
-    type: str
 
 @typing.type_check_only
 class Jwt(typing_extensions.TypedDict, total=False):
@@ -224,6 +226,11 @@ class Location(typing_extensions.TypedDict, total=False):
     cpeUri: str
     path: str
     version: Version
+
+@typing.type_check_only
+class Material(typing_extensions.TypedDict, total=False):
+    digest: dict[str, typing.Any]
+    uri: str
 
 @typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
@@ -338,6 +345,39 @@ class RepoId(typing_extensions.TypedDict, total=False):
 class Signature(typing_extensions.TypedDict, total=False):
     publicKeyId: str
     signature: str
+
+@typing.type_check_only
+class SlsaBuilder(typing_extensions.TypedDict, total=False):
+    id: str
+
+@typing.type_check_only
+class SlsaCompleteness(typing_extensions.TypedDict, total=False):
+    arguments: bool
+    environment: bool
+    materials: bool
+
+@typing.type_check_only
+class SlsaMetadata(typing_extensions.TypedDict, total=False):
+    buildFinishedOn: str
+    buildInvocationId: str
+    buildStartedOn: str
+    completeness: SlsaCompleteness
+    reproducible: bool
+
+@typing.type_check_only
+class SlsaProvenance(typing_extensions.TypedDict, total=False):
+    builder: SlsaBuilder
+    materials: _list[Material]
+    metadata: SlsaMetadata
+    recipe: SlsaRecipe
+
+@typing.type_check_only
+class SlsaRecipe(typing_extensions.TypedDict, total=False):
+    arguments: dict[str, typing.Any]
+    definedInMaterial: str
+    entryPoint: str
+    environment: dict[str, typing.Any]
+    type: str
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):

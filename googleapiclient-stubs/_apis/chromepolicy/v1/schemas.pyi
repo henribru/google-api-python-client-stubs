@@ -5,6 +5,20 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    endSupport: GoogleTypeDate
+    policyApiLifecycleStage: typing_extensions.Literal[
+        "API_UNSPECIFIED",
+        "API_PREVIEW",
+        "API_DEVELOPMENT",
+        "API_CURRENT",
+        "API_DEPRECATED",
+    ]
+
+@typing.type_check_only
 class GoogleChromePolicyV1AdditionalTargetKeyName(
     typing_extensions.TypedDict, total=False
 ):
@@ -116,6 +130,12 @@ class GoogleChromePolicyV1UploadPolicyFileResponse(
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
 
 @typing.type_check_only
 class Proto2DescriptorProto(dict[str, typing.Any]): ...

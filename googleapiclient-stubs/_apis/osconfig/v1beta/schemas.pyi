@@ -111,6 +111,24 @@ class GooRepository(typing_extensions.TypedDict, total=False):
 class GooSettings(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiMethod: typing_extensions.Literal[
+        "API_METHOD_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
+    ]
+    osPolicyAssignment: str
+    rolloutStartTime: str
+    rolloutState: typing_extensions.Literal[
+        "ROLLOUT_STATE_UNSPECIFIED",
+        "IN_PROGRESS",
+        "CANCELLING",
+        "CANCELLED",
+        "SUCCEEDED",
+    ]
+    rolloutUpdateTime: str
+
+@typing.type_check_only
 class GuestPolicy(typing_extensions.TypedDict, total=False):
     assignment: Assignment
     createTime: str
@@ -433,6 +451,7 @@ class WeekDayOfMonth(typing_extensions.TypedDict, total=False):
         "SATURDAY",
         "SUNDAY",
     ]
+    dayOffset: int
     weekOrdinal: int
 
 @typing.type_check_only

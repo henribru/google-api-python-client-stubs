@@ -5,6 +5,24 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class BatchDocumentInputConfig(typing_extensions.TypedDict, total=False):
+    gcsSource: GcsSource
+
+@typing.type_check_only
+class BatchDocumentOutputConfig(typing_extensions.TypedDict, total=False):
+    gcsDestination: GcsDestination
+
+@typing.type_check_only
+class BatchTranslateDocumentRequest(typing_extensions.TypedDict, total=False):
+    formatConversions: dict[str, typing.Any]
+    glossaries: dict[str, typing.Any]
+    inputConfigs: _list[BatchDocumentInputConfig]
+    models: dict[str, typing.Any]
+    outputConfig: BatchDocumentOutputConfig
+    sourceLanguageCode: str
+    targetLanguageCodes: _list[str]
+
+@typing.type_check_only
 class BatchTranslateTextRequest(typing_extensions.TypedDict, total=False):
     glossaries: dict[str, typing.Any]
     inputConfigs: _list[InputConfig]
@@ -32,6 +50,23 @@ class DetectLanguageResponse(typing_extensions.TypedDict, total=False):
 class DetectedLanguage(typing_extensions.TypedDict, total=False):
     confidence: float
     languageCode: str
+
+@typing.type_check_only
+class DocumentInputConfig(typing_extensions.TypedDict, total=False):
+    content: str
+    gcsSource: GcsSource
+    mimeType: str
+
+@typing.type_check_only
+class DocumentOutputConfig(typing_extensions.TypedDict, total=False):
+    gcsDestination: GcsDestination
+    mimeType: str
+
+@typing.type_check_only
+class DocumentTranslation(typing_extensions.TypedDict, total=False):
+    byteStreamOutputs: _list[str]
+    detectedLanguageCode: str
+    mimeType: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -123,6 +158,23 @@ class SupportedLanguage(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SupportedLanguages(typing_extensions.TypedDict, total=False):
     languages: _list[SupportedLanguage]
+
+@typing.type_check_only
+class TranslateDocumentRequest(typing_extensions.TypedDict, total=False):
+    documentInputConfig: DocumentInputConfig
+    documentOutputConfig: DocumentOutputConfig
+    glossaryConfig: TranslateTextGlossaryConfig
+    labels: dict[str, typing.Any]
+    model: str
+    sourceLanguageCode: str
+    targetLanguageCode: str
+
+@typing.type_check_only
+class TranslateDocumentResponse(typing_extensions.TypedDict, total=False):
+    documentTranslation: DocumentTranslation
+    glossaryConfig: TranslateTextGlossaryConfig
+    glossaryDocumentTranslation: DocumentTranslation
+    model: str
 
 @typing.type_check_only
 class TranslateTextGlossaryConfig(typing_extensions.TypedDict, total=False):

@@ -2534,16 +2534,6 @@ class InstantSnapshot(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class InstantSnapshotAggregatedList(typing_extensions.TypedDict, total=False):
-    id: str
-    items: dict[str, typing.Any]
-    kind: str
-    nextPageToken: str
-    selfLink: str
-    unreachables: _list[str]
-    warning: dict[str, typing.Any]
-
-@typing.type_check_only
 class InstantSnapshotExportParams(typing_extensions.TypedDict, total=False):
     baseInstantSnapshot: str
     bucketName: str
@@ -2565,11 +2555,6 @@ class InstantSnapshotList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstantSnapshotsExportRequest(typing_extensions.TypedDict, total=False):
     exportParams: InstantSnapshotExportParams
-
-@typing.type_check_only
-class InstantSnapshotsScopedList(typing_extensions.TypedDict, total=False):
-    instantSnapshots: _list[InstantSnapshot]
-    warning: dict[str, typing.Any]
 
 @typing.type_check_only
 class Int64RangeMatch(typing_extensions.TypedDict, total=False):
@@ -3010,12 +2995,10 @@ class MachineImage(typing_extensions.TypedDict, total=False):
     description: str
     guestFlush: bool
     id: str
-    instanceProperties: InstanceProperties
     kind: str
     machineImageEncryptionKey: CustomerEncryptionKey
     name: str
     satisfiesPzs: bool
-    savedDisks: _list[SavedDisk]
     selfLink: str
     selfLinkWithId: str
     sourceDiskEncryptionKeys: _list[SourceDiskEncryptionKey]
@@ -3722,7 +3705,6 @@ class Operation(typing_extensions.TypedDict, total=False):
     id: str
     insertTime: str
     kind: str
-    metadata: dict[str, typing.Any]
     name: str
     operationGroupId: str
     operationType: str
@@ -5116,13 +5098,6 @@ class SavedAttachedDisk(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["PERSISTENT", "SCRATCH"]
 
 @typing.type_check_only
-class SavedDisk(typing_extensions.TypedDict, total=False):
-    kind: str
-    sourceDisk: str
-    storageBytes: str
-    storageBytesStatus: typing_extensions.Literal["UPDATING", "UP_TO_DATE"]
-
-@typing.type_check_only
 class ScalingScheduleStatus(typing_extensions.TypedDict, total=False):
     lastStartTime: str
     nextStartTime: str
@@ -5734,7 +5709,6 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
     purpose: typing_extensions.Literal[
         "AGGREGATE",
         "CLOUD_EXTENSION",
-        "GLOBAL_MANAGED_PROXY",
         "INTERNAL_HTTPS_LOAD_BALANCER",
         "PRIVATE",
         "PRIVATE_RFC_1918",

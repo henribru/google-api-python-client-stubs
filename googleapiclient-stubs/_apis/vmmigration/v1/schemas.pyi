@@ -258,6 +258,8 @@ class MigratingVm(typing_extensions.TypedDict, total=False):
     lastSync: ReplicationSync
     name: str
     policy: SchedulePolicy
+    recentCloneJobs: _list[CloneJob]
+    recentCutoverJobs: _list[CutoverJob]
     sourceVmId: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

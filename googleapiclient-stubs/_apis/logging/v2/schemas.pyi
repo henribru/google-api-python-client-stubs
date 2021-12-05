@@ -166,6 +166,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LogBucket(typing_extensions.TypedDict, total=False):
+    cmekSettings: CmekSettings
     createTime: str
     description: str
     lifecycleState: typing_extensions.Literal[

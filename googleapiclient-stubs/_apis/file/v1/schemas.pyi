@@ -22,6 +22,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "BASIC_HDD",
         "BASIC_SSD",
         "HIGH_SCALE_SSD",
+        "ENTERPRISE",
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "FINALIZING", "READY", "DELETING"
@@ -148,6 +149,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     description: str
     etag: str
     fileShares: _list[FileShareConfig]
+    kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
     networks: _list[NetworkConfig]
@@ -160,8 +162,10 @@ class Instance(typing_extensions.TypedDict, total=False):
         "DELETING",
         "ERROR",
         "RESTORING",
+        "SUSPENDED",
     ]
     statusMessage: str
+    suspensionReasons: _list[str]
     tier: typing_extensions.Literal[
         "TIER_UNSPECIFIED",
         "STANDARD",
@@ -169,6 +173,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "BASIC_HDD",
         "BASIC_SSD",
         "HIGH_SCALE_SSD",
+        "ENTERPRISE",
     ]
 
 @typing.type_check_only
@@ -192,6 +197,11 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    snapshots: _list[Snapshot]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -218,6 +228,9 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
+    connectMode: typing_extensions.Literal[
+        "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
+    ]
     ipAddresses: _list[str]
     modes: _list[str]
     network: str
@@ -272,6 +285,17 @@ class Schedule(typing_extensions.TypedDict, total=False):
     ]
     duration: str
     startTime: TimeOfDay
+
+@typing.type_check_only
+class Snapshot(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    filesystemUsedBytes: str
+    labels: dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING"
+    ]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

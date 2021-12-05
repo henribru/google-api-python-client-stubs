@@ -17,6 +17,7 @@ class AnalyzeIamPolicyLongrunningMetadata(typing_extensions.TypedDict, total=Fal
 class AnalyzeIamPolicyLongrunningRequest(typing_extensions.TypedDict, total=False):
     analysisQuery: IamPolicyAnalysisQuery
     outputConfig: IamPolicyAnalysisOutputConfig
+    savedAnalysisQuery: str
 
 @typing.type_check_only
 class AnalyzeIamPolicyLongrunningResponse(typing_extensions.TypedDict, total=False): ...
@@ -546,6 +547,11 @@ class ListFeedsResponse(typing_extensions.TypedDict, total=False):
     feeds: _list[Feed]
 
 @typing.type_check_only
+class ListSavedQueriesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    savedQueries: _list[SavedQuery]
+
+@typing.type_check_only
 class MoveAnalysis(typing_extensions.TypedDict, total=False):
     analysis: MoveAnalysisResult
     displayName: str
@@ -615,6 +621,10 @@ class PubsubDestination(typing_extensions.TypedDict, total=False):
     topic: str
 
 @typing.type_check_only
+class QueryContent(typing_extensions.TypedDict, total=False):
+    iamPolicyAnalysisQuery: IamPolicyAnalysisQuery
+
+@typing.type_check_only
 class RelatedAsset(typing_extensions.TypedDict, total=False):
     ancestors: _list[str]
     asset: str
@@ -677,6 +687,17 @@ class ResourceSearchResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResourceSelector(typing_extensions.TypedDict, total=False):
     fullResourceName: str
+
+@typing.type_check_only
+class SavedQuery(typing_extensions.TypedDict, total=False):
+    content: QueryContent
+    createTime: str
+    creator: str
+    description: str
+    labels: dict[str, typing.Any]
+    lastUpdateTime: str
+    lastUpdater: str
+    name: str
 
 @typing.type_check_only
 class SearchAllIamPoliciesResponse(typing_extensions.TypedDict, total=False):

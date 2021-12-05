@@ -199,6 +199,120 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings(
     ]
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainCreateWorkloadOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    complianceRegime: typing_extensions.Literal[
+        "COMPLIANCE_REGIME_UNSPECIFIED",
+        "IL4",
+        "CJIS",
+        "FEDRAMP_HIGH",
+        "FEDRAMP_MODERATE",
+        "US_REGIONAL_ACCESS",
+        "HIPAA",
+        "HITRUST",
+        "EU_REGIONS_AND_SUPPORT",
+        "CA_REGIONS_AND_SUPPORT",
+    ]
+    createTime: str
+    displayName: str
+    parent: str
+    resourceSettings: _list[
+        GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceSettings
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainWorkload(
+    typing_extensions.TypedDict, total=False
+):
+    billingAccount: str
+    cjisSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadCJISSettings
+    complianceRegime: typing_extensions.Literal[
+        "COMPLIANCE_REGIME_UNSPECIFIED",
+        "IL4",
+        "CJIS",
+        "FEDRAMP_HIGH",
+        "FEDRAMP_MODERATE",
+        "US_REGIONAL_ACCESS",
+        "HIPAA",
+        "HITRUST",
+        "EU_REGIONS_AND_SUPPORT",
+        "CA_REGIONS_AND_SUPPORT",
+    ]
+    createTime: str
+    displayName: str
+    etag: str
+    fedrampHighSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampHighSettings
+    fedrampModerateSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampModerateSettings
+    il4Settings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadIL4Settings
+    kmsSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings
+    labels: dict[str, typing.Any]
+    name: str
+    provisionedResourcesParent: str
+    resourceSettings: _list[
+        GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceSettings
+    ]
+    resources: _list[GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceInfo]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadCJISSettings(
+    typing_extensions.TypedDict, total=False
+):
+    kmsSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampHighSettings(
+    typing_extensions.TypedDict, total=False
+):
+    kmsSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampModerateSettings(
+    typing_extensions.TypedDict, total=False
+):
+    kmsSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadIL4Settings(
+    typing_extensions.TypedDict, total=False
+):
+    kmsSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings(
+    typing_extensions.TypedDict, total=False
+):
+    nextRotationTime: str
+    rotationPeriod: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    resourceId: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "CONSUMER_PROJECT",
+        "CONSUMER_FOLDER",
+        "ENCRYPTION_KEYS_PROJECT",
+        "KEYRING",
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceSettings(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    resourceId: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "CONSUMER_PROJECT",
+        "CONSUMER_FOLDER",
+        "ENCRYPTION_KEYS_PROJECT",
+        "KEYRING",
+    ]
+
+@typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]

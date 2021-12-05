@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AutoscalingLimits(typing_extensions.TypedDict, total=False):
+    maxServeNodes: int
+    minServeNodes: int
+
+@typing.type_check_only
+class AutoscalingTargets(typing_extensions.TypedDict, total=False):
+    cpuUtilizationPercent: int
+
+@typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     encryptionInfo: EncryptionInfo
     endTime: str
@@ -24,6 +33,7 @@ class BackupInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
+    clusterConfig: ClusterConfig
     defaultStorageType: typing_extensions.Literal[
         "STORAGE_TYPE_UNSPECIFIED", "SSD", "HDD"
     ]
@@ -34,6 +44,15 @@ class Cluster(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_NOT_KNOWN", "READY", "CREATING", "RESIZING", "DISABLED"
     ]
+
+@typing.type_check_only
+class ClusterAutoscalingConfig(typing_extensions.TypedDict, total=False):
+    autoscalingLimits: AutoscalingLimits
+    autoscalingTargets: AutoscalingTargets
+
+@typing.type_check_only
+class ClusterConfig(typing_extensions.TypedDict, total=False):
+    clusterAutoscalingConfig: ClusterAutoscalingConfig
 
 @typing.type_check_only
 class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
@@ -111,6 +130,17 @@ class OperationProgress(typing_extensions.TypedDict, total=False):
 class OptimizeRestoredTableMetadata(typing_extensions.TypedDict, total=False):
     name: str
     progress: OperationProgress
+
+@typing.type_check_only
+class PartialUpdateClusterMetadata(typing_extensions.TypedDict, total=False):
+    finishTime: str
+    originalRequest: PartialUpdateClusterRequest
+    requestTime: str
+
+@typing.type_check_only
+class PartialUpdateClusterRequest(typing_extensions.TypedDict, total=False):
+    cluster: Cluster
+    updateMask: str
 
 @typing.type_check_only
 class PartialUpdateInstanceRequest(typing_extensions.TypedDict, total=False):

@@ -229,7 +229,15 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def get(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "MIGRATING_VM_VIEW_UNSPECIFIED",
+                            "MIGRATING_VM_VIEW_BASIC",
+                            "MIGRATING_VM_VIEW_FULL",
+                        ] = ...,
+                        **kwargs: typing.Any
                     ) -> MigratingVmHttpRequest: ...
                     def list(
                         self,
@@ -239,6 +247,11 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "MIGRATING_VM_VIEW_UNSPECIFIED",
+                            "MIGRATING_VM_VIEW_BASIC",
+                            "MIGRATING_VM_VIEW_FULL",
+                        ] = ...,
                         **kwargs: typing.Any
                     ) -> ListMigratingVmsResponseHttpRequest: ...
                     def list_next(

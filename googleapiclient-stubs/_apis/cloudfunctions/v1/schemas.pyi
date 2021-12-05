@@ -40,6 +40,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     buildName: str
     buildWorkerPool: str
     description: str
+    dockerRepository: str
     entryPoint: str
     environmentVariables: dict[str, typing.Any]
     eventTrigger: EventTrigger
@@ -50,6 +51,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
         "ALLOW_INTERNAL_ONLY",
         "ALLOW_INTERNAL_AND_GCLB",
     ]
+    kmsKeyName: str
     labels: dict[str, typing.Any]
     maxInstances: int
     minInstances: int

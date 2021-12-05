@@ -110,6 +110,10 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LocationMetadata(typing_extensions.TypedDict, total=False):
+    locationFeatures: _list[str]
+
+@typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
     createTime: str

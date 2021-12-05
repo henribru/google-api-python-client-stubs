@@ -48,6 +48,28 @@ class CancelWipeDeviceUserResponse(typing_extensions.TypedDict, total=False):
     deviceUser: DeviceUser
 
 @typing.type_check_only
+class CertificateInfo(typing_extensions.TypedDict, total=False):
+    certificateTemplate: CertificateTemplate
+    fingerprint: str
+    issuer: str
+    serialNumber: str
+    subject: str
+    thumbprint: str
+    validationState: typing_extensions.Literal[
+        "CERTIFICATE_VALIDATION_STATE_UNSPECIFIED",
+        "VALIDATION_SUCCESSFUL",
+        "VALIDATION_FAILED",
+    ]
+    validityExpirationTime: str
+    validityStartTime: str
+
+@typing.type_check_only
+class CertificateTemplate(typing_extensions.TypedDict, total=False):
+    id: str
+    majorVersion: int
+    minorVersion: int
+
+@typing.type_check_only
 class CheckTransitiveMembershipResponse(typing_extensions.TypedDict, total=False):
     hasMembership: bool
 
@@ -114,6 +136,7 @@ class Device(typing_extensions.TypedDict, total=False):
         "ENCRYPTED",
         "NOT_ENCRYPTED",
     ]
+    endpointVerificationSpecificAttributes: EndpointVerificationSpecificAttributes
     imei: str
     kernelVersion: str
     lastSyncTime: str
@@ -184,6 +207,10 @@ class DynamicGroupStatus(typing_extensions.TypedDict, total=False):
     statusTime: str
 
 @typing.type_check_only
+class EndpointVerificationSpecificAttributes(typing_extensions.TypedDict, total=False):
+    certificateInfo: _list[CertificateInfo]
+
+@typing.type_check_only
 class EntityKey(typing_extensions.TypedDict, total=False):
     id: str
     namespace: str
@@ -191,6 +218,11 @@ class EntityKey(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExpiryDetail(typing_extensions.TypedDict, total=False):
     expireTime: str
+
+@typing.type_check_only
+class FirstAdminInvitationInfo(typing_extensions.TypedDict, total=False):
+    isFirstAdmin: bool
+    primaryDomain: str
 
 @typing.type_check_only
 class GetMembershipGraphResponse(typing_extensions.TypedDict, total=False):
@@ -608,7 +640,8 @@ class SecuritySettings(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class SendUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
+class SendUserInvitationRequest(typing_extensions.TypedDict, total=False):
+    firstAdminInvitationInfo: FirstAdminInvitationInfo
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

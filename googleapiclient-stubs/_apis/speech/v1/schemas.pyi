@@ -5,9 +5,42 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ClassItem(typing_extensions.TypedDict, total=False):
+    value: str
+
+@typing.type_check_only
+class CreateCustomClassRequest(typing_extensions.TypedDict, total=False):
+    customClass: CustomClass
+    customClassId: str
+
+@typing.type_check_only
+class CreatePhraseSetRequest(typing_extensions.TypedDict, total=False):
+    phraseSet: PhraseSet
+    phraseSetId: str
+
+@typing.type_check_only
+class CustomClass(typing_extensions.TypedDict, total=False):
+    customClassId: str
+    items: _list[ClassItem]
+    name: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ListCustomClassesResponse(typing_extensions.TypedDict, total=False):
+    customClasses: _list[CustomClass]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListPhraseSetResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    phraseSets: _list[PhraseSet]
 
 @typing.type_check_only
 class LongRunningRecognizeMetadata(typing_extensions.TypedDict, total=False):
@@ -38,12 +71,24 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
+class Phrase(typing_extensions.TypedDict, total=False):
+    boost: float
+    value: str
+
+@typing.type_check_only
+class PhraseSet(typing_extensions.TypedDict, total=False):
+    boost: float
+    name: str
+    phrases: _list[Phrase]
+
+@typing.type_check_only
 class RecognitionAudio(typing_extensions.TypedDict, total=False):
     content: str
     uri: str
 
 @typing.type_check_only
 class RecognitionConfig(typing_extensions.TypedDict, total=False):
+    adaptation: SpeechAdaptation
     alternativeLanguageCodes: _list[str]
     audioChannelCount: int
     diarizationConfig: SpeakerDiarizationConfig
@@ -124,7 +169,14 @@ class SpeakerDiarizationConfig(typing_extensions.TypedDict, total=False):
     speakerTag: int
 
 @typing.type_check_only
+class SpeechAdaptation(typing_extensions.TypedDict, total=False):
+    customClasses: _list[CustomClass]
+    phraseSetReferences: _list[str]
+    phraseSets: _list[PhraseSet]
+
+@typing.type_check_only
 class SpeechContext(typing_extensions.TypedDict, total=False):
+    boost: float
     phrases: _list[str]
 
 @typing.type_check_only
@@ -138,6 +190,7 @@ class SpeechRecognitionResult(typing_extensions.TypedDict, total=False):
     alternatives: _list[SpeechRecognitionAlternative]
     channelTag: int
     languageCode: str
+    resultEndTime: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

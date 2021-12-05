@@ -1666,6 +1666,7 @@ class GoogleCloudDialogflowV2beta1AgentAssistantRecord(
 class GoogleCloudDialogflowV2beta1AnalyzeContentRequest(
     typing_extensions.TypedDict, total=False
 ):
+    assistQueryParams: GoogleCloudDialogflowV2beta1AssistQueryParameters
     eventInput: GoogleCloudDialogflowV2beta1EventInput
     messageSendTime: str
     queryParams: GoogleCloudDialogflowV2beta1QueryParameters
@@ -1726,6 +1727,12 @@ class GoogleCloudDialogflowV2beta1ArticleAnswer(
     snippets: _list[str]
     title: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AssistQueryParameters(
+    typing_extensions.TypedDict, total=False
+):
+    documentsMetadataFilters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1AutomatedAgentConfig(
@@ -2873,6 +2880,7 @@ class GoogleCloudDialogflowV2beta1OutputAudioConfig(
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1Participant(typing_extensions.TypedDict, total=False):
+    documentsMetadataFilters: dict[str, typing.Any]
     name: str
     obfuscatedExternalUserId: str
     role: typing_extensions.Literal[
@@ -3040,6 +3048,7 @@ class GoogleCloudDialogflowV2beta1SubAgent(typing_extensions.TypedDict, total=Fa
 class GoogleCloudDialogflowV2beta1SuggestArticlesRequest(
     typing_extensions.TypedDict, total=False
 ):
+    assistQueryParams: GoogleCloudDialogflowV2beta1AssistQueryParameters
     contextSize: int
     latestMessage: str
 
@@ -3055,6 +3064,7 @@ class GoogleCloudDialogflowV2beta1SuggestArticlesResponse(
 class GoogleCloudDialogflowV2beta1SuggestFaqAnswersRequest(
     typing_extensions.TypedDict, total=False
 ):
+    assistQueryParams: GoogleCloudDialogflowV2beta1AssistQueryParameters
     contextSize: int
     latestMessage: str
 
