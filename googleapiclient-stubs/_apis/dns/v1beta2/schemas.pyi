@@ -60,6 +60,7 @@ class DnsKeysListResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ManagedZone(typing_extensions.TypedDict, total=False):
+    cloudLoggingConfig: ManagedZoneCloudLoggingConfig
     creationTime: str
     description: str
     dnsName: str
@@ -76,6 +77,11 @@ class ManagedZone(typing_extensions.TypedDict, total=False):
     reverseLookupConfig: ManagedZoneReverseLookupConfig
     serviceDirectoryConfig: ManagedZoneServiceDirectoryConfig
     visibility: typing_extensions.Literal["public", "private"]
+
+@typing.type_check_only
+class ManagedZoneCloudLoggingConfig(typing_extensions.TypedDict, total=False):
+    enableLogging: bool
+    kind: str
 
 @typing.type_check_only
 class ManagedZoneDnsSecConfig(typing_extensions.TypedDict, total=False):

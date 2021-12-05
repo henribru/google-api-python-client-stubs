@@ -311,6 +311,8 @@ class FilterPair(typing_extensions.TypedDict, total=False):
         "FILTER_VERIFICATION_VIDEO_RESIZED",
         "FILTER_VERIFICATION_AUDIBILITY_START",
         "FILTER_VERIFICATION_AUDIBILITY_COMPLETE",
+        "FILTER_MEDIA_TYPE",
+        "FILTER_AUDIO_FEED_TYPE_NAME",
     ]
     value: str
 
@@ -678,6 +680,8 @@ class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
         "FILTER_VERIFICATION_VIDEO_RESIZED",
         "FILTER_VERIFICATION_AUDIBILITY_START",
         "FILTER_VERIFICATION_AUDIBILITY_COMPLETE",
+        "FILTER_MEDIA_TYPE",
+        "FILTER_AUDIO_FEED_TYPE_NAME",
     ]
     match: typing_extensions.Literal[
         "UNKNOWN", "EXACT", "PARTIAL", "BEGINS_WITH", "WILDCARD_EXPRESSION"

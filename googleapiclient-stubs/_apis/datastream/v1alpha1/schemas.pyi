@@ -13,6 +13,23 @@ class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
     oracleExcludedObjects: OracleRdbms
 
 @typing.type_check_only
+class BackfillJob(typing_extensions.TypedDict, total=False):
+    errors: _list[Error]
+    lastEndTime: str
+    lastStartTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "NOT_STARTED",
+        "PENDING",
+        "ACTIVE",
+        "STOPPED",
+        "FAILED",
+        "COMPLETED",
+        "UNSUPPORTED",
+    ]
+    trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "AUTOMATIC", "MANUAL"]
+
+@typing.type_check_only
 class BackfillNoneStrategy(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -135,6 +152,11 @@ class ListRoutesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListStreamObjectsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    streamObjects: _list[StreamObject]
+
+@typing.type_check_only
 class ListStreamsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     streams: _list[Stream]
@@ -162,6 +184,11 @@ class MysqlColumn(typing_extensions.TypedDict, total=False):
 class MysqlDatabase(typing_extensions.TypedDict, total=False):
     databaseName: str
     mysqlTables: _list[MysqlTable]
+
+@typing.type_check_only
+class MysqlObjectIdentifier(typing_extensions.TypedDict, total=False):
+    database: str
+    table: str
 
 @typing.type_check_only
 class MysqlProfile(typing_extensions.TypedDict, total=False):
@@ -227,6 +254,11 @@ class OracleColumn(typing_extensions.TypedDict, total=False):
     precision: int
     primaryKey: bool
     scale: int
+
+@typing.type_check_only
+class OracleObjectIdentifier(typing_extensions.TypedDict, total=False):
+    schema: str
+    table: str
 
 @typing.type_check_only
 class OracleProfile(typing_extensions.TypedDict, total=False):
@@ -295,6 +327,15 @@ class SourceConfig(typing_extensions.TypedDict, total=False):
     sourceConnectionProfileName: str
 
 @typing.type_check_only
+class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
+    mysqlIdentifier: MysqlObjectIdentifier
+    oracleIdentifier: OracleObjectIdentifier
+
+@typing.type_check_only
+class StartBackfillJobResponse(typing_extensions.TypedDict, total=False):
+    object: StreamObject
+
+@typing.type_check_only
 class StaticServiceIpConnectivity(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -304,10 +345,15 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class StopBackfillJobResponse(typing_extensions.TypedDict, total=False):
+    object: StreamObject
+
+@typing.type_check_only
 class Stream(typing_extensions.TypedDict, total=False):
     backfillAll: BackfillAllStrategy
     backfillNone: BackfillNoneStrategy
     createTime: str
+    customerManagedEncryptionKey: str
     destinationConfig: DestinationConfig
     displayName: str
     errors: _list[Error]
@@ -325,6 +371,16 @@ class Stream(typing_extensions.TypedDict, total=False):
         "STARTING",
         "DRAINING",
     ]
+    updateTime: str
+
+@typing.type_check_only
+class StreamObject(typing_extensions.TypedDict, total=False):
+    backfillJob: BackfillJob
+    createTime: str
+    displayName: str
+    errors: _list[Error]
+    name: str
+    sourceObject: SourceObjectIdentifier
     updateTime: str
 
 @typing.type_check_only

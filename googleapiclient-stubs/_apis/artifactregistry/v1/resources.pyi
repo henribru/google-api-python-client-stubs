@@ -24,6 +24,9 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
             class RepositoriesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class DockerImagesResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> DockerImageHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -70,6 +73,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class DockerImageHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> DockerImage: ...
 
 @typing.type_check_only
 class ListDockerImagesResponseHttpRequest(googleapiclient.http.HttpRequest):

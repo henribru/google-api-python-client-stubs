@@ -90,34 +90,6 @@ class BuildSignature(typing_extensions.TypedDict, total=False):
     signature: str
 
 @typing.type_check_only
-class BuildStep(typing_extensions.TypedDict, total=False):
-    args: _list[str]
-    dir: str
-    entrypoint: str
-    env: _list[str]
-    id: str
-    name: str
-    pullTiming: TimeSpan
-    script: str
-    secretEnv: _list[str]
-    status: typing_extensions.Literal[
-        "STATUS_UNKNOWN",
-        "PENDING",
-        "QUEUED",
-        "WORKING",
-        "SUCCESS",
-        "FAILURE",
-        "INTERNAL_ERROR",
-        "TIMEOUT",
-        "CANCELLED",
-        "EXPIRED",
-    ]
-    timeout: str
-    timing: TimeSpan
-    volumes: _list[Volume]
-    waitFor: _list[str]
-
-@typing.type_check_only
 class ByProducts(typing_extensions.TypedDict, total=False):
     customValues: dict[str, typing.Any]
 
@@ -176,6 +148,301 @@ class Command(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     waitFor: _list[str]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalConfig(
+    typing_extensions.TypedDict, total=False
+):
+    approvalRequired: bool
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalResult(
+    typing_extensions.TypedDict, total=False
+):
+    approvalTime: str
+    approverAccount: str
+    comment: str
+    decision: typing_extensions.Literal["DECISION_UNSPECIFIED", "APPROVED", "REJECTED"]
+    url: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
+    typing_extensions.TypedDict, total=False
+):
+    images: _list[str]
+    objects: ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects(
+    typing_extensions.TypedDict, total=False
+):
+    location: str
+    paths: _list[str]
+    timing: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Build(
+    typing_extensions.TypedDict, total=False
+):
+    approval: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildApproval
+    artifacts: ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts
+    availableSecrets: ContaineranalysisGoogleDevtoolsCloudbuildV1Secrets
+    buildTriggerId: str
+    createTime: str
+    failureInfo: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo
+    finishTime: str
+    id: str
+    images: _list[str]
+    logUrl: str
+    logsBucket: str
+    name: str
+    options: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions
+    projectId: str
+    queueTtl: str
+    results: ContaineranalysisGoogleDevtoolsCloudbuildV1Results
+    secrets: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Secret]
+    serviceAccount: str
+    source: ContaineranalysisGoogleDevtoolsCloudbuildV1Source
+    sourceProvenance: ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance
+    startTime: str
+    status: typing_extensions.Literal[
+        "STATUS_UNKNOWN",
+        "PENDING",
+        "QUEUED",
+        "WORKING",
+        "SUCCESS",
+        "FAILURE",
+        "INTERNAL_ERROR",
+        "TIMEOUT",
+        "CANCELLED",
+        "EXPIRED",
+    ]
+    statusDetail: str
+    steps: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep]
+    substitutions: dict[str, typing.Any]
+    tags: _list[str]
+    timeout: str
+    timing: dict[str, typing.Any]
+    warnings: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1BuildWarning]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildApproval(
+    typing_extensions.TypedDict, total=False
+):
+    config: ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalConfig
+    result: ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalResult
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "APPROVED", "REJECTED", "CANCELLED"
+    ]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo(
+    typing_extensions.TypedDict, total=False
+):
+    detail: str
+    type: typing_extensions.Literal[
+        "FAILURE_TYPE_UNSPECIFIED",
+        "PUSH_FAILED",
+        "PUSH_IMAGE_NOT_FOUND",
+        "PUSH_NOT_AUTHORIZED",
+        "LOGGING_FAILURE",
+        "USER_BUILD_STEP",
+        "FETCH_SOURCE_FAILED",
+    ]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
+    typing_extensions.TypedDict, total=False
+):
+    diskSizeGb: str
+    dynamicSubstitutions: bool
+    env: _list[str]
+    logStreamingOption: typing_extensions.Literal[
+        "STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"
+    ]
+    logging: typing_extensions.Literal[
+        "LOGGING_UNSPECIFIED",
+        "LEGACY",
+        "GCS_ONLY",
+        "STACKDRIVER_ONLY",
+        "CLOUD_LOGGING_ONLY",
+        "NONE",
+    ]
+    machineType: typing_extensions.Literal[
+        "UNSPECIFIED", "N1_HIGHCPU_8", "N1_HIGHCPU_32", "E2_HIGHCPU_8", "E2_HIGHCPU_32"
+    ]
+    pool: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption
+    requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
+    secretEnv: _list[str]
+    sourceProvenanceHash: _list[str]
+    substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
+    volumes: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Volume]
+    workerPool: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
+    typing_extensions.TypedDict, total=False
+):
+    args: _list[str]
+    dir: str
+    entrypoint: str
+    env: _list[str]
+    id: str
+    name: str
+    pullTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    script: str
+    secretEnv: _list[str]
+    status: typing_extensions.Literal[
+        "STATUS_UNKNOWN",
+        "PENDING",
+        "QUEUED",
+        "WORKING",
+        "SUCCESS",
+        "FAILURE",
+        "INTERNAL_ERROR",
+        "TIMEOUT",
+        "CANCELLED",
+        "EXPIRED",
+    ]
+    timeout: str
+    timing: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    volumes: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Volume]
+    waitFor: _list[str]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildWarning(
+    typing_extensions.TypedDict, total=False
+):
+    priority: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "INFO", "WARNING", "ALERT"
+    ]
+    text: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage(
+    typing_extensions.TypedDict, total=False
+):
+    digest: str
+    name: str
+    pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes(
+    typing_extensions.TypedDict, total=False
+):
+    fileHash: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Hash]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Hash(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal["NONE", "SHA256", "MD5"]
+    value: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1InlineSecret(
+    typing_extensions.TypedDict, total=False
+):
+    envMap: dict[str, typing.Any]
+    kmsKeyName: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource(
+    typing_extensions.TypedDict, total=False
+):
+    branchName: str
+    commitSha: str
+    dir: str
+    invertRegex: bool
+    projectId: str
+    repoName: str
+    substitutions: dict[str, typing.Any]
+    tagName: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(
+    typing_extensions.TypedDict, total=False
+):
+    artifactManifest: str
+    artifactTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    buildStepImages: _list[str]
+    buildStepOutputs: _list[str]
+    images: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage]
+    numArtifacts: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Secret(
+    typing_extensions.TypedDict, total=False
+):
+    kmsKeyName: str
+    secretEnv: dict[str, typing.Any]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1SecretManagerSecret(
+    typing_extensions.TypedDict, total=False
+):
+    env: str
+    versionName: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Secrets(
+    typing_extensions.TypedDict, total=False
+):
+    inline: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1InlineSecret]
+    secretManager: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1SecretManagerSecret]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Source(
+    typing_extensions.TypedDict, total=False
+):
+    repoSource: ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
+    storageSource: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource
+    storageSourceManifest: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance(
+    typing_extensions.TypedDict, total=False
+):
+    fileHashes: dict[str, typing.Any]
+    resolvedRepoSource: ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
+    resolvedStorageSource: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource
+    resolvedStorageSourceManifest: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource(
+    typing_extensions.TypedDict, total=False
+):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest(
+    typing_extensions.TypedDict, total=False
+):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Volume(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    path: str
 
 @typing.type_check_only
 class Deployable(typing_extensions.TypedDict, total=False):
@@ -837,11 +1104,6 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TimeSpan(typing_extensions.TypedDict, total=False):
-    endTime: str
-    startTime: str
-
-@typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
     epoch: int
     inclusive: bool
@@ -850,11 +1112,6 @@ class Version(typing_extensions.TypedDict, total=False):
     ]
     name: str
     revision: str
-
-@typing.type_check_only
-class Volume(typing_extensions.TypedDict, total=False):
-    name: str
-    path: str
 
 @typing.type_check_only
 class Vulnerability(typing_extensions.TypedDict, total=False):

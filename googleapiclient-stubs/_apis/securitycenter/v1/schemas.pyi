@@ -42,6 +42,11 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BulkMuteFindingsRequest(typing_extensions.TypedDict, total=False):
+    filter: str
+    muteAnnotation: str
+
+@typing.type_check_only
 class Cve(typing_extensions.TypedDict, total=False):
     cvssv3: Cvssv3
     id: str
@@ -102,6 +107,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     category: str
     createTime: str
     eventTime: str
+    externalSystems: dict[str, typing.Any]
     externalUri: str
     findingClass: typing_extensions.Literal[
         "FINDING_CLASS_UNSPECIFIED",
@@ -112,6 +118,9 @@ class Finding(typing_extensions.TypedDict, total=False):
         "SCC_ERROR",
     ]
     indicator: Indicator
+    mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
+    muteInitiator: str
+    muteUpdateTime: str
     name: str
     parent: str
     resourceName: str
@@ -135,6 +144,26 @@ class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ExternalSystem(
+    typing_extensions.TypedDict, total=False
+):
+    assignees: _list[str]
+    externalSystemUpdateTime: str
+    externalUid: str
+    name: str
+    status: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1MuteConfig(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    filter: str
+    mostRecentEditor: str
+    name: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1NotificationMessage(
@@ -309,6 +338,11 @@ class ListFindingsResult(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ListMuteConfigsResponse(typing_extensions.TypedDict, total=False):
+    muteConfigs: _list[GoogleCloudSecuritycenterV1MuteConfig]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListNotificationConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     notificationConfigs: _list[NotificationConfig]
@@ -398,6 +432,10 @@ class SetFindingStateRequest(typing_extensions.TypedDict, total=False):
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
+
+@typing.type_check_only
+class SetMuteRequest(typing_extensions.TypedDict, total=False):
+    mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):

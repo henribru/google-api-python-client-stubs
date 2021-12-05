@@ -35,6 +35,13 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             body: GoogleCloudRetailV2alphaAddFulfillmentPlacesRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def addLocalInventories(
+                            self,
+                            *,
+                            product: str,
+                            body: GoogleCloudRetailV2alphaAddLocalInventoriesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
                         def create(
                             self,
                             *,
@@ -86,6 +93,13 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             *,
                             product: str,
                             body: GoogleCloudRetailV2alphaRemoveFulfillmentPlacesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def removeLocalInventories(
+                            self,
+                            *,
+                            product: str,
+                            body: GoogleCloudRetailV2alphaRemoveLocalInventoriesRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def setInventory(

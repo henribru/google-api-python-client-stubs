@@ -167,6 +167,30 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                 def routes(self) -> RoutesResource: ...
             @typing.type_check_only
             class StreamsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ObjectsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> StreamObjectHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListStreamObjectsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListStreamObjectsResponseHttpRequest,
+                        previous_response: ListStreamObjectsResponse,
+                    ) -> ListStreamObjectsResponseHttpRequest | None: ...
+                    def startBackfillJob(
+                        self, *, object: str, **kwargs: typing.Any
+                    ) -> StartBackfillJobResponseHttpRequest: ...
+                    def stopBackfillJob(
+                        self, *, object: str, **kwargs: typing.Any
+                    ) -> StopBackfillJobResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -217,6 +241,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def objects(self) -> ObjectsResource: ...
             def fetchStaticIps(
                 self,
                 *,
@@ -339,6 +364,14 @@ class ListRoutesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListRoutesResponse: ...
 
 @typing.type_check_only
+class ListStreamObjectsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListStreamObjectsResponse: ...
+
+@typing.type_check_only
 class ListStreamsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -379,9 +412,33 @@ class RouteHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Route: ...
 
 @typing.type_check_only
+class StartBackfillJobResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> StartBackfillJobResponse: ...
+
+@typing.type_check_only
+class StopBackfillJobResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> StopBackfillJobResponse: ...
+
+@typing.type_check_only
 class StreamHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Stream: ...
+
+@typing.type_check_only
+class StreamObjectHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> StreamObject: ...

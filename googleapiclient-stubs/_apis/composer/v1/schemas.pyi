@@ -54,6 +54,12 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     dagGcsPrefix: str
     databaseConfig: DatabaseConfig
     encryptionConfig: EncryptionConfig
+    environmentSize: typing_extensions.Literal[
+        "ENVIRONMENT_SIZE_UNSPECIFIED",
+        "ENVIRONMENT_SIZE_SMALL",
+        "ENVIRONMENT_SIZE_MEDIUM",
+        "ENVIRONMENT_SIZE_LARGE",
+    ]
     gkeCluster: str
     nodeConfig: NodeConfig
     nodeCount: int
@@ -61,6 +67,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     softwareConfig: SoftwareConfig
     webServerConfig: WebServerConfig
     webServerNetworkAccessControl: WebServerNetworkAccessControl
+    workloadsConfig: WorkloadsConfig
 
 @typing.type_check_only
 class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
@@ -119,7 +126,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
     operationType: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "CREATE", "DELETE", "UPDATE", "CHECK"
+        "TYPE_UNSPECIFIED", "CREATE", "DELETE", "UPDATE", "CHECK", "STORE_STATE"
     ]
     resource: str
     resourceUuid: str
@@ -135,11 +142,20 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
+    cloudComposerNetworkIpv4CidrBlock: str
+    cloudComposerNetworkIpv4ReservedRange: str
     cloudSqlIpv4CidrBlock: str
     enablePrivateEnvironment: bool
     privateClusterConfig: PrivateClusterConfig
     webServerIpv4CidrBlock: str
     webServerIpv4ReservedRange: str
+
+@typing.type_check_only
+class SchedulerResource(typing_extensions.TypedDict, total=False):
+    count: int
+    cpu: float
+    memoryGb: float
+    storageGb: float
 
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
@@ -163,3 +179,23 @@ class WebServerConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WebServerNetworkAccessControl(typing_extensions.TypedDict, total=False):
     allowedIpRanges: _list[AllowedIpRange]
+
+@typing.type_check_only
+class WebServerResource(typing_extensions.TypedDict, total=False):
+    cpu: float
+    memoryGb: float
+    storageGb: float
+
+@typing.type_check_only
+class WorkerResource(typing_extensions.TypedDict, total=False):
+    cpu: float
+    maxCount: int
+    memoryGb: float
+    minCount: int
+    storageGb: float
+
+@typing.type_check_only
+class WorkloadsConfig(typing_extensions.TypedDict, total=False):
+    scheduler: SchedulerResource
+    webServer: WebServerResource
+    worker: WorkerResource

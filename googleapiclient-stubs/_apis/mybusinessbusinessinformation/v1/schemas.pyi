@@ -162,6 +162,7 @@ class Location(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
     canDelete: bool
+    canHaveBusinessCalls: bool
     canHaveFoodMenus: bool
     canModifyServiceList: bool
     canOperateHealthData: bool

@@ -53,6 +53,7 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     enabled: bool
     git: ConfigManagementGitConfig
+    preventDrift: bool
     sourceFormat: str
 
 @typing.type_check_only
@@ -306,6 +307,13 @@ class KubernetesMetadata(typing_extensions.TypedDict, total=False):
     vcpuCount: int
 
 @typing.type_check_only
+class KubernetesResource(typing_extensions.TypedDict, total=False):
+    connectResources: _list[ResourceManifest]
+    membershipCrManifest: str
+    membershipResources: _list[ResourceManifest]
+    resourceOptions: ResourceOptions
+
+@typing.type_check_only
 class ListFeaturesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Feature]
@@ -353,6 +361,7 @@ class Membership(typing_extensions.TypedDict, total=False):
 class MembershipEndpoint(typing_extensions.TypedDict, total=False):
     gkeCluster: GkeCluster
     kubernetesMetadata: KubernetesMetadata
+    kubernetesResource: KubernetesResource
     multiCloudCluster: MultiCloudCluster
     onPremCluster: OnPremCluster
 
@@ -416,6 +425,16 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class ResourceManifest(typing_extensions.TypedDict, total=False):
+    clusterScoped: bool
+    manifest: str
+
+@typing.type_check_only
+class ResourceOptions(typing_extensions.TypedDict, total=False):
+    connectVersion: str
+    v1beta1Crd: bool
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

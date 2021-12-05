@@ -1135,6 +1135,7 @@ class GoogleCloudDialogflowV2AgentAssistantRecord(
 class GoogleCloudDialogflowV2AnalyzeContentRequest(
     typing_extensions.TypedDict, total=False
 ):
+    assistQueryParams: GoogleCloudDialogflowV2AssistQueryParameters
     eventInput: GoogleCloudDialogflowV2EventInput
     queryParams: GoogleCloudDialogflowV2QueryParameters
     replyAudioConfig: GoogleCloudDialogflowV2OutputAudioConfig
@@ -1189,6 +1190,12 @@ class GoogleCloudDialogflowV2ArticleAnswer(typing_extensions.TypedDict, total=Fa
     snippets: _list[str]
     title: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2AssistQueryParameters(
+    typing_extensions.TypedDict, total=False
+):
+    documentsMetadataFilters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2AutomatedAgentConfig(
@@ -1332,7 +1339,9 @@ class GoogleCloudDialogflowV2ConversationProfile(
     name: str
     newMessageEventNotificationConfig: GoogleCloudDialogflowV2NotificationConfig
     notificationConfig: GoogleCloudDialogflowV2NotificationConfig
+    securitySettings: str
     sttConfig: GoogleCloudDialogflowV2SpeechToTextConfig
+    timeZone: str
     updateTime: str
 
 @typing.type_check_only
@@ -2107,6 +2116,7 @@ class GoogleCloudDialogflowV2OutputAudioConfig(
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2Participant(typing_extensions.TypedDict, total=False):
+    documentsMetadataFilters: dict[str, typing.Any]
     name: str
     role: typing_extensions.Literal[
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
@@ -2218,6 +2228,7 @@ class GoogleCloudDialogflowV2SpeechToTextConfig(
 class GoogleCloudDialogflowV2SuggestArticlesRequest(
     typing_extensions.TypedDict, total=False
 ):
+    assistQueryParams: GoogleCloudDialogflowV2AssistQueryParameters
     contextSize: int
     latestMessage: str
 
@@ -2233,6 +2244,7 @@ class GoogleCloudDialogflowV2SuggestArticlesResponse(
 class GoogleCloudDialogflowV2SuggestFaqAnswersRequest(
     typing_extensions.TypedDict, total=False
 ):
+    assistQueryParams: GoogleCloudDialogflowV2AssistQueryParameters
     contextSize: int
     latestMessage: str
 
@@ -2248,7 +2260,9 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponse(
 class GoogleCloudDialogflowV2SuggestionFeature(
     typing_extensions.TypedDict, total=False
 ):
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ARTICLE_SUGGESTION", "FAQ"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "ARTICLE_SUGGESTION", "FAQ", "SMART_REPLY"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SuggestionResult(typing_extensions.TypedDict, total=False):

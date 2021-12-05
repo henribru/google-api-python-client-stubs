@@ -20,6 +20,22 @@ class GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
     commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+    destDatasetType: typing_extensions.Literal[
+        "DATASET_SPLIT_TYPE_UNSPECIFIED",
+        "DATASET_SPLIT_TRAIN",
+        "DATASET_SPLIT_TEST",
+        "DATASET_SPLIT_UNASSIGNED",
+    ]
+    individualBatchMoveStatuses: _list[
+        GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadataIndividualBatchMoveStatus
+    ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadataIndividualBatchMoveStatus(
+    typing_extensions.TypedDict, total=False
+):
+    documentId: GoogleCloudDocumentaiUiv1beta3DocumentId
+    status: GoogleRpcStatus
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse(
@@ -85,6 +101,20 @@ class GoogleCloudDocumentaiUiv1beta3DisableProcessorResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3DocumentId(
+    typing_extensions.TypedDict, total=False
+):
+    gcsManagedDocId: GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId
+    revisionReference: GoogleCloudDocumentaiUiv1beta3RevisionReference
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId(
+    typing_extensions.TypedDict, total=False
+):
+    cwDocId: str
+    gcsUri: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -124,11 +154,32 @@ class GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
     commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+    individualImportStatuses: _list[
+        GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatus
+    ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatus(
+    typing_extensions.TypedDict, total=False
+):
+    inputGcsSource: str
+    outputGcsDestination: str
+    status: GoogleRpcStatus
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3RevisionReference(
+    typing_extensions.TypedDict, total=False
+):
+    latestProcessorVersion: str
+    revisionCase: typing_extensions.Literal[
+        "REVISION_CASE_UNSPECIFIED", "LATEST_HUMAN_REVIEW", "LATEST_TIMESTAMP"
+    ]
+    revisionId: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata(

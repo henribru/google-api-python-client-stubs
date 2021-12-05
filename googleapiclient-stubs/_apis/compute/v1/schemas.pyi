@@ -606,6 +606,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "GENERAL_PURPOSE_E2",
         "GENERAL_PURPOSE_N2",
         "GENERAL_PURPOSE_N2D",
+        "GENERAL_PURPOSE_T2D",
         "MEMORY_OPTIMIZED",
         "TYPE_UNSPECIFIED",
     ]

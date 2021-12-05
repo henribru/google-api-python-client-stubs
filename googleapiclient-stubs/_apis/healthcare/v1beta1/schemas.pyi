@@ -342,6 +342,7 @@ class Feature(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FhirConfig(typing_extensions.TypedDict, total=False):
+    defaultKeepExtensions: bool
     fieldMetadataList: _list[FieldMetadata]
 
 @typing.type_check_only
@@ -933,7 +934,10 @@ class UserDataMapping(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ValidationConfig(typing_extensions.TypedDict, total=False):
+    disableFhirpathValidation: bool
     disableProfileValidation: bool
+    disableReferenceTypeValidation: bool
+    disableRequiredFieldValidation: bool
     enabledImplementationGuides: _list[str]
 
 @typing.type_check_only

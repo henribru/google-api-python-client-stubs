@@ -109,6 +109,7 @@ class GoogleCloudDatapipelinesV1Pipeline(typing_extensions.TypedDict, total=Fals
     jobCount: int
     lastUpdateTime: str
     name: str
+    pipelineSources: dict[str, typing.Any]
     scheduleInfo: GoogleCloudDatapipelinesV1ScheduleSpec
     schedulerServiceAccountEmail: str
     state: typing_extensions.Literal[

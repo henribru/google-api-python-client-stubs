@@ -268,6 +268,7 @@ class GoogleCloudMlV1__Job(typing_extensions.TypedDict, total=False):
     errorMessage: str
     etag: str
     jobId: str
+    jobPosition: str
     labels: dict[str, typing.Any]
     predictionInput: GoogleCloudMlV1__PredictionInput
     predictionOutput: GoogleCloudMlV1__PredictionOutput

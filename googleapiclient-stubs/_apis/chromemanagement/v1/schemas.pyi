@@ -39,6 +39,44 @@ class GoogleChromeManagementV1AppDetails(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
+class GoogleChromeManagementV1BatteryInfo(typing_extensions.TypedDict, total=False):
+    designCapacity: str
+    designMinVoltage: int
+    manufactureDate: GoogleTypeDate
+    manufacturer: str
+    serialNumber: str
+    technology: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1BatterySampleReport(
+    typing_extensions.TypedDict, total=False
+):
+    chargeRate: int
+    current: str
+    dischargeRate: int
+    remainingCapacity: str
+    reportTime: str
+    status: str
+    temperature: int
+    voltage: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1BatteryStatusReport(
+    typing_extensions.TypedDict, total=False
+):
+    batteryHealth: typing_extensions.Literal[
+        "BATTERY_HEALTH_UNSPECIFIED",
+        "BATTERY_HEALTH_NORMAL",
+        "BATTERY_REPLACE_SOON",
+        "BATTERY_REPLACE_NOW",
+    ]
+    cycleCount: int
+    fullChargeCapacity: str
+    reportTime: str
+    sample: _list[GoogleChromeManagementV1BatterySampleReport]
+    serialNumber: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1BrowserVersion(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
         "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "DEV", "BETA", "STABLE"
@@ -118,9 +156,53 @@ class GoogleChromeManagementV1CountInstalledAppsResponse(
     totalSize: int
 
 @typing.type_check_only
+class GoogleChromeManagementV1CpuInfo(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X64"]
+    maxClockSpeed: int
+    model: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1CpuStatusReport(typing_extensions.TypedDict, total=False):
+    cpuTemperatureInfo: _list[GoogleChromeManagementV1CpuTemperatureInfo]
+    cpuUtilizationPct: int
+    reportTime: str
+    sampleFrequency: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1CpuTemperatureInfo(
+    typing_extensions.TypedDict, total=False
+):
+    label: str
+    temperatureCelsius: int
+
+@typing.type_check_only
 class GoogleChromeManagementV1Device(typing_extensions.TypedDict, total=False):
     deviceId: str
     machine: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1DiskInfo(typing_extensions.TypedDict, total=False):
+    bytesReadThisSession: str
+    bytesWrittenThisSession: str
+    discardTimeThisSession: str
+    health: str
+    ioTimeThisSession: str
+    manufacturer: str
+    model: str
+    readTimeThisSession: str
+    serialNumber: str
+    sizeBytes: str
+    type: str
+    volumeIds: _list[str]
+    writeTimeThisSession: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1DisplayInfo(typing_extensions.TypedDict, total=False):
+    deviceId: str
+    isInternal: bool
+    refreshRate: int
+    resolutionHeight: int
+    resolutionWidth: int
 
 @typing.type_check_only
 class GoogleChromeManagementV1FindInstalledAppDevicesResponse(
@@ -129,6 +211,25 @@ class GoogleChromeManagementV1FindInstalledAppDevicesResponse(
     devices: _list[GoogleChromeManagementV1Device]
     nextPageToken: str
     totalSize: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1GraphicsAdapterInfo(
+    typing_extensions.TypedDict, total=False
+):
+    adapter: str
+    deviceId: str
+    driverVersion: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1GraphicsInfo(typing_extensions.TypedDict, total=False):
+    adapterInfo: GoogleChromeManagementV1GraphicsAdapterInfo
+
+@typing.type_check_only
+class GoogleChromeManagementV1GraphicsStatusReport(
+    typing_extensions.TypedDict, total=False
+):
+    displays: _list[GoogleChromeManagementV1DisplayInfo]
+    reportTime: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=False):
@@ -157,7 +258,99 @@ class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=Fa
     permissions: _list[str]
 
 @typing.type_check_only
+class GoogleChromeManagementV1ListTelemetryDevicesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    devices: _list[GoogleChromeManagementV1TelemetryDevice]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1MemoryInfo(typing_extensions.TypedDict, total=False):
+    availableRamBytes: str
+    totalRamBytes: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1MemoryStatusReport(
+    typing_extensions.TypedDict, total=False
+):
+    pageFaults: int
+    reportTime: str
+    sampleFrequency: str
+    systemRamFreeBytes: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1NetworkStatusReport(
+    typing_extensions.TypedDict, total=False
+):
+    gatewayIpAddress: str
+    lanIpAddress: str
+    reportTime: str
+    sampleFrequency: str
+    signalStrengthDbm: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1OsUpdateStatus(typing_extensions.TypedDict, total=False):
+    lastRebootTime: str
+    lastUpdateCheckTime: str
+    lastUpdateTime: str
+    newPlatformVersion: str
+    newRequestedPlatformVersion: str
+    updateState: typing_extensions.Literal[
+        "UPDATE_STATE_UNSPECIFIED",
+        "OS_IMAGE_DOWNLOAD_NOT_STARTED",
+        "OS_IMAGE_DOWNLOAD_IN_PROGRESS",
+        "OS_UPDATE_NEED_REBOOT",
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1StorageInfo(typing_extensions.TypedDict, total=False):
+    availableDiskBytes: str
+    totalDiskBytes: str
+    volume: _list[GoogleChromeManagementV1StorageInfoDiskVolume]
+
+@typing.type_check_only
+class GoogleChromeManagementV1StorageInfoDiskVolume(
+    typing_extensions.TypedDict, total=False
+):
+    storageFreeBytes: str
+    storageTotalBytes: str
+    volumeId: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1StorageStatusReport(
+    typing_extensions.TypedDict, total=False
+):
+    disk: _list[GoogleChromeManagementV1DiskInfo]
+    reportTime: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total=False):
+    batteryInfo: _list[GoogleChromeManagementV1BatteryInfo]
+    batteryStatusReport: _list[GoogleChromeManagementV1BatteryStatusReport]
+    cpuInfo: _list[GoogleChromeManagementV1CpuInfo]
+    cpuStatusReport: _list[GoogleChromeManagementV1CpuStatusReport]
+    customer: str
+    deviceId: str
+    graphicsInfo: GoogleChromeManagementV1GraphicsInfo
+    graphicsStatusReport: _list[GoogleChromeManagementV1GraphicsStatusReport]
+    memoryInfo: GoogleChromeManagementV1MemoryInfo
+    memoryStatusReport: _list[GoogleChromeManagementV1MemoryStatusReport]
+    name: str
+    networkStatusReport: _list[GoogleChromeManagementV1NetworkStatusReport]
+    orgUnitId: str
+    osUpdateStatus: _list[GoogleChromeManagementV1OsUpdateStatus]
+    serialNumber: str
+    storageInfo: GoogleChromeManagementV1StorageInfo
+    storageStatusReport: _list[GoogleChromeManagementV1StorageStatusReport]
+
+@typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int

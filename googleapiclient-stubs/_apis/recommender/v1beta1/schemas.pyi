@@ -56,6 +56,24 @@ class GoogleCloudRecommenderV1beta1InsightStateInfo(
     stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudRecommenderV1beta1InsightTypeConfig(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: dict[str, typing.Any]
+    displayName: str
+    etag: str
+    insightTypeGenerationConfig: GoogleCloudRecommenderV1beta1InsightTypeGenerationConfig
+    name: str
+    revisionId: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1InsightTypeGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    params: dict[str, typing.Any]
+
+@typing.type_check_only
 class GoogleCloudRecommenderV1beta1ListInsightsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -133,6 +151,7 @@ class GoogleCloudRecommenderV1beta1Recommendation(
     priority: typing_extensions.Literal["PRIORITY_UNSPECIFIED", "P4", "P3", "P2", "P1"]
     recommenderSubtype: str
     stateInfo: GoogleCloudRecommenderV1beta1RecommendationStateInfo
+    xorGroupId: str
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1RecommendationContent(
@@ -155,6 +174,24 @@ class GoogleCloudRecommenderV1beta1RecommendationStateInfo(
         "STATE_UNSPECIFIED", "ACTIVE", "CLAIMED", "SUCCEEDED", "FAILED", "DISMISSED"
     ]
     stateMetadata: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1RecommenderConfig(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: dict[str, typing.Any]
+    displayName: str
+    etag: str
+    name: str
+    recommenderGenerationConfig: GoogleCloudRecommenderV1beta1RecommenderGenerationConfig
+    revisionId: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1RecommenderGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    params: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1SecurityProjection(

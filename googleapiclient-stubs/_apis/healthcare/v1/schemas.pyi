@@ -276,6 +276,7 @@ class Feature(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FhirConfig(typing_extensions.TypedDict, total=False):
+    defaultKeepExtensions: bool
     fieldMetadataList: _list[FieldMetadata]
 
 @typing.type_check_only
@@ -292,6 +293,7 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     name: str
     notificationConfig: NotificationConfig
     streamConfigs: _list[StreamConfig]
+    validationConfig: ValidationConfig
     version: typing_extensions.Literal["VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4"]
 
 @typing.type_check_only
@@ -760,6 +762,12 @@ class UserDataMapping(typing_extensions.TypedDict, total=False):
     name: str
     resourceAttributes: _list[Attribute]
     userId: str
+
+@typing.type_check_only
+class ValidationConfig(typing_extensions.TypedDict, total=False):
+    disableFhirpathValidation: bool
+    disableReferenceTypeValidation: bool
+    disableRequiredFieldValidation: bool
 
 @typing.type_check_only
 class VersionSource(typing_extensions.TypedDict, total=False):

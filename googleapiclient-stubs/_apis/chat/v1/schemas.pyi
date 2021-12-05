@@ -161,6 +161,12 @@ class DriveDataRef(typing_extensions.TypedDict, total=False):
     driveFileId: str
 
 @typing.type_check_only
+class DynamiteIntegrationLogEntry(typing_extensions.TypedDict, total=False):
+    deployment: str
+    deploymentFunction: str
+    error: Status
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -507,6 +513,12 @@ class Space(typing_extensions.TypedDict, total=False):
     singleUserBotDm: bool
     threaded: bool
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ROOM", "DM"]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class StringInputs(typing_extensions.TypedDict, total=False):

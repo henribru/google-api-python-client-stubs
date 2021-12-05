@@ -536,6 +536,16 @@ class GoogleCloudRetailV2alphaAddFulfillmentPlacesResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaAddLocalInventoriesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaAddLocalInventoriesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaExportErrorsConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -625,6 +635,16 @@ class GoogleCloudRetailV2alphaRemoveFulfillmentPlacesMetadata(
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaRemoveFulfillmentPlacesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRemoveLocalInventoriesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRemoveLocalInventoriesResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 

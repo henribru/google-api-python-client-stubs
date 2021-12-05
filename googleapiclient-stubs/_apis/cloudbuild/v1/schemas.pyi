@@ -37,6 +37,14 @@ class Artifacts(typing_extensions.TypedDict, total=False):
     objects: ArtifactObjects
 
 @typing.type_check_only
+class BatchCreateBitbucketServerConnectedRepositoriesResponseMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    config: str
+    createTime: str
+
+@typing.type_check_only
 class Build(typing_extensions.TypedDict, total=False):
     approval: BuildApproval
     artifacts: Artifacts

@@ -462,6 +462,10 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     recurringWindow: RecurringTimeWindow
 
 @typing.type_check_only
+class ManagedPrometheusConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class Master(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -500,6 +504,7 @@ class MonitoringComponentConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MonitoringConfig(typing_extensions.TypedDict, total=False):
     componentConfig: MonitoringComponentConfig
+    managedPrometheusConfig: ManagedPrometheusConfig
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):

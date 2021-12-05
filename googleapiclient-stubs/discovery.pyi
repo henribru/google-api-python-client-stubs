@@ -88,6 +88,7 @@ import googleapiclient._apis.cloudbuild.v1beta1.resources
 import googleapiclient._apis.cloudchannel.v1.resources
 import googleapiclient._apis.cloudcommerceprocurement.v1.resources
 import googleapiclient._apis.clouddebugger.v2.resources
+import googleapiclient._apis.clouddeploy.v1.resources
 import googleapiclient._apis.clouderrorreporting.v1beta1.resources
 import googleapiclient._apis.cloudfunctions.v1.resources
 import googleapiclient._apis.cloudidentity.v1.resources
@@ -105,6 +106,7 @@ import googleapiclient._apis.cloudscheduler.v1beta1.resources
 import googleapiclient._apis.cloudsearch.v1.resources
 import googleapiclient._apis.cloudshell.v1.resources
 import googleapiclient._apis.cloudshell.v1alpha1.resources
+import googleapiclient._apis.cloudsupport.v2beta.resources
 import googleapiclient._apis.cloudtasks.v2.resources
 import googleapiclient._apis.cloudtasks.v2beta2.resources
 import googleapiclient._apis.cloudtasks.v2beta3.resources
@@ -140,6 +142,7 @@ import googleapiclient._apis.dataproc.v1beta2.resources
 import googleapiclient._apis.datastore.v1.resources
 import googleapiclient._apis.datastore.v1beta1.resources
 import googleapiclient._apis.datastore.v1beta3.resources
+import googleapiclient._apis.datastream.v1.resources
 import googleapiclient._apis.datastream.v1alpha1.resources
 import googleapiclient._apis.deploymentmanager.alpha.resources
 import googleapiclient._apis.deploymentmanager.v2.resources
@@ -1070,6 +1073,26 @@ def build(
     num_retries: int = ...,
     static_discovery: bool | None = ...,
 ) -> googleapiclient._apis.recaptchaenterprise.v1.resources.RecaptchaEnterpriseResource: ...
+@overload
+def build(
+    serviceName: Literal["clouddeploy"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> googleapiclient._apis.clouddeploy.v1.resources.CloudDeployResource: ...
 @overload
 def build(
     serviceName: Literal["baremetalsolution"],
@@ -2550,6 +2573,26 @@ def build(
     num_retries: int = ...,
     static_discovery: bool | None = ...,
 ) -> googleapiclient._apis.cloudbilling.v1.resources.CloudbillingResource: ...
+@overload
+def build(
+    serviceName: Literal["cloudsupport"],
+    version: Literal["v2beta"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> googleapiclient._apis.cloudsupport.v2beta.resources.CloudSupportResource: ...
 @overload
 def build(
     serviceName: Literal["serviceusage"],
@@ -5310,6 +5353,26 @@ def build(
     num_retries: int = ...,
     static_discovery: bool | None = ...,
 ) -> googleapiclient._apis.poly.v1.resources.PolyServiceResource: ...
+@overload
+def build(
+    serviceName: Literal["datastream"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> googleapiclient._apis.datastream.v1.resources.DatastreamResource: ...
 @overload
 def build(
     serviceName: Literal["cloudresourcemanager"],

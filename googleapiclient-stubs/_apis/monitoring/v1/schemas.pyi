@@ -162,6 +162,11 @@ class ListMetricsScopesByMonitoredProjectResponse(
     metricsScopes: _list[MetricsScope]
 
 @typing.type_check_only
+class LogsPanel(typing_extensions.TypedDict, total=False):
+    filter: str
+    resourceNames: _list[str]
+
+@typing.type_check_only
 class MetricsScope(typing_extensions.TypedDict, total=False):
     createTime: str
     monitoredProjects: _list[MonitoredProject]
@@ -352,6 +357,7 @@ class Type(typing_extensions.TypedDict, total=False):
 class Widget(typing_extensions.TypedDict, total=False):
     alertChart: AlertChart
     blank: Empty
+    logsPanel: LogsPanel
     scorecard: Scorecard
     text: Text
     timeSeriesTable: TimeSeriesTable

@@ -35,6 +35,11 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class Consumer(typing_extensions.TypedDict, total=False):
+    endpointUri: str
+    subnetwork: str
+
+@typing.type_check_only
 class DataCatalogConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -180,6 +185,10 @@ class MetadataManagementActivity(typing_extensions.TypedDict, total=False):
     restores: _list[Restore]
 
 @typing.type_check_only
+class NetworkConfig(typing_extensions.TypedDict, total=False):
+    consumers: _list[Consumer]
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -240,6 +249,7 @@ class Service(typing_extensions.TypedDict, total=False):
     metadataManagementActivity: MetadataManagementActivity
     name: str
     network: str
+    networkConfig: NetworkConfig
     port: int
     releaseChannel: typing_extensions.Literal[
         "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "STABLE"

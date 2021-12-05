@@ -58,7 +58,6 @@ class GoogleCloudRecaptchaenterpriseV1ChallengeMetrics(
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=False):
     expectedAction: str
-    hashedAccountId: str
     siteKey: str
     token: str
     userAgent: str

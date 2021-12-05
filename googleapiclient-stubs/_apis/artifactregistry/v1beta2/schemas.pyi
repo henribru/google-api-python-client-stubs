@@ -152,6 +152,16 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class ProjectSettings(typing_extensions.TypedDict, total=False):
+    legacyRedirectionState: typing_extensions.Literal[
+        "REDIRECTION_STATE_UNSPECIFIED",
+        "REDIRECTION_FROM_GCR_IO_DISABLED",
+        "REDIRECTION_FROM_GCR_IO_ENABLED",
+        "REDIRECTION_FROM_GCR_IO_FINALIZED",
+    ]
+    name: str
+
+@typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str

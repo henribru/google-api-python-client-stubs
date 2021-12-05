@@ -113,6 +113,8 @@ class ListTransferJobsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
     enableOnpremGcsTransferLogs: bool
+    logActionStates: _list[str]
+    logActions: _list[str]
 
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
@@ -216,6 +218,10 @@ class TransferJob(typing_extensions.TypedDict, total=False):
     transferSpec: TransferSpec
 
 @typing.type_check_only
+class TransferManifest(typing_extensions.TypedDict, total=False):
+    location: str
+
+@typing.type_check_only
 class TransferOperation(typing_extensions.TypedDict, total=False):
     counters: TransferCounters
     endTime: str
@@ -250,7 +256,11 @@ class TransferSpec(typing_extensions.TypedDict, total=False):
     gcsDataSource: GcsData
     httpDataSource: HttpData
     objectConditions: ObjectConditions
+    posixDataSink: PosixFilesystem
     posixDataSource: PosixFilesystem
+    sinkAgentPoolName: str
+    sourceAgentPoolName: str
+    transferManifest: TransferManifest
     transferOptions: TransferOptions
 
 @typing.type_check_only

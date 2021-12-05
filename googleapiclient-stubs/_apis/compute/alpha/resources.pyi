@@ -2665,23 +2665,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
     @typing.type_check_only
     class InstantSnapshotsResource(googleapiclient.discovery.Resource):
-        def aggregatedList(
-            self,
-            *,
-            project: str,
-            filter: str = ...,
-            includeAllScopes: bool = ...,
-            maxResults: int = ...,
-            orderBy: str = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
-            **kwargs: typing.Any
-        ) -> InstantSnapshotAggregatedListHttpRequest: ...
-        def aggregatedList_next(
-            self,
-            previous_request: InstantSnapshotAggregatedListHttpRequest,
-            previous_response: InstantSnapshotAggregatedList,
-        ) -> InstantSnapshotAggregatedListHttpRequest | None: ...
         def delete(
             self,
             *,
@@ -8581,14 +8564,6 @@ class InstantSnapshotHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> InstantSnapshot: ...
-
-@typing.type_check_only
-class InstantSnapshotAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> InstantSnapshotAggregatedList: ...
 
 @typing.type_check_only
 class InstantSnapshotListHttpRequest(googleapiclient.http.HttpRequest):

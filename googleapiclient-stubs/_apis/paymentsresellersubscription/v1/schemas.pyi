@@ -104,10 +104,30 @@ class GoogleCloudPaymentsResellerSubscriptionV1Promotion(
     applicableProducts: _list[str]
     endTime: str
     freeTrialDuration: GoogleCloudPaymentsResellerSubscriptionV1Duration
+    introductoryPricingDetails: GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails
     name: str
+    promotionType: typing_extensions.Literal[
+        "PROMOTION_TYPE_UNSPECIFIED",
+        "PROMOTION_TYPE_FREE_TRIAL",
+        "PROMOTION_TYPE_INTRODUCTORY_PRICING",
+    ]
     regionCodes: _list[str]
     startTime: str
     titles: _list[GoogleTypeLocalizedText]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails(
+    typing_extensions.TypedDict, total=False
+):
+    introductoryPricingSpecs: _list[
+        GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec
+    ]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec(
+    typing_extensions.TypedDict, total=False
+):
+    recurrenceCount: int
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
@@ -128,6 +148,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
     products: _list[str]
     promotions: _list[str]
     redirectUri: str
+    renewalTime: str
     serviceLocation: GoogleCloudPaymentsResellerSubscriptionV1Location
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

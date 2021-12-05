@@ -90,6 +90,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
+    canIpForward: bool
     enableExternalIps: bool
     network: str
     subnetwork: str
