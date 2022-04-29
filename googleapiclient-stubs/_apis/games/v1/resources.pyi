@@ -28,6 +28,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             previous_request: AchievementDefinitionsListResponseHttpRequest,
             previous_response: AchievementDefinitionsListResponse,
         ) -> AchievementDefinitionsListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class AchievementsResource(googleapiclient.discovery.Resource):
         def increment(
@@ -67,6 +68,7 @@ class GamesResource(googleapiclient.discovery.Resource):
         def updateMultiple(
             self, *, body: AchievementUpdateMultipleRequest = ..., **kwargs: typing.Any
         ) -> AchievementUpdateMultipleResponseHttpRequest: ...
+
     @typing.type_check_only
     class ApplicationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -92,6 +94,7 @@ class GamesResource(googleapiclient.discovery.Resource):
         def verify(
             self, *, applicationId: str, **kwargs: typing.Any
         ) -> ApplicationVerifyResponseHttpRequest: ...
+
     @typing.type_check_only
     class EventsResource(googleapiclient.discovery.Resource):
         def listByPlayer(
@@ -127,6 +130,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             **kwargs: typing.Any
         ) -> EventUpdateResponseHttpRequest: ...
+
     @typing.type_check_only
     class LeaderboardsResource(googleapiclient.discovery.Resource):
         def get(
@@ -145,6 +149,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             previous_request: LeaderboardListResponseHttpRequest,
             previous_response: LeaderboardListResponse,
         ) -> LeaderboardListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class MetagameResource(googleapiclient.discovery.Resource):
         def getMetagameConfig(
@@ -165,6 +170,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             previous_request: CategoryListResponseHttpRequest,
             previous_response: CategoryListResponse,
         ) -> CategoryListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class PlayersResource(googleapiclient.discovery.Resource):
         def get(
@@ -186,11 +192,13 @@ class GamesResource(googleapiclient.discovery.Resource):
             previous_request: PlayerListResponseHttpRequest,
             previous_response: PlayerListResponse,
         ) -> PlayerListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class RevisionsResource(googleapiclient.discovery.Resource):
         def check(
             self, *, clientRevision: str, **kwargs: typing.Any
         ) -> RevisionCheckResponseHttpRequest: ...
+
     @typing.type_check_only
     class ScoresResource(googleapiclient.discovery.Resource):
         def get(
@@ -272,6 +280,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             **kwargs: typing.Any
         ) -> PlayerScoreListResponseHttpRequest: ...
+
     @typing.type_check_only
     class SnapshotsResource(googleapiclient.discovery.Resource):
         def get(
@@ -291,9 +300,11 @@ class GamesResource(googleapiclient.discovery.Resource):
             previous_request: SnapshotListResponseHttpRequest,
             previous_response: SnapshotListResponse,
         ) -> SnapshotListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class StatsResource(googleapiclient.discovery.Resource):
         def get(self, **kwargs: typing.Any) -> StatsResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

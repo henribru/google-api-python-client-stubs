@@ -51,6 +51,7 @@ class SiteVerificationResource(googleapiclient.discovery.Resource):
             body: SiteVerificationWebResourceResource = ...,
             **kwargs: typing.Any
         ) -> SiteVerificationWebResourceResourceHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

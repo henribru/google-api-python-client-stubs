@@ -48,6 +48,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 previous_request: ListApprovalRequestsResponseHttpRequest,
                 previous_response: ListApprovalRequestsResponse,
             ) -> ListApprovalRequestsResponseHttpRequest | None: ...
+
         def deleteAccessApprovalSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
@@ -63,6 +64,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> AccessApprovalSettingsHttpRequest: ...
         def approvalRequests(self) -> ApprovalRequestsResource: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -98,6 +100,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 previous_request: ListApprovalRequestsResponseHttpRequest,
                 previous_response: ListApprovalRequestsResponse,
             ) -> ListApprovalRequestsResponseHttpRequest | None: ...
+
         def deleteAccessApprovalSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
@@ -113,6 +116,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> AccessApprovalSettingsHttpRequest: ...
         def approvalRequests(self) -> ApprovalRequestsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -148,6 +152,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 previous_request: ListApprovalRequestsResponseHttpRequest,
                 previous_response: ListApprovalRequestsResponse,
             ) -> ListApprovalRequestsResponseHttpRequest | None: ...
+
         def deleteAccessApprovalSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
@@ -163,6 +168,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> AccessApprovalSettingsHttpRequest: ...
         def approvalRequests(self) -> ApprovalRequestsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

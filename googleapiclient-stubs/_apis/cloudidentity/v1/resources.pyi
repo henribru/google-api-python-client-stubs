@@ -46,6 +46,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def approve(
                 self,
                 *,
@@ -113,6 +114,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def clientStates(self) -> ClientStatesResource: ...
+
         def cancelWipe(
             self,
             *,
@@ -159,6 +161,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def deviceUsers(self) -> DeviceUsersResource: ...
+
     @typing.type_check_only
     class GroupsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -236,6 +239,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 previous_request: SearchTransitiveMembershipsResponseHttpRequest,
                 previous_response: SearchTransitiveMembershipsResponse,
             ) -> SearchTransitiveMembershipsResponseHttpRequest | None: ...
+
         def create(
             self,
             *,
@@ -293,6 +297,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             previous_response: SearchGroupsResponse,
         ) -> SearchGroupsResponseHttpRequest | None: ...
         def memberships(self) -> MembershipsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

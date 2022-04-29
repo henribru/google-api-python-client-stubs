@@ -47,7 +47,9 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 previous_request: ListBiddingFunctionsResponseHttpRequest,
                 previous_response: ListBiddingFunctionsResponse,
             ) -> ListBiddingFunctionsResponseHttpRequest | None: ...
+
         def biddingFunctions(self) -> BiddingFunctionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

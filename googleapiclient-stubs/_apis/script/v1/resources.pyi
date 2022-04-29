@@ -166,6 +166,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
             previous_request: ListScriptProcessesResponseHttpRequest,
             previous_response: ListScriptProcessesResponse,
         ) -> ListScriptProcessesResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -204,6 +205,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 body: UpdateDeploymentRequest = ...,
                 **kwargs: typing.Any
             ) -> DeploymentHttpRequest: ...
+
         @typing.type_check_only
         class VersionsResource(googleapiclient.discovery.Resource):
             def create(
@@ -225,6 +227,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 previous_request: ListVersionsResponseHttpRequest,
                 previous_response: ListVersionsResponse,
             ) -> ListVersionsResponseHttpRequest | None: ...
+
         def create(
             self, *, body: CreateProjectRequest = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
@@ -247,11 +250,13 @@ class ScriptResource(googleapiclient.discovery.Resource):
         ) -> ContentHttpRequest: ...
         def deployments(self) -> DeploymentsResource: ...
         def versions(self) -> VersionsResource: ...
+
     @typing.type_check_only
     class ScriptsResource(googleapiclient.discovery.Resource):
         def run(
             self, *, scriptId: str, body: ExecutionRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

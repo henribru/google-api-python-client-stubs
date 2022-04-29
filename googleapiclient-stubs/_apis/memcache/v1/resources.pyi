@@ -70,6 +70,7 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     body: UpdateParametersRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -99,6 +100,7 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -118,7 +120,9 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

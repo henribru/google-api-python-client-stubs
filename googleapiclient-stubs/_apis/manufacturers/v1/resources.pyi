@@ -64,7 +64,9 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 body: Attributes = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+
         def products(self) -> ProductsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

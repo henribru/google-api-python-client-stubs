@@ -85,6 +85,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                         body: ApigatewayTestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> ApigatewayTestIamPermissionsResponseHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -144,6 +145,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> ApigatewayTestIamPermissionsResponseHttpRequest: ...
                 def configs(self) -> ConfigsResource: ...
+
             @typing.type_check_only
             class GatewaysResource(googleapiclient.discovery.Resource):
                 def create(
@@ -204,6 +206,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     body: ApigatewayTestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> ApigatewayTestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -233,6 +236,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     previous_request: ApigatewayListOperationsResponseHttpRequest,
                     previous_response: ApigatewayListOperationsResponse,
                 ) -> ApigatewayListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> ApigatewayLocationHttpRequest: ...
@@ -253,7 +257,9 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
             def apis(self) -> ApisResource: ...
             def gateways(self) -> GatewaysResource: ...
             def operations(self) -> OperationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

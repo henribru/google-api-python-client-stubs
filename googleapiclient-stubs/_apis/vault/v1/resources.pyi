@@ -39,6 +39,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 previous_request: ListExportsResponseHttpRequest,
                 previous_response: ListExportsResponse,
             ) -> ListExportsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class HoldsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -62,6 +63,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 def list(
                     self, *, matterId: str, holdId: str, **kwargs: typing.Any
                 ) -> ListHeldAccountsResponseHttpRequest: ...
+
             def addHeldAccounts(
                 self,
                 *,
@@ -119,6 +121,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> HoldHttpRequest: ...
             def accounts(self) -> AccountsResource: ...
+
         @typing.type_check_only
         class SavedQueriesResource(googleapiclient.discovery.Resource):
             def create(
@@ -143,6 +146,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 previous_request: ListSavedQueriesResponseHttpRequest,
                 previous_response: ListSavedQueriesResponse,
             ) -> ListSavedQueriesResponseHttpRequest | None: ...
+
         def addPermissions(
             self,
             *,
@@ -214,6 +218,7 @@ class VaultResource(googleapiclient.discovery.Resource):
         def exports(self) -> ExportsResource: ...
         def holds(self) -> HoldsResource: ...
         def savedQueries(self) -> SavedQueriesResource: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
@@ -235,6 +240,7 @@ class VaultResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

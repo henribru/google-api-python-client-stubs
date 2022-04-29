@@ -52,6 +52,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                     body: ResetIdentityAwareProxyClientSecretRequest = ...,
                     **kwargs: typing.Any
                 ) -> IdentityAwareProxyClientHttpRequest: ...
+
             def create(
                 self, *, parent: str, body: Brand = ..., **kwargs: typing.Any
             ) -> BrandHttpRequest: ...
@@ -62,7 +63,9 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             def identityAwareProxyClients(
                 self,
             ) -> IdentityAwareProxyClientsResource: ...
+
         def brands(self) -> BrandsResource: ...
+
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def getIamPolicy(
@@ -97,6 +100,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> IapSettingsHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

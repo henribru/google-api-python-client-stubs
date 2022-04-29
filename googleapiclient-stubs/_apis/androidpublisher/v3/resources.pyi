@@ -31,6 +31,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             def upload(
                 self, *, packageName: str, editId: str, **kwargs: typing.Any
             ) -> ApkHttpRequest: ...
+
         @typing.type_check_only
         class BundlesResource(googleapiclient.discovery.Resource):
             def list(
@@ -44,11 +45,13 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 ackBundleInstallationWarning: bool = ...,
                 **kwargs: typing.Any
             ) -> BundleHttpRequest: ...
+
         @typing.type_check_only
         class CountryavailabilityResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, packageName: str, editId: str, track: str, **kwargs: typing.Any
             ) -> TrackCountryAvailabilityHttpRequest: ...
+
         @typing.type_check_only
         class DeobfuscationfilesResource(googleapiclient.discovery.Resource):
             def upload(
@@ -62,6 +65,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 ],
                 **kwargs: typing.Any
             ) -> DeobfuscationFilesUploadResponseHttpRequest: ...
+
         @typing.type_check_only
         class DetailsResource(googleapiclient.discovery.Resource):
             def get(
@@ -83,6 +87,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 body: AppDetails = ...,
                 **kwargs: typing.Any
             ) -> AppDetailsHttpRequest: ...
+
         @typing.type_check_only
         class ExpansionfilesResource(googleapiclient.discovery.Resource):
             def get(
@@ -131,6 +136,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 ],
                 **kwargs: typing.Any
             ) -> ExpansionFilesUploadResponseHttpRequest: ...
+
         @typing.type_check_only
         class ImagesResource(googleapiclient.discovery.Resource):
             def delete(
@@ -210,6 +216,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 ],
                 **kwargs: typing.Any
             ) -> ImagesUploadResponseHttpRequest: ...
+
         @typing.type_check_only
         class ListingsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -252,6 +259,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 body: Listing = ...,
                 **kwargs: typing.Any
             ) -> ListingHttpRequest: ...
+
         @typing.type_check_only
         class TestersResource(googleapiclient.discovery.Resource):
             def get(
@@ -275,6 +283,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 body: Testers = ...,
                 **kwargs: typing.Any
             ) -> TestersHttpRequest: ...
+
         @typing.type_check_only
         class TracksResource(googleapiclient.discovery.Resource):
             def get(
@@ -301,6 +310,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 body: Track = ...,
                 **kwargs: typing.Any
             ) -> TrackHttpRequest: ...
+
         def commit(
             self,
             *,
@@ -331,6 +341,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         def listings(self) -> ListingsResource: ...
         def testers(self) -> TestersResource: ...
         def tracks(self) -> TracksResource: ...
+
     @typing.type_check_only
     class GeneratedapksResource(googleapiclient.discovery.Resource):
         def download(
@@ -344,6 +355,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         def list(
             self, *, packageName: str, versionCode: int, **kwargs: typing.Any
         ) -> GeneratedApksListResponseHttpRequest: ...
+
     @typing.type_check_only
     class GrantsResource(googleapiclient.discovery.Resource):
         def create(
@@ -360,6 +372,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> GrantHttpRequest: ...
+
     @typing.type_check_only
     class InappproductsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -404,6 +417,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             autoConvertMissingPrices: bool = ...,
             **kwargs: typing.Any
         ) -> InAppProductHttpRequest: ...
+
     @typing.type_check_only
     class InternalappsharingartifactsResource(googleapiclient.discovery.Resource):
         def uploadapk(
@@ -412,6 +426,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         def uploadbundle(
             self, *, packageName: str, **kwargs: typing.Any
         ) -> InternalAppSharingArtifactHttpRequest: ...
+
     @typing.type_check_only
     class MonetizationResource(googleapiclient.discovery.Resource):
         def convertRegionPrices(
@@ -421,6 +436,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             body: ConvertRegionPricesRequest = ...,
             **kwargs: typing.Any
         ) -> ConvertRegionPricesResponseHttpRequest: ...
+
     @typing.type_check_only
     class OrdersResource(googleapiclient.discovery.Resource):
         def refund(
@@ -431,6 +447,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             revoke: bool = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class PurchasesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -452,6 +469,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 token: str,
                 **kwargs: typing.Any
             ) -> ProductPurchaseHttpRequest: ...
+
         @typing.type_check_only
         class SubscriptionsResource(googleapiclient.discovery.Resource):
             def acknowledge(
@@ -504,6 +522,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 token: str,
                 **kwargs: typing.Any
             ) -> googleapiclient.http.HttpRequest: ...
+
         @typing.type_check_only
         class VoidedpurchasesResource(googleapiclient.discovery.Resource):
             def list(
@@ -518,9 +537,11 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 type: int = ...,
                 **kwargs: typing.Any
             ) -> VoidedPurchasesListResponseHttpRequest: ...
+
         def products(self) -> ProductsResource: ...
         def subscriptions(self) -> SubscriptionsResource: ...
         def voidedpurchases(self) -> VoidedpurchasesResource: ...
+
     @typing.type_check_only
     class ReviewsResource(googleapiclient.discovery.Resource):
         def get(
@@ -549,6 +570,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             body: ReviewsReplyRequest = ...,
             **kwargs: typing.Any
         ) -> ReviewsReplyResponseHttpRequest: ...
+
     @typing.type_check_only
     class SystemapksResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -580,7 +602,9 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, packageName: str, versionCode: str, **kwargs: typing.Any
             ) -> SystemApksListResponseHttpRequest: ...
+
         def variants(self) -> VariantsResource: ...
+
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def create(
@@ -610,6 +634,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> UserHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

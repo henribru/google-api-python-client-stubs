@@ -37,7 +37,9 @@ class IAMCredentialsResource(googleapiclient.discovery.Resource):
             def signJwt(
                 self, *, name: str, body: SignJwtRequest = ..., **kwargs: typing.Any
             ) -> SignJwtResponseHttpRequest: ...
+
         def serviceAccounts(self) -> ServiceAccountsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

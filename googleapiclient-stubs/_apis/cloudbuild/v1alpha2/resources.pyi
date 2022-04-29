@@ -29,7 +29,9 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def operations(self) -> OperationsResource: ...
+
         @typing.type_check_only
         class WorkerPoolsResource(googleapiclient.discovery.Resource):
             def create(
@@ -57,8 +59,10 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> WorkerPoolHttpRequest: ...
+
         def locations(self) -> LocationsResource: ...
         def workerPools(self) -> WorkerPoolsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

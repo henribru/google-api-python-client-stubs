@@ -46,6 +46,7 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     previous_request: ListJobTemplatesResponseHttpRequest,
                     previous_response: ListJobTemplatesResponse,
                 ) -> ListJobTemplatesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -68,9 +69,12 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     previous_request: ListJobsResponseHttpRequest,
                     previous_response: ListJobsResponse,
                 ) -> ListJobsResponseHttpRequest | None: ...
+
             def jobTemplates(self) -> JobTemplatesResource: ...
             def jobs(self) -> JobsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

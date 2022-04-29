@@ -49,6 +49,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             previous_request: ChangesListResponseHttpRequest,
             previous_response: ChangesListResponse,
         ) -> ChangesListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class DnsKeysResource(googleapiclient.discovery.Resource):
         def get(
@@ -76,6 +77,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             previous_request: DnsKeysListResponseHttpRequest,
             previous_response: DnsKeysListResponse,
         ) -> DnsKeysListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ManagedZoneOperationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -102,6 +104,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             previous_request: ManagedZoneOperationsListResponseHttpRequest,
             previous_response: ManagedZoneOperationsListResponse,
         ) -> ManagedZoneOperationsListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ManagedZonesResource(googleapiclient.discovery.Resource):
         def create(
@@ -160,6 +163,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             clientOperationId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class PoliciesResource(googleapiclient.discovery.Resource):
         def create(
@@ -217,11 +221,13 @@ class DnsResource(googleapiclient.discovery.Resource):
             clientOperationId: str = ...,
             **kwargs: typing.Any
         ) -> PoliciesUpdateResponseHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, clientOperationId: str = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
+
     @typing.type_check_only
     class ResourceRecordSetsResource(googleapiclient.discovery.Resource):
         def create(
@@ -280,6 +286,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             clientOperationId: str = ...,
             **kwargs: typing.Any
         ) -> ResourceRecordSetHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

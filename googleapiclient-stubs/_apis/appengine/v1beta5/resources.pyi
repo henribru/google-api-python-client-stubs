@@ -34,6 +34,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -53,6 +54,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_request: ListOperationsResponseHttpRequest,
                 previous_response: ListOperationsResponse,
             ) -> ListOperationsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -102,6 +104,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         previous_request: ListInstancesResponseHttpRequest,
                         previous_response: ListInstancesResponse,
                     ) -> ListInstancesResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -153,6 +156,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def instances(self) -> InstancesResource: ...
+
             def delete(
                 self, *, appsId: str, servicesId: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
@@ -183,6 +187,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def versions(self) -> VersionsResource: ...
+
         def create(
             self, *, body: Application = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -200,6 +205,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
         def services(self) -> ServicesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -16,6 +16,7 @@ class DriveResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AboutResource(googleapiclient.discovery.Resource):
         def get(self, **kwargs: typing.Any) -> AboutHttpRequest: ...
+
     @typing.type_check_only
     class ChangesResource(googleapiclient.discovery.Resource):
         def getStartPageToken(
@@ -67,11 +68,13 @@ class DriveResource(googleapiclient.discovery.Resource):
             teamDriveId: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class CommentsResource(googleapiclient.discovery.Resource):
         def create(
@@ -111,6 +114,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             body: Comment = ...,
             **kwargs: typing.Any
         ) -> CommentHttpRequest: ...
+
     @typing.type_check_only
     class DrivesResource(googleapiclient.discovery.Resource):
         def create(
@@ -148,6 +152,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             useDomainAdminAccess: bool = ...,
             **kwargs: typing.Any
         ) -> DriveHttpRequest: ...
+
     @typing.type_check_only
     class FilesResource(googleapiclient.discovery.Resource):
         def copy(
@@ -260,6 +265,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             supportsTeamDrives: bool = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
     @typing.type_check_only
     class PermissionsResource(googleapiclient.discovery.Resource):
         def create(
@@ -327,6 +333,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             useDomainAdminAccess: bool = ...,
             **kwargs: typing.Any
         ) -> PermissionHttpRequest: ...
+
     @typing.type_check_only
     class RepliesResource(googleapiclient.discovery.Resource):
         def create(
@@ -371,6 +378,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             body: Reply = ...,
             **kwargs: typing.Any
         ) -> ReplyHttpRequest: ...
+
     @typing.type_check_only
     class RevisionsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -405,6 +413,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             body: Revision = ...,
             **kwargs: typing.Any
         ) -> RevisionHttpRequest: ...
+
     @typing.type_check_only
     class TeamdrivesResource(googleapiclient.discovery.Resource):
         def create(
@@ -442,6 +451,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             useDomainAdminAccess: bool = ...,
             **kwargs: typing.Any
         ) -> TeamDriveHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

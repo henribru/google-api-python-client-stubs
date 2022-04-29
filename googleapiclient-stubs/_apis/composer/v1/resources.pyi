@@ -49,6 +49,7 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class ImageVersionsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -65,6 +66,7 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     previous_request: ListImageVersionsResponseHttpRequest,
                     previous_response: ListImageVersionsResponse,
                 ) -> ListImageVersionsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -87,10 +89,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def environments(self) -> EnvironmentsResource: ...
             def imageVersions(self) -> ImageVersionsResource: ...
             def operations(self) -> OperationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -71,6 +71,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 @typing.type_check_only
                 class CertificatesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -116,6 +117,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         body: RevokeCertificateRequest = ...,
                         **kwargs: typing.Any
                     ) -> CertificateHttpRequest: ...
+
                 def activate(
                     self,
                     *,
@@ -215,6 +217,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     self,
                 ) -> CertificateRevocationListsResource: ...
                 def certificates(self) -> CertificatesResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -244,6 +247,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ReusableConfigsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -285,6 +289,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -305,7 +310,9 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
             def certificateAuthorities(self) -> CertificateAuthoritiesResource: ...
             def operations(self) -> OperationsResource: ...
             def reusableConfigs(self) -> ReusableConfigsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

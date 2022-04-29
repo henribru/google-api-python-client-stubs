@@ -33,6 +33,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     previous_request: ListDataPointChangesResponseHttpRequest,
                     previous_response: ListDataPointChangesResponse,
                 ) -> ListDataPointChangesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class DatasetsResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -72,6 +73,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     previous_request: DatasetHttpRequest,
                     previous_response: Dataset,
                 ) -> DatasetHttpRequest | None: ...
+
             def create(
                 self, *, userId: str, body: DataSource = ..., **kwargs: typing.Any
             ) -> DataSourceHttpRequest: ...
@@ -98,11 +100,13 @@ class FitnessResource(googleapiclient.discovery.Resource):
             ) -> DataSourceHttpRequest: ...
             def dataPointChanges(self) -> DataPointChangesResource: ...
             def datasets(self) -> DatasetsResource: ...
+
         @typing.type_check_only
         class DatasetResource(googleapiclient.discovery.Resource):
             def aggregate(
                 self, *, userId: str, body: AggregateRequest = ..., **kwargs: typing.Any
             ) -> AggregateResponseHttpRequest: ...
+
         @typing.type_check_only
         class SessionsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -132,9 +136,11 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 body: Session = ...,
                 **kwargs: typing.Any
             ) -> SessionHttpRequest: ...
+
         def dataSources(self) -> DataSourcesResource: ...
         def dataset(self) -> DatasetResource: ...
         def sessions(self) -> SessionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

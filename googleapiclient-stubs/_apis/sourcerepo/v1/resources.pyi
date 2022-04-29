@@ -64,6 +64,7 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
                 body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
+
         def getConfig(
             self, *, name: str, **kwargs: typing.Any
         ) -> ProjectConfigHttpRequest: ...
@@ -75,6 +76,7 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> ProjectConfigHttpRequest: ...
         def repos(self) -> ReposResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

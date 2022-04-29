@@ -22,6 +22,7 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 def createSpan(
                     self, *, name: str, body: Span = ..., **kwargs: typing.Any
                 ) -> SpanHttpRequest: ...
+
             def batchWrite(
                 self,
                 *,
@@ -30,7 +31,9 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def spans(self) -> SpansResource: ...
+
         def traces(self) -> TracesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

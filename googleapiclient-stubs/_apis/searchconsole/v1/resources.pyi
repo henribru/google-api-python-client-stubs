@@ -22,6 +22,7 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
             body: SearchAnalyticsQueryRequest = ...,
             **kwargs: typing.Any
         ) -> SearchAnalyticsQueryResponseHttpRequest: ...
+
     @typing.type_check_only
     class SitemapsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -36,6 +37,7 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
         def submit(
             self, *, siteUrl: str, feedpath: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class SitesResource(googleapiclient.discovery.Resource):
         def add(
@@ -46,6 +48,7 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
         ) -> googleapiclient.http.HttpRequest: ...
         def get(self, *, siteUrl: str, **kwargs: typing.Any) -> WmxSiteHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> SitesListResponseHttpRequest: ...
+
     @typing.type_check_only
     class UrlTestingToolsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -53,7 +56,9 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
             def run(
                 self, *, body: RunMobileFriendlyTestRequest = ..., **kwargs: typing.Any
             ) -> RunMobileFriendlyTestResponseHttpRequest: ...
+
         def mobileFriendlyTest(self) -> MobileFriendlyTestResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

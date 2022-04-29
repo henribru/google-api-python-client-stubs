@@ -18,6 +18,7 @@ class HomeGraphServiceResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, agentUserId: str, requestId: str = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
+
     @typing.type_check_only
     class DevicesResource(googleapiclient.discovery.Resource):
         def query(
@@ -32,6 +33,7 @@ class HomeGraphServiceResource(googleapiclient.discovery.Resource):
         def sync(
             self, *, body: SyncRequest = ..., **kwargs: typing.Any
         ) -> SyncResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

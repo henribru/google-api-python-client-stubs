@@ -20,6 +20,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class SitesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -47,6 +48,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         previous_request: ListReleasesResponseHttpRequest,
                         previous_response: ListReleasesResponse,
                     ) -> ListReleasesResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -83,6 +85,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> ChannelHttpRequest: ...
                 def releases(self) -> ReleasesResource: ...
+
             @typing.type_check_only
             class DomainsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -110,6 +113,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 def update(
                     self, *, name: str, body: Domain = ..., **kwargs: typing.Any
                 ) -> DomainHttpRequest: ...
+
             @typing.type_check_only
             class ReleasesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -133,6 +137,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     previous_request: ListReleasesResponseHttpRequest,
                     previous_response: ListReleasesResponse,
                 ) -> ListReleasesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -153,6 +158,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         previous_request: ListVersionFilesResponseHttpRequest,
                         previous_response: ListVersionFilesResponse,
                     ) -> ListVersionFilesResponseHttpRequest | None: ...
+
                 def clone(
                     self,
                     *,
@@ -202,6 +208,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> PopulateVersionFilesResponseHttpRequest: ...
                 def files(self) -> FilesResource: ...
+
             def create(
                 self,
                 *,
@@ -250,8 +257,10 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             def domains(self) -> DomainsResource: ...
             def releases(self) -> ReleasesResource: ...
             def versions(self) -> VersionsResource: ...
+
         def operations(self) -> OperationsResource: ...
         def sites(self) -> SitesResource: ...
+
     @typing.type_check_only
     class SitesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -279,6 +288,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     previous_request: ListReleasesResponseHttpRequest,
                     previous_response: ListReleasesResponse,
                 ) -> ListReleasesResponseHttpRequest | None: ...
+
             def create(
                 self,
                 *,
@@ -313,6 +323,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ChannelHttpRequest: ...
             def releases(self) -> ReleasesResource: ...
+
         @typing.type_check_only
         class DomainsResource(googleapiclient.discovery.Resource):
             def create(
@@ -338,6 +349,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, name: str, body: Domain = ..., **kwargs: typing.Any
             ) -> DomainHttpRequest: ...
+
         @typing.type_check_only
         class ReleasesResource(googleapiclient.discovery.Resource):
             def create(
@@ -361,6 +373,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 previous_request: ListReleasesResponseHttpRequest,
                 previous_response: ListReleasesResponse,
             ) -> ListReleasesResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class VersionsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -381,6 +394,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     previous_request: ListVersionFilesResponseHttpRequest,
                     previous_response: ListVersionFilesResponse,
                 ) -> ListVersionFilesResponseHttpRequest | None: ...
+
             def clone(
                 self,
                 *,
@@ -430,6 +444,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> PopulateVersionFilesResponseHttpRequest: ...
             def files(self) -> FilesResource: ...
+
         def getConfig(
             self, *, name: str, **kwargs: typing.Any
         ) -> SiteConfigHttpRequest: ...
@@ -445,6 +460,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
         def domains(self) -> DomainsResource: ...
         def releases(self) -> ReleasesResource: ...
         def versions(self) -> VersionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

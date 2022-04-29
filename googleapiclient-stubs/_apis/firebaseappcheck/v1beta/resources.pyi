@@ -18,6 +18,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleFirebaseAppcheckV1betaPublicJwkSetHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -42,6 +43,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaAppAttestConfigHttpRequest: ...
+
             @typing.type_check_only
             class DebugTokensResource(googleapiclient.discovery.Resource):
                 def create(
@@ -78,6 +80,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaDebugTokenHttpRequest: ...
+
             @typing.type_check_only
             class DeviceCheckConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -98,6 +101,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaDeviceCheckConfigHttpRequest: ...
+
             @typing.type_check_only
             class RecaptchaConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -118,6 +122,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaRecaptchaConfigHttpRequest: ...
+
             @typing.type_check_only
             class RecaptchaEnterpriseConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -138,6 +143,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest: ...
+
             @typing.type_check_only
             class SafetyNetConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -158,6 +164,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaSafetyNetConfigHttpRequest: ...
+
             def exchangeAppAttestAssertion(
                 self,
                 *,
@@ -229,6 +236,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 self,
             ) -> RecaptchaEnterpriseConfigResource: ...
             def safetyNetConfig(self) -> SafetyNetConfigResource: ...
+
         @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
             def batchUpdate(
@@ -262,8 +270,10 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleFirebaseAppcheckV1betaServiceHttpRequest: ...
+
         def apps(self) -> AppsResource: ...
         def services(self) -> ServicesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

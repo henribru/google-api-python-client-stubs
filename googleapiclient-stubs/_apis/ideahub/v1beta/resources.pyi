@@ -26,6 +26,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     body: GoogleSearchIdeahubV1betaIdeaActivity = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1betaIdeaActivityHttpRequest: ...
+
             @typing.type_check_only
             class IdeaStatesResource(googleapiclient.discovery.Resource):
                 def patch(
@@ -36,6 +37,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1betaIdeaStateHttpRequest: ...
+
             @typing.type_check_only
             class IdeasResource(googleapiclient.discovery.Resource):
                 def list(
@@ -53,6 +55,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleSearchIdeahubV1betaListIdeasResponseHttpRequest,
                     previous_response: GoogleSearchIdeahubV1betaListIdeasResponse,
                 ) -> GoogleSearchIdeahubV1betaListIdeasResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class LocalesResource(googleapiclient.discovery.Resource):
                 def list(
@@ -68,6 +71,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleSearchIdeahubV1betaListAvailableLocalesResponseHttpRequest,
                     previous_response: GoogleSearchIdeahubV1betaListAvailableLocalesResponse,
                 ) -> GoogleSearchIdeahubV1betaListAvailableLocalesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class TopicStatesResource(googleapiclient.discovery.Resource):
                 def patch(
@@ -78,12 +82,15 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1betaTopicStateHttpRequest: ...
+
             def ideaActivities(self) -> IdeaActivitiesResource: ...
             def ideaStates(self) -> IdeaStatesResource: ...
             def ideas(self) -> IdeasResource: ...
             def locales(self) -> LocalesResource: ...
             def topicStates(self) -> TopicStatesResource: ...
+
         def properties(self) -> PropertiesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

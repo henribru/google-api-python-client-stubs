@@ -34,6 +34,7 @@ class CloudShellResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -69,7 +70,9 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 body: StartEnvironmentRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         def environments(self) -> EnvironmentsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -56,6 +56,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 body: UpdateReleaseRequest = ...,
                 **kwargs: typing.Any
             ) -> ReleaseHttpRequest: ...
+
         @typing.type_check_only
         class RulesetsResource(googleapiclient.discovery.Resource):
             def create(
@@ -79,11 +80,13 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 previous_request: ListRulesetsResponseHttpRequest,
                 previous_response: ListRulesetsResponse,
             ) -> ListRulesetsResponseHttpRequest | None: ...
+
         def test(
             self, *, name: str, body: TestRulesetRequest = ..., **kwargs: typing.Any
         ) -> TestRulesetResponseHttpRequest: ...
         def releases(self) -> ReleasesResource: ...
         def rulesets(self) -> RulesetsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

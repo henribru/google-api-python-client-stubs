@@ -30,6 +30,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -111,6 +112,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 @typing.type_check_only
                 class ConsumerOverridesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -186,6 +188,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 def get(
                     self,
                     *,
@@ -197,6 +200,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 ) -> ConsumerQuotaLimitHttpRequest: ...
                 def adminOverrides(self) -> AdminOverridesResource: ...
                 def consumerOverrides(self) -> ConsumerOverridesResource: ...
+
             def get(
                 self,
                 *,
@@ -237,6 +241,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 previous_response: ListConsumerQuotaMetricsResponse,
             ) -> ListConsumerQuotaMetricsResponseHttpRequest | None: ...
             def limits(self) -> LimitsResource: ...
+
         def batchEnable(
             self,
             *,
@@ -269,6 +274,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             previous_response: ListServicesResponse,
         ) -> ListServicesResponseHttpRequest | None: ...
         def consumerQuotaMetrics(self) -> ConsumerQuotaMetricsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

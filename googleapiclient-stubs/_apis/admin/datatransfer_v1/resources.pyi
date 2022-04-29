@@ -31,6 +31,7 @@ class DataTransferResource(googleapiclient.discovery.Resource):
             previous_request: ApplicationsListResponseHttpRequest,
             previous_response: ApplicationsListResponse,
         ) -> ApplicationsListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class TransfersResource(googleapiclient.discovery.Resource):
         def get(
@@ -55,6 +56,7 @@ class DataTransferResource(googleapiclient.discovery.Resource):
             previous_request: DataTransfersListResponseHttpRequest,
             previous_response: DataTransfersListResponse,
         ) -> DataTransfersListResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

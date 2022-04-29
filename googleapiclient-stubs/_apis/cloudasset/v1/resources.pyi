@@ -40,6 +40,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             previous_request: ListAssetsResponseHttpRequest,
             previous_response: ListAssetsResponse,
         ) -> ListAssetsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class FeedsResource(googleapiclient.discovery.Resource):
         def create(
@@ -53,9 +54,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
         def patch(
             self, *, name: str, body: UpdateFeedRequest = ..., **kwargs: typing.Any
         ) -> FeedHttpRequest: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class SavedQueriesResource(googleapiclient.discovery.Resource):
         def create(
@@ -90,6 +93,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> SavedQueryHttpRequest: ...
+
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def analyzeIamPolicy(
@@ -183,6 +187,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             previous_request: SearchAllResourcesResponseHttpRequest,
             previous_response: SearchAllResourcesResponse,
         ) -> SearchAllResourcesResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

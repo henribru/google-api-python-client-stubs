@@ -18,9 +18,11 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
         def lookupKey(
             self, *, keyString: str = ..., **kwargs: typing.Any
         ) -> V2LookupKeyResponseHttpRequest: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -80,8 +82,11 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     body: V2UndeleteKeyRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def keys(self) -> KeysResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

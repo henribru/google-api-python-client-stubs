@@ -48,7 +48,9 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> PlaceActionLinkHttpRequest: ...
+
         def placeActionLinks(self) -> PlaceActionLinksResource: ...
+
     @typing.type_check_only
     class PlaceActionTypeMetadataResource(googleapiclient.discovery.Resource):
         def list(
@@ -65,6 +67,7 @@ class MyBusinessPlaceActionsResource(googleapiclient.discovery.Resource):
             previous_request: ListPlaceActionTypeMetadataResponseHttpRequest,
             previous_response: ListPlaceActionTypeMetadataResponse,
         ) -> ListPlaceActionTypeMetadataResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

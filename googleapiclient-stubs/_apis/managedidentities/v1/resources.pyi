@@ -43,6 +43,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             previous_request: ListSqlIntegrationsResponseHttpRequest,
                             previous_response: ListSqlIntegrationsResponse,
                         ) -> ListSqlIntegrationsResponseHttpRequest | None: ...
+
                     def attachTrust(
                         self,
                         *,
@@ -148,6 +149,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def sqlIntegrations(self) -> SqlIntegrationsResource: ...
+
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def cancel(
@@ -177,6 +179,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         previous_request: ListOperationsResponseHttpRequest,
                         previous_response: ListOperationsResponse,
                     ) -> ListOperationsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class PeeringsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -237,9 +240,11 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 def domains(self) -> DomainsResource: ...
                 def operations(self) -> OperationsResource: ...
                 def peerings(self) -> PeeringsResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -258,7 +263,9 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def global_(self) -> GlobalResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

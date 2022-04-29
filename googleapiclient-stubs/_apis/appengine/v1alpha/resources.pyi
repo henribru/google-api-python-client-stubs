@@ -66,6 +66,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> AuthorizedCertificateHttpRequest: ...
+
         @typing.type_check_only
         class AuthorizedDomainsResource(googleapiclient.discovery.Resource):
             def list(
@@ -81,6 +82,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_request: ListAuthorizedDomainsResponseHttpRequest,
                 previous_response: ListAuthorizedDomainsResponse,
             ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class DomainMappingsResource(googleapiclient.discovery.Resource):
             def create(
@@ -123,6 +125,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -142,6 +145,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -161,11 +165,13 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_request: ListOperationsResponseHttpRequest,
                 previous_response: ListOperationsResponse,
             ) -> ListOperationsResponseHttpRequest | None: ...
+
         def authorizedCertificates(self) -> AuthorizedCertificatesResource: ...
         def authorizedDomains(self) -> AuthorizedDomainsResource: ...
         def domainMappings(self) -> DomainMappingsResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -195,6 +201,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, projectsId: str, locationsId: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -213,7 +220,9 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

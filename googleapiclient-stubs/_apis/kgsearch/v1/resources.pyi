@@ -27,6 +27,7 @@ class KgsearchResource(googleapiclient.discovery.Resource):
             types: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

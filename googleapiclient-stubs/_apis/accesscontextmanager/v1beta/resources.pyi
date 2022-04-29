@@ -56,6 +56,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class ServicePerimetersResource(googleapiclient.discovery.Resource):
             def create(
@@ -88,6 +89,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         def create(
             self, *, body: AccessPolicy = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -120,9 +122,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
         def accessLevels(self) -> AccessLevelsResource: ...
         def servicePerimeters(self) -> ServicePerimetersResource: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

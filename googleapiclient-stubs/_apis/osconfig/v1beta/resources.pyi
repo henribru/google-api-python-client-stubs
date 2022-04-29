@@ -52,6 +52,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GuestPolicyHttpRequest: ...
+
         @typing.type_check_only
         class PatchDeploymentsResource(googleapiclient.discovery.Resource):
             def create(
@@ -89,6 +90,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> PatchDeploymentHttpRequest: ...
+
         @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -107,6 +109,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     previous_request: ListPatchJobInstanceDetailsResponseHttpRequest,
                     previous_response: ListPatchJobInstanceDetailsResponse,
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest | None: ...
+
             def cancel(
                 self,
                 *,
@@ -139,6 +142,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 previous_response: ListPatchJobsResponse,
             ) -> ListPatchJobsResponseHttpRequest | None: ...
             def instanceDetails(self) -> InstanceDetailsResource: ...
+
         @typing.type_check_only
         class ZonesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -150,11 +154,14 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     body: LookupEffectiveGuestPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> EffectiveGuestPolicyHttpRequest: ...
+
             def instances(self) -> InstancesResource: ...
+
         def guestPolicies(self) -> GuestPoliciesResource: ...
         def patchDeployments(self) -> PatchDeploymentsResource: ...
         def patchJobs(self) -> PatchJobsResource: ...
         def zones(self) -> ZonesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

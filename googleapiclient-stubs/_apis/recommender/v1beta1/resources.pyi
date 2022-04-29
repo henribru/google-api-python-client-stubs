@@ -45,7 +45,9 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1InsightHttpRequest: ...
+
                 def insights(self) -> InsightsResource: ...
+
             @typing.type_check_only
             class RecommendersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -88,10 +90,14 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
+
                 def recommendations(self) -> RecommendationsResource: ...
+
             def insightTypes(self) -> InsightTypesResource: ...
             def recommenders(self) -> RecommendersResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     @typing.type_check_only
     class FoldersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -124,7 +130,9 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1InsightHttpRequest: ...
+
                 def insights(self) -> InsightsResource: ...
+
             @typing.type_check_only
             class RecommendersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -167,10 +175,14 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
+
                 def recommendations(self) -> RecommendationsResource: ...
+
             def insightTypes(self) -> InsightTypesResource: ...
             def recommenders(self) -> RecommendersResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -203,6 +215,7 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1InsightHttpRequest: ...
+
                 def config(
                     self,
                     *,
@@ -216,6 +229,7 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest: ...
                 def insights(self) -> InsightsResource: ...
+
             @typing.type_check_only
             class RecommendersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -258,6 +272,7 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
+
                 def config(
                     self,
                     *,
@@ -271,9 +286,12 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
+
             def insightTypes(self) -> InsightTypesResource: ...
             def recommenders(self) -> RecommendersResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -306,6 +324,7 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1InsightHttpRequest: ...
+
                 def getConfig(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest: ...
@@ -319,6 +338,7 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest: ...
                 def insights(self) -> InsightsResource: ...
+
             @typing.type_check_only
             class RecommendersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -361,6 +381,7 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
+
                 def getConfig(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
@@ -374,9 +395,12 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
+
             def insightTypes(self) -> InsightTypesResource: ...
             def recommenders(self) -> RecommendersResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

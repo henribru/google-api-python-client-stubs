@@ -31,6 +31,7 @@ class SlidesResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> ThumbnailHttpRequest: ...
+
         def batchUpdate(
             self,
             *,
@@ -45,6 +46,7 @@ class SlidesResource(googleapiclient.discovery.Resource):
             self, *, presentationId: str, **kwargs: typing.Any
         ) -> PresentationHttpRequest: ...
         def pages(self) -> PagesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

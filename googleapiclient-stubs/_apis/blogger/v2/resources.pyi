@@ -17,6 +17,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
     class BlogsResource(googleapiclient.discovery.Resource):
         def get(self, *, blogId: str, **kwargs: typing.Any) -> BlogHttpRequest: ...
         def list(self, *, userId: str, **kwargs: typing.Any) -> BlogListHttpRequest: ...
+
     @typing.type_check_only
     class CommentsResource(googleapiclient.discovery.Resource):
         def get(
@@ -38,6 +39,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             previous_request: CommentListHttpRequest,
             previous_response: CommentList,
         ) -> CommentListHttpRequest | None: ...
+
     @typing.type_check_only
     class PagesResource(googleapiclient.discovery.Resource):
         def get(
@@ -46,6 +48,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
         def list(
             self, *, blogId: str, fetchBodies: bool = ..., **kwargs: typing.Any
         ) -> PageListHttpRequest: ...
+
     @typing.type_check_only
     class PostsResource(googleapiclient.discovery.Resource):
         def get(
@@ -64,9 +67,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
         def list_next(
             self, previous_request: PostListHttpRequest, previous_response: PostList
         ) -> PostListHttpRequest | None: ...
+
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def get(self, *, userId: str, **kwargs: typing.Any) -> UserHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

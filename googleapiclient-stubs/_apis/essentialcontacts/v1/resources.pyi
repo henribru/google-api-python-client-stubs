@@ -95,7 +95,9 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudEssentialcontactsV1SendTestMessageRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
+
         def contacts(self) -> ContactsResource: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -178,7 +180,9 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudEssentialcontactsV1SendTestMessageRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
+
         def contacts(self) -> ContactsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -261,7 +265,9 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudEssentialcontactsV1SendTestMessageRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
+
         def contacts(self) -> ContactsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

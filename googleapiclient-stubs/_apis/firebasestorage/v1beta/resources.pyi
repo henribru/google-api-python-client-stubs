@@ -45,7 +45,9 @@ class FirebasestorageResource(googleapiclient.discovery.Resource):
                 body: RemoveFirebaseRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+
         def buckets(self) -> BucketsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

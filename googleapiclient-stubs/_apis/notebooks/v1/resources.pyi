@@ -46,6 +46,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListEnvironmentsResponseHttpRequest,
                     previous_response: ListEnvironmentsResponse,
                 ) -> ListEnvironmentsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ExecutionsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -77,6 +78,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListExecutionsResponseHttpRequest,
                     previous_response: ListExecutionsResponse,
                 ) -> ListExecutionsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -224,6 +226,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: UpgradeInstanceInternalRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -253,6 +256,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class RuntimesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -338,6 +342,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class SchedulesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -376,6 +381,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: TriggerScheduleRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -399,7 +405,9 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def runtimes(self) -> RuntimesResource: ...
             def schedules(self) -> SchedulesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

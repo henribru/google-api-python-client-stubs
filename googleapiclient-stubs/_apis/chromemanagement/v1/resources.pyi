@@ -22,16 +22,19 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
+
             @typing.type_check_only
             class ChromeResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
+
             @typing.type_check_only
             class WebResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
+
             def countChromeAppRequests(
                 self,
                 *,
@@ -50,6 +53,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             def android(self) -> AndroidResource: ...
             def chrome(self) -> ChromeResource: ...
             def web(self) -> WebResource: ...
+
         @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
             def countChromeVersions(
@@ -108,6 +112,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest,
                 previous_response: GoogleChromeManagementV1FindInstalledAppDevicesResponse,
             ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class TelemetryResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -127,10 +132,13 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest,
                     previous_response: GoogleChromeManagementV1ListTelemetryDevicesResponse,
                 ) -> GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest | None: ...
+
             def devices(self) -> DevicesResource: ...
+
         def apps(self) -> AppsResource: ...
         def reports(self) -> ReportsResource: ...
         def telemetry(self) -> TelemetryResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

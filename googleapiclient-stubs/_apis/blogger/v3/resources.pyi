@@ -18,6 +18,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
         def get(
             self, *, userId: str, blogId: str, maxPosts: int = ..., **kwargs: typing.Any
         ) -> BlogUserInfoHttpRequest: ...
+
     @typing.type_check_only
     class BlogsResource(googleapiclient.discovery.Resource):
         def get(
@@ -59,6 +60,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> BlogListHttpRequest: ...
+
     @typing.type_check_only
     class CommentsResource(googleapiclient.discovery.Resource):
         def approve(
@@ -127,6 +129,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
         def removeContent(
             self, *, blogId: str, postId: str, commentId: str, **kwargs: typing.Any
         ) -> CommentHttpRequest: ...
+
     @typing.type_check_only
     class PageViewsResource(googleapiclient.discovery.Resource):
         def get(
@@ -137,6 +140,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             | _list[typing_extensions.Literal["all", "30DAYS", "7DAYS"]] = ...,
             **kwargs: typing.Any
         ) -> PageviewsHttpRequest: ...
+
     @typing.type_check_only
     class PagesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -203,6 +207,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             revert: bool = ...,
             **kwargs: typing.Any
         ) -> PageHttpRequest: ...
+
     @typing.type_check_only
     class PostUserInfosResource(googleapiclient.discovery.Resource):
         def get(
@@ -240,6 +245,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             previous_request: PostUserInfosListHttpRequest,
             previous_response: PostUserInfosList,
         ) -> PostUserInfosListHttpRequest | None: ...
+
     @typing.type_check_only
     class PostsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -351,9 +357,11 @@ class BloggerResource(googleapiclient.discovery.Resource):
             revert: bool = ...,
             **kwargs: typing.Any
         ) -> PostHttpRequest: ...
+
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def get(self, *, userId: str, **kwargs: typing.Any) -> UserHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -36,6 +36,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 previous_request: ListCourseAliasesResponseHttpRequest,
                 previous_response: ListCourseAliasesResponse,
             ) -> ListCourseAliasesResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class AnnouncementsResource(googleapiclient.discovery.Resource):
             def create(
@@ -89,6 +90,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> AnnouncementHttpRequest: ...
+
         @typing.type_check_only
         class CourseWorkResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -183,6 +185,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     body: TurnInStudentSubmissionRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+
             def create(
                 self, *, courseId: str, body: CourseWork = ..., **kwargs: typing.Any
             ) -> CourseWorkHttpRequest: ...
@@ -232,6 +235,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> CourseWorkHttpRequest: ...
             def studentSubmissions(self) -> StudentSubmissionsResource: ...
+
         @typing.type_check_only
         class CourseWorkMaterialsResource(googleapiclient.discovery.Resource):
             def create(
@@ -286,6 +290,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> CourseWorkMaterialHttpRequest: ...
+
         @typing.type_check_only
         class StudentsResource(googleapiclient.discovery.Resource):
             def create(
@@ -315,6 +320,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 previous_request: ListStudentsResponseHttpRequest,
                 previous_response: ListStudentsResponse,
             ) -> ListStudentsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class TeachersResource(googleapiclient.discovery.Resource):
             def create(
@@ -339,6 +345,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 previous_request: ListTeachersResponseHttpRequest,
                 previous_response: ListTeachersResponse,
             ) -> ListTeachersResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class TopicsResource(googleapiclient.discovery.Resource):
             def create(
@@ -372,6 +379,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> TopicHttpRequest: ...
+
         def create(
             self, *, body: Course = ..., **kwargs: typing.Any
         ) -> CourseHttpRequest: ...
@@ -427,6 +435,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         def students(self) -> StudentsResource: ...
         def teachers(self) -> TeachersResource: ...
         def topics(self) -> TopicsResource: ...
+
     @typing.type_check_only
     class InvitationsResource(googleapiclient.discovery.Resource):
         def accept(self, *, id: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
@@ -449,6 +458,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             previous_request: ListInvitationsResponseHttpRequest,
             previous_response: ListInvitationsResponse,
         ) -> ListInvitationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class RegistrationsResource(googleapiclient.discovery.Resource):
         def create(
@@ -457,6 +467,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, registrationId: str, **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
+
     @typing.type_check_only
     class UserProfilesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -502,6 +513,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GuardianInvitationHttpRequest: ...
+
         @typing.type_check_only
         class GuardiansResource(googleapiclient.discovery.Resource):
             def delete(
@@ -524,11 +536,13 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 previous_request: ListGuardiansResponseHttpRequest,
                 previous_response: ListGuardiansResponse,
             ) -> ListGuardiansResponseHttpRequest | None: ...
+
         def get(
             self, *, userId: str, **kwargs: typing.Any
         ) -> UserProfileHttpRequest: ...
         def guardianInvitations(self) -> GuardianInvitationsResource: ...
         def guardians(self) -> GuardiansResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

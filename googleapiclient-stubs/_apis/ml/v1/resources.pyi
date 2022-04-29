@@ -77,6 +77,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 body: GoogleIamV1__TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleIamV1__TestIamPermissionsResponseHttpRequest: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -87,6 +88,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleLongrunning__OperationHttpRequest: ...
+
             @typing.type_check_only
             class StudiesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -149,6 +151,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudMlV1__SuggestTrialsRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunning__OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -167,6 +170,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     self, *, parent: str, **kwargs: typing.Any
                 ) -> GoogleCloudMlV1__ListStudiesResponseHttpRequest: ...
                 def trials(self) -> TrialsResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudMlV1__LocationHttpRequest: ...
@@ -185,6 +189,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudMlV1__ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def studies(self) -> StudiesResource: ...
+
         @typing.type_check_only
         class ModelsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -231,6 +236,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudMlV1__SetDefaultVersionRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudMlV1__VersionHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -288,6 +294,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleIamV1__TestIamPermissionsResponseHttpRequest: ...
             def versions(self) -> VersionsResource: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -310,6 +317,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleLongrunning__ListOperationsResponseHttpRequest,
                 previous_response: GoogleLongrunning__ListOperationsResponse,
             ) -> GoogleLongrunning__ListOperationsResponseHttpRequest | None: ...
+
         def explain(
             self,
             *,
@@ -331,6 +339,7 @@ class CloudMachineLearningEngineResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
         def models(self) -> ModelsResource: ...
         def operations(self) -> OperationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

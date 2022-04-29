@@ -60,6 +60,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -96,6 +97,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudChannelV1ChannelPartnerLinkHttpRequest: ...
             def customers(self) -> CustomersResource: ...
+
         @typing.type_check_only
         class CustomersResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -175,6 +177,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudChannelV1SuspendEntitlementRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -274,6 +277,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def entitlements(self) -> EntitlementsResource: ...
+
         @typing.type_check_only
         class OffersResource(googleapiclient.discovery.Resource):
             def list(
@@ -291,6 +295,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudChannelV1ListOffersResponseHttpRequest,
                 previous_response: GoogleCloudChannelV1ListOffersResponse,
             ) -> GoogleCloudChannelV1ListOffersResponseHttpRequest | None: ...
+
         def checkCloudIdentityAccountsExist(
             self,
             *,
@@ -352,6 +357,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
         def channelPartnerLinks(self) -> ChannelPartnerLinksResource: ...
         def customers(self) -> CustomersResource: ...
         def offers(self) -> OffersResource: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
@@ -381,6 +387,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
             previous_response: GoogleLongrunningListOperationsResponse,
         ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ProductsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -400,6 +407,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudChannelV1ListSkusResponseHttpRequest,
                 previous_response: GoogleCloudChannelV1ListSkusResponse,
             ) -> GoogleCloudChannelV1ListSkusResponseHttpRequest | None: ...
+
         def list(
             self,
             *,
@@ -415,6 +423,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             previous_response: GoogleCloudChannelV1ListProductsResponse,
         ) -> GoogleCloudChannelV1ListProductsResponseHttpRequest | None: ...
         def skus(self) -> SkusResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

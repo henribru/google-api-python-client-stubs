@@ -21,6 +21,7 @@ class IndexingResource(googleapiclient.discovery.Resource):
         def publish(
             self, *, body: UrlNotification = ..., **kwargs: typing.Any
         ) -> PublishUrlNotificationResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

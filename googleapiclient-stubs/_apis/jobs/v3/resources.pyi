@@ -24,6 +24,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 body: CreateClientEventRequest = ...,
                 **kwargs: typing.Any
             ) -> ClientEventHttpRequest: ...
+
         @typing.type_check_only
         class CompaniesResource(googleapiclient.discovery.Resource):
             def create(
@@ -58,6 +59,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 body: UpdateCompanyRequest = ...,
                 **kwargs: typing.Any
             ) -> CompanyHttpRequest: ...
+
         @typing.type_check_only
         class JobsResource(googleapiclient.discovery.Resource):
             def batchDelete(
@@ -122,6 +124,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 previous_request: SearchJobsResponseHttpRequest,
                 previous_response: SearchJobsResponse,
             ) -> SearchJobsResponseHttpRequest | None: ...
+
         def complete(
             self,
             *,
@@ -142,6 +145,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
         def clientEvents(self) -> ClientEventsResource: ...
         def companies(self) -> CompaniesResource: ...
         def jobs(self) -> JobsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -39,6 +39,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ServicesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -94,6 +95,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 @typing.type_check_only
                 class MetadataImportsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -132,6 +134,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -208,6 +211,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
                 def metadataImports(self) -> MetadataImportsResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -227,7 +231,9 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def services(self) -> ServicesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -76,6 +76,7 @@ class LicensingResource(googleapiclient.discovery.Resource):
             body: LicenseAssignment = ...,
             **kwargs: typing.Any
         ) -> LicenseAssignmentHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

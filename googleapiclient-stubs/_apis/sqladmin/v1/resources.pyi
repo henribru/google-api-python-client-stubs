@@ -43,6 +43,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             previous_request: BackupRunsListResponseHttpRequest,
             previous_response: BackupRunsListResponse,
         ) -> BackupRunsListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ConnectResource(googleapiclient.discovery.Resource):
         def generateEphemeralCert(
@@ -61,6 +62,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             readTime: str = ...,
             **kwargs: typing.Any
         ) -> ConnectSettingsHttpRequest: ...
+
     @typing.type_check_only
     class DatabasesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -98,11 +100,13 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             body: Database = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class FlagsResource(googleapiclient.discovery.Resource):
         def list(
             self, *, databaseVersion: str = ..., **kwargs: typing.Any
         ) -> FlagsListResponseHttpRequest: ...
+
     @typing.type_check_only
     class InstancesResource(googleapiclient.discovery.Resource):
         def addServerCa(
@@ -229,6 +233,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             body: DatabaseInstance = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -248,6 +253,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             previous_request: OperationsListResponseHttpRequest,
             previous_response: OperationsListResponse,
         ) -> OperationsListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -276,7 +282,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
                 body: SqlInstancesVerifyExternalSyncSettingsRequest = ...,
                 **kwargs: typing.Any
             ) -> SqlInstancesVerifyExternalSyncSettingsResponseHttpRequest: ...
+
         def instances(self) -> InstancesResource: ...
+
     @typing.type_check_only
     class SslCertsResource(googleapiclient.discovery.Resource):
         def createEphemeral(
@@ -314,11 +322,13 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
         def list(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> SslCertsListResponseHttpRequest: ...
+
     @typing.type_check_only
     class TiersResource(googleapiclient.discovery.Resource):
         def list(
             self, *, project: str, **kwargs: typing.Any
         ) -> TiersListResponseHttpRequest: ...
+
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def delete(
@@ -346,6 +356,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             name: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

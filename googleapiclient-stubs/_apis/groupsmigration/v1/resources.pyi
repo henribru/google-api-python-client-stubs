@@ -18,6 +18,7 @@ class GroupsMigrationResource(googleapiclient.discovery.Resource):
         def insert(
             self, *, groupId: str, **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

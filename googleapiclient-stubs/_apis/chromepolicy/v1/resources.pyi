@@ -33,6 +33,7 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     body: GoogleChromePolicyV1BatchModifyOrgUnitPoliciesRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
+
             def resolve(
                 self,
                 *,
@@ -46,6 +47,7 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                 previous_response: GoogleChromePolicyV1ResolveResponse,
             ) -> GoogleChromePolicyV1ResolveResponseHttpRequest | None: ...
             def orgunits(self) -> OrgunitsResource: ...
+
         @typing.type_check_only
         class PolicySchemasResource(googleapiclient.discovery.Resource):
             def get(
@@ -65,8 +67,10 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleChromePolicyV1ListPolicySchemasResponseHttpRequest,
                 previous_response: GoogleChromePolicyV1ListPolicySchemasResponse,
             ) -> GoogleChromePolicyV1ListPolicySchemasResponseHttpRequest | None: ...
+
         def policies(self) -> PoliciesResource: ...
         def policySchemas(self) -> PolicySchemasResource: ...
+
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def upload(
@@ -76,6 +80,7 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
             body: GoogleChromePolicyV1UploadPolicyFileRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleChromePolicyV1UploadPolicyFileResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -27,6 +27,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 body: SearchDeveloperMetadataRequest = ...,
                 **kwargs: typing.Any
             ) -> SearchDeveloperMetadataResponseHttpRequest: ...
+
         @typing.type_check_only
         class SheetsResource(googleapiclient.discovery.Resource):
             def copyTo(
@@ -37,6 +38,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 body: CopySheetToAnotherSpreadsheetRequest = ...,
                 **kwargs: typing.Any
             ) -> SheetPropertiesHttpRequest: ...
+
         @typing.type_check_only
         class ValuesResource(googleapiclient.discovery.Resource):
             def append(
@@ -153,6 +155,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> UpdateValuesResponseHttpRequest: ...
+
         def batchUpdate(
             self,
             *,
@@ -181,6 +184,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
         def developerMetadata(self) -> DeveloperMetadataResource: ...
         def sheets(self) -> SheetsResource: ...
         def values(self) -> ValuesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

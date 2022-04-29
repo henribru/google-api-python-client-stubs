@@ -48,6 +48,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         previous_request: ListOperationsResponseHttpRequest,
                         previous_response: ListOperationsResponse,
                     ) -> ListOperationsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class ReservationsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -65,6 +66,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             previous_request: ListReservationTopicsResponseHttpRequest,
                             previous_response: ListReservationTopicsResponse,
                         ) -> ListReservationTopicsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -101,6 +103,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> ReservationHttpRequest: ...
                     def topics(self) -> TopicsResource: ...
+
                 @typing.type_check_only
                 class SubscriptionsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -146,6 +149,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         body: SeekSubscriptionRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 @typing.type_check_only
                 class TopicsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -163,6 +167,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             previous_request: ListTopicSubscriptionsResponseHttpRequest,
                             previous_response: ListTopicSubscriptionsResponse,
                         ) -> ListTopicSubscriptionsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -202,12 +207,16 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TopicHttpRequest: ...
                     def subscriptions(self) -> SubscriptionsResource: ...
+
                 def operations(self) -> OperationsResource: ...
                 def reservations(self) -> ReservationsResource: ...
                 def subscriptions(self) -> SubscriptionsResource: ...
                 def topics(self) -> TopicsResource: ...
+
             def locations(self) -> LocationsResource: ...
+
         def projects(self) -> ProjectsResource: ...
+
     @typing.type_check_only
     class CursorResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -231,6 +240,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             previous_request: ListPartitionCursorsResponseHttpRequest,
                             previous_response: ListPartitionCursorsResponse,
                         ) -> ListPartitionCursorsResponseHttpRequest | None: ...
+
                     def commitCursor(
                         self,
                         *,
@@ -239,9 +249,13 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> CommitCursorResponseHttpRequest: ...
                     def cursors(self) -> CursorsResource: ...
+
                 def subscriptions(self) -> SubscriptionsResource: ...
+
             def locations(self) -> LocationsResource: ...
+
         def projects(self) -> ProjectsResource: ...
+
     @typing.type_check_only
     class TopicStatsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -271,9 +285,13 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         body: ComputeTimeCursorRequest = ...,
                         **kwargs: typing.Any
                     ) -> ComputeTimeCursorResponseHttpRequest: ...
+
                 def topics(self) -> TopicsResource: ...
+
             def locations(self) -> LocationsResource: ...
+
         def projects(self) -> ProjectsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

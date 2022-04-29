@@ -60,6 +60,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> EndpointHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -126,6 +127,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def endpoints(self) -> EndpointsResource: ...
+
                 def create(
                     self,
                     *,
@@ -185,6 +187,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def services(self) -> ServicesResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -203,7 +206,9 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def namespaces(self) -> NamespacesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

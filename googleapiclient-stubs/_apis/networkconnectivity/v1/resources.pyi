@@ -81,6 +81,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 @typing.type_check_only
                 class PolicyBasedRoutesResource(googleapiclient.discovery.Resource):
                     def getIamPolicy(
@@ -104,8 +105,10 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 def hubs(self) -> HubsResource: ...
                 def policyBasedRoutes(self) -> PolicyBasedRoutesResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -135,6 +138,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class SpokesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -197,6 +201,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -217,7 +222,9 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
             def global_(self) -> GlobalResource: ...
             def operations(self) -> OperationsResource: ...
             def spokes(self) -> SpokesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -77,9 +77,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def undelete(
             self, *, name: str, body: UndeleteFolderRequest = ..., **kwargs: typing.Any
         ) -> FolderHttpRequest: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

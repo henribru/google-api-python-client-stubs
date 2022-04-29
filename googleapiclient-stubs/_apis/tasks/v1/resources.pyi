@@ -36,6 +36,7 @@ class TasksResource(googleapiclient.discovery.Resource):
         def update(
             self, *, tasklist: str, body: TaskList = ..., **kwargs: typing.Any
         ) -> TaskListHttpRequest: ...
+
     @typing.type_check_only
     class TasksResource(googleapiclient.discovery.Resource):
         def clear(
@@ -90,6 +91,7 @@ class TasksResource(googleapiclient.discovery.Resource):
         def update(
             self, *, tasklist: str, task: str, body: Task = ..., **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

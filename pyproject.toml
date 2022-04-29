@@ -20,9 +20,9 @@ google-api-python-client = "^2.32.0"
 typing-extensions = "^3.10.0"
 
 [tool.poetry.dev-dependencies]
-mypy = "^0.910"
-black = "^21.9b0"
-isort = "^5.9.3"
+mypy = "^0.950"
+black = "^22.3.0"
+isort = "^5.10.1"
 
 [tool.isort]
 profile = "black"

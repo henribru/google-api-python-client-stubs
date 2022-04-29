@@ -42,6 +42,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowV2BatchUpdateEntitiesRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 def batchDelete(
                     self,
                     *,
@@ -94,6 +95,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2EntityTypeHttpRequest: ...
                 def entities(self) -> EntitiesResource: ...
+
             @typing.type_check_only
             class EnvironmentsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -115,6 +117,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudDialogflowV2ListIntentsResponseHttpRequest,
                         previous_response: GoogleCloudDialogflowV2ListIntentsResponse,
                     ) -> GoogleCloudDialogflowV2ListIntentsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class UsersResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -155,6 +158,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                 updateMask: str = ...,
                                 **kwargs: typing.Any
                             ) -> GoogleCloudDialogflowV2ContextHttpRequest: ...
+
                         @typing.type_check_only
                         class EntityTypesResource(googleapiclient.discovery.Resource):
                             def create(
@@ -191,6 +195,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                 updateMask: str = ...,
                                 **kwargs: typing.Any
                             ) -> GoogleCloudDialogflowV2SessionEntityTypeHttpRequest: ...
+
                         def deleteContexts(
                             self, *, parent: str, **kwargs: typing.Any
                         ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -203,7 +208,9 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         ) -> GoogleCloudDialogflowV2DetectIntentResponseHttpRequest: ...
                         def contexts(self) -> ContextsResource: ...
                         def entityTypes(self) -> EntityTypesResource: ...
+
                     def sessions(self) -> SessionsResource: ...
+
                 def create(
                     self,
                     *,
@@ -255,6 +262,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDialogflowV2EnvironmentHttpRequest: ...
                 def intents(self) -> IntentsResource: ...
                 def users(self) -> UsersResource: ...
+
             @typing.type_check_only
             class IntentsResource(googleapiclient.discovery.Resource):
                 def batchDelete(
@@ -324,6 +332,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2IntentHttpRequest: ...
+
             @typing.type_check_only
             class KnowledgeBasesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -369,6 +378,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowV2ReloadDocumentRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -404,6 +414,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2KnowledgeBaseHttpRequest: ...
                 def documents(self) -> DocumentsResource: ...
+
             @typing.type_check_only
             class SessionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -442,6 +453,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2ContextHttpRequest: ...
+
                 @typing.type_check_only
                 class EntityTypesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -478,6 +490,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2SessionEntityTypeHttpRequest: ...
+
                 def deleteContexts(
                     self, *, parent: str, **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -490,6 +503,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDialogflowV2DetectIntentResponseHttpRequest: ...
                 def contexts(self) -> ContextsResource: ...
                 def entityTypes(self) -> EntityTypesResource: ...
+
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -526,6 +540,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2VersionHttpRequest: ...
+
             def export(
                 self,
                 *,
@@ -587,6 +602,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def sessions(self) -> SessionsResource: ...
             def versions(self) -> VersionsResource: ...
+
         @typing.type_check_only
         class AnswerRecordsResource(googleapiclient.discovery.Resource):
             def list(
@@ -611,6 +627,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2AnswerRecordHttpRequest: ...
+
         @typing.type_check_only
         class ConversationProfilesResource(googleapiclient.discovery.Resource):
             def create(
@@ -647,6 +664,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2ConversationProfileHttpRequest: ...
+
         @typing.type_check_only
         class ConversationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -665,6 +683,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleCloudDialogflowV2ListMessagesResponseHttpRequest,
                     previous_response: GoogleCloudDialogflowV2ListMessagesResponse,
                 ) -> GoogleCloudDialogflowV2ListMessagesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ParticipantsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -683,6 +702,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowV2SuggestFaqAnswersRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2SuggestFaqAnswersResponseHttpRequest: ...
+
                 def analyzeContent(
                     self,
                     *,
@@ -722,6 +742,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2ParticipantHttpRequest: ...
                 def suggestions(self) -> SuggestionsResource: ...
+
             def complete(
                 self,
                 *,
@@ -756,6 +777,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudDialogflowV2ListConversationsResponseHttpRequest | None: ...
             def messages(self) -> MessagesResource: ...
             def participants(self) -> ParticipantsResource: ...
+
         @typing.type_check_only
         class KnowledgeBasesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -801,6 +823,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDialogflowV2ReloadDocumentRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -836,6 +859,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2KnowledgeBaseHttpRequest: ...
             def documents(self) -> DocumentsResource: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -865,6 +889,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             body: GoogleCloudDialogflowV2BatchUpdateEntitiesRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleLongrunningOperationHttpRequest: ...
+
                     def batchDelete(
                         self,
                         *,
@@ -921,6 +946,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2EntityTypeHttpRequest: ...
                     def entities(self) -> EntitiesResource: ...
+
                 @typing.type_check_only
                 class EnvironmentsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -942,6 +968,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             previous_request: GoogleCloudDialogflowV2ListIntentsResponseHttpRequest,
                             previous_response: GoogleCloudDialogflowV2ListIntentsResponse,
                         ) -> GoogleCloudDialogflowV2ListIntentsResponseHttpRequest | None: ...
+
                     @typing.type_check_only
                     class UsersResource(googleapiclient.discovery.Resource):
                         @typing.type_check_only
@@ -982,6 +1009,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                     updateMask: str = ...,
                                     **kwargs: typing.Any
                                 ) -> GoogleCloudDialogflowV2ContextHttpRequest: ...
+
                             @typing.type_check_only
                             class EntityTypesResource(
                                 googleapiclient.discovery.Resource
@@ -1020,6 +1048,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                     updateMask: str = ...,
                                     **kwargs: typing.Any
                                 ) -> GoogleCloudDialogflowV2SessionEntityTypeHttpRequest: ...
+
                             def deleteContexts(
                                 self, *, parent: str, **kwargs: typing.Any
                             ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -1032,7 +1061,9 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             ) -> GoogleCloudDialogflowV2DetectIntentResponseHttpRequest: ...
                             def contexts(self) -> ContextsResource: ...
                             def entityTypes(self) -> EntityTypesResource: ...
+
                         def sessions(self) -> SessionsResource: ...
+
                     def create(
                         self,
                         *,
@@ -1084,6 +1115,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     ) -> GoogleCloudDialogflowV2EnvironmentHttpRequest: ...
                     def intents(self) -> IntentsResource: ...
                     def users(self) -> UsersResource: ...
+
                 @typing.type_check_only
                 class IntentsResource(googleapiclient.discovery.Resource):
                     def batchDelete(
@@ -1153,6 +1185,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2IntentHttpRequest: ...
+
                 @typing.type_check_only
                 class SessionsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -1191,6 +1224,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDialogflowV2ContextHttpRequest: ...
+
                     @typing.type_check_only
                     class EntityTypesResource(googleapiclient.discovery.Resource):
                         def create(
@@ -1227,6 +1261,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDialogflowV2SessionEntityTypeHttpRequest: ...
+
                     def deleteContexts(
                         self, *, parent: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -1239,6 +1274,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     ) -> GoogleCloudDialogflowV2DetectIntentResponseHttpRequest: ...
                     def contexts(self) -> ContextsResource: ...
                     def entityTypes(self) -> EntityTypesResource: ...
+
                 @typing.type_check_only
                 class VersionsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -1275,6 +1311,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2VersionHttpRequest: ...
+
                 def export(
                     self,
                     *,
@@ -1335,6 +1372,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def intents(self) -> IntentsResource: ...
                 def sessions(self) -> SessionsResource: ...
                 def versions(self) -> VersionsResource: ...
+
             @typing.type_check_only
             class AnswerRecordsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -1359,6 +1397,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2AnswerRecordHttpRequest: ...
+
             @typing.type_check_only
             class ConversationProfilesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -1395,6 +1434,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2ConversationProfileHttpRequest: ...
+
             @typing.type_check_only
             class ConversationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -1413,6 +1453,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudDialogflowV2ListMessagesResponseHttpRequest,
                         previous_response: GoogleCloudDialogflowV2ListMessagesResponse,
                     ) -> GoogleCloudDialogflowV2ListMessagesResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class ParticipantsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -1431,6 +1472,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             body: GoogleCloudDialogflowV2SuggestFaqAnswersRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDialogflowV2SuggestFaqAnswersResponseHttpRequest: ...
+
                     def analyzeContent(
                         self,
                         *,
@@ -1470,6 +1512,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2ParticipantHttpRequest: ...
                     def suggestions(self) -> SuggestionsResource: ...
+
                 def complete(
                     self,
                     *,
@@ -1504,6 +1547,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDialogflowV2ListConversationsResponseHttpRequest | None: ...
                 def messages(self) -> MessagesResource: ...
                 def participants(self) -> ParticipantsResource: ...
+
             @typing.type_check_only
             class KnowledgeBasesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -1549,6 +1593,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowV2ReloadDocumentRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -1584,6 +1629,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2KnowledgeBaseHttpRequest: ...
                 def documents(self) -> DocumentsResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -1606,6 +1652,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
             def deleteAgent(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -1643,6 +1690,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def conversations(self) -> ConversationsResource: ...
             def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def operations(self) -> OperationsResource: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -1665,6 +1713,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                 previous_response: GoogleLongrunningListOperationsResponse,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
         def deleteAgent(
             self, *, parent: str, **kwargs: typing.Any
         ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -1686,6 +1735,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
         def knowledgeBases(self) -> KnowledgeBasesResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

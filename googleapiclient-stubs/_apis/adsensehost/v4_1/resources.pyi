@@ -33,6 +33,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 previous_request: AdClientsHttpRequest,
                 previous_response: AdClients,
             ) -> AdClientsHttpRequest | None: ...
+
         @typing.type_check_only
         class AdunitsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -98,6 +99,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 body: AdUnit = ...,
                 **kwargs: typing.Any
             ) -> AdUnitHttpRequest: ...
+
         @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
             def generate(
@@ -115,6 +117,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
                 startIndex: int = ...,
                 **kwargs: typing.Any
             ) -> ReportHttpRequest: ...
+
         def get(
             self, *, accountId: str, **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
@@ -124,6 +127,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
         def adclients(self) -> AdclientsResource: ...
         def adunits(self) -> AdunitsResource: ...
         def reports(self) -> ReportsResource: ...
+
     @typing.type_check_only
     class AdclientsResource(googleapiclient.discovery.Resource):
         def get(
@@ -135,6 +139,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
         def list_next(
             self, previous_request: AdClientsHttpRequest, previous_response: AdClients
         ) -> AdClientsHttpRequest | None: ...
+
     @typing.type_check_only
     class AssociationsessionsResource(googleapiclient.discovery.Resource):
         def start(
@@ -151,6 +156,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
         def verify(
             self, *, token: str, **kwargs: typing.Any
         ) -> AssociationSessionHttpRequest: ...
+
     @typing.type_check_only
     class CustomchannelsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -186,6 +192,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
         def update(
             self, *, adClientId: str, body: CustomChannel = ..., **kwargs: typing.Any
         ) -> CustomChannelHttpRequest: ...
+
     @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         def generate(
@@ -202,6 +209,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             startIndex: int = ...,
             **kwargs: typing.Any
         ) -> ReportHttpRequest: ...
+
     @typing.type_check_only
     class UrlchannelsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -223,6 +231,7 @@ class AdSenseHostResource(googleapiclient.discovery.Resource):
             previous_request: UrlChannelsHttpRequest,
             previous_response: UrlChannels,
         ) -> UrlChannelsHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

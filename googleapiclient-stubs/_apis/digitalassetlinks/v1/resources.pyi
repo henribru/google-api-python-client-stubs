@@ -27,6 +27,7 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
             target_web_site: str = ...,
             **kwargs: typing.Any
         ) -> CheckResponseHttpRequest: ...
+
     @typing.type_check_only
     class StatementsResource(googleapiclient.discovery.Resource):
         def list(
@@ -38,6 +39,7 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
             source_web_site: str = ...,
             **kwargs: typing.Any
         ) -> ListResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

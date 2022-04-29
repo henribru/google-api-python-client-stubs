@@ -27,6 +27,7 @@ class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
             body: GoogleIdentityStsV1ExchangeTokenRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleIdentityStsV1ExchangeTokenResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

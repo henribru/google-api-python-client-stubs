@@ -16,6 +16,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class V1p7beta1Resource(googleapiclient.discovery.Resource):
         def exportAssets(
@@ -25,6 +26,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             body: GoogleCloudAssetV1p7beta1ExportAssetsRequest = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

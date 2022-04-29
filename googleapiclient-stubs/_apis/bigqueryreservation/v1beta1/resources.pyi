@@ -69,6 +69,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     body: SplitCapacityCommitmentRequest = ...,
                     **kwargs: typing.Any
                 ) -> SplitCapacityCommitmentResponseHttpRequest: ...
+
             @typing.type_check_only
             class ReservationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -112,6 +113,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> AssignmentHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -149,6 +151,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> ReservationHttpRequest: ...
                 def assignments(self) -> AssignmentsResource: ...
+
             def getBiReservation(
                 self, *, name: str, **kwargs: typing.Any
             ) -> BiReservationHttpRequest: ...
@@ -176,7 +179,9 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
             ) -> BiReservationHttpRequest: ...
             def capacityCommitments(self) -> CapacityCommitmentsResource: ...
             def reservations(self) -> ReservationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

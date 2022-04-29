@@ -45,6 +45,7 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                 def wait(
                     self, *, name: str, timeout: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class ScansResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -62,6 +63,7 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                         previous_request: ListVulnerabilitiesResponseV1HttpRequest,
                         previous_response: ListVulnerabilitiesResponseV1,
                     ) -> ListVulnerabilitiesResponseV1HttpRequest | None: ...
+
                 def analyzePackages(
                     self,
                     *,
@@ -70,9 +72,12 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def vulnerabilities(self) -> VulnerabilitiesResource: ...
+
             def operations(self) -> OperationsResource: ...
             def scans(self) -> ScansResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

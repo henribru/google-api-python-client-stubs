@@ -33,6 +33,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 previous_request: ListCompanyJobsResponseHttpRequest,
                 previous_response: ListCompanyJobsResponse,
             ) -> ListCompanyJobsResponseHttpRequest | None: ...
+
         def create(
             self, *, body: Company = ..., **kwargs: typing.Any
         ) -> CompanyHttpRequest: ...
@@ -60,6 +61,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> CompanyHttpRequest: ...
         def jobs(self) -> JobsResource: ...
+
     @typing.type_check_only
     class JobsResource(googleapiclient.discovery.Resource):
         def batchDelete(
@@ -111,6 +113,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             previous_request: SearchJobsResponseHttpRequest,
             previous_response: SearchJobsResponse,
         ) -> SearchJobsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class V2Resource(googleapiclient.discovery.Resource):
         def complete(
@@ -128,6 +131,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> CompleteQueryResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

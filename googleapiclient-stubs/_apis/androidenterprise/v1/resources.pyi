@@ -46,6 +46,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> DeviceHttpRequest: ...
+
     @typing.type_check_only
     class EnterprisesResource(googleapiclient.discovery.Resource):
         def acknowledgeNotificationSet(
@@ -111,6 +112,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         def unenroll(
             self, *, enterpriseId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class EntitlementsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -142,6 +144,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             install: bool = ...,
             **kwargs: typing.Any
         ) -> EntitlementHttpRequest: ...
+
     @typing.type_check_only
     class GrouplicensesResource(googleapiclient.discovery.Resource):
         def get(
@@ -150,11 +153,13 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         def list(
             self, *, enterpriseId: str, **kwargs: typing.Any
         ) -> GroupLicensesListResponseHttpRequest: ...
+
     @typing.type_check_only
     class GrouplicenseusersResource(googleapiclient.discovery.Resource):
         def list(
             self, *, enterpriseId: str, groupLicenseId: str, **kwargs: typing.Any
         ) -> GroupLicenseUsersListResponseHttpRequest: ...
+
     @typing.type_check_only
     class InstallsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -188,6 +193,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: Install = ...,
             **kwargs: typing.Any
         ) -> InstallHttpRequest: ...
+
     @typing.type_check_only
     class ManagedconfigurationsfordeviceResource(googleapiclient.discovery.Resource):
         def delete(
@@ -221,6 +227,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: ManagedConfiguration = ...,
             **kwargs: typing.Any
         ) -> ManagedConfigurationHttpRequest: ...
+
     @typing.type_check_only
     class ManagedconfigurationsforuserResource(googleapiclient.discovery.Resource):
         def delete(
@@ -251,16 +258,19 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: ManagedConfiguration = ...,
             **kwargs: typing.Any
         ) -> ManagedConfigurationHttpRequest: ...
+
     @typing.type_check_only
     class ManagedconfigurationssettingsResource(googleapiclient.discovery.Resource):
         def list(
             self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
         ) -> ManagedConfigurationsSettingsListResponseHttpRequest: ...
+
     @typing.type_check_only
     class PermissionsResource(googleapiclient.discovery.Resource):
         def get(
             self, *, permissionId: str, language: str = ..., **kwargs: typing.Any
         ) -> PermissionHttpRequest: ...
+
     @typing.type_check_only
     class ProductsResource(googleapiclient.discovery.Resource):
         def approve(
@@ -312,6 +322,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         def unapprove(
             self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class ServiceaccountkeysResource(googleapiclient.discovery.Resource):
         def delete(
@@ -327,6 +338,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         def list(
             self, *, enterpriseId: str, **kwargs: typing.Any
         ) -> ServiceAccountKeysListResponseHttpRequest: ...
+
     @typing.type_check_only
     class StorelayoutclustersResource(googleapiclient.discovery.Resource):
         def delete(
@@ -365,6 +377,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: StoreCluster = ...,
             **kwargs: typing.Any
         ) -> StoreClusterHttpRequest: ...
+
     @typing.type_check_only
     class StorelayoutpagesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -387,6 +400,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: StorePage = ...,
             **kwargs: typing.Any
         ) -> StorePageHttpRequest: ...
+
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def delete(
@@ -426,6 +440,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: User = ...,
             **kwargs: typing.Any
         ) -> UserHttpRequest: ...
+
     @typing.type_check_only
     class WebappsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -448,6 +463,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             body: WebApp = ...,
             **kwargs: typing.Any
         ) -> WebAppHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

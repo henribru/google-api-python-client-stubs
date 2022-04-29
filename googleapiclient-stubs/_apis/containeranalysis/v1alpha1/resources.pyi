@@ -33,6 +33,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     previous_request: ListNoteOccurrencesResponseHttpRequest,
                     previous_response: ListNoteOccurrencesResponse,
                 ) -> ListNoteOccurrencesResponseHttpRequest | None: ...
+
             def create(
                 self,
                 *,
@@ -91,6 +92,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def occurrences(self) -> OccurrencesResource: ...
+
         @typing.type_check_only
         class OccurrencesResource(googleapiclient.discovery.Resource):
             def create(
@@ -174,6 +176,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def create(
@@ -190,6 +193,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: UpdateOperationRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class ScanConfigsResource(googleapiclient.discovery.Resource):
             def get(
@@ -217,10 +221,12 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> ScanConfigHttpRequest: ...
+
         def notes(self) -> NotesResource: ...
         def occurrences(self) -> OccurrencesResource: ...
         def operations(self) -> OperationsResource: ...
         def scanConfigs(self) -> ScanConfigsResource: ...
+
     @typing.type_check_only
     class ProvidersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -241,6 +247,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     previous_request: ListNoteOccurrencesResponseHttpRequest,
                     previous_response: ListNoteOccurrencesResponse,
                 ) -> ListNoteOccurrencesResponseHttpRequest | None: ...
+
             def create(
                 self,
                 *,
@@ -299,7 +306,9 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def occurrences(self) -> OccurrencesResource: ...
+
         def notes(self) -> NotesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

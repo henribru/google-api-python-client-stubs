@@ -30,6 +30,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest,
                 previous_response: GoogleCloudOrgpolicyV2ListConstraintsResponse,
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -68,8 +69,10 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudOrgpolicyV2Policy = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
+
         def constraints(self) -> ConstraintsResource: ...
         def policies(self) -> PoliciesResource: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -87,6 +90,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest,
                 previous_response: GoogleCloudOrgpolicyV2ListConstraintsResponse,
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -125,8 +129,10 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudOrgpolicyV2Policy = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
+
         def constraints(self) -> ConstraintsResource: ...
         def policies(self) -> PoliciesResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -144,6 +150,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest,
                 previous_response: GoogleCloudOrgpolicyV2ListConstraintsResponse,
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -182,8 +189,10 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudOrgpolicyV2Policy = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
+
         def constraints(self) -> ConstraintsResource: ...
         def policies(self) -> PoliciesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

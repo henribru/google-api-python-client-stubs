@@ -37,6 +37,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     previous_request: ListAcceleratorTypesResponseHttpRequest,
                     previous_response: ListAcceleratorTypesResponse,
                 ) -> ListAcceleratorTypesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class NodesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -87,6 +88,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     body: StopNodeRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -112,6 +114,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class TensorflowVersionsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -132,6 +135,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     previous_request: ListTensorFlowVersionsResponseHttpRequest,
                     previous_response: ListTensorFlowVersionsResponse,
                 ) -> ListTensorFlowVersionsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -153,7 +157,9 @@ class TPUResource(googleapiclient.discovery.Resource):
             def nodes(self) -> NodesResource: ...
             def operations(self) -> OperationsResource: ...
             def tensorflowVersions(self) -> TensorflowVersionsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

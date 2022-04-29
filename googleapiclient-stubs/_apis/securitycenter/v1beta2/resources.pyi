@@ -22,11 +22,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> ContainerThreatDetectionSettingsHttpRequest: ...
+
         @typing.type_check_only
         class EventThreatDetectionSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EventThreatDetectionSettingsHttpRequest: ...
+
         @typing.type_check_only
         class SecurityHealthAnalyticsSettingsResource(
             googleapiclient.discovery.Resource
@@ -34,11 +36,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
+
         @typing.type_check_only
         class WebSecurityScannerSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> WebSecurityScannerSettingsHttpRequest: ...
+
         def getContainerThreatDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
@@ -93,6 +97,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
         def webSecurityScannerSettings(self) -> WebSecurityScannerSettingsResource: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -102,11 +107,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> ContainerThreatDetectionSettingsHttpRequest: ...
+
         @typing.type_check_only
         class EventThreatDetectionSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EventThreatDetectionSettingsHttpRequest: ...
+
         @typing.type_check_only
         class SecurityHealthAnalyticsSettingsResource(
             googleapiclient.discovery.Resource
@@ -114,11 +121,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
+
         @typing.type_check_only
         class WebSecurityScannerSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> WebSecurityScannerSettingsHttpRequest: ...
+
         def getContainerThreatDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
@@ -179,6 +188,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
         def webSecurityScannerSettings(self) -> WebSecurityScannerSettingsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -188,11 +198,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> ContainerThreatDetectionSettingsHttpRequest: ...
+
         @typing.type_check_only
         class EventThreatDetectionSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EventThreatDetectionSettingsHttpRequest: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -204,6 +216,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     def calculate(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> ContainerThreatDetectionSettingsHttpRequest: ...
+
                 def getContainerThreatDetectionSettings(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ContainerThreatDetectionSettingsHttpRequest: ...
@@ -218,7 +231,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 def containerThreatDetectionSettings(
                     self,
                 ) -> ContainerThreatDetectionSettingsResource: ...
+
             def clusters(self) -> ClustersResource: ...
+
         @typing.type_check_only
         class SecurityHealthAnalyticsSettingsResource(
             googleapiclient.discovery.Resource
@@ -226,11 +241,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
+
         @typing.type_check_only
         class WebSecurityScannerSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> WebSecurityScannerSettingsHttpRequest: ...
+
         def getContainerThreatDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
@@ -286,6 +303,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
         def webSecurityScannerSettings(self) -> WebSecurityScannerSettingsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

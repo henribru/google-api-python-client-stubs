@@ -88,6 +88,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 body: ValidateMessageRequest = ...,
                 **kwargs: typing.Any
             ) -> ValidateMessageResponseHttpRequest: ...
+
         @typing.type_check_only
         class SnapshotsResource(googleapiclient.discovery.Resource):
             def create(
@@ -144,6 +145,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
+
         @typing.type_check_only
         class SubscriptionsResource(googleapiclient.discovery.Resource):
             def acknowledge(
@@ -234,6 +236,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
+
         @typing.type_check_only
         class TopicsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -251,6 +254,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                     previous_request: ListTopicSnapshotsResponseHttpRequest,
                     previous_response: ListTopicSnapshotsResponse,
                 ) -> ListTopicSnapshotsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class SubscriptionsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -266,6 +270,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                     previous_request: ListTopicSubscriptionsResponseHttpRequest,
                     previous_response: ListTopicSubscriptionsResponse,
                 ) -> ListTopicSubscriptionsResponseHttpRequest | None: ...
+
             def create(
                 self, *, name: str, body: Topic = ..., **kwargs: typing.Any
             ) -> TopicHttpRequest: ...
@@ -315,10 +320,12 @@ class PubsubResource(googleapiclient.discovery.Resource):
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def snapshots(self) -> SnapshotsResource: ...
             def subscriptions(self) -> SubscriptionsResource: ...
+
         def schemas(self) -> SchemasResource: ...
         def snapshots(self) -> SnapshotsResource: ...
         def subscriptions(self) -> SubscriptionsResource: ...
         def topics(self) -> TopicsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

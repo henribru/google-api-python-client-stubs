@@ -33,7 +33,9 @@ class ContainerResource(googleapiclient.discovery.Resource):
                     previous_request: ListUsableSubnetworksResponseHttpRequest,
                     previous_response: ListUsableSubnetworksResponse,
                 ) -> ListUsableSubnetworksResponseHttpRequest | None: ...
+
             def usableSubnetworks(self) -> UsableSubnetworksResource: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -111,11 +113,13 @@ class ContainerResource(googleapiclient.discovery.Resource):
                         body: UpdateNodePoolRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 @typing.type_check_only
                 class WellKnownResource(googleapiclient.discovery.Resource):
                     def getOpenid_configuration(
                         self, *, parent: str, **kwargs: typing.Any
                     ) -> GetOpenIDConfigResponseHttpRequest: ...
+
                 def completeIpRotation(
                     self,
                     *,
@@ -245,6 +249,7 @@ class ContainerResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
                 def nodePools(self) -> NodePoolsResource: ...
                 def well_known(self) -> WellKnownResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -271,6 +276,7 @@ class ContainerResource(googleapiclient.discovery.Resource):
                     zone: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+
             def getServerConfig(
                 self,
                 *,
@@ -284,6 +290,7 @@ class ContainerResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest: ...
             def clusters(self) -> ClustersResource: ...
             def operations(self) -> OperationsResource: ...
+
         @typing.type_check_only
         class ZonesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -378,6 +385,7 @@ class ContainerResource(googleapiclient.discovery.Resource):
                         body: UpdateNodePoolRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 def addons(
                     self,
                     *,
@@ -530,6 +538,7 @@ class ContainerResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def nodePools(self) -> NodePoolsResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -558,6 +567,7 @@ class ContainerResource(googleapiclient.discovery.Resource):
                     parent: str = ...,
                     **kwargs: typing.Any
                 ) -> ListOperationsResponseHttpRequest: ...
+
             def getServerconfig(
                 self,
                 *,
@@ -568,9 +578,11 @@ class ContainerResource(googleapiclient.discovery.Resource):
             ) -> ServerConfigHttpRequest: ...
             def clusters(self) -> ClustersResource: ...
             def operations(self) -> OperationsResource: ...
+
         def aggregated(self) -> AggregatedResource: ...
         def locations(self) -> LocationsResource: ...
         def zones(self) -> ZonesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

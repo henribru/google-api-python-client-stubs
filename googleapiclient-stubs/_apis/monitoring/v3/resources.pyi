@@ -113,7 +113,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 previous_request: ListTimeSeriesResponseHttpRequest,
                 previous_response: ListTimeSeriesResponse,
             ) -> ListTimeSeriesResponseHttpRequest | None: ...
+
         def timeSeries(self) -> TimeSeriesResource: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -214,7 +216,9 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 previous_request: ListTimeSeriesResponseHttpRequest,
                 previous_response: ListTimeSeriesResponse,
             ) -> ListTimeSeriesResponseHttpRequest | None: ...
+
         def timeSeries(self) -> TimeSeriesResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -251,6 +255,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> AlertPolicyHttpRequest: ...
+
         @typing.type_check_only
         class CollectdTimeSeriesResource(googleapiclient.discovery.Resource):
             def create(
@@ -260,6 +265,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 body: CreateCollectdTimeSeriesRequest = ...,
                 **kwargs: typing.Any
             ) -> CreateCollectdTimeSeriesResponseHttpRequest: ...
+
         @typing.type_check_only
         class GroupsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -280,6 +286,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     previous_request: ListGroupMembersResponseHttpRequest,
                     previous_response: ListGroupMembersResponse,
                 ) -> ListGroupMembersResponseHttpRequest | None: ...
+
             def create(
                 self,
                 *,
@@ -317,6 +324,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GroupHttpRequest: ...
             def members(self) -> MembersResource: ...
+
         @typing.type_check_only
         class MetricDescriptorsResource(googleapiclient.discovery.Resource):
             def create(
@@ -342,6 +350,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 previous_request: ListMetricDescriptorsResponseHttpRequest,
                 previous_response: ListMetricDescriptorsResponse,
             ) -> ListMetricDescriptorsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class MonitoredResourceDescriptorsResource(googleapiclient.discovery.Resource):
             def get(
@@ -361,6 +370,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 previous_request: ListMonitoredResourceDescriptorsResponseHttpRequest,
                 previous_response: ListMonitoredResourceDescriptorsResponse,
             ) -> ListMonitoredResourceDescriptorsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class NotificationChannelDescriptorsResource(
             googleapiclient.discovery.Resource
@@ -381,6 +391,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 previous_request: ListNotificationChannelDescriptorsResponseHttpRequest,
                 previous_response: ListNotificationChannelDescriptorsResponse,
             ) -> ListNotificationChannelDescriptorsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class NotificationChannelsResource(googleapiclient.discovery.Resource):
             def create(
@@ -440,6 +451,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 body: VerifyNotificationChannelRequest = ...,
                 **kwargs: typing.Any
             ) -> NotificationChannelHttpRequest: ...
+
         @typing.type_check_only
         class TimeSeriesResource(googleapiclient.discovery.Resource):
             def create(
@@ -564,6 +576,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 previous_request: QueryTimeSeriesResponseHttpRequest,
                 previous_response: QueryTimeSeriesResponse,
             ) -> QueryTimeSeriesResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class UptimeCheckConfigsResource(googleapiclient.discovery.Resource):
             def create(
@@ -600,6 +613,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> UptimeCheckConfigHttpRequest: ...
+
         def alertPolicies(self) -> AlertPoliciesResource: ...
         def collectdTimeSeries(self) -> CollectdTimeSeriesResource: ...
         def groups(self) -> GroupsResource: ...
@@ -613,6 +627,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
         def notificationChannels(self) -> NotificationChannelsResource: ...
         def timeSeries(self) -> TimeSeriesResource: ...
         def uptimeCheckConfigs(self) -> UptimeCheckConfigsResource: ...
+
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -662,6 +677,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> ServiceLevelObjectiveHttpRequest: ...
+
         def create(
             self,
             *,
@@ -695,6 +711,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> ServiceHttpRequest: ...
         def serviceLevelObjectives(self) -> ServiceLevelObjectivesResource: ...
+
     @typing.type_check_only
     class UptimeCheckIpsResource(googleapiclient.discovery.Resource):
         def list(
@@ -705,6 +722,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             previous_request: ListUptimeCheckIpsResponseHttpRequest,
             previous_response: ListUptimeCheckIpsResponse,
         ) -> ListUptimeCheckIpsResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

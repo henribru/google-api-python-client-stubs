@@ -30,6 +30,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             numVersions: int = ...,
                             **kwargs: typing.Any
                         ) -> ListDeviceConfigVersionsResponseHttpRequest: ...
+
                     @typing.type_check_only
                     class StatesResource(googleapiclient.discovery.Resource):
                         def list(
@@ -39,6 +40,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             numStates: int = ...,
                             **kwargs: typing.Any
                         ) -> ListDeviceStatesResponseHttpRequest: ...
+
                     def create(
                         self, *, parent: str, body: Device = ..., **kwargs: typing.Any
                     ) -> DeviceHttpRequest: ...
@@ -93,6 +95,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                     ) -> SendCommandToDeviceResponseHttpRequest: ...
                     def configVersions(self) -> ConfigVersionsResource: ...
                     def states(self) -> StatesResource: ...
+
                 @typing.type_check_only
                 class GroupsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -118,6 +121,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             previous_request: ListDevicesResponseHttpRequest,
                             previous_response: ListDevicesResponse,
                         ) -> ListDevicesResponseHttpRequest | None: ...
+
                     def getIamPolicy(
                         self,
                         *,
@@ -140,6 +144,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def devices(self) -> DevicesResource: ...
+
                 def bindDeviceToGateway(
                     self,
                     *,
@@ -211,8 +216,11 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                 ) -> UnbindDeviceFromGatewayResponseHttpRequest: ...
                 def devices(self) -> DevicesResource: ...
                 def groups(self) -> GroupsResource: ...
+
             def registries(self) -> RegistriesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

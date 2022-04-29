@@ -21,6 +21,7 @@ class VisionResource(googleapiclient.discovery.Resource):
         def asyncBatchAnnotate(
             self, *, body: AsyncBatchAnnotateFilesRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class ImagesResource(googleapiclient.discovery.Resource):
         def annotate(
@@ -29,6 +30,7 @@ class VisionResource(googleapiclient.discovery.Resource):
         def asyncBatchAnnotate(
             self, *, body: AsyncBatchAnnotateImagesRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class LocationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -36,7 +38,9 @@ class VisionResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         def operations(self) -> OperationsResource: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
@@ -58,6 +62,7 @@ class VisionResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -76,6 +81,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                 body: AsyncBatchAnnotateFilesRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class ImagesResource(googleapiclient.discovery.Resource):
             def annotate(
@@ -92,6 +98,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                 body: AsyncBatchAnnotateImagesRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -110,6 +117,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     body: AsyncBatchAnnotateFilesRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class ImagesResource(googleapiclient.discovery.Resource):
                 def annotate(
@@ -126,11 +134,13 @@ class VisionResource(googleapiclient.discovery.Resource):
                     body: AsyncBatchAnnotateImagesRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class ProductSetsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -148,6 +158,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                         previous_request: ListProductsInProductSetResponseHttpRequest,
                         previous_response: ListProductsInProductSetResponse,
                     ) -> ListProductsInProductSetResponseHttpRequest | None: ...
+
                 def addProduct(
                     self,
                     *,
@@ -205,6 +216,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def products(self) -> ProductsResource: ...
+
             @typing.type_check_only
             class ProductsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -236,6 +248,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                         previous_request: ListReferenceImagesResponseHttpRequest,
                         previous_response: ListReferenceImagesResponse,
                     ) -> ListReferenceImagesResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -279,20 +292,24 @@ class VisionResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def referenceImages(self) -> ReferenceImagesResource: ...
+
             def files(self) -> FilesResource: ...
             def images(self) -> ImagesResource: ...
             def operations(self) -> OperationsResource: ...
             def productSets(self) -> ProductSetsResource: ...
             def products(self) -> ProductsResource: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         def files(self) -> FilesResource: ...
         def images(self) -> ImagesResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

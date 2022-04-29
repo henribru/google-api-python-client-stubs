@@ -29,6 +29,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class VariablesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -77,6 +78,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     body: WatchVariableRequest = ...,
                     **kwargs: typing.Any
                 ) -> VariableHttpRequest: ...
+
             @typing.type_check_only
             class WaitersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -113,6 +115,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -167,7 +170,9 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def variables(self) -> VariablesResource: ...
             def waiters(self) -> WaitersResource: ...
+
         def configs(self) -> ConfigsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

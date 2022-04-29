@@ -16,6 +16,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -30,6 +31,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, network: str = ..., **kwargs: typing.Any
             ) -> ListConnectionsResponseHttpRequest: ...
+
         def addSubnetwork(
             self, *, parent: str, body: AddSubnetworkRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -46,6 +48,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def connections(self) -> ConnectionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

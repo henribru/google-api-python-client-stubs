@@ -63,6 +63,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 body: ReplaceAccessLevelsRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class ServicePerimetersResource(googleapiclient.discovery.Resource):
             def commit(
@@ -109,6 +110,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 body: ReplaceServicePerimetersRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         def create(
             self, *, body: AccessPolicy = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -141,6 +143,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
         def accessLevels(self) -> AccessLevelsResource: ...
         def servicePerimeters(self) -> ServicePerimetersResource: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
@@ -162,6 +165,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -200,7 +204,9 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         def gcpUserAccessBindings(self) -> GcpUserAccessBindingsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

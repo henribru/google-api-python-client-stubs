@@ -72,6 +72,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: RemoveGroupMigrationRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -101,6 +102,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class SourcesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -135,6 +137,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         previous_request: ListDatacenterConnectorsResponseHttpRequest,
                         previous_response: ListDatacenterConnectorsResponse,
                     ) -> ListDatacenterConnectorsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class MigratingVmsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -173,6 +176,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             previous_request: ListCloneJobsResponseHttpRequest,
                             previous_response: ListCloneJobsResponse,
                         ) -> ListCloneJobsResponseHttpRequest | None: ...
+
                     @typing.type_check_only
                     class CutoverJobsResource(googleapiclient.discovery.Resource):
                         def cancel(
@@ -209,6 +213,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             previous_request: ListCutoverJobsResponseHttpRequest,
                             previous_response: ListCutoverJobsResponse,
                         ) -> ListCutoverJobsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -291,6 +296,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     ) -> OperationHttpRequest: ...
                     def cloneJobs(self) -> CloneJobsResource: ...
                     def cutoverJobs(self) -> CutoverJobsResource: ...
+
                 @typing.type_check_only
                 class UtilizationReportsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -332,6 +338,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         previous_request: ListUtilizationReportsResponseHttpRequest,
                         previous_response: ListUtilizationReportsResponse,
                     ) -> ListUtilizationReportsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -377,6 +384,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                 def datacenterConnectors(self) -> DatacenterConnectorsResource: ...
                 def migratingVms(self) -> MigratingVmsResource: ...
                 def utilizationReports(self) -> UtilizationReportsResource: ...
+
             @typing.type_check_only
             class TargetProjectsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -418,6 +426,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -439,7 +448,9 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def sources(self) -> SourcesResource: ...
             def targetProjects(self) -> TargetProjectsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

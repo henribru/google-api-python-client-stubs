@@ -39,6 +39,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             body: ExportIamPolicyAnalysisRequest = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

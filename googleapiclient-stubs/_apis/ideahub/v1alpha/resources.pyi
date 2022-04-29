@@ -30,6 +30,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
             previous_request: GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest,
             previous_response: GoogleSearchIdeahubV1alphaListIdeasResponse,
         ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class PlatformsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -43,6 +44,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     body: GoogleSearchIdeahubV1alphaIdeaActivity = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1alphaIdeaActivityHttpRequest: ...
+
             @typing.type_check_only
             class IdeaStatesResource(googleapiclient.discovery.Resource):
                 def patch(
@@ -53,6 +55,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1alphaIdeaStateHttpRequest: ...
+
             @typing.type_check_only
             class IdeasResource(googleapiclient.discovery.Resource):
                 def list(
@@ -70,6 +73,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest,
                     previous_response: GoogleSearchIdeahubV1alphaListIdeasResponse,
                 ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class LocalesResource(googleapiclient.discovery.Resource):
                 def list(
@@ -85,6 +89,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest,
                     previous_response: GoogleSearchIdeahubV1alphaListAvailableLocalesResponse,
                 ) -> GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class TopicStatesResource(googleapiclient.discovery.Resource):
                 def patch(
@@ -95,12 +100,15 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleSearchIdeahubV1alphaTopicStateHttpRequest: ...
+
             def ideaActivities(self) -> IdeaActivitiesResource: ...
             def ideaStates(self) -> IdeaStatesResource: ...
             def ideas(self) -> IdeasResource: ...
             def locales(self) -> LocalesResource: ...
             def topicStates(self) -> TopicStatesResource: ...
+
         def properties(self) -> PropertiesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -30,6 +30,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -70,6 +71,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> CustomClassHttpRequest: ...
+
             @typing.type_check_only
             class PhraseSetsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -106,9 +108,12 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> PhraseSetHttpRequest: ...
+
             def customClasses(self) -> CustomClassesResource: ...
             def phraseSets(self) -> PhraseSetsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     @typing.type_check_only
     class SpeechResource(googleapiclient.discovery.Resource):
         def longrunningrecognize(
@@ -117,6 +122,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
         def recognize(
             self, *, body: RecognizeRequest = ..., **kwargs: typing.Any
         ) -> RecognizeResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

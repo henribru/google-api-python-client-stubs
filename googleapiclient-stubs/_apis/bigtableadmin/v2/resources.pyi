@@ -33,11 +33,14 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def operations(self) -> OperationsResource: ...
+
         def cancel(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -81,6 +84,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class ClustersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -143,6 +147,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -177,6 +182,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     self, *, name: str, body: Cluster = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
+
             @typing.type_check_only
             class TablesResource(googleapiclient.discovery.Resource):
                 def checkConsistency(
@@ -280,6 +286,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -336,6 +343,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
             def appProfiles(self) -> AppProfilesResource: ...
             def clusters(self) -> ClustersResource: ...
             def tables(self) -> TablesResource: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -355,8 +363,10 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+
         def instances(self) -> InstancesResource: ...
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -43,6 +43,7 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class PipelinesResource(googleapiclient.discovery.Resource):
                 def run(
@@ -52,6 +53,7 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
                     body: RunPipelineRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -71,7 +73,9 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def pipelines(self) -> PipelinesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

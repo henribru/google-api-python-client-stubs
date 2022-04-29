@@ -56,6 +56,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -97,6 +98,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -149,6 +151,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def snapshots(self) -> SnapshotsResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -178,6 +181,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -199,7 +203,9 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
             def backups(self) -> BackupsResource: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

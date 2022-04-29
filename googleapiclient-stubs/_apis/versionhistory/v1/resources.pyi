@@ -36,6 +36,7 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                         previous_request: ListReleasesResponseHttpRequest,
                         previous_response: ListReleasesResponse,
                     ) -> ListReleasesResponseHttpRequest | None: ...
+
                 def list(
                     self,
                     *,
@@ -52,6 +53,7 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                     previous_response: ListVersionsResponse,
                 ) -> ListVersionsResponseHttpRequest | None: ...
                 def releases(self) -> ReleasesResource: ...
+
             def list(
                 self,
                 *,
@@ -66,6 +68,7 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                 previous_response: ListChannelsResponse,
             ) -> ListChannelsResponseHttpRequest | None: ...
             def versions(self) -> VersionsResource: ...
+
         def list(
             self,
             *,
@@ -80,6 +83,7 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
             previous_response: ListPlatformsResponse,
         ) -> ListPlatformsResponseHttpRequest | None: ...
         def channels(self) -> ChannelsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

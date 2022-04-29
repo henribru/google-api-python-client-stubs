@@ -89,6 +89,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> RowHttpRequest: ...
+
         def get(self, *, name: str, **kwargs: typing.Any) -> TableHttpRequest: ...
         def list(
             self,
@@ -104,6 +105,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
             previous_response: ListTablesResponse,
         ) -> ListTablesResponseHttpRequest | None: ...
         def rows(self) -> RowsResource: ...
+
     @typing.type_check_only
     class WorkspacesResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> WorkspaceHttpRequest: ...
@@ -115,6 +117,7 @@ class Area120TablesResource(googleapiclient.discovery.Resource):
             previous_request: ListWorkspacesResponseHttpRequest,
             previous_response: ListWorkspacesResponse,
         ) -> ListWorkspacesResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

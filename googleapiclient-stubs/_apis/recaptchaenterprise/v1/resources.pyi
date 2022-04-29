@@ -31,6 +31,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudRecaptchaenterpriseV1Assessment = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1AssessmentHttpRequest: ...
+
         @typing.type_check_only
         class KeysResource(googleapiclient.discovery.Resource):
             def create(
@@ -77,6 +78,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
+
         @typing.type_check_only
         class RelatedaccountgroupmembershipsResource(
             googleapiclient.discovery.Resource
@@ -93,6 +95,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest,
                 previous_response: GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse,
             ) -> GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class RelatedaccountgroupsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -110,6 +113,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponseHttpRequest,
                     previous_response: GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse,
                 ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponseHttpRequest | None: ...
+
             def list(
                 self,
                 *,
@@ -124,12 +128,14 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 previous_response: GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse,
             ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponseHttpRequest | None: ...
             def memberships(self) -> MembershipsResource: ...
+
         def assessments(self) -> AssessmentsResource: ...
         def keys(self) -> KeysResource: ...
         def relatedaccountgroupmemberships(
             self,
         ) -> RelatedaccountgroupmembershipsResource: ...
         def relatedaccountgroups(self) -> RelatedaccountgroupsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -32,8 +32,11 @@ class FcmdataResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseHttpRequest,
                     previous_response: GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse,
                 ) -> GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseHttpRequest | None: ...
+
             def deliveryData(self) -> DeliveryDataResource: ...
+
         def androidApps(self) -> AndroidAppsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

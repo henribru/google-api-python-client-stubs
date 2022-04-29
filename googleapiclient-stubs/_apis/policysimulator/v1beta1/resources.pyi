@@ -34,6 +34,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponseHttpRequest,
                         previous_response: GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse,
                     ) -> GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -45,8 +46,11 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudPolicysimulatorV1beta1ReplayHttpRequest: ...
                 def results(self) -> ResultsResource: ...
+
             def replays(self) -> ReplaysResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -66,6 +70,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
             previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
             previous_response: GoogleLongrunningListOperationsResponse,
         ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -87,6 +92,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponseHttpRequest,
                         previous_response: GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse,
                     ) -> GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -98,8 +104,11 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudPolicysimulatorV1beta1ReplayHttpRequest: ...
                 def results(self) -> ResultsResource: ...
+
             def replays(self) -> ReplaysResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -121,6 +130,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponseHttpRequest,
                         previous_response: GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse,
                     ) -> GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -132,8 +142,11 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudPolicysimulatorV1beta1ReplayHttpRequest: ...
                 def results(self) -> ResultsResource: ...
+
             def replays(self) -> ReplaysResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

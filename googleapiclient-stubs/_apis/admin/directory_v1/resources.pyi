@@ -22,11 +22,13 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             self, *, userKey: str, codeId: int, **kwargs: typing.Any
         ) -> AspHttpRequest: ...
         def list(self, *, userKey: str, **kwargs: typing.Any) -> AspsHttpRequest: ...
+
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class ChromeosdevicesResource(googleapiclient.discovery.Resource):
         def action(
@@ -98,6 +100,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
             **kwargs: typing.Any
         ) -> ChromeOsDeviceHttpRequest: ...
+
     @typing.type_check_only
     class CustomerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -114,6 +117,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                         commandId: str,
                         **kwargs: typing.Any
                     ) -> DirectoryChromeosdevicesCommandHttpRequest: ...
+
                 def issueCommand(
                     self,
                     *,
@@ -123,8 +127,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> DirectoryChromeosdevicesIssueCommandResponseHttpRequest: ...
                 def commands(self) -> CommandsResource: ...
+
             def chromeos(self) -> ChromeosResource: ...
+
         def devices(self) -> DevicesResource: ...
+
     @typing.type_check_only
     class CustomersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -192,7 +199,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> PrinterHttpRequest: ...
+
             def printers(self) -> PrintersResource: ...
+
         def get(
             self, *, customerKey: str, **kwargs: typing.Any
         ) -> CustomerHttpRequest: ...
@@ -203,6 +212,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             self, *, customerKey: str, body: Customer = ..., **kwargs: typing.Any
         ) -> CustomerHttpRequest: ...
         def chrome(self) -> ChromeResource: ...
+
     @typing.type_check_only
     class DomainAliasesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -217,6 +227,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
         def list(
             self, *, customer: str, parentDomainName: str = ..., **kwargs: typing.Any
         ) -> DomainAliasesHttpRequest: ...
+
     @typing.type_check_only
     class DomainsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -231,6 +242,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
         def list(
             self, *, customer: str, **kwargs: typing.Any
         ) -> Domains2HttpRequest: ...
+
     @typing.type_check_only
     class GroupsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -244,6 +256,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, groupKey: str, **kwargs: typing.Any
             ) -> AliasesHttpRequest: ...
+
         def delete(
             self, *, groupKey: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -274,6 +287,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             self, *, groupKey: str, body: Group = ..., **kwargs: typing.Any
         ) -> GroupHttpRequest: ...
         def aliases(self) -> AliasesResource: ...
+
     @typing.type_check_only
     class MembersResource(googleapiclient.discovery.Resource):
         def delete(
@@ -317,6 +331,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             body: Member = ...,
             **kwargs: typing.Any
         ) -> MemberHttpRequest: ...
+
     @typing.type_check_only
     class MobiledevicesResource(googleapiclient.discovery.Resource):
         def action(
@@ -357,6 +372,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             previous_request: MobileDevicesHttpRequest,
             previous_response: MobileDevices,
         ) -> MobileDevicesHttpRequest | None: ...
+
     @typing.type_check_only
     class OrgunitsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -392,11 +408,13 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             body: OrgUnit = ...,
             **kwargs: typing.Any
         ) -> OrgUnitHttpRequest: ...
+
     @typing.type_check_only
     class PrivilegesResource(googleapiclient.discovery.Resource):
         def list(
             self, *, customer: str, **kwargs: typing.Any
         ) -> PrivilegesHttpRequest: ...
+
     @typing.type_check_only
     class ResourcesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -452,6 +470,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> BuildingHttpRequest: ...
+
         @typing.type_check_only
         class CalendarsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -498,6 +517,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 body: CalendarResource = ...,
                 **kwargs: typing.Any
             ) -> CalendarResourceHttpRequest: ...
+
         @typing.type_check_only
         class FeaturesResource(googleapiclient.discovery.Resource):
             def delete(
@@ -544,9 +564,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 body: Feature = ...,
                 **kwargs: typing.Any
             ) -> FeatureHttpRequest: ...
+
         def buildings(self) -> BuildingsResource: ...
         def calendars(self) -> CalendarsResource: ...
         def features(self) -> FeaturesResource: ...
+
     @typing.type_check_only
     class RoleAssignmentsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -573,6 +595,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             previous_request: RoleAssignmentsHttpRequest,
             previous_response: RoleAssignments,
         ) -> RoleAssignmentsHttpRequest | None: ...
+
     @typing.type_check_only
     class RolesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -601,6 +624,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
         def update(
             self, *, customer: str, roleId: str, body: Role = ..., **kwargs: typing.Any
         ) -> RoleHttpRequest: ...
+
     @typing.type_check_only
     class SchemasResource(googleapiclient.discovery.Resource):
         def delete(
@@ -631,6 +655,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             body: Schema = ...,
             **kwargs: typing.Any
         ) -> SchemaHttpRequest: ...
+
     @typing.type_check_only
     class TokensResource(googleapiclient.discovery.Resource):
         def delete(
@@ -640,11 +665,13 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             self, *, userKey: str, clientId: str, **kwargs: typing.Any
         ) -> TokenHttpRequest: ...
         def list(self, *, userKey: str, **kwargs: typing.Any) -> TokensHttpRequest: ...
+
     @typing.type_check_only
     class TwoStepVerificationResource(googleapiclient.discovery.Resource):
         def turnOff(
             self, *, userKey: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -670,6 +697,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 event: typing_extensions.Literal["add", "delete"] = ...,
                 **kwargs: typing.Any
             ) -> ChannelHttpRequest: ...
+
         @typing.type_check_only
         class PhotosResource(googleapiclient.discovery.Resource):
             def delete(
@@ -684,6 +712,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, userKey: str, body: UserPhoto = ..., **kwargs: typing.Any
             ) -> UserPhotoHttpRequest: ...
+
         def delete(
             self, *, userKey: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -762,6 +791,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
         ) -> ChannelHttpRequest: ...
         def aliases(self) -> AliasesResource: ...
         def photos(self) -> PhotosResource: ...
+
     @typing.type_check_only
     class VerificationCodesResource(googleapiclient.discovery.Resource):
         def generate(
@@ -773,6 +803,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
         def list(
             self, *, userKey: str, **kwargs: typing.Any
         ) -> VerificationCodesHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

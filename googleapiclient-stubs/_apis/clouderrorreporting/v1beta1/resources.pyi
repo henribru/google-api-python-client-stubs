@@ -49,6 +49,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 body: ReportedErrorEvent = ...,
                 **kwargs: typing.Any
             ) -> ReportErrorEventResponseHttpRequest: ...
+
         @typing.type_check_only
         class GroupStatsResource(googleapiclient.discovery.Resource):
             def list(
@@ -90,6 +91,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 previous_request: ListGroupStatsResponseHttpRequest,
                 previous_response: ListGroupStatsResponse,
             ) -> ListGroupStatsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class GroupsResource(googleapiclient.discovery.Resource):
             def get(
@@ -98,12 +100,14 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, name: str, body: ErrorGroup = ..., **kwargs: typing.Any
             ) -> ErrorGroupHttpRequest: ...
+
         def deleteEvents(
             self, *, projectName: str, **kwargs: typing.Any
         ) -> DeleteEventsResponseHttpRequest: ...
         def events(self) -> EventsResource: ...
         def groupStats(self) -> GroupStatsResource: ...
         def groups(self) -> GroupsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

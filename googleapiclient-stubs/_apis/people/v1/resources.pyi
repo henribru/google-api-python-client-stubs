@@ -24,6 +24,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 body: ModifyContactGroupMembersRequest = ...,
                 **kwargs: typing.Any
             ) -> ModifyContactGroupMembersResponseHttpRequest: ...
+
         def batchGet(
             self,
             *,
@@ -68,6 +69,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> ContactGroupHttpRequest: ...
         def members(self) -> MembersResource: ...
+
     @typing.type_check_only
     class OtherContactsResource(googleapiclient.discovery.Resource):
         def copyOtherContactToMyContactsGroup(
@@ -114,6 +116,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             readMask: str = ...,
             **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
+
     @typing.type_check_only
     class PeopleResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -155,6 +158,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 previous_request: ListConnectionsResponseHttpRequest,
                 previous_response: ListConnectionsResponse,
             ) -> ListConnectionsResponseHttpRequest | None: ...
+
         def batchCreateContacts(
             self, *, body: BatchCreateContactsRequest = ..., **kwargs: typing.Any
         ) -> BatchCreateContactsResponseHttpRequest: ...
@@ -379,6 +383,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> UpdateContactPhotoResponseHttpRequest: ...
         def connections(self) -> ConnectionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

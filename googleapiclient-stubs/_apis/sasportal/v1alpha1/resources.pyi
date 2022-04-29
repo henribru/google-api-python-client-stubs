@@ -47,6 +47,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     previous_request: SasPortalListDevicesResponseHttpRequest,
                     previous_response: SasPortalListDevicesResponse,
                 ) -> SasPortalListDevicesResponseHttpRequest | None: ...
+
             def create(
                 self,
                 *,
@@ -90,6 +91,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> SasPortalDeploymentHttpRequest: ...
             def devices(self) -> DevicesResource: ...
+
         @typing.type_check_only
         class DevicesResource(googleapiclient.discovery.Resource):
             def create(
@@ -151,6 +153,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 body: SasPortalUpdateSignedDeviceRequest = ...,
                 **kwargs: typing.Any
             ) -> SasPortalDeviceHttpRequest: ...
+
         @typing.type_check_only
         class NodesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -176,6 +179,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     previous_request: SasPortalListDeploymentsResponseHttpRequest,
                     previous_response: SasPortalListDeploymentsResponse,
                 ) -> SasPortalListDeploymentsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class DevicesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -206,6 +210,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     previous_request: SasPortalListDevicesResponseHttpRequest,
                     previous_response: SasPortalListDevicesResponse,
                 ) -> SasPortalListDevicesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class NodesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -229,6 +234,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     previous_request: SasPortalListNodesResponseHttpRequest,
                     previous_response: SasPortalListNodesResponse,
                 ) -> SasPortalListNodesResponseHttpRequest | None: ...
+
             def create(
                 self, *, parent: str, body: SasPortalNode = ..., **kwargs: typing.Any
             ) -> SasPortalNodeHttpRequest: ...
@@ -270,6 +276,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
             def deployments(self) -> DeploymentsResource: ...
             def devices(self) -> DevicesResource: ...
             def nodes(self) -> NodesResource: ...
+
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> SasPortalCustomerHttpRequest: ...
@@ -292,6 +299,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
         def deployments(self) -> DeploymentsResource: ...
         def devices(self) -> DevicesResource: ...
         def nodes(self) -> NodesResource: ...
+
     @typing.type_check_only
     class DeploymentsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -331,10 +339,12 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 body: SasPortalUpdateSignedDeviceRequest = ...,
                 **kwargs: typing.Any
             ) -> SasPortalDeviceHttpRequest: ...
+
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> SasPortalDeploymentHttpRequest: ...
         def devices(self) -> DevicesResource: ...
+
     @typing.type_check_only
     class InstallerResource(googleapiclient.discovery.Resource):
         def generateSecret(
@@ -343,6 +353,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
         def validate(
             self, *, body: SasPortalValidateInstallerRequest = ..., **kwargs: typing.Any
         ) -> SasPortalValidateInstallerResponseHttpRequest: ...
+
     @typing.type_check_only
     class NodesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -377,6 +388,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     previous_request: SasPortalListDevicesResponseHttpRequest,
                     previous_response: SasPortalListDevicesResponse,
                 ) -> SasPortalListDevicesResponseHttpRequest | None: ...
+
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> SasPortalEmptyHttpRequest: ...
@@ -413,6 +425,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> SasPortalDeploymentHttpRequest: ...
             def devices(self) -> DevicesResource: ...
+
         @typing.type_check_only
         class DevicesResource(googleapiclient.discovery.Resource):
             def create(
@@ -474,6 +487,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 body: SasPortalUpdateSignedDeviceRequest = ...,
                 **kwargs: typing.Any
             ) -> SasPortalDeviceHttpRequest: ...
+
         @typing.type_check_only
         class NodesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -499,6 +513,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     previous_request: SasPortalListDeploymentsResponseHttpRequest,
                     previous_response: SasPortalListDeploymentsResponse,
                 ) -> SasPortalListDeploymentsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class DevicesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -529,6 +544,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     previous_request: SasPortalListDevicesResponseHttpRequest,
                     previous_response: SasPortalListDevicesResponse,
                 ) -> SasPortalListDevicesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class NodesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -552,6 +568,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     previous_request: SasPortalListNodesResponseHttpRequest,
                     previous_response: SasPortalListNodesResponse,
                 ) -> SasPortalListNodesResponseHttpRequest | None: ...
+
             def create(
                 self, *, parent: str, body: SasPortalNode = ..., **kwargs: typing.Any
             ) -> SasPortalNodeHttpRequest: ...
@@ -593,12 +610,14 @@ class SasportalResource(googleapiclient.discovery.Resource):
             def deployments(self) -> DeploymentsResource: ...
             def devices(self) -> DevicesResource: ...
             def nodes(self) -> NodesResource: ...
+
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> SasPortalNodeHttpRequest: ...
         def deployments(self) -> DeploymentsResource: ...
         def devices(self) -> DevicesResource: ...
         def nodes(self) -> NodesResource: ...
+
     @typing.type_check_only
     class PoliciesResource(googleapiclient.discovery.Resource):
         def get(
@@ -610,6 +629,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
         def test(
             self, *, body: SasPortalTestPermissionsRequest = ..., **kwargs: typing.Any
         ) -> SasPortalTestPermissionsResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

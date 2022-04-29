@@ -33,6 +33,7 @@ class PlayableLocationsResource(googleapiclient.discovery.Resource):
             body: GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

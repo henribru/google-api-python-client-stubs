@@ -82,8 +82,11 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     body: ConnectionCredential = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+
             def connections(self) -> ConnectionsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

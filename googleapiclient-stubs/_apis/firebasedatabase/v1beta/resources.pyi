@@ -61,8 +61,11 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     body: ReenableDatabaseInstanceRequest = ...,
                     **kwargs: typing.Any
                 ) -> DatabaseInstanceHttpRequest: ...
+
             def instances(self) -> InstancesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

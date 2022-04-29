@@ -39,6 +39,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
                 previous_request: ListTrafficStatsResponseHttpRequest,
                 previous_response: ListTrafficStatsResponse,
             ) -> ListTrafficStatsResponseHttpRequest | None: ...
+
         def get(self, *, name: str, **kwargs: typing.Any) -> DomainHttpRequest: ...
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
@@ -49,6 +50,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
             previous_response: ListDomainsResponse,
         ) -> ListDomainsResponseHttpRequest | None: ...
         def trafficStats(self) -> TrafficStatsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

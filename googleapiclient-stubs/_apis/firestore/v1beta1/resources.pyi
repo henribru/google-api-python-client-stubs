@@ -156,6 +156,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: WriteRequest = ...,
                     **kwargs: typing.Any
                 ) -> WriteResponseHttpRequest: ...
+
             @typing.type_check_only
             class IndexesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -185,6 +186,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest,
                     previous_response: GoogleFirestoreAdminV1beta1ListIndexesResponse,
                 ) -> GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest | None: ...
+
             def exportDocuments(
                 self,
                 *,
@@ -201,7 +203,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def documents(self) -> DocumentsResource: ...
             def indexes(self) -> IndexesResource: ...
+
         def databases(self) -> DatabasesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

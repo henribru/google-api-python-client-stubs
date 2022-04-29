@@ -40,10 +40,12 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 previous_request: ListTracesResponseHttpRequest,
                 previous_response: ListTracesResponse,
             ) -> ListTracesResponseHttpRequest | None: ...
+
         def patchTraces(
             self, *, projectId: str, body: Traces = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def traces(self) -> TracesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

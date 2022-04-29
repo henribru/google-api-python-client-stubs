@@ -29,6 +29,7 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+
             def authorize(
                 self,
                 *,
@@ -55,7 +56,9 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def publicKeys(self) -> PublicKeysResource: ...
+
         def environments(self) -> EnvironmentsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

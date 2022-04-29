@@ -56,6 +56,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> SecurityMarksHttpRequest: ...
+
         @typing.type_check_only
         class FindingsResource(googleapiclient.discovery.Resource):
             def bulkMute(
@@ -65,6 +66,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: BulkMuteFindingsRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class MuteConfigsResource(googleapiclient.discovery.Resource):
             def create(
@@ -102,6 +104,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
+
         @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -116,6 +119,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudSecuritycenterV1ExternalSystemHttpRequest: ...
+
                 def group(
                     self,
                     *,
@@ -174,6 +178,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> SecurityMarksHttpRequest: ...
                 def externalSystems(self) -> ExternalSystemsResource: ...
+
             def list(
                 self,
                 *,
@@ -188,10 +193,12 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 previous_response: ListSourcesResponse,
             ) -> ListSourcesResponseHttpRequest | None: ...
             def findings(self) -> FindingsResource: ...
+
         def assets(self) -> AssetsResource: ...
         def findings(self) -> FindingsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
         def sources(self) -> SourcesResource: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -242,6 +249,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> SecurityMarksHttpRequest: ...
+
         @typing.type_check_only
         class FindingsResource(googleapiclient.discovery.Resource):
             def bulkMute(
@@ -251,6 +259,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: BulkMuteFindingsRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class MuteConfigsResource(googleapiclient.discovery.Resource):
             def create(
@@ -288,6 +297,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
+
         @typing.type_check_only
         class NotificationConfigsResource(googleapiclient.discovery.Resource):
             def create(
@@ -325,6 +335,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> NotificationConfigHttpRequest: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -350,6 +361,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 previous_request: ListOperationsResponseHttpRequest,
                 previous_response: ListOperationsResponse,
             ) -> ListOperationsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -364,6 +376,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudSecuritycenterV1ExternalSystemHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -430,6 +443,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> SecurityMarksHttpRequest: ...
                 def externalSystems(self) -> ExternalSystemsResource: ...
+
             def create(
                 self, *, parent: str, body: Source = ..., **kwargs: typing.Any
             ) -> SourceHttpRequest: ...
@@ -477,6 +491,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def findings(self) -> FindingsResource: ...
+
         def getOrganizationSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> OrganizationSettingsHttpRequest: ...
@@ -494,6 +509,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def notificationConfigs(self) -> NotificationConfigsResource: ...
         def operations(self) -> OperationsResource: ...
         def sources(self) -> SourcesResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -537,6 +553,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> SecurityMarksHttpRequest: ...
+
         @typing.type_check_only
         class FindingsResource(googleapiclient.discovery.Resource):
             def bulkMute(
@@ -546,6 +563,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: BulkMuteFindingsRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class MuteConfigsResource(googleapiclient.discovery.Resource):
             def create(
@@ -583,6 +601,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
+
         @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -597,6 +616,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudSecuritycenterV1ExternalSystemHttpRequest: ...
+
                 def group(
                     self,
                     *,
@@ -655,6 +675,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> SecurityMarksHttpRequest: ...
                 def externalSystems(self) -> ExternalSystemsResource: ...
+
             def list(
                 self,
                 *,
@@ -669,10 +690,12 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 previous_response: ListSourcesResponse,
             ) -> ListSourcesResponseHttpRequest | None: ...
             def findings(self) -> FindingsResource: ...
+
         def assets(self) -> AssetsResource: ...
         def findings(self) -> FindingsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
         def sources(self) -> SourcesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -20,7 +20,9 @@ class PlaycustomappResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, account: str, body: CustomApp = ..., **kwargs: typing.Any
             ) -> CustomAppHttpRequest: ...
+
         def customApps(self) -> CustomAppsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

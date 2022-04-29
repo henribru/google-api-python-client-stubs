@@ -26,6 +26,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
             previous_request: GoogleCloudDatacatalogV1SearchCatalogResponseHttpRequest,
             previous_response: GoogleCloudDatacatalogV1SearchCatalogResponse,
         ) -> GoogleCloudDatacatalogV1SearchCatalogResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class EntriesResource(googleapiclient.discovery.Resource):
         def lookup(
@@ -36,6 +37,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
             sqlResource: str = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudDatacatalogV1EntryHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -77,6 +79,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDatacatalogV1TagHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -128,6 +131,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def tags(self) -> TagsResource: ...
+
                 @typing.type_check_only
                 class TagsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -161,6 +165,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatacatalogV1TagHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -219,6 +224,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def entries(self) -> EntriesResource: ...
                 def tags(self) -> TagsResource: ...
+
             @typing.type_check_only
             class TagTemplatesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -232,6 +238,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                             body: GoogleCloudDatacatalogV1RenameTagTemplateFieldEnumValueRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDatacatalogV1TagTemplateFieldHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -259,6 +266,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatacatalogV1TagTemplateFieldHttpRequest: ...
                     def enumValues(self) -> EnumValuesResource: ...
+
                 def create(
                     self,
                     *,
@@ -303,6 +311,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def fields(self) -> FieldsResource: ...
+
             @typing.type_check_only
             class TaxonomiesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -362,6 +371,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -440,10 +450,13 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def policyTags(self) -> PolicyTagsResource: ...
+
             def entryGroups(self) -> EntryGroupsResource: ...
             def tagTemplates(self) -> TagTemplatesResource: ...
             def taxonomies(self) -> TaxonomiesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

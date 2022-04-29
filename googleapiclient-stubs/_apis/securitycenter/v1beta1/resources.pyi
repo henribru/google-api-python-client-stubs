@@ -63,6 +63,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudSecuritycenterV1beta1SecurityMarksHttpRequest: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -92,6 +93,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 previous_request: ListOperationsResponseHttpRequest,
                 previous_response: ListOperationsResponse,
             ) -> ListOperationsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -157,6 +159,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudSecuritycenterV1beta1SecurityMarksHttpRequest: ...
+
             def create(
                 self, *, parent: str, body: Source = ..., **kwargs: typing.Any
             ) -> SourceHttpRequest: ...
@@ -204,6 +207,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def findings(self) -> FindingsResource: ...
+
         def getOrganizationSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> OrganizationSettingsHttpRequest: ...
@@ -218,6 +222,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def assets(self) -> AssetsResource: ...
         def operations(self) -> OperationsResource: ...
         def sources(self) -> SourcesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

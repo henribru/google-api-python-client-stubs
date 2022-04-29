@@ -42,6 +42,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     previous_request: ListGlossariesResponseHttpRequest,
                     previous_response: ListGlossariesResponse,
                 ) -> ListGlossariesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -78,6 +79,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     body: WaitOperationRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def batchTranslateDocument(
                 self,
                 *,
@@ -140,6 +142,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
             ) -> TranslateTextResponseHttpRequest: ...
             def glossaries(self) -> GlossariesResource: ...
             def operations(self) -> OperationsResource: ...
+
         def detectLanguage(
             self,
             *,
@@ -159,6 +162,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
             self, *, parent: str, body: TranslateTextRequest = ..., **kwargs: typing.Any
         ) -> TranslateTextResponseHttpRequest: ...
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

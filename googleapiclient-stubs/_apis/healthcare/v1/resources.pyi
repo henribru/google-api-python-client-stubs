@@ -61,6 +61,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> AttributeDefinitionHttpRequest: ...
+
                     @typing.type_check_only
                     class ConsentArtifactsResource(googleapiclient.discovery.Resource):
                         def create(
@@ -90,6 +91,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             previous_request: ListConsentArtifactsResponseHttpRequest,
                             previous_response: ListConsentArtifactsResponse,
                         ) -> ListConsentArtifactsResponseHttpRequest | None: ...
+
                     @typing.type_check_only
                     class ConsentsResource(googleapiclient.discovery.Resource):
                         def activate(
@@ -165,6 +167,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             body: RevokeConsentRequest = ...,
                             **kwargs: typing.Any
                         ) -> ConsentHttpRequest: ...
+
                     @typing.type_check_only
                     class UserDataMappingsResource(googleapiclient.discovery.Resource):
                         def archive(
@@ -209,6 +212,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> UserDataMappingHttpRequest: ...
+
                     def checkDataAccess(
                         self,
                         *,
@@ -296,6 +300,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def consentArtifacts(self) -> ConsentArtifactsResource: ...
                     def consents(self) -> ConsentsResource: ...
                     def userDataMappings(self) -> UserDataMappingsResource: ...
+
                 @typing.type_check_only
                 class DicomStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -322,6 +327,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                         dicomWebPath: str,
                                         **kwargs: typing.Any
                                     ) -> HttpBodyHttpRequest: ...
+
                                 def delete(
                                     self,
                                     *,
@@ -351,6 +357,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                     **kwargs: typing.Any
                                 ) -> HttpBodyHttpRequest: ...
                                 def frames(self) -> FramesResource: ...
+
                             def delete(
                                 self,
                                 *,
@@ -380,6 +387,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                 **kwargs: typing.Any
                             ) -> HttpBodyHttpRequest: ...
                             def instances(self) -> InstancesResource: ...
+
                         def delete(
                             self,
                             *,
@@ -424,6 +432,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def series(self) -> SeriesResource: ...
+
                     def create(
                         self,
                         *,
@@ -520,6 +529,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def studies(self) -> StudiesResource: ...
+
                 @typing.type_check_only
                 class FhirStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -605,6 +615,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         def vread(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -684,6 +695,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def fhir(self) -> FhirResource: ...
+
                 @typing.type_check_only
                 class Hl7V2StoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -750,6 +762,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> MessageHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -822,6 +835,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def messages(self) -> MessagesResource: ...
+
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def cancel(
@@ -848,6 +862,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         previous_request: ListOperationsResponseHttpRequest,
                         previous_response: ListOperationsResponse,
                     ) -> ListOperationsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -916,6 +931,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 def fhirStores(self) -> FhirStoresResource: ...
                 def hl7V2Stores(self) -> Hl7V2StoresResource: ...
                 def operations(self) -> OperationsResource: ...
+
             @typing.type_check_only
             class ServicesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -927,7 +943,9 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         body: AnalyzeEntitiesRequest = ...,
                         **kwargs: typing.Any
                     ) -> AnalyzeEntitiesResponseHttpRequest: ...
+
                 def nlp(self) -> NlpResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -947,7 +965,9 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def datasets(self) -> DatasetsResource: ...
             def services(self) -> ServicesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

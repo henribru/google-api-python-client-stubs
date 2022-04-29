@@ -38,6 +38,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     previous_request: ListInstanceOSPoliciesCompliancesResponseHttpRequest,
                     previous_response: ListInstanceOSPoliciesCompliancesResponse,
                 ) -> ListInstanceOSPoliciesCompliancesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -68,6 +69,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         previous_request: ListInventoriesResponseHttpRequest,
                         previous_response: ListInventoriesResponse,
                     ) -> ListInventoriesResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -89,7 +91,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                             previous_request: ListOSPolicyAssignmentReportsResponseHttpRequest,
                             previous_response: ListOSPolicyAssignmentReportsResponse,
                         ) -> ListOSPolicyAssignmentReportsResponseHttpRequest | None: ...
+
                     def reports(self) -> ReportsResource: ...
+
                 @typing.type_check_only
                 class VulnerabilityReportsResource(googleapiclient.discovery.Resource):
                     def get(
@@ -109,9 +113,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         previous_request: ListVulnerabilityReportsResponseHttpRequest,
                         previous_response: ListVulnerabilityReportsResponse,
                     ) -> ListVulnerabilityReportsResponseHttpRequest | None: ...
+
                 def inventories(self) -> InventoriesResource: ...
                 def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
                 def vulnerabilityReports(self) -> VulnerabilityReportsResource: ...
+
             @typing.type_check_only
             class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -126,6 +132,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -175,12 +182,15 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
+
             def instanceOSPoliciesCompliances(
                 self,
             ) -> InstanceOSPoliciesCompliancesResource: ...
             def instances(self) -> InstancesResource: ...
             def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

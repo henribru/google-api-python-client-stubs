@@ -86,6 +86,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def cancel(
@@ -115,8 +116,10 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         previous_request: ListOperationsResponseHttpRequest,
                         previous_response: ListOperationsResponse,
                     ) -> ListOperationsResponseHttpRequest | None: ...
+
                 def connectivityTests(self) -> ConnectivityTestsResource: ...
                 def operations(self) -> OperationsResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -135,7 +138,9 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def global_(self) -> GlobalResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

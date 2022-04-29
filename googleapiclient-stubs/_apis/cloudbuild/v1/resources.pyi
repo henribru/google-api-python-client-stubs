@@ -19,6 +19,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
             self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -72,6 +73,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 body: RetryBuildRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class GithubEnterpriseConfigsResource(googleapiclient.discovery.Resource):
             def create(
@@ -110,6 +112,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -166,6 +169,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     body: RetryBuildRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class GithubEnterpriseConfigsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -204,6 +208,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -216,6 +221,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class TriggersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -282,6 +288,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     trigger: str = ...,
                     **kwargs: typing.Any
                 ) -> ReceiveTriggerWebhookResponseHttpRequest: ...
+
             @typing.type_check_only
             class WorkerPoolsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -327,11 +334,13 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def builds(self) -> BuildsResource: ...
             def githubEnterpriseConfigs(self) -> GithubEnterpriseConfigsResource: ...
             def operations(self) -> OperationsResource: ...
             def triggers(self) -> TriggersResource: ...
             def workerPools(self) -> WorkerPoolsResource: ...
+
         @typing.type_check_only
         class TriggersResource(googleapiclient.discovery.Resource):
             def create(
@@ -399,15 +408,18 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 secret: str = ...,
                 **kwargs: typing.Any
             ) -> ReceiveTriggerWebhookResponseHttpRequest: ...
+
         def builds(self) -> BuildsResource: ...
         def githubEnterpriseConfigs(self) -> GithubEnterpriseConfigsResource: ...
         def locations(self) -> LocationsResource: ...
         def triggers(self) -> TriggersResource: ...
+
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def webhook(
             self, *, body: HttpBody = ..., webhookKey: str = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

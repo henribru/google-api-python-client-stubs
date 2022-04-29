@@ -35,6 +35,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                         previous_request: ListUnmappedIdentitiesResponseHttpRequest,
                         previous_response: ListUnmappedIdentitiesResponse,
                     ) -> ListUnmappedIdentitiesResponseHttpRequest | None: ...
+
                 def checkAccess(
                     self,
                     *,
@@ -56,7 +57,9 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     previous_response: SearchItemsByViewUrlResponse,
                 ) -> SearchItemsByViewUrlResponseHttpRequest | None: ...
                 def unmappedids(self) -> UnmappedidsResource: ...
+
             def items(self) -> ItemsResource: ...
+
         @typing.type_check_only
         class IdentitysourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -77,6 +80,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     previous_request: ListItemNamesForUnmappedIdentityResponseHttpRequest,
                     previous_response: ListItemNamesForUnmappedIdentityResponse,
                 ) -> ListItemNamesForUnmappedIdentityResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class UnmappedidsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -101,10 +105,13 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     previous_request: ListUnmappedIdentitiesResponseHttpRequest,
                     previous_response: ListUnmappedIdentitiesResponse,
                 ) -> ListUnmappedIdentitiesResponseHttpRequest | None: ...
+
             def items(self) -> ItemsResource: ...
             def unmappedids(self) -> UnmappedidsResource: ...
+
         def datasources(self) -> DatasourcesResource: ...
         def identitysources(self) -> IdentitysourcesResource: ...
+
     @typing.type_check_only
     class IndexingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -189,6 +196,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     body: StartUploadItemRequest = ...,
                     **kwargs: typing.Any
                 ) -> UploadItemRefHttpRequest: ...
+
             def deleteSchema(
                 self,
                 *,
@@ -211,12 +219,15 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def items(self) -> ItemsResource: ...
+
         def datasources(self) -> DatasourcesResource: ...
+
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def upload(
             self, *, resourceName: str, body: Media = ..., **kwargs: typing.Any
         ) -> MediaHttpRequest: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -235,8 +246,10 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 previous_request: ListOperationsResponseHttpRequest,
                 previous_response: ListOperationsResponse,
             ) -> ListOperationsResponseHttpRequest | None: ...
+
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def lro(self) -> LroResource: ...
+
     @typing.type_check_only
     class QueryResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -256,6 +269,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 previous_request: ListQuerySourcesResponseHttpRequest,
                 previous_response: ListQuerySourcesResponse,
             ) -> ListQuerySourcesResponseHttpRequest | None: ...
+
         def search(
             self, *, body: SearchRequest = ..., **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
@@ -263,6 +277,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             self, *, body: SuggestRequest = ..., **kwargs: typing.Any
         ) -> SuggestResponseHttpRequest: ...
         def sources(self) -> SourcesResource: ...
+
     @typing.type_check_only
     class SettingsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -304,6 +319,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 body: UpdateDataSourceRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class SearchapplicationsResource(googleapiclient.discovery.Resource):
             def create(
@@ -346,6 +362,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, name: str, body: SearchApplication = ..., **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         def getCustomer(self, **kwargs: typing.Any) -> CustomerSettingsHttpRequest: ...
         def updateCustomer(
             self,
@@ -356,6 +373,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
         def datasources(self) -> DatasourcesResource: ...
         def searchapplications(self) -> SearchapplicationsResource: ...
+
     @typing.type_check_only
     class StatsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -374,7 +392,9 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     toDate_year: int = ...,
                     **kwargs: typing.Any
                 ) -> GetDataSourceIndexStatsResponseHttpRequest: ...
+
             def datasources(self) -> DatasourcesResource: ...
+
         @typing.type_check_only
         class QueryResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -391,7 +411,9 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     toDate_year: int = ...,
                     **kwargs: typing.Any
                 ) -> GetSearchApplicationQueryStatsResponseHttpRequest: ...
+
             def searchapplications(self) -> SearchapplicationsResource: ...
+
         @typing.type_check_only
         class SessionResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -408,7 +430,9 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     toDate_year: int = ...,
                     **kwargs: typing.Any
                 ) -> GetSearchApplicationSessionStatsResponseHttpRequest: ...
+
             def searchapplications(self) -> SearchapplicationsResource: ...
+
         @typing.type_check_only
         class UserResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -425,7 +449,9 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     toDate_year: int = ...,
                     **kwargs: typing.Any
                 ) -> GetSearchApplicationUserStatsResponseHttpRequest: ...
+
             def searchapplications(self) -> SearchapplicationsResource: ...
+
         def getIndex(
             self,
             *,
@@ -474,11 +500,13 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
         def query(self) -> QueryResource: ...
         def session(self) -> SessionResource: ...
         def user(self) -> UserResource: ...
+
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def initializeCustomer(
             self, *, body: InitializeCustomerRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

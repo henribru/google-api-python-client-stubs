@@ -54,6 +54,7 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDatapipelinesV1StopPipelineRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
+
             def listPipelines(
                 self,
                 *,
@@ -69,7 +70,9 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                 previous_response: GoogleCloudDatapipelinesV1ListPipelinesResponse,
             ) -> GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest | None: ...
             def pipelines(self) -> PipelinesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -41,6 +41,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 body: WatchCreativesRequest = ...,
                 **kwargs: typing.Any
             ) -> WatchCreativesResponseHttpRequest: ...
+
         @typing.type_check_only
         class EndpointsResource(googleapiclient.discovery.Resource):
             def get(
@@ -67,6 +68,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> EndpointHttpRequest: ...
+
         @typing.type_check_only
         class PretargetingConfigsResource(googleapiclient.discovery.Resource):
             def activate(
@@ -159,6 +161,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 body: SuspendPretargetingConfigRequest = ...,
                 **kwargs: typing.Any
             ) -> PretargetingConfigHttpRequest: ...
+
         def get(self, *, name: str, **kwargs: typing.Any) -> BidderHttpRequest: ...
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
@@ -171,6 +174,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
         def creatives(self) -> CreativesResource: ...
         def endpoints(self) -> EndpointsResource: ...
         def pretargetingConfigs(self) -> PretargetingConfigsResource: ...
+
     @typing.type_check_only
     class BuyersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -212,6 +216,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> CreativeHttpRequest: ...
+
         @typing.type_check_only
         class UserListsResource(googleapiclient.discovery.Resource):
             def close(self, *, name: str, body: CloseUserListRequest = ..., **kwargs: typing.Any) -> UserListHttpRequest: ...  # type: ignore
@@ -247,6 +252,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, name: str, body: UserList = ..., **kwargs: typing.Any
             ) -> UserListHttpRequest: ...
+
         def get(self, *, name: str, **kwargs: typing.Any) -> BuyerHttpRequest: ...
         def getRemarketingTag(
             self, *, name: str, **kwargs: typing.Any
@@ -261,6 +267,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
         ) -> ListBuyersResponseHttpRequest | None: ...
         def creatives(self) -> CreativesResource: ...
         def userLists(self) -> UserListsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

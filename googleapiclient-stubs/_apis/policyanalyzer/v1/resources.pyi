@@ -35,9 +35,13 @@ class PolicyAnalyzerResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudPolicyanalyzerV1QueryActivityResponseHttpRequest,
                         previous_response: GoogleCloudPolicyanalyzerV1QueryActivityResponse,
                     ) -> GoogleCloudPolicyanalyzerV1QueryActivityResponseHttpRequest | None: ...
+
                 def activities(self) -> ActivitiesResource: ...
+
             def activityTypes(self) -> ActivityTypesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

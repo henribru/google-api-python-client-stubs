@@ -111,6 +111,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             body: RestoreCryptoKeyVersionRequest = ...,
                             **kwargs: typing.Any
                         ) -> CryptoKeyVersionHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -192,6 +193,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> CryptoKeyHttpRequest: ...
                     def cryptoKeyVersions(self) -> CryptoKeyVersionsResource: ...
+
                 @typing.type_check_only
                 class ImportJobsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -241,6 +243,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -290,6 +293,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def cryptoKeys(self) -> CryptoKeysResource: ...
                 def importJobs(self) -> ImportJobsResource: ...
+
             def generateRandomBytes(
                 self,
                 *,
@@ -315,7 +319,9 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def keyRings(self) -> KeyRingsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

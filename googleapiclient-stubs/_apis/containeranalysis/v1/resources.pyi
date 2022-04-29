@@ -34,6 +34,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -54,6 +55,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     previous_request: ListNoteOccurrencesResponseHttpRequest,
                     previous_response: ListNoteOccurrencesResponse,
                 ) -> ListNoteOccurrencesResponseHttpRequest | None: ...
+
             def batchCreate(
                 self,
                 *,
@@ -117,6 +119,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def occurrences(self) -> OccurrencesResource: ...
+
         @typing.type_check_only
         class OccurrencesResource(googleapiclient.discovery.Resource):
             def batchCreate(
@@ -184,8 +187,10 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
+
         def notes(self) -> NotesResource: ...
         def occurrences(self) -> OccurrencesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

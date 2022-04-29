@@ -118,6 +118,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             preview: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class ManifestsResource(googleapiclient.discovery.Resource):
         def get(
@@ -139,6 +140,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             previous_request: ManifestsListResponseHttpRequest,
             previous_response: ManifestsListResponse,
         ) -> ManifestsListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -159,6 +161,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             previous_request: OperationsListResponseHttpRequest,
             previous_response: OperationsListResponse,
         ) -> OperationsListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ResourcesResource(googleapiclient.discovery.Resource):
         def get(
@@ -180,6 +183,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             previous_request: ResourcesListResponseHttpRequest,
             previous_response: ResourcesListResponse,
         ) -> ResourcesListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class TypesResource(googleapiclient.discovery.Resource):
         def list(
@@ -197,6 +201,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             previous_request: TypesListResponseHttpRequest,
             previous_response: TypesListResponse,
         ) -> TypesListResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

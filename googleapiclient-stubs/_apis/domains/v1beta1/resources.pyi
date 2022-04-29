@@ -36,6 +36,7 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class RegistrationsResource(googleapiclient.discovery.Resource):
                 def configureContactSettings(
@@ -148,6 +149,7 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     body: TransferDomainRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -167,7 +169,9 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def registrations(self) -> RegistrationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -49,6 +49,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     previous_request: ListClientUserInvitationsResponseHttpRequest,
                     previous_response: ListClientUserInvitationsResponse,
                 ) -> ListClientUserInvitationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class UsersResource(googleapiclient.discovery.Resource):
                 def get(
@@ -82,6 +83,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     body: ClientUser = ...,
                     **kwargs: typing.Any
                 ) -> ClientUserHttpRequest: ...
+
             def create(
                 self, *, accountId: str, body: Client = ..., **kwargs: typing.Any
             ) -> ClientHttpRequest: ...
@@ -112,6 +114,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
             ) -> ClientHttpRequest: ...
             def invitations(self) -> InvitationsResource: ...
             def users(self) -> UsersResource: ...
+
         @typing.type_check_only
         class CreativesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -147,6 +150,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     body: RemoveDealAssociationRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -199,6 +203,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def dealAssociations(self) -> DealAssociationsResource: ...
+
         @typing.type_check_only
         class FinalizedProposalsResource(googleapiclient.discovery.Resource):
             def list(
@@ -234,6 +239,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 body: ResumeProposalDealsRequest = ...,
                 **kwargs: typing.Any
             ) -> ProposalHttpRequest: ...
+
         @typing.type_check_only
         class ProductsResource(googleapiclient.discovery.Resource):
             def get(
@@ -253,6 +259,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 previous_request: ListProductsResponseHttpRequest,
                 previous_response: ListProductsResponse,
             ) -> ListProductsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class ProposalsResource(googleapiclient.discovery.Resource):
             def accept(
@@ -334,6 +341,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 body: Proposal = ...,
                 **kwargs: typing.Any
             ) -> ProposalHttpRequest: ...
+
         @typing.type_check_only
         class PublisherProfilesResource(googleapiclient.discovery.Resource):
             def get(
@@ -352,12 +360,14 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 previous_request: ListPublisherProfilesResponseHttpRequest,
                 previous_response: ListPublisherProfilesResponse,
             ) -> ListPublisherProfilesResponseHttpRequest | None: ...
+
         def clients(self) -> ClientsResource: ...
         def creatives(self) -> CreativesResource: ...
         def finalizedProposals(self) -> FinalizedProposalsResource: ...
         def products(self) -> ProductsResource: ...
         def proposals(self) -> ProposalsResource: ...
         def publisherProfiles(self) -> PublisherProfilesResource: ...
+
     @typing.type_check_only
     class BiddersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -379,6 +389,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         previous_request: ListBidMetricsResponseHttpRequest,
                         previous_response: ListBidMetricsResponse,
                     ) -> ListBidMetricsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class BidResponseErrorsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -394,6 +405,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         previous_request: ListBidResponseErrorsResponseHttpRequest,
                         previous_response: ListBidResponseErrorsResponse,
                     ) -> ListBidResponseErrorsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class BidResponsesWithoutBidsResource(
                     googleapiclient.discovery.Resource
@@ -411,6 +423,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         previous_request: ListBidResponsesWithoutBidsResponseHttpRequest,
                         previous_response: ListBidResponsesWithoutBidsResponse,
                     ) -> ListBidResponsesWithoutBidsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class FilteredBidRequestsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -426,6 +439,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         previous_request: ListFilteredBidRequestsResponseHttpRequest,
                         previous_response: ListFilteredBidRequestsResponse,
                     ) -> ListFilteredBidRequestsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class FilteredBidsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -444,6 +458,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                             previous_request: ListCreativeStatusBreakdownByCreativeResponseHttpRequest,
                             previous_response: ListCreativeStatusBreakdownByCreativeResponse,
                         ) -> ListCreativeStatusBreakdownByCreativeResponseHttpRequest | None: ...
+
                     @typing.type_check_only
                     class DetailsResource(googleapiclient.discovery.Resource):
                         def list(
@@ -460,6 +475,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                             previous_request: ListCreativeStatusBreakdownByDetailResponseHttpRequest,
                             previous_response: ListCreativeStatusBreakdownByDetailResponse,
                         ) -> ListCreativeStatusBreakdownByDetailResponseHttpRequest | None: ...
+
                     def list(
                         self,
                         *,
@@ -475,6 +491,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     ) -> ListFilteredBidsResponseHttpRequest | None: ...
                     def creatives(self) -> CreativesResource: ...
                     def details(self) -> DetailsResource: ...
+
                 @typing.type_check_only
                 class ImpressionMetricsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -490,6 +507,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         previous_request: ListImpressionMetricsResponseHttpRequest,
                         previous_response: ListImpressionMetricsResponse,
                     ) -> ListImpressionMetricsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class LosingBidsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -505,6 +523,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         previous_request: ListLosingBidsResponseHttpRequest,
                         previous_response: ListLosingBidsResponse,
                     ) -> ListLosingBidsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class NonBillableWinningBidsResource(
                     googleapiclient.discovery.Resource
@@ -522,6 +541,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         previous_request: ListNonBillableWinningBidsResponseHttpRequest,
                         previous_response: ListNonBillableWinningBidsResponse,
                     ) -> ListNonBillableWinningBidsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -559,7 +579,9 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 def impressionMetrics(self) -> ImpressionMetricsResource: ...
                 def losingBids(self) -> LosingBidsResource: ...
                 def nonBillableWinningBids(self) -> NonBillableWinningBidsResource: ...
+
             def filterSets(self) -> FilterSetsResource: ...
+
         @typing.type_check_only
         class FilterSetsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -577,6 +599,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     previous_request: ListBidMetricsResponseHttpRequest,
                     previous_response: ListBidMetricsResponse,
                 ) -> ListBidMetricsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class BidResponseErrorsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -592,6 +615,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     previous_request: ListBidResponseErrorsResponseHttpRequest,
                     previous_response: ListBidResponseErrorsResponse,
                 ) -> ListBidResponseErrorsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class BidResponsesWithoutBidsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -607,6 +631,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     previous_request: ListBidResponsesWithoutBidsResponseHttpRequest,
                     previous_response: ListBidResponsesWithoutBidsResponse,
                 ) -> ListBidResponsesWithoutBidsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class FilteredBidRequestsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -622,6 +647,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     previous_request: ListFilteredBidRequestsResponseHttpRequest,
                     previous_response: ListFilteredBidRequestsResponse,
                 ) -> ListFilteredBidRequestsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class FilteredBidsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -640,6 +666,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         previous_request: ListCreativeStatusBreakdownByCreativeResponseHttpRequest,
                         previous_response: ListCreativeStatusBreakdownByCreativeResponse,
                     ) -> ListCreativeStatusBreakdownByCreativeResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class DetailsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -656,6 +683,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         previous_request: ListCreativeStatusBreakdownByDetailResponseHttpRequest,
                         previous_response: ListCreativeStatusBreakdownByDetailResponse,
                     ) -> ListCreativeStatusBreakdownByDetailResponseHttpRequest | None: ...
+
                 def list(
                     self,
                     *,
@@ -671,6 +699,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                 ) -> ListFilteredBidsResponseHttpRequest | None: ...
                 def creatives(self) -> CreativesResource: ...
                 def details(self) -> DetailsResource: ...
+
             @typing.type_check_only
             class ImpressionMetricsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -686,6 +715,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     previous_request: ListImpressionMetricsResponseHttpRequest,
                     previous_response: ListImpressionMetricsResponse,
                 ) -> ListImpressionMetricsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class LosingBidsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -701,6 +731,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     previous_request: ListLosingBidsResponseHttpRequest,
                     previous_response: ListLosingBidsResponse,
                 ) -> ListLosingBidsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class NonBillableWinningBidsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -716,6 +747,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                     previous_request: ListNonBillableWinningBidsResponseHttpRequest,
                     previous_response: ListNonBillableWinningBidsResponse,
                 ) -> ListNonBillableWinningBidsResponseHttpRequest | None: ...
+
             def create(
                 self,
                 *,
@@ -751,8 +783,10 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
             def impressionMetrics(self) -> ImpressionMetricsResource: ...
             def losingBids(self) -> LosingBidsResource: ...
             def nonBillableWinningBids(self) -> NonBillableWinningBidsResource: ...
+
         def accounts(self) -> AccountsResource: ...
         def filterSets(self) -> FilterSetsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

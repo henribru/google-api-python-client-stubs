@@ -67,6 +67,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: SetOrgPolicyRequest = ...,
             **kwargs: typing.Any
         ) -> OrgPolicyHttpRequest: ...
+
     @typing.type_check_only
     class LiensResource(googleapiclient.discovery.Resource):
         def create(
@@ -87,9 +88,11 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_request: ListLiensResponseHttpRequest,
             previous_response: ListLiensResponse,
         ) -> ListLiensResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         def clearOrgPolicy(
@@ -176,6 +179,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: TestIamPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestIamPermissionsResponseHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def clearOrgPolicy(
@@ -290,6 +294,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def update(
             self, *, projectId: str, body: Project = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -26,8 +26,11 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     body: ResetInstanceRequest = ...,
                     **kwargs: typing.Any
                 ) -> ResetInstanceResponseHttpRequest: ...
+
             def instances(self) -> InstancesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

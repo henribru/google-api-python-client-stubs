@@ -23,6 +23,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def update(
             self, *, id: int, body: Account = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
+
     @typing.type_check_only
     class CreativesResource(googleapiclient.discovery.Resource):
         def get(
@@ -46,6 +47,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             previous_request: CreativesListHttpRequest,
             previous_response: CreativesList,
         ) -> CreativesListHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

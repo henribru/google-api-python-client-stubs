@@ -70,6 +70,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketAccessControlHttpRequest: ...
+
     @typing.type_check_only
     class BucketsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -223,11 +224,13 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketHttpRequest: ...
+
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class DefaultObjectAccessControlsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -287,6 +290,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
+
     @typing.type_check_only
     class NotificationsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -324,6 +328,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> NotificationsHttpRequest: ...
+
     @typing.type_check_only
     class ObjectAccessControlsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -393,6 +398,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
+
     @typing.type_check_only
     class ObjectsResource(googleapiclient.discovery.Resource):
         def compose(
@@ -652,6 +658,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             versions: bool = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -705,6 +712,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 userProject: str = ...,
                 **kwargs: typing.Any
             ) -> HmacKeyMetadataHttpRequest: ...
+
         @typing.type_check_only
         class ServiceAccountResource(googleapiclient.discovery.Resource):
             def get(
@@ -715,8 +723,10 @@ class StorageResource(googleapiclient.discovery.Resource):
                 userProject: str = ...,
                 **kwargs: typing.Any
             ) -> ServiceAccountHttpRequest: ...
+
         def hmacKeys(self) -> HmacKeysResource: ...
         def serviceAccount(self) -> ServiceAccountResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

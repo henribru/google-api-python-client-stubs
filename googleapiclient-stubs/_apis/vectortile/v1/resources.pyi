@@ -47,6 +47,7 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             regionCode: str = ...,
             **kwargs: typing.Any
         ) -> FeatureTileHttpRequest: ...
+
     @typing.type_check_only
     class TerraintilesResource(googleapiclient.discovery.Resource):
         def get(
@@ -82,6 +83,7 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> TerrainTileHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

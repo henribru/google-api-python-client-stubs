@@ -29,6 +29,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             previous_request: SearchAllIamPoliciesResponseHttpRequest,
             previous_response: SearchAllIamPoliciesResponse,
         ) -> SearchAllIamPoliciesResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ResourcesResource(googleapiclient.discovery.Resource):
         def searchAll(
@@ -47,6 +48,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             previous_request: SearchAllResourcesResponseHttpRequest,
             previous_response: SearchAllResourcesResponse,
         ) -> SearchAllResourcesResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

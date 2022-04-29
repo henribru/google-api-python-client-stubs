@@ -42,7 +42,9 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+
         def locations(self) -> LocationsResource: ...
+
     @typing.type_check_only
     class AttributesResource(googleapiclient.discovery.Resource):
         def list(
@@ -62,6 +64,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             previous_request: ListAttributeMetadataResponseHttpRequest,
             previous_response: ListAttributeMetadataResponse,
         ) -> ListAttributeMetadataResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class CategoriesResource(googleapiclient.discovery.Resource):
         def batchGet(
@@ -93,17 +96,20 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             previous_request: ListCategoriesResponseHttpRequest,
             previous_response: ListCategoriesResponse,
         ) -> ListCategoriesResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ChainsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> ChainHttpRequest: ...
         def search(
             self, *, chainName: str = ..., pageSize: int = ..., **kwargs: typing.Any
         ) -> SearchChainsResponseHttpRequest: ...
+
     @typing.type_check_only
     class GoogleLocationsResource(googleapiclient.discovery.Resource):
         def search(
             self, *, body: SearchGoogleLocationsRequest = ..., **kwargs: typing.Any
         ) -> SearchGoogleLocationsResponseHttpRequest: ...
+
     @typing.type_check_only
     class LocationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -111,6 +117,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             def getGoogleUpdated(
                 self, *, name: str, **kwargs: typing.Any
             ) -> AttributesHttpRequest: ...
+
         def associate(
             self,
             *,
@@ -153,6 +160,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> AttributesHttpRequest: ...
         def attributes(self) -> AttributesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

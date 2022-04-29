@@ -34,6 +34,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class ModulesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -83,6 +84,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         previous_request: ListInstancesResponseHttpRequest,
                         previous_response: ListInstancesResponse,
                     ) -> ListInstancesResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -134,6 +136,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def instances(self) -> InstancesResource: ...
+
             def delete(
                 self, *, appsId: str, modulesId: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
@@ -164,6 +167,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def versions(self) -> VersionsResource: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -183,6 +187,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_request: ListOperationsResponseHttpRequest,
                 previous_response: ListOperationsResponse,
             ) -> ListOperationsResponseHttpRequest | None: ...
+
         def create(
             self, *, body: Application = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -200,6 +205,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
         def modules(self) -> ModulesResource: ...
         def operations(self) -> OperationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
