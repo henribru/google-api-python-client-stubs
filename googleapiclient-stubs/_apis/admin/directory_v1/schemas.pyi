@@ -159,6 +159,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     model: str
     notes: str
     orderNumber: str
+    orgUnitId: str
     orgUnitPath: str
     osVersion: str
     platformVersion: str
@@ -693,6 +694,7 @@ class UserKeyword(typing_extensions.TypedDict, total=False):
 class UserLanguage(typing_extensions.TypedDict, total=False):
     customLanguage: str
     languageCode: str
+    preference: str
 
 @typing.type_check_only
 class UserLocation(typing_extensions.TypedDict, total=False):

@@ -69,6 +69,10 @@ class BatchGetAssetsHistoryResponse(typing_extensions.TypedDict, total=False):
     assets: _list[TemporalAsset]
 
 @typing.type_check_only
+class BatchGetEffectiveIamPoliciesResponse(typing_extensions.TypedDict, total=False):
+    policyResults: _list[EffectiveIamPolicy]
+
+@typing.type_check_only
 class BigQueryDestination(typing_extensions.TypedDict, total=False):
     dataset: str
     force: bool
@@ -102,6 +106,11 @@ class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
     year: int
+
+@typing.type_check_only
+class EffectiveIamPolicy(typing_extensions.TypedDict, total=False):
+    fullResourceName: str
+    policies: _list[PolicyInfo]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -292,6 +301,7 @@ class GoogleIdentityAccesscontextmanagerV1AccessPolicy(
     etag: str
     name: str
     parent: str
+    scopes: _list[str]
     title: str
 
 @typing.type_check_only
@@ -617,6 +627,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PolicyInfo(typing_extensions.TypedDict, total=False):
+    attachedResource: str
+    policy: Policy
+
+@typing.type_check_only
 class PubsubDestination(typing_extensions.TypedDict, total=False):
     topic: str
 
@@ -681,6 +696,9 @@ class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     project: str
     relationships: dict[str, typing.Any]
     state: str
+    tagKeys: _list[str]
+    tagValueIds: _list[str]
+    tagValues: _list[str]
     updateTime: str
     versionedResources: _list[VersionedResource]
 

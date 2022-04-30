@@ -65,6 +65,7 @@ class Platform(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Release(typing_extensions.TypedDict, total=False):
     fraction: float
+    fractionGroup: str
     name: str
     serving: Interval
     version: str

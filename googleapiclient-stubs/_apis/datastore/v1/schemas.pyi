@@ -34,6 +34,7 @@ class CommitRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommitResponse(typing_extensions.TypedDict, total=False):
+    commitTime: str
     indexUpdates: int
     mutationResults: _list[MutationResult]
 
@@ -54,6 +55,7 @@ class Entity(typing_extensions.TypedDict, total=False):
 class EntityResult(typing_extensions.TypedDict, total=False):
     cursor: str
     entity: Entity
+    updateTime: str
     version: str
 
 @typing.type_check_only
@@ -183,9 +185,56 @@ class GoogleDatastoreAdminV1ListIndexesResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleDatastoreAdminV1MigrationProgressEvent(
+    typing_extensions.TypedDict, total=False
+):
+    prepareStepDetails: GoogleDatastoreAdminV1PrepareStepDetails
+    redirectWritesStepDetails: GoogleDatastoreAdminV1RedirectWritesStepDetails
+    step: typing_extensions.Literal[
+        "MIGRATION_STEP_UNSPECIFIED",
+        "PREPARE",
+        "START",
+        "APPLY_WRITES_SYNCHRONOUSLY",
+        "COPY_AND_VERIFY",
+        "REDIRECT_EVENTUALLY_CONSISTENT_READS",
+        "REDIRECT_STRONGLY_CONSISTENT_READS",
+        "REDIRECT_WRITES",
+    ]
+
+@typing.type_check_only
+class GoogleDatastoreAdminV1MigrationStateEvent(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal[
+        "MIGRATION_STATE_UNSPECIFIED", "RUNNING", "PAUSED", "COMPLETE"
+    ]
+
+@typing.type_check_only
+class GoogleDatastoreAdminV1PrepareStepDetails(
+    typing_extensions.TypedDict, total=False
+):
+    concurrencyMode: typing_extensions.Literal[
+        "CONCURRENCY_MODE_UNSPECIFIED",
+        "PESSIMISTIC",
+        "OPTIMISTIC",
+        "OPTIMISTIC_WITH_ENTITY_GROUPS",
+    ]
+
+@typing.type_check_only
 class GoogleDatastoreAdminV1Progress(typing_extensions.TypedDict, total=False):
     workCompleted: str
     workEstimated: str
+
+@typing.type_check_only
+class GoogleDatastoreAdminV1RedirectWritesStepDetails(
+    typing_extensions.TypedDict, total=False
+):
+    concurrencyMode: typing_extensions.Literal[
+        "CONCURRENCY_MODE_UNSPECIFIED",
+        "PESSIMISTIC",
+        "OPTIMISTIC",
+        "OPTIMISTIC_WITH_ENTITY_GROUPS",
+    ]
 
 @typing.type_check_only
 class GoogleDatastoreAdminV1beta1CommonMetadata(
@@ -291,6 +340,7 @@ class LookupResponse(typing_extensions.TypedDict, total=False):
     deferred: _list[Key]
     found: _list[EntityResult]
     missing: _list[EntityResult]
+    readTime: str
 
 @typing.type_check_only
 class Mutation(typing_extensions.TypedDict, total=False):
@@ -298,12 +348,14 @@ class Mutation(typing_extensions.TypedDict, total=False):
     delete: Key
     insert: Entity
     update: Entity
+    updateTime: str
     upsert: Entity
 
 @typing.type_check_only
 class MutationResult(typing_extensions.TypedDict, total=False):
     conflictDetected: bool
     key: Key
+    updateTime: str
     version: str
 
 @typing.type_check_only
@@ -361,18 +413,21 @@ class QueryResultBatch(typing_extensions.TypedDict, total=False):
         "MORE_RESULTS_AFTER_CURSOR",
         "NO_MORE_RESULTS",
     ]
+    readTime: str
     skippedCursor: str
     skippedResults: int
     snapshotVersion: str
 
 @typing.type_check_only
-class ReadOnly(typing_extensions.TypedDict, total=False): ...
+class ReadOnly(typing_extensions.TypedDict, total=False):
+    readTime: str
 
 @typing.type_check_only
 class ReadOptions(typing_extensions.TypedDict, total=False):
     readConsistency: typing_extensions.Literal[
         "READ_CONSISTENCY_UNSPECIFIED", "STRONG", "EVENTUAL"
     ]
+    readTime: str
     transaction: str
 
 @typing.type_check_only

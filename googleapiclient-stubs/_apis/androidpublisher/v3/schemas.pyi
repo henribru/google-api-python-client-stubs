@@ -96,6 +96,16 @@ class DeveloperComment(typing_extensions.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
+class DeviceGroup(typing_extensions.TypedDict, total=False):
+    deviceSelectors: _list[DeviceSelector]
+    name: str
+
+@typing.type_check_only
+class DeviceId(typing_extensions.TypedDict, total=False):
+    buildBrand: str
+    buildDevice: str
+
+@typing.type_check_only
 class DeviceMetadata(typing_extensions.TypedDict, total=False):
     cpuMake: str
     cpuModel: str
@@ -110,10 +120,38 @@ class DeviceMetadata(typing_extensions.TypedDict, total=False):
     screenWidthPx: int
 
 @typing.type_check_only
+class DeviceRam(typing_extensions.TypedDict, total=False):
+    maxBytes: str
+    minBytes: str
+
+@typing.type_check_only
+class DeviceSelector(typing_extensions.TypedDict, total=False):
+    deviceRam: DeviceRam
+    excludedDeviceIds: _list[DeviceId]
+    forbiddenSystemFeatures: _list[SystemFeature]
+    includedDeviceIds: _list[DeviceId]
+    requiredSystemFeatures: _list[SystemFeature]
+
+@typing.type_check_only
 class DeviceSpec(typing_extensions.TypedDict, total=False):
     screenDensity: int
     supportedAbis: _list[str]
     supportedLocales: _list[str]
+
+@typing.type_check_only
+class DeviceTier(typing_extensions.TypedDict, total=False):
+    deviceGroupNames: _list[str]
+    level: int
+
+@typing.type_check_only
+class DeviceTierConfig(typing_extensions.TypedDict, total=False):
+    deviceGroups: _list[DeviceGroup]
+    deviceTierConfigId: str
+    deviceTierSet: DeviceTierSet
+
+@typing.type_check_only
+class DeviceTierSet(typing_extensions.TypedDict, total=False):
+    deviceTiers: _list[DeviceTier]
 
 @typing.type_check_only
 class ExpansionFile(typing_extensions.TypedDict, total=False):
@@ -247,6 +285,11 @@ class IntroductoryPriceInfo(typing_extensions.TypedDict, total=False):
     introductoryPricePeriod: str
 
 @typing.type_check_only
+class ListDeviceTierConfigsResponse(typing_extensions.TypedDict, total=False):
+    deviceTierConfigs: _list[DeviceTierConfig]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListUsersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     users: _list[User]
@@ -320,7 +363,12 @@ class ProductPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=Fals
 class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
     eligibleForStreamingServiceTaxRate: bool
     taxTier: typing_extensions.Literal[
-        "TAX_TIER_UNSPECIFIED", "TAX_TIER_BOOKS_1", "TAX_TIER_NEWS_1", "TAX_TIER_NEWS_2"
+        "TAX_TIER_UNSPECIFIED",
+        "TAX_TIER_BOOKS_1",
+        "TAX_TIER_NEWS_1",
+        "TAX_TIER_NEWS_2",
+        "TAX_TIER_MUSIC_OR_AUDIO_1",
+        "TAX_TIER_LIVE_OR_BROADCAST_1",
     ]
 
 @typing.type_check_only
@@ -419,6 +467,10 @@ class SubscriptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class SystemApksListResponse(typing_extensions.TypedDict, total=False):
     variants: _list[Variant]
+
+@typing.type_check_only
+class SystemFeature(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class Testers(typing_extensions.TypedDict, total=False):

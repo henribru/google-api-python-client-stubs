@@ -191,6 +191,7 @@ class Drive(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    orgUnitId: str
     restrictions: dict[str, typing.Any]
     themeId: str
 
@@ -402,6 +403,7 @@ class TeamDrive(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    orgUnitId: str
     restrictions: dict[str, typing.Any]
     themeId: str
 

@@ -9,7 +9,6 @@ class Actor(typing_extensions.TypedDict, total=False):
     displayName: str
     email: str
     googleSupport: bool
-    principalId: str
 
 @typing.type_check_only
 class Attachment(typing_extensions.TypedDict, total=False):
@@ -37,6 +36,9 @@ class Case(typing_extensions.TypedDict, total=False):
     displayName: str
     escalated: bool
     name: str
+    priority: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "P0", "P1", "P2", "P3", "P4"
+    ]
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "S0", "S1", "S2", "S3", "S4"
     ]
@@ -136,10 +138,7 @@ class EscalateCaseRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Escalation(typing_extensions.TypedDict, total=False):
-    actor: Actor
-    createTime: str
     justification: str
-    name: str
     reason: typing_extensions.Literal[
         "REASON_UNSPECIFIED",
         "RESOLUTION_TIME",

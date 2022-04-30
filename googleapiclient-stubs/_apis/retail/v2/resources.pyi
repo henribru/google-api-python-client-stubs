@@ -36,6 +36,13 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             body: GoogleCloudRetailV2AddFulfillmentPlacesRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def addLocalInventories(
+                            self,
+                            *,
+                            product: str,
+                            body: GoogleCloudRetailV2AddLocalInventoriesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
                         def create(
                             self,
                             *,
@@ -86,6 +93,13 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             *,
                             product: str,
                             body: GoogleCloudRetailV2RemoveFulfillmentPlacesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def removeLocalInventories(
+                            self,
+                            *,
+                            product: str,
+                            body: GoogleCloudRetailV2RemoveLocalInventoriesRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def setInventory(
@@ -263,7 +277,28 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
             def catalogs(self) -> CatalogsResource: ...
             def operations(self) -> OperationsResource: ...
 
+        @typing.type_check_only
+        class OperationsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                previous_response: GoogleLongrunningListOperationsResponse,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
         def locations(self) -> LocationsResource: ...
+        def operations(self) -> OperationsResource: ...
 
     def new_batch_http_request(
         self,

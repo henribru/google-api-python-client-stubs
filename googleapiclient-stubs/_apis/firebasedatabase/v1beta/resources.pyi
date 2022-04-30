@@ -47,6 +47,7 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    showDeleted: bool = ...,
                     **kwargs: typing.Any
                 ) -> ListDatabaseInstancesResponseHttpRequest: ...
                 def list_next(
@@ -59,6 +60,13 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ReenableDatabaseInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> DatabaseInstanceHttpRequest: ...
+                def undelete(
+                    self,
+                    *,
+                    name: str,
+                    body: UndeleteDatabaseInstanceRequest = ...,
                     **kwargs: typing.Any
                 ) -> DatabaseInstanceHttpRequest: ...
 

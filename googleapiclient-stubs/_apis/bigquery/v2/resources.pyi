@@ -344,6 +344,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             tableId: str,
             body: Table = ...,
+            autodetect_schema: bool = ...,
             **kwargs: typing.Any
         ) -> TableHttpRequest: ...
         def setIamPolicy(
@@ -367,6 +368,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             tableId: str,
             body: Table = ...,
+            autodetect_schema: bool = ...,
             **kwargs: typing.Any
         ) -> TableHttpRequest: ...
 

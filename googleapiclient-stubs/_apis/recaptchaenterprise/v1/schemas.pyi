@@ -58,6 +58,7 @@ class GoogleCloudRecaptchaenterpriseV1ChallengeMetrics(
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=False):
     expectedAction: str
+    hashedAccountId: str
     siteKey: str
     token: str
     userAgent: str
@@ -79,6 +80,7 @@ class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=Fal
     labels: dict[str, typing.Any]
     name: str
     testingOptions: GoogleCloudRecaptchaenterpriseV1TestingOptions
+    wafSettings: GoogleCloudRecaptchaenterpriseV1WafSettings
     webSettings: GoogleCloudRecaptchaenterpriseV1WebKeySettings
 
 @typing.type_check_only
@@ -192,6 +194,15 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties(
         "BROWSER_ERROR",
     ]
     valid: bool
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1WafSettings(
+    typing_extensions.TypedDict, total=False
+):
+    wafFeature: typing_extensions.Literal[
+        "WAF_FEATURE_UNSPECIFIED", "CHALLENGE_PAGE", "SESSION_TOKEN", "ACTION_TOKEN"
+    ]
+    wafService: typing_extensions.Literal["WAF_SERVICE_UNSPECIFIED", "CA"]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1WebKeySettings(

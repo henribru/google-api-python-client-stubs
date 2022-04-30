@@ -105,6 +105,25 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     previous_request: ListCollectionIdsResponseHttpRequest,
                     previous_response: ListCollectionIdsResponse,
                 ) -> ListCollectionIdsResponseHttpRequest | None: ...
+                def listDocuments(
+                    self,
+                    *,
+                    parent: str,
+                    collectionId: str,
+                    mask_fieldPaths: str | _list[str] = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    readTime: str = ...,
+                    showMissing: bool = ...,
+                    transaction: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListDocumentsResponseHttpRequest: ...
+                def listDocuments_next(
+                    self,
+                    previous_request: ListDocumentsResponseHttpRequest,
+                    previous_response: ListDocumentsResponse,
+                ) -> ListDocumentsResponseHttpRequest | None: ...
                 def listen(
                     self,
                     *,
@@ -142,6 +161,13 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: RollbackRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def runAggregationQuery(
+                    self,
+                    *,
+                    parent: str,
+                    body: RunAggregationQueryRequest = ...,
+                    **kwargs: typing.Any
+                ) -> RunAggregationQueryResponseHttpRequest: ...
                 def runQuery(
                     self,
                     *,
@@ -325,6 +351,14 @@ class PartitionQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PartitionQueryResponse: ...
+
+@typing.type_check_only
+class RunAggregationQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RunAggregationQueryResponse: ...
 
 @typing.type_check_only
 class RunQueryResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -128,6 +128,7 @@ class GoogleCloudContactcenterinsightsV1Conversation(
     latestAnalysis: GoogleCloudContactcenterinsightsV1Analysis
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
     name: str
+    obfuscatedUserId: str
     runtimeAnnotations: _list[GoogleCloudContactcenterinsightsV1RuntimeAnnotation]
     startTime: str
     transcript: GoogleCloudContactcenterinsightsV1ConversationTranscript
@@ -338,6 +339,9 @@ class GoogleCloudContactcenterinsightsV1ExportInsightsDataRequest(
     filter: str
     kmsKey: str
     parent: str
+    writeDisposition: typing_extensions.Literal[
+        "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_TRUNCATE", "WRITE_APPEND"
+    ]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestination(
@@ -492,6 +496,13 @@ class GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse(
     phraseMatchers: _list[GoogleCloudContactcenterinsightsV1PhraseMatcher]
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListViewsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    views: _list[GoogleCloudContactcenterinsightsV1View]
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1PhraseMatchData(
     typing_extensions.TypedDict, total=False
 ):
@@ -624,6 +635,14 @@ class GoogleCloudContactcenterinsightsV1UndeployIssueModelResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1View(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    name: str
+    updateTime: str
+    value: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -696,6 +715,9 @@ class GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequest(
     filter: str
     kmsKey: str
     parent: str
+    writeDisposition: typing_extensions.Literal[
+        "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_TRUNCATE", "WRITE_APPEND"
+    ]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestination(

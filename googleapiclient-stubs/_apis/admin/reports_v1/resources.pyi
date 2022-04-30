@@ -127,7 +127,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             self,
             *,
             entityType: typing_extensions.Literal["gplus_communities"],
-            entityKey: typing_extensions.Literal["all", "entityKey"],
+            entityKey: str,
             date: str,
             customerId: str = ...,
             filters: str = ...,

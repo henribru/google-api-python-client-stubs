@@ -18,6 +18,64 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class EkmConnectionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: EkmConnection = ...,
+                    ekmConnectionId: str = ...,
+                    **kwargs: typing.Any
+                ) -> EkmConnectionHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EkmConnectionHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListEkmConnectionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEkmConnectionsResponseHttpRequest,
+                    previous_response: ListEkmConnectionsResponse,
+                ) -> ListEkmConnectionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: EkmConnection = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> EkmConnectionHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class KeyRingsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class CryptoKeysResource(googleapiclient.discovery.Resource):
@@ -318,6 +376,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def ekmConnections(self) -> EkmConnectionsResource: ...
             def keyRings(self) -> KeyRingsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -377,6 +436,14 @@ class DecryptResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DecryptResponse: ...
 
 @typing.type_check_only
+class EkmConnectionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> EkmConnection: ...
+
+@typing.type_check_only
 class EncryptResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -423,6 +490,14 @@ class ListCryptoKeysResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCryptoKeysResponse: ...
+
+@typing.type_check_only
+class ListEkmConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListEkmConnectionsResponse: ...
 
 @typing.type_check_only
 class ListImportJobsResponseHttpRequest(googleapiclient.http.HttpRequest):

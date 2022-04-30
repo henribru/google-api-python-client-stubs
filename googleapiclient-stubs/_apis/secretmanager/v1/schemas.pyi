@@ -141,9 +141,11 @@ class Secret(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SecretPayload(typing_extensions.TypedDict, total=False):
     data: str
+    dataCrc32c: str
 
 @typing.type_check_only
 class SecretVersion(typing_extensions.TypedDict, total=False):
+    clientSpecifiedPayloadChecksum: bool
     createTime: str
     destroyTime: str
     etag: str

@@ -14,6 +14,17 @@ _list = list
 @typing.type_check_only
 class CloudBuildResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class LocationsResource(googleapiclient.discovery.Resource):
+        def regionalWebhook(
+            self,
+            *,
+            location: str,
+            body: HttpBody = ...,
+            webhookKey: str = ...,
+            **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+
+    @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
             self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
@@ -115,6 +126,79 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class BitbucketServerConfigsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ConnectedRepositoriesResource(googleapiclient.discovery.Resource):
+                    def batchCreate(
+                        self,
+                        *,
+                        parent: str,
+                        body: BatchCreateBitbucketServerConnectedRepositoriesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
+                class ReposResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListBitbucketServerRepositoriesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListBitbucketServerRepositoriesResponseHttpRequest,
+                        previous_response: ListBitbucketServerRepositoriesResponse,
+                    ) -> ListBitbucketServerRepositoriesResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: BitbucketServerConfig = ...,
+                    bitbucketServerConfigId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> BitbucketServerConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListBitbucketServerConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBitbucketServerConfigsResponseHttpRequest,
+                    previous_response: ListBitbucketServerConfigsResponse,
+                ) -> ListBitbucketServerConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: BitbucketServerConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def removeBitbucketServerConnectedRepository(
+                    self,
+                    *,
+                    config: str,
+                    body: RemoveBitbucketServerConnectedRepositoryRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def connectedRepositories(self) -> ConnectedRepositoriesResource: ...
+                def repos(self) -> ReposResource: ...
+
             @typing.type_check_only
             class BuildsResource(googleapiclient.discovery.Resource):
                 def approve(
@@ -335,6 +419,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
+            def bitbucketServerConfigs(self) -> BitbucketServerConfigsResource: ...
             def builds(self) -> BuildsResource: ...
             def githubEnterpriseConfigs(self) -> GithubEnterpriseConfigsResource: ...
             def operations(self) -> OperationsResource: ...
@@ -432,9 +517,18 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def locations(self) -> LocationsResource: ...
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
     def v1(self) -> V1Resource: ...
+
+@typing.type_check_only
+class BitbucketServerConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BitbucketServerConfig: ...
 
 @typing.type_check_only
 class BuildHttpRequest(googleapiclient.http.HttpRequest):
@@ -467,6 +561,24 @@ class GitHubEnterpriseConfigHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GitHubEnterpriseConfig: ...
+
+@typing.type_check_only
+class ListBitbucketServerConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListBitbucketServerConfigsResponse: ...
+
+@typing.type_check_only
+class ListBitbucketServerRepositoriesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListBitbucketServerRepositoriesResponse: ...
 
 @typing.type_check_only
 class ListBuildTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):

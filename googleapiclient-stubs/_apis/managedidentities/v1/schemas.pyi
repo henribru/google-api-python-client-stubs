@@ -9,6 +9,18 @@ class AttachTrustRequest(typing_extensions.TypedDict, total=False):
     trust: Trust
 
 @typing.type_check_only
+class Backup(typing_extensions.TypedDict, total=False):
+    createTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "DELETING"
+    ]
+    statusMessage: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ON_DEMAND", "SCHEDULED"]
+    updateTime: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -115,11 +127,13 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
 ):
     consumerDefinedName: str
     createTime: str
+    instanceType: str
     labels: dict[str, typing.Any]
     maintenancePolicyNames: dict[str, typing.Any]
     maintenanceSchedules: dict[str, typing.Any]
     maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
     name: str
+    notificationParameters: dict[str, typing.Any]
     producerMetadata: dict[str, typing.Any]
     provisionedResources: _list[
         GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource
@@ -166,6 +180,12 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
 
 @typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter(
+    typing_extensions.TypedDict, total=False
+):
+    values: _list[str]
+
+@typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
     typing_extensions.TypedDict, total=False
 ):
@@ -203,6 +223,12 @@ class LDAPSSettings(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "UPDATING", "ACTIVE", "FAILED"
     ]
     updateTime: str
+
+@typing.type_check_only
+class ListBackupsResponse(typing_extensions.TypedDict, total=False):
+    backups: _list[Backup]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListDomainsResponse(typing_extensions.TypedDict, total=False):
@@ -303,6 +329,10 @@ class ResetAdminPasswordRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ResetAdminPasswordResponse(typing_extensions.TypedDict, total=False):
     password: str
+
+@typing.type_check_only
+class RestoreDomainRequest(typing_extensions.TypedDict, total=False):
+    backupId: str
 
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):

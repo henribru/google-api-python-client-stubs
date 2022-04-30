@@ -166,6 +166,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     filter: str = ...,
+                    orderBy: str = ...,
                     orgUnitId: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,

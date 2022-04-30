@@ -181,7 +181,7 @@ class CdnSettings(typing_extensions.TypedDict, total=False):
     format: str
     frameRate: typing_extensions.Literal["30fps", "60fps", "variable"]
     ingestionInfo: IngestionInfo
-    ingestionType: typing_extensions.Literal["rtmp", "dash", "webrtc", "hls"]
+    ingestionType: typing_extensions.Literal["rtmp", "dash", "webrtc", "hls", "srt"]
     resolution: typing_extensions.Literal[
         "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p", "variable"
     ]
@@ -374,6 +374,7 @@ class ChannelStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChannelToStoreLinkDetails(typing_extensions.TypedDict, total=False):
+    merchantId: str
     storeName: str
     storeUrl: str
 
@@ -539,7 +540,15 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "catvfrE",
     ]
     cbfcRating: typing_extensions.Literal[
-        "cbfcUnspecified", "cbfcU", "cbfcUA", "cbfcA", "cbfcS", "cbfcUnrated"
+        "cbfcUnspecified",
+        "cbfcU",
+        "cbfcUA",
+        "cbfcUA7plus",
+        "cbfcUA13plus",
+        "cbfcUA16plus",
+        "cbfcA",
+        "cbfcS",
+        "cbfcUnrated",
     ]
     cccRating: typing_extensions.Literal[
         "cccUnspecified",
@@ -880,8 +889,10 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "mibacUnspecified",
         "mibacT",
         "mibacVap",
+        "mibacVm6",
         "mibacVm12",
         "mibacVm14",
+        "mibacVm16",
         "mibacVm18",
         "mibacUnrated",
     ]
@@ -1314,10 +1325,21 @@ class LiveChatFanFundingEventDetails(typing_extensions.TypedDict, total=False):
     userComment: str
 
 @typing.type_check_only
+class LiveChatGiftMembershipReceivedDetails(typing_extensions.TypedDict, total=False):
+    associatedMembershipGiftingMessageId: str
+    gifterChannelId: str
+    memberLevelName: str
+
+@typing.type_check_only
 class LiveChatMemberMilestoneChatDetails(typing_extensions.TypedDict, total=False):
     memberLevelName: str
     memberMonth: int
     userComment: str
+
+@typing.type_check_only
+class LiveChatMembershipGiftingDetails(typing_extensions.TypedDict, total=False):
+    giftMembershipsCount: int
+    giftMembershipsLevelName: str
 
 @typing.type_check_only
 class LiveChatMessage(typing_extensions.TypedDict, total=False):
@@ -1364,9 +1386,11 @@ class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
     authorChannelId: str
     displayMessage: str
     fanFundingEventDetails: LiveChatFanFundingEventDetails
+    giftMembershipReceivedDetails: LiveChatGiftMembershipReceivedDetails
     hasDisplayContent: bool
     liveChatId: str
     memberMilestoneChatDetails: LiveChatMemberMilestoneChatDetails
+    membershipGiftingDetails: LiveChatMembershipGiftingDetails
     messageDeletedDetails: LiveChatMessageDeletedDetails
     messageRetractedDetails: LiveChatMessageRetractedDetails
     newSponsorDetails: LiveChatNewSponsorDetails
@@ -1384,6 +1408,8 @@ class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
         "sponsorOnlyModeEndedEvent",
         "newSponsorEvent",
         "memberMilestoneChatEvent",
+        "membershipGiftingEvent",
+        "giftMembershipReceivedEvent",
         "messageDeletedEvent",
         "messageRetractedEvent",
         "userBannedEvent",

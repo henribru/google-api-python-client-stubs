@@ -85,6 +85,11 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListServiceBindingsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    serviceBindings: _list[ServiceBinding]
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -116,6 +121,15 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class ServiceBinding(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    name: str
+    service: str
+    updateTime: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

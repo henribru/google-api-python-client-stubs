@@ -14,6 +14,37 @@ _list = list
 @typing.type_check_only
 class AndroidPublisherResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class ApplicationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class DeviceTierConfigsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                packageName: str,
+                body: DeviceTierConfig = ...,
+                allowUnknownDevices: bool = ...,
+                **kwargs: typing.Any
+            ) -> DeviceTierConfigHttpRequest: ...
+            def get(
+                self, *, packageName: str, deviceTierConfigId: str, **kwargs: typing.Any
+            ) -> DeviceTierConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                packageName: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListDeviceTierConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDeviceTierConfigsResponseHttpRequest,
+                previous_response: ListDeviceTierConfigsResponse,
+            ) -> ListDeviceTierConfigsResponseHttpRequest | None: ...
+
+        def deviceTierConfigs(self) -> DeviceTierConfigsResource: ...
+
+    @typing.type_check_only
     class EditsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ApksResource(googleapiclient.discovery.Resource):
@@ -647,6 +678,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def applications(self) -> ApplicationsResource: ...
     def edits(self) -> EditsResource: ...
     def generatedapks(self) -> GeneratedapksResource: ...
     def grants(self) -> GrantsResource: ...
@@ -732,6 +764,14 @@ class DeobfuscationFilesUploadResponseHttpRequest(googleapiclient.http.HttpReque
     ) -> DeobfuscationFilesUploadResponse: ...
 
 @typing.type_check_only
+class DeviceTierConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> DeviceTierConfig: ...
+
+@typing.type_check_only
 class ExpansionFileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -810,6 +850,14 @@ class InternalAppSharingArtifactHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> InternalAppSharingArtifact: ...
+
+@typing.type_check_only
+class ListDeviceTierConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListDeviceTierConfigsResponse: ...
 
 @typing.type_check_only
 class ListUsersResponseHttpRequest(googleapiclient.http.HttpRequest):

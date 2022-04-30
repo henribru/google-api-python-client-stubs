@@ -137,6 +137,7 @@ class RouterApplianceInstance(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RoutingVPC(typing_extensions.TypedDict, total=False):
+    requiredForNewSiteToSiteDataTransferSpokes: bool
     uri: str
 
 @typing.type_check_only

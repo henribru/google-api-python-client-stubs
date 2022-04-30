@@ -75,7 +75,7 @@ class Page(typing_extensions.TypedDict, total=False):
     kind: str
     published: str
     selfLink: str
-    status: typing_extensions.Literal["LIVE", "DRAFT"]
+    status: typing_extensions.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]
     title: str
     updated: str
     url: str
@@ -105,7 +105,7 @@ class Post(typing_extensions.TypedDict, total=False):
     ]
     replies: dict[str, typing.Any]
     selfLink: str
-    status: typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]
+    status: typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
     title: str
     titleLink: str
     updated: str

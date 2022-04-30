@@ -34,9 +34,6 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         body: ImportAptArtifactsRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
-
-                @typing.type_check_only
-                class AptartifactsResource(googleapiclient.discovery.Resource):
                     def upload(
                         self,
                         *,
@@ -169,9 +166,6 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         body: ImportYumArtifactsRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
-
-                @typing.type_check_only
-                class YumartifactsResource(googleapiclient.discovery.Resource):
                     def upload(
                         self,
                         *,
@@ -237,11 +231,9 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def aptArtifacts(self) -> AptArtifactsResource: ...
-                def aptartifacts(self) -> AptartifactsResource: ...
                 def files(self) -> FilesResource: ...
                 def packages(self) -> PackagesResource: ...
                 def yumArtifacts(self) -> YumArtifactsResource: ...
-                def yumartifacts(self) -> YumartifactsResource: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any

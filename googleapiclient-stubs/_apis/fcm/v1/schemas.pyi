@@ -24,6 +24,7 @@ class AndroidNotification(typing_extensions.TypedDict, total=False):
     body: str
     bodyLocArgs: _list[str]
     bodyLocKey: str
+    bypassProxyNotification: bool
     channelId: str
     clickAction: str
     color: str

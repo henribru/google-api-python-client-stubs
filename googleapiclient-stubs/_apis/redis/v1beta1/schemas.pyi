@@ -83,6 +83,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     redisVersion: str
     replicaCount: int
     reservedIpRange: str
+    secondaryIpRange: str
     serverCaCerts: _list[TlsCertificate]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

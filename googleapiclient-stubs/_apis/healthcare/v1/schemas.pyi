@@ -256,6 +256,8 @@ class ExportMessagesResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ExportResourcesRequest(typing_extensions.TypedDict, total=False):
+    _since: str
+    _type: str
     bigqueryDestination: GoogleCloudHealthcareV1FhirBigQueryDestination
     gcsDestination: GoogleCloudHealthcareV1FhirGcsDestination
 
@@ -766,8 +768,10 @@ class UserDataMapping(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ValidationConfig(typing_extensions.TypedDict, total=False):
     disableFhirpathValidation: bool
+    disableProfileValidation: bool
     disableReferenceTypeValidation: bool
     disableRequiredFieldValidation: bool
+    enabledImplementationGuides: _list[str]
 
 @typing.type_check_only
 class VersionSource(typing_extensions.TypedDict, total=False):

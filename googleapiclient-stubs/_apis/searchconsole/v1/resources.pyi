@@ -50,6 +50,16 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
         def list(self, **kwargs: typing.Any) -> SitesListResponseHttpRequest: ...
 
     @typing.type_check_only
+    class UrlInspectionResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class IndexResource(googleapiclient.discovery.Resource):
+            def inspect(
+                self, *, body: InspectUrlIndexRequest = ..., **kwargs: typing.Any
+            ) -> InspectUrlIndexResponseHttpRequest: ...
+
+        def index(self) -> IndexResource: ...
+
+    @typing.type_check_only
     class UrlTestingToolsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MobileFriendlyTestResource(googleapiclient.discovery.Resource):
@@ -74,7 +84,16 @@ class SearchConsoleResource(googleapiclient.discovery.Resource):
     def searchanalytics(self) -> SearchanalyticsResource: ...
     def sitemaps(self) -> SitemapsResource: ...
     def sites(self) -> SitesResource: ...
+    def urlInspection(self) -> UrlInspectionResource: ...
     def urlTestingTools(self) -> UrlTestingToolsResource: ...
+
+@typing.type_check_only
+class InspectUrlIndexResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> InspectUrlIndexResponse: ...
 
 @typing.type_check_only
 class RunMobileFriendlyTestResponseHttpRequest(googleapiclient.http.HttpRequest):

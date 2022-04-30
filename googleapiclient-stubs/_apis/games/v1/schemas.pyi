@@ -331,6 +331,7 @@ class Player(typing_extensions.TypedDict, total=False):
     friendStatus: typing_extensions.Literal[
         "FRIEND_STATUS_UNSPECIFIED", "NO_RELATIONSHIP", "FRIEND"
     ]
+    gamePlayerId: str
     kind: str
     name: dict[str, typing.Any]
     originalPlayerId: str

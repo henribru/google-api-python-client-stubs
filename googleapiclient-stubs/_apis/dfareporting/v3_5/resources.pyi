@@ -1363,6 +1363,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT_LEGACY",
                 "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
                 "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
+                "PLACEMENT_TAG_TRACKING_THIRD_PARTY_MEASUREMENT",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -1385,6 +1386,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT_LEGACY",
                     "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
                     "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
+                    "PLACEMENT_TAG_TRACKING_THIRD_PARTY_MEASUREMENT",
                 ]
             ] = ...,
             **kwargs: typing.Any

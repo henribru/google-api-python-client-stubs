@@ -171,8 +171,8 @@ class BloggerResource(googleapiclient.discovery.Resource):
             fetchBodies: bool = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            status: typing_extensions.Literal["LIVE", "DRAFT"]
-            | _list[typing_extensions.Literal["LIVE", "DRAFT"]] = ...,
+            status: typing_extensions.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]
+            | _list[typing_extensions.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]] = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ] = ...,
@@ -233,8 +233,12 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             pageToken: str = ...,
             startDate: str = ...,
-            status: typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]
-            | _list[typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]] = ...,
+            status: typing_extensions.Literal[
+                "LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"
+            ]
+            | _list[
+                typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
+            ] = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ] = ...,
@@ -299,8 +303,12 @@ class BloggerResource(googleapiclient.discovery.Resource):
             ] = ...,
             pageToken: str = ...,
             startDate: str = ...,
-            status: typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]
-            | _list[typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED"]] = ...,
+            status: typing_extensions.Literal[
+                "LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"
+            ]
+            | _list[
+                typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
+            ] = ...,
             view: typing_extensions.Literal[
                 "VIEW_TYPE_UNSPECIFIED", "READER", "AUTHOR", "ADMIN"
             ] = ...,

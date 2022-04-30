@@ -216,7 +216,10 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1InsightHttpRequest: ...
 
-                def config(
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest: ...
+                def updateConfig(
                     self,
                     *,
                     name: str,
@@ -224,9 +227,6 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest: ...
-                def getConfig(
-                    self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest: ...
                 def insights(self) -> InsightsResource: ...
 
@@ -273,7 +273,10 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
 
-                def config(
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
+                def updateConfig(
                     self,
                     *,
                     name: str,
@@ -281,9 +284,6 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
-                def getConfig(
-                    self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
 

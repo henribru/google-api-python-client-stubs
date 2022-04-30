@@ -1,20 +1,20 @@
-from typing import Any
+from _typeshed import Incomplete
 
 class Schemas:
-    schemas: Any
-    pretty: Any
+    schemas: Incomplete
+    pretty: Incomplete
     def __init__(self, discovery) -> None: ...
     def prettyPrintByName(self, name): ...
     def prettyPrintSchema(self, schema): ...
-    def get(self, name, default: Any | None = ...): ...
+    def get(self, name, default: Incomplete | None = ...): ...
 
 class _SchemaToStruct:
-    value: Any
-    string: Any
-    schema: Any
-    dent: Any
-    from_cache: Any
-    seen: Any
+    value: Incomplete
+    string: Incomplete
+    schema: Incomplete
+    dent: Incomplete
+    from_cache: Incomplete
+    seen: Incomplete
     def __init__(self, schema, seen, dent: int = ...) -> None: ...
     def emit(self, text) -> None: ...
     def emitBegin(self, text) -> None: ...

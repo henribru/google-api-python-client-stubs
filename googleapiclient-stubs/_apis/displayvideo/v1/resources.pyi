@@ -79,8 +79,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -131,8 +135,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -391,8 +399,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -443,8 +455,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -600,8 +616,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         body: AssignedTargetingOption = ...,
                         **kwargs: typing.Any
@@ -652,8 +672,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -704,8 +728,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -756,8 +784,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -1122,8 +1154,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any
@@ -1173,8 +1209,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1224,8 +1264,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1275,8 +1319,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -1495,6 +1543,20 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class FirstAndThirdPartyAudiencesResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            body: FirstAndThirdPartyAudience = ...,
+            advertiserId: str = ...,
+            **kwargs: typing.Any
+        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
+        def editCustomerMatchMembers(
+            self,
+            *,
+            firstAndThirdPartyAudienceId: str,
+            body: EditCustomerMatchMembersRequest = ...,
+            **kwargs: typing.Any
+        ) -> EditCustomerMatchMembersResponseHttpRequest: ...
         def get(
             self,
             *,
@@ -1519,6 +1581,15 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             previous_request: ListFirstAndThirdPartyAudiencesResponseHttpRequest,
             previous_response: ListFirstAndThirdPartyAudiencesResponse,
         ) -> ListFirstAndThirdPartyAudiencesResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            firstAndThirdPartyAudienceId: str,
+            body: FirstAndThirdPartyAudience = ...,
+            advertiserId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
 
     @typing.type_check_only
     class FloodlightGroupsResource(googleapiclient.discovery.Resource):
@@ -1847,8 +1918,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any
@@ -1898,8 +1973,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1949,8 +2028,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -2000,8 +2083,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -2105,8 +2192,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_SUB_EXCHANGE",
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
+                    "TARGETING_TYPE_CONTENT_DURATION",
+                    "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                    "TARGETING_TYPE_CONTENT_GENRE",
                 ],
                 targetingOptionId: str,
                 advertiserId: str = ...,
@@ -2156,8 +2247,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_SUB_EXCHANGE",
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
+                    "TARGETING_TYPE_CONTENT_DURATION",
+                    "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                    "TARGETING_TYPE_CONTENT_GENRE",
                 ],
                 advertiserId: str = ...,
                 filter: str = ...,
@@ -2215,8 +2310,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_SUB_EXCHANGE",
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
+                    "TARGETING_TYPE_CONTENT_DURATION",
+                    "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                    "TARGETING_TYPE_CONTENT_GENRE",
                 ],
                 body: SearchTargetingOptionsRequest = ...,
                 **kwargs: typing.Any
@@ -2516,6 +2615,14 @@ class CustomListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CustomList: ...
+
+@typing.type_check_only
+class EditCustomerMatchMembersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> EditCustomerMatchMembersResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

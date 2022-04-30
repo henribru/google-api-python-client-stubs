@@ -17,6 +17,12 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AuxiliaryVersionConfig(typing_extensions.TypedDict, total=False):
+    configOverrides: dict[str, typing.Any]
+    networkConfig: NetworkConfig
+    version: str
+
+@typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -76,6 +82,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HiveMetastoreConfig(typing_extensions.TypedDict, total=False):
+    auxiliaryVersions: dict[str, typing.Any]
     configOverrides: dict[str, typing.Any]
     endpointProtocol: typing_extensions.Literal[
         "ENDPOINT_PROTOCOL_UNSPECIFIED", "THRIFT", "GRPC"
@@ -214,6 +221,13 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class RemoveIamPolicyRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RemoveIamPolicyResponse(typing_extensions.TypedDict, total=False):
+    success: bool
+
+@typing.type_check_only
 class Restore(typing_extensions.TypedDict, total=False):
     backup: str
     details: str
@@ -240,6 +254,9 @@ class Secret(typing_extensions.TypedDict, total=False):
 class Service(typing_extensions.TypedDict, total=False):
     artifactGcsUri: str
     createTime: str
+    databaseType: typing_extensions.Literal[
+        "DATABASE_TYPE_UNSPECIFIED", "MYSQL", "SPANNER"
+    ]
     encryptionConfig: EncryptionConfig
     endpointUri: str
     hiveMetastoreConfig: HiveMetastoreConfig

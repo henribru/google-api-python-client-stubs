@@ -19,7 +19,12 @@ class CompleteVerificationResponse(typing_extensions.TypedDict, total=False):
     verification: Verification
 
 @typing.type_check_only
-class ComplyWithGuidelines(typing_extensions.TypedDict, total=False): ...
+class ComplyWithGuidelines(typing_extensions.TypedDict, total=False):
+    recommendationReason: typing_extensions.Literal[
+        "RECOMMENDATION_REASON_UNSPECIFIED",
+        "BUSINESS_LOCATION_SUSPENDED",
+        "BUSINESS_LOCATION_DISABLED",
+    ]
 
 @typing.type_check_only
 class EmailVerificationData(typing_extensions.TypedDict, total=False):

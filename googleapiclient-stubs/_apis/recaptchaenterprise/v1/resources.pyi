@@ -86,7 +86,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
             def search(
                 self,
                 *,
-                parent: str,
+                project: str,
                 body: GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest: ...

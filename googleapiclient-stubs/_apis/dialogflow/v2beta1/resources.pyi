@@ -635,6 +635,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class ConversationProfilesResource(googleapiclient.discovery.Resource):
+            def clearSuggestionFeatureConfig(
+                self,
+                *,
+                conversationProfile: str,
+                body: GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def create(
                 self,
                 *,
@@ -669,6 +676,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2beta1ConversationProfileHttpRequest: ...
+            def setSuggestionFeatureConfig(
+                self,
+                *,
+                conversationProfile: str,
+                body: GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
 
         @typing.type_check_only
         class ConversationsResource(googleapiclient.discovery.Resource):
@@ -1452,6 +1466,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class ConversationProfilesResource(googleapiclient.discovery.Resource):
+                def clearSuggestionFeatureConfig(
+                    self,
+                    *,
+                    conversationProfile: str,
+                    body: GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -1486,6 +1507,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ConversationProfileHttpRequest: ...
+                def setSuggestionFeatureConfig(
+                    self,
+                    *,
+                    conversationProfile: str,
+                    body: GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
 
             @typing.type_check_only
             class ConversationsResource(googleapiclient.discovery.Resource):

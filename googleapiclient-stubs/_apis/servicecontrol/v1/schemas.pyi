@@ -39,6 +39,7 @@ class AuditLog(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     methodName: str
     numResponseItems: str
+    policyViolationInfo: PolicyViolationInfo
     request: dict[str, typing.Any]
     requestMetadata: RequestMetadata
     resourceLocation: ResourceLocation
@@ -287,12 +288,23 @@ class Operation(typing_extensions.TypedDict, total=False):
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
+class OrgPolicyViolationInfo(typing_extensions.TypedDict, total=False):
+    payload: dict[str, typing.Any]
+    resourceTags: dict[str, typing.Any]
+    resourceType: str
+    violationInfo: _list[ViolationInfo]
+
+@typing.type_check_only
 class Peer(typing_extensions.TypedDict, total=False):
     ip: str
     labels: dict[str, typing.Any]
     port: str
     principal: str
     regionCode: str
+
+@typing.type_check_only
+class PolicyViolationInfo(typing_extensions.TypedDict, total=False):
+    orgPolicyViolationInfo: OrgPolicyViolationInfo
 
 @typing.type_check_only
 class QuotaError(typing_extensions.TypedDict, total=False):
@@ -449,3 +461,72 @@ class TraceSpan(typing_extensions.TypedDict, total=False):
 class TruncatableString(typing_extensions.TypedDict, total=False):
     truncatedByteCount: int
     value: str
+
+@typing.type_check_only
+class V1HttpRequest(typing_extensions.TypedDict, total=False):
+    cacheFillBytes: str
+    cacheHit: bool
+    cacheLookup: bool
+    cacheValidatedWithOriginServer: bool
+    latency: str
+    protocol: str
+    referer: str
+    remoteIp: str
+    requestMethod: str
+    requestSize: str
+    requestUrl: str
+    responseSize: str
+    serverIp: str
+    status: int
+    userAgent: str
+
+@typing.type_check_only
+class V1LogEntry(typing_extensions.TypedDict, total=False):
+    httpRequest: V1HttpRequest
+    insertId: str
+    labels: dict[str, typing.Any]
+    monitoredResourceLabels: dict[str, typing.Any]
+    name: str
+    operation: V1LogEntryOperation
+    protoPayload: dict[str, typing.Any]
+    severity: typing_extensions.Literal[
+        "DEFAULT",
+        "DEBUG",
+        "INFO",
+        "NOTICE",
+        "WARNING",
+        "ERROR",
+        "CRITICAL",
+        "ALERT",
+        "EMERGENCY",
+    ]
+    sourceLocation: V1LogEntrySourceLocation
+    structPayload: dict[str, typing.Any]
+    textPayload: str
+    timestamp: str
+    trace: str
+
+@typing.type_check_only
+class V1LogEntryOperation(typing_extensions.TypedDict, total=False):
+    first: bool
+    id: str
+    last: bool
+    producer: str
+
+@typing.type_check_only
+class V1LogEntrySourceLocation(typing_extensions.TypedDict, total=False):
+    file: str
+    function: str
+    line: str
+
+@typing.type_check_only
+class ViolationInfo(typing_extensions.TypedDict, total=False):
+    checkedValue: str
+    constraint: str
+    errorMessage: str
+    policyType: typing_extensions.Literal[
+        "POLICY_TYPE_UNSPECIFIED",
+        "BOOLEAN_CONSTRAINT",
+        "LIST_CONSTRAINT",
+        "CUSTOM_CONSTRAINT",
+    ]

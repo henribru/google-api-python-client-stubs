@@ -89,6 +89,11 @@ class ListIdentityAwareProxyClientsResponse(typing_extensions.TypedDict, total=F
     nextPageToken: str
 
 @typing.type_check_only
+class ListTunnelDestGroupsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    tunnelDestGroups: _list[TunnelDestGroup]
+
+@typing.type_check_only
 class OAuthSettings(typing_extensions.TypedDict, total=False):
     loginHint: str
 
@@ -144,3 +149,9 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TunnelDestGroup(typing_extensions.TypedDict, total=False):
+    cidrs: _list[str]
+    fqdns: _list[str]
+    name: str

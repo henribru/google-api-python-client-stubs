@@ -54,6 +54,12 @@ class GoogleCloudApigeeV1AddonsConfig(typing_extensions.TypedDict, total=False):
     monetizationConfig: GoogleCloudApigeeV1MonetizationConfig
 
 @typing.type_check_only
+class GoogleCloudApigeeV1AdjustDeveloperBalanceRequest(
+    typing_extensions.TypedDict, total=False
+):
+    adjustment: GoogleTypeMoney
+
+@typing.type_check_only
 class GoogleCloudApigeeV1AdvancedApiOpsConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -110,14 +116,19 @@ class GoogleCloudApigeeV1ApiProductRef(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProxy(typing_extensions.TypedDict, total=False):
+    apiProxyType: typing_extensions.Literal[
+        "API_PROXY_TYPE_UNSPECIFIED", "PROGRAMMABLE", "CONFIGURABLE"
+    ]
     labels: dict[str, typing.Any]
     latestRevisionId: str
     metaData: GoogleCloudApigeeV1EntityMetadata
     name: str
+    readOnly: bool
     revision: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProxyRevision(typing_extensions.TypedDict, total=False):
+    archive: str
     basepaths: _list[str]
     configurationVersion: GoogleCloudApigeeV1ConfigVersion
     contextInfo: str
@@ -370,6 +381,7 @@ class GoogleCloudApigeeV1DebugMask(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudApigeeV1DebugSession(typing_extensions.TypedDict, total=False):
     count: int
+    createTime: str
     filter: str
     name: str
     timeout: str
@@ -530,6 +542,16 @@ class GoogleCloudApigeeV1DimensionMetric(typing_extensions.TypedDict, total=Fals
     name: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1EndpointAttachment(typing_extensions.TypedDict, total=False):
+    host: str
+    location: str
+    name: str
+    serviceAttachment: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
+    ]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1EntityMetadata(typing_extensions.TypedDict, total=False):
     createdAt: str
     lastModifiedAt: str
@@ -591,6 +613,7 @@ class GoogleCloudApigeeV1EnvironmentGroupAttachment(
 ):
     createdAt: str
     environment: str
+    environmentGroupId: str
     name: str
 
 @typing.type_check_only
@@ -665,6 +688,20 @@ class GoogleCloudApigeeV1GenerateUploadUrlResponse(
     uploadUri: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1GetAsyncQueryResultUrlResponse(
+    typing_extensions.TypedDict, total=False
+):
+    urls: _list[GoogleCloudApigeeV1GetAsyncQueryResultUrlResponseURLInfo]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1GetAsyncQueryResultUrlResponseURLInfo(
+    typing_extensions.TypedDict, total=False
+):
+    md5: str
+    sizeBytes: str
+    uri: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1GetSyncAuthorizationRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -700,11 +737,13 @@ class GoogleCloudApigeeV1IngressConfig(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Instance(typing_extensions.TypedDict, total=False):
+    consumerAcceptList: _list[str]
     createdAt: str
     description: str
     diskEncryptionKeyName: str
     displayName: str
     host: str
+    ipRange: str
     lastModifiedAt: str
     location: str
     name: str
@@ -720,6 +759,7 @@ class GoogleCloudApigeeV1Instance(typing_extensions.TypedDict, total=False):
     ]
     port: str
     runtimeVersion: str
+    serviceAttachment: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
     ]
@@ -865,6 +905,13 @@ class GoogleCloudApigeeV1ListDeveloperSubscriptionsResponse(
     nextStartKey: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListEndpointAttachmentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    endpointAttachments: _list[GoogleCloudApigeeV1EndpointAttachment]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -996,6 +1043,7 @@ class GoogleCloudApigeeV1OperationMetadata(typing_extensions.TypedDict, total=Fa
         "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "FINISHED"
     ]
     targetResourceName: str
+    warnings: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1OperationMetadataProgress(
@@ -1065,6 +1113,7 @@ class GoogleCloudApigeeV1OrganizationProjectMapping(
     typing_extensions.TypedDict, total=False
 ):
     organization: str
+    projectId: str
     projectIds: _list[str]
 
 @typing.type_check_only

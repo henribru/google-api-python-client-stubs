@@ -37,10 +37,6 @@ class V2BrowserKeyRestrictions(typing_extensions.TypedDict, total=False):
     allowedReferrers: _list[str]
 
 @typing.type_check_only
-class V2CloneKeyRequest(typing_extensions.TypedDict, total=False):
-    keyId: str
-
-@typing.type_check_only
 class V2GetKeyStringResponse(typing_extensions.TypedDict, total=False):
     keyString: str
 
@@ -50,6 +46,7 @@ class V2IosKeyRestrictions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class V2Key(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     createTime: str
     deleteTime: str
     displayName: str

@@ -167,6 +167,7 @@ class GoogleIdentityAccesscontextmanagerV1AccessPolicy(
     etag: str
     name: str
     parent: str
+    scopes: _list[str]
     title: str
 
 @typing.type_check_only

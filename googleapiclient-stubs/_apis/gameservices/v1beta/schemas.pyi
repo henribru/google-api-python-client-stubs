@@ -7,7 +7,6 @@ _list = list
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
-    exemptedMembers: _list[str]
     service: str
 
 @typing.type_check_only

@@ -98,6 +98,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         name: str,
                         ignoreActiveCertificates: bool = ...,
                         requestId: str = ...,
+                        skipGracePeriod: bool = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def disable(

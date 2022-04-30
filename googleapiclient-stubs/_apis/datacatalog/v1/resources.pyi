@@ -115,6 +115,20 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudDatacatalogV1ListEntriesResponseHttpRequest,
                         previous_response: GoogleCloudDatacatalogV1ListEntriesResponse,
                     ) -> GoogleCloudDatacatalogV1ListEntriesResponseHttpRequest | None: ...
+                    def modifyEntryContacts(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDatacatalogV1ModifyEntryContactsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDatacatalogV1ContactsHttpRequest: ...
+                    def modifyEntryOverview(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDatacatalogV1ModifyEntryOverviewRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDatacatalogV1EntryOverviewHttpRequest: ...
                     def patch(
                         self,
                         *,
@@ -123,6 +137,13 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDatacatalogV1EntryHttpRequest: ...
+                    def star(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDatacatalogV1StarEntryRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDatacatalogV1StarEntryResponseHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
@@ -130,6 +151,13 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def unstar(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDatacatalogV1UnstarEntryRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDatacatalogV1UnstarEntryResponseHttpRequest: ...
                     def tags(self) -> TagsResource: ...
 
                 @typing.type_check_only
@@ -482,6 +510,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1ContactsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDatacatalogV1Contacts: ...
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1EntryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -496,6 +532,16 @@ class GoogleCloudDatacatalogV1EntryGroupHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDatacatalogV1EntryGroup: ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1EntryOverviewHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDatacatalogV1EntryOverview: ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ExportTaxonomiesResponseHttpRequest(
@@ -586,6 +632,16 @@ class GoogleCloudDatacatalogV1SearchCatalogResponseHttpRequest(
     ) -> GoogleCloudDatacatalogV1SearchCatalogResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1StarEntryResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDatacatalogV1StarEntryResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1TagHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -618,6 +674,16 @@ class GoogleCloudDatacatalogV1TaxonomyHttpRequest(googleapiclient.http.HttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDatacatalogV1Taxonomy: ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1UnstarEntryResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDatacatalogV1UnstarEntryResponse: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):

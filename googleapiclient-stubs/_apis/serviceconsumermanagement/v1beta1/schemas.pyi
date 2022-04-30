@@ -183,6 +183,7 @@ class HttpRule(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
+    cookie: str
     header: str
     query: str
     valuePrefix: str
@@ -436,6 +437,7 @@ class V1Beta1ConsumerQuotaLimit(typing_extensions.TypedDict, total=False):
     metric: str
     name: str
     quotaBuckets: _list[V1Beta1QuotaBucket]
+    supportedLocations: _list[str]
     unit: str
 
 @typing.type_check_only

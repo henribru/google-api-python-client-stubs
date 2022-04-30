@@ -44,12 +44,50 @@ class AppTrackInfo(typing_extensions.TypedDict, total=False):
     trackId: str
 
 @typing.type_check_only
+class AppVersion(typing_extensions.TypedDict, total=False):
+    production: bool
+    trackIds: _list[str]
+    versionCode: int
+    versionString: str
+
+@typing.type_check_only
 class Application(typing_extensions.TypedDict, total=False):
+    appPricing: typing_extensions.Literal[
+        "APP_PRICING_UNSPECIFIED", "FREE", "FREE_WITH_IN_APP_PURCHASE", "PAID"
+    ]
     appTracks: _list[AppTrackInfo]
+    appVersions: _list[AppVersion]
+    author: str
+    availableCountries: _list[str]
+    category: str
+    contentRating: typing_extensions.Literal[
+        "CONTENT_RATING_UNSPECIFIED",
+        "THREE_YEARS",
+        "SEVEN_YEARS",
+        "TWELVE_YEARS",
+        "SIXTEEN_YEARS",
+        "EIGHTEEN_YEARS",
+    ]
+    description: str
+    distributionChannel: typing_extensions.Literal[
+        "DISTRIBUTION_CHANNEL_UNSPECIFIED",
+        "PUBLIC_GOOGLE_HOSTED",
+        "PRIVATE_GOOGLE_HOSTED",
+        "PRIVATE_SELF_HOSTED",
+    ]
+    features: _list[str]
+    fullDescription: str
+    iconUrl: str
     managedProperties: _list[ManagedProperty]
+    minAndroidSdkVersion: int
     name: str
     permissions: _list[ApplicationPermission]
+    playStoreUrl: str
+    recentChanges: str
+    screenshotUrls: _list[str]
+    smallIconUrl: str
     title: str
+    updateTime: str
 
 @typing.type_check_only
 class ApplicationEvent(typing_extensions.TypedDict, total=False):
@@ -75,6 +113,11 @@ class ApplicationPermission(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     accessibleTrackIds: _list[str]
+    alwaysOnVpnLockdownExemption: typing_extensions.Literal[
+        "ALWAYS_ON_VPN_LOCKDOWN_EXEMPTION_UNSPECIFIED",
+        "VPN_LOCKDOWN_ENFORCED",
+        "VPN_LOCKDOWN_EXEMPTION",
+    ]
     autoUpdateMode: typing_extensions.Literal[
         "AUTO_UPDATE_MODE_UNSPECIFIED",
         "AUTO_UPDATE_DEFAULT",
@@ -646,6 +689,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     bluetoothConfigDisabled: bool
     bluetoothContactSharingDisabled: bool
     bluetoothDisabled: bool
+    cameraAccess: typing_extensions.Literal[
+        "CAMERA_ACCESS_UNSPECIFIED",
+        "CAMERA_ACCESS_USER_CHOICE",
+        "CAMERA_ACCESS_DISABLED",
+        "CAMERA_ACCESS_ENFORCED",
+    ]
     cameraDisabled: bool
     cellBroadcastsConfigDisabled: bool
     choosePrivateKeyRules: _list[ChoosePrivateKeyRule]
@@ -686,6 +735,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     ]
     longSupportMessage: UserFacingMessage
     maximumTimeToLock: str
+    microphoneAccess: typing_extensions.Literal[
+        "MICROPHONE_ACCESS_UNSPECIFIED",
+        "MICROPHONE_ACCESS_USER_CHOICE",
+        "MICROPHONE_ACCESS_DISABLED",
+        "MICROPHONE_ACCESS_ENFORCED",
+    ]
     minimumApiLevel: int
     mobileNetworksConfigDisabled: bool
     modifyAccountsDisabled: bool
@@ -732,6 +787,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     tetheringConfigDisabled: bool
     uninstallAppsDisabled: bool
     unmuteMicrophoneDisabled: bool
+    usageLog: UsageLog
     usbFileTransferDisabled: bool
     usbMassStorageEnabled: bool
     version: str
@@ -866,6 +922,11 @@ class TelephonyInfo(typing_extensions.TypedDict, total=False):
 class TermsAndConditions(typing_extensions.TypedDict, total=False):
     content: UserFacingMessage
     header: UserFacingMessage
+
+@typing.type_check_only
+class UsageLog(typing_extensions.TypedDict, total=False):
+    enabledLogTypes: _list[str]
+    uploadOnCellularAllowed: _list[str]
 
 @typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):

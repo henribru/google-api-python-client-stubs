@@ -97,6 +97,11 @@ class ContainerPort(typing_extensions.TypedDict, total=False):
     protocol: str
 
 @typing.type_check_only
+class ContainerStatus(typing_extensions.TypedDict, total=False):
+    imageDigest: str
+    name: str
+
+@typing.type_check_only
 class DomainMapping(typing_extensions.TypedDict, total=False):
     apiVersion: str
     kind: str
@@ -121,9 +126,6 @@ class DomainMappingStatus(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class EnvFromSource(typing_extensions.TypedDict, total=False):
     configMapRef: ConfigMapEnvSource
     prefix: str
@@ -145,6 +147,43 @@ class ExecAction(typing_extensions.TypedDict, total=False):
     command: _list[str]
 
 @typing.type_check_only
+class Execution(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: ExecutionSpec
+    status: ExecutionStatus
+
+@typing.type_check_only
+class ExecutionReference(typing_extensions.TypedDict, total=False):
+    creationTimestamp: str
+    name: str
+
+@typing.type_check_only
+class ExecutionSpec(typing_extensions.TypedDict, total=False):
+    parallelism: int
+    taskCount: int
+    template: TaskTemplateSpec
+
+@typing.type_check_only
+class ExecutionStatus(typing_extensions.TypedDict, total=False):
+    cancelledCount: int
+    completionTime: str
+    conditions: _list[GoogleCloudRunV1Condition]
+    failedCount: int
+    logUri: str
+    observedGeneration: int
+    retriedCount: int
+    runningCount: int
+    startTime: str
+    succeededCount: int
+
+@typing.type_check_only
+class ExecutionTemplateSpec(typing_extensions.TypedDict, total=False):
+    metadata: ObjectMeta
+    spec: ExecutionSpec
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -161,9 +200,10 @@ class GoogleCloudRunV1Condition(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class GoogleLongrunningCancelOperationRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class HTTPGetAction(typing_extensions.TypedDict, total=False):
@@ -176,6 +216,26 @@ class HTTPGetAction(typing_extensions.TypedDict, total=False):
 class HTTPHeader(typing_extensions.TypedDict, total=False):
     name: str
     value: str
+
+@typing.type_check_only
+class Job(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: JobSpec
+    status: JobStatus
+
+@typing.type_check_only
+class JobSpec(typing_extensions.TypedDict, total=False):
+    template: ExecutionTemplateSpec
+
+@typing.type_check_only
+class JobStatus(typing_extensions.TypedDict, total=False):
+    conditions: _list[GoogleCloudRunV1Condition]
+    containerStatuses: _list[ContainerStatus]
+    executionCount: int
+    latestCreatedExecution: ExecutionReference
+    observedGeneration: int
 
 @typing.type_check_only
 class KeyToPath(typing_extensions.TypedDict, total=False):
@@ -200,6 +260,22 @@ class ListConfigurationsResponse(typing_extensions.TypedDict, total=False):
 class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
     items: _list[DomainMapping]
+    kind: str
+    metadata: ListMeta
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: _list[Execution]
+    kind: str
+    metadata: ListMeta
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListJobsResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: _list[Job]
     kind: str
     metadata: ListMeta
     unreachable: _list[str]
@@ -242,6 +318,14 @@ class ListRoutesResponse(typing_extensions.TypedDict, total=False):
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
     items: _list[Service]
+    kind: str
+    metadata: ListMeta
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListTasksResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: _list[Task]
     kind: str
     metadata: ListMeta
     unreachable: _list[str]
@@ -326,6 +410,8 @@ class Revision(typing_extensions.TypedDict, total=False):
 class RevisionSpec(typing_extensions.TypedDict, total=False):
     containerConcurrency: int
     containers: _list[Container]
+    enableServiceLinks: bool
+    imagePullSecrets: _list[LocalObjectReference]
     serviceAccountName: str
     timeoutSeconds: int
     volumes: _list[Volume]
@@ -362,6 +448,9 @@ class RouteStatus(typing_extensions.TypedDict, total=False):
     observedGeneration: int
     traffic: _list[TrafficTarget]
     url: str
+
+@typing.type_check_only
+class RunJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SecretEnvSource(typing_extensions.TypedDict, total=False):
@@ -443,6 +532,42 @@ class StatusDetails(typing_extensions.TypedDict, total=False):
 class TCPSocketAction(typing_extensions.TypedDict, total=False):
     host: str
     port: int
+
+@typing.type_check_only
+class Task(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: TaskSpec
+    status: TaskStatus
+
+@typing.type_check_only
+class TaskAttemptResult(typing_extensions.TypedDict, total=False):
+    exitCode: int
+    status: GoogleRpcStatus
+
+@typing.type_check_only
+class TaskSpec(typing_extensions.TypedDict, total=False):
+    containers: _list[Container]
+    maxRetries: int
+    serviceAccountName: str
+    timeoutSeconds: str
+    volumes: _list[Volume]
+
+@typing.type_check_only
+class TaskStatus(typing_extensions.TypedDict, total=False):
+    completionTime: str
+    conditions: _list[GoogleCloudRunV1Condition]
+    index: int
+    lastAttemptResult: TaskAttemptResult
+    logUri: str
+    observedGeneration: int
+    retried: int
+    startTime: str
+
+@typing.type_check_only
+class TaskTemplateSpec(typing_extensions.TypedDict, total=False):
+    spec: TaskSpec
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

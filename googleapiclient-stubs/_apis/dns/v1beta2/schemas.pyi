@@ -253,6 +253,7 @@ class Quota(typing_extensions.TypedDict, total=False):
     managedZonesPerNetwork: int
     networksPerManagedZone: int
     networksPerPolicy: int
+    peeringZonesPerTargetNetwork: int
     policies: int
     resourceRecordsPerRrset: int
     responsePolicyRulesPerResponsePolicy: int

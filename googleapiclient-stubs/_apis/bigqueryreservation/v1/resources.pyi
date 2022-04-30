@@ -105,6 +105,14 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         body: MoveAssignmentRequest = ...,
                         **kwargs: typing.Any
                     ) -> AssignmentHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Assignment = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> AssignmentHttpRequest: ...
 
                 def create(
                     self,

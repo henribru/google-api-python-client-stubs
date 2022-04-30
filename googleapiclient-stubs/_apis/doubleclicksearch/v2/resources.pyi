@@ -50,6 +50,9 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
         def getFile(
             self, *, reportId: str, reportFragment: int, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def getIdMappingFile(
+            self, *, agencyId: str, advertiserId: str, **kwargs: typing.Any
+        ) -> IdMappingFileHttpRequest: ...
         def request(
             self, *, body: ReportRequest = ..., **kwargs: typing.Any
         ) -> ReportHttpRequest: ...
@@ -83,6 +86,14 @@ class ConversionListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ConversionList: ...
+
+@typing.type_check_only
+class IdMappingFileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> IdMappingFile: ...
 
 @typing.type_check_only
 class ReportHttpRequest(googleapiclient.http.HttpRequest):

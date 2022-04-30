@@ -27,6 +27,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     connectionProfileId: str = ...,
                     force: bool = ...,
                     requestId: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -65,6 +66,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     force: bool = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 

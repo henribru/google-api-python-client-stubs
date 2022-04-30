@@ -60,6 +60,7 @@ class Course(typing_extensions.TypedDict, total=False):
     description: str
     descriptionHeading: str
     enrollmentCode: str
+    gradebookSettings: GradebookSettings
     guardiansEnabled: bool
     id: str
     name: str
@@ -104,6 +105,7 @@ class CourseWork(typing_extensions.TypedDict, total=False):
     description: str
     dueDate: Date
     dueTime: TimeOfDay
+    gradeCategory: GradeCategory
     id: str
     individualStudentsOptions: IndividualStudentsOptions
     materials: _list[Material]
@@ -198,6 +200,13 @@ class GlobalPermission(typing_extensions.TypedDict, total=False):
     permission: typing_extensions.Literal["PERMISSION_UNSPECIFIED", "CREATE_COURSE"]
 
 @typing.type_check_only
+class GradeCategory(typing_extensions.TypedDict, total=False):
+    defaultGradeDenominator: int
+    id: str
+    name: str
+    weight: int
+
+@typing.type_check_only
 class GradeHistory(typing_extensions.TypedDict, total=False):
     actorUserId: str
     gradeChangeType: typing_extensions.Literal[
@@ -209,6 +218,19 @@ class GradeHistory(typing_extensions.TypedDict, total=False):
     gradeTimestamp: str
     maxPoints: float
     pointsEarned: float
+
+@typing.type_check_only
+class GradebookSettings(typing_extensions.TypedDict, total=False):
+    calculationType: typing_extensions.Literal[
+        "CALCULATION_TYPE_UNSPECIFIED", "TOTAL_POINTS", "WEIGHTED_CATEGORIES"
+    ]
+    displaySetting: typing_extensions.Literal[
+        "DISPLAY_SETTING_UNSPECIFIED",
+        "SHOW_OVERALL_GRADE",
+        "HIDE_OVERALL_GRADE",
+        "SHOW_TEACHERS_ONLY",
+    ]
+    gradeCategories: _list[GradeCategory]
 
 @typing.type_check_only
 class Guardian(typing_extensions.TypedDict, total=False):

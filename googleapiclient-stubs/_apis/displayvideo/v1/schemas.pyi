@@ -218,14 +218,18 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     appDetails: AppAssignedTargetingOptionDetails
     assignedTargetingOptionId: str
     audienceGroupDetails: AudienceGroupAssignedTargetingOptionDetails
+    audioContentTypeDetails: AudioContentTypeAssignedTargetingOptionDetails
     authorizedSellerStatusDetails: AuthorizedSellerStatusAssignedTargetingOptionDetails
     browserDetails: BrowserAssignedTargetingOptionDetails
     businessChainDetails: BusinessChainAssignedTargetingOptionDetails
     carrierAndIspDetails: CarrierAndIspAssignedTargetingOptionDetails
     categoryDetails: CategoryAssignedTargetingOptionDetails
     channelDetails: ChannelAssignedTargetingOptionDetails
+    contentDurationDetails: ContentDurationAssignedTargetingOptionDetails
+    contentGenreDetails: ContentGenreAssignedTargetingOptionDetails
     contentInstreamPositionDetails: ContentInstreamPositionAssignedTargetingOptionDetails
     contentOutstreamPositionDetails: ContentOutstreamPositionAssignedTargetingOptionDetails
+    contentStreamTypeDetails: ContentStreamTypeAssignedTargetingOptionDetails
     dayAndTimeDetails: DayAndTimeAssignedTargetingOptionDetails
     deviceMakeModelDetails: DeviceMakeModelAssignedTargetingOptionDetails
     deviceTypeDetails: DeviceTypeAssignedTargetingOptionDetails
@@ -298,8 +302,12 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_SUB_EXCHANGE",
         "TARGETING_TYPE_POI",
         "TARGETING_TYPE_BUSINESS_CHAIN",
+        "TARGETING_TYPE_CONTENT_DURATION",
+        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
         "TARGETING_TYPE_OMID",
+        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+        "TARGETING_TYPE_CONTENT_GENRE",
     ]
     thirdPartyVerifierDetails: ThirdPartyVerifierAssignedTargetingOptionDetails
     urlDetails: UrlAssignedTargetingOptionDetails
@@ -337,6 +345,29 @@ class AudienceGroupAssignedTargetingOptionDetails(
     includedCustomListGroup: CustomListGroup
     includedFirstAndThirdPartyAudienceGroups: _list[FirstAndThirdPartyAudienceGroup]
     includedGoogleAudienceGroup: GoogleAudienceGroup
+
+@typing.type_check_only
+class AudioContentTypeAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    audioContentType: typing_extensions.Literal[
+        "AUDIO_CONTENT_TYPE_UNSPECIFIED",
+        "AUDIO_CONTENT_TYPE_UNKNOWN",
+        "AUDIO_CONTENT_TYPE_MUSIC",
+        "AUDIO_CONTENT_TYPE_BROADCAST",
+        "AUDIO_CONTENT_TYPE_PODCAST",
+    ]
+    targetingOptionId: str
+
+@typing.type_check_only
+class AudioContentTypeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    audioContentType: typing_extensions.Literal[
+        "AUDIO_CONTENT_TYPE_UNSPECIFIED",
+        "AUDIO_CONTENT_TYPE_UNKNOWN",
+        "AUDIO_CONTENT_TYPE_MUSIC",
+        "AUDIO_CONTENT_TYPE_BROADCAST",
+        "AUDIO_CONTENT_TYPE_PODCAST",
+    ]
 
 @typing.type_check_only
 class AudioVideoOffset(typing_extensions.TypedDict, total=False):
@@ -695,6 +726,60 @@ class CombinedAudienceTargetingSetting(typing_extensions.TypedDict, total=False)
     combinedAudienceId: str
 
 @typing.type_check_only
+class ContactInfo(typing_extensions.TypedDict, total=False):
+    countryCode: str
+    hashedEmails: _list[str]
+    hashedFirstName: str
+    hashedLastName: str
+    hashedPhoneNumbers: _list[str]
+    zipCodes: _list[str]
+
+@typing.type_check_only
+class ContactInfoList(typing_extensions.TypedDict, total=False):
+    contactInfos: _list[ContactInfo]
+
+@typing.type_check_only
+class ContentDurationAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    contentDuration: typing_extensions.Literal[
+        "CONTENT_DURATION_UNSPECIFIED",
+        "CONTENT_DURATION_UNKNOWN",
+        "CONTENT_DURATION_0_TO_1_MIN",
+        "CONTENT_DURATION_1_TO_5_MIN",
+        "CONTENT_DURATION_5_TO_15_MIN",
+        "CONTENT_DURATION_15_TO_30_MIN",
+        "CONTENT_DURATION_30_TO_60_MIN",
+        "CONTENT_DURATION_OVER_60_MIN",
+    ]
+    targetingOptionId: str
+
+@typing.type_check_only
+class ContentDurationTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    contentDuration: typing_extensions.Literal[
+        "CONTENT_DURATION_UNSPECIFIED",
+        "CONTENT_DURATION_UNKNOWN",
+        "CONTENT_DURATION_0_TO_1_MIN",
+        "CONTENT_DURATION_1_TO_5_MIN",
+        "CONTENT_DURATION_5_TO_15_MIN",
+        "CONTENT_DURATION_15_TO_30_MIN",
+        "CONTENT_DURATION_30_TO_60_MIN",
+        "CONTENT_DURATION_OVER_60_MIN",
+    ]
+
+@typing.type_check_only
+class ContentGenreAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    negative: bool
+    targetingOptionId: str
+
+@typing.type_check_only
+class ContentGenreTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    displayName: str
+
+@typing.type_check_only
 class ContentInstreamPositionAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -750,6 +835,21 @@ class ContentOutstreamPositionTargetingOptionDetails(
         "CONTENT_OUTSTREAM_POSITION_IN_BANNER",
         "CONTENT_OUTSTREAM_POSITION_IN_FEED",
         "CONTENT_OUTSTREAM_POSITION_INTERSTITIAL",
+    ]
+
+@typing.type_check_only
+class ContentStreamTypeAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    contentStreamType: typing_extensions.Literal[
+        "CONTENT_STREAM_TYPE_UNSPECIFIED", "CONTENT_LIVE_STREAM", "CONTENT_ON_DEMAND"
+    ]
+    targetingOptionId: str
+
+@typing.type_check_only
+class ContentStreamTypeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    contentStreamType: typing_extensions.Literal[
+        "CONTENT_STREAM_TYPE_UNSPECIFIED", "CONTENT_LIVE_STREAM", "CONTENT_ON_DEMAND"
     ]
 
 @typing.type_check_only
@@ -814,8 +914,12 @@ class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_SUB_EXCHANGE",
         "TARGETING_TYPE_POI",
         "TARGETING_TYPE_BUSINESS_CHAIN",
+        "TARGETING_TYPE_CONTENT_DURATION",
+        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
         "TARGETING_TYPE_OMID",
+        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+        "TARGETING_TYPE_CONTENT_GENRE",
     ]
 
 @typing.type_check_only
@@ -1090,8 +1194,12 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_SUB_EXCHANGE",
         "TARGETING_TYPE_POI",
         "TARGETING_TYPE_BUSINESS_CHAIN",
+        "TARGETING_TYPE_CONTENT_DURATION",
+        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
         "TARGETING_TYPE_OMID",
+        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+        "TARGETING_TYPE_CONTENT_GENRE",
     ]
 
 @typing.type_check_only
@@ -1257,6 +1365,16 @@ class DoubleVerifyVideoViewability(typing_extensions.TypedDict, total=False):
         "VIEWED_PERFORMANCE_20_PERCENT_HIGHER",
         "VIEWED_PERFORMANCE_10_PERCENT_HIGHER",
     ]
+
+@typing.type_check_only
+class EditCustomerMatchMembersRequest(typing_extensions.TypedDict, total=False):
+    addedContactInfoList: ContactInfoList
+    addedMobileDeviceIdList: MobileDeviceIdList
+    advertiserId: str
+
+@typing.type_check_only
+class EditCustomerMatchMembersResponse(typing_extensions.TypedDict, total=False):
+    firstAndThirdPartyAudienceId: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -1526,6 +1644,7 @@ class ExitEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
     activeDisplayAudienceSize: str
+    appId: str
     audienceSource: typing_extensions.Literal[
         "AUDIENCE_SOURCE_UNSPECIFIED",
         "DISPLAY_VIDEO_360",
@@ -1546,6 +1665,7 @@ class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
         "YOUTUBE_USERS",
         "LICENSED",
     ]
+    contactInfoList: ContactInfoList
     description: str
     displayAudienceSize: str
     displayDesktopAudienceSize: str
@@ -1560,6 +1680,7 @@ class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
     ]
     gmailAudienceSize: str
     membershipDurationDays: str
+    mobileDeviceIdList: MobileDeviceIdList
     name: str
     youtubeAudienceSize: str
 
@@ -1814,6 +1935,12 @@ class IdFilter(typing_extensions.TypedDict, total=False):
 class InsertionOrder(typing_extensions.TypedDict, total=False):
     advertiserId: str
     bidStrategy: BiddingStrategy
+    billableOutcome: typing_extensions.Literal[
+        "BILLABLE_OUTCOME_UNSPECIFIED",
+        "BILLABLE_OUTCOME_PAY_PER_IMPRESSION",
+        "BILLABLE_OUTCOME_PAY_PER_CLICK",
+        "BILLABLE_OUTCOME_PAY_PER_VIEWABLE_IMPRESSION",
+    ]
     budget: InsertionOrderBudget
     campaignId: str
     displayName: str
@@ -1835,6 +1962,12 @@ class InsertionOrder(typing_extensions.TypedDict, total=False):
     pacing: Pacing
     partnerCosts: _list[PartnerCost]
     performanceGoal: PerformanceGoal
+    reservationType: typing_extensions.Literal[
+        "RESERVATION_TYPE_UNSPECIFIED",
+        "RESERVATION_TYPE_NOT_GUARANTEED",
+        "RESERVATION_TYPE_PROGRAMMATIC_GUARANTEED",
+        "RESERVATION_TYPE_TAG_GUARANTEED",
+    ]
     updateTime: str
 
 @typing.type_check_only
@@ -2131,6 +2264,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
         "ENTITY_STATUS_PAUSED",
         "ENTITY_STATUS_SCHEDULED_FOR_DELETION",
     ]
+    excludeNewExchanges: bool
     flight: LineItemFlight
     frequencyCap: FrequencyCap
     insertionOrderId: str
@@ -2153,6 +2287,12 @@ class LineItem(typing_extensions.TypedDict, total=False):
     pacing: Pacing
     partnerCosts: _list[PartnerCost]
     partnerRevenueModel: PartnerRevenueModel
+    reservationType: typing_extensions.Literal[
+        "RESERVATION_TYPE_UNSPECIFIED",
+        "RESERVATION_TYPE_NOT_GUARANTEED",
+        "RESERVATION_TYPE_PROGRAMMATIC_GUARANTEED",
+        "RESERVATION_TYPE_TAG_GUARANTEED",
+    ]
     targetingExpansion: TargetingExpansionConfig
     updateTime: str
     warningMessages: _list[str]
@@ -2386,6 +2526,7 @@ class MaximizeSpendBidStrategy(typing_extensions.TypedDict, total=False):
         "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN",
         "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED",
     ]
+    raiseBidForDeals: bool
 
 @typing.type_check_only
 class MeasurementConfig(typing_extensions.TypedDict, total=False):
@@ -2398,6 +2539,10 @@ class MobileApp(typing_extensions.TypedDict, total=False):
     displayName: str
     platform: typing_extensions.Literal["PLATFORM_UNSPECIFIED", "IOS", "ANDROID"]
     publisher: str
+
+@typing.type_check_only
+class MobileDeviceIdList(typing_extensions.TypedDict, total=False):
+    mobileDeviceIds: _list[str]
 
 @typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
@@ -2970,13 +3115,17 @@ class TargetingExpansionConfig(typing_extensions.TypedDict, total=False):
 class TargetingOption(typing_extensions.TypedDict, total=False):
     ageRangeDetails: AgeRangeTargetingOptionDetails
     appCategoryDetails: AppCategoryTargetingOptionDetails
+    audioContentTypeDetails: AudioContentTypeTargetingOptionDetails
     authorizedSellerStatusDetails: AuthorizedSellerStatusTargetingOptionDetails
     browserDetails: BrowserTargetingOptionDetails
     businessChainDetails: BusinessChainTargetingOptionDetails
     carrierAndIspDetails: CarrierAndIspTargetingOptionDetails
     categoryDetails: CategoryTargetingOptionDetails
+    contentDurationDetails: ContentDurationTargetingOptionDetails
+    contentGenreDetails: ContentGenreTargetingOptionDetails
     contentInstreamPositionDetails: ContentInstreamPositionTargetingOptionDetails
     contentOutstreamPositionDetails: ContentOutstreamPositionTargetingOptionDetails
+    contentStreamTypeDetails: ContentStreamTypeTargetingOptionDetails
     deviceMakeModelDetails: DeviceMakeModelTargetingOptionDetails
     deviceTypeDetails: DeviceTypeTargetingOptionDetails
     digitalContentLabelDetails: DigitalContentLabelTargetingOptionDetails
@@ -3037,8 +3186,12 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_SUB_EXCHANGE",
         "TARGETING_TYPE_POI",
         "TARGETING_TYPE_BUSINESS_CHAIN",
+        "TARGETING_TYPE_CONTENT_DURATION",
+        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
         "TARGETING_TYPE_OMID",
+        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+        "TARGETING_TYPE_CONTENT_GENRE",
     ]
     userRewardedContentDetails: UserRewardedContentTargetingOptionDetails
     videoPlayerSizeDetails: VideoPlayerSizeTargetingOptionDetails

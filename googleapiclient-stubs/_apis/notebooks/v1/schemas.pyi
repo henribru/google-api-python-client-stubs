@@ -29,6 +29,9 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BootImage(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -74,8 +77,11 @@ class Environment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Event(typing_extensions.TypedDict, total=False):
+    details: dict[str, typing.Any]
     reportTime: str
-    type: typing_extensions.Literal["EVENT_TYPE_UNSPECIFIED", "IDLE"]
+    type: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED", "IDLE", "HEARTBEAT", "HEALTH", "MAINTENANCE"
+    ]
 
 @typing.type_check_only
 class Execution(typing_extensions.TypedDict, total=False):
@@ -123,6 +129,7 @@ class ExecutionTemplate(typing_extensions.TypedDict, total=False):
         "CUSTOM",
     ]
     serviceAccount: str
+    tensorboard: str
     vertexAiParameters: VertexAIParameters
 
 @typing.type_check_only
@@ -152,14 +159,16 @@ class Instance(typing_extensions.TypedDict, total=False):
     acceleratorConfig: AcceleratorConfig
     bootDiskSizeGb: str
     bootDiskType: typing_extensions.Literal[
-        "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED"
+        "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED", "PD_EXTREME"
     ]
+    canIpForward: bool
     containerImage: ContainerImage
     createTime: str
+    creator: str
     customGpuDriverPath: str
     dataDiskSizeGb: str
     dataDiskType: typing_extensions.Literal[
-        "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED"
+        "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED", "PD_EXTREME"
     ]
     diskEncryption: typing_extensions.Literal[
         "DISK_ENCRYPTION_UNSPECIFIED", "GMEK", "CMEK"
@@ -276,7 +285,7 @@ class LocalDiskInitializeParams(typing_extensions.TypedDict, total=False):
     diskName: str
     diskSizeGb: str
     diskType: typing_extensions.Literal[
-        "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED"
+        "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED", "PD_EXTREME"
     ]
     labels: dict[str, typing.Any]
 
@@ -314,6 +323,15 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class RefreshRuntimeTokenInternalRequest(typing_extensions.TypedDict, total=False):
+    vmId: str
+
+@typing.type_check_only
+class RefreshRuntimeTokenInternalResponse(typing_extensions.TypedDict, total=False):
+    accessToken: str
+    expireTime: str
+
+@typing.type_check_only
 class RegisterInstanceRequest(typing_extensions.TypedDict, total=False):
     instanceId: str
 
@@ -339,7 +357,8 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
 class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ResetRuntimeRequest(typing_extensions.TypedDict, total=False): ...
+class ResetRuntimeRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
 
 @typing.type_check_only
 class RollbackInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -350,7 +369,11 @@ class Runtime(typing_extensions.TypedDict, total=False):
     accessConfig: RuntimeAccessConfig
     createTime: str
     healthState: typing_extensions.Literal[
-        "HEALTH_STATE_UNSPECIFIED", "HEALTHY", "UNHEALTHY"
+        "HEALTH_STATE_UNSPECIFIED",
+        "HEALTHY",
+        "UNHEALTHY",
+        "AGENT_NOT_INSTALLED",
+        "AGENT_NOT_RUNNING",
     ]
     metrics: RuntimeMetrics
     name: str
@@ -390,7 +413,7 @@ class RuntimeAcceleratorConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RuntimeAccessConfig(typing_extensions.TypedDict, total=False):
     accessType: typing_extensions.Literal[
-        "RUNTIME_ACCESS_TYPE_UNSPECIFIED", "SINGLE_USER"
+        "RUNTIME_ACCESS_TYPE_UNSPECIFIED", "SINGLE_USER", "SERVICE_ACCOUNT"
     ]
     proxyUri: str
     runtimeOwner: str
@@ -416,8 +439,10 @@ class RuntimeSoftwareConfig(typing_extensions.TypedDict, total=False):
     idleShutdown: bool
     idleShutdownTimeout: int
     installGpuDriver: bool
+    kernels: _list[ContainerImage]
     notebookUpgradeSchedule: str
     postStartupScript: str
+    upgradeable: bool
 
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
@@ -495,7 +520,8 @@ class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
 class StartInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StartRuntimeRequest(typing_extensions.TypedDict, total=False): ...
+class StartRuntimeRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -507,12 +533,14 @@ class Status(typing_extensions.TypedDict, total=False):
 class StopInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class StopRuntimeRequest(typing_extensions.TypedDict, total=False): ...
+class StopRuntimeRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
 
 @typing.type_check_only
 class SwitchRuntimeRequest(typing_extensions.TypedDict, total=False):
     acceleratorConfig: RuntimeAcceleratorConfig
     machineType: str
+    requestId: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -528,6 +556,14 @@ class TriggerScheduleRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class UpdateInstanceConfigRequest(typing_extensions.TypedDict, total=False):
     config: InstanceConfig
+
+@typing.type_check_only
+class UpdateInstanceMetadataItemsRequest(typing_extensions.TypedDict, total=False):
+    items: dict[str, typing.Any]
+
+@typing.type_check_only
+class UpdateInstanceMetadataItemsResponse(typing_extensions.TypedDict, total=False):
+    items: dict[str, typing.Any]
 
 @typing.type_check_only
 class UpdateShieldedInstanceConfigRequest(typing_extensions.TypedDict, total=False):
@@ -550,10 +586,24 @@ class UpgradeHistoryEntry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpgradeInstanceInternalRequest(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "UPGRADE_TYPE_UNSPECIFIED",
+        "UPGRADE_FRAMEWORK",
+        "UPGRADE_OS",
+        "UPGRADE_CUDA",
+        "UPGRADE_ALL",
+    ]
     vmId: str
 
 @typing.type_check_only
-class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False): ...
+class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "UPGRADE_TYPE_UNSPECIFIED",
+        "UPGRADE_FRAMEWORK",
+        "UPGRADE_OS",
+        "UPGRADE_CUDA",
+        "UPGRADE_ALL",
+    ]
 
 @typing.type_check_only
 class VertexAIParameters(typing_extensions.TypedDict, total=False):
@@ -569,6 +619,7 @@ class VirtualMachine(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VirtualMachineConfig(typing_extensions.TypedDict, total=False):
     acceleratorConfig: RuntimeAcceleratorConfig
+    bootImage: BootImage
     containerImages: _list[ContainerImage]
     dataDisk: LocalDisk
     encryptionConfig: EncryptionConfig
@@ -579,6 +630,7 @@ class VirtualMachineConfig(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     network: str
     nicType: typing_extensions.Literal["UNSPECIFIED_NIC_TYPE", "VIRTIO_NET", "GVNIC"]
+    reservedIpRange: str
     shieldedInstanceConfig: RuntimeShieldedInstanceConfig
     subnet: str
     tags: _list[str]

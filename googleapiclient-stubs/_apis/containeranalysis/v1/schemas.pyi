@@ -79,6 +79,53 @@ class BuilderConfig(typing_extensions.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
+class CVSS(typing_extensions.TypedDict, total=False):
+    attackComplexity: typing_extensions.Literal[
+        "ATTACK_COMPLEXITY_UNSPECIFIED",
+        "ATTACK_COMPLEXITY_LOW",
+        "ATTACK_COMPLEXITY_HIGH",
+    ]
+    attackVector: typing_extensions.Literal[
+        "ATTACK_VECTOR_UNSPECIFIED",
+        "ATTACK_VECTOR_NETWORK",
+        "ATTACK_VECTOR_ADJACENT",
+        "ATTACK_VECTOR_LOCAL",
+        "ATTACK_VECTOR_PHYSICAL",
+    ]
+    authentication: typing_extensions.Literal[
+        "AUTHENTICATION_UNSPECIFIED",
+        "AUTHENTICATION_MULTIPLE",
+        "AUTHENTICATION_SINGLE",
+        "AUTHENTICATION_NONE",
+    ]
+    availabilityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    baseScore: float
+    confidentialityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    exploitabilityScore: float
+    impactScore: float
+    integrityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    privilegesRequired: typing_extensions.Literal[
+        "PRIVILEGES_REQUIRED_UNSPECIFIED",
+        "PRIVILEGES_REQUIRED_NONE",
+        "PRIVILEGES_REQUIRED_LOW",
+        "PRIVILEGES_REQUIRED_HIGH",
+    ]
+    scope: typing_extensions.Literal[
+        "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
+    ]
+    userInteraction: typing_extensions.Literal[
+        "USER_INTERACTION_UNSPECIFIED",
+        "USER_INTERACTION_NONE",
+        "USER_INTERACTION_REQUIRED",
+    ]
+
+@typing.type_check_only
 class CVSSv3(typing_extensions.TypedDict, total=False):
     attackComplexity: typing_extensions.Literal[
         "ATTACK_COMPLEXITY_UNSPECIFIED",
@@ -118,9 +165,6 @@ class CVSSv3(typing_extensions.TypedDict, total=False):
         "USER_INTERACTION_NONE",
         "USER_INTERACTION_REQUIRED",
     ]
-
-@typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Category(typing_extensions.TypedDict, total=False):
@@ -172,6 +216,7 @@ class ComplianceOccurrence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ComplianceVersion(typing_extensions.TypedDict, total=False):
+    benchmarkDocument: str
     cpeUri: str
     version: str
 
@@ -541,6 +586,7 @@ class DiscoveryOccurrence(typing_extensions.TypedDict, total=False):
         "FINISHED_UNSUPPORTED",
     ]
     analysisStatusError: Status
+    archiveTime: str
     continuousAnalysis: typing_extensions.Literal[
         "CONTINUOUS_ANALYSIS_UNSPECIFIED", "ACTIVE", "INACTIVE"
     ]
@@ -694,11 +740,6 @@ class ListOccurrencesResponse(typing_extensions.TypedDict, total=False):
     occurrences: _list[Occurrence]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: _list[Operation]
-
-@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     cpeUri: str
     path: str
@@ -789,14 +830,6 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     updateTime: str
     upgrade: UpgradeOccurrence
     vulnerability: VulnerabilityOccurrence
-
-@typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
-    done: bool
-    error: Status
-    metadata: dict[str, typing.Any]
-    name: str
-    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class PackageIssue(typing_extensions.TypedDict, total=False):
@@ -972,6 +1005,7 @@ class VulnerabilityNote(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssv3: CVSS
     effectiveSeverity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]

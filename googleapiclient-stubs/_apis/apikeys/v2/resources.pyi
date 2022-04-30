@@ -29,13 +29,6 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class KeysResource(googleapiclient.discovery.Resource):
-                def clone(
-                    self,
-                    *,
-                    name: str,
-                    body: V2CloneKeyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -57,9 +50,9 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    showDeleted: bool = ...,
                     **kwargs: typing.Any
                 ) -> V2ListKeysResponseHttpRequest: ...
                 def list_next(

@@ -44,6 +44,15 @@ class GoogleCloudMemcacheV1beta2LocationMetadata(
     availableZones: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudMemcacheV1beta2MaintenancePolicy(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    description: str
+    updateTime: str
+    weeklyMaintenanceWindow: _list[WeeklyMaintenanceWindow]
+
+@typing.type_check_only
 class GoogleCloudMemcacheV1beta2OperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -66,11 +75,13 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
 ):
     consumerDefinedName: str
     createTime: str
+    instanceType: str
     labels: dict[str, typing.Any]
     maintenancePolicyNames: dict[str, typing.Any]
     maintenanceSchedules: dict[str, typing.Any]
     maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
     name: str
+    notificationParameters: dict[str, typing.Any]
     producerMetadata: dict[str, typing.Any]
     provisionedResources: _list[
         GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource
@@ -117,6 +128,12 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
 
 @typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter(
+    typing_extensions.TypedDict, total=False
+):
+    values: _list[str]
+
+@typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
     typing_extensions.TypedDict, total=False
 ):
@@ -152,6 +169,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     displayName: str
     instanceMessages: _list[InstanceMessage]
     labels: dict[str, typing.Any]
+    maintenancePolicy: GoogleCloudMemcacheV1beta2MaintenancePolicy
+    maintenanceSchedule: MaintenanceSchedule
     memcacheFullVersion: str
     memcacheNodes: _list[Node]
     memcacheVersion: typing_extensions.Literal[
@@ -215,6 +234,12 @@ class MaintenancePolicy(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
     updatePolicy: UpdatePolicy
     updateTime: str
+
+@typing.type_check_only
+class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
+    endTime: str
+    scheduleDeadlineTime: str
+    startTime: str
 
 @typing.type_check_only
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
@@ -303,6 +328,21 @@ class UpdatePolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WeeklyCycle(typing_extensions.TypedDict, total=False):
     schedule: _list[Schedule]
+
+@typing.type_check_only
+class WeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    duration: str
+    startTime: TimeOfDay
 
 @typing.type_check_only
 class ZoneMetadata(typing_extensions.TypedDict, total=False): ...

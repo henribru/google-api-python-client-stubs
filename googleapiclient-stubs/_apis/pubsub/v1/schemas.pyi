@@ -141,6 +141,8 @@ class RetryPolicy(typing_extensions.TypedDict, total=False):
 class Schema(typing_extensions.TypedDict, total=False):
     definition: str
     name: str
+    revisionCreateTime: str
+    revisionId: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PROTOCOL_BUFFER", "AVRO"]
 
 @typing.type_check_only
@@ -172,6 +174,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     ackDeadlineSeconds: int
     deadLetterPolicy: DeadLetterPolicy
     detached: bool
+    enableExactlyOnceDelivery: bool
     enableMessageOrdering: bool
     expirationPolicy: ExpirationPolicy
     filter: str
@@ -181,6 +184,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     pushConfig: PushConfig
     retainAckedMessages: bool
     retryPolicy: RetryPolicy
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOURCE_ERROR"]
     topic: str
     topicMessageRetentionDuration: str
 

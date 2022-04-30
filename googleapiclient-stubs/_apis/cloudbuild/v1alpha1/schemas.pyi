@@ -33,12 +33,30 @@ class Artifacts(typing_extensions.TypedDict, total=False):
     objects: ArtifactObjects
 
 @typing.type_check_only
+class BatchCreateBitbucketServerConnectedRepositoriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    bitbucketServerConnectedRepositories: _list[BitbucketServerConnectedRepository]
+
+@typing.type_check_only
 class BatchCreateBitbucketServerConnectedRepositoriesResponseMetadata(
     typing_extensions.TypedDict, total=False
 ):
     completeTime: str
     config: str
     createTime: str
+
+@typing.type_check_only
+class BitbucketServerConnectedRepository(typing_extensions.TypedDict, total=False):
+    parent: str
+    repo: BitbucketServerRepositoryId
+    status: Status
+
+@typing.type_check_only
+class BitbucketServerRepositoryId(typing_extensions.TypedDict, total=False):
+    projectKey: str
+    repoSlug: str
+    webhookId: int
 
 @typing.type_check_only
 class Build(typing_extensions.TypedDict, total=False):
@@ -160,6 +178,14 @@ class BuiltImage(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CreateBitbucketServerConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    bitbucketServerConfig: str
+    completeTime: str
+    createTime: str
+
+@typing.type_check_only
 class CreateGitHubEnterpriseConfigOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -168,10 +194,24 @@ class CreateGitHubEnterpriseConfigOperationMetadata(
     githubEnterpriseConfig: str
 
 @typing.type_check_only
+class CreateGitLabConfigOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    gitlabConfig: str
+
+@typing.type_check_only
 class CreateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
     completeTime: str
     createTime: str
     workerPool: str
+
+@typing.type_check_only
+class DeleteBitbucketServerConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    bitbucketServerConfig: str
+    completeTime: str
+    createTime: str
 
 @typing.type_check_only
 class DeleteGitHubEnterpriseConfigOperationMetadata(
@@ -180,6 +220,12 @@ class DeleteGitHubEnterpriseConfigOperationMetadata(
     completeTime: str
     createTime: str
     githubEnterpriseConfig: str
+
+@typing.type_check_only
+class DeleteGitLabConfigOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    gitlabConfig: str
 
 @typing.type_check_only
 class DeleteWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -328,6 +374,16 @@ class Results(typing_extensions.TypedDict, total=False):
     numArtifacts: str
 
 @typing.type_check_only
+class RunWorkflowCustomOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    pipelineRunId: str
+    requestedCancellation: bool
+    target: str
+    verb: str
+
+@typing.type_check_only
 class SMTPDelivery(typing_extensions.TypedDict, total=False):
     fromAddress: str
     password: NotifierSecretRef
@@ -392,12 +448,26 @@ class TimeSpan(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class UpdateBitbucketServerConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    bitbucketServerConfig: str
+    completeTime: str
+    createTime: str
+
+@typing.type_check_only
 class UpdateGitHubEnterpriseConfigOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     completeTime: str
     createTime: str
     githubEnterpriseConfig: str
+
+@typing.type_check_only
+class UpdateGitLabConfigOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    gitlabConfig: str
 
 @typing.type_check_only
 class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):

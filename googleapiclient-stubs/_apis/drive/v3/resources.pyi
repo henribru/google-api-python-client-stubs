@@ -121,7 +121,12 @@ class DriveResource(googleapiclient.discovery.Resource):
             self, *, requestId: str, body: Drive = ..., **kwargs: typing.Any
         ) -> DriveHttpRequest: ...
         def delete(
-            self, *, driveId: str, **kwargs: typing.Any
+            self,
+            *,
+            driveId: str,
+            allowItemDeletion: bool = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,

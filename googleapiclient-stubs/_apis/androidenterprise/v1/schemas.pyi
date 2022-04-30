@@ -179,6 +179,10 @@ class EnterpriseAccount(typing_extensions.TypedDict, total=False):
     accountEmail: str
 
 @typing.type_check_only
+class EnterpriseAuthenticationAppLinkConfig(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
 class EnterprisesListResponse(typing_extensions.TypedDict, total=False):
     enterprise: _list[Enterprise]
 

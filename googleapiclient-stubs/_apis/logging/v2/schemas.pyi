@@ -21,6 +21,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class CmekSettings(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
+    kmsKeyVersionName: str
     name: str
     serviceAccountId: str
 
@@ -82,6 +83,14 @@ class HttpRequest(typing_extensions.TypedDict, total=False):
     serverIp: str
     status: int
     userAgent: str
+
+@typing.type_check_only
+class IndexConfig(typing_extensions.TypedDict, total=False):
+    createTime: str
+    fieldPath: str
+    type: typing_extensions.Literal[
+        "INDEX_TYPE_UNSPECIFIED", "INDEX_TYPE_STRING", "INDEX_TYPE_INTEGER"
+    ]
 
 @typing.type_check_only
 class LabelDescriptor(typing_extensions.TypedDict, total=False):
@@ -169,6 +178,7 @@ class LogBucket(typing_extensions.TypedDict, total=False):
     cmekSettings: CmekSettings
     createTime: str
     description: str
+    indexConfigs: _list[IndexConfig]
     lifecycleState: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"
     ]
@@ -203,6 +213,7 @@ class LogEntry(typing_extensions.TypedDict, total=False):
     ]
     sourceLocation: LogEntrySourceLocation
     spanId: str
+    split: LogSplit
     textPayload: str
     timestamp: str
     trace: str
@@ -277,6 +288,12 @@ class LogSink(typing_extensions.TypedDict, total=False):
     ]
     updateTime: str
     writerIdentity: str
+
+@typing.type_check_only
+class LogSplit(typing_extensions.TypedDict, total=False):
+    index: int
+    totalSplits: int
+    uid: str
 
 @typing.type_check_only
 class LogView(typing_extensions.TypedDict, total=False):
@@ -405,6 +422,14 @@ class RequestLog(typing_extensions.TypedDict, total=False):
     userAgent: str
     versionId: str
     wasLoadingRequest: bool
+
+@typing.type_check_only
+class Settings(typing_extensions.TypedDict, total=False):
+    disableDefaultSink: bool
+    kmsKeyName: str
+    kmsServiceAccountId: str
+    name: str
+    storageLocation: str
 
 @typing.type_check_only
 class SourceLocation(typing_extensions.TypedDict, total=False):

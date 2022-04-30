@@ -80,6 +80,9 @@ class Contact(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreativeRequirements(typing_extensions.TypedDict, total=False):
+    creativeFormat: typing_extensions.Literal[
+        "CREATIVE_FORMAT_UNSPECIFIED", "DISPLAY", "VIDEO"
+    ]
     creativePreApprovalPolicy: typing_extensions.Literal[
         "CREATIVE_PRE_APPROVAL_POLICY_UNSPECIFIED",
         "SELLER_PRE_APPROVAL_REQUIRED",
@@ -88,8 +91,16 @@ class CreativeRequirements(typing_extensions.TypedDict, total=False):
     creativeSafeFrameCompatibility: typing_extensions.Literal[
         "CREATIVE_SAFE_FRAME_COMPATIBILITY_UNSPECIFIED", "COMPATIBLE", "INCOMPATIBLE"
     ]
+    maxAdDurationMs: str
     programmaticCreativeSource: typing_extensions.Literal[
         "PROGRAMMATIC_CREATIVE_SOURCE_UNSPECIFIED", "ADVERTISER", "PUBLISHER"
+    ]
+    skippableAdType: typing_extensions.Literal[
+        "SKIPPABLE_AD_TYPE_UNSPECIFIED",
+        "SKIPPABLE",
+        "INSTREAM_SELECT",
+        "NOT_SKIPPABLE",
+        "ANY",
     ]
 
 @typing.type_check_only

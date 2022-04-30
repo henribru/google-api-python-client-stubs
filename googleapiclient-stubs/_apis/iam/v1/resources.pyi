@@ -35,6 +35,27 @@ class IamResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ProvidersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class KeysResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class OperationsResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
+
+                    def operations(self) -> OperationsResource: ...
+
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
+                def keys(self) -> KeysResource: ...
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
+            class SubjectsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -44,6 +65,7 @@ class IamResource(googleapiclient.discovery.Resource):
 
             def operations(self) -> OperationsResource: ...
             def providers(self) -> ProvidersResource: ...
+            def subjects(self) -> SubjectsResource: ...
 
         def workforcePools(self) -> WorkforcePoolsResource: ...
 
@@ -121,6 +143,16 @@ class IamResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ProvidersResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
+                    class KeysResource(googleapiclient.discovery.Resource):
+                        @typing.type_check_only
+                        class OperationsResource(googleapiclient.discovery.Resource):
+                            def get(
+                                self, *, name: str, **kwargs: typing.Any
+                            ) -> OperationHttpRequest: ...
+
+                        def operations(self) -> OperationsResource: ...
+
+                    @typing.type_check_only
                     class OperationsResource(googleapiclient.discovery.Resource):
                         def get(
                             self, *, name: str, **kwargs: typing.Any
@@ -169,6 +201,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         body: UndeleteWorkloadIdentityPoolProviderRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def keys(self) -> KeysResource: ...
                     def operations(self) -> OperationsResource: ...
 
                 def create(

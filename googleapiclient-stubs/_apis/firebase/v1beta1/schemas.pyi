@@ -33,6 +33,7 @@ class AnalyticsProperty(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AndroidApp(typing_extensions.TypedDict, total=False):
+    apiKeyId: str
     appId: str
     displayName: str
     name: str
@@ -77,6 +78,7 @@ class FirebaseProject(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IosApp(typing_extensions.TypedDict, total=False):
+    apiKeyId: str
     appId: str
     appStoreId: str
     bundleId: str
@@ -188,6 +190,7 @@ class StreamMapping(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WebApp(typing_extensions.TypedDict, total=False):
+    apiKeyId: str
     appId: str
     appUrls: _list[str]
     displayName: str
