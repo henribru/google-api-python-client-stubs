@@ -75,6 +75,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                             body: TestIamPermissionsRequest = ...,
                             **kwargs: typing.Any
                         ) -> TestIamPermissionsResponseHttpRequest: ...
+
                     def activate(
                         self,
                         *,
@@ -97,6 +98,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         name: str,
                         ignoreActiveCertificates: bool = ...,
                         requestId: str = ...,
+                        skipGracePeriod: bool = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
                     def disable(
@@ -153,6 +155,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     def certificateRevocationLists(
                         self,
                     ) -> CertificateRevocationListsResource: ...
+
                 @typing.type_check_only
                 class CertificatesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -200,6 +203,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         body: RevokeCertificateRequest = ...,
                         **kwargs: typing.Any
                     ) -> CertificateHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -269,6 +273,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def certificateAuthorities(self) -> CertificateAuthoritiesResource: ...
                 def certificates(self) -> CertificatesResource: ...
+
             @typing.type_check_only
             class CertificateTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -331,6 +336,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -360,6 +366,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -380,7 +387,9 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
             def caPools(self) -> CaPoolsResource: ...
             def certificateTemplates(self) -> CertificateTemplatesResource: ...
             def operations(self) -> OperationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -18,6 +18,7 @@ class TestingResource(googleapiclient.discovery.Resource):
         def getApkDetails(
             self, *, body: FileReference = ..., **kwargs: typing.Any
         ) -> GetApkDetailsResponseHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -36,7 +37,9 @@ class TestingResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, projectId: str, testMatrixId: str, **kwargs: typing.Any
             ) -> TestMatrixHttpRequest: ...
+
         def testMatrices(self) -> TestMatricesResource: ...
+
     @typing.type_check_only
     class TestEnvironmentCatalogResource(googleapiclient.discovery.Resource):
         def get(
@@ -53,6 +56,7 @@ class TestingResource(googleapiclient.discovery.Resource):
             projectId: str = ...,
             **kwargs: typing.Any
         ) -> TestEnvironmentCatalogHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

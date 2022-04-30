@@ -22,10 +22,12 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> LogViewHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LogBucketHttpRequest: ...
             def views(self) -> ViewsResource: ...
+
         @typing.type_check_only
         class ExclusionsResource(googleapiclient.discovery.Resource):
             def create(
@@ -58,12 +60,30 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> LogExclusionHttpRequest: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class LogsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            resourceNames: str | _list[str] = ...,
+                            **kwargs: typing.Any
+                        ) -> ListLogsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListLogsResponseHttpRequest,
+                            previous_response: ListLogsResponse,
+                        ) -> ListLogsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -96,6 +116,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def logs(self) -> LogsResource: ...
+
                 def create(
                     self,
                     *,
@@ -136,6 +158,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def views(self) -> ViewsResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -159,6 +182,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -178,6 +202,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
+
         @typing.type_check_only
         class LogsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -197,11 +222,13 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 previous_request: ListLogsResponseHttpRequest,
                 previous_response: ListLogsResponse,
             ) -> ListLogsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class SinksResource(googleapiclient.discovery.Resource):
             def create(
@@ -249,15 +276,20 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> LogSinkHttpRequest: ...
+
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def buckets(self) -> BucketsResource: ...
         def exclusions(self) -> ExclusionsResource: ...
         def locations(self) -> LocationsResource: ...
         def logs(self) -> LogsResource: ...
         def operations(self) -> OperationsResource: ...
         def sinks(self) -> SinksResource: ...
+
     @typing.type_check_only
     class EntriesResource(googleapiclient.discovery.Resource):
         def copy(
@@ -277,6 +309,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
         def write(
             self, *, body: WriteLogEntriesRequest = ..., **kwargs: typing.Any
         ) -> WriteLogEntriesResponseHttpRequest: ...
+
     @typing.type_check_only
     class ExclusionsResource(googleapiclient.discovery.Resource):
         def create(
@@ -307,6 +340,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> LogExclusionHttpRequest: ...
+
     @typing.type_check_only
     class FoldersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -341,12 +375,30 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> LogExclusionHttpRequest: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class LogsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            resourceNames: str | _list[str] = ...,
+                            **kwargs: typing.Any
+                        ) -> ListLogsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListLogsResponseHttpRequest,
+                            previous_response: ListLogsResponse,
+                        ) -> ListLogsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -382,6 +434,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def logs(self) -> LogsResource: ...
+
                 def create(
                     self,
                     *,
@@ -425,6 +479,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def views(self) -> ViewsResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -451,6 +506,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -470,6 +526,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
+
         @typing.type_check_only
         class LogsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -489,6 +546,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 previous_request: ListLogsResponseHttpRequest,
                 previous_response: ListLogsResponse,
             ) -> ListLogsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class SinksResource(googleapiclient.discovery.Resource):
             def create(
@@ -536,13 +594,26 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> LogSinkHttpRequest: ...
+
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
+        def updateSettings(
+            self,
+            *,
+            name: str,
+            body: Settings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def exclusions(self) -> ExclusionsResource: ...
         def locations(self) -> LocationsResource: ...
         def logs(self) -> LogsResource: ...
         def sinks(self) -> SinksResource: ...
+
     @typing.type_check_only
     class LocationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -584,6 +655,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> LogViewHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -627,6 +699,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def views(self) -> ViewsResource: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -653,6 +726,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 previous_request: ListOperationsResponseHttpRequest,
                 previous_response: ListOperationsResponse,
             ) -> ListOperationsResponseHttpRequest | None: ...
+
         def get(self, *, name: str, **kwargs: typing.Any) -> LocationHttpRequest: ...
         def list(
             self,
@@ -670,6 +744,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
         ) -> ListLocationsResponseHttpRequest | None: ...
         def buckets(self) -> BucketsResource: ...
         def operations(self) -> OperationsResource: ...
+
     @typing.type_check_only
     class LogsResource(googleapiclient.discovery.Resource):
         def delete(self, *, logName: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
@@ -687,6 +762,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             previous_request: ListLogsResponseHttpRequest,
             previous_response: ListLogsResponse,
         ) -> ListLogsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class MonitoredResourceDescriptorsResource(googleapiclient.discovery.Resource):
         def list(
@@ -697,6 +773,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             previous_request: ListMonitoredResourceDescriptorsResponseHttpRequest,
             previous_response: ListMonitoredResourceDescriptorsResponse,
         ) -> ListMonitoredResourceDescriptorsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -731,12 +808,30 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> LogExclusionHttpRequest: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class LogsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            resourceNames: str | _list[str] = ...,
+                            **kwargs: typing.Any
+                        ) -> ListLogsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListLogsResponseHttpRequest,
+                            previous_response: ListLogsResponse,
+                        ) -> ListLogsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -772,6 +867,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def logs(self) -> LogsResource: ...
+
                 def create(
                     self,
                     *,
@@ -815,6 +912,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def views(self) -> ViewsResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -841,6 +939,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -860,6 +959,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
+
         @typing.type_check_only
         class LogsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -879,6 +979,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 previous_request: ListLogsResponseHttpRequest,
                 previous_response: ListLogsResponse,
             ) -> ListLogsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class SinksResource(googleapiclient.discovery.Resource):
             def create(
@@ -926,9 +1027,13 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> LogSinkHttpRequest: ...
+
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def updateCmekSettings(
             self,
             *,
@@ -937,10 +1042,19 @@ class LoggingResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def updateSettings(
+            self,
+            *,
+            name: str,
+            body: Settings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def exclusions(self) -> ExclusionsResource: ...
         def locations(self) -> LocationsResource: ...
         def logs(self) -> LogsResource: ...
         def sinks(self) -> SinksResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -975,12 +1089,30 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> LogExclusionHttpRequest: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class LogsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            resourceNames: str | _list[str] = ...,
+                            **kwargs: typing.Any
+                        ) -> ListLogsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListLogsResponseHttpRequest,
+                            previous_response: ListLogsResponse,
+                        ) -> ListLogsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -1016,6 +1148,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def logs(self) -> LogsResource: ...
+
                 def create(
                     self,
                     *,
@@ -1059,6 +1193,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def views(self) -> ViewsResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -1085,6 +1220,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -1104,6 +1240,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
+
         @typing.type_check_only
         class LogsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -1123,6 +1260,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 previous_request: ListLogsResponseHttpRequest,
                 previous_response: ListLogsResponse,
             ) -> ListLogsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class MetricsResource(googleapiclient.discovery.Resource):
             def create(
@@ -1150,6 +1288,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, metricName: str, body: LogMetric = ..., **kwargs: typing.Any
             ) -> LogMetricHttpRequest: ...
+
         @typing.type_check_only
         class SinksResource(googleapiclient.discovery.Resource):
             def create(
@@ -1197,14 +1336,19 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> LogSinkHttpRequest: ...
+
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def exclusions(self) -> ExclusionsResource: ...
         def locations(self) -> LocationsResource: ...
         def logs(self) -> LogsResource: ...
         def metrics(self) -> MetricsResource: ...
         def sinks(self) -> SinksResource: ...
+
     @typing.type_check_only
     class SinksResource(googleapiclient.discovery.Resource):
         def create(
@@ -1241,11 +1385,15 @@ class LoggingResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> LogSinkHttpRequest: ...
+
     @typing.type_check_only
     class V2Resource(googleapiclient.discovery.Resource):
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def updateCmekSettings(
             self,
             *,
@@ -1254,6 +1402,15 @@ class LoggingResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def updateSettings(
+            self,
+            *,
+            name: str,
+            body: Settings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -1431,6 +1588,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Settings: ...
 
 @typing.type_check_only
 class TailLogEntriesResponseHttpRequest(googleapiclient.http.HttpRequest):

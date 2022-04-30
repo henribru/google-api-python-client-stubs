@@ -27,10 +27,6 @@ class SasPortalCustomer(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SasPortalDeployment(typing_extensions.TypedDict, total=False):
-    allowedBillingModes: _list[str]
-    defaultBillingMode: typing_extensions.Literal[
-        "BILLING_MODE_UNSPECIFIED", "MOBILE", "FIXED_WIRELESS"
-    ]
     displayName: str
     frns: _list[str]
     name: str
@@ -92,6 +88,7 @@ class SasPortalDeviceGrant(typing_extensions.TypedDict, total=False):
     expireTime: str
     frequencyRange: SasPortalFrequencyRange
     grantId: str
+    lastHeartbeatTransmitExpireTime: str
     maxEirp: float
     moveList: _list[SasPortalDpaMoveList]
     state: typing_extensions.Literal[
@@ -109,6 +106,8 @@ class SasPortalDeviceMetadata(typing_extensions.TypedDict, total=False):
     antennaModel: str
     commonChannelGroup: str
     interferenceCoordinationGroup: str
+    nrqzValidated: bool
+    nrqzValidation: SasPortalNrqzValidation
 
 @typing.type_check_only
 class SasPortalDeviceModel(typing_extensions.TypedDict, total=False):
@@ -198,6 +197,14 @@ class SasPortalNode(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     sasUserIds: _list[str]
+
+@typing.type_check_only
+class SasPortalNrqzValidation(typing_extensions.TypedDict, total=False):
+    caseId: str
+    cpiId: str
+    latitude: float
+    longitude: float
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "FINAL"]
 
 @typing.type_check_only
 class SasPortalOperation(typing_extensions.TypedDict, total=False):

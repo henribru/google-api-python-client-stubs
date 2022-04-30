@@ -65,11 +65,13 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
 ):
     consumerDefinedName: str
     createTime: str
+    instanceType: str
     labels: dict[str, typing.Any]
     maintenancePolicyNames: dict[str, typing.Any]
     maintenanceSchedules: dict[str, typing.Any]
     maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
     name: str
+    notificationParameters: dict[str, typing.Any]
     producerMetadata: dict[str, typing.Any]
     provisionedResources: _list[
         GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource
@@ -114,6 +116,12 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
     location: str
     nodeId: str
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
+
+@typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter(
+    typing_extensions.TypedDict, total=False
+):
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(

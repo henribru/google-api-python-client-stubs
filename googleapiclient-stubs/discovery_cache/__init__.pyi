@@ -1,8 +1,8 @@
-from typing import Any
+from _typeshed import Incomplete
 
-LOGGER: Any
-DISCOVERY_DOC_MAX_AGE: Any
-DISCOVERY_DOC_DIR: Any
+LOGGER: Incomplete
+DISCOVERY_DOC_MAX_AGE: Incomplete
+DISCOVERY_DOC_DIR: Incomplete
 
 def autodetect(): ...
 def get_static_doc(serviceName, version): ...

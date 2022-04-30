@@ -106,11 +106,20 @@ class AppSettingsChanged(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AppsOutage(typing_extensions.TypedDict, total=False):
     dashboardUri: str
+    incidentTrackingId: str
+    mergeInfo: MergeInfo
     nextUpdateTime: str
     products: _list[str]
     resolutionTime: str
     status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "NEW", "ONGOING", "RESOLVED"
+        "STATUS_UNSPECIFIED",
+        "NEW",
+        "ONGOING",
+        "RESOLVED",
+        "FALSE_POSITIVE",
+        "PARTIALLY_RESOLVED",
+        "MERGED",
+        "DOWNGRADED",
     ]
 
 @typing.type_check_only
@@ -205,6 +214,7 @@ class GoogleOperations(typing_extensions.TypedDict, total=False):
     affectedUserEmails: _list[str]
     attachmentData: Attachment
     description: str
+    domain: str
     header: str
     title: str
 
@@ -239,9 +249,19 @@ class MaliciousEntity(typing_extensions.TypedDict, total=False):
     fromHeader: str
 
 @typing.type_check_only
+class MandatoryServiceAnnouncement(typing_extensions.TypedDict, total=False):
+    description: str
+    title: str
+
+@typing.type_check_only
 class MatchInfo(typing_extensions.TypedDict, total=False):
     predefinedDetector: PredefinedDetectorInfo
     userDefinedDetector: UserDefinedDetectorInfo
+
+@typing.type_check_only
+class MergeInfo(typing_extensions.TypedDict, total=False):
+    newAlertId: str
+    newIncidentTrackingId: str
 
 @typing.type_check_only
 class Notification(typing_extensions.TypedDict, total=False):

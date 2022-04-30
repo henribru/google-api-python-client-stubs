@@ -23,6 +23,7 @@ class WebfontsResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> WebfontListHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

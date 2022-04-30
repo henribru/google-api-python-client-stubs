@@ -5,6 +5,46 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AmpInspectionResult(typing_extensions.TypedDict, total=False):
+    ampIndexStatusVerdict: typing_extensions.Literal[
+        "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
+    ]
+    ampUrl: str
+    indexingState: typing_extensions.Literal[
+        "AMP_INDEXING_STATE_UNSPECIFIED",
+        "AMP_INDEXING_ALLOWED",
+        "BLOCKED_DUE_TO_NOINDEX",
+        "BLOCKED_DUE_TO_EXPIRED_UNAVAILABLE_AFTER",
+    ]
+    issues: _list[AmpIssue]
+    lastCrawlTime: str
+    pageFetchState: typing_extensions.Literal[
+        "PAGE_FETCH_STATE_UNSPECIFIED",
+        "SUCCESSFUL",
+        "SOFT_404",
+        "BLOCKED_ROBOTS_TXT",
+        "NOT_FOUND",
+        "ACCESS_DENIED",
+        "SERVER_ERROR",
+        "REDIRECT_ERROR",
+        "ACCESS_FORBIDDEN",
+        "BLOCKED_4XX",
+        "INTERNAL_CRAWL_ERROR",
+        "INVALID_URL",
+    ]
+    robotsTxtState: typing_extensions.Literal[
+        "ROBOTS_TXT_STATE_UNSPECIFIED", "ALLOWED", "DISALLOWED"
+    ]
+    verdict: typing_extensions.Literal[
+        "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
+    ]
+
+@typing.type_check_only
+class AmpIssue(typing_extensions.TypedDict, total=False):
+    issueMessage: str
+    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
+
+@typing.type_check_only
 class ApiDataRow(typing_extensions.TypedDict, total=False):
     clicks: float
     ctr: float
@@ -37,9 +77,68 @@ class BlockedResource(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class DetectedItems(typing_extensions.TypedDict, total=False):
+    items: _list[Item]
+    richResultType: str
+
+@typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
     data: str
     mimeType: str
+
+@typing.type_check_only
+class IndexStatusInspectionResult(typing_extensions.TypedDict, total=False):
+    coverageState: str
+    crawledAs: typing_extensions.Literal[
+        "CRAWLING_USER_AGENT_UNSPECIFIED", "DESKTOP", "MOBILE"
+    ]
+    googleCanonical: str
+    indexingState: typing_extensions.Literal[
+        "INDEXING_STATE_UNSPECIFIED",
+        "INDEXING_ALLOWED",
+        "BLOCKED_BY_META_TAG",
+        "BLOCKED_BY_HTTP_HEADER",
+        "BLOCKED_BY_ROBOTS_TXT",
+    ]
+    lastCrawlTime: str
+    pageFetchState: typing_extensions.Literal[
+        "PAGE_FETCH_STATE_UNSPECIFIED",
+        "SUCCESSFUL",
+        "SOFT_404",
+        "BLOCKED_ROBOTS_TXT",
+        "NOT_FOUND",
+        "ACCESS_DENIED",
+        "SERVER_ERROR",
+        "REDIRECT_ERROR",
+        "ACCESS_FORBIDDEN",
+        "BLOCKED_4XX",
+        "INTERNAL_CRAWL_ERROR",
+        "INVALID_URL",
+    ]
+    referringUrls: _list[str]
+    robotsTxtState: typing_extensions.Literal[
+        "ROBOTS_TXT_STATE_UNSPECIFIED", "ALLOWED", "DISALLOWED"
+    ]
+    sitemap: _list[str]
+    userCanonical: str
+    verdict: typing_extensions.Literal[
+        "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
+    ]
+
+@typing.type_check_only
+class InspectUrlIndexRequest(typing_extensions.TypedDict, total=False):
+    inspectionUrl: str
+    languageCode: str
+    siteUrl: str
+
+@typing.type_check_only
+class InspectUrlIndexResponse(typing_extensions.TypedDict, total=False):
+    inspectionResult: UrlInspectionResult
+
+@typing.type_check_only
+class Item(typing_extensions.TypedDict, total=False):
+    issues: _list[RichResultsIssue]
+    name: str
 
 @typing.type_check_only
 class MobileFriendlyIssue(typing_extensions.TypedDict, total=False):
@@ -54,8 +153,41 @@ class MobileFriendlyIssue(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class MobileUsabilityInspectionResult(typing_extensions.TypedDict, total=False):
+    issues: _list[MobileUsabilityIssue]
+    verdict: typing_extensions.Literal[
+        "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
+    ]
+
+@typing.type_check_only
+class MobileUsabilityIssue(typing_extensions.TypedDict, total=False):
+    issueType: typing_extensions.Literal[
+        "MOBILE_USABILITY_ISSUE_TYPE_UNSPECIFIED",
+        "USES_INCOMPATIBLE_PLUGINS",
+        "CONFIGURE_VIEWPORT",
+        "FIXED_WIDTH_VIEWPORT",
+        "SIZE_CONTENT_TO_VIEWPORT",
+        "USE_LEGIBLE_FONT_SIZES",
+        "TAP_TARGETS_TOO_CLOSE",
+    ]
+    message: str
+    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
+
+@typing.type_check_only
 class ResourceIssue(typing_extensions.TypedDict, total=False):
     blockedResource: BlockedResource
+
+@typing.type_check_only
+class RichResultsInspectionResult(typing_extensions.TypedDict, total=False):
+    detectedItems: _list[DetectedItems]
+    verdict: typing_extensions.Literal[
+        "VERDICT_UNSPECIFIED", "PASS", "PARTIAL", "FAIL", "NEUTRAL"
+    ]
+
+@typing.type_check_only
+class RichResultsIssue(typing_extensions.TypedDict, total=False):
+    issueMessage: str
+    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
 
 @typing.type_check_only
 class RunMobileFriendlyTestRequest(typing_extensions.TypedDict, total=False):
@@ -110,6 +242,14 @@ class TestStatus(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal[
         "TEST_STATUS_UNSPECIFIED", "COMPLETE", "INTERNAL_ERROR", "PAGE_UNREACHABLE"
     ]
+
+@typing.type_check_only
+class UrlInspectionResult(typing_extensions.TypedDict, total=False):
+    ampResult: AmpInspectionResult
+    indexStatusResult: IndexStatusInspectionResult
+    inspectionResultLink: str
+    mobileUsabilityResult: MobileUsabilityInspectionResult
+    richResultsResult: RichResultsInspectionResult
 
 @typing.type_check_only
 class WmxSite(typing_extensions.TypedDict, total=False):

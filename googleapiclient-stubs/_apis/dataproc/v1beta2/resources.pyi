@@ -73,6 +73,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: AutoscalingPolicy = ...,
                     **kwargs: typing.Any
                 ) -> AutoscalingPolicyHttpRequest: ...
+
             @typing.type_check_only
             class WorkflowTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -145,8 +146,10 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: WorkflowTemplate = ...,
                     **kwargs: typing.Any
                 ) -> WorkflowTemplateHttpRequest: ...
+
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...
             def workflowTemplates(self) -> WorkflowTemplatesResource: ...
+
         @typing.type_check_only
         class RegionsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -205,6 +208,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: AutoscalingPolicy = ...,
                     **kwargs: typing.Any
                 ) -> AutoscalingPolicyHttpRequest: ...
+
             @typing.type_check_only
             class ClustersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -318,6 +322,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -411,6 +416,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -457,6 +463,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class WorkflowTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -529,13 +536,16 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: WorkflowTemplate = ...,
                     **kwargs: typing.Any
                 ) -> WorkflowTemplateHttpRequest: ...
+
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...
             def clusters(self) -> ClustersResource: ...
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
             def workflowTemplates(self) -> WorkflowTemplatesResource: ...
+
         def locations(self) -> LocationsResource: ...
         def regions(self) -> RegionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

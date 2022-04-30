@@ -31,6 +31,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> MetricsScopeHttpRequest: ...
@@ -38,11 +39,15 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     self, *, monitoredResourceContainer: str = ..., **kwargs: typing.Any
                 ) -> ListMetricsScopesByMonitoredProjectResponseHttpRequest: ...
                 def projects(self) -> ProjectsResource: ...
+
             def metricsScopes(self) -> MetricsScopesResource: ...
+
         def global_(self) -> GlobalResource: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -82,6 +87,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 validateOnly: bool = ...,
                 **kwargs: typing.Any
             ) -> DashboardHttpRequest: ...
+
         @typing.type_check_only
         class LocationResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -103,6 +109,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                                 start: str = ...,
                                 **kwargs: typing.Any
                             ) -> HttpBodyHttpRequest: ...
+
                         @typing.type_check_only
                         class MetadataResource(googleapiclient.discovery.Resource):
                             def list(
@@ -114,6 +121,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                                 metric: str = ...,
                                 **kwargs: typing.Any
                             ) -> HttpBodyHttpRequest: ...
+
                         def query(
                             self,
                             *,
@@ -140,11 +148,16 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                         ) -> HttpBodyHttpRequest: ...
                         def label(self) -> LabelResource: ...
                         def metadata(self) -> MetadataResource: ...
+
                     def v1(self) -> V1Resource: ...
+
                 def api(self) -> ApiResource: ...
+
             def prometheus(self) -> PrometheusResource: ...
+
         def dashboards(self) -> DashboardsResource: ...
         def location(self) -> LocationResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

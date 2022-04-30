@@ -41,6 +41,14 @@ class Position(typing_extensions.TypedDict, total=False):
     line: str
 
 @typing.type_check_only
+class PubsubMessage(typing_extensions.TypedDict, total=False):
+    attributes: dict[str, typing.Any]
+    data: str
+    messageId: str
+    orderingKey: str
+    publishTime: str
+
+@typing.type_check_only
 class StackTrace(typing_extensions.TypedDict, total=False):
     elements: _list[StackTraceElement]
 
@@ -49,3 +57,9 @@ class StackTraceElement(typing_extensions.TypedDict, total=False):
     position: Position
     routine: str
     step: str
+
+@typing.type_check_only
+class TriggerPubsubExecutionRequest(typing_extensions.TypedDict, total=False):
+    GCPCloudEventsMode: str
+    message: PubsubMessage
+    subscription: str

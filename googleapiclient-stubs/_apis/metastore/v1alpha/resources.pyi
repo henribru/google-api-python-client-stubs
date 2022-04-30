@@ -39,6 +39,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ServicesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -94,6 +95,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 @typing.type_check_only
                 class DatabasesResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -119,6 +121,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                             body: TestIamPermissionsRequest = ...,
                             **kwargs: typing.Any
                         ) -> TestIamPermissionsResponseHttpRequest: ...
+
                     def getIamPolicy(
                         self,
                         *,
@@ -141,6 +144,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def tables(self) -> TablesResource: ...
+
                 @typing.type_check_only
                 class MetadataImportsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -179,6 +183,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -232,6 +237,13 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def removeIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: RemoveIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> RemoveIamPolicyResponseHttpRequest: ...
                 def restore(
                     self,
                     *,
@@ -256,6 +268,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                 def backups(self) -> BackupsResource: ...
                 def databases(self) -> DatabasesResource: ...
                 def metadataImports(self) -> MetadataImportsResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -275,7 +288,9 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def services(self) -> ServicesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -377,6 +392,14 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class RemoveIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RemoveIamPolicyResponse: ...
 
 @typing.type_check_only
 class ServiceHttpRequest(googleapiclient.http.HttpRequest):

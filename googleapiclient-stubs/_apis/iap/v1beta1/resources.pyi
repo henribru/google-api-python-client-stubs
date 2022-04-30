@@ -36,6 +36,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             body: TestIamPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestIamPermissionsResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -38,6 +38,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> PhotoHttpRequest: ...
+
     @typing.type_check_only
     class PhotosResource(googleapiclient.discovery.Resource):
         def batchDelete(
@@ -69,6 +70,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             previous_request: ListPhotosResponseHttpRequest,
             previous_response: ListPhotosResponse,
         ) -> ListPhotosResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

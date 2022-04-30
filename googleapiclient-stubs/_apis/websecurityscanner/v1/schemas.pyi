@@ -46,6 +46,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     vulnerableHeaders: VulnerableHeaders
     vulnerableParameters: VulnerableParameters
     xss: Xss
+    xxe: Xxe
 
 @typing.type_check_only
 class FindingTypeStats(typing_extensions.TypedDict, total=False):
@@ -264,3 +265,10 @@ class Xss(typing_extensions.TypedDict, total=False):
     errorMessage: str
     stackTraces: _list[str]
     storedXssSeedingUrl: str
+
+@typing.type_check_only
+class Xxe(typing_extensions.TypedDict, total=False):
+    payloadLocation: typing_extensions.Literal[
+        "LOCATION_UNSPECIFIED", "COMPLETE_REQUEST_BODY"
+    ]
+    payloadValue: str

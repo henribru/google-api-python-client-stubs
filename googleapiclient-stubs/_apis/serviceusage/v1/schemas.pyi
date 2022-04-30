@@ -328,6 +328,7 @@ class ImportConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
+    cookie: str
     header: str
     query: str
     valuePrefix: str

@@ -23,9 +23,11 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
             previous_request: ListAvailableProjectsResponseHttpRequest,
             previous_response: ListAvailableProjectsResponse,
         ) -> ListAvailableProjectsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -45,6 +47,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 def list(
                     self, *, parent: str, **kwargs: typing.Any
                 ) -> ListShaCertificatesResponseHttpRequest: ...
+
             def create(
                 self, *, parent: str, body: AndroidApp = ..., **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
@@ -76,6 +79,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> AndroidAppHttpRequest: ...
             def sha(self) -> ShaResource: ...
+
         @typing.type_check_only
         class AvailableLocationsResource(googleapiclient.discovery.Resource):
             def list(
@@ -91,6 +95,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 previous_request: ListAvailableLocationsResponseHttpRequest,
                 previous_response: ListAvailableLocationsResponse,
             ) -> ListAvailableLocationsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class DefaultLocationResource(googleapiclient.discovery.Resource):
             def finalize(
@@ -100,6 +105,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 body: FinalizeDefaultLocationRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class IosAppsResource(googleapiclient.discovery.Resource):
             def create(
@@ -130,6 +136,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> IosAppHttpRequest: ...
+
         @typing.type_check_only
         class WebAppsResource(googleapiclient.discovery.Resource):
             def create(
@@ -160,6 +167,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> WebAppHttpRequest: ...
+
         def addFirebase(
             self, *, project: str, body: AddFirebaseRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -221,6 +229,7 @@ class FirebaseManagementResource(googleapiclient.discovery.Resource):
         def defaultLocation(self) -> DefaultLocationResource: ...
         def iosApps(self) -> IosAppsResource: ...
         def webApps(self) -> WebAppsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

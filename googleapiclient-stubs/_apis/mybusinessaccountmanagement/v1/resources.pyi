@@ -34,6 +34,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> AdminHttpRequest: ...
+
         @typing.type_check_only
         class InvitationsResource(googleapiclient.discovery.Resource):
             def accept(
@@ -53,6 +54,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, filter: str = ..., **kwargs: typing.Any
             ) -> ListInvitationsResponseHttpRequest: ...
+
         def create(
             self, *, body: Account = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
@@ -82,6 +84,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
         ) -> AccountHttpRequest: ...
         def admins(self) -> AdminsResource: ...
         def invitations(self) -> InvitationsResource: ...
+
     @typing.type_check_only
     class LocationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -103,6 +106,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> AdminHttpRequest: ...
+
         def transfer(
             self,
             *,
@@ -111,6 +115,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def admins(self) -> AdminsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

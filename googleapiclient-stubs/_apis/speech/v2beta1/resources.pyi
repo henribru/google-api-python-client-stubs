@@ -36,8 +36,11 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def operations(self) -> OperationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

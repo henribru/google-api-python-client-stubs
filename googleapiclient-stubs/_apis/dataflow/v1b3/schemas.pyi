@@ -96,6 +96,9 @@ class ConcatPosition(typing_extensions.TypedDict, total=False):
 class ContainerSpec(typing_extensions.TypedDict, total=False):
     defaultEnvironment: FlexTemplateRuntimeEnvironment
     image: str
+    imageRepositoryCertPath: str
+    imageRepositoryPasswordSecretId: str
+    imageRepositoryUsernameSecretId: str
     metadata: TemplateMetadata
     sdkInfo: SDKInfo
 
@@ -599,6 +602,7 @@ class MapTask(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MemInfo(typing_extensions.TypedDict, total=False):
     currentLimitBytes: str
+    currentOoms: str
     currentRssBytes: str
     timestamp: str
     totalGbMs: str
@@ -820,6 +824,7 @@ class SDKInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SdkHarnessContainerImage(typing_extensions.TypedDict, total=False):
+    capabilities: _list[str]
     containerImage: str
     environmentId: str
     useSingleCorePerContainer: bool
@@ -836,6 +841,9 @@ class SdkVersion(typing_extensions.TypedDict, total=False):
 class SendDebugCaptureRequest(typing_extensions.TypedDict, total=False):
     componentId: str
     data: str
+    dataFormat: typing_extensions.Literal[
+        "DATA_FORMAT_UNSPECIFIED", "RAW", "JSON", "ZLIB", "BROTLI"
+    ]
     location: str
     workerId: str
 

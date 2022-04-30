@@ -47,6 +47,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     fingerprint: str = ...,
                     **kwargs: typing.Any
                 ) -> EnvironmentHttpRequest: ...
+
             @typing.type_check_only
             class Version_headersResource(googleapiclient.discovery.Resource):
                 def latest(
@@ -65,6 +66,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     previous_request: ListContainerVersionsResponseHttpRequest,
                     previous_response: ListContainerVersionsResponse,
                 ) -> ListContainerVersionsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -97,6 +99,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     fingerprint: str = ...,
                     **kwargs: typing.Any
                 ) -> ContainerVersionHttpRequest: ...
+
             @typing.type_check_only
             class WorkspacesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -706,6 +709,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> RevertBuiltInVariableResponseHttpRequest: ...
+
                 @typing.type_check_only
                 class ClientsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -736,6 +740,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         fingerprint: str = ...,
                         **kwargs: typing.Any
                     ) -> ClientHttpRequest: ...
+
                 @typing.type_check_only
                 class FoldersResource(googleapiclient.discovery.Resource):
                     def create(
@@ -784,6 +789,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         fingerprint: str = ...,
                         **kwargs: typing.Any
                     ) -> FolderHttpRequest: ...
+
                 @typing.type_check_only
                 class TagsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -814,6 +820,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         fingerprint: str = ...,
                         **kwargs: typing.Any
                     ) -> TagHttpRequest: ...
+
                 @typing.type_check_only
                 class TemplatesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -848,6 +855,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         fingerprint: str = ...,
                         **kwargs: typing.Any
                     ) -> CustomTemplateHttpRequest: ...
+
                 @typing.type_check_only
                 class TriggersResource(googleapiclient.discovery.Resource):
                     def create(
@@ -878,6 +886,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         fingerprint: str = ...,
                         **kwargs: typing.Any
                     ) -> TriggerHttpRequest: ...
+
                 @typing.type_check_only
                 class VariablesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -908,6 +917,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         fingerprint: str = ...,
                         **kwargs: typing.Any
                     ) -> VariableHttpRequest: ...
+
                 @typing.type_check_only
                 class ZonesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -938,6 +948,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         fingerprint: str = ...,
                         **kwargs: typing.Any
                     ) -> ZoneHttpRequest: ...
+
                 def create(
                     self, *, parent: str, body: Workspace = ..., **kwargs: typing.Any
                 ) -> WorkspaceHttpRequest: ...
@@ -995,6 +1006,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 def triggers(self) -> TriggersResource: ...
                 def variables(self) -> VariablesResource: ...
                 def zones(self) -> ZonesResource: ...
+
             def create(
                 self, *, parent: str, body: Container = ..., **kwargs: typing.Any
             ) -> ContainerHttpRequest: ...
@@ -1024,6 +1036,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
             def version_headers(self) -> Version_headersResource: ...
             def versions(self) -> VersionsResource: ...
             def workspaces(self) -> WorkspacesResource: ...
+
         @typing.type_check_only
         class User_permissionsResource(googleapiclient.discovery.Resource):
             def create(
@@ -1046,6 +1059,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, path: str, body: UserPermission = ..., **kwargs: typing.Any
             ) -> UserPermissionHttpRequest: ...
+
         def get(self, *, path: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
         def list(
             self, *, pageToken: str = ..., **kwargs: typing.Any
@@ -1065,6 +1079,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
         ) -> AccountHttpRequest: ...
         def containers(self) -> ContainersResource: ...
         def user_permissions(self) -> User_permissionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -73,6 +73,38 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: AutoscalingPolicy = ...,
                     **kwargs: typing.Any
                 ) -> AutoscalingPolicyHttpRequest: ...
+
+            @typing.type_check_only
+            class BatchesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Batch = ...,
+                    batchId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> BatchHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListBatchesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBatchesResponseHttpRequest,
+                    previous_response: ListBatchesResponse,
+                ) -> ListBatchesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class WorkflowTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -144,8 +176,11 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: WorkflowTemplate = ...,
                     **kwargs: typing.Any
                 ) -> WorkflowTemplateHttpRequest: ...
+
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...
+            def batches(self) -> BatchesResource: ...
             def workflowTemplates(self) -> WorkflowTemplatesResource: ...
+
         @typing.type_check_only
         class RegionsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -204,6 +239,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: AutoscalingPolicy = ...,
                     **kwargs: typing.Any
                 ) -> AutoscalingPolicyHttpRequest: ...
+
             @typing.type_check_only
             class ClustersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -329,6 +365,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -422,6 +459,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -468,6 +506,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class WorkflowTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -539,13 +578,16 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: WorkflowTemplate = ...,
                     **kwargs: typing.Any
                 ) -> WorkflowTemplateHttpRequest: ...
+
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...
             def clusters(self) -> ClustersResource: ...
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
             def workflowTemplates(self) -> WorkflowTemplatesResource: ...
+
         def locations(self) -> LocationsResource: ...
         def regions(self) -> RegionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -567,6 +609,14 @@ class AutoscalingPolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AutoscalingPolicy: ...
+
+@typing.type_check_only
+class BatchHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Batch: ...
 
 @typing.type_check_only
 class ClusterHttpRequest(googleapiclient.http.HttpRequest):
@@ -599,6 +649,14 @@ class ListAutoscalingPoliciesResponseHttpRequest(googleapiclient.http.HttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAutoscalingPoliciesResponse: ...
+
+@typing.type_check_only
+class ListBatchesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListBatchesResponse: ...
 
 @typing.type_check_only
 class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):

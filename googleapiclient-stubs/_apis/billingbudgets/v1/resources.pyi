@@ -51,7 +51,9 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudBillingBudgetsV1BudgetHttpRequest: ...
+
         def budgets(self) -> BudgetsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

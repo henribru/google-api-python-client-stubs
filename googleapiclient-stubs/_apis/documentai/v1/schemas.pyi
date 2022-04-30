@@ -26,6 +26,12 @@ class GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadata(
         "DATASET_SPLIT_TEST",
         "DATASET_SPLIT_UNASSIGNED",
     ]
+    destSplitType: typing_extensions.Literal[
+        "DATASET_SPLIT_TYPE_UNSPECIFIED",
+        "DATASET_SPLIT_TRAIN",
+        "DATASET_SPLIT_TEST",
+        "DATASET_SPLIT_UNASSIGNED",
+    ]
     individualBatchMoveStatuses: _list[
         GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadataIndividualBatchMoveStatus
     ]
@@ -56,6 +62,12 @@ class GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
@@ -168,6 +180,28 @@ class GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatu
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3ImportDocumentsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+    newlyAddedDocuments: _list[
+        GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument
+    ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument(
+    typing_extensions.TypedDict, total=False
+):
+    destinationPrefix: str
+    sourcePrefix: str
+    status: GoogleRpcStatus
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ResyncDatasetResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -417,6 +451,7 @@ class GoogleCloudDocumentaiV1DocumentPage(typing_extensions.TypedDict, total=Fal
     pageNumber: int
     paragraphs: _list[GoogleCloudDocumentaiV1DocumentPageParagraph]
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
+    symbols: _list[GoogleCloudDocumentaiV1DocumentPageSymbol]
     tables: _list[GoogleCloudDocumentaiV1DocumentPageTable]
     tokens: _list[GoogleCloudDocumentaiV1DocumentPageToken]
     transforms: _list[GoogleCloudDocumentaiV1DocumentPageMatrix]
@@ -527,6 +562,13 @@ class GoogleCloudDocumentaiV1DocumentPageParagraph(
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentPageSymbol(
+    typing_extensions.TypedDict, total=False
+):
+    detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
+    layout: GoogleCloudDocumentaiV1DocumentPageLayout
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageTable(
     typing_extensions.TypedDict, total=False
 ):
@@ -605,6 +647,7 @@ class GoogleCloudDocumentaiV1DocumentRevision(typing_extensions.TypedDict, total
     humanReview: GoogleCloudDocumentaiV1DocumentRevisionHumanReview
     id: str
     parent: _list[int]
+    parentIds: _list[str]
     processor: str
 
 @typing.type_check_only
@@ -783,7 +826,11 @@ class GoogleCloudDocumentaiV1ProcessorTypeLocationInfo(
 @typing.type_check_only
 class GoogleCloudDocumentaiV1ProcessorVersion(typing_extensions.TypedDict, total=False):
     createTime: str
+    deprecationInfo: GoogleCloudDocumentaiV1ProcessorVersionDeprecationInfo
     displayName: str
+    googleManaged: bool
+    kmsKeyName: str
+    kmsKeyVersionName: str
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -797,6 +844,13 @@ class GoogleCloudDocumentaiV1ProcessorVersion(typing_extensions.TypedDict, total
     ]
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1ProcessorVersionDeprecationInfo(
+    typing_extensions.TypedDict, total=False
+):
+    deprecationTime: str
+    replacementProcessorVersion: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1RawDocument(typing_extensions.TypedDict, total=False):
     content: str
     mimeType: str
@@ -806,6 +860,7 @@ class GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+    questionId: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1ReviewDocumentRequest(
@@ -858,6 +913,24 @@ class GoogleCloudDocumentaiV1UndeployProcessorVersionResponse(
 class GoogleCloudDocumentaiV1Vertex(typing_extensions.TypedDict, total=False):
     x: int
     y: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1alpha1AnalyzeHitlDataMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1alpha1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1alpha1CommonOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    resource: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
+    ]
+    stateMessage: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1BatchProcessDocumentsResponse(
@@ -925,6 +998,7 @@ class GoogleCloudDocumentaiV1beta1DocumentPage(
     pageNumber: int
     paragraphs: _list[GoogleCloudDocumentaiV1beta1DocumentPageParagraph]
     provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
+    symbols: _list[GoogleCloudDocumentaiV1beta1DocumentPageSymbol]
     tables: _list[GoogleCloudDocumentaiV1beta1DocumentPageTable]
     tokens: _list[GoogleCloudDocumentaiV1beta1DocumentPageToken]
     transforms: _list[GoogleCloudDocumentaiV1beta1DocumentPageMatrix]
@@ -1041,6 +1115,13 @@ class GoogleCloudDocumentaiV1beta1DocumentPageParagraph(
     provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentPageSymbol(
+    typing_extensions.TypedDict, total=False
+):
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
+    layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentPageTable(
     typing_extensions.TypedDict, total=False
 ):
@@ -1121,6 +1202,7 @@ class GoogleCloudDocumentaiV1beta1DocumentRevision(
     humanReview: GoogleCloudDocumentaiV1beta1DocumentRevisionHumanReview
     id: str
     parent: _list[int]
+    parentIds: _list[str]
     processor: str
 
 @typing.type_check_only
@@ -1312,6 +1394,7 @@ class GoogleCloudDocumentaiV1beta2DocumentPage(
     pageNumber: int
     paragraphs: _list[GoogleCloudDocumentaiV1beta2DocumentPageParagraph]
     provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
+    symbols: _list[GoogleCloudDocumentaiV1beta2DocumentPageSymbol]
     tables: _list[GoogleCloudDocumentaiV1beta2DocumentPageTable]
     tokens: _list[GoogleCloudDocumentaiV1beta2DocumentPageToken]
     transforms: _list[GoogleCloudDocumentaiV1beta2DocumentPageMatrix]
@@ -1428,6 +1511,13 @@ class GoogleCloudDocumentaiV1beta2DocumentPageParagraph(
     provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentPageSymbol(
+    typing_extensions.TypedDict, total=False
+):
+    detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
+    layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentPageTable(
     typing_extensions.TypedDict, total=False
 ):
@@ -1508,6 +1598,7 @@ class GoogleCloudDocumentaiV1beta2DocumentRevision(
     humanReview: GoogleCloudDocumentaiV1beta2DocumentRevisionHumanReview
     id: str
     parent: _list[int]
+    parentIds: _list[str]
     processor: str
 
 @typing.type_check_only
@@ -1733,6 +1824,7 @@ class GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata(
 ):
     commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
     createTime: str
+    questionId: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
     ]

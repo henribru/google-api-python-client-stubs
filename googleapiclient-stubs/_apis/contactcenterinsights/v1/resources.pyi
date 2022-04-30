@@ -48,6 +48,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest,
                         previous_response: GoogleCloudContactcenterinsightsV1ListAnalysesResponse,
                     ) -> GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest | None: ...
+
                 def calculateStats(
                     self, *, location: str, filter: str = ..., **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1CalculateStatsResponseHttpRequest: ...
@@ -67,7 +68,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     view: typing_extensions.Literal[
-                        "CONVERSATION_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1ConversationHttpRequest: ...
@@ -79,7 +80,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     view: typing_extensions.Literal[
-                        "CONVERSATION_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest: ...
@@ -97,6 +98,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1ConversationHttpRequest: ...
                 def analyses(self) -> AnalysesResource: ...
+
             @typing.type_check_only
             class InsightsdataResource(googleapiclient.discovery.Resource):
                 def export(
@@ -106,6 +108,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudContactcenterinsightsV1ExportInsightsDataRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+
             @typing.type_check_only
             class IssueModelsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -124,6 +127,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudContactcenterinsightsV1IssueHttpRequest: ...
+
                 def calculateIssueModelStats(
                     self, *, issueModel: str, **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseHttpRequest: ...
@@ -166,6 +170,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def issues(self) -> IssuesResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -188,6 +193,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class PhraseMatchersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -225,6 +231,44 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1PhraseMatcherHttpRequest: ...
+
+            @typing.type_check_only
+            class ViewsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1View = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1ViewHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1ViewHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1ListViewsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudContactcenterinsightsV1ListViewsResponseHttpRequest,
+                    previous_response: GoogleCloudContactcenterinsightsV1ListViewsResponse,
+                ) -> GoogleCloudContactcenterinsightsV1ListViewsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudContactcenterinsightsV1View = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1ViewHttpRequest: ...
+
             def getSettings(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudContactcenterinsightsV1SettingsHttpRequest: ...
@@ -241,7 +285,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
             def issueModels(self) -> IssueModelsResource: ...
             def operations(self) -> OperationsResource: ...
             def phraseMatchers(self) -> PhraseMatchersResource: ...
+            def views(self) -> ViewsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -367,6 +414,16 @@ class GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest(
     ) -> GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse: ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListViewsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudContactcenterinsightsV1ListViewsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1PhraseMatcherHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -385,6 +442,16 @@ class GoogleCloudContactcenterinsightsV1SettingsHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudContactcenterinsightsV1Settings: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ViewHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudContactcenterinsightsV1View: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(

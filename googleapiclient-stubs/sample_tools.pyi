@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 def init(
     argv,
@@ -6,7 +6,7 @@ def init(
     version,
     doc,
     filename,
-    scope: Any | None = ...,
+    scope: Incomplete | None = ...,
     parents=...,
-    discovery_filename: Any | None = ...,
+    discovery_filename: Incomplete | None = ...,
 ): ...

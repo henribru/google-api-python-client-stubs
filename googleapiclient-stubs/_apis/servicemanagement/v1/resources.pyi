@@ -30,6 +30,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -65,6 +66,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 body: SubmitConfigSourceRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class ConsumersResource(googleapiclient.discovery.Resource):
             def getIamPolicy(
@@ -88,6 +90,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
+
         @typing.type_check_only
         class RolloutsResource(googleapiclient.discovery.Resource):
             def create(
@@ -110,6 +113,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 previous_request: ListServiceRolloutsResponseHttpRequest,
                 previous_response: ListServiceRolloutsResponse,
             ) -> ListServiceRolloutsResponseHttpRequest | None: ...
+
         def create(
             self, *, body: ManagedService = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -171,6 +175,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
         def configs(self) -> ConfigsResource: ...
         def consumers(self) -> ConsumersResource: ...
         def rollouts(self) -> RolloutsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

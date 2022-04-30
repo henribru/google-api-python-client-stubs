@@ -46,6 +46,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListEnvironmentsResponseHttpRequest,
                     previous_response: ListEnvironmentsResponse,
                 ) -> ListEnvironmentsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ExecutionsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -77,6 +78,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListExecutionsResponseHttpRequest,
                     previous_response: ListExecutionsResponse,
                 ) -> ListExecutionsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -104,7 +106,17 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GetInstanceHealthResponseHttpRequest: ...
                 def isUpgradeable(
-                    self, *, notebookInstance: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    notebookInstance: str,
+                    type: typing_extensions.Literal[
+                        "UPGRADE_TYPE_UNSPECIFIED",
+                        "UPGRADE_FRAMEWORK",
+                        "UPGRADE_OS",
+                        "UPGRADE_CUDA",
+                        "UPGRADE_ALL",
+                    ] = ...,
+                    **kwargs: typing.Any
                 ) -> IsInstanceUpgradeableResponseHttpRequest: ...
                 def list(
                     self,
@@ -203,6 +215,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: UpdateInstanceConfigRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def updateMetadataItems(
+                    self,
+                    *,
+                    name: str,
+                    body: UpdateInstanceMetadataItemsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> UpdateInstanceMetadataItemsResponseHttpRequest: ...
                 def updateShieldedInstanceConfig(
                     self,
                     *,
@@ -224,6 +243,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: UpgradeInstanceInternalRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -253,6 +273,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class RuntimesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -260,11 +281,12 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: Runtime = ...,
+                    requestId: str = ...,
                     runtimeId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -289,6 +311,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListRuntimesResponseHttpRequest,
                     previous_response: ListRuntimesResponse,
                 ) -> ListRuntimesResponseHttpRequest | None: ...
+                def refreshRuntimeTokenInternal(
+                    self,
+                    *,
+                    name: str,
+                    body: RefreshRuntimeTokenInternalRequest = ...,
+                    **kwargs: typing.Any
+                ) -> RefreshRuntimeTokenInternalResponseHttpRequest: ...
                 def reportEvent(
                     self,
                     *,
@@ -338,6 +367,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class SchedulesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -376,6 +406,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: TriggerScheduleRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -399,7 +430,9 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def runtimes(self) -> RuntimesResource: ...
             def schedules(self) -> SchedulesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -543,6 +576,14 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Policy: ...
 
 @typing.type_check_only
+class RefreshRuntimeTokenInternalResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RefreshRuntimeTokenInternalResponse: ...
+
+@typing.type_check_only
 class RuntimeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -565,3 +606,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class UpdateInstanceMetadataItemsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> UpdateInstanceMetadataItemsResponse: ...

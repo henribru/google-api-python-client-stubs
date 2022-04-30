@@ -37,6 +37,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     previous_request: ListAcceleratorTypesResponseHttpRequest,
                     previous_response: ListAcceleratorTypesResponse,
                 ) -> ListAcceleratorTypesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class NodesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -45,10 +46,11 @@ class TPUResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Node = ...,
                     nodeId: str = ...,
+                    requestId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -95,6 +97,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     body: StopNodeRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -120,6 +123,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class RuntimeVersionsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -140,6 +144,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     previous_request: ListRuntimeVersionsResponseHttpRequest,
                     previous_response: ListRuntimeVersionsResponse,
                 ) -> ListRuntimeVersionsResponseHttpRequest | None: ...
+
             def generateServiceIdentity(
                 self,
                 *,
@@ -168,7 +173,9 @@ class TPUResource(googleapiclient.discovery.Resource):
             def nodes(self) -> NodesResource: ...
             def operations(self) -> OperationsResource: ...
             def runtimeVersions(self) -> RuntimeVersionsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

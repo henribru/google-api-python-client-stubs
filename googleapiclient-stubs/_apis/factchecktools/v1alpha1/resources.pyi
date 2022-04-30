@@ -32,6 +32,7 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             previous_request: GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest,
             previous_response: GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse,
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class PagesResource(googleapiclient.discovery.Resource):
         def create(
@@ -68,6 +69,7 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
             **kwargs: typing.Any
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

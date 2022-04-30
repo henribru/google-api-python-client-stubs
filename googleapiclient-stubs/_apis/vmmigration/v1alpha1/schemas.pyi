@@ -9,9 +9,25 @@ class AddGroupMigrationRequest(typing_extensions.TypedDict, total=False):
     migratingVm: str
 
 @typing.type_check_only
+class ApplianceVersion(typing_extensions.TypedDict, total=False):
+    critical: bool
+    releaseNotesUri: str
+    uri: str
+    version: str
+
+@typing.type_check_only
 class AppliedLicense(typing_extensions.TypedDict, total=False):
     osLicense: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "NONE", "PAYG", "BYOL"]
+
+@typing.type_check_only
+class AvailableUpdates(typing_extensions.TypedDict, total=False):
+    inPlaceUpdate: ApplianceVersion
+    newDeployableAppliance: ApplianceVersion
+
+@typing.type_check_only
+class AwsSourceVmDetails(typing_extensions.TypedDict, total=False):
+    firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
 
 @typing.type_check_only
 class CancelCloneJobRequest(typing_extensions.TypedDict, total=False): ...
@@ -44,6 +60,7 @@ class CloneJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
+    additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
     bootOption: typing_extensions.Literal[
         "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
@@ -76,6 +93,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
+    additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
     bootOption: typing_extensions.Literal[
         "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
@@ -142,7 +160,18 @@ class CutoverJob(typing_extensions.TypedDict, total=False):
     targetDetails: TargetVMDetails
 
 @typing.type_check_only
+class CycleStep(typing_extensions.TypedDict, total=False):
+    endTime: str
+    initializingReplication: InitializingReplicationStep
+    postProcessing: PostProcessingStep
+    replicating: ReplicatingStep
+    startTime: str
+
+@typing.type_check_only
 class DatacenterConnector(typing_extensions.TypedDict, total=False):
+    applianceInfrastructureVersion: str
+    applianceSoftwareVersion: str
+    availableVersions: AvailableUpdates
     bucket: str
     createTime: str
     error: Status
@@ -154,6 +183,7 @@ class DatacenterConnector(typing_extensions.TypedDict, total=False):
     ]
     stateTime: str
     updateTime: str
+    upgradeStatus: UpgradeStatus
     version: str
 
 @typing.type_check_only
@@ -174,6 +204,9 @@ class Group(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     updateTime: str
+
+@typing.type_check_only
+class InitializingReplicationStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Link(typing_extensions.TypedDict, total=False):
@@ -253,6 +286,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MigratingVm(typing_extensions.TypedDict, total=False):
+    awsSourceVmDetails: AwsSourceVmDetails
     computeEngineTargetDefaults: ComputeEngineTargetDefaults
     computeEngineVmDefaults: TargetVMDetails
     createTime: str
@@ -299,6 +333,7 @@ class MigrationError(typing_extensions.TypedDict, total=False):
         "CLONE_ERROR",
         "CUTOVER_ERROR",
         "UTILIZATION_REPORT_ERROR",
+        "APPLIANCE_UPGRADE_ERROR",
     ]
     errorMessage: LocalizedMessage
     errorTime: str
@@ -333,14 +368,26 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 class PauseMigrationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class PostProcessingStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class RemoveGroupMigrationRequest(typing_extensions.TypedDict, total=False):
     migratingVm: str
+
+@typing.type_check_only
+class ReplicatingStep(typing_extensions.TypedDict, total=False):
+    lastThirtyMinutesAverageBytesPerSecond: str
+    lastTwoMinutesAverageBytesPerSecond: str
+    replicatedBytes: str
+    totalBytes: str
 
 @typing.type_check_only
 class ReplicationCycle(typing_extensions.TypedDict, total=False):
     progress: int
     progressPercent: int
     startTime: str
+    steps: _list[CycleStep]
+    totalPauseDuration: str
 
 @typing.type_check_only
 class ReplicationSync(typing_extensions.TypedDict, total=False):
@@ -412,6 +459,20 @@ class TargetVMDetails(typing_extensions.TypedDict, total=False):
     subnetwork: str
     targetProject: str
     zone: str
+
+@typing.type_check_only
+class UpgradeApplianceRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
+class UpgradeStatus(typing_extensions.TypedDict, total=False):
+    error: Status
+    previousVersion: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "RUNNING", "FAILED", "SUCCEEDED"
+    ]
+    version: str
 
 @typing.type_check_only
 class UtilizationReport(typing_extensions.TypedDict, total=False):

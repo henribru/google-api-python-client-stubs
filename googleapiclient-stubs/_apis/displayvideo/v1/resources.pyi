@@ -24,6 +24,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 body: CreateAssetRequest = ...,
                 **kwargs: typing.Any
             ) -> CreateAssetResponseHttpRequest: ...
+
         @typing.type_check_only
         class CampaignsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -78,8 +79,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -130,8 +135,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -144,9 +153,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         previous_request: ListCampaignAssignedTargetingOptionsResponseHttpRequest,
                         previous_response: ListCampaignAssignedTargetingOptionsResponse,
                     ) -> ListCampaignAssignedTargetingOptionsResponseHttpRequest | None: ...
+
                 def assignedTargetingOptions(
                     self,
                 ) -> AssignedTargetingOptionsResource: ...
+
             def bulkListCampaignAssignedTargetingOptions(
                 self,
                 *,
@@ -197,6 +208,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> CampaignHttpRequest: ...
             def targetingTypes(self) -> TargetingTypesResource: ...
+
         @typing.type_check_only
         class ChannelsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -252,6 +264,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     body: ReplaceSitesRequest = ...,
                     **kwargs: typing.Any
                 ) -> ReplaceSitesResponseHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -295,6 +308,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ChannelHttpRequest: ...
             def sites(self) -> SitesResource: ...
+
         @typing.type_check_only
         class CreativesResource(googleapiclient.discovery.Resource):
             def create(
@@ -330,6 +344,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> CreativeHttpRequest: ...
+
         @typing.type_check_only
         class InsertionOrdersResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -384,8 +399,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -436,8 +455,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -450,9 +473,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         previous_request: ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest,
                         previous_response: ListInsertionOrderAssignedTargetingOptionsResponse,
                     ) -> ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest | None: ...
+
                 def assignedTargetingOptions(
                     self,
                 ) -> AssignedTargetingOptionsResource: ...
+
             def bulkListInsertionOrderAssignedTargetingOptions(
                 self,
                 *,
@@ -507,6 +532,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> InsertionOrderHttpRequest: ...
             def targetingTypes(self) -> TargetingTypesResource: ...
+
         @typing.type_check_only
         class InvoicesResource(googleapiclient.discovery.Resource):
             def list(
@@ -535,6 +561,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 invoiceMonth: str = ...,
                 **kwargs: typing.Any
             ) -> LookupInvoiceCurrencyResponseHttpRequest: ...
+
         @typing.type_check_only
         class LineItemsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -589,8 +616,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         body: AssignedTargetingOption = ...,
                         **kwargs: typing.Any
@@ -641,8 +672,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -693,8 +728,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -745,8 +784,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -759,9 +802,11 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         previous_request: ListLineItemAssignedTargetingOptionsResponseHttpRequest,
                         previous_response: ListLineItemAssignedTargetingOptionsResponse,
                     ) -> ListLineItemAssignedTargetingOptionsResponseHttpRequest | None: ...
+
                 def assignedTargetingOptions(
                     self,
                 ) -> AssignedTargetingOptionsResource: ...
+
             def bulkEditLineItemAssignedTargetingOptions(
                 self,
                 *,
@@ -827,6 +872,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> LineItemHttpRequest: ...
             def targetingTypes(self) -> TargetingTypesResource: ...
+
         @typing.type_check_only
         class LocationListsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -871,6 +917,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     previous_request: ListAssignedLocationsResponseHttpRequest,
                     previous_response: ListAssignedLocationsResponse,
                 ) -> ListAssignedLocationsResponseHttpRequest | None: ...
+
             def create(
                 self,
                 *,
@@ -906,6 +953,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> LocationListHttpRequest: ...
             def assignedLocations(self) -> AssignedLocationsResource: ...
+
         @typing.type_check_only
         class ManualTriggersResource(googleapiclient.discovery.Resource):
             def activate(
@@ -958,6 +1006,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> ManualTriggerHttpRequest: ...
+
         @typing.type_check_only
         class NegativeKeywordListsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -1010,6 +1059,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     body: ReplaceNegativeKeywordsRequest = ...,
                     **kwargs: typing.Any
                 ) -> ReplaceNegativeKeywordsResponseHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -1054,6 +1104,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> NegativeKeywordListHttpRequest: ...
             def negativeKeywords(self) -> NegativeKeywordsResource: ...
+
         @typing.type_check_only
         class TargetingTypesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -1103,8 +1154,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any
@@ -1154,8 +1209,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1205,8 +1264,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1256,8 +1319,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -1270,7 +1337,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     previous_request: ListAdvertiserAssignedTargetingOptionsResponseHttpRequest,
                     previous_response: ListAdvertiserAssignedTargetingOptionsResponse,
                 ) -> ListAdvertiserAssignedTargetingOptionsResponseHttpRequest | None: ...
+
             def assignedTargetingOptions(self) -> AssignedTargetingOptionsResource: ...
+
         def audit(
             self, *, advertiserId: str, readMask: str = ..., **kwargs: typing.Any
         ) -> AuditAdvertiserResponseHttpRequest: ...
@@ -1339,6 +1408,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         def manualTriggers(self) -> ManualTriggersResource: ...
         def negativeKeywordLists(self) -> NegativeKeywordListsResource: ...
         def targetingTypes(self) -> TargetingTypesResource: ...
+
     @typing.type_check_only
     class CombinedAudiencesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1365,6 +1435,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             previous_request: ListCombinedAudiencesResponseHttpRequest,
             previous_response: ListCombinedAudiencesResponse,
         ) -> ListCombinedAudiencesResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class CustomBiddingAlgorithmsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -1403,6 +1474,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 previous_request: ListCustomBiddingScriptsResponseHttpRequest,
                 previous_response: ListCustomBiddingScriptsResponse,
             ) -> ListCustomBiddingScriptsResponseHttpRequest | None: ...
+
         def create(
             self, *, body: CustomBiddingAlgorithm = ..., **kwargs: typing.Any
         ) -> CustomBiddingAlgorithmHttpRequest: ...
@@ -1447,6 +1519,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> CustomBiddingScriptRefHttpRequest: ...
         def scripts(self) -> ScriptsResource: ...
+
     @typing.type_check_only
     class CustomListsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1467,8 +1540,23 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             previous_request: ListCustomListsResponseHttpRequest,
             previous_response: ListCustomListsResponse,
         ) -> ListCustomListsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class FirstAndThirdPartyAudiencesResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            body: FirstAndThirdPartyAudience = ...,
+            advertiserId: str = ...,
+            **kwargs: typing.Any
+        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
+        def editCustomerMatchMembers(
+            self,
+            *,
+            firstAndThirdPartyAudienceId: str,
+            body: EditCustomerMatchMembersRequest = ...,
+            **kwargs: typing.Any
+        ) -> EditCustomerMatchMembersResponseHttpRequest: ...
         def get(
             self,
             *,
@@ -1493,6 +1581,16 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             previous_request: ListFirstAndThirdPartyAudiencesResponseHttpRequest,
             previous_response: ListFirstAndThirdPartyAudiencesResponse,
         ) -> ListFirstAndThirdPartyAudiencesResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            firstAndThirdPartyAudienceId: str,
+            body: FirstAndThirdPartyAudience = ...,
+            advertiserId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
+
     @typing.type_check_only
     class FloodlightGroupsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1507,6 +1605,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> FloodlightGroupHttpRequest: ...
+
     @typing.type_check_only
     class GoogleAudiencesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1533,6 +1632,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             previous_request: ListGoogleAudiencesResponseHttpRequest,
             previous_response: ListGoogleAudiencesResponse,
         ) -> ListGoogleAudiencesResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class InventorySourceGroupsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -1579,6 +1679,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 previous_request: ListAssignedInventorySourcesResponseHttpRequest,
                 previous_response: ListAssignedInventorySourcesResponse,
             ) -> ListAssignedInventorySourcesResponseHttpRequest | None: ...
+
         def create(
             self,
             *,
@@ -1630,6 +1731,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> InventorySourceGroupHttpRequest: ...
         def assignedInventorySources(self) -> AssignedInventorySourcesResource: ...
+
     @typing.type_check_only
     class InventorySourcesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1651,6 +1753,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             previous_request: ListInventorySourcesResponseHttpRequest,
             previous_response: ListInventorySourcesResponse,
         ) -> ListInventorySourcesResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
@@ -1663,6 +1766,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             body: GoogleBytestreamMedia = ...,
             **kwargs: typing.Any
         ) -> GoogleBytestreamMediaHttpRequest: ...
+
     @typing.type_check_only
     class PartnersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -1720,6 +1824,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     body: ReplaceSitesRequest = ...,
                     **kwargs: typing.Any
                 ) -> ReplaceSitesResponseHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -1763,6 +1868,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ChannelHttpRequest: ...
             def sites(self) -> SitesResource: ...
+
         @typing.type_check_only
         class TargetingTypesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -1812,8 +1918,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any
@@ -1863,8 +1973,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1914,8 +2028,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1965,8 +2083,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -1979,7 +2101,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     previous_request: ListPartnerAssignedTargetingOptionsResponseHttpRequest,
                     previous_response: ListPartnerAssignedTargetingOptionsResponse,
                 ) -> ListPartnerAssignedTargetingOptionsResponseHttpRequest | None: ...
+
             def assignedTargetingOptions(self) -> AssignedTargetingOptionsResource: ...
+
         def bulkEditPartnerAssignedTargetingOptions(
             self,
             *,
@@ -2006,6 +2130,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         ) -> ListPartnersResponseHttpRequest | None: ...
         def channels(self) -> ChannelsResource: ...
         def targetingTypes(self) -> TargetingTypesResource: ...
+
     @typing.type_check_only
     class SdfdownloadtasksResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -2013,10 +2138,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         def create(
             self, *, body: CreateSdfDownloadTaskRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def operations(self) -> OperationsResource: ...
+
     @typing.type_check_only
     class TargetingTypesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -2065,8 +2192,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_SUB_EXCHANGE",
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
+                    "TARGETING_TYPE_CONTENT_DURATION",
+                    "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                    "TARGETING_TYPE_CONTENT_GENRE",
                 ],
                 targetingOptionId: str,
                 advertiserId: str = ...,
@@ -2116,8 +2247,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_SUB_EXCHANGE",
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
+                    "TARGETING_TYPE_CONTENT_DURATION",
+                    "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                    "TARGETING_TYPE_CONTENT_GENRE",
                 ],
                 advertiserId: str = ...,
                 filter: str = ...,
@@ -2175,8 +2310,12 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_SUB_EXCHANGE",
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
+                    "TARGETING_TYPE_CONTENT_DURATION",
+                    "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                    "TARGETING_TYPE_CONTENT_GENRE",
                 ],
                 body: SearchTargetingOptionsRequest = ...,
                 **kwargs: typing.Any
@@ -2186,7 +2325,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 previous_request: SearchTargetingOptionsResponseHttpRequest,
                 previous_response: SearchTargetingOptionsResponse,
             ) -> SearchTargetingOptionsResponseHttpRequest | None: ...
+
         def targetingOptions(self) -> TargetingOptionsResource: ...
+
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def bulkEditAssignedUserRoles(
@@ -2223,6 +2364,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> UserHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -2473,6 +2615,14 @@ class CustomListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CustomList: ...
+
+@typing.type_check_only
+class EditCustomerMatchMembersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> EditCustomerMatchMembersResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

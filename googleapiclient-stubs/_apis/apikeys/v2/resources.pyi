@@ -18,22 +18,17 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
         def lookupKey(
             self, *, keyString: str = ..., **kwargs: typing.Any
         ) -> V2LookupKeyResponseHttpRequest: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class KeysResource(googleapiclient.discovery.Resource):
-                def clone(
-                    self,
-                    *,
-                    name: str,
-                    body: V2CloneKeyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -55,9 +50,9 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    showDeleted: bool = ...,
                     **kwargs: typing.Any
                 ) -> V2ListKeysResponseHttpRequest: ...
                 def list_next(
@@ -80,8 +75,11 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     body: V2UndeleteKeyRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def keys(self) -> KeysResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

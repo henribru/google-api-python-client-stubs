@@ -33,6 +33,7 @@ class CloudNaturalLanguageResource(googleapiclient.discovery.Resource):
         def classifyText(
             self, *, body: ClassifyTextRequest = ..., **kwargs: typing.Any
         ) -> ClassifyTextResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -46,6 +46,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 @typing.type_check_only
                 class IndexesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -75,8 +76,10 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleFirestoreAdminV1ListIndexesResponseHttpRequest,
                         previous_response: GoogleFirestoreAdminV1ListIndexesResponse,
                     ) -> GoogleFirestoreAdminV1ListIndexesResponseHttpRequest | None: ...
+
                 def fields(self) -> FieldsResource: ...
                 def indexes(self) -> IndexesResource: ...
+
             @typing.type_check_only
             class DocumentsResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -165,6 +168,25 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     previous_request: ListCollectionIdsResponseHttpRequest,
                     previous_response: ListCollectionIdsResponse,
                 ) -> ListCollectionIdsResponseHttpRequest | None: ...
+                def listDocuments(
+                    self,
+                    *,
+                    parent: str,
+                    collectionId: str,
+                    mask_fieldPaths: str | _list[str] = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    readTime: str = ...,
+                    showMissing: bool = ...,
+                    transaction: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListDocumentsResponseHttpRequest: ...
+                def listDocuments_next(
+                    self,
+                    previous_request: ListDocumentsResponseHttpRequest,
+                    previous_response: ListDocumentsResponse,
+                ) -> ListDocumentsResponseHttpRequest | None: ...
                 def listen(
                     self,
                     *,
@@ -202,6 +224,13 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: RollbackRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def runAggregationQuery(
+                    self,
+                    *,
+                    parent: str,
+                    body: RunAggregationQueryRequest = ...,
+                    **kwargs: typing.Any
+                ) -> RunAggregationQueryResponseHttpRequest: ...
                 def runQuery(
                     self,
                     *,
@@ -216,6 +245,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: WriteRequest = ...,
                     **kwargs: typing.Any
                 ) -> WriteResponseHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -245,6 +275,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
             def exportDocuments(
                 self,
                 *,
@@ -276,6 +307,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
             def collectionGroups(self) -> CollectionGroupsResource: ...
             def documents(self) -> DocumentsResource: ...
             def operations(self) -> OperationsResource: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -295,8 +327,10 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+
         def databases(self) -> DatabasesResource: ...
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -478,6 +512,14 @@ class PartitionQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PartitionQueryResponse: ...
+
+@typing.type_check_only
+class RunAggregationQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RunAggregationQueryResponse: ...
 
 @typing.type_check_only
 class RunQueryResponseHttpRequest(googleapiclient.http.HttpRequest):

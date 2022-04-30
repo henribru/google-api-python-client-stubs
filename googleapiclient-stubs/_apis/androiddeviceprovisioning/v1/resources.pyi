@@ -37,6 +37,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> ConfigurationHttpRequest: ...
+
         @typing.type_check_only
         class DevicesResource(googleapiclient.discovery.Resource):
             def applyConfiguration(
@@ -74,11 +75,13 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 body: CustomerUnclaimDeviceRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+
         @typing.type_check_only
         class DpcsResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> CustomerListDpcsResponseHttpRequest: ...
+
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> CustomerListCustomersResponseHttpRequest: ...
@@ -90,9 +93,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
         def configurations(self) -> ConfigurationsResource: ...
         def devices(self) -> DevicesResource: ...
         def dpcs(self) -> DpcsResource: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class PartnersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -117,6 +122,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 previous_request: ListCustomersResponseHttpRequest,
                 previous_response: ListCustomersResponse,
             ) -> ListCustomersResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class DevicesResource(googleapiclient.discovery.Resource):
             def claim(
@@ -187,6 +193,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 body: UpdateDeviceMetadataInBatchRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         @typing.type_check_only
         class VendorsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -204,6 +211,7 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                     previous_request: ListVendorCustomersResponseHttpRequest,
                     previous_response: ListVendorCustomersResponse,
                 ) -> ListVendorCustomersResponseHttpRequest | None: ...
+
             def list(
                 self,
                 *,
@@ -218,9 +226,11 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 previous_response: ListVendorsResponse,
             ) -> ListVendorsResponseHttpRequest | None: ...
             def customers(self) -> CustomersResource: ...
+
         def customers(self) -> CustomersResource: ...
         def devices(self) -> DevicesResource: ...
         def vendors(self) -> VendorsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

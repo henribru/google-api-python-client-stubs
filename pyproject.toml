@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "google-api-python-client-stubs"
-version = "1.9.0"
+version = "1.10.0"
 description = "Type stubs for google-api-python-client"
 authors = ["Henrik Bruådal <henrik.bruasdal@gmail.com>"]
 readme = "README.md"
@@ -16,13 +16,13 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-google-api-python-client = "^2.32.0"
+google-api-python-client = "^2.46.0"
 typing-extensions = ">=3.10.0, <5.0.0"
 
 [tool.poetry.dev-dependencies]
-mypy = "^0.910"
-black = "^21.9b0"
-isort = "^5.9.3"
+mypy = "^0.950"
+black = "^22.3.0"
+isort = "^5.10.1"
 
 [tool.isort]
 profile = "black"

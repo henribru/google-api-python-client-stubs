@@ -75,6 +75,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class ClientTlsPoliciesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -133,6 +134,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -162,6 +164,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ServerTlsPoliciesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -220,6 +223,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -241,7 +245,9 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
             def clientTlsPolicies(self) -> ClientTlsPoliciesResource: ...
             def operations(self) -> OperationsResource: ...
             def serverTlsPolicies(self) -> ServerTlsPoliciesResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

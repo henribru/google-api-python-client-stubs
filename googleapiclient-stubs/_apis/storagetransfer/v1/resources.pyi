@@ -18,6 +18,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
         def get(
             self, *, projectId: str, **kwargs: typing.Any
         ) -> GoogleServiceAccountHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -58,7 +59,9 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> AgentPoolHttpRequest: ...
+
         def agentPools(self) -> AgentPoolsResource: ...
+
     @typing.type_check_only
     class TransferJobsResource(googleapiclient.discovery.Resource):
         def create(
@@ -94,6 +97,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             body: RunTransferJobRequest = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class TransferOperationsResource(googleapiclient.discovery.Resource):
         def cancel(
@@ -128,6 +132,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             body: ResumeTransferOperationRequest = ...,
             **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

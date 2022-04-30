@@ -42,6 +42,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
                 previous_request: ListReportsResponseHttpRequest,
                 previous_response: ListReportsResponse,
             ) -> ListReportsResponseHttpRequest | None: ...
+
         def create(
             self,
             *,
@@ -70,11 +71,13 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             previous_response: ListJobsResponse,
         ) -> ListJobsResponseHttpRequest | None: ...
         def reports(self) -> ReportsResource: ...
+
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
         ) -> GdataMediaHttpRequest: ...
+
     @typing.type_check_only
     class ReportTypesResource(googleapiclient.discovery.Resource):
         def list(
@@ -91,6 +94,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             previous_request: ListReportTypesResponseHttpRequest,
             previous_response: ListReportTypesResponse,
         ) -> ListReportTypesResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

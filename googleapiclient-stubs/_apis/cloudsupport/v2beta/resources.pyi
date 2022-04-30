@@ -22,6 +22,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             body: CreateAttachmentRequest = ...,
             **kwargs: typing.Any
         ) -> AttachmentHttpRequest: ...
+
     @typing.type_check_only
     class CaseClassificationsResource(googleapiclient.discovery.Resource):
         def search(
@@ -37,6 +38,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             previous_request: SearchCaseClassificationsResponseHttpRequest,
             previous_response: SearchCaseClassificationsResponse,
         ) -> SearchCaseClassificationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class CasesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -54,6 +56,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 previous_request: ListAttachmentsResponseHttpRequest,
                 previous_response: ListAttachmentsResponse,
             ) -> ListAttachmentsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class CommentsResource(googleapiclient.discovery.Resource):
             def create(
@@ -72,6 +75,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 previous_request: ListCommentsResponseHttpRequest,
                 previous_response: ListCommentsResponse,
             ) -> ListCommentsResponseHttpRequest | None: ...
+
         def close(self, *, name: str, body: CloseCaseRequest = ..., **kwargs: typing.Any) -> CaseHttpRequest: ...  # type: ignore
         def create(
             self, *, parent: str, body: Case = ..., **kwargs: typing.Any
@@ -85,7 +89,6 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             filter: str = ...,
-            orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             **kwargs: typing.Any
@@ -118,6 +121,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
         ) -> SearchCasesResponseHttpRequest | None: ...
         def attachments(self) -> AttachmentsResource: ...
         def comments(self) -> CommentsResource: ...
+
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(self, *, name: str, **kwargs: typing.Any) -> MediaHttpRequest: ...
@@ -128,6 +132,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             body: CreateAttachmentRequest = ...,
             **kwargs: typing.Any
         ) -> AttachmentHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

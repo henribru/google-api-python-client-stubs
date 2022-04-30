@@ -30,6 +30,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest,
                 previous_response: GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class PromotionsResource(googleapiclient.discovery.Resource):
             def list(
@@ -46,6 +47,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest,
                 previous_response: GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class SubscriptionsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -95,9 +97,11 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponseHttpRequest: ...
+
         def products(self) -> ProductsResource: ...
         def promotions(self) -> PromotionsResource: ...
         def subscriptions(self) -> SubscriptionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

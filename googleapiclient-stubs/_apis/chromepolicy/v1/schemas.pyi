@@ -89,6 +89,13 @@ class GoogleChromePolicyV1PolicySchemaNoticeDescription(
     noticeValue: str
 
 @typing.type_check_only
+class GoogleChromePolicyV1PolicySchemaRequiredItems(
+    typing_extensions.TypedDict, total=False
+):
+    fieldConditions: _list[str]
+    requiredFields: _list[str]
+
+@typing.type_check_only
 class GoogleChromePolicyV1PolicyTargetKey(typing_extensions.TypedDict, total=False):
     additionalTargetKeys: dict[str, typing.Any]
     targetResource: str
@@ -112,6 +119,7 @@ class GoogleChromePolicyV1ResolveResponse(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleChromePolicyV1ResolvedPolicy(typing_extensions.TypedDict, total=False):
+    addedSourceKey: GoogleChromePolicyV1PolicyTargetKey
     sourceKey: GoogleChromePolicyV1PolicyTargetKey
     targetKey: GoogleChromePolicyV1PolicyTargetKey
     value: GoogleChromePolicyV1PolicyValue

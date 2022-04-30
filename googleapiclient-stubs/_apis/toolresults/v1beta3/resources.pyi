@@ -38,6 +38,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         executionId: str,
                         **kwargs: typing.Any
                     ) -> ListScreenshotClustersResponseHttpRequest: ...
+
                 @typing.type_check_only
                 class EnvironmentsResource(googleapiclient.discovery.Resource):
                     def get(
@@ -64,6 +65,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         previous_request: ListEnvironmentsResponseHttpRequest,
                         previous_response: ListEnvironmentsResponse,
                     ) -> ListEnvironmentsResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class StepsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -80,6 +82,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             body: PerfMetricsSummary = ...,
                             **kwargs: typing.Any
                         ) -> PerfMetricsSummaryHttpRequest: ...
+
                     @typing.type_check_only
                     class PerfSampleSeriesResource(googleapiclient.discovery.Resource):
                         @typing.type_check_only
@@ -112,6 +115,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                 previous_request: ListPerfSamplesResponseHttpRequest,
                                 previous_response: ListPerfSamplesResponse,
                             ) -> ListPerfSamplesResponseHttpRequest | None: ...
+
                         def create(
                             self,
                             *,
@@ -158,6 +162,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any
                         ) -> ListPerfSampleSeriesResponseHttpRequest: ...
                         def samples(self) -> SamplesResource: ...
+
                     @typing.type_check_only
                     class TestCasesResource(googleapiclient.discovery.Resource):
                         def get(
@@ -186,6 +191,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             previous_request: ListTestCasesResponseHttpRequest,
                             previous_response: ListTestCasesResponse,
                         ) -> ListTestCasesResponseHttpRequest | None: ...
+
                     @typing.type_check_only
                     class ThumbnailsResource(googleapiclient.discovery.Resource):
                         def list(
@@ -204,6 +210,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             previous_request: ListStepThumbnailsResponseHttpRequest,
                             previous_response: ListStepThumbnailsResponse,
                         ) -> ListStepThumbnailsResponseHttpRequest | None: ...
+
                     def accessibilityClusters(
                         self, *, name: str, locale: str = ..., **kwargs: typing.Any
                     ) -> ListStepAccessibilityClustersResponseHttpRequest: ...
@@ -275,6 +282,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     def perfSampleSeries(self) -> PerfSampleSeriesResource: ...
                     def testCases(self) -> TestCasesResource: ...
                     def thumbnails(self) -> ThumbnailsResource: ...
+
                 def create(
                     self,
                     *,
@@ -319,6 +327,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                 def clusters(self) -> ClustersResource: ...
                 def environments(self) -> EnvironmentsResource: ...
                 def steps(self) -> StepsResource: ...
+
             def create(
                 self,
                 *,
@@ -345,6 +354,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                 previous_response: ListHistoriesResponse,
             ) -> ListHistoriesResponseHttpRequest | None: ...
             def executions(self) -> ExecutionsResource: ...
+
         def getSettings(
             self, *, projectId: str, **kwargs: typing.Any
         ) -> ProjectSettingsHttpRequest: ...
@@ -352,6 +362,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
             self, *, projectId: str, **kwargs: typing.Any
         ) -> ProjectSettingsHttpRequest: ...
         def histories(self) -> HistoriesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

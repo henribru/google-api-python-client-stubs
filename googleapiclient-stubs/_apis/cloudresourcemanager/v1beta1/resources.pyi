@@ -55,6 +55,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def update(
             self, *, name: str, body: Organization = ..., **kwargs: typing.Any
         ) -> OrganizationHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def create(
@@ -121,6 +122,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def update(
             self, *, projectId: str, body: Project = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

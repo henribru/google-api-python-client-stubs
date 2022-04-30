@@ -47,6 +47,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         previous_request: ListInventoriesResponseHttpRequest,
                         previous_response: ListInventoriesResponse,
                     ) -> ListInventoriesResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -68,7 +69,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                             previous_request: ListOSPolicyAssignmentReportsResponseHttpRequest,
                             previous_response: ListOSPolicyAssignmentReportsResponse,
                         ) -> ListOSPolicyAssignmentReportsResponseHttpRequest | None: ...
+
                     def reports(self) -> ReportsResource: ...
+
                 @typing.type_check_only
                 class VulnerabilityReportsResource(googleapiclient.discovery.Resource):
                     def get(
@@ -88,9 +91,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         previous_request: ListVulnerabilityReportsResponseHttpRequest,
                         previous_response: ListVulnerabilityReportsResponse,
                     ) -> ListVulnerabilityReportsResponseHttpRequest | None: ...
+
                 def inventories(self) -> InventoriesResource: ...
                 def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
                 def vulnerabilityReports(self) -> VulnerabilityReportsResource: ...
+
             @typing.type_check_only
             class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -105,6 +110,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -154,8 +160,10 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
+
             def instances(self) -> InstancesResource: ...
             def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
+
         @typing.type_check_only
         class PatchDeploymentsResource(googleapiclient.discovery.Resource):
             def create(
@@ -193,6 +201,21 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> PatchDeploymentHttpRequest: ...
+            def pause(
+                self,
+                *,
+                name: str,
+                body: PausePatchDeploymentRequest = ...,
+                **kwargs: typing.Any
+            ) -> PatchDeploymentHttpRequest: ...
+            def resume(
+                self,
+                *,
+                name: str,
+                body: ResumePatchDeploymentRequest = ...,
+                **kwargs: typing.Any
+            ) -> PatchDeploymentHttpRequest: ...
+
         @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -211,6 +234,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     previous_request: ListPatchJobInstanceDetailsResponseHttpRequest,
                     previous_response: ListPatchJobInstanceDetailsResponse,
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest | None: ...
+
             def cancel(
                 self,
                 *,
@@ -243,9 +267,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 previous_response: ListPatchJobsResponse,
             ) -> ListPatchJobsResponseHttpRequest | None: ...
             def instanceDetails(self) -> InstanceDetailsResource: ...
+
         def locations(self) -> LocationsResource: ...
         def patchDeployments(self) -> PatchDeploymentsResource: ...
         def patchJobs(self) -> PatchJobsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

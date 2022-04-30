@@ -25,6 +25,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             body: GoogleBytestreamMedia = ...,
             **kwargs: typing.Any
         ) -> GoogleBytestreamMediaHttpRequest: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
@@ -51,6 +52,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
             previous_response: GoogleLongrunningListOperationsResponse,
         ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -58,7 +60,9 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
+
         def operations(self) -> OperationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

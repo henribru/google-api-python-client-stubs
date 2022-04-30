@@ -24,7 +24,9 @@ class FirebaseCloudMessagingResource(googleapiclient.discovery.Resource):
                 body: SendMessageRequest = ...,
                 **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
+
         def messages(self) -> MessagesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

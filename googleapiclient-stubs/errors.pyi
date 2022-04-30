@@ -1,14 +1,14 @@
-from typing import Any
+from _typeshed import Incomplete
 
 class Error(Exception): ...
 
 class HttpError(Error):
-    resp: Any
-    content: Any
-    uri: Any
+    resp: Incomplete
+    content: Incomplete
+    uri: Incomplete
     error_details: str
-    reason: Any
-    def __init__(self, resp, content, uri: Any | None = ...) -> None: ...
+    reason: Incomplete
+    def __init__(self, resp, content, uri: Incomplete | None = ...) -> None: ...
     @property
     def status_code(self): ...
 
@@ -23,15 +23,15 @@ class InvalidChunkSizeError(Error): ...
 class InvalidNotificationError(Error): ...
 
 class BatchError(HttpError):
-    resp: Any
-    content: Any
-    reason: Any
+    resp: Incomplete
+    content: Incomplete
+    reason: Incomplete
     def __init__(
-        self, reason, resp: Any | None = ..., content: Any | None = ...
+        self, reason, resp: Incomplete | None = ..., content: Incomplete | None = ...
     ) -> None: ...
 
 class UnexpectedMethodError(Error):
-    def __init__(self, methodId: Any | None = ...) -> None: ...
+    def __init__(self, methodId: Incomplete | None = ...) -> None: ...
 
 class UnexpectedBodyError(Error):
     def __init__(self, expected, provided) -> None: ...

@@ -42,7 +42,9 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 watch: bool = ...,
                 **kwargs: typing.Any
             ) -> ListJobsResponseHttpRequest: ...
+
         def jobs(self) -> JobsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

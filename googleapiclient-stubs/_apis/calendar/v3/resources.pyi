@@ -71,6 +71,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
     @typing.type_check_only
     class CalendarListResource(googleapiclient.discovery.Resource):
         def delete(
@@ -134,6 +135,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
     @typing.type_check_only
     class CalendarsResource(googleapiclient.discovery.Resource):
         def clear(
@@ -154,14 +156,17 @@ class CalendarResource(googleapiclient.discovery.Resource):
         def update(
             self, *, calendarId: str, body: Calendar = ..., **kwargs: typing.Any
         ) -> CalendarHttpRequest: ...
+
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class ColorsResource(googleapiclient.discovery.Resource):
         def get(self, **kwargs: typing.Any) -> ColorsHttpRequest: ...
+
     @typing.type_check_only
     class EventsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -320,11 +325,13 @@ class CalendarResource(googleapiclient.discovery.Resource):
             updatedMin: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
     @typing.type_check_only
     class FreebusyResource(googleapiclient.discovery.Resource):
         def query(
             self, *, body: FreeBusyRequest = ..., **kwargs: typing.Any
         ) -> FreeBusyResponseHttpRequest: ...
+
     @typing.type_check_only
     class SettingsResource(googleapiclient.discovery.Resource):
         def get(self, *, setting: str, **kwargs: typing.Any) -> SettingHttpRequest: ...
@@ -348,6 +355,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             syncToken: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -44,6 +44,7 @@ class DatastoreResource(googleapiclient.discovery.Resource):
         def runQuery(
             self, *, projectId: str, body: RunQueryRequest = ..., **kwargs: typing.Any
         ) -> RunQueryResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

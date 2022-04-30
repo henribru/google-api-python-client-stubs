@@ -75,6 +75,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 body: ValidateAttestationOccurrenceRequest = ...,
                 **kwargs: typing.Any
             ) -> ValidateAttestationOccurrenceResponseHttpRequest: ...
+
         @typing.type_check_only
         class PolicyResource(googleapiclient.discovery.Resource):
             def getIamPolicy(
@@ -98,6 +99,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
+
         def getPolicy(
             self, *, name: str, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
@@ -106,11 +108,13 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
         ) -> PolicyHttpRequest: ...
         def attestors(self) -> AttestorsResource: ...
         def policy(self) -> PolicyResource: ...
+
     @typing.type_check_only
     class SystempolicyResource(googleapiclient.discovery.Resource):
         def getPolicy(
             self, *, name: str, **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

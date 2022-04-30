@@ -36,6 +36,7 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
         ) -> ListGroupItemsResponseHttpRequest: ...
+
     @typing.type_check_only
     class GroupsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -73,6 +74,7 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             onBehalfOfContentOwner: str = ...,
             **kwargs: typing.Any
         ) -> GroupHttpRequest: ...
+
     @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         def query(
@@ -91,6 +93,7 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             startIndex: int = ...,
             **kwargs: typing.Any
         ) -> QueryResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

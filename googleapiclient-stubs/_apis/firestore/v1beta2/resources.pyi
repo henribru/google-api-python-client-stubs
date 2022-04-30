@@ -46,6 +46,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 @typing.type_check_only
                 class IndexesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -75,8 +76,10 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest,
                         previous_response: GoogleFirestoreAdminV1beta2ListIndexesResponse,
                     ) -> GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest | None: ...
+
                 def fields(self) -> FieldsResource: ...
                 def indexes(self) -> IndexesResource: ...
+
             def exportDocuments(
                 self,
                 *,
@@ -92,7 +95,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def collectionGroups(self) -> CollectionGroupsResource: ...
+
         def databases(self) -> DatabasesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -56,6 +56,7 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
         def runReport(
             self, *, property: str, body: RunReportRequest = ..., **kwargs: typing.Any
         ) -> RunReportResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

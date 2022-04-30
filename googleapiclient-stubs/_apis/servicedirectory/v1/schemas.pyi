@@ -18,6 +18,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     address: str
     annotations: dict[str, typing.Any]
     name: str
+    network: str
     port: int
 
 @typing.type_check_only

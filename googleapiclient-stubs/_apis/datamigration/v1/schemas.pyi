@@ -38,6 +38,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "SQL_ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER"
     ]
     autoStorageIncrease: bool
+    cmekKeyName: str
     collation: str
     dataDiskSizeGb: str
     dataDiskType: typing_extensions.Literal[
@@ -54,6 +55,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0",
         "POSTGRES_12",
         "POSTGRES_13",
+        "POSTGRES_14",
     ]
     ipConfig: SqlIpConfig
     rootPassword: str
@@ -75,7 +77,7 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     name: str
     postgresql: PostgreSqlConnectionProfile
     provider: typing_extensions.Literal[
-        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS"
+        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA"
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -95,8 +97,17 @@ class DatabaseType(typing_extensions.TypedDict, total=False):
         "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL"
     ]
     provider: typing_extensions.Literal[
-        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS"
+        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA"
     ]
+
+@typing.type_check_only
+class DumpFlag(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
+
+@typing.type_check_only
+class DumpFlags(typing_extensions.TypedDict, total=False):
+    dumpFlags: _list[DumpFlag]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -161,6 +172,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     destination: str
     destinationDatabase: DatabaseType
     displayName: str
+    dumpFlags: DumpFlags
     dumpPath: str
     duration: str
     endTime: str

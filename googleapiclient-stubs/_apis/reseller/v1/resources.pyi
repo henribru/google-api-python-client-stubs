@@ -31,6 +31,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
         def update(
             self, *, customerId: str, body: Customer = ..., **kwargs: typing.Any
         ) -> CustomerHttpRequest: ...
+
     @typing.type_check_only
     class ResellernotifyResource(googleapiclient.discovery.Resource):
         def getwatchdetails(
@@ -42,6 +43,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
         def unregister(
             self, *, serviceAccountEmailAddress: str = ..., **kwargs: typing.Any
         ) -> ResellernotifyResourceHttpRequest: ...
+
     @typing.type_check_only
     class SubscriptionsResource(googleapiclient.discovery.Resource):
         def activate(
@@ -113,6 +115,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
         def suspend(
             self, *, customerId: str, subscriptionId: str, **kwargs: typing.Any
         ) -> SubscriptionHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

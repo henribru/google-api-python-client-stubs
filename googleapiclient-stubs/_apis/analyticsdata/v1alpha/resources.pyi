@@ -25,6 +25,7 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
             body: RunRealtimeReportRequest = ...,
             **kwargs: typing.Any
         ) -> RunRealtimeReportResponseHttpRequest: ...
+
     @typing.type_check_only
     class V1alphaResource(googleapiclient.discovery.Resource):
         def batchRunPivotReports(
@@ -39,6 +40,7 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
         def runReport(
             self, *, body: RunReportRequest = ..., **kwargs: typing.Any
         ) -> RunReportResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

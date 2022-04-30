@@ -38,6 +38,10 @@ class ConnectAgentResource(typing_extensions.TypedDict, total=False):
     type: TypeMeta
 
 @typing.type_check_only
+class EdgeCluster(typing_extensions.TypedDict, total=False):
+    resourceLink: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -127,6 +131,7 @@ class Membership(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MembershipEndpoint(typing_extensions.TypedDict, total=False):
+    edgeCluster: EdgeCluster
     gkeCluster: GkeCluster
     kubernetesMetadata: KubernetesMetadata
     kubernetesResource: KubernetesResource
@@ -190,6 +195,7 @@ class ResourceManifest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResourceOptions(typing_extensions.TypedDict, total=False):
     connectVersion: str
+    k8sVersion: str
     v1beta1Crd: bool
 
 @typing.type_check_only

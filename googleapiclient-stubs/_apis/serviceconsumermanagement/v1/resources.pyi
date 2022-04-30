@@ -34,6 +34,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -104,6 +105,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 body: UndeleteTenantProjectRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
         def search(
             self,
             *,
@@ -119,6 +121,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
             previous_response: SearchTenancyUnitsResponse,
         ) -> SearchTenancyUnitsResponseHttpRequest | None: ...
         def tenancyUnits(self) -> TenancyUnitsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

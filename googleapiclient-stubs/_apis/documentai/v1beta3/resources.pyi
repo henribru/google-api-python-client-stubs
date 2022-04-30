@@ -39,6 +39,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ProcessorsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -50,6 +51,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDocumentaiV1beta3ReviewDocumentRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 @typing.type_check_only
                 class ProcessorVersionsResource(googleapiclient.discovery.Resource):
                     def batchProcess(
@@ -99,6 +101,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDocumentaiV1beta3UndeployProcessorVersionRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 def batchProcess(
                     self,
                     *,
@@ -162,6 +165,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def humanReviewConfig(self) -> HumanReviewConfigResource: ...
                 def processorVersions(self) -> ProcessorVersionsResource: ...
+
             def fetchProcessorTypes(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponseHttpRequest: ...
@@ -184,7 +188,9 @@ class DocumentResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def processors(self) -> ProcessorsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

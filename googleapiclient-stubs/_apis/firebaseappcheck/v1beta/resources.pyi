@@ -18,6 +18,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleFirebaseAppcheckV1betaPublicJwkSetHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -42,6 +43,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaAppAttestConfigHttpRequest: ...
+
             @typing.type_check_only
             class DebugTokensResource(googleapiclient.discovery.Resource):
                 def create(
@@ -78,6 +80,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaDebugTokenHttpRequest: ...
+
             @typing.type_check_only
             class DeviceCheckConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -98,6 +101,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaDeviceCheckConfigHttpRequest: ...
+
             @typing.type_check_only
             class RecaptchaConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -118,6 +122,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaRecaptchaConfigHttpRequest: ...
+
             @typing.type_check_only
             class RecaptchaEnterpriseConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -138,6 +143,28 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest: ...
+
+            @typing.type_check_only
+            class RecaptchaV3ConfigResource(googleapiclient.discovery.Resource):
+                def batchGet(
+                    self,
+                    *,
+                    parent: str,
+                    names: str | _list[str] = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaRecaptchaV3ConfigHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleFirebaseAppcheckV1betaRecaptchaV3Config = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaRecaptchaV3ConfigHttpRequest: ...
+
             @typing.type_check_only
             class SafetyNetConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -158,13 +185,14 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleFirebaseAppcheckV1betaSafetyNetConfigHttpRequest: ...
+
             def exchangeAppAttestAssertion(
                 self,
                 *,
                 app: str,
                 body: GoogleFirebaseAppcheckV1betaExchangeAppAttestAssertionRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest: ...
+            ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
             def exchangeAppAttestAttestation(
                 self,
                 *,
@@ -178,49 +206,56 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 app: str,
                 body: GoogleFirebaseAppcheckV1betaExchangeCustomTokenRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest: ...
+            ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
             def exchangeDebugToken(
                 self,
                 *,
                 app: str,
                 body: GoogleFirebaseAppcheckV1betaExchangeDebugTokenRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest: ...
+            ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
             def exchangeDeviceCheckToken(
                 self,
                 *,
                 app: str,
                 body: GoogleFirebaseAppcheckV1betaExchangeDeviceCheckTokenRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest: ...
+            ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
             def exchangeRecaptchaEnterpriseToken(
                 self,
                 *,
                 app: str,
                 body: GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest: ...
+            ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
             def exchangeRecaptchaToken(
                 self,
                 *,
                 app: str,
                 body: GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest: ...
+            ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
+            def exchangeRecaptchaV3Token(
+                self,
+                *,
+                app: str,
+                body: GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
             def exchangeSafetyNetToken(
                 self,
                 *,
                 app: str,
                 body: GoogleFirebaseAppcheckV1betaExchangeSafetyNetTokenRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest: ...
+            ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
             def generateAppAttestChallenge(
                 self,
                 *,
                 app: str,
                 body: GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleFirebaseAppcheckV1betaAppAttestChallengeResponseHttpRequest: ...
+            ) -> GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponseHttpRequest: ...
             def appAttestConfig(self) -> AppAttestConfigResource: ...
             def debugTokens(self) -> DebugTokensResource: ...
             def deviceCheckConfig(self) -> DeviceCheckConfigResource: ...
@@ -228,7 +263,9 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
             def recaptchaEnterpriseConfig(
                 self,
             ) -> RecaptchaEnterpriseConfigResource: ...
+            def recaptchaV3Config(self) -> RecaptchaV3ConfigResource: ...
             def safetyNetConfig(self) -> SafetyNetConfigResource: ...
+
         @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
             def batchUpdate(
@@ -262,8 +299,10 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleFirebaseAppcheckV1betaServiceHttpRequest: ...
+
         def apps(self) -> AppsResource: ...
         def services(self) -> ServicesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -280,16 +319,6 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1betaAppAttestChallengeResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse: ...
-
-@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaAppAttestConfigHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -300,14 +329,14 @@ class GoogleFirebaseAppcheckV1betaAppAttestConfigHttpRequest(
     ) -> GoogleFirebaseAppcheckV1betaAppAttestConfig: ...
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1betaAttestationTokenResponseHttpRequest(
+class GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GoogleFirebaseAppcheckV1betaAttestationTokenResponse: ...
+    ) -> GoogleFirebaseAppcheckV1betaAppCheckToken: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetAppAttestConfigsResponseHttpRequest(
@@ -348,6 +377,16 @@ class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponseHttp
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponse: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponseHttpRequest(
@@ -400,6 +439,16 @@ class GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponseHttpReques
     ) -> GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse: ...
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse: ...
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -448,6 +497,16 @@ class GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaRecaptchaV3ConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirebaseAppcheckV1betaRecaptchaV3Config: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaSafetyNetConfigHttpRequest(

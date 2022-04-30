@@ -84,6 +84,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class MigrationJobsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -200,6 +201,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: VerifyMigrationJobRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -229,6 +231,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -249,7 +252,9 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
             def connectionProfiles(self) -> ConnectionProfilesResource: ...
             def migrationJobs(self) -> MigrationJobsResource: ...
             def operations(self) -> OperationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

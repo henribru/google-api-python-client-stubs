@@ -5,17 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AptArtifact(typing_extensions.TypedDict, total=False):
-    architecture: str
-    component: str
-    controlFile: str
-    name: str
-    packageName: str
-    packageType: typing_extensions.Literal[
-        "PACKAGE_TYPE_UNSPECIFIED", "BINARY", "SOURCE"
-    ]
-
-@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -44,36 +33,6 @@ class File(typing_extensions.TypedDict, total=False):
 class Hash(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["HASH_TYPE_UNSPECIFIED", "SHA256", "MD5"]
     value: str
-
-@typing.type_check_only
-class ImportAptArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
-    error: Status
-    gcsSource: ImportAptArtifactsGcsSource
-
-@typing.type_check_only
-class ImportAptArtifactsGcsSource(typing_extensions.TypedDict, total=False):
-    uris: _list[str]
-    useWildcards: bool
-
-@typing.type_check_only
-class ImportAptArtifactsResponse(typing_extensions.TypedDict, total=False):
-    aptArtifacts: _list[AptArtifact]
-    errors: _list[ImportAptArtifactsErrorInfo]
-
-@typing.type_check_only
-class ImportYumArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
-    error: Status
-    gcsSource: ImportYumArtifactsGcsSource
-
-@typing.type_check_only
-class ImportYumArtifactsGcsSource(typing_extensions.TypedDict, total=False):
-    uris: _list[str]
-    useWildcards: bool
-
-@typing.type_check_only
-class ImportYumArtifactsResponse(typing_extensions.TypedDict, total=False):
-    errors: _list[ImportYumArtifactsErrorInfo]
-    yumArtifacts: _list[YumArtifact]
 
 @typing.type_check_only
 class ListFilesResponse(typing_extensions.TypedDict, total=False):
@@ -139,11 +98,12 @@ class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     format: typing_extensions.Literal[
-        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "PYPI", "APT", "YUM", "PYTHON"
+        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "APT", "YUM", "PYTHON"
     ]
     kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
+    sizeBytes: str
     updateTime: str
 
 @typing.type_check_only
@@ -170,34 +130,9 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class UploadAptArtifactMediaResponse(typing_extensions.TypedDict, total=False):
-    operation: Operation
-
-@typing.type_check_only
-class UploadAptArtifactResponse(typing_extensions.TypedDict, total=False):
-    aptArtifacts: _list[AptArtifact]
-
-@typing.type_check_only
-class UploadYumArtifactMediaResponse(typing_extensions.TypedDict, total=False):
-    operation: Operation
-
-@typing.type_check_only
-class UploadYumArtifactResponse(typing_extensions.TypedDict, total=False):
-    yumArtifacts: _list[YumArtifact]
-
-@typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     name: str
     relatedTags: _list[Tag]
     updateTime: str
-
-@typing.type_check_only
-class YumArtifact(typing_extensions.TypedDict, total=False):
-    architecture: str
-    name: str
-    packageName: str
-    packageType: typing_extensions.Literal[
-        "PACKAGE_TYPE_UNSPECIFIED", "BINARY", "SOURCE"
-    ]

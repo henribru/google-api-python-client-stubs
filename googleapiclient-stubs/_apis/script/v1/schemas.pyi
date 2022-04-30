@@ -97,6 +97,7 @@ class GoogleAppsScriptTypeExecutionApiEntryPoint(
 @typing.type_check_only
 class GoogleAppsScriptTypeFunction(typing_extensions.TypedDict, total=False):
     name: str
+    parameters: _list[str]
 
 @typing.type_check_only
 class GoogleAppsScriptTypeFunctionSet(typing_extensions.TypedDict, total=False):

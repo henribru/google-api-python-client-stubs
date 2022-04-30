@@ -23,6 +23,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             clientVersion: str = ...,
             **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV4FindFullHashesResponseHttpRequest: ...
+
     @typing.type_check_only
     class EncodedUpdatesResource(googleapiclient.discovery.Resource):
         def get(
@@ -33,6 +34,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             clientVersion: str = ...,
             **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseHttpRequest: ...
+
     @typing.type_check_only
     class FullHashesResource(googleapiclient.discovery.Resource):
         def find(
@@ -41,6 +43,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             body: GoogleSecuritySafebrowsingV4FindFullHashesRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV4FindFullHashesResponseHttpRequest: ...
+
     @typing.type_check_only
     class ThreatHitsResource(googleapiclient.discovery.Resource):
         def create(
@@ -49,6 +52,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             body: GoogleSecuritySafebrowsingV4ThreatHit = ...,
             **kwargs: typing.Any
         ) -> GoogleProtobufEmptyHttpRequest: ...
+
     @typing.type_check_only
     class ThreatListUpdatesResource(googleapiclient.discovery.Resource):
         def fetch(
@@ -57,11 +61,13 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             body: GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseHttpRequest: ...
+
     @typing.type_check_only
     class ThreatListsResource(googleapiclient.discovery.Resource):
         def list(
             self, **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV4ListThreatListsResponseHttpRequest: ...
+
     @typing.type_check_only
     class ThreatMatchesResource(googleapiclient.discovery.Resource):
         def find(
@@ -70,6 +76,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             body: GoogleSecuritySafebrowsingV4FindThreatMatchesRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV4FindThreatMatchesResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -20,6 +20,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, languageCode: str = ..., **kwargs: typing.Any
             ) -> ApplicationHttpRequest: ...
+
         @typing.type_check_only
         class DevicesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -47,6 +48,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             def delete(
                 self,
                 *,
@@ -92,6 +94,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> DeviceHttpRequest: ...
             def operations(self) -> OperationsResource: ...
+
         @typing.type_check_only
         class EnrollmentTokensResource(googleapiclient.discovery.Resource):
             def create(
@@ -100,6 +103,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def delete(
@@ -127,6 +131,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...
+
         @typing.type_check_only
         class WebAppsResource(googleapiclient.discovery.Resource):
             def create(
@@ -157,11 +162,13 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> WebAppHttpRequest: ...
+
         @typing.type_check_only
         class WebTokensResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, parent: str, body: WebToken = ..., **kwargs: typing.Any
             ) -> WebTokenHttpRequest: ...
+
         def create(
             self,
             *,
@@ -204,11 +211,13 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         def policies(self) -> PoliciesResource: ...
         def webApps(self) -> WebAppsResource: ...
         def webTokens(self) -> WebTokensResource: ...
+
     @typing.type_check_only
     class SignupUrlsResource(googleapiclient.discovery.Resource):
         def create(
             self, *, callbackUrl: str = ..., projectId: str = ..., **kwargs: typing.Any
         ) -> SignupUrlHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

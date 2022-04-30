@@ -40,6 +40,7 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
         def updateAvailability(
             self, *, body: UpdateAvailabilityRequest = ..., **kwargs: typing.Any
         ) -> UpdateAvailabilityResponseHttpRequest: ...
+
     @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         def generate(
@@ -49,14 +50,19 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
         def getFile(
             self, *, reportId: str, reportFragment: int, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def getIdMappingFile(
+            self, *, agencyId: str, advertiserId: str, **kwargs: typing.Any
+        ) -> IdMappingFileHttpRequest: ...
         def request(
             self, *, body: ReportRequest = ..., **kwargs: typing.Any
         ) -> ReportHttpRequest: ...
+
     @typing.type_check_only
     class SavedColumnsResource(googleapiclient.discovery.Resource):
         def list(
             self, *, agencyId: str, advertiserId: str, **kwargs: typing.Any
         ) -> SavedColumnListHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -80,6 +86,14 @@ class ConversionListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ConversionList: ...
+
+@typing.type_check_only
+class IdMappingFileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> IdMappingFile: ...
 
 @typing.type_check_only
 class ReportHttpRequest(googleapiclient.http.HttpRequest):

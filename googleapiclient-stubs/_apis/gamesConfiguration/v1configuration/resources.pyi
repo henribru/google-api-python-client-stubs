@@ -48,6 +48,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             body: AchievementConfiguration = ...,
             **kwargs: typing.Any
         ) -> AchievementConfigurationHttpRequest: ...
+
     @typing.type_check_only
     class ImageConfigurationsResource(googleapiclient.discovery.Resource):
         def upload(
@@ -59,6 +60,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             ],
             **kwargs: typing.Any
         ) -> ImageConfigurationHttpRequest: ...
+
     @typing.type_check_only
     class LeaderboardConfigurationsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -94,6 +96,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             body: LeaderboardConfiguration = ...,
             **kwargs: typing.Any
         ) -> LeaderboardConfigurationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

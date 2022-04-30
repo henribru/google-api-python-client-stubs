@@ -37,6 +37,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 start_index: int = ...,
                 **kwargs: typing.Any
             ) -> GaDataHttpRequest: ...
+
         @typing.type_check_only
         class McfResource(googleapiclient.discovery.Resource):
             def get(
@@ -56,6 +57,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 start_index: int = ...,
                 **kwargs: typing.Any
             ) -> McfDataHttpRequest: ...
+
         @typing.type_check_only
         class RealtimeResource(googleapiclient.discovery.Resource):
             def get(
@@ -69,9 +71,11 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 sort: str = ...,
                 **kwargs: typing.Any
             ) -> RealtimeDataHttpRequest: ...
+
         def ga(self) -> GaResource: ...
         def mcf(self) -> McfResource: ...
         def realtime(self) -> RealtimeResource: ...
+
     @typing.type_check_only
     class ManagementResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -83,6 +87,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 start_index: int = ...,
                 **kwargs: typing.Any
             ) -> AccountSummariesHttpRequest: ...
+
         @typing.type_check_only
         class AccountUserLinksResource(googleapiclient.discovery.Resource):
             def delete(
@@ -111,6 +116,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: EntityUserLink = ...,
                 **kwargs: typing.Any
             ) -> EntityUserLinkHttpRequest: ...
+
         @typing.type_check_only
         class AccountsResource(googleapiclient.discovery.Resource):
             def list(
@@ -120,11 +126,13 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 start_index: int = ...,
                 **kwargs: typing.Any
             ) -> AccountsHttpRequest: ...
+
         @typing.type_check_only
         class ClientIdResource(googleapiclient.discovery.Resource):
             def hashClientId(
                 self, *, body: HashClientIdRequest = ..., **kwargs: typing.Any
             ) -> HashClientIdResponseHttpRequest: ...
+
         @typing.type_check_only
         class CustomDataSourcesResource(googleapiclient.discovery.Resource):
             def list(
@@ -136,6 +144,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 start_index: int = ...,
                 **kwargs: typing.Any
             ) -> CustomDataSourcesHttpRequest: ...
+
         @typing.type_check_only
         class CustomDimensionsResource(googleapiclient.discovery.Resource):
             def get(
@@ -183,6 +192,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 ignoreCustomDataSourceLinks: bool = ...,
                 **kwargs: typing.Any
             ) -> CustomDimensionHttpRequest: ...
+
         @typing.type_check_only
         class CustomMetricsResource(googleapiclient.discovery.Resource):
             def get(
@@ -230,6 +240,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 ignoreCustomDataSourceLinks: bool = ...,
                 **kwargs: typing.Any
             ) -> CustomMetricHttpRequest: ...
+
         @typing.type_check_only
         class ExperimentsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -289,6 +300,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: Experiment = ...,
                 **kwargs: typing.Any
             ) -> ExperimentHttpRequest: ...
+
         @typing.type_check_only
         class FiltersResource(googleapiclient.discovery.Resource):
             def delete(
@@ -324,6 +336,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: Filter = ...,
                 **kwargs: typing.Any
             ) -> FilterHttpRequest: ...
+
         @typing.type_check_only
         class GoalsResource(googleapiclient.discovery.Resource):
             def get(
@@ -374,6 +387,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: Goal = ...,
                 **kwargs: typing.Any
             ) -> GoalHttpRequest: ...
+
         @typing.type_check_only
         class ProfileFilterLinksResource(googleapiclient.discovery.Resource):
             def delete(
@@ -433,6 +447,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: ProfileFilterLink = ...,
                 **kwargs: typing.Any
             ) -> ProfileFilterLinkHttpRequest: ...
+
         @typing.type_check_only
         class ProfileUserLinksResource(googleapiclient.discovery.Resource):
             def delete(
@@ -473,6 +488,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: EntityUserLink = ...,
                 **kwargs: typing.Any
             ) -> EntityUserLinkHttpRequest: ...
+
         @typing.type_check_only
         class ProfilesResource(googleapiclient.discovery.Resource):
             def delete(
@@ -526,6 +542,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: Profile = ...,
                 **kwargs: typing.Any
             ) -> ProfileHttpRequest: ...
+
         @typing.type_check_only
         class RemarketingAudienceResource(googleapiclient.discovery.Resource):
             def delete(
@@ -580,6 +597,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: RemarketingAudience = ...,
                 **kwargs: typing.Any
             ) -> RemarketingAudienceHttpRequest: ...
+
         @typing.type_check_only
         class SegmentsResource(googleapiclient.discovery.Resource):
             def list(
@@ -589,6 +607,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 start_index: int = ...,
                 **kwargs: typing.Any
             ) -> SegmentsHttpRequest: ...
+
         @typing.type_check_only
         class UnsampledReportsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -628,6 +647,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 start_index: int = ...,
                 **kwargs: typing.Any
             ) -> UnsampledReportsHttpRequest: ...
+
         @typing.type_check_only
         class UploadsResource(googleapiclient.discovery.Resource):
             def deleteUploadData(
@@ -666,6 +686,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 customDataSourceId: str,
                 **kwargs: typing.Any
             ) -> UploadHttpRequest: ...
+
         @typing.type_check_only
         class WebPropertyAdWordsLinksResource(googleapiclient.discovery.Resource):
             def delete(
@@ -719,6 +740,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: EntityAdWordsLink = ...,
                 **kwargs: typing.Any
             ) -> EntityAdWordsLinkHttpRequest: ...
+
         @typing.type_check_only
         class WebpropertiesResource(googleapiclient.discovery.Resource):
             def get(
@@ -751,6 +773,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: Webproperty = ...,
                 **kwargs: typing.Any
             ) -> WebpropertyHttpRequest: ...
+
         @typing.type_check_only
         class WebpropertyUserLinksResource(googleapiclient.discovery.Resource):
             def delete(
@@ -787,6 +810,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 body: EntityUserLink = ...,
                 **kwargs: typing.Any
             ) -> EntityUserLinkHttpRequest: ...
+
         def accountSummaries(self) -> AccountSummariesResource: ...
         def accountUserLinks(self) -> AccountUserLinksResource: ...
         def accounts(self) -> AccountsResource: ...
@@ -807,6 +831,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
         def webPropertyAdWordsLinks(self) -> WebPropertyAdWordsLinksResource: ...
         def webproperties(self) -> WebpropertiesResource: ...
         def webpropertyUserLinks(self) -> WebpropertyUserLinksResource: ...
+
     @typing.type_check_only
     class MetadataResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -814,7 +839,9 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, reportType: str, **kwargs: typing.Any
             ) -> ColumnsHttpRequest: ...
+
         def columns(self) -> ColumnsResource: ...
+
     @typing.type_check_only
     class ProvisioningResource(googleapiclient.discovery.Resource):
         def createAccountTicket(
@@ -823,6 +850,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
         def createAccountTree(
             self, *, body: AccountTreeRequest = ..., **kwargs: typing.Any
         ) -> AccountTreeResponseHttpRequest: ...
+
     @typing.type_check_only
     class UserDeletionResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -830,7 +858,9 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
             def upsert(
                 self, *, body: UserDeletionRequest = ..., **kwargs: typing.Any
             ) -> UserDeletionRequestHttpRequest: ...
+
         def userDeletionRequest(self) -> UserDeletionRequestResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

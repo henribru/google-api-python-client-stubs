@@ -37,6 +37,7 @@ class DocsResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> DocumentHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

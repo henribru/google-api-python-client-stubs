@@ -184,6 +184,11 @@ class CategoryCount(typing_extensions.TypedDict, total=False):
     count: str
 
 @typing.type_check_only
+class CloneDefinition(typing_extensions.TypedDict, total=False):
+    baseTableReference: TableReference
+    cloneTime: str
+
+@typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
     centroidId: str
     count: str
@@ -228,6 +233,7 @@ class CsvOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DataSplitResult(typing_extensions.TypedDict, total=False):
     evaluationTable: TableReference
+    testTable: TableReference
     trainingTable: TableReference
 
 @typing.type_check_only
@@ -248,13 +254,15 @@ class Dataset(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     lastModifiedTime: str
     location: str
+    maxTimeTravelHours: str
     satisfiesPZS: bool
     selfLink: str
+    tags: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class DatasetAccessEntry(typing_extensions.TypedDict, total=False):
     dataset: DatasetReference
-    target_types: _list[dict[str, typing.Any]]
+    targetTypes: _list[str]
 
 @typing.type_check_only
 class DatasetList(typing_extensions.TypedDict, total=False):
@@ -276,10 +284,28 @@ class DestinationTableProperties(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
+class DimensionalityReductionMetrics(typing_extensions.TypedDict, total=False):
+    totalExplainedVarianceRatio: float
+
+@typing.type_check_only
 class DmlStatistics(typing_extensions.TypedDict, total=False):
     deletedRowCount: str
     insertedRowCount: str
     updatedRowCount: str
+
+@typing.type_check_only
+class DoubleCandidates(typing_extensions.TypedDict, total=False):
+    candidates: _list[float]
+
+@typing.type_check_only
+class DoubleHparamSearchSpace(typing_extensions.TypedDict, total=False):
+    candidates: DoubleCandidates
+    range: DoubleRange
+
+@typing.type_check_only
+class DoubleRange(typing_extensions.TypedDict, total=False):
+    max: float
+    min: float
 
 @typing.type_check_only
 class EncryptionConfiguration(typing_extensions.TypedDict, total=False):
@@ -302,6 +328,7 @@ class EvaluationMetrics(typing_extensions.TypedDict, total=False):
     arimaForecastingMetrics: ArimaForecastingMetrics
     binaryClassificationMetrics: BinaryClassificationMetrics
     clusteringMetrics: ClusteringMetrics
+    dimensionalityReductionMetrics: DimensionalityReductionMetrics
     multiClassClassificationMetrics: MultiClassClassificationMetrics
     rankingMetrics: RankingMetrics
     regressionMetrics: RegressionMetrics
@@ -343,6 +370,11 @@ class ExplainQueryStage(typing_extensions.TypedDict, total=False):
 class ExplainQueryStep(typing_extensions.TypedDict, total=False):
     kind: str
     substeps: _list[str]
+
+@typing.type_check_only
+class Explanation(typing_extensions.TypedDict, total=False):
+    attribution: float
+    featureName: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -404,6 +436,11 @@ class GetServiceAccountResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class GlobalExplanation(typing_extensions.TypedDict, total=False):
+    classLabel: str
+    explanations: _list[Explanation]
+
+@typing.type_check_only
 class GoogleSheetsOptions(typing_extensions.TypedDict, total=False):
     range: str
     skipLeadingRows: str
@@ -413,6 +450,74 @@ class HivePartitioningOptions(typing_extensions.TypedDict, total=False):
     mode: str
     requirePartitionFilter: bool
     sourceUriPrefix: str
+
+@typing.type_check_only
+class HparamSearchSpaces(typing_extensions.TypedDict, total=False):
+    activationFn: StringHparamSearchSpace
+    batchSize: IntHparamSearchSpace
+    boosterType: StringHparamSearchSpace
+    colsampleBylevel: DoubleHparamSearchSpace
+    colsampleBynode: DoubleHparamSearchSpace
+    colsampleBytree: DoubleHparamSearchSpace
+    dartNormalizeType: StringHparamSearchSpace
+    dropout: DoubleHparamSearchSpace
+    hiddenUnits: IntArrayHparamSearchSpace
+    l1Reg: DoubleHparamSearchSpace
+    l2Reg: DoubleHparamSearchSpace
+    learnRate: DoubleHparamSearchSpace
+    maxTreeDepth: IntHparamSearchSpace
+    minSplitLoss: DoubleHparamSearchSpace
+    minTreeChildWeight: IntHparamSearchSpace
+    numClusters: IntHparamSearchSpace
+    numFactors: IntHparamSearchSpace
+    numParallelTree: IntHparamSearchSpace
+    optimizer: StringHparamSearchSpace
+    subsample: DoubleHparamSearchSpace
+    treeMethod: StringHparamSearchSpace
+    walsAlpha: DoubleHparamSearchSpace
+
+@typing.type_check_only
+class HparamTuningTrial(typing_extensions.TypedDict, total=False):
+    endTimeMs: str
+    errorMessage: str
+    evalLoss: float
+    evaluationMetrics: EvaluationMetrics
+    hparamTuningEvaluationMetrics: EvaluationMetrics
+    hparams: TrainingOptions
+    startTimeMs: str
+    status: typing_extensions.Literal[
+        "TRIAL_STATUS_UNSPECIFIED",
+        "NOT_STARTED",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "INFEASIBLE",
+        "STOPPED_EARLY",
+    ]
+    trainingLoss: float
+    trialId: str
+
+@typing.type_check_only
+class IntArray(typing_extensions.TypedDict, total=False):
+    elements: _list[str]
+
+@typing.type_check_only
+class IntArrayHparamSearchSpace(typing_extensions.TypedDict, total=False):
+    candidates: _list[IntArray]
+
+@typing.type_check_only
+class IntCandidates(typing_extensions.TypedDict, total=False):
+    candidates: _list[str]
+
+@typing.type_check_only
+class IntHparamSearchSpace(typing_extensions.TypedDict, total=False):
+    candidates: IntCandidates
+    range: IntRange
+
+@typing.type_check_only
+class IntRange(typing_extensions.TypedDict, total=False):
+    max: str
+    min: str
 
 @typing.type_check_only
 class IterationResult(typing_extensions.TypedDict, total=False):
@@ -504,6 +609,11 @@ class JobStatistics4(typing_extensions.TypedDict, total=False):
     inputBytes: str
 
 @typing.type_check_only
+class JobStatistics5(typing_extensions.TypedDict, total=False):
+    copied_logical_bytes: str
+    copied_rows: str
+
+@typing.type_check_only
 class JobStatus(typing_extensions.TypedDict, total=False):
     errorResult: ErrorProto
     errors: _list[ErrorProto]
@@ -576,6 +686,13 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class PrincipalComponentInfo(typing_extensions.TypedDict, total=False):
+    cumulativeExplainedVarianceRatio: float
+    explainedVariance: float
+    explainedVarianceRatio: float
+    principalComponentId: str
 
 @typing.type_check_only
 class ProjectList(typing_extensions.TypedDict, total=False):
@@ -742,7 +859,12 @@ class Streamingbuffer(typing_extensions.TypedDict, total=False):
     oldestEntryTime: str
 
 @typing.type_check_only
+class StringHparamSearchSpace(typing_extensions.TypedDict, total=False):
+    candidates: _list[str]
+
+@typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
+    cloneDefinition: CloneDefinition
     clustering: Clustering
     creationTime: str
     defaultCollation: str
@@ -763,6 +885,14 @@ class Table(typing_extensions.TypedDict, total=False):
     numLongTermBytes: str
     numPhysicalBytes: str
     numRows: str
+    num_active_logical_bytes: str
+    num_active_physical_bytes: str
+    num_long_term_logical_bytes: str
+    num_long_term_physical_bytes: str
+    num_partitions: str
+    num_time_travel_physical_bytes: str
+    num_total_logical_bytes: str
+    num_total_physical_bytes: str
     rangePartitioning: RangePartitioning
     requirePartitionFilter: bool
     schema: TableSchema
@@ -845,6 +975,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     autoArimaMaxOrder: str
     batchSize: str
     boosterType: typing_extensions.Literal["BOOSTER_TYPE_UNSPECIFIED", "GBTREE", "DART"]
+    calculatePValues: bool
     cleanSpikesAndDips: bool
     colsampleBylevel: float
     colsampleBynode: float
@@ -879,6 +1010,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     ]
     dropout: float
     earlyStop: bool
+    enableGlobalExplain: bool
     feedbackType: typing_extensions.Literal[
         "FEEDBACK_TYPE_UNSPECIFIED", "IMPLICIT", "EXPLICIT"
     ]
@@ -955,9 +1087,11 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
         "ZA",
     ]
     horizon: str
+    hparamTuningObjectives: _list[str]
     includeDrift: bool
     initialLearnRate: float
     inputLabelColumns: _list[str]
+    integratedGradientsNumSteps: str
     itemColumn: str
     kmeansInitializationColumn: str
     kmeansInitializationMethod: typing_extensions.Literal[
@@ -977,6 +1111,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
         "LOSS_TYPE_UNSPECIFIED", "MEAN_SQUARED_LOSS", "MEAN_LOG_LOSS"
     ]
     maxIterations: str
+    maxParallelTrials: str
     maxTreeDepth: str
     minRelativeProgress: float
     minSplitLoss: float
@@ -986,10 +1121,12 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     numClusters: str
     numFactors: str
     numParallelTree: str
+    numTrials: str
     optimizationStrategy: typing_extensions.Literal[
         "OPTIMIZATION_STRATEGY_UNSPECIFIED", "BATCH_GRADIENT_DESCENT", "NORMAL_EQUATION"
     ]
     preserveInputStructs: bool
+    sampledShapleyNumPaths: str
     subsample: float
     timeSeriesDataColumn: str
     timeSeriesIdColumn: str
@@ -1004,11 +1141,15 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TrainingRun(typing_extensions.TypedDict, total=False):
+    classLevelGlobalExplanations: _list[GlobalExplanation]
     dataSplitResult: DataSplitResult
     evaluationMetrics: EvaluationMetrics
+    modelLevelGlobalExplanation: GlobalExplanation
     results: _list[IterationResult]
     startTime: str
     trainingOptions: TrainingOptions
+    vertexAiModelId: str
+    vertexAiModelVersion: str
 
 @typing.type_check_only
 class TransactionInfo(typing_extensions.TypedDict, total=False):

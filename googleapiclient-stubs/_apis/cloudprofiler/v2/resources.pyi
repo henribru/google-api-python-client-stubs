@@ -35,7 +35,9 @@ class CloudProfilerResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> ProfileHttpRequest: ...
+
         def profiles(self) -> ProfilesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

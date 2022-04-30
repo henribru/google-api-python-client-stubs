@@ -1,8 +1,9 @@
 import abc
-from typing import Any
+
+from _typeshed import Incomplete
 
 class Cache(metaclass=abc.ABCMeta):
-    __metaclass__: Any
+    __metaclass__: Incomplete
     @abc.abstractmethod
     def get(self, url): ...
     @abc.abstractmethod

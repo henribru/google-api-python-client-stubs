@@ -18,6 +18,7 @@ class AnalyticsReportingResource(googleapiclient.discovery.Resource):
         def batchGet(
             self, *, body: GetReportsRequest = ..., **kwargs: typing.Any
         ) -> GetReportsResponseHttpRequest: ...
+
     @typing.type_check_only
     class UserActivityResource(googleapiclient.discovery.Resource):
         def search(
@@ -28,6 +29,7 @@ class AnalyticsReportingResource(googleapiclient.discovery.Resource):
             previous_request: SearchUserActivityResponseHttpRequest,
             previous_response: SearchUserActivityResponse,
         ) -> SearchUserActivityResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

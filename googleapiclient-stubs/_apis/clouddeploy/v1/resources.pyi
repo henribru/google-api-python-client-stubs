@@ -58,6 +58,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             previous_request: ListRolloutsResponseHttpRequest,
                             previous_response: ListRolloutsResponse,
                         ) -> ListRolloutsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -87,6 +88,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         previous_response: ListReleasesResponse,
                     ) -> ListReleasesResponseHttpRequest | None: ...
                     def rollouts(self) -> RolloutsResource: ...
+
                 def create(
                     self,
                     *,
@@ -159,6 +161,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def releases(self) -> ReleasesResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -188,6 +191,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class TargetsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -260,6 +264,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -283,7 +288,9 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
             def deliveryPipelines(self) -> DeliveryPipelinesResource: ...
             def operations(self) -> OperationsResource: ...
             def targets(self) -> TargetsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

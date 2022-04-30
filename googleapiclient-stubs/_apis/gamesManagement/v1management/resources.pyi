@@ -33,6 +33,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
             body: AchievementResetMultipleForAllRequest = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class ApplicationsResource(googleapiclient.discovery.Resource):
         def listHidden(
@@ -48,6 +49,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
             previous_request: HiddenPlayerListHttpRequest,
             previous_response: HiddenPlayerList,
         ) -> HiddenPlayerListHttpRequest | None: ...
+
     @typing.type_check_only
     class EventsResource(googleapiclient.discovery.Resource):
         def reset(
@@ -65,6 +67,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
         def resetMultipleForAllPlayers(
             self, *, body: EventsResetMultipleForAllRequest = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class PlayersResource(googleapiclient.discovery.Resource):
         def hide(
@@ -73,6 +76,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
         def unhide(
             self, *, applicationId: str, playerId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class ScoresResource(googleapiclient.discovery.Resource):
         def reset(
@@ -90,6 +94,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
         def resetMultipleForAllPlayers(
             self, *, body: ScoresResetMultipleForAllRequest = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -27,6 +27,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     connectionProfileId: str = ...,
                     force: bool = ...,
                     requestId: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -65,8 +66,10 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     force: bool = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -96,6 +99,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class PrivateConnectionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -130,6 +134,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                         previous_request: ListRoutesResponseHttpRequest,
                         previous_response: ListRoutesResponse,
                     ) -> ListRoutesResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -166,6 +171,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     previous_response: ListPrivateConnectionsResponse,
                 ) -> ListPrivateConnectionsResponseHttpRequest | None: ...
                 def routes(self) -> RoutesResource: ...
+
             @typing.type_check_only
             class StreamsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -207,6 +213,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                         body: StopBackfillJobRequest = ...,
                         **kwargs: typing.Any
                     ) -> StopBackfillJobResponseHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -251,6 +258,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def objects(self) -> ObjectsResource: ...
+
             def fetchStaticIps(
                 self,
                 *,
@@ -285,7 +293,9 @@ class DatastreamResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def privateConnections(self) -> PrivateConnectionsResource: ...
             def streams(self) -> StreamsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

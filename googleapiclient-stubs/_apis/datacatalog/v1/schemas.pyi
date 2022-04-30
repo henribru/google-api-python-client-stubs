@@ -67,6 +67,11 @@ class GoogleCloudDatacatalogV1BigQueryTableSpec(
     viewSpec: GoogleCloudDatacatalogV1ViewSpec
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1BusinessContext(typing_extensions.TypedDict, total=False):
+    contacts: GoogleCloudDatacatalogV1Contacts
+    entryOverview: GoogleCloudDatacatalogV1EntryOverview
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -76,6 +81,15 @@ class GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec(
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ColumnSchema(dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1Contacts(typing_extensions.TypedDict, total=False):
+    people: _list[GoogleCloudDatacatalogV1ContactsPerson]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ContactsPerson(typing_extensions.TypedDict, total=False):
+    designation: str
+    email: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1CrossRegionalSource(
@@ -89,6 +103,8 @@ class GoogleCloudDatacatalogV1DataSource(typing_extensions.TypedDict, total=Fals
     service: typing_extensions.Literal[
         "SERVICE_UNSPECIFIED", "CLOUD_STORAGE", "BIGQUERY"
     ]
+    sourceEntry: str
+    storageProperties: GoogleCloudDatacatalogV1StorageProperties
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1DataSourceConnectionSpec(
@@ -100,17 +116,56 @@ class GoogleCloudDatacatalogV1DataSourceConnectionSpec(
 class GoogleCloudDatacatalogV1DatabaseTableSpec(
     typing_extensions.TypedDict, total=False
 ):
+    dataplexTable: GoogleCloudDatacatalogV1DataplexTableSpec
     type: typing_extensions.Literal["TABLE_TYPE_UNSPECIFIED", "NATIVE", "EXTERNAL"]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1DataplexExternalTable(
+    typing_extensions.TypedDict, total=False
+):
+    dataCatalogEntry: str
+    fullyQualifiedName: str
+    googleCloudResource: str
+    system: typing_extensions.Literal[
+        "INTEGRATED_SYSTEM_UNSPECIFIED",
+        "BIGQUERY",
+        "CLOUD_PUBSUB",
+        "DATAPROC_METASTORE",
+        "DATAPLEX",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1DataplexFilesetSpec(
+    typing_extensions.TypedDict, total=False
+):
+    dataplexSpec: GoogleCloudDatacatalogV1DataplexSpec
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1DataplexSpec(typing_extensions.TypedDict, total=False):
+    asset: str
+    compressionFormat: str
+    dataFormat: GoogleCloudDatacatalogV1PhysicalSchema
+    projectId: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1DataplexTableSpec(
+    typing_extensions.TypedDict, total=False
+):
+    dataplexSpec: GoogleCloudDatacatalogV1DataplexSpec
+    externalTables: _list[GoogleCloudDatacatalogV1DataplexExternalTable]
+    userManaged: bool
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
     bigqueryDateShardedSpec: GoogleCloudDatacatalogV1BigQueryDateShardedSpec
     bigqueryTableSpec: GoogleCloudDatacatalogV1BigQueryTableSpec
+    businessContext: GoogleCloudDatacatalogV1BusinessContext
     dataSource: GoogleCloudDatacatalogV1DataSource
     dataSourceConnectionSpec: GoogleCloudDatacatalogV1DataSourceConnectionSpec
     databaseTableSpec: GoogleCloudDatacatalogV1DatabaseTableSpec
     description: str
     displayName: str
+    filesetSpec: GoogleCloudDatacatalogV1FilesetSpec
     fullyQualifiedName: str
     gcsFilesetSpec: GoogleCloudDatacatalogV1GcsFilesetSpec
     integratedSystem: typing_extensions.Literal[
@@ -118,10 +173,12 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
         "BIGQUERY",
         "CLOUD_PUBSUB",
         "DATAPROC_METASTORE",
+        "DATAPLEX",
     ]
     labels: dict[str, typing.Any]
     linkedResource: str
     name: str
+    personalDetails: GoogleCloudDatacatalogV1PersonalDetails
     routineSpec: GoogleCloudDatacatalogV1RoutineSpec
     schema: GoogleCloudDatacatalogV1Schema
     sourceSystemTimestamps: GoogleCloudDatacatalogV1SystemTimestamps
@@ -135,6 +192,8 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
         "DATABASE",
         "DATA_SOURCE_CONNECTION",
         "ROUTINE",
+        "LAKE",
+        "ZONE",
         "SERVICE",
     ]
     usageSignal: GoogleCloudDatacatalogV1UsageSignal
@@ -147,6 +206,10 @@ class GoogleCloudDatacatalogV1EntryGroup(typing_extensions.TypedDict, total=Fals
     description: str
     displayName: str
     name: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1EntryOverview(typing_extensions.TypedDict, total=False):
+    overview: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ExportTaxonomiesResponse(
@@ -177,6 +240,10 @@ class GoogleCloudDatacatalogV1FieldTypeEnumTypeEnumValue(
     typing_extensions.TypedDict, total=False
 ):
     displayName: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1FilesetSpec(typing_extensions.TypedDict, total=False):
+    dataplexFileset: GoogleCloudDatacatalogV1DataplexFilesetSpec
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1GcsFileSpec(typing_extensions.TypedDict, total=False):
@@ -239,6 +306,65 @@ class GoogleCloudDatacatalogV1ListTaxonomiesResponse(
 ):
     nextPageToken: str
     taxonomies: _list[GoogleCloudDatacatalogV1Taxonomy]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ModifyEntryContactsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    contacts: GoogleCloudDatacatalogV1Contacts
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ModifyEntryOverviewRequest(
+    typing_extensions.TypedDict, total=False
+):
+    entryOverview: GoogleCloudDatacatalogV1EntryOverview
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1PersonalDetails(typing_extensions.TypedDict, total=False):
+    starTime: str
+    starred: bool
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1PhysicalSchema(typing_extensions.TypedDict, total=False):
+    avro: GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema
+    csv: GoogleCloudDatacatalogV1PhysicalSchemaCsvSchema
+    orc: GoogleCloudDatacatalogV1PhysicalSchemaOrcSchema
+    parquet: GoogleCloudDatacatalogV1PhysicalSchemaParquetSchema
+    protobuf: GoogleCloudDatacatalogV1PhysicalSchemaProtobufSchema
+    thrift: GoogleCloudDatacatalogV1PhysicalSchemaThriftSchema
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1PhysicalSchemaCsvSchema(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1PhysicalSchemaOrcSchema(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1PhysicalSchemaParquetSchema(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1PhysicalSchemaProtobufSchema(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1PhysicalSchemaThriftSchema(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1PolicyTag(typing_extensions.TypedDict, total=False):
@@ -307,6 +433,7 @@ class GoogleCloudDatacatalogV1SearchCatalogRequestScope(
     includeProjectIds: _list[str]
     includePublicTagTemplates: bool
     restrictedLocations: _list[str]
+    starredOnly: bool
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1SearchCatalogResponse(
@@ -328,6 +455,7 @@ class GoogleCloudDatacatalogV1SearchCatalogResult(
         "BIGQUERY",
         "CLOUD_PUBSUB",
         "DATAPROC_METASTORE",
+        "DATAPLEX",
     ]
     linkedResource: str
     modifyTime: str
@@ -343,6 +471,23 @@ class GoogleCloudDatacatalogV1SerializedPolicyTag(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1SerializedTaxonomy(dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1StarEntryRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1StarEntryResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1StorageProperties(
+    typing_extensions.TypedDict, total=False
+):
+    filePattern: _list[str]
+    fileType: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1SystemTimestamps(
@@ -407,6 +552,16 @@ class GoogleCloudDatacatalogV1Taxonomy(typing_extensions.TypedDict, total=False)
     name: str
     policyTagCount: int
     taxonomyTimestamps: GoogleCloudDatacatalogV1SystemTimestamps
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1UnstarEntryRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1UnstarEntryResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1UsageSignal(typing_extensions.TypedDict, total=False):

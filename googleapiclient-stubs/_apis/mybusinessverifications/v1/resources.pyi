@@ -37,6 +37,7 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
                 previous_request: ListVerificationsResponseHttpRequest,
                 previous_response: ListVerificationsResponse,
             ) -> ListVerificationsResponseHttpRequest | None: ...
+
         def fetchVerificationOptions(
             self,
             *,
@@ -51,11 +52,13 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
             self, *, name: str, body: VerifyLocationRequest = ..., **kwargs: typing.Any
         ) -> VerifyLocationResponseHttpRequest: ...
         def verifications(self) -> VerificationsResource: ...
+
     @typing.type_check_only
     class VerificationTokensResource(googleapiclient.discovery.Resource):
         def generate(
             self, *, body: GenerateVerificationTokenRequest = ..., **kwargs: typing.Any
         ) -> GenerateVerificationTokenResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -92,6 +92,7 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                 start: int = ...,
                 **kwargs: typing.Any
             ) -> SearchHttpRequest: ...
+
         def list(
             self,
             *,
@@ -166,6 +167,7 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> SearchHttpRequest: ...
         def siterestrict(self) -> SiterestrictResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -28,6 +28,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 startIndex: int = ...,
                 **kwargs: typing.Any
             ) -> VolumesHttpRequest: ...
+
         def get(
             self, *, userId: str, shelf: str, source: str = ..., **kwargs: typing.Any
         ) -> BookshelfHttpRequest: ...
@@ -35,6 +36,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             self, *, userId: str, source: str = ..., **kwargs: typing.Any
         ) -> BookshelvesHttpRequest: ...
         def volumes(self) -> VolumesResource: ...
+
     @typing.type_check_only
     class CloudloadingResource(googleapiclient.discovery.Resource):
         def addBook(
@@ -52,11 +54,13 @@ class BooksResource(googleapiclient.discovery.Resource):
         def updateBook(
             self, *, body: BooksCloudloadingResource = ..., **kwargs: typing.Any
         ) -> BooksCloudloadingResourceHttpRequest: ...
+
     @typing.type_check_only
     class DictionaryResource(googleapiclient.discovery.Resource):
         def listOfflineMetadata(
             self, *, cpksver: str, **kwargs: typing.Any
         ) -> MetadataHttpRequest: ...
+
     @typing.type_check_only
     class FamilysharingResource(googleapiclient.discovery.Resource):
         def getFamilyInfo(
@@ -78,6 +82,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             volumeId: str = ...,
             **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
+
     @typing.type_check_only
     class LayersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -120,6 +125,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 previous_request: AnnotationsdataHttpRequest,
                 previous_response: Annotationsdata,
             ) -> AnnotationsdataHttpRequest | None: ...
+
         @typing.type_check_only
         class VolumeAnnotationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -157,6 +163,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 previous_request: VolumeannotationsHttpRequest,
                 previous_response: Volumeannotations,
             ) -> VolumeannotationsHttpRequest | None: ...
+
         def get(
             self,
             *,
@@ -178,6 +185,7 @@ class BooksResource(googleapiclient.discovery.Resource):
         ) -> LayersummariesHttpRequest: ...
         def annotationData(self) -> AnnotationDataResource: ...
         def volumeAnnotations(self) -> VolumeAnnotationsResource: ...
+
     @typing.type_check_only
     class MyconfigResource(googleapiclient.discovery.Resource):
         def getUserSettings(
@@ -222,6 +230,7 @@ class BooksResource(googleapiclient.discovery.Resource):
         def updateUserSettings(
             self, *, body: Usersettings = ..., **kwargs: typing.Any
         ) -> UsersettingsHttpRequest: ...
+
     @typing.type_check_only
     class MylibraryResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -270,6 +279,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 source: str = ...,
                 **kwargs: typing.Any
             ) -> AnnotationHttpRequest: ...
+
         @typing.type_check_only
         class BookshelvesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -289,6 +299,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                     startIndex: int = ...,
                     **kwargs: typing.Any
                 ) -> VolumesHttpRequest: ...
+
             def addVolume(
                 self,
                 *,
@@ -330,6 +341,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def volumes(self) -> VolumesResource: ...
+
         @typing.type_check_only
         class ReadingpositionsResource(googleapiclient.discovery.Resource):
             def get(
@@ -360,9 +372,11 @@ class BooksResource(googleapiclient.discovery.Resource):
                 source: str = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+
         def annotations(self) -> AnnotationsResource: ...
         def bookshelves(self) -> BookshelvesResource: ...
         def readingpositions(self) -> ReadingpositionsResource: ...
+
     @typing.type_check_only
     class NotificationResource(googleapiclient.discovery.Resource):
         def get(
@@ -373,6 +387,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             source: str = ...,
             **kwargs: typing.Any
         ) -> NotificationHttpRequest: ...
+
     @typing.type_check_only
     class OnboardingResource(googleapiclient.discovery.Resource):
         def listCategories(
@@ -393,6 +408,7 @@ class BooksResource(googleapiclient.discovery.Resource):
         def listCategoryVolumes_next(
             self, previous_request: Volume2HttpRequest, previous_response: Volume2
         ) -> Volume2HttpRequest | None: ...
+
     @typing.type_check_only
     class PersonalizedstreamResource(googleapiclient.discovery.Resource):
         def get(
@@ -405,6 +421,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             source: str = ...,
             **kwargs: typing.Any
         ) -> DiscoveryclustersHttpRequest: ...
+
     @typing.type_check_only
     class PromoofferResource(googleapiclient.discovery.Resource):
         def accept(
@@ -443,6 +460,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             serial: str = ...,
             **kwargs: typing.Any
         ) -> OffersHttpRequest: ...
+
     @typing.type_check_only
     class SeriesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -455,10 +473,12 @@ class BooksResource(googleapiclient.discovery.Resource):
                 page_token: str = ...,
                 **kwargs: typing.Any
             ) -> SeriesmembershipHttpRequest: ...
+
         def get(
             self, *, series_id: str | _list[str], **kwargs: typing.Any
         ) -> SeriesHttpRequest: ...
         def membership(self) -> MembershipResource: ...
+
     @typing.type_check_only
     class VolumesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -480,6 +500,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 source: str = ...,
                 **kwargs: typing.Any
             ) -> VolumesHttpRequest: ...
+
         @typing.type_check_only
         class MybooksResource(googleapiclient.discovery.Resource):
             def list(
@@ -530,6 +551,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 startIndex: int = ...,
                 **kwargs: typing.Any
             ) -> VolumesHttpRequest: ...
+
         @typing.type_check_only
         class RecommendedResource(googleapiclient.discovery.Resource):
             def list(
@@ -553,6 +575,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 source: str = ...,
                 **kwargs: typing.Any
             ) -> BooksVolumesRecommendedRateResponseHttpRequest: ...
+
         @typing.type_check_only
         class UseruploadedResource(googleapiclient.discovery.Resource):
             def list(
@@ -579,6 +602,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 volumeId: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> VolumesHttpRequest: ...
+
         def get(
             self,
             *,
@@ -633,6 +657,7 @@ class BooksResource(googleapiclient.discovery.Resource):
         def mybooks(self) -> MybooksResource: ...
         def recommended(self) -> RecommendedResource: ...
         def useruploaded(self) -> UseruploadedResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

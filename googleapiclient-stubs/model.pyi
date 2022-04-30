@@ -1,8 +1,8 @@
-from typing import Any
+from _typeshed import Incomplete
 
 from googleapiclient.errors import HttpError as HttpError
 
-LOGGER: Any
+LOGGER: Incomplete
 dump_request_response: bool
 
 class Model:
@@ -10,10 +10,10 @@ class Model:
     def response(self, resp, content) -> None: ...
 
 class BaseModel(Model):
-    accept: Any
-    content_type: Any
-    no_content_response: Any
-    alt_param: Any
+    accept: Incomplete
+    content_type: Incomplete
+    no_content_response: Incomplete
+    alt_param: Incomplete
     def request(self, headers, path_params, query_params, body_value): ...
     def response(self, resp, content): ...
     def serialize(self, body_value) -> None: ...
@@ -32,7 +32,7 @@ class JsonModel(BaseModel):
 class RawModel(JsonModel):
     accept: str
     content_type: str
-    alt_param: Any
+    alt_param: Incomplete
     def deserialize(self, content): ...
     @property
     def no_content_response(self): ...

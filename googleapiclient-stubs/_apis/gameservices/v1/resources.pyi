@@ -50,6 +50,7 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         previous_request: ListGameServerConfigsResponseHttpRequest,
                         previous_response: ListGameServerConfigsResponse,
                     ) -> ListGameServerConfigsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -136,6 +137,7 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def configs(self) -> ConfigsResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -165,6 +167,7 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class RealmsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -239,6 +242,7 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> PreviewUpdateGameServerClusterResponseHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -286,6 +290,7 @@ class GameServicesResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> PreviewRealmUpdateResponseHttpRequest: ...
                 def gameServerClusters(self) -> GameServerClustersResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -307,7 +312,9 @@ class GameServicesResource(googleapiclient.discovery.Resource):
             def gameServerDeployments(self) -> GameServerDeploymentsResource: ...
             def operations(self) -> OperationsResource: ...
             def realms(self) -> RealmsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -89,6 +89,7 @@ class BinLogCoordinates(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CloneContext(typing_extensions.TypedDict, total=False):
+    allocatedIpRange: str
     binLogCoordinates: BinLogCoordinates
     destinationInstanceName: str
     kind: str
@@ -117,6 +118,8 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
+        "MYSQL_8_0_27",
+        "MYSQL_8_0_28",
         "POSTGRES_13",
         "POSTGRES_14",
         "SQLSERVER_2019_STANDARD",
@@ -148,6 +151,7 @@ class DatabaseFlags(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DatabaseInstance(typing_extensions.TypedDict, total=False):
+    availableMaintenanceVersions: _list[str]
     backendType: typing_extensions.Literal[
         "SQL_BACKEND_TYPE_UNSPECIFIED", "FIRST_GEN", "SECOND_GEN", "EXTERNAL"
     ]
@@ -172,6 +176,8 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
+        "MYSQL_8_0_27",
+        "MYSQL_8_0_28",
         "POSTGRES_13",
         "POSTGRES_14",
         "SQLSERVER_2019_STANDARD",
@@ -193,6 +199,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     ipAddresses: _list[IpMapping]
     ipv6Address: str
     kind: str
+    maintenanceVersion: str
     masterInstanceName: str
     maxDiskSize: str
     name: str
@@ -542,6 +549,7 @@ class PasswordValidationPolicy(typing_extensions.TypedDict, total=False):
         "COMPLEXITY_UNSPECIFIED", "COMPLEXITY_DEFAULT"
     ]
     disallowUsernameSubstring: bool
+    enablePasswordPolicy: bool
     minLength: int
     passwordChangeInterval: str
     reuseInterval: int
@@ -649,6 +657,7 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "PRIMARY_ALREADY_SETUP",
         "UNSUPPORTED_BINLOG_FORMAT",
         "BINLOG_RETENTION_SETTING",
+        "UNSUPPORTED_STORAGE_ENGINE",
     ]
 
 @typing.type_check_only
@@ -702,6 +711,8 @@ class SqlScheduledMaintenance(typing_extensions.TypedDict, total=False):
 class SqlServerAuditConfig(typing_extensions.TypedDict, total=False):
     bucket: str
     kind: str
+    retentionInterval: str
+    uploadInterval: str
 
 @typing.type_check_only
 class SqlServerDatabaseDetails(typing_extensions.TypedDict, total=False):

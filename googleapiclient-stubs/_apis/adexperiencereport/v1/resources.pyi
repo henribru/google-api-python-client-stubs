@@ -18,9 +18,11 @@ class AdExperienceReportResource(googleapiclient.discovery.Resource):
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> SiteSummaryResponseHttpRequest: ...
+
     @typing.type_check_only
     class ViolatingSitesResource(googleapiclient.discovery.Resource):
         def list(self, **kwargs: typing.Any) -> ViolatingSitesResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -23,12 +23,14 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def update(
             self, *, id: int, body: Account = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
+
     @typing.type_check_only
     class BillingInfoResource(googleapiclient.discovery.Resource):
         def get(
             self, *, accountId: int, **kwargs: typing.Any
         ) -> BillingInfoHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> BillingInfoListHttpRequest: ...
+
     @typing.type_check_only
     class BudgetResource(googleapiclient.discovery.Resource):
         def get(
@@ -50,6 +52,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: Budget = ...,
             **kwargs: typing.Any
         ) -> BudgetHttpRequest: ...
+
     @typing.type_check_only
     class CreativesResource(googleapiclient.discovery.Resource):
         def get(
@@ -75,10 +78,12 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             previous_request: CreativesListHttpRequest,
             previous_response: CreativesList,
         ) -> CreativesListHttpRequest | None: ...
+
     @typing.type_check_only
     class DirectDealsResource(googleapiclient.discovery.Resource):
         def get(self, *, id: str, **kwargs: typing.Any) -> DirectDealHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> DirectDealsListHttpRequest: ...
+
     @typing.type_check_only
     class PerformanceReportResource(googleapiclient.discovery.Resource):
         def list(
@@ -91,6 +96,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> PerformanceReportListHttpRequest: ...
+
     @typing.type_check_only
     class PretargetingConfigResource(googleapiclient.discovery.Resource):
         def delete(
@@ -125,6 +131,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: PretargetingConfig = ...,
             **kwargs: typing.Any
         ) -> PretargetingConfigHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -36,11 +36,14 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     body: UpdateActiveBreakpointRequest = ...,
                     **kwargs: typing.Any
                 ) -> UpdateActiveBreakpointResponseHttpRequest: ...
+
             def register(
                 self, *, body: RegisterDebuggeeRequest = ..., **kwargs: typing.Any
             ) -> RegisterDebuggeeResponseHttpRequest: ...
             def breakpoints(self) -> BreakpointsResource: ...
+
         def debuggees(self) -> DebuggeesResource: ...
+
     @typing.type_check_only
     class DebuggerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -88,6 +91,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     clientVersion: str = ...,
                     **kwargs: typing.Any
                 ) -> SetBreakpointResponseHttpRequest: ...
+
             def list(
                 self,
                 *,
@@ -97,7 +101,9 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ListDebuggeesResponseHttpRequest: ...
             def breakpoints(self) -> BreakpointsResource: ...
+
         def debuggees(self) -> DebuggeesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

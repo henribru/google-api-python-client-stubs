@@ -60,9 +60,20 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         previous_request: ListExecutionsResponseHttpRequest,
                         previous_response: ListExecutionsResponse,
                     ) -> ListExecutionsResponseHttpRequest | None: ...
+
+                def triggerPubsubExecution(
+                    self,
+                    *,
+                    workflow: str,
+                    body: TriggerPubsubExecutionRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ExecutionHttpRequest: ...
                 def executions(self) -> ExecutionsResource: ...
+
             def workflows(self) -> WorkflowsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

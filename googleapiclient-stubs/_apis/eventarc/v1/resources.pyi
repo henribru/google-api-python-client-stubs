@@ -18,6 +18,30 @@ class EventarcResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class ChannelConnectionsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class ChannelsResource(googleapiclient.discovery.Resource):
                 def getIamPolicy(
                     self,
@@ -40,6 +64,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -69,6 +94,28 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class ProvidersResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ProviderHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListProvidersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListProvidersResponseHttpRequest,
+                    previous_response: ListProvidersResponse,
+                ) -> ListProvidersResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class TriggersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -103,6 +150,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
@@ -137,6 +185,7 @@ class EventarcResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -154,10 +203,14 @@ class EventarcResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def channelConnections(self) -> ChannelConnectionsResource: ...
             def channels(self) -> ChannelsResource: ...
             def operations(self) -> OperationsResource: ...
+            def providers(self) -> ProvidersResource: ...
             def triggers(self) -> TriggersResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -207,6 +260,14 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
+class ListProvidersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListProvidersResponse: ...
+
+@typing.type_check_only
 class ListTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -229,6 +290,14 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class ProviderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Provider: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

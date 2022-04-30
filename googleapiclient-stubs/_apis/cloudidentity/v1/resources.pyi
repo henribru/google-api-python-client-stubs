@@ -46,6 +46,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             def approve(
                 self,
                 *,
@@ -113,6 +114,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def clientStates(self) -> ClientStatesResource: ...
+
         def cancelWipe(
             self,
             *,
@@ -159,6 +161,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def deviceUsers(self) -> DeviceUsersResource: ...
+
     @typing.type_check_only
     class GroupsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -236,6 +239,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 previous_request: SearchTransitiveMembershipsResponseHttpRequest,
                 previous_response: SearchTransitiveMembershipsResponse,
             ) -> SearchTransitiveMembershipsResponseHttpRequest | None: ...
+
         def create(
             self,
             *,
@@ -249,6 +253,9 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             self, *, name: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> GroupHttpRequest: ...
+        def getSecuritySettings(
+            self, *, name: str, readMask: str = ..., **kwargs: typing.Any
+        ) -> SecuritySettingsHttpRequest: ...
         def list(
             self,
             *,
@@ -292,7 +299,16 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             previous_request: SearchGroupsResponseHttpRequest,
             previous_response: SearchGroupsResponse,
         ) -> SearchGroupsResponseHttpRequest | None: ...
+        def updateSecuritySettings(
+            self,
+            *,
+            name: str,
+            body: SecuritySettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def memberships(self) -> MembershipsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -473,3 +489,11 @@ class SearchTransitiveMembershipsResponseHttpRequest(googleapiclient.http.HttpRe
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchTransitiveMembershipsResponse: ...
+
+@typing.type_check_only
+class SecuritySettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SecuritySettings: ...

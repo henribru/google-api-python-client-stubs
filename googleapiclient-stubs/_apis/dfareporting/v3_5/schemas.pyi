@@ -1563,6 +1563,7 @@ class MeasurementPartnerWrappingData(typing_extensions.TypedDict, total=False):
         "MONITORING_ONLY",
         "VIDEO_PIXEL_MONITORING",
         "TRACKING",
+        "NON_VPAID_MONITORING",
     ]
     wrappedTag: str
 
@@ -2315,6 +2316,7 @@ class TagData(typing_extensions.TypedDict, total=False):
         "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT_LEGACY",
         "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
         "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
+        "PLACEMENT_TAG_TRACKING_THIRD_PARTY_MEASUREMENT",
     ]
     impressionTag: str
 

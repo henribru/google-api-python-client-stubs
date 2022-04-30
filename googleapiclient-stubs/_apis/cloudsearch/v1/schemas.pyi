@@ -5,11 +5,48 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AclInfo(typing_extensions.TypedDict, total=False):
+    groupsCount: int
+    scope: typing_extensions.Literal[
+        "LIMITED",
+        "DASHER_DOMAIN_WITH_LINK",
+        "DASHER_DOMAIN",
+        "PUBLIC_WITH_LINK",
+        "PUBLIC",
+        "TEAM_DRIVE",
+    ]
+    usersCount: int
+
+@typing.type_check_only
+class AppId(typing_extensions.TypedDict, total=False):
+    appType: typing_extensions.Literal[
+        "APP_TYPE_UNSPECIFIED", "APP", "GSUITE_APP", "INCOMING_WEBHOOK"
+    ]
+    gsuiteAppType: typing_extensions.Literal[
+        "GSUITE_APP_TYPE_UNSPECIFIED",
+        "TASKS_APP",
+        "CALENDAR_APP",
+        "DOCS_APP",
+        "SHEETS_APP",
+        "SLIDES_APP",
+        "MEET_APP",
+        "ASSISTIVE_SUGGESTION_APP",
+        "CONTACTS_APP",
+        "ACTIVITY_FEED_APP",
+        "DRIVE_APP",
+    ]
+    id: str
+
+@typing.type_check_only
 class AuditLoggingSettings(typing_extensions.TypedDict, total=False):
     logAdminReadActions: bool
     logDataReadActions: bool
     logDataWriteActions: bool
     project: str
+
+@typing.type_check_only
+class AvatarInfo(typing_extensions.TypedDict, total=False):
+    emoji: Emoji
 
 @typing.type_check_only
 class BooleanOperatorOptions(typing_extensions.TypedDict, total=False):
@@ -34,6 +71,28 @@ class ContextAttribute(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class CustomEmoji(typing_extensions.TypedDict, total=False):
+    blobId: str
+    createTimeMicros: str
+    creatorUserId: UserId
+    ownerCustomerId: CustomerId
+    readToken: str
+    shortcode: str
+    state: typing_extensions.Literal[
+        "EMOJI_STATE_UNSPECIFIED",
+        "EMOJI_ENABLED",
+        "EMOJI_SYSTEM_DISABLED",
+        "EMOJI_HIDDEN",
+        "EMOJI_DELETED",
+    ]
+    updateTimeMicros: str
+    uuid: str
+
+@typing.type_check_only
+class CustomerId(typing_extensions.TypedDict, total=False):
+    customerId: str
+
+@typing.type_check_only
 class CustomerIndexStats(typing_extensions.TypedDict, total=False):
     date: Date
     itemCountByStatus: _list[ItemCountByStatus]
@@ -42,6 +101,11 @@ class CustomerIndexStats(typing_extensions.TypedDict, total=False):
 class CustomerQueryStats(typing_extensions.TypedDict, total=False):
     date: Date
     queryCountByStatus: _list[QueryCountByStatus]
+
+@typing.type_check_only
+class CustomerSearchApplicationStats(typing_extensions.TypedDict, total=False):
+    count: str
+    date: Date
 
 @typing.type_check_only
 class CustomerSessionStats(typing_extensions.TypedDict, total=False):
@@ -69,6 +133,7 @@ class DataSource(typing_extensions.TypedDict, total=False):
     itemsVisibility: _list[GSuitePrincipal]
     name: str
     operationIds: _list[str]
+    returnThumbnailUrls: bool
     shortName: str
 
 @typing.type_check_only
@@ -114,6 +179,10 @@ class DeleteQueueItemsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DisplayedProperty(typing_extensions.TypedDict, total=False):
     propertyName: str
+
+@typing.type_check_only
+class DmId(typing_extensions.TypedDict, total=False):
+    dmId: str
 
 @typing.type_check_only
 class DoubleOperatorOptions(typing_extensions.TypedDict, total=False):
@@ -169,8 +238,31 @@ class DriveTimeSpanRestrict(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DynamiteSpacesScoringInfo(typing_extensions.TypedDict, total=False):
+    affinityScore: float
+    commonContactCountAffinityScore: float
+    contactsIntersectionCount: float
+    finalScore: float
+    freshnessScore: float
+    joinedSpacesAffinityScore: float
+    lastMessagePostedTimestampMicros: str
+    memberMetadataCount: float
+    messageScore: float
+    numAucContacts: str
+    smallContactListAffinityScore: float
+    smallUnjoinedSpacesAffinityScore: float
+    spaceAgeInDays: float
+    spaceCreationTimestampMicros: str
+    topicalityScore: float
+
+@typing.type_check_only
 class EmailAddress(typing_extensions.TypedDict, total=False):
     emailAddress: str
+
+@typing.type_check_only
+class Emoji(typing_extensions.TypedDict, total=False):
+    customEmoji: CustomEmoji
+    unicode: str
 
 @typing.type_check_only
 class EnumOperatorOptions(typing_extensions.TypedDict, total=False):
@@ -244,11 +336,20 @@ class GSuitePrincipal(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetCustomerIndexStatsResponse(typing_extensions.TypedDict, total=False):
+    averageIndexedItemCount: str
     stats: _list[CustomerIndexStats]
 
 @typing.type_check_only
 class GetCustomerQueryStatsResponse(typing_extensions.TypedDict, total=False):
     stats: _list[CustomerQueryStats]
+    totalQueryCount: str
+
+@typing.type_check_only
+class GetCustomerSearchApplicationStatsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    averageSearchApplicationCount: str
+    stats: _list[CustomerSearchApplicationStats]
 
 @typing.type_check_only
 class GetCustomerSessionStatsResponse(typing_extensions.TypedDict, total=False):
@@ -260,11 +361,13 @@ class GetCustomerUserStatsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetDataSourceIndexStatsResponse(typing_extensions.TypedDict, total=False):
+    averageIndexedItemCount: str
     stats: _list[DataSourceIndexStats]
 
 @typing.type_check_only
 class GetSearchApplicationQueryStatsResponse(typing_extensions.TypedDict, total=False):
     stats: _list[SearchApplicationQueryStats]
+    totalQueryCount: str
 
 @typing.type_check_only
 class GetSearchApplicationSessionStatsResponse(
@@ -275,6 +378,47 @@ class GetSearchApplicationSessionStatsResponse(
 @typing.type_check_only
 class GetSearchApplicationUserStatsResponse(typing_extensions.TypedDict, total=False):
     stats: _list[SearchApplicationUserStats]
+
+@typing.type_check_only
+class GoogleDocsMetadata(typing_extensions.TypedDict, total=False):
+    aclInfo: AclInfo
+    documentType: typing_extensions.Literal[
+        "UNKNOWN",
+        "DOCUMENT",
+        "PRESENTATION",
+        "SPREADSHEET",
+        "PDF",
+        "IMAGE",
+        "BINARY_BLOB",
+        "FUSION_TABLE",
+        "FOLDER",
+        "DRAWING",
+        "VIDEO",
+        "FORM",
+        "DRAFT_SITE",
+        "DRAFT_SITE_PAGE",
+        "JAM",
+        "SHORTCUT",
+        "SCRIPT",
+    ]
+    fileExtension: str
+    lastContentModifiedTimestamp: str
+    resultInfo: GoogleDocsResultInfo
+    typeInfo: TypeInfo
+
+@typing.type_check_only
+class GoogleDocsResultInfo(typing_extensions.TypedDict, total=False):
+    attachmentSha1: str
+    cosmoId: Id
+    cosmoNameSpace: int
+    encryptedId: str
+    mimeType: str
+    shareScope: ShareScope
+
+@typing.type_check_only
+class GroupId(typing_extensions.TypedDict, total=False):
+    dmId: DmId
+    spaceId: SpaceId
 
 @typing.type_check_only
 class HtmlOperatorOptions(typing_extensions.TypedDict, total=False):
@@ -288,6 +432,12 @@ class HtmlPropertyOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HtmlValues(typing_extensions.TypedDict, total=False):
     values: _list[str]
+
+@typing.type_check_only
+class Id(typing_extensions.TypedDict, total=False):
+    creatorUserId: str
+    localId: str
+    nameSpace: int
 
 @typing.type_check_only
 class IndexItemOptions(typing_extensions.TypedDict, total=False):
@@ -350,6 +500,7 @@ class ItemContent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ItemCountByStatus(typing_extensions.TypedDict, total=False):
     count: str
+    indexedItemsCount: str
     statusCode: typing_extensions.Literal[
         "CODE_UNSPECIFIED", "ERROR", "MODIFIED", "NEW_ITEM", "ACCEPTED"
     ]
@@ -436,6 +587,7 @@ class Metadata(typing_extensions.TypedDict, total=False):
     objectType: str
     owner: Person
     source: Source
+    thumbnailUrl: str
     updateTime: str
 
 @typing.type_check_only
@@ -756,6 +908,13 @@ class SearchResponse(typing_extensions.TypedDict, total=False):
 class SearchResult(dict[str, typing.Any]): ...
 
 @typing.type_check_only
+class ShareScope(typing_extensions.TypedDict, total=False):
+    domain: str
+    scope: typing_extensions.Literal[
+        "UNKNOWN", "PRIVATE", "LIMITED", "EXTENDED", "DASHER_DOMAIN", "PUBLIC"
+    ]
+
+@typing.type_check_only
 class Snippet(typing_extensions.TypedDict, total=False):
     matchRanges: _list[MatchRange]
     snippet: str
@@ -801,6 +960,28 @@ class SourceResultCount(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SourceScoringConfig(typing_extensions.TypedDict, total=False):
     sourceImportance: typing_extensions.Literal["DEFAULT", "LOW", "HIGH"]
+
+@typing.type_check_only
+class SpaceId(typing_extensions.TypedDict, total=False):
+    spaceId: str
+
+@typing.type_check_only
+class SpaceInfo(typing_extensions.TypedDict, total=False):
+    avatarInfo: AvatarInfo
+    avatarUrl: str
+    description: str
+    groupId: GroupId
+    inviterEmail: str
+    isExternal: bool
+    name: str
+    numMembers: int
+    userMembershipState: typing_extensions.Literal[
+        "MEMBER_UNKNOWN",
+        "MEMBER_INVITED",
+        "MEMBER_JOINED",
+        "MEMBER_NOT_A_MEMBER",
+        "MEMBER_FAILED",
+    ]
 
 @typing.type_check_only
 class SpellResult(typing_extensions.TypedDict, total=False):
@@ -870,6 +1051,10 @@ class TimestampValues(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class TypeInfo(typing_extensions.TypedDict, total=False):
+    videoInfo: VideoInfo
+
+@typing.type_check_only
 class UnmappedIdentity(typing_extensions.TypedDict, total=False):
     externalIdentity: Principal
     resolutionStatusCode: typing_extensions.Literal[
@@ -903,6 +1088,13 @@ class UploadItemRef(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class UserId(typing_extensions.TypedDict, total=False):
+    actingUserId: str
+    id: str
+    originAppId: AppId
+    type: typing_extensions.Literal["HUMAN", "BOT"]
+
+@typing.type_check_only
 class VPCSettings(typing_extensions.TypedDict, total=False):
     project: str
 
@@ -919,3 +1111,7 @@ class Value(typing_extensions.TypedDict, total=False):
 class ValueFilter(typing_extensions.TypedDict, total=False):
     operatorName: str
     value: Value
+
+@typing.type_check_only
+class VideoInfo(typing_extensions.TypedDict, total=False):
+    duration: int

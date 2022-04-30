@@ -14,27 +14,6 @@ _list = list
 @typing.type_check_only
 class ContainerAnalysisResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
-        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> ListOperationsResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: ListOperationsResponseHttpRequest,
-            previous_response: ListOperationsResponse,
-        ) -> ListOperationsResponseHttpRequest | None: ...
-    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class NotesResource(googleapiclient.discovery.Resource):
@@ -54,6 +33,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     previous_request: ListNoteOccurrencesResponseHttpRequest,
                     previous_response: ListNoteOccurrencesResponse,
                 ) -> ListNoteOccurrencesResponseHttpRequest | None: ...
+
             def batchCreate(
                 self,
                 *,
@@ -117,6 +97,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def occurrences(self) -> OccurrencesResource: ...
+
         @typing.type_check_only
         class OccurrencesResource(googleapiclient.discovery.Resource):
             def batchCreate(
@@ -184,8 +165,10 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 body: TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
+
         def notes(self) -> NotesResource: ...
         def occurrences(self) -> OccurrencesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -198,7 +181,6 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
-    def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -250,14 +232,6 @@ class ListOccurrencesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOccurrencesResponse: ...
 
 @typing.type_check_only
-class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ListOperationsResponse: ...
-
-@typing.type_check_only
 class NoteHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -272,14 +246,6 @@ class OccurrenceHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Occurrence: ...
-
-@typing.type_check_only
-class OperationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> Operation: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):

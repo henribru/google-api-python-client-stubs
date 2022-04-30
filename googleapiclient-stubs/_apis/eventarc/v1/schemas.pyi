@@ -30,8 +30,10 @@ class CloudRun(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Destination(typing_extensions.TypedDict, total=False):
+    cloudFunction: str
     cloudRun: CloudRun
     gke: GKE
+    workflow: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -39,7 +41,15 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class EventFilter(typing_extensions.TypedDict, total=False):
     attribute: str
+    operator: str
     value: str
+
+@typing.type_check_only
+class EventType(typing_extensions.TypedDict, total=False):
+    description: str
+    eventSchemaUri: str
+    filteringAttributes: _list[FilteringAttribute]
+    type: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -47,6 +57,13 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class FilteringAttribute(typing_extensions.TypedDict, total=False):
+    attribute: str
+    description: str
+    pathPatternSupported: bool
+    required: bool
 
 @typing.type_check_only
 class GKE(typing_extensions.TypedDict, total=False):
@@ -86,6 +103,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListProvidersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    providers: _list[Provider]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListTriggersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     triggers: _list[Trigger]
@@ -115,6 +138,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class Provider(typing_extensions.TypedDict, total=False):
+    displayName: str
+    eventTypes: _list[EventType]
+    name: str
 
 @typing.type_check_only
 class Pubsub(typing_extensions.TypedDict, total=False):

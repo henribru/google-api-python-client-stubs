@@ -22,6 +22,7 @@ class AccessPolicy(typing_extensions.TypedDict, total=False):
     etag: str
     name: str
     parent: str
+    scopes: _list[str]
     title: str
 
 @typing.type_check_only
@@ -30,9 +31,27 @@ class ApiOperation(typing_extensions.TypedDict, total=False):
     serviceName: str
 
 @typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: _list[AuditLogConfig]
+    service: str
+
+@typing.type_check_only
+class AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: _list[str]
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
+
+@typing.type_check_only
 class BasicLevel(typing_extensions.TypedDict, total=False):
     combiningFunction: typing_extensions.Literal["AND", "OR"]
     conditions: _list[Condition]
+
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: _list[str]
+    role: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -107,6 +126,14 @@ class GcpUserAccessBinding(typing_extensions.TypedDict, total=False):
 class GcpUserAccessBindingOperationMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GetPolicyOptions
+
+@typing.type_check_only
+class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
 
 @typing.type_check_only
 class IngressFrom(typing_extensions.TypedDict, total=False):
@@ -187,6 +214,13 @@ class OsConstraint(typing_extensions.TypedDict, total=False):
     requireVerifiedChromeOs: bool
 
 @typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
 class ReplaceAccessLevelsRequest(typing_extensions.TypedDict, total=False):
     accessLevels: _list[AccessLevel]
     etag: str
@@ -226,10 +260,23 @@ class ServicePerimeterConfig(typing_extensions.TypedDict, total=False):
     vpcAccessibleServices: VpcAccessibleServices
 
 @typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
 
 @typing.type_check_only
 class VpcAccessibleServices(typing_extensions.TypedDict, total=False):

@@ -51,6 +51,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     previous_request: ListLinkedCustomChannelsResponseHttpRequest,
                     previous_response: ListLinkedCustomChannelsResponse,
                 ) -> ListLinkedCustomChannelsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class CustomchannelsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -82,6 +83,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     previous_request: ListLinkedAdUnitsResponseHttpRequest,
                     previous_response: ListLinkedAdUnitsResponse,
                 ) -> ListLinkedAdUnitsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class UrlchannelsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -97,6 +99,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     previous_request: ListUrlChannelsResponseHttpRequest,
                     previous_response: ListUrlChannelsResponse,
                 ) -> ListUrlChannelsResponseHttpRequest | None: ...
+
             def getAdcode(
                 self, *, name: str, **kwargs: typing.Any
             ) -> AdClientAdCodeHttpRequest: ...
@@ -116,16 +119,19 @@ class AdsenseResource(googleapiclient.discovery.Resource):
             def adunits(self) -> AdunitsResource: ...
             def customchannels(self) -> CustomchannelsResource: ...
             def urlchannels(self) -> UrlchannelsResource: ...
+
         @typing.type_check_only
         class AlertsResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, languageCode: str = ..., **kwargs: typing.Any
             ) -> ListAlertsResponseHttpRequest: ...
+
         @typing.type_check_only
         class PaymentsResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> ListPaymentsResponseHttpRequest: ...
+
         @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -201,6 +207,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     previous_request: ListSavedReportsResponseHttpRequest,
                     previous_response: ListSavedReportsResponse,
                 ) -> ListSavedReportsResponseHttpRequest | None: ...
+
             def generate(
                 self,
                 *,
@@ -606,6 +613,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> HttpBodyHttpRequest: ...
             def saved(self) -> SavedResource: ...
+
         @typing.type_check_only
         class SitesResource(googleapiclient.discovery.Resource):
             def get(self, *, name: str, **kwargs: typing.Any) -> SiteHttpRequest: ...
@@ -622,6 +630,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                 previous_request: ListSitesResponseHttpRequest,
                 previous_response: ListSitesResponse,
             ) -> ListSitesResponseHttpRequest | None: ...
+
         def get(self, *, name: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
@@ -649,6 +658,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
         def payments(self) -> PaymentsResource: ...
         def reports(self) -> ReportsResource: ...
         def sites(self) -> SitesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -17,6 +17,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     dnsCacheConfig: DnsCacheConfig
     gcePersistentDiskCsiDriverConfig: GcePersistentDiskCsiDriverConfig
     gcpFilestoreCsiDriverConfig: GcpFilestoreCsiDriverConfig
+    gkeBackupAgentConfig: GkeBackupAgentConfig
     horizontalPodAutoscaling: HorizontalPodAutoscaling
     httpLoadBalancing: HttpLoadBalancing
     istioConfig: IstioConfig
@@ -141,6 +142,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     networkPolicy: NetworkPolicy
     nodeConfig: NodeConfig
     nodeIpv4CidrSize: int
+    nodePoolAutoConfig: NodePoolAutoConfig
     nodePoolDefaults: NodePoolDefaults
     nodePools: _list[NodePool]
     notificationConfig: NotificationConfig
@@ -167,6 +169,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     tpuConfig: TpuConfig
     tpuIpv4CidrBlock: str
     verticalPodAutoscaling: VerticalPodAutoscaling
+    workloadAltsConfig: WorkloadALTSConfig
     workloadCertificates: WorkloadCertificates
     workloadIdentityConfig: WorkloadIdentityConfig
     zone: str
@@ -212,6 +215,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredMeshCertificates: MeshCertificates
     desiredMonitoringConfig: MonitoringConfig
     desiredMonitoringService: str
+    desiredNodePoolAutoConfigNetworkTags: NetworkTags
     desiredNodePoolAutoscaling: NodePoolAutoscaling
     desiredNodePoolId: str
     desiredNodeVersion: str
@@ -230,6 +234,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredShieldedNodes: ShieldedNodes
     desiredTpuConfig: TpuConfig
     desiredVerticalPodAutoscaling: VerticalPodAutoscaling
+    desiredWorkloadAltsConfig: WorkloadALTSConfig
     desiredWorkloadCertificates: WorkloadCertificates
     desiredWorkloadIdentityConfig: WorkloadIdentityConfig
 
@@ -309,6 +314,10 @@ class EphemeralStorageConfig(typing_extensions.TypedDict, total=False):
     localSsdCount: int
 
 @typing.type_check_only
+class Filter(typing_extensions.TypedDict, total=False):
+    eventType: _list[str]
+
+@typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -335,6 +344,10 @@ class GetOpenIDConfigResponse(typing_extensions.TypedDict, total=False):
     jwks_uri: str
     response_types_supported: _list[str]
     subject_types_supported: _list[str]
+
+@typing.type_check_only
+class GkeBackupAgentConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class HorizontalPodAutoscaling(typing_extensions.TypedDict, total=False):
@@ -451,6 +464,12 @@ class LoggingConfig(typing_extensions.TypedDict, total=False):
     componentConfig: LoggingComponentConfig
 
 @typing.type_check_only
+class MaintenanceExclusionOptions(typing_extensions.TypedDict, total=False):
+    scope: typing_extensions.Literal[
+        "NO_UPGRADES", "NO_MINOR_UPGRADES", "NO_MINOR_OR_NODE_UPGRADES"
+    ]
+
+@typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
     resourceVersion: str
     window: MaintenanceWindow
@@ -543,6 +562,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     accelerators: _list[AcceleratorConfig]
     advancedMachineFeatures: AdvancedMachineFeatures
     bootDiskKmsKey: str
+    confidentialNodes: ConfidentialNodes
     diskSizeGb: int
     diskType: str
     ephemeralStorageConfig: EphemeralStorageConfig
@@ -577,6 +597,7 @@ class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
     cpuCfsQuota: bool
     cpuCfsQuotaPeriod: str
     cpuManagerPolicy: str
+    podPidsLimit: str
 
 @typing.type_check_only
 class NodeLabels(typing_extensions.TypedDict, total=False):
@@ -606,6 +627,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     maxPodsConstraint: MaxPodsConstraint
     name: str
     networkConfig: NodeNetworkConfig
+    placementPolicy: PlacementPolicy
     podIpv4CidrSize: int
     selfLink: str
     status: typing_extensions.Literal[
@@ -620,6 +642,10 @@ class NodePool(typing_extensions.TypedDict, total=False):
     statusMessage: str
     upgradeSettings: UpgradeSettings
     version: str
+
+@typing.type_check_only
+class NodePoolAutoConfig(typing_extensions.TypedDict, total=False):
+    networkTags: NetworkTags
 
 @typing.type_check_only
 class NodePoolAutoscaling(typing_extensions.TypedDict, total=False):
@@ -655,6 +681,10 @@ class Operation(dict[str, typing.Any]): ...
 class OperationProgress(dict[str, typing.Any]): ...
 
 @typing.type_check_only
+class PlacementPolicy(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "COMPACT"]
+
+@typing.type_check_only
 class PodSecurityPolicyConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -675,6 +705,7 @@ class PrivateClusterMasterGlobalAccessConfig(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class PubSub(typing_extensions.TypedDict, total=False):
     enabled: bool
+    filter: Filter
     topic: str
 
 @typing.type_check_only
@@ -725,6 +756,19 @@ class RollbackNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False):
 class SandboxConfig(typing_extensions.TypedDict, total=False):
     sandboxType: str
     type: typing_extensions.Literal["UNSPECIFIED", "GVISOR"]
+
+@typing.type_check_only
+class SecurityBulletinEvent(typing_extensions.TypedDict, total=False):
+    affectedSupportedMinors: _list[str]
+    briefDescription: str
+    bulletinId: str
+    bulletinUri: str
+    cveIds: _list[str]
+    manualStepsRequired: bool
+    patchedVersions: _list[str]
+    resourceTypeAffected: str
+    severity: str
+    suggestedUpgradeTarget: str
 
 @typing.type_check_only
 class ServerConfig(typing_extensions.TypedDict, total=False):
@@ -901,6 +945,7 @@ class StatusCondition(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TimeWindow(typing_extensions.TypedDict, total=False):
     endTime: str
+    maintenanceExclusionOptions: MaintenanceExclusionOptions
     startTime: str
 
 @typing.type_check_only
@@ -928,6 +973,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
+    confidentialNodes: ConfidentialNodes
     gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
@@ -1008,6 +1054,10 @@ class WindowsVersion(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WindowsVersions(typing_extensions.TypedDict, total=False):
     windowsVersions: _list[WindowsVersion]
+
+@typing.type_check_only
+class WorkloadALTSConfig(typing_extensions.TypedDict, total=False):
+    enableAlts: bool
 
 @typing.type_check_only
 class WorkloadCertificates(typing_extensions.TypedDict, total=False):

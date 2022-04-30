@@ -36,6 +36,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class WorkloadsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -74,9 +75,12 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudAssuredworkloadsV1WorkloadHttpRequest: ...
+
             def operations(self) -> OperationsResource: ...
             def workloads(self) -> WorkloadsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

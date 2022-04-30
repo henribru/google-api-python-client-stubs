@@ -33,12 +33,14 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             confirmUnsafeAccountChange: bool = ...,
             **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
+
     @typing.type_check_only
     class BillingInfoResource(googleapiclient.discovery.Resource):
         def get(
             self, *, accountId: int, **kwargs: typing.Any
         ) -> BillingInfoHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> BillingInfoListHttpRequest: ...
+
     @typing.type_check_only
     class BudgetResource(googleapiclient.discovery.Resource):
         def get(
@@ -60,6 +62,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: Budget = ...,
             **kwargs: typing.Any
         ) -> BudgetHttpRequest: ...
+
     @typing.type_check_only
     class CreativesResource(googleapiclient.discovery.Resource):
         def addDeal(
@@ -107,6 +110,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             dealId: str,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class MarketplacedealsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -133,6 +137,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: EditAllOrderDealsRequest = ...,
             **kwargs: typing.Any
         ) -> EditAllOrderDealsResponseHttpRequest: ...
+
     @typing.type_check_only
     class MarketplacenotesResource(googleapiclient.discovery.Resource):
         def insert(
@@ -145,6 +150,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def list(
             self, *, proposalId: str, pqlQuery: str = ..., **kwargs: typing.Any
         ) -> GetOrderNotesResponseHttpRequest: ...
+
     @typing.type_check_only
     class MarketplaceprivateauctionResource(googleapiclient.discovery.Resource):
         def updateproposal(
@@ -154,6 +160,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: UpdatePrivateAuctionProposalRequest = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class PerformanceReportResource(googleapiclient.discovery.Resource):
         def list(
@@ -166,6 +173,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             **kwargs: typing.Any
         ) -> PerformanceReportListHttpRequest: ...
+
     @typing.type_check_only
     class PretargetingConfigResource(googleapiclient.discovery.Resource):
         def delete(
@@ -200,6 +208,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: PretargetingConfig = ...,
             **kwargs: typing.Any
         ) -> PretargetingConfigHttpRequest: ...
+
     @typing.type_check_only
     class ProductsResource(googleapiclient.discovery.Resource):
         def get(
@@ -208,6 +217,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
         def search(
             self, *, pqlQuery: str = ..., **kwargs: typing.Any
         ) -> GetOffersResponseHttpRequest: ...
+
     @typing.type_check_only
     class ProposalsResource(googleapiclient.discovery.Resource):
         def get(
@@ -254,11 +264,13 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             body: Proposal = ...,
             **kwargs: typing.Any
         ) -> ProposalHttpRequest: ...
+
     @typing.type_check_only
     class PubprofilesResource(googleapiclient.discovery.Resource):
         def list(
             self, *, accountId: int, **kwargs: typing.Any
         ) -> GetPublisherProfilesByAccountIdResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

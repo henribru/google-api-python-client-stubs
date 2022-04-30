@@ -97,11 +97,13 @@ class ReportsResource(googleapiclient.discovery.Resource):
             startTime: str = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class CustomerUsageReportsResource(googleapiclient.discovery.Resource):
         def get(
@@ -118,13 +120,14 @@ class ReportsResource(googleapiclient.discovery.Resource):
             previous_request: UsageReportsHttpRequest,
             previous_response: UsageReports,
         ) -> UsageReportsHttpRequest | None: ...
+
     @typing.type_check_only
     class EntityUsageReportsResource(googleapiclient.discovery.Resource):
         def get(
             self,
             *,
             entityType: typing_extensions.Literal["gplus_communities"],
-            entityKey: typing_extensions.Literal["all", "entityKey"],
+            entityKey: str,
             date: str,
             customerId: str = ...,
             filters: str = ...,
@@ -138,6 +141,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             previous_request: UsageReportsHttpRequest,
             previous_response: UsageReports,
         ) -> UsageReportsHttpRequest | None: ...
+
     @typing.type_check_only
     class UserUsageReportResource(googleapiclient.discovery.Resource):
         def get(
@@ -159,6 +163,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             previous_request: UsageReportsHttpRequest,
             previous_response: UsageReports,
         ) -> UsageReportsHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

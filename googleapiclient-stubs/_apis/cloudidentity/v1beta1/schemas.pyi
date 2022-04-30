@@ -48,7 +48,7 @@ class CancelWipeDeviceUserResponse(typing_extensions.TypedDict, total=False):
     deviceUser: DeviceUser
 
 @typing.type_check_only
-class CertificateInfo(typing_extensions.TypedDict, total=False):
+class CertificateAttributes(typing_extensions.TypedDict, total=False):
     certificateTemplate: CertificateTemplate
     fingerprint: str
     issuer: str
@@ -118,6 +118,7 @@ class Device(typing_extensions.TypedDict, total=False):
         "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "UNCOMPROMISED"
     ]
     createTime: str
+    deviceId: str
     deviceType: typing_extensions.Literal[
         "DEVICE_TYPE_UNSPECIFIED",
         "ANDROID",
@@ -208,7 +209,7 @@ class DynamicGroupStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EndpointVerificationSpecificAttributes(typing_extensions.TypedDict, total=False):
-    certificateInfo: _list[CertificateInfo]
+    certificateAttributes: _list[CertificateAttributes]
 
 @typing.type_check_only
 class EntityKey(typing_extensions.TypedDict, total=False):
@@ -516,6 +517,11 @@ class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListOrgMembershipsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    orgMemberships: _list[OrgMembership]
+
+@typing.type_check_only
 class ListUserInvitationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     userInvitations: _list[UserInvitation]
@@ -592,12 +598,24 @@ class ModifyMembershipRolesResponse(typing_extensions.TypedDict, total=False):
     membership: Membership
 
 @typing.type_check_only
+class MoveOrgMembershipRequest(typing_extensions.TypedDict, total=False):
+    customer: str
+    destinationOrgUnit: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class OrgMembership(typing_extensions.TypedDict, total=False):
+    member: str
+    memberUri: str
+    name: str
+    type: typing_extensions.Literal["ENTITY_TYPE_UNSPECIFIED", "SHARED_DRIVE"]
 
 @typing.type_check_only
 class PosixGroup(typing_extensions.TypedDict, total=False):

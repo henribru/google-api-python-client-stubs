@@ -132,6 +132,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             body: IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest = ...,
             **kwargs: typing.Any
         ) -> IdentitytoolkitRelyingpartyVerifyPhoneNumberResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

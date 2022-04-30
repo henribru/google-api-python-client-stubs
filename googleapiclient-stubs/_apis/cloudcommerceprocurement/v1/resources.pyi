@@ -54,6 +54,7 @@ class CloudCommercePartnerProcurementServiceResource(
                 body: ResetAccountRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+
         @typing.type_check_only
         class EntitlementsResource(googleapiclient.discovery.Resource):
             def approve(
@@ -116,8 +117,10 @@ class CloudCommercePartnerProcurementServiceResource(
                 body: SuspendEntitlementRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+
         def accounts(self) -> AccountsResource: ...
         def entitlements(self) -> EntitlementsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

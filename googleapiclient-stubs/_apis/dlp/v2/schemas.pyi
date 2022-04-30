@@ -52,6 +52,7 @@ class GooglePrivacyDlpV2BigQueryKey(typing_extensions.TypedDict, total=False):
 class GooglePrivacyDlpV2BigQueryOptions(typing_extensions.TypedDict, total=False):
     excludedFields: _list[GooglePrivacyDlpV2FieldId]
     identifyingFields: _list[GooglePrivacyDlpV2FieldId]
+    includedFields: _list[GooglePrivacyDlpV2FieldId]
     rowsLimit: str
     rowsLimitPercent: int
     sampleMethod: typing_extensions.Literal[
@@ -95,6 +96,8 @@ class GooglePrivacyDlpV2ByteContentItem(typing_extensions.TypedDict, total=False
         "TEXT_UTF8",
         "WORD_DOCUMENT",
         "PDF",
+        "POWERPOINT_DOCUMENT",
+        "EXCEL_DOCUMENT",
         "AVRO",
         "CSV",
         "TSV",
@@ -321,6 +324,55 @@ class GooglePrivacyDlpV2CustomInfoType(typing_extensions.TypedDict, total=False)
     surrogateType: GooglePrivacyDlpV2SurrogateType
 
 @typing.type_check_only
+class GooglePrivacyDlpV2DataProfileAction(typing_extensions.TypedDict, total=False):
+    exportData: GooglePrivacyDlpV2Export
+    pubSubNotification: GooglePrivacyDlpV2PubSubNotification
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataProfileConfigSnapshot(
+    typing_extensions.TypedDict, total=False
+):
+    dataProfileJob: GooglePrivacyDlpV2DataProfileJobConfig
+    inspectConfig: GooglePrivacyDlpV2InspectConfig
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataProfileJobConfig(typing_extensions.TypedDict, total=False):
+    dataProfileActions: _list[GooglePrivacyDlpV2DataProfileAction]
+    inspectTemplates: _list[str]
+    location: GooglePrivacyDlpV2DataProfileLocation
+    projectId: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataProfileLocation(typing_extensions.TypedDict, total=False):
+    folderId: str
+    organizationId: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataProfilePubSubCondition(
+    typing_extensions.TypedDict, total=False
+):
+    expressions: GooglePrivacyDlpV2PubSubExpressions
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataProfilePubSubMessage(
+    typing_extensions.TypedDict, total=False
+):
+    event: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED",
+        "NEW_PROFILE",
+        "CHANGED_PROFILE",
+        "SCORE_INCREASED",
+        "ERROR_CHANGED",
+    ]
+    profile: GooglePrivacyDlpV2TableDataProfile
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataRiskLevel(typing_extensions.TypedDict, total=False):
+    score: typing_extensions.Literal[
+        "RISK_SCORE_UNSPECIFIED", "RISK_LOW", "RISK_MODERATE", "RISK_HIGH"
+    ]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2DatastoreKey(typing_extensions.TypedDict, total=False):
     entityKey: GooglePrivacyDlpV2Key
 
@@ -480,6 +532,10 @@ class GooglePrivacyDlpV2ExclusionRule(typing_extensions.TypedDict, total=False):
     regex: GooglePrivacyDlpV2Regex
 
 @typing.type_check_only
+class GooglePrivacyDlpV2Export(typing_extensions.TypedDict, total=False):
+    profileTable: GooglePrivacyDlpV2BigQueryTable
+
+@typing.type_check_only
 class GooglePrivacyDlpV2Expressions(typing_extensions.TypedDict, total=False):
     conditions: GooglePrivacyDlpV2Conditions
     logicalOperator: typing_extensions.Literal["LOGICAL_OPERATOR_UNSPECIFIED", "AND"]
@@ -623,6 +679,10 @@ class GooglePrivacyDlpV2InfoTypeLimit(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2InfoTypeStats(typing_extensions.TypedDict, total=False):
     count: str
+    infoType: GooglePrivacyDlpV2InfoType
+
+@typing.type_check_only
+class GooglePrivacyDlpV2InfoTypeSummary(typing_extensions.TypedDict, total=False):
     infoType: GooglePrivacyDlpV2InfoType
 
 @typing.type_check_only
@@ -918,6 +978,10 @@ class GooglePrivacyDlpV2NumericalStatsResult(typing_extensions.TypedDict, total=
     quantileValues: _list[GooglePrivacyDlpV2Value]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2OtherInfoTypeSummary(typing_extensions.TypedDict, total=False):
+    infoType: GooglePrivacyDlpV2InfoType
+
+@typing.type_check_only
 class GooglePrivacyDlpV2OutputStorageConfig(typing_extensions.TypedDict, total=False):
     outputSchema: typing_extensions.Literal[
         "OUTPUT_SCHEMA_UNSPECIFIED",
@@ -967,9 +1031,45 @@ class GooglePrivacyDlpV2PrivacyMetric(typing_extensions.TypedDict, total=False):
     numericalStatsConfig: GooglePrivacyDlpV2NumericalStatsConfig
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ProfileStatus(typing_extensions.TypedDict, total=False):
+    status: GoogleRpcStatus
+    timestamp: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2Proximity(typing_extensions.TypedDict, total=False):
     windowAfter: int
     windowBefore: int
+
+@typing.type_check_only
+class GooglePrivacyDlpV2PubSubCondition(typing_extensions.TypedDict, total=False):
+    minimumRiskScore: typing_extensions.Literal[
+        "PROFILE_SCORE_BUCKET_UNSPECIFIED", "HIGH", "MEDIUM_OR_HIGH"
+    ]
+    minimumSensitivityScore: typing_extensions.Literal[
+        "PROFILE_SCORE_BUCKET_UNSPECIFIED", "HIGH", "MEDIUM_OR_HIGH"
+    ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2PubSubExpressions(typing_extensions.TypedDict, total=False):
+    conditions: _list[GooglePrivacyDlpV2PubSubCondition]
+    logicalOperator: typing_extensions.Literal[
+        "LOGICAL_OPERATOR_UNSPECIFIED", "OR", "AND"
+    ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2PubSubNotification(typing_extensions.TypedDict, total=False):
+    detailOfMessage: typing_extensions.Literal[
+        "DETAIL_LEVEL_UNSPECIFIED", "TABLE_PROFILE", "RESOURCE_NAME"
+    ]
+    event: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED",
+        "NEW_PROFILE",
+        "CHANGED_PROFILE",
+        "SCORE_INCREASED",
+        "ERROR_CHANGED",
+    ]
+    pubsubCondition: GooglePrivacyDlpV2DataProfilePubSubCondition
+    topic: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog(
@@ -1133,6 +1233,15 @@ class GooglePrivacyDlpV2Schedule(typing_extensions.TypedDict, total=False):
     recurrencePeriodDuration: str
 
 @typing.type_check_only
+class GooglePrivacyDlpV2SensitivityScore(typing_extensions.TypedDict, total=False):
+    score: typing_extensions.Literal[
+        "SENSITIVITY_SCORE_UNSPECIFIED",
+        "SENSITIVITY_LOW",
+        "SENSITIVITY_MODERATE",
+        "SENSITIVITY_HIGH",
+    ]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2StatisticalTable(typing_extensions.TypedDict, total=False):
     quasiIds: _list[GooglePrivacyDlpV2QuasiIdentifierField]
     relativeFrequency: GooglePrivacyDlpV2FieldId
@@ -1198,6 +1307,42 @@ class GooglePrivacyDlpV2SurrogateType(typing_extensions.TypedDict, total=False):
 class GooglePrivacyDlpV2Table(typing_extensions.TypedDict, total=False):
     headers: _list[GooglePrivacyDlpV2FieldId]
     rows: _list[GooglePrivacyDlpV2Row]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TableDataProfile(typing_extensions.TypedDict, total=False):
+    configSnapshot: GooglePrivacyDlpV2DataProfileConfigSnapshot
+    createTime: str
+    dataRiskLevel: GooglePrivacyDlpV2DataRiskLevel
+    datasetId: str
+    datasetLocation: str
+    datasetProjectId: str
+    encryptionStatus: typing_extensions.Literal[
+        "ENCRYPTION_STATUS_UNSPECIFIED",
+        "ENCRYPTION_GOOGLE_MANAGED",
+        "ENCRYPTION_CUSTOMER_MANAGED",
+    ]
+    expirationTime: str
+    failedColumnCount: str
+    fullResource: str
+    lastModifiedTime: str
+    name: str
+    otherInfoTypes: _list[GooglePrivacyDlpV2OtherInfoTypeSummary]
+    predictedInfoTypes: _list[GooglePrivacyDlpV2InfoTypeSummary]
+    profileLastGenerated: str
+    profileStatus: GooglePrivacyDlpV2ProfileStatus
+    projectDataProfile: str
+    resourceLabels: dict[str, typing.Any]
+    resourceVisibility: typing_extensions.Literal[
+        "RESOURCE_VISIBILITY_UNSPECIFIED",
+        "RESOURCE_VISIBILITY_PUBLIC",
+        "RESOURCE_VISIBILITY_RESTRICTED",
+    ]
+    rowCount: str
+    scannedColumnCount: str
+    sensitivityScore: GooglePrivacyDlpV2SensitivityScore
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "RUNNING", "DONE"]
+    tableId: str
+    tableSizeBytes: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TableLocation(typing_extensions.TypedDict, total=False):

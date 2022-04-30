@@ -40,6 +40,9 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     buildName: str
     buildWorkerPool: str
     description: str
+    dockerRegistry: typing_extensions.Literal[
+        "DOCKER_REGISTRY_UNSPECIFIED", "CONTAINER_REGISTRY", "ARTIFACT_REGISTRY"
+    ]
     dockerRepository: str
     entryPoint: str
     environmentVariables: dict[str, typing.Any]
@@ -110,11 +113,94 @@ class GenerateDownloadUrlResponse(typing_extensions.TypedDict, total=False):
     downloadUrl: str
 
 @typing.type_check_only
-class GenerateUploadUrlRequest(typing_extensions.TypedDict, total=False): ...
+class GenerateUploadUrlRequest(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
 
 @typing.type_check_only
 class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
     uploadUrl: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2alphaOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    requestResource: dict[str, typing.Any]
+    stages: _list[GoogleCloudFunctionsV2alphaStage]
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2alphaStage(typing_extensions.TypedDict, total=False):
+    message: str
+    name: typing_extensions.Literal[
+        "NAME_UNSPECIFIED",
+        "ARTIFACT_REGISTRY",
+        "BUILD",
+        "SERVICE",
+        "TRIGGER",
+        "SERVICE_ROLLBACK",
+        "TRIGGER_ROLLBACK",
+    ]
+    resource: str
+    resourceUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
+    ]
+    stateMessages: _list[GoogleCloudFunctionsV2alphaStateMessage]
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2alphaStateMessage(typing_extensions.TypedDict, total=False):
+    message: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
+    type: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2betaOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    requestResource: dict[str, typing.Any]
+    stages: _list[GoogleCloudFunctionsV2betaStage]
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2betaStage(typing_extensions.TypedDict, total=False):
+    message: str
+    name: typing_extensions.Literal[
+        "NAME_UNSPECIFIED",
+        "ARTIFACT_REGISTRY",
+        "BUILD",
+        "SERVICE",
+        "TRIGGER",
+        "SERVICE_ROLLBACK",
+        "TRIGGER_ROLLBACK",
+    ]
+    resource: str
+    resourceUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
+    ]
+    stateMessages: _list[GoogleCloudFunctionsV2betaStateMessage]
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2betaStateMessage(typing_extensions.TypedDict, total=False):
+    message: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
+    type: str
 
 @typing.type_check_only
 class HttpsTrigger(typing_extensions.TypedDict, total=False):

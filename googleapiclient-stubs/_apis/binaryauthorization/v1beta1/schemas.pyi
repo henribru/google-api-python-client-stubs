@@ -32,6 +32,7 @@ class AttestationOccurrence(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Attestor(typing_extensions.TypedDict, total=False):
     description: str
+    etag: str
     name: str
     updateTime: str
     userOwnedDrydockNote: UserOwnedDrydockNote
@@ -80,9 +81,13 @@ class PkixPublicKey(typing_extensions.TypedDict, total=False):
     signatureAlgorithm: typing_extensions.Literal[
         "SIGNATURE_ALGORITHM_UNSPECIFIED",
         "RSA_PSS_2048_SHA256",
+        "RSA_SIGN_PSS_2048_SHA256",
         "RSA_PSS_3072_SHA256",
+        "RSA_SIGN_PSS_3072_SHA256",
         "RSA_PSS_4096_SHA256",
+        "RSA_SIGN_PSS_4096_SHA256",
         "RSA_PSS_4096_SHA512",
+        "RSA_SIGN_PSS_4096_SHA512",
         "RSA_SIGN_PKCS1_2048_SHA256",
         "RSA_SIGN_PKCS1_3072_SHA256",
         "RSA_SIGN_PKCS1_4096_SHA256",
@@ -101,6 +106,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     clusterAdmissionRules: dict[str, typing.Any]
     defaultAdmissionRule: AdmissionRule
     description: str
+    etag: str
     globalPolicyEvaluationMode: typing_extensions.Literal[
         "GLOBAL_POLICY_EVALUATION_MODE_UNSPECIFIED", "ENABLE", "DISABLE"
     ]

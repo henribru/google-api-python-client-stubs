@@ -83,6 +83,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             dryRun: bool = ...,
             **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
+
     @typing.type_check_only
     class AccountstatusesResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -110,6 +111,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             previous_request: AccountstatusesListResponseHttpRequest,
             previous_response: AccountstatusesListResponse,
         ) -> AccountstatusesListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class AccounttaxResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -144,6 +146,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             dryRun: bool = ...,
             **kwargs: typing.Any
         ) -> AccountTaxHttpRequest: ...
+
     @typing.type_check_only
     class DatafeedsResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -202,6 +205,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             dryRun: bool = ...,
             **kwargs: typing.Any
         ) -> DatafeedHttpRequest: ...
+
     @typing.type_check_only
     class DatafeedstatusesResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -232,25 +236,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             previous_request: DatafeedstatusesListResponseHttpRequest,
             previous_response: DatafeedstatusesListResponse,
         ) -> DatafeedstatusesListResponseHttpRequest | None: ...
-    @typing.type_check_only
-    class InventoryResource(googleapiclient.discovery.Resource):
-        def custombatch(
-            self,
-            *,
-            body: InventoryCustomBatchRequest = ...,
-            dryRun: bool = ...,
-            **kwargs: typing.Any
-        ) -> InventoryCustomBatchResponseHttpRequest: ...
-        def set(
-            self,
-            *,
-            merchantId: str,
-            storeCode: str,
-            productId: str,
-            body: InventorySetRequest = ...,
-            dryRun: bool = ...,
-            **kwargs: typing.Any
-        ) -> InventorySetResponseHttpRequest: ...
+
     @typing.type_check_only
     class LiasettingsResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -323,6 +309,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             dryRun: bool = ...,
             **kwargs: typing.Any
         ) -> LiaSettingsHttpRequest: ...
+
     @typing.type_check_only
     class OrderinvoicesResource(googleapiclient.discovery.Resource):
         def createchargeinvoice(
@@ -341,6 +328,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             body: OrderinvoicesCreateRefundInvoiceRequest = ...,
             **kwargs: typing.Any
         ) -> OrderinvoicesCreateRefundInvoiceResponseHttpRequest: ...
+
     @typing.type_check_only
     class OrderreportsResource(googleapiclient.discovery.Resource):
         def listdisbursements(
@@ -374,6 +362,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             previous_request: OrderreportsListTransactionsResponseHttpRequest,
             previous_response: OrderreportsListTransactionsResponse,
         ) -> OrderreportsListTransactionsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class OrderreturnsResource(googleapiclient.discovery.Resource):
         def get(
@@ -397,6 +386,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             previous_request: OrderreturnsListResponseHttpRequest,
             previous_response: OrderreturnsListResponse,
         ) -> OrderreturnsListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class OrdersResource(googleapiclient.discovery.Resource):
         def acknowledge(
@@ -593,6 +583,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             body: OrdersUpdateShipmentRequest = ...,
             **kwargs: typing.Any
         ) -> OrdersUpdateShipmentResponseHttpRequest: ...
+
     @typing.type_check_only
     class PosResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -649,6 +640,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             dryRun: bool = ...,
             **kwargs: typing.Any
         ) -> PosSaleResponseHttpRequest: ...
+
     @typing.type_check_only
     class ProductsResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -691,6 +683,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             previous_request: ProductsListResponseHttpRequest,
             previous_response: ProductsListResponse,
         ) -> ProductsListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ProductstatusesResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -725,6 +718,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             previous_request: ProductstatusesListResponseHttpRequest,
             previous_response: ProductstatusesListResponse,
         ) -> ProductstatusesListResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ShippingsettingsResource(googleapiclient.discovery.Resource):
         def custombatch(
@@ -768,6 +762,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             dryRun: bool = ...,
             **kwargs: typing.Any
         ) -> ShippingSettingsHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -785,7 +780,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def accounttax(self) -> AccounttaxResource: ...
     def datafeeds(self) -> DatafeedsResource: ...
     def datafeedstatuses(self) -> DatafeedstatusesResource: ...
-    def inventory(self) -> InventoryResource: ...
     def liasettings(self) -> LiasettingsResource: ...
     def orderinvoices(self) -> OrderinvoicesResource: ...
     def orderreports(self) -> OrderreportsResource: ...
@@ -947,22 +941,6 @@ class DatafeedstatusesListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DatafeedstatusesListResponse: ...
-
-@typing.type_check_only
-class InventoryCustomBatchResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> InventoryCustomBatchResponse: ...
-
-@typing.type_check_only
-class InventorySetResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> InventorySetResponse: ...
 
 @typing.type_check_only
 class LiaSettingsHttpRequest(googleapiclient.http.HttpRequest):

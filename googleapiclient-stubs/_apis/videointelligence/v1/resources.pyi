@@ -30,9 +30,13 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleLongrunning_OperationHttpRequest: ...
+
                 def operations(self) -> OperationsResource: ...
+
             def locations(self) -> LocationsResource: ...
+
         def projects(self) -> ProjectsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -66,8 +70,11 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunning_ListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunning_ListOperationsResponse,
                 ) -> GoogleLongrunning_ListOperationsResponseHttpRequest | None: ...
+
             def operations(self) -> OperationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     @typing.type_check_only
     class VideosResource(googleapiclient.discovery.Resource):
         def annotate(
@@ -76,6 +83,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
             body: GoogleCloudVideointelligenceV1_AnnotateVideoRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleLongrunning_OperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

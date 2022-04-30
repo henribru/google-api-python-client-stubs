@@ -14,10 +14,16 @@ class GoogleCloudRecommenderV1beta1CostProjection(
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1Impact(typing_extensions.TypedDict, total=False):
     category: typing_extensions.Literal[
-        "CATEGORY_UNSPECIFIED", "COST", "SECURITY", "PERFORMANCE", "MANAGEABILITY"
+        "CATEGORY_UNSPECIFIED",
+        "COST",
+        "SECURITY",
+        "PERFORMANCE",
+        "MANAGEABILITY",
+        "SUSTAINABILITY",
     ]
     costProjection: GoogleCloudRecommenderV1beta1CostProjection
     securityProjection: GoogleCloudRecommenderV1beta1SecurityProjection
+    sustainabilityProjection: GoogleCloudRecommenderV1beta1SustainabilityProjection
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1Insight(typing_extensions.TypedDict, total=False):
@@ -198,6 +204,13 @@ class GoogleCloudRecommenderV1beta1SecurityProjection(
     typing_extensions.TypedDict, total=False
 ):
     details: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1SustainabilityProjection(
+    typing_extensions.TypedDict, total=False
+):
+    duration: str
+    kgCO2e: float
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1ValueMatcher(

@@ -33,6 +33,7 @@ class GenomicsResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class PipelinesResource(googleapiclient.discovery.Resource):
         def create(
@@ -71,6 +72,7 @@ class GenomicsResource(googleapiclient.discovery.Resource):
         def setOperationStatus(
             self, *, body: SetOperationStatusRequest = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -30,6 +30,7 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -112,6 +113,7 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             def list(
                 self,
                 *,
@@ -127,7 +129,9 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def functions(self) -> FunctionsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

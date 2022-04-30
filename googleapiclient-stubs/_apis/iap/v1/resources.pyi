@@ -52,6 +52,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                     body: ResetIdentityAwareProxyClientSecretRequest = ...,
                     **kwargs: typing.Any
                 ) -> IdentityAwareProxyClientHttpRequest: ...
+
             def create(
                 self, *, parent: str, body: Brand = ..., **kwargs: typing.Any
             ) -> BrandHttpRequest: ...
@@ -62,7 +63,56 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             def identityAwareProxyClients(
                 self,
             ) -> IdentityAwareProxyClientsResource: ...
+
+        @typing.type_check_only
+        class Iap_tunnelResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class LocationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class DestGroupsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: TunnelDestGroup = ...,
+                        tunnelDestGroupId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> TunnelDestGroupHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> TunnelDestGroupHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListTunnelDestGroupsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTunnelDestGroupsResponseHttpRequest,
+                        previous_response: ListTunnelDestGroupsResponse,
+                    ) -> ListTunnelDestGroupsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: TunnelDestGroup = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> TunnelDestGroupHttpRequest: ...
+
+                def destGroups(self) -> DestGroupsResource: ...
+
+            def locations(self) -> LocationsResource: ...
+
         def brands(self) -> BrandsResource: ...
+        def iap_tunnel(self) -> Iap_tunnelResource: ...
+
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def getIamPolicy(
@@ -97,6 +147,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> IapSettingsHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -163,6 +214,14 @@ class ListIdentityAwareProxyClientsResponseHttpRequest(
     ) -> ListIdentityAwareProxyClientsResponse: ...
 
 @typing.type_check_only
+class ListTunnelDestGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListTunnelDestGroupsResponse: ...
+
+@typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -177,3 +236,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class TunnelDestGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> TunnelDestGroup: ...

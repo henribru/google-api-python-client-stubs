@@ -55,7 +55,9 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudResourcesettingsV1Setting = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
+
         def settings(self) -> SettingsResource: ...
+
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -98,7 +100,9 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudResourcesettingsV1Setting = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
+
         def settings(self) -> SettingsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -141,7 +145,9 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudResourcesettingsV1Setting = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
+
         def settings(self) -> SettingsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

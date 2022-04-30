@@ -8,9 +8,14 @@ _list = list
 class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     database: str
+    databaseDialect: typing_extensions.Literal[
+        "DATABASE_DIALECT_UNSPECIFIED", "GOOGLE_STANDARD_SQL", "POSTGRESQL"
+    ]
     encryptionInfo: EncryptionInfo
     expireTime: str
+    maxExpireTime: str
     name: str
+    referencingBackups: _list[str]
     referencingDatabases: _list[str]
     sizeBytes: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
@@ -76,6 +81,30 @@ class ContextValue(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
+class CopyBackupEncryptionConfig(typing_extensions.TypedDict, total=False):
+    encryptionType: typing_extensions.Literal[
+        "ENCRYPTION_TYPE_UNSPECIFIED",
+        "USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION",
+        "GOOGLE_DEFAULT_ENCRYPTION",
+        "CUSTOMER_MANAGED_ENCRYPTION",
+    ]
+    kmsKeyName: str
+
+@typing.type_check_only
+class CopyBackupMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    name: str
+    progress: OperationProgress
+    sourceBackup: str
+
+@typing.type_check_only
+class CopyBackupRequest(typing_extensions.TypedDict, total=False):
+    backupId: str
+    encryptionConfig: CopyBackupEncryptionConfig
+    expireTime: str
+    sourceBackup: str
+
+@typing.type_check_only
 class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
     cancelTime: str
     database: str
@@ -89,6 +118,9 @@ class CreateDatabaseMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CreateDatabaseRequest(typing_extensions.TypedDict, total=False):
     createStatement: str
+    databaseDialect: typing_extensions.Literal[
+        "DATABASE_DIALECT_UNSPECIFIED", "GOOGLE_STANDARD_SQL", "POSTGRESQL"
+    ]
     encryptionConfig: EncryptionConfig
     extraStatements: _list[str]
 
@@ -111,6 +143,9 @@ class CreateSessionRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
     createTime: str
+    databaseDialect: typing_extensions.Literal[
+        "DATABASE_DIALECT_UNSPECIFIED", "GOOGLE_STANDARD_SQL", "POSTGRESQL"
+    ]
     defaultLeader: str
     earliestVersionTime: str
     encryptionConfig: EncryptionConfig
@@ -217,6 +252,7 @@ class IndexedKeyRangeInfos(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     config: str
+    createTime: str
     displayName: str
     endpointUris: _list[str]
     labels: dict[str, typing.Any]
@@ -224,6 +260,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     nodeCount: int
     processingUnits: int
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
+    updateTime: str
 
 @typing.type_check_only
 class InstanceConfig(typing_extensions.TypedDict, total=False):

@@ -34,6 +34,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class SecretsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -78,6 +79,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     previous_request: ListSecretVersionsResponseHttpRequest,
                     previous_response: ListSecretVersionsResponse,
                 ) -> ListSecretVersionsResponseHttpRequest | None: ...
+
             def addVersion(
                 self,
                 *,
@@ -140,8 +142,10 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def versions(self) -> VersionsResource: ...
+
         def locations(self) -> LocationsResource: ...
         def secrets(self) -> SecretsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

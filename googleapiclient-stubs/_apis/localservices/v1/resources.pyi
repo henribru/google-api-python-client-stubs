@@ -34,6 +34,7 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             previous_request: GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest,
             previous_response: GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse,
         ) -> GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest | None: ...
+
     @typing.type_check_only
     class DetailedLeadReportsResource(googleapiclient.discovery.Resource):
         def search(
@@ -55,6 +56,7 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             previous_request: GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest,
             previous_response: GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse,
         ) -> GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

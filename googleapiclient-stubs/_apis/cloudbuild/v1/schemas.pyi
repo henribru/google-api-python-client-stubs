@@ -37,12 +37,72 @@ class Artifacts(typing_extensions.TypedDict, total=False):
     objects: ArtifactObjects
 
 @typing.type_check_only
+class BatchCreateBitbucketServerConnectedRepositoriesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[CreateBitbucketServerConnectedRepositoryRequest]
+
+@typing.type_check_only
+class BatchCreateBitbucketServerConnectedRepositoriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    bitbucketServerConnectedRepositories: _list[BitbucketServerConnectedRepository]
+
+@typing.type_check_only
 class BatchCreateBitbucketServerConnectedRepositoriesResponseMetadata(
     typing_extensions.TypedDict, total=False
 ):
     completeTime: str
     config: str
     createTime: str
+
+@typing.type_check_only
+class BitbucketServerConfig(typing_extensions.TypedDict, total=False):
+    apiKey: str
+    connectedRepositories: _list[BitbucketServerRepositoryId]
+    createTime: str
+    hostUri: str
+    name: str
+    peeredNetwork: str
+    secrets: BitbucketServerSecrets
+    sslCa: str
+    username: str
+    webhookKey: str
+
+@typing.type_check_only
+class BitbucketServerConnectedRepository(typing_extensions.TypedDict, total=False):
+    parent: str
+    repo: BitbucketServerRepositoryId
+    status: Status
+
+@typing.type_check_only
+class BitbucketServerRepository(typing_extensions.TypedDict, total=False):
+    browseUri: str
+    description: str
+    displayName: str
+    name: str
+    repoId: BitbucketServerRepositoryId
+
+@typing.type_check_only
+class BitbucketServerRepositoryId(typing_extensions.TypedDict, total=False):
+    projectKey: str
+    repoSlug: str
+    webhookId: int
+
+@typing.type_check_only
+class BitbucketServerSecrets(typing_extensions.TypedDict, total=False):
+    adminAccessTokenVersionName: str
+    readAccessTokenVersionName: str
+    webhookSecretVersionName: str
+
+@typing.type_check_only
+class BitbucketServerTriggerConfig(typing_extensions.TypedDict, total=False):
+    bitbucketServerConfig: BitbucketServerConfig
+    bitbucketServerConfigResource: str
+    projectKey: str
+    pullRequest: PullRequestFilter
+    push: PushFilter
+    repoSlug: str
 
 @typing.type_check_only
 class Build(typing_extensions.TypedDict, total=False):
@@ -158,6 +218,7 @@ class BuildStep(typing_extensions.TypedDict, total=False):
 class BuildTrigger(typing_extensions.TypedDict, total=False):
     approvalConfig: ApprovalConfig
     autodetect: bool
+    bitbucketServerTriggerConfig: BitbucketServerTriggerConfig
     build: Build
     createTime: str
     description: str
@@ -198,6 +259,21 @@ class CancelBuildRequest(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CreateBitbucketServerConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    bitbucketServerConfig: str
+    completeTime: str
+    createTime: str
+
+@typing.type_check_only
+class CreateBitbucketServerConnectedRepositoryRequest(
+    typing_extensions.TypedDict, total=False
+):
+    bitbucketServerConnectedRepository: BitbucketServerConnectedRepository
+    parent: str
+
+@typing.type_check_only
 class CreateGitHubEnterpriseConfigOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -206,10 +282,24 @@ class CreateGitHubEnterpriseConfigOperationMetadata(
     githubEnterpriseConfig: str
 
 @typing.type_check_only
+class CreateGitLabConfigOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    gitlabConfig: str
+
+@typing.type_check_only
 class CreateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
     completeTime: str
     createTime: str
     workerPool: str
+
+@typing.type_check_only
+class DeleteBitbucketServerConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    bitbucketServerConfig: str
+    completeTime: str
+    createTime: str
 
 @typing.type_check_only
 class DeleteGitHubEnterpriseConfigOperationMetadata(
@@ -218,6 +308,12 @@ class DeleteGitHubEnterpriseConfigOperationMetadata(
     completeTime: str
     createTime: str
     githubEnterpriseConfig: str
+
+@typing.type_check_only
+class DeleteGitLabConfigOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    gitlabConfig: str
 
 @typing.type_check_only
 class DeleteWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -247,9 +343,11 @@ class FileHashes(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GitFileSource(typing_extensions.TypedDict, total=False):
+    bitbucketServerConfig: str
+    githubEnterpriseConfig: str
     path: str
     repoType: typing_extensions.Literal[
-        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB"
+        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER"
     ]
     revision: str
     uri: str
@@ -288,9 +386,11 @@ class GitHubEventsConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GitRepoSource(typing_extensions.TypedDict, total=False):
+    bitbucketServerConfig: str
+    githubEnterpriseConfig: str
     ref: str
     repoType: typing_extensions.Literal[
-        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB"
+        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER"
     ]
     uri: str
 
@@ -325,6 +425,16 @@ class HttpBody(typing_extensions.TypedDict, total=False):
 class InlineSecret(typing_extensions.TypedDict, total=False):
     envMap: dict[str, typing.Any]
     kmsKeyName: str
+
+@typing.type_check_only
+class ListBitbucketServerConfigsResponse(typing_extensions.TypedDict, total=False):
+    bitbucketServerConfigs: _list[BitbucketServerConfig]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListBitbucketServerRepositoriesResponse(typing_extensions.TypedDict, total=False):
+    bitbucketServerRepositories: _list[BitbucketServerRepository]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListBuildTriggersResponse(typing_extensions.TypedDict, total=False):
@@ -454,6 +564,12 @@ class PushFilter(typing_extensions.TypedDict, total=False):
 class ReceiveTriggerWebhookResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class RemoveBitbucketServerConnectedRepositoryRequest(
+    typing_extensions.TypedDict, total=False
+):
+    connectedRepository: BitbucketServerRepositoryId
+
+@typing.type_check_only
 class RepoSource(typing_extensions.TypedDict, total=False):
     branchName: str
     commitSha: str
@@ -484,6 +600,16 @@ class RunBuildTriggerRequest(typing_extensions.TypedDict, total=False):
     projectId: str
     source: RepoSource
     triggerId: str
+
+@typing.type_check_only
+class RunWorkflowCustomOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    pipelineRunId: str
+    requestedCancellation: bool
+    target: str
+    verb: str
 
 @typing.type_check_only
 class SMTPDelivery(typing_extensions.TypedDict, total=False):
@@ -550,12 +676,26 @@ class TimeSpan(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class UpdateBitbucketServerConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    bitbucketServerConfig: str
+    completeTime: str
+    createTime: str
+
+@typing.type_check_only
 class UpdateGitHubEnterpriseConfigOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     completeTime: str
     createTime: str
     githubEnterpriseConfig: str
+
+@typing.type_check_only
+class UpdateGitLabConfigOperationMetadata(typing_extensions.TypedDict, total=False):
+    completeTime: str
+    createTime: str
+    gitlabConfig: str
 
 @typing.type_check_only
 class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -595,7 +735,7 @@ class WorkerPool(typing_extensions.TypedDict, total=False):
     name: str
     privatePoolV1Config: PrivatePoolV1Config
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "RUNNING", "DELETING", "DELETED"
+        "STATE_UNSPECIFIED", "CREATING", "RUNNING", "DELETING", "DELETED", "UPDATING"
     ]
     uid: str
     updateTime: str

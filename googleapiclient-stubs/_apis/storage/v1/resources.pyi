@@ -20,7 +20,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -29,7 +28,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketAccessControlHttpRequest: ...
@@ -38,17 +36,11 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: BucketAccessControl = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketAccessControlHttpRequest: ...
         def list(
-            self,
-            *,
-            bucket: str,
-            provisionalUserProject: str = ...,
-            userProject: str = ...,
-            **kwargs: typing.Any
+            self, *, bucket: str, userProject: str = ..., **kwargs: typing.Any
         ) -> BucketAccessControlsHttpRequest: ...
         def patch(
             self,
@@ -56,7 +48,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             entity: str,
             body: BucketAccessControl = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketAccessControlHttpRequest: ...
@@ -66,10 +57,10 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             entity: str,
             body: BucketAccessControl = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketAccessControlHttpRequest: ...
+
     @typing.type_check_only
     class BucketsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -78,7 +69,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -89,7 +79,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketHttpRequest: ...
@@ -98,7 +87,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             optionsRequestedPolicyVersion: int = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
@@ -123,7 +111,6 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ] = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketHttpRequest: ...
@@ -135,7 +122,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             prefix: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketsHttpRequest: ...
@@ -147,7 +133,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             ifMetagenerationMatch: str,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketHttpRequest: ...
@@ -174,7 +159,6 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ] = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketHttpRequest: ...
@@ -183,7 +167,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: Policy = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
@@ -192,7 +175,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             permissions: str | _list[str],
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> TestIamPermissionsResponseHttpRequest: ...
@@ -219,15 +201,16 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ] = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> BucketHttpRequest: ...
+
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+
     @typing.type_check_only
     class DefaultObjectAccessControlsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -235,7 +218,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -244,7 +226,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             entity: str,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
@@ -253,7 +234,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: ObjectAccessControl = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
@@ -263,7 +243,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlsHttpRequest: ...
@@ -273,7 +252,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             entity: str,
             body: ObjectAccessControl = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
@@ -283,10 +261,10 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             entity: str,
             body: ObjectAccessControl = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
+
     @typing.type_check_only
     class NotificationsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -294,7 +272,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             notification: str,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -303,7 +280,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             notification: str,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> NotificationHttpRequest: ...
@@ -312,18 +288,13 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             body: Notification = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> NotificationHttpRequest: ...
         def list(
-            self,
-            *,
-            bucket: str,
-            provisionalUserProject: str = ...,
-            userProject: str = ...,
-            **kwargs: typing.Any
+            self, *, bucket: str, userProject: str = ..., **kwargs: typing.Any
         ) -> NotificationsHttpRequest: ...
+
     @typing.type_check_only
     class ObjectAccessControlsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -333,7 +304,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             object: str,
             entity: str,
             generation: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -344,7 +314,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             object: str,
             entity: str,
             generation: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
@@ -355,7 +324,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             object: str,
             body: ObjectAccessControl = ...,
             generation: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
@@ -365,7 +333,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             generation: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlsHttpRequest: ...
@@ -377,7 +344,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             entity: str,
             body: ObjectAccessControl = ...,
             generation: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
@@ -389,10 +355,10 @@ class StorageResource(googleapiclient.discovery.Resource):
             entity: str,
             body: ObjectAccessControl = ...,
             generation: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
+
     @typing.type_check_only
     class ObjectsResource(googleapiclient.discovery.Resource):
         def compose(
@@ -412,7 +378,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifGenerationMatch: str = ...,
             ifMetagenerationMatch: str = ...,
             kmsKeyName: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectHttpRequest: ...
@@ -442,7 +407,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifSourceMetagenerationMatch: str = ...,
             ifSourceMetagenerationNotMatch: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             sourceGeneration: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
@@ -457,7 +421,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifGenerationNotMatch: str = ...,
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -472,7 +435,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectHttpRequest: ...
@@ -482,7 +444,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             object: str,
             generation: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
@@ -507,7 +468,6 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ] = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectHttpRequest: ...
@@ -522,7 +482,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             prefix: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             startOffset: str = ...,
             userProject: str = ...,
             versions: bool = ...,
@@ -551,7 +510,6 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ] = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectHttpRequest: ...
@@ -582,7 +540,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifSourceMetagenerationNotMatch: str = ...,
             maxBytesRewrittenPerCall: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             rewriteToken: str = ...,
             sourceGeneration: str = ...,
             userProject: str = ...,
@@ -595,7 +552,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             object: str,
             body: Policy = ...,
             generation: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
@@ -606,7 +562,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             object: str,
             permissions: str | _list[str],
             generation: str = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> TestIamPermissionsResponseHttpRequest: ...
@@ -630,7 +585,6 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ] = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectHttpRequest: ...
@@ -646,12 +600,12 @@ class StorageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             prefix: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
-            provisionalUserProject: str = ...,
             startOffset: str = ...,
             userProject: str = ...,
             versions: bool = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -705,18 +659,16 @@ class StorageResource(googleapiclient.discovery.Resource):
                 userProject: str = ...,
                 **kwargs: typing.Any
             ) -> HmacKeyMetadataHttpRequest: ...
+
         @typing.type_check_only
         class ServiceAccountResource(googleapiclient.discovery.Resource):
             def get(
-                self,
-                *,
-                projectId: str,
-                provisionalUserProject: str = ...,
-                userProject: str = ...,
-                **kwargs: typing.Any
+                self, *, projectId: str, userProject: str = ..., **kwargs: typing.Any
             ) -> ServiceAccountHttpRequest: ...
+
         def hmacKeys(self) -> HmacKeysResource: ...
         def serviceAccount(self) -> ServiceAccountResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

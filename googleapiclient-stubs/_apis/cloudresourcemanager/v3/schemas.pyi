@@ -83,6 +83,14 @@ class DeleteTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
 class DeleteTagValueMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EffectiveTag(typing_extensions.TypedDict, total=False):
+    inherited: bool
+    namespacedTagKey: str
+    namespacedTagValue: str
+    tagKey: str
+    tagValue: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -145,6 +153,11 @@ class Lien(typing_extensions.TypedDict, total=False):
     restrictions: _list[str]
 
 @typing.type_check_only
+class ListEffectiveTagsResponse(typing_extensions.TypedDict, total=False):
+    effectiveTags: _list[EffectiveTag]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListFoldersResponse(typing_extensions.TypedDict, total=False):
     folders: _list[Folder]
     nextPageToken: str
@@ -163,6 +176,11 @@ class ListProjectsResponse(typing_extensions.TypedDict, total=False):
 class ListTagBindingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     tagBindings: _list[TagBinding]
+
+@typing.type_check_only
+class ListTagHoldsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    tagHolds: _list[TagHold]
 
 @typing.type_check_only
 class ListTagKeysResponse(typing_extensions.TypedDict, total=False):
@@ -267,6 +285,14 @@ class TagBinding(typing_extensions.TypedDict, total=False):
     name: str
     parent: str
     tagValue: str
+
+@typing.type_check_only
+class TagHold(typing_extensions.TypedDict, total=False):
+    createTime: str
+    helpLink: str
+    holder: str
+    name: str
+    origin: str
 
 @typing.type_check_only
 class TagKey(typing_extensions.TypedDict, total=False):

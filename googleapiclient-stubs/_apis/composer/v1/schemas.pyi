@@ -61,6 +61,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
         "ENVIRONMENT_SIZE_LARGE",
     ]
     gkeCluster: str
+    maintenanceWindow: MaintenanceWindow
     nodeConfig: NodeConfig
     nodeCount: int
     privateEnvironmentConfig: PrivateEnvironmentConfig
@@ -102,6 +103,12 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+    endTime: str
+    recurrence: str
+    startTime: str
+
+@typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
     ipAllocationPolicy: IPAllocationPolicy
@@ -126,7 +133,13 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
     operationType: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "CREATE", "DELETE", "UPDATE", "CHECK", "STORE_STATE"
+        "TYPE_UNSPECIFIED",
+        "CREATE",
+        "DELETE",
+        "UPDATE",
+        "CHECK",
+        "SAVE_SNAPSHOT",
+        "LOAD_SNAPSHOT",
     ]
     resource: str
     resourceUuid: str
@@ -142,6 +155,7 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
+    cloudComposerConnectionSubnetwork: str
     cloudComposerNetworkIpv4CidrBlock: str
     cloudComposerNetworkIpv4ReservedRange: str
     cloudSqlIpv4CidrBlock: str

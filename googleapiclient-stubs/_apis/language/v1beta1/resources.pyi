@@ -27,6 +27,7 @@ class CloudNaturalLanguageResource(googleapiclient.discovery.Resource):
         def annotateText(
             self, *, body: AnnotateTextRequest = ..., **kwargs: typing.Any
         ) -> AnnotateTextResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

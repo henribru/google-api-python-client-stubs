@@ -44,6 +44,7 @@ class DatastoreResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleDatastoreAdminV1ListIndexesResponseHttpRequest,
                 previous_response: GoogleDatastoreAdminV1ListIndexesResponse,
             ) -> GoogleDatastoreAdminV1ListIndexesResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -69,6 +70,7 @@ class DatastoreResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                 previous_response: GoogleLongrunningListOperationsResponse,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
         def allocateIds(
             self,
             *,
@@ -114,6 +116,7 @@ class DatastoreResource(googleapiclient.discovery.Resource):
         ) -> RunQueryResponseHttpRequest: ...
         def indexes(self) -> IndexesResource: ...
         def operations(self) -> OperationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

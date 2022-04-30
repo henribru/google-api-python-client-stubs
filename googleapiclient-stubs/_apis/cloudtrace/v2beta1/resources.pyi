@@ -47,7 +47,9 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> TraceSinkHttpRequest: ...
+
         def traceSinks(self) -> TraceSinksResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

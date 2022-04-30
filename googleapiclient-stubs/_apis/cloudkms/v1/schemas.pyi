@@ -14,7 +14,7 @@ class AsymmetricDecryptResponse(typing_extensions.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
     verifiedCiphertextCrc32c: bool
 
@@ -29,7 +29,7 @@ class AsymmetricSignRequest(typing_extensions.TypedDict, total=False):
 class AsymmetricSignResponse(typing_extensions.TypedDict, total=False):
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
     signature: str
     signatureCrc32c: str
@@ -55,6 +55,18 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class Certificate(typing_extensions.TypedDict, total=False):
+    issuer: str
+    notAfterTime: str
+    notBeforeTime: str
+    parsed: bool
+    rawDer: str
+    serialNumber: str
+    sha256Fingerprint: str
+    subject: str
+    subjectAlternativeDnsNames: _list[str]
+
+@typing.type_check_only
 class CertificateChains(typing_extensions.TypedDict, total=False):
     caviumCerts: _list[str]
     googleCardCerts: _list[str]
@@ -63,6 +75,7 @@ class CertificateChains(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CryptoKey(typing_extensions.TypedDict, total=False):
     createTime: str
+    cryptoKeyBackend: str
     destroyScheduledDuration: str
     importOnly: bool
     labels: dict[str, typing.Any]
@@ -119,7 +132,7 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
     importTime: str
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
     reimportEligible: bool
     state: typing_extensions.Literal[
@@ -163,7 +176,7 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
     ]
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
 
 @typing.type_check_only
@@ -178,7 +191,7 @@ class DecryptResponse(typing_extensions.TypedDict, total=False):
     plaintext: str
     plaintextCrc32c: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
     usedPrimary: bool
 
@@ -190,6 +203,13 @@ class Digest(typing_extensions.TypedDict, total=False):
     sha256: str
     sha384: str
     sha512: str
+
+@typing.type_check_only
+class EkmConnection(typing_extensions.TypedDict, total=False):
+    createTime: str
+    etag: str
+    name: str
+    serviceResolvers: _list[ServiceResolver]
 
 @typing.type_check_only
 class EncryptRequest(typing_extensions.TypedDict, total=False):
@@ -204,7 +224,7 @@ class EncryptResponse(typing_extensions.TypedDict, total=False):
     ciphertextCrc32c: str
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
     verifiedAdditionalAuthenticatedDataCrc32c: bool
     verifiedPlaintextCrc32c: bool
@@ -218,13 +238,14 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExternalProtectionLevelOptions(typing_extensions.TypedDict, total=False):
+    ekmConnectionKeyPath: str
     externalKeyUri: str
 
 @typing.type_check_only
 class GenerateRandomBytesRequest(typing_extensions.TypedDict, total=False):
     lengthBytes: int
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
 
 @typing.type_check_only
@@ -279,7 +300,7 @@ class ImportJob(typing_extensions.TypedDict, total=False):
     ]
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
     publicKey: WrappingPublicKey
     state: typing_extensions.Literal[
@@ -308,6 +329,12 @@ class ListCryptoKeyVersionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListCryptoKeysResponse(typing_extensions.TypedDict, total=False):
     cryptoKeys: _list[CryptoKey]
+    nextPageToken: str
+    totalSize: int
+
+@typing.type_check_only
+class ListEkmConnectionsResponse(typing_extensions.TypedDict, total=False):
+    ekmConnections: _list[EkmConnection]
     nextPageToken: str
     totalSize: int
 
@@ -352,7 +379,7 @@ class MacSignResponse(typing_extensions.TypedDict, total=False):
     macCrc32c: str
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
     verifiedDataCrc32c: bool
 
@@ -367,7 +394,7 @@ class MacVerifyRequest(typing_extensions.TypedDict, total=False):
 class MacVerifyResponse(typing_extensions.TypedDict, total=False):
     name: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
     success: bool
     verifiedDataCrc32c: bool
@@ -414,11 +441,18 @@ class PublicKey(typing_extensions.TypedDict, total=False):
     pem: str
     pemCrc32c: str
     protectionLevel: typing_extensions.Literal[
-        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL"
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
 
 @typing.type_check_only
 class RestoreCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ServiceResolver(typing_extensions.TypedDict, total=False):
+    endpointFilter: str
+    hostname: str
+    serverCertificates: _list[Certificate]
+    serviceDirectoryService: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

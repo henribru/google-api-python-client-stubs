@@ -56,6 +56,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     fingerprint: str = ...,
                     **kwargs: typing.Any
                 ) -> EnvironmentHttpRequest: ...
+
             @typing.type_check_only
             class FoldersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -68,6 +69,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                         folderId: str,
                         **kwargs: typing.Any
                     ) -> FolderEntitiesHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -106,6 +108,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> FolderHttpRequest: ...
                 def entities(self) -> EntitiesResource: ...
+
             @typing.type_check_only
             class Move_foldersResource(googleapiclient.discovery.Resource):
                 def update(
@@ -120,6 +123,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     variableId: str | _list[str] = ...,
                     **kwargs: typing.Any
                 ) -> googleapiclient.http.HttpRequest: ...
+
             @typing.type_check_only
             class Reauthorize_environmentsResource(googleapiclient.discovery.Resource):
                 def update(
@@ -131,6 +135,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     body: Environment = ...,
                     **kwargs: typing.Any
                 ) -> EnvironmentHttpRequest: ...
+
             @typing.type_check_only
             class TagsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -170,6 +175,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     fingerprint: str = ...,
                     **kwargs: typing.Any
                 ) -> TagHttpRequest: ...
+
             @typing.type_check_only
             class TriggersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -209,6 +215,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     fingerprint: str = ...,
                     **kwargs: typing.Any
                 ) -> TriggerHttpRequest: ...
+
             @typing.type_check_only
             class VariablesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -248,6 +255,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     fingerprint: str = ...,
                     **kwargs: typing.Any
                 ) -> VariableHttpRequest: ...
+
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -318,6 +326,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     fingerprint: str = ...,
                     **kwargs: typing.Any
                 ) -> ContainerVersionHttpRequest: ...
+
             def create(
                 self, *, accountId: str, body: Container = ..., **kwargs: typing.Any
             ) -> ContainerHttpRequest: ...
@@ -347,6 +356,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
             def triggers(self) -> TriggersResource: ...
             def variables(self) -> VariablesResource: ...
             def versions(self) -> VersionsResource: ...
+
         @typing.type_check_only
         class PermissionsResource(googleapiclient.discovery.Resource):
             def create(
@@ -369,6 +379,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 body: UserAccess = ...,
                 **kwargs: typing.Any
             ) -> UserAccessHttpRequest: ...
+
         def get(
             self, *, accountId: str, **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
@@ -383,6 +394,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
         ) -> AccountHttpRequest: ...
         def containers(self) -> ContainersResource: ...
         def permissions(self) -> PermissionsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

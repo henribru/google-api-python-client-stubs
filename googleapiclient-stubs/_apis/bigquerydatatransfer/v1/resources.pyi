@@ -40,6 +40,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 previous_request: ListDataSourcesResponseHttpRequest,
                 previous_response: ListDataSourcesResponse,
             ) -> ListDataSourcesResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -67,6 +68,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     previous_request: ListDataSourcesResponseHttpRequest,
                     previous_response: ListDataSourcesResponse,
                 ) -> ListDataSourcesResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class TransferConfigsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -100,6 +102,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             previous_request: ListTransferLogsResponseHttpRequest,
                             previous_response: ListTransferLogsResponse,
                         ) -> ListTransferLogsResponseHttpRequest | None: ...
+
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
@@ -141,6 +144,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         previous_response: ListTransferRunsResponse,
                     ) -> ListTransferRunsResponseHttpRequest | None: ...
                     def transferLogs(self) -> TransferLogsResource: ...
+
                 def create(
                     self,
                     *,
@@ -197,6 +201,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> StartManualTransferRunsResponseHttpRequest: ...
                 def runs(self) -> RunsResource: ...
+
             def enrollDataSources(
                 self,
                 *,
@@ -223,6 +228,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def dataSources(self) -> DataSourcesResource: ...
             def transferConfigs(self) -> TransferConfigsResource: ...
+
         @typing.type_check_only
         class TransferConfigsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -253,6 +259,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         previous_request: ListTransferLogsResponseHttpRequest,
                         previous_response: ListTransferLogsResponse,
                     ) -> ListTransferLogsResponseHttpRequest | None: ...
+
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -294,6 +301,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     previous_response: ListTransferRunsResponse,
                 ) -> ListTransferRunsResponseHttpRequest | None: ...
                 def transferLogs(self) -> TransferLogsResource: ...
+
             def create(
                 self,
                 *,
@@ -350,6 +358,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> StartManualTransferRunsResponseHttpRequest: ...
             def runs(self) -> RunsResource: ...
+
         def enrollDataSources(
             self,
             *,
@@ -360,6 +369,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
         def dataSources(self) -> DataSourcesResource: ...
         def locations(self) -> LocationsResource: ...
         def transferConfigs(self) -> TransferConfigsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

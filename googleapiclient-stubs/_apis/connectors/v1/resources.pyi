@@ -35,6 +35,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         previous_request: ListRuntimeActionSchemasResponseHttpRequest,
                         previous_response: ListRuntimeActionSchemasResponse,
                     ) -> ListRuntimeActionSchemasResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class RuntimeEntitySchemasResource(googleapiclient.discovery.Resource):
                     def list(
@@ -51,6 +52,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         previous_request: ListRuntimeEntitySchemasResponseHttpRequest,
                         previous_response: ListRuntimeEntitySchemasResponse,
                     ) -> ListRuntimeEntitySchemasResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -123,6 +125,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def runtimeActionSchemas(self) -> RuntimeActionSchemasResource: ...
                 def runtimeEntitySchemas(self) -> RuntimeEntitySchemasResource: ...
+
             @typing.type_check_only
             class GlobalResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -160,6 +163,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                                 previous_request: ListConnectorVersionsResponseHttpRequest,
                                 previous_response: ListConnectorVersionsResponse,
                             ) -> ListConnectorVersionsResponseHttpRequest | None: ...
+
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> ConnectorHttpRequest: ...
@@ -177,6 +181,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             previous_response: ListConnectorsResponse,
                         ) -> ListConnectorsResponseHttpRequest | None: ...
                         def versions(self) -> VersionsResource: ...
+
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> ProviderHttpRequest: ...
@@ -194,7 +199,9 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         previous_response: ListProvidersResponse,
                     ) -> ListProvidersResponseHttpRequest | None: ...
                     def connectors(self) -> ConnectorsResource: ...
+
                 def providers(self) -> ProvidersResource: ...
+
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -224,6 +231,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ProvidersResource(googleapiclient.discovery.Resource):
                 def getIamPolicy(
@@ -247,6 +255,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -271,7 +280,9 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
             def global_(self) -> GlobalResource: ...
             def operations(self) -> OperationsResource: ...
             def providers(self) -> ProvidersResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

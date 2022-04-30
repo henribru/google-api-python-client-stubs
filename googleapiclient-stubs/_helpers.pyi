@@ -1,10 +1,10 @@
-from typing import Any
+from _typeshed import Incomplete
 
-logger: Any
+logger: Incomplete
 POSITIONAL_WARNING: str
 POSITIONAL_EXCEPTION: str
 POSITIONAL_IGNORE: str
-POSITIONAL_SET: Any
+POSITIONAL_SET: Incomplete
 positional_parameters_enforcement = POSITIONAL_WARNING
 
 def positional(max_positional_args): ...

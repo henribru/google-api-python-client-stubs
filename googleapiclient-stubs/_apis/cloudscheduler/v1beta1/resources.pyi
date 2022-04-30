@@ -70,6 +70,7 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                 def run(
                     self, *, name: str, body: RunJobRequest = ..., **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -88,7 +89,9 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def jobs(self) -> JobsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

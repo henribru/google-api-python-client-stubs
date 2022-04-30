@@ -35,6 +35,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudWebriskV1SearchHashesResponseHttpRequest: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -66,6 +67,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                 previous_response: GoogleLongrunningListOperationsResponse,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
         @typing.type_check_only
         class SubmissionsResource(googleapiclient.discovery.Resource):
             def create(
@@ -75,6 +77,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudWebriskV1Submission = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudWebriskV1SubmissionHttpRequest: ...
+
         @typing.type_check_only
         class UrisResource(googleapiclient.discovery.Resource):
             def submit(
@@ -84,9 +87,11 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudWebriskV1SubmitUriRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
+
         def operations(self) -> OperationsResource: ...
         def submissions(self) -> SubmissionsResource: ...
         def uris(self) -> UrisResource: ...
+
     @typing.type_check_only
     class ThreatListsResource(googleapiclient.discovery.Resource):
         def computeDiff(
@@ -109,6 +114,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             versionToken: str = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudWebriskV1ComputeThreatListDiffResponseHttpRequest: ...
+
     @typing.type_check_only
     class UrisResource(googleapiclient.discovery.Resource):
         def search(
@@ -131,6 +137,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             uri: str = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudWebriskV1SearchUrisResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

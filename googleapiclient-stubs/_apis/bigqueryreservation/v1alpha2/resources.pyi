@@ -25,6 +25,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
             @typing.type_check_only
             class ReservationGrantsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -50,6 +51,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     previous_request: ListReservationGrantsResponseHttpRequest,
                     previous_response: ListReservationGrantsResponse,
                 ) -> ListReservationGrantsResponseHttpRequest | None: ...
+
             @typing.type_check_only
             class ReservationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -73,6 +75,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         previous_request: ListSlotPoolsResponseHttpRequest,
                         previous_response: ListSlotPoolsResponse,
                     ) -> ListSlotPoolsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -118,6 +121,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> ReservationHttpRequest: ...
                 def slotPools(self) -> SlotPoolsResource: ...
+
             def searchReservationGrants(
                 self,
                 *,
@@ -135,7 +139,9 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def reservationGrants(self) -> ReservationGrantsResource: ...
             def reservations(self) -> ReservationsResource: ...
+
         def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

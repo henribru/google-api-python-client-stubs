@@ -30,6 +30,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 previous_request: ListProjectBillingInfoResponseHttpRequest,
                 previous_response: ListProjectBillingInfoResponse,
             ) -> ListProjectBillingInfoResponseHttpRequest | None: ...
+
         def create(
             self, *, body: BillingAccount = ..., **kwargs: typing.Any
         ) -> BillingAccountHttpRequest: ...
@@ -79,6 +80,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
+
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def getBillingInfo(
@@ -87,6 +89,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         def updateBillingInfo(
             self, *, name: str, body: ProjectBillingInfo = ..., **kwargs: typing.Any
         ) -> ProjectBillingInfoHttpRequest: ...
+
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -107,6 +110,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 previous_request: ListSkusResponseHttpRequest,
                 previous_response: ListSkusResponse,
             ) -> ListSkusResponseHttpRequest | None: ...
+
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListServicesResponseHttpRequest: ...
@@ -116,6 +120,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             previous_response: ListServicesResponse,
         ) -> ListServicesResponseHttpRequest | None: ...
         def skus(self) -> SkusResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -40,6 +40,13 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             previous_request: ListAssetsResponseHttpRequest,
             previous_response: ListAssetsResponse,
         ) -> ListAssetsResponseHttpRequest | None: ...
+
+    @typing.type_check_only
+    class EffectiveIamPoliciesResource(googleapiclient.discovery.Resource):
+        def batchGet(
+            self, *, scope: str, names: str | _list[str] = ..., **kwargs: typing.Any
+        ) -> BatchGetEffectiveIamPoliciesResponseHttpRequest: ...
+
     @typing.type_check_only
     class FeedsResource(googleapiclient.discovery.Resource):
         def create(
@@ -53,9 +60,11 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
         def patch(
             self, *, name: str, body: UpdateFeedRequest = ..., **kwargs: typing.Any
         ) -> FeedHttpRequest: ...
+
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+
     @typing.type_check_only
     class SavedQueriesResource(googleapiclient.discovery.Resource):
         def create(
@@ -90,6 +99,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> SavedQueryHttpRequest: ...
+
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def analyzeIamPolicy(
@@ -183,6 +193,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             previous_request: SearchAllResourcesResponseHttpRequest,
             previous_response: SearchAllResourcesResponse,
         ) -> SearchAllResourcesResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -196,6 +207,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def assets(self) -> AssetsResource: ...
+    def effectiveIamPolicies(self) -> EffectiveIamPoliciesResource: ...
     def feeds(self) -> FeedsResource: ...
     def operations(self) -> OperationsResource: ...
     def savedQueries(self) -> SavedQueriesResource: ...
@@ -224,6 +236,14 @@ class BatchGetAssetsHistoryResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchGetAssetsHistoryResponse: ...
+
+@typing.type_check_only
+class BatchGetEffectiveIamPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BatchGetEffectiveIamPoliciesResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

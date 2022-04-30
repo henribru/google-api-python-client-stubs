@@ -11,6 +11,9 @@ class Account(typing_extensions.TypedDict, total=False):
     name: str
     pendingTasks: _list[str]
     premium: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "READY", "NEEDS_ATTENTION", "CLOSED"
+    ]
     timeZone: TimeZone
 
 @typing.type_check_only
@@ -18,6 +21,9 @@ class AdClient(typing_extensions.TypedDict, total=False):
     name: str
     productCode: str
     reportingDimensionId: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "READY", "GETTING_READY", "REQUIRES_REVIEW"
+    ]
 
 @typing.type_check_only
 class AdClientAdCode(typing_extensions.TypedDict, total=False):

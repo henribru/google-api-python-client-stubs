@@ -29,6 +29,7 @@ class DatastoreResource(googleapiclient.discovery.Resource):
             body: GoogleDatastoreAdminV1beta1ImportEntitiesRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleLongrunningOperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

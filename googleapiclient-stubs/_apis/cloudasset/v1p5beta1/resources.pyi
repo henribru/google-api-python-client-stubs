@@ -37,6 +37,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             previous_request: ListAssetsResponseHttpRequest,
             previous_response: ListAssetsResponse,
         ) -> ListAssetsResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

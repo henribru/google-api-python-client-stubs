@@ -20,13 +20,12 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+
         @typing.type_check_only
-        class SshPublicKeyResource(googleapiclient.discovery.Resource):
+        class SshPublicKeysResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, parent: str, body: SshPublicKey = ..., **kwargs: typing.Any
             ) -> SshPublicKeyHttpRequest: ...
-        @typing.type_check_only
-        class SshPublicKeysResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
@@ -41,6 +40,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> SshPublicKeyHttpRequest: ...
+
         def getLoginProfile(
             self,
             *,
@@ -58,8 +58,8 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> ImportSshPublicKeyResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
-        def sshPublicKey(self) -> SshPublicKeyResource: ...
         def sshPublicKeys(self) -> SshPublicKeysResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

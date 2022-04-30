@@ -9,9 +9,25 @@ class AddGroupMigrationRequest(typing_extensions.TypedDict, total=False):
     migratingVm: str
 
 @typing.type_check_only
+class ApplianceVersion(typing_extensions.TypedDict, total=False):
+    critical: bool
+    releaseNotesUri: str
+    uri: str
+    version: str
+
+@typing.type_check_only
 class AppliedLicense(typing_extensions.TypedDict, total=False):
     osLicense: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "NONE", "PAYG", "BYOL"]
+
+@typing.type_check_only
+class AvailableUpdates(typing_extensions.TypedDict, total=False):
+    inPlaceUpdate: ApplianceVersion
+    newDeployableAppliance: ApplianceVersion
+
+@typing.type_check_only
+class AwsSourceVmDetails(typing_extensions.TypedDict, total=False):
+    firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
 
 @typing.type_check_only
 class CancelCloneJobRequest(typing_extensions.TypedDict, total=False): ...
@@ -26,6 +42,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 class CloneJob(typing_extensions.TypedDict, total=False):
     computeEngineTargetDetails: ComputeEngineTargetDetails
     createTime: str
+    endTime: str
     error: Status
     name: str
     state: typing_extensions.Literal[
@@ -42,6 +59,7 @@ class CloneJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
+    additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
     bootOption: typing_extensions.Literal[
         "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
@@ -74,6 +92,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
+    additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
     bootOption: typing_extensions.Literal[
         "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
@@ -119,6 +138,7 @@ class ComputeScheduling(typing_extensions.TypedDict, total=False):
 class CutoverJob(typing_extensions.TypedDict, total=False):
     computeEngineTargetDetails: ComputeEngineTargetDetails
     createTime: str
+    endTime: str
     error: Status
     name: str
     progressPercent: int
@@ -137,6 +157,9 @@ class CutoverJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DatacenterConnector(typing_extensions.TypedDict, total=False):
+    applianceInfrastructureVersion: str
+    applianceSoftwareVersion: str
+    availableVersions: AvailableUpdates
     bucket: str
     createTime: str
     error: Status
@@ -148,6 +171,7 @@ class DatacenterConnector(typing_extensions.TypedDict, total=False):
     ]
     stateTime: str
     updateTime: str
+    upgradeStatus: UpgradeStatus
     version: str
 
 @typing.type_check_only
@@ -247,6 +271,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MigratingVm(typing_extensions.TypedDict, total=False):
+    awsSourceVmDetails: AwsSourceVmDetails
     computeEngineTargetDefaults: ComputeEngineTargetDefaults
     createTime: str
     currentSyncInfo: ReplicationCycle
@@ -291,6 +316,7 @@ class MigrationError(typing_extensions.TypedDict, total=False):
         "CLONE_ERROR",
         "CUTOVER_ERROR",
         "UTILIZATION_REPORT_ERROR",
+        "APPLIANCE_UPGRADE_ERROR",
     ]
     errorMessage: LocalizedMessage
     errorTime: str
@@ -376,6 +402,20 @@ class TargetProject(typing_extensions.TypedDict, total=False):
     name: str
     project: str
     updateTime: str
+
+@typing.type_check_only
+class UpgradeApplianceRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
+class UpgradeStatus(typing_extensions.TypedDict, total=False):
+    error: Status
+    previousVersion: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "RUNNING", "FAILED", "SUCCEEDED"
+    ]
+    version: str
 
 @typing.type_check_only
 class UtilizationReport(typing_extensions.TypedDict, total=False):

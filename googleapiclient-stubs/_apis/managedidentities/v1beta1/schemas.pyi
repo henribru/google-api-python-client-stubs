@@ -127,11 +127,13 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
 ):
     consumerDefinedName: str
     createTime: str
+    instanceType: str
     labels: dict[str, typing.Any]
     maintenancePolicyNames: dict[str, typing.Any]
     maintenanceSchedules: dict[str, typing.Any]
     maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
     name: str
+    notificationParameters: dict[str, typing.Any]
     producerMetadata: dict[str, typing.Any]
     provisionedResources: _list[
         GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource

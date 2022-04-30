@@ -16,6 +16,7 @@ class Assignment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BiReservation(typing_extensions.TypedDict, total=False):
     name: str
+    preferredTables: _list[TableReference]
     size: str
     updateTime: str
 
@@ -24,6 +25,7 @@ class CapacityCommitment(typing_extensions.TypedDict, total=False):
     commitmentEndTime: str
     commitmentStartTime: str
     failureStatus: Status
+    multiRegionAuxiliary: bool
     name: str
     plan: typing_extensions.Literal[
         "COMMITMENT_PLAN_UNSPECIFIED", "FLEX", "TRIAL", "MONTHLY", "ANNUAL"
@@ -62,8 +64,10 @@ class MoveAssignmentRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Reservation(typing_extensions.TypedDict, total=False):
+    concurrency: str
     creationTime: str
     ignoreIdleSlots: bool
+    multiRegionAuxiliary: bool
     name: str
     slotCapacity: str
     updateTime: str
@@ -92,3 +96,9 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TableReference(typing_extensions.TypedDict, total=False):
+    datasetId: str
+    projectId: str
+    tableId: str

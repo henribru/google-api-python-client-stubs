@@ -173,16 +173,6 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class FailureTrace(typing_extensions.TypedDict, total=False):
-    frames: _list[Frame]
-
-@typing.type_check_only
-class Frame(typing_extensions.TypedDict, total=False):
-    targetName: str
-    workflowGuid: str
-    zoneId: str
-
-@typing.type_check_only
 class GcRule(dict[str, typing.Any]): ...
 
 @typing.type_check_only
@@ -199,6 +189,16 @@ class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
+
+@typing.type_check_only
+class HotTablet(typing_extensions.TypedDict, total=False):
+    endKey: str
+    endTime: str
+    name: str
+    nodeCpuUsagePercent: float
+    startKey: str
+    startTime: str
+    tableName: str
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
@@ -227,6 +227,11 @@ class ListBackupsResponse(typing_extensions.TypedDict, total=False):
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
     clusters: _list[Cluster]
     failedLocations: _list[str]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListHotTabletsResponse(typing_extensions.TypedDict, total=False):
+    hotTablets: _list[HotTablet]
     nextPageToken: str
 
 @typing.type_check_only

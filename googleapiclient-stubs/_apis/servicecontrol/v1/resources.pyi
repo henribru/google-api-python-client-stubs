@@ -28,6 +28,7 @@ class ServiceControlResource(googleapiclient.discovery.Resource):
         def report(
             self, *, serviceName: str, body: ReportRequest = ..., **kwargs: typing.Any
         ) -> ReportResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
