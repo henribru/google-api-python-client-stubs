@@ -5,6 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class GoogleCloudOrgpolicyV2AlternatePolicySpec(
+    typing_extensions.TypedDict, total=False
+):
+    launch: str
+    spec: GoogleCloudOrgpolicyV2PolicySpec
+
+@typing.type_check_only
 class GoogleCloudOrgpolicyV2Constraint(typing_extensions.TypedDict, total=False):
     booleanConstraint: GoogleCloudOrgpolicyV2ConstraintBooleanConstraint
     constraintDefault: typing_extensions.Literal[
@@ -43,6 +50,7 @@ class GoogleCloudOrgpolicyV2ListPoliciesResponse(
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2Policy(typing_extensions.TypedDict, total=False):
+    alternate: GoogleCloudOrgpolicyV2AlternatePolicySpec
     name: str
     spec: GoogleCloudOrgpolicyV2PolicySpec
 

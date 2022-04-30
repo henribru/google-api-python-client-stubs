@@ -174,7 +174,12 @@ class GamesResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PlayersResource(googleapiclient.discovery.Resource):
         def get(
-            self, *, playerId: str, language: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            playerId: str,
+            language: str = ...,
+            playerIdConsistencyToken: str = ...,
+            **kwargs: typing.Any
         ) -> PlayerHttpRequest: ...
         def list(
             self,

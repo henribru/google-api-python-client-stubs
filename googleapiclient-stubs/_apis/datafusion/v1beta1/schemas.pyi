@@ -11,13 +11,6 @@ class Accelerator(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AddDnsPeeringRequest(typing_extensions.TypedDict, total=False):
-    dnsPeering: DnsPeering
-
-@typing.type_check_only
-class AddDnsPeeringResponse(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -46,9 +39,9 @@ class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
 class DnsPeering(typing_extensions.TypedDict, total=False):
     description: str
     domain: str
+    name: str
     targetNetwork: str
     targetProject: str
-    zone: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -183,13 +176,6 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
-
-@typing.type_check_only
-class RemoveDnsPeeringRequest(typing_extensions.TypedDict, total=False):
-    zone: str
-
-@typing.type_check_only
-class RemoveDnsPeeringResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RemoveIamPolicyRequest(typing_extensions.TypedDict, total=False): ...

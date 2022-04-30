@@ -67,6 +67,23 @@ class LoggingResource(googleapiclient.discovery.Resource):
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class LogsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            resourceNames: str | _list[str] = ...,
+                            **kwargs: typing.Any
+                        ) -> ListLogsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListLogsResponseHttpRequest,
+                            previous_response: ListLogsResponse,
+                        ) -> ListLogsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -99,6 +116,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def logs(self) -> LogsResource: ...
 
                 def create(
                     self,
@@ -262,6 +280,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def buckets(self) -> BucketsResource: ...
         def exclusions(self) -> ExclusionsResource: ...
         def locations(self) -> LocationsResource: ...
@@ -361,6 +382,23 @@ class LoggingResource(googleapiclient.discovery.Resource):
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class LogsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            resourceNames: str | _list[str] = ...,
+                            **kwargs: typing.Any
+                        ) -> ListLogsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListLogsResponseHttpRequest,
+                            previous_response: ListLogsResponse,
+                        ) -> ListLogsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -396,6 +434,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def logs(self) -> LogsResource: ...
 
                 def create(
                     self,
@@ -559,6 +598,17 @@ class LoggingResource(googleapiclient.discovery.Resource):
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
+        def updateSettings(
+            self,
+            *,
+            name: str,
+            body: Settings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def exclusions(self) -> ExclusionsResource: ...
         def locations(self) -> LocationsResource: ...
         def logs(self) -> LogsResource: ...
@@ -765,6 +815,23 @@ class LoggingResource(googleapiclient.discovery.Resource):
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class LogsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            resourceNames: str | _list[str] = ...,
+                            **kwargs: typing.Any
+                        ) -> ListLogsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListLogsResponseHttpRequest,
+                            previous_response: ListLogsResponse,
+                        ) -> ListLogsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -800,6 +867,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def logs(self) -> LogsResource: ...
 
                 def create(
                     self,
@@ -963,6 +1031,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def updateCmekSettings(
             self,
             *,
@@ -971,6 +1042,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def updateSettings(
+            self,
+            *,
+            name: str,
+            body: Settings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def exclusions(self) -> ExclusionsResource: ...
         def locations(self) -> LocationsResource: ...
         def logs(self) -> LogsResource: ...
@@ -1017,6 +1096,23 @@ class LoggingResource(googleapiclient.discovery.Resource):
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class LogsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            resourceNames: str | _list[str] = ...,
+                            **kwargs: typing.Any
+                        ) -> ListLogsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListLogsResponseHttpRequest,
+                            previous_response: ListLogsResponse,
+                        ) -> ListLogsResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -1052,6 +1148,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def logs(self) -> LogsResource: ...
 
                 def create(
                     self,
@@ -1243,6 +1340,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def exclusions(self) -> ExclusionsResource: ...
         def locations(self) -> LocationsResource: ...
         def logs(self) -> LogsResource: ...
@@ -1291,6 +1391,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
         def getCmekSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def getSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
         def updateCmekSettings(
             self,
             *,
@@ -1299,6 +1402,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> CmekSettingsHttpRequest: ...
+        def updateSettings(
+            self,
+            *,
+            name: str,
+            body: Settings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SettingsHttpRequest: ...
 
     def new_batch_http_request(
         self,
@@ -1477,6 +1588,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Settings: ...
 
 @typing.type_check_only
 class TailLogEntriesResponseHttpRequest(googleapiclient.http.HttpRequest):

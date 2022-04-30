@@ -434,6 +434,13 @@ class ApigeeResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class BalanceResource(googleapiclient.discovery.Resource):
+                def adjust(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1AdjustDeveloperBalanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1DeveloperBalanceHttpRequest: ...
                 def credit(
                     self,
                     *,
@@ -522,6 +529,36 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def attributes(self) -> AttributesResource: ...
             def balance(self) -> BalanceResource: ...
             def subscriptions(self) -> SubscriptionsResource: ...
+
+        @typing.type_check_only
+        class EndpointAttachmentsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudApigeeV1EndpointAttachment = ...,
+                endpointAttachmentId: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1EndpointAttachmentHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1ListEndpointAttachmentsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudApigeeV1ListEndpointAttachmentsResponseHttpRequest,
+                previous_response: GoogleCloudApigeeV1ListEndpointAttachmentsResponse,
+            ) -> GoogleCloudApigeeV1ListEndpointAttachmentsResponseHttpRequest | None: ...
 
         @typing.type_check_only
         class EnvgroupsResource(googleapiclient.discovery.Resource):
@@ -896,6 +933,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 def getResult(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleApiHttpBodyHttpRequest: ...
+                def getResulturl(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1GetAsyncQueryResultUrlResponseHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -1595,6 +1635,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
         def datacollectors(self) -> DatacollectorsResource: ...
         def deployments(self) -> DeploymentsResource: ...
         def developers(self) -> DevelopersResource: ...
+        def endpointAttachments(self) -> EndpointAttachmentsResource: ...
         def envgroups(self) -> EnvgroupsResource: ...
         def environments(self) -> EnvironmentsResource: ...
         def hostQueries(self) -> HostQueriesResource: ...
@@ -1880,6 +1921,16 @@ class GoogleCloudApigeeV1DeveloperSubscriptionHttpRequest(
     ) -> GoogleCloudApigeeV1DeveloperSubscription: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1EndpointAttachmentHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1EndpointAttachment: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1948,6 +1999,16 @@ class GoogleCloudApigeeV1GenerateUploadUrlResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1GenerateUploadUrlResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1GetAsyncQueryResultUrlResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1GetAsyncQueryResultUrlResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1IngressConfigHttpRequest(googleapiclient.http.HttpRequest):
@@ -2118,6 +2179,16 @@ class GoogleCloudApigeeV1ListDeveloperSubscriptionsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ListDeveloperSubscriptionsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListEndpointAttachmentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1ListEndpointAttachmentsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponseHttpRequest(

@@ -26,3 +26,6 @@ class ListDatabaseInstancesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReenableDatabaseInstanceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteDatabaseInstanceRequest(typing_extensions.TypedDict, total=False): ...

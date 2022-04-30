@@ -96,6 +96,13 @@ class GoogleCloudDatapipelinesV1LaunchTemplateRequest(
     validateOnly: bool
 
 @typing.type_check_only
+class GoogleCloudDatapipelinesV1ListJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    jobs: _list[GoogleCloudDatapipelinesV1Job]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudDatapipelinesV1ListPipelinesResponse(
     typing_extensions.TypedDict, total=False
 ):

@@ -238,26 +238,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         ) -> DatafeedstatusesListResponseHttpRequest | None: ...
 
     @typing.type_check_only
-    class InventoryResource(googleapiclient.discovery.Resource):
-        def custombatch(
-            self,
-            *,
-            body: InventoryCustomBatchRequest = ...,
-            dryRun: bool = ...,
-            **kwargs: typing.Any
-        ) -> InventoryCustomBatchResponseHttpRequest: ...
-        def set(
-            self,
-            *,
-            merchantId: str,
-            storeCode: str,
-            productId: str,
-            body: InventorySetRequest = ...,
-            dryRun: bool = ...,
-            **kwargs: typing.Any
-        ) -> InventorySetResponseHttpRequest: ...
-
-    @typing.type_check_only
     class LiasettingsResource(googleapiclient.discovery.Resource):
         def custombatch(
             self,
@@ -800,7 +780,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def accounttax(self) -> AccounttaxResource: ...
     def datafeeds(self) -> DatafeedsResource: ...
     def datafeedstatuses(self) -> DatafeedstatusesResource: ...
-    def inventory(self) -> InventoryResource: ...
     def liasettings(self) -> LiasettingsResource: ...
     def orderinvoices(self) -> OrderinvoicesResource: ...
     def orderreports(self) -> OrderreportsResource: ...
@@ -962,22 +941,6 @@ class DatafeedstatusesListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DatafeedstatusesListResponse: ...
-
-@typing.type_check_only
-class InventoryCustomBatchResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> InventoryCustomBatchResponse: ...
-
-@typing.type_check_only
-class InventorySetResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> InventorySetResponse: ...
 
 @typing.type_check_only
 class LiaSettingsHttpRequest(googleapiclient.http.HttpRequest):

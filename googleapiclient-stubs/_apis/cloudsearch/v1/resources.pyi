@@ -474,6 +474,17 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             toDate_year: int = ...,
             **kwargs: typing.Any
         ) -> GetCustomerQueryStatsResponseHttpRequest: ...
+        def getSearchapplication(
+            self,
+            *,
+            endDate_day: int = ...,
+            endDate_month: int = ...,
+            endDate_year: int = ...,
+            startDate_day: int = ...,
+            startDate_month: int = ...,
+            startDate_year: int = ...,
+            **kwargs: typing.Any
+        ) -> GetCustomerSearchApplicationStatsResponseHttpRequest: ...
         def getSession(
             self,
             *,
@@ -567,6 +578,16 @@ class GetCustomerQueryStatsResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetCustomerQueryStatsResponse: ...
+
+@typing.type_check_only
+class GetCustomerSearchApplicationStatsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GetCustomerSearchApplicationStatsResponse: ...
 
 @typing.type_check_only
 class GetCustomerSessionStatsResponseHttpRequest(googleapiclient.http.HttpRequest):

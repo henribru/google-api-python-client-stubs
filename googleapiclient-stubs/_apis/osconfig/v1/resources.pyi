@@ -201,6 +201,20 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> PatchDeploymentHttpRequest: ...
+            def pause(
+                self,
+                *,
+                name: str,
+                body: PausePatchDeploymentRequest = ...,
+                **kwargs: typing.Any
+            ) -> PatchDeploymentHttpRequest: ...
+            def resume(
+                self,
+                *,
+                name: str,
+                body: ResumePatchDeploymentRequest = ...,
+                **kwargs: typing.Any
+            ) -> PatchDeploymentHttpRequest: ...
 
         @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):

@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 from googleapiclient.errors import (
     BatchError as BatchError,
@@ -10,21 +10,21 @@ from googleapiclient.errors import (
 )
 from googleapiclient.model import JsonModel as JsonModel
 
-LOGGER: Any
-DEFAULT_CHUNK_SIZE: Any
+LOGGER: Incomplete
+DEFAULT_CHUNK_SIZE: Incomplete
 MAX_URI_LENGTH: int
 MAX_BATCH_LIMIT: int
 DEFAULT_HTTP_TIMEOUT_SEC: int
 
 class MediaUploadProgress:
-    resumable_progress: Any
-    total_size: Any
+    resumable_progress: Incomplete
+    total_size: Incomplete
     def __init__(self, resumable_progress, total_size) -> None: ...
     def progress(self): ...
 
 class MediaDownloadProgress:
-    resumable_progress: Any
-    total_size: Any
+    resumable_progress: Incomplete
+    total_size: Incomplete
     def __init__(self, resumable_progress, total_size) -> None: ...
     def progress(self): ...
 
@@ -53,7 +53,11 @@ class MediaIoBaseUpload(MediaUpload):
 
 class MediaFileUpload(MediaIoBaseUpload):
     def __init__(
-        self, filename, mimetype: Any | None = ..., chunksize=..., resumable: bool = ...
+        self,
+        filename,
+        mimetype: Incomplete | None = ...,
+        chunksize=...,
+        resumable: bool = ...,
     ) -> None: ...
     def __del__(self) -> None: ...
     def to_json(self): ...
@@ -74,17 +78,17 @@ class _StreamSlice:
     def read(self, n: int = ...): ...
 
 class HttpRequest:
-    uri: Any
-    method: Any
-    body: Any
-    headers: Any
-    methodId: Any
-    http: Any
-    postproc: Any
-    resumable: Any
-    response_callbacks: Any
-    body_size: Any
-    resumable_uri: Any
+    uri: Incomplete
+    method: Incomplete
+    body: Incomplete
+    headers: Incomplete
+    methodId: Incomplete
+    http: Incomplete
+    postproc: Incomplete
+    resumable: Incomplete
+    response_callbacks: Incomplete
+    body_size: Incomplete
+    resumable_uri: Incomplete
     resumable_progress: int
     def __init__(
         self,
@@ -92,14 +96,14 @@ class HttpRequest:
         postproc,
         uri,
         method: str = ...,
-        body: Any | None = ...,
-        headers: Any | None = ...,
-        methodId: Any | None = ...,
-        resumable: Any | None = ...,
+        body: Incomplete | None = ...,
+        headers: Incomplete | None = ...,
+        methodId: Incomplete | None = ...,
+        resumable: Incomplete | None = ...,
     ) -> None: ...
-    def execute(self, http: Any | None = ..., num_retries: int = ...): ...
+    def execute(self, http: Incomplete | None = ..., num_retries: int = ...): ...
     def add_response_callback(self, cb) -> None: ...
-    def next_chunk(self, http: Any | None = ..., num_retries: int = ...): ...
+    def next_chunk(self, http: Incomplete | None = ..., num_retries: int = ...): ...
     def to_json(self): ...
     @staticmethod
     def from_json(s, http, postproc): ...
@@ -108,23 +112,26 @@ class HttpRequest:
 
 class BatchHttpRequest:
     def __init__(
-        self, callback: Any | None = ..., batch_uri: Any | None = ...
+        self, callback: Incomplete | None = ..., batch_uri: Incomplete | None = ...
     ) -> None: ...
     def add(
-        self, request, callback: Any | None = ..., request_id: Any | None = ...
+        self,
+        request,
+        callback: Incomplete | None = ...,
+        request_id: Incomplete | None = ...,
     ) -> None: ...
-    def execute(self, http: Any | None = ...) -> None: ...
+    def execute(self, http: Incomplete | None = ...) -> None: ...
 
 class HttpRequestMock:
-    resp: Any
-    content: Any
-    postproc: Any
+    resp: Incomplete
+    content: Incomplete
+    postproc: Incomplete
     def __init__(self, resp, content, postproc) -> None: ...
-    def execute(self, http: Any | None = ...): ...
+    def execute(self, http: Incomplete | None = ...): ...
 
 class RequestMockBuilder:
-    responses: Any
-    check_unexpected: Any
+    responses: Incomplete
+    check_unexpected: Incomplete
     def __init__(self, responses, check_unexpected: bool = ...) -> None: ...
     def __call__(
         self,
@@ -132,45 +139,45 @@ class RequestMockBuilder:
         postproc,
         uri,
         method: str = ...,
-        body: Any | None = ...,
-        headers: Any | None = ...,
-        methodId: Any | None = ...,
-        resumable: Any | None = ...,
+        body: Incomplete | None = ...,
+        headers: Incomplete | None = ...,
+        methodId: Incomplete | None = ...,
+        resumable: Incomplete | None = ...,
     ): ...
 
 class HttpMock:
-    data: Any
-    response_headers: Any
-    headers: Any
-    uri: Any
-    method: Any
-    body: Any
+    data: Incomplete
+    response_headers: Incomplete
+    headers: Incomplete
+    uri: Incomplete
+    method: Incomplete
+    body: Incomplete
     def __init__(
-        self, filename: Any | None = ..., headers: Any | None = ...
+        self, filename: Incomplete | None = ..., headers: Incomplete | None = ...
     ) -> None: ...
     def request(
         self,
         uri,
         method: str = ...,
-        body: Any | None = ...,
-        headers: Any | None = ...,
+        body: Incomplete | None = ...,
+        headers: Incomplete | None = ...,
         redirections: int = ...,
-        connection_type: Any | None = ...,
+        connection_type: Incomplete | None = ...,
     ): ...
     def close(self) -> None: ...
 
 class HttpMockSequence:
     follow_redirects: bool
-    request_sequence: Any
+    request_sequence: Incomplete
     def __init__(self, iterable) -> None: ...
     def request(
         self,
         uri,
         method: str = ...,
-        body: Any | None = ...,
-        headers: Any | None = ...,
+        body: Incomplete | None = ...,
+        headers: Incomplete | None = ...,
         redirections: int = ...,
-        connection_type: Any | None = ...,
+        connection_type: Incomplete | None = ...,
     ): ...
 
 def set_user_agent(http, user_agent): ...

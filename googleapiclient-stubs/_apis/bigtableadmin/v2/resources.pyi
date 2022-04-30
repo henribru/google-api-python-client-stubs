@@ -148,6 +148,24 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
+                @typing.type_check_only
+                class HotTabletsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        endTime: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        startTime: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListHotTabletsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListHotTabletsResponseHttpRequest,
+                        previous_response: ListHotTabletsResponse,
+                    ) -> ListHotTabletsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -182,6 +200,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     self, *, name: str, body: Cluster = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
+                def hotTablets(self) -> HotTabletsResource: ...
 
             @typing.type_check_only
             class TablesResource(googleapiclient.discovery.Resource):
@@ -461,6 +480,14 @@ class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListClustersResponse: ...
+
+@typing.type_check_only
+class ListHotTabletsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListHotTabletsResponse: ...
 
 @typing.type_check_only
 class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):

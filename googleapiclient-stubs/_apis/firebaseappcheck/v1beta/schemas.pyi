@@ -5,18 +5,19 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse(
-    typing_extensions.TypedDict, total=False
-):
-    challenge: str
-    ttl: str
-
-@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaAppAttestConfig(
     typing_extensions.TypedDict, total=False
 ):
     name: str
     tokenTtl: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaAppCheckToken(
+    typing_extensions.TypedDict, total=False
+):
+    attestationToken: str
+    token: str
+    ttl: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaAttestationTokenResponse(
@@ -48,6 +49,12 @@ class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponse(
     typing_extensions.TypedDict, total=False
 ):
     configs: _list[GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig]
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    configs: _list[GoogleFirebaseAppcheckV1betaRecaptchaV3Config]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponse(
@@ -104,6 +111,7 @@ class GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationRequest(
 class GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse(
     typing_extensions.TypedDict, total=False
 ):
+    appCheckToken: GoogleFirebaseAppcheckV1betaAppCheckToken
     artifact: str
     attestationToken: GoogleFirebaseAppcheckV1betaAttestationTokenResponse
 
@@ -138,6 +146,12 @@ class GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest(
     recaptchaToken: str
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest(
+    typing_extensions.TypedDict, total=False
+):
+    recaptchaV3Token: str
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaExchangeSafetyNetTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -147,6 +161,13 @@ class GoogleFirebaseAppcheckV1betaExchangeSafetyNetTokenRequest(
 class GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse(
+    typing_extensions.TypedDict, total=False
+):
+    challenge: str
+    ttl: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaListDebugTokensResponse(
@@ -192,6 +213,15 @@ class GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig(
 ):
     name: str
     siteKey: str
+    tokenTtl: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaRecaptchaV3Config(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    siteSecret: str
+    siteSecretSet: bool
     tokenTtl: str
 
 @typing.type_check_only

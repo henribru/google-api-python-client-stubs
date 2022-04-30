@@ -48,13 +48,20 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
     ]
     createTime: str
     displayName: str
+    enableSovereignControls: bool
     etag: str
+    kajEnrollmentState: typing_extensions.Literal[
+        "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+        "KAJ_ENROLLMENT_STATE_PENDING",
+        "KAJ_ENROLLMENT_STATE_COMPLETE",
+    ]
     kmsSettings: GoogleCloudAssuredworkloadsV1WorkloadKMSSettings
     labels: dict[str, typing.Any]
     name: str
     provisionedResourcesParent: str
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceSettings]
     resources: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceInfo]
+    saaEnrollmentResponse: GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1WorkloadKMSSettings(
@@ -71,6 +78,7 @@ class GoogleCloudAssuredworkloadsV1WorkloadResourceInfo(
     resourceType: typing_extensions.Literal[
         "RESOURCE_TYPE_UNSPECIFIED",
         "CONSUMER_PROJECT",
+        "CONSUMER_FOLDER",
         "ENCRYPTION_KEYS_PROJECT",
         "KEYRING",
     ]
@@ -84,8 +92,18 @@ class GoogleCloudAssuredworkloadsV1WorkloadResourceSettings(
     resourceType: typing_extensions.Literal[
         "RESOURCE_TYPE_UNSPECIFIED",
         "CONSUMER_PROJECT",
+        "CONSUMER_FOLDER",
         "ENCRYPTION_KEYS_PROJECT",
         "KEYRING",
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    setupErrors: _list[str]
+    setupStatus: typing_extensions.Literal[
+        "SETUP_STATE_UNSPECIFIED", "STATUS_PENDING", "STATUS_COMPLETE"
     ]
 
 @typing.type_check_only
@@ -129,16 +147,23 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
     ]
     createTime: str
     displayName: str
+    enableSovereignControls: bool
     etag: str
     fedrampHighSettings: GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampHighSettings
     fedrampModerateSettings: GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings
     il4Settings: GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings
+    kajEnrollmentState: typing_extensions.Literal[
+        "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+        "KAJ_ENROLLMENT_STATE_PENDING",
+        "KAJ_ENROLLMENT_STATE_COMPLETE",
+    ]
     kmsSettings: GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings
     labels: dict[str, typing.Any]
     name: str
     provisionedResourcesParent: str
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]
     resources: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo]
+    saaEnrollmentResponse: GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings(
@@ -199,6 +224,15 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings(
     ]
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    setupErrors: _list[str]
+    setupStatus: typing_extensions.Literal[
+        "SETUP_STATE_UNSPECIFIED", "STATUS_PENDING", "STATUS_COMPLETE"
+    ]
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsVersioningV1mainCreateWorkloadOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -241,10 +275,16 @@ class GoogleCloudAssuredworkloadsVersioningV1mainWorkload(
     ]
     createTime: str
     displayName: str
+    enableSovereignControls: bool
     etag: str
     fedrampHighSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampHighSettings
     fedrampModerateSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampModerateSettings
     il4Settings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadIL4Settings
+    kajEnrollmentState: typing_extensions.Literal[
+        "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+        "KAJ_ENROLLMENT_STATE_PENDING",
+        "KAJ_ENROLLMENT_STATE_COMPLETE",
+    ]
     kmsSettings: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings
     labels: dict[str, typing.Any]
     name: str
@@ -253,6 +293,7 @@ class GoogleCloudAssuredworkloadsVersioningV1mainWorkload(
         GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceSettings
     ]
     resources: _list[GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceInfo]
+    saaEnrollmentResponse: GoogleCloudAssuredworkloadsVersioningV1mainWorkloadSaaEnrollmentResponse
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadCJISSettings(
@@ -310,6 +351,15 @@ class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceSettings(
         "CONSUMER_FOLDER",
         "ENCRYPTION_KEYS_PROJECT",
         "KEYRING",
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsVersioningV1mainWorkloadSaaEnrollmentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    setupErrors: _list[str]
+    setupStatus: typing_extensions.Literal[
+        "SETUP_STATE_UNSPECIFIED", "STATUS_PENDING", "STATUS_COMPLETE"
     ]
 
 @typing.type_check_only

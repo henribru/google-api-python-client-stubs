@@ -61,6 +61,16 @@ class GoogleCloudRetailV2AddFulfillmentPlacesResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2AddLocalInventoriesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2AddLocalInventoriesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2ImportCompletionDataResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -125,6 +135,16 @@ class GoogleCloudRetailV2RemoveFulfillmentPlacesResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2RemoveLocalInventoriesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2RemoveLocalInventoriesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2SetInventoryMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -140,6 +160,18 @@ class GoogleCloudRetailV2UserEventImportSummary(
 ):
     joinedEventsCount: str
     unjoinedEventsCount: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaAddCatalogAttributeRequest(
+    typing_extensions.TypedDict, total=False
+):
+    catalogAttribute: GoogleCloudRetailV2alphaCatalogAttribute
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaAddControlRequest(
+    typing_extensions.TypedDict, total=False
+):
+    controlId: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaAddFulfillmentPlacesMetadata(
@@ -180,6 +212,18 @@ class GoogleCloudRetailV2alphaAddLocalInventoriesResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaAttributesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    attributeConfigLevel: typing_extensions.Literal[
+        "ATTRIBUTE_CONFIG_LEVEL_UNSPECIFIED",
+        "PRODUCT_LEVEL_ATTRIBUTE_CONFIG",
+        "CATALOG_LEVEL_ATTRIBUTE_CONFIG",
+    ]
+    catalogAttributes: dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaAudience(typing_extensions.TypedDict, total=False):
     ageGroups: _list[str]
     genders: _list[str]
@@ -199,6 +243,25 @@ class GoogleCloudRetailV2alphaCatalog(typing_extensions.TypedDict, total=False):
     merchantCenterLinkingConfig: GoogleCloudRetailV2alphaMerchantCenterLinkingConfig
     name: str
     productLevelConfig: GoogleCloudRetailV2alphaProductLevelConfig
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaCatalogAttribute(
+    typing_extensions.TypedDict, total=False
+):
+    dynamicFacetableOption: typing_extensions.Literal[
+        "DYNAMIC_FACETABLE_OPTION_UNSPECIFIED",
+        "DYNAMIC_FACETABLE_ENABLED",
+        "DYNAMIC_FACETABLE_DISABLED",
+    ]
+    inUse: bool
+    indexableOption: typing_extensions.Literal[
+        "INDEXABLE_OPTION_UNSPECIFIED", "INDEXABLE_ENABLED", "INDEXABLE_DISABLED"
+    ]
+    key: str
+    searchableOption: typing_extensions.Literal[
+        "SEARCHABLE_OPTION_UNSPECIFIED", "SEARCHABLE_ENABLED", "SEARCHABLE_DISABLED"
+    ]
+    type: typing_extensions.Literal["UNKNOWN", "TEXTUAL", "NUMERICAL"]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaColorInfo(typing_extensions.TypedDict, total=False):
@@ -231,6 +294,22 @@ class GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult(
     recentSearch: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaCompletionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    allowlistInputConfig: GoogleCloudRetailV2alphaCompletionDataInputConfig
+    autoLearning: bool
+    denylistInputConfig: GoogleCloudRetailV2alphaCompletionDataInputConfig
+    lastAllowlistImportOperation: str
+    lastDenylistImportOperation: str
+    lastSuggestionsImportOperation: str
+    matchingOrder: str
+    maxSuggestions: int
+    minPrefixLength: int
+    name: str
+    suggestionsInputConfig: GoogleCloudRetailV2alphaCompletionDataInputConfig
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaCompletionDataInputConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -243,6 +322,34 @@ class GoogleCloudRetailV2alphaCompletionDetail(
     completionAttributionToken: str
     selectedPosition: int
     selectedSuggestion: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaCondition(typing_extensions.TypedDict, total=False):
+    activeTimeRange: _list[GoogleCloudRetailV2alphaConditionTimeRange]
+    queryTerms: _list[GoogleCloudRetailV2alphaConditionQueryTerm]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaConditionQueryTerm(
+    typing_extensions.TypedDict, total=False
+):
+    fullMatch: bool
+    value: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaConditionTimeRange(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaControl(typing_extensions.TypedDict, total=False):
+    associatedServingConfigIds: _list[str]
+    displayName: str
+    facetSpec: GoogleCloudRetailV2alphaSearchRequestFacetSpec
+    name: str
+    rule: GoogleCloudRetailV2alphaRule
+    solutionTypes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaCustomAttribute(typing_extensions.TypedDict, total=False):
@@ -339,6 +446,7 @@ class GoogleCloudRetailV2alphaImportProductsRequest(
         "RECONCILIATION_MODE_UNSPECIFIED", "INCREMENTAL", "FULL"
     ]
     requestId: str
+    skipDefaultBranchProtection: bool
     updateMask: str
 
 @typing.type_check_only
@@ -378,6 +486,13 @@ class GoogleCloudRetailV2alphaListCatalogsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaListControlsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    controls: _list[GoogleCloudRetailV2alphaControl]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaListProductsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -386,8 +501,16 @@ class GoogleCloudRetailV2alphaListProductsResponse(
     totalSize: int
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaListServingConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    servingConfigs: _list[GoogleCloudRetailV2alphaServingConfig]
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaLocalInventory(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
+    fulfillmentTypes: _list[str]
     placeId: str
     priceInfo: GoogleCloudRetailV2alphaPriceInfo
 
@@ -397,7 +520,9 @@ class GoogleCloudRetailV2alphaMerchantCenterLink(
 ):
     branchId: str
     destinations: _list[str]
+    languageCode: str
     merchantCenterAccountId: str
+    regionCode: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaMerchantCenterLinkingConfig(
@@ -490,6 +615,29 @@ class GoogleCloudRetailV2alphaPurgeMetadata(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaPurgeProductsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    failureCount: str
+    successCount: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaPurgeProductsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    force: bool
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaPurgeProductsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    purgeCount: str
+    purgeSample: _list[str]
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaPurgeUserEventsRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -526,6 +674,18 @@ class GoogleCloudRetailV2alphaRejoinUserEventsResponse(
     typing_extensions.TypedDict, total=False
 ):
     rejoinedUserEventsCount: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRemoveCatalogAttributeRequest(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRemoveControlRequest(
+    typing_extensions.TypedDict, total=False
+):
+    controlId: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaRemoveFulfillmentPlacesMetadata(
@@ -565,6 +725,78 @@ class GoogleCloudRetailV2alphaRemoveLocalInventoriesResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaReplaceCatalogAttributeRequest(
+    typing_extensions.TypedDict, total=False
+):
+    catalogAttribute: GoogleCloudRetailV2alphaCatalogAttribute
+    updateMask: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRule(typing_extensions.TypedDict, total=False):
+    boostAction: GoogleCloudRetailV2alphaRuleBoostAction
+    condition: GoogleCloudRetailV2alphaCondition
+    doNotAssociateAction: GoogleCloudRetailV2alphaRuleDoNotAssociateAction
+    filterAction: GoogleCloudRetailV2alphaRuleFilterAction
+    ignoreAction: GoogleCloudRetailV2alphaRuleIgnoreAction
+    onewaySynonymsAction: GoogleCloudRetailV2alphaRuleOnewaySynonymsAction
+    redirectAction: GoogleCloudRetailV2alphaRuleRedirectAction
+    replacementAction: GoogleCloudRetailV2alphaRuleReplacementAction
+    twowaySynonymsAction: GoogleCloudRetailV2alphaRuleTwowaySynonymsAction
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRuleBoostAction(typing_extensions.TypedDict, total=False):
+    boost: float
+    productsFilter: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRuleDoNotAssociateAction(
+    typing_extensions.TypedDict, total=False
+):
+    doNotAssociateTerms: _list[str]
+    queryTerms: _list[str]
+    terms: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRuleFilterAction(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRuleIgnoreAction(
+    typing_extensions.TypedDict, total=False
+):
+    ignoreTerms: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRuleOnewaySynonymsAction(
+    typing_extensions.TypedDict, total=False
+):
+    onewayTerms: _list[str]
+    queryTerms: _list[str]
+    synonyms: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRuleRedirectAction(
+    typing_extensions.TypedDict, total=False
+):
+    redirectUri: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRuleReplacementAction(
+    typing_extensions.TypedDict, total=False
+):
+    queryTerms: _list[str]
+    replacementTerm: str
+    term: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaRuleTwowaySynonymsAction(
+    typing_extensions.TypedDict, total=False
+):
+    synonyms: _list[str]
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaSearchRequest(typing_extensions.TypedDict, total=False):
     boostSpec: GoogleCloudRetailV2alphaSearchRequestBoostSpec
     branch: str
@@ -572,11 +804,13 @@ class GoogleCloudRetailV2alphaSearchRequest(typing_extensions.TypedDict, total=F
     dynamicFacetSpec: GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec
     facetSpecs: _list[GoogleCloudRetailV2alphaSearchRequestFacetSpec]
     filter: str
+    labels: dict[str, typing.Any]
     offset: int
     orderBy: str
     pageCategories: _list[str]
     pageSize: int
     pageToken: str
+    personalizationSpec: GoogleCloudRetailV2alphaSearchRequestPersonalizationSpec
     query: str
     queryExpansionSpec: GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec
     relevanceThreshold: typing_extensions.Literal[
@@ -596,6 +830,7 @@ class GoogleCloudRetailV2alphaSearchRequestBoostSpec(
     conditionBoostSpecs: _list[
         GoogleCloudRetailV2alphaSearchRequestBoostSpecConditionBoostSpec
     ]
+    skipBoostSpecValidation: bool
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaSearchRequestBoostSpecConditionBoostSpec(
@@ -632,6 +867,12 @@ class GoogleCloudRetailV2alphaSearchRequestFacetSpecFacetKey(
     restrictedValues: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaSearchRequestPersonalizationSpec(
+    typing_extensions.TypedDict, total=False
+):
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "AUTO", "DISABLED"]
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -640,9 +881,13 @@ class GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec(
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaSearchResponse(typing_extensions.TypedDict, total=False):
+    appliedControls: _list[str]
     attributionToken: str
     correctedQuery: str
     facets: _list[GoogleCloudRetailV2alphaSearchResponseFacet]
+    invalidConditionBoostSpecs: _list[
+        GoogleCloudRetailV2alphaSearchRequestBoostSpecConditionBoostSpec
+    ]
     nextPageToken: str
     queryExpansionInfo: GoogleCloudRetailV2alphaSearchResponseQueryExpansionInfo
     redirectUri: str
@@ -676,10 +921,31 @@ class GoogleCloudRetailV2alphaSearchResponseQueryExpansionInfo(
 class GoogleCloudRetailV2alphaSearchResponseSearchResult(dict[str, typing.Any]): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaServingConfig(typing_extensions.TypedDict, total=False):
+    boostControlIds: _list[str]
+    displayName: str
+    diversityLevel: str
+    doNotAssociateControlIds: _list[str]
+    dynamicFacetSpec: GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec
+    enableCategoryFilterLevel: str
+    facetControlIds: _list[str]
+    filterControlIds: _list[str]
+    ignoreControlIds: _list[str]
+    modelId: str
+    name: str
+    onewaySynonymsControlIds: _list[str]
+    priceRerankingLevel: str
+    redirectControlIds: _list[str]
+    replacementControlIds: _list[str]
+    solutionTypes: _list[str]
+    twowaySynonymsControlIds: _list[str]
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaSetDefaultBranchRequest(
     typing_extensions.TypedDict, total=False
 ):
     branchId: str
+    force: bool
     note: str
 
 @typing.type_check_only
@@ -734,6 +1000,16 @@ class GoogleCloudRetailV2betaAddFulfillmentPlacesMetadata(
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaAddFulfillmentPlacesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaAddLocalInventoriesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaAddLocalInventoriesResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -827,6 +1103,16 @@ class GoogleCloudRetailV2betaRemoveFulfillmentPlacesMetadata(
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaRemoveFulfillmentPlacesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaRemoveLocalInventoriesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaRemoveLocalInventoriesResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 

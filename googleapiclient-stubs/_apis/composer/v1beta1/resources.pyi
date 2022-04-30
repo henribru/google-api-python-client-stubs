@@ -48,6 +48,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     previous_request: ListEnvironmentsResponseHttpRequest,
                     previous_response: ListEnvironmentsResponse,
                 ) -> ListEnvironmentsResponseHttpRequest | None: ...
+                def loadSnapshot(
+                    self,
+                    *,
+                    environment: str,
+                    body: LoadSnapshotRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -61,6 +68,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: RestartWebServerRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def saveSnapshot(
+                    self,
+                    *,
+                    environment: str,
+                    body: SaveSnapshotRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 

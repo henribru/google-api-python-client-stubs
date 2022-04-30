@@ -86,6 +86,67 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             ) -> ListDomainMappingsResponseHttpRequest: ...
 
         @typing.type_check_only
+        class ExecutionsResource(googleapiclient.discovery.Resource):
+            def delete(
+                self,
+                *,
+                name: str,
+                apiVersion: str = ...,
+                kind: str = ...,
+                propagationPolicy: str = ...,
+                **kwargs: typing.Any
+            ) -> StatusHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> ExecutionHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                fieldSelector: str = ...,
+                includeUninitialized: bool = ...,
+                labelSelector: str = ...,
+                limit: int = ...,
+                resourceVersion: str = ...,
+                watch: bool = ...,
+                **kwargs: typing.Any
+            ) -> ListExecutionsResponseHttpRequest: ...
+
+        @typing.type_check_only
+        class JobsResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: Job = ..., **kwargs: typing.Any
+            ) -> JobHttpRequest: ...
+            def delete(
+                self,
+                *,
+                name: str,
+                apiVersion: str = ...,
+                kind: str = ...,
+                propagationPolicy: str = ...,
+                **kwargs: typing.Any
+            ) -> StatusHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                fieldSelector: str = ...,
+                includeUninitialized: bool = ...,
+                labelSelector: str = ...,
+                limit: int = ...,
+                resourceVersion: str = ...,
+                watch: bool = ...,
+                **kwargs: typing.Any
+            ) -> ListJobsResponseHttpRequest: ...
+            def replaceJob(
+                self, *, name: str, body: Job = ..., **kwargs: typing.Any
+            ) -> JobHttpRequest: ...
+            def run(
+                self, *, name: str, body: RunJobRequest = ..., **kwargs: typing.Any
+            ) -> ExecutionHttpRequest: ...
+
+        @typing.type_check_only
         class RevisionsResource(googleapiclient.discovery.Resource):
             def delete(
                 self,
@@ -171,22 +232,31 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ServiceHttpRequest: ...
 
+        @typing.type_check_only
+        class TasksResource(googleapiclient.discovery.Resource):
+            def get(self, *, name: str, **kwargs: typing.Any) -> TaskHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                fieldSelector: str = ...,
+                includeUninitialized: bool = ...,
+                labelSelector: str = ...,
+                limit: int = ...,
+                resourceVersion: str = ...,
+                watch: bool = ...,
+                **kwargs: typing.Any
+            ) -> ListTasksResponseHttpRequest: ...
+
         def authorizeddomains(self) -> AuthorizeddomainsResource: ...
         def configurations(self) -> ConfigurationsResource: ...
         def domainmappings(self) -> DomainmappingsResource: ...
+        def executions(self) -> ExecutionsResource: ...
+        def jobs(self) -> JobsResource: ...
         def revisions(self) -> RevisionsResource: ...
         def routes(self) -> RoutesResource: ...
         def services(self) -> ServicesResource: ...
-
-    @typing.type_check_only
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def cancel(
-            self,
-            *,
-            name: str,
-            body: GoogleLongrunningCancelOperationRequest = ...,
-            **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
+        def tasks(self) -> TasksResource: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
@@ -277,6 +347,30 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     watch: bool = ...,
                     **kwargs: typing.Any
                 ) -> ListDomainMappingsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class JobsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class RevisionsResource(googleapiclient.discovery.Resource):
@@ -406,6 +500,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             def authorizeddomains(self) -> AuthorizeddomainsResource: ...
             def configurations(self) -> ConfigurationsResource: ...
             def domainmappings(self) -> DomainmappingsResource: ...
+            def jobs(self) -> JobsResource: ...
             def revisions(self) -> RevisionsResource: ...
             def routes(self) -> RoutesResource: ...
             def services(self) -> ServicesResource: ...
@@ -426,7 +521,6 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def namespaces(self) -> NamespacesResource: ...
-    def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -446,12 +540,20 @@ class DomainMappingHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DomainMapping: ...
 
 @typing.type_check_only
-class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+class ExecutionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> Empty: ...
+    ) -> Execution: ...
+
+@typing.type_check_only
+class JobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Job: ...
 
 @typing.type_check_only
 class ListAuthorizedDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -476,6 +578,22 @@ class ListDomainMappingsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDomainMappingsResponse: ...
+
+@typing.type_check_only
+class ListExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListExecutionsResponse: ...
+
+@typing.type_check_only
+class ListJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListJobsResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -508,6 +626,14 @@ class ListServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListServicesResponse: ...
+
+@typing.type_check_only
+class ListTasksResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListTasksResponse: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
@@ -548,6 +674,14 @@ class StatusHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Status: ...
+
+@typing.type_check_only
+class TaskHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Task: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

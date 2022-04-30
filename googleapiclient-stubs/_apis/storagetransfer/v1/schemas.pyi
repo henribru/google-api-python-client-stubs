@@ -117,6 +117,38 @@ class LoggingConfig(typing_extensions.TypedDict, total=False):
     logActions: _list[str]
 
 @typing.type_check_only
+class MetadataOptions(typing_extensions.TypedDict, total=False):
+    acl: typing_extensions.Literal[
+        "ACL_UNSPECIFIED", "ACL_DESTINATION_BUCKET_DEFAULT", "ACL_PRESERVE"
+    ]
+    gid: typing_extensions.Literal["GID_UNSPECIFIED", "GID_SKIP", "GID_NUMBER"]
+    kmsKey: typing_extensions.Literal[
+        "KMS_KEY_UNSPECIFIED", "KMS_KEY_DESTINATION_BUCKET_DEFAULT", "KMS_KEY_PRESERVE"
+    ]
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "MODE_SKIP", "MODE_PRESERVE"]
+    storageClass: typing_extensions.Literal[
+        "STORAGE_CLASS_UNSPECIFIED",
+        "STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT",
+        "STORAGE_CLASS_PRESERVE",
+        "STORAGE_CLASS_STANDARD",
+        "STORAGE_CLASS_NEARLINE",
+        "STORAGE_CLASS_COLDLINE",
+        "STORAGE_CLASS_ARCHIVE",
+    ]
+    symlink: typing_extensions.Literal[
+        "SYMLINK_UNSPECIFIED", "SYMLINK_SKIP", "SYMLINK_PRESERVE"
+    ]
+    temporaryHold: typing_extensions.Literal[
+        "TEMPORARY_HOLD_UNSPECIFIED", "TEMPORARY_HOLD_SKIP", "TEMPORARY_HOLD_PRESERVE"
+    ]
+    timeCreated: typing_extensions.Literal[
+        "TIME_CREATED_UNSPECIFIED",
+        "TIME_CREATED_SKIP",
+        "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME",
+    ]
+    uid: typing_extensions.Literal["UID_UNSPECIFIED", "UID_SKIP", "UID_NUMBER"]
+
+@typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
     eventTypes: _list[str]
     payloadFormat: typing_extensions.Literal[
@@ -246,7 +278,11 @@ class TransferOperation(typing_extensions.TypedDict, total=False):
 class TransferOptions(typing_extensions.TypedDict, total=False):
     deleteObjectsFromSourceAfterTransfer: bool
     deleteObjectsUniqueInSink: bool
+    metadataOptions: MetadataOptions
     overwriteObjectsAlreadyExistingInSink: bool
+    overwriteWhen: typing_extensions.Literal[
+        "OVERWRITE_WHEN_UNSPECIFIED", "DIFFERENT", "NEVER", "ALWAYS"
+    ]
 
 @typing.type_check_only
 class TransferSpec(typing_extensions.TypedDict, total=False):
@@ -254,6 +290,7 @@ class TransferSpec(typing_extensions.TypedDict, total=False):
     azureBlobStorageDataSource: AzureBlobStorageData
     gcsDataSink: GcsData
     gcsDataSource: GcsData
+    gcsIntermediateDataLocation: GcsData
     httpDataSource: HttpData
     objectConditions: ObjectConditions
     posixDataSink: PosixFilesystem

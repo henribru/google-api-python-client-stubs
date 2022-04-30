@@ -76,7 +76,7 @@ class ExecStepConfig(typing_extensions.TypedDict, total=False):
     allowedSuccessCodes: _list[int]
     gcsObject: GcsObject
     interpreter: typing_extensions.Literal[
-        "INTERPRETER_UNSPECIFIED", "SHELL", "POWERSHELL"
+        "INTERPRETER_UNSPECIFIED", "NONE", "SHELL", "POWERSHELL"
     ]
     localPath: str
 
@@ -541,6 +541,7 @@ class Operation(typing_extensions.TypedDict, total=False):
 class PatchConfig(typing_extensions.TypedDict, total=False):
     apt: AptSettings
     goo: GooSettings
+    migInstancesAllowed: bool
     postStep: ExecStep
     preStep: ExecStep
     rebootConfig: typing_extensions.Literal[
@@ -562,6 +563,7 @@ class PatchDeployment(typing_extensions.TypedDict, total=False):
     patchConfig: PatchConfig
     recurringSchedule: RecurringSchedule
     rollout: PatchRollout
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "PAUSED"]
     updateTime: str
 
 @typing.type_check_only
@@ -654,6 +656,9 @@ class PatchRollout(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PausePatchDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class RecurringSchedule(typing_extensions.TypedDict, total=False):
     endTime: str
     frequency: typing_extensions.Literal[
@@ -666,6 +671,9 @@ class RecurringSchedule(typing_extensions.TypedDict, total=False):
     timeOfDay: TimeOfDay
     timeZone: TimeZone
     weekly: WeeklySchedule
+
+@typing.type_check_only
+class ResumePatchDeploymentRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

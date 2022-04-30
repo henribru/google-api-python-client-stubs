@@ -17,6 +17,32 @@ class SpannerResource(googleapiclient.discovery.Resource):
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class InstanceConfigsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> InstanceConfigHttpRequest: ...
@@ -33,6 +59,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 previous_request: ListInstanceConfigsResponseHttpRequest,
                 previous_response: ListInstanceConfigsResponse,
             ) -> ListInstanceConfigsResponseHttpRequest | None: ...
+            def operations(self) -> OperationsResource: ...
 
         @typing.type_check_only
         class InstancesResource(googleapiclient.discovery.Resource):
@@ -81,6 +108,13 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         previous_response: ListOperationsResponse,
                     ) -> ListOperationsResponseHttpRequest | None: ...
 
+                def copy(
+                    self,
+                    *,
+                    parent: str,
+                    body: CopyBackupRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,

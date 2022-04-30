@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Aggregation(typing_extensions.TypedDict, total=False):
+    alias: str
+    count: Count
+
+@typing.type_check_only
+class AggregationResult(typing_extensions.TypedDict, total=False):
+    aggregateFields: dict[str, typing.Any]
+
+@typing.type_check_only
 class ArrayValue(typing_extensions.TypedDict, total=False):
     values: _list[Value]
 
@@ -60,6 +69,10 @@ class CommitResponse(typing_extensions.TypedDict, total=False):
 class CompositeFilter(typing_extensions.TypedDict, total=False):
     filters: _list[Filter]
     op: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND"]
+
+@typing.type_check_only
+class Count(typing_extensions.TypedDict, total=False):
+    upTo: int
 
 @typing.type_check_only
 class Cursor(typing_extensions.TypedDict, total=False):
@@ -139,6 +152,11 @@ class FieldTransform(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Filter(dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1beta1ExportDocumentsMetadata(
@@ -263,6 +281,7 @@ class LatLng(typing_extensions.TypedDict, total=False):
 class ListCollectionIdsRequest(typing_extensions.TypedDict, total=False):
     pageSize: int
     pageToken: str
+    readTime: str
 
 @typing.type_check_only
 class ListCollectionIdsResponse(typing_extensions.TypedDict, total=False):
@@ -304,6 +323,7 @@ class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
     pageSize: int
     pageToken: str
     partitionCount: str
+    readTime: str
     structuredQuery: StructuredQuery
 
 @typing.type_check_only
@@ -338,6 +358,19 @@ class RollbackRequest(typing_extensions.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
+class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
+    newTransaction: TransactionOptions
+    readTime: str
+    structuredAggregationQuery: StructuredAggregationQuery
+    transaction: str
+
+@typing.type_check_only
+class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
+    readTime: str
+    result: AggregationResult
+    transaction: str
+
+@typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):
     newTransaction: TransactionOptions
     readTime: str
@@ -356,6 +389,9 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StructuredAggregationQuery(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class StructuredQuery(dict[str, typing.Any]): ...

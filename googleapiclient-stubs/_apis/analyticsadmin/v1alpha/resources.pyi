@@ -156,78 +156,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PropertiesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
-        class AndroidAppDataStreamsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class MeasurementProtocolSecretsResource(
-                googleapiclient.discovery.Resource
-            ):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleProtobufEmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest,
-                    previous_response: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse,
-                ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
-
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleProtobufEmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaAndroidAppDataStreamHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponseHttpRequest,
-                previous_response: GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponseHttpRequest | None: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: GoogleAnalyticsAdminV1alphaAndroidAppDataStream = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaAndroidAppDataStreamHttpRequest: ...
-            def measurementProtocolSecrets(
-                self,
-            ) -> MeasurementProtocolSecretsResource: ...
-
-        @typing.type_check_only
         class ConversionEventsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -337,6 +265,88 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaCustomMetricHttpRequest: ...
+
+        @typing.type_check_only
+        class DataStreamsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class MeasurementProtocolSecretsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest,
+                    previous_response: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse,
+                ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
+
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1alphaDataStream = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaDataStreamHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaDataStreamHttpRequest: ...
+            def getGlobalSiteTag(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaGlobalSiteTagHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaListDataStreamsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListDataStreamsResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListDataStreamsResponse,
+            ) -> GoogleAnalyticsAdminV1alphaListDataStreamsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaDataStream = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaDataStreamHttpRequest: ...
+            def measurementProtocolSecrets(
+                self,
+            ) -> MeasurementProtocolSecretsResource: ...
 
         @typing.type_check_only
         class DisplayVideo360AdvertiserLinkProposalsResource(
@@ -483,78 +493,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> GoogleAnalyticsAdminV1alphaGoogleAdsLinkHttpRequest: ...
 
         @typing.type_check_only
-        class IosAppDataStreamsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class MeasurementProtocolSecretsResource(
-                googleapiclient.discovery.Resource
-            ):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleProtobufEmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest,
-                    previous_response: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse,
-                ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
-
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleProtobufEmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaIosAppDataStreamHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponseHttpRequest,
-                previous_response: GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponseHttpRequest | None: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: GoogleAnalyticsAdminV1alphaIosAppDataStream = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaIosAppDataStreamHttpRequest: ...
-            def measurementProtocolSecrets(
-                self,
-            ) -> MeasurementProtocolSecretsResource: ...
-
-        @typing.type_check_only
         class UserLinksResource(googleapiclient.discovery.Resource):
             def audit(
                 self,
@@ -631,88 +569,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaUserLinkHttpRequest: ...
 
-        @typing.type_check_only
-        class WebDataStreamsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class MeasurementProtocolSecretsResource(
-                googleapiclient.discovery.Resource
-            ):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleProtobufEmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest,
-                    previous_response: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse,
-                ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
-
-            def create(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaWebDataStream = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaWebDataStreamHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleProtobufEmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaWebDataStreamHttpRequest: ...
-            def getGlobalSiteTag(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaGlobalSiteTagHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaListWebDataStreamsResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: GoogleAnalyticsAdminV1alphaListWebDataStreamsResponseHttpRequest,
-                previous_response: GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListWebDataStreamsResponseHttpRequest | None: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: GoogleAnalyticsAdminV1alphaWebDataStream = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaWebDataStreamHttpRequest: ...
-            def measurementProtocolSecrets(
-                self,
-            ) -> MeasurementProtocolSecretsResource: ...
-
         def acknowledgeUserDataCollection(
             self,
             *,
@@ -776,10 +632,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsHttpRequest: ...
-        def androidAppDataStreams(self) -> AndroidAppDataStreamsResource: ...
         def conversionEvents(self) -> ConversionEventsResource: ...
         def customDimensions(self) -> CustomDimensionsResource: ...
         def customMetrics(self) -> CustomMetricsResource: ...
+        def dataStreams(self) -> DataStreamsResource: ...
         def displayVideo360AdvertiserLinkProposals(
             self,
         ) -> DisplayVideo360AdvertiserLinkProposalsResource: ...
@@ -788,9 +644,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         ) -> DisplayVideo360AdvertiserLinksResource: ...
         def firebaseLinks(self) -> FirebaseLinksResource: ...
         def googleAdsLinks(self) -> GoogleAdsLinksResource: ...
-        def iosAppDataStreams(self) -> IosAppDataStreamsResource: ...
         def userLinks(self) -> UserLinksResource: ...
-        def webDataStreams(self) -> WebDataStreamsResource: ...
 
     def new_batch_http_request(
         self,
@@ -825,16 +679,6 @@ class GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponseHttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAndroidAppDataStreamHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaAndroidAppDataStream: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponseHttpRequest(
@@ -937,6 +781,16 @@ class GoogleAnalyticsAdminV1alphaDataSharingSettingsHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaDataSharingSettings: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDataStreamHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaDataStream: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -997,16 +851,6 @@ class GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaGoogleSignalsSettings: ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaIosAppDataStreamHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaIosAppDataStream: ...
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListAccountSummariesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1025,16 +869,6 @@ class GoogleAnalyticsAdminV1alphaListAccountsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListAccountsResponse: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest(
@@ -1065,6 +899,16 @@ class GoogleAnalyticsAdminV1alphaListCustomMetricsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListCustomMetricsResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListDataStreamsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaListDataStreamsResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponseHttpRequest(
@@ -1107,16 +951,6 @@ class GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse: ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse: ...
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1145,16 +979,6 @@ class GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListUserLinksResponse: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListWebDataStreamsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest(
@@ -1201,16 +1025,6 @@ class GoogleAnalyticsAdminV1alphaUserLinkHttpRequest(googleapiclient.http.HttpRe
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaUserLink: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaWebDataStreamHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaWebDataStream: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

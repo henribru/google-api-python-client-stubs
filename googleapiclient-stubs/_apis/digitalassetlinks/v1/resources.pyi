@@ -15,6 +15,9 @@ _list = list
 class DigitalassetlinksResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AssetlinksResource(googleapiclient.discovery.Resource):
+        def bulkCheck(
+            self, *, body: BulkCheckRequest = ..., **kwargs: typing.Any
+        ) -> BulkCheckResponseHttpRequest: ...
         def check(
             self,
             *,
@@ -54,6 +57,14 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def assetlinks(self) -> AssetlinksResource: ...
     def statements(self) -> StatementsResource: ...
+
+@typing.type_check_only
+class BulkCheckResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BulkCheckResponse: ...
 
 @typing.type_check_only
 class CheckResponseHttpRequest(googleapiclient.http.HttpRequest):

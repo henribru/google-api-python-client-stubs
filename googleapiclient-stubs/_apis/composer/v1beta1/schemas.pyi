@@ -113,7 +113,12 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
-class LoadEnvironmentStateResponse(typing_extensions.TypedDict, total=False): ...
+class LoadSnapshotRequest(typing_extensions.TypedDict, total=False):
+    skipPypiPackagesInstallation: bool
+    snapshotPath: str
+
+@typing.type_check_only
+class LoadSnapshotResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
@@ -153,7 +158,13 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
     operationType: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "CREATE", "DELETE", "UPDATE", "CHECK", "STORE_STATE"
+        "TYPE_UNSPECIFIED",
+        "CREATE",
+        "DELETE",
+        "UPDATE",
+        "CHECK",
+        "SAVE_SNAPSHOT",
+        "LOAD_SNAPSHOT",
     ]
     resource: str
     resourceUuid: str
@@ -183,6 +194,14 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
 class RestartWebServerRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class SaveSnapshotRequest(typing_extensions.TypedDict, total=False):
+    snapshotLocation: str
+
+@typing.type_check_only
+class SaveSnapshotResponse(typing_extensions.TypedDict, total=False):
+    snapshotPath: str
+
+@typing.type_check_only
 class SchedulerResource(typing_extensions.TypedDict, total=False):
     count: int
     cpu: float
@@ -203,10 +222,6 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
-
-@typing.type_check_only
-class StoreEnvironmentStateResponse(typing_extensions.TypedDict, total=False):
-    snapshotLocation: str
 
 @typing.type_check_only
 class WebServerConfig(typing_extensions.TypedDict, total=False):

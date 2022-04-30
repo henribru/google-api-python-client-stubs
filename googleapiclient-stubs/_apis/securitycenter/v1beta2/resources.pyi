@@ -38,6 +38,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
 
         @typing.type_check_only
+        class VirtualMachineThreatDetectionSettingsResource(
+            googleapiclient.discovery.Resource
+        ):
+            def calculate(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
+
+        @typing.type_check_only
         class WebSecurityScannerSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
@@ -49,9 +57,15 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getEventThreatDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EventThreatDetectionSettingsHttpRequest: ...
+        def getOnboardingState(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OnboardingStateHttpRequest: ...
         def getSecurityHealthAnalyticsSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
+        def getVirtualMachineThreatDetectionSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def getWebSecurityScannerSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> WebSecurityScannerSettingsHttpRequest: ...
@@ -79,6 +93,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
+        def updateVirtualMachineThreatDetectionSettings(
+            self,
+            *,
+            name: str,
+            body: VirtualMachineThreatDetectionSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def updateWebSecurityScannerSettings(
             self,
             *,
@@ -96,6 +118,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def securityHealthAnalyticsSettings(
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
+        def virtualMachineThreatDetectionSettings(
+            self,
+        ) -> VirtualMachineThreatDetectionSettingsResource: ...
         def webSecurityScannerSettings(self) -> WebSecurityScannerSettingsResource: ...
 
     @typing.type_check_only
@@ -123,6 +148,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
 
         @typing.type_check_only
+        class VirtualMachineThreatDetectionSettingsResource(
+            googleapiclient.discovery.Resource
+        ):
+            def calculate(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
+
+        @typing.type_check_only
         class WebSecurityScannerSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
@@ -134,6 +167,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getEventThreatDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EventThreatDetectionSettingsHttpRequest: ...
+        def getOnboardingState(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OnboardingStateHttpRequest: ...
         def getSecurityCenterSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> SecurityCenterSettingsHttpRequest: ...
@@ -143,6 +179,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getSubscription(
             self, *, name: str, **kwargs: typing.Any
         ) -> SubscriptionHttpRequest: ...
+        def getVirtualMachineThreatDetectionSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def getWebSecurityScannerSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> WebSecurityScannerSettingsHttpRequest: ...
@@ -170,6 +209,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
+        def updateVirtualMachineThreatDetectionSettings(
+            self,
+            *,
+            name: str,
+            body: VirtualMachineThreatDetectionSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def updateWebSecurityScannerSettings(
             self,
             *,
@@ -187,6 +234,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def securityHealthAnalyticsSettings(
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
+        def virtualMachineThreatDetectionSettings(
+            self,
+        ) -> VirtualMachineThreatDetectionSettingsResource: ...
         def webSecurityScannerSettings(self) -> WebSecurityScannerSettingsResource: ...
 
     @typing.type_check_only
@@ -243,6 +293,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
 
         @typing.type_check_only
+        class VirtualMachineThreatDetectionSettingsResource(
+            googleapiclient.discovery.Resource
+        ):
+            def calculate(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
+
+        @typing.type_check_only
         class WebSecurityScannerSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
@@ -254,9 +312,15 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getEventThreatDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EventThreatDetectionSettingsHttpRequest: ...
+        def getOnboardingState(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OnboardingStateHttpRequest: ...
         def getSecurityHealthAnalyticsSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
+        def getVirtualMachineThreatDetectionSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def getWebSecurityScannerSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> WebSecurityScannerSettingsHttpRequest: ...
@@ -284,6 +348,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
+        def updateVirtualMachineThreatDetectionSettings(
+            self,
+            *,
+            name: str,
+            body: VirtualMachineThreatDetectionSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def updateWebSecurityScannerSettings(
             self,
             *,
@@ -302,6 +374,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def securityHealthAnalyticsSettings(
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
+        def virtualMachineThreatDetectionSettings(
+            self,
+        ) -> VirtualMachineThreatDetectionSettingsResource: ...
         def webSecurityScannerSettings(self) -> WebSecurityScannerSettingsResource: ...
 
     def new_batch_http_request(
@@ -337,6 +412,14 @@ class EventThreatDetectionSettingsHttpRequest(googleapiclient.http.HttpRequest):
     ) -> EventThreatDetectionSettings: ...
 
 @typing.type_check_only
+class OnboardingStateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> OnboardingState: ...
+
+@typing.type_check_only
 class SecurityCenterSettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -359,6 +442,16 @@ class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Subscription: ...
+
+@typing.type_check_only
+class VirtualMachineThreatDetectionSettingsHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> VirtualMachineThreatDetectionSettings: ...
 
 @typing.type_check_only
 class WebSecurityScannerSettingsHttpRequest(googleapiclient.http.HttpRequest):

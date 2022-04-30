@@ -85,9 +85,56 @@ class GoogleDatastoreAdminV1IndexOperationMetadata(
     progressEntities: GoogleDatastoreAdminV1Progress
 
 @typing.type_check_only
+class GoogleDatastoreAdminV1MigrationProgressEvent(
+    typing_extensions.TypedDict, total=False
+):
+    prepareStepDetails: GoogleDatastoreAdminV1PrepareStepDetails
+    redirectWritesStepDetails: GoogleDatastoreAdminV1RedirectWritesStepDetails
+    step: typing_extensions.Literal[
+        "MIGRATION_STEP_UNSPECIFIED",
+        "PREPARE",
+        "START",
+        "APPLY_WRITES_SYNCHRONOUSLY",
+        "COPY_AND_VERIFY",
+        "REDIRECT_EVENTUALLY_CONSISTENT_READS",
+        "REDIRECT_STRONGLY_CONSISTENT_READS",
+        "REDIRECT_WRITES",
+    ]
+
+@typing.type_check_only
+class GoogleDatastoreAdminV1MigrationStateEvent(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal[
+        "MIGRATION_STATE_UNSPECIFIED", "RUNNING", "PAUSED", "COMPLETE"
+    ]
+
+@typing.type_check_only
+class GoogleDatastoreAdminV1PrepareStepDetails(
+    typing_extensions.TypedDict, total=False
+):
+    concurrencyMode: typing_extensions.Literal[
+        "CONCURRENCY_MODE_UNSPECIFIED",
+        "PESSIMISTIC",
+        "OPTIMISTIC",
+        "OPTIMISTIC_WITH_ENTITY_GROUPS",
+    ]
+
+@typing.type_check_only
 class GoogleDatastoreAdminV1Progress(typing_extensions.TypedDict, total=False):
     workCompleted: str
     workEstimated: str
+
+@typing.type_check_only
+class GoogleDatastoreAdminV1RedirectWritesStepDetails(
+    typing_extensions.TypedDict, total=False
+):
+    concurrencyMode: typing_extensions.Literal[
+        "CONCURRENCY_MODE_UNSPECIFIED",
+        "PESSIMISTIC",
+        "OPTIMISTIC",
+        "OPTIMISTIC_WITH_ENTITY_GROUPS",
+    ]
 
 @typing.type_check_only
 class GoogleDatastoreAdminV1beta1CommonMetadata(

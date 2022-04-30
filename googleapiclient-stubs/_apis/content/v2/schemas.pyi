@@ -525,75 +525,6 @@ class Installment(typing_extensions.TypedDict, total=False):
     months: str
 
 @typing.type_check_only
-class Inventory(typing_extensions.TypedDict, total=False):
-    availability: str
-    customLabel0: str
-    customLabel1: str
-    customLabel2: str
-    customLabel3: str
-    customLabel4: str
-    installment: Installment
-    instoreProductLocation: str
-    kind: str
-    loyaltyPoints: LoyaltyPoints
-    pickup: InventoryPickup
-    price: Price
-    quantity: int
-    salePrice: Price
-    salePriceEffectiveDate: str
-    sellOnGoogleQuantity: int
-
-@typing.type_check_only
-class InventoryCustomBatchRequest(typing_extensions.TypedDict, total=False):
-    entries: _list[InventoryCustomBatchRequestEntry]
-
-@typing.type_check_only
-class InventoryCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
-    batchId: int
-    inventory: Inventory
-    merchantId: str
-    productId: str
-    storeCode: str
-
-@typing.type_check_only
-class InventoryCustomBatchResponse(typing_extensions.TypedDict, total=False):
-    entries: _list[InventoryCustomBatchResponseEntry]
-    kind: str
-
-@typing.type_check_only
-class InventoryCustomBatchResponseEntry(typing_extensions.TypedDict, total=False):
-    batchId: int
-    errors: Errors
-    kind: str
-
-@typing.type_check_only
-class InventoryPickup(typing_extensions.TypedDict, total=False):
-    pickupMethod: str
-    pickupSla: str
-
-@typing.type_check_only
-class InventorySetRequest(typing_extensions.TypedDict, total=False):
-    availability: str
-    customLabel0: str
-    customLabel1: str
-    customLabel2: str
-    customLabel3: str
-    customLabel4: str
-    installment: Installment
-    instoreProductLocation: str
-    loyaltyPoints: LoyaltyPoints
-    pickup: InventoryPickup
-    price: Price
-    quantity: int
-    salePrice: Price
-    salePriceEffectiveDate: str
-    sellOnGoogleQuantity: int
-
-@typing.type_check_only
-class InventorySetResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-
-@typing.type_check_only
 class InvoiceSummary(typing_extensions.TypedDict, total=False):
     additionalChargeSummaries: _list[InvoiceSummaryAdditionalChargeSummary]
     customerBalance: Amount
@@ -1568,9 +1499,14 @@ class PosSaleResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PosStore(typing_extensions.TypedDict, total=False):
+    gcidCategory: _list[str]
     kind: str
+    phoneNumber: str
+    placeId: str
     storeAddress: str
     storeCode: str
+    storeName: str
+    websiteUrl: str
 
 @typing.type_check_only
 class PostalCodeGroup(typing_extensions.TypedDict, total=False):

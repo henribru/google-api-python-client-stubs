@@ -108,6 +108,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     endpoint: str
     expireTime: str
     id: str
+    identityServiceConfig: IdentityServiceConfig
     initialClusterVersion: str
     initialNodeCount: int
     instanceGroupUrls: _list[str]
@@ -130,6 +131,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     networkPolicy: NetworkPolicy
     nodeConfig: NodeConfig
     nodeIpv4CidrSize: int
+    nodePoolAutoConfig: NodePoolAutoConfig
     nodePoolDefaults: NodePoolDefaults
     nodePools: _list[NodePool]
     notificationConfig: NotificationConfig
@@ -179,6 +181,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredDnsConfig: DNSConfig
     desiredGcfsConfig: GcfsConfig
+    desiredIdentityServiceConfig: IdentityServiceConfig
     desiredImageType: str
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
     desiredL4ilbSubsettingConfig: ILBSubsettingConfig
@@ -190,6 +193,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredMeshCertificates: MeshCertificates
     desiredMonitoringConfig: MonitoringConfig
     desiredMonitoringService: str
+    desiredNodePoolAutoConfigNetworkTags: NetworkTags
     desiredNodePoolAutoscaling: NodePoolAutoscaling
     desiredNodePoolId: str
     desiredNodeVersion: str
@@ -203,6 +207,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     ]
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
+    desiredServiceExternalIpsConfig: ServiceExternalIPsConfig
     desiredShieldedNodes: ShieldedNodes
     desiredVerticalPodAutoscaling: VerticalPodAutoscaling
     desiredWorkloadIdentityConfig: WorkloadIdentityConfig
@@ -271,6 +276,10 @@ class DnsCacheConfig(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Filter(typing_extensions.TypedDict, total=False):
+    eventType: _list[str]
+
+@typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -333,6 +342,10 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     useRoutes: bool
 
 @typing.type_check_only
+class IdentityServiceConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class IntraNodeVisibilityConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -386,6 +399,12 @@ class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
     componentConfig: LoggingComponentConfig
+
+@typing.type_check_only
+class MaintenanceExclusionOptions(typing_extensions.TypedDict, total=False):
+    scope: typing_extensions.Literal[
+        "NO_UPGRADES", "NO_MINOR_UPGRADES", "NO_MINOR_OR_NODE_UPGRADES"
+    ]
 
 @typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
@@ -451,6 +470,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
         "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
         "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL",
     ]
+    serviceExternalIpsConfig: ServiceExternalIPsConfig
     subnetwork: str
 
 @typing.type_check_only
@@ -461,6 +481,10 @@ class NetworkPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NetworkPolicyConfig(typing_extensions.TypedDict, total=False):
     disabled: bool
+
+@typing.type_check_only
+class NetworkTags(typing_extensions.TypedDict, total=False):
+    tags: _list[str]
 
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
@@ -486,6 +510,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     sandboxConfig: SandboxConfig
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
+    spot: bool
     tags: _list[str]
     taints: _list[NodeTaint]
     workloadMetadataConfig: WorkloadMetadataConfig
@@ -499,6 +524,11 @@ class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
     cpuCfsQuota: bool
     cpuCfsQuotaPeriod: str
     cpuManagerPolicy: str
+    podPidsLimit: str
+
+@typing.type_check_only
+class NodeLabels(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class NodeManagement(typing_extensions.TypedDict, total=False):
@@ -540,6 +570,10 @@ class NodePool(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class NodePoolAutoConfig(typing_extensions.TypedDict, total=False):
+    networkTags: NetworkTags
+
+@typing.type_check_only
 class NodePoolAutoscaling(typing_extensions.TypedDict, total=False):
     autoprovisioned: bool
     enabled: bool
@@ -557,6 +591,10 @@ class NodeTaint(typing_extensions.TypedDict, total=False):
     ]
     key: str
     value: str
+
+@typing.type_check_only
+class NodeTaints(typing_extensions.TypedDict, total=False):
+    taints: _list[NodeTaint]
 
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
@@ -585,6 +623,7 @@ class PrivateClusterMasterGlobalAccessConfig(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class PubSub(typing_extensions.TypedDict, total=False):
     enabled: bool
+    filter: Filter
     topic: str
 
 @typing.type_check_only
@@ -635,6 +674,19 @@ class SandboxConfig(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["UNSPECIFIED", "GVISOR"]
 
 @typing.type_check_only
+class SecurityBulletinEvent(typing_extensions.TypedDict, total=False):
+    affectedSupportedMinors: _list[str]
+    briefDescription: str
+    bulletinId: str
+    bulletinUri: str
+    cveIds: _list[str]
+    manualStepsRequired: bool
+    patchedVersions: _list[str]
+    resourceTypeAffected: str
+    severity: str
+    suggestedUpgradeTarget: str
+
+@typing.type_check_only
 class ServerConfig(typing_extensions.TypedDict, total=False):
     channels: _list[ReleaseChannelConfig]
     defaultClusterVersion: str
@@ -642,6 +694,10 @@ class ServerConfig(typing_extensions.TypedDict, total=False):
     validImageTypes: _list[str]
     validMasterVersions: _list[str]
     validNodeVersions: _list[str]
+
+@typing.type_check_only
+class ServiceExternalIPsConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class SetAddonsConfigRequest(typing_extensions.TypedDict, total=False):
@@ -804,6 +860,7 @@ class StatusCondition(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TimeWindow(typing_extensions.TypedDict, total=False):
     endTime: str
+    maintenanceExclusionOptions: MaintenanceExclusionOptions
     startTime: str
 
 @typing.type_check_only
@@ -829,12 +886,15 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     gvnic: VirtualNIC
     imageType: str
     kubeletConfig: NodeKubeletConfig
+    labels: NodeLabels
     linuxNodeConfig: LinuxNodeConfig
     locations: _list[str]
     name: str
     nodePoolId: str
     nodeVersion: str
     projectId: str
+    tags: NetworkTags
+    taints: NodeTaints
     upgradeSettings: UpgradeSettings
     workloadMetadataConfig: WorkloadMetadataConfig
     zone: str

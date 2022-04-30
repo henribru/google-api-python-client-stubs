@@ -18,6 +18,45 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ChannelPartnerLinksResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class ChannelPartnerRepricingConfigsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudChannelV1ChannelPartnerRepricingConfig = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1ChannelPartnerRepricingConfigHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1ChannelPartnerRepricingConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest,
+                    previous_response: GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse,
+                ) -> GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudChannelV1ChannelPartnerRepricingConfig = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1ChannelPartnerRepricingConfigHttpRequest: ...
+
+            @typing.type_check_only
             class CustomersResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -43,6 +82,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -96,10 +136,50 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudChannelV1UpdateChannelPartnerLinkRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudChannelV1ChannelPartnerLinkHttpRequest: ...
+            def channelPartnerRepricingConfigs(
+                self,
+            ) -> ChannelPartnerRepricingConfigsResource: ...
             def customers(self) -> CustomersResource: ...
 
         @typing.type_check_only
         class CustomersResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class CustomerRepricingConfigsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudChannelV1CustomerRepricingConfig = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1CustomerRepricingConfigHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1CustomerRepricingConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest,
+                    previous_response: GoogleCloudChannelV1ListCustomerRepricingConfigsResponse,
+                ) -> GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudChannelV1CustomerRepricingConfig = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1CustomerRepricingConfigHttpRequest: ...
+
             @typing.type_check_only
             class EntitlementsResource(googleapiclient.discovery.Resource):
                 def activate(
@@ -202,6 +282,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
@@ -276,6 +357,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudChannelV1TransferEntitlementsToGoogleRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
+            def customerRepricingConfigs(self) -> CustomerRepricingConfigsResource: ...
             def entitlements(self) -> EntitlementsResource: ...
 
         @typing.type_check_only
@@ -451,6 +533,16 @@ class GoogleCloudChannelV1ChannelPartnerLinkHttpRequest(
     ) -> GoogleCloudChannelV1ChannelPartnerLink: ...
 
 @typing.type_check_only
+class GoogleCloudChannelV1ChannelPartnerRepricingConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1ChannelPartnerRepricingConfig: ...
+
+@typing.type_check_only
 class GoogleCloudChannelV1CheckCloudIdentityAccountsExistResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -469,6 +561,16 @@ class GoogleCloudChannelV1CustomerHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleCloudChannelV1Customer: ...
 
 @typing.type_check_only
+class GoogleCloudChannelV1CustomerRepricingConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1CustomerRepricingConfig: ...
+
+@typing.type_check_only
 class GoogleCloudChannelV1EntitlementHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -485,6 +587,26 @@ class GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudChannelV1ListChannelPartnerLinksResponse: ...
+
+@typing.type_check_only
+class GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1ListCustomerRepricingConfigsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListCustomersResponseHttpRequest(

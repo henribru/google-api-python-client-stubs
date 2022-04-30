@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Access(typing_extensions.TypedDict, total=False):
+    callerIp: str
+    callerIpGeo: Geolocation
+    methodName: str
+    principalEmail: str
+    serviceName: str
+    userAgentFamily: str
+
+@typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
@@ -42,10 +51,21 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Connection(typing_extensions.TypedDict, total=False):
+    destinationIp: str
+    destinationPort: int
+    protocol: typing_extensions.Literal[
+        "PROTOCOL_UNSPECIFIED", "ICMP", "TCP", "UDP", "GRE", "ESP"
+    ]
+    sourceIp: str
+    sourcePort: int
+
+@typing.type_check_only
 class Cve(typing_extensions.TypedDict, total=False):
     cvssv3: Cvssv3
     id: str
     references: _list[Reference]
+    upstreamFixAvailable: bool
 
 @typing.type_check_only
 class Cvssv3(typing_extensions.TypedDict, total=False):
@@ -98,9 +118,12 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
+    access: Access
     canonicalName: str
     category: str
+    connections: _list[Connection]
     createTime: str
+    description: str
     eventTime: str
     externalSystems: dict[str, typing.Any]
     externalUri: str
@@ -112,11 +135,14 @@ class Finding(typing_extensions.TypedDict, total=False):
         "OBSERVATION",
         "SCC_ERROR",
     ]
+    iamBindings: _list[IamBinding]
     indicator: Indicator
+    mitreAttack: MitreAttack
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
     muteInitiator: str
     muteUpdateTime: str
     name: str
+    nextSteps: str
     parent: str
     resourceName: str
     securityMarks: SecurityMarks
@@ -133,12 +159,34 @@ class Folder(typing_extensions.TypedDict, total=False):
     resourceFolderDisplayName: str
 
 @typing.type_check_only
+class Geolocation(typing_extensions.TypedDict, total=False):
+    regionCode: str
+
+@typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
 class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1BigQueryExport(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    dataset: str
+    description: str
+    filter: str
+    mostRecentEditor: str
+    name: str
+    principal: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1BulkMuteFindingsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1ExternalSystem(
@@ -314,6 +362,12 @@ class GroupResult(typing_extensions.TypedDict, total=False):
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
+class IamBinding(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ADD", "REMOVE"]
+    member: str
+    role: str
+
+@typing.type_check_only
 class Indicator(typing_extensions.TypedDict, total=False):
     domains: _list[str]
     ipAddresses: _list[str]
@@ -348,6 +402,30 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
 class ListSourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     sources: _list[Source]
+
+@typing.type_check_only
+class MitreAttack(typing_extensions.TypedDict, total=False):
+    additionalTactics: _list[str]
+    additionalTechniques: _list[str]
+    primaryTactic: typing_extensions.Literal[
+        "TACTIC_UNSPECIFIED",
+        "RECONNAISSANCE",
+        "RESOURCE_DEVELOPMENT",
+        "INITIAL_ACCESS",
+        "EXECUTION",
+        "PERSISTENCE",
+        "PRIVILEGE_ESCALATION",
+        "DEFENSE_EVASION",
+        "CREDENTIAL_ACCESS",
+        "DISCOVERY",
+        "LATERAL_MOVEMENT",
+        "COLLECTION",
+        "COMMAND_AND_CONTROL",
+        "EXFILTRATION",
+        "IMPACT",
+    ]
+    primaryTechniques: _list[str]
+    version: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

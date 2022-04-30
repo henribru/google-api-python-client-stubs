@@ -65,6 +65,9 @@ class CustomMetric(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
+class IdMappingFile(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Report(typing_extensions.TypedDict, total=False):
     files: _list[dict[str, typing.Any]]
     id: str

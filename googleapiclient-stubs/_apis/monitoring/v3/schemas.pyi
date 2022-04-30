@@ -502,6 +502,12 @@ class MetricThreshold(typing_extensions.TypedDict, total=False):
     denominatorAggregations: _list[Aggregation]
     denominatorFilter: str
     duration: str
+    evaluationMissingData: typing_extensions.Literal[
+        "EVALUATION_MISSING_DATA_UNSPECIFIED",
+        "EVALUATION_MISSING_DATA_INACTIVE",
+        "EVALUATION_MISSING_DATA_ACTIVE",
+        "EVALUATION_MISSING_DATA_NO_OP",
+    ]
     filter: str
     thresholdValue: float
     trigger: Trigger
@@ -537,6 +543,12 @@ class MonitoredResourceMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MonitoringQueryLanguageCondition(typing_extensions.TypedDict, total=False):
     duration: str
+    evaluationMissingData: typing_extensions.Literal[
+        "EVALUATION_MISSING_DATA_UNSPECIFIED",
+        "EVALUATION_MISSING_DATA_INACTIVE",
+        "EVALUATION_MISSING_DATA_ACTIVE",
+        "EVALUATION_MISSING_DATA_NO_OP",
+    ]
     query: str
     trigger: Trigger
 
@@ -772,6 +784,9 @@ class TypedValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UptimeCheckConfig(typing_extensions.TypedDict, total=False):
+    checkerType: typing_extensions.Literal[
+        "CHECKER_TYPE_UNSPECIFIED", "STATIC_IP_CHECKERS", "VPC_CHECKERS"
+    ]
     contentMatchers: _list[ContentMatcher]
     displayName: str
     httpCheck: HttpCheck

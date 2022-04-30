@@ -41,6 +41,7 @@ class AddRolesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
+    checkServiceNetworkingUsePermission: bool
     consumer: str
     consumerNetwork: str
     description: str
@@ -321,6 +322,7 @@ class HttpRule(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
+    cookie: str
     header: str
     query: str
     valuePrefix: str
@@ -675,6 +677,7 @@ class UsageRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ValidateConsumerConfigRequest(typing_extensions.TypedDict, total=False):
+    checkServiceNetworkingUsePermission: bool
     consumerNetwork: str
     consumerProject: ConsumerProject
     rangeReservation: RangeReservation
@@ -699,4 +702,5 @@ class ValidateConsumerConfigResponse(typing_extensions.TypedDict, total=False):
         "RANGES_NOT_RESERVED",
         "RANGES_DELETED_LATER",
         "COMPUTE_API_NOT_ENABLED",
+        "USE_PERMISSION_NOT_FOUND",
     ]

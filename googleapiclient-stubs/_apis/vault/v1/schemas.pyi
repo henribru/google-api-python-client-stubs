@@ -100,6 +100,12 @@ class DriveExportOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DriveOptions(typing_extensions.TypedDict, total=False):
+    clientSideEncryptedOption: typing_extensions.Literal[
+        "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED",
+        "CLIENT_SIDE_ENCRYPTED_OPTION_ANY",
+        "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED",
+        "CLIENT_SIDE_ENCRYPTED_OPTION_UNENCRYPTED",
+    ]
     includeSharedDrives: bool
     includeTeamDrives: bool
     versionDate: str
@@ -254,6 +260,7 @@ class MailCountResult(typing_extensions.TypedDict, total=False):
 class MailExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST"]
     showConfidentialModeContent: bool
+    useNewExport: bool
 
 @typing.type_check_only
 class MailOptions(typing_extensions.TypedDict, total=False):

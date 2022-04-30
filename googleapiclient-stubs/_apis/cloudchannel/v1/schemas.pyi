@@ -66,6 +66,14 @@ class GoogleCloudChannelV1ChannelPartnerLink(typing_extensions.TypedDict, total=
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudChannelV1ChannelPartnerRepricingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    repricingConfig: GoogleCloudChannelV1RepricingConfig
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudChannelV1CheckCloudIdentityAccountsExistRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -154,6 +162,14 @@ class GoogleCloudChannelV1CustomerEvent(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
+class GoogleCloudChannelV1CustomerRepricingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    repricingConfig: GoogleCloudChannelV1RepricingConfig
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudChannelV1EduData(typing_extensions.TypedDict, total=False):
     instituteSize: typing_extensions.Literal[
         "INSTITUTE_SIZE_UNSPECIFIED",
@@ -222,6 +238,22 @@ class GoogleCloudChannelV1ListChannelPartnerLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
     channelPartnerLinks: _list[GoogleCloudChannelV1ChannelPartnerLink]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    channelPartnerRepricingConfigs: _list[
+        GoogleCloudChannelV1ChannelPartnerRepricingConfig
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1ListCustomerRepricingConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    customerRepricingConfigs: _list[GoogleCloudChannelV1CustomerRepricingConfig]
     nextPageToken: str
 
 @typing.type_check_only
@@ -372,6 +404,12 @@ class GoogleCloudChannelV1ParameterDefinition(typing_extensions.TypedDict, total
     ]
 
 @typing.type_check_only
+class GoogleCloudChannelV1PercentageAdjustment(
+    typing_extensions.TypedDict, total=False
+):
+    percentage: GoogleTypeDecimal
+
+@typing.type_check_only
 class GoogleCloudChannelV1Period(typing_extensions.TypedDict, total=False):
     duration: int
     periodType: typing_extensions.Literal[
@@ -475,6 +513,31 @@ class GoogleCloudChannelV1RenewalSettings(typing_extensions.TypedDict, total=Fal
         "PAYMENT_PLAN_UNSPECIFIED", "COMMITMENT", "FLEXIBLE", "FREE", "TRIAL", "OFFLINE"
     ]
     resizeUnitCount: bool
+
+@typing.type_check_only
+class GoogleCloudChannelV1RepricingAdjustment(typing_extensions.TypedDict, total=False):
+    percentageAdjustment: GoogleCloudChannelV1PercentageAdjustment
+
+@typing.type_check_only
+class GoogleCloudChannelV1RepricingConfig(typing_extensions.TypedDict, total=False):
+    adjustment: GoogleCloudChannelV1RepricingAdjustment
+    channelPartnerGranularity: GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity
+    effectiveInvoiceMonth: GoogleTypeDate
+    entitlementGranularity: GoogleCloudChannelV1RepricingConfigEntitlementGranularity
+    rebillingBasis: typing_extensions.Literal[
+        "REBILLING_BASIS_UNSPECIFIED", "COST_AT_LIST", "DIRECT_CUSTOMER_COST"
+    ]
+
+@typing.type_check_only
+class GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudChannelV1RepricingConfigEntitlementGranularity(
+    typing_extensions.TypedDict, total=False
+):
+    entitlement: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1Sku(typing_extensions.TypedDict, total=False):
@@ -751,6 +814,16 @@ class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
+class GoogleTypeDecimal(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class GoogleTypeMoney(typing_extensions.TypedDict, total=False):

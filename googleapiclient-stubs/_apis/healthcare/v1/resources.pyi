@@ -549,6 +549,15 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         def Resource_purge(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> EmptyHttpRequest: ...
+                        def Resource_validate(
+                            self,
+                            *,
+                            parent: str,
+                            type: str,
+                            body: HttpBody = ...,
+                            profile: str = ...,
+                            **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
                         def capabilities(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...

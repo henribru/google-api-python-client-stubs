@@ -175,6 +175,7 @@ class CreateMessageRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CryptoHashConfig(typing_extensions.TypedDict, total=False):
     cryptoKey: str
+    kmsWrapped: KmsWrappedCryptoKey
 
 @typing.type_check_only
 class Dataset(typing_extensions.TypedDict, total=False):
@@ -184,6 +185,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DateShiftConfig(typing_extensions.TypedDict, total=False):
     cryptoKey: str
+    kmsWrapped: KmsWrappedCryptoKey
 
 @typing.type_check_only
 class DeidentifyConfig(typing_extensions.TypedDict, total=False):
@@ -191,24 +193,32 @@ class DeidentifyConfig(typing_extensions.TypedDict, total=False):
     dicom: DicomConfig
     fhir: FhirConfig
     image: ImageConfig
+    operationMetadata: DeidentifyOperationMetadata
     text: TextConfig
 
 @typing.type_check_only
 class DeidentifyDatasetRequest(typing_extensions.TypedDict, total=False):
     config: DeidentifyConfig
     destinationDataset: str
+    gcsConfigUri: str
 
 @typing.type_check_only
 class DeidentifyDicomStoreRequest(typing_extensions.TypedDict, total=False):
     config: DeidentifyConfig
     destinationStore: str
     filterConfig: DicomFilterConfig
+    gcsConfigUri: str
 
 @typing.type_check_only
 class DeidentifyFhirStoreRequest(typing_extensions.TypedDict, total=False):
     config: DeidentifyConfig
     destinationStore: str
+    gcsConfigUri: str
     resourceFilter: FhirFilter
+
+@typing.type_check_only
+class DeidentifyOperationMetadata(typing_extensions.TypedDict, total=False):
+    fhirOutput: FhirOutput
 
 @typing.type_check_only
 class DeidentifySummary(typing_extensions.TypedDict, total=False): ...
@@ -348,6 +358,10 @@ class FhirConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FhirFilter(typing_extensions.TypedDict, total=False):
     resources: Resources
+
+@typing.type_check_only
+class FhirOutput(typing_extensions.TypedDict, total=False):
+    fhirStore: str
 
 @typing.type_check_only
 class FhirStore(typing_extensions.TypedDict, total=False):
@@ -627,6 +641,11 @@ class IngestMessageResponse(typing_extensions.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
+class KmsWrappedCryptoKey(typing_extensions.TypedDict, total=False):
+    cryptoKey: str
+    wrappedKey: str
+
+@typing.type_check_only
 class LinkedEntity(typing_extensions.TypedDict, total=False):
     entityId: str
 
@@ -757,7 +776,7 @@ class ParserConfig(typing_extensions.TypedDict, total=False):
     allowNullHeader: bool
     schema: SchemaPackage
     segmentTerminator: str
-    version: typing_extensions.Literal["PARSER_VERSION_UNSPECIFIED", "V1", "V2"]
+    version: typing_extensions.Literal["PARSER_VERSION_UNSPECIFIED", "V1", "V2", "V3"]
 
 @typing.type_check_only
 class PatientId(typing_extensions.TypedDict, total=False):
@@ -819,7 +838,7 @@ class RevokeConsentRequest(typing_extensions.TypedDict, total=False):
 class SchemaConfig(typing_extensions.TypedDict, total=False):
     recursiveStructureDepth: str
     schemaType: typing_extensions.Literal[
-        "SCHEMA_TYPE_UNSPECIFIED", "LOSSLESS", "ANALYTICS"
+        "SCHEMA_TYPE_UNSPECIFIED", "LOSSLESS", "ANALYTICS", "ANALYTICS_V2"
     ]
 
 @typing.type_check_only

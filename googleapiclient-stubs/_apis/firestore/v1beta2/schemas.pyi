@@ -8,6 +8,11 @@ _list = list
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1beta2ExportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):

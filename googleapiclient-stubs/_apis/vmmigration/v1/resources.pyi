@@ -137,6 +137,13 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         previous_request: ListDatacenterConnectorsResponseHttpRequest,
                         previous_response: ListDatacenterConnectorsResponse,
                     ) -> ListDatacenterConnectorsResponseHttpRequest | None: ...
+                    def upgradeAppliance(
+                        self,
+                        *,
+                        datacenterConnector: str,
+                        body: UpgradeApplianceRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
                 class MigratingVmsResource(googleapiclient.discovery.Resource):

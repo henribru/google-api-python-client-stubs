@@ -34,17 +34,6 @@ class GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse(
 ): ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAndroidAppDataStream(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    displayName: str
-    firebaseAppId: str
-    name: str
-    packageName: str
-    updateTime: str
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -146,20 +135,18 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     typing_extensions.TypedDict, total=False
 ):
     account: GoogleAnalyticsAdminV1alphaAccount
-    androidAppDataStream: GoogleAnalyticsAdminV1alphaAndroidAppDataStream
     conversionEvent: GoogleAnalyticsAdminV1alphaConversionEvent
     customDimension: GoogleAnalyticsAdminV1alphaCustomDimension
     customMetric: GoogleAnalyticsAdminV1alphaCustomMetric
     dataRetentionSettings: GoogleAnalyticsAdminV1alphaDataRetentionSettings
+    dataStream: GoogleAnalyticsAdminV1alphaDataStream
     displayVideo360AdvertiserLink: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
     displayVideo360AdvertiserLinkProposal: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal
     firebaseLink: GoogleAnalyticsAdminV1alphaFirebaseLink
     googleAdsLink: GoogleAnalyticsAdminV1alphaGoogleAdsLink
     googleSignalsSettings: GoogleAnalyticsAdminV1alphaGoogleSignalsSettings
-    iosAppDataStream: GoogleAnalyticsAdminV1alphaIosAppDataStream
     measurementProtocolSecret: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret
     property: GoogleAnalyticsAdminV1alphaProperty
-    webDataStream: GoogleAnalyticsAdminV1alphaWebDataStream
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
@@ -222,6 +209,7 @@ class GoogleAnalyticsAdminV1alphaCustomMetric(typing_extensions.TypedDict, total
     ]
     name: str
     parameterName: str
+    restrictedMetricType: _list[str]
     scope: typing_extensions.Literal["METRIC_SCOPE_UNSPECIFIED", "EVENT"]
 
 @typing.type_check_only
@@ -249,6 +237,44 @@ class GoogleAnalyticsAdminV1alphaDataSharingSettings(
     sharingWithGoogleProductsEnabled: bool
     sharingWithGoogleSupportEnabled: bool
     sharingWithOthersEnabled: bool
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDataStream(typing_extensions.TypedDict, total=False):
+    androidAppStreamData: GoogleAnalyticsAdminV1alphaDataStreamAndroidAppStreamData
+    createTime: str
+    displayName: str
+    iosAppStreamData: GoogleAnalyticsAdminV1alphaDataStreamIosAppStreamData
+    name: str
+    type: typing_extensions.Literal[
+        "DATA_STREAM_TYPE_UNSPECIFIED",
+        "WEB_DATA_STREAM",
+        "ANDROID_APP_DATA_STREAM",
+        "IOS_APP_DATA_STREAM",
+    ]
+    updateTime: str
+    webStreamData: GoogleAnalyticsAdminV1alphaDataStreamWebStreamData
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDataStreamAndroidAppStreamData(
+    typing_extensions.TypedDict, total=False
+):
+    firebaseAppId: str
+    packageName: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDataStreamIosAppStreamData(
+    typing_extensions.TypedDict, total=False
+):
+    bundleId: str
+    firebaseAppId: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDataStreamWebStreamData(
+    typing_extensions.TypedDict, total=False
+):
+    defaultUri: str
+    firebaseAppId: str
+    measurementId: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest(
@@ -322,17 +348,6 @@ class GoogleAnalyticsAdminV1alphaGoogleSignalsSettings(
     ]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaIosAppDataStream(
-    typing_extensions.TypedDict, total=False
-):
-    bundleId: str
-    createTime: str
-    displayName: str
-    firebaseAppId: str
-    name: str
-    updateTime: str
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -367,13 +382,6 @@ class GoogleAnalyticsAdminV1alphaListAccountsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    androidAppDataStreams: _list[GoogleAnalyticsAdminV1alphaAndroidAppDataStream]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListConversionEventsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -392,6 +400,13 @@ class GoogleAnalyticsAdminV1alphaListCustomMetricsResponse(
     typing_extensions.TypedDict, total=False
 ):
     customMetrics: _list[GoogleAnalyticsAdminV1alphaCustomMetric]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListDataStreamsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataStreams: _list[GoogleAnalyticsAdminV1alphaDataStream]
     nextPageToken: str
 
 @typing.type_check_only
@@ -427,13 +442,6 @@ class GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    iosAppDataStreams: _list[GoogleAnalyticsAdminV1alphaIosAppDataStream]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -455,13 +463,6 @@ class GoogleAnalyticsAdminV1alphaListUserLinksResponse(
 ):
     nextPageToken: str
     userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    webDataStreams: _list[GoogleAnalyticsAdminV1alphaWebDataStream]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret(
@@ -510,6 +511,12 @@ class GoogleAnalyticsAdminV1alphaProperty(typing_extensions.TypedDict, total=Fal
     ]
     name: str
     parent: str
+    propertyType: typing_extensions.Literal[
+        "PROPERTY_TYPE_UNSPECIFIED",
+        "PROPERTY_TYPE_ORDINARY",
+        "PROPERTY_TYPE_SUBPROPERTY",
+        "PROPERTY_TYPE_ROLLUP",
+    ]
     serviceLevel: typing_extensions.Literal[
         "SERVICE_LEVEL_UNSPECIFIED", "GOOGLE_ANALYTICS_STANDARD", "GOOGLE_ANALYTICS_360"
     ]
@@ -521,7 +528,14 @@ class GoogleAnalyticsAdminV1alphaPropertySummary(
     typing_extensions.TypedDict, total=False
 ):
     displayName: str
+    parent: str
     property: str
+    propertyType: typing_extensions.Literal[
+        "PROPERTY_TYPE_UNSPECIFIED",
+        "PROPERTY_TYPE_ORDINARY",
+        "PROPERTY_TYPE_SUBPROPERTY",
+        "PROPERTY_TYPE_ROLLUP",
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaProvisionAccountTicketRequest(
@@ -567,18 +581,6 @@ class GoogleAnalyticsAdminV1alphaUserLink(typing_extensions.TypedDict, total=Fal
     directRoles: _list[str]
     emailAddress: str
     name: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaWebDataStream(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    defaultUri: str
-    displayName: str
-    firebaseAppId: str
-    measurementId: str
-    name: str
-    updateTime: str
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

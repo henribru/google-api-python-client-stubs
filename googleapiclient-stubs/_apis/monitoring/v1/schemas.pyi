@@ -60,6 +60,10 @@ class ChartOptions(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "COLOR", "X_RAY", "STATS"]
 
 @typing.type_check_only
+class CollapsibleGroup(typing_extensions.TypedDict, total=False):
+    collapsed: bool
+
+@typing.type_check_only
 class Column(typing_extensions.TypedDict, total=False):
     weight: str
     widgets: _list[Widget]
@@ -71,6 +75,7 @@ class ColumnLayout(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Dashboard(typing_extensions.TypedDict, total=False):
     columnLayout: ColumnLayout
+    dashboardFilters: _list[DashboardFilter]
     displayName: str
     etag: str
     gridLayout: GridLayout
@@ -78,6 +83,20 @@ class Dashboard(typing_extensions.TypedDict, total=False):
     mosaicLayout: MosaicLayout
     name: str
     rowLayout: RowLayout
+
+@typing.type_check_only
+class DashboardFilter(typing_extensions.TypedDict, total=False):
+    filterType: typing_extensions.Literal[
+        "FILTER_TYPE_UNSPECIFIED",
+        "RESOURCE_LABEL",
+        "METRIC_LABEL",
+        "USER_METADATA_LABEL",
+        "SYSTEM_METADATA_LABEL",
+        "GROUP",
+    ]
+    labelKey: str
+    stringValue: str
+    templateVariable: str
 
 @typing.type_check_only
 class DataSet(typing_extensions.TypedDict, total=False):
@@ -357,6 +376,7 @@ class Type(typing_extensions.TypedDict, total=False):
 class Widget(typing_extensions.TypedDict, total=False):
     alertChart: AlertChart
     blank: Empty
+    collapsibleGroup: CollapsibleGroup
     logsPanel: LogsPanel
     scorecard: Scorecard
     text: Text

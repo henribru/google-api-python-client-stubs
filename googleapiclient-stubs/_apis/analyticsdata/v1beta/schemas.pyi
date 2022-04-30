@@ -298,6 +298,7 @@ class ResponseMetaData(typing_extensions.TypedDict, total=False):
     dataLossFromOtherRow: bool
     emptyReason: str
     schemaRestrictionResponse: SchemaRestrictionResponse
+    subjectToThresholding: bool
     timeZone: str
 
 @typing.type_check_only

@@ -20,6 +20,30 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class CatalogsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class AttributesConfigResource(googleapiclient.discovery.Resource):
+                    def addCatalogAttribute(
+                        self,
+                        *,
+                        attributesConfig: str,
+                        body: GoogleCloudRetailV2alphaAddCatalogAttributeRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaAttributesConfigHttpRequest: ...
+                    def removeCatalogAttribute(
+                        self,
+                        *,
+                        attributesConfig: str,
+                        body: GoogleCloudRetailV2alphaRemoveCatalogAttributeRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaAttributesConfigHttpRequest: ...
+                    def replaceCatalogAttribute(
+                        self,
+                        *,
+                        attributesConfig: str,
+                        body: GoogleCloudRetailV2alphaReplaceCatalogAttributeRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaAttributesConfigHttpRequest: ...
+
+                @typing.type_check_only
                 class BranchesResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class OperationsResource(googleapiclient.discovery.Resource):
@@ -89,6 +113,13 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudRetailV2alphaProductHttpRequest: ...
+                        def purge(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudRetailV2alphaPurgeProductsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
                         def removeFulfillmentPlaces(
                             self,
                             *,
@@ -123,6 +154,45 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRetailV2alphaImportCompletionDataRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                @typing.type_check_only
+                class ControlsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudRetailV2alphaControl = ...,
+                        controlId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaControlHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaControlHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaListControlsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudRetailV2alphaListControlsResponseHttpRequest,
+                        previous_response: GoogleCloudRetailV2alphaListControlsResponse,
+                    ) -> GoogleCloudRetailV2alphaListControlsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRetailV2alphaControl = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaControlHttpRequest: ...
 
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
@@ -165,6 +235,58 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         previous_request: GoogleCloudRetailV2alphaSearchResponseHttpRequest,
                         previous_response: GoogleCloudRetailV2alphaSearchResponse,
                     ) -> GoogleCloudRetailV2alphaSearchResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class ServingConfigsResource(googleapiclient.discovery.Resource):
+                    def addControl(
+                        self,
+                        *,
+                        servingConfig: str,
+                        body: GoogleCloudRetailV2alphaAddControlRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaServingConfigHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudRetailV2alphaServingConfig = ...,
+                        servingConfigId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaServingConfigHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaServingConfigHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest,
+                        previous_response: GoogleCloudRetailV2alphaListServingConfigsResponse,
+                    ) -> GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRetailV2alphaServingConfig = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaServingConfigHttpRequest: ...
+                    def removeControl(
+                        self,
+                        *,
+                        servingConfig: str,
+                        body: GoogleCloudRetailV2alphaRemoveControlRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaServingConfigHttpRequest: ...
 
                 @typing.type_check_only
                 class UserEventsResource(googleapiclient.discovery.Resource):
@@ -218,6 +340,12 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     visitorId: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2alphaCompleteQueryResponseHttpRequest: ...
+                def getAttributesConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRetailV2alphaAttributesConfigHttpRequest: ...
+                def getCompletionConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRetailV2alphaCompletionConfigHttpRequest: ...
                 def getDefaultBranch(
                     self, *, catalog: str, **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2alphaGetDefaultBranchResponseHttpRequest: ...
@@ -249,10 +377,29 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudRetailV2alphaSetDefaultBranchRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
+                def updateAttributesConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRetailV2alphaAttributesConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRetailV2alphaAttributesConfigHttpRequest: ...
+                def updateCompletionConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRetailV2alphaCompletionConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRetailV2alphaCompletionConfigHttpRequest: ...
+                def attributesConfig(self) -> AttributesConfigResource: ...
                 def branches(self) -> BranchesResource: ...
                 def completionData(self) -> CompletionDataResource: ...
+                def controls(self) -> ControlsResource: ...
                 def operations(self) -> OperationsResource: ...
                 def placements(self) -> PlacementsResource: ...
+                def servingConfigs(self) -> ServingConfigsResource: ...
                 def userEvents(self) -> UserEventsResource: ...
 
             @typing.type_check_only
@@ -278,7 +425,28 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
             def catalogs(self) -> CatalogsResource: ...
             def operations(self) -> OperationsResource: ...
 
+        @typing.type_check_only
+        class OperationsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                previous_response: GoogleLongrunningListOperationsResponse,
+            ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
         def locations(self) -> LocationsResource: ...
+        def operations(self) -> OperationsResource: ...
 
     def new_batch_http_request(
         self,
@@ -303,6 +471,16 @@ class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleApiHttpBody: ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaAttributesConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaAttributesConfig: ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaCatalogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -319,6 +497,24 @@ class GoogleCloudRetailV2alphaCompleteQueryResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaCompleteQueryResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaCompletionConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaCompletionConfig: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaControlHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaControl: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaGetDefaultBranchResponseHttpRequest(
@@ -341,6 +537,16 @@ class GoogleCloudRetailV2alphaListCatalogsResponseHttpRequest(
     ) -> GoogleCloudRetailV2alphaListCatalogsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaListControlsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaListControlsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaListProductsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -349,6 +555,16 @@ class GoogleCloudRetailV2alphaListProductsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaListProductsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaListServingConfigsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaPredictResponseHttpRequest(
@@ -377,6 +593,16 @@ class GoogleCloudRetailV2alphaSearchResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaSearchResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaServingConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaServingConfig: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaUserEventHttpRequest(googleapiclient.http.HttpRequest):

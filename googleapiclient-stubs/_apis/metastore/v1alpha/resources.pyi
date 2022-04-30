@@ -237,6 +237,13 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def removeIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: RemoveIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> RemoveIamPolicyResponseHttpRequest: ...
                 def restore(
                     self,
                     *,
@@ -385,6 +392,14 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class RemoveIamPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RemoveIamPolicyResponse: ...
 
 @typing.type_check_only
 class ServiceHttpRequest(googleapiclient.http.HttpRequest):

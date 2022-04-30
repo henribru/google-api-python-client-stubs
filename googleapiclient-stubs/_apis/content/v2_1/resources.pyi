@@ -187,6 +187,12 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         def returncarrier(self) -> ReturncarrierResource: ...
 
     @typing.type_check_only
+    class AccountsbyexternalselleridResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, merchantId: str, externalSellerId: str, **kwargs: typing.Any
+        ) -> AccountHttpRequest: ...
+
+    @typing.type_check_only
     class AccountstatusesResource(googleapiclient.discovery.Resource):
         def custombatch(
             self, *, body: AccountstatusesCustomBatchRequest = ..., **kwargs: typing.Any
@@ -214,6 +220,17 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             previous_request: AccountstatusesListResponseHttpRequest,
             previous_response: AccountstatusesListResponse,
         ) -> AccountstatusesListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
+    class AccountstatusesbyexternalselleridResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            merchantId: str,
+            externalSellerId: str,
+            destinations: str | _list[str] = ...,
+            **kwargs: typing.Any
+        ) -> AccountStatusHttpRequest: ...
 
     @typing.type_check_only
     class AccounttaxResource(googleapiclient.discovery.Resource):
@@ -1353,7 +1370,11 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
+    def accountsbyexternalsellerid(self) -> AccountsbyexternalselleridResource: ...
     def accountstatuses(self) -> AccountstatusesResource: ...
+    def accountstatusesbyexternalsellerid(
+        self,
+    ) -> AccountstatusesbyexternalselleridResource: ...
     def accounttax(self) -> AccounttaxResource: ...
     def buyongoogleprograms(self) -> BuyongoogleprogramsResource: ...
     def collections(self) -> CollectionsResource: ...

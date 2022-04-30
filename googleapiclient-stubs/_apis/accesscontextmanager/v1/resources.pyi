@@ -63,6 +63,13 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 body: ReplaceAccessLevelsRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+            def testIamPermissions(
+                self,
+                *,
+                resource: str,
+                body: TestIamPermissionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> TestIamPermissionsResponseHttpRequest: ...
 
         @typing.type_check_only
         class ServicePerimetersResource(googleapiclient.discovery.Resource):
@@ -110,6 +117,13 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 body: ReplaceServicePerimetersRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+            def testIamPermissions(
+                self,
+                *,
+                resource: str,
+                body: TestIamPermissionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> TestIamPermissionsResponseHttpRequest: ...
 
         def create(
             self, *, body: AccessPolicy = ..., **kwargs: typing.Any
@@ -120,6 +134,13 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> AccessPolicyHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def list(
             self,
             *,
@@ -141,6 +162,20 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: SetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            resource: str,
+            body: TestIamPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestIamPermissionsResponseHttpRequest: ...
         def accessLevels(self) -> AccessLevelsResource: ...
         def servicePerimeters(self) -> ServicePerimetersResource: ...
 
@@ -304,9 +339,25 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Operation: ...
 
 @typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Policy: ...
+
+@typing.type_check_only
 class ServicePerimeterHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ServicePerimeter: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> TestIamPermissionsResponse: ...

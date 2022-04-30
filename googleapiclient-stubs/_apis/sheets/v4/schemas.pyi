@@ -700,6 +700,7 @@ class DataExecutionStatus(typing_extensions.TypedDict, total=False):
         "DATA_EXECUTION_ERROR_CODE_UNSPECIFIED",
         "TIMED_OUT",
         "TOO_MANY_ROWS",
+        "TOO_MANY_COLUMNS",
         "TOO_MANY_CELLS",
         "ENGINE",
         "PARAMETER_INVALID",

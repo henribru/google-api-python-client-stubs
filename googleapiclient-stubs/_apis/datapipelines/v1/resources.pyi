@@ -19,6 +19,22 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class PipelinesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class JobsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest,
+                        previous_response: GoogleCloudDatapipelinesV1ListJobsResponse,
+                    ) -> GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -54,6 +70,7 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDatapipelinesV1StopPipelineRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
+                def jobs(self) -> JobsResource: ...
 
             def listPipelines(
                 self,
@@ -86,6 +103,16 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDatapipelinesV1ListJobsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest(

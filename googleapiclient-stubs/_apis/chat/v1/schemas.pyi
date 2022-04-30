@@ -13,7 +13,12 @@ class ActionParameter(typing_extensions.TypedDict, total=False):
 class ActionResponse(typing_extensions.TypedDict, total=False):
     dialogAction: DialogAction
     type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "NEW_MESSAGE", "UPDATE_MESSAGE", "REQUEST_CONFIG"
+        "TYPE_UNSPECIFIED",
+        "NEW_MESSAGE",
+        "UPDATE_MESSAGE",
+        "UPDATE_USER_MESSAGE_CARDS",
+        "REQUEST_CONFIG",
+        "DIALOG",
     ]
     url: str
 
@@ -92,6 +97,12 @@ class CardHeader(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ChatAppLogEntry(typing_extensions.TypedDict, total=False):
+    deployment: str
+    deploymentFunction: str
+    error: Status
+
+@typing.type_check_only
 class Color(typing_extensions.TypedDict, total=False):
     alpha: float
     blue: float
@@ -112,7 +123,6 @@ class CommonEventObject(typing_extensions.TypedDict, total=False):
         "SLIDES",
         "DRAWINGS",
         "CHAT",
-        "ALL_HOST_APPS",
     ]
     invokedFunction: str
     parameters: dict[str, typing.Any]
@@ -159,12 +169,6 @@ class DialogAction(dict[str, typing.Any]): ...
 @typing.type_check_only
 class DriveDataRef(typing_extensions.TypedDict, total=False):
     driveFileId: str
-
-@typing.type_check_only
-class DynamiteIntegrationLogEntry(typing_extensions.TypedDict, total=False):
-    deployment: str
-    deploymentFunction: str
-    error: Status
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -463,6 +467,10 @@ class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
 class ListSpacesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     spaces: _list[Space]
+
+@typing.type_check_only
+class MatchedUrl(typing_extensions.TypedDict, total=False):
+    url: str
 
 @typing.type_check_only
 class Media(typing_extensions.TypedDict, total=False):

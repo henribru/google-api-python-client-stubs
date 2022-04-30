@@ -5,6 +5,10 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AnthosCluster(typing_extensions.TypedDict, total=False):
+    membership: str
+
+@typing.type_check_only
 class ApproveRolloutRequest(typing_extensions.TypedDict, total=False):
     approved: bool
 
@@ -68,13 +72,26 @@ class DeliveryPipeline(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class DeliveryPipelineNotificationEvent(typing_extensions.TypedDict, total=False):
+    deliveryPipeline: str
+    message: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+        "TYPE_RENDER_STATUES_CHANGE",
+    ]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ExecutionConfig(typing_extensions.TypedDict, total=False):
+    artifactStorage: str
     defaultPool: DefaultPool
     privatePool: PrivatePool
+    serviceAccount: str
     usages: _list[str]
+    workerPool: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -86,6 +103,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GkeCluster(typing_extensions.TypedDict, total=False):
     cluster: str
+    internalIp: bool
 
 @typing.type_check_only
 class ListDeliveryPipelinesResponse(typing_extensions.TypedDict, total=False):
@@ -194,6 +212,21 @@ class Release(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
+class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
+    message: str
+    release: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+        "TYPE_RENDER_STATUES_CHANGE",
+    ]
+
+@typing.type_check_only
+class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
+    message: str
+    release: str
+
+@typing.type_check_only
 class Rollout(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     approvalState: typing_extensions.Literal[
@@ -206,6 +239,13 @@ class Rollout(typing_extensions.TypedDict, total=False):
     approveTime: str
     createTime: str
     deployEndTime: str
+    deployFailureCause: typing_extensions.Literal[
+        "FAILURE_CAUSE_UNSPECIFIED",
+        "CLOUD_BUILD_UNAVAILABLE",
+        "EXECUTION_FAILED",
+        "DEADLINE_EXCEEDED",
+        "RELEASE_FAILED",
+    ]
     deployStartTime: str
     deployingBuild: str
     description: str
@@ -226,6 +266,19 @@ class Rollout(typing_extensions.TypedDict, total=False):
     ]
     targetId: str
     uid: str
+
+@typing.type_check_only
+class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
+    message: str
+    pipelineUid: str
+    releaseUid: str
+    rollout: str
+    targetId: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+        "TYPE_RENDER_STATUES_CHANGE",
+    ]
 
 @typing.type_check_only
 class SerialPipeline(typing_extensions.TypedDict, total=False):
@@ -255,6 +308,7 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Target(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    anthosCluster: AnthosCluster
     createTime: str
     description: str
     etag: str
@@ -274,7 +328,20 @@ class TargetArtifact(typing_extensions.TypedDict, total=False):
     skaffoldConfigPath: str
 
 @typing.type_check_only
+class TargetNotificationEvent(typing_extensions.TypedDict, total=False):
+    message: str
+    target: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+        "TYPE_RENDER_STATUES_CHANGE",
+    ]
+
+@typing.type_check_only
 class TargetRender(typing_extensions.TypedDict, total=False):
+    failureCause: typing_extensions.Literal[
+        "FAILURE_CAUSE_UNSPECIFIED", "CLOUD_BUILD_UNAVAILABLE", "EXECUTION_FAILED"
+    ]
     renderingBuild: str
     renderingState: typing_extensions.Literal[
         "TARGET_RENDER_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "IN_PROGRESS"

@@ -354,6 +354,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
@@ -396,6 +397,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -629,7 +631,103 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudDialogflowV2AnswerRecordHttpRequest: ...
 
         @typing.type_check_only
+        class ConversationDatasetsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2ConversationDatasetHttpRequest: ...
+            def importConversationData(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDialogflowV2ImportConversationDataRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2ListConversationDatasetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDialogflowV2ListConversationDatasetsResponseHttpRequest,
+                previous_response: GoogleCloudDialogflowV2ListConversationDatasetsResponse,
+            ) -> GoogleCloudDialogflowV2ListConversationDatasetsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
+        class ConversationModelsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class EvaluationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2ConversationModelEvaluationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2ListConversationModelEvaluationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2ListConversationModelEvaluationsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2ListConversationModelEvaluationsResponse,
+                ) -> GoogleCloudDialogflowV2ListConversationModelEvaluationsResponseHttpRequest | None: ...
+
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudDialogflowV2ConversationModel = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def deploy(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDialogflowV2DeployConversationModelRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2ConversationModelHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2ListConversationModelsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDialogflowV2ListConversationModelsResponseHttpRequest,
+                previous_response: GoogleCloudDialogflowV2ListConversationModelsResponse,
+            ) -> GoogleCloudDialogflowV2ListConversationModelsResponseHttpRequest | None: ...
+            def undeploy(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDialogflowV2UndeployConversationModelRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def evaluations(self) -> EvaluationsResource: ...
+
+        @typing.type_check_only
         class ConversationProfilesResource(googleapiclient.discovery.Resource):
+            def clearSuggestionFeatureConfig(
+                self,
+                *,
+                conversationProfile: str,
+                body: GoogleCloudDialogflowV2ClearSuggestionFeatureConfigRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def create(
                 self,
                 *,
@@ -664,6 +762,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2ConversationProfileHttpRequest: ...
+            def setSuggestionFeatureConfig(
+                self,
+                *,
+                conversationProfile: str,
+                body: GoogleCloudDialogflowV2SetSuggestionFeatureConfigRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
 
         @typing.type_check_only
         class ConversationsResource(googleapiclient.discovery.Resource):
@@ -702,6 +807,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowV2SuggestFaqAnswersRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2SuggestFaqAnswersResponseHttpRequest: ...
+                    def suggestSmartReplies(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2SuggestSmartRepliesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2SuggestSmartRepliesResponseHttpRequest: ...
 
                 def analyzeContent(
                     self,
@@ -792,13 +904,28 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def export(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2ExportDocumentRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2DocumentHttpRequest: ...
+                def import_(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2ImportDocumentsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -841,6 +968,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
@@ -1399,7 +1527,120 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDialogflowV2AnswerRecordHttpRequest: ...
 
             @typing.type_check_only
+            class ConversationDatasetsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2ConversationDataset = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2ConversationDatasetHttpRequest: ...
+                def importConversationData(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2ImportConversationDataRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2ListConversationDatasetsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2ListConversationDatasetsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2ListConversationDatasetsResponse,
+                ) -> GoogleCloudDialogflowV2ListConversationDatasetsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class ConversationModelsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class EvaluationsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2CreateConversationModelEvaluationRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2ConversationModelEvaluationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2ListConversationModelEvaluationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowV2ListConversationModelEvaluationsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowV2ListConversationModelEvaluationsResponse,
+                    ) -> GoogleCloudDialogflowV2ListConversationModelEvaluationsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2ConversationModel = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def deploy(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2DeployConversationModelRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2ConversationModelHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2ListConversationModelsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2ListConversationModelsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2ListConversationModelsResponse,
+                ) -> GoogleCloudDialogflowV2ListConversationModelsResponseHttpRequest | None: ...
+                def undeploy(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2UndeployConversationModelRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def evaluations(self) -> EvaluationsResource: ...
+
+            @typing.type_check_only
             class ConversationProfilesResource(googleapiclient.discovery.Resource):
+                def clearSuggestionFeatureConfig(
+                    self,
+                    *,
+                    conversationProfile: str,
+                    body: GoogleCloudDialogflowV2ClearSuggestionFeatureConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -1434,6 +1675,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2ConversationProfileHttpRequest: ...
+                def setSuggestionFeatureConfig(
+                    self,
+                    *,
+                    conversationProfile: str,
+                    body: GoogleCloudDialogflowV2SetSuggestionFeatureConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
 
             @typing.type_check_only
             class ConversationsResource(googleapiclient.discovery.Resource):
@@ -1472,6 +1720,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             body: GoogleCloudDialogflowV2SuggestFaqAnswersRequest = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDialogflowV2SuggestFaqAnswersResponseHttpRequest: ...
+                        def suggestSmartReplies(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowV2SuggestSmartRepliesRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowV2SuggestSmartRepliesResponseHttpRequest: ...
 
                     def analyzeContent(
                         self,
@@ -1562,13 +1817,28 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowV2ExportDocumentRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowV2DocumentHttpRequest: ...
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2ImportDocumentsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
+                        filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
@@ -1611,6 +1881,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -1686,6 +1957,8 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudDialogflowV2AgentHttpRequest: ...
             def agent(self) -> AgentResource: ...
             def answerRecords(self) -> AnswerRecordsResource: ...
+            def conversationDatasets(self) -> ConversationDatasetsResource: ...
+            def conversationModels(self) -> ConversationModelsResource: ...
             def conversationProfiles(self) -> ConversationProfilesResource: ...
             def conversations(self) -> ConversationsResource: ...
             def knowledgeBases(self) -> KnowledgeBasesResource: ...
@@ -1730,6 +2003,8 @@ class DialogflowResource(googleapiclient.discovery.Resource):
         ) -> GoogleCloudDialogflowV2AgentHttpRequest: ...
         def agent(self) -> AgentResource: ...
         def answerRecords(self) -> AnswerRecordsResource: ...
+        def conversationDatasets(self) -> ConversationDatasetsResource: ...
+        def conversationModels(self) -> ConversationModelsResource: ...
         def conversationProfiles(self) -> ConversationProfilesResource: ...
         def conversations(self) -> ConversationsResource: ...
         def knowledgeBases(self) -> KnowledgeBasesResource: ...
@@ -1791,6 +2066,36 @@ class GoogleCloudDialogflowV2ConversationHttpRequest(googleapiclient.http.HttpRe
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2Conversation: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ConversationDatasetHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2ConversationDataset: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ConversationModelHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2ConversationModel: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ConversationModelEvaluationHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2ConversationModelEvaluation: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ConversationProfileHttpRequest(
@@ -1889,6 +2194,36 @@ class GoogleCloudDialogflowV2ListContextsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2ListContextsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ListConversationDatasetsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2ListConversationDatasetsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ListConversationModelEvaluationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2ListConversationModelEvaluationsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ListConversationModelsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2ListConversationModelsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ListConversationProfilesResponseHttpRequest(
@@ -2047,6 +2382,16 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2SuggestFaqAnswersResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SuggestSmartRepliesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2SuggestSmartRepliesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ValidationResultHttpRequest(

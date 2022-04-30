@@ -89,6 +89,7 @@ class GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse(
         "UNKNOWN_CONDITIONAL",
         "UNKNOWN_INFO_DENIED",
     ]
+    errors: _list[GoogleRpcStatus]
     explainedPolicies: _list[GoogleCloudPolicytroubleshooterV1ExplainedPolicy]
 
 @typing.type_check_only
@@ -115,6 +116,12 @@ class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class GoogleTypeExpr(typing_extensions.TypedDict, total=False):

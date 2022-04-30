@@ -78,13 +78,13 @@ class Connection(typing_extensions.TypedDict, total=False):
     egressBackends: _list[str]
     envoyImageLocation: str
     imageLocation: str
-    inactive: bool
     labels: dict[str, typing.Any]
     lockConfig: LockConfig
     name: str
     serviceAccount: str
     serviceDirectory: str
     status: ConnectionStatus
+    suspended: bool
     updateTime: str
 
 @typing.type_check_only
@@ -114,6 +114,9 @@ class Connector(typing_extensions.TypedDict, total=False):
     documentationUri: str
     externalUri: str
     labels: dict[str, typing.Any]
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED"
+    ]
     name: str
     updateTime: str
     webAssetsLocation: str
@@ -377,6 +380,9 @@ class Provider(typing_extensions.TypedDict, total=False):
     documentationUri: str
     externalUri: str
     labels: dict[str, typing.Any]
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED"
+    ]
     name: str
     updateTime: str
     webAssetsLocation: str

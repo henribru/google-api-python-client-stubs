@@ -58,6 +58,9 @@ class ImportAptArtifactsGcsSource(typing_extensions.TypedDict, total=False):
     useWildcards: bool
 
 @typing.type_check_only
+class ImportAptArtifactsMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ImportAptArtifactsRequest(typing_extensions.TypedDict, total=False):
     gcsSource: ImportAptArtifactsGcsSource
 
@@ -75,6 +78,9 @@ class ImportYumArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
 class ImportYumArtifactsGcsSource(typing_extensions.TypedDict, total=False):
     uris: _list[str]
     useWildcards: bool
+
+@typing.type_check_only
+class ImportYumArtifactsMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ImportYumArtifactsRequest(typing_extensions.TypedDict, total=False):
@@ -139,6 +145,9 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Package(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
@@ -166,12 +175,13 @@ class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     format: typing_extensions.Literal[
-        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "PYPI", "APT", "YUM", "PYTHON"
+        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "APT", "YUM", "PYTHON"
     ]
     kmsKeyName: str
     labels: dict[str, typing.Any]
     mavenConfig: MavenRepositoryConfig
     name: str
+    sizeBytes: str
     updateTime: str
 
 @typing.type_check_only

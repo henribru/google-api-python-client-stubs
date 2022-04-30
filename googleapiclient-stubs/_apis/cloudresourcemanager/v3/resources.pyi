@@ -14,6 +14,22 @@ _list = list
 @typing.type_check_only
 class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class EffectiveTagsResource(googleapiclient.discovery.Resource):
+        def list(
+            self,
+            *,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            parent: str = ...,
+            **kwargs: typing.Any
+        ) -> ListEffectiveTagsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListEffectiveTagsResponseHttpRequest,
+            previous_response: ListEffectiveTagsResponse,
+        ) -> ListEffectiveTagsResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class FoldersResource(googleapiclient.discovery.Resource):
         def create(
             self, *, body: Folder = ..., **kwargs: typing.Any
@@ -308,6 +324,34 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class TagValuesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class TagHoldsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: TagHold = ...,
+                validateOnly: bool = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, validateOnly: bool = ..., **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListTagHoldsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTagHoldsResponseHttpRequest,
+                previous_response: ListTagHoldsResponse,
+            ) -> ListTagHoldsResponseHttpRequest | None: ...
+
         def create(
             self,
             *,
@@ -367,6 +411,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: TestIamPermissionsRequest = ...,
             **kwargs: typing.Any
         ) -> TestIamPermissionsResponseHttpRequest: ...
+        def tagHolds(self) -> TagHoldsResource: ...
 
     def new_batch_http_request(
         self,
@@ -380,6 +425,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def effectiveTags(self) -> EffectiveTagsResource: ...
     def folders(self) -> FoldersResource: ...
     def liens(self) -> LiensResource: ...
     def operations(self) -> OperationsResource: ...
@@ -414,6 +460,14 @@ class LienHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Lien: ...
 
 @typing.type_check_only
+class ListEffectiveTagsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListEffectiveTagsResponse: ...
+
+@typing.type_check_only
 class ListFoldersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -444,6 +498,14 @@ class ListTagBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListTagBindingsResponse: ...
+
+@typing.type_check_only
+class ListTagHoldsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListTagHoldsResponse: ...
 
 @typing.type_check_only
 class ListTagKeysResponseHttpRequest(googleapiclient.http.HttpRequest):

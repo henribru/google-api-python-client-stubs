@@ -69,6 +69,9 @@ class DiscoverConnectionProfileResponse(typing_extensions.TypedDict, total=False
     oracleRdbms: OracleRdbms
 
 @typing.type_check_only
+class DropLargeObjects(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -272,6 +275,7 @@ class OracleSchema(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OracleSourceConfig(typing_extensions.TypedDict, total=False):
+    dropLargeObjects: DropLargeObjects
     excludeObjects: OracleRdbms
     includeObjects: OracleRdbms
 

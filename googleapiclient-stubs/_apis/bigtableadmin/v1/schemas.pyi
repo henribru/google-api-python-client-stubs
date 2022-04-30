@@ -102,16 +102,6 @@ class EncryptionInfo(typing_extensions.TypedDict, total=False):
     kmsKeyVersion: str
 
 @typing.type_check_only
-class FailureTrace(typing_extensions.TypedDict, total=False):
-    frames: _list[Frame]
-
-@typing.type_check_only
-class Frame(typing_extensions.TypedDict, total=False):
-    targetName: str
-    workflowGuid: str
-    zoneId: str
-
-@typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str

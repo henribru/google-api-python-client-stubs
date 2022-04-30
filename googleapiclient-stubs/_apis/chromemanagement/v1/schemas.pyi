@@ -39,6 +39,18 @@ class GoogleChromeManagementV1AppDetails(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
+class GoogleChromeManagementV1AudioStatusReport(
+    typing_extensions.TypedDict, total=False
+):
+    inputDevice: str
+    inputGain: int
+    inputMute: bool
+    outputDevice: str
+    outputMute: bool
+    outputVolume: int
+    reportTime: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1BatteryInfo(typing_extensions.TypedDict, total=False):
     designCapacity: str
     designMinVoltage: int
@@ -99,7 +111,9 @@ class GoogleChromeManagementV1BrowserVersion(typing_extensions.TypedDict, total=
 class GoogleChromeManagementV1ChromeAppInfo(typing_extensions.TypedDict, total=False):
     googleOwned: bool
     isCwsHosted: bool
+    isKioskOnly: bool
     isTheme: bool
+    kioskEnabled: bool
     minUserCount: int
     permissions: _list[GoogleChromeManagementV1ChromeAppPermission]
     siteAccess: _list[GoogleChromeManagementV1ChromeAppSiteAccess]
@@ -325,6 +339,7 @@ class GoogleChromeManagementV1StorageStatusReport(
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total=False):
+    audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
     batteryInfo: _list[GoogleChromeManagementV1BatteryInfo]
     batteryStatusReport: _list[GoogleChromeManagementV1BatteryStatusReport]
     cpuInfo: _list[GoogleChromeManagementV1CpuInfo]

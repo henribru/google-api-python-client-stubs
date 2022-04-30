@@ -194,7 +194,12 @@ class DriveResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class DrivesResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, driveId: str, **kwargs: typing.Any
+            self,
+            *,
+            driveId: str,
+            allowItemDeletion: bool = ...,
+            useDomainAdminAccess: bool = ...,
+            **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,

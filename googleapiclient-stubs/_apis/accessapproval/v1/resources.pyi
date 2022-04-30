@@ -55,6 +55,9 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
         def getAccessApprovalSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> AccessApprovalSettingsHttpRequest: ...
+        def getServiceAccount(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> AccessApprovalServiceAccountHttpRequest: ...
         def updateAccessApprovalSettings(
             self,
             *,
@@ -107,6 +110,9 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
         def getAccessApprovalSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> AccessApprovalSettingsHttpRequest: ...
+        def getServiceAccount(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> AccessApprovalServiceAccountHttpRequest: ...
         def updateAccessApprovalSettings(
             self,
             *,
@@ -159,6 +165,9 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
         def getAccessApprovalSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> AccessApprovalSettingsHttpRequest: ...
+        def getServiceAccount(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> AccessApprovalServiceAccountHttpRequest: ...
         def updateAccessApprovalSettings(
             self,
             *,
@@ -184,6 +193,14 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
     def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AccessApprovalServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AccessApprovalServiceAccount: ...
 
 @typing.type_check_only
 class AccessApprovalSettingsHttpRequest(googleapiclient.http.HttpRequest):

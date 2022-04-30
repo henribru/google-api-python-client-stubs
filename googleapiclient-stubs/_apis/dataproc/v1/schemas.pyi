@@ -23,6 +23,11 @@ class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
     workerConfig: InstanceGroupAutoscalingPolicyConfig
 
 @typing.type_check_only
+class AuxiliaryServicesConfig(typing_extensions.TypedDict, total=False):
+    metastoreConfig: MetastoreConfig
+    sparkHistoryServerConfig: SparkHistoryServerConfig
+
+@typing.type_check_only
 class BasicAutoscalingAlgorithm(typing_extensions.TypedDict, total=False):
     cooldownPeriod: str
     sparkStandaloneConfig: SparkStandaloneAutoscalingConfig
@@ -35,6 +40,34 @@ class BasicYarnAutoscalingConfig(typing_extensions.TypedDict, total=False):
     scaleDownMinWorkerFraction: float
     scaleUpFactor: float
     scaleUpMinWorkerFraction: float
+
+@typing.type_check_only
+class Batch(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creator: str
+    environmentConfig: EnvironmentConfig
+    labels: dict[str, typing.Any]
+    name: str
+    operation: str
+    pysparkBatch: PySparkBatch
+    runtimeConfig: RuntimeConfig
+    runtimeInfo: RuntimeInfo
+    sparkBatch: SparkBatch
+    sparkRBatch: SparkRBatch
+    sparkSqlBatch: SparkSqlBatch
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "CANCELLING",
+        "CANCELLED",
+        "SUCCEEDED",
+        "FAILED",
+    ]
+    stateHistory: _list[StateHistory]
+    stateMessage: str
+    stateTime: str
+    uuid: str
 
 @typing.type_check_only
 class BatchOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -68,11 +101,13 @@ class Cluster(typing_extensions.TypedDict, total=False):
     projectId: str
     status: ClusterStatus
     statusHistory: _list[ClusterStatus]
+    virtualClusterConfig: VirtualClusterConfig
 
 @typing.type_check_only
 class ClusterConfig(typing_extensions.TypedDict, total=False):
     autoscalingConfig: AutoscalingConfig
     configBucket: str
+    dataprocMetricConfig: DataprocMetricConfig
     encryptionConfig: EncryptionConfig
     endpointConfig: EndpointConfig
     gceClusterConfig: GceClusterConfig
@@ -144,6 +179,10 @@ class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
     enableConfidentialCompute: bool
 
 @typing.type_check_only
+class DataprocMetricConfig(typing_extensions.TypedDict, total=False):
+    metrics: _list[Metric]
+
+@typing.type_check_only
 class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -154,6 +193,7 @@ class DiagnoseClusterResults(typing_extensions.TypedDict, total=False):
 class DiskConfig(typing_extensions.TypedDict, total=False):
     bootDiskSizeGb: int
     bootDiskType: str
+    localSsdInterface: str
     numLocalSsds: int
 
 @typing.type_check_only
@@ -167,6 +207,19 @@ class EncryptionConfig(typing_extensions.TypedDict, total=False):
 class EndpointConfig(typing_extensions.TypedDict, total=False):
     enableHttpPortAccess: bool
     httpPorts: dict[str, typing.Any]
+
+@typing.type_check_only
+class EnvironmentConfig(typing_extensions.TypedDict, total=False):
+    executionConfig: ExecutionConfig
+    peripheralsConfig: PeripheralsConfig
+
+@typing.type_check_only
+class ExecutionConfig(typing_extensions.TypedDict, total=False):
+    kmsKey: str
+    networkTags: _list[str]
+    networkUri: str
+    serviceAccount: str
+    subnetworkUri: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -206,7 +259,41 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GkeClusterConfig(typing_extensions.TypedDict, total=False):
+    gkeClusterTarget: str
     namespacedGkeDeploymentTarget: NamespacedGkeDeploymentTarget
+    nodePoolTarget: _list[GkeNodePoolTarget]
+
+@typing.type_check_only
+class GkeNodeConfig(typing_extensions.TypedDict, total=False):
+    accelerators: _list[GkeNodePoolAcceleratorConfig]
+    localSsdCount: int
+    machineType: str
+    minCpuPlatform: str
+    preemptible: bool
+    spot: bool
+
+@typing.type_check_only
+class GkeNodePoolAcceleratorConfig(typing_extensions.TypedDict, total=False):
+    acceleratorCount: str
+    acceleratorType: str
+    gpuPartitionSize: str
+
+@typing.type_check_only
+class GkeNodePoolAutoscalingConfig(typing_extensions.TypedDict, total=False):
+    maxNodeCount: int
+    minNodeCount: int
+
+@typing.type_check_only
+class GkeNodePoolConfig(typing_extensions.TypedDict, total=False):
+    autoscaling: GkeNodePoolAutoscalingConfig
+    config: GkeNodeConfig
+    locations: _list[str]
+
+@typing.type_check_only
+class GkeNodePoolTarget(typing_extensions.TypedDict, total=False):
+    nodePool: str
+    nodePoolConfig: GkeNodePoolConfig
+    roles: _list[str]
 
 @typing.type_check_only
 class HadoopJob(typing_extensions.TypedDict, total=False):
@@ -356,6 +443,17 @@ class KerberosConfig(typing_extensions.TypedDict, total=False):
     truststoreUri: str
 
 @typing.type_check_only
+class KubernetesClusterConfig(typing_extensions.TypedDict, total=False):
+    gkeClusterConfig: GkeClusterConfig
+    kubernetesNamespace: str
+    kubernetesSoftwareConfig: KubernetesSoftwareConfig
+
+@typing.type_check_only
+class KubernetesSoftwareConfig(typing_extensions.TypedDict, total=False):
+    componentVersion: dict[str, typing.Any]
+    properties: dict[str, typing.Any]
+
+@typing.type_check_only
 class LifecycleConfig(typing_extensions.TypedDict, total=False):
     autoDeleteTime: str
     autoDeleteTtl: str
@@ -366,6 +464,11 @@ class LifecycleConfig(typing_extensions.TypedDict, total=False):
 class ListAutoscalingPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     policies: _list[AutoscalingPolicy]
+
+@typing.type_check_only
+class ListBatchesResponse(typing_extensions.TypedDict, total=False):
+    batches: _list[Batch]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
@@ -405,6 +508,19 @@ class ManagedGroupConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetastoreConfig(typing_extensions.TypedDict, total=False):
     dataprocMetastoreService: str
+
+@typing.type_check_only
+class Metric(typing_extensions.TypedDict, total=False):
+    metricOverrides: _list[str]
+    metricSource: typing_extensions.Literal[
+        "METRIC_SOURCE_UNSPECIFIED",
+        "MONITORING_AGENT_DEFAULTS",
+        "HDFS",
+        "SPARK",
+        "YARN",
+        "SPARK_HISTORY_SERVER",
+        "HIVESERVER2",
+    ]
 
 @typing.type_check_only
 class NamespacedGkeDeploymentTarget(typing_extensions.TypedDict, total=False):
@@ -449,6 +565,11 @@ class ParameterValidation(typing_extensions.TypedDict, total=False):
     values: ValueValidation
 
 @typing.type_check_only
+class PeripheralsConfig(typing_extensions.TypedDict, total=False):
+    metastoreService: str
+    sparkHistoryServerConfig: SparkHistoryServerConfig
+
+@typing.type_check_only
 class PigJob(typing_extensions.TypedDict, total=False):
     continueOnFailure: bool
     jarFileUris: _list[str]
@@ -473,6 +594,15 @@ class PrestoJob(typing_extensions.TypedDict, total=False):
     properties: dict[str, typing.Any]
     queryFileUri: str
     queryList: QueryList
+
+@typing.type_check_only
+class PySparkBatch(typing_extensions.TypedDict, total=False):
+    archiveUris: _list[str]
+    args: _list[str]
+    fileUris: _list[str]
+    jarFileUris: _list[str]
+    mainPythonFileUri: str
+    pythonFileUris: _list[str]
 
 @typing.type_check_only
 class PySparkJob(typing_extensions.TypedDict, total=False):
@@ -505,6 +635,18 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
     ]
     key: str
     values: _list[str]
+
+@typing.type_check_only
+class RuntimeConfig(typing_extensions.TypedDict, total=False):
+    containerImage: str
+    properties: dict[str, typing.Any]
+    version: str
+
+@typing.type_check_only
+class RuntimeInfo(typing_extensions.TypedDict, total=False):
+    diagnosticOutputUri: str
+    endpoints: dict[str, typing.Any]
+    outputUri: str
 
 @typing.type_check_only
 class SecurityConfig(typing_extensions.TypedDict, total=False):
@@ -541,6 +683,19 @@ class SoftwareConfig(typing_extensions.TypedDict, total=False):
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
+class SparkBatch(typing_extensions.TypedDict, total=False):
+    archiveUris: _list[str]
+    args: _list[str]
+    fileUris: _list[str]
+    jarFileUris: _list[str]
+    mainClass: str
+    mainJarFileUri: str
+
+@typing.type_check_only
+class SparkHistoryServerConfig(typing_extensions.TypedDict, total=False):
+    dataprocCluster: str
+
+@typing.type_check_only
 class SparkJob(typing_extensions.TypedDict, total=False):
     archiveUris: _list[str]
     args: _list[str]
@@ -552,6 +707,13 @@ class SparkJob(typing_extensions.TypedDict, total=False):
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
+class SparkRBatch(typing_extensions.TypedDict, total=False):
+    archiveUris: _list[str]
+    args: _list[str]
+    fileUris: _list[str]
+    mainRFileUri: str
+
+@typing.type_check_only
 class SparkRJob(typing_extensions.TypedDict, total=False):
     archiveUris: _list[str]
     args: _list[str]
@@ -559,6 +721,12 @@ class SparkRJob(typing_extensions.TypedDict, total=False):
     loggingConfig: LoggingConfig
     mainRFileUri: str
     properties: dict[str, typing.Any]
+
+@typing.type_check_only
+class SparkSqlBatch(typing_extensions.TypedDict, total=False):
+    jarFileUris: _list[str]
+    queryFileUri: str
+    queryVariables: dict[str, typing.Any]
 
 @typing.type_check_only
 class SparkSqlJob(typing_extensions.TypedDict, total=False):
@@ -581,6 +749,20 @@ class SparkStandaloneAutoscalingConfig(typing_extensions.TypedDict, total=False)
 class StartClusterRequest(typing_extensions.TypedDict, total=False):
     clusterUuid: str
     requestId: str
+
+@typing.type_check_only
+class StateHistory(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "CANCELLING",
+        "CANCELLED",
+        "SUCCEEDED",
+        "FAILED",
+    ]
+    stateMessage: str
+    stateStartTime: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -616,6 +798,12 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ValueValidation(typing_extensions.TypedDict, total=False):
     values: _list[str]
+
+@typing.type_check_only
+class VirtualClusterConfig(typing_extensions.TypedDict, total=False):
+    auxiliaryServicesConfig: AuxiliaryServicesConfig
+    kubernetesClusterConfig: KubernetesClusterConfig
+    stagingBucket: str
 
 @typing.type_check_only
 class WorkflowGraph(typing_extensions.TypedDict, total=False):

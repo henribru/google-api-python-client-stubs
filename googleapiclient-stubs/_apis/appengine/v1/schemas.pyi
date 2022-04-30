@@ -525,6 +525,7 @@ class UrlMap(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
     apiConfig: ApiConfigHandler
+    appEngineApis: bool
     automaticScaling: AutomaticScaling
     basicScaling: BasicScaling
     betaSettings: dict[str, typing.Any]

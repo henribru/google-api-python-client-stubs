@@ -1,9 +1,9 @@
-from typing import Any
+from _typeshed import Incomplete
 
 from ..discovery_cache import DISCOVERY_DOC_MAX_AGE as DISCOVERY_DOC_MAX_AGE
 from . import base as base
 
-LOGGER: Any
+LOGGER: Incomplete
 NAMESPACE: str
 
 class Cache(base.Cache):
@@ -11,4 +11,4 @@ class Cache(base.Cache):
     def get(self, url): ...
     def set(self, url, content) -> None: ...
 
-cache: Any
+cache: Incomplete

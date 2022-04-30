@@ -9,6 +9,7 @@ class Account(typing_extensions.TypedDict, total=False):
     accountManagement: str
     adsLinks: _list[AccountAdsLink]
     adultContent: bool
+    automaticImprovements: AccountAutomaticImprovements
     automaticLabelIds: _list[str]
     businessInformation: AccountBusinessInformation
     cssId: str
@@ -34,6 +35,12 @@ class AccountAddress(typing_extensions.TypedDict, total=False):
 class AccountAdsLink(typing_extensions.TypedDict, total=False):
     adsId: str
     status: str
+
+@typing.type_check_only
+class AccountAutomaticImprovements(typing_extensions.TypedDict, total=False):
+    imageImprovements: AccountImageImprovements
+    itemUpdates: AccountItemUpdates
+    shippingImprovements: AccountShippingImprovements
 
 @typing.type_check_only
 class AccountBusinessInformation(typing_extensions.TypedDict, total=False):
@@ -71,6 +78,30 @@ class AccountIdentifier(typing_extensions.TypedDict, total=False):
     merchantId: str
 
 @typing.type_check_only
+class AccountImageImprovements(typing_extensions.TypedDict, total=False):
+    accountImageImprovementsSettings: AccountImageImprovementsSettings
+    effectiveAllowAutomaticImageImprovements: bool
+
+@typing.type_check_only
+class AccountImageImprovementsSettings(typing_extensions.TypedDict, total=False):
+    allowAutomaticImageImprovements: bool
+
+@typing.type_check_only
+class AccountItemUpdates(typing_extensions.TypedDict, total=False):
+    accountItemUpdatesSettings: AccountItemUpdatesSettings
+    effectiveAllowAvailabilityUpdates: bool
+    effectiveAllowConditionUpdates: bool
+    effectiveAllowPriceUpdates: bool
+    effectiveAllowStrictAvailabilityUpdates: bool
+
+@typing.type_check_only
+class AccountItemUpdatesSettings(typing_extensions.TypedDict, total=False):
+    allowAvailabilityUpdates: bool
+    allowConditionUpdates: bool
+    allowPriceUpdates: bool
+    allowStrictAvailabilityUpdates: bool
+
+@typing.type_check_only
 class AccountLabel(typing_extensions.TypedDict, total=False):
     accountId: str
     description: str
@@ -86,6 +117,10 @@ class AccountReturnCarrier(typing_extensions.TypedDict, total=False):
     carrierAccountName: str
     carrierAccountNumber: str
     carrierCode: typing_extensions.Literal["CARRIER_CODE_UNSPECIFIED", "FEDEX", "UPS"]
+
+@typing.type_check_only
+class AccountShippingImprovements(typing_extensions.TypedDict, total=False):
+    allowShippingImprovements: bool
 
 @typing.type_check_only
 class AccountStatus(typing_extensions.TypedDict, total=False):
@@ -615,10 +650,10 @@ class Errors(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FreeListingsProgramStatus(typing_extensions.TypedDict, total=False):
-    regionStatuses: _list[FreeListingsProgramStatusRegionStatus]
-    state: typing_extensions.Literal[
-        "PROGRAM_STATE_UNSPECIFIED", "ONBOARDED", "NOT_ONBOARDED"
+    globalState: typing_extensions.Literal[
+        "PROGRAM_STATE_UNSPECIFIED", "NOT_ENABLED", "NO_OFFERS_UPLOADED", "ENABLED"
     ]
+    regionStatuses: _list[FreeListingsProgramStatusRegionStatus]
 
 @typing.type_check_only
 class FreeListingsProgramStatusRegionStatus(typing_extensions.TypedDict, total=False):
@@ -632,21 +667,31 @@ class FreeListingsProgramStatusRegionStatus(typing_extensions.TypedDict, total=F
         "PENDING_REVIEW",
         "ONBOARDING",
     ]
-    enhancedEligibilityStatus: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "APPROVED",
-        "DISAPPROVED",
-        "WARNING",
-        "UNDER_REVIEW",
-        "PENDING_REVIEW",
-        "ONBOARDING",
-    ]
-    ineligibilityReason: str
+    onboardingIssues: _list[str]
     regionCodes: _list[str]
     reviewEligibilityStatus: typing_extensions.Literal[
         "REVIEW_ELIGIBILITY_UNSPECIFIED", "ELIGIBLE", "INELIGIBLE"
     ]
+    reviewIneligibilityReason: typing_extensions.Literal[
+        "REVIEW_INELIGIBILITY_REASON_UNSPECIFIED",
+        "ONBOARDING_ISSUES",
+        "NOT_ENOUGH_OFFERS",
+        "IN_COOLDOWN_PERIOD",
+        "ALREADY_UNDER_REVIEW",
+        "NO_REVIEW_REQUIRED",
+        "WILL_BE_REVIEWED_AUTOMATICALLY",
+        "IS_RETIRED",
+        "ALREADY_REVIEWED",
+    ]
+    reviewIneligibilityReasonDescription: str
+    reviewIneligibilityReasonDetails: FreeListingsProgramStatusReviewIneligibilityReasonDetails
     reviewIssues: _list[str]
+
+@typing.type_check_only
+class FreeListingsProgramStatusReviewIneligibilityReasonDetails(
+    typing_extensions.TypedDict, total=False
+):
+    cooldownTime: str
 
 @typing.type_check_only
 class GmbAccounts(typing_extensions.TypedDict, total=False):
@@ -1827,9 +1872,14 @@ class PosSaleResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PosStore(typing_extensions.TypedDict, total=False):
+    gcidCategory: _list[str]
     kind: str
+    phoneNumber: str
+    placeId: str
     storeAddress: str
     storeCode: str
+    storeName: str
+    websiteUrl: str
 
 @typing.type_check_only
 class PostalCodeGroup(typing_extensions.TypedDict, total=False):
@@ -1885,6 +1935,7 @@ class Product(typing_extensions.TypedDict, total=False):
     energyEfficiencyClass: str
     excludedDestinations: _list[str]
     expirationDate: str
+    externalSellerId: str
     gender: str
     googleProductCategory: str
     gtin: str
@@ -2748,10 +2799,10 @@ class ShippingsettingsListResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ShoppingAdsProgramStatus(typing_extensions.TypedDict, total=False):
-    regionStatuses: _list[ShoppingAdsProgramStatusRegionStatus]
-    state: typing_extensions.Literal[
-        "PROGRAM_STATE_UNSPECIFIED", "ONBOARDED", "NOT_ONBOARDED"
+    globalState: typing_extensions.Literal[
+        "PROGRAM_STATE_UNSPECIFIED", "NOT_ENABLED", "NO_OFFERS_UPLOADED", "ENABLED"
     ]
+    regionStatuses: _list[ShoppingAdsProgramStatusRegionStatus]
 
 @typing.type_check_only
 class ShoppingAdsProgramStatusRegionStatus(typing_extensions.TypedDict, total=False):
@@ -2765,12 +2816,31 @@ class ShoppingAdsProgramStatusRegionStatus(typing_extensions.TypedDict, total=Fa
         "PENDING_REVIEW",
         "ONBOARDING",
     ]
-    ineligibilityReason: str
+    onboardingIssues: _list[str]
     regionCodes: _list[str]
     reviewEligibilityStatus: typing_extensions.Literal[
         "REVIEW_ELIGIBILITY_UNSPECIFIED", "ELIGIBLE", "INELIGIBLE"
     ]
+    reviewIneligibilityReason: typing_extensions.Literal[
+        "REVIEW_INELIGIBILITY_REASON_UNSPECIFIED",
+        "ONBOARDING_ISSUES",
+        "NOT_ENOUGH_OFFERS",
+        "IN_COOLDOWN_PERIOD",
+        "ALREADY_UNDER_REVIEW",
+        "NO_REVIEW_REQUIRED",
+        "WILL_BE_REVIEWED_AUTOMATICALLY",
+        "IS_RETIRED",
+        "ALREADY_REVIEWED",
+    ]
+    reviewIneligibilityReasonDescription: str
+    reviewIneligibilityReasonDetails: ShoppingAdsProgramStatusReviewIneligibilityReasonDetails
     reviewIssues: _list[str]
+
+@typing.type_check_only
+class ShoppingAdsProgramStatusReviewIneligibilityReasonDetails(
+    typing_extensions.TypedDict, total=False
+):
+    cooldownTime: str
 
 @typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):

@@ -76,6 +76,53 @@ class BuilderConfig(typing_extensions.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
+class CVSS(typing_extensions.TypedDict, total=False):
+    attackComplexity: typing_extensions.Literal[
+        "ATTACK_COMPLEXITY_UNSPECIFIED",
+        "ATTACK_COMPLEXITY_LOW",
+        "ATTACK_COMPLEXITY_HIGH",
+    ]
+    attackVector: typing_extensions.Literal[
+        "ATTACK_VECTOR_UNSPECIFIED",
+        "ATTACK_VECTOR_NETWORK",
+        "ATTACK_VECTOR_ADJACENT",
+        "ATTACK_VECTOR_LOCAL",
+        "ATTACK_VECTOR_PHYSICAL",
+    ]
+    authentication: typing_extensions.Literal[
+        "AUTHENTICATION_UNSPECIFIED",
+        "AUTHENTICATION_MULTIPLE",
+        "AUTHENTICATION_SINGLE",
+        "AUTHENTICATION_NONE",
+    ]
+    availabilityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    baseScore: float
+    confidentialityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    exploitabilityScore: float
+    impactScore: float
+    integrityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+    ]
+    privilegesRequired: typing_extensions.Literal[
+        "PRIVILEGES_REQUIRED_UNSPECIFIED",
+        "PRIVILEGES_REQUIRED_NONE",
+        "PRIVILEGES_REQUIRED_LOW",
+        "PRIVILEGES_REQUIRED_HIGH",
+    ]
+    scope: typing_extensions.Literal[
+        "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
+    ]
+    userInteraction: typing_extensions.Literal[
+        "USER_INTERACTION_UNSPECIFIED",
+        "USER_INTERACTION_NONE",
+        "USER_INTERACTION_REQUIRED",
+    ]
+
+@typing.type_check_only
 class CisBenchmark(typing_extensions.TypedDict, total=False):
     profileLevel: int
     severity: typing_extensions.Literal[
@@ -476,10 +523,12 @@ class Discovered(typing_extensions.TypedDict, total=False):
         "FINISHED_UNSUPPORTED",
     ]
     analysisStatusError: Status
+    archiveTime: str
     continuousAnalysis: typing_extensions.Literal[
         "CONTINUOUS_ANALYSIS_UNSPECIFIED", "ACTIVE", "INACTIVE"
     ]
     cpe: str
+    lastScanTime: str
     operation: Operation
 
 @typing.type_check_only
@@ -1172,6 +1221,7 @@ class Version(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VulnerabilityDetails(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssV3: CVSS
     effectiveSeverity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]

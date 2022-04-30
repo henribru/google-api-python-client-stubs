@@ -290,6 +290,7 @@ class GoogleCloudDialogflowCxV3Page(dict[str, typing.Any]): ...
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3PageInfo(typing_extensions.TypedDict, total=False):
     currentPage: str
+    displayName: str
     formInfo: GoogleCloudDialogflowCxV3PageInfoFormInfo
 
 @typing.type_check_only
@@ -336,6 +337,7 @@ class GoogleCloudDialogflowCxV3ResponseMessage(
     outputAudioText: GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText
     payload: dict[str, typing.Any]
     playAudio: GoogleCloudDialogflowCxV3ResponseMessagePlayAudio
+    telephonyTransferCall: GoogleCloudDialogflowCxV3ResponseMessageTelephonyTransferCall
     text: GoogleCloudDialogflowCxV3ResponseMessageText
 
 @typing.type_check_only
@@ -383,6 +385,12 @@ class GoogleCloudDialogflowCxV3ResponseMessagePlayAudio(
 ):
     allowPlaybackInterruption: bool
     audioUri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ResponseMessageTelephonyTransferCall(
+    typing_extensions.TypedDict, total=False
+):
+    phoneNumber: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ResponseMessageText(
@@ -439,6 +447,7 @@ class GoogleCloudDialogflowCxV3TestCaseResult(dict[str, typing.Any]): ...
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TestConfig(typing_extensions.TypedDict, total=False):
     flow: str
+    page: str
     trackingParameters: _list[str]
 
 @typing.type_check_only
@@ -834,6 +843,7 @@ class GoogleCloudDialogflowCxV3beta1Page(dict[str, typing.Any]): ...
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1PageInfo(typing_extensions.TypedDict, total=False):
     currentPage: str
+    displayName: str
     formInfo: GoogleCloudDialogflowCxV3beta1PageInfoFormInfo
 
 @typing.type_check_only
@@ -882,6 +892,7 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessage(
     outputAudioText: GoogleCloudDialogflowCxV3beta1ResponseMessageOutputAudioText
     payload: dict[str, typing.Any]
     playAudio: GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio
+    telephonyTransferCall: GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall
     text: GoogleCloudDialogflowCxV3beta1ResponseMessageText
 
 @typing.type_check_only
@@ -929,6 +940,12 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio(
 ):
     allowPlaybackInterruption: bool
     audioUri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall(
+    typing_extensions.TypedDict, total=False
+):
+    phoneNumber: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ResponseMessageText(
@@ -989,6 +1006,7 @@ class GoogleCloudDialogflowCxV3beta1TestConfig(
     typing_extensions.TypedDict, total=False
 ):
     flow: str
+    page: str
     trackingParameters: _list[str]
 
 @typing.type_check_only
@@ -1192,6 +1210,16 @@ class GoogleCloudDialogflowV2ArticleAnswer(typing_extensions.TypedDict, total=Fa
     uri: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2ArticleSuggestionModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    trainingModelType: typing_extensions.Literal[
+        "MODEL_TYPE_UNSPECIFIED",
+        "SMART_REPLY_DUAL_ENCODER_MODEL",
+        "SMART_REPLY_BERT_MODEL",
+    ]
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2AssistQueryParameters(
     typing_extensions.TypedDict, total=False
 ):
@@ -1279,6 +1307,30 @@ class GoogleCloudDialogflowV2BatchUpdateIntentsResponse(
     intents: _list[GoogleCloudDialogflowV2Intent]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationProfile: str
+    createTime: str
+    participantRole: typing_extensions.Literal[
+        "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
+    ]
+    suggestionFeatureType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "ARTICLE_SUGGESTION", "FAQ", "SMART_REPLY"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    participantRole: typing_extensions.Literal[
+        "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
+    ]
+    suggestionFeatureType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "ARTICLE_SUGGESTION", "FAQ", "SMART_REPLY"
+    ]
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2CompleteConversationRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -1304,6 +1356,18 @@ class GoogleCloudDialogflowV2Conversation(typing_extensions.TypedDict, total=Fal
     startTime: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2ConversationDataset(
+    typing_extensions.TypedDict, total=False
+):
+    conversationCount: str
+    conversationInfo: GoogleCloudDialogflowV2ConversationInfo
+    createTime: str
+    description: str
+    displayName: str
+    inputConfig: GoogleCloudDialogflowV2InputConfig
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2ConversationEvent(
     typing_extensions.TypedDict, total=False
 ):
@@ -1318,6 +1382,43 @@ class GoogleCloudDialogflowV2ConversationEvent(
         "NEW_MESSAGE",
         "UNRECOVERABLE_ERROR",
     ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ConversationInfo(typing_extensions.TypedDict, total=False):
+    languageCode: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ConversationModel(
+    typing_extensions.TypedDict, total=False
+):
+    articleSuggestionModelMetadata: GoogleCloudDialogflowV2ArticleSuggestionModelMetadata
+    createTime: str
+    datasets: _list[GoogleCloudDialogflowV2InputDataset]
+    displayName: str
+    languageCode: str
+    name: str
+    smartReplyModelMetadata: GoogleCloudDialogflowV2SmartReplyModelMetadata
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "UNDEPLOYED",
+        "DEPLOYING",
+        "DEPLOYED",
+        "UNDEPLOYING",
+        "DELETING",
+        "FAILED",
+        "PENDING",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ConversationModelEvaluation(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    evaluationConfig: GoogleCloudDialogflowV2EvaluationConfig
+    name: str
+    smartReplyMetrics: GoogleCloudDialogflowV2SmartReplyMetrics
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ConversationPhoneNumber(
@@ -1343,6 +1444,73 @@ class GoogleCloudDialogflowV2ConversationProfile(
     sttConfig: GoogleCloudDialogflowV2SpeechToTextConfig
     timeZone: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationModel: str
+    conversationModelEvaluation: str
+    createTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "RUNNING",
+        "CANCELLED",
+        "SUCCEEDED",
+        "FAILED",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2CreateConversationModelEvaluationRequest(
+    typing_extensions.TypedDict, total=False
+):
+    conversationModelEvaluation: GoogleCloudDialogflowV2ConversationModelEvaluation
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2CreateConversationModelOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationModel: str
+    createTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLED",
+        "CANCELLING",
+        "TRAINING",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2DeleteConversationModelOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationModel: str
+    createTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2DeployConversationModelOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationModel: str
+    createTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2DeployConversationModelRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2DetectIntentRequest(
@@ -1375,6 +1543,9 @@ class GoogleCloudDialogflowV2Document(typing_extensions.TypedDict, total=False):
     mimeType: str
     name: str
     rawContent: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "RELOADING", "DELETING"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2DocumentReloadStatus(
@@ -1438,6 +1609,26 @@ class GoogleCloudDialogflowV2EnvironmentHistoryEntry(
     description: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2EvaluationConfig(typing_extensions.TypedDict, total=False):
+    datasets: _list[GoogleCloudDialogflowV2InputDataset]
+    smartComposeConfig: GoogleCloudDialogflowV2EvaluationConfigSmartComposeConfig
+    smartReplyConfig: GoogleCloudDialogflowV2EvaluationConfigSmartReplyConfig
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2EvaluationConfigSmartComposeConfig(
+    typing_extensions.TypedDict, total=False
+):
+    allowlistDocument: str
+    maxResultCount: int
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2EvaluationConfigSmartReplyConfig(
+    typing_extensions.TypedDict, total=False
+):
+    allowlistDocument: str
+    maxResultCount: int
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2EventInput(typing_extensions.TypedDict, total=False):
     languageCode: str
     name: str
@@ -1455,6 +1646,20 @@ class GoogleCloudDialogflowV2ExportAgentResponse(
 ):
     agentContent: str
     agentUri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ExportDocumentRequest(
+    typing_extensions.TypedDict, total=False
+):
+    exportFullContent: bool
+    gcsDestination: GoogleCloudDialogflowV2GcsDestination
+    smartMessagingPartialUpdate: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ExportOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    exportedGcsDestination: GoogleCloudDialogflowV2GcsDestination
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2FaqAnswer(typing_extensions.TypedDict, total=False):
@@ -1490,6 +1695,14 @@ class GoogleCloudDialogflowV2FulfillmentGenericWebService(
     username: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2GcsDestination(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2GcsSources(typing_extensions.TypedDict, total=False):
+    uris: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2HumanAgentAssistantConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -1503,6 +1716,12 @@ class GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationModelConfig(
     typing_extensions.TypedDict, total=False
 ):
     model: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationProcessConfig(
+    typing_extensions.TypedDict, total=False
+):
+    recentSentencesCount: int
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2HumanAgentAssistantConfigMessageAnalysisConfig(
@@ -1525,6 +1744,7 @@ class GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionFeatureConfig(
     typing_extensions.TypedDict, total=False
 ):
     conversationModelConfig: GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationModelConfig
+    conversationProcessConfig: GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationProcessConfig
     enableEventBasedSuggestion: bool
     queryConfig: GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfig
     suggestionFeature: GoogleCloudDialogflowV2SuggestionFeature
@@ -1612,6 +1832,49 @@ class GoogleCloudDialogflowV2ImportAgentRequest(
     agentUri: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2ImportConversationDataOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationDataset: str
+    createTime: str
+    partialFailures: _list[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ImportConversationDataOperationResponse(
+    typing_extensions.TypedDict, total=False
+):
+    conversationDataset: str
+    importCount: int
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ImportConversationDataRequest(
+    typing_extensions.TypedDict, total=False
+):
+    inputConfig: GoogleCloudDialogflowV2InputConfig
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ImportDocumentTemplate(
+    typing_extensions.TypedDict, total=False
+):
+    knowledgeTypes: _list[str]
+    metadata: dict[str, typing.Any]
+    mimeType: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ImportDocumentsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    documentTemplate: GoogleCloudDialogflowV2ImportDocumentTemplate
+    gcsSource: GoogleCloudDialogflowV2GcsSources
+    importGcsCustomMetadata: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ImportDocumentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    warnings: _list[GoogleRpcStatus]
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2InputAudioConfig(typing_extensions.TypedDict, total=False):
     audioEncoding: typing_extensions.Literal[
         "AUDIO_ENCODING_UNSPECIFIED",
@@ -1637,6 +1900,14 @@ class GoogleCloudDialogflowV2InputAudioConfig(typing_extensions.TypedDict, total
     sampleRateHertz: int
     singleUtterance: bool
     speechContexts: _list[GoogleCloudDialogflowV2SpeechContext]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2InputConfig(typing_extensions.TypedDict, total=False):
+    gcsSource: GoogleCloudDialogflowV2GcsSources
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2InputDataset(typing_extensions.TypedDict, total=False):
+    dataset: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2Intent(typing_extensions.TypedDict, total=False):
@@ -1961,6 +2232,8 @@ class GoogleCloudDialogflowV2KnowledgeBase(typing_extensions.TypedDict, total=Fa
 class GoogleCloudDialogflowV2KnowledgeOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    exportOperationMetadata: GoogleCloudDialogflowV2ExportOperationMetadata
+    knowledgeBase: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "RUNNING", "DONE"]
 
 @typing.type_check_only
@@ -1975,6 +2248,29 @@ class GoogleCloudDialogflowV2ListContextsResponse(
     typing_extensions.TypedDict, total=False
 ):
     contexts: _list[GoogleCloudDialogflowV2Context]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ListConversationDatasetsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    conversationDatasets: _list[GoogleCloudDialogflowV2ConversationDataset]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ListConversationModelEvaluationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    conversationModelEvaluations: _list[
+        GoogleCloudDialogflowV2ConversationModelEvaluation
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ListConversationModelsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    conversationModels: _list[GoogleCloudDialogflowV2ConversationModel]
     nextPageToken: str
 
 @typing.type_check_only
@@ -2069,6 +2365,8 @@ class GoogleCloudDialogflowV2Message(typing_extensions.TypedDict, total=False):
     participantRole: typing_extensions.Literal[
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
     ]
+    sendTime: str
+    sentimentAnalysis: GoogleCloudDialogflowV2SentimentAnalysisResult
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2MessageAnnotation(
@@ -2164,6 +2462,8 @@ class GoogleCloudDialogflowV2ReloadDocumentRequest(
     typing_extensions.TypedDict, total=False
 ):
     contentUri: str
+    importGcsCustomMetadata: bool
+    smartMessagingPartialUpdate: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2RestoreAgentRequest(
@@ -2207,6 +2507,59 @@ class GoogleCloudDialogflowV2SessionEntityType(
         "ENTITY_OVERRIDE_MODE_SUPPLEMENT",
     ]
     name: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationProfile: str
+    createTime: str
+    participantRole: typing_extensions.Literal[
+        "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
+    ]
+    suggestionFeatureType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "ARTICLE_SUGGESTION", "FAQ", "SMART_REPLY"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SetSuggestionFeatureConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    participantRole: typing_extensions.Literal[
+        "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
+    ]
+    suggestionFeatureConfig: GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionFeatureConfig
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SmartReplyAnswer(typing_extensions.TypedDict, total=False):
+    answerRecord: str
+    confidence: float
+    reply: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SmartReplyMetrics(
+    typing_extensions.TypedDict, total=False
+):
+    allowlistCoverage: float
+    conversationCount: str
+    topNMetrics: _list[GoogleCloudDialogflowV2SmartReplyMetricsTopNMetrics]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SmartReplyMetricsTopNMetrics(
+    typing_extensions.TypedDict, total=False
+):
+    n: int
+    recall: float
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SmartReplyModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    trainingModelType: typing_extensions.Literal[
+        "MODEL_TYPE_UNSPECIFIED",
+        "SMART_REPLY_DUAL_ENCODER_MODEL",
+        "SMART_REPLY_BERT_MODEL",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SpeechContext(typing_extensions.TypedDict, total=False):
@@ -2257,6 +2610,22 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponse(
     latestMessage: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2SuggestSmartRepliesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    contextSize: int
+    currentTextInput: GoogleCloudDialogflowV2TextInput
+    latestMessage: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SuggestSmartRepliesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    contextSize: int
+    latestMessage: str
+    smartReplyAnswers: _list[GoogleCloudDialogflowV2SmartReplyAnswer]
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2SuggestionFeature(
     typing_extensions.TypedDict, total=False
 ):
@@ -2269,6 +2638,7 @@ class GoogleCloudDialogflowV2SuggestionResult(typing_extensions.TypedDict, total
     error: GoogleRpcStatus
     suggestArticlesResponse: GoogleCloudDialogflowV2SuggestArticlesResponse
     suggestFaqAnswersResponse: GoogleCloudDialogflowV2SuggestFaqAnswersResponse
+    suggestSmartRepliesResponse: GoogleCloudDialogflowV2SuggestSmartRepliesResponse
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SynthesizeSpeechConfig(
@@ -2303,6 +2673,18 @@ class GoogleCloudDialogflowV2TextToSpeechSettings(
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2TrainAgentRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationModel: str
+    createTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2UndeployConversationModelRequest(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -2388,6 +2770,19 @@ class GoogleCloudDialogflowV2beta1BatchUpdateIntentsResponse(
     intents: _list[GoogleCloudDialogflowV2beta1Intent]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationProfile: str
+    createTime: str
+    participantRole: typing_extensions.Literal[
+        "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
+    ]
+    suggestionFeatureType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "ARTICLE_SUGGESTION", "FAQ", "SMART_REPLY"
+    ]
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1Context(typing_extensions.TypedDict, total=False):
     lifespanCount: int
     name: str
@@ -2404,6 +2799,7 @@ class GoogleCloudDialogflowV2beta1ConversationEvent(
         "TYPE_UNSPECIFIED",
         "CONVERSATION_STARTED",
         "CONVERSATION_FINISHED",
+        "HUMAN_INTERVENTION_NEEDED",
         "NEW_MESSAGE",
         "UNRECOVERABLE_ERROR",
     ]
@@ -2442,6 +2838,12 @@ class GoogleCloudDialogflowV2beta1ExportAgentResponse(
     agentUri: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1ExportOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    exportedGcsDestination: GoogleCloudDialogflowV2beta1GcsDestination
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1FaqAnswer(typing_extensions.TypedDict, total=False):
     answer: str
     answerRecord: str
@@ -2449,6 +2851,12 @@ class GoogleCloudDialogflowV2beta1FaqAnswer(typing_extensions.TypedDict, total=F
     metadata: dict[str, typing.Any]
     question: str
     source: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GcsDestination(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantEvent(
@@ -2910,6 +3318,8 @@ class GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer(
 class GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    exportOperationMetadata: GoogleCloudDialogflowV2beta1ExportOperationMetadata
+    knowledgeBase: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "RUNNING", "DONE"]
 
 @typing.type_check_only
@@ -2983,6 +3393,19 @@ class GoogleCloudDialogflowV2beta1SessionEntityType(
         "ENTITY_OVERRIDE_MODE_SUPPLEMENT",
     ]
     name: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    conversationProfile: str
+    createTime: str
+    participantRole: typing_extensions.Literal[
+        "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
+    ]
+    suggestionFeatureType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "ARTICLE_SUGGESTION", "FAQ", "SMART_REPLY"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SmartReplyAnswer(
