@@ -6,6 +6,7 @@ _list = list
 
 @typing.type_check_only
 class AllocateIdsRequest(typing_extensions.TypedDict, total=False):
+    databaseId: str
     keys: _list[Key]
 
 @typing.type_check_only
@@ -18,6 +19,7 @@ class ArrayValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
+    databaseId: str
     transactionOptions: TransactionOptions
 
 @typing.type_check_only
@@ -26,6 +28,7 @@ class BeginTransactionResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommitRequest(typing_extensions.TypedDict, total=False):
+    databaseId: str
     mode: typing_extensions.Literal[
         "MODE_UNSPECIFIED", "TRANSACTIONAL", "NON_TRANSACTIONAL"
     ]
@@ -332,6 +335,7 @@ class LatLng(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LookupRequest(typing_extensions.TypedDict, total=False):
+    databaseId: str
     keys: _list[Key]
     readOptions: ReadOptions
 
@@ -360,6 +364,7 @@ class MutationResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PartitionId(typing_extensions.TypedDict, total=False):
+    databaseId: str
     namespaceId: str
     projectId: str
 
@@ -444,6 +449,7 @@ class ReserveIdsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RollbackRequest(typing_extensions.TypedDict, total=False):
+    databaseId: str
     transaction: str
 
 @typing.type_check_only
@@ -451,6 +457,7 @@ class RollbackResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):
+    databaseId: str
     gqlQuery: GqlQuery
     partitionId: PartitionId
     query: Query

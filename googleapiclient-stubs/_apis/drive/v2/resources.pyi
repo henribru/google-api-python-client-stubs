@@ -64,6 +64,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             includeCorpusRemovals: bool = ...,
             includeDeleted: bool = ...,
             includeItemsFromAllDrives: bool = ...,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             includeSubscribed: bool = ...,
             includeTeamDriveItems: bool = ...,
@@ -87,6 +88,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             includeCorpusRemovals: bool = ...,
             includeDeleted: bool = ...,
             includeItemsFromAllDrives: bool = ...,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             includeSubscribed: bool = ...,
             includeTeamDriveItems: bool = ...,
@@ -243,6 +245,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             body: File = ...,
             convert: bool = ...,
             enforceSingleParent: bool = ...,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             ocr: bool = ...,
             ocrLanguage: str = ...,
@@ -282,6 +285,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             acknowledgeAbuse: bool = ...,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
             revisionId: str = ...,
@@ -296,6 +300,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             body: File = ...,
             convert: bool = ...,
             enforceSingleParent: bool = ...,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             ocr: bool = ...,
             ocrLanguage: str = ...,
@@ -315,6 +320,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             corpus: typing_extensions.Literal["DEFAULT", "DOMAIN"] = ...,
             driveId: str = ...,
             includeItemsFromAllDrives: bool = ...,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             includeTeamDriveItems: bool = ...,
             maxResults: int = ...,
@@ -331,6 +337,20 @@ class DriveResource(googleapiclient.discovery.Resource):
         def list_next(
             self, previous_request: FileListHttpRequest, previous_response: FileList
         ) -> FileListHttpRequest | None: ...
+        def listLabels(
+            self,
+            *,
+            fileId: str,
+            maxResults: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> LabelListHttpRequest: ...
+        def listLabels_next(
+            self, previous_request: LabelListHttpRequest, previous_response: LabelList
+        ) -> LabelListHttpRequest | None: ...
+        def modifyLabels(
+            self, *, fileId: str, body: ModifyLabelsRequest = ..., **kwargs: typing.Any
+        ) -> ModifyLabelsResponseHttpRequest: ...
         def patch(
             self,
             *,
@@ -339,6 +359,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             addParents: str = ...,
             convert: bool = ...,
             enforceSingleParent: bool = ...,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             modifiedDateBehavior: typing_extensions.Literal[
                 "fromBody",
@@ -366,6 +387,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             fileId: str,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             supportsAllDrives: bool = ...,
             supportsTeamDrives: bool = ...,
@@ -375,6 +397,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             fileId: str,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             supportsAllDrives: bool = ...,
             supportsTeamDrives: bool = ...,
@@ -384,6 +407,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             self,
             *,
             fileId: str,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             supportsAllDrives: bool = ...,
             supportsTeamDrives: bool = ...,
@@ -397,6 +421,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             addParents: str = ...,
             convert: bool = ...,
             enforceSingleParent: bool = ...,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             modifiedDateBehavior: typing_extensions.Literal[
                 "fromBody",
@@ -426,6 +451,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             fileId: str,
             body: Channel = ...,
             acknowledgeAbuse: bool = ...,
+            includeLabels: str = ...,
             includePermissionsForView: str = ...,
             projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
             revisionId: str = ...,
@@ -882,6 +908,22 @@ class GeneratedIdsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GeneratedIds: ...
+
+@typing.type_check_only
+class LabelListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> LabelList: ...
+
+@typing.type_check_only
+class ModifyLabelsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ModifyLabelsResponse: ...
 
 @typing.type_check_only
 class ParentListHttpRequest(googleapiclient.http.HttpRequest):

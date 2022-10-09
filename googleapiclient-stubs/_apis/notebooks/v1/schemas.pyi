@@ -435,6 +435,7 @@ class RuntimeShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RuntimeSoftwareConfig(typing_extensions.TypedDict, total=False):
     customGpuDriverPath: str
+    disableTerminal: bool
     enableHealthMonitoring: bool
     idleShutdown: bool
     idleShutdownTimeout: int
@@ -442,6 +443,11 @@ class RuntimeSoftwareConfig(typing_extensions.TypedDict, total=False):
     kernels: _list[ContainerImage]
     notebookUpgradeSchedule: str
     postStartupScript: str
+    postStartupScriptBehavior: typing_extensions.Literal[
+        "POST_STARTUP_SCRIPT_BEHAVIOR_UNSPECIFIED",
+        "RUN_EVERY_START",
+        "DOWNLOAD_AND_RUN_EVERY_START",
+    ]
     upgradeable: bool
 
 @typing.type_check_only

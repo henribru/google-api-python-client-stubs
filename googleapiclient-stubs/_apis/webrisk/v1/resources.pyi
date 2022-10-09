@@ -24,6 +24,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
                 "UNWANTED_SOFTWARE",
+                "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -31,6 +32,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                     "MALWARE",
                     "SOCIAL_ENGINEERING",
                     "UNWANTED_SOFTWARE",
+                    "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
                 ]
             ] = ...,
             **kwargs: typing.Any
@@ -110,6 +112,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
                 "UNWANTED_SOFTWARE",
+                "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
             ] = ...,
             versionToken: str = ...,
             **kwargs: typing.Any
@@ -125,6 +128,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
                 "UNWANTED_SOFTWARE",
+                "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -132,6 +136,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                     "MALWARE",
                     "SOCIAL_ENGINEERING",
                     "UNWANTED_SOFTWARE",
+                    "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
                 ]
             ] = ...,
             uri: str = ...,

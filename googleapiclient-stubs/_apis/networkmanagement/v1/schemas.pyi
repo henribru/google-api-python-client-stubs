@@ -24,6 +24,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "MISMATCHED_DESTINATION_NETWORK",
         "UNSUPPORTED",
     ]
+    projectsMissingPermission: _list[str]
     resourceUri: str
 
 @typing.type_check_only
@@ -46,6 +47,17 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudFunctionEndpoint(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
+class CloudFunctionInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    location: str
+    uri: str
+    versionId: str
 
 @typing.type_check_only
 class CloudSQLInstanceInfo(typing_extensions.TypedDict, total=False):
@@ -80,6 +92,9 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
         "GOOGLE_API",
         "GKE_MASTER",
         "CLOUD_SQL_INSTANCE",
+        "PSC_PUBLISHED_SERVICE",
+        "PSC_GOOGLE_API",
+        "PSC_VPC_SC",
     ]
 
 @typing.type_check_only
@@ -107,6 +122,10 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
         "GOOGLE_MANAGED_SERVICE_NO_PEERING",
         "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
+        "CLOUD_FUNCTION_NOT_ACTIVE",
+        "VPC_CONNECTOR_NOT_SET",
+        "VPC_CONNECTOR_NOT_RUNNING",
+        "PSC_CONNECTION_NOT_ACCEPTED",
     ]
     resourceUri: str
 
@@ -115,6 +134,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
+    cloudFunction: CloudFunctionEndpoint
     cloudSqlInstance: str
     gkeMasterCluster: str
     instance: str
@@ -153,6 +173,8 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
         "HIERARCHICAL_FIREWALL_POLICY_RULE",
         "VPC_FIREWALL_RULE",
         "IMPLIED_VPC_FIREWALL_RULE",
+        "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
+        "NETWORK_FIREWALL_POLICY_RULE",
     ]
     networkUri: str
     policy: str
@@ -231,7 +253,7 @@ class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LoadBalancerInfo(typing_extensions.TypedDict, total=False):
     backendType: typing_extensions.Literal[
-        "BACKEND_TYPE_UNSPECIFIED", "BACKEND_SERVICE", "TARGET_POOL"
+        "BACKEND_TYPE_UNSPECIFIED", "BACKEND_SERVICE", "TARGET_POOL", "TARGET_INSTANCE"
     ]
     backendUri: str
     backends: _list[LoadBalancerBackend]
@@ -299,6 +321,7 @@ class RerunConnectivityTestRequest(typing_extensions.TypedDict, total=False): ..
 @typing.type_check_only
 class RouteInfo(typing_extensions.TypedDict, total=False):
     destIpRange: str
+    destPortRanges: _list[str]
     displayName: str
     instanceTags: _list[str]
     networkUri: str
@@ -318,6 +341,7 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
         "NEXT_HOP_ROUTER_APPLIANCE",
     ]
     priority: int
+    protocols: _list[str]
     routeType: typing_extensions.Literal[
         "ROUTE_TYPE_UNSPECIFIED",
         "SUBNET",
@@ -326,7 +350,10 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
         "PEERING_SUBNET",
         "PEERING_STATIC",
         "PEERING_DYNAMIC",
+        "POLICY_BASED",
     ]
+    srcIpRange: str
+    srcPortRanges: _list[str]
     uri: str
 
 @typing.type_check_only
@@ -344,6 +371,7 @@ class Status(typing_extensions.TypedDict, total=False):
 class Step(typing_extensions.TypedDict, total=False):
     abort: AbortInfo
     causesDrop: bool
+    cloudFunction: CloudFunctionInfo
     cloudSqlInstance: CloudSQLInstanceInfo
     deliver: DeliverInfo
     description: str
@@ -365,6 +393,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_PRIVATE_NETWORK",
         "START_FROM_GKE_MASTER",
         "START_FROM_CLOUD_SQL_INSTANCE",
+        "START_FROM_CLOUD_FUNCTION",
         "APPLY_INGRESS_FIREWALL_RULE",
         "APPLY_EGRESS_FIREWALL_RULE",
         "APPLY_ROUTE",
@@ -375,6 +404,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "ARRIVE_AT_EXTERNAL_LOAD_BALANCER",
         "ARRIVE_AT_VPN_GATEWAY",
         "ARRIVE_AT_VPN_TUNNEL",
+        "ARRIVE_AT_VPC_CONNECTOR",
         "NAT",
         "PROXY_CONNECTION",
         "DELIVER",
@@ -383,6 +413,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "ABORT",
         "VIEWER_PERMISSION_MISSING",
     ]
+    vpcConnector: VpcConnectorInfo
     vpnGateway: VpnGatewayInfo
     vpnTunnel: VpnTunnelInfo
 
@@ -398,6 +429,12 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class Trace(typing_extensions.TypedDict, total=False):
     endpointInfo: EndpointInfo
     steps: _list[Step]
+
+@typing.type_check_only
+class VpcConnectorInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    location: str
+    uri: str
 
 @typing.type_check_only
 class VpnGatewayInfo(typing_extensions.TypedDict, total=False):

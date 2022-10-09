@@ -41,6 +41,7 @@ class EventFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EventTrigger(typing_extensions.TypedDict, total=False):
+    channel: str
     eventFilters: _list[EventFilter]
     eventType: str
     pubsubTopic: str
@@ -87,6 +88,45 @@ class GenerateUploadUrlRequest(typing_extensions.TypedDict, total=False): ...
 class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
     storageSource: StorageSource
     uploadUrl: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    requestResource: dict[str, typing.Any]
+    stages: _list[GoogleCloudFunctionsV2Stage]
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2Stage(typing_extensions.TypedDict, total=False):
+    message: str
+    name: typing_extensions.Literal[
+        "NAME_UNSPECIFIED",
+        "ARTIFACT_REGISTRY",
+        "BUILD",
+        "SERVICE",
+        "TRIGGER",
+        "SERVICE_ROLLBACK",
+        "TRIGGER_ROLLBACK",
+    ]
+    resource: str
+    resourceUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
+    ]
+    stateMessages: _list[GoogleCloudFunctionsV2StateMessage]
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2StateMessage(typing_extensions.TypedDict, total=False):
+    message: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
+    type: str
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2alphaOperationMetadata(
@@ -260,6 +300,18 @@ class SecretEnvVar(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class SecretVersion(typing_extensions.TypedDict, total=False):
+    path: str
+    version: str
+
+@typing.type_check_only
+class SecretVolume(typing_extensions.TypedDict, total=False):
+    mountPath: str
+    projectId: str
+    secret: str
+    versions: _list[SecretVersion]
+
+@typing.type_check_only
 class ServiceConfig(typing_extensions.TypedDict, total=False):
     allTrafficOnLatestRevision: bool
     availableMemory: str
@@ -274,6 +326,7 @@ class ServiceConfig(typing_extensions.TypedDict, total=False):
     minInstanceCount: int
     revision: str
     secretEnvironmentVariables: _list[SecretEnvVar]
+    secretVolumes: _list[SecretVolume]
     service: str
     serviceAccountEmail: str
     timeoutSeconds: int

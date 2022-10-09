@@ -83,6 +83,13 @@ class TPUResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def simulateMaintenanceEvent(
+                    self,
+                    *,
+                    name: str,
+                    body: SimulateMaintenanceEventRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def start(
                     self,
                     *,

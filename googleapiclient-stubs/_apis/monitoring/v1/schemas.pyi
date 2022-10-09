@@ -175,6 +175,12 @@ class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListLabelsRequest(typing_extensions.TypedDict, total=False):
+    end: str
+    match: str
+    start: str
+
+@typing.type_check_only
 class ListMetricsScopesByMonitoredProjectResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -312,8 +318,7 @@ class TableDataSet(typing_extensions.TypedDict, total=False):
     timeSeriesQuery: TimeSeriesQuery
 
 @typing.type_check_only
-class TableDisplayOptions(typing_extensions.TypedDict, total=False):
-    shownColumns: _list[str]
+class TableDisplayOptions(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Text(typing_extensions.TypedDict, total=False):
@@ -354,6 +359,7 @@ class TimeSeriesFilterRatio(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
+    prometheusQuery: str
     timeSeriesFilter: TimeSeriesFilter
     timeSeriesFilterRatio: TimeSeriesFilterRatio
     timeSeriesQueryLanguage: str
@@ -362,6 +368,9 @@ class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TimeSeriesTable(typing_extensions.TypedDict, total=False):
     dataSets: _list[TableDataSet]
+    metricVisualization: typing_extensions.Literal[
+        "METRIC_VISUALIZATION_UNSPECIFIED", "NUMBER", "BAR"
+    ]
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):

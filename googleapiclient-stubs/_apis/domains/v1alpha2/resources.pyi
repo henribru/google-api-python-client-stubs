@@ -80,6 +80,13 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def import_(
+                    self,
+                    *,
+                    parent: str,
+                    body: ImportDomainRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -119,6 +126,19 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                 def retrieveAuthorizationCode(
                     self, *, registration: str, **kwargs: typing.Any
                 ) -> AuthorizationCodeHttpRequest: ...
+                def retrieveImportableDomains(
+                    self,
+                    *,
+                    location: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> RetrieveImportableDomainsResponseHttpRequest: ...
+                def retrieveImportableDomains_next(
+                    self,
+                    previous_request: RetrieveImportableDomainsResponseHttpRequest,
+                    previous_response: RetrieveImportableDomainsResponse,
+                ) -> RetrieveImportableDomainsResponseHttpRequest | None: ...
                 def retrieveRegisterParameters(
                     self, *, location: str, domainName: str = ..., **kwargs: typing.Any
                 ) -> RetrieveRegisterParametersResponseHttpRequest: ...
@@ -249,6 +269,14 @@ class RegistrationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Registration: ...
+
+@typing.type_check_only
+class RetrieveImportableDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RetrieveImportableDomainsResponse: ...
 
 @typing.type_check_only
 class RetrieveRegisterParametersResponseHttpRequest(googleapiclient.http.HttpRequest):

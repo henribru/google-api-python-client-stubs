@@ -7,7 +7,6 @@ _list = list
 @typing.type_check_only
 class GoogleCloudRunV2BinaryAuthorization(typing_extensions.TypedDict, total=False):
     breakglassJustification: str
-    policy: str
     useDefault: bool
 
 @typing.type_check_only
@@ -16,39 +15,19 @@ class GoogleCloudRunV2CloudSqlInstance(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudRunV2Condition(typing_extensions.TypedDict, total=False):
-    domainMappingReason: typing_extensions.Literal[
-        "DOMAIN_MAPPING_REASON_UNDEFINED",
-        "ROUTE_NOT_READY",
-        "PERMISSION_DENIED",
-        "CERTIFICATE_ALREADY_EXISTS",
-        "MAPPING_ALREADY_EXISTS",
-        "CERTIFICATE_PENDING",
-        "CERTIFICATE_FAILED",
-    ]
     executionReason: typing_extensions.Literal[
         "EXECUTION_REASON_UNDEFINED",
         "JOB_STATUS_SERVICE_POLLING_ERROR",
         "NON_ZERO_EXIT_CODE",
-    ]
-    internalReason: typing_extensions.Literal[
-        "INTERNAL_REASON_UNDEFINED",
-        "CONFLICTING_REVISION_NAME",
-        "REVISION_MISSING",
-        "CONFIGURATION_MISSING",
-        "ASSIGNING_TRAFFIC",
-        "UPDATING_INGRESS_TRAFFIC_ALLOWED",
-        "REVISION_ORG_POLICY_VIOLATION",
-        "UPDATING_GCFV2_URI_DATA",
+        "CANCELLED",
     ]
     lastTransitionTime: str
     message: str
     reason: typing_extensions.Literal[
         "COMMON_REASON_UNDEFINED",
         "UNKNOWN",
-        "ROUTE_MISSING",
         "REVISION_FAILED",
         "PROGRESS_DEADLINE_EXCEEDED",
-        "BUILD_STEP_FAILED",
         "CONTAINER_MISSING",
         "CONTAINER_PERMISSION_DENIED",
         "CONTAINER_IMAGE_UNAUTHORIZED",
@@ -59,6 +38,7 @@ class GoogleCloudRunV2Condition(typing_extensions.TypedDict, total=False):
         "WAITING_FOR_OPERATION",
         "IMMEDIATE_RETRY",
         "POSTPONED_RETRY",
+        "INTERNAL",
     ]
     revisionReason: typing_extensions.Literal[
         "REVISION_REASON_UNDEFINED",
@@ -92,19 +72,17 @@ class GoogleCloudRunV2Container(typing_extensions.TypedDict, total=False):
     command: _list[str]
     env: _list[GoogleCloudRunV2EnvVar]
     image: str
+    livenessProbe: GoogleCloudRunV2Probe
     name: str
     ports: _list[GoogleCloudRunV2ContainerPort]
     resources: GoogleCloudRunV2ResourceRequirements
+    startupProbe: GoogleCloudRunV2Probe
     volumeMounts: _list[GoogleCloudRunV2VolumeMount]
+    workingDir: str
 
 @typing.type_check_only
 class GoogleCloudRunV2ContainerPort(typing_extensions.TypedDict, total=False):
     containerPort: int
-    name: str
-
-@typing.type_check_only
-class GoogleCloudRunV2ContainerStatus(typing_extensions.TypedDict, total=False):
-    imageDigest: str
     name: str
 
 @typing.type_check_only
@@ -154,6 +132,7 @@ class GoogleCloudRunV2Execution(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudRunV2ExecutionReference(typing_extensions.TypedDict, total=False):
+    completionTime: str
     createTime: str
     name: str
 
@@ -166,13 +145,29 @@ class GoogleCloudRunV2ExecutionTemplate(typing_extensions.TypedDict, total=False
     template: GoogleCloudRunV2TaskTemplate
 
 @typing.type_check_only
+class GoogleCloudRunV2GRPCAction(typing_extensions.TypedDict, total=False):
+    port: int
+    service: str
+
+@typing.type_check_only
+class GoogleCloudRunV2HTTPGetAction(typing_extensions.TypedDict, total=False):
+    host: str
+    httpHeaders: _list[GoogleCloudRunV2HTTPHeader]
+    path: str
+    scheme: str
+
+@typing.type_check_only
+class GoogleCloudRunV2HTTPHeader(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
+
+@typing.type_check_only
 class GoogleCloudRunV2Job(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     binaryAuthorization: GoogleCloudRunV2BinaryAuthorization
     client: str
     clientVersion: str
     conditions: _list[GoogleCloudRunV2Condition]
-    containerStatuses: _list[GoogleCloudRunV2ContainerStatus]
     createTime: str
     creator: str
     deleteTime: str
@@ -227,6 +222,16 @@ class GoogleCloudRunV2ListTasksResponse(typing_extensions.TypedDict, total=False
     tasks: _list[GoogleCloudRunV2Task]
 
 @typing.type_check_only
+class GoogleCloudRunV2Probe(typing_extensions.TypedDict, total=False):
+    failureThreshold: int
+    grpc: GoogleCloudRunV2GRPCAction
+    httpGet: GoogleCloudRunV2HTTPGetAction
+    initialDelaySeconds: int
+    periodSeconds: int
+    tcpSocket: GoogleCloudRunV2TCPSocketAction
+    timeoutSeconds: int
+
+@typing.type_check_only
 class GoogleCloudRunV2ResourceRequirements(typing_extensions.TypedDict, total=False):
     cpuIdle: bool
     limits: dict[str, typing.Any]
@@ -235,8 +240,6 @@ class GoogleCloudRunV2ResourceRequirements(typing_extensions.TypedDict, total=Fa
 class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     conditions: _list[GoogleCloudRunV2Condition]
-    confidential: bool
-    containerConcurrency: int
     containers: _list[GoogleCloudRunV2Container]
     createTime: str
     deleteTime: str
@@ -261,6 +264,7 @@ class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     logUri: str
+    maxInstanceRequestConcurrency: int
     name: str
     observedGeneration: str
     reconciling: bool
@@ -281,8 +285,6 @@ class GoogleCloudRunV2RevisionScaling(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudRunV2RevisionTemplate(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
-    confidential: bool
-    containerConcurrency: int
     containers: _list[GoogleCloudRunV2Container]
     encryptionKey: str
     executionEnvironment: typing_extensions.Literal[
@@ -291,6 +293,7 @@ class GoogleCloudRunV2RevisionTemplate(typing_extensions.TypedDict, total=False)
         "EXECUTION_ENVIRONMENT_GEN2",
     ]
     labels: dict[str, typing.Any]
+    maxInstanceRequestConcurrency: int
     revision: str
     scaling: GoogleCloudRunV2RevisionScaling
     serviceAccount: str
@@ -358,6 +361,11 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
     uid: str
     updateTime: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudRunV2TCPSocketAction(typing_extensions.TypedDict, total=False):
+    host: str
+    port: int
 
 @typing.type_check_only
 class GoogleCloudRunV2Task(typing_extensions.TypedDict, total=False):

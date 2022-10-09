@@ -203,6 +203,7 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_GTID_MODE",
         "UNSUPPORTED_DEFINER",
         "CANT_RESTART_RUNNING_MIGRATION",
+        "TABLES_WITH_LIMITED_SUPPORT",
     ]
     errorDetailMessage: str
     errorMessage: str

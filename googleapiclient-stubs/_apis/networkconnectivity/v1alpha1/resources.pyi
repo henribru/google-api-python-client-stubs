@@ -139,7 +139,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
-            class ServiceConnectPoliciesResource(googleapiclient.discovery.Resource):
+            class ServiceClassesResource(googleapiclient.discovery.Resource):
                 def getIamPolicy(
                     self,
                     *,
@@ -163,7 +163,31 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
-            class ServiceInstancesResource(googleapiclient.discovery.Resource):
+            class ServiceConnectionMapsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class ServiceConnectionPoliciesResource(googleapiclient.discovery.Resource):
                 def getIamPolicy(
                     self,
                     *,
@@ -269,8 +293,11 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
             def global_(self) -> GlobalResource: ...
             def internalRanges(self) -> InternalRangesResource: ...
             def operations(self) -> OperationsResource: ...
-            def serviceConnectPolicies(self) -> ServiceConnectPoliciesResource: ...
-            def serviceInstances(self) -> ServiceInstancesResource: ...
+            def serviceClasses(self) -> ServiceClassesResource: ...
+            def serviceConnectionMaps(self) -> ServiceConnectionMapsResource: ...
+            def serviceConnectionPolicies(
+                self,
+            ) -> ServiceConnectionPoliciesResource: ...
             def spokes(self) -> SpokesResource: ...
 
         def locations(self) -> LocationsResource: ...

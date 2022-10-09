@@ -295,6 +295,16 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             onBehalfOfContentOwnerChannel: str = ...,
             **kwargs: typing.Any
         ) -> LiveBroadcastHttpRequest: ...
+        def insertCuepoint(
+            self,
+            *,
+            body: Cuepoint = ...,
+            id: str = ...,
+            onBehalfOfContentOwner: str = ...,
+            onBehalfOfContentOwnerChannel: str = ...,
+            part: str | _list[str] = ...,
+            **kwargs: typing.Any
+        ) -> CuepointHttpRequest: ...
         def list(
             self,
             *,
@@ -731,7 +741,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
                 "linkUnspecified", "channelToStoreLink"
             ] = ...,
             **kwargs: typing.Any
-        ) -> ThirdPartyLinkHttpRequest: ...
+        ) -> ThirdPartyLinkListResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -1019,6 +1029,14 @@ class CommentThreadListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> CommentThreadListResponse: ...
 
 @typing.type_check_only
+class CuepointHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Cuepoint: ...
+
+@typing.type_check_only
 class I18nLanguageListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1201,6 +1219,14 @@ class ThirdPartyLinkHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ThirdPartyLink: ...
+
+@typing.type_check_only
+class ThirdPartyLinkListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ThirdPartyLinkListResponse: ...
 
 @typing.type_check_only
 class ThumbnailSetResponseHttpRequest(googleapiclient.http.HttpRequest):

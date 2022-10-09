@@ -39,6 +39,7 @@ class Account(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Admin(typing_extensions.TypedDict, total=False):
+    account: str
     admin: str
     name: str
     pendingInvitation: bool

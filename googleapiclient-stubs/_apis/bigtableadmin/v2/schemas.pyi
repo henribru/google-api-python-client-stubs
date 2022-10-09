@@ -32,6 +32,7 @@ class AutoscalingLimits(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AutoscalingTargets(typing_extensions.TypedDict, total=False):
     cpuUtilizationPercent: int
+    storageUtilizationGibPerNode: int
 
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
@@ -206,6 +207,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzs: bool
     state: typing_extensions.Literal["STATE_NOT_KNOWN", "READY", "CREATING"]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PRODUCTION", "DEVELOPMENT"]
 
@@ -383,6 +385,15 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class UndeleteTableMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    name: str
+    startTime: str
+
+@typing.type_check_only
+class UndeleteTableRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Union(dict[str, typing.Any]): ...

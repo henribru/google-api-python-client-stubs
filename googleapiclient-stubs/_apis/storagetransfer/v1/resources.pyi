@@ -67,6 +67,9 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
         def create(
             self, *, body: TransferJob = ..., **kwargs: typing.Any
         ) -> TransferJobHttpRequest: ...
+        def delete(
+            self, *, jobName: str, projectId: str, **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
         def get(
             self, *, jobName: str, projectId: str, **kwargs: typing.Any
         ) -> TransferJobHttpRequest: ...

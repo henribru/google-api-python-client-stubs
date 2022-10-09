@@ -2330,6 +2330,7 @@ class TextAnnotation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TextDetectionParams(typing_extensions.TypedDict, total=False):
+    advancedOcrOptions: _list[str]
     enableTextDetectionConfidenceScore: bool
 
 @typing.type_check_only

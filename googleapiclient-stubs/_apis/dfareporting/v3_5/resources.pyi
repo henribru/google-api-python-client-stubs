@@ -455,6 +455,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 "OBJECT_TARGETING_TEMPLATE",
                 "OBJECT_SEARCH_LIFT_STUDY",
                 "OBJECT_FLOODLIGHT_DV360_LINK",
+                "OBJECT_ADVERTISER_CUSTOMER_LINK",
             ] = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -1128,11 +1129,31 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             directories: typing_extensions.Literal[
-                "UNKNOWN", "APPLE_APP_STORE", "GOOGLE_PLAY_STORE"
+                "UNKNOWN",
+                "APPLE_APP_STORE",
+                "GOOGLE_PLAY_STORE",
+                "ROKU_APP_STORE",
+                "AMAZON_FIRETV_APP_STORE",
+                "PLAYSTATION_APP_STORE",
+                "APPLE_TV_APP_STORE",
+                "XBOX_APP_STORE",
+                "SAMSUNG_TV_APP_STORE",
+                "ANDROID_TV_APP_STORE",
+                "GENERIC_CTV_APP_STORE",
             ]
             | _list[
                 typing_extensions.Literal[
-                    "UNKNOWN", "APPLE_APP_STORE", "GOOGLE_PLAY_STORE"
+                    "UNKNOWN",
+                    "APPLE_APP_STORE",
+                    "GOOGLE_PLAY_STORE",
+                    "ROKU_APP_STORE",
+                    "AMAZON_FIRETV_APP_STORE",
+                    "PLAYSTATION_APP_STORE",
+                    "APPLE_TV_APP_STORE",
+                    "XBOX_APP_STORE",
+                    "SAMSUNG_TV_APP_STORE",
+                    "ANDROID_TV_APP_STORE",
+                    "GENERIC_CTV_APP_STORE",
                 ]
             ] = ...,
             ids: str | _list[str] = ...,

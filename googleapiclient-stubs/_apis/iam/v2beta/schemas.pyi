@@ -31,6 +31,11 @@ class GoogleIamV1PolicyDelta(typing_extensions.TypedDict, total=False):
     bindingDeltas: _list[GoogleIamV1BindingDelta]
 
 @typing.type_check_only
+class GoogleIamV1betaWorkloadIdentityPoolOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleIamV2betaDenyRule(typing_extensions.TypedDict, total=False):
     denialCondition: GoogleTypeExpr
     deniedPermissions: _list[str]

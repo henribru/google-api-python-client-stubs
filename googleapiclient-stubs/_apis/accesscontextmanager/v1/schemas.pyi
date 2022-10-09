@@ -103,6 +103,7 @@ class EgressPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EgressTo(typing_extensions.TypedDict, total=False):
+    externalResources: _list[str]
     operations: _list[ApiOperation]
     resources: _list[str]
 

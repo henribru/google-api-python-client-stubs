@@ -127,6 +127,7 @@ class File(typing_extensions.TypedDict, total=False):
     imageMediaMetadata: dict[str, typing.Any]
     isAppAuthorized: bool
     kind: str
+    labelInfo: dict[str, typing.Any]
     lastModifyingUser: User
     linkShareMetadata: dict[str, typing.Any]
     md5Checksum: str
@@ -144,6 +145,8 @@ class File(typing_extensions.TypedDict, total=False):
     properties: dict[str, typing.Any]
     quotaBytesUsed: str
     resourceKey: str
+    sha1Checksum: str
+    sha256Checksum: str
     shared: bool
     sharedWithMeTime: str
     sharingUser: User
@@ -178,6 +181,58 @@ class GeneratedIds(typing_extensions.TypedDict, total=False):
     ids: _list[str]
     kind: str
     space: str
+
+@typing.type_check_only
+class Label(typing_extensions.TypedDict, total=False):
+    fields: dict[str, typing.Any]
+    id: str
+    kind: str
+    revisionId: str
+
+@typing.type_check_only
+class LabelField(typing_extensions.TypedDict, total=False):
+    dateString: _list[str]
+    id: str
+    integer: _list[str]
+    kind: str
+    selection: _list[str]
+    text: _list[str]
+    user: _list[User]
+    valueType: str
+
+@typing.type_check_only
+class LabelFieldModification(typing_extensions.TypedDict, total=False):
+    fieldId: str
+    kind: str
+    setDateValues: _list[str]
+    setIntegerValues: _list[str]
+    setSelectionValues: _list[str]
+    setTextValues: _list[str]
+    setUserValues: _list[str]
+    unsetValues: bool
+
+@typing.type_check_only
+class LabelList(typing_extensions.TypedDict, total=False):
+    kind: str
+    labels: _list[Label]
+    nextPageToken: str
+
+@typing.type_check_only
+class LabelModification(typing_extensions.TypedDict, total=False):
+    fieldModifications: _list[LabelFieldModification]
+    kind: str
+    labelId: str
+    removeLabel: bool
+
+@typing.type_check_only
+class ModifyLabelsRequest(typing_extensions.TypedDict, total=False):
+    kind: str
+    labelModifications: _list[LabelModification]
+
+@typing.type_check_only
+class ModifyLabelsResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    modifiedLabels: _list[Label]
 
 @typing.type_check_only
 class Permission(typing_extensions.TypedDict, total=False):

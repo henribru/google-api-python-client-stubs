@@ -81,6 +81,7 @@ class GcsSource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Glossary(typing_extensions.TypedDict, total=False):
+    displayName: str
     endTime: str
     entryCount: int
     inputConfig: GlossaryInputConfig
@@ -90,8 +91,29 @@ class Glossary(typing_extensions.TypedDict, total=False):
     submitTime: str
 
 @typing.type_check_only
+class GlossaryEntry(typing_extensions.TypedDict, total=False):
+    description: str
+    name: str
+    termsPair: GlossaryTermsPair
+    termsSet: GlossaryTermsSet
+
+@typing.type_check_only
 class GlossaryInputConfig(typing_extensions.TypedDict, total=False):
     gcsSource: GcsSource
+
+@typing.type_check_only
+class GlossaryTerm(typing_extensions.TypedDict, total=False):
+    languageCode: str
+    text: str
+
+@typing.type_check_only
+class GlossaryTermsPair(typing_extensions.TypedDict, total=False):
+    sourceTerm: GlossaryTerm
+    targetTerm: GlossaryTerm
+
+@typing.type_check_only
+class GlossaryTermsSet(typing_extensions.TypedDict, total=False):
+    terms: _list[GlossaryTerm]
 
 @typing.type_check_only
 class InputConfig(typing_extensions.TypedDict, total=False):
@@ -110,6 +132,11 @@ class LanguageCodesSet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListGlossariesResponse(typing_extensions.TypedDict, total=False):
     glossaries: _list[Glossary]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListGlossaryEntriesResponse(typing_extensions.TypedDict, total=False):
+    glossaryEntries: _list[GlossaryEntry]
     nextPageToken: str
 
 @typing.type_check_only
@@ -161,6 +188,7 @@ class SupportedLanguages(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TranslateDocumentRequest(typing_extensions.TypedDict, total=False):
+    customizedAttribution: str
     documentInputConfig: DocumentInputConfig
     documentOutputConfig: DocumentOutputConfig
     glossaryConfig: TranslateTextGlossaryConfig

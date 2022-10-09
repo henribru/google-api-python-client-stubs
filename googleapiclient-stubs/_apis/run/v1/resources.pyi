@@ -87,6 +87,13 @@ class CloudRunResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class ExecutionsResource(googleapiclient.discovery.Resource):
+            def cancel(
+                self,
+                *,
+                name: str,
+                body: CancelExecutionRequest = ...,
+                **kwargs: typing.Any
+            ) -> ExecutionHttpRequest: ...
             def delete(
                 self,
                 *,

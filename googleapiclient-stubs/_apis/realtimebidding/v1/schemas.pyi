@@ -47,6 +47,24 @@ class AppTargeting(typing_extensions.TypedDict, total=False):
     mobileAppTargeting: StringTargetingDimension
 
 @typing.type_check_only
+class BatchApprovePublisherConnectionsRequest(typing_extensions.TypedDict, total=False):
+    names: _list[str]
+
+@typing.type_check_only
+class BatchApprovePublisherConnectionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    publisherConnections: _list[PublisherConnection]
+
+@typing.type_check_only
+class BatchRejectPublisherConnectionsRequest(typing_extensions.TypedDict, total=False):
+    names: _list[str]
+
+@typing.type_check_only
+class BatchRejectPublisherConnectionsResponse(typing_extensions.TypedDict, total=False):
+    publisherConnections: _list[PublisherConnection]
+
+@typing.type_check_only
 class Bidder(typing_extensions.TypedDict, total=False):
     bypassNonguaranteedDealsPretargeting: bool
     cookieMatchingNetworkId: str
@@ -87,6 +105,7 @@ class Creative(typing_extensions.TypedDict, total=False):
     impressionTrackingUrls: _list[str]
     name: str
     native: NativeContent
+    renderUrl: str
     restrictedCategories: _list[str]
     version: int
     video: VideoContent
@@ -253,6 +272,11 @@ class ListPretargetingConfigsResponse(typing_extensions.TypedDict, total=False):
     pretargetingConfigs: _list[PretargetingConfig]
 
 @typing.type_check_only
+class ListPublisherConnectionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    publisherConnections: _list[PublisherConnection]
+
+@typing.type_check_only
 class ListUserListsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     userLists: _list[UserList]
@@ -308,7 +332,11 @@ class OpenUserListRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class PolicyCompliance(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "PENDING_REVIEW", "DISAPPROVED", "APPROVED"
+        "STATUS_UNSPECIFIED",
+        "PENDING_REVIEW",
+        "DISAPPROVED",
+        "APPROVED",
+        "CERTIFICATE_REQUIRED",
     ]
     topics: _list[PolicyTopicEntry]
 
@@ -357,6 +385,18 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
     userListTargeting: NumericTargetingDimension
     verticalTargeting: NumericTargetingDimension
     webTargeting: StringTargetingDimension
+
+@typing.type_check_only
+class PublisherConnection(typing_extensions.TypedDict, total=False):
+    biddingState: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "REJECTED", "APPROVED"
+    ]
+    createTime: str
+    displayName: str
+    name: str
+    publisherPlatform: typing_extensions.Literal[
+        "PUBLISHER_PLATFORM_UNSPECIFIED", "GOOGLE_AD_MANAGER", "ADMOB"
+    ]
 
 @typing.type_check_only
 class RemoveTargetedAppsRequest(typing_extensions.TypedDict, total=False):

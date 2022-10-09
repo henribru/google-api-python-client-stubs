@@ -188,6 +188,7 @@ class AccountUser(typing_extensions.TypedDict, total=False):
     orderManager: bool
     paymentsAnalyst: bool
     paymentsManager: bool
+    reportingManager: bool
 
 @typing.type_check_only
 class AccountYouTubeChannelLink(typing_extensions.TypedDict, total=False):
@@ -436,11 +437,15 @@ class CollectionStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CollectionStatusDestinationStatus(typing_extensions.TypedDict, total=False):
+    approvedCountries: _list[str]
     destination: str
+    disapprovedCountries: _list[str]
+    pendingCountries: _list[str]
     status: str
 
 @typing.type_check_only
 class CollectionStatusItemLevelIssue(typing_extensions.TypedDict, total=False):
+    applicableCountries: _list[str]
     attributeName: str
     code: str
     description: str
@@ -618,6 +623,17 @@ class DateTime(typing_extensions.TypedDict, total=False):
     timeZone: TimeZone
     utcOffset: str
     year: int
+
+@typing.type_check_only
+class DeliveryArea(typing_extensions.TypedDict, total=False):
+    countryCode: str
+    postalCodeRange: DeliveryAreaPostalCodeRange
+    regionCode: str
+
+@typing.type_check_only
+class DeliveryAreaPostalCodeRange(typing_extensions.TypedDict, total=False):
+    firstPostalCode: str
+    lastPostalCode: str
 
 @typing.type_check_only
 class DeliveryTime(typing_extensions.TypedDict, total=False):
@@ -934,6 +950,7 @@ class ListReturnPolicyOnlineResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LocalInventory(typing_extensions.TypedDict, total=False):
     availability: str
+    customAttributes: _list[CustomAttribute]
     instoreProductLocation: str
     kind: str
     pickupMethod: str
@@ -949,12 +966,7 @@ class LocalinventoryCustomBatchRequest(typing_extensions.TypedDict, total=False)
     entries: _list[LocalinventoryCustomBatchRequestEntry]
 
 @typing.type_check_only
-class LocalinventoryCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
-    batchId: int
-    localInventory: LocalInventory
-    merchantId: str
-    method: str
-    productId: str
+class LocalinventoryCustomBatchRequestEntry(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class LocalinventoryCustomBatchResponse(typing_extensions.TypedDict, total=False):
@@ -1011,6 +1023,9 @@ class Metrics(typing_extensions.TypedDict, total=False):
     aos: float
     aovMicros: float
     clicks: str
+    conversionRate: float
+    conversionValueMicros: str
+    conversions: float
     ctr: float
     daysToShip: float
     impressions: str
@@ -1936,6 +1951,7 @@ class Product(typing_extensions.TypedDict, total=False):
     excludedDestinations: _list[str]
     expirationDate: str
     externalSellerId: str
+    feedLabel: str
     gender: str
     googleProductCategory: str
     gtin: str
@@ -1961,6 +1977,7 @@ class Product(typing_extensions.TypedDict, total=False):
     multipack: str
     offerId: str
     pattern: str
+    pause: str
     pickupMethod: str
     pickupSla: str
     price: Price
@@ -2002,9 +2019,32 @@ class ProductAmount(typing_extensions.TypedDict, total=False):
     taxAmount: Price
 
 @typing.type_check_only
+class ProductDeliveryTime(typing_extensions.TypedDict, total=False):
+    areaDeliveryTimes: _list[ProductDeliveryTimeAreaDeliveryTime]
+    productId: ProductId
+
+@typing.type_check_only
+class ProductDeliveryTimeAreaDeliveryTime(typing_extensions.TypedDict, total=False):
+    deliveryArea: DeliveryArea
+    deliveryTime: ProductDeliveryTimeAreaDeliveryTimeDeliveryTime
+
+@typing.type_check_only
+class ProductDeliveryTimeAreaDeliveryTimeDeliveryTime(
+    typing_extensions.TypedDict, total=False
+):
+    maxHandlingTimeDays: int
+    maxTransitTimeDays: int
+    minHandlingTimeDays: int
+    minTransitTimeDays: int
+
+@typing.type_check_only
 class ProductDimension(typing_extensions.TypedDict, total=False):
     unit: str
     value: float
+
+@typing.type_check_only
+class ProductId(typing_extensions.TypedDict, total=False):
+    productId: str
 
 @typing.type_check_only
 class ProductProductDetail(typing_extensions.TypedDict, total=False):
@@ -2092,6 +2132,59 @@ class ProductUnitPricingBaseMeasure(typing_extensions.TypedDict, total=False):
 class ProductUnitPricingMeasure(typing_extensions.TypedDict, total=False):
     unit: str
     value: float
+
+@typing.type_check_only
+class ProductView(typing_extensions.TypedDict, total=False):
+    aggregatedDestinationStatus: typing_extensions.Literal[
+        "AGGREGATED_STATUS_UNSPECIFIED",
+        "NOT_ELIGIBLE_OR_DISAPPROVED",
+        "PENDING",
+        "ELIGIBLE_LIMITED",
+        "ELIGIBLE",
+    ]
+    availability: str
+    brand: str
+    channel: typing_extensions.Literal["CHANNEL_UNSPECIFIED", "LOCAL", "ONLINE"]
+    condition: str
+    creationTime: str
+    currencyCode: str
+    expirationDate: Date
+    gtin: _list[str]
+    id: str
+    itemGroupId: str
+    itemIssues: _list[ProductViewItemIssue]
+    languageCode: str
+    offerId: str
+    priceMicros: str
+    shippingLabel: str
+    title: str
+
+@typing.type_check_only
+class ProductViewItemIssue(typing_extensions.TypedDict, total=False):
+    issueType: ProductViewItemIssueItemIssueType
+    resolution: typing_extensions.Literal[
+        "UNKNOWN", "MERCHANT_ACTION", "PENDING_PROCESSING"
+    ]
+    severity: ProductViewItemIssueItemIssueSeverity
+
+@typing.type_check_only
+class ProductViewItemIssueIssueSeverityPerDestination(
+    typing_extensions.TypedDict, total=False
+):
+    demotedCountries: _list[str]
+    destination: str
+    disapprovedCountries: _list[str]
+
+@typing.type_check_only
+class ProductViewItemIssueItemIssueSeverity(typing_extensions.TypedDict, total=False):
+    aggregatedSeverity: typing_extensions.Literal[
+        "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED", "DISAPPROVED", "DEMOTED", "PENDING"
+    ]
+    severityPerDestination: _list[ProductViewItemIssueIssueSeverityPerDestination]
+
+@typing.type_check_only
+class ProductViewItemIssueItemIssueType(typing_extensions.TypedDict, total=False):
+    canonicalAttribute: str
 
 @typing.type_check_only
 class ProductWeight(typing_extensions.TypedDict, total=False):
@@ -2279,6 +2372,7 @@ class RegionalinventoryCustomBatchResponseEntry(dict[str, typing.Any]): ...
 @typing.type_check_only
 class ReportRow(typing_extensions.TypedDict, total=False):
     metrics: Metrics
+    productView: ProductView
     segments: Segments
 
 @typing.type_check_only
@@ -2632,6 +2726,7 @@ class Segments(typing_extensions.TypedDict, total=False):
     customLabel2: str
     customLabel3: str
     customLabel4: str
+    customerCountryCode: str
     date: Date
     offerId: str
     productTypeL1: str

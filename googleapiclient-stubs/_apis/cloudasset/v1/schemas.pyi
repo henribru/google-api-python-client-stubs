@@ -42,6 +42,7 @@ class Asset(typing_extensions.TypedDict, total=False):
     name: str
     orgPolicy: _list[GoogleCloudOrgpolicyV1Policy]
     osInventory: Inventory
+    relatedAsset: RelatedAsset
     relatedAssets: RelatedAssets
     resource: Resource
     servicePerimeter: GoogleIdentityAccesscontextmanagerV1ServicePerimeter
@@ -369,6 +370,7 @@ class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
 class GoogleIdentityAccesscontextmanagerV1EgressTo(
     typing_extensions.TypedDict, total=False
 ):
+    externalResources: _list[str]
     operations: _list[GoogleIdentityAccesscontextmanagerV1ApiOperation]
     resources: _list[str]
 
@@ -644,6 +646,7 @@ class RelatedAsset(typing_extensions.TypedDict, total=False):
     ancestors: _list[str]
     asset: str
     assetType: str
+    relationshipType: str
 
 @typing.type_check_only
 class RelatedAssets(typing_extensions.TypedDict, total=False):
@@ -686,6 +689,7 @@ class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     displayName: str
     folders: _list[str]
     kmsKey: str
+    kmsKeys: _list[str]
     labels: dict[str, typing.Any]
     location: str
     name: str

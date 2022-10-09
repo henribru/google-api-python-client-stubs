@@ -42,6 +42,7 @@ class AddRolesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
     checkServiceNetworkingUsePermission: bool
+    computeIdempotencyWindow: str
     consumer: str
     consumerNetwork: str
     description: str
@@ -55,6 +56,7 @@ class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
     secondaryIpRangeSpecs: _list[SecondaryIpRangeSpec]
     subnetwork: str
     subnetworkUsers: _list[str]
+    useCustomComputeIdempotencyWindow: bool
 
 @typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
@@ -122,6 +124,12 @@ class BillingDestination(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CloudSQLConfig(typing_extensions.TypedDict, total=False):
+    service: str
+    umbrellaNetwork: str
+    umbrellaProject: str
+
+@typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
     network: str
     peering: str
@@ -130,6 +138,7 @@ class Connection(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConsumerConfig(typing_extensions.TypedDict, total=False):
+    cloudsqlConfigs: _list[CloudSQLConfig]
     consumerExportCustomRoutes: bool
     consumerExportSubnetRoutesWithPublicIp: bool
     consumerImportCustomRoutes: bool
@@ -140,6 +149,7 @@ class ConsumerConfig(typing_extensions.TypedDict, total=False):
     producerImportSubnetRoutesWithPublicIp: bool
     producerNetwork: str
     reservedRanges: _list[GoogleCloudServicenetworkingV1ConsumerConfigReservedRange]
+    usedIpRanges: _list[str]
     vpcScReferenceArchitectureEnabled: bool
 
 @typing.type_check_only

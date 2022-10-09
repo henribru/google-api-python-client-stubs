@@ -260,6 +260,7 @@ class LogLine(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LogMetric(typing_extensions.TypedDict, total=False):
+    bucketName: str
     bucketOptions: BucketOptions
     createTime: str
     description: str
@@ -412,6 +413,7 @@ class RequestLog(typing_extensions.TypedDict, total=False):
     resource: str
     responseSize: str
     sourceReference: _list[SourceReference]
+    spanId: str
     startTime: str
     status: int
     taskName: str

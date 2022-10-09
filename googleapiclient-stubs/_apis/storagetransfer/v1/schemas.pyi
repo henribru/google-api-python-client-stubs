@@ -19,6 +19,14 @@ class AwsAccessKey(typing_extensions.TypedDict, total=False):
     secretAccessKey: str
 
 @typing.type_check_only
+class AwsS3CompatibleData(typing_extensions.TypedDict, total=False):
+    bucketName: str
+    endpoint: str
+    path: str
+    region: str
+    s3Metadata: S3CompatibleMetadata
+
+@typing.type_check_only
 class AwsS3Data(typing_extensions.TypedDict, total=False):
     awsAccessKey: AwsAccessKey
     bucketName: str
@@ -188,6 +196,27 @@ class RunTransferJobRequest(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
+class S3CompatibleMetadata(typing_extensions.TypedDict, total=False):
+    authMethod: typing_extensions.Literal[
+        "AUTH_METHOD_UNSPECIFIED",
+        "AUTH_METHOD_AWS_SIGNATURE_V4",
+        "AUTH_METHOD_AWS_SIGNATURE_V2",
+    ]
+    listApi: typing_extensions.Literal[
+        "LIST_API_UNSPECIFIED", "LIST_OBJECTS_V2", "LIST_OBJECTS"
+    ]
+    protocol: typing_extensions.Literal[
+        "NETWORK_PROTOCOL_UNSPECIFIED",
+        "NETWORK_PROTOCOL_HTTPS",
+        "NETWORK_PROTOCOL_HTTP",
+    ]
+    requestModel: typing_extensions.Literal[
+        "REQUEST_MODEL_UNSPECIFIED",
+        "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE",
+        "REQUEST_MODEL_PATH_STYLE",
+    ]
+
+@typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
     endTimeOfDay: TimeOfDay
     repeatInterval: str
@@ -286,6 +315,7 @@ class TransferOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TransferSpec(typing_extensions.TypedDict, total=False):
+    awsS3CompatibleDataSource: AwsS3CompatibleData
     awsS3DataSource: AwsS3Data
     azureBlobStorageDataSource: AzureBlobStorageData
     gcsDataSink: GcsData

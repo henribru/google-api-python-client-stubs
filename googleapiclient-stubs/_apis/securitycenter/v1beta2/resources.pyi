@@ -30,6 +30,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> EventThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
+        class RapidVulnerabilityDetectionSettingsResource(
+            googleapiclient.discovery.Resource
+        ):
+            def calculate(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
+
+        @typing.type_check_only
         class SecurityHealthAnalyticsSettingsResource(
             googleapiclient.discovery.Resource
         ):
@@ -60,6 +68,12 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getOnboardingState(
             self, *, name: str, **kwargs: typing.Any
         ) -> OnboardingStateHttpRequest: ...
+        def getRapidVulnerabilityDetectionSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
+        def getSecurityCenterSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SecurityCenterSettingsHttpRequest: ...
         def getSecurityHealthAnalyticsSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
@@ -85,6 +99,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> EventThreatDetectionSettingsHttpRequest: ...
+        def updateRapidVulnerabilityDetectionSettings(
+            self,
+            *,
+            name: str,
+            body: RapidVulnerabilityDetectionSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def updateSecurityHealthAnalyticsSettings(
             self,
             *,
@@ -115,6 +137,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def eventThreatDetectionSettings(
             self,
         ) -> EventThreatDetectionSettingsResource: ...
+        def rapidVulnerabilityDetectionSettings(
+            self,
+        ) -> RapidVulnerabilityDetectionSettingsResource: ...
         def securityHealthAnalyticsSettings(
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
@@ -138,6 +163,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             def calculate(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EventThreatDetectionSettingsHttpRequest: ...
+
+        @typing.type_check_only
+        class RapidVulnerabilityDetectionSettingsResource(
+            googleapiclient.discovery.Resource
+        ):
+            def calculate(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
         class SecurityHealthAnalyticsSettingsResource(
@@ -170,6 +203,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getOnboardingState(
             self, *, name: str, **kwargs: typing.Any
         ) -> OnboardingStateHttpRequest: ...
+        def getRapidVulnerabilityDetectionSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def getSecurityCenterSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> SecurityCenterSettingsHttpRequest: ...
@@ -201,6 +237,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> EventThreatDetectionSettingsHttpRequest: ...
+        def updateRapidVulnerabilityDetectionSettings(
+            self,
+            *,
+            name: str,
+            body: RapidVulnerabilityDetectionSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def updateSecurityHealthAnalyticsSettings(
             self,
             *,
@@ -231,6 +275,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def eventThreatDetectionSettings(
             self,
         ) -> EventThreatDetectionSettingsResource: ...
+        def rapidVulnerabilityDetectionSettings(
+            self,
+        ) -> RapidVulnerabilityDetectionSettingsResource: ...
         def securityHealthAnalyticsSettings(
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
@@ -285,6 +332,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             def clusters(self) -> ClustersResource: ...
 
         @typing.type_check_only
+        class RapidVulnerabilityDetectionSettingsResource(
+            googleapiclient.discovery.Resource
+        ):
+            def calculate(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
+
+        @typing.type_check_only
         class SecurityHealthAnalyticsSettingsResource(
             googleapiclient.discovery.Resource
         ):
@@ -315,6 +370,12 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getOnboardingState(
             self, *, name: str, **kwargs: typing.Any
         ) -> OnboardingStateHttpRequest: ...
+        def getRapidVulnerabilityDetectionSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
+        def getSecurityCenterSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SecurityCenterSettingsHttpRequest: ...
         def getSecurityHealthAnalyticsSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
@@ -340,6 +401,14 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> EventThreatDetectionSettingsHttpRequest: ...
+        def updateRapidVulnerabilityDetectionSettings(
+            self,
+            *,
+            name: str,
+            body: RapidVulnerabilityDetectionSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def updateSecurityHealthAnalyticsSettings(
             self,
             *,
@@ -371,6 +440,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
         ) -> EventThreatDetectionSettingsResource: ...
         def locations(self) -> LocationsResource: ...
+        def rapidVulnerabilityDetectionSettings(
+            self,
+        ) -> RapidVulnerabilityDetectionSettingsResource: ...
         def securityHealthAnalyticsSettings(
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
@@ -418,6 +490,14 @@ class OnboardingStateHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OnboardingState: ...
+
+@typing.type_check_only
+class RapidVulnerabilityDetectionSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RapidVulnerabilityDetectionSettings: ...
 
 @typing.type_check_only
 class SecurityCenterSettingsHttpRequest(googleapiclient.http.HttpRequest):

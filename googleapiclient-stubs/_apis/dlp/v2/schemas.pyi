@@ -6,6 +6,7 @@ _list = list
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Action(typing_extensions.TypedDict, total=False):
+    deidentify: GooglePrivacyDlpV2Deidentify
     jobNotificationEmails: GooglePrivacyDlpV2JobNotificationEmails
     pubSub: GooglePrivacyDlpV2PublishToPubSub
     publishFindingsToCloudDataCatalog: GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog
@@ -17,6 +18,12 @@ class GooglePrivacyDlpV2Action(typing_extensions.TypedDict, total=False):
 class GooglePrivacyDlpV2ActivateJobTriggerRequest(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2AllInfoTypes(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2AllText(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails(
@@ -405,7 +412,15 @@ class GooglePrivacyDlpV2DateTime(typing_extensions.TypedDict, total=False):
     timeZone: GooglePrivacyDlpV2TimeZone
 
 @typing.type_check_only
+class GooglePrivacyDlpV2Deidentify(typing_extensions.TypedDict, total=False):
+    cloudStorageOutput: str
+    fileTypesToTransform: _list[str]
+    transformationConfig: GooglePrivacyDlpV2TransformationConfig
+    transformationDetailsStorageConfig: GooglePrivacyDlpV2TransformationDetailsStorageConfig
+
+@typing.type_check_only
 class GooglePrivacyDlpV2DeidentifyConfig(typing_extensions.TypedDict, total=False):
+    imageTransformations: GooglePrivacyDlpV2ImageTransformations
     infoTypeTransformations: GooglePrivacyDlpV2InfoTypeTransformations
     recordTransformations: GooglePrivacyDlpV2RecordTransformations
     transformationErrorHandling: GooglePrivacyDlpV2TransformationErrorHandling
@@ -660,16 +675,88 @@ class GooglePrivacyDlpV2ImageRedactionConfig(typing_extensions.TypedDict, total=
     redactionColor: GooglePrivacyDlpV2Color
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ImageTransformation(typing_extensions.TypedDict, total=False):
+    allInfoTypes: GooglePrivacyDlpV2AllInfoTypes
+    allText: GooglePrivacyDlpV2AllText
+    redactionColor: GooglePrivacyDlpV2Color
+    selectedInfoTypes: GooglePrivacyDlpV2SelectedInfoTypes
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ImageTransformations(typing_extensions.TypedDict, total=False):
+    transforms: _list[GooglePrivacyDlpV2ImageTransformation]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2InfoType(typing_extensions.TypedDict, total=False):
     name: str
     version: str
 
 @typing.type_check_only
+class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=False):
+    industryCategory: typing_extensions.Literal[
+        "INDUSTRY_UNSPECIFIED", "FINANCE", "HEALTH", "TELECOMMUNICATIONS"
+    ]
+    locationCategory: typing_extensions.Literal[
+        "LOCATION_UNSPECIFIED",
+        "GLOBAL",
+        "ARGENTINA",
+        "AUSTRALIA",
+        "BELGIUM",
+        "BRAZIL",
+        "CANADA",
+        "CHILE",
+        "CHINA",
+        "COLOMBIA",
+        "DENMARK",
+        "FRANCE",
+        "FINLAND",
+        "GERMANY",
+        "HONG_KONG",
+        "INDIA",
+        "INDONESIA",
+        "IRELAND",
+        "ISRAEL",
+        "ITALY",
+        "JAPAN",
+        "KOREA",
+        "MEXICO",
+        "THE_NETHERLANDS",
+        "NORWAY",
+        "PARAGUAY",
+        "PERU",
+        "POLAND",
+        "PORTUGAL",
+        "SINGAPORE",
+        "SOUTH_AFRICA",
+        "SPAIN",
+        "SWEDEN",
+        "TAIWAN",
+        "THAILAND",
+        "TURKEY",
+        "UNITED_KINGDOM",
+        "UNITED_STATES",
+        "URUGUAY",
+        "VENEZUELA",
+        "INTERNAL",
+    ]
+    typeCategory: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "PII",
+        "SPII",
+        "DEMOGRAPHIC",
+        "CREDENTIAL",
+        "GOVERNMENT_ID",
+        "DOCUMENT",
+        "CONTEXTUAL_INFORMATION",
+    ]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=False):
+    categories: _list[GooglePrivacyDlpV2InfoTypeCategory]
     description: str
     displayName: str
     name: str
     supportedBy: _list[str]
+    versions: _list[GooglePrivacyDlpV2VersionDescription]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InfoTypeLimit(typing_extensions.TypedDict, total=False):
@@ -979,6 +1066,7 @@ class GooglePrivacyDlpV2NumericalStatsResult(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GooglePrivacyDlpV2OtherInfoTypeSummary(typing_extensions.TypedDict, total=False):
+    estimatedPrevalence: int
     infoType: GooglePrivacyDlpV2InfoType
 
 @typing.type_check_only
@@ -1137,6 +1225,12 @@ class GooglePrivacyDlpV2RecordSuppression(typing_extensions.TypedDict, total=Fal
     condition: GooglePrivacyDlpV2RecordCondition
 
 @typing.type_check_only
+class GooglePrivacyDlpV2RecordTransformation(typing_extensions.TypedDict, total=False):
+    containerTimestamp: str
+    containerVersion: str
+    fieldId: GooglePrivacyDlpV2FieldId
+
+@typing.type_check_only
 class GooglePrivacyDlpV2RecordTransformations(typing_extensions.TypedDict, total=False):
     fieldTransformations: _list[GooglePrivacyDlpV2FieldTransformation]
     recordSuppressions: _list[GooglePrivacyDlpV2RecordSuppression]
@@ -1231,6 +1325,10 @@ class GooglePrivacyDlpV2SaveFindings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2Schedule(typing_extensions.TypedDict, total=False):
     recurrencePeriodDuration: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2SelectedInfoTypes(typing_extensions.TypedDict, total=False):
+    infoTypes: _list[GooglePrivacyDlpV2InfoType]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2SensitivityScore(typing_extensions.TypedDict, total=False):
@@ -1386,6 +1484,52 @@ class GooglePrivacyDlpV2TimespanConfig(typing_extensions.TypedDict, total=False)
     timestampField: GooglePrivacyDlpV2FieldId
 
 @typing.type_check_only
+class GooglePrivacyDlpV2TransformationConfig(typing_extensions.TypedDict, total=False):
+    deidentifyTemplate: str
+    imageRedactTemplate: str
+    structuredDeidentifyTemplate: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TransformationDescription(
+    typing_extensions.TypedDict, total=False
+):
+    condition: str
+    description: str
+    infoType: GooglePrivacyDlpV2InfoType
+    type: typing_extensions.Literal[
+        "TRANSFORMATION_TYPE_UNSPECIFIED",
+        "RECORD_SUPPRESSION",
+        "REPLACE_VALUE",
+        "REPLACE_DICTIONARY",
+        "REDACT",
+        "CHARACTER_MASK",
+        "CRYPTO_REPLACE_FFX_FPE",
+        "FIXED_SIZE_BUCKETING",
+        "BUCKETING",
+        "REPLACE_WITH_INFO_TYPE",
+        "TIME_PART",
+        "CRYPTO_HASH",
+        "DATE_SHIFT",
+        "CRYPTO_DETERMINISTIC_CONFIG",
+        "REDACT_IMAGE",
+    ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TransformationDetails(typing_extensions.TypedDict, total=False):
+    containerName: str
+    resourceName: str
+    statusDetails: GooglePrivacyDlpV2TransformationResultStatus
+    transformation: _list[GooglePrivacyDlpV2TransformationDescription]
+    transformationLocation: GooglePrivacyDlpV2TransformationLocation
+    transformedBytes: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TransformationDetailsStorageConfig(
+    typing_extensions.TypedDict, total=False
+):
+    table: GooglePrivacyDlpV2BigQueryTable
+
+@typing.type_check_only
 class GooglePrivacyDlpV2TransformationErrorHandling(
     typing_extensions.TypedDict, total=False
 ):
@@ -1393,11 +1537,37 @@ class GooglePrivacyDlpV2TransformationErrorHandling(
     throwError: GooglePrivacyDlpV2ThrowError
 
 @typing.type_check_only
+class GooglePrivacyDlpV2TransformationLocation(
+    typing_extensions.TypedDict, total=False
+):
+    containerType: typing_extensions.Literal[
+        "TRANSFORM_UNKNOWN_CONTAINER",
+        "TRANSFORM_BODY",
+        "TRANSFORM_METADATA",
+        "TRANSFORM_TABLE",
+    ]
+    findingId: str
+    recordTransformation: GooglePrivacyDlpV2RecordTransformation
+
+@typing.type_check_only
 class GooglePrivacyDlpV2TransformationOverview(
     typing_extensions.TypedDict, total=False
 ):
     transformationSummaries: _list[GooglePrivacyDlpV2TransformationSummary]
     transformedBytes: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TransformationResultStatus(
+    typing_extensions.TypedDict, total=False
+):
+    details: GoogleRpcStatus
+    resultStatusType: typing_extensions.Literal[
+        "STATE_TYPE_UNSPECIFIED",
+        "INVALID_TRANSFORM",
+        "BIGQUERY_MAX_ROW_SIZE_EXCEEDED",
+        "METADATA_UNRETRIEVABLE",
+        "SUCCESS",
+    ]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TransformationSummary(typing_extensions.TypedDict, total=False):
@@ -1474,6 +1644,11 @@ class GooglePrivacyDlpV2Value(typing_extensions.TypedDict, total=False):
 class GooglePrivacyDlpV2ValueFrequency(typing_extensions.TypedDict, total=False):
     count: str
     value: GooglePrivacyDlpV2Value
+
+@typing.type_check_only
+class GooglePrivacyDlpV2VersionDescription(typing_extensions.TypedDict, total=False):
+    description: str
+    version: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2WordList(typing_extensions.TypedDict, total=False):

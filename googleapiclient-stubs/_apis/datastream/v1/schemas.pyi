@@ -11,6 +11,7 @@ class AvroFileFormat(typing_extensions.TypedDict, total=False): ...
 class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
     mysqlExcludedObjects: MysqlRdbms
     oracleExcludedObjects: OracleRdbms
+    postgresqlExcludedObjects: PostgresqlRdbms
 
 @typing.type_check_only
 class BackfillJob(typing_extensions.TypedDict, total=False):
@@ -33,10 +34,20 @@ class BackfillJob(typing_extensions.TypedDict, total=False):
 class BackfillNoneStrategy(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class BigQueryDestinationConfig(typing_extensions.TypedDict, total=False):
+    dataFreshness: str
+    singleTargetDataset: SingleTargetDataset
+    sourceHierarchyDatasets: SourceHierarchyDatasets
+
+@typing.type_check_only
+class BigQueryProfile(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ConnectionProfile(typing_extensions.TypedDict, total=False):
+    bigqueryProfile: BigQueryProfile
     createTime: str
     displayName: str
     forwardSshConnectivity: ForwardSshTunnelConnectivity
@@ -45,12 +56,20 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     mysqlProfile: MysqlProfile
     name: str
     oracleProfile: OracleProfile
+    postgresqlProfile: PostgresqlProfile
     privateConnectivity: PrivateConnectivity
     staticServiceIpConnectivity: StaticServiceIpConnectivity
     updateTime: str
 
 @typing.type_check_only
+class DatasetTemplate(typing_extensions.TypedDict, total=False):
+    datasetIdPrefix: str
+    kmsKeyName: str
+    location: str
+
+@typing.type_check_only
 class DestinationConfig(typing_extensions.TypedDict, total=False):
+    bigqueryDestinationConfig: BigQueryDestinationConfig
     destinationConnectionProfile: str
     gcsDestinationConfig: GcsDestinationConfig
 
@@ -62,11 +81,13 @@ class DiscoverConnectionProfileRequest(typing_extensions.TypedDict, total=False)
     hierarchyDepth: int
     mysqlRdbms: MysqlRdbms
     oracleRdbms: OracleRdbms
+    postgresqlRdbms: PostgresqlRdbms
 
 @typing.type_check_only
 class DiscoverConnectionProfileResponse(typing_extensions.TypedDict, total=False):
     mysqlRdbms: MysqlRdbms
     oracleRdbms: OracleRdbms
+    postgresqlRdbms: PostgresqlRdbms
 
 @typing.type_check_only
 class DropLargeObjects(typing_extensions.TypedDict, total=False): ...
@@ -204,6 +225,7 @@ class MysqlRdbms(typing_extensions.TypedDict, total=False):
 class MysqlSourceConfig(typing_extensions.TypedDict, total=False):
     excludeObjects: MysqlRdbms
     includeObjects: MysqlRdbms
+    maxConcurrentCdcTasks: int
 
 @typing.type_check_only
 class MysqlSslConfig(typing_extensions.TypedDict, total=False):
@@ -278,10 +300,57 @@ class OracleSourceConfig(typing_extensions.TypedDict, total=False):
     dropLargeObjects: DropLargeObjects
     excludeObjects: OracleRdbms
     includeObjects: OracleRdbms
+    maxConcurrentCdcTasks: int
+    streamLargeObjects: StreamLargeObjects
 
 @typing.type_check_only
 class OracleTable(typing_extensions.TypedDict, total=False):
     oracleColumns: _list[OracleColumn]
+    table: str
+
+@typing.type_check_only
+class PostgresqlColumn(typing_extensions.TypedDict, total=False):
+    column: str
+    dataType: str
+    length: int
+    nullable: bool
+    ordinalPosition: int
+    precision: int
+    primaryKey: bool
+    scale: int
+
+@typing.type_check_only
+class PostgresqlObjectIdentifier(typing_extensions.TypedDict, total=False):
+    schema: str
+    table: str
+
+@typing.type_check_only
+class PostgresqlProfile(typing_extensions.TypedDict, total=False):
+    database: str
+    hostname: str
+    password: str
+    port: int
+    username: str
+
+@typing.type_check_only
+class PostgresqlRdbms(typing_extensions.TypedDict, total=False):
+    postgresqlSchemas: _list[PostgresqlSchema]
+
+@typing.type_check_only
+class PostgresqlSchema(typing_extensions.TypedDict, total=False):
+    postgresqlTables: _list[PostgresqlTable]
+    schema: str
+
+@typing.type_check_only
+class PostgresqlSourceConfig(typing_extensions.TypedDict, total=False):
+    excludeObjects: PostgresqlRdbms
+    includeObjects: PostgresqlRdbms
+    publication: str
+    replicationSlot: str
+
+@typing.type_check_only
+class PostgresqlTable(typing_extensions.TypedDict, total=False):
+    postgresqlColumns: _list[PostgresqlColumn]
     table: str
 
 @typing.type_check_only
@@ -317,15 +386,25 @@ class Route(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class SingleTargetDataset(typing_extensions.TypedDict, total=False):
+    datasetId: str
+
+@typing.type_check_only
 class SourceConfig(typing_extensions.TypedDict, total=False):
     mysqlSourceConfig: MysqlSourceConfig
     oracleSourceConfig: OracleSourceConfig
+    postgresqlSourceConfig: PostgresqlSourceConfig
     sourceConnectionProfile: str
+
+@typing.type_check_only
+class SourceHierarchyDatasets(typing_extensions.TypedDict, total=False):
+    datasetTemplate: DatasetTemplate
 
 @typing.type_check_only
 class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
     mysqlIdentifier: MysqlObjectIdentifier
     oracleIdentifier: OracleObjectIdentifier
+    postgresqlIdentifier: PostgresqlObjectIdentifier
 
 @typing.type_check_only
 class StartBackfillJobRequest(typing_extensions.TypedDict, total=False): ...
@@ -374,6 +453,9 @@ class Stream(typing_extensions.TypedDict, total=False):
         "DRAINING",
     ]
     updateTime: str
+
+@typing.type_check_only
+class StreamLargeObjects(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class StreamObject(typing_extensions.TypedDict, total=False):

@@ -26,6 +26,7 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: DnsPeering = ...,
+                        dnsPeeringId: str = ...,
                         **kwargs: typing.Any
                     ) -> DnsPeeringHttpRequest: ...
                     def delete(

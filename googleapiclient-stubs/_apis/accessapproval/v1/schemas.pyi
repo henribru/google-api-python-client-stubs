@@ -57,6 +57,7 @@ class ApproveDecision(typing_extensions.TypedDict, total=False):
     approveTime: str
     autoApproved: bool
     expireTime: str
+    invalidateTime: str
     signatureInfo: SignatureInfo
 
 @typing.type_check_only
@@ -76,6 +77,9 @@ class EnrolledService(typing_extensions.TypedDict, total=False):
     enrollmentLevel: typing_extensions.Literal[
         "ENROLLMENT_LEVEL_UNSPECIFIED", "BLOCK_ALL"
     ]
+
+@typing.type_check_only
+class InvalidateApprovalRequestMessage(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ListApprovalRequestsResponse(typing_extensions.TypedDict, total=False):

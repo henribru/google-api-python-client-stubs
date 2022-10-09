@@ -47,6 +47,20 @@ class BatchCreateBitbucketServerConnectedRepositoriesResponseMetadata(
     createTime: str
 
 @typing.type_check_only
+class BatchCreateGitLabConnectedRepositoriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    gitlabConnectedRepositories: _list[GitLabConnectedRepository]
+
+@typing.type_check_only
+class BatchCreateGitLabConnectedRepositoriesResponseMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    config: str
+    createTime: str
+
+@typing.type_check_only
 class BitbucketServerConnectedRepository(typing_extensions.TypedDict, total=False):
     parent: str
     repo: BitbucketServerRepositoryId
@@ -142,10 +156,13 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildStep(typing_extensions.TypedDict, total=False):
+    allowExitCodes: _list[int]
+    allowFailure: bool
     args: _list[str]
     dir: str
     entrypoint: str
     env: _list[str]
+    exitCode: int
     id: str
     name: str
     pullTiming: TimeSpan
@@ -252,6 +269,17 @@ class FailureInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
+
+@typing.type_check_only
+class GitLabConnectedRepository(typing_extensions.TypedDict, total=False):
+    parent: str
+    repo: GitLabRepositoryId
+    status: Status
+
+@typing.type_check_only
+class GitLabRepositoryId(typing_extensions.TypedDict, total=False):
+    id: str
+    webhookId: int
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV2OperationMetadata(

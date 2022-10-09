@@ -26,10 +26,6 @@ class AvailableUpdates(typing_extensions.TypedDict, total=False):
     newDeployableAppliance: ApplianceVersion
 
 @typing.type_check_only
-class AwsSourceVmDetails(typing_extensions.TypedDict, total=False):
-    firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
-
-@typing.type_check_only
 class CancelCloneJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -73,6 +69,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
     ]
+    hostname: str
     labels: dict[str, typing.Any]
     licenseType: typing_extensions.Literal[
         "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT",
@@ -106,6 +103,7 @@ class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
     ]
+    hostname: str
     labels: dict[str, typing.Any]
     licenseType: typing_extensions.Literal[
         "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT",
@@ -179,6 +177,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class FetchInventoryResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
     updateTime: str
     vmwareVms: VmwareVmsDetails
 
@@ -239,6 +238,12 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListReplicationCyclesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    replicationCycles: _list[ReplicationCycle]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListSourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     sources: _list[Source]
@@ -271,7 +276,6 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MigratingVm(typing_extensions.TypedDict, total=False):
-    awsSourceVmDetails: AwsSourceVmDetails
     computeEngineTargetDefaults: ComputeEngineTargetDefaults
     createTime: str
     currentSyncInfo: ReplicationCycle

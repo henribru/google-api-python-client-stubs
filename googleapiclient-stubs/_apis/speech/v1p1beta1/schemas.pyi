@@ -66,6 +66,7 @@ class LongRunningRecognizeRequest(typing_extensions.TypedDict, total=False):
 class LongRunningRecognizeResponse(typing_extensions.TypedDict, total=False):
     outputConfig: TranscriptOutputConfig
     outputError: Status
+    requestId: str
     results: _list[SpeechRecognitionResult]
     totalBilledTime: str
 
@@ -170,6 +171,7 @@ class RecognizeRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RecognizeResponse(typing_extensions.TypedDict, total=False):
+    requestId: str
     results: _list[SpeechRecognitionResult]
     totalBilledTime: str
 

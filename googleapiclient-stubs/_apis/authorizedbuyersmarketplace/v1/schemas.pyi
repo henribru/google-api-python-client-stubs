@@ -249,6 +249,10 @@ class InventorySizeTargeting(typing_extensions.TypedDict, total=False):
     targetedInventorySizes: _list[AdSize]
 
 @typing.type_check_only
+class InventoryTypeTargeting(typing_extensions.TypedDict, total=False):
+    inventoryTypes: _list[str]
+
+@typing.type_check_only
 class ListAuctionPackagesResponse(typing_extensions.TypedDict, total=False):
     auctionPackages: _list[AuctionPackage]
     nextPageToken: str
@@ -288,6 +292,7 @@ class MarketplaceTargeting(typing_extensions.TypedDict, total=False):
     daypartTargeting: DayPartTargeting
     geoTargeting: CriteriaTargeting
     inventorySizeTargeting: InventorySizeTargeting
+    inventoryTypeTargeting: InventoryTypeTargeting
     placementTargeting: PlacementTargeting
     technologyTargeting: TechnologyTargeting
     userListTargeting: CriteriaTargeting

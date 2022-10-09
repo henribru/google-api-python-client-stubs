@@ -42,6 +42,13 @@ class ContainerResource(googleapiclient.discovery.Resource):
             class ClustersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class NodePoolsResource(googleapiclient.discovery.Resource):
+                    def completeUpgrade(
+                        self,
+                        *,
+                        name: str,
+                        body: CompleteNodePoolUpgradeRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
                     def create(
                         self,
                         *,

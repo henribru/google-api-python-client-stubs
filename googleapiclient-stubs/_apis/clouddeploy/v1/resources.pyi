@@ -23,6 +23,27 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                 class ReleasesResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class RolloutsResource(googleapiclient.discovery.Resource):
+                        @typing.type_check_only
+                        class JobRunsResource(googleapiclient.discovery.Resource):
+                            def get(
+                                self, *, name: str, **kwargs: typing.Any
+                            ) -> JobRunHttpRequest: ...
+                            def list(
+                                self,
+                                *,
+                                parent: str,
+                                filter: str = ...,
+                                orderBy: str = ...,
+                                pageSize: int = ...,
+                                pageToken: str = ...,
+                                **kwargs: typing.Any
+                            ) -> ListJobRunsResponseHttpRequest: ...
+                            def list_next(
+                                self,
+                                previous_request: ListJobRunsResponseHttpRequest,
+                                previous_response: ListJobRunsResponse,
+                            ) -> ListJobRunsResponseHttpRequest | None: ...
+
                         def approve(
                             self,
                             *,
@@ -58,7 +79,22 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             previous_request: ListRolloutsResponseHttpRequest,
                             previous_response: ListRolloutsResponse,
                         ) -> ListRolloutsResponseHttpRequest | None: ...
+                        def retryJob(
+                            self,
+                            *,
+                            rollout: str,
+                            body: RetryJobRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> RetryJobResponseHttpRequest: ...
+                        def jobRuns(self) -> JobRunsResource: ...
 
+                    def abandon(
+                        self,
+                        *,
+                        name: str,
+                        body: AbandonReleaseRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> AbandonReleaseResponseHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -306,6 +342,14 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class AbandonReleaseResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AbandonReleaseResponse: ...
+
+@typing.type_check_only
 class ApproveRolloutResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -338,12 +382,28 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class JobRunHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> JobRun: ...
+
+@typing.type_check_only
 class ListDeliveryPipelinesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDeliveryPipelinesResponse: ...
+
+@typing.type_check_only
+class ListJobRunsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListJobRunsResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -416,6 +476,14 @@ class ReleaseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Release: ...
+
+@typing.type_check_only
+class RetryJobResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RetryJobResponse: ...
 
 @typing.type_check_only
 class RolloutHttpRequest(googleapiclient.http.HttpRequest):

@@ -77,6 +77,7 @@ class Page(typing_extensions.TypedDict, total=False):
     selfLink: str
     status: typing_extensions.Literal["LIVE", "DRAFT", "SOFT_TRASHED"]
     title: str
+    trashed: str
     updated: str
     url: str
 
@@ -108,6 +109,7 @@ class Post(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal["LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"]
     title: str
     titleLink: str
+    trashed: str
     updated: str
     url: str
 

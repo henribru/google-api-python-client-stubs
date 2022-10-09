@@ -43,6 +43,15 @@ class AuxiliaryMessage(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BatchCreatePrintServersRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[CreatePrintServerRequest]
+
+@typing.type_check_only
+class BatchCreatePrintServersResponse(typing_extensions.TypedDict, total=False):
+    failures: _list[PrintServerFailureInfo]
+    printServers: _list[PrintServer]
+
+@typing.type_check_only
 class BatchCreatePrintersRequest(typing_extensions.TypedDict, total=False):
     requests: _list[CreatePrinterRequest]
 
@@ -50,6 +59,15 @@ class BatchCreatePrintersRequest(typing_extensions.TypedDict, total=False):
 class BatchCreatePrintersResponse(typing_extensions.TypedDict, total=False):
     failures: _list[FailureInfo]
     printers: _list[Printer]
+
+@typing.type_check_only
+class BatchDeletePrintServersRequest(typing_extensions.TypedDict, total=False):
+    printServerIds: _list[str]
+
+@typing.type_check_only
+class BatchDeletePrintServersResponse(typing_extensions.TypedDict, total=False):
+    failedPrintServers: _list[PrintServerFailureInfo]
+    printServerIds: _list[str]
 
 @typing.type_check_only
 class BatchDeletePrintersRequest(typing_extensions.TypedDict, total=False):
@@ -149,6 +167,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     ethernetMacAddress: str
     ethernetMacAddress0: str
     firmwareVersion: str
+    firstEnrollmentTime: str
     kind: str
     lastEnrollmentTime: str
     lastKnownNetwork: _list[dict[str, typing.Any]]
@@ -161,6 +180,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     orderNumber: str
     orgUnitId: str
     orgUnitPath: str
+    osUpdateStatus: OsUpdateStatus
     osVersion: str
     platformVersion: str
     recentUsers: _list[dict[str, typing.Any]]
@@ -188,6 +208,11 @@ class ChromeOsDevices(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ChromeOsMoveDevicesToOu(typing_extensions.TypedDict, total=False):
     deviceIds: _list[str]
+
+@typing.type_check_only
+class CreatePrintServerRequest(typing_extensions.TypedDict, total=False):
+    parent: str
+    printServer: PrintServer
 
 @typing.type_check_only
 class CreatePrinterRequest(typing_extensions.TypedDict, total=False):
@@ -365,11 +390,24 @@ class Group(typing_extensions.TypedDict, total=False):
     nonEditableAliases: _list[str]
 
 @typing.type_check_only
+class GroupAlias(typing_extensions.TypedDict, total=False):
+    alias: str
+    etag: str
+    id: str
+    kind: str
+    primaryEmail: str
+
+@typing.type_check_only
 class Groups(typing_extensions.TypedDict, total=False):
     etag: str
     groups: _list[Group]
     kind: str
     nextPageToken: str
+
+@typing.type_check_only
+class ListPrintServersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    printServers: _list[PrintServer]
 
 @typing.type_check_only
 class ListPrinterModelsResponse(typing_extensions.TypedDict, total=False):
@@ -474,6 +512,55 @@ class OrgUnits(typing_extensions.TypedDict, total=False):
     etag: str
     kind: str
     organizationUnits: _list[OrgUnit]
+
+@typing.type_check_only
+class OsUpdateStatus(typing_extensions.TypedDict, total=False):
+    rebootTime: str
+    state: typing_extensions.Literal[
+        "updateStateUnspecified",
+        "updateStateNotStarted",
+        "updateStateDownloadInProgress",
+        "updateStateNeedReboot",
+    ]
+    targetKioskAppVersion: str
+    targetOsVersion: str
+    updateCheckTime: str
+    updateTime: str
+
+@typing.type_check_only
+class PrintServer(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    id: str
+    name: str
+    orgUnitId: str
+    uri: str
+
+@typing.type_check_only
+class PrintServerFailureInfo(typing_extensions.TypedDict, total=False):
+    errorCode: typing_extensions.Literal[
+        "OK",
+        "CANCELLED",
+        "UNKNOWN",
+        "INVALID_ARGUMENT",
+        "DEADLINE_EXCEEDED",
+        "NOT_FOUND",
+        "ALREADY_EXISTS",
+        "PERMISSION_DENIED",
+        "UNAUTHENTICATED",
+        "RESOURCE_EXHAUSTED",
+        "FAILED_PRECONDITION",
+        "ABORTED",
+        "OUT_OF_RANGE",
+        "UNIMPLEMENTED",
+        "INTERNAL",
+        "UNAVAILABLE",
+        "DATA_LOSS",
+    ]
+    errorMessage: str
+    printServer: PrintServer
+    printServerId: str
 
 @typing.type_check_only
 class Printer(typing_extensions.TypedDict, total=False):
@@ -652,6 +739,14 @@ class UserAddress(typing_extensions.TypedDict, total=False):
     sourceIsStructured: bool
     streetAddress: str
     type: str
+
+@typing.type_check_only
+class UserAlias(typing_extensions.TypedDict, total=False):
+    alias: str
+    etag: str
+    id: str
+    kind: str
+    primaryEmail: str
 
 @typing.type_check_only
 class UserCustomProperties(dict[str, typing.Any]): ...

@@ -9,6 +9,7 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorCount: str
     acceleratorType: str
     gpuPartitionSize: str
+    gpuSharingConfig: GPUSharingConfig
 
 @typing.type_check_only
 class AddonsConfig(typing_extensions.TypedDict, total=False):
@@ -60,6 +61,31 @@ class BigQueryDestination(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BinaryAuthorization(typing_extensions.TypedDict, total=False):
     enabled: bool
+    evaluationMode: typing_extensions.Literal[
+        "EVALUATION_MODE_UNSPECIFIED", "DISABLED", "PROJECT_SINGLETON_POLICY_ENFORCE"
+    ]
+
+@typing.type_check_only
+class BlueGreenInfo(typing_extensions.TypedDict, total=False):
+    blueInstanceGroupUrls: _list[str]
+    bluePoolDeletionStartTime: str
+    greenInstanceGroupUrls: _list[str]
+    greenPoolVersion: str
+    phase: typing_extensions.Literal[
+        "PHASE_UNSPECIFIED",
+        "UPDATE_STARTED",
+        "CREATING_GREEN_POOL",
+        "CORDONING_BLUE_POOL",
+        "DRAINING_BLUE_POOL",
+        "NODE_POOL_SOAKING",
+        "DELETING_BLUE_POOL",
+        "ROLLBACK_STARTED",
+    ]
+
+@typing.type_check_only
+class BlueGreenSettings(typing_extensions.TypedDict, total=False):
+    nodePoolSoakDuration: str
+    standardRolloutPolicy: StandardRolloutPolicy
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False):
@@ -196,6 +222,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredNodePoolAutoConfigNetworkTags: NetworkTags
     desiredNodePoolAutoscaling: NodePoolAutoscaling
     desiredNodePoolId: str
+    desiredNodePoolLoggingConfig: NodePoolLoggingConfig
     desiredNodeVersion: str
     desiredNotificationConfig: NotificationConfig
     desiredPrivateClusterConfig: PrivateClusterConfig
@@ -218,6 +245,9 @@ class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
     name: str
     projectId: str
     zone: str
+
+@typing.type_check_only
+class CompleteNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ConfidentialNodes(typing_extensions.TypedDict, total=False):
@@ -278,6 +308,13 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Filter(typing_extensions.TypedDict, total=False):
     eventType: _list[str]
+
+@typing.type_check_only
+class GPUSharingConfig(typing_extensions.TypedDict, total=False):
+    gpuSharingStrategy: typing_extensions.Literal[
+        "GPU_SHARING_STRATEGY_UNSPECIFIED", "TIME_SHARING"
+    ]
+    maxSharedClientsPerGpu: str
 
 @typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
@@ -401,6 +438,12 @@ class LoggingConfig(typing_extensions.TypedDict, total=False):
     componentConfig: LoggingComponentConfig
 
 @typing.type_check_only
+class LoggingVariantConfig(typing_extensions.TypedDict, total=False):
+    variant: typing_extensions.Literal[
+        "VARIANT_UNSPECIFIED", "DEFAULT", "MAX_THROUGHPUT"
+    ]
+
+@typing.type_check_only
 class MaintenanceExclusionOptions(typing_extensions.TypedDict, total=False):
     scope: typing_extensions.Literal[
         "NO_UPGRADES", "NO_MINOR_UPGRADES", "NO_MINOR_OR_NODE_UPGRADES"
@@ -416,6 +459,10 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     dailyMaintenanceWindow: DailyMaintenanceWindow
     maintenanceExclusions: dict[str, typing.Any]
     recurringWindow: RecurringTimeWindow
+
+@typing.type_check_only
+class ManagedPrometheusConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class MasterAuth(typing_extensions.TypedDict, total=False):
@@ -453,6 +500,7 @@ class MonitoringComponentConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MonitoringConfig(typing_extensions.TypedDict, total=False):
     componentConfig: MonitoringComponentConfig
+    managedPrometheusConfig: ManagedPrometheusConfig
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
@@ -474,6 +522,10 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
+class NetworkPerformanceConfig(typing_extensions.TypedDict, total=False):
+    totalEgressBandwidthTier: typing_extensions.Literal["TIER_UNSPECIFIED", "TIER_1"]
+
+@typing.type_check_only
 class NetworkPolicy(typing_extensions.TypedDict, total=False):
     enabled: bool
     provider: typing_extensions.Literal["PROVIDER_UNSPECIFIED", "CALICO"]
@@ -491,6 +543,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     accelerators: _list[AcceleratorConfig]
     advancedMachineFeatures: AdvancedMachineFeatures
     bootDiskKmsKey: str
+    confidentialNodes: ConfidentialNodes
     diskSizeGb: int
     diskType: str
     gcfsConfig: GcfsConfig
@@ -500,6 +553,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     linuxNodeConfig: LinuxNodeConfig
     localSsdCount: int
+    loggingConfig: NodePoolLoggingConfig
     machineType: str
     metadata: dict[str, typing.Any]
     minCpuPlatform: str
@@ -518,6 +572,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeConfigDefaults(typing_extensions.TypedDict, total=False):
     gcfsConfig: GcfsConfig
+    loggingConfig: NodePoolLoggingConfig
 
 @typing.type_check_only
 class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
@@ -539,6 +594,7 @@ class NodeManagement(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
     createPodRange: bool
+    networkPerformanceConfig: NetworkPerformanceConfig
     podIpv4CidrBlock: str
     podRange: str
 
@@ -566,6 +622,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
         "ERROR",
     ]
     statusMessage: str
+    updateInfo: UpdateInfo
     upgradeSettings: UpgradeSettings
     version: str
 
@@ -577,12 +634,21 @@ class NodePoolAutoConfig(typing_extensions.TypedDict, total=False):
 class NodePoolAutoscaling(typing_extensions.TypedDict, total=False):
     autoprovisioned: bool
     enabled: bool
+    locationPolicy: typing_extensions.Literal[
+        "LOCATION_POLICY_UNSPECIFIED", "BALANCED", "ANY"
+    ]
     maxNodeCount: int
     minNodeCount: int
+    totalMaxNodeCount: int
+    totalMinNodeCount: int
 
 @typing.type_check_only
 class NodePoolDefaults(typing_extensions.TypedDict, total=False):
     nodeConfigDefaults: NodeConfigDefaults
+
+@typing.type_check_only
+class NodePoolLoggingConfig(typing_extensions.TypedDict, total=False):
+    variantConfig: LoggingVariantConfig
 
 @typing.type_check_only
 class NodeTaint(typing_extensions.TypedDict, total=False):
@@ -667,6 +733,7 @@ class RollbackNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False):
     name: str
     nodePoolId: str
     projectId: str
+    respectPdb: bool
     zone: str
 
 @typing.type_check_only
@@ -812,6 +879,12 @@ class ShieldedNodes(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class StandardRolloutPolicy(typing_extensions.TypedDict, total=False):
+    batchNodeCount: int
+    batchPercentage: float
+    batchSoakDuration: str
+
+@typing.type_check_only
 class StartIPRotationRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
     name: str
@@ -872,6 +945,10 @@ class UpdateClusterRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class UpdateInfo(typing_extensions.TypedDict, total=False):
+    blueGreenInfo: BlueGreenInfo
+
+@typing.type_check_only
 class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
     masterVersion: str
@@ -882,6 +959,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
+    confidentialNodes: ConfidentialNodes
     gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
@@ -889,7 +967,9 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     labels: NodeLabels
     linuxNodeConfig: LinuxNodeConfig
     locations: _list[str]
+    loggingConfig: NodePoolLoggingConfig
     name: str
+    nodeNetworkConfig: NodeNetworkConfig
     nodePoolId: str
     nodeVersion: str
     projectId: str
@@ -921,8 +1001,12 @@ class UpgradeEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpgradeSettings(typing_extensions.TypedDict, total=False):
+    blueGreenSettings: BlueGreenSettings
     maxSurge: int
     maxUnavailable: int
+    strategy: typing_extensions.Literal[
+        "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED", "BLUE_GREEN", "SURGE"
+    ]
 
 @typing.type_check_only
 class UsableSubnetwork(typing_extensions.TypedDict, total=False):

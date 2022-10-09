@@ -156,6 +156,47 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PropertiesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class AudiencesResource(googleapiclient.discovery.Resource):
+            def archive(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaArchiveAudienceRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1alphaAudience = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaAudienceHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaAudienceHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaListAudiencesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListAudiencesResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListAudiencesResponse,
+            ) -> GoogleAnalyticsAdminV1alphaListAudiencesResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaAudience = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaAudienceHttpRequest: ...
+
+        @typing.type_check_only
         class ConversionEventsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -493,6 +534,43 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> GoogleAnalyticsAdminV1alphaGoogleAdsLinkHttpRequest: ...
 
         @typing.type_check_only
+        class SearchAds360LinksResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1alphaSearchAds360Link = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaSearchAds360LinkHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaSearchAds360LinkHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse,
+            ) -> GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaSearchAds360Link = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaSearchAds360LinkHttpRequest: ...
+
+        @typing.type_check_only
         class UserLinksResource(googleapiclient.discovery.Resource):
             def audit(
                 self,
@@ -588,6 +666,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
+        def getAttributionSettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1alphaAttributionSettingsHttpRequest: ...
         def getDataRetentionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaDataRetentionSettingsHttpRequest: ...
@@ -616,6 +697,21 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
+        def runAccessReport(
+            self,
+            *,
+            entity: str,
+            body: GoogleAnalyticsAdminV1alphaRunAccessReportRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1alphaRunAccessReportResponseHttpRequest: ...
+        def updateAttributionSettings(
+            self,
+            *,
+            name: str,
+            body: GoogleAnalyticsAdminV1alphaAttributionSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1alphaAttributionSettingsHttpRequest: ...
         def updateDataRetentionSettings(
             self,
             *,
@@ -632,6 +728,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsHttpRequest: ...
+        def audiences(self) -> AudiencesResource: ...
         def conversionEvents(self) -> ConversionEventsResource: ...
         def customDimensions(self) -> CustomDimensionsResource: ...
         def customMetrics(self) -> CustomMetricsResource: ...
@@ -644,6 +741,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         ) -> DisplayVideo360AdvertiserLinksResource: ...
         def firebaseLinks(self) -> FirebaseLinksResource: ...
         def googleAdsLinks(self) -> GoogleAdsLinksResource: ...
+        def searchAds360Links(self) -> SearchAds360LinksResource: ...
         def userLinks(self) -> UserLinksResource: ...
 
     def new_batch_http_request(
@@ -689,6 +787,24 @@ class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRes
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaAttributionSettingsHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaAttributionSettings: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaAudienceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaAudience: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest(
@@ -871,6 +987,16 @@ class GoogleAnalyticsAdminV1alphaListAccountsResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaListAccountsResponse: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListAudiencesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaListAudiencesResponse: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -971,6 +1097,16 @@ class GoogleAnalyticsAdminV1alphaListPropertiesResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaListPropertiesResponse: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1007,6 +1143,26 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaRunAccessReportResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaRunAccessReportResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSearchAds360LinkHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaSearchAds360Link: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest(

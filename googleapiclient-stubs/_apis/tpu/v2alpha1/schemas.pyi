@@ -128,6 +128,7 @@ class Node(typing_extensions.TypedDict, total=False):
     runtimeVersion: str
     schedulingConfig: SchedulingConfig
     serviceAccount: ServiceAccount
+    shieldedInstanceConfig: ShieldedInstanceConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -184,6 +185,14 @@ class ServiceAccount(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceIdentity(typing_extensions.TypedDict, total=False):
     email: str
+
+@typing.type_check_only
+class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
+    enableSecureBoot: bool
+
+@typing.type_check_only
+class SimulateMaintenanceEventRequest(typing_extensions.TypedDict, total=False):
+    workerIds: _list[str]
 
 @typing.type_check_only
 class StartNodeRequest(typing_extensions.TypedDict, total=False): ...

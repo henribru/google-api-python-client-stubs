@@ -13,11 +13,27 @@ class AllowedClient(typing_extensions.TypedDict, total=False):
         "MOUNT_PERMISSIONS_UNSPECIFIED", "READ", "READ_WRITE"
     ]
     network: str
+    nfsPath: str
     noRootSquash: bool
     shareIp: str
 
 @typing.type_check_only
+class DetachLunRequest(typing_extensions.TypedDict, total=False):
+    lun: str
+    skipReboot: bool
+
+@typing.type_check_only
+class DisableInteractiveSerialConsoleRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableInteractiveSerialConsoleRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class FetchInstanceProvisioningSettingsResponse(
@@ -26,21 +42,49 @@ class FetchInstanceProvisioningSettingsResponse(
     images: _list[OSImage]
 
 @typing.type_check_only
+class GoogleCloudBaremetalsolutionV2LogicalInterface(
+    typing_extensions.TypedDict, total=False
+):
+    interfaceIndex: int
+    logicalNetworkInterfaces: _list[LogicalNetworkInterface]
+    name: str
+
+@typing.type_check_only
+class GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    required: bool
+    type: typing_extensions.Literal["INTERFACE_TYPE_UNSPECIFIED", "BOND", "NIC"]
+
+@typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     hyperthreadingEnabled: bool
     id: str
     interactiveSerialConsoleEnabled: bool
     labels: dict[str, typing.Any]
+    logicalInterfaces: _list[GoogleCloudBaremetalsolutionV2LogicalInterface]
+    loginInfo: str
     luns: _list[Lun]
     machineType: str
     name: str
+    networkTemplate: str
     networks: _list[Network]
     osImage: str
+    pod: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PROVISIONING", "RUNNING", "DELETED"
+        "STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "RUNNING",
+        "DELETED",
+        "UPDATING",
+        "STARTING",
+        "STOPPING",
+        "SHUTDOWN",
     ]
     updateTime: str
+    volumes: _list[Volume]
 
 @typing.type_check_only
 class InstanceConfig(typing_extensions.TypedDict, total=False):
@@ -49,7 +93,12 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
     hyperthreading: bool
     id: str
     instanceType: str
+    logicalInterfaces: _list[GoogleCloudBaremetalsolutionV2LogicalInterface]
     name: str
+    networkConfig: typing_extensions.Literal[
+        "NETWORKCONFIG_UNSPECIFIED", "SINGLE_VLAN", "MULTI_VLAN"
+    ]
+    networkTemplate: str
     osImage: str
     privateNetwork: NetworkAddress
     userNote: str
@@ -57,6 +106,7 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstanceQuota(typing_extensions.TypedDict, total=False):
     availableMachineCount: int
+    gcpService: str
     instanceType: str
     location: str
     name: str
@@ -105,15 +155,9 @@ class ListProvisioningQuotasResponse(typing_extensions.TypedDict, total=False):
     provisioningQuotas: _list[ProvisioningQuota]
 
 @typing.type_check_only
-class ListSnapshotSchedulePoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListSSHKeysResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
-    snapshotSchedulePolicies: _list[SnapshotSchedulePolicy]
-
-@typing.type_check_only
-class ListVolumeSnapshotsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    unreachable: _list[str]
-    volumeSnapshots: _list[VolumeSnapshot]
+    sshKeys: _list[SSHKey]
 
 @typing.type_check_only
 class ListVolumesResponse(typing_extensions.TypedDict, total=False):
@@ -130,10 +174,12 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LogicalInterface(typing_extensions.TypedDict, total=False):
-    name: str
-    required: bool
-    type: typing_extensions.Literal["INTERFACE_TYPE_UNSPECIFIED", "BOND", "NIC"]
+class LogicalNetworkInterface(typing_extensions.TypedDict, total=False):
+    defaultGateway: bool
+    id: str
+    ipAddress: str
+    network: str
+    networkType: typing_extensions.Literal["TYPE_UNSPECIFIED", "CLIENT", "PRIVATE"]
 
 @typing.type_check_only
 class Lun(typing_extensions.TypedDict, total=False):
@@ -160,13 +206,20 @@ class LunRange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Network(typing_extensions.TypedDict, total=False):
     cidr: str
+    gatewayIp: str
     id: str
     ipAddress: str
+    jumboFramesEnabled: bool
     labels: dict[str, typing.Any]
     macAddress: _list[str]
+    mountPoints: _list[NetworkMountPoint]
     name: str
+    pod: str
+    reservations: _list[NetworkAddressReservation]
     servicesCidr: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PROVISIONING", "PROVISIONED"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PROVISIONING", "PROVISIONED", "DEPROVISIONING", "UPDATING"
+    ]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "CLIENT", "PRIVATE"]
     vlanId: str
     vrf: VRF
@@ -178,6 +231,12 @@ class NetworkAddress(typing_extensions.TypedDict, total=False):
     networkId: str
 
 @typing.type_check_only
+class NetworkAddressReservation(typing_extensions.TypedDict, total=False):
+    endAddress: str
+    note: str
+    startAddress: str
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     bandwidth: typing_extensions.Literal[
         "BANDWIDTH_UNSPECIFIED", "BW_1_GBPS", "BW_2_GBPS", "BW_5_GBPS", "BW_10_GBPS"
@@ -185,6 +244,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     cidr: str
     gcpService: str
     id: str
+    jumboFramesEnabled: bool
     name: str
     serviceCidr: typing_extensions.Literal[
         "SERVICE_CIDR_UNSPECIFIED", "DISABLED", "HIGH_26", "HIGH_27", "HIGH_28"
@@ -193,6 +253,13 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     userNote: str
     vlanAttachments: _list[IntakeVlanAttachment]
     vlanSameProject: bool
+
+@typing.type_check_only
+class NetworkMountPoint(typing_extensions.TypedDict, total=False):
+    defaultGateway: bool
+    instance: str
+    ipAddress: str
+    logicalInterface: str
 
 @typing.type_check_only
 class NetworkUsage(typing_extensions.TypedDict, total=False):
@@ -214,10 +281,15 @@ class NfsExport(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NfsShare(typing_extensions.TypedDict, total=False):
     allowedClients: _list[AllowedClient]
+    id: str
     labels: dict[str, typing.Any]
     name: str
     nfsShareId: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PROVISIONED"]
+    requestedSizeGib: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PROVISIONED", "CREATING", "UPDATING", "DELETING"
+    ]
+    storageType: typing_extensions.Literal["STORAGE_TYPE_UNSPECIFIED", "SSD", "HDD"]
     volume: str
 
 @typing.type_check_only
@@ -237,8 +309,19 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class ProvisioningConfig(typing_extensions.TypedDict, total=False):
     cloudConsoleUri: str
+    customId: str
     email: str
     handoverServiceAccount: str
     instances: _list[InstanceConfig]
@@ -253,10 +336,13 @@ class ProvisioningConfig(typing_extensions.TypedDict, total=False):
         "PROVISIONED",
         "VALIDATED",
         "CANCELLED",
+        "FAILED",
     ]
+    statusMessage: str
     ticketId: str
     updateTime: str
     volumes: _list[VolumeConfig]
+    vpcScEnabled: bool
 
 @typing.type_check_only
 class ProvisioningQuota(typing_extensions.TypedDict, total=False):
@@ -283,18 +369,20 @@ class QosPolicy(typing_extensions.TypedDict, total=False):
 class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RestoreVolumeSnapshotRequest(typing_extensions.TypedDict, total=False): ...
+class ResizeVolumeRequest(typing_extensions.TypedDict, total=False):
+    sizeGib: str
 
 @typing.type_check_only
-class Schedule(typing_extensions.TypedDict, total=False):
-    crontabSpec: str
-    prefix: str
-    retentionCount: int
+class SSHKey(typing_extensions.TypedDict, total=False):
+    name: str
+    publicKey: str
 
 @typing.type_check_only
 class ServerNetworkTemplate(typing_extensions.TypedDict, total=False):
     applicableInstanceTypes: _list[str]
-    logicalInterfaces: _list[LogicalInterface]
+    logicalInterfaces: _list[
+        GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface
+    ]
     name: str
 
 @typing.type_check_only
@@ -303,15 +391,6 @@ class SnapshotReservationDetail(typing_extensions.TypedDict, total=False):
     reservedSpacePercent: int
     reservedSpaceRemainingGib: str
     reservedSpaceUsedPercent: int
-
-@typing.type_check_only
-class SnapshotSchedulePolicy(typing_extensions.TypedDict, total=False):
-    description: str
-    id: str
-    labels: dict[str, typing.Any]
-    name: str
-    schedules: _list[Schedule]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PROVISIONED"]
 
 @typing.type_check_only
 class StartInstanceRequest(typing_extensions.TypedDict, total=False): ...
@@ -343,18 +422,33 @@ class VRF(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VlanAttachment(typing_extensions.TypedDict, total=False):
+    id: str
+    pairingKey: str
     peerIp: str
     peerVlanId: str
+    qosPolicy: QosPolicy
     routerIp: str
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
     autoGrownSizeGib: str
+    bootVolume: bool
     currentSizeGib: str
     emergencySizeGib: str
     id: str
     labels: dict[str, typing.Any]
+    maxSizeGib: str
     name: str
+    notes: str
+    originallyRequestedSizeGib: str
+    performanceTier: typing_extensions.Literal[
+        "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
+        "VOLUME_PERFORMANCE_TIER_SHARED",
+        "VOLUME_PERFORMANCE_TIER_ASSIGNED",
+        "VOLUME_PERFORMANCE_TIER_HT",
+    ]
+    pod: str
+    protocol: typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "FIBRE_CHANNEL", "NFS"]
     remainingSpaceGib: str
     requestedSizeGib: str
     snapshotAutoDeleteBehavior: typing_extensions.Literal[
@@ -367,7 +461,7 @@ class Volume(typing_extensions.TypedDict, total=False):
     snapshotReservationDetail: SnapshotReservationDetail
     snapshotSchedulePolicy: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
     storageType: typing_extensions.Literal["STORAGE_TYPE_UNSPECIFIED", "SSD", "HDD"]
 
@@ -379,6 +473,12 @@ class VolumeConfig(typing_extensions.TypedDict, total=False):
     machineIds: _list[str]
     name: str
     nfsExports: _list[NfsExport]
+    performanceTier: typing_extensions.Literal[
+        "VOLUME_PERFORMANCE_TIER_UNSPECIFIED",
+        "VOLUME_PERFORMANCE_TIER_SHARED",
+        "VOLUME_PERFORMANCE_TIER_ASSIGNED",
+        "VOLUME_PERFORMANCE_TIER_HT",
+    ]
     protocol: typing_extensions.Literal[
         "PROTOCOL_UNSPECIFIED", "PROTOCOL_FC", "PROTOCOL_NFS"
     ]
@@ -386,12 +486,3 @@ class VolumeConfig(typing_extensions.TypedDict, total=False):
     snapshotsEnabled: bool
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "FLASH", "DISK"]
     userNote: str
-
-@typing.type_check_only
-class VolumeSnapshot(typing_extensions.TypedDict, total=False):
-    createTime: str
-    description: str
-    id: str
-    name: str
-    sizeBytes: str
-    storageVolume: str

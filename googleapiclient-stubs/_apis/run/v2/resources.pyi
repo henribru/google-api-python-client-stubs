@@ -116,7 +116,6 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudRunV2Job = ...,
                     allowMissing: bool = ...,
-                    updateMask: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -243,7 +242,6 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudRunV2Service = ...,
                     allowMissing: bool = ...,
-                    updateMask: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...

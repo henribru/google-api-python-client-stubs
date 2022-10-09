@@ -81,6 +81,11 @@ class BasicAuthentication(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
+class BasicService(typing_extensions.TypedDict, total=False):
+    serviceLabels: dict[str, typing.Any]
+    serviceType: str
+
+@typing.type_check_only
 class BasicSli(typing_extensions.TypedDict, total=False):
     availability: AvailabilityCriteria
     latency: LatencyCriteria
@@ -97,6 +102,11 @@ class BucketOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CloudEndpoints(typing_extensions.TypedDict, total=False):
     service: str
+
+@typing.type_check_only
+class CloudRun(typing_extensions.TypedDict, total=False):
+    location: str
+    serviceName: str
 
 @typing.type_check_only
 class ClusterIstio(typing_extensions.TypedDict, total=False):
@@ -147,12 +157,15 @@ class Condition(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ContentMatcher(typing_extensions.TypedDict, total=False):
     content: str
+    jsonPathMatcher: JsonPathMatcher
     matcher: typing_extensions.Literal[
         "CONTENT_MATCHER_OPTION_UNSPECIFIED",
         "CONTAINS_STRING",
         "NOT_CONTAINS_STRING",
         "MATCHES_REGEX",
         "NOT_MATCHES_REGEX",
+        "MATCHES_JSON_PATH",
+        "NOT_MATCHES_JSON_PATH",
     ]
 
 @typing.type_check_only
@@ -279,6 +292,30 @@ class GetNotificationChannelVerificationCodeResponse(
     expireTime: str
 
 @typing.type_check_only
+class GkeNamespace(typing_extensions.TypedDict, total=False):
+    clusterName: str
+    location: str
+    namespaceName: str
+    projectId: str
+
+@typing.type_check_only
+class GkeService(typing_extensions.TypedDict, total=False):
+    clusterName: str
+    location: str
+    namespaceName: str
+    projectId: str
+    serviceName: str
+
+@typing.type_check_only
+class GkeWorkload(typing_extensions.TypedDict, total=False):
+    clusterName: str
+    location: str
+    namespaceName: str
+    projectId: str
+    topLevelControllerName: str
+    topLevelControllerType: str
+
+@typing.type_check_only
 class GoogleMonitoringV3Range(typing_extensions.TypedDict, total=False):
     max: float
     min: float
@@ -293,12 +330,14 @@ class Group(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HttpCheck(typing_extensions.TypedDict, total=False):
+    acceptedResponseStatusCodes: _list[ResponseStatusCode]
     authInfo: BasicAuthentication
     body: str
     contentType: typing_extensions.Literal["TYPE_UNSPECIFIED", "URL_ENCODED"]
     headers: dict[str, typing.Any]
     maskHeaders: bool
     path: str
+    pingConfig: PingConfig
     port: int
     requestMethod: typing_extensions.Literal["METHOD_UNSPECIFIED", "GET", "POST"]
     useSsl: bool
@@ -318,6 +357,13 @@ class IstioCanonicalService(typing_extensions.TypedDict, total=False):
     canonicalService: str
     canonicalServiceNamespace: str
     meshUid: str
+
+@typing.type_check_only
+class JsonPathMatcher(typing_extensions.TypedDict, total=False):
+    jsonMatcher: typing_extensions.Literal[
+        "JSON_PATH_MATCHER_OPTION_UNSPECIFIED", "EXACT_MATCH", "REGEX_MATCH"
+    ]
+    jsonPath: str
 
 @typing.type_check_only
 class LabelDescriptor(typing_extensions.TypedDict, total=False):
@@ -615,6 +661,10 @@ class PerformanceThreshold(typing_extensions.TypedDict, total=False):
     threshold: float
 
 @typing.type_check_only
+class PingConfig(typing_extensions.TypedDict, total=False):
+    pingsCount: int
+
+@typing.type_check_only
 class Point(typing_extensions.TypedDict, total=False):
     interval: TimeInterval
     value: TypedValue
@@ -655,6 +705,19 @@ class ResourceGroup(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ResponseStatusCode(typing_extensions.TypedDict, total=False):
+    statusClass: typing_extensions.Literal[
+        "STATUS_CLASS_UNSPECIFIED",
+        "STATUS_CLASS_1XX",
+        "STATUS_CLASS_2XX",
+        "STATUS_CLASS_3XX",
+        "STATUS_CLASS_4XX",
+        "STATUS_CLASS_5XX",
+        "STATUS_CLASS_ANY",
+    ]
+    statusValue: int
+
+@typing.type_check_only
 class SendNotificationChannelVerificationCodeRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -662,10 +725,15 @@ class SendNotificationChannelVerificationCodeRequest(
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
     appEngine: AppEngine
+    basicService: BasicService
     cloudEndpoints: CloudEndpoints
+    cloudRun: CloudRun
     clusterIstio: ClusterIstio
     custom: Custom
     displayName: str
+    gkeNamespace: GkeNamespace
+    gkeService: GkeService
+    gkeWorkload: GkeWorkload
     istioCanonicalService: IstioCanonicalService
     meshIstio: MeshIstio
     name: str
@@ -713,6 +781,7 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TcpCheck(typing_extensions.TypedDict, total=False):
+    pingConfig: PingConfig
     port: int
 
 @typing.type_check_only
@@ -799,6 +868,7 @@ class UptimeCheckConfig(typing_extensions.TypedDict, total=False):
     selectedRegions: _list[str]
     tcpCheck: TcpCheck
     timeout: str
+    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class UptimeCheckIp(typing_extensions.TypedDict, total=False):

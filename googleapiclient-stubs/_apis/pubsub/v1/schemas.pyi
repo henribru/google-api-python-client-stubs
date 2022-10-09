@@ -9,6 +9,20 @@ class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
     ackIds: _list[str]
 
 @typing.type_check_only
+class BigQueryConfig(typing_extensions.TypedDict, total=False):
+    dropUnknownFields: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "PERMISSION_DENIED",
+        "NOT_FOUND",
+        "SCHEMA_MISMATCH",
+    ]
+    table: str
+    useTopicSchema: bool
+    writeMetadata: bool
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -148,6 +162,8 @@ class Schema(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SchemaSettings(typing_extensions.TypedDict, total=False):
     encoding: typing_extensions.Literal["ENCODING_UNSPECIFIED", "JSON", "BINARY"]
+    firstRevisionId: str
+    lastRevisionId: str
     schema: str
 
 @typing.type_check_only
@@ -172,6 +188,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Subscription(typing_extensions.TypedDict, total=False):
     ackDeadlineSeconds: int
+    bigqueryConfig: BigQueryConfig
     deadLetterPolicy: DeadLetterPolicy
     detached: bool
     enableExactlyOnceDelivery: bool

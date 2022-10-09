@@ -272,6 +272,16 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
+    rescheduleType: typing_extensions.Literal[
+        "RESCHEDULE_TYPE_UNSPECIFIED",
+        "IMMEDIATE",
+        "NEXT_AVAILABLE_WINDOW",
+        "SPECIFIC_TIME",
+    ]
+    scheduleTime: str
+
+@typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
     day: typing_extensions.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
@@ -306,7 +316,9 @@ class UpdateParametersRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal["UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER"]
+    channel: typing_extensions.Literal[
+        "UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER", "WEEK1", "WEEK2", "WEEK5"
+    ]
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 

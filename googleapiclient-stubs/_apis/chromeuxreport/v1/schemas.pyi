@@ -11,6 +11,17 @@ class Bin(typing_extensions.TypedDict, total=False):
     start: typing.Any
 
 @typing.type_check_only
+class CollectionPeriod(typing_extensions.TypedDict, total=False):
+    firstDate: Date
+    lastDate: Date
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
 class Key(typing_extensions.TypedDict, total=False):
     effectiveConnectionType: str
     formFactor: typing_extensions.Literal[
@@ -45,6 +56,7 @@ class QueryResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Record(typing_extensions.TypedDict, total=False):
+    collectionPeriod: CollectionPeriod
     key: Key
     metrics: dict[str, typing.Any]
 

@@ -47,6 +47,11 @@ class DnsPeering(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EventPublishConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    topic: str
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -72,6 +77,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     enableRbac: bool
     enableStackdriverLogging: bool
     enableStackdriverMonitoring: bool
+    eventPublishConfig: EventPublishConfig
     gcsBucket: str
     labels: dict[str, typing.Any]
     name: str

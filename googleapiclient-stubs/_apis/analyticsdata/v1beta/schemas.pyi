@@ -286,6 +286,7 @@ class PropertyQuota(typing_extensions.TypedDict, total=False):
     serverErrorsPerProjectPerHour: QuotaStatus
     tokensPerDay: QuotaStatus
     tokensPerHour: QuotaStatus
+    tokensPerProjectPerHour: QuotaStatus
 
 @typing.type_check_only
 class QuotaStatus(typing_extensions.TypedDict, total=False):

@@ -327,6 +327,7 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     ]
     diskSizeGb: int
     dumpHeapOnOom: bool
+    enableLauncherVmSerialPortLogging: bool
     enableStreamingEngine: bool
     flexrsGoal: typing_extensions.Literal[
         "FLEXRS_UNSPECIFIED", "FLEXRS_SPEED_OPTIMIZED", "FLEXRS_COST_OPTIMIZED"
@@ -382,10 +383,20 @@ class Histogram(typing_extensions.TypedDict, total=False):
     firstBucketOffset: int
 
 @typing.type_check_only
+class HotKeyDebuggingInfo(typing_extensions.TypedDict, total=False):
+    detectedHotKeys: dict[str, typing.Any]
+
+@typing.type_check_only
 class HotKeyDetection(typing_extensions.TypedDict, total=False):
     hotKeyAge: str
     systemName: str
     userStepName: str
+
+@typing.type_check_only
+class HotKeyInfo(typing_extensions.TypedDict, total=False):
+    hotKeyAge: str
+    key: str
+    keyTruncated: bool
 
 @typing.type_check_only
 class InstructionInput(typing_extensions.TypedDict, total=False):
@@ -721,6 +732,7 @@ class PipelineDescription(typing_extensions.TypedDict, total=False):
     displayData: _list[DisplayData]
     executionPipelineStage: _list[ExecutionStageSummary]
     originalPipelineTransform: _list[TransformSummary]
+    stepNamesHash: str
 
 @typing.type_check_only
 class Point(typing_extensions.TypedDict, total=False):
@@ -819,7 +831,7 @@ class RuntimeMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SDKInfo(typing_extensions.TypedDict, total=False):
-    language: typing_extensions.Literal["UNKNOWN", "JAVA", "PYTHON"]
+    language: typing_extensions.Literal["UNKNOWN", "JAVA", "PYTHON", "GO"]
     version: str
 
 @typing.type_check_only
@@ -1022,6 +1034,7 @@ class StageSummary(typing_extensions.TypedDict, total=False):
         "EXECUTION_STATE_FAILED",
         "EXECUTION_STATE_CANCELLED",
     ]
+    stragglerSummary: StragglerSummary
 
 @typing.type_check_only
 class StateFamilyConfig(typing_extensions.TypedDict, total=False):
@@ -1039,6 +1052,20 @@ class Step(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     properties: dict[str, typing.Any]
+
+@typing.type_check_only
+class StragglerDebuggingInfo(typing_extensions.TypedDict, total=False):
+    hotKey: HotKeyDebuggingInfo
+
+@typing.type_check_only
+class StragglerInfo(typing_extensions.TypedDict, total=False):
+    causes: dict[str, typing.Any]
+    startTime: str
+
+@typing.type_check_only
+class StragglerSummary(typing_extensions.TypedDict, total=False):
+    stragglerCauseCount: dict[str, typing.Any]
+    totalStragglerCount: str
 
 @typing.type_check_only
 class StreamLocation(typing_extensions.TypedDict, total=False):
@@ -1205,6 +1232,7 @@ class WorkItemDetails(typing_extensions.TypedDict, total=False):
         "EXECUTION_STATE_FAILED",
         "EXECUTION_STATE_CANCELLED",
     ]
+    stragglerInfo: StragglerInfo
     taskId: str
 
 @typing.type_check_only

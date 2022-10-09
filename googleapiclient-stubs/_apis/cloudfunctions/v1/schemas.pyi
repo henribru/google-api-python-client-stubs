@@ -121,6 +121,45 @@ class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
     uploadUrl: str
 
 @typing.type_check_only
+class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    requestResource: dict[str, typing.Any]
+    stages: _list[GoogleCloudFunctionsV2Stage]
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2Stage(typing_extensions.TypedDict, total=False):
+    message: str
+    name: typing_extensions.Literal[
+        "NAME_UNSPECIFIED",
+        "ARTIFACT_REGISTRY",
+        "BUILD",
+        "SERVICE",
+        "TRIGGER",
+        "SERVICE_ROLLBACK",
+        "TRIGGER_ROLLBACK",
+    ]
+    resource: str
+    resourceUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
+    ]
+    stateMessages: _list[GoogleCloudFunctionsV2StateMessage]
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2StateMessage(typing_extensions.TypedDict, total=False):
+    message: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
+    type: str
+
+@typing.type_check_only
 class GoogleCloudFunctionsV2alphaOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):

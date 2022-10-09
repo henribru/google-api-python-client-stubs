@@ -340,6 +340,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             name: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, instance: str, name: str, **kwargs: typing.Any
+        ) -> UserHttpRequest: ...
         def insert(
             self, *, project: str, instance: str, body: User = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -517,6 +520,14 @@ class TiersListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TiersListResponse: ...
+
+@typing.type_check_only
+class UserHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> User: ...
 
 @typing.type_check_only
 class UsersListResponseHttpRequest(googleapiclient.http.HttpRequest):

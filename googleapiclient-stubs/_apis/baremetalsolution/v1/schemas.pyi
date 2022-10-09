@@ -24,12 +24,6 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class ResetInstanceResponse(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]

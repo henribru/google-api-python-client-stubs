@@ -162,6 +162,41 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> PretargetingConfigHttpRequest: ...
 
+        @typing.type_check_only
+        class PublisherConnectionsResource(googleapiclient.discovery.Resource):
+            def batchApprove(
+                self,
+                *,
+                parent: str,
+                body: BatchApprovePublisherConnectionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> BatchApprovePublisherConnectionsResponseHttpRequest: ...
+            def batchReject(
+                self,
+                *,
+                parent: str,
+                body: BatchRejectPublisherConnectionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> BatchRejectPublisherConnectionsResponseHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> PublisherConnectionHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListPublisherConnectionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPublisherConnectionsResponseHttpRequest,
+                previous_response: ListPublisherConnectionsResponse,
+            ) -> ListPublisherConnectionsResponseHttpRequest | None: ...
+
         def get(self, *, name: str, **kwargs: typing.Any) -> BidderHttpRequest: ...
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
@@ -174,6 +209,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
         def creatives(self) -> CreativesResource: ...
         def endpoints(self) -> EndpointsResource: ...
         def pretargetingConfigs(self) -> PretargetingConfigsResource: ...
+        def publisherConnections(self) -> PublisherConnectionsResource: ...
 
     @typing.type_check_only
     class BuyersResource(googleapiclient.discovery.Resource):
@@ -284,6 +320,26 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
     def buyers(self) -> BuyersResource: ...
 
 @typing.type_check_only
+class BatchApprovePublisherConnectionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BatchApprovePublisherConnectionsResponse: ...
+
+@typing.type_check_only
+class BatchRejectPublisherConnectionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BatchRejectPublisherConnectionsResponse: ...
+
+@typing.type_check_only
 class BidderHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -372,6 +428,14 @@ class ListPretargetingConfigsResponseHttpRequest(googleapiclient.http.HttpReques
     ) -> ListPretargetingConfigsResponse: ...
 
 @typing.type_check_only
+class ListPublisherConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListPublisherConnectionsResponse: ...
+
+@typing.type_check_only
 class ListUserListsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -386,6 +450,14 @@ class PretargetingConfigHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PretargetingConfig: ...
+
+@typing.type_check_only
+class PublisherConnectionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> PublisherConnection: ...
 
 @typing.type_check_only
 class UserListHttpRequest(googleapiclient.http.HttpRequest):

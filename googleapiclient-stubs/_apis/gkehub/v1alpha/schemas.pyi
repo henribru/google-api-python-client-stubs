@@ -15,11 +15,42 @@ class AnthosObservabilityMembershipSpec(typing_extensions.TypedDict, total=False
     version: str
 
 @typing.type_check_only
+class AnthosVMMembershipSpec(typing_extensions.TypedDict, total=False):
+    subfeaturesSpec: _list[AnthosVMSubFeatureSpec]
+
+@typing.type_check_only
+class AnthosVMMembershipState(typing_extensions.TypedDict, total=False):
+    localControllerState: LocalControllerState
+    subfeatureState: _list[AnthosVMSubFeatureState]
+
+@typing.type_check_only
+class AnthosVMSubFeatureSpec(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    migrateSpec: MigrateSpec
+    serviceMeshSpec: ServiceMeshSpec
+
+@typing.type_check_only
+class AnthosVMSubFeatureState(typing_extensions.TypedDict, total=False):
+    description: str
+    installationState: typing_extensions.Literal[
+        "INSTALLATION_STATE_UNSPECIFIED",
+        "INSTALLATION_STATE_NOT_INSTALLED",
+        "INSTALLATION_STATE_INSTALLED",
+        "INSTALLATION_STATE_FAILED",
+    ]
+    migrateState: MigrateState
+    serviceMeshState: ServiceMeshState
+
+@typing.type_check_only
 class AppDevExperienceFeatureSpec(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AppDevExperienceFeatureState(typing_extensions.TypedDict, total=False):
     networkingInstallSucceeded: Status
+
+@typing.type_check_only
+class ApplianceCluster(typing_extensions.TypedDict, total=False):
+    resourceLink: str
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -91,8 +122,10 @@ class ConfigManagementBinauthzVersion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
+    allowVerticalScale: bool
     enabled: bool
     git: ConfigManagementGitConfig
+    oci: ConfigManagementOciConfig
     preventDrift: bool
     sourceFormat: str
 
@@ -232,6 +265,14 @@ class ConfigManagementMembershipState(typing_extensions.TypedDict, total=False):
     policyControllerState: ConfigManagementPolicyControllerState
 
 @typing.type_check_only
+class ConfigManagementOciConfig(typing_extensions.TypedDict, total=False):
+    gcpServiceAccountEmail: str
+    policyDir: str
+    secretType: str
+    syncRepo: str
+    syncWaitSecs: str
+
+@typing.type_check_only
 class ConfigManagementOperatorState(typing_extensions.TypedDict, total=False):
     deploymentState: typing_extensions.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
@@ -245,9 +286,16 @@ class ConfigManagementPolicyController(typing_extensions.TypedDict, total=False)
     enabled: bool
     exemptableNamespaces: _list[str]
     logDeniesEnabled: bool
+    monitoring: ConfigManagementPolicyControllerMonitoring
     mutationEnabled: bool
     referentialRulesEnabled: bool
     templateLibraryInstalled: bool
+
+@typing.type_check_only
+class ConfigManagementPolicyControllerMonitoring(
+    typing_extensions.TypedDict, total=False
+):
+    backends: _list[str]
 
 @typing.type_check_only
 class ConfigManagementPolicyControllerState(typing_extensions.TypedDict, total=False):
@@ -344,10 +392,16 @@ class Fleet(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
     displayName: str
-    fleetName: str
     name: str
+    state: FleetLifecycleState
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class FleetLifecycleState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+    ]
 
 @typing.type_check_only
 class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
@@ -366,9 +420,14 @@ class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IdentityServiceAuthMethod(typing_extensions.TypedDict, total=False):
+    googleConfig: IdentityServiceGoogleConfig
     name: str
     oidcConfig: IdentityServiceOidcConfig
     proxy: str
+
+@typing.type_check_only
+class IdentityServiceGoogleConfig(typing_extensions.TypedDict, total=False):
+    disable: bool
 
 @typing.type_check_only
 class IdentityServiceMembershipSpec(typing_extensions.TypedDict, total=False):
@@ -387,6 +446,7 @@ class IdentityServiceOidcConfig(typing_extensions.TypedDict, total=False):
     clientId: str
     clientSecret: str
     deployCloudConsoleProxy: bool
+    enableAccessToken: bool
     encryptedClientSecret: str
     extraParams: str
     groupPrefix: str
@@ -446,6 +506,16 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class LocalControllerState(typing_extensions.TypedDict, total=False):
+    description: str
+    installationState: typing_extensions.Literal[
+        "INSTALLATION_STATE_UNSPECIFIED",
+        "INSTALLATION_STATE_NOT_INSTALLED",
+        "INSTALLATION_STATE_INSTALLED",
+        "INSTALLATION_STATE_FAILED",
+    ]
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -470,6 +540,7 @@ class Membership(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MembershipEndpoint(typing_extensions.TypedDict, total=False):
+    applianceCluster: ApplianceCluster
     edgeCluster: EdgeCluster
     gkeCluster: GkeCluster
     kubernetesMetadata: KubernetesMetadata
@@ -480,6 +551,7 @@ class MembershipEndpoint(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
     anthosobservability: AnthosObservabilityMembershipSpec
+    anthosvm: AnthosVMMembershipSpec
     cloudbuild: CloudBuildMembershipSpec
     configmanagement: ConfigManagementMembershipSpec
     identityservice: IdentityServiceMembershipSpec
@@ -489,6 +561,7 @@ class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MembershipFeatureState(typing_extensions.TypedDict, total=False):
+    anthosvm: AnthosVMMembershipState
     appdevexperience: AppDevExperienceFeatureState
     configmanagement: ConfigManagementMembershipState
     identityservice: IdentityServiceMembershipState
@@ -520,6 +593,12 @@ class MeteringMembershipState(typing_extensions.TypedDict, total=False):
     preciseLastMeasuredClusterVcpuCapacity: float
 
 @typing.type_check_only
+class MigrateSpec(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class MigrateState(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class MultiCloudCluster(typing_extensions.TypedDict, total=False):
     clusterMissing: bool
     resourceLink: str
@@ -535,6 +614,9 @@ class MultiClusterIngressFeatureSpec(typing_extensions.TypedDict, total=False):
 class OnPremCluster(typing_extensions.TypedDict, total=False):
     adminCluster: bool
     clusterMissing: bool
+    clusterType: typing_extensions.Literal[
+        "CLUSTERTYPE_UNSPECIFIED", "BOOTSTRAP", "HYBRID", "STANDALONE", "USER"
+    ]
     resourceLink: str
 
 @typing.type_check_only
@@ -570,21 +652,13 @@ class PolicyControllerHubConfig(typing_extensions.TypedDict, total=False):
         "INSTALL_SPEC_UNSPECIFIED",
         "INSTALL_SPEC_NOT_INSTALLED",
         "INSTALL_SPEC_ENABLED",
-        "INSTALL_SPEC_DISABLED",
+        "INSTALL_SPEC_SUSPENDED",
     ]
     logDeniesEnabled: bool
+    monitoring: PolicyControllerMonitoringConfig
     mutationEnabled: bool
     referentialRulesEnabled: bool
     templateLibraryConfig: PolicyControllerTemplateLibraryConfig
-
-@typing.type_check_only
-class PolicyControllerHubState(typing_extensions.TypedDict, total=False):
-    deploymentStates: dict[str, typing.Any]
-    version: PolicyControllerHubVersion
-
-@typing.type_check_only
-class PolicyControllerHubVersion(typing_extensions.TypedDict, total=False):
-    version: str
 
 @typing.type_check_only
 class PolicyControllerMembershipSpec(typing_extensions.TypedDict, total=False):
@@ -594,8 +668,7 @@ class PolicyControllerMembershipSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
     clusterName: str
-    membershipSpec: PolicyControllerMembershipSpec
-    policyControllerHubState: PolicyControllerHubState
+    componentStates: dict[str, typing.Any]
     state: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "NOT_INSTALLED",
@@ -605,6 +678,26 @@ class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
         "DECOMISSIONING",
         "CLUSTER_ERROR",
         "HUB_ERROR",
+        "SUSPENDED",
+    ]
+
+@typing.type_check_only
+class PolicyControllerMonitoringConfig(typing_extensions.TypedDict, total=False):
+    backends: _list[str]
+
+@typing.type_check_only
+class PolicyControllerOnClusterState(typing_extensions.TypedDict, total=False):
+    details: str
+    state: typing_extensions.Literal[
+        "LIFECYCLE_STATE_UNSPECIFIED",
+        "NOT_INSTALLED",
+        "INSTALLING",
+        "ACTIVE",
+        "UPDATING",
+        "DECOMISSIONING",
+        "CLUSTER_ERROR",
+        "HUB_ERROR",
+        "SUSPENDED",
     ]
 
 @typing.type_check_only
@@ -650,6 +743,20 @@ class ServiceMeshControlPlaneManagement(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
+class ServiceMeshDataPlaneManagement(typing_extensions.TypedDict, total=False):
+    details: _list[ServiceMeshStatusDetails]
+    state: typing_extensions.Literal[
+        "LIFECYCLE_STATE_UNSPECIFIED",
+        "DISABLED",
+        "FAILED_PRECONDITION",
+        "PROVISIONING",
+        "ACTIVE",
+        "STALLED",
+        "NEEDS_ATTENTION",
+        "DEGRADED",
+    ]
+
+@typing.type_check_only
 class ServiceMeshFeatureState(typing_extensions.TypedDict, total=False):
     analysisMessages: _list[ServiceMeshAnalysisMessage]
 
@@ -661,12 +768,22 @@ class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False):
     defaultChannel: typing_extensions.Literal[
         "CHANNEL_UNSPECIFIED", "RAPID", "REGULAR", "STABLE"
     ]
+    management: typing_extensions.Literal[
+        "MANAGEMENT_UNSPECIFIED", "MANAGEMENT_AUTOMATIC", "MANAGEMENT_MANUAL"
+    ]
 
 @typing.type_check_only
 class ServiceMeshMembershipState(typing_extensions.TypedDict, total=False):
     analysisMessages: _list[ServiceMeshAnalysisMessage]
     configApiVersion: str
     controlPlaneManagement: ServiceMeshControlPlaneManagement
+    dataPlaneManagement: ServiceMeshDataPlaneManagement
+
+@typing.type_check_only
+class ServiceMeshSpec(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ServiceMeshState(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ServiceMeshStatusDetails(typing_extensions.TypedDict, total=False):
@@ -700,3 +817,20 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class TypeMeta(typing_extensions.TypedDict, total=False):
     apiVersion: str
     kind: str
+
+@typing.type_check_only
+class ValidateCreateMembershipRequest(typing_extensions.TypedDict, total=False):
+    membership: Membership
+    membershipId: str
+
+@typing.type_check_only
+class ValidateCreateMembershipResponse(typing_extensions.TypedDict, total=False):
+    validationResults: _list[ValidationResult]
+
+@typing.type_check_only
+class ValidationResult(typing_extensions.TypedDict, total=False):
+    result: str
+    success: bool
+    validator: typing_extensions.Literal[
+        "VALIDATOR_TYPE_UNSPECIFIED", "MEMBERSHIP_ID", "CROSS_PROJECT_PERMISSION"
+    ]

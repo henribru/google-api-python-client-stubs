@@ -345,6 +345,9 @@ class ManualScaling(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Network(typing_extensions.TypedDict, total=False):
     forwardedPorts: _list[str]
+    instanceIpMode: typing_extensions.Literal[
+        "INSTANCE_IP_MODE_UNSPECIFIED", "EXTERNAL", "INTERNAL"
+    ]
     instanceTag: str
     name: str
     sessionAffinity: bool

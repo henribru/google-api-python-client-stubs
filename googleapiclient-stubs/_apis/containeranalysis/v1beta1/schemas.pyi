@@ -10,6 +10,10 @@ class AliasContext(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class AnalysisCompleted(typing_extensions.TypedDict, total=False):
+    analysisType: _list[str]
+
+@typing.type_check_only
 class Artifact(typing_extensions.TypedDict, total=False):
     checksum: str
     id: str
@@ -92,6 +96,69 @@ class BuildSignature(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ByProducts(typing_extensions.TypedDict, total=False):
     customValues: dict[str, typing.Any]
+
+@typing.type_check_only
+class CVSS(typing_extensions.TypedDict, total=False):
+    attackComplexity: typing_extensions.Literal[
+        "ATTACK_COMPLEXITY_UNSPECIFIED",
+        "ATTACK_COMPLEXITY_LOW",
+        "ATTACK_COMPLEXITY_HIGH",
+        "ATTACK_COMPLEXITY_MEDIUM",
+    ]
+    attackVector: typing_extensions.Literal[
+        "ATTACK_VECTOR_UNSPECIFIED",
+        "ATTACK_VECTOR_NETWORK",
+        "ATTACK_VECTOR_ADJACENT",
+        "ATTACK_VECTOR_LOCAL",
+        "ATTACK_VECTOR_PHYSICAL",
+    ]
+    authentication: typing_extensions.Literal[
+        "AUTHENTICATION_UNSPECIFIED",
+        "AUTHENTICATION_MULTIPLE",
+        "AUTHENTICATION_SINGLE",
+        "AUTHENTICATION_NONE",
+    ]
+    availabilityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    baseScore: float
+    confidentialityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    exploitabilityScore: float
+    impactScore: float
+    integrityImpact: typing_extensions.Literal[
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
+    ]
+    privilegesRequired: typing_extensions.Literal[
+        "PRIVILEGES_REQUIRED_UNSPECIFIED",
+        "PRIVILEGES_REQUIRED_NONE",
+        "PRIVILEGES_REQUIRED_LOW",
+        "PRIVILEGES_REQUIRED_HIGH",
+    ]
+    scope: typing_extensions.Literal[
+        "SCOPE_UNSPECIFIED", "SCOPE_UNCHANGED", "SCOPE_CHANGED"
+    ]
+    userInteraction: typing_extensions.Literal[
+        "USER_INTERACTION_UNSPECIFIED",
+        "USER_INTERACTION_NONE",
+        "USER_INTERACTION_REQUIRED",
+    ]
 
 @typing.type_check_only
 class CVSSv3(typing_extensions.TypedDict, total=False):
@@ -289,10 +356,13 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
     typing_extensions.TypedDict, total=False
 ):
+    allowExitCodes: _list[int]
+    allowFailure: bool
     args: _list[str]
     dir: str
     entrypoint: str
     env: _list[str]
+    exitCode: int
     id: str
     name: str
     pullTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
@@ -485,12 +555,20 @@ class Details(typing_extensions.TypedDict, total=False):
     attestation: Attestation
 
 @typing.type_check_only
+class Digest(typing_extensions.TypedDict, total=False):
+    algo: str
+    digestBytes: str
+
+@typing.type_check_only
 class Discovered(typing_extensions.TypedDict, total=False):
+    analysisCompleted: AnalysisCompleted
+    analysisError: _list[Status]
     analysisStatus: typing_extensions.Literal[
         "ANALYSIS_STATUS_UNSPECIFIED",
         "PENDING",
         "SCANNING",
         "FINISHED_SUCCESS",
+        "COMPLETE",
         "FINISHED_FAILED",
         "FINISHED_UNSUPPORTED",
     ]
@@ -546,6 +624,17 @@ class DocumentOccurrence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Envelope(typing_extensions.TypedDict, total=False):
+    payload: str
+    payloadType: str
+    signatures: _list[EnvelopeSignature]
+
+@typing.type_check_only
+class EnvelopeSignature(typing_extensions.TypedDict, total=False):
+    keyid: str
+    sig: str
 
 @typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
@@ -690,6 +779,9 @@ class GrafeasV1beta1PackageDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GrafeasV1beta1VulnerabilityDetails(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssVersion: typing_extensions.Literal[
+        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
+    ]
     effectiveSeverity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
@@ -722,8 +814,13 @@ class InToto(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Installation(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
+    cpeUri: str
+    license: License
     location: _list[Location]
     name: str
+    packageType: str
+    version: Version
 
 @typing.type_check_only
 class KnowledgeBase(typing_extensions.TypedDict, total=False):
@@ -839,6 +936,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     deployment: GrafeasV1beta1DeploymentDetails
     derivedImage: GrafeasV1beta1ImageDetails
     discovered: GrafeasV1beta1DiscoveryDetails
+    envelope: Envelope
     installation: GrafeasV1beta1PackageDetails
     intoto: GrafeasV1beta1IntotoDetails
     kind: typing_extensions.Literal[
@@ -869,8 +967,17 @@ class Occurrence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Package(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
+    cpeUri: str
+    description: str
+    digest: _list[Digest]
     distribution: _list[Distribution]
+    license: License
+    maintainer: str
     name: str
+    packageType: str
+    url: str
+    version: Version
 
 @typing.type_check_only
 class PackageInfoNote(typing_extensions.TypedDict, total=False):
@@ -1116,7 +1223,12 @@ class Version(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Vulnerability(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssV2: CVSS
     cvssV3: CVSSv3
+    cvssVersion: typing_extensions.Literal[
+        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
+    ]
+    cwe: _list[str]
     details: _list[Detail]
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"

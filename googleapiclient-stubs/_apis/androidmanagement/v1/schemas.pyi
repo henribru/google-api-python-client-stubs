@@ -5,6 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AdbShellCommandEvent(typing_extensions.TypedDict, total=False):
+    shellCmd: str
+
+@typing.type_check_only
+class AdbShellInteractiveEvent(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
     commonCriteriaMode: typing_extensions.Literal[
         "COMMON_CRITERIA_MODE_UNSPECIFIED",
@@ -37,6 +44,20 @@ class AlwaysOnVpnPackage(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApiLevelCondition(typing_extensions.TypedDict, total=False):
     minApiLevel: int
+
+@typing.type_check_only
+class AppProcessInfo(typing_extensions.TypedDict, total=False):
+    apkSha256Hash: str
+    packageNames: _list[str]
+    pid: int
+    processName: str
+    seinfo: str
+    startTime: str
+    uid: int
+
+@typing.type_check_only
+class AppProcessStartEvent(typing_extensions.TypedDict, total=False):
+    processInfo: AppProcessInfo
 
 @typing.type_check_only
 class AppTrackInfo(typing_extensions.TypedDict, total=False):
@@ -177,11 +198,34 @@ class ApplicationReportingSettings(typing_extensions.TypedDict, total=False):
     includeRemovedApps: bool
 
 @typing.type_check_only
+class BatchUsageLogEvents(typing_extensions.TypedDict, total=False):
+    device: str
+    retrievalTime: str
+    usageLogEvents: _list[UsageLogEvent]
+    user: str
+
+@typing.type_check_only
 class BlockAction(typing_extensions.TypedDict, total=False):
     blockAfterDays: int
     blockScope: typing_extensions.Literal[
         "BLOCK_SCOPE_UNSPECIFIED", "BLOCK_SCOPE_WORK_PROFILE", "BLOCK_SCOPE_DEVICE"
     ]
+
+@typing.type_check_only
+class CertAuthorityInstalledEvent(typing_extensions.TypedDict, total=False):
+    certificate: str
+    success: bool
+    userId: int
+
+@typing.type_check_only
+class CertAuthorityRemovedEvent(typing_extensions.TypedDict, total=False):
+    certificate: str
+    success: bool
+    userId: int
+
+@typing.type_check_only
+class CertValidationFailureEvent(typing_extensions.TypedDict, total=False):
+    failureReason: str
 
 @typing.type_check_only
 class ChoosePrivateKeyRule(typing_extensions.TypedDict, total=False):
@@ -190,7 +234,17 @@ class ChoosePrivateKeyRule(typing_extensions.TypedDict, total=False):
     urlPattern: str
 
 @typing.type_check_only
+class ClearAppsDataParams(typing_extensions.TypedDict, total=False):
+    packageNames: _list[str]
+
+@typing.type_check_only
+class ClearAppsDataStatus(typing_extensions.TypedDict, total=False):
+    results: dict[str, typing.Any]
+
+@typing.type_check_only
 class Command(typing_extensions.TypedDict, total=False):
+    clearAppsDataParams: ClearAppsDataParams
+    clearAppsDataStatus: ClearAppsDataStatus
     createTime: str
     duration: str
     errorCode: typing_extensions.Literal[
@@ -209,6 +263,7 @@ class Command(typing_extensions.TypedDict, total=False):
         "RESET_PASSWORD",
         "REBOOT",
         "RELINQUISH_OWNERSHIP",
+        "CLEAR_APP_DATA",
     ]
     userName: str
 
@@ -226,6 +281,12 @@ class ComplianceRule(typing_extensions.TypedDict, total=False):
     disableApps: bool
     nonComplianceDetailCondition: NonComplianceDetailCondition
     packageNamesToDisable: _list[str]
+
+@typing.type_check_only
+class ConnectEvent(typing_extensions.TypedDict, total=False):
+    destinationIpAddress: str
+    destinationPort: int
+    packageName: str
 
 @typing.type_check_only
 class ContactInfo(typing_extensions.TypedDict, total=False):
@@ -261,6 +322,10 @@ class CrossProfilePolicies(typing_extensions.TypedDict, total=False):
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED",
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED",
     ]
+
+@typing.type_check_only
+class CryptoSelfTestCompletedEvent(typing_extensions.TypedDict, total=False):
+    success: bool
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -345,6 +410,13 @@ class Display(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
+class DnsEvent(typing_extensions.TypedDict, total=False):
+    hostname: str
+    ipAddresses: _list[str]
+    packageName: str
+    totalIpAddressesReturned: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -388,6 +460,14 @@ class ExternalData(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class FilePulledEvent(typing_extensions.TypedDict, total=False):
+    filePath: str
+
+@typing.type_check_only
+class FilePushedEvent(typing_extensions.TypedDict, total=False):
+    filePath: str
+
+@typing.type_check_only
 class FreezePeriod(typing_extensions.TypedDict, total=False):
     endDate: Date
     startDate: Date
@@ -424,6 +504,29 @@ class HardwareStatus(typing_extensions.TypedDict, total=False):
 class IssueCommandResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class KeyDestructionEvent(typing_extensions.TypedDict, total=False):
+    applicationUid: int
+    keyAlias: str
+    success: bool
+
+@typing.type_check_only
+class KeyGeneratedEvent(typing_extensions.TypedDict, total=False):
+    applicationUid: int
+    keyAlias: str
+    success: bool
+
+@typing.type_check_only
+class KeyImportEvent(typing_extensions.TypedDict, total=False):
+    applicationUid: int
+    keyAlias: str
+    success: bool
+
+@typing.type_check_only
+class KeyIntegrityViolationEvent(typing_extensions.TypedDict, total=False):
+    applicationUid: int
+    keyAlias: str
+
+@typing.type_check_only
 class KeyedAppState(typing_extensions.TypedDict, total=False):
     createTime: str
     data: str
@@ -431,6 +534,17 @@ class KeyedAppState(typing_extensions.TypedDict, total=False):
     lastUpdateTime: str
     message: str
     severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "INFO", "ERROR"]
+
+@typing.type_check_only
+class KeyguardDismissAuthAttemptEvent(typing_extensions.TypedDict, total=False):
+    strongAuthMethodUsed: bool
+    success: bool
+
+@typing.type_check_only
+class KeyguardDismissedEvent(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class KeyguardSecuredEvent(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class KioskCustomization(typing_extensions.TypedDict, total=False):
@@ -472,6 +586,11 @@ class ListDevicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListEnrollmentTokensResponse(typing_extensions.TypedDict, total=False):
+    enrollmentTokens: _list[EnrollmentToken]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListEnterprisesResponse(typing_extensions.TypedDict, total=False):
     enterprises: _list[Enterprise]
     nextPageToken: str
@@ -492,6 +611,15 @@ class ListWebAppsResponse(typing_extensions.TypedDict, total=False):
     webApps: _list[WebApp]
 
 @typing.type_check_only
+class LogBufferSizeCriticalEvent(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class LoggingStartedEvent(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class LoggingStoppedEvent(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ManagedConfigurationTemplate(typing_extensions.TypedDict, total=False):
     configurationVariables: dict[str, typing.Any]
     templateId: str
@@ -503,6 +631,16 @@ class ManagedProperty(dict[str, typing.Any]): ...
 class ManagedPropertyEntry(typing_extensions.TypedDict, total=False):
     name: str
     value: str
+
+@typing.type_check_only
+class MediaMountEvent(typing_extensions.TypedDict, total=False):
+    mountPoint: str
+    volumeLabel: str
+
+@typing.type_check_only
+class MediaUnmountEvent(typing_extensions.TypedDict, total=False):
+    mountPoint: str
+    volumeLabel: str
 
 @typing.type_check_only
 class MemoryEvent(typing_extensions.TypedDict, total=False):
@@ -562,6 +700,15 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
     ]
     packageName: str
     settingName: str
+    specificNonComplianceContext: SpecificNonComplianceContext
+    specificNonComplianceReason: typing_extensions.Literal[
+        "SPECIFIC_NON_COMPLIANCE_REASON_UNSPECIFIED",
+        "PASSWORD_POLICIES_USER_CREDENTIALS_CONFIRMATION_REQUIRED",
+        "PASSWORD_POLICIES_PASSWORD_EXPIRED",
+        "PASSWORD_POLICIES_PASSWORD_NOT_SUFFICIENT",
+        "ONC_WIFI_INVALID_VALUE",
+        "ONC_WIFI_API_LEVEL",
+    ]
 
 @typing.type_check_only
 class NonComplianceDetailCondition(typing_extensions.TypedDict, total=False):
@@ -587,6 +734,10 @@ class OncCertificateProvider(typing_extensions.TypedDict, total=False):
     contentProviderEndpoint: ContentProviderEndpoint
 
 @typing.type_check_only
+class OncWifiContext(typing_extensions.TypedDict, total=False):
+    wifiGuid: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -595,8 +746,26 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
+class OsShutdownEvent(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class OsStartupEvent(typing_extensions.TypedDict, total=False):
+    verifiedBootState: typing_extensions.Literal[
+        "VERIFIED_BOOT_STATE_UNSPECIFIED", "GREEN", "YELLOW", "ORANGE"
+    ]
+    verityMode: typing_extensions.Literal[
+        "DM_VERITY_MODE_UNSPECIFIED", "ENFORCING", "IO_ERROR", "DISABLED"
+    ]
+
+@typing.type_check_only
 class PackageNameList(typing_extensions.TypedDict, total=False):
     packageNames: _list[str]
+
+@typing.type_check_only
+class PasswordPoliciesContext(typing_extensions.TypedDict, total=False):
+    passwordPolicyScope: typing_extensions.Literal[
+        "SCOPE_UNSPECIFIED", "SCOPE_DEVICE", "SCOPE_PROFILE"
+    ]
 
 @typing.type_check_only
 class PasswordRequirements(typing_extensions.TypedDict, total=False):
@@ -630,6 +799,21 @@ class PasswordRequirements(typing_extensions.TypedDict, total=False):
         "REQUIRE_PASSWORD_UNLOCK_UNSPECIFIED",
         "USE_DEFAULT_DEVICE_TIMEOUT",
         "REQUIRE_EVERY_DAY",
+    ]
+    unifiedLockSettings: typing_extensions.Literal[
+        "UNIFIED_LOCK_SETTINGS_UNSPECIFIED",
+        "ALLOW_UNIFIED_WORK_AND_PERSONAL_LOCK",
+        "REQUIRE_SEPARATE_WORK_LOCK",
+    ]
+
+@typing.type_check_only
+class PerAppResult(typing_extensions.TypedDict, total=False):
+    clearingResult: typing_extensions.Literal[
+        "CLEARING_RESULT_UNSPECIFIED",
+        "SUCCESS",
+        "APP_NOT_FOUND",
+        "APP_PROTECTED",
+        "API_LEVEL",
     ]
 
 @typing.type_check_only
@@ -805,7 +989,10 @@ class PolicyEnforcementRule(typing_extensions.TypedDict, total=False):
 class PostureDetail(typing_extensions.TypedDict, total=False):
     advice: _list[UserFacingMessage]
     securityRisk: typing_extensions.Literal[
-        "SECURITY_RISK_UNSPECIFIED", "UNKNOWN_OS", "COMPROMISED_OS"
+        "SECURITY_RISK_UNSPECIFIED",
+        "UNKNOWN_OS",
+        "COMPROMISED_OS",
+        "HARDWARE_BACKED_EVALUATION_FAILED",
     ]
 
 @typing.type_check_only
@@ -829,6 +1016,12 @@ class ProxyInfo(typing_extensions.TypedDict, total=False):
     host: str
     pacUri: str
     port: int
+
+@typing.type_check_only
+class RemoteLockEvent(typing_extensions.TypedDict, total=False):
+    adminPackageName: str
+    adminUserId: int
+    targetUserId: int
 
 @typing.type_check_only
 class SecurityPosture(typing_extensions.TypedDict, total=False):
@@ -872,6 +1065,11 @@ class SoftwareInfo(typing_extensions.TypedDict, total=False):
     primaryLanguageCode: str
     securityPatchLevel: str
     systemUpdateInfo: SystemUpdateInfo
+
+@typing.type_check_only
+class SpecificNonComplianceContext(typing_extensions.TypedDict, total=False):
+    oncWifiContext: OncWifiContext
+    passwordPoliciesContext: PasswordPoliciesContext
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -929,6 +1127,68 @@ class UsageLog(typing_extensions.TypedDict, total=False):
     uploadOnCellularAllowed: _list[str]
 
 @typing.type_check_only
+class UsageLogEvent(typing_extensions.TypedDict, total=False):
+    adbShellCommandEvent: AdbShellCommandEvent
+    adbShellInteractiveEvent: AdbShellInteractiveEvent
+    appProcessStartEvent: AppProcessStartEvent
+    certAuthorityInstalledEvent: CertAuthorityInstalledEvent
+    certAuthorityRemovedEvent: CertAuthorityRemovedEvent
+    certValidationFailureEvent: CertValidationFailureEvent
+    connectEvent: ConnectEvent
+    cryptoSelfTestCompletedEvent: CryptoSelfTestCompletedEvent
+    dnsEvent: DnsEvent
+    eventId: str
+    eventTime: str
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED",
+        "ADB_SHELL_COMMAND",
+        "ADB_SHELL_INTERACTIVE",
+        "APP_PROCESS_START",
+        "KEYGUARD_DISMISSED",
+        "KEYGUARD_DISMISS_AUTH_ATTEMPT",
+        "KEYGUARD_SECURED",
+        "FILE_PULLED",
+        "FILE_PUSHED",
+        "CERT_AUTHORITY_INSTALLED",
+        "CERT_AUTHORITY_REMOVED",
+        "CERT_VALIDATION_FAILURE",
+        "CRYPTO_SELF_TEST_COMPLETED",
+        "KEY_DESTRUCTION",
+        "KEY_GENERATED",
+        "KEY_IMPORT",
+        "KEY_INTEGRITY_VIOLATION",
+        "LOGGING_STARTED",
+        "LOGGING_STOPPED",
+        "LOG_BUFFER_SIZE_CRITICAL",
+        "MEDIA_MOUNT",
+        "MEDIA_UNMOUNT",
+        "OS_SHUTDOWN",
+        "OS_STARTUP",
+        "REMOTE_LOCK",
+        "WIPE_FAILURE",
+        "CONNECT",
+        "DNS",
+    ]
+    filePulledEvent: FilePulledEvent
+    filePushedEvent: FilePushedEvent
+    keyDestructionEvent: KeyDestructionEvent
+    keyGeneratedEvent: KeyGeneratedEvent
+    keyImportEvent: KeyImportEvent
+    keyIntegrityViolationEvent: KeyIntegrityViolationEvent
+    keyguardDismissAuthAttemptEvent: KeyguardDismissAuthAttemptEvent
+    keyguardDismissedEvent: KeyguardDismissedEvent
+    keyguardSecuredEvent: KeyguardSecuredEvent
+    logBufferSizeCriticalEvent: LogBufferSizeCriticalEvent
+    loggingStartedEvent: LoggingStartedEvent
+    loggingStoppedEvent: LoggingStoppedEvent
+    mediaMountEvent: MediaMountEvent
+    mediaUnmountEvent: MediaUnmountEvent
+    osShutdownEvent: OsShutdownEvent
+    osStartupEvent: OsStartupEvent
+    remoteLockEvent: RemoteLockEvent
+    wipeFailureEvent: WipeFailureEvent
+
+@typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
     accountIdentifier: str
 
@@ -964,3 +1224,6 @@ class WebToken(typing_extensions.TypedDict, total=False):
 class WipeAction(typing_extensions.TypedDict, total=False):
     preserveFrp: bool
     wipeAfterDays: int
+
+@typing.type_check_only
+class WipeFailureEvent(typing_extensions.TypedDict, total=False): ...

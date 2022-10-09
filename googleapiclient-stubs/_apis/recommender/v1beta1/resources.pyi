@@ -46,6 +46,18 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1InsightHttpRequest: ...
 
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest: ...
+                def updateConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRecommenderV1beta1InsightTypeConfig = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest: ...
                 def insights(self) -> InsightsResource: ...
 
             @typing.type_check_only
@@ -91,6 +103,18 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1beta1RecommendationHttpRequest: ...
 
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
+                def updateConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRecommenderV1beta1RecommenderConfig = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
 
             def insightTypes(self) -> InsightTypesResource: ...

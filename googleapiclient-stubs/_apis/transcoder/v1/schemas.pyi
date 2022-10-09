@@ -55,6 +55,12 @@ class AudioStream(typing_extensions.TypedDict, total=False):
     sampleRateHertz: int
 
 @typing.type_check_only
+class BwdifConfig(typing_extensions.TypedDict, total=False):
+    deinterlaceAllFrames: bool
+    mode: str
+    parity: str
+
+@typing.type_check_only
 class Color(typing_extensions.TypedDict, total=False):
     brightness: float
     contrast: float
@@ -71,6 +77,11 @@ class Crop(typing_extensions.TypedDict, total=False):
 class Deblock(typing_extensions.TypedDict, total=False):
     enabled: bool
     strength: float
+
+@typing.type_check_only
+class Deinterlace(typing_extensions.TypedDict, total=False):
+    bwdif: BwdifConfig
+    yadif: YadifConfig
 
 @typing.type_check_only
 class Denoise(typing_extensions.TypedDict, total=False):
@@ -158,6 +169,7 @@ class Job(typing_extensions.TypedDict, total=False):
     endTime: str
     error: Status
     inputUri: str
+    labels: dict[str, typing.Any]
     name: str
     outputUri: str
     startTime: str
@@ -183,6 +195,7 @@ class JobConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class JobTemplate(typing_extensions.TypedDict, total=False):
     config: JobConfig
+    labels: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
@@ -238,6 +251,7 @@ class PreprocessingConfig(typing_extensions.TypedDict, total=False):
     color: Color
     crop: Crop
     deblock: Deblock
+    deinterlace: Deinterlace
     denoise: Denoise
     pad: Pad
 
@@ -299,3 +313,10 @@ class Vp9CodecSettings(typing_extensions.TypedDict, total=False):
     profile: str
     rateControlMode: str
     widthPixels: int
+
+@typing.type_check_only
+class YadifConfig(typing_extensions.TypedDict, total=False):
+    deinterlaceAllFrames: bool
+    disableSpatialInterlacing: bool
+    mode: str
+    parity: str

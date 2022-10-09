@@ -16,6 +16,23 @@ class SpannerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class InstanceConfigOperationsResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListInstanceConfigOperationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListInstanceConfigOperationsResponseHttpRequest,
+                previous_response: ListInstanceConfigOperationsResponse,
+            ) -> ListInstanceConfigOperationsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class InstanceConfigsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -43,6 +60,21 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            def create(
+                self,
+                *,
+                parent: str,
+                body: CreateInstanceConfigRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self,
+                *,
+                name: str,
+                etag: str = ...,
+                validateOnly: bool = ...,
+                **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> InstanceConfigHttpRequest: ...
@@ -59,6 +91,13 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 previous_request: ListInstanceConfigsResponseHttpRequest,
                 previous_response: ListInstanceConfigsResponse,
             ) -> ListInstanceConfigsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: UpdateInstanceConfigRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
 
         @typing.type_check_only
@@ -200,6 +239,29 @@ class SpannerResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class DatabasesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class DatabaseRolesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListDatabaseRolesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDatabaseRolesResponseHttpRequest,
+                        previous_response: ListDatabaseRolesResponse,
+                    ) -> ListDatabaseRolesResponseHttpRequest | None: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def cancel(
@@ -408,6 +470,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     body: UpdateDatabaseDdlRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def databaseRoles(self) -> DatabaseRolesResource: ...
                 def operations(self) -> OperationsResource: ...
                 def sessions(self) -> SessionsResource: ...
 
@@ -499,6 +562,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
             def databases(self) -> DatabasesResource: ...
             def operations(self) -> OperationsResource: ...
 
+        def instanceConfigOperations(self) -> InstanceConfigOperationsResource: ...
         def instanceConfigs(self) -> InstanceConfigsResource: ...
         def instances(self) -> InstancesResource: ...
 
@@ -634,12 +698,28 @@ class ListDatabaseOperationsResponseHttpRequest(googleapiclient.http.HttpRequest
     ) -> ListDatabaseOperationsResponse: ...
 
 @typing.type_check_only
+class ListDatabaseRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListDatabaseRolesResponse: ...
+
+@typing.type_check_only
 class ListDatabasesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDatabasesResponse: ...
+
+@typing.type_check_only
+class ListInstanceConfigOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListInstanceConfigOperationsResponse: ...
 
 @typing.type_check_only
 class ListInstanceConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):

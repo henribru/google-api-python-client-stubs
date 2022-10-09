@@ -21,6 +21,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
@@ -33,6 +34,18 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class PromotionsResource(googleapiclient.discovery.Resource):
+            def findEligible(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHttpRequest: ...
+            def findEligible_next(
+                self,
+                previous_request: GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHttpRequest,
+                previous_response: GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse,
+            ) -> GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHttpRequest | None: ...
             def list(
                 self,
                 *,
@@ -145,6 +158,16 @@ class GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponseHttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse: ...
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest(

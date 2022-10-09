@@ -67,7 +67,13 @@ class ClassificationCategory(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class ClassificationModelOptions(typing_extensions.TypedDict, total=False):
+    v1Model: V1Model
+    v2Model: V2Model
+
+@typing.type_check_only
 class ClassifyTextRequest(typing_extensions.TypedDict, total=False):
+    classificationModelOptions: ClassificationModelOptions
     document: Document
 
 @typing.type_check_only
@@ -205,6 +211,7 @@ class EntityMention(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Features(typing_extensions.TypedDict, total=False):
+    classificationModelOptions: ClassificationModelOptions
     classifyText: bool
     extractDocumentSentiment: bool
     extractEntities: bool
@@ -321,3 +328,12 @@ class Token(typing_extensions.TypedDict, total=False):
     lemma: str
     partOfSpeech: PartOfSpeech
     text: TextSpan
+
+@typing.type_check_only
+class V1Model(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class V2Model(typing_extensions.TypedDict, total=False):
+    contentCategoriesVersion: typing_extensions.Literal[
+        "CONTENT_CATEGORIES_VERSION_UNSPECIFIED", "V1", "V2"
+    ]

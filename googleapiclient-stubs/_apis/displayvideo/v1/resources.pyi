@@ -1634,6 +1634,58 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         ) -> ListGoogleAudiencesResponseHttpRequest | None: ...
 
     @typing.type_check_only
+    class GuaranteedOrdersResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            body: GuaranteedOrder = ...,
+            advertiserId: str = ...,
+            partnerId: str = ...,
+            **kwargs: typing.Any
+        ) -> GuaranteedOrderHttpRequest: ...
+        def editGuaranteedOrderReadAccessors(
+            self,
+            *,
+            guaranteedOrderId: str,
+            body: EditGuaranteedOrderReadAccessorsRequest = ...,
+            **kwargs: typing.Any
+        ) -> EditGuaranteedOrderReadAccessorsResponseHttpRequest: ...
+        def get(
+            self,
+            *,
+            guaranteedOrderId: str,
+            advertiserId: str = ...,
+            partnerId: str = ...,
+            **kwargs: typing.Any
+        ) -> GuaranteedOrderHttpRequest: ...
+        def list(
+            self,
+            *,
+            advertiserId: str = ...,
+            filter: str = ...,
+            orderBy: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            partnerId: str = ...,
+            **kwargs: typing.Any
+        ) -> ListGuaranteedOrdersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListGuaranteedOrdersResponseHttpRequest,
+            previous_response: ListGuaranteedOrdersResponse,
+        ) -> ListGuaranteedOrdersResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            guaranteedOrderId: str,
+            body: GuaranteedOrder = ...,
+            advertiserId: str = ...,
+            partnerId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> GuaranteedOrderHttpRequest: ...
+
+    @typing.type_check_only
     class InventorySourceGroupsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AssignedInventorySourcesResource(googleapiclient.discovery.Resource):
@@ -1734,6 +1786,21 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class InventorySourcesResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            body: InventorySource = ...,
+            advertiserId: str = ...,
+            partnerId: str = ...,
+            **kwargs: typing.Any
+        ) -> InventorySourceHttpRequest: ...
+        def editInventorySourceReadWriteAccessors(
+            self,
+            *,
+            inventorySourceId: str,
+            body: EditInventorySourceReadWriteAccessorsRequest = ...,
+            **kwargs: typing.Any
+        ) -> InventorySourceAccessorsHttpRequest: ...
         def get(
             self, *, inventorySourceId: str, partnerId: str = ..., **kwargs: typing.Any
         ) -> InventorySourceHttpRequest: ...
@@ -1753,6 +1820,16 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             previous_request: ListInventorySourcesResponseHttpRequest,
             previous_response: ListInventorySourcesResponse,
         ) -> ListInventorySourcesResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            inventorySourceId: str,
+            body: InventorySource = ...,
+            advertiserId: str = ...,
+            partnerId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> InventorySourceHttpRequest: ...
 
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
@@ -2384,6 +2461,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
     def firstAndThirdPartyAudiences(self) -> FirstAndThirdPartyAudiencesResource: ...
     def floodlightGroups(self) -> FloodlightGroupsResource: ...
     def googleAudiences(self) -> GoogleAudiencesResource: ...
+    def guaranteedOrders(self) -> GuaranteedOrdersResource: ...
     def inventorySourceGroups(self) -> InventorySourceGroupsResource: ...
     def inventorySources(self) -> InventorySourcesResource: ...
     def media(self) -> MediaResource: ...
@@ -2625,6 +2703,16 @@ class EditCustomerMatchMembersResponseHttpRequest(googleapiclient.http.HttpReque
     ) -> EditCustomerMatchMembersResponse: ...
 
 @typing.type_check_only
+class EditGuaranteedOrderReadAccessorsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> EditGuaranteedOrderReadAccessorsResponse: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2665,6 +2753,14 @@ class GoogleBytestreamMediaHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleBytestreamMedia: ...
 
 @typing.type_check_only
+class GuaranteedOrderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GuaranteedOrder: ...
+
+@typing.type_check_only
 class InsertionOrderHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2679,6 +2775,14 @@ class InventorySourceHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> InventorySource: ...
+
+@typing.type_check_only
+class InventorySourceAccessorsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> InventorySourceAccessors: ...
 
 @typing.type_check_only
 class InventorySourceGroupHttpRequest(googleapiclient.http.HttpRequest):
@@ -2813,6 +2917,14 @@ class ListGoogleAudiencesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGoogleAudiencesResponse: ...
+
+@typing.type_check_only
+class ListGuaranteedOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListGuaranteedOrdersResponse: ...
 
 @typing.type_check_only
 class ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest(

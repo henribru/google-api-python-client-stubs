@@ -10,6 +10,10 @@ class AliasContext(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class AnalysisCompleted(typing_extensions.TypedDict, total=False):
+    analysisType: _list[str]
+
+@typing.type_check_only
 class AnalyzePackagesMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     resourceUri: str
@@ -166,11 +170,14 @@ class DeploymentOccurrence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DiscoveryOccurrence(typing_extensions.TypedDict, total=False):
+    analysisCompleted: AnalysisCompleted
+    analysisError: _list[Status]
     analysisStatus: typing_extensions.Literal[
         "ANALYSIS_STATUS_UNSPECIFIED",
         "PENDING",
         "SCANNING",
         "FINISHED_SUCCESS",
+        "COMPLETE",
         "FINISHED_FAILED",
         "FINISHED_UNSUPPORTED",
     ]
@@ -201,6 +208,10 @@ class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
 
 @typing.type_check_only
+class FileLocation(typing_extensions.TypedDict, total=False):
+    filePath: str
+
+@typing.type_check_only
 class Fingerprint(typing_extensions.TypedDict, total=False):
     v1Name: str
     v2Blob: _list[str]
@@ -217,6 +228,57 @@ class GerritSourceContext(typing_extensions.TypedDict, total=False):
 class GitSourceContext(typing_extensions.TypedDict, total=False):
     revisionId: str
     url: str
+
+@typing.type_check_only
+class GrafeasV1FileLocation(typing_extensions.TypedDict, total=False):
+    filePath: str
+
+@typing.type_check_only
+class GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+
+@typing.type_check_only
+class GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness(
+    typing_extensions.TypedDict, total=False
+):
+    environment: bool
+    materials: bool
+    parameters: bool
+
+@typing.type_check_only
+class GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource(
+    typing_extensions.TypedDict, total=False
+):
+    digest: dict[str, typing.Any]
+    entryPoint: str
+    uri: str
+
+@typing.type_check_only
+class GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation(
+    typing_extensions.TypedDict, total=False
+):
+    configSource: GrafeasV1SlsaProvenanceZeroTwoSlsaConfigSource
+    environment: dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
+
+@typing.type_check_only
+class GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial(
+    typing_extensions.TypedDict, total=False
+):
+    digest: dict[str, typing.Any]
+    uri: str
+
+@typing.type_check_only
+class GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    buildFinishedOn: str
+    buildInvocationId: str
+    buildStartedOn: str
+    completeness: GrafeasV1SlsaProvenanceZeroTwoSlsaCompleteness
+    reproducible: bool
 
 @typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
@@ -248,6 +310,7 @@ class InTotoStatement(typing_extensions.TypedDict, total=False):
     predicateType: str
     provenance: InTotoProvenance
     slsaProvenance: SlsaProvenance
+    slsaProvenanceZeroTwo: SlsaProvenanceZeroTwo
     subject: _list[Subject]
 
 @typing.type_check_only
@@ -255,9 +318,19 @@ class Jwt(typing_extensions.TypedDict, total=False):
     compactJwt: str
 
 @typing.type_check_only
+class LanguagePackageDependency(typing_extensions.TypedDict, total=False):
+    package: str
+    version: str
+
+@typing.type_check_only
 class Layer(typing_extensions.TypedDict, total=False):
     arguments: str
     directive: str
+
+@typing.type_check_only
+class License(typing_extensions.TypedDict, total=False):
+    comments: str
+    expression: str
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -338,13 +411,16 @@ class Operation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PackageData(typing_extensions.TypedDict, total=False):
     cpeUri: str
+    dependencyChain: _list[LanguagePackageDependency]
+    fileLocation: _list[FileLocation]
+    hashDigest: str
     os: str
     osVersion: str
     package: str
     packageType: typing_extensions.Literal[
         "PACKAGE_TYPE_UNSPECIFIED", "OS", "MAVEN", "GO", "GO_STDLIB"
     ]
-    pathToFile: _list[str]
+    patchedCve: _list[str]
     unused: str
     version: str
 
@@ -356,6 +432,7 @@ class PackageIssue(typing_extensions.TypedDict, total=False):
     effectiveSeverity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
+    fileLocation: _list[GrafeasV1FileLocation]
     fixAvailable: bool
     fixedCpeUri: str
     fixedPackage: str
@@ -364,8 +441,13 @@ class PackageIssue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PackageOccurrence(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
+    cpeUri: str
+    license: License
     location: _list[Location]
     name: str
+    packageType: str
+    version: Version
 
 @typing.type_check_only
 class ProjectRepoId(typing_extensions.TypedDict, total=False):
@@ -419,6 +501,15 @@ class SlsaProvenance(typing_extensions.TypedDict, total=False):
     materials: _list[Material]
     metadata: SlsaMetadata
     recipe: SlsaRecipe
+
+@typing.type_check_only
+class SlsaProvenanceZeroTwo(typing_extensions.TypedDict, total=False):
+    buildConfig: dict[str, typing.Any]
+    buildType: str
+    builder: GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder
+    invocation: GrafeasV1SlsaProvenanceZeroTwoSlsaInvocation
+    materials: _list[GrafeasV1SlsaProvenanceZeroTwoSlsaMaterial]
+    metadata: GrafeasV1SlsaProvenanceZeroTwoSlsaMetadata
 
 @typing.type_check_only
 class SlsaRecipe(typing_extensions.TypedDict, total=False):
@@ -481,6 +572,9 @@ class Version(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssVersion: typing_extensions.Literal[
+        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
+    ]
     cvssv3: CVSS
     effectiveSeverity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"

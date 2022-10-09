@@ -19,11 +19,10 @@ class ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle(
     ]
 
 @typing.type_check_only
-class GoogleChromePolicyV1AdditionalTargetKeyName(
+class GoogleChromePolicyV1BatchDeleteGroupPoliciesRequest(
     typing_extensions.TypedDict, total=False
 ):
-    key: str
-    keyDescription: str
+    requests: _list[GoogleChromePolicyV1DeleteGroupPolicyRequest]
 
 @typing.type_check_only
 class GoogleChromePolicyV1BatchInheritOrgUnitPoliciesRequest(
@@ -32,10 +31,56 @@ class GoogleChromePolicyV1BatchInheritOrgUnitPoliciesRequest(
     requests: _list[GoogleChromePolicyV1InheritOrgUnitPolicyRequest]
 
 @typing.type_check_only
+class GoogleChromePolicyV1BatchModifyGroupPoliciesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[GoogleChromePolicyV1ModifyGroupPolicyRequest]
+
+@typing.type_check_only
 class GoogleChromePolicyV1BatchModifyOrgUnitPoliciesRequest(
     typing_extensions.TypedDict, total=False
 ):
     requests: _list[GoogleChromePolicyV1ModifyOrgUnitPolicyRequest]
+
+@typing.type_check_only
+class GoogleChromePolicyV1DefineCertificateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    ceritificateName: str
+    certificate: str
+    settings: _list[GoogleChromePolicyV1NetworkSetting]
+    targetResource: str
+
+@typing.type_check_only
+class GoogleChromePolicyV1DefineCertificateResponse(
+    typing_extensions.TypedDict, total=False
+):
+    networkId: str
+    settings: _list[GoogleChromePolicyV1NetworkSetting]
+    targetResource: str
+
+@typing.type_check_only
+class GoogleChromePolicyV1DefineNetworkRequest(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    settings: _list[GoogleChromePolicyV1NetworkSetting]
+    targetResource: str
+
+@typing.type_check_only
+class GoogleChromePolicyV1DefineNetworkResponse(
+    typing_extensions.TypedDict, total=False
+):
+    networkId: str
+    settings: _list[GoogleChromePolicyV1NetworkSetting]
+    targetResource: str
+
+@typing.type_check_only
+class GoogleChromePolicyV1DeleteGroupPolicyRequest(
+    typing_extensions.TypedDict, total=False
+):
+    policySchema: str
+    policyTargetKey: GoogleChromePolicyV1PolicyTargetKey
 
 @typing.type_check_only
 class GoogleChromePolicyV1InheritOrgUnitPolicyRequest(
@@ -45,11 +90,27 @@ class GoogleChromePolicyV1InheritOrgUnitPolicyRequest(
     policyTargetKey: GoogleChromePolicyV1PolicyTargetKey
 
 @typing.type_check_only
-class GoogleChromePolicyV1ListPolicySchemasResponse(
+class GoogleChromePolicyV1ListGroupPriorityOrderingRequest(
     typing_extensions.TypedDict, total=False
 ):
-    nextPageToken: str
-    policySchemas: _list[GoogleChromePolicyV1PolicySchema]
+    policyNamespace: str
+    policyTargetKey: GoogleChromePolicyV1PolicyTargetKey
+
+@typing.type_check_only
+class GoogleChromePolicyV1ListGroupPriorityOrderingResponse(
+    typing_extensions.TypedDict, total=False
+):
+    groupIds: _list[str]
+    policyNamespace: str
+    policyTargetKey: GoogleChromePolicyV1PolicyTargetKey
+
+@typing.type_check_only
+class GoogleChromePolicyV1ModifyGroupPolicyRequest(
+    typing_extensions.TypedDict, total=False
+):
+    policyTargetKey: GoogleChromePolicyV1PolicyTargetKey
+    policyValue: GoogleChromePolicyV1PolicyValue
+    updateMask: str
 
 @typing.type_check_only
 class GoogleChromePolicyV1ModifyOrgUnitPolicyRequest(
@@ -60,40 +121,16 @@ class GoogleChromePolicyV1ModifyOrgUnitPolicyRequest(
     updateMask: str
 
 @typing.type_check_only
-class GoogleChromePolicyV1PolicySchema(dict[str, typing.Any]): ...
+class GoogleChromePolicyV1NetworkSetting(typing_extensions.TypedDict, total=False):
+    policySchema: str
+    value: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleChromePolicyV1PolicySchemaFieldDependencies(
+class GoogleChromePolicyV1PolicyModificationFieldError(
     typing_extensions.TypedDict, total=False
 ):
-    sourceField: str
-    sourceFieldValue: str
-
-@typing.type_check_only
-class GoogleChromePolicyV1PolicySchemaFieldDescription(dict[str, typing.Any]): ...
-
-@typing.type_check_only
-class GoogleChromePolicyV1PolicySchemaFieldKnownValueDescription(
-    typing_extensions.TypedDict, total=False
-):
-    description: str
-    value: str
-
-@typing.type_check_only
-class GoogleChromePolicyV1PolicySchemaNoticeDescription(
-    typing_extensions.TypedDict, total=False
-):
-    acknowledgementRequired: bool
+    error: str
     field: str
-    noticeMessage: str
-    noticeValue: str
-
-@typing.type_check_only
-class GoogleChromePolicyV1PolicySchemaRequiredItems(
-    typing_extensions.TypedDict, total=False
-):
-    fieldConditions: _list[str]
-    requiredFields: _list[str]
 
 @typing.type_check_only
 class GoogleChromePolicyV1PolicyTargetKey(typing_extensions.TypedDict, total=False):
@@ -104,6 +141,30 @@ class GoogleChromePolicyV1PolicyTargetKey(typing_extensions.TypedDict, total=Fal
 class GoogleChromePolicyV1PolicyValue(typing_extensions.TypedDict, total=False):
     policySchema: str
     value: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleChromePolicyV1RemoveCertificateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    networkId: str
+    targetResource: str
+
+@typing.type_check_only
+class GoogleChromePolicyV1RemoveCertificateResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleChromePolicyV1RemoveNetworkRequest(
+    typing_extensions.TypedDict, total=False
+):
+    networkId: str
+    targetResource: str
+
+@typing.type_check_only
+class GoogleChromePolicyV1RemoveNetworkResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleChromePolicyV1ResolveRequest(typing_extensions.TypedDict, total=False):
@@ -125,13 +186,73 @@ class GoogleChromePolicyV1ResolvedPolicy(typing_extensions.TypedDict, total=Fals
     value: GoogleChromePolicyV1PolicyValue
 
 @typing.type_check_only
-class GoogleChromePolicyV1UploadPolicyFileRequest(
+class GoogleChromePolicyV1UpdateGroupPriorityOrderingRequest(
+    typing_extensions.TypedDict, total=False
+):
+    groupIds: _list[str]
+    policyNamespace: str
+    policyTargetKey: GoogleChromePolicyV1PolicyTargetKey
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1AdditionalTargetKeyName(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    keyDescription: str
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1ListPolicySchemasResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    policySchemas: _list[GoogleChromePolicyVersionsV1PolicySchema]
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1PolicySchema(dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies(
+    typing_extensions.TypedDict, total=False
+):
+    sourceField: str
+    sourceFieldValue: str
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1PolicySchemaFieldDescription(
+    dict[str, typing.Any]
+): ...
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescription(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    value: str
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1PolicySchemaNoticeDescription(
+    typing_extensions.TypedDict, total=False
+):
+    acknowledgementRequired: bool
+    field: str
+    noticeMessage: str
+    noticeValue: str
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1PolicySchemaRequiredItems(
+    typing_extensions.TypedDict, total=False
+):
+    fieldConditions: _list[str]
+    requiredFields: _list[str]
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1UploadPolicyFileRequest(
     typing_extensions.TypedDict, total=False
 ):
     policyField: str
 
 @typing.type_check_only
-class GoogleChromePolicyV1UploadPolicyFileResponse(
+class GoogleChromePolicyVersionsV1UploadPolicyFileResponse(
     typing_extensions.TypedDict, total=False
 ):
     downloadUri: str

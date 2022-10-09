@@ -39,6 +39,12 @@ class GoogleFirebaseAppcheckV1betaBatchGetDeviceCheckConfigsResponse(
     configs: _list[GoogleFirebaseAppcheckV1betaDeviceCheckConfig]
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    configs: _list[GoogleFirebaseAppcheckV1betaPlayIntegrityConfig]
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -134,6 +140,12 @@ class GoogleFirebaseAppcheckV1betaExchangeDeviceCheckTokenRequest(
     deviceToken: str
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest(
+    typing_extensions.TypedDict, total=False
+):
+    playIntegrityToken: str
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -170,6 +182,18 @@ class GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse(
     ttl: str
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse(
+    typing_extensions.TypedDict, total=False
+):
+    challenge: str
+    ttl: str
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaListDebugTokensResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -182,6 +206,13 @@ class GoogleFirebaseAppcheckV1betaListServicesResponse(
 ):
     nextPageToken: str
     services: _list[GoogleFirebaseAppcheckV1betaService]
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaPlayIntegrityConfig(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    tokenTtl: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaPublicJwk(typing_extensions.TypedDict, total=False):

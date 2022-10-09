@@ -51,6 +51,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
@@ -81,6 +82,54 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         previous_request: ListFilesResponseHttpRequest,
                         previous_response: ListFilesResponse,
                     ) -> ListFilesResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class KfpArtifactsResource(googleapiclient.discovery.Resource):
+                    def upload(
+                        self,
+                        *,
+                        parent: str,
+                        body: UploadKfpArtifactRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> UploadKfpArtifactMediaResponseHttpRequest: ...
+
+                @typing.type_check_only
+                class MavenArtifactsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> MavenArtifactHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListMavenArtifactsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListMavenArtifactsResponseHttpRequest,
+                        previous_response: ListMavenArtifactsResponse,
+                    ) -> ListMavenArtifactsResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class NpmPackagesResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> NpmPackageHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListNpmPackagesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListNpmPackagesResponseHttpRequest,
+                        previous_response: ListNpmPackagesResponse,
+                    ) -> ListNpmPackagesResponseHttpRequest | None: ...
 
                 @typing.type_check_only
                 class PackagesResource(googleapiclient.discovery.Resource):
@@ -178,6 +227,25 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     def versions(self) -> VersionsResource: ...
 
                 @typing.type_check_only
+                class PythonPackagesResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> PythonPackageHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListPythonPackagesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListPythonPackagesResponseHttpRequest,
+                        previous_response: ListPythonPackagesResponse,
+                    ) -> ListPythonPackagesResponseHttpRequest | None: ...
+
+                @typing.type_check_only
                 class YumArtifactsResource(googleapiclient.discovery.Resource):
                     def import_(
                         self,
@@ -253,7 +321,11 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 def aptArtifacts(self) -> AptArtifactsResource: ...
                 def dockerImages(self) -> DockerImagesResource: ...
                 def files(self) -> FilesResource: ...
+                def kfpArtifacts(self) -> KfpArtifactsResource: ...
+                def mavenArtifacts(self) -> MavenArtifactsResource: ...
+                def npmPackages(self) -> NpmPackagesResource: ...
                 def packages(self) -> PackagesResource: ...
+                def pythonPackages(self) -> PythonPackagesResource: ...
                 def yumArtifacts(self) -> YumArtifactsResource: ...
 
             def get(
@@ -352,12 +424,36 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
+class ListMavenArtifactsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListMavenArtifactsResponse: ...
+
+@typing.type_check_only
+class ListNpmPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListNpmPackagesResponse: ...
+
+@typing.type_check_only
 class ListPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListPackagesResponse: ...
+
+@typing.type_check_only
+class ListPythonPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListPythonPackagesResponse: ...
 
 @typing.type_check_only
 class ListRepositoriesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -392,6 +488,22 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Location: ...
 
 @typing.type_check_only
+class MavenArtifactHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> MavenArtifact: ...
+
+@typing.type_check_only
+class NpmPackageHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> NpmPackage: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -424,6 +536,14 @@ class ProjectSettingsHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ProjectSettings: ...
 
 @typing.type_check_only
+class PythonPackageHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> PythonPackage: ...
+
+@typing.type_check_only
 class RepositoryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -454,6 +574,14 @@ class UploadAptArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UploadAptArtifactMediaResponse: ...
+
+@typing.type_check_only
+class UploadKfpArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> UploadKfpArtifactMediaResponse: ...
 
 @typing.type_check_only
 class UploadYumArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -35,6 +35,7 @@ class GooglePlayDeveloperReportingV1alpha1DimensionValue(
     dimension: str
     int64Value: str
     stringValue: str
+    valueLabel: str
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1ErrorCountMetricSet(

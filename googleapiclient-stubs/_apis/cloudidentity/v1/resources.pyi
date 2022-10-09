@@ -14,6 +14,48 @@ _list = list
 @typing.type_check_only
 class CloudIdentityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class CustomersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class UserinvitationsResource(googleapiclient.discovery.Resource):
+            def cancel(
+                self,
+                *,
+                name: str,
+                body: CancelUserInvitationRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> UserInvitationHttpRequest: ...
+            def isInvitableUser(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> IsInvitableUserResponseHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListUserInvitationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListUserInvitationsResponseHttpRequest,
+                previous_response: ListUserInvitationsResponse,
+            ) -> ListUserInvitationsResponseHttpRequest | None: ...
+            def send(
+                self,
+                *,
+                name: str,
+                body: SendUserInvitationRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+
+        def userinvitations(self) -> UserinvitationsResource: ...
+
+    @typing.type_check_only
     class DevicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DeviceUsersResource(googleapiclient.discovery.Resource):
@@ -321,6 +363,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def customers(self) -> CustomersResource: ...
     def devices(self) -> DevicesResource: ...
     def groups(self) -> GroupsResource: ...
 
@@ -411,6 +454,14 @@ class GroupHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Group: ...
 
 @typing.type_check_only
+class IsInvitableUserResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> IsInvitableUserResponse: ...
+
+@typing.type_check_only
 class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -425,6 +476,14 @@ class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListMembershipsResponse: ...
+
+@typing.type_check_only
+class ListUserInvitationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListUserInvitationsResponse: ...
 
 @typing.type_check_only
 class LookupGroupNameResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -497,3 +556,11 @@ class SecuritySettingsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SecuritySettings: ...
+
+@typing.type_check_only
+class UserInvitationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> UserInvitation: ...

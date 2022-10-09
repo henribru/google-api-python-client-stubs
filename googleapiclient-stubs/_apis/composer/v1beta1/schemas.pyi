@@ -132,6 +132,12 @@ class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class NetworkingConfig(typing_extensions.TypedDict, total=False):
+    connectionType: typing_extensions.Literal[
+        "CONNECTION_TYPE_UNSPECIFIED", "VPC_PEERING", "PRIVATE_SERVICE_CONNECT"
+    ]
+
+@typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
     enableIpMasqAgent: bool
@@ -186,6 +192,7 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
     cloudSqlIpv4CidrBlock: str
     enablePrivateEnvironment: bool
     enablePrivatelyUsedPublicIps: bool
+    networkingConfig: NetworkingConfig
     privateClusterConfig: PrivateClusterConfig
     webServerIpv4CidrBlock: str
     webServerIpv4ReservedRange: str

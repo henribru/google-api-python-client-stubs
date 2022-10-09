@@ -19,6 +19,33 @@ class DataFusionResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class DnsPeeringsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: DnsPeering = ...,
+                        dnsPeeringId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> DnsPeeringHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListDnsPeeringsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDnsPeeringsResponseHttpRequest,
+                        previous_response: ListDnsPeeringsResponse,
+                    ) -> ListDnsPeeringsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -84,6 +111,7 @@ class DataFusionResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def dnsPeerings(self) -> DnsPeeringsResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -171,6 +199,14 @@ class DataFusionResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class DnsPeeringHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> DnsPeering: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -193,6 +229,14 @@ class ListAvailableVersionsResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAvailableVersionsResponse: ...
+
+@typing.type_check_only
+class ListDnsPeeringsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListDnsPeeringsResponse: ...
 
 @typing.type_check_only
 class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):

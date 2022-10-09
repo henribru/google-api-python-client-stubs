@@ -308,6 +308,9 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             tableId: str,
             selectedFields: str = ...,
+            view: typing_extensions.Literal[
+                "BASIC", "FULL", "STORAGE_STATS", "TABLE_METADATA_VIEW_UNSPECIFIED"
+            ] = ...,
             **kwargs: typing.Any
         ) -> TableHttpRequest: ...
         def getIamPolicy(

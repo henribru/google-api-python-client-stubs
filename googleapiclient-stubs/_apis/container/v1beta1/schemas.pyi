@@ -9,6 +9,8 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorCount: str
     acceleratorType: str
     gpuPartitionSize: str
+    gpuSharingConfig: GPUSharingConfig
+    maxTimeSharedClientsPerGpu: str
 
 @typing.type_check_only
 class AddonsConfig(typing_extensions.TypedDict, total=False):
@@ -68,6 +70,31 @@ class BigQueryDestination(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BinaryAuthorization(typing_extensions.TypedDict, total=False):
     enabled: bool
+    evaluationMode: typing_extensions.Literal[
+        "EVALUATION_MODE_UNSPECIFIED", "DISABLED", "PROJECT_SINGLETON_POLICY_ENFORCE"
+    ]
+
+@typing.type_check_only
+class BlueGreenInfo(typing_extensions.TypedDict, total=False):
+    blueInstanceGroupUrls: _list[str]
+    bluePoolDeletionStartTime: str
+    greenInstanceGroupUrls: _list[str]
+    greenPoolVersion: str
+    phase: typing_extensions.Literal[
+        "PHASE_UNSPECIFIED",
+        "UPDATE_STARTED",
+        "CREATING_GREEN_POOL",
+        "CORDONING_BLUE_POOL",
+        "DRAINING_BLUE_POOL",
+        "NODE_POOL_SOAKING",
+        "DELETING_BLUE_POOL",
+        "ROLLBACK_STARTED",
+    ]
+
+@typing.type_check_only
+class BlueGreenSettings(typing_extensions.TypedDict, total=False):
+    nodePoolSoakDuration: str
+    standardRolloutPolicy: StandardRolloutPolicy
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False):
@@ -105,6 +132,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     clusterTelemetry: ClusterTelemetry
     conditions: _list[StatusCondition]
     confidentialNodes: ConfidentialNodes
+    costManagementConfig: CostManagementConfig
     createTime: str
     currentMasterVersion: str
     currentNodeCount: int
@@ -149,6 +177,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     podSecurityPolicyConfig: PodSecurityPolicyConfig
     privateCluster: bool
     privateClusterConfig: PrivateClusterConfig
+    protectConfig: ProtectConfig
     releaseChannel: ReleaseChannel
     resourceLabels: dict[str, typing.Any]
     resourceUsageExportConfig: ResourceUsageExportConfig
@@ -195,6 +224,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
     desiredClusterTelemetry: ClusterTelemetry
+    desiredCostManagementConfig: CostManagementConfig
     desiredDatabaseEncryption: DatabaseEncryption
     desiredDatapathProvider: typing_extensions.Literal[
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
@@ -218,6 +248,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredNodePoolAutoConfigNetworkTags: NetworkTags
     desiredNodePoolAutoscaling: NodePoolAutoscaling
     desiredNodePoolId: str
+    desiredNodePoolLoggingConfig: NodePoolLoggingConfig
     desiredNodeVersion: str
     desiredNotificationConfig: NotificationConfig
     desiredPodSecurityPolicyConfig: PodSecurityPolicyConfig
@@ -228,6 +259,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
         "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
         "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL",
     ]
+    desiredProtectConfig: ProtectConfig
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
     desiredServiceExternalIpsConfig: ServiceExternalIPsConfig
@@ -246,6 +278,9 @@ class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class CompleteNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ConfidentialNodes(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -255,6 +290,10 @@ class ConfigConnectorConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConsumptionMeteringConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class CostManagementConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
@@ -318,6 +357,13 @@ class Filter(typing_extensions.TypedDict, total=False):
     eventType: _list[str]
 
 @typing.type_check_only
+class GPUSharingConfig(typing_extensions.TypedDict, total=False):
+    gpuSharingStrategy: typing_extensions.Literal[
+        "GPU_SHARING_STRATEGY_UNSPECIFIED", "TIME_SHARING"
+    ]
+    maxSharedClientsPerGpu: str
+
+@typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -374,11 +420,17 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     clusterIpv4CidrBlock: str
     clusterSecondaryRangeName: str
     createSubnetwork: bool
+    ipv6AccessType: typing_extensions.Literal[
+        "IPV6_ACCESS_TYPE_UNSPECIFIED", "INTERNAL", "EXTERNAL"
+    ]
     nodeIpv4Cidr: str
     nodeIpv4CidrBlock: str
     servicesIpv4Cidr: str
     servicesIpv4CidrBlock: str
+    servicesIpv6CidrBlock: str
     servicesSecondaryRangeName: str
+    stackType: typing_extensions.Literal["STACK_TYPE_UNSPECIFIED", "IPV4", "IPV4_IPV6"]
+    subnetIpv6CidrBlock: str
     subnetworkName: str
     tpuIpv4CidrBlock: str
     useIpAliases: bool
@@ -423,6 +475,9 @@ class LegacyAbac(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
+    cgroupMode: typing_extensions.Literal[
+        "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
+    ]
     sysctls: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -462,6 +517,12 @@ class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
     componentConfig: LoggingComponentConfig
+
+@typing.type_check_only
+class LoggingVariantConfig(typing_extensions.TypedDict, total=False):
+    variant: typing_extensions.Literal[
+        "VARIANT_UNSPECIFIED", "DEFAULT", "MAX_THROUGHPUT"
+    ]
 
 @typing.type_check_only
 class MaintenanceExclusionOptions(typing_extensions.TypedDict, total=False):
@@ -545,6 +606,13 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
+class NetworkPerformanceConfig(typing_extensions.TypedDict, total=False):
+    externalIpEgressBandwidthTier: typing_extensions.Literal[
+        "TIER_UNSPECIFIED", "TIER_1"
+    ]
+    totalEgressBandwidthTier: typing_extensions.Literal["TIER_UNSPECIFIED", "TIER_1"]
+
+@typing.type_check_only
 class NetworkPolicy(typing_extensions.TypedDict, total=False):
     enabled: bool
     provider: typing_extensions.Literal["PROVIDER_UNSPECIFIED", "CALICO"]
@@ -573,6 +641,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     linuxNodeConfig: LinuxNodeConfig
     localSsdCount: int
+    loggingConfig: NodePoolLoggingConfig
     machineType: str
     metadata: dict[str, typing.Any]
     minCpuPlatform: str
@@ -591,6 +660,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeConfigDefaults(typing_extensions.TypedDict, total=False):
     gcfsConfig: GcfsConfig
+    loggingConfig: NodePoolLoggingConfig
 
 @typing.type_check_only
 class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
@@ -612,6 +682,7 @@ class NodeManagement(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
     createPodRange: bool
+    networkPerformanceConfig: NetworkPerformanceConfig
     podIpv4CidrBlock: str
     podRange: str
 
@@ -640,6 +711,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
         "ERROR",
     ]
     statusMessage: str
+    updateInfo: UpdateInfo
     upgradeSettings: UpgradeSettings
     version: str
 
@@ -651,12 +723,21 @@ class NodePoolAutoConfig(typing_extensions.TypedDict, total=False):
 class NodePoolAutoscaling(typing_extensions.TypedDict, total=False):
     autoprovisioned: bool
     enabled: bool
+    locationPolicy: typing_extensions.Literal[
+        "LOCATION_POLICY_UNSPECIFIED", "BALANCED", "ANY"
+    ]
     maxNodeCount: int
     minNodeCount: int
+    totalMaxNodeCount: int
+    totalMinNodeCount: int
 
 @typing.type_check_only
 class NodePoolDefaults(typing_extensions.TypedDict, total=False):
     nodeConfigDefaults: NodeConfigDefaults
+
+@typing.type_check_only
+class NodePoolLoggingConfig(typing_extensions.TypedDict, total=False):
+    variantConfig: LoggingVariantConfig
 
 @typing.type_check_only
 class NodeTaint(typing_extensions.TypedDict, total=False):
@@ -701,6 +782,10 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PrivateClusterMasterGlobalAccessConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
+
+@typing.type_check_only
+class ProtectConfig(typing_extensions.TypedDict, total=False):
+    workloadConfig: WorkloadConfig
 
 @typing.type_check_only
 class PubSub(typing_extensions.TypedDict, total=False):
@@ -750,6 +835,7 @@ class RollbackNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False):
     name: str
     nodePoolId: str
     projectId: str
+    respectPdb: bool
     zone: str
 
 @typing.type_check_only
@@ -897,6 +983,12 @@ class ShieldedNodes(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class StandardRolloutPolicy(typing_extensions.TypedDict, total=False):
+    batchNodeCount: int
+    batchPercentage: float
+    batchSoakDuration: str
+
+@typing.type_check_only
 class StartIPRotationRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
     name: str
@@ -963,6 +1055,10 @@ class UpdateClusterRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class UpdateInfo(typing_extensions.TypedDict, total=False):
+    blueGreenInfo: BlueGreenInfo
+
+@typing.type_check_only
 class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
     masterVersion: str
@@ -981,7 +1077,9 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     labels: NodeLabels
     linuxNodeConfig: LinuxNodeConfig
     locations: _list[str]
+    loggingConfig: NodePoolLoggingConfig
     name: str
+    nodeNetworkConfig: NodeNetworkConfig
     nodePoolId: str
     nodeVersion: str
     projectId: str
@@ -1014,8 +1112,12 @@ class UpgradeEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpgradeSettings(typing_extensions.TypedDict, total=False):
+    blueGreenSettings: BlueGreenSettings
     maxSurge: int
     maxUnavailable: int
+    strategy: typing_extensions.Literal[
+        "NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED", "BLUE_GREEN", "SURGE"
+    ]
 
 @typing.type_check_only
 class UsableSubnetwork(typing_extensions.TypedDict, total=False):
@@ -1062,6 +1164,12 @@ class WorkloadALTSConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkloadCertificates(typing_extensions.TypedDict, total=False):
     enableCertificates: bool
+
+@typing.type_check_only
+class WorkloadConfig(typing_extensions.TypedDict, total=False):
+    auditMode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "DISABLED", "BASIC", "BASELINE", "RESTRICTED"
+    ]
 
 @typing.type_check_only
 class WorkloadIdentityConfig(typing_extensions.TypedDict, total=False):

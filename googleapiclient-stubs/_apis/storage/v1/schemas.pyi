@@ -10,6 +10,7 @@ class Bucket(typing_extensions.TypedDict, total=False):
     autoclass: dict[str, typing.Any]
     billing: dict[str, typing.Any]
     cors: _list[dict[str, typing.Any]]
+    customPlacementConfig: dict[str, typing.Any]
     defaultEventBasedHold: bool
     defaultObjectAcl: _list[ObjectAccessControl]
     encryption: dict[str, typing.Any]

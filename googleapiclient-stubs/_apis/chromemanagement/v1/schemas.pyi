@@ -89,6 +89,23 @@ class GoogleChromeManagementV1BatteryStatusReport(
     serialNumber: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1BootPerformanceReport(
+    typing_extensions.TypedDict, total=False
+):
+    bootUpDuration: str
+    bootUpTime: str
+    reportTime: str
+    shutdownDuration: str
+    shutdownReason: typing_extensions.Literal[
+        "SHUTDOWN_REASON_UNSPECIFIED",
+        "USER_REQUEST",
+        "SYSTEM_UPDATE",
+        "LOW_BATTERY",
+        "OTHER",
+    ]
+    shutdownTime: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1BrowserVersion(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
         "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "DEV", "BETA", "STABLE"
@@ -111,6 +128,7 @@ class GoogleChromeManagementV1BrowserVersion(typing_extensions.TypedDict, total=
 class GoogleChromeManagementV1ChromeAppInfo(typing_extensions.TypedDict, total=False):
     googleOwned: bool
     isCwsHosted: bool
+    isExtensionPolicySupported: bool
     isKioskOnly: bool
     isTheme: bool
     kioskEnabled: bool
@@ -154,6 +172,31 @@ class GoogleChromeManagementV1CountChromeAppRequestsResponse(
     totalSize: int
 
 @typing.type_check_only
+class GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deviceAueCountReports: _list[GoogleChromeManagementV1DeviceAueCountReport]
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    noRecentPolicySyncCount: str
+    noRecentUserActivityCount: str
+    osVersionNotCompliantCount: str
+    pendingUpdate: str
+    unsupportedPolicyCount: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    cpuReports: _list[GoogleChromeManagementV1DeviceHardwareCountReport]
+    memoryReports: _list[GoogleChromeManagementV1DeviceHardwareCountReport]
+    modelReports: _list[GoogleChromeManagementV1DeviceHardwareCountReport]
+    storageReports: _list[GoogleChromeManagementV1DeviceHardwareCountReport]
+
+@typing.type_check_only
 class GoogleChromeManagementV1CountChromeVersionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -172,6 +215,8 @@ class GoogleChromeManagementV1CountInstalledAppsResponse(
 @typing.type_check_only
 class GoogleChromeManagementV1CpuInfo(typing_extensions.TypedDict, total=False):
     architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X64"]
+    keylockerConfigured: bool
+    keylockerSupported: bool
     maxClockSpeed: int
     model: str
 
@@ -193,6 +238,37 @@ class GoogleChromeManagementV1CpuTemperatureInfo(
 class GoogleChromeManagementV1Device(typing_extensions.TypedDict, total=False):
     deviceId: str
     machine: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1DeviceAueCountReport(
+    typing_extensions.TypedDict, total=False
+):
+    aueMonth: typing_extensions.Literal[
+        "MONTH_UNSPECIFIED",
+        "JANUARY",
+        "FEBRUARY",
+        "MARCH",
+        "APRIL",
+        "MAY",
+        "JUNE",
+        "JULY",
+        "AUGUST",
+        "SEPTEMBER",
+        "OCTOBER",
+        "NOVEMBER",
+        "DECEMBER",
+    ]
+    aueYear: str
+    count: str
+    expired: bool
+    model: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1DeviceHardwareCountReport(
+    typing_extensions.TypedDict, total=False
+):
+    bucket: str
+    count: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1DiskInfo(typing_extensions.TypedDict, total=False):
@@ -246,6 +322,19 @@ class GoogleChromeManagementV1GraphicsStatusReport(
     reportTime: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1HttpsLatencyRoutineData(
+    typing_extensions.TypedDict, total=False
+):
+    latency: str
+    problem: typing_extensions.Literal[
+        "HTTPS_LATENCY_PROBLEM_UNSPECIFIED",
+        "FAILED_DNS_RESOLUTIONS",
+        "FAILED_HTTPS_REQUESTS",
+        "HIGH_LATENCY",
+        "VERY_HIGH_LATENCY",
+    ]
+
+@typing.type_check_only
 class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=False):
     appId: str
     appInstallType: typing_extensions.Literal[
@@ -281,6 +370,7 @@ class GoogleChromeManagementV1ListTelemetryDevicesResponse(
 @typing.type_check_only
 class GoogleChromeManagementV1MemoryInfo(typing_extensions.TypedDict, total=False):
     availableRamBytes: str
+    totalMemoryEncryption: GoogleChromeManagementV1TotalMemoryEncryptionInfo
     totalRamBytes: str
 
 @typing.type_check_only
@@ -293,14 +383,57 @@ class GoogleChromeManagementV1MemoryStatusReport(
     systemRamFreeBytes: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1NetworkDevice(typing_extensions.TypedDict, total=False):
+    iccid: str
+    imei: str
+    macAddress: str
+    mdn: str
+    meid: str
+    type: typing_extensions.Literal[
+        "NETWORK_DEVICE_TYPE_UNSPECIFIED",
+        "CELLULAR_DEVICE",
+        "ETHERNET_DEVICE",
+        "WIFI_DEVICE",
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1NetworkDiagnosticsReport(
+    typing_extensions.TypedDict, total=False
+):
+    httpsLatencyData: GoogleChromeManagementV1HttpsLatencyRoutineData
+    reportTime: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1NetworkInfo(typing_extensions.TypedDict, total=False):
+    networkDevices: _list[GoogleChromeManagementV1NetworkDevice]
+
+@typing.type_check_only
 class GoogleChromeManagementV1NetworkStatusReport(
     typing_extensions.TypedDict, total=False
 ):
+    connectionState: typing_extensions.Literal[
+        "NETWORK_CONNECTION_STATE_UNSPECIFIED",
+        "ONLINE",
+        "CONNECTED",
+        "PORTAL",
+        "CONNECTING",
+        "NOT_CONNECTED",
+    ]
+    connectionType: typing_extensions.Literal[
+        "NETWORK_TYPE_UNSPECIFIED", "CELLULAR", "ETHERNET", "TETHER", "VPN", "WIFI"
+    ]
+    encryptionOn: bool
     gatewayIpAddress: str
+    guid: str
     lanIpAddress: str
+    receivingBitRateMbps: str
     reportTime: str
     sampleFrequency: str
     signalStrengthDbm: int
+    transmissionBitRateMbps: str
+    transmissionPowerDbm: int
+    wifiLinkQuality: str
+    wifiPowerManagementEnabled: bool
 
 @typing.type_check_only
 class GoogleChromeManagementV1OsUpdateStatus(typing_extensions.TypedDict, total=False):
@@ -342,6 +475,7 @@ class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total
     audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
     batteryInfo: _list[GoogleChromeManagementV1BatteryInfo]
     batteryStatusReport: _list[GoogleChromeManagementV1BatteryStatusReport]
+    bootPerformanceReport: _list[GoogleChromeManagementV1BootPerformanceReport]
     cpuInfo: _list[GoogleChromeManagementV1CpuInfo]
     cpuStatusReport: _list[GoogleChromeManagementV1CpuStatusReport]
     customer: str
@@ -351,12 +485,47 @@ class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total
     memoryInfo: GoogleChromeManagementV1MemoryInfo
     memoryStatusReport: _list[GoogleChromeManagementV1MemoryStatusReport]
     name: str
+    networkDiagnosticsReport: _list[GoogleChromeManagementV1NetworkDiagnosticsReport]
+    networkInfo: GoogleChromeManagementV1NetworkInfo
     networkStatusReport: _list[GoogleChromeManagementV1NetworkStatusReport]
     orgUnitId: str
     osUpdateStatus: _list[GoogleChromeManagementV1OsUpdateStatus]
     serialNumber: str
     storageInfo: GoogleChromeManagementV1StorageInfo
     storageStatusReport: _list[GoogleChromeManagementV1StorageStatusReport]
+    thunderboltInfo: _list[GoogleChromeManagementV1ThunderboltInfo]
+
+@typing.type_check_only
+class GoogleChromeManagementV1ThunderboltInfo(typing_extensions.TypedDict, total=False):
+    securityLevel: typing_extensions.Literal[
+        "THUNDERBOLT_SECURITY_LEVEL_UNSPECIFIED",
+        "THUNDERBOLT_SECURITY_NONE_LEVEL",
+        "THUNDERBOLT_SECURITY_USER_LEVEL",
+        "THUNDERBOLT_SECURITY_SECURE_LEVEL",
+        "THUNDERBOLT_SECURITY_DP_ONLY_LEVEL",
+        "THUNDERBOLT_SECURITY_USB_ONLY_LEVEL",
+        "THUNDERBOLT_SECURITY_NO_PCIE_LEVEL",
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1TotalMemoryEncryptionInfo(
+    typing_extensions.TypedDict, total=False
+):
+    encryptionAlgorithm: typing_extensions.Literal[
+        "MEMORY_ENCRYPTION_ALGORITHM_UNSPECIFIED",
+        "MEMORY_ENCRYPTION_ALGORITHM_UNKNOWN",
+        "MEMORY_ENCRYPTION_ALGORITHM_AES_XTS_128",
+        "MEMORY_ENCRYPTION_ALGORITHM_AES_XTS_256",
+    ]
+    encryptionState: typing_extensions.Literal[
+        "MEMORY_ENCRYPTION_STATE_UNSPECIFIED",
+        "MEMORY_ENCRYPTION_STATE_UNKNOWN",
+        "MEMORY_ENCRYPTION_STATE_DISABLED",
+        "MEMORY_ENCRYPTION_STATE_TME",
+        "MEMORY_ENCRYPTION_STATE_MKTME",
+    ]
+    keyLength: str
+    maxKeys: str
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):

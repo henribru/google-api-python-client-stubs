@@ -39,6 +39,9 @@ class AndroidApp(typing_extensions.TypedDict, total=False):
     name: str
     packageName: str
     projectId: str
+    sha1Hashes: _list[str]
+    sha256Hashes: _list[str]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
 @typing.type_check_only
 class AndroidAppConfig(typing_extensions.TypedDict, total=False):
@@ -61,15 +64,19 @@ class FinalizeDefaultLocationRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FirebaseAppInfo(typing_extensions.TypedDict, total=False):
+    apiKeyId: str
     appId: str
     displayName: str
     name: str
     namespace: str
     platform: typing_extensions.Literal["PLATFORM_UNSPECIFIED", "IOS", "ANDROID", "WEB"]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
 @typing.type_check_only
 class FirebaseProject(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     displayName: str
+    etag: str
     name: str
     projectId: str
     projectNumber: str
@@ -85,6 +92,7 @@ class IosApp(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     projectId: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
     teamId: str
 
 @typing.type_check_only
@@ -156,6 +164,24 @@ class RemoveAnalyticsRequest(typing_extensions.TypedDict, total=False):
     analyticsPropertyId: str
 
 @typing.type_check_only
+class RemoveAndroidAppRequest(typing_extensions.TypedDict, total=False):
+    allowMissing: bool
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
+class RemoveIosAppRequest(typing_extensions.TypedDict, total=False):
+    allowMissing: bool
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
+class RemoveWebAppRequest(typing_extensions.TypedDict, total=False):
+    allowMissing: bool
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
 class SearchFirebaseAppsResponse(typing_extensions.TypedDict, total=False):
     apps: _list[FirebaseAppInfo]
     nextPageToken: str
@@ -189,6 +215,21 @@ class StreamMapping(typing_extensions.TypedDict, total=False):
     streamId: str
 
 @typing.type_check_only
+class UndeleteAndroidAppRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
+class UndeleteIosAppRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
+class UndeleteWebAppRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
 class WebApp(typing_extensions.TypedDict, total=False):
     apiKeyId: str
     appId: str
@@ -196,6 +237,7 @@ class WebApp(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     projectId: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
     webId: str
 
 @typing.type_check_only

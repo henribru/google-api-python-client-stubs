@@ -78,6 +78,9 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
+            def retrieveLegacySecretKey(
+                self, *, key: str, **kwargs: typing.Any
+            ) -> GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponseHttpRequest: ...
 
         @typing.type_check_only
         class RelatedaccountgroupmembershipsResource(
@@ -217,6 +220,16 @@ class GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecaptchaenterpriseV1Metrics: ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest(

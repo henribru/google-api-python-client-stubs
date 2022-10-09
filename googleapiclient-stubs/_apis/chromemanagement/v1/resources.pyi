@@ -56,6 +56,31 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
+            def countChromeDevicesReachingAutoExpirationDate(
+                self,
+                *,
+                customer: str,
+                maxAueDate: str = ...,
+                minAueDate: str = ...,
+                orgUnitId: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponseHttpRequest: ...
+            def countChromeDevicesThatNeedAttention(
+                self,
+                *,
+                customer: str,
+                orgUnitId: str = ...,
+                readMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponseHttpRequest: ...
+            def countChromeHardwareFleetDevices(
+                self,
+                *,
+                customer: str,
+                orgUnitId: str = ...,
+                readMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponseHttpRequest: ...
             def countChromeVersions(
                 self,
                 *,
@@ -117,6 +142,9 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
         class TelemetryResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DevicesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, readMask: str = ..., **kwargs: typing.Any
+                ) -> GoogleChromeManagementV1TelemetryDeviceHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -172,6 +200,36 @@ class GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest(
     ) -> GoogleChromeManagementV1CountChromeAppRequestsResponse: ...
 
 @typing.type_check_only
+class GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse: ...
+
+@typing.type_check_only
 class GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -210,3 +268,13 @@ class GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleChromeManagementV1ListTelemetryDevicesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryDeviceHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromeManagementV1TelemetryDevice: ...

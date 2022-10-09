@@ -74,6 +74,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 ackBundleInstallationWarning: bool = ...,
+                deviceTierConfigId: str = ...,
                 **kwargs: typing.Any
             ) -> BundleHttpRequest: ...
 
@@ -460,6 +461,175 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class MonetizationResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class SubscriptionsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class BasePlansResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OffersResource(googleapiclient.discovery.Resource):
+                    def activate(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        offerId: str,
+                        body: ActivateSubscriptionOfferRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> SubscriptionOfferHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        body: SubscriptionOffer = ...,
+                        offerId: str = ...,
+                        regionsVersion_version: str = ...,
+                        **kwargs: typing.Any
+                    ) -> SubscriptionOfferHttpRequest: ...
+                    def deactivate(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        offerId: str,
+                        body: DeactivateSubscriptionOfferRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> SubscriptionOfferHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        offerId: str,
+                        **kwargs: typing.Any
+                    ) -> googleapiclient.http.HttpRequest: ...
+                    def get(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        offerId: str,
+                        **kwargs: typing.Any
+                    ) -> SubscriptionOfferHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListSubscriptionOffersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListSubscriptionOffersResponseHttpRequest,
+                        previous_response: ListSubscriptionOffersResponse,
+                    ) -> ListSubscriptionOffersResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        offerId: str,
+                        body: SubscriptionOffer = ...,
+                        regionsVersion_version: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> SubscriptionOfferHttpRequest: ...
+
+                def activate(
+                    self,
+                    *,
+                    packageName: str,
+                    productId: str,
+                    basePlanId: str,
+                    body: ActivateBasePlanRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SubscriptionHttpRequest: ...
+                def deactivate(
+                    self,
+                    *,
+                    packageName: str,
+                    productId: str,
+                    basePlanId: str,
+                    body: DeactivateBasePlanRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SubscriptionHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    packageName: str,
+                    productId: str,
+                    basePlanId: str,
+                    **kwargs: typing.Any
+                ) -> googleapiclient.http.HttpRequest: ...
+                def migratePrices(
+                    self,
+                    *,
+                    packageName: str,
+                    productId: str,
+                    basePlanId: str,
+                    body: MigrateBasePlanPricesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> MigrateBasePlanPricesResponseHttpRequest: ...
+                def offers(self) -> OffersResource: ...
+
+            def archive(
+                self,
+                *,
+                packageName: str,
+                productId: str,
+                body: ArchiveSubscriptionRequest = ...,
+                **kwargs: typing.Any
+            ) -> SubscriptionHttpRequest: ...
+            def create(
+                self,
+                *,
+                packageName: str,
+                body: Subscription = ...,
+                productId: str = ...,
+                regionsVersion_version: str = ...,
+                **kwargs: typing.Any
+            ) -> SubscriptionHttpRequest: ...
+            def delete(
+                self, *, packageName: str, productId: str, **kwargs: typing.Any
+            ) -> googleapiclient.http.HttpRequest: ...
+            def get(
+                self, *, packageName: str, productId: str, **kwargs: typing.Any
+            ) -> SubscriptionHttpRequest: ...
+            def list(
+                self,
+                *,
+                packageName: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                showArchived: bool = ...,
+                **kwargs: typing.Any
+            ) -> ListSubscriptionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSubscriptionsResponseHttpRequest,
+                previous_response: ListSubscriptionsResponse,
+            ) -> ListSubscriptionsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                packageName: str,
+                productId: str,
+                body: Subscription = ...,
+                regionsVersion_version: str = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> SubscriptionHttpRequest: ...
+            def basePlans(self) -> BasePlansResource: ...
+
         def convertRegionPrices(
             self,
             *,
@@ -467,6 +637,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             body: ConvertRegionPricesRequest = ...,
             **kwargs: typing.Any
         ) -> ConvertRegionPricesResponseHttpRequest: ...
+        def subscriptions(self) -> SubscriptionsResource: ...
 
     @typing.type_check_only
     class OrdersResource(googleapiclient.discovery.Resource):
@@ -555,6 +726,12 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             ) -> googleapiclient.http.HttpRequest: ...
 
         @typing.type_check_only
+        class Subscriptionsv2Resource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, packageName: str, token: str, **kwargs: typing.Any
+            ) -> SubscriptionPurchaseV2HttpRequest: ...
+
+        @typing.type_check_only
         class VoidedpurchasesResource(googleapiclient.discovery.Resource):
             def list(
                 self,
@@ -571,6 +748,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
 
         def products(self) -> ProductsResource: ...
         def subscriptions(self) -> SubscriptionsResource: ...
+        def subscriptionsv2(self) -> Subscriptionsv2Resource: ...
         def voidedpurchases(self) -> VoidedpurchasesResource: ...
 
     @typing.type_check_only
@@ -860,6 +1038,22 @@ class ListDeviceTierConfigsResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListDeviceTierConfigsResponse: ...
 
 @typing.type_check_only
+class ListSubscriptionOffersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSubscriptionOffersResponse: ...
+
+@typing.type_check_only
+class ListSubscriptionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSubscriptionsResponse: ...
+
+@typing.type_check_only
 class ListUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -882,6 +1076,14 @@ class ListingsListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListingsListResponse: ...
+
+@typing.type_check_only
+class MigrateBasePlanPricesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> MigrateBasePlanPricesResponse: ...
 
 @typing.type_check_only
 class ProductPurchaseHttpRequest(googleapiclient.http.HttpRequest):
@@ -916,12 +1118,36 @@ class ReviewsReplyResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ReviewsReplyResponse: ...
 
 @typing.type_check_only
+class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Subscription: ...
+
+@typing.type_check_only
+class SubscriptionOfferHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SubscriptionOffer: ...
+
+@typing.type_check_only
 class SubscriptionPurchaseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SubscriptionPurchase: ...
+
+@typing.type_check_only
+class SubscriptionPurchaseV2HttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SubscriptionPurchaseV2: ...
 
 @typing.type_check_only
 class SubscriptionPurchasesDeferResponseHttpRequest(googleapiclient.http.HttpRequest):

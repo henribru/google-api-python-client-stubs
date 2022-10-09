@@ -311,6 +311,15 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListRuntimesResponseHttpRequest,
                     previous_response: ListRuntimesResponse,
                 ) -> ListRuntimesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Runtime = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def refreshRuntimeTokenInternal(
                     self,
                     *,

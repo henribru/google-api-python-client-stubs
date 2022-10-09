@@ -5,6 +5,10 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ApplianceCluster(typing_extensions.TypedDict, total=False):
+    resourceLink: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -134,6 +138,7 @@ class Membership(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MembershipEndpoint(typing_extensions.TypedDict, total=False):
+    applianceCluster: ApplianceCluster
     edgeCluster: EdgeCluster
     gkeCluster: GkeCluster
     kubernetesMetadata: KubernetesMetadata
@@ -161,6 +166,9 @@ class MultiCloudCluster(typing_extensions.TypedDict, total=False):
 class OnPremCluster(typing_extensions.TypedDict, total=False):
     adminCluster: bool
     clusterMissing: bool
+    clusterType: typing_extensions.Literal[
+        "CLUSTERTYPE_UNSPECIFIED", "BOOTSTRAP", "HYBRID", "STANDALONE", "USER"
+    ]
     resourceLink: str
 
 @typing.type_check_only

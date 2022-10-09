@@ -134,6 +134,7 @@ class CreateMessageRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CryptoHashConfig(typing_extensions.TypedDict, total=False):
     cryptoKey: str
+    kmsWrapped: KmsWrappedCryptoKey
 
 @typing.type_check_only
 class Dataset(typing_extensions.TypedDict, total=False):
@@ -143,6 +144,12 @@ class Dataset(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DateShiftConfig(typing_extensions.TypedDict, total=False):
     cryptoKey: str
+    kmsWrapped: KmsWrappedCryptoKey
+
+@typing.type_check_only
+class DeidentifiedStoreDestination(typing_extensions.TypedDict, total=False):
+    config: DeidentifyConfig
+    store: str
 
 @typing.type_check_only
 class DeidentifyConfig(typing_extensions.TypedDict, total=False):
@@ -155,18 +162,22 @@ class DeidentifyConfig(typing_extensions.TypedDict, total=False):
 class DeidentifyDatasetRequest(typing_extensions.TypedDict, total=False):
     config: DeidentifyConfig
     destinationDataset: str
+    gcsConfigUri: str
 
 @typing.type_check_only
 class DeidentifyDicomStoreRequest(typing_extensions.TypedDict, total=False):
     config: DeidentifyConfig
     destinationStore: str
     filterConfig: DicomFilterConfig
+    gcsConfigUri: str
 
 @typing.type_check_only
 class DeidentifyFhirStoreRequest(typing_extensions.TypedDict, total=False):
     config: DeidentifyConfig
     destinationStore: str
+    gcsConfigUri: str
     resourceFilter: FhirFilter
+    skipModifiedResources: bool
 
 @typing.type_check_only
 class DeidentifySummary(typing_extensions.TypedDict, total=False): ...
@@ -287,6 +298,9 @@ class FhirFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FhirStore(typing_extensions.TypedDict, total=False):
+    complexDataTypeReferenceParsing: typing_extensions.Literal[
+        "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED", "DISABLED", "ENABLED"
+    ]
     defaultSearchHandlingStrict: bool
     disableReferentialIntegrity: bool
     disableResourceVersioning: bool
@@ -490,6 +504,11 @@ class IngestMessageResponse(typing_extensions.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
+class KmsWrappedCryptoKey(typing_extensions.TypedDict, total=False):
+    cryptoKey: str
+    wrappedKey: str
+
+@typing.type_check_only
 class LinkedEntity(typing_extensions.TypedDict, total=False):
     entityId: str
 
@@ -666,7 +685,9 @@ class RevokeConsentRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SchemaConfig(typing_extensions.TypedDict, total=False):
     recursiveStructureDepth: str
-    schemaType: typing_extensions.Literal["SCHEMA_TYPE_UNSPECIFIED", "ANALYTICS"]
+    schemaType: typing_extensions.Literal[
+        "SCHEMA_TYPE_UNSPECIFIED", "ANALYTICS", "ANALYTICS_V2"
+    ]
 
 @typing.type_check_only
 class SchemaGroup(dict[str, typing.Any]): ...
@@ -725,6 +746,7 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StreamConfig(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1FhirBigQueryDestination
+    deidentifiedStoreDestination: DeidentifiedStoreDestination
     resourceTypes: _list[str]
 
 @typing.type_check_only

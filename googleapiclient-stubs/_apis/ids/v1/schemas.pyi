@@ -41,7 +41,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
         "SEVERITY_UNSPECIFIED", "INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
     trafficLogs: bool
     updateTime: str

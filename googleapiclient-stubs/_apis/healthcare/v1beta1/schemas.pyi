@@ -188,6 +188,11 @@ class DateShiftConfig(typing_extensions.TypedDict, total=False):
     kmsWrapped: KmsWrappedCryptoKey
 
 @typing.type_check_only
+class DeidentifiedStoreDestination(typing_extensions.TypedDict, total=False):
+    config: DeidentifyConfig
+    store: str
+
+@typing.type_check_only
 class DeidentifyConfig(typing_extensions.TypedDict, total=False):
     annotation: AnnotationConfig
     dicom: DicomConfig
@@ -215,6 +220,7 @@ class DeidentifyFhirStoreRequest(typing_extensions.TypedDict, total=False):
     destinationStore: str
     gcsConfigUri: str
     resourceFilter: FhirFilter
+    skipModifiedResources: bool
 
 @typing.type_check_only
 class DeidentifyOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -360,11 +366,19 @@ class FhirFilter(typing_extensions.TypedDict, total=False):
     resources: Resources
 
 @typing.type_check_only
+class FhirNotificationConfig(typing_extensions.TypedDict, total=False):
+    pubsubTopic: str
+    sendFullResource: bool
+
+@typing.type_check_only
 class FhirOutput(typing_extensions.TypedDict, total=False):
     fhirStore: str
 
 @typing.type_check_only
 class FhirStore(typing_extensions.TypedDict, total=False):
+    complexDataTypeReferenceParsing: typing_extensions.Literal[
+        "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED", "DISABLED", "ENABLED"
+    ]
     defaultSearchHandlingStrict: bool
     disableReferentialIntegrity: bool
     disableResourceVersioning: bool
@@ -372,6 +386,7 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     notificationConfig: NotificationConfig
+    notificationConfigs: _list[FhirNotificationConfig]
     searchConfig: SearchConfig
     streamConfigs: _list[StreamConfig]
     validationConfig: ValidationConfig
@@ -911,6 +926,7 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StreamConfig(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1beta1FhirBigQueryDestination
+    deidentifiedStoreDestination: DeidentifiedStoreDestination
     resourceTypes: _list[str]
 
 @typing.type_check_only

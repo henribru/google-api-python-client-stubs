@@ -5,6 +5,9 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class CancelUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CheckTransitiveMembershipResponse(typing_extensions.TypedDict, total=False):
     hasMembership: bool
 
@@ -196,6 +199,7 @@ class GoogleAppsCloudidentityDevicesV1Device(typing_extensions.TypedDict, total=
         "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "UNCOMPROMISED"
     ]
     createTime: str
+    deviceId: str
     deviceType: typing_extensions.Literal[
         "DEVICE_TYPE_UNSPECIFIED",
         "ANDROID",
@@ -376,6 +380,10 @@ class GroupRelation(typing_extensions.TypedDict, total=False):
     roles: _list[TransitiveMembershipRole]
 
 @typing.type_check_only
+class IsInvitableUserResponse(typing_extensions.TypedDict, total=False):
+    isInvitableUser: bool
+
+@typing.type_check_only
 class ListGroupsResponse(typing_extensions.TypedDict, total=False):
     groups: _list[Group]
     nextPageToken: str
@@ -384,6 +392,11 @@ class ListGroupsResponse(typing_extensions.TypedDict, total=False):
 class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
     memberships: _list[Membership]
     nextPageToken: str
+
+@typing.type_check_only
+class ListUserInvitationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    userInvitations: _list[UserInvitation]
 
 @typing.type_check_only
 class LookupGroupNameResponse(typing_extensions.TypedDict, total=False):
@@ -492,6 +505,9 @@ class SecuritySettings(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class SendUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -511,3 +527,12 @@ class UpdateMembershipMetadata(typing_extensions.TypedDict, total=False): ...
 class UpdateMembershipRolesParams(typing_extensions.TypedDict, total=False):
     fieldMask: str
     membershipRole: MembershipRole
+
+@typing.type_check_only
+class UserInvitation(typing_extensions.TypedDict, total=False):
+    mailsSentCount: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_YET_SENT", "INVITED", "ACCEPTED", "DECLINED"
+    ]
+    updateTime: str

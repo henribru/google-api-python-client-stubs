@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AbandonReleaseRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AbandonReleaseResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AnthosCluster(typing_extensions.TypedDict, total=False):
     membership: str
 
@@ -42,6 +48,16 @@ class BuildArtifact(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CloudRunLocation(typing_extensions.TypedDict, total=False):
+    location: str
+
+@typing.type_check_only
+class CloudRunMetadata(typing_extensions.TypedDict, total=False):
+    revision: str
+    service: str
+    serviceUrls: _list[str]
+
+@typing.type_check_only
 class Config(typing_extensions.TypedDict, total=False):
     defaultSkaffoldVersion: str
     name: str
@@ -68,6 +84,7 @@ class DeliveryPipeline(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     serialPipeline: SerialPipeline
+    suspended: bool
     uid: str
     updateTime: str
 
@@ -82,12 +99,37 @@ class DeliveryPipelineNotificationEvent(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
+class DeployJob(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeployJobRun(typing_extensions.TypedDict, total=False):
+    build: str
+    failureCause: typing_extensions.Literal[
+        "FAILURE_CAUSE_UNSPECIFIED",
+        "CLOUD_BUILD_UNAVAILABLE",
+        "EXECUTION_FAILED",
+        "DEADLINE_EXCEEDED",
+    ]
+    failureMessage: str
+    metadata: DeployJobRunMetadata
+
+@typing.type_check_only
+class DeployJobRunMetadata(typing_extensions.TypedDict, total=False):
+    cloudRun: CloudRunMetadata
+
+@typing.type_check_only
+class DeploymentJobs(typing_extensions.TypedDict, total=False):
+    deployJob: Job
+    verifyJob: Job
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ExecutionConfig(typing_extensions.TypedDict, total=False):
     artifactStorage: str
     defaultPool: DefaultPool
+    executionTimeout: str
     privatePool: PrivatePool
     serviceAccount: str
     usages: _list[str]
@@ -106,8 +148,60 @@ class GkeCluster(typing_extensions.TypedDict, total=False):
     internalIp: bool
 
 @typing.type_check_only
+class Job(typing_extensions.TypedDict, total=False):
+    deployJob: DeployJob
+    id: str
+    jobRun: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "DISABLED",
+        "IN_PROGRESS",
+        "SUCCEEDED",
+        "FAILED",
+        "ABORTED",
+    ]
+    verifyJob: VerifyJob
+
+@typing.type_check_only
+class JobRun(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deployJobRun: DeployJobRun
+    endTime: str
+    etag: str
+    jobId: str
+    name: str
+    phaseId: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "IN_PROGRESS", "SUCCEEDED", "FAILED"
+    ]
+    uid: str
+    verifyJobRun: VerifyJobRun
+
+@typing.type_check_only
+class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
+    jobRun: str
+    message: str
+    pipelineUid: str
+    releaseUid: str
+    rolloutUid: str
+    targetId: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+        "TYPE_RENDER_STATUES_CHANGE",
+    ]
+
+@typing.type_check_only
 class ListDeliveryPipelinesResponse(typing_extensions.TypedDict, total=False):
     deliveryPipelines: _list[DeliveryPipeline]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListJobRunsResponse(typing_extensions.TypedDict, total=False):
+    jobRuns: _list[JobRun]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -148,6 +242,10 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Metadata(typing_extensions.TypedDict, total=False):
+    cloudRun: CloudRunMetadata
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -164,6 +262,14 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class Phase(typing_extensions.TypedDict, total=False):
+    deploymentJobs: DeploymentJobs
+    id: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "IN_PROGRESS", "SUCCEEDED", "FAILED", "ABORTED"
+    ]
 
 @typing.type_check_only
 class PipelineCondition(typing_extensions.TypedDict, total=False):
@@ -190,6 +296,7 @@ class PrivatePool(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Release(typing_extensions.TypedDict, total=False):
+    abandoned: bool
     annotations: dict[str, typing.Any]
     buildArtifacts: _list[BuildArtifact]
     createTime: str
@@ -227,6 +334,14 @@ class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
     release: str
 
 @typing.type_check_only
+class RetryJobRequest(typing_extensions.TypedDict, total=False):
+    jobId: str
+    phaseId: str
+
+@typing.type_check_only
+class RetryJobResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Rollout(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     approvalState: typing_extensions.Literal[
@@ -245,6 +360,8 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "EXECUTION_FAILED",
         "DEADLINE_EXCEEDED",
         "RELEASE_FAILED",
+        "RELEASE_ABANDONED",
+        "VERIFICATION_CONFIG_NOT_FOUND",
     ]
     deployStartTime: str
     deployingBuild: str
@@ -253,7 +370,9 @@ class Rollout(typing_extensions.TypedDict, total=False):
     etag: str
     failureReason: str
     labels: dict[str, typing.Any]
+    metadata: Metadata
     name: str
+    phases: _list[Phase]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "SUCCEEDED",
@@ -297,13 +416,22 @@ class SkaffoldVersion(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Stage(typing_extensions.TypedDict, total=False):
     profiles: _list[str]
+    strategy: Strategy
     targetId: str
+
+@typing.type_check_only
+class Standard(typing_extensions.TypedDict, total=False):
+    verify: bool
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class Strategy(typing_extensions.TypedDict, total=False):
+    standard: Standard
 
 @typing.type_check_only
 class Target(typing_extensions.TypedDict, total=False):
@@ -317,6 +445,7 @@ class Target(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     requireApproval: bool
+    run: CloudRunLocation
     targetId: str
     uid: str
     updateTime: str
@@ -342,6 +471,7 @@ class TargetRender(typing_extensions.TypedDict, total=False):
     failureCause: typing_extensions.Literal[
         "FAILURE_CAUSE_UNSPECIFIED", "CLOUD_BUILD_UNAVAILABLE", "EXECUTION_FAILED"
     ]
+    failureMessage: str
     renderingBuild: str
     renderingState: typing_extensions.Literal[
         "TARGET_RENDER_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "IN_PROGRESS"
@@ -360,3 +490,20 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class VerifyJob(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class VerifyJobRun(typing_extensions.TypedDict, total=False):
+    artifactUri: str
+    build: str
+    eventLogPath: str
+    failureCause: typing_extensions.Literal[
+        "FAILURE_CAUSE_UNSPECIFIED",
+        "CLOUD_BUILD_UNAVAILABLE",
+        "EXECUTION_FAILED",
+        "DEADLINE_EXCEEDED",
+        "VERIFICATION_CONFIG_NOT_FOUND",
+    ]
+    failureMessage: str

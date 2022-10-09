@@ -64,7 +64,7 @@ class Hub(typing_extensions.TypedDict, total=False):
     name: str
     spokes: _list[str]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
     ]
     uniqueId: str
     updateTime: str
@@ -133,7 +133,7 @@ class Spoke(typing_extensions.TypedDict, total=False):
     linkedVpnTunnels: _list[str]
     name: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
     ]
     uniqueId: str
     updateTime: str

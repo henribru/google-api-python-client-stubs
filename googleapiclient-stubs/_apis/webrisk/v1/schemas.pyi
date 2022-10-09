@@ -74,7 +74,7 @@ class GoogleCloudWebriskV1Submission(typing_extensions.TypedDict, total=False):
 class GoogleCloudWebriskV1SubmitUriMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELLED", "FAILED"
+        "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELLED", "FAILED", "CLOSED"
     ]
     updateTime: str
 

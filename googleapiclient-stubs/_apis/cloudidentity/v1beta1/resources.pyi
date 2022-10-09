@@ -323,6 +323,102 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
         def memberships(self) -> MembershipsResource: ...
 
     @typing.type_check_only
+    class InboundSamlSsoProfilesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class IdpCredentialsResource(googleapiclient.discovery.Resource):
+            def add(
+                self,
+                *,
+                parent: str,
+                body: AddIdpCredentialRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> IdpCredentialHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListIdpCredentialsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListIdpCredentialsResponseHttpRequest,
+                previous_response: ListIdpCredentialsResponse,
+            ) -> ListIdpCredentialsResponseHttpRequest | None: ...
+
+        def create(
+            self, *, body: InboundSamlSsoProfile = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> InboundSamlSsoProfileHttpRequest: ...
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListInboundSamlSsoProfilesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListInboundSamlSsoProfilesResponseHttpRequest,
+            previous_response: ListInboundSamlSsoProfilesResponse,
+        ) -> ListInboundSamlSsoProfilesResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: InboundSamlSsoProfile = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def idpCredentials(self) -> IdpCredentialsResource: ...
+
+    @typing.type_check_only
+    class InboundSsoAssignmentsResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, body: InboundSsoAssignment = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> InboundSsoAssignmentHttpRequest: ...
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListInboundSsoAssignmentsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListInboundSsoAssignmentsResponseHttpRequest,
+            previous_response: ListInboundSsoAssignmentsResponse,
+        ) -> ListInboundSsoAssignmentsResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: InboundSsoAssignment = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class OrgUnitsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MembershipsResource(googleapiclient.discovery.Resource):
@@ -366,6 +462,8 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
     def customers(self) -> CustomersResource: ...
     def devices(self) -> DevicesResource: ...
     def groups(self) -> GroupsResource: ...
+    def inboundSamlSsoProfiles(self) -> InboundSamlSsoProfilesResource: ...
+    def inboundSsoAssignments(self) -> InboundSsoAssignmentsResource: ...
     def orgUnits(self) -> OrgUnitsResource: ...
 
 @typing.type_check_only
@@ -409,6 +507,30 @@ class GroupHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Group: ...
 
 @typing.type_check_only
+class IdpCredentialHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> IdpCredential: ...
+
+@typing.type_check_only
+class InboundSamlSsoProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> InboundSamlSsoProfile: ...
+
+@typing.type_check_only
+class InboundSsoAssignmentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> InboundSsoAssignment: ...
+
+@typing.type_check_only
 class IsInvitableUserResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -439,6 +561,30 @@ class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGroupsResponse: ...
+
+@typing.type_check_only
+class ListIdpCredentialsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListIdpCredentialsResponse: ...
+
+@typing.type_check_only
+class ListInboundSamlSsoProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListInboundSamlSsoProfilesResponse: ...
+
+@typing.type_check_only
+class ListInboundSsoAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListInboundSsoAssignmentsResponse: ...
 
 @typing.type_check_only
 class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -126,7 +126,11 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                         ) -> ListPeeredDnsDomainsResponseHttpRequest: ...
 
                     def get(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        includeUsedIpRanges: bool = ...,
+                        **kwargs: typing.Any
                     ) -> ConsumerConfigHttpRequest: ...
                     def updateConsumerConfig(
                         self,

@@ -46,6 +46,18 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1InsightHttpRequest: ...
 
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1InsightTypeConfigHttpRequest: ...
+                def updateConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRecommenderV1InsightTypeConfig = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1InsightTypeConfigHttpRequest: ...
                 def insights(self) -> InsightsResource: ...
 
             @typing.type_check_only
@@ -91,6 +103,18 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
 
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1RecommenderConfigHttpRequest: ...
+                def updateConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRecommenderV1RecommenderConfig = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
 
             def insightTypes(self) -> InsightTypesResource: ...
@@ -216,6 +240,18 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1InsightHttpRequest: ...
 
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1InsightTypeConfigHttpRequest: ...
+                def updateConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRecommenderV1InsightTypeConfig = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1InsightTypeConfigHttpRequest: ...
                 def insights(self) -> InsightsResource: ...
 
             @typing.type_check_only
@@ -261,6 +297,18 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
 
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1RecommenderConfigHttpRequest: ...
+                def updateConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRecommenderV1RecommenderConfig = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
 
             def insightTypes(self) -> InsightTypesResource: ...
@@ -301,6 +349,18 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1InsightHttpRequest: ...
 
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1InsightTypeConfigHttpRequest: ...
+                def updateConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRecommenderV1InsightTypeConfig = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1InsightTypeConfigHttpRequest: ...
                 def insights(self) -> InsightsResource: ...
 
             @typing.type_check_only
@@ -346,6 +406,18 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
 
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1RecommenderConfigHttpRequest: ...
+                def updateConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRecommenderV1RecommenderConfig = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudRecommenderV1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
 
             def insightTypes(self) -> InsightTypesResource: ...
@@ -379,6 +451,16 @@ class GoogleCloudRecommenderV1InsightHttpRequest(googleapiclient.http.HttpReques
     ) -> GoogleCloudRecommenderV1Insight: ...
 
 @typing.type_check_only
+class GoogleCloudRecommenderV1InsightTypeConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecommenderV1InsightTypeConfig: ...
+
+@typing.type_check_only
 class GoogleCloudRecommenderV1ListInsightsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -407,3 +489,13 @@ class GoogleCloudRecommenderV1RecommendationHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1Recommendation: ...
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1RecommenderConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecommenderV1RecommenderConfig: ...

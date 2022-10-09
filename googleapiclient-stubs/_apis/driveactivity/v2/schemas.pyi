@@ -14,6 +14,7 @@ class Action(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ActionDetail(typing_extensions.TypedDict, total=False):
+    appliedLabelChange: AppliedLabelChange
     comment: Comment
     create: Create
     delete: Delete
@@ -46,6 +47,17 @@ class Anyone(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ApplicationReference(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["UNSPECIFIED_REFERENCE_TYPE", "LINK", "DISCUSS"]
+
+@typing.type_check_only
+class AppliedLabelChange(typing_extensions.TypedDict, total=False):
+    changes: _list[AppliedLabelChangeDetail]
+
+@typing.type_check_only
+class AppliedLabelChangeDetail(typing_extensions.TypedDict, total=False):
+    fieldChanges: _list[FieldValueChange]
+    label: str
+    title: str
+    types: _list[str]
 
 @typing.type_check_only
 class Assignment(typing_extensions.TypedDict, total=False):
@@ -86,6 +98,10 @@ class Create(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DataLeakPreventionChange(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "FLAGGED", "CLEARED"]
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class Delete(typing_extensions.TypedDict, total=False):
@@ -152,6 +168,24 @@ class DriveReference(typing_extensions.TypedDict, total=False):
 class Edit(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class FieldValue(typing_extensions.TypedDict, total=False):
+    date: Date
+    integer: Integer
+    selection: Selection
+    selectionList: SelectionList
+    text: Text
+    textList: TextList
+    user: SingleUser
+    userList: UserList
+
+@typing.type_check_only
+class FieldValueChange(typing_extensions.TypedDict, total=False):
+    displayName: str
+    fieldId: str
+    newValue: FieldValue
+    oldValue: FieldValue
+
+@typing.type_check_only
 class File(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -175,6 +209,10 @@ class Group(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Impersonation(typing_extensions.TypedDict, total=False):
     impersonatedUser: User
+
+@typing.type_check_only
+class Integer(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class KnownUser(typing_extensions.TypedDict, total=False):
@@ -274,8 +312,21 @@ class RestrictionChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Selection(typing_extensions.TypedDict, total=False):
+    displayName: str
+    value: str
+
+@typing.type_check_only
+class SelectionList(typing_extensions.TypedDict, total=False):
+    values: _list[Selection]
+
+@typing.type_check_only
 class SettingsChange(typing_extensions.TypedDict, total=False):
     restrictionChanges: _list[RestrictionChange]
+
+@typing.type_check_only
+class SingleUser(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class Suggestion(typing_extensions.TypedDict, total=False):
@@ -322,6 +373,14 @@ class TeamDriveReference(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class Text(typing_extensions.TypedDict, total=False):
+    value: str
+
+@typing.type_check_only
+class TextList(typing_extensions.TypedDict, total=False):
+    values: _list[Text]
+
+@typing.type_check_only
 class TimeRange(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
@@ -337,3 +396,7 @@ class User(typing_extensions.TypedDict, total=False):
     deletedUser: DeletedUser
     knownUser: KnownUser
     unknownUser: UnknownUser
+
+@typing.type_check_only
+class UserList(typing_extensions.TypedDict, total=False):
+    values: _list[SingleUser]

@@ -407,6 +407,7 @@ class LocationFilter(typing_extensions.TypedDict, total=False):
         "TELECOMMUTE_PREFERENCE_UNSPECIFIED",
         "TELECOMMUTE_EXCLUDED",
         "TELECOMMUTE_ALLOWED",
+        "TELECOMMUTE_JOBS_EXCLUDED",
     ]
 
 @typing.type_check_only
@@ -443,6 +444,9 @@ class NamespacedDebugInput(typing_extensions.TypedDict, total=False):
     disableOrganicSelection: bool
     forcedFlags: dict[str, typing.Any]
     forcedRollouts: dict[str, typing.Any]
+    testingMode: typing_extensions.Literal[
+        "TESTING_MODE_UNSPECIFIED", "TESTING_MODE_ALL_OFF", "TESTING_MODE_ALL_ON"
+    ]
 
 @typing.type_check_only
 class NumericBucketingOption(typing_extensions.TypedDict, total=False):

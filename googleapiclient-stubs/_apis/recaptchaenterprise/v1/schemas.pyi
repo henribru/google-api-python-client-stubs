@@ -43,6 +43,7 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
     accountDefenderAssessment: GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment
     event: GoogleCloudRecaptchaenterpriseV1Event
     name: str
+    privatePasswordLeakVerification: GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
     riskAnalysis: GoogleCloudRecaptchaenterpriseV1RiskAnalysis
     tokenProperties: GoogleCloudRecaptchaenterpriseV1TokenProperties
 
@@ -119,6 +120,15 @@ class GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification(
+    typing_extensions.TypedDict, total=False
+):
+    encryptedLeakMatchPrefixes: _list[str]
+    encryptedUserCredentialsHash: str
+    lookupHashPrefix: str
+    reencryptedUserCredentialsHash: str
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup(
     typing_extensions.TypedDict, total=False
 ):
@@ -130,6 +140,12 @@ class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership(
 ):
     hashedAccountId: str
     name: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse(
+    typing_extensions.TypedDict, total=False
+):
+    legacySecretKey: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(

@@ -72,7 +72,7 @@ class CompositeFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Count(typing_extensions.TypedDict, total=False):
-    upTo: int
+    upTo: str
 
 @typing.type_check_only
 class Cursor(typing_extensions.TypedDict, total=False):
@@ -380,6 +380,7 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RunQueryResponse(typing_extensions.TypedDict, total=False):
     document: Document
+    done: bool
     readTime: str
     skippedResults: int
     transaction: str

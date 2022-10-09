@@ -312,6 +312,7 @@ class Query(typing_extensions.TypedDict, total=False):
         "TEAM_DRIVE",
         "ENTIRE_ORG",
         "ROOM",
+        "SITES_URL",
         "SHARED_DRIVE",
     ]
     orgUnitInfo: OrgUnitInfo
@@ -322,9 +323,11 @@ class Query(typing_extensions.TypedDict, total=False):
         "TEAM_DRIVE",
         "ENTIRE_ORG",
         "ROOM",
+        "SITES_URL",
         "SHARED_DRIVE",
     ]
     sharedDriveInfo: SharedDriveInfo
+    sitesUrlInfo: SitesUrlInfo
     startTime: str
     teamDriveInfo: TeamDriveInfo
     terms: str
@@ -361,6 +364,10 @@ class SavedQuery(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SharedDriveInfo(typing_extensions.TypedDict, total=False):
     sharedDriveIds: _list[str]
+
+@typing.type_check_only
+class SitesUrlInfo(typing_extensions.TypedDict, total=False):
+    urls: _list[str]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

@@ -95,6 +95,12 @@ class AlertMetadata(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ApnsCertificateExpirationInfo(typing_extensions.TypedDict, total=False):
+    appleId: str
+    expirationTime: str
+    uid: str
+
+@typing.type_check_only
 class AppMakerSqlSetupNotification(typing_extensions.TypedDict, total=False):
     requestInfo: _list[RequestInfo]
 
@@ -279,6 +285,12 @@ class PredefinedDetectorInfo(typing_extensions.TypedDict, total=False):
     detectorName: str
 
 @typing.type_check_only
+class PrimaryAdminChangedEvent(typing_extensions.TypedDict, total=False):
+    domain: str
+    previousAdminEmail: str
+    updatedAdminEmail: str
+
+@typing.type_check_only
 class ReportingRule(typing_extensions.TypedDict, total=False):
     alertDetails: str
     name: str
@@ -314,6 +326,29 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
     triggeringUserEmail: str
 
 @typing.type_check_only
+class SSOProfileCreatedEvent(typing_extensions.TypedDict, total=False):
+    inboundSsoProfileName: str
+
+@typing.type_check_only
+class SSOProfileDeletedEvent(typing_extensions.TypedDict, total=False):
+    inboundSsoProfileName: str
+
+@typing.type_check_only
+class SSOProfileUpdatedEvent(typing_extensions.TypedDict, total=False):
+    inboundSsoProfileChanges: str
+    inboundSsoProfileName: str
+
+@typing.type_check_only
+class SensitiveAdminAction(typing_extensions.TypedDict, total=False):
+    actorEmail: str
+    eventTime: str
+    primaryAdminChangedEvent: PrimaryAdminChangedEvent
+    ssoProfileCreatedEvent: SSOProfileCreatedEvent
+    ssoProfileDeletedEvent: SSOProfileDeletedEvent
+    ssoProfileUpdatedEvent: SSOProfileUpdatedEvent
+    superAdminPasswordResetEvent: SuperAdminPasswordResetEvent
+
+@typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
     notifications: _list[Notification]
 
@@ -326,6 +361,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class SuperAdminPasswordResetEvent(typing_extensions.TypedDict, total=False):
+    userEmail: str
 
 @typing.type_check_only
 class SuspiciousActivity(typing_extensions.TypedDict, total=False):
