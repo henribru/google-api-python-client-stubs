@@ -181,7 +181,7 @@ class CdnSettings(typing_extensions.TypedDict, total=False):
     format: str
     frameRate: typing_extensions.Literal["30fps", "60fps", "variable"]
     ingestionInfo: IngestionInfo
-    ingestionType: typing_extensions.Literal["rtmp", "dash", "webrtc", "hls", "srt"]
+    ingestionType: typing_extensions.Literal["rtmp", "dash", "webrtc", "hls"]
     resolution: typing_extensions.Literal[
         "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p", "variable"
     ]
@@ -1091,6 +1091,15 @@ class ContentRating(typing_extensions.TypedDict, total=False):
     ytRating: typing_extensions.Literal["ytUnspecified", "ytAgeRestricted"]
 
 @typing.type_check_only
+class Cuepoint(typing_extensions.TypedDict, total=False):
+    cueType: typing_extensions.Literal["cueTypeUnspecified", "cueTypeAd"]
+    durationSecs: int
+    etag: str
+    id: str
+    insertionOffsetTimeMs: str
+    walltimeMs: str
+
+@typing.type_check_only
 class Entity(typing_extensions.TypedDict, total=False):
     id: str
     typeId: str
@@ -1273,6 +1282,7 @@ class LiveBroadcastSnippet(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LiveBroadcastStatistics(typing_extensions.TypedDict, total=False):
+    concurrentViewers: str
     totalChatCount: str
 
 @typing.type_check_only
@@ -1895,6 +1905,12 @@ class ThirdPartyLink(typing_extensions.TypedDict, total=False):
     linkingToken: str
     snippet: ThirdPartyLinkSnippet
     status: ThirdPartyLinkStatus
+
+@typing.type_check_only
+class ThirdPartyLinkListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    items: _list[ThirdPartyLink]
+    kind: str
 
 @typing.type_check_only
 class ThirdPartyLinkSnippet(typing_extensions.TypedDict, total=False):

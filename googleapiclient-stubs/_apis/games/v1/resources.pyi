@@ -181,6 +181,9 @@ class GamesResource(googleapiclient.discovery.Resource):
             playerIdConsistencyToken: str = ...,
             **kwargs: typing.Any
         ) -> PlayerHttpRequest: ...
+        def getScopedPlayerIds(
+            self, **kwargs: typing.Any
+        ) -> ScopedPlayerIdsHttpRequest: ...
         def list(
             self,
             *,
@@ -525,6 +528,14 @@ class RevisionCheckResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RevisionCheckResponse: ...
+
+@typing.type_check_only
+class ScopedPlayerIdsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ScopedPlayerIds: ...
 
 @typing.type_check_only
 class SnapshotHttpRequest(googleapiclient.http.HttpRequest):

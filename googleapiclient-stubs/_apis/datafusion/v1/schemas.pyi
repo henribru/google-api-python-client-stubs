@@ -39,7 +39,20 @@ class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
     keyReference: str
 
 @typing.type_check_only
+class DnsPeering(typing_extensions.TypedDict, total=False):
+    description: str
+    domain: str
+    name: str
+    targetNetwork: str
+    targetProject: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EventPublishConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    topic: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -62,6 +75,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     enableRbac: bool
     enableStackdriverLogging: bool
     enableStackdriverMonitoring: bool
+    eventPublishConfig: EventPublishConfig
     gcsBucket: str
     labels: dict[str, typing.Any]
     name: str
@@ -96,6 +110,11 @@ class Instance(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListAvailableVersionsResponse(typing_extensions.TypedDict, total=False):
     availableVersions: _list[Version]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListDnsPeeringsResponse(typing_extensions.TypedDict, total=False):
+    dnsPeerings: _list[DnsPeering]
     nextPageToken: str
 
 @typing.type_check_only

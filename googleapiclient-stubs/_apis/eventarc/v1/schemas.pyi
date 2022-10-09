@@ -23,6 +23,29 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class Channel(typing_extensions.TypedDict, total=False):
+    activationToken: str
+    createTime: str
+    cryptoKeyName: str
+    name: str
+    provider: str
+    pubsubTopic: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "ACTIVE", "INACTIVE"
+    ]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class ChannelConnection(typing_extensions.TypedDict, total=False):
+    activationToken: str
+    channel: str
+    createTime: str
+    name: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class CloudRun(typing_extensions.TypedDict, total=False):
     path: str
     region: str
@@ -74,6 +97,12 @@ class GKE(typing_extensions.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
+class GoogleChannelConfig(typing_extensions.TypedDict, total=False):
+    cryptoKeyName: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -96,6 +125,18 @@ class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class ListChannelConnectionsResponse(typing_extensions.TypedDict, total=False):
+    channelConnections: _list[ChannelConnection]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListChannelsResponse(typing_extensions.TypedDict, total=False):
+    channels: _list[Channel]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -156,6 +197,29 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class StateCondition(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "OK",
+        "CANCELLED",
+        "UNKNOWN",
+        "INVALID_ARGUMENT",
+        "DEADLINE_EXCEEDED",
+        "NOT_FOUND",
+        "ALREADY_EXISTS",
+        "PERMISSION_DENIED",
+        "UNAUTHENTICATED",
+        "RESOURCE_EXHAUSTED",
+        "FAILED_PRECONDITION",
+        "ABORTED",
+        "OUT_OF_RANGE",
+        "UNIMPLEMENTED",
+        "INTERNAL",
+        "UNAVAILABLE",
+        "DATA_LOSS",
+    ]
+    message: str
+
+@typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
@@ -169,6 +233,8 @@ class Transport(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Trigger(typing_extensions.TypedDict, total=False):
+    channel: str
+    conditions: dict[str, typing.Any]
     createTime: str
     destination: Destination
     etag: str

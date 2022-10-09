@@ -1091,6 +1091,7 @@ class GoogleCloudVisionV1p2beta1TextAnnotationTextProperty(
 class GoogleCloudVisionV1p2beta1TextDetectionParams(
     typing_extensions.TypedDict, total=False
 ):
+    advancedOcrOptions: _list[str]
     enableTextDetectionConfidenceScore: bool
 
 @typing.type_check_only

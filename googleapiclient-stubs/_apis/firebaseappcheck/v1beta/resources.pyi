@@ -103,6 +103,27 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 ) -> GoogleFirebaseAppcheckV1betaDeviceCheckConfigHttpRequest: ...
 
             @typing.type_check_only
+            class PlayIntegrityConfigResource(googleapiclient.discovery.Resource):
+                def batchGet(
+                    self,
+                    *,
+                    parent: str,
+                    names: str | _list[str] = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaPlayIntegrityConfigHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleFirebaseAppcheckV1betaPlayIntegrityConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaPlayIntegrityConfigHttpRequest: ...
+
+            @typing.type_check_only
             class RecaptchaConfigResource(googleapiclient.discovery.Resource):
                 def batchGet(
                     self,
@@ -221,6 +242,13 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 body: GoogleFirebaseAppcheckV1betaExchangeDeviceCheckTokenRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
+            def exchangePlayIntegrityToken(
+                self,
+                *,
+                app: str,
+                body: GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
             def exchangeRecaptchaEnterpriseToken(
                 self,
                 *,
@@ -256,9 +284,17 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 body: GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponseHttpRequest: ...
+            def generatePlayIntegrityChallenge(
+                self,
+                *,
+                app: str,
+                body: GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponseHttpRequest: ...
             def appAttestConfig(self) -> AppAttestConfigResource: ...
             def debugTokens(self) -> DebugTokensResource: ...
             def deviceCheckConfig(self) -> DeviceCheckConfigResource: ...
+            def playIntegrityConfig(self) -> PlayIntegrityConfigResource: ...
             def recaptchaConfig(self) -> RecaptchaConfigResource: ...
             def recaptchaEnterpriseConfig(
                 self,
@@ -359,6 +395,16 @@ class GoogleFirebaseAppcheckV1betaBatchGetDeviceCheckConfigsResponseHttpRequest(
     ) -> GoogleFirebaseAppcheckV1betaBatchGetDeviceCheckConfigsResponse: ...
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse: ...
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -449,6 +495,16 @@ class GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponseHttpRequest(
     ) -> GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse: ...
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse: ...
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -467,6 +523,16 @@ class GoogleFirebaseAppcheckV1betaListServicesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleFirebaseAppcheckV1betaListServicesResponse: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaPlayIntegrityConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirebaseAppcheckV1betaPlayIntegrityConfig: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaPublicJwkSetHttpRequest(

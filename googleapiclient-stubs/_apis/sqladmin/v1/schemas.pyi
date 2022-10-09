@@ -14,7 +14,9 @@ class AclEntry(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApiWarning(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
-        "SQL_API_WARNING_CODE_UNSPECIFIED", "REGION_UNREACHABLE"
+        "SQL_API_WARNING_CODE_UNSPECIFIED",
+        "REGION_UNREACHABLE",
+        "MAX_RESULTS_EXCEEDS_LIMIT",
     ]
     message: str
     region: str
@@ -70,6 +72,7 @@ class BackupRun(typing_extensions.TypedDict, total=False):
         "DELETION_FAILED",
         "DELETED",
     ]
+    timeZone: str
     type: typing_extensions.Literal[
         "SQL_BACKUP_RUN_TYPE_UNSPECIFIED", "AUTOMATED", "ON_DEMAND"
     ]
@@ -91,6 +94,7 @@ class BinLogCoordinates(typing_extensions.TypedDict, total=False):
 class CloneContext(typing_extensions.TypedDict, total=False):
     allocatedIpRange: str
     binLogCoordinates: BinLogCoordinates
+    databaseNames: _list[str]
     destinationInstanceName: str
     kind: str
     pitrTimestampMs: str
@@ -107,21 +111,23 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_5_5",
         "MYSQL_5_6",
         "MYSQL_5_7",
-        "POSTGRES_9_6",
-        "POSTGRES_11",
         "SQLSERVER_2017_STANDARD",
         "SQLSERVER_2017_ENTERPRISE",
         "SQLSERVER_2017_EXPRESS",
         "SQLSERVER_2017_WEB",
+        "POSTGRES_9_6",
         "POSTGRES_10",
+        "POSTGRES_11",
         "POSTGRES_12",
+        "POSTGRES_13",
+        "POSTGRES_14",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
         "MYSQL_8_0_27",
         "MYSQL_8_0_28",
-        "POSTGRES_13",
-        "POSTGRES_14",
+        "MYSQL_8_0_29",
+        "MYSQL_8_0_30",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -165,21 +171,23 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_5_5",
         "MYSQL_5_6",
         "MYSQL_5_7",
-        "POSTGRES_9_6",
-        "POSTGRES_11",
         "SQLSERVER_2017_STANDARD",
         "SQLSERVER_2017_ENTERPRISE",
         "SQLSERVER_2017_EXPRESS",
         "SQLSERVER_2017_WEB",
+        "POSTGRES_9_6",
         "POSTGRES_10",
+        "POSTGRES_11",
         "POSTGRES_12",
+        "POSTGRES_13",
+        "POSTGRES_14",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
         "MYSQL_8_0_27",
         "MYSQL_8_0_28",
-        "POSTGRES_13",
-        "POSTGRES_14",
+        "MYSQL_8_0_29",
+        "MYSQL_8_0_30",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -510,6 +518,8 @@ class Operation(typing_extensions.TypedDict, total=False):
         "CREATE_CLONE",
         "RESCHEDULE_MAINTENANCE",
         "START_EXTERNAL_SYNC",
+        "LOG_CLEANUP",
+        "AUTO_RESTART",
     ]
     selfLink: str
     startTime: str
@@ -594,6 +604,9 @@ class Settings(typing_extensions.TypedDict, total=False):
     ]
     backupConfiguration: BackupConfiguration
     collation: str
+    connectorEnforcement: typing_extensions.Literal[
+        "CONNECTOR_ENFORCEMENT_UNSPECIFIED", "NOT_REQUIRED", "REQUIRED"
+    ]
     crashSafeReplicationEnabled: bool
     dataDiskSizeGb: str
     dataDiskType: typing_extensions.Literal[
@@ -601,6 +614,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     ]
     databaseFlags: _list[DatabaseFlags]
     databaseReplicationEnabled: bool
+    deletionProtectionEnabled: bool
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     insightsConfig: InsightsConfig
     ipConfiguration: IpConfiguration
@@ -619,6 +633,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     storageAutoResize: bool
     storageAutoResizeLimit: str
     tier: str
+    timeZone: str
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -658,6 +673,7 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_BINLOG_FORMAT",
         "BINLOG_RETENTION_SETTING",
         "UNSUPPORTED_STORAGE_ENGINE",
+        "LIMITED_SUPPORT_TABLES",
     ]
 
 @typing.type_check_only
@@ -787,6 +803,12 @@ class TruncateLogContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
+    dualPasswordType: typing_extensions.Literal[
+        "DUAL_PASSWORD_TYPE_UNSPECIFIED",
+        "NO_MODIFY_DUAL_PASSWORD",
+        "NO_DUAL_PASSWORD",
+        "DUAL_PASSWORD",
+    ]
     etag: str
     host: str
     instance: str
@@ -804,6 +826,7 @@ class User(typing_extensions.TypedDict, total=False):
 class UserPasswordValidationPolicy(typing_extensions.TypedDict, total=False):
     allowedFailedAttempts: int
     enableFailedAttemptsCheck: bool
+    enablePasswordVerification: bool
     passwordExpirationDuration: str
     status: PasswordStatus
 

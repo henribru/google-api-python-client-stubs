@@ -10,6 +10,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     downloadBytes: str
+    kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
     satisfiesPzs: bool
@@ -153,12 +154,17 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    capacityGb: str
+    capacityStepSizeGb: str
     createTime: str
     description: str
     etag: str
     fileShares: _list[FileShareConfig]
     kmsKeyName: str
     labels: dict[str, typing.Any]
+    maxCapacityGb: str
+    maxShareCount: str
+    multiShareEnabled: bool
     name: str
     networks: _list[NetworkConfig]
     satisfiesPzs: bool
@@ -206,6 +212,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListSharesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    shares: _list[Share]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
@@ -301,6 +313,19 @@ class Schedule(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
+class Share(typing_extensions.TypedDict, total=False):
+    capacityGb: str
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    mountName: str
+    name: str
+    nfsExportOptions: _list[NfsExportOptions]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING"
+    ]
+
+@typing.type_check_only
 class Snapshot(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -326,7 +351,9 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal["UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER"]
+    channel: typing_extensions.Literal[
+        "UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER", "WEEK1", "WEEK2", "WEEK5"
+    ]
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 

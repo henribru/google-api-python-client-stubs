@@ -16,6 +16,10 @@ class AptArtifact(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BatchDeleteVersionsMetadata(typing_extensions.TypedDict, total=False):
+    failedVersions: _list[str]
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -28,6 +32,7 @@ class DockerImage(typing_extensions.TypedDict, total=False):
     mediaType: str
     name: str
     tags: _list[str]
+    updateTime: str
     uploadTime: str
     uri: str
 
@@ -100,6 +105,11 @@ class ImportYumArtifactsResponse(typing_extensions.TypedDict, total=False):
     yumArtifacts: _list[YumArtifact]
 
 @typing.type_check_only
+class KfpArtifact(typing_extensions.TypedDict, total=False):
+    name: str
+    version: str
+
+@typing.type_check_only
 class ListDockerImagesResponse(typing_extensions.TypedDict, total=False):
     dockerImages: _list[DockerImage]
     nextPageToken: str
@@ -115,9 +125,24 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMavenArtifactsResponse(typing_extensions.TypedDict, total=False):
+    mavenArtifacts: _list[MavenArtifact]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListNpmPackagesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    npmPackages: _list[NpmPackage]
+
+@typing.type_check_only
 class ListPackagesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     packages: _list[Package]
+
+@typing.type_check_only
+class ListPythonPackagesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    pythonPackages: _list[PythonPackage]
 
 @typing.type_check_only
 class ListRepositoriesResponse(typing_extensions.TypedDict, total=False):
@@ -143,11 +168,30 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MavenArtifact(typing_extensions.TypedDict, total=False):
+    artifactId: str
+    createTime: str
+    groupId: str
+    name: str
+    pomUri: str
+    updateTime: str
+    version: str
+
+@typing.type_check_only
 class MavenRepositoryConfig(typing_extensions.TypedDict, total=False):
     allowSnapshotOverwrites: bool
     versionPolicy: typing_extensions.Literal[
         "VERSION_POLICY_UNSPECIFIED", "RELEASE", "SNAPSHOT"
     ]
+
+@typing.type_check_only
+class NpmPackage(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    packageName: str
+    tags: _list[str]
+    updateTime: str
+    version: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -184,11 +228,20 @@ class ProjectSettings(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class PythonPackage(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    packageName: str
+    updateTime: str
+    uri: str
+    version: str
+
+@typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     format: typing_extensions.Literal[
-        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "APT", "YUM", "PYTHON"
+        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "APT", "YUM", "PYTHON", "KFP"
     ]
     kmsKeyName: str
     labels: dict[str, typing.Any]
@@ -225,6 +278,9 @@ class UploadAptArtifactMediaResponse(typing_extensions.TypedDict, total=False):
     operation: Operation
 
 @typing.type_check_only
+class UploadAptArtifactMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class UploadAptArtifactRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -232,8 +288,23 @@ class UploadAptArtifactResponse(typing_extensions.TypedDict, total=False):
     aptArtifacts: _list[AptArtifact]
 
 @typing.type_check_only
+class UploadKfpArtifactMediaResponse(typing_extensions.TypedDict, total=False):
+    operation: Operation
+
+@typing.type_check_only
+class UploadKfpArtifactMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadKfpArtifactRequest(typing_extensions.TypedDict, total=False):
+    description: str
+    tags: _list[str]
+
+@typing.type_check_only
 class UploadYumArtifactMediaResponse(typing_extensions.TypedDict, total=False):
     operation: Operation
+
+@typing.type_check_only
+class UploadYumArtifactMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UploadYumArtifactRequest(typing_extensions.TypedDict, total=False): ...

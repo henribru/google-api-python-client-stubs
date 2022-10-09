@@ -27,6 +27,7 @@ class Execution(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "SUCCEEDED", "FAILED", "CANCELLED"
     ]
+    status: Status
     workflowRevisionId: str
 
 @typing.type_check_only
@@ -47,5 +48,14 @@ class StackTrace(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StackTraceElement(typing_extensions.TypedDict, total=False):
     position: Position
+    routine: str
+    step: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    currentSteps: _list[Step]
+
+@typing.type_check_only
+class Step(typing_extensions.TypedDict, total=False):
     routine: str
     step: str

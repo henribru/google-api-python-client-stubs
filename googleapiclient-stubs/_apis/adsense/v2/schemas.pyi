@@ -17,6 +17,11 @@ class Account(typing_extensions.TypedDict, total=False):
     timeZone: TimeZone
 
 @typing.type_check_only
+class AdBlockingRecoveryTag(typing_extensions.TypedDict, total=False):
+    errorProtectionCode: str
+    tag: str
+
+@typing.type_check_only
 class AdClient(typing_extensions.TypedDict, total=False):
     name: str
     productCode: str
@@ -65,6 +70,7 @@ class ContentAdsSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomChannel(typing_extensions.TypedDict, total=False):
+    active: bool
     displayName: str
     name: str
     reportingDimensionId: str
@@ -74,6 +80,9 @@ class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
     year: int
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Header(typing_extensions.TypedDict, total=False):

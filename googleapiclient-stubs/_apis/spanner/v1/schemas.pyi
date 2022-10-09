@@ -125,6 +125,18 @@ class CreateDatabaseRequest(typing_extensions.TypedDict, total=False):
     extraStatements: _list[str]
 
 @typing.type_check_only
+class CreateInstanceConfigMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    instanceConfig: InstanceConfig
+    progress: InstanceOperationProgress
+
+@typing.type_check_only
+class CreateInstanceConfigRequest(typing_extensions.TypedDict, total=False):
+    instanceConfig: InstanceConfig
+    instanceConfigId: str
+    validateOnly: bool
+
+@typing.type_check_only
 class CreateInstanceMetadata(typing_extensions.TypedDict, total=False):
     cancelTime: str
     endTime: str
@@ -156,6 +168,10 @@ class Database(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "CREATING", "READY", "READY_OPTIMIZING"
     ]
     versionRetentionPeriod: str
+
+@typing.type_check_only
+class DatabaseRole(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class Delete(typing_extensions.TypedDict, total=False):
@@ -230,6 +246,16 @@ class Field(typing_extensions.TypedDict, total=False):
     type: Type
 
 @typing.type_check_only
+class FreeInstanceMetadata(typing_extensions.TypedDict, total=False):
+    expireBehavior: typing_extensions.Literal[
+        "EXPIRE_BEHAVIOR_UNSPECIFIED",
+        "FREE_TO_PROVISIONED",
+        "REMOVE_AFTER_GRACE_PERIOD",
+    ]
+    expireTime: str
+    upgradeTime: str
+
+@typing.type_check_only
 class GetDatabaseDdlResponse(typing_extensions.TypedDict, total=False):
     statements: _list[str]
 
@@ -255,6 +281,10 @@ class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     displayName: str
     endpointUris: _list[str]
+    freeInstanceMetadata: FreeInstanceMetadata
+    instanceType: typing_extensions.Literal[
+        "INSTANCE_TYPE_UNSPECIFIED", "PROVISIONED", "FREE_INSTANCE"
+    ]
     labels: dict[str, typing.Any]
     name: str
     nodeCount: int
@@ -264,10 +294,32 @@ class Instance(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstanceConfig(typing_extensions.TypedDict, total=False):
+    baseConfig: str
+    configType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "GOOGLE_MANAGED", "USER_MANAGED"
+    ]
     displayName: str
+    etag: str
+    freeInstanceAvailability: typing_extensions.Literal[
+        "FREE_INSTANCE_AVAILABILITY_UNSPECIFIED",
+        "AVAILABLE",
+        "UNSUPPORTED",
+        "DISABLED",
+        "QUOTA_EXCEEDED",
+    ]
+    labels: dict[str, typing.Any]
     leaderOptions: _list[str]
     name: str
+    optionalReplicas: _list[ReplicaInfo]
+    reconciling: bool
     replicas: _list[ReplicaInfo]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
+
+@typing.type_check_only
+class InstanceOperationProgress(typing_extensions.TypedDict, total=False):
+    endTime: str
+    progressPercent: int
+    startTime: str
 
 @typing.type_check_only
 class KeyRange(typing_extensions.TypedDict, total=False):
@@ -315,9 +367,19 @@ class ListDatabaseOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListDatabaseRolesResponse(typing_extensions.TypedDict, total=False):
+    databaseRoles: _list[DatabaseRole]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListDatabasesResponse(typing_extensions.TypedDict, total=False):
     databases: _list[Database]
     nextPageToken: str
+
+@typing.type_check_only
+class ListInstanceConfigOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: _list[Operation]
 
 @typing.type_check_only
 class ListInstanceConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -498,7 +560,10 @@ class ReadRequest(typing_extensions.TypedDict, total=False):
     transaction: TransactionSelector
 
 @typing.type_check_only
-class ReadWrite(typing_extensions.TypedDict, total=False): ...
+class ReadWrite(typing_extensions.TypedDict, total=False):
+    readLockMode: typing_extensions.Literal[
+        "READ_LOCK_MODE_UNSPECIFIED", "PESSIMISTIC", "OPTIMISTIC"
+    ]
 
 @typing.type_check_only
 class ReplicaInfo(typing_extensions.TypedDict, total=False):
@@ -581,6 +646,7 @@ class ScanData(typing_extensions.TypedDict, total=False):
 class Session(typing_extensions.TypedDict, total=False):
     approximateLastUseTime: str
     createTime: str
+    creatorRole: str
     labels: dict[str, typing.Any]
     name: str
 
@@ -648,6 +714,18 @@ class UpdateDatabaseDdlMetadata(typing_extensions.TypedDict, total=False):
 class UpdateDatabaseDdlRequest(typing_extensions.TypedDict, total=False):
     operationId: str
     statements: _list[str]
+
+@typing.type_check_only
+class UpdateInstanceConfigMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    instanceConfig: InstanceConfig
+    progress: InstanceOperationProgress
+
+@typing.type_check_only
+class UpdateInstanceConfigRequest(typing_extensions.TypedDict, total=False):
+    instanceConfig: InstanceConfig
+    updateMask: str
+    validateOnly: bool
 
 @typing.type_check_only
 class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):

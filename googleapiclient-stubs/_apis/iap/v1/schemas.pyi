@@ -8,9 +8,11 @@ _list = list
 class AccessDeniedPageSettings(typing_extensions.TypedDict, total=False):
     accessDeniedPageUri: str
     generateTroubleshootingUri: bool
+    remediationTokenGenerationEnabled: bool
 
 @typing.type_check_only
 class AccessSettings(typing_extensions.TypedDict, total=False):
+    allowedDomainsSettings: AllowedDomainsSettings
     corsSettings: CorsSettings
     gcipSettings: GcipSettings
     oauthSettings: OAuthSettings
@@ -18,10 +20,22 @@ class AccessSettings(typing_extensions.TypedDict, total=False):
     reauthSettings: ReauthSettings
 
 @typing.type_check_only
+class AllowedDomainsSettings(typing_extensions.TypedDict, total=False):
+    domains: _list[str]
+    enable: bool
+
+@typing.type_check_only
 class ApplicationSettings(typing_extensions.TypedDict, total=False):
     accessDeniedPageSettings: AccessDeniedPageSettings
+    attributePropagationSettings: AttributePropagationSettings
     cookieDomain: str
     csmSettings: CsmSettings
+
+@typing.type_check_only
+class AttributePropagationSettings(typing_extensions.TypedDict, total=False):
+    enable: bool
+    expression: str
+    outputCredentials: _list[str]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -119,9 +133,7 @@ class PolicyName(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReauthSettings(typing_extensions.TypedDict, total=False):
     maxAge: str
-    method: typing_extensions.Literal[
-        "METHOD_UNSPECIFIED", "LOGIN", "PASSWORD", "SECURE_KEY"
-    ]
+    method: typing_extensions.Literal["METHOD_UNSPECIFIED", "LOGIN", "SECURE_KEY"]
     policyType: typing_extensions.Literal[
         "POLICY_TYPE_UNSPECIFIED", "MINIMUM", "DEFAULT"
     ]

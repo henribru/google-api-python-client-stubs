@@ -212,6 +212,9 @@ class UploadAptArtifactMediaResponse(typing_extensions.TypedDict, total=False):
     operation: Operation
 
 @typing.type_check_only
+class UploadAptArtifactMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class UploadAptArtifactRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -221,6 +224,9 @@ class UploadAptArtifactResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UploadYumArtifactMediaResponse(typing_extensions.TypedDict, total=False):
     operation: Operation
+
+@typing.type_check_only
+class UploadYumArtifactMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UploadYumArtifactRequest(typing_extensions.TypedDict, total=False): ...

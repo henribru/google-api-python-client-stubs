@@ -91,6 +91,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
                 ] = ...,
                 location: str = ...,
+                name: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 view: typing_extensions.Literal[
@@ -152,6 +153,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
                 ] = ...,
                 location: str = ...,
+                name: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 view: typing_extensions.Literal[
@@ -366,6 +368,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     filter: typing_extensions.Literal[
                         "UNKNOWN", "ALL", "TERMINATED", "ACTIVE"
                     ] = ...,
+                    name: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     view: typing_extensions.Literal[

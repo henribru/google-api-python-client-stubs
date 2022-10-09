@@ -14,6 +14,16 @@ _list = list
 @typing.type_check_only
 class CloudTasksResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class ApiResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class QueueResource(googleapiclient.discovery.Resource):
+            def update(
+                self, *, body: HttpBody = ..., appId: str = ..., **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+
+        def queue(self) -> QueueResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -28,6 +38,14 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         body: AcknowledgeTaskRequest = ...,
                         **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def buffer(
+                        self,
+                        *,
+                        queue: str,
+                        taskId: str,
+                        body: BufferTaskRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> BufferTaskResponseHttpRequest: ...
                     def cancelLease(
                         self,
                         *,
@@ -201,7 +219,16 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def api(self) -> ApiResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class BufferTaskResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BufferTaskResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

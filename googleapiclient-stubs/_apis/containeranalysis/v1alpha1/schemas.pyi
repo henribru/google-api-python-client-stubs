@@ -5,6 +5,10 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AnalysisCompleted(typing_extensions.TypedDict, total=False):
+    analysisType: _list[str]
+
+@typing.type_check_only
 class Artifact(typing_extensions.TypedDict, total=False):
     checksum: str
     id: str
@@ -81,6 +85,7 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "ATTACK_COMPLEXITY_UNSPECIFIED",
         "ATTACK_COMPLEXITY_LOW",
         "ATTACK_COMPLEXITY_HIGH",
+        "ATTACK_COMPLEXITY_MEDIUM",
     ]
     attackVector: typing_extensions.Literal[
         "ATTACK_VECTOR_UNSPECIFIED",
@@ -96,16 +101,31 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "AUTHENTICATION_NONE",
     ]
     availabilityImpact: typing_extensions.Literal[
-        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
     ]
     baseScore: float
     confidentialityImpact: typing_extensions.Literal[
-        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
     ]
     exploitabilityScore: float
     impactScore: float
     integrityImpact: typing_extensions.Literal[
-        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
     ]
     privilegesRequired: typing_extensions.Literal[
         "PRIVILEGES_REQUIRED_UNSPECIFIED",
@@ -161,6 +181,7 @@ class ComplianceOccurrence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ComplianceVersion(typing_extensions.TypedDict, total=False):
+    benchmarkDocument: str
     cpeUri: str
     version: str
 
@@ -304,10 +325,13 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
     typing_extensions.TypedDict, total=False
 ):
+    allowExitCodes: _list[int]
+    allowFailure: bool
     args: _list[str]
     dir: str
     entrypoint: str
     env: _list[str]
+    exitCode: int
     id: str
     name: str
     pullTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
@@ -513,11 +537,19 @@ class Detail(typing_extensions.TypedDict, total=False):
     vendor: str
 
 @typing.type_check_only
+class Digest(typing_extensions.TypedDict, total=False):
+    algo: str
+    digestBytes: str
+
+@typing.type_check_only
 class Discovered(typing_extensions.TypedDict, total=False):
+    analysisCompleted: AnalysisCompleted
+    analysisError: _list[Status]
     analysisStatus: typing_extensions.Literal[
         "ANALYSIS_STATUS_UNSPECIFIED",
         "PENDING",
         "SCANNING",
+        "COMPLETE",
         "FINISHED_SUCCESS",
         "FINISHED_FAILED",
         "FINISHED_UNSUPPORTED",
@@ -610,6 +642,10 @@ class ExternalRef(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
+
+@typing.type_check_only
+class FileLocation(typing_extensions.TypedDict, total=False):
+    filePath: str
 
 @typing.type_check_only
 class FileNote(typing_extensions.TypedDict, total=False):
@@ -712,6 +748,53 @@ class GoogleDevtoolsContaineranalysisV1alpha1RepoId(
     uid: str
 
 @typing.type_check_only
+class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+
+@typing.type_check_only
+class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness(
+    typing_extensions.TypedDict, total=False
+):
+    environment: bool
+    materials: bool
+    parameters: bool
+
+@typing.type_check_only
+class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource(
+    typing_extensions.TypedDict, total=False
+):
+    digest: dict[str, typing.Any]
+    entryPoint: str
+    uri: str
+
+@typing.type_check_only
+class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation(
+    typing_extensions.TypedDict, total=False
+):
+    configSource: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource
+    environment: dict[str, typing.Any]
+    parameters: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMaterial(
+    typing_extensions.TypedDict, total=False
+):
+    digest: dict[str, typing.Any]
+    uri: str
+
+@typing.type_check_only
+class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    buildFinishedOn: str
+    buildInvocationId: str
+    buildStartedOn: str
+    completeness: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness
+    reproducible: bool
+
+@typing.type_check_only
 class GoogleDevtoolsContaineranalysisV1alpha1SourceContext(
     typing_extensions.TypedDict, total=False
 ):
@@ -738,12 +821,18 @@ class InTotoStatement(typing_extensions.TypedDict, total=False):
     predicateType: str
     provenance: InTotoProvenance
     slsaProvenance: SlsaProvenance
+    slsaProvenanceZeroTwo: SlsaProvenanceZeroTwo
     subject: _list[Subject]
 
 @typing.type_check_only
 class Installation(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
+    cpeUri: str
+    license: License
     location: _list[Location]
     name: str
+    packageType: str
+    version: Version
 
 @typing.type_check_only
 class Layer(typing_extensions.TypedDict, total=False):
@@ -912,8 +1001,17 @@ class Operation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Package(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X86", "X64"]
+    cpeUri: str
+    description: str
+    digest: _list[Digest]
     distribution: _list[Distribution]
+    license: License
+    maintainer: str
     name: str
+    packageType: str
+    url: str
+    version: Version
 
 @typing.type_check_only
 class PackageInfoNote(typing_extensions.TypedDict, total=False):
@@ -1145,6 +1243,17 @@ class SlsaProvenance(typing_extensions.TypedDict, total=False):
     recipe: SlsaRecipe
 
 @typing.type_check_only
+class SlsaProvenanceZeroTwo(typing_extensions.TypedDict, total=False):
+    buildConfig: dict[str, typing.Any]
+    buildType: str
+    builder: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder
+    invocation: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation
+    materials: _list[
+        GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMaterial
+    ]
+    metadata: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata
+
+@typing.type_check_only
 class SlsaRecipe(typing_extensions.TypedDict, total=False):
     arguments: dict[str, typing.Any]
     definedInMaterial: str
@@ -1234,12 +1343,15 @@ class VulnerabilityDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VulnerabilityLocation(typing_extensions.TypedDict, total=False):
     cpeUri: str
+    fileLocation: _list[FileLocation]
     package: str
     version: Version
 
 @typing.type_check_only
 class VulnerabilityType(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssV2: CVSS
+    cwe: _list[str]
     details: _list[Detail]
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"

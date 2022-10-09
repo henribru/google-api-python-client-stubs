@@ -11,13 +11,16 @@ class AttachTrustRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
+    description: str
     labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "DELETING"
     ]
     statusMessage: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ON_DEMAND", "SCHEDULED"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "ON_DEMAND", "SCHEDULED", "SCHEMA_EXTENSION"
+    ]
     updateTime: str
 
 @typing.type_check_only
@@ -31,6 +34,16 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Certificate(dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class CheckMigrationPermissionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CheckMigrationPermissionResponse(typing_extensions.TypedDict, total=False):
+    onpremDomains: _list[OnPremDomainSIDDetails]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "DISABLED", "ENABLED", "NEEDS_MAINTENANCE"
+    ]
 
 @typing.type_check_only
 class DailyCycle(typing_extensions.TypedDict, total=False):
@@ -52,6 +65,9 @@ class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DetachTrustRequest(typing_extensions.TypedDict, total=False):
     trust: Trust
+
+@typing.type_check_only
+class DisableMigrationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Domain(typing_extensions.TypedDict, total=False):
@@ -82,11 +98,21 @@ class Domain(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EnableMigrationRequest(typing_extensions.TypedDict, total=False):
+    migratingDomains: _list[OnPremDomainDetails]
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class ExtendSchemaRequest(typing_extensions.TypedDict, total=False):
+    description: str
+    fileContents: str
+    gcsPath: str
 
 @typing.type_check_only
 class GoogleCloudManagedidentitiesV1OpMetadata(
@@ -178,6 +204,12 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
     location: str
     nodeId: str
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
+
+@typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter(
+    typing_extensions.TypedDict, total=False
+):
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
@@ -274,6 +306,18 @@ class MaintenancePolicy(typing_extensions.TypedDict, total=False):
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     dailyCycle: DailyCycle
     weeklyCycle: WeeklyCycle
+
+@typing.type_check_only
+class OnPremDomainDetails(typing_extensions.TypedDict, total=False):
+    disableSidFiltering: bool
+    domainName: str
+
+@typing.type_check_only
+class OnPremDomainSIDDetails(typing_extensions.TypedDict, total=False):
+    name: str
+    sidFilteringState: typing_extensions.Literal[
+        "SID_FILTERING_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -403,7 +447,9 @@ class Trust(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal["UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER"]
+    channel: typing_extensions.Literal[
+        "UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER", "WEEK1", "WEEK2", "WEEK5"
+    ]
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 

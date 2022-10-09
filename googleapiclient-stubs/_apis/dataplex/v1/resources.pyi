@@ -37,6 +37,26 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class ContentResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDataplexV1Content = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "CONTENT_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -44,6 +64,29 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any
                     ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDataplexV1ListContentResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDataplexV1ListContentResponseHttpRequest,
+                        previous_response: GoogleCloudDataplexV1ListContentResponse,
+                    ) -> GoogleCloudDataplexV1ListContentResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDataplexV1Content = ...,
+                        updateMask: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -81,6 +124,13 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -104,6 +154,20 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         validateOnly: bool = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDataplexV1ContentHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
                 @typing.type_check_only
                 class EnvironmentsResource(googleapiclient.discovery.Resource):
@@ -113,6 +177,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
+                            filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
                             **kwargs: typing.Any

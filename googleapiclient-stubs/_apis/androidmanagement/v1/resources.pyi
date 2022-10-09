@@ -103,6 +103,22 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EnrollmentTokenHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListEnrollmentTokensResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListEnrollmentTokensResponseHttpRequest,
+                previous_response: ListEnrollmentTokensResponse,
+            ) -> ListEnrollmentTokensResponseHttpRequest | None: ...
 
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
@@ -280,6 +296,14 @@ class ListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDevicesResponse: ...
+
+@typing.type_check_only
+class ListEnrollmentTokensResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListEnrollmentTokensResponse: ...
 
 @typing.type_check_only
 class ListEnterprisesResponseHttpRequest(googleapiclient.http.HttpRequest):

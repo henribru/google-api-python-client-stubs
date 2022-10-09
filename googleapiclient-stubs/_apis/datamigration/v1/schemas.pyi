@@ -5,6 +5,18 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AlloyDbConnectionProfile(typing_extensions.TypedDict, total=False):
+    clusterId: str
+    settings: AlloyDbSettings
+
+@typing.type_check_only
+class AlloyDbSettings(typing_extensions.TypedDict, total=False):
+    initialUser: UserPassword
+    labels: dict[str, typing.Any]
+    primaryInstanceSettings: PrimaryInstanceSettings
+    vpcNetwork: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -68,6 +80,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConnectionProfile(typing_extensions.TypedDict, total=False):
+    alloydb: AlloyDbConnectionProfile
     cloudsql: CloudSqlConnectionProfile
     createTime: str
     displayName: str
@@ -77,7 +90,7 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     name: str
     postgresql: PostgreSqlConnectionProfile
     provider: typing_extensions.Literal[
-        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA"
+        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA", "ALLOYDB"
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -97,7 +110,7 @@ class DatabaseType(typing_extensions.TypedDict, total=False):
         "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL"
     ]
     provider: typing_extensions.Literal[
-        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA"
+        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA", "ALLOYDB"
     ]
 
 @typing.type_check_only
@@ -165,6 +178,10 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class MachineConfig(typing_extensions.TypedDict, total=False):
+    cpuCount: int
 
 @typing.type_check_only
 class MigrationJob(typing_extensions.TypedDict, total=False):
@@ -236,6 +253,7 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_TABLE_DEFINITION",
         "UNSUPPORTED_DEFINER",
         "CANT_RESTART_RUNNING_MIGRATION",
+        "TABLES_WITH_LIMITED_SUPPORT",
     ]
     errorDetailMessage: str
     errorMessage: str
@@ -269,11 +287,24 @@ class Policy(typing_extensions.TypedDict, total=False):
 class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
     cloudSqlId: str
     host: str
+    networkArchitecture: typing_extensions.Literal[
+        "NETWORK_ARCHITECTURE_UNSPECIFIED",
+        "NETWORK_ARCHITECTURE_OLD_CSQL_PRODUCER",
+        "NETWORK_ARCHITECTURE_NEW_CSQL_PRODUCER",
+    ]
     password: str
     passwordSet: bool
     port: int
     ssl: SslConfig
     username: str
+
+@typing.type_check_only
+class PrimaryInstanceSettings(typing_extensions.TypedDict, total=False):
+    databaseFlags: dict[str, typing.Any]
+    id: str
+    labels: dict[str, typing.Any]
+    machineConfig: MachineConfig
+    privateIp: str
 
 @typing.type_check_only
 class PromoteMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
@@ -345,6 +376,12 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class UserPassword(typing_extensions.TypedDict, total=False):
+    password: str
+    passwordSet: bool
+    user: str
 
 @typing.type_check_only
 class VerifyMigrationJobRequest(typing_extensions.TypedDict, total=False): ...

@@ -18,6 +18,40 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class CertificateIssuanceConfigsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: CertificateIssuanceConfig = ...,
+                    certificateIssuanceConfigId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> CertificateIssuanceConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListCertificateIssuanceConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCertificateIssuanceConfigsResponseHttpRequest,
+                    previous_response: ListCertificateIssuanceConfigsResponse,
+                ) -> ListCertificateIssuanceConfigsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class CertificateMapsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class CertificateMapEntriesResource(googleapiclient.discovery.Resource):
@@ -225,6 +259,9 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def certificateIssuanceConfigs(
+                self,
+            ) -> CertificateIssuanceConfigsResource: ...
             def certificateMaps(self) -> CertificateMapsResource: ...
             def certificates(self) -> CertificatesResource: ...
             def dnsAuthorizations(self) -> DnsAuthorizationsResource: ...
@@ -253,6 +290,14 @@ class CertificateHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Certificate: ...
+
+@typing.type_check_only
+class CertificateIssuanceConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CertificateIssuanceConfig: ...
 
 @typing.type_check_only
 class CertificateMapHttpRequest(googleapiclient.http.HttpRequest):
@@ -285,6 +330,16 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
+
+@typing.type_check_only
+class ListCertificateIssuanceConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListCertificateIssuanceConfigsResponse: ...
 
 @typing.type_check_only
 class ListCertificateMapEntriesResponseHttpRequest(googleapiclient.http.HttpRequest):

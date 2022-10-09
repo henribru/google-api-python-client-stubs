@@ -63,6 +63,13 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def rescheduleMaintenance(
+                    self,
+                    *,
+                    instance: str,
+                    body: RescheduleMaintenanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def updateParameters(
                     self,
                     *,

@@ -5,6 +5,16 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AcquisitionTargetingRule(typing_extensions.TypedDict, total=False):
+    scope: TargetingRuleScope
+
+@typing.type_check_only
+class ActivateBasePlanRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ActivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Apk(typing_extensions.TypedDict, total=False):
     binary: ApkBinary
     versionCode: int
@@ -40,6 +50,40 @@ class AppEdit(typing_extensions.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
+class ArchiveSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AutoRenewingBasePlanType(typing_extensions.TypedDict, total=False):
+    billingPeriodDuration: str
+    gracePeriodDuration: str
+    legacyCompatible: bool
+    legacyCompatibleSubscriptionOfferId: str
+    prorationMode: typing_extensions.Literal[
+        "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED",
+        "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE",
+        "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY",
+    ]
+    resubscribeState: typing_extensions.Literal[
+        "RESUBSCRIBE_STATE_UNSPECIFIED",
+        "RESUBSCRIBE_STATE_ACTIVE",
+        "RESUBSCRIBE_STATE_INACTIVE",
+    ]
+
+@typing.type_check_only
+class AutoRenewingPlan(typing_extensions.TypedDict, total=False):
+    autoRenewEnabled: bool
+
+@typing.type_check_only
+class BasePlan(typing_extensions.TypedDict, total=False):
+    autoRenewingBasePlanType: AutoRenewingBasePlanType
+    basePlanId: str
+    offerTags: _list[OfferTag]
+    otherRegionsConfig: OtherRegionsBasePlanConfig
+    prepaidBasePlanType: PrepaidBasePlanType
+    regionalConfigs: _list[RegionalBasePlanConfig]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
+
+@typing.type_check_only
 class Bundle(typing_extensions.TypedDict, total=False):
     sha1: str
     sha256: str
@@ -49,6 +93,25 @@ class Bundle(typing_extensions.TypedDict, total=False):
 class BundlesListResponse(typing_extensions.TypedDict, total=False):
     bundles: _list[Bundle]
     kind: str
+
+@typing.type_check_only
+class CancelSurveyResult(typing_extensions.TypedDict, total=False):
+    reason: typing_extensions.Literal[
+        "CANCEL_SURVEY_REASON_UNSPECIFIED",
+        "CANCEL_SURVEY_REASON_NOT_ENOUGH_USAGE",
+        "CANCEL_SURVEY_REASON_TECHNICAL_ISSUES",
+        "CANCEL_SURVEY_REASON_COST_RELATED",
+        "CANCEL_SURVEY_REASON_FOUND_BETTER_APP",
+        "CANCEL_SURVEY_REASON_OTHERS",
+    ]
+    reasonUserInput: str
+
+@typing.type_check_only
+class CanceledStateContext(typing_extensions.TypedDict, total=False):
+    developerInitiatedCancellation: DeveloperInitiatedCancellation
+    replacementCancellation: ReplacementCancellation
+    systemInitiatedCancellation: SystemInitiatedCancellation
+    userInitiatedCancellation: UserInitiatedCancellation
 
 @typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
@@ -81,6 +144,12 @@ class CountryTargeting(typing_extensions.TypedDict, total=False):
     includeRestOfWorld: bool
 
 @typing.type_check_only
+class DeactivateBasePlanRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeactivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class DeobfuscationFile(typing_extensions.TypedDict, total=False):
     symbolType: typing_extensions.Literal[
         "deobfuscationFileTypeUnspecified", "proguard", "nativeCode"
@@ -94,6 +163,9 @@ class DeobfuscationFilesUploadResponse(typing_extensions.TypedDict, total=False)
 class DeveloperComment(typing_extensions.TypedDict, total=False):
     lastModified: Timestamp
     text: str
+
+@typing.type_check_only
+class DeveloperInitiatedCancellation(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeviceGroup(typing_extensions.TypedDict, total=False):
@@ -161,6 +233,12 @@ class ExpansionFile(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExpansionFilesUploadResponse(typing_extensions.TypedDict, total=False):
     expansionFile: ExpansionFile
+
+@typing.type_check_only
+class ExternalAccountIdentifiers(typing_extensions.TypedDict, total=False):
+    externalAccountId: str
+    obfuscatedExternalAccountId: str
+    obfuscatedExternalProfileId: str
 
 @typing.type_check_only
 class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
@@ -290,6 +368,16 @@ class ListDeviceTierConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListSubscriptionOffersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    subscriptionOffers: _list[SubscriptionOffer]
+
+@typing.type_check_only
+class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    subscriptions: _list[Subscription]
+
+@typing.type_check_only
 class ListUsersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     users: _list[User]
@@ -322,16 +410,68 @@ class ManagedProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=
     taxRateInfoByRegionCode: dict[str, typing.Any]
 
 @typing.type_check_only
+class MigrateBasePlanPricesRequest(typing_extensions.TypedDict, total=False):
+    regionalPriceMigrations: _list[RegionalPriceMigrationConfig]
+    regionsVersion: RegionsVersion
+
+@typing.type_check_only
+class MigrateBasePlanPricesResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
+class OfferTag(typing_extensions.TypedDict, total=False):
+    tag: str
+
+@typing.type_check_only
+class OtherRegionsBasePlanConfig(typing_extensions.TypedDict, total=False):
+    eurPrice: Money
+    newSubscriberAvailability: bool
+    usdPrice: Money
+
+@typing.type_check_only
+class OtherRegionsSubscriptionOfferConfig(typing_extensions.TypedDict, total=False):
+    otherRegionsNewSubscriberAvailability: bool
+
+@typing.type_check_only
+class OtherRegionsSubscriptionOfferPhaseConfig(
+    typing_extensions.TypedDict, total=False
+):
+    absoluteDiscounts: OtherRegionsSubscriptionOfferPhasePrices
+    otherRegionsPrices: OtherRegionsSubscriptionOfferPhasePrices
+    relativeDiscount: float
+
+@typing.type_check_only
+class OtherRegionsSubscriptionOfferPhasePrices(
+    typing_extensions.TypedDict, total=False
+):
+    eurPrice: Money
+    usdPrice: Money
+
+@typing.type_check_only
 class PageInfo(typing_extensions.TypedDict, total=False):
     resultPerPage: int
     startIndex: int
     totalResults: int
+
+@typing.type_check_only
+class PausedStateContext(typing_extensions.TypedDict, total=False):
+    autoResumeTime: str
+
+@typing.type_check_only
+class PrepaidBasePlanType(typing_extensions.TypedDict, total=False):
+    billingPeriodDuration: str
+    timeExtension: typing_extensions.Literal[
+        "TIME_EXTENSION_UNSPECIFIED", "TIME_EXTENSION_ACTIVE", "TIME_EXTENSION_INACTIVE"
+    ]
+
+@typing.type_check_only
+class PrepaidPlan(typing_extensions.TypedDict, total=False):
+    allowExtendAfterTime: str
 
 @typing.type_check_only
 class Price(typing_extensions.TypedDict, total=False):
@@ -360,6 +500,29 @@ class ProductPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=Fals
     developerPayload: str
 
 @typing.type_check_only
+class RegionalBasePlanConfig(typing_extensions.TypedDict, total=False):
+    newSubscriberAvailability: bool
+    price: Money
+    regionCode: str
+
+@typing.type_check_only
+class RegionalPriceMigrationConfig(typing_extensions.TypedDict, total=False):
+    oldestAllowedPriceVersionTime: str
+    regionCode: str
+
+@typing.type_check_only
+class RegionalSubscriptionOfferConfig(typing_extensions.TypedDict, total=False):
+    newSubscriberAvailability: bool
+    regionCode: str
+
+@typing.type_check_only
+class RegionalSubscriptionOfferPhaseConfig(typing_extensions.TypedDict, total=False):
+    absoluteDiscount: Money
+    price: Money
+    regionCode: str
+    relativeDiscount: float
+
+@typing.type_check_only
 class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
     eligibleForStreamingServiceTaxRate: bool
     taxTier: typing_extensions.Literal[
@@ -370,6 +533,13 @@ class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
         "TAX_TIER_MUSIC_OR_AUDIO_1",
         "TAX_TIER_LIVE_OR_BROADCAST_1",
     ]
+
+@typing.type_check_only
+class RegionsVersion(typing_extensions.TypedDict, total=False):
+    version: str
+
+@typing.type_check_only
+class ReplacementCancellation(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Review(typing_extensions.TypedDict, total=False):
@@ -397,6 +567,23 @@ class ReviewsReplyResponse(typing_extensions.TypedDict, total=False):
     result: ReviewReplyResult
 
 @typing.type_check_only
+class SubscribeWithGoogleInfo(typing_extensions.TypedDict, total=False):
+    emailAddress: str
+    familyName: str
+    givenName: str
+    profileId: str
+    profileName: str
+
+@typing.type_check_only
+class Subscription(typing_extensions.TypedDict, total=False):
+    archived: bool
+    basePlans: _list[BasePlan]
+    listings: _list[SubscriptionListing]
+    packageName: str
+    productId: str
+    taxAndComplianceSettings: SubscriptionTaxAndComplianceSettings
+
+@typing.type_check_only
 class SubscriptionCancelSurveyResult(typing_extensions.TypedDict, total=False):
     cancelSurveyReason: int
     userInputCancelReason: str
@@ -405,6 +592,38 @@ class SubscriptionCancelSurveyResult(typing_extensions.TypedDict, total=False):
 class SubscriptionDeferralInfo(typing_extensions.TypedDict, total=False):
     desiredExpiryTimeMillis: str
     expectedExpiryTimeMillis: str
+
+@typing.type_check_only
+class SubscriptionListing(typing_extensions.TypedDict, total=False):
+    benefits: _list[str]
+    description: str
+    languageCode: str
+    title: str
+
+@typing.type_check_only
+class SubscriptionOffer(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    offerId: str
+    offerTags: _list[OfferTag]
+    otherRegionsConfig: OtherRegionsSubscriptionOfferConfig
+    packageName: str
+    phases: _list[SubscriptionOfferPhase]
+    productId: str
+    regionalConfigs: _list[RegionalSubscriptionOfferConfig]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
+    targeting: SubscriptionOfferTargeting
+
+@typing.type_check_only
+class SubscriptionOfferPhase(typing_extensions.TypedDict, total=False):
+    duration: str
+    otherRegionsConfig: OtherRegionsSubscriptionOfferPhaseConfig
+    recurrenceCount: int
+    regionalConfigs: _list[RegionalSubscriptionOfferPhaseConfig]
+
+@typing.type_check_only
+class SubscriptionOfferTargeting(typing_extensions.TypedDict, total=False):
+    acquisitionRule: AcquisitionTargetingRule
+    upgradeRule: UpgradeTargetingRule
 
 @typing.type_check_only
 class SubscriptionPriceChange(typing_extensions.TypedDict, total=False):
@@ -444,6 +663,42 @@ class SubscriptionPurchase(typing_extensions.TypedDict, total=False):
     userCancellationTimeMillis: str
 
 @typing.type_check_only
+class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
+    autoRenewingPlan: AutoRenewingPlan
+    expiryTime: str
+    prepaidPlan: PrepaidPlan
+    productId: str
+
+@typing.type_check_only
+class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
+    acknowledgementState: typing_extensions.Literal[
+        "ACKNOWLEDGEMENT_STATE_UNSPECIFIED",
+        "ACKNOWLEDGEMENT_STATE_PENDING",
+        "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED",
+    ]
+    canceledStateContext: CanceledStateContext
+    externalAccountIdentifiers: ExternalAccountIdentifiers
+    kind: str
+    latestOrderId: str
+    lineItems: _list[SubscriptionPurchaseLineItem]
+    linkedPurchaseToken: str
+    pausedStateContext: PausedStateContext
+    regionCode: str
+    startTime: str
+    subscribeWithGoogleInfo: SubscribeWithGoogleInfo
+    subscriptionState: typing_extensions.Literal[
+        "SUBSCRIPTION_STATE_UNSPECIFIED",
+        "SUBSCRIPTION_STATE_PENDING",
+        "SUBSCRIPTION_STATE_ACTIVE",
+        "SUBSCRIPTION_STATE_PAUSED",
+        "SUBSCRIPTION_STATE_IN_GRACE_PERIOD",
+        "SUBSCRIPTION_STATE_ON_HOLD",
+        "SUBSCRIPTION_STATE_CANCELED",
+        "SUBSCRIPTION_STATE_EXPIRED",
+    ]
+    testPurchase: TestPurchase
+
+@typing.type_check_only
 class SubscriptionPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=False):
     developerPayload: str
 
@@ -471,6 +726,16 @@ class SystemApksListResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SystemFeature(typing_extensions.TypedDict, total=False):
     name: str
+
+@typing.type_check_only
+class SystemInitiatedCancellation(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class TargetingRuleScope(typing_extensions.TypedDict, total=False):
+    specificSubscriptionInApp: str
+
+@typing.type_check_only
+class TestPurchase(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Testers(typing_extensions.TypedDict, total=False):
@@ -519,6 +784,12 @@ class TracksListResponse(typing_extensions.TypedDict, total=False):
     tracks: _list[Track]
 
 @typing.type_check_only
+class UpgradeTargetingRule(typing_extensions.TypedDict, total=False):
+    billingPeriodDuration: str
+    oncePerUser: bool
+    scope: TargetingRuleScope
+
+@typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
     accessState: typing_extensions.Literal[
         "ACCESS_STATE_UNSPECIFIED",
@@ -548,6 +819,11 @@ class UserComment(typing_extensions.TypedDict, total=False):
     text: str
     thumbsDownCount: int
     thumbsUpCount: int
+
+@typing.type_check_only
+class UserInitiatedCancellation(typing_extensions.TypedDict, total=False):
+    cancelSurveyResult: CancelSurveyResult
+    cancelTime: str
 
 @typing.type_check_only
 class UsesPermission(typing_extensions.TypedDict, total=False):

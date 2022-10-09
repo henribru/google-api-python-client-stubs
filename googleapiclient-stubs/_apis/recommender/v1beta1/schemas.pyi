@@ -20,8 +20,10 @@ class GoogleCloudRecommenderV1beta1Impact(typing_extensions.TypedDict, total=Fal
         "PERFORMANCE",
         "MANAGEABILITY",
         "SUSTAINABILITY",
+        "RELIABILITY",
     ]
     costProjection: GoogleCloudRecommenderV1beta1CostProjection
+    reliabilityProjection: GoogleCloudRecommenderV1beta1ReliabilityProjection
     securityProjection: GoogleCloudRecommenderV1beta1SecurityProjection
     sustainabilityProjection: GoogleCloudRecommenderV1beta1SustainabilityProjection
 
@@ -31,7 +33,13 @@ class GoogleCloudRecommenderV1beta1Insight(typing_extensions.TypedDict, total=Fa
         GoogleCloudRecommenderV1beta1InsightRecommendationReference
     ]
     category: typing_extensions.Literal[
-        "CATEGORY_UNSPECIFIED", "COST", "SECURITY", "PERFORMANCE", "MANAGEABILITY"
+        "CATEGORY_UNSPECIFIED",
+        "COST",
+        "SECURITY",
+        "PERFORMANCE",
+        "MANAGEABILITY",
+        "SUSTAINABILITY",
+        "RELIABILITY",
     ]
     content: dict[str, typing.Any]
     description: str
@@ -198,6 +206,13 @@ class GoogleCloudRecommenderV1beta1RecommenderGenerationConfig(
     typing_extensions.TypedDict, total=False
 ):
     params: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1ReliabilityProjection(
+    typing_extensions.TypedDict, total=False
+):
+    details: dict[str, typing.Any]
+    risks: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1SecurityProjection(

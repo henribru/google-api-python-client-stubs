@@ -276,6 +276,14 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleFirestoreAdminV1Database = ...,
+                databaseId: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def exportDocuments(
                 self,
                 *,

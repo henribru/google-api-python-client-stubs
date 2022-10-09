@@ -12,10 +12,18 @@ class GoogleCloudRecommenderV1CostProjection(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudRecommenderV1Impact(typing_extensions.TypedDict, total=False):
     category: typing_extensions.Literal[
-        "CATEGORY_UNSPECIFIED", "COST", "SECURITY", "PERFORMANCE", "MANAGEABILITY"
+        "CATEGORY_UNSPECIFIED",
+        "COST",
+        "SECURITY",
+        "PERFORMANCE",
+        "MANAGEABILITY",
+        "SUSTAINABILITY",
+        "RELIABILITY",
     ]
     costProjection: GoogleCloudRecommenderV1CostProjection
+    reliabilityProjection: GoogleCloudRecommenderV1ReliabilityProjection
     securityProjection: GoogleCloudRecommenderV1SecurityProjection
+    sustainabilityProjection: GoogleCloudRecommenderV1SustainabilityProjection
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1Insight(typing_extensions.TypedDict, total=False):
@@ -23,7 +31,13 @@ class GoogleCloudRecommenderV1Insight(typing_extensions.TypedDict, total=False):
         GoogleCloudRecommenderV1InsightRecommendationReference
     ]
     category: typing_extensions.Literal[
-        "CATEGORY_UNSPECIFIED", "COST", "SECURITY", "PERFORMANCE", "MANAGEABILITY"
+        "CATEGORY_UNSPECIFIED",
+        "COST",
+        "SECURITY",
+        "PERFORMANCE",
+        "MANAGEABILITY",
+        "SUSTAINABILITY",
+        "RELIABILITY",
     ]
     content: dict[str, typing.Any]
     description: str
@@ -52,6 +66,24 @@ class GoogleCloudRecommenderV1InsightStateInfo(
         "STATE_UNSPECIFIED", "ACTIVE", "ACCEPTED", "DISMISSED"
     ]
     stateMetadata: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1InsightTypeConfig(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: dict[str, typing.Any]
+    displayName: str
+    etag: str
+    insightTypeGenerationConfig: GoogleCloudRecommenderV1InsightTypeGenerationConfig
+    name: str
+    revisionId: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1InsightTypeGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    params: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1ListInsightsResponse(
@@ -150,10 +182,42 @@ class GoogleCloudRecommenderV1RecommendationStateInfo(
     stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudRecommenderV1RecommenderConfig(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: dict[str, typing.Any]
+    displayName: str
+    etag: str
+    name: str
+    recommenderGenerationConfig: GoogleCloudRecommenderV1RecommenderGenerationConfig
+    revisionId: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1RecommenderGenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    params: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1ReliabilityProjection(
+    typing_extensions.TypedDict, total=False
+):
+    details: dict[str, typing.Any]
+    risks: _list[str]
+
+@typing.type_check_only
 class GoogleCloudRecommenderV1SecurityProjection(
     typing_extensions.TypedDict, total=False
 ):
     details: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1SustainabilityProjection(
+    typing_extensions.TypedDict, total=False
+):
+    duration: str
+    kgCO2e: float
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1ValueMatcher(typing_extensions.TypedDict, total=False):

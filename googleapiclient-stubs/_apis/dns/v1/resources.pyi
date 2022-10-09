@@ -131,6 +131,13 @@ class DnsResource(googleapiclient.discovery.Resource):
             clientOperationId: str = ...,
             **kwargs: typing.Any
         ) -> ManagedZoneHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GoogleIamV1GetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleIamV1PolicyHttpRequest: ...
         def list(
             self,
             *,
@@ -154,6 +161,20 @@ class DnsResource(googleapiclient.discovery.Resource):
             clientOperationId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GoogleIamV1SetIamPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleIamV1PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            resource: str,
+            body: GoogleIamV1TestIamPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -462,6 +483,24 @@ class DnsKeysListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> DnsKeysListResponse: ...
+
+@typing.type_check_only
+class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleIamV1Policy: ...
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleIamV1TestIamPermissionsResponse: ...
 
 @typing.type_check_only
 class ManagedZoneHttpRequest(googleapiclient.http.HttpRequest):

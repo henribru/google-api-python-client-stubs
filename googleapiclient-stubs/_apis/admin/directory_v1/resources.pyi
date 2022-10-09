@@ -60,7 +60,6 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                 "notes",
                 "serialNumber",
                 "status",
-                "supportEndDate",
             ] = ...,
             orgUnitPath: str = ...,
             pageToken: str = ...,
@@ -137,6 +136,56 @@ class DirectoryResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ChromeResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class PrintServersResource(googleapiclient.discovery.Resource):
+                def batchCreatePrintServers(
+                    self,
+                    *,
+                    parent: str,
+                    body: BatchCreatePrintServersRequest = ...,
+                    **kwargs: typing.Any
+                ) -> BatchCreatePrintServersResponseHttpRequest: ...
+                def batchDeletePrintServers(
+                    self,
+                    *,
+                    parent: str,
+                    body: BatchDeletePrintServersRequest = ...,
+                    **kwargs: typing.Any
+                ) -> BatchDeletePrintServersResponseHttpRequest: ...
+                def create(
+                    self, *, parent: str, body: PrintServer = ..., **kwargs: typing.Any
+                ) -> PrintServerHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> PrintServerHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    orgUnitId: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListPrintServersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPrintServersResponseHttpRequest,
+                    previous_response: ListPrintServersResponse,
+                ) -> ListPrintServersResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: PrintServer = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> PrintServerHttpRequest: ...
+
+            @typing.type_check_only
             class PrintersResource(googleapiclient.discovery.Resource):
                 def batchCreatePrinters(
                     self,
@@ -201,6 +250,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> PrinterHttpRequest: ...
 
+            def printServers(self) -> PrintServersResource: ...
             def printers(self) -> PrintersResource: ...
 
         def get(
@@ -871,12 +921,28 @@ class AspsHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Asps: ...
 
 @typing.type_check_only
+class BatchCreatePrintServersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BatchCreatePrintServersResponse: ...
+
+@typing.type_check_only
 class BatchCreatePrintersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchCreatePrintersResponse: ...
+
+@typing.type_check_only
+class BatchDeletePrintServersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BatchDeletePrintServersResponse: ...
 
 @typing.type_check_only
 class BatchDeletePrintersResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1041,6 +1107,14 @@ class GroupsHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Groups: ...
 
 @typing.type_check_only
+class ListPrintServersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListPrintServersResponse: ...
+
+@typing.type_check_only
 class ListPrinterModelsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1111,6 +1185,14 @@ class OrgUnitsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OrgUnits: ...
+
+@typing.type_check_only
+class PrintServerHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> PrintServer: ...
 
 @typing.type_check_only
 class PrinterHttpRequest(googleapiclient.http.HttpRequest):

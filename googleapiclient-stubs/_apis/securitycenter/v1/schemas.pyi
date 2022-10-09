@@ -10,8 +10,22 @@ class Access(typing_extensions.TypedDict, total=False):
     callerIpGeo: Geolocation
     methodName: str
     principalEmail: str
+    principalSubject: str
+    serviceAccountDelegationInfo: _list[ServiceAccountDelegationInfo]
+    serviceAccountKeyName: str
     serviceName: str
     userAgentFamily: str
+    username: str
+
+@typing.type_check_only
+class AccessReview(typing_extensions.TypedDict, total=False):
+    group: str
+    name: str
+    ns: str
+    resource: str
+    subresource: str
+    verb: str
+    version: str
 
 @typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
@@ -56,6 +70,12 @@ class BulkMuteFindingsRequest(typing_extensions.TypedDict, total=False):
     muteAnnotation: str
 
 @typing.type_check_only
+class Compliance(typing_extensions.TypedDict, total=False):
+    ids: _list[str]
+    standard: str
+    version: str
+
+@typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
     destinationIp: str
     destinationPort: int
@@ -64,6 +84,21 @@ class Connection(typing_extensions.TypedDict, total=False):
     ]
     sourceIp: str
     sourcePort: int
+
+@typing.type_check_only
+class Contact(typing_extensions.TypedDict, total=False):
+    email: str
+
+@typing.type_check_only
+class ContactDetails(typing_extensions.TypedDict, total=False):
+    contacts: _list[Contact]
+
+@typing.type_check_only
+class Container(typing_extensions.TypedDict, total=False):
+    imageId: str
+    labels: _list[Label]
+    name: str
+    uri: str
 
 @typing.type_check_only
 class Cve(typing_extensions.TypedDict, total=False):
@@ -112,7 +147,35 @@ class Cvssv3(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Database(typing_extensions.TypedDict, total=False):
+    displayName: str
+    grantees: _list[str]
+    name: str
+    query: str
+    userName: str
+
+@typing.type_check_only
+class Detection(typing_extensions.TypedDict, total=False):
+    binary: str
+    percentPagesMatched: float
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnvironmentVariable(typing_extensions.TypedDict, total=False):
+    name: str
+    val: str
+
+@typing.type_check_only
+class ExfilResource(typing_extensions.TypedDict, total=False):
+    components: _list[str]
+    name: str
+
+@typing.type_check_only
+class Exfiltration(typing_extensions.TypedDict, total=False):
+    sources: _list[ExfilResource]
+    targets: _list[ExfilResource]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -122,14 +185,28 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class File(typing_extensions.TypedDict, total=False):
+    contents: str
+    hashedSize: str
+    partiallyHashed: bool
+    path: str
+    sha256: str
+    size: str
+
+@typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     access: Access
     canonicalName: str
     category: str
+    compliances: _list[Compliance]
     connections: _list[Connection]
+    contacts: dict[str, typing.Any]
+    containers: _list[Container]
     createTime: str
+    database: Database
     description: str
     eventTime: str
+    exfiltration: Exfiltration
     externalSystems: dict[str, typing.Any]
     externalUri: str
     findingClass: typing_extensions.Literal[
@@ -142,6 +219,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     ]
     iamBindings: _list[IamBinding]
     indicator: Indicator
+    kubernetes: Kubernetes
     mitreAttack: MitreAttack
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
     muteInitiator: str
@@ -149,6 +227,8 @@ class Finding(typing_extensions.TypedDict, total=False):
     name: str
     nextSteps: str
     parent: str
+    parentDisplayName: str
+    processes: _list[Process]
     resourceName: str
     securityMarks: SecurityMarks
     severity: typing_extensions.Literal[
@@ -189,7 +269,24 @@ class GoogleCloudSecuritycenterV1BigQueryExport(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV1Binding(typing_extensions.TypedDict, total=False):
+    name: str
+    ns: str
+    role: Role
+    subjects: _list[Subject]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV1BulkMuteFindingsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ExposedResource(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ExposurePath(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -231,6 +328,16 @@ class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=Fal
     project: str
     projectDisplayName: str
     type: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceValueConfig(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    resourceValue: typing_extensions.Literal[
+        "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
+    ]
+    tagValues: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(
@@ -363,6 +470,22 @@ class IamPolicy(typing_extensions.TypedDict, total=False):
 class Indicator(typing_extensions.TypedDict, total=False):
     domains: _list[str]
     ipAddresses: _list[str]
+    signatures: _list[ProcessSignature]
+    uris: _list[str]
+
+@typing.type_check_only
+class Kubernetes(typing_extensions.TypedDict, total=False):
+    accessReviews: _list[AccessReview]
+    bindings: _list[GoogleCloudSecuritycenterV1Binding]
+    nodePools: _list[NodePool]
+    nodes: _list[Node]
+    pods: _list[Pod]
+    roles: _list[Role]
+
+@typing.type_check_only
+class Label(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
 
 @typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
@@ -417,6 +540,11 @@ class ListSourcesResponse(typing_extensions.TypedDict, total=False):
     sources: _list[Source]
 
 @typing.type_check_only
+class MemoryHashSignature(typing_extensions.TypedDict, total=False):
+    binaryFamily: str
+    detections: _list[Detection]
+
+@typing.type_check_only
 class MitreAttack(typing_extensions.TypedDict, total=False):
     additionalTactics: _list[str]
     additionalTechniques: _list[str]
@@ -441,6 +569,15 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class Node(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class NodePool(typing_extensions.TypedDict, total=False):
+    name: str
+    nodes: _list[Node]
+
+@typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
     description: str
     name: str
@@ -463,11 +600,36 @@ class OrganizationSettings(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Pod(typing_extensions.TypedDict, total=False):
+    containers: _list[Container]
+    labels: _list[Label]
+    name: str
+    ns: str
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class Process(typing_extensions.TypedDict, total=False):
+    args: _list[str]
+    argumentsTruncated: bool
+    binary: File
+    envVariables: _list[EnvironmentVariable]
+    envVariablesTruncated: bool
+    libraries: _list[File]
+    name: str
+    parentPid: str
+    pid: str
+    script: File
+
+@typing.type_check_only
+class ProcessSignature(typing_extensions.TypedDict, total=False):
+    memoryHashSignature: MemoryHashSignature
+    yaraRuleSignature: YaraRuleSignature
 
 @typing.type_check_only
 class Reference(typing_extensions.TypedDict, total=False):
@@ -484,6 +646,12 @@ class Resource(typing_extensions.TypedDict, total=False):
     projectDisplayName: str
     projectName: str
     type: str
+
+@typing.type_check_only
+class Role(typing_extensions.TypedDict, total=False):
+    kind: typing_extensions.Literal["KIND_UNSPECIFIED", "ROLE", "CLUSTER_ROLE"]
+    name: str
+    ns: str
 
 @typing.type_check_only
 class RunAssetDiscoveryRequest(typing_extensions.TypedDict, total=False): ...
@@ -505,6 +673,11 @@ class SecurityMarks(typing_extensions.TypedDict, total=False):
     canonicalName: str
     marks: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
+    principalEmail: str
+    principalSubject: str
 
 @typing.type_check_only
 class SetFindingStateRequest(typing_extensions.TypedDict, total=False):
@@ -538,6 +711,14 @@ class StreamingConfig(typing_extensions.TypedDict, total=False):
     filter: str
 
 @typing.type_check_only
+class Subject(typing_extensions.TypedDict, total=False):
+    kind: typing_extensions.Literal[
+        "AUTH_TYPE_UNSPECIFIED", "USER", "SERVICEACCOUNT", "GROUP"
+    ]
+    name: str
+    ns: str
+
+@typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
@@ -548,3 +729,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Vulnerability(typing_extensions.TypedDict, total=False):
     cve: Cve
+
+@typing.type_check_only
+class YaraRuleSignature(typing_extensions.TypedDict, total=False):
+    yaraRule: str

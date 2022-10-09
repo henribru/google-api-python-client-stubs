@@ -55,17 +55,20 @@ class Instance(typing_extensions.TypedDict, total=False):
     alternativeLocationId: str
     authEnabled: bool
     authorizedNetwork: str
+    availableMaintenanceVersions: _list[str]
     connectMode: typing_extensions.Literal[
         "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
     ]
     createTime: str
     currentLocationId: str
+    customerManagedKey: str
     displayName: str
     host: str
     labels: dict[str, typing.Any]
     locationId: str
     maintenancePolicy: MaintenancePolicy
     maintenanceSchedule: MaintenanceSchedule
+    maintenanceVersion: str
     memorySizeGb: int
     name: str
     nodes: _list[NodeInfo]
@@ -97,6 +100,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "FAILING_OVER",
     ]
     statusMessage: str
+    suspensionReasons: _list[str]
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "BASIC", "STANDARD_HA"]
     transitEncryptionMode: typing_extensions.Literal[
         "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED", "SERVER_AUTHENTICATION", "DISABLED"

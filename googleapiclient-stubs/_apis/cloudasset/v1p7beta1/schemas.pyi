@@ -235,6 +235,7 @@ class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
 class GoogleIdentityAccesscontextmanagerV1EgressTo(
     typing_extensions.TypedDict, total=False
 ):
+    externalResources: _list[str]
     operations: _list[GoogleIdentityAccesscontextmanagerV1ApiOperation]
     resources: _list[str]
 

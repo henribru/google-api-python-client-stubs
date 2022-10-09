@@ -20,7 +20,12 @@ class GKEHubResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FleetsResource(googleapiclient.discovery.Resource):
                 def list(
-                    self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
                 ) -> ListFleetsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -108,15 +113,20 @@ class GKEHubResource(googleapiclient.discovery.Resource):
             class FleetsResource(googleapiclient.discovery.Resource):
                 def create(
                     self, *, parent: str, body: Fleet = ..., **kwargs: typing.Any
-                ) -> FleetHttpRequest: ...
+                ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> FleetHttpRequest: ...
                 def list(
-                    self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
                 ) -> ListFleetsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -130,7 +140,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     body: Fleet = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any
-                ) -> FleetHttpRequest: ...
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class MembershipsResource(googleapiclient.discovery.Resource):
@@ -221,6 +231,13 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def validateCreate(
+                    self,
+                    *,
+                    parent: str,
+                    body: ValidateCreateMembershipRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ValidateCreateMembershipResponseHttpRequest: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -410,3 +427,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class ValidateCreateMembershipResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ValidateCreateMembershipResponse: ...

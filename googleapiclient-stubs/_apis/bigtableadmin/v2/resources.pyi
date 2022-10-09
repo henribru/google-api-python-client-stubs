@@ -305,6 +305,13 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def undelete(
+                    self,
+                    *,
+                    name: str,
+                    body: UndeleteTableRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
 
             def create(
                 self,

@@ -113,6 +113,7 @@ class CheckError(typing_extensions.TypedDict, total=False):
         "CLOUD_RESOURCE_MANAGER_BACKEND_UNAVAILABLE",
         "SECURITY_POLICY_BACKEND_UNAVAILABLE",
         "LOCATION_POLICY_BACKEND_UNAVAILABLE",
+        "INJECTED_ERROR",
     ]
     detail: str
     status: Status
@@ -274,7 +275,6 @@ class Money(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     consumerId: str
     endTime: str
-    extensions: _list[dict[str, typing.Any]]
     importance: typing_extensions.Literal["LOW", "HIGH", "DEBUG"]
     labels: dict[str, typing.Any]
     logEntries: _list[LogEntry]
@@ -342,12 +342,7 @@ class QuotaOperation(typing_extensions.TypedDict, total=False):
     operationId: str
     quotaMetrics: _list[MetricValueSet]
     quotaMode: typing_extensions.Literal[
-        "UNSPECIFIED",
-        "NORMAL",
-        "BEST_EFFORT",
-        "CHECK_ONLY",
-        "QUERY_ONLY",
-        "ADJUST_ONLY",
+        "UNSPECIFIED", "NORMAL", "BEST_EFFORT", "CHECK_ONLY", "ADJUST_ONLY"
     ]
 
 @typing.type_check_only

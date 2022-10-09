@@ -940,6 +940,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_2",
         "SDF_VERSION_5_3",
         "SDF_VERSION_5_4",
+        "SDF_VERSION_5_5",
     ]
 
 @typing.type_check_only
@@ -1079,9 +1080,21 @@ class CustomBiddingAlgorithm(typing_extensions.TypedDict, total=False):
         "ENTITY_STATUS_PAUSED",
         "ENTITY_STATUS_SCHEDULED_FOR_DELETION",
     ]
+    modelReadiness: _list[CustomBiddingModelReadinessState]
     name: str
     partnerId: str
     sharedAdvertiserIds: _list[str]
+
+@typing.type_check_only
+class CustomBiddingModelReadinessState(typing_extensions.TypedDict, total=False):
+    advertiserId: str
+    readinessState: typing_extensions.Literal[
+        "READINESS_STATE_UNSPECIFIED",
+        "READINESS_STATE_ACTIVE",
+        "READINESS_STATE_INSUFFICIENT_DATA",
+        "READINESS_STATE_TRAINING",
+        "READINESS_STATE_NO_VALID_SCRIPT",
+    ]
 
 @typing.type_check_only
 class CustomBiddingScript(typing_extensions.TypedDict, total=False):
@@ -1377,6 +1390,35 @@ class EditCustomerMatchMembersResponse(typing_extensions.TypedDict, total=False)
     firstAndThirdPartyAudienceId: str
 
 @typing.type_check_only
+class EditGuaranteedOrderReadAccessorsRequest(typing_extensions.TypedDict, total=False):
+    addedAdvertisers: _list[str]
+    partnerId: str
+    readAccessInherited: bool
+    removedAdvertisers: _list[str]
+
+@typing.type_check_only
+class EditGuaranteedOrderReadAccessorsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    readAccessInherited: bool
+    readAdvertiserIds: _list[str]
+
+@typing.type_check_only
+class EditInventorySourceReadWriteAccessorsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    advertisersUpdate: EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate
+    assignPartner: bool
+    partnerId: str
+
+@typing.type_check_only
+class EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate(
+    typing_extensions.TypedDict, total=False
+):
+    addedAdvertisers: _list[str]
+    removedAdvertisers: _list[str]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -1474,9 +1516,12 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_FYBER",
         "EXCHANGE_RED_FOR_PUBLISHERS",
         "EXCHANGE_MEDIANET",
         "EXCHANGE_TAPJOY",
+        "EXCHANGE_VISTAR",
+        "EXCHANGE_DAX",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -1548,9 +1593,12 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_FYBER",
         "EXCHANGE_RED_FOR_PUBLISHERS",
         "EXCHANGE_MEDIANET",
         "EXCHANGE_TAPJOY",
+        "EXCHANGE_VISTAR",
+        "EXCHANGE_DAX",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -1625,9 +1673,12 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_FYBER",
         "EXCHANGE_RED_FOR_PUBLISHERS",
         "EXCHANGE_MEDIANET",
         "EXCHANGE_TAPJOY",
+        "EXCHANGE_VISTAR",
+        "EXCHANGE_DAX",
     ]
 
 @typing.type_check_only
@@ -1894,6 +1945,108 @@ class GoogleBytestreamMedia(typing_extensions.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
+class GuaranteedOrder(typing_extensions.TypedDict, total=False):
+    defaultAdvertiserId: str
+    defaultCampaignId: str
+    displayName: str
+    exchange: typing_extensions.Literal[
+        "EXCHANGE_UNSPECIFIED",
+        "EXCHANGE_GOOGLE_AD_MANAGER",
+        "EXCHANGE_APPNEXUS",
+        "EXCHANGE_BRIGHTROLL",
+        "EXCHANGE_ADFORM",
+        "EXCHANGE_ADMETA",
+        "EXCHANGE_ADMIXER",
+        "EXCHANGE_ADSMOGO",
+        "EXCHANGE_ADSWIZZ",
+        "EXCHANGE_BIDSWITCH",
+        "EXCHANGE_BRIGHTROLL_DISPLAY",
+        "EXCHANGE_CADREON",
+        "EXCHANGE_DAILYMOTION",
+        "EXCHANGE_FIVE",
+        "EXCHANGE_FLUCT",
+        "EXCHANGE_FREEWHEEL",
+        "EXCHANGE_GENIEE",
+        "EXCHANGE_GUMGUM",
+        "EXCHANGE_IMOBILE",
+        "EXCHANGE_IBILLBOARD",
+        "EXCHANGE_IMPROVE_DIGITAL",
+        "EXCHANGE_INDEX",
+        "EXCHANGE_KARGO",
+        "EXCHANGE_MICROAD",
+        "EXCHANGE_MOPUB",
+        "EXCHANGE_NEND",
+        "EXCHANGE_ONE_BY_AOL_DISPLAY",
+        "EXCHANGE_ONE_BY_AOL_MOBILE",
+        "EXCHANGE_ONE_BY_AOL_VIDEO",
+        "EXCHANGE_OOYALA",
+        "EXCHANGE_OPENX",
+        "EXCHANGE_PERMODO",
+        "EXCHANGE_PLATFORMONE",
+        "EXCHANGE_PLATFORMID",
+        "EXCHANGE_PUBMATIC",
+        "EXCHANGE_PULSEPOINT",
+        "EXCHANGE_REVENUEMAX",
+        "EXCHANGE_RUBICON",
+        "EXCHANGE_SMARTCLIP",
+        "EXCHANGE_SMARTRTB",
+        "EXCHANGE_SMARTSTREAMTV",
+        "EXCHANGE_SOVRN",
+        "EXCHANGE_SPOTXCHANGE",
+        "EXCHANGE_STROER",
+        "EXCHANGE_TEADSTV",
+        "EXCHANGE_TELARIA",
+        "EXCHANGE_TVN",
+        "EXCHANGE_UNITED",
+        "EXCHANGE_YIELDLAB",
+        "EXCHANGE_YIELDMO",
+        "EXCHANGE_UNRULYX",
+        "EXCHANGE_OPEN8",
+        "EXCHANGE_TRITON",
+        "EXCHANGE_TRIPLELIFT",
+        "EXCHANGE_TABOOLA",
+        "EXCHANGE_INMOBI",
+        "EXCHANGE_SMAATO",
+        "EXCHANGE_AJA",
+        "EXCHANGE_SUPERSHIP",
+        "EXCHANGE_NEXSTAR_DIGITAL",
+        "EXCHANGE_WAZE",
+        "EXCHANGE_SOUNDCAST",
+        "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_FYBER",
+        "EXCHANGE_RED_FOR_PUBLISHERS",
+        "EXCHANGE_MEDIANET",
+        "EXCHANGE_TAPJOY",
+        "EXCHANGE_VISTAR",
+        "EXCHANGE_DAX",
+    ]
+    guaranteedOrderId: str
+    legacyGuaranteedOrderId: str
+    name: str
+    publisherName: str
+    readAccessInherited: bool
+    readAdvertiserIds: _list[str]
+    readWriteAdvertiserId: str
+    readWritePartnerId: str
+    status: GuaranteedOrderStatus
+    updateTime: str
+
+@typing.type_check_only
+class GuaranteedOrderStatus(typing_extensions.TypedDict, total=False):
+    configStatus: typing_extensions.Literal[
+        "GUARANTEED_ORDER_CONFIG_STATUS_UNSPECIFIED", "PENDING", "COMPLETED"
+    ]
+    entityPauseReason: str
+    entityStatus: typing_extensions.Literal[
+        "ENTITY_STATUS_UNSPECIFIED",
+        "ENTITY_STATUS_ACTIVE",
+        "ENTITY_STATUS_ARCHIVED",
+        "ENTITY_STATUS_DRAFT",
+        "ENTITY_STATUS_PAUSED",
+        "ENTITY_STATUS_SCHEDULED_FOR_DELETION",
+    ]
+
+@typing.type_check_only
 class HouseholdIncomeAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -2134,11 +2287,27 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_WAZE",
         "EXCHANGE_SOUNDCAST",
         "EXCHANGE_SHARETHROUGH",
+        "EXCHANGE_FYBER",
         "EXCHANGE_RED_FOR_PUBLISHERS",
         "EXCHANGE_MEDIANET",
         "EXCHANGE_TAPJOY",
+        "EXCHANGE_VISTAR",
+        "EXCHANGE_DAX",
     ]
+    guaranteedOrderId: str
     inventorySourceId: str
+    inventorySourceProductType: typing_extensions.Literal[
+        "INVENTORY_SOURCE_PRODUCT_TYPE_UNSPECIFIED",
+        "PREFERRED_DEAL",
+        "PRIVATE_AUCTION",
+        "PROGRAMMATIC_GUARANTEED",
+        "TAG_GUARANTEED",
+        "YOUTUBE_RESERVE",
+        "INSTANT_RESERVE",
+        "GUARANTEED_PACKAGE",
+        "PROGRAMMATIC_TV",
+        "AUCTION_PACKAGE",
+    ]
     inventorySourceType: typing_extensions.Literal[
         "INVENTORY_SOURCE_TYPE_UNSPECIFIED",
         "INVENTORY_SOURCE_TYPE_PRIVATE",
@@ -2147,9 +2316,28 @@ class InventorySource(typing_extensions.TypedDict, total=False):
     name: str
     publisherName: str
     rateDetails: RateDetails
+    readAdvertiserIds: _list[str]
+    readPartnerIds: _list[str]
+    readWriteAccessors: InventorySourceAccessors
     status: InventorySourceStatus
+    subSitePropertyId: str
     timeRange: TimeRange
     updateTime: str
+
+@typing.type_check_only
+class InventorySourceAccessors(typing_extensions.TypedDict, total=False):
+    advertisers: InventorySourceAccessorsAdvertiserAccessors
+    partner: InventorySourceAccessorsPartnerAccessor
+
+@typing.type_check_only
+class InventorySourceAccessorsAdvertiserAccessors(
+    typing_extensions.TypedDict, total=False
+):
+    advertiserIds: _list[str]
+
+@typing.type_check_only
+class InventorySourceAccessorsPartnerAccessor(typing_extensions.TypedDict, total=False):
+    partnerId: str
 
 @typing.type_check_only
 class InventorySourceAssignedTargetingOptionDetails(
@@ -2393,6 +2581,11 @@ class ListFirstAndThirdPartyAudiencesResponse(typing_extensions.TypedDict, total
 @typing.type_check_only
 class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
     googleAudiences: _list[GoogleAudience]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListGuaranteedOrdersResponse(typing_extensions.TypedDict, total=False):
+    guaranteedOrders: _list[GuaranteedOrder]
     nextPageToken: str
 
 @typing.type_check_only
@@ -2991,6 +3184,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_2",
         "SDF_VERSION_5_3",
         "SDF_VERSION_5_4",
+        "SDF_VERSION_5_5",
     ]
 
 @typing.type_check_only
@@ -3012,6 +3206,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_2",
         "SDF_VERSION_5_3",
         "SDF_VERSION_5_4",
+        "SDF_VERSION_5_5",
     ]
 
 @typing.type_check_only

@@ -19,6 +19,9 @@ class AdsenseResource(googleapiclient.discovery.Resource):
         class AdclientsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AdunitsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self, *, parent: str, body: AdUnit = ..., **kwargs: typing.Any
+                ) -> AdUnitHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> AdUnitHttpRequest: ...
@@ -51,9 +54,27 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     previous_request: ListLinkedCustomChannelsResponseHttpRequest,
                     previous_response: ListLinkedCustomChannelsResponse,
                 ) -> ListLinkedCustomChannelsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AdUnit = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> AdUnitHttpRequest: ...
 
             @typing.type_check_only
             class CustomchannelsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: CustomChannel = ...,
+                    **kwargs: typing.Any
+                ) -> CustomChannelHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> CustomChannelHttpRequest: ...
@@ -83,9 +104,20 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     previous_request: ListLinkedAdUnitsResponseHttpRequest,
                     previous_response: ListLinkedAdUnitsResponse,
                 ) -> ListLinkedAdUnitsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: CustomChannel = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> CustomChannelHttpRequest: ...
 
             @typing.type_check_only
             class UrlchannelsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> UrlChannelHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -100,6 +132,9 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     previous_response: ListUrlChannelsResponse,
                 ) -> ListUrlChannelsResponseHttpRequest | None: ...
 
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AdClientHttpRequest: ...
             def getAdcode(
                 self, *, name: str, **kwargs: typing.Any
             ) -> AdClientAdCodeHttpRequest: ...
@@ -230,6 +265,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "MONTH",
                     "ACCOUNT_NAME",
                     "AD_CLIENT_ID",
+                    "HOSTED_AD_CLIENT_ID",
                     "PRODUCT_NAME",
                     "PRODUCT_CODE",
                     "AD_UNIT_NAME",
@@ -279,6 +315,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "MONTH",
                         "ACCOUNT_NAME",
                         "AD_CLIENT_ID",
+                        "HOSTED_AD_CLIENT_ID",
                         "PRODUCT_NAME",
                         "PRODUCT_CODE",
                         "AD_UNIT_NAME",
@@ -432,6 +469,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "MONTH",
                     "ACCOUNT_NAME",
                     "AD_CLIENT_ID",
+                    "HOSTED_AD_CLIENT_ID",
                     "PRODUCT_NAME",
                     "PRODUCT_CODE",
                     "AD_UNIT_NAME",
@@ -481,6 +519,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "MONTH",
                         "ACCOUNT_NAME",
                         "AD_CLIENT_ID",
+                        "HOSTED_AD_CLIENT_ID",
                         "PRODUCT_NAME",
                         "PRODUCT_CODE",
                         "AD_UNIT_NAME",
@@ -612,6 +651,9 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                 startDate_year: int = ...,
                 **kwargs: typing.Any
             ) -> HttpBodyHttpRequest: ...
+            def getSaved(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SavedReportHttpRequest: ...
             def saved(self) -> SavedResource: ...
 
         @typing.type_check_only
@@ -632,6 +674,9 @@ class AdsenseResource(googleapiclient.discovery.Resource):
             ) -> ListSitesResponseHttpRequest | None: ...
 
         def get(self, *, name: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
+        def getAdBlockingRecoveryTag(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> AdBlockingRecoveryTagHttpRequest: ...
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListAccountsResponseHttpRequest: ...
@@ -682,6 +727,22 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Account: ...
 
 @typing.type_check_only
+class AdBlockingRecoveryTagHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AdBlockingRecoveryTag: ...
+
+@typing.type_check_only
+class AdClientHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AdClient: ...
+
+@typing.type_check_only
 class AdClientAdCodeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -712,6 +773,14 @@ class CustomChannelHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CustomChannel: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Empty: ...
 
 @typing.type_check_only
 class HttpBodyHttpRequest(googleapiclient.http.HttpRequest):
@@ -826,9 +895,25 @@ class ReportResultHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ReportResult: ...
 
 @typing.type_check_only
+class SavedReportHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SavedReport: ...
+
+@typing.type_check_only
 class SiteHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Site: ...
+
+@typing.type_check_only
+class UrlChannelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> UrlChannel: ...

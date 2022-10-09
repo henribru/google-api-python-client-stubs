@@ -18,6 +18,30 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class EkmConfigResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class EkmConnectionsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -376,6 +400,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def ekmConfig(self) -> EkmConfigResource: ...
             def ekmConnections(self) -> EkmConnectionsResource: ...
             def keyRings(self) -> KeyRingsResource: ...
 

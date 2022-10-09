@@ -124,6 +124,8 @@ class ApkManifest(typing_extensions.TypedDict, total=False):
     packageName: str
     targetSdkVersion: int
     usesPermission: _list[str]
+    versionCode: str
+    versionName: str
 
 @typing.type_check_only
 class AppBundle(typing_extensions.TypedDict, total=False):

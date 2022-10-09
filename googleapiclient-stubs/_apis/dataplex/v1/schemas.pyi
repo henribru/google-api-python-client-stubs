@@ -544,11 +544,16 @@ class GoogleCloudDataplexV1Session(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudDataplexV1SessionEvent(typing_extensions.TypedDict, total=False):
+    eventSucceeded: bool
     message: str
     query: GoogleCloudDataplexV1SessionEventQueryDetail
     sessionId: str
-    type: typing_extensions.Literal["EVENT_TYPE_UNSPECIFIED", "START", "STOP", "QUERY"]
+    type: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED", "START", "STOP", "QUERY", "CREATE"
+    ]
+    unassignedDuration: str
     userId: str
+    warmPoolEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDataplexV1SessionEventQueryDetail(
@@ -606,8 +611,10 @@ class GoogleCloudDataplexV1Task(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     executionSpec: GoogleCloudDataplexV1TaskExecutionSpec
+    executionStatus: GoogleCloudDataplexV1TaskExecutionStatus
     labels: dict[str, typing.Any]
     name: str
+    notebook: GoogleCloudDataplexV1TaskNotebookTaskConfig
     spark: GoogleCloudDataplexV1TaskSparkTaskConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING", "ACTION_REQUIRED"
@@ -619,8 +626,17 @@ class GoogleCloudDataplexV1Task(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDataplexV1TaskExecutionSpec(typing_extensions.TypedDict, total=False):
     args: dict[str, typing.Any]
+    kmsKey: str
     maxJobExecutionLifetime: str
+    project: str
     serviceAccount: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1TaskExecutionStatus(
+    typing_extensions.TypedDict, total=False
+):
+    latestJob: GoogleCloudDataplexV1Job
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1TaskInfrastructureSpec(
@@ -641,6 +657,7 @@ class GoogleCloudDataplexV1TaskInfrastructureSpecBatchComputeResources(
 class GoogleCloudDataplexV1TaskInfrastructureSpecContainerImageRuntime(
     typing_extensions.TypedDict, total=False
 ):
+    image: str
     javaJars: _list[str]
     properties: dict[str, typing.Any]
     pythonPackages: _list[str]
@@ -652,6 +669,15 @@ class GoogleCloudDataplexV1TaskInfrastructureSpecVpcNetwork(
     network: str
     networkTags: _list[str]
     subNetwork: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1TaskNotebookTaskConfig(
+    typing_extensions.TypedDict, total=False
+):
+    archiveUris: _list[str]
+    fileUris: _list[str]
+    infrastructureSpec: GoogleCloudDataplexV1TaskInfrastructureSpec
+    notebook: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1TaskSparkTaskConfig(

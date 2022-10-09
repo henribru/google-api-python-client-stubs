@@ -11,13 +11,16 @@ class AttachTrustRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
+    description: str
     labels: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "DELETING"
     ]
     statusMessage: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ON_DEMAND", "SCHEDULED"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "ON_DEMAND", "SCHEDULED", "SCHEMA_EXTENSION"
+    ]
     updateTime: str
 
 @typing.type_check_only
@@ -87,6 +90,12 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class ExtendSchemaRequest(typing_extensions.TypedDict, total=False):
+    description: str
+    fileContents: str
+    gcsPath: str
 
 @typing.type_check_only
 class GoogleCloudManagedidentitiesV1OpMetadata(
@@ -178,6 +187,12 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
     location: str
     nodeId: str
     perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
+
+@typing.type_check_only
+class GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter(
+    typing_extensions.TypedDict, total=False
+):
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
@@ -402,7 +417,9 @@ class Trust(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal["UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER"]
+    channel: typing_extensions.Literal[
+        "UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER", "WEEK1", "WEEK2", "WEEK5"
+    ]
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 

@@ -180,6 +180,9 @@ class DocumentationRule(typing_extensions.TypedDict, total=False):
     selector: str
 
 @typing.type_check_only
+class EnableServiceResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
     allowCors: bool
     name: str

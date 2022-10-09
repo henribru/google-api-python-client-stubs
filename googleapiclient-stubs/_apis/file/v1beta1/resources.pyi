@@ -60,6 +60,46 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class SharesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Share = ...,
+                        shareId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ShareHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListSharesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListSharesResponseHttpRequest,
+                        previous_response: ListSharesResponse,
+                    ) -> ListSharesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Share = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
                 class SnapshotsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -150,6 +190,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     body: RevertInstanceRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def shares(self) -> SharesResource: ...
                 def snapshots(self) -> SnapshotsResource: ...
 
             @typing.type_check_only
@@ -277,6 +318,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListSharesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSharesResponse: ...
+
+@typing.type_check_only
 class ListSnapshotsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -299,6 +348,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class ShareHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Share: ...
 
 @typing.type_check_only
 class SnapshotHttpRequest(googleapiclient.http.HttpRequest):

@@ -540,6 +540,7 @@ class Creative(typing_extensions.TypedDict, total=False):
         "CREATIVE_AUTHORING_SOURCE_DBM",
         "CREATIVE_AUTHORING_SOURCE_STUDIO",
         "CREATIVE_AUTHORING_SOURCE_GWD",
+        "CREATIVE_AUTHORING_SOURCE_ACS",
     ]
     authoringTool: typing_extensions.Literal["NINJA", "SWIFFY"]
     autoAdvanceImages: bool
@@ -1525,7 +1526,9 @@ class MeasurementPartnerAdvertiserLink(typing_extensions.TypedDict, total=False)
         "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
         "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
     ]
-    measurementPartner: typing_extensions.Literal["NONE", "INTEGRAL_AD_SCIENCE"]
+    measurementPartner: typing_extensions.Literal[
+        "NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"
+    ]
     partnerAdvertiserId: str
 
 @typing.type_check_only
@@ -1540,7 +1543,9 @@ class MeasurementPartnerCampaignLink(typing_extensions.TypedDict, total=False):
         "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
         "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
     ]
-    measurementPartner: typing_extensions.Literal["NONE", "INTEGRAL_AD_SCIENCE"]
+    measurementPartner: typing_extensions.Literal[
+        "NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"
+    ]
     partnerCampaignId: str
 
 @typing.type_check_only
@@ -1555,7 +1560,9 @@ class MeasurementPartnerWrappingData(typing_extensions.TypedDict, total=False):
         "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
         "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
     ]
-    measurementPartner: typing_extensions.Literal["NONE", "INTEGRAL_AD_SCIENCE"]
+    measurementPartner: typing_extensions.Literal[
+        "NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"
+    ]
     tagWrappingMode: typing_extensions.Literal[
         "NONE",
         "BLOCKING",
@@ -1563,7 +1570,14 @@ class MeasurementPartnerWrappingData(typing_extensions.TypedDict, total=False):
         "MONITORING_ONLY",
         "VIDEO_PIXEL_MONITORING",
         "TRACKING",
+        "VPAID_MONITORING",
+        "VPAID_BLOCKING",
         "NON_VPAID_MONITORING",
+        "VPAID_ONLY_MONITORING",
+        "VPAID_ONLY_BLOCKING",
+        "VPAID_ONLY_FILTERING",
+        "VPAID_FILTERING",
+        "NON_VPAID_FILTERING",
     ]
     wrappedTag: str
 
@@ -1590,7 +1604,17 @@ class MetrosListResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MobileApp(typing_extensions.TypedDict, total=False):
     directory: typing_extensions.Literal[
-        "UNKNOWN", "APPLE_APP_STORE", "GOOGLE_PLAY_STORE"
+        "UNKNOWN",
+        "APPLE_APP_STORE",
+        "GOOGLE_PLAY_STORE",
+        "ROKU_APP_STORE",
+        "AMAZON_FIRETV_APP_STORE",
+        "PLAYSTATION_APP_STORE",
+        "APPLE_TV_APP_STORE",
+        "XBOX_APP_STORE",
+        "SAMSUNG_TV_APP_STORE",
+        "ANDROID_TV_APP_STORE",
+        "GENERIC_CTV_APP_STORE",
     ]
     id: str
     kind: str

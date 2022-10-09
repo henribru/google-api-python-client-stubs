@@ -35,10 +35,28 @@ class GoogleCloudOrgpolicyV2ConstraintListConstraint(
     supportsUnder: bool
 
 @typing.type_check_only
+class GoogleCloudOrgpolicyV2CustomConstraint(typing_extensions.TypedDict, total=False):
+    actionType: typing_extensions.Literal["ACTION_TYPE_UNSPECIFIED", "ALLOW", "DENY"]
+    condition: str
+    description: str
+    displayName: str
+    methodTypes: _list[str]
+    name: str
+    resourceTypes: _list[str]
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudOrgpolicyV2ListConstraintsResponse(
     typing_extensions.TypedDict, total=False
 ):
     constraints: _list[GoogleCloudOrgpolicyV2Constraint]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudOrgpolicyV2ListCustomConstraintsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    customConstraints: _list[GoogleCloudOrgpolicyV2CustomConstraint]
     nextPageToken: str
 
 @typing.type_check_only

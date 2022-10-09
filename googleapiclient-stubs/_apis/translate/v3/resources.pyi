@@ -19,6 +19,42 @@ class TranslateResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class GlossariesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class GlossaryEntriesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GlossaryEntry = ...,
+                        **kwargs: typing.Any
+                    ) -> GlossaryEntryHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GlossaryEntryHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListGlossaryEntriesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListGlossaryEntriesResponseHttpRequest,
+                        previous_response: ListGlossaryEntriesResponse,
+                    ) -> ListGlossaryEntriesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GlossaryEntry = ...,
+                        **kwargs: typing.Any
+                    ) -> GlossaryEntryHttpRequest: ...
+
                 def create(
                     self, *, parent: str, body: Glossary = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -42,6 +78,15 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     previous_request: ListGlossariesResponseHttpRequest,
                     previous_response: ListGlossariesResponse,
                 ) -> ListGlossariesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Glossary = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def glossaryEntries(self) -> GlossaryEntriesResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -202,12 +247,28 @@ class GlossaryHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Glossary: ...
 
 @typing.type_check_only
+class GlossaryEntryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GlossaryEntry: ...
+
+@typing.type_check_only
 class ListGlossariesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListGlossariesResponse: ...
+
+@typing.type_check_only
+class ListGlossaryEntriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListGlossaryEntriesResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):

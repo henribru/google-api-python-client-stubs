@@ -32,6 +32,7 @@ class CloudSqlProperties(typing_extensions.TypedDict, total=False):
     credential: CloudSqlCredential
     database: str
     instanceId: str
+    serviceAccountId: str
     type: typing_extensions.Literal["DATABASE_TYPE_UNSPECIFIED", "POSTGRES", "MYSQL"]
 
 @typing.type_check_only

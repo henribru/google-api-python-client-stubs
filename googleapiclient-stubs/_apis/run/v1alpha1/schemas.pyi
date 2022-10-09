@@ -75,6 +75,11 @@ class ExecAction(typing_extensions.TypedDict, total=False):
     command: _list[str]
 
 @typing.type_check_only
+class GRPCAction(typing_extensions.TypedDict, total=False):
+    port: int
+    service: str
+
+@typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -222,6 +227,7 @@ class OwnerReference(typing_extensions.TypedDict, total=False):
 class Probe(typing_extensions.TypedDict, total=False):
     exec: ExecAction
     failureThreshold: int
+    grpc: GRPCAction
     httpGet: HTTPGetAction
     initialDelaySeconds: int
     periodSeconds: int

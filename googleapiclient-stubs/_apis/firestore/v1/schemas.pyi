@@ -72,7 +72,7 @@ class CompositeFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Count(typing_extensions.TypedDict, total=False):
-    upTo: int
+    upTo: str
 
 @typing.type_check_only
 class Cursor(typing_extensions.TypedDict, total=False):
@@ -210,6 +210,7 @@ class GoogleFirestoreAdminV1ExportDocumentsResponse(
 class GoogleFirestoreAdminV1Field(typing_extensions.TypedDict, total=False):
     indexConfig: GoogleFirestoreAdminV1IndexConfig
     name: str
+    ttlConfig: GoogleFirestoreAdminV1TtlConfig
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1FieldOperationMetadata(
@@ -231,6 +232,7 @@ class GoogleFirestoreAdminV1FieldOperationMetadata(
         "FAILED",
         "CANCELLED",
     ]
+    ttlConfigDelta: GoogleFirestoreAdminV1TtlConfigDelta
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ImportDocumentsMetadata(
@@ -340,6 +342,16 @@ class GoogleFirestoreAdminV1Progress(typing_extensions.TypedDict, total=False):
     estimatedWork: str
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1TtlConfig(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "NEEDS_REPAIR"
+    ]
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1TtlConfigDelta(typing_extensions.TypedDict, total=False):
+    changeType: typing_extensions.Literal["CHANGE_TYPE_UNSPECIFIED", "ADD", "REMOVE"]
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -371,6 +383,7 @@ class LatLng(typing_extensions.TypedDict, total=False):
 class ListCollectionIdsRequest(typing_extensions.TypedDict, total=False):
     pageSize: int
     pageToken: str
+    readTime: str
 
 @typing.type_check_only
 class ListCollectionIdsResponse(typing_extensions.TypedDict, total=False):
@@ -425,6 +438,7 @@ class PartitionQueryRequest(typing_extensions.TypedDict, total=False):
     pageSize: int
     pageToken: str
     partitionCount: str
+    readTime: str
     structuredQuery: StructuredQuery
 
 @typing.type_check_only
@@ -481,6 +495,7 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RunQueryResponse(typing_extensions.TypedDict, total=False):
     document: Document
+    done: bool
     readTime: str
     skippedResults: int
     transaction: str

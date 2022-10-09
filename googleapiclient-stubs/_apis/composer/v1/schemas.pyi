@@ -20,6 +20,11 @@ class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
     pypiDependencies: dict[str, typing.Any]
 
 @typing.type_check_only
+class CidrBlock(typing_extensions.TypedDict, total=False):
+    cidrBlock: str
+    displayName: str
+
+@typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):
     machineType: str
 
@@ -62,6 +67,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     ]
     gkeCluster: str
     maintenanceWindow: MaintenanceWindow
+    masterAuthorizedNetworksConfig: MasterAuthorizedNetworksConfig
     nodeConfig: NodeConfig
     nodeCount: int
     privateEnvironmentConfig: PrivateEnvironmentConfig
@@ -103,14 +109,23 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class LoadSnapshotResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     endTime: str
     recurrence: str
     startTime: str
 
 @typing.type_check_only
+class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
+    cidrBlocks: _list[CidrBlock]
+    enabled: bool
+
+@typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
+    enableIpMasqAgent: bool
     ipAllocationPolicy: IPAllocationPolicy
     location: str
     machineType: str
@@ -160,9 +175,14 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
     cloudComposerNetworkIpv4ReservedRange: str
     cloudSqlIpv4CidrBlock: str
     enablePrivateEnvironment: bool
+    enablePrivatelyUsedPublicIps: bool
     privateClusterConfig: PrivateClusterConfig
     webServerIpv4CidrBlock: str
     webServerIpv4ReservedRange: str
+
+@typing.type_check_only
+class SaveSnapshotResponse(typing_extensions.TypedDict, total=False):
+    snapshotPath: str
 
 @typing.type_check_only
 class SchedulerResource(typing_extensions.TypedDict, total=False):

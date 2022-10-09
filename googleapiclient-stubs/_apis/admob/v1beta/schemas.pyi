@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AdSource(typing_extensions.TypedDict, total=False):
+    adSourceId: str
+    name: str
+    title: str
+
+@typing.type_check_only
 class AdUnit(typing_extensions.TypedDict, total=False):
     adFormat: str
     adTypes: _list[str]
@@ -60,6 +66,11 @@ class GenerateNetworkReportResponse(typing_extensions.TypedDict, total=False):
     footer: ReportFooter
     header: ReportHeader
     row: ReportRow
+
+@typing.type_check_only
+class ListAdSourcesResponse(typing_extensions.TypedDict, total=False):
+    adSources: _list[AdSource]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListAdUnitsResponse(typing_extensions.TypedDict, total=False):

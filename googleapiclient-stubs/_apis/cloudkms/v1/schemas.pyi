@@ -285,6 +285,7 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
     cryptoKeyVersion: str
     importJob: str
     rsaAesWrappedKey: str
+    wrappedKey: str
 
 @typing.type_check_only
 class ImportJob(typing_extensions.TypedDict, total=False):
@@ -297,6 +298,10 @@ class ImportJob(typing_extensions.TypedDict, total=False):
         "IMPORT_METHOD_UNSPECIFIED",
         "RSA_OAEP_3072_SHA1_AES_256",
         "RSA_OAEP_4096_SHA1_AES_256",
+        "RSA_OAEP_3072_SHA256_AES_256",
+        "RSA_OAEP_4096_SHA256_AES_256",
+        "RSA_OAEP_3072_SHA256",
+        "RSA_OAEP_4096_SHA256",
     ]
     name: str
     protectionLevel: typing_extensions.Literal[

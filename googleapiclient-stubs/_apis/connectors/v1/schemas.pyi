@@ -24,9 +24,12 @@ class AuthConfig(typing_extensions.TypedDict, total=False):
         "USER_PASSWORD",
         "OAUTH2_JWT_BEARER",
         "OAUTH2_CLIENT_CREDENTIALS",
+        "SSH_PUBLIC_KEY",
+        "OAUTH2_AUTH_CODE_FLOW",
     ]
     oauth2ClientCredentials: Oauth2ClientCredentials
     oauth2JwtBearer: Oauth2JwtBearer
+    sshPublicKey: SshPublicKey
     userPassword: UserPassword
 
 @typing.type_check_only
@@ -36,8 +39,17 @@ class AuthConfigTemplate(typing_extensions.TypedDict, total=False):
         "USER_PASSWORD",
         "OAUTH2_JWT_BEARER",
         "OAUTH2_CLIENT_CREDENTIALS",
+        "SSH_PUBLIC_KEY",
+        "OAUTH2_AUTH_CODE_FLOW",
     ]
     configVariableTemplates: _list[ConfigVariableTemplate]
+
+@typing.type_check_only
+class AuthorizationCodeLink(typing_extensions.TypedDict, total=False):
+    clientId: str
+    enablePkce: bool
+    scopes: _list[str]
+    uri: str
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -58,14 +70,23 @@ class ConfigVariable(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
+    authorizationCodeLink: AuthorizationCodeLink
     description: str
     displayName: str
+    enumOptions: _list[EnumOption]
     key: str
     required: bool
     roleGrant: RoleGrant
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DEPRECATED"]
     validationRegex: str
     valueType: typing_extensions.Literal[
-        "VALUE_TYPE_UNSPECIFIED", "STRING", "INT", "BOOL", "SECRET"
+        "VALUE_TYPE_UNSPECIFIED",
+        "STRING",
+        "INT",
+        "BOOL",
+        "SECRET",
+        "ENUM",
+        "AUTHORIZATION_CODE",
     ]
 
 @typing.type_check_only
@@ -75,12 +96,13 @@ class Connection(typing_extensions.TypedDict, total=False):
     connectorVersion: str
     createTime: str
     description: str
-    egressBackends: _list[str]
+    destinationConfigs: _list[DestinationConfig]
     envoyImageLocation: str
     imageLocation: str
     labels: dict[str, typing.Any]
     lockConfig: LockConfig
     name: str
+    nodeConfig: NodeConfig
     serviceAccount: str
     serviceDirectory: str
     status: ConnectionStatus
@@ -140,12 +162,28 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class Destination(typing_extensions.TypedDict, total=False):
+    host: str
+    port: int
+    serviceAttachment: str
+
+@typing.type_check_only
+class DestinationConfig(typing_extensions.TypedDict, total=False):
+    destinations: _list[Destination]
+    key: str
+
+@typing.type_check_only
 class EgressControlConfig(typing_extensions.TypedDict, total=False):
     backends: str
     extractionRules: ExtractionRules
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnumOption(typing_extensions.TypedDict, total=False):
+    displayName: str
+    id: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -338,6 +376,11 @@ class LockConfig(typing_extensions.TypedDict, total=False):
     reason: str
 
 @typing.type_check_only
+class NodeConfig(typing_extensions.TypedDict, total=False):
+    maxNodeCount: int
+    minNodeCount: int
+
+@typing.type_check_only
 class Oauth2ClientCredentials(typing_extensions.TypedDict, total=False):
     clientId: str
     clientSecret: Secret
@@ -470,6 +513,7 @@ class RuntimeConfig(typing_extensions.TypedDict, total=False):
     controlPlaneSubscription: str
     controlPlaneTopic: str
     locationId: str
+    name: str
     runtimeEndpoint: str
     schemaGcsBucket: str
     serviceDirectory: str
@@ -501,6 +545,14 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 class Source(typing_extensions.TypedDict, total=False):
     fieldId: str
     sourceType: typing_extensions.Literal["SOURCE_TYPE_UNSPECIFIED", "CONFIG_VARIABLE"]
+
+@typing.type_check_only
+class SshPublicKey(typing_extensions.TypedDict, total=False):
+    certType: str
+    password: Secret
+    sshClientCert: Secret
+    sshClientCertPass: Secret
+    username: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

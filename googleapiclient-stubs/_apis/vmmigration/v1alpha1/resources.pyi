@@ -221,6 +221,27 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             previous_response: ListCutoverJobsResponse,
                         ) -> ListCutoverJobsResponseHttpRequest | None: ...
 
+                    @typing.type_check_only
+                    class ReplicationCyclesResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> ReplicationCycleHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListReplicationCyclesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListReplicationCyclesResponseHttpRequest,
+                            previous_response: ListReplicationCyclesResponse,
+                        ) -> ListReplicationCyclesResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -303,6 +324,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     ) -> OperationHttpRequest: ...
                     def cloneJobs(self) -> CloneJobsResource: ...
                     def cutoverJobs(self) -> CutoverJobsResource: ...
+                    def replicationCycles(self) -> ReplicationCyclesResource: ...
 
                 @typing.type_check_only
                 class UtilizationReportsResource(googleapiclient.discovery.Resource):
@@ -359,8 +381,19 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def fetchInventory(
-                    self, *, source: str, forceRefresh: bool = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    source: str,
+                    forceRefresh: bool = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
                 ) -> FetchInventoryResponseHttpRequest: ...
+                def fetchInventory_next(
+                    self,
+                    previous_request: FetchInventoryResponseHttpRequest,
+                    previous_response: FetchInventoryResponse,
+                ) -> FetchInventoryResponseHttpRequest | None: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> SourceHttpRequest: ...
@@ -577,6 +610,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListReplicationCyclesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListReplicationCyclesResponse: ...
+
+@typing.type_check_only
 class ListSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -623,6 +664,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class ReplicationCycleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ReplicationCycle: ...
 
 @typing.type_check_only
 class SourceHttpRequest(googleapiclient.http.HttpRequest):

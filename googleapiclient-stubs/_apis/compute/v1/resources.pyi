@@ -110,6 +110,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: AddressListHttpRequest,
             previous_response: AddressList,
         ) -> AddressListHttpRequest | None: ...
+        def setLabels(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetLabelsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class AutoscalersResource(googleapiclient.discovery.Resource):
@@ -328,6 +338,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: ResourceGroupReference = ...,
             **kwargs: typing.Any
         ) -> BackendServiceGroupHealthHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -370,6 +388,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def setSecurityPolicy(
             self,
             *,
@@ -933,6 +959,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: AddressListHttpRequest,
             previous_response: AddressList,
         ) -> AddressListHttpRequest | None: ...
+        def setLabels(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetLabelsRequest = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class GlobalForwardingRulesResource(googleapiclient.discovery.Resource):
@@ -2388,6 +2422,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setLabels(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetLabelsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class InterconnectLocationsResource(googleapiclient.discovery.Resource):
@@ -2458,6 +2502,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             interconnect: str,
             body: Interconnect = ...,
             requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setLabels(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetLabelsRequest = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
 
@@ -3722,6 +3774,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: ResourceGroupReference = ...,
             **kwargs: typing.Any
         ) -> BackendServiceGroupHealthHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -3758,6 +3819,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def update(
             self,
             *,
@@ -4762,6 +4832,69 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> SslCertificateListHttpRequest | None: ...
 
     @typing.type_check_only
+    class RegionSslPoliciesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            project: str,
+            region: str,
+            sslPolicy: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, region: str, sslPolicy: str, **kwargs: typing.Any
+        ) -> SslPolicyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: SslPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> SslPoliciesListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SslPoliciesListHttpRequest,
+            previous_response: SslPoliciesList,
+        ) -> SslPoliciesListHttpRequest | None: ...
+        def listAvailableFeatures(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> SslPoliciesListAvailableFeaturesResponseHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            sslPolicy: str,
+            body: SslPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class RegionTargetHttpProxiesResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -4892,6 +5025,52 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class RegionTargetTcpProxiesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            project: str,
+            region: str,
+            targetTcpProxy: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            region: str,
+            targetTcpProxy: str,
+            **kwargs: typing.Any
+        ) -> TargetTcpProxyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: TargetTcpProxy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> TargetTcpProxyListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: TargetTcpProxyListHttpRequest,
+            previous_response: TargetTcpProxyList,
+        ) -> TargetTcpProxyListHttpRequest | None: ...
 
     @typing.type_check_only
     class RegionUrlMapsResource(googleapiclient.discovery.Resource):
@@ -5328,6 +5507,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             securityPolicy: str,
             body: SecurityPolicyRule = ...,
+            validateOnly: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def aggregatedList(
@@ -5372,6 +5552,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             body: SecurityPolicy = ...,
             requestId: str = ...,
+            validateOnly: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def list(
@@ -5417,6 +5598,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             securityPolicy: str,
             body: SecurityPolicyRule = ...,
             priority: int = ...,
+            validateOnly: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def removeRule(
@@ -5425,6 +5607,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             securityPolicy: str,
             priority: int = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setLabels(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetLabelsRequest = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
 
@@ -5655,6 +5845,23 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class SslPoliciesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> SslPoliciesAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: SslPoliciesAggregatedListHttpRequest,
+            previous_response: SslPoliciesAggregatedList,
+        ) -> SslPoliciesAggregatedListHttpRequest | None: ...
         def delete(
             self,
             *,
@@ -6026,6 +6233,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setCertificateMap(
+            self,
+            *,
+            project: str,
+            targetHttpsProxy: str,
+            body: TargetHttpsProxiesSetCertificateMapRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setQuicOverride(
             self,
             *,
@@ -6285,6 +6501,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setCertificateMap(
+            self,
+            *,
+            project: str,
+            targetSslProxy: str,
+            body: TargetSslProxiesSetCertificateMapRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setProxyHeader(
             self,
             *,
@@ -6431,6 +6656,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: TargetVpnGatewayListHttpRequest,
             previous_response: TargetVpnGatewayList,
         ) -> TargetVpnGatewayListHttpRequest | None: ...
+        def setLabels(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetLabelsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class UrlMapsResource(googleapiclient.discovery.Resource):
@@ -6657,6 +6892,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: VpnTunnelListHttpRequest,
             previous_response: VpnTunnelList,
         ) -> VpnTunnelListHttpRequest | None: ...
+        def setLabels(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetLabelsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class ZoneOperationsResource(googleapiclient.discovery.Resource):
@@ -6783,8 +7028,10 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionOperations(self) -> RegionOperationsResource: ...
     def regionSecurityPolicies(self) -> RegionSecurityPoliciesResource: ...
     def regionSslCertificates(self) -> RegionSslCertificatesResource: ...
+    def regionSslPolicies(self) -> RegionSslPoliciesResource: ...
     def regionTargetHttpProxies(self) -> RegionTargetHttpProxiesResource: ...
     def regionTargetHttpsProxies(self) -> RegionTargetHttpsProxiesResource: ...
+    def regionTargetTcpProxies(self) -> RegionTargetTcpProxiesResource: ...
     def regionUrlMaps(self) -> RegionUrlMapsResource: ...
     def regions(self) -> RegionsResource: ...
     def reservations(self) -> ReservationsResource: ...
@@ -8100,6 +8347,14 @@ class SslCertificateListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SslCertificateList: ...
+
+@typing.type_check_only
+class SslPoliciesAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SslPoliciesAggregatedList: ...
 
 @typing.type_check_only
 class SslPoliciesListHttpRequest(googleapiclient.http.HttpRequest):

@@ -643,6 +643,15 @@ class GoogleCloudChannelV1alpha1AssociationInfo(
     baseEntitlement: str
 
 @typing.type_check_only
+class GoogleCloudChannelV1alpha1ChannelPartnerEvent(
+    typing_extensions.TypedDict, total=False
+):
+    channelPartner: str
+    eventType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "LINK_STATE_CHANGED", "PARTNER_ADVANTAGE_INFO_CHANGED"
+    ]
+
+@typing.type_check_only
 class GoogleCloudChannelV1alpha1CommitmentSettings(
     typing_extensions.TypedDict, total=False
 ):
@@ -766,6 +775,7 @@ class GoogleCloudChannelV1alpha1RenewalSettings(
 class GoogleCloudChannelV1alpha1SubscriberEvent(
     typing_extensions.TypedDict, total=False
 ):
+    channelPartnerEvent: GoogleCloudChannelV1alpha1ChannelPartnerEvent
     customerEvent: GoogleCloudChannelV1alpha1CustomerEvent
     entitlementEvent: GoogleCloudChannelV1alpha1EntitlementEvent
 

@@ -23,6 +23,13 @@ class AuxiliaryVersionConfig(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class BackendMetastore(typing_extensions.TypedDict, total=False):
+    metastoreType: typing_extensions.Literal[
+        "METASTORE_TYPE_UNSPECIFIED", "BIGQUERY", "DATAPROC_METASTORE"
+    ]
+    name: str
+
+@typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -81,6 +88,21 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class Federation(typing_extensions.TypedDict, total=False):
+    backendMetastores: dict[str, typing.Any]
+    createTime: str
+    endpointUri: str
+    labels: dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "DELETING", "ERROR"
+    ]
+    stateMessage: str
+    uid: str
+    updateTime: str
+    version: str
+
+@typing.type_check_only
 class HiveMetastoreConfig(typing_extensions.TypedDict, total=False):
     auxiliaryVersions: dict[str, typing.Any]
     configOverrides: dict[str, typing.Any]
@@ -108,6 +130,12 @@ class Lake(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
     backups: _list[Backup]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListFederationsResponse(typing_extensions.TypedDict, total=False):
+    federations: _list[Federation]
     nextPageToken: str
     unreachable: _list[str]
 

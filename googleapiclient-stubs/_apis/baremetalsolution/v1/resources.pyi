@@ -35,24 +35,6 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
 
-    @typing.type_check_only
-    class ProjectsResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class LocationsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class InstancesResource(googleapiclient.discovery.Resource):
-                def resetInstance(
-                    self,
-                    *,
-                    instance: str,
-                    body: ResetInstanceRequest = ...,
-                    **kwargs: typing.Any
-                ) -> ResetInstanceResponseHttpRequest: ...
-
-            def instances(self) -> InstancesResource: ...
-
-        def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -66,7 +48,6 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def operations(self) -> OperationsResource: ...
-    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -91,11 +72,3 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
-
-@typing.type_check_only
-class ResetInstanceResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ResetInstanceResponse: ...

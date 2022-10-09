@@ -223,6 +223,10 @@ class Role(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class Saml(typing_extensions.TypedDict, total=False):
+    idpMetadataXml: str
+
+@typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     description: str
     disabled: bool
@@ -324,6 +328,11 @@ class WorkloadIdentityPool(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
 @typing.type_check_only
+class WorkloadIdentityPoolOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class WorkloadIdentityPoolProvider(typing_extensions.TypedDict, total=False):
     attributeCondition: str
     attributeMapping: dict[str, typing.Any]
@@ -333,4 +342,5 @@ class WorkloadIdentityPoolProvider(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     oidc: Oidc
+    saml: Saml
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]

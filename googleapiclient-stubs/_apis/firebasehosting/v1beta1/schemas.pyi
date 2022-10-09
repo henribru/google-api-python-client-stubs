@@ -175,6 +175,7 @@ class Release(typing_extensions.TypedDict, total=False):
 class Rewrite(typing_extensions.TypedDict, total=False):
     dynamicLinks: bool
     function: str
+    functionRegion: str
     glob: str
     path: str
     regex: str

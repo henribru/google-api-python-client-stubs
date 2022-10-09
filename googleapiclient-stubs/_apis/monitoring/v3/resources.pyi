@@ -596,6 +596,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any

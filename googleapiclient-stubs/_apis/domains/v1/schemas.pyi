@@ -75,6 +75,19 @@ class DnsSettings(typing_extensions.TypedDict, total=False):
     googleDomainsDns: GoogleDomainsDns
 
 @typing.type_check_only
+class Domain(typing_extensions.TypedDict, total=False):
+    domainName: str
+    resourceState: typing_extensions.Literal[
+        "RESOURCE_STATE_UNSPECIFIED",
+        "IMPORTABLE",
+        "UNSUPPORTED",
+        "SUSPENDED",
+        "EXPIRED",
+        "DELETED",
+    ]
+    yearlyPrice: Money
+
+@typing.type_check_only
 class DsRecord(typing_extensions.TypedDict, total=False):
     algorithm: typing_extensions.Literal[
         "ALGORITHM_UNSPECIFIED",
@@ -125,6 +138,11 @@ class GoogleDomainsDns(typing_extensions.TypedDict, total=False):
         "DS_STATE_UNSPECIFIED", "DS_RECORDS_UNPUBLISHED", "DS_RECORDS_PUBLISHED"
     ]
     nameServers: _list[str]
+
+@typing.type_check_only
+class ImportDomainRequest(typing_extensions.TypedDict, total=False):
+    domainName: str
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -232,20 +250,45 @@ class Registration(typing_extensions.TypedDict, total=False):
     managementSettings: ManagementSettings
     name: str
     pendingContactSettings: ContactSettings
+    registerFailureReason: typing_extensions.Literal[
+        "REGISTER_FAILURE_REASON_UNSPECIFIED",
+        "REGISTER_FAILURE_REASON_UNKNOWN",
+        "DOMAIN_NOT_AVAILABLE",
+        "INVALID_CONTACTS",
+    ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "REGISTRATION_PENDING",
         "REGISTRATION_FAILED",
         "TRANSFER_PENDING",
         "TRANSFER_FAILED",
+        "IMPORT_PENDING",
         "ACTIVE",
         "SUSPENDED",
         "EXPORTED",
     ]
     supportedPrivacy: _list[str]
+    transferFailureReason: typing_extensions.Literal[
+        "TRANSFER_FAILURE_REASON_UNSPECIFIED",
+        "TRANSFER_FAILURE_REASON_UNKNOWN",
+        "EMAIL_CONFIRMATION_FAILURE",
+        "DOMAIN_NOT_REGISTERED",
+        "DOMAIN_HAS_TRANSFER_LOCK",
+        "INVALID_AUTHORIZATION_CODE",
+        "TRANSFER_CANCELLED",
+        "TRANSFER_REJECTED",
+        "INVALID_REGISTRANT_EMAIL_ADDRESS",
+        "DOMAIN_NOT_ELIGIBLE_FOR_TRANSFER",
+        "TRANSFER_ALREADY_PENDING",
+    ]
 
 @typing.type_check_only
 class ResetAuthorizationCodeRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RetrieveImportableDomainsResponse(typing_extensions.TypedDict, total=False):
+    domains: _list[Domain]
+    nextPageToken: str
 
 @typing.type_check_only
 class RetrieveRegisterParametersResponse(typing_extensions.TypedDict, total=False):
@@ -289,6 +332,7 @@ class TransferDomainRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TransferParameters(typing_extensions.TypedDict, total=False):
     currentRegistrar: str
+    currentRegistrarUri: str
     domainName: str
     nameServers: _list[str]
     supportedPrivacy: _list[str]

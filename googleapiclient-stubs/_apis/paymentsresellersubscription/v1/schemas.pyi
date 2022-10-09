@@ -5,6 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1Amount(
+    typing_extensions.TypedDict, total=False
+):
+    amountMicros: str
+    currencyCode: str
+
+@typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -68,6 +75,21 @@ class GoogleCloudPaymentsResellerSubscriptionV1Extension(
     partnerUserToken: str
 
 @typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    pageSize: int
+    pageToken: str
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    promotions: _list[GoogleCloudPaymentsResellerSubscriptionV1Promotion]
+
+@typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -93,9 +115,17 @@ class GoogleCloudPaymentsResellerSubscriptionV1Product(
     typing_extensions.TypedDict, total=False
 ):
     name: str
+    priceConfigs: _list[GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig]
     regionCodes: _list[str]
     subscriptionBillingCycleDuration: GoogleCloudPaymentsResellerSubscriptionV1Duration
     titles: _list[GoogleTypeLocalizedText]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig(
+    typing_extensions.TypedDict, total=False
+):
+    amount: GoogleCloudPaymentsResellerSubscriptionV1Amount
+    regionCode: str
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1Promotion(
@@ -127,7 +157,17 @@ class GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetai
 class GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec(
     typing_extensions.TypedDict, total=False
 ):
+    discountAmount: GoogleCloudPaymentsResellerSubscriptionV1Amount
+    discountRatioMicros: str
     recurrenceCount: int
+    regionCode: str
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
@@ -138,6 +178,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
     cycleEndTime: str
     endUserEntitled: bool
     freeTrialEndTime: str
+    lineItems: _list[GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem]
     name: str
     partnerUserToken: str
     processingState: typing_extensions.Literal[
@@ -146,6 +187,9 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
         "PROCESSING_STATE_RECURRING",
     ]
     products: _list[str]
+    promotionSpecs: _list[
+        GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec
+    ]
     promotions: _list[str]
     redirectUri: str
     renewalTime: str
@@ -175,6 +219,50 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails(
         "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
         "CANCELLATION_REASON_USER_DELINQUENCY",
         "CANCELLATION_REASON_OTHER",
+    ]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    lineItemFreeTrialEndTime: str
+    lineItemPromotionSpecs: _list[
+        GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec
+    ]
+    oneTimeRecurrenceDetails: GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails
+    product: str
+    recurrenceType: typing_extensions.Literal[
+        "LINE_ITEM_RECURRENCE_TYPE_UNSPECIFIED",
+        "LINE_ITEM_RECURRENCE_TYPE_PERIODIC",
+        "LINE_ITEM_RECURRENCE_TYPE_ONE_TIME",
+    ]
+    state: typing_extensions.Literal[
+        "LINE_ITEM_STATE_UNSPECIFIED",
+        "LINE_ITEM_STATE_ACTIVE",
+        "LINE_ITEM_STATE_INACTIVE",
+        "LINE_ITEM_STATE_NEW",
+        "LINE_ITEM_STATE_ACTIVATING",
+        "LINE_ITEM_STATE_DEACTIVATING",
+    ]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails(
+    typing_extensions.TypedDict, total=False
+):
+    servicePeriod: GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec(
+    typing_extensions.TypedDict, total=False
+):
+    freeTrialDuration: GoogleCloudPaymentsResellerSubscriptionV1Duration
+    introductoryPricingDetails: GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails
+    promotion: str
+    type: typing_extensions.Literal[
+        "PROMOTION_TYPE_UNSPECIFIED",
+        "PROMOTION_TYPE_FREE_TRIAL",
+        "PROMOTION_TYPE_INTRODUCTORY_PRICING",
     ]
 
 @typing.type_check_only

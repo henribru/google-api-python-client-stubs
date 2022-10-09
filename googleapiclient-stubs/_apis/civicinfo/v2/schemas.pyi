@@ -86,6 +86,9 @@ class Election(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     ocdDivisionId: str
+    shapeLookupBehavior: typing_extensions.Literal[
+        "shapeLookupDefault", "shapeLookupDisabled", "shapeLookupEnabled"
+    ]
 
 @typing.type_check_only
 class ElectionOfficial(typing_extensions.TypedDict, total=False):
@@ -499,6 +502,7 @@ class GeocodingSummary(typing_extensions.TypedDict, total=False):
         "typeCompoundSection",
         "typeTerminalPoint",
         "typeRegulatedArea",
+        "typeLogicalBorder",
         "typeDoNotUseReservedToCatchGeneratedFiles",
         "typeUnknown",
     ]

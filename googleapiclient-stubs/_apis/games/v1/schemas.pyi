@@ -463,6 +463,11 @@ class RevisionCheckResponse(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ScopedPlayerIds(typing_extensions.TypedDict, total=False):
+    developerPlayerKey: str
+    gamePlayerId: str
+
+@typing.type_check_only
 class ScoreSubmission(typing_extensions.TypedDict, total=False):
     kind: str
     leaderboardId: str

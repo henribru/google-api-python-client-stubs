@@ -320,7 +320,9 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal["UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER"]
+    channel: typing_extensions.Literal[
+        "UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER", "WEEK1", "WEEK2", "WEEK5"
+    ]
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 

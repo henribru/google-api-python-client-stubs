@@ -227,8 +227,13 @@ class CsvOptions(typing_extensions.TypedDict, total=False):
     encoding: str
     fieldDelimiter: str
     null_marker: str
+    preserveAsciiControlCharacters: bool
     quote: str
     skipLeadingRows: str
+
+@typing.type_check_only
+class DataMaskingStatistics(typing_extensions.TypedDict, total=False):
+    dataMaskingApplied: bool
 
 @typing.type_check_only
 class DataSplitResult(typing_extensions.TypedDict, total=False):
@@ -255,7 +260,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     lastModifiedTime: str
     location: str
     maxTimeTravelHours: str
-    satisfiesPZS: bool
+    satisfiesPzs: bool
     selfLink: str
     tags: _list[dict[str, typing.Any]]
 
@@ -397,6 +402,7 @@ class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     ignoreUnknownValues: bool
     maxBadRecords: int
     parquetOptions: ParquetOptions
+    referenceFileSchemaUri: str
     schema: TableSchema
     sourceFormat: str
     sourceUris: _list[str]
@@ -496,6 +502,13 @@ class HparamTuningTrial(typing_extensions.TypedDict, total=False):
     ]
     trainingLoss: float
     trialId: str
+
+@typing.type_check_only
+class IndexUnusedReason(typing_extensions.TypedDict, total=False):
+    base_table: TableReference
+    code: str
+    index_name: str
+    message: str
 
 @typing.type_check_only
 class IntArray(typing_extensions.TypedDict, total=False):
@@ -648,6 +661,7 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
 class MaterializedViewDefinition(typing_extensions.TypedDict, total=False):
     enableRefresh: bool
     lastRefreshTime: str
+    maxStaleness: str
     query: str
     refreshIntervalMs: str
 
@@ -756,6 +770,7 @@ class QueryTimelineSample(typing_extensions.TypedDict, total=False):
     activeUnits: str
     completedUnits: str
     elapsedMs: str
+    estimatedRunnableUnits: str
     pendingUnits: str
     totalSlotMs: str
 
@@ -778,6 +793,13 @@ class RegressionMetrics(typing_extensions.TypedDict, total=False):
     meanSquaredLogError: float
     medianAbsoluteError: float
     rSquared: float
+
+@typing.type_check_only
+class RemoteFunctionOptions(typing_extensions.TypedDict, total=False):
+    connection: str
+    endpoint: str
+    maxBatchingRows: str
+    userDefinedContext: dict[str, typing.Any]
 
 @typing.type_check_only
 class Routine(dict[str, typing.Any]): ...
@@ -827,6 +849,11 @@ class ScriptStatistics(typing_extensions.TypedDict, total=False):
     stackFrames: _list[ScriptStackFrame]
 
 @typing.type_check_only
+class SearchStatistics(typing_extensions.TypedDict, total=False):
+    indexUnusedReason: _list[IndexUnusedReason]
+    indexUsageMode: str
+
+@typing.type_check_only
 class SessionInfo(typing_extensions.TypedDict, total=False):
     sessionId: str
 
@@ -839,6 +866,30 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 class SnapshotDefinition(typing_extensions.TypedDict, total=False):
     baseTableReference: TableReference
     snapshotTime: str
+
+@typing.type_check_only
+class SparkLoggingInfo(typing_extensions.TypedDict, total=False):
+    project_id: str
+    resource_type: str
+
+@typing.type_check_only
+class SparkOptions(typing_extensions.TypedDict, total=False):
+    archiveUris: _list[str]
+    connection: str
+    containerImage: str
+    fileUris: _list[str]
+    jarUris: _list[str]
+    mainFileUri: str
+    properties: dict[str, typing.Any]
+    pyFileUris: _list[str]
+    runtimeVersion: str
+
+@typing.type_check_only
+class SparkStatistics(typing_extensions.TypedDict, total=False):
+    endpoints: dict[str, typing.Any]
+    logging_info: SparkLoggingInfo
+    spark_job_id: str
+    spark_job_location: str
 
 @typing.type_check_only
 class StandardSqlDataType(dict[str, typing.Any]): ...
@@ -880,6 +931,7 @@ class Table(typing_extensions.TypedDict, total=False):
     lastModifiedTime: str
     location: str
     materializedView: MaterializedViewDefinition
+    maxStaleness: str
     model: ModelDefinition
     numBytes: str
     numLongTermBytes: str
@@ -977,6 +1029,9 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     boosterType: typing_extensions.Literal["BOOSTER_TYPE_UNSPECIFIED", "GBTREE", "DART"]
     calculatePValues: bool
     cleanSpikesAndDips: bool
+    colorSpace: typing_extensions.Literal[
+        "COLOR_SPACE_UNSPECIFIED", "RGB", "HSV", "YIQ", "YUV", "GRAYSCALE"
+    ]
     colsampleBylevel: float
     colsampleBynode: float
     colsampleBytree: float
@@ -1112,9 +1167,11 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     ]
     maxIterations: str
     maxParallelTrials: str
+    maxTimeSeriesLength: str
     maxTreeDepth: str
     minRelativeProgress: float
     minSplitLoss: float
+    minTimeSeriesLength: str
     minTreeChildWeight: str
     modelUri: str
     nonSeasonalOrder: ArimaOrder
@@ -1131,10 +1188,12 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     timeSeriesDataColumn: str
     timeSeriesIdColumn: str
     timeSeriesIdColumns: _list[str]
+    timeSeriesLengthFraction: float
     timeSeriesTimestampColumn: str
     treeMethod: typing_extensions.Literal[
         "TREE_METHOD_UNSPECIFIED", "AUTO", "EXACT", "APPROX", "HIST"
     ]
+    trendSmoothingWindowSize: str
     userColumn: str
     walsAlpha: float
     warmStart: bool
@@ -1148,6 +1207,7 @@ class TrainingRun(typing_extensions.TypedDict, total=False):
     results: _list[IterationResult]
     startTime: str
     trainingOptions: TrainingOptions
+    trainingStartTime: str
     vertexAiModelId: str
     vertexAiModelVersion: str
 

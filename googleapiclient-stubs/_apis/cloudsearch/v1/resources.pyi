@@ -312,6 +312,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 previous_request: ListDataSourceResponseHttpRequest,
                 previous_response: ListDataSourceResponse,
             ) -> ListDataSourceResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: DataSource = ...,
+                debugOptions_enableDebugging: bool = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def update(
                 self,
                 *,
@@ -352,6 +360,9 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 previous_request: ListSearchApplicationsResponseHttpRequest,
                 previous_response: ListSearchApplicationsResponse,
             ) -> ListSearchApplicationsResponseHttpRequest | None: ...
+            def patch(
+                self, *, name: str, body: SearchApplication = ..., **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def reset(
                 self,
                 *,

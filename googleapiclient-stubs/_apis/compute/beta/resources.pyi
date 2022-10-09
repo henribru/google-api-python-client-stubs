@@ -5300,6 +5300,78 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
+    class RegionSslPoliciesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            project: str,
+            region: str,
+            sslPolicy: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, region: str, sslPolicy: str, **kwargs: typing.Any
+        ) -> SslPolicyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: SslPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> SslPoliciesListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: SslPoliciesListHttpRequest,
+            previous_response: SslPoliciesList,
+        ) -> SslPoliciesListHttpRequest | None: ...
+        def listAvailableFeatures(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> SslPoliciesListAvailableFeaturesResponseHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            sslPolicy: str,
+            body: SslPolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
+
+    @typing.type_check_only
     class RegionTargetHttpProxiesResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -6330,6 +6402,23 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class SslPoliciesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> SslPoliciesAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: SslPoliciesAggregatedListHttpRequest,
+            previous_response: SslPoliciesAggregatedList,
+        ) -> SslPoliciesAggregatedListHttpRequest | None: ...
         def delete(
             self,
             *,
@@ -7067,6 +7156,23 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class TargetTcpProxiesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> TargetTcpProxyAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: TargetTcpProxyAggregatedListHttpRequest,
+            previous_response: TargetTcpProxyAggregatedList,
+        ) -> TargetTcpProxyAggregatedListHttpRequest | None: ...
         def delete(
             self,
             *,
@@ -7590,6 +7696,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionOperations(self) -> RegionOperationsResource: ...
     def regionSecurityPolicies(self) -> RegionSecurityPoliciesResource: ...
     def regionSslCertificates(self) -> RegionSslCertificatesResource: ...
+    def regionSslPolicies(self) -> RegionSslPoliciesResource: ...
     def regionTargetHttpProxies(self) -> RegionTargetHttpProxiesResource: ...
     def regionTargetHttpsProxies(self) -> RegionTargetHttpsProxiesResource: ...
     def regionTargetTcpProxies(self) -> RegionTargetTcpProxiesResource: ...
@@ -8936,6 +9043,14 @@ class SslCertificateListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> SslCertificateList: ...
 
 @typing.type_check_only
+class SslPoliciesAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SslPoliciesAggregatedList: ...
+
+@typing.type_check_only
 class SslPoliciesListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -9128,6 +9243,14 @@ class TargetTcpProxyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TargetTcpProxy: ...
+
+@typing.type_check_only
+class TargetTcpProxyAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> TargetTcpProxyAggregatedList: ...
 
 @typing.type_check_only
 class TargetTcpProxyListHttpRequest(googleapiclient.http.HttpRequest):

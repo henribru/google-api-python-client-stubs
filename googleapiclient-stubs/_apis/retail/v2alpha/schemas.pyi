@@ -37,8 +37,14 @@ class GoogleCloudRetailLoggingImportErrorContext(
 ):
     catalogItem: str
     gcsPath: str
+    inventoryActivity: str
     lineNumber: str
     operationName: str
+    order: str
+    place: str
+    placeAsset: str
+    placeProductPrice: str
+    placeProductSettings: str
     product: str
     userEvent: str
 
@@ -229,6 +235,26 @@ class GoogleCloudRetailV2alphaAudience(typing_extensions.TypedDict, total=False)
     genders: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    attributeKeys: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deletedCatalogAttributes: _list[str]
+    resetCatalogAttributes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaBigQueryOutputResult(
+    typing_extensions.TypedDict, total=False
+):
+    datasetId: str
+    tableId: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaBigQuerySource(typing_extensions.TypedDict, total=False):
     dataSchema: str
     datasetId: str
@@ -253,11 +279,21 @@ class GoogleCloudRetailV2alphaCatalogAttribute(
         "DYNAMIC_FACETABLE_ENABLED",
         "DYNAMIC_FACETABLE_DISABLED",
     ]
+    exactSearchableOption: typing_extensions.Literal[
+        "EXACT_SEARCHABLE_OPTION_UNSPECIFIED",
+        "EXACT_SEARCHABLE_ENABLED",
+        "EXACT_SEARCHABLE_DISABLED",
+    ]
     inUse: bool
     indexableOption: typing_extensions.Literal[
         "INDEXABLE_OPTION_UNSPECIFIED", "INDEXABLE_ENABLED", "INDEXABLE_DISABLED"
     ]
     key: str
+    recommendationsFilteringOption: typing_extensions.Literal[
+        "RECOMMENDATIONS_FILTERING_OPTION_UNSPECIFIED",
+        "RECOMMENDATIONS_FILTERING_DISABLED",
+        "RECOMMENDATIONS_FILTERING_ENABLED",
+    ]
     searchableOption: typing_extensions.Literal[
         "SEARCHABLE_OPTION_UNSPECIFIED", "SEARCHABLE_ENABLED", "SEARCHABLE_DISABLED"
     ]
@@ -349,7 +385,14 @@ class GoogleCloudRetailV2alphaControl(typing_extensions.TypedDict, total=False):
     facetSpec: GoogleCloudRetailV2alphaSearchRequestFacetSpec
     name: str
     rule: GoogleCloudRetailV2alphaRule
+    searchSolutionUseCase: _list[str]
     solutionTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaCreateModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    model: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaCustomAttribute(typing_extensions.TypedDict, total=False):
@@ -375,6 +418,7 @@ class GoogleCloudRetailV2alphaExportProductsResponse(
 ):
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2alphaExportErrorsConfig
+    outputResult: GoogleCloudRetailV2alphaOutputResult
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaExportUserEventsResponse(
@@ -382,6 +426,7 @@ class GoogleCloudRetailV2alphaExportUserEventsResponse(
 ):
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2alphaExportErrorsConfig
+    outputResult: GoogleCloudRetailV2alphaOutputResult
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaFulfillmentInfo(typing_extensions.TypedDict, total=False):
@@ -433,6 +478,7 @@ class GoogleCloudRetailV2alphaImportMetadata(typing_extensions.TypedDict, total=
     notificationPubsubTopic: str
     requestId: str
     successCount: str
+    transformedUserEventsMetadata: GoogleCloudRetailV2alphaTransformedUserEventsMetadata
     updateTime: str
 
 @typing.type_check_only
@@ -493,6 +539,13 @@ class GoogleCloudRetailV2alphaListControlsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaListModelsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    models: _list[GoogleCloudRetailV2alphaModel]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaListProductsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -515,11 +568,19 @@ class GoogleCloudRetailV2alphaLocalInventory(typing_extensions.TypedDict, total=
     priceInfo: GoogleCloudRetailV2alphaPriceInfo
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaMerchantCenterFeedFilter(
+    typing_extensions.TypedDict, total=False
+):
+    primaryFeedId: str
+    primaryFeedName: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaMerchantCenterLink(
     typing_extensions.TypedDict, total=False
 ):
     branchId: str
     destinations: _list[str]
+    feeds: _list[GoogleCloudRetailV2alphaMerchantCenterFeedFilter]
     languageCode: str
     merchantCenterAccountId: str
     regionCode: str
@@ -529,6 +590,82 @@ class GoogleCloudRetailV2alphaMerchantCenterLinkingConfig(
     typing_extensions.TypedDict, total=False
 ):
     links: _list[GoogleCloudRetailV2alphaMerchantCenterLink]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaModel(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dataState: typing_extensions.Literal[
+        "DATA_STATE_UNSPECIFIED", "DATA_OK", "DATA_ERROR"
+    ]
+    displayName: str
+    filteringOption: typing_extensions.Literal[
+        "RECOMMENDATIONS_FILTERING_OPTION_UNSPECIFIED",
+        "RECOMMENDATIONS_FILTERING_DISABLED",
+        "RECOMMENDATIONS_FILTERING_ENABLED",
+    ]
+    lastTuneTime: str
+    name: str
+    optimizationObjective: str
+    pageOptimizationConfig: GoogleCloudRetailV2alphaModelPageOptimizationConfig
+    periodicTuningState: typing_extensions.Literal[
+        "PERIODIC_TUNING_STATE_UNSPECIFIED",
+        "PERIODIC_TUNING_DISABLED",
+        "ALL_TUNING_DISABLED",
+        "PERIODIC_TUNING_ENABLED",
+    ]
+    servingConfigLists: _list[GoogleCloudRetailV2alphaModelServingConfigList]
+    servingState: typing_extensions.Literal[
+        "SERVING_STATE_UNSPECIFIED", "INACTIVE", "ACTIVE", "TUNED"
+    ]
+    trainingState: typing_extensions.Literal[
+        "TRAINING_STATE_UNSPECIFIED", "PAUSED", "TRAINING"
+    ]
+    tuningOperation: str
+    type: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaModelPageOptimizationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    pageOptimizationEventType: str
+    panels: _list[GoogleCloudRetailV2alphaModelPageOptimizationConfigPanel]
+    restriction: typing_extensions.Literal[
+        "RESTRICTION_UNSPECIFIED",
+        "NO_RESTRICTION",
+        "UNIQUE_SERVING_CONFIG_RESTRICTION",
+        "UNIQUE_MODEL_RESTRICTION",
+        "UNIQUE_MODEL_TYPE_RESTRICTION",
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate(
+    typing_extensions.TypedDict, total=False
+):
+    servingConfigId: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaModelPageOptimizationConfigPanel(
+    typing_extensions.TypedDict, total=False
+):
+    candidates: _list[GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate]
+    defaultCandidate: GoogleCloudRetailV2alphaModelPageOptimizationConfigCandidate
+    displayName: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaModelServingConfigList(
+    typing_extensions.TypedDict, total=False
+):
+    servingConfigIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaOutputResult(typing_extensions.TypedDict, total=False):
+    bigqueryResult: _list[GoogleCloudRetailV2alphaBigQueryOutputResult]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaPauseModelRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaPredictRequest(typing_extensions.TypedDict, total=False):
@@ -732,6 +869,11 @@ class GoogleCloudRetailV2alphaReplaceCatalogAttributeRequest(
     updateMask: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaResumeModelRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaRule(typing_extensions.TypedDict, total=False):
     boostAction: GoogleCloudRetailV2alphaRuleBoostAction
     condition: GoogleCloudRetailV2alphaCondition
@@ -819,6 +961,7 @@ class GoogleCloudRetailV2alphaSearchRequest(typing_extensions.TypedDict, total=F
     searchMode: typing_extensions.Literal[
         "SEARCH_MODE_UNSPECIFIED", "PRODUCT_SEARCH_ONLY", "FACETED_SEARCH_ONLY"
     ]
+    spellCorrectionSpec: GoogleCloudRetailV2alphaSearchRequestSpellCorrectionSpec
     userInfo: GoogleCloudRetailV2alphaUserInfo
     variantRollupKeys: _list[str]
     visitorId: str
@@ -858,6 +1001,7 @@ class GoogleCloudRetailV2alphaSearchRequestFacetSpec(
 class GoogleCloudRetailV2alphaSearchRequestFacetSpecFacetKey(
     typing_extensions.TypedDict, total=False
 ):
+    caseInsensitive: bool
     contains: _list[str]
     intervals: _list[GoogleCloudRetailV2alphaInterval]
     key: str
@@ -865,6 +1009,7 @@ class GoogleCloudRetailV2alphaSearchRequestFacetSpecFacetKey(
     prefixes: _list[str]
     query: str
     restrictedValues: _list[str]
+    returnMinMax: bool
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaSearchRequestPersonalizationSpec(
@@ -878,6 +1023,12 @@ class GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec(
 ):
     condition: typing_extensions.Literal["CONDITION_UNSPECIFIED", "DISABLED", "AUTO"]
     pinUnexpandedResults: bool
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaSearchRequestSpellCorrectionSpec(
+    typing_extensions.TypedDict, total=False
+):
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "SUGGESTION_ONLY", "AUTO"]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaSearchResponse(typing_extensions.TypedDict, total=False):
@@ -908,6 +1059,8 @@ class GoogleCloudRetailV2alphaSearchResponseFacetFacetValue(
 ):
     count: str
     interval: GoogleCloudRetailV2alphaInterval
+    maxValue: float
+    minValue: float
     value: str
 
 @typing.type_check_only
@@ -925,6 +1078,9 @@ class GoogleCloudRetailV2alphaServingConfig(typing_extensions.TypedDict, total=F
     boostControlIds: _list[str]
     displayName: str
     diversityLevel: str
+    diversityType: typing_extensions.Literal[
+        "DIVERSITY_TYPE_UNSPECIFIED", "RULE_BASED_DIVERSITY", "DATA_DRIVEN_DIVERSITY"
+    ]
     doNotAssociateControlIds: _list[str]
     dynamicFacetSpec: GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec
     enableCategoryFilterLevel: str
@@ -934,6 +1090,7 @@ class GoogleCloudRetailV2alphaServingConfig(typing_extensions.TypedDict, total=F
     modelId: str
     name: str
     onewaySynonymsControlIds: _list[str]
+    personalizationSpec: GoogleCloudRetailV2alphaSearchRequestPersonalizationSpec
     priceRerankingLevel: str
     redirectControlIds: _list[str]
     replacementControlIds: _list[str]
@@ -964,6 +1121,29 @@ class GoogleCloudRetailV2alphaSetInventoryRequest(
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaSetInventoryResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaTransformedUserEventsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    sourceEventsCount: str
+    transformedEventsCount: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaTuneModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    model: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaTuneModelRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaTuneModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -1014,6 +1194,19 @@ class GoogleCloudRetailV2betaAddLocalInventoriesResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaBigQueryOutputResult(
+    typing_extensions.TypedDict, total=False
+):
+    datasetId: str
+    tableId: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaCreateModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    model: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaExportErrorsConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -1030,6 +1223,7 @@ class GoogleCloudRetailV2betaExportProductsResponse(
 ):
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2betaExportErrorsConfig
+    outputResult: GoogleCloudRetailV2betaOutputResult
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaExportUserEventsResponse(
@@ -1037,6 +1231,7 @@ class GoogleCloudRetailV2betaExportUserEventsResponse(
 ):
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2betaExportErrorsConfig
+    outputResult: GoogleCloudRetailV2betaOutputResult
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaImportCompletionDataResponse(
@@ -1073,6 +1268,48 @@ class GoogleCloudRetailV2betaImportUserEventsResponse(
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2betaImportErrorsConfig
     importSummary: GoogleCloudRetailV2betaUserEventImportSummary
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaModel(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dataState: typing_extensions.Literal[
+        "DATA_STATE_UNSPECIFIED", "DATA_OK", "DATA_ERROR"
+    ]
+    displayName: str
+    filteringOption: typing_extensions.Literal[
+        "RECOMMENDATIONS_FILTERING_OPTION_UNSPECIFIED",
+        "RECOMMENDATIONS_FILTERING_DISABLED",
+        "RECOMMENDATIONS_FILTERING_ENABLED",
+    ]
+    lastTuneTime: str
+    name: str
+    optimizationObjective: str
+    periodicTuningState: typing_extensions.Literal[
+        "PERIODIC_TUNING_STATE_UNSPECIFIED",
+        "PERIODIC_TUNING_DISABLED",
+        "ALL_TUNING_DISABLED",
+        "PERIODIC_TUNING_ENABLED",
+    ]
+    servingConfigLists: _list[GoogleCloudRetailV2betaModelServingConfigList]
+    servingState: typing_extensions.Literal[
+        "SERVING_STATE_UNSPECIFIED", "INACTIVE", "ACTIVE", "TUNED"
+    ]
+    trainingState: typing_extensions.Literal[
+        "TRAINING_STATE_UNSPECIFIED", "PAUSED", "TRAINING"
+    ]
+    tuningOperation: str
+    type: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaModelServingConfigList(
+    typing_extensions.TypedDict, total=False
+):
+    servingConfigIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaOutputResult(typing_extensions.TypedDict, total=False):
+    bigqueryResult: _list[GoogleCloudRetailV2betaBigQueryOutputResult]
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaPurgeMetadata(
@@ -1123,6 +1360,17 @@ class GoogleCloudRetailV2betaSetInventoryMetadata(
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaSetInventoryResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaTuneModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    model: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaTuneModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 

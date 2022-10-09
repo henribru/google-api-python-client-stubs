@@ -16,6 +16,22 @@ class AdMobResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class AdSourcesResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListAdSourcesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAdSourcesResponseHttpRequest,
+                previous_response: ListAdSourcesResponse,
+            ) -> ListAdSourcesResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class AdUnitsResource(googleapiclient.discovery.Resource):
             def list(
                 self,
@@ -78,6 +94,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
             previous_request: ListPublisherAccountsResponseHttpRequest,
             previous_response: ListPublisherAccountsResponse,
         ) -> ListPublisherAccountsResponseHttpRequest | None: ...
+        def adSources(self) -> AdSourcesResource: ...
         def adUnits(self) -> AdUnitsResource: ...
         def apps(self) -> AppsResource: ...
         def mediationReport(self) -> MediationReportResource: ...
@@ -112,6 +129,14 @@ class GenerateNetworkReportResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GenerateNetworkReportResponse: ...
+
+@typing.type_check_only
+class ListAdSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListAdSourcesResponse: ...
 
 @typing.type_check_only
 class ListAdUnitsResponseHttpRequest(googleapiclient.http.HttpRequest):

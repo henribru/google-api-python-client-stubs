@@ -32,6 +32,9 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class CancelExecutionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ConfigMapEnvSource(typing_extensions.TypedDict, total=False):
     localObjectReference: LocalObjectReference
     name: str
@@ -97,11 +100,6 @@ class ContainerPort(typing_extensions.TypedDict, total=False):
     protocol: str
 
 @typing.type_check_only
-class ContainerStatus(typing_extensions.TypedDict, total=False):
-    imageDigest: str
-    name: str
-
-@typing.type_check_only
 class DomainMapping(typing_extensions.TypedDict, total=False):
     apiVersion: str
     kind: str
@@ -156,6 +154,7 @@ class Execution(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecutionReference(typing_extensions.TypedDict, total=False):
+    completionTimestamp: str
     creationTimestamp: str
     name: str
 
@@ -189,6 +188,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class GRPCAction(typing_extensions.TypedDict, total=False):
+    port: int
+    service: str
 
 @typing.type_check_only
 class GoogleCloudRunV1Condition(typing_extensions.TypedDict, total=False):
@@ -232,7 +236,6 @@ class JobSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class JobStatus(typing_extensions.TypedDict, total=False):
     conditions: _list[GoogleCloudRunV1Condition]
-    containerStatuses: _list[ContainerStatus]
     executionCount: int
     latestCreatedExecution: ExecutionReference
     observedGeneration: int
@@ -380,6 +383,7 @@ class Policy(typing_extensions.TypedDict, total=False):
 class Probe(typing_extensions.TypedDict, total=False):
     exec: ExecAction
     failureThreshold: int
+    grpc: GRPCAction
     httpGet: HTTPGetAction
     initialDelaySeconds: int
     periodSeconds: int

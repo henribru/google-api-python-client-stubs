@@ -18,6 +18,69 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class FederationsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Federation = ...,
+                    federationId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FederationHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFederationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFederationsResponseHttpRequest,
+                    previous_response: ListFederationsResponse,
+                ) -> ListFederationsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Federation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -286,6 +349,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def federations(self) -> FederationsResource: ...
             def operations(self) -> OperationsResource: ...
             def services(self) -> ServicesResource: ...
 
@@ -322,12 +386,28 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class FederationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Federation: ...
+
+@typing.type_check_only
 class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListBackupsResponse: ...
+
+@typing.type_check_only
+class ListFederationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListFederationsResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):

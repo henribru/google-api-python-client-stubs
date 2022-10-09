@@ -106,6 +106,9 @@ class CrashDialogError(typing_extensions.TypedDict, total=False):
     crashPackage: str
 
 @typing.type_check_only
+class DetectedAppSplashScreen(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class DeviceOutOfMemory(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -644,6 +647,7 @@ class TestIssue(typing_extensions.TypedDict, total=False):
         "unityException",
         "deviceOutOfMemory",
         "logcatCollectionError",
+        "detectedAppSplashScreen",
     ]
     warning: Any
 

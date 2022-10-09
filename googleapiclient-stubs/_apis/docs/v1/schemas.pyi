@@ -629,6 +629,7 @@ class ParagraphStyle(typing_extensions.TypedDict, total=False):
         "HEADING_5",
         "HEADING_6",
     ]
+    pageBreakBefore: bool
     shading: Shading
     spaceAbove: Dimension
     spaceBelow: Dimension
@@ -655,6 +656,7 @@ class ParagraphStyleSuggestionState(typing_extensions.TypedDict, total=False):
     keepWithNextSuggested: bool
     lineSpacingSuggested: bool
     namedStyleTypeSuggested: bool
+    pageBreakBeforeSuggested: bool
     shadingSuggestionState: ShadingSuggestionState
     spaceAboveSuggested: bool
     spaceBelowSuggested: bool
@@ -673,6 +675,11 @@ class Person(typing_extensions.TypedDict, total=False):
 class PersonProperties(typing_extensions.TypedDict, total=False):
     email: str
     name: str
+
+@typing.type_check_only
+class PinTableHeaderRowsRequest(typing_extensions.TypedDict, total=False):
+    pinnedHeaderRowsCount: int
+    tableStartLocation: Location
 
 @typing.type_check_only
 class PositionedObject(typing_extensions.TypedDict, total=False):
@@ -768,6 +775,7 @@ class Request(typing_extensions.TypedDict, total=False):
     insertTableRow: InsertTableRowRequest
     insertText: InsertTextRequest
     mergeTableCells: MergeTableCellsRequest
+    pinTableHeaderRows: PinTableHeaderRowsRequest
     replaceAllText: ReplaceAllTextRequest
     replaceImage: ReplaceImageRequest
     replaceNamedRangeContent: ReplaceNamedRangeContentRequest
@@ -1027,6 +1035,8 @@ class TableRow(dict[str, typing.Any]): ...
 @typing.type_check_only
 class TableRowStyle(typing_extensions.TypedDict, total=False):
     minRowHeight: Dimension
+    preventOverflow: bool
+    tableHeader: bool
 
 @typing.type_check_only
 class TableRowStyleSuggestionState(typing_extensions.TypedDict, total=False):

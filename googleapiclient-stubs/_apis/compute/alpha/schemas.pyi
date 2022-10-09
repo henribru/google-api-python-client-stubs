@@ -62,6 +62,7 @@ class AccessConfig(typing_extensions.TypedDict, total=False):
     ]
     publicDnsName: str
     publicPtrDomainName: str
+    securityPolicy: str
     setPublicDns: bool
     setPublicPtr: bool
     type: typing_extensions.Literal["DIRECT_IPV6", "ONE_TO_ONE_NAT"]
@@ -76,7 +77,7 @@ class Address(typing_extensions.TypedDict, total=False):
     description: str
     id: str
     ipVersion: typing_extensions.Literal["IPV4", "IPV6", "UNSPECIFIED_VERSION"]
-    ipv6EndpointType: typing_extensions.Literal["VM"]
+    ipv6EndpointType: typing_extensions.Literal["NETLB", "VM"]
     kind: str
     labelFingerprint: str
     labels: dict[str, typing.Any]
@@ -96,6 +97,7 @@ class Address(typing_extensions.TypedDict, total=False):
         "IPSEC_INTERCONNECT",
         "NAT_AUTO",
         "PRIVATE_SERVICE_CONNECT",
+        "SERVERLESS",
         "SHARED_LOADBALANCER_VIP",
         "VPC_PEERING",
     ]
@@ -144,6 +146,16 @@ class AliasIpRange(typing_extensions.TypedDict, total=False):
     subnetworkRangeName: str
 
 @typing.type_check_only
+class AllocationResourceStatus(typing_extensions.TypedDict, total=False):
+    specificSkuAllocation: AllocationResourceStatusSpecificSKUAllocation
+
+@typing.type_check_only
+class AllocationResourceStatusSpecificSKUAllocation(
+    typing_extensions.TypedDict, total=False
+):
+    sourceInstanceTemplateId: str
+
+@typing.type_check_only
 class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk(
     typing_extensions.TypedDict, total=False
 ):
@@ -170,6 +182,7 @@ class AllocationSpecificSKUReservation(typing_extensions.TypedDict, total=False)
     count: str
     inUseCount: str
     instanceProperties: AllocationSpecificSKUAllocationReservedInstanceProperties
+    sourceInstanceTemplate: str
 
 @typing.type_check_only
 class AttachedDisk(typing_extensions.TypedDict, total=False):
@@ -215,7 +228,9 @@ class AttachedDiskInitializeParams(typing_extensions.TypedDict, total=False):
         "RECREATE_DISK", "RECREATE_DISK_IF_SOURCE_CHANGED", "USE_EXISTING_DISK"
     ]
     provisionedIops: str
+    provisionedThroughput: str
     replicaZones: _list[str]
+    resourceManagerTags: dict[str, typing.Any]
     resourcePolicies: _list[str]
     sourceImage: str
     sourceImageEncryptionKey: CustomerEncryptionKey
@@ -531,6 +546,9 @@ class BackendService(typing_extensions.TypedDict, total=False):
     ]
     subsetting: Subsetting
     timeoutSec: int
+    vpcNetworkScope: typing_extensions.Literal[
+        "GLOBAL_VPC_NETWORK", "REGIONAL_VPC_NETWORK"
+    ]
 
 @typing.type_check_only
 class BackendServiceAggregatedList(typing_extensions.TypedDict, total=False):
@@ -655,6 +673,13 @@ class BackendServiceLocalityLoadBalancingPolicyConfigPolicy(
 @typing.type_check_only
 class BackendServiceLogConfig(typing_extensions.TypedDict, total=False):
     enable: bool
+    optional: typing_extensions.Literal[
+        "CUSTOM",
+        "EXCLUDE_ALL_OPTIONAL",
+        "INCLUDE_ALL_OPTIONAL",
+        "UNSPECIFIED_OPTIONAL_MODE",
+    ]
+    optionalFields: _list[str]
     sampleRate: float
 
 @typing.type_check_only
@@ -762,6 +787,11 @@ class BulkInsertInstanceResourcePerInstanceProperties(
     name: str
 
 @typing.type_check_only
+class BundledLocalSsds(typing_extensions.TypedDict, total=False):
+    defaultInterface: str
+    partitionCount: int
+
+@typing.type_check_only
 class CacheInvalidationRule(typing_extensions.TypedDict, total=False):
     host: str
     path: str
@@ -838,6 +868,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "GENERAL_PURPOSE_N2D",
         "GENERAL_PURPOSE_T2D",
         "MEMORY_OPTIMIZED",
+        "MEMORY_OPTIMIZED_M3",
         "TYPE_UNSPECIFIED",
     ]
 
@@ -886,6 +917,9 @@ class Condition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
+    confidentialInstanceType: typing_extensions.Literal[
+        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV", "SEV_SNP"
+    ]
     enableConfidentialCompute: bool
 
 @typing.type_check_only
@@ -916,6 +950,19 @@ class CorsPolicy(typing_extensions.TypedDict, total=False):
     disabled: bool
     exposeHeaders: _list[str]
     maxAge: int
+
+@typing.type_check_only
+class CustomErrorResponsePolicy(typing_extensions.TypedDict, total=False):
+    errorResponseRules: _list[CustomErrorResponsePolicyCustomErrorResponseRule]
+    errorService: str
+
+@typing.type_check_only
+class CustomErrorResponsePolicyCustomErrorResponseRule(
+    typing_extensions.TypedDict, total=False
+):
+    matchResponseCodes: _list[str]
+    overrideResponseCode: int
+    path: str
 
 @typing.type_check_only
 class CustomerEncryptionKey(typing_extensions.TypedDict, total=False):
@@ -965,8 +1012,10 @@ class Disk(typing_extensions.TypedDict, total=False):
     multiWriter: bool
     name: str
     options: str
+    params: DiskParams
     physicalBlockSizeBytes: str
     provisionedIops: str
+    provisionedThroughput: str
     region: str
     replicaZones: _list[str]
     resourcePolicies: _list[str]
@@ -1046,6 +1095,10 @@ class DiskMoveRequest(typing_extensions.TypedDict, total=False):
     targetDisk: str
 
 @typing.type_check_only
+class DiskParams(typing_extensions.TypedDict, total=False):
+    resourceManagerTags: dict[str, typing.Any]
+
+@typing.type_check_only
 class DiskResourceStatus(typing_extensions.TypedDict, total=False):
     asyncPrimaryDisk: DiskResourceStatusAsyncReplicationStatus
     asyncSecondaryDisks: dict[str, typing.Any]
@@ -1055,7 +1108,7 @@ class DiskResourceStatusAsyncReplicationStatus(
     typing_extensions.TypedDict, total=False
 ):
     state: typing_extensions.Literal[
-        "ACTIVE", "STARTING", "STATE_UNSPECIFIED", "STOPPED", "STOPPING"
+        "ACTIVE", "CREATED", "STARTING", "STATE_UNSPECIFIED", "STOPPED", "STOPPING"
     ]
 
 @typing.type_check_only
@@ -1123,7 +1176,7 @@ class DisksStopAsyncReplicationRequest(typing_extensions.TypedDict, total=False)
     asyncSecondaryDisk: str
 
 @typing.type_check_only
-class DisksStopGroupAsyncReplicationRequest(typing_extensions.TypedDict, total=False):
+class DisksStopGroupAsyncReplicationResource(typing_extensions.TypedDict, total=False):
     resourcePolicy: str
 
 @typing.type_check_only
@@ -1132,7 +1185,7 @@ class DisplayDevice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DistributionPolicy(typing_extensions.TypedDict, total=False):
-    targetShape: typing_extensions.Literal["ANY", "BALANCED", "EVEN"]
+    targetShape: typing_extensions.Literal["ANY", "ANY_SINGLE_ZONE", "BALANCED", "EVEN"]
     zones: _list[DistributionPolicyZoneConfiguration]
 
 @typing.type_check_only
@@ -1143,6 +1196,12 @@ class DistributionPolicyZoneConfiguration(typing_extensions.TypedDict, total=Fal
 class Duration(typing_extensions.TypedDict, total=False):
     nanos: int
     seconds: str
+
+@typing.type_check_only
+class ErrorInfo(typing_extensions.TypedDict, total=False):
+    domain: str
+    metadatas: dict[str, typing.Any]
+    reason: str
 
 @typing.type_check_only
 class ExchangedPeeringRoute(typing_extensions.TypedDict, total=False):
@@ -1299,6 +1358,7 @@ class FirewallPolicyRule(typing_extensions.TypedDict, total=False):
     priority: int
     ruleName: str
     ruleTupleCount: int
+    securityProfileGroup: str
     targetResources: _list[str]
     targetSecureTags: _list[FirewallPolicyRuleSecureTag]
     targetServiceAccounts: _list[str]
@@ -1376,7 +1436,12 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     ports: _list[str]
     pscConnectionId: str
     pscConnectionStatus: typing_extensions.Literal[
-        "ACCEPTED", "CLOSED", "PENDING", "REJECTED", "STATUS_UNSPECIFIED"
+        "ACCEPTED",
+        "CLOSED",
+        "NEEDS_ATTENTION",
+        "PENDING",
+        "REJECTED",
+        "STATUS_UNSPECIFIED",
     ]
     region: str
     selfLink: str
@@ -1432,6 +1497,9 @@ class FutureReservation(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     namePrefix: str
+    planningStatus: typing_extensions.Literal[
+        "DRAFT", "PLANNING_STATUS_UNSPECIFIED", "SUBMITTED"
+    ]
     selfLink: str
     selfLinkWithId: str
     shareSettings: ShareSettings
@@ -1443,6 +1511,7 @@ class FutureReservation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FutureReservationSpecificSKUProperties(typing_extensions.TypedDict, total=False):
     instanceProperties: AllocationSpecificSKUAllocationReservedInstanceProperties
+    sourceInstanceTemplate: str
     totalCount: str
 
 @typing.type_check_only
@@ -1455,6 +1524,7 @@ class FutureReservationStatus(typing_extensions.TypedDict, total=False):
         "CANCELLED",
         "COMMITTED",
         "DECLINED",
+        "DRAFTING",
         "FAILED",
         "FAILED_PARTIALLY_FULFILLED",
         "FULFILLED",
@@ -1463,6 +1533,13 @@ class FutureReservationStatus(typing_extensions.TypedDict, total=False):
         "PROCURING",
         "PROVISIONING",
     ]
+    specificSkuProperties: FutureReservationStatusSpecificSKUProperties
+
+@typing.type_check_only
+class FutureReservationStatusSpecificSKUProperties(
+    typing_extensions.TypedDict, total=False
+):
+    sourceInstanceTemplateId: str
 
 @typing.type_check_only
 class FutureReservationTimeWindow(typing_extensions.TypedDict, total=False):
@@ -1511,6 +1588,11 @@ class GRPCHealthCheck(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetOwnerInstanceResponse(typing_extensions.TypedDict, total=False):
     instance: str
+
+@typing.type_check_only
+class GlobalAddressesMoveRequest(typing_extensions.TypedDict, total=False):
+    description: str
+    destinationAddress: str
 
 @typing.type_check_only
 class GlobalNetworkEndpointGroupsAttachEndpointsRequest(
@@ -1575,6 +1657,8 @@ class GuestOsFeature(typing_extensions.TypedDict, total=False):
         "MULTI_IP_SUBNET",
         "SECURE_BOOT",
         "SEV_CAPABLE",
+        "SEV_LIVE_MIGRATABLE",
+        "SEV_SNP_CAPABLE",
         "UEFI_COMPATIBLE",
         "VIRTIO_SCSI_MULTIQUEUE",
         "WINDOWS",
@@ -1747,6 +1831,15 @@ class HealthStatusForNetworkEndpoint(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Help(typing_extensions.TypedDict, total=False):
+    links: _list[HelpLink]
+
+@typing.type_check_only
+class HelpLink(typing_extensions.TypedDict, total=False):
+    description: str
+    url: str
+
+@typing.type_check_only
 class HostRule(typing_extensions.TypedDict, total=False):
     description: str
     hosts: _list[str]
@@ -1864,6 +1957,7 @@ class HttpRouteAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HttpRouteRule(typing_extensions.TypedDict, total=False):
+    customErrorResponsePolicy: CustomErrorResponsePolicy
     description: str
     headerAction: HttpHeaderAction
     httpFilterConfigs: _list[HttpFilterConfig]
@@ -2142,9 +2236,11 @@ class InstanceGroupManager(typing_extensions.TypedDict, total=False):
 class InstanceGroupManagerActionsSummary(typing_extensions.TypedDict, total=False):
     abandoning: int
     creating: int
+    creatingAtomically: int
     creatingWithoutRetries: int
     deleting: int
     none: int
+    queuing: int
     recreating: int
     refreshing: int
     restarting: int
@@ -2174,7 +2270,6 @@ class InstanceGroupManagerAutoHealingPolicy(typing_extensions.TypedDict, total=F
     healthCheck: str
     initialDelaySec: int
     maxUnavailable: FixedOrPercent
-    updateInstances: typing_extensions.Literal["ALWAYS", "FOLLOW_UPDATE_POLICY"]
 
 @typing.type_check_only
 class InstanceGroupManagerAutoHealingPolicyAutoHealingTriggers(
@@ -2186,6 +2281,7 @@ class InstanceGroupManagerAutoHealingPolicyAutoHealingTriggers(
 class InstanceGroupManagerInstanceLifecyclePolicy(
     typing_extensions.TypedDict, total=False
 ):
+    forceUpdateOnRepair: typing_extensions.Literal["NO", "YES"]
     metadataBasedReadinessSignal: InstanceGroupManagerInstanceLifecyclePolicyMetadataBasedReadinessSignal
 
 @typing.type_check_only
@@ -2198,6 +2294,39 @@ class InstanceGroupManagerInstanceLifecyclePolicyMetadataBasedReadinessSignal(
 class InstanceGroupManagerList(typing_extensions.TypedDict, total=False):
     id: str
     items: _list[InstanceGroupManager]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class InstanceGroupManagerResizeRequest(typing_extensions.TypedDict, total=False):
+    count: int
+    creationTimestamp: str
+    description: str
+    id: str
+    kind: str
+    name: str
+    queuingPolicy: QueuingPolicy
+    selfLink: str
+    selfLinkWithId: str
+    state: typing_extensions.Literal[
+        "ACCEPTED", "CREATING", "DELETING", "FAILED", "PROVISIONING", "SUCCEEDED"
+    ]
+    status: InstanceGroupManagerResizeRequestStatus
+    zone: str
+
+@typing.type_check_only
+class InstanceGroupManagerResizeRequestStatus(typing_extensions.TypedDict, total=False):
+    error: dict[str, typing.Any]
+    queuingPolicy: QueuingPolicy
+
+@typing.type_check_only
+class InstanceGroupManagerResizeRequestsListResponse(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    items: _list[InstanceGroupManagerResizeRequest]
     kind: str
     nextPageToken: str
     selfLink: str
@@ -2452,9 +2581,11 @@ class InstanceManagedByIgmErrorInstanceActionDetails(
     action: typing_extensions.Literal[
         "ABANDONING",
         "CREATING",
+        "CREATING_ATOMICALLY",
         "CREATING_WITHOUT_RETRIES",
         "DELETING",
         "NONE",
+        "QUEUING",
         "RECREATING",
         "REFRESHING",
         "RESTARTING",
@@ -2536,6 +2667,7 @@ class InstanceTemplate(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     properties: InstanceProperties
+    region: str
     selfLink: str
     selfLinkWithId: str
     sourceInstance: str
@@ -2744,6 +2876,7 @@ class Interconnect(typing_extensions.TypedDict, total=False):
     operationalStatus: typing_extensions.Literal["OS_ACTIVE", "OS_UNPROVISIONED"]
     peerIpAddress: str
     provisionedLinkCount: int
+    remoteLocation: str
     requestedLinkCount: int
     satisfiesPzs: bool
     selfLink: str
@@ -2772,6 +2905,7 @@ class InterconnectAttachment(typing_extensions.TypedDict, total=False):
     cloudRouterIpAddress: str
     cloudRouterIpv6Address: str
     cloudRouterIpv6InterfaceId: str
+    configurationConstraints: InterconnectAttachmentConfigurationConstraints
     creationTimestamp: str
     customerRouterIpAddress: str
     customerRouterIpv6Address: str
@@ -2797,6 +2931,7 @@ class InterconnectAttachment(typing_extensions.TypedDict, total=False):
     partnerMetadata: InterconnectAttachmentPartnerMetadata
     privateInterconnectInfo: InterconnectAttachmentPrivateInfo
     region: str
+    remoteService: str
     router: str
     satisfiesPzs: bool
     selfLink: str
@@ -2811,6 +2946,7 @@ class InterconnectAttachment(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED",
         "UNPROVISIONED",
     ]
+    subnetLength: int
     type: typing_extensions.Literal["DEDICATED", "PARTNER", "PARTNER_PROVIDER"]
     vlanTag8021q: int
 
@@ -2823,6 +2959,25 @@ class InterconnectAttachmentAggregatedList(typing_extensions.TypedDict, total=Fa
     selfLink: str
     unreachables: _list[str]
     warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class InterconnectAttachmentConfigurationConstraints(
+    typing_extensions.TypedDict, total=False
+):
+    bgpMd5: typing_extensions.Literal["MD5_OPTIONAL", "MD5_REQUIRED", "MD5_UNSUPPORTED"]
+    bgpPeerAsnRanges: _list[
+        InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange
+    ]
+    networkConnectivityCenter: typing_extensions.Literal[
+        "NCC_SPOKE_REQUIRED", "NCC_UNCONSTRAINED"
+    ]
+
+@typing.type_check_only
+class InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange(
+    typing_extensions.TypedDict, total=False
+):
+    max: int
+    min: int
 
 @typing.type_check_only
 class InterconnectAttachmentList(typing_extensions.TypedDict, total=False):
@@ -2857,6 +3012,16 @@ class InterconnectCircuitInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InterconnectDiagnostics(typing_extensions.TypedDict, total=False):
     arpCaches: _list[InterconnectDiagnosticsARPEntry]
+    bundleAggregationType: typing_extensions.Literal[
+        "BUNDLE_AGGREGATION_TYPE_LACP",
+        "BUNDLE_AGGREGATION_TYPE_STATIC",
+        "BUNDLE_AGGREGATION_TYPE_UNSPECIFIED",
+    ]
+    bundleOperationalStatus: typing_extensions.Literal[
+        "BUNDLE_OPERATIONAL_STATUS_DOWN",
+        "BUNDLE_OPERATIONAL_STATUS_UNSPECIFIED",
+        "BUNDLE_OPERATIONAL_STATUS_UP",
+    ]
     links: _list[InterconnectDiagnosticsLinkStatus]
     macAddress: str
 
@@ -2885,6 +3050,11 @@ class InterconnectDiagnosticsLinkStatus(typing_extensions.TypedDict, total=False
     googleDemarc: str
     lacpStatus: InterconnectDiagnosticsLinkLACPStatus
     macsec: InterconnectDiagnosticsMacsecStatus
+    operationalStatus: typing_extensions.Literal[
+        "LINK_OPERATIONAL_STATUS_DOWN",
+        "LINK_OPERATIONAL_STATUS_UNSPECIFIED",
+        "LINK_OPERATIONAL_STATUS_UP",
+    ]
     receivingOpticalPower: InterconnectDiagnosticsLinkOpticalPower
     transmittingOpticalPower: InterconnectDiagnosticsLinkOpticalPower
 
@@ -2985,6 +3155,63 @@ class InterconnectOutageNotification(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "ACTIVE", "CANCELLED", "COMPLETED", "NS_ACTIVE", "NS_CANCELED"
     ]
+
+@typing.type_check_only
+class InterconnectRemoteLocation(typing_extensions.TypedDict, total=False):
+    address: str
+    attachmentConfigurationConstraints: InterconnectAttachmentConfigurationConstraints
+    city: str
+    constraints: InterconnectRemoteLocationConstraints
+    continent: typing_extensions.Literal[
+        "AFRICA", "ASIA_PAC", "EUROPE", "NORTH_AMERICA", "SOUTH_AMERICA"
+    ]
+    creationTimestamp: str
+    description: str
+    facilityProvider: str
+    facilityProviderFacilityId: str
+    id: str
+    kind: str
+    lacp: typing_extensions.Literal["LACP_SUPPORTED", "LACP_UNSUPPORTED"]
+    maxLagSize100Gbps: int
+    name: str
+    peeringdbFacilityId: str
+    permittedConnections: _list[InterconnectRemoteLocationPermittedConnections]
+    remoteService: str
+    selfLink: str
+    selfLinkWithId: str
+    status: typing_extensions.Literal["AVAILABLE", "CLOSED"]
+
+@typing.type_check_only
+class InterconnectRemoteLocationConstraints(typing_extensions.TypedDict, total=False):
+    portPairRemoteLocation: typing_extensions.Literal[
+        "PORT_PAIR_MATCHING_REMOTE_LOCATION", "PORT_PAIR_UNCONSTRAINED_REMOTE_LOCATION"
+    ]
+    portPairVlan: typing_extensions.Literal[
+        "PORT_PAIR_MATCHING_VLAN", "PORT_PAIR_UNCONSTRAINED_VLAN"
+    ]
+    subnetLengthRange: InterconnectRemoteLocationConstraintsSubnetLengthRange
+
+@typing.type_check_only
+class InterconnectRemoteLocationConstraintsSubnetLengthRange(
+    typing_extensions.TypedDict, total=False
+):
+    max: int
+    min: int
+
+@typing.type_check_only
+class InterconnectRemoteLocationList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: _list[InterconnectRemoteLocation]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class InterconnectRemoteLocationPermittedConnections(
+    typing_extensions.TypedDict, total=False
+):
+    interconnectLocation: str
 
 @typing.type_check_only
 class InterconnectsGetDiagnosticsResponse(typing_extensions.TypedDict, total=False):
@@ -3107,6 +3334,11 @@ class LocalDisk(typing_extensions.TypedDict, total=False):
     diskType: str
 
 @typing.type_check_only
+class LocalizedMessage(typing_extensions.TypedDict, total=False):
+    locale: str
+    message: str
+
+@typing.type_check_only
 class LocationPolicy(typing_extensions.TypedDict, total=False):
     locations: dict[str, typing.Any]
     targetShape: typing_extensions.Literal["ANY", "ANY_SINGLE_ZONE", "BALANCED"]
@@ -3186,6 +3418,7 @@ class MachineType(typing_extensions.TypedDict, total=False):
     architecture: typing_extensions.Literal[
         "ARCHITECTURE_UNSPECIFIED", "ARM64", "X86_64"
     ]
+    bundledLocalSsds: BundledLocalSsds
     creationTimestamp: str
     deprecated: DeprecationStatus
     description: str
@@ -3231,9 +3464,11 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
     currentAction: typing_extensions.Literal[
         "ABANDONING",
         "CREATING",
+        "CREATING_ATOMICALLY",
         "CREATING_WITHOUT_RETRIES",
         "DELETING",
         "NONE",
+        "QUEUING",
         "RECREATING",
         "REFRESHING",
         "RESTARTING",
@@ -3260,6 +3495,7 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
     ]
     instanceTemplate: str
     lastAttempt: ManagedInstanceLastAttempt
+    name: str
     preservedStateFromConfig: PreservedState
     preservedStateFromPolicy: PreservedState
     tag: str
@@ -3344,6 +3580,64 @@ class Network(typing_extensions.TypedDict, total=False):
     subnetworks: _list[str]
 
 @typing.type_check_only
+class NetworkAttachment(typing_extensions.TypedDict, total=False):
+    connectionEndpoints: _list[NetworkAttachmentConnectedEndpoint]
+    connectionPreference: typing_extensions.Literal[
+        "ACCEPT_AUTOMATIC", "ACCEPT_MANUAL", "INVALID"
+    ]
+    creationTimestamp: str
+    description: str
+    fingerprint: str
+    id: str
+    kind: str
+    name: str
+    network: str
+    producerAcceptLists: _list[str]
+    producerRejectLists: _list[str]
+    region: str
+    selfLink: str
+    selfLinkWithId: str
+    subnetworks: _list[str]
+
+@typing.type_check_only
+class NetworkAttachmentAggregatedList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class NetworkAttachmentConnectedEndpoint(typing_extensions.TypedDict, total=False):
+    ipAddress: str
+    projectIdOrNum: str
+    secondaryIpCidrRanges: _list[str]
+    status: typing_extensions.Literal[
+        "ACCEPTED",
+        "CLOSED",
+        "NEEDS_ATTENTION",
+        "PENDING",
+        "REJECTED",
+        "STATUS_UNSPECIFIED",
+    ]
+    subnetwork: str
+
+@typing.type_check_only
+class NetworkAttachmentList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: _list[NetworkAttachment]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class NetworkAttachmentsScopedList(typing_extensions.TypedDict, total=False):
+    networkAttachments: _list[NetworkAttachment]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class NetworkEdgeSecurityService(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     description: str
@@ -3406,6 +3700,7 @@ class NetworkEndpointGroup(typing_extensions.TypedDict, total=False):
         "PRIVATE_SERVICE_CONNECT",
         "SERVERLESS",
     ]
+    pscData: NetworkEndpointGroupPscData
     pscTargetService: str
     region: str
     selfLink: str
@@ -3460,6 +3755,19 @@ class NetworkEndpointGroupList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
     warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class NetworkEndpointGroupPscData(typing_extensions.TypedDict, total=False):
+    consumerPscAddress: str
+    pscConnectionId: str
+    pscConnectionStatus: typing_extensions.Literal[
+        "ACCEPTED",
+        "CLOSED",
+        "NEEDS_ATTENTION",
+        "PENDING",
+        "REJECTED",
+        "STATUS_UNSPECIFIED",
+    ]
 
 @typing.type_check_only
 class NetworkEndpointGroupServerlessDeployment(
@@ -3722,6 +4030,12 @@ class NodeGroupsScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeGroupsSetNodeTemplateRequest(typing_extensions.TypedDict, total=False):
     nodeTemplate: str
+
+@typing.type_check_only
+class NodeGroupsSimulateMaintenanceEventRequest(
+    typing_extensions.TypedDict, total=False
+):
+    nodes: _list[str]
 
 @typing.type_check_only
 class NodeTemplate(typing_extensions.TypedDict, total=False):
@@ -4026,6 +4340,7 @@ class PacketMirroringsScopedList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PathMatcher(typing_extensions.TypedDict, total=False):
+    defaultCustomErrorResponsePolicy: CustomErrorResponsePolicy
     defaultRouteAction: HttpRouteAction
     defaultService: str
     defaultUrlRedirect: HttpRedirectAction
@@ -4037,6 +4352,7 @@ class PathMatcher(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PathRule(typing_extensions.TypedDict, total=False):
+    customErrorResponsePolicy: CustomErrorResponsePolicy
     paths: _list[str]
     routeAction: HttpRouteAction
     service: str
@@ -4286,12 +4602,62 @@ class PublicDelegatedPrefixesScopedList(typing_extensions.TypedDict, total=False
     warning: dict[str, typing.Any]
 
 @typing.type_check_only
+class QueuedResource(typing_extensions.TypedDict, total=False):
+    bulkInsertInstanceResource: BulkInsertInstanceResource
+    creationTimestamp: str
+    description: str
+    id: str
+    kind: str
+    name: str
+    queuingPolicy: QueuingPolicy
+    region: str
+    selfLink: str
+    selfLinkWithId: str
+    state: typing_extensions.Literal[
+        "ACCEPTED",
+        "CANCELLED",
+        "CREATING",
+        "DELETING",
+        "FAILED",
+        "PROVISIONING",
+        "STATE_UNSPECIFIED",
+        "SUCCEEDED",
+    ]
+    status: QueuedResourceStatus
+    zone: str
+
+@typing.type_check_only
+class QueuedResourceList(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: _list[QueuedResource]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class QueuedResourceStatus(typing_extensions.TypedDict, total=False):
+    failedData: QueuedResourceStatusFailedData
+    provisioningOperations: _list[str]
+    queuingPolicy: QueuingPolicy
+
+@typing.type_check_only
+class QueuedResourceStatusFailedData(typing_extensions.TypedDict, total=False):
+    error: dict[str, typing.Any]
+
+@typing.type_check_only
+class QueuingPolicy(typing_extensions.TypedDict, total=False):
+    validUntilDuration: Duration
+    validUntilTime: str
+
+@typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
     limit: float
     metric: typing_extensions.Literal[
         "A2_CPUS",
         "AFFINITY_GROUPS",
-        "ALIASES_PER_NETWORK_GLOBAL",
         "AMD_S9300_GPUS",
         "AUTOSCALERS",
         "BACKEND_BUCKETS",
@@ -4313,6 +4679,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "COMMITTED_N2A_CPUS",
         "COMMITTED_N2D_CPUS",
         "COMMITTED_N2_CPUS",
+        "COMMITTED_NVIDIA_A100_80GB_GPUS",
         "COMMITTED_NVIDIA_A100_GPUS",
         "COMMITTED_NVIDIA_K80_GPUS",
         "COMMITTED_NVIDIA_P100_GPUS",
@@ -4337,7 +4704,6 @@ class Quota(typing_extensions.TypedDict, total=False):
         "HEALTH_CHECKS",
         "IMAGES",
         "INSTANCES",
-        "INSTANCES_PER_NETWORK_GLOBAL",
         "INSTANCE_GROUPS",
         "INSTANCE_GROUP_MANAGERS",
         "INSTANCE_TEMPLATES",
@@ -4346,8 +4712,6 @@ class Quota(typing_extensions.TypedDict, total=False):
         "INTERCONNECT_ATTACHMENTS_TOTAL_MBPS",
         "INTERCONNECT_TOTAL_GBPS",
         "INTERNAL_ADDRESSES",
-        "INTERNAL_FORWARDING_RULES_PER_NETWORK",
-        "INTERNAL_FORWARDING_RULES_WITH_TARGET_INSTANCE_PER_NETWORK",
         "INTERNAL_TRAFFIC_DIRECTOR_FORWARDING_RULES",
         "IN_PLACE_SNAPSHOTS",
         "IN_USE_ADDRESSES",
@@ -4367,6 +4731,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "NETWORK_FIREWALL_POLICIES",
         "NODE_GROUPS",
         "NODE_TEMPLATES",
+        "NVIDIA_A100_80GB_GPUS",
         "NVIDIA_A100_GPUS",
         "NVIDIA_K80_GPUS",
         "NVIDIA_P100_GPUS",
@@ -4380,6 +4745,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "PD_EXTREME_TOTAL_PROVISIONED_IOPS",
         "PREEMPTIBLE_CPUS",
         "PREEMPTIBLE_LOCAL_SSD_GB",
+        "PREEMPTIBLE_NVIDIA_A100_80GB_GPUS",
         "PREEMPTIBLE_NVIDIA_A100_GPUS",
         "PREEMPTIBLE_NVIDIA_K80_GPUS",
         "PREEMPTIBLE_NVIDIA_P100_GPUS",
@@ -4390,7 +4756,6 @@ class Quota(typing_extensions.TypedDict, total=False):
         "PREEMPTIBLE_NVIDIA_T4_VWS_GPUS",
         "PREEMPTIBLE_NVIDIA_V100_GPUS",
         "PRIVATE_V6_ACCESS_SUBNETWORKS",
-        "PSC_GOOGLE_APIS_FORWARDING_RULES_PER_NETWORK",
         "PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK",
         "PSC_INTERNAL_LB_FORWARDING_RULES",
         "PUBLIC_ADVERTISED_PREFIXES",
@@ -4413,7 +4778,6 @@ class Quota(typing_extensions.TypedDict, total=False):
         "STATIC_ADDRESSES",
         "STATIC_BYOIP_ADDRESSES",
         "SUBNETWORKS",
-        "SUBNET_RANGES_PER_NETWORK",
         "T2A_CPUS",
         "T2D_CPUS",
         "TARGET_HTTPS_PROXIES",
@@ -4430,6 +4794,13 @@ class Quota(typing_extensions.TypedDict, total=False):
     ]
     owner: str
     usage: float
+
+@typing.type_check_only
+class QuotaExceededInfo(typing_extensions.TypedDict, total=False):
+    dimensions: dict[str, typing.Any]
+    limit: float
+    limitName: str
+    metricName: str
 
 @typing.type_check_only
 class RbacPolicy(typing_extensions.TypedDict, total=False):
@@ -4458,6 +4829,11 @@ class Region(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal["DOWN", "UP"]
     supportsPzs: bool
     zones: _list[str]
+
+@typing.type_check_only
+class RegionAddressesMoveRequest(typing_extensions.TypedDict, total=False):
+    description: str
+    destinationAddress: str
 
 @typing.type_check_only
 class RegionAutoscalerList(typing_extensions.TypedDict, total=False):
@@ -4504,12 +4880,6 @@ class RegionDisksStartAsyncReplicationRequest(typing_extensions.TypedDict, total
 @typing.type_check_only
 class RegionDisksStopAsyncReplicationRequest(typing_extensions.TypedDict, total=False):
     asyncSecondaryDisk: str
-
-@typing.type_check_only
-class RegionDisksStopGroupAsyncReplicationRequest(
-    typing_extensions.TypedDict, total=False
-):
-    resourcePolicy: str
 
 @typing.type_check_only
 class RegionInstanceGroupList(typing_extensions.TypedDict, total=False):
@@ -4748,6 +5118,8 @@ class Reservation(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    resourcePolicies: dict[str, typing.Any]
+    resourceStatus: AllocationResourceStatus
     satisfiesPzs: bool
     selfLink: str
     selfLinkWithId: str
@@ -4820,6 +5192,7 @@ class ResourcePoliciesScopedList(typing_extensions.TypedDict, total=False):
 class ResourcePolicy(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     description: str
+    diskConsistencyGroupPolicy: ResourcePolicyDiskConsistencyGroupPolicy
     groupPlacementPolicy: ResourcePolicyGroupPlacementPolicy
     id: str
     instanceSchedulePolicy: ResourcePolicyInstanceSchedulePolicy
@@ -4851,6 +5224,11 @@ class ResourcePolicyDailyCycle(typing_extensions.TypedDict, total=False):
     daysInCycle: int
     duration: str
     startTime: str
+
+@typing.type_check_only
+class ResourcePolicyDiskConsistencyGroupPolicy(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class ResourcePolicyGroupPlacementPolicy(typing_extensions.TypedDict, total=False):
@@ -4983,6 +5361,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class ResourceStatus(typing_extensions.TypedDict, total=False):
+    physicalHost: str
     scheduling: ResourceStatusScheduling
     upcomingMaintenance: ResourceStatusUpcomingMaintenance
 
@@ -5150,6 +5529,13 @@ class RouterMd5AuthenticationKey(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RouterNat(typing_extensions.TypedDict, total=False):
+    autoNetworkTier: typing_extensions.Literal[
+        "FIXED_STANDARD",
+        "PREMIUM",
+        "SELECT",
+        "STANDARD",
+        "STANDARD_OVERRIDES_FIXED_STANDARD",
+    ]
     drainNatIps: _list[str]
     enableDynamicPortAllocation: bool
     enableEndpointIndependentMapping: bool
@@ -5224,7 +5610,9 @@ class RouterStatusBgpPeerStatus(typing_extensions.TypedDict, total=False):
     state: str
     status: typing_extensions.Literal["DOWN", "UNKNOWN", "UP"]
     statusReason: typing_extensions.Literal[
-        "MD5_AUTH_INTERNAL_PROBLEM", "STATUS_REASON_UNSPECIFIED"
+        "MD5_AUTH_INTERNAL_PROBLEM",
+        "MISSING_NETWORK_CONNECTIVITY_CENTER_SPOKE",
+        "STATUS_REASON_UNSPECIFIED",
     ]
     uptime: str
     uptimeSeconds: str
@@ -5307,6 +5695,9 @@ class SavedAttachedDisk(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SavedDisk(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal[
+        "ARCHITECTURE_UNSPECIFIED", "ARM64", "X86_64"
+    ]
     kind: str
     sourceDisk: str
     storageBytes: str
@@ -5324,6 +5715,7 @@ class Scheduling(typing_extensions.TypedDict, total=False):
     availabilityDomain: int
     currentCpus: int
     currentMemoryMb: str
+    dynamicResizeProperties: SchedulingDynamicResizeProperties
     hostErrorTimeoutSeconds: int
     instanceTerminationAction: typing_extensions.Literal[
         "DELETE", "INSTANCE_TERMINATION_ACTION_UNSPECIFIED", "STOP"
@@ -5339,6 +5731,13 @@ class Scheduling(typing_extensions.TypedDict, total=False):
     preemptible: bool
     provisioningModel: typing_extensions.Literal["SPOT", "STANDARD"]
     terminationTime: str
+
+@typing.type_check_only
+class SchedulingDynamicResizeProperties(typing_extensions.TypedDict, total=False):
+    enableHotStandby: bool
+    hotStandbyState: typing_extensions.Literal[
+        "ACTIVE", "HOTSTANDBY_STATE_UNSPECIFIED", "STANDBY"
+    ]
 
 @typing.type_check_only
 class SchedulingNodeAffinity(typing_extensions.TypedDict, total=False):
@@ -5411,10 +5810,21 @@ class SecurityPolicy(typing_extensions.TypedDict, total=False):
         "CLOUD_ARMOR_NETWORK",
         "FIREWALL",
     ]
+    userDefinedFields: _list[SecurityPolicyUserDefinedField]
 
 @typing.type_check_only
 class SecurityPolicyAdaptiveProtectionConfig(typing_extensions.TypedDict, total=False):
+    autoDeployConfig: SecurityPolicyAdaptiveProtectionConfigAutoDeployConfig
     layer7DdosDefenseConfig: SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig
+
+@typing.type_check_only
+class SecurityPolicyAdaptiveProtectionConfigAutoDeployConfig(
+    typing_extensions.TypedDict, total=False
+):
+    confidenceThreshold: float
+    expirationSec: int
+    impactedBaselineThreshold: float
+    loadThreshold: float
 
 @typing.type_check_only
 class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig(
@@ -5425,8 +5835,15 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig(
 
 @typing.type_check_only
 class SecurityPolicyAdvancedOptionsConfig(typing_extensions.TypedDict, total=False):
+    jsonCustomConfig: SecurityPolicyAdvancedOptionsConfigJsonCustomConfig
     jsonParsing: typing_extensions.Literal["DISABLED", "STANDARD"]
     logLevel: typing_extensions.Literal["NORMAL", "VERBOSE"]
+
+@typing.type_check_only
+class SecurityPolicyAdvancedOptionsConfigJsonCustomConfig(
+    typing_extensions.TypedDict, total=False
+):
+    contentTypes: _list[str]
 
 @typing.type_check_only
 class SecurityPolicyAssociation(typing_extensions.TypedDict, total=False):
@@ -5470,6 +5887,8 @@ class SecurityPolicyRule(typing_extensions.TypedDict, total=False):
     headerAction: SecurityPolicyRuleHttpHeaderAction
     kind: str
     match: SecurityPolicyRuleMatcher
+    networkMatch: SecurityPolicyRuleNetworkMatcher
+    preconfiguredWafConfig: SecurityPolicyRulePreconfiguredWafConfig
     preview: bool
     priority: int
     rateLimitOptions: SecurityPolicyRuleRateLimitOptions
@@ -5522,6 +5941,58 @@ class SecurityPolicyRuleMatcherConfigLayer4Config(
     ports: _list[str]
 
 @typing.type_check_only
+class SecurityPolicyRuleNetworkMatcher(typing_extensions.TypedDict, total=False):
+    destIpRanges: _list[str]
+    destPorts: _list[str]
+    ipProtocols: _list[str]
+    srcAsns: _list[int]
+    srcIpRanges: _list[str]
+    srcPorts: _list[str]
+    srcRegionCodes: _list[str]
+    userDefinedFields: _list[SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch]
+
+@typing.type_check_only
+class SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    values: _list[str]
+
+@typing.type_check_only
+class SecurityPolicyRulePreconfiguredWafConfig(
+    typing_extensions.TypedDict, total=False
+):
+    exclusions: _list[SecurityPolicyRulePreconfiguredWafConfigExclusion]
+
+@typing.type_check_only
+class SecurityPolicyRulePreconfiguredWafConfigExclusion(
+    typing_extensions.TypedDict, total=False
+):
+    requestCookiesToExclude: _list[
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
+    ]
+    requestHeadersToExclude: _list[
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
+    ]
+    requestQueryParamsToExclude: _list[
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
+    ]
+    requestUrisToExclude: _list[
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
+    ]
+    targetRuleIds: _list[str]
+    targetRuleSet: str
+
+@typing.type_check_only
+class SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams(
+    typing_extensions.TypedDict, total=False
+):
+    op: typing_extensions.Literal[
+        "CONTAINS", "ENDS_WITH", "EQUALS", "EQUALS_ANY", "STARTS_WITH"
+    ]
+    val: str
+
+@typing.type_check_only
 class SecurityPolicyRuleRateLimitOptions(typing_extensions.TypedDict, total=False):
     banDurationSec: int
     banThreshold: SecurityPolicyRuleRateLimitOptionsThreshold
@@ -5531,8 +6002,16 @@ class SecurityPolicyRuleRateLimitOptions(typing_extensions.TypedDict, total=Fals
     ]
     enforceOnKeyName: str
     exceedAction: str
+    exceedActionRpcStatus: SecurityPolicyRuleRateLimitOptionsRpcStatus
     exceedRedirectOptions: SecurityPolicyRuleRedirectOptions
     rateLimitThreshold: SecurityPolicyRuleRateLimitOptionsThreshold
+
+@typing.type_check_only
+class SecurityPolicyRuleRateLimitOptionsRpcStatus(
+    typing_extensions.TypedDict, total=False
+):
+    code: int
+    message: str
 
 @typing.type_check_only
 class SecurityPolicyRuleRateLimitOptionsThreshold(
@@ -5545,6 +6024,14 @@ class SecurityPolicyRuleRateLimitOptionsThreshold(
 class SecurityPolicyRuleRedirectOptions(typing_extensions.TypedDict, total=False):
     target: str
     type: typing_extensions.Literal["EXTERNAL_302", "GOOGLE_RECAPTCHA"]
+
+@typing.type_check_only
+class SecurityPolicyUserDefinedField(typing_extensions.TypedDict, total=False):
+    base: typing_extensions.Literal["IPV4", "IPV6", "TCP", "UDP"]
+    mask: str
+    name: str
+    offset: int
+    size: int
 
 @typing.type_check_only
 class SecuritySettings(typing_extensions.TypedDict, total=False):
@@ -5620,7 +6107,12 @@ class ServiceAttachmentConnectedEndpoint(typing_extensions.TypedDict, total=Fals
     endpoint: str
     pscConnectionId: str
     status: typing_extensions.Literal[
-        "ACCEPTED", "CLOSED", "PENDING", "REJECTED", "STATUS_UNSPECIFIED"
+        "ACCEPTED",
+        "CLOSED",
+        "NEEDS_ATTENTION",
+        "PENDING",
+        "REJECTED",
+        "STATUS_UNSPECIFIED",
     ]
 
 @typing.type_check_only
@@ -5719,6 +6211,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     ]
     autoCreated: bool
     chainName: str
+    creationSizeBytes: str
     creationTimestamp: str
     description: str
     diskSizeGb: str
@@ -5732,6 +6225,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     licenseCodes: _list[str]
     licenses: _list[str]
     locationHint: str
+    maxRetentionDays: int
     name: str
     satisfiesPzs: bool
     selfLink: str
@@ -5959,9 +6453,7 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
         "DISABLE_GOOGLE_ACCESS",
         "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
         "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
-        "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE_FOR_SERVICE_ACCOUNTS",
     ]
-    privateIpv6GoogleAccessServiceAccounts: _list[str]
     purpose: typing_extensions.Literal[
         "AGGREGATE",
         "CLOUD_EXTENSION",
@@ -6198,6 +6690,7 @@ class TargetInstance(typing_extensions.TypedDict, total=False):
     name: str
     natPolicy: typing_extensions.Literal["NO_NAT"]
     network: str
+    securityPolicy: str
     selfLink: str
     selfLinkWithId: str
     zone: str
@@ -6238,6 +6731,7 @@ class TargetPool(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     region: str
+    securityPolicy: str
     selfLink: str
     selfLinkWithId: str
     sessionAffinity: typing_extensions.Literal[
@@ -6346,6 +6840,11 @@ class TargetSslProxyList(typing_extensions.TypedDict, total=False):
     warning: dict[str, typing.Any]
 
 @typing.type_check_only
+class TargetTcpProxiesScopedList(typing_extensions.TypedDict, total=False):
+    targetTcpProxies: _list[TargetTcpProxy]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class TargetTcpProxiesSetBackendServiceRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -6367,6 +6866,16 @@ class TargetTcpProxy(typing_extensions.TypedDict, total=False):
     region: str
     selfLink: str
     service: str
+
+@typing.type_check_only
+class TargetTcpProxyAggregatedList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
 
 @typing.type_check_only
 class TargetTcpProxyList(typing_extensions.TypedDict, total=False):
@@ -6487,6 +6996,7 @@ class UpcomingMaintenanceTimeWindow(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UrlMap(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
+    defaultCustomErrorResponsePolicy: CustomErrorResponsePolicy
     defaultRouteAction: HttpRouteAction
     defaultService: str
     defaultUrlRedirect: HttpRedirectAction
@@ -6570,9 +7080,25 @@ class UrlRewrite(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UsableSubnetwork(typing_extensions.TypedDict, total=False):
+    externalIpv6Prefix: str
+    internalIpv6Prefix: str
     ipCidrRange: str
+    ipv6AccessType: typing_extensions.Literal["EXTERNAL", "INTERNAL"]
     network: str
+    purpose: typing_extensions.Literal[
+        "AGGREGATE",
+        "CLOUD_EXTENSION",
+        "GLOBAL_MANAGED_PROXY",
+        "INTERNAL_HTTPS_LOAD_BALANCER",
+        "PRIVATE",
+        "PRIVATE_NAT",
+        "PRIVATE_RFC_1918",
+        "PRIVATE_SERVICE_CONNECT",
+        "REGIONAL_MANAGED_PROXY",
+    ]
+    role: typing_extensions.Literal["ACTIVE", "BACKUP"]
     secondaryIpRanges: _list[UsableSubnetworkSecondaryRange]
+    stackType: typing_extensions.Literal["IPV4_IPV6", "IPV4_ONLY"]
     subnetwork: str
 
 @typing.type_check_only

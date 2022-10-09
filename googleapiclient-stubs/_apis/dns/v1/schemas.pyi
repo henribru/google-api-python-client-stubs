@@ -59,6 +59,59 @@ class DnsKeysListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
+    service: str
+
+@typing.type_check_only
+class GoogleIamV1AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: _list[str]
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
+
+@typing.type_check_only
+class GoogleIamV1Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: _list[str]
+    role: str
+
+@typing.type_check_only
+class GoogleIamV1GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GoogleIamV1GetPolicyOptions
+
+@typing.type_check_only
+class GoogleIamV1GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
+
+@typing.type_check_only
+class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: _list[GoogleIamV1AuditConfig]
+    bindings: _list[GoogleIamV1Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class GoogleIamV1SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: GoogleIamV1Policy
+    updateMask: str
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
 class ManagedZone(typing_extensions.TypedDict, total=False):
     cloudLoggingConfig: ManagedZoneCloudLoggingConfig
     creationTime: str
@@ -123,8 +176,16 @@ class ManagedZonePeeringConfigTargetNetwork(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class ManagedZonePrivateVisibilityConfig(typing_extensions.TypedDict, total=False):
+    gkeClusters: _list[ManagedZonePrivateVisibilityConfigGKECluster]
     kind: str
     networks: _list[ManagedZonePrivateVisibilityConfigNetwork]
+
+@typing.type_check_only
+class ManagedZonePrivateVisibilityConfigGKECluster(
+    typing_extensions.TypedDict, total=False
+):
+    gkeClusterName: str
+    kind: str
 
 @typing.type_check_only
 class ManagedZonePrivateVisibilityConfigNetwork(
@@ -234,15 +295,22 @@ class Project(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
     dnsKeysPerManagedZone: int
+    gkeClustersPerManagedZone: int
+    gkeClustersPerPolicy: int
+    gkeClustersPerResponsePolicy: int
     itemsPerRoutingPolicy: int
     kind: str
     managedZones: int
+    managedZonesPerGkeCluster: int
     managedZonesPerNetwork: int
     networksPerManagedZone: int
     networksPerPolicy: int
+    networksPerResponsePolicy: int
     peeringZonesPerTargetNetwork: int
     policies: int
     resourceRecordsPerRrset: int
+    responsePolicies: int
+    responsePolicyRulesPerResponsePolicy: int
     rrsetAdditionsPerChange: int
     rrsetDeletionsPerChange: int
     rrsetsPerManagedZone: int
@@ -255,10 +323,12 @@ class Quota(typing_extensions.TypedDict, total=False):
 class RRSetRoutingPolicy(typing_extensions.TypedDict, total=False):
     geo: RRSetRoutingPolicyGeoPolicy
     kind: str
+    primaryBackup: RRSetRoutingPolicyPrimaryBackupPolicy
     wrr: RRSetRoutingPolicyWrrPolicy
 
 @typing.type_check_only
 class RRSetRoutingPolicyGeoPolicy(typing_extensions.TypedDict, total=False):
+    enableFencing: bool
     items: _list[RRSetRoutingPolicyGeoPolicyGeoPolicyItem]
     kind: str
 
@@ -266,10 +336,33 @@ class RRSetRoutingPolicyGeoPolicy(typing_extensions.TypedDict, total=False):
 class RRSetRoutingPolicyGeoPolicyGeoPolicyItem(
     typing_extensions.TypedDict, total=False
 ):
+    healthCheckedTargets: RRSetRoutingPolicyHealthCheckTargets
     kind: str
     location: str
     rrdatas: _list[str]
     signatureRrdatas: _list[str]
+
+@typing.type_check_only
+class RRSetRoutingPolicyHealthCheckTargets(typing_extensions.TypedDict, total=False):
+    internalLoadBalancers: _list[RRSetRoutingPolicyLoadBalancerTarget]
+
+@typing.type_check_only
+class RRSetRoutingPolicyLoadBalancerTarget(typing_extensions.TypedDict, total=False):
+    ipAddress: str
+    ipProtocol: typing_extensions.Literal["undefined", "tcp", "udp"]
+    kind: str
+    loadBalancerType: typing_extensions.Literal["none", "regionalL4ilb"]
+    networkUrl: str
+    port: str
+    project: str
+    region: str
+
+@typing.type_check_only
+class RRSetRoutingPolicyPrimaryBackupPolicy(typing_extensions.TypedDict, total=False):
+    backupGeoTargets: RRSetRoutingPolicyGeoPolicy
+    kind: str
+    primaryTargets: RRSetRoutingPolicyHealthCheckTargets
+    trickleTraffic: float
 
 @typing.type_check_only
 class RRSetRoutingPolicyWrrPolicy(typing_extensions.TypedDict, total=False):
@@ -280,6 +373,7 @@ class RRSetRoutingPolicyWrrPolicy(typing_extensions.TypedDict, total=False):
 class RRSetRoutingPolicyWrrPolicyWrrPolicyItem(
     typing_extensions.TypedDict, total=False
 ):
+    healthCheckedTargets: RRSetRoutingPolicyHealthCheckTargets
     kind: str
     rrdatas: _list[str]
     signatureRrdatas: _list[str]
@@ -328,10 +422,17 @@ class ResponsePoliciesUpdateResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResponsePolicy(typing_extensions.TypedDict, total=False):
     description: str
+    gkeClusters: _list[ResponsePolicyGKECluster]
     id: str
     kind: str
+    labels: dict[str, typing.Any]
     networks: _list[ResponsePolicyNetwork]
     responsePolicyName: str
+
+@typing.type_check_only
+class ResponsePolicyGKECluster(typing_extensions.TypedDict, total=False):
+    gkeClusterName: str
+    kind: str
 
 @typing.type_check_only
 class ResponsePolicyNetwork(typing_extensions.TypedDict, total=False):

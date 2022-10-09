@@ -97,6 +97,11 @@ class CardHeader(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class CardWithId(typing_extensions.TypedDict, total=False):
+    card: GoogleAppsCardV1Card
+    cardId: str
+
+@typing.type_check_only
 class ChatAppLogEntry(typing_extensions.TypedDict, total=False):
     deployment: str
     deploymentFunction: str
@@ -119,6 +124,7 @@ class CommonEventObject(typing_extensions.TypedDict, total=False):
         "DRIVE",
         "DEMO",
         "DOCS",
+        "MEET",
         "SHEETS",
         "SLIDES",
         "DRAWINGS",
@@ -481,6 +487,9 @@ class Membership(typing_extensions.TypedDict, total=False):
     createTime: str
     member: User
     name: str
+    role: typing_extensions.Literal[
+        "MEMBERSHIP_ROLE_UNSPECIFIED", "ROLE_MEMBER", "ROLE_MANAGER"
+    ]
     state: typing_extensions.Literal[
         "MEMBERSHIP_STATE_UNSPECIFIED", "JOINED", "INVITED", "NOT_A_MEMBER"
     ]
@@ -519,8 +528,14 @@ class Space(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     singleUserBotDm: bool
+    spaceDetails: SpaceDetails
     threaded: bool
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ROOM", "DM"]
+
+@typing.type_check_only
+class SpaceDetails(typing_extensions.TypedDict, total=False):
+    description: str
+    guidelines: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

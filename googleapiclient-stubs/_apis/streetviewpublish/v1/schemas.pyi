@@ -32,9 +32,34 @@ class Connection(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GpsDataGapFailureDetails(typing_extensions.TypedDict, total=False):
+    gapDuration: str
+    gapStartTime: str
+
+@typing.type_check_only
+class Imu(typing_extensions.TypedDict, total=False):
+    accelMpsps: _list[Measurement3d]
+    gyroRps: _list[Measurement3d]
+    magUt: _list[Measurement3d]
+
+@typing.type_check_only
+class ImuDataGapFailureDetails(typing_extensions.TypedDict, total=False):
+    gapDuration: str
+    gapStartTime: str
+
+@typing.type_check_only
+class InsufficientGpsFailureDetails(typing_extensions.TypedDict, total=False):
+    gpsPointsFound: int
+
+@typing.type_check_only
 class LatLng(typing_extensions.TypedDict, total=False):
     latitude: float
     longitude: float
+
+@typing.type_check_only
+class LatLngBounds(typing_extensions.TypedDict, total=False):
+    northeast: LatLng
+    southwest: LatLng
 
 @typing.type_check_only
 class Level(typing_extensions.TypedDict, total=False):
@@ -42,9 +67,25 @@ class Level(typing_extensions.TypedDict, total=False):
     number: float
 
 @typing.type_check_only
+class ListPhotoSequencesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    photoSequences: _list[Operation]
+
+@typing.type_check_only
 class ListPhotosResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     photos: _list[Photo]
+
+@typing.type_check_only
+class Measurement3d(typing_extensions.TypedDict, total=False):
+    captureTime: str
+    x: float
+    y: float
+    z: float
+
+@typing.type_check_only
+class NotOutdoorsFailureDetails(typing_extensions.TypedDict, total=False):
+    startTime: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -91,6 +132,52 @@ class PhotoResponse(typing_extensions.TypedDict, total=False):
     status: Status
 
 @typing.type_check_only
+class PhotoSequence(typing_extensions.TypedDict, total=False):
+    captureTimeOverride: str
+    distanceMeters: float
+    failureDetails: ProcessingFailureDetails
+    failureReason: typing_extensions.Literal[
+        "PROCESSING_FAILURE_REASON_UNSPECIFIED",
+        "LOW_RESOLUTION",
+        "DUPLICATE",
+        "INSUFFICIENT_GPS",
+        "NO_OVERLAP_GPS",
+        "INVALID_GPS",
+        "FAILED_TO_REFINE_POSITIONS",
+        "TAKEDOWN",
+        "CORRUPT_VIDEO",
+        "INTERNAL",
+        "INVALID_VIDEO_FORMAT",
+        "INVALID_VIDEO_DIMENSIONS",
+        "INVALID_CAPTURE_TIME",
+        "GPS_DATA_GAP",
+        "JUMPY_GPS",
+        "INVALID_IMU",
+        "INSUFFICIENT_IMU",
+        "INSUFFICIENT_OVERLAP_TIME_SERIES",
+        "IMU_DATA_GAP",
+        "UNSUPPORTED_CAMERA",
+        "NOT_OUTDOORS",
+        "INSUFFICIENT_VIDEO_FRAMES",
+        "INSUFFICIENT_MOVEMENT",
+    ]
+    filename: str
+    gpsSource: typing_extensions.Literal[
+        "PHOTO_SEQUENCE", "CAMERA_MOTION_METADATA_TRACK"
+    ]
+    id: str
+    imu: Imu
+    photos: _list[Photo]
+    processingState: typing_extensions.Literal[
+        "PROCESSING_STATE_UNSPECIFIED", "PENDING", "PROCESSING", "PROCESSED", "FAILED"
+    ]
+    rawGpsTimeline: _list[Pose]
+    sequenceBounds: LatLngBounds
+    uploadReference: UploadRef
+    uploadTime: str
+    viewCount: str
+
+@typing.type_check_only
 class Place(typing_extensions.TypedDict, total=False):
     languageCode: str
     name: str
@@ -100,11 +187,19 @@ class Place(typing_extensions.TypedDict, total=False):
 class Pose(typing_extensions.TypedDict, total=False):
     accuracyMeters: float
     altitude: float
+    gpsRecordTimestampUnixEpoch: str
     heading: float
     latLngPair: LatLng
     level: Level
     pitch: float
     roll: float
+
+@typing.type_check_only
+class ProcessingFailureDetails(typing_extensions.TypedDict, total=False):
+    gpsDataGapDetails: GpsDataGapFailureDetails
+    imuDataGapDetails: ImuDataGapFailureDetails
+    insufficientGpsDetails: InsufficientGpsFailureDetails
+    notOutdoorsDetails: NotOutdoorsFailureDetails
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

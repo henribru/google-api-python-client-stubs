@@ -16,19 +16,6 @@ class LoggingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class BillingAccountsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
-        class BucketsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class ViewsResource(googleapiclient.discovery.Resource):
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> LogViewHttpRequest: ...
-
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> LogBucketHttpRequest: ...
-            def views(self) -> ViewsResource: ...
-
-        @typing.type_check_only
         class ExclusionsResource(googleapiclient.discovery.Resource):
             def create(
                 self, *, parent: str, body: LogExclusion = ..., **kwargs: typing.Any
@@ -95,6 +82,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> LogViewHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -129,6 +119,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> LogBucketHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -168,6 +161,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     body: CancelOperationRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -224,12 +220,6 @@ class LoggingResource(googleapiclient.discovery.Resource):
             ) -> ListLogsResponseHttpRequest | None: ...
 
         @typing.type_check_only
-        class OperationsResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> OperationHttpRequest: ...
-
-        @typing.type_check_only
         class SinksResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -283,11 +273,9 @@ class LoggingResource(googleapiclient.discovery.Resource):
         def getSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> SettingsHttpRequest: ...
-        def buckets(self) -> BucketsResource: ...
         def exclusions(self) -> ExclusionsResource: ...
         def locations(self) -> LocationsResource: ...
         def logs(self) -> LogsResource: ...
-        def operations(self) -> OperationsResource: ...
         def sinks(self) -> SinksResource: ...
 
     @typing.type_check_only

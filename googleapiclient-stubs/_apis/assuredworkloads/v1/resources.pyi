@@ -39,6 +39,35 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class WorkloadsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ViolationsResource(googleapiclient.discovery.Resource):
+                    def acknowledge(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponseHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudAssuredworkloadsV1ViolationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        interval_endTime: str = ...,
+                        interval_startTime: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest,
+                        previous_response: GoogleCloudAssuredworkloadsV1ListViolationsResponse,
+                    ) -> GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -75,6 +104,14 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudAssuredworkloadsV1WorkloadHttpRequest: ...
+                def restrictAllowedResources(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponseHttpRequest: ...
+                def violations(self) -> ViolationsResource: ...
 
             def operations(self) -> OperationsResource: ...
             def workloads(self) -> WorkloadsResource: ...
@@ -96,6 +133,26 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
     def organizations(self) -> OrganizationsResource: ...
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudAssuredworkloadsV1ListViolationsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -104,6 +161,26 @@ class GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudAssuredworkloadsV1ListWorkloadsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ViolationHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudAssuredworkloadsV1Violation: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1WorkloadHttpRequest(

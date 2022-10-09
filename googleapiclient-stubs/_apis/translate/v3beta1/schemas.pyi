@@ -161,6 +161,7 @@ class SupportedLanguages(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TranslateDocumentRequest(typing_extensions.TypedDict, total=False):
+    customizedAttribution: str
     documentInputConfig: DocumentInputConfig
     documentOutputConfig: DocumentOutputConfig
     glossaryConfig: TranslateTextGlossaryConfig

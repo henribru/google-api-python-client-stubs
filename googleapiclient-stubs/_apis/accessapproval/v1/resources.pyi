@@ -34,6 +34,13 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> ApprovalRequestHttpRequest: ...
+            def invalidate(
+                self,
+                *,
+                name: str,
+                body: InvalidateApprovalRequestMessage = ...,
+                **kwargs: typing.Any
+            ) -> ApprovalRequestHttpRequest: ...
             def list(
                 self,
                 *,
@@ -89,6 +96,13 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> ApprovalRequestHttpRequest: ...
+            def invalidate(
+                self,
+                *,
+                name: str,
+                body: InvalidateApprovalRequestMessage = ...,
+                **kwargs: typing.Any
+            ) -> ApprovalRequestHttpRequest: ...
             def list(
                 self,
                 *,
@@ -143,6 +157,13 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             ) -> ApprovalRequestHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
+            ) -> ApprovalRequestHttpRequest: ...
+            def invalidate(
+                self,
+                *,
+                name: str,
+                body: InvalidateApprovalRequestMessage = ...,
+                **kwargs: typing.Any
             ) -> ApprovalRequestHttpRequest: ...
             def list(
                 self,

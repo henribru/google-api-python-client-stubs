@@ -57,6 +57,26 @@ class BatchCreateBitbucketServerConnectedRepositoriesResponseMetadata(
     createTime: str
 
 @typing.type_check_only
+class BatchCreateGitLabConnectedRepositoriesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[CreateGitLabConnectedRepositoryRequest]
+
+@typing.type_check_only
+class BatchCreateGitLabConnectedRepositoriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    gitlabConnectedRepositories: _list[GitLabConnectedRepository]
+
+@typing.type_check_only
+class BatchCreateGitLabConnectedRepositoriesResponseMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completeTime: str
+    config: str
+    createTime: str
+
+@typing.type_check_only
 class BitbucketServerConfig(typing_extensions.TypedDict, total=False):
     apiKey: str
     connectedRepositories: _list[BitbucketServerRepositoryId]
@@ -188,10 +208,13 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildStep(typing_extensions.TypedDict, total=False):
+    allowExitCodes: _list[int]
+    allowFailure: bool
     args: _list[str]
     dir: str
     entrypoint: str
     env: _list[str]
+    exitCode: int
     id: str
     name: str
     pullTiming: TimeSpan
@@ -230,8 +253,12 @@ class BuildTrigger(typing_extensions.TypedDict, total=False):
     filter: str
     gitFileSource: GitFileSource
     github: GitHubEventsConfig
+    gitlabEnterpriseEventsConfig: GitLabEventsConfig
     id: str
     ignoredFiles: _list[str]
+    includeBuildLogs: typing_extensions.Literal[
+        "INCLUDE_BUILD_LOGS_UNSPECIFIED", "INCLUDE_BUILD_LOGS_WITH_STATUS"
+    ]
     includedFiles: _list[str]
     name: str
     pubsubConfig: PubsubConfig
@@ -286,6 +313,11 @@ class CreateGitLabConfigOperationMetadata(typing_extensions.TypedDict, total=Fal
     completeTime: str
     createTime: str
     gitlabConfig: str
+
+@typing.type_check_only
+class CreateGitLabConnectedRepositoryRequest(typing_extensions.TypedDict, total=False):
+    gitlabConnectedRepository: GitLabConnectedRepository
+    parent: str
 
 @typing.type_check_only
 class CreateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -385,6 +417,56 @@ class GitHubEventsConfig(typing_extensions.TypedDict, total=False):
     push: PushFilter
 
 @typing.type_check_only
+class GitLabConfig(typing_extensions.TypedDict, total=False):
+    connectedRepositories: _list[GitLabRepositoryId]
+    createTime: str
+    enterpriseConfig: GitLabEnterpriseConfig
+    name: str
+    secrets: GitLabSecrets
+    username: str
+    webhookKey: str
+
+@typing.type_check_only
+class GitLabConnectedRepository(typing_extensions.TypedDict, total=False):
+    parent: str
+    repo: GitLabRepositoryId
+    status: Status
+
+@typing.type_check_only
+class GitLabEnterpriseConfig(typing_extensions.TypedDict, total=False):
+    hostUri: str
+    serviceDirectoryConfig: ServiceDirectoryConfig
+    sslCa: str
+
+@typing.type_check_only
+class GitLabEventsConfig(typing_extensions.TypedDict, total=False):
+    gitlabConfig: GitLabConfig
+    gitlabConfigResource: str
+    projectNamespace: str
+    pullRequest: PullRequestFilter
+    push: PushFilter
+
+@typing.type_check_only
+class GitLabRepository(typing_extensions.TypedDict, total=False):
+    browseUri: str
+    description: str
+    displayName: str
+    name: str
+    repositoryId: GitLabRepositoryId
+
+@typing.type_check_only
+class GitLabRepositoryId(typing_extensions.TypedDict, total=False):
+    id: str
+    webhookId: int
+
+@typing.type_check_only
+class GitLabSecrets(typing_extensions.TypedDict, total=False):
+    apiAccessTokenVersion: str
+    apiKeyVersion: str
+    readAccessTokenVersion: str
+    webhookSecretVersion: str
+
+@typing.type_check_only
 class GitRepoSource(typing_extensions.TypedDict, total=False):
     bitbucketServerConfig: str
     githubEnterpriseConfig: str
@@ -444,6 +526,16 @@ class ListBuildTriggersResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListBuildsResponse(typing_extensions.TypedDict, total=False):
     builds: _list[Build]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListGitLabConfigsResponse(typing_extensions.TypedDict, total=False):
+    gitlabConfigs: _list[GitLabConfig]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListGitLabRepositoriesResponse(typing_extensions.TypedDict, total=False):
+    gitlabRepositories: _list[GitLabRepository]
     nextPageToken: str
 
 @typing.type_check_only
@@ -570,6 +662,10 @@ class RemoveBitbucketServerConnectedRepositoryRequest(
     connectedRepository: BitbucketServerRepositoryId
 
 @typing.type_check_only
+class RemoveGitLabConnectedRepositoryRequest(typing_extensions.TypedDict, total=False):
+    connectedRepository: GitLabRepositoryId
+
+@typing.type_check_only
 class RepoSource(typing_extensions.TypedDict, total=False):
     branchName: str
     commitSha: str
@@ -634,6 +730,10 @@ class SecretManagerSecret(typing_extensions.TypedDict, total=False):
 class Secrets(typing_extensions.TypedDict, total=False):
     inline: _list[InlineSecret]
     secretManager: _list[SecretManagerSecret]
+
+@typing.type_check_only
+class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
+    service: str
 
 @typing.type_check_only
 class SlackDelivery(typing_extensions.TypedDict, total=False):

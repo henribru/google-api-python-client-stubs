@@ -356,6 +356,7 @@ class Policy(dict[str, typing.Any]): ...
 
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
+    appRestrictionsSchema: AppRestrictionsSchema
     appTracks: _list[TrackInfo]
     appVersion: _list[AppVersion]
     authorName: str

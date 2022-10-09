@@ -60,6 +60,7 @@ class Platform(typing_extensions.TypedDict, total=False):
         "LACROS",
         "LACROS_ARM32",
         "CHROMEOS",
+        "LACROS_ARM64",
     ]
 
 @typing.type_check_only

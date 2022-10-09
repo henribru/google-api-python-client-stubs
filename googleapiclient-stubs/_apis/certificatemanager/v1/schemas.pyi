@@ -33,6 +33,28 @@ class Certificate(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class CertificateAuthorityConfig(typing_extensions.TypedDict, total=False):
+    certificateAuthorityServiceConfig: CertificateAuthorityServiceConfig
+
+@typing.type_check_only
+class CertificateAuthorityServiceConfig(typing_extensions.TypedDict, total=False):
+    caPool: str
+
+@typing.type_check_only
+class CertificateIssuanceConfig(typing_extensions.TypedDict, total=False):
+    certificateAuthorityConfig: CertificateAuthorityConfig
+    createTime: str
+    description: str
+    keyAlgorithm: typing_extensions.Literal[
+        "KEY_ALGORITHM_UNSPECIFIED", "RSA_2048", "ECDSA_P256"
+    ]
+    labels: dict[str, typing.Any]
+    lifetime: str
+    name: str
+    rotationWindowPercentage: int
+    updateTime: str
+
+@typing.type_check_only
 class CertificateMap(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -84,6 +106,12 @@ class IpConfig(typing_extensions.TypedDict, total=False):
     ports: _list[int]
 
 @typing.type_check_only
+class ListCertificateIssuanceConfigsResponse(typing_extensions.TypedDict, total=False):
+    certificateIssuanceConfigs: _list[CertificateIssuanceConfig]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListCertificateMapEntriesResponse(typing_extensions.TypedDict, total=False):
     certificateMapEntries: _list[CertificateMapEntry]
     nextPageToken: str
@@ -130,6 +158,7 @@ class ManagedCertificate(typing_extensions.TypedDict, total=False):
     authorizationAttemptInfo: _list[AuthorizationAttemptInfo]
     dnsAuthorizations: _list[str]
     domains: _list[str]
+    issuanceConfig: str
     provisioningIssue: ProvisioningIssue
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "PROVISIONING", "FAILED", "ACTIVE"
@@ -159,12 +188,6 @@ class ProvisioningIssue(typing_extensions.TypedDict, total=False):
     reason: typing_extensions.Literal[
         "REASON_UNSPECIFIED", "AUTHORIZATION_ISSUE", "RATE_LIMITED"
     ]
-
-@typing.type_check_only
-class ResourcesCount(typing_extensions.TypedDict, total=False):
-    certificates: str
-    computeTime: str
-    name: str
 
 @typing.type_check_only
 class SelfManagedCertificate(typing_extensions.TypedDict, total=False):

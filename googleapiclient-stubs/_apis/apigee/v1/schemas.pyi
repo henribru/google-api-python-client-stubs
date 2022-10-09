@@ -49,6 +49,7 @@ class GoogleCloudApigeeV1ActivateNatAddressRequest(
 @typing.type_check_only
 class GoogleCloudApigeeV1AddonsConfig(typing_extensions.TypedDict, total=False):
     advancedApiOpsConfig: GoogleCloudApigeeV1AdvancedApiOpsConfig
+    apiSecurityConfig: GoogleCloudApigeeV1ApiSecurityConfig
     connectorsPlatformConfig: GoogleCloudApigeeV1ConnectorsPlatformConfig
     integrationConfig: GoogleCloudApigeeV1IntegrationConfig
     monetizationConfig: GoogleCloudApigeeV1MonetizationConfig
@@ -105,6 +106,9 @@ class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
     operationGroup: GoogleCloudApigeeV1OperationGroup
     proxies: _list[str]
     quota: str
+    quotaCounterScope: typing_extensions.Literal[
+        "QUOTA_COUNTER_SCOPE_UNSPECIFIED", "PROXY", "OPERATION"
+    ]
     quotaInterval: str
     quotaTimeUnit: str
     scopes: _list[str]
@@ -159,6 +163,11 @@ class GoogleCloudApigeeV1ApiResponseWrapper(typing_extensions.TypedDict, total=F
     message: str
     requestId: str
     status: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiSecurityConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    expiresAt: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1App(typing_extensions.TypedDict, total=False):
@@ -265,6 +274,28 @@ class GoogleCloudApigeeV1Certificate(typing_extensions.TypedDict, total=False):
 class GoogleCloudApigeeV1CommonNameConfig(typing_extensions.TypedDict, total=False):
     matchWildCards: bool
     name: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ComputeEnvironmentScoresRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filters: _list[GoogleCloudApigeeV1ComputeEnvironmentScoresRequestFilter]
+    pageSize: int
+    pageToken: str
+    timeRange: GoogleTypeInterval
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ComputeEnvironmentScoresRequestFilter(
+    typing_extensions.TypedDict, total=False
+):
+    scorePath: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ComputeEnvironmentScoresResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    scores: _list[GoogleCloudApigeeV1Score]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ConfigVersion(typing_extensions.TypedDict, total=False):
@@ -543,6 +574,16 @@ class GoogleCloudApigeeV1DimensionMetric(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudApigeeV1EndpointAttachment(typing_extensions.TypedDict, total=False):
+    connectionState: typing_extensions.Literal[
+        "CONNECTION_STATE_UNSPECIFIED",
+        "UNAVAILABLE",
+        "PENDING",
+        "ACCEPTED",
+        "REJECTED",
+        "CLOSED",
+        "FROZEN",
+        "NEEDS_ATTENTION",
+    ]
     host: str
     location: str
     name: str
@@ -568,8 +609,10 @@ class GoogleCloudApigeeV1Environment(typing_extensions.TypedDict, total=False):
     ]
     description: str
     displayName: str
+    forwardProxyUri: str
     lastModifiedAt: str
     name: str
+    nodeConfig: GoogleCloudApigeeV1NodeConfig
     properties: GoogleCloudApigeeV1Properties
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
@@ -584,6 +627,7 @@ class GoogleCloudApigeeV1EnvironmentConfig(typing_extensions.TypedDict, total=Fa
     deployments: _list[GoogleCloudApigeeV1DeploymentConfig]
     featureFlags: dict[str, typing.Any]
     flowhooks: _list[GoogleCloudApigeeV1FlowHookConfig]
+    forwardProxyUri: str
     gatewayConfigLocation: str
     keystores: _list[GoogleCloudApigeeV1KeystoreConfig]
     name: str
@@ -806,6 +850,11 @@ class GoogleCloudApigeeV1KeyAliasReference(typing_extensions.TypedDict, total=Fa
     reference: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1KeyValueEntry(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1KeyValueMap(typing_extensions.TypedDict, total=False):
     encrypted: bool
     name: str
@@ -956,6 +1005,13 @@ class GoogleCloudApigeeV1ListInstancesResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListKeyValueEntriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    keyValueEntries: _list[GoogleCloudApigeeV1KeyValueEntry]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListNatAddressesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -982,6 +1038,27 @@ class GoogleCloudApigeeV1ListRatePlansResponse(
     ratePlans: _list[GoogleCloudApigeeV1RatePlan]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityProfileRevisionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    securityProfiles: _list[GoogleCloudApigeeV1SecurityProfile]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityProfilesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    securityProfiles: _list[GoogleCloudApigeeV1SecurityProfile]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityReportsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    securityReports: _list[GoogleCloudApigeeV1SecurityReport]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListSharedFlowsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1005,6 +1082,14 @@ class GoogleCloudApigeeV1Metric(typing_extensions.TypedDict, total=False):
     values: _list[typing.Any]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1MetricAggregation(typing_extensions.TypedDict, total=False):
+    aggregation: typing_extensions.Literal[
+        "AGGREGATION_FUNCTION_UNSPECIFIED", "AVG", "SUM", "MIN", "MAX", "COUNT_DISTINCT"
+    ]
+    name: str
+    order: typing_extensions.Literal["ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1MonetizationConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -1015,6 +1100,12 @@ class GoogleCloudApigeeV1NatAddress(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "RESERVED", "ACTIVE", "DELETING"
     ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1NodeConfig(typing_extensions.TypedDict, total=False):
+    currentAggregateNodeCount: str
+    maxNodeCount: str
+    minNodeCount: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Operation(typing_extensions.TypedDict, total=False):
@@ -1077,10 +1168,11 @@ class GoogleCloudApigeeV1OptimizedStatsResponse(
 class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
     addonsConfig: GoogleCloudApigeeV1AddonsConfig
     analyticsRegion: str
+    apigeeProjectId: str
     attributes: _list[str]
     authorizedNetwork: str
     billingType: typing_extensions.Literal[
-        "BILLING_TYPE_UNSPECIFIED", "SUBSCRIPTION", "EVALUATION"
+        "BILLING_TYPE_UNSPECIFIED", "SUBSCRIPTION", "EVALUATION", "PAYG"
     ]
     caCertificate: str
     createdAt: str
@@ -1112,6 +1204,7 @@ class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
 class GoogleCloudApigeeV1OrganizationProjectMapping(
     typing_extensions.TypedDict, total=False
 ):
+    location: str
     organization: str
     projectId: str
     projectIds: _list[str]
@@ -1180,6 +1273,57 @@ class GoogleCloudApigeeV1QueryMetric(typing_extensions.TypedDict, total=False):
     name: str
     operator: str
     value: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1QueryTabularStatsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: _list[str]
+    filter: str
+    metrics: _list[GoogleCloudApigeeV1MetricAggregation]
+    pageSize: int
+    pageToken: str
+    timeRange: GoogleTypeInterval
+
+@typing.type_check_only
+class GoogleCloudApigeeV1QueryTabularStatsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    columns: _list[str]
+    nextPageToken: str
+    values: _list[list]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1QueryTimeSeriesStatsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: _list[str]
+    filter: str
+    metrics: _list[GoogleCloudApigeeV1MetricAggregation]
+    pageSize: int
+    pageToken: str
+    timeRange: GoogleTypeInterval
+    timestampOrder: typing_extensions.Literal[
+        "ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"
+    ]
+    windowSize: typing_extensions.Literal[
+        "WINDOW_SIZE_UNSPECIFIED", "MINUTE", "HOUR", "DAY", "MONTH"
+    ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1QueryTimeSeriesStatsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    columns: _list[str]
+    nextPageToken: str
+    values: _list[GoogleCloudApigeeV1QueryTimeSeriesStatsResponseSequence]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1QueryTimeSeriesStatsResponseSequence(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: dict[str, typing.Any]
+    points: _list[list]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Quota(typing_extensions.TypedDict, total=False):
@@ -1363,6 +1507,147 @@ class GoogleCloudApigeeV1SchemaSchemaProperty(typing_extensions.TypedDict, total
     createTime: str
     custom: str
     type: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1Score(typing_extensions.TypedDict, total=False):
+    component: GoogleCloudApigeeV1ScoreComponent
+    subcomponents: _list[GoogleCloudApigeeV1ScoreComponent]
+    timeRange: GoogleTypeInterval
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ScoreComponent(typing_extensions.TypedDict, total=False):
+    calculateTime: str
+    dataCaptureTime: str
+    drilldownPaths: _list[str]
+    recommendations: _list[GoogleCloudApigeeV1ScoreComponentRecommendation]
+    score: int
+    scorePath: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ScoreComponentRecommendation(
+    typing_extensions.TypedDict, total=False
+):
+    actions: _list[GoogleCloudApigeeV1ScoreComponentRecommendationAction]
+    description: str
+    impact: int
+    title: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ScoreComponentRecommendationAction(
+    typing_extensions.TypedDict, total=False
+):
+    actionContext: GoogleCloudApigeeV1ScoreComponentRecommendationActionActionContext
+    description: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ScoreComponentRecommendationActionActionContext(
+    typing_extensions.TypedDict, total=False
+):
+    documentationLink: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityProfile(typing_extensions.TypedDict, total=False):
+    displayName: str
+    environments: _list[GoogleCloudApigeeV1SecurityProfileEnvironment]
+    maxScore: int
+    minScore: int
+    name: str
+    revisionCreateTime: str
+    revisionId: str
+    revisionPublishTime: str
+    revisionUpdateTime: str
+    scoringConfigs: _list[GoogleCloudApigeeV1SecurityProfileScoringConfig]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityProfileEnvironment(
+    typing_extensions.TypedDict, total=False
+):
+    attachTime: str
+    environment: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation(
+    typing_extensions.TypedDict, total=False
+):
+    attachTime: str
+    name: str
+    securityProfileRevisionId: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityProfileScoringConfig(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    scorePath: str
+    title: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityReport(typing_extensions.TypedDict, total=False):
+    created: str
+    displayName: str
+    envgroupHostname: str
+    error: str
+    executionTime: str
+    queryParams: GoogleCloudApigeeV1SecurityReportMetadata
+    reportDefinitionId: str
+    result: GoogleCloudApigeeV1SecurityReportResultMetadata
+    resultFileSize: str
+    resultRows: str
+    self: str
+    state: str
+    updated: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityReportMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: _list[str]
+    endTimestamp: str
+    metrics: _list[str]
+    mimeType: str
+    startTimestamp: str
+    timeUnit: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityReportQuery(typing_extensions.TypedDict, total=False):
+    csvDelimiter: str
+    dimensions: _list[str]
+    displayName: str
+    envgroupHostname: str
+    filter: str
+    groupByTimeUnit: str
+    limit: int
+    metrics: _list[GoogleCloudApigeeV1SecurityReportQueryMetric]
+    mimeType: str
+    reportDefinitionId: str
+    timeRange: typing.Any
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityReportQueryMetric(
+    typing_extensions.TypedDict, total=False
+):
+    aggregationFunction: str
+    alias: str
+    name: str
+    operator: str
+    value: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityReportResultMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    expires: str
+    self: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityReportResultView(
+    typing_extensions.TypedDict, total=False
+):
+    code: int
+    error: str
+    metadata: GoogleCloudApigeeV1SecurityReportMetadata
+    rows: _list[typing.Any]
+    state: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ServiceIssuersMapping(
@@ -1606,6 +1891,11 @@ class GoogleTypeExpr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class GoogleTypeInterval(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class GoogleTypeMoney(typing_extensions.TypedDict, total=False):

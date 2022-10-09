@@ -40,6 +40,48 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
         ) -> PhotoHttpRequest: ...
 
     @typing.type_check_only
+    class PhotoSequenceResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            body: PhotoSequence = ...,
+            inputType: typing_extensions.Literal[
+                "INPUT_TYPE_UNSPECIFIED", "VIDEO", "XDM"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, sequenceId: str, **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+        def get(
+            self,
+            *,
+            sequenceId: str,
+            filter: str = ...,
+            view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def startUpload(
+            self, *, body: Empty = ..., **kwargs: typing.Any
+        ) -> UploadRefHttpRequest: ...
+
+    @typing.type_check_only
+    class PhotoSequencesResource(googleapiclient.discovery.Resource):
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListPhotoSequencesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListPhotoSequencesResponseHttpRequest,
+            previous_response: ListPhotoSequencesResponse,
+        ) -> ListPhotoSequencesResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class PhotosResource(googleapiclient.discovery.Resource):
         def batchDelete(
             self, *, body: BatchDeletePhotosRequest = ..., **kwargs: typing.Any
@@ -84,6 +126,8 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def photo(self) -> PhotoResource: ...
+    def photoSequence(self) -> PhotoSequenceResource: ...
+    def photoSequences(self) -> PhotoSequencesResource: ...
     def photos(self) -> PhotosResource: ...
 
 @typing.type_check_only
@@ -119,12 +163,28 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class ListPhotoSequencesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListPhotoSequencesResponse: ...
+
+@typing.type_check_only
 class ListPhotosResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListPhotosResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Operation: ...
 
 @typing.type_check_only
 class PhotoHttpRequest(googleapiclient.http.HttpRequest):

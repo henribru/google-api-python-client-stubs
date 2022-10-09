@@ -135,6 +135,7 @@ class ClusterOperation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClusterOperationMetadata(typing_extensions.TypedDict, total=False):
+    childOperationIds: _list[str]
     clusterName: str
     clusterUuid: str
     description: str
@@ -170,6 +171,7 @@ class ClusterStatus(typing_extensions.TypedDict, total=False):
         "STOPPING",
         "STOPPED",
         "STARTING",
+        "REPAIRING",
     ]
     stateStartTime: str
     substate: typing_extensions.Literal["UNSPECIFIED", "UNHEALTHY", "STALE_STATUS"]
@@ -215,6 +217,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecutionConfig(typing_extensions.TypedDict, total=False):
+    idleTtl: str
     kmsKey: str
     networkTags: _list[str]
     networkUri: str
@@ -250,6 +253,23 @@ class GceClusterConfig(typing_extensions.TypedDict, total=False):
     zoneUri: str
 
 @typing.type_check_only
+class GceNodePoolOperationMetadata(typing_extensions.TypedDict, total=False):
+    clusterUuid: str
+    description: str
+    gceNodePoolId: str
+    labels: dict[str, typing.Any]
+    operationType: typing_extensions.Literal[
+        "GCE_NODE_POOL_OPERATION_TYPE_UNSPECIFIED",
+        "CREATE",
+        "UPDATE",
+        "DELETE",
+        "RESIZE",
+    ]
+    status: ClusterOperationStatus
+    statusHistory: _list[ClusterOperationStatus]
+    warnings: _list[str]
+
+@typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     options: GetPolicyOptions
 
@@ -266,6 +286,7 @@ class GkeClusterConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GkeNodeConfig(typing_extensions.TypedDict, total=False):
     accelerators: _list[GkeNodePoolAcceleratorConfig]
+    bootDiskKmsKey: str
     localSsdCount: int
     machineType: str
     minCpuPlatform: str
@@ -343,7 +364,7 @@ class InstanceGroupConfig(typing_extensions.TypedDict, total=False):
     minCpuPlatform: str
     numInstances: int
     preemptibility: typing_extensions.Literal[
-        "PREEMPTIBILITY_UNSPECIFIED", "NON_PREEMPTIBLE", "PREEMPTIBLE"
+        "PREEMPTIBILITY_UNSPECIFIED", "NON_PREEMPTIBLE", "PREEMPTIBLE", "SPOT"
     ]
 
 @typing.type_check_only
@@ -379,6 +400,7 @@ class Job(typing_extensions.TypedDict, total=False):
     sparkSqlJob: SparkSqlJob
     status: JobStatus
     statusHistory: _list[JobStatus]
+    trinoJob: TrinoJob
     yarnApplications: _list[YarnApplication]
 
 @typing.type_check_only
@@ -537,6 +559,12 @@ class NodeInitializationAction(typing_extensions.TypedDict, total=False):
     executionTimeout: str
 
 @typing.type_check_only
+class NodePool(typing_extensions.TypedDict, total=False):
+    id: str
+    instanceNames: _list[str]
+    repairAction: typing_extensions.Literal["REPAIR_ACTION_UNSPECIFIED", "DELETE"]
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -558,6 +586,7 @@ class OrderedJob(typing_extensions.TypedDict, total=False):
     sparkRJob: SparkRJob
     sparkSqlJob: SparkSqlJob
     stepId: str
+    trinoJob: TrinoJob
 
 @typing.type_check_only
 class ParameterValidation(typing_extensions.TypedDict, total=False):
@@ -626,6 +655,9 @@ class RegexValidation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RepairClusterRequest(typing_extensions.TypedDict, total=False):
     clusterUuid: str
+    gracefulDecommissionTimeout: str
+    nodePools: _list[NodePool]
+    parentOperationId: str
     requestId: str
 
 @typing.type_check_only
@@ -794,6 +826,16 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TrinoJob(typing_extensions.TypedDict, total=False):
+    clientTags: _list[str]
+    continueOnFailure: bool
+    loggingConfig: LoggingConfig
+    outputFormat: str
+    properties: dict[str, typing.Any]
+    queryFileUri: str
+    queryList: QueryList
 
 @typing.type_check_only
 class ValueValidation(typing_extensions.TypedDict, total=False):

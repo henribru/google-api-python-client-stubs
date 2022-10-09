@@ -130,6 +130,13 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: DetachTrustRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def extendSchema(
+                        self,
+                        *,
+                        domain: str,
+                        body: ExtendSchemaRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> DomainHttpRequest: ...
