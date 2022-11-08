@@ -174,7 +174,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class GcRule(dict[str, typing.Any]): ...
+class GcRule(typing_extensions.TypedDict, total=False):
+    intersection: Intersection
+    maxAge: str
+    maxNumVersions: int
+    union: Union
 
 @typing.type_check_only
 class GenerateConsistencyTokenRequest(typing_extensions.TypedDict, total=False): ...
@@ -212,7 +216,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PRODUCTION", "DEVELOPMENT"]
 
 @typing.type_check_only
-class Intersection(dict[str, typing.Any]): ...
+class Intersection(typing_extensions.TypedDict, total=False):
+    rules: _list[GcRule]
 
 @typing.type_check_only
 class ListAppProfilesResponse(typing_extensions.TypedDict, total=False):
@@ -396,7 +401,8 @@ class UndeleteTableMetadata(typing_extensions.TypedDict, total=False):
 class UndeleteTableRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Union(dict[str, typing.Any]): ...
+class Union(typing_extensions.TypedDict, total=False):
+    rules: _list[GcRule]
 
 @typing.type_check_only
 class UpdateAppProfileMetadata(typing_extensions.TypedDict, total=False): ...

@@ -582,7 +582,14 @@ class PrinterModel(typing_extensions.TypedDict, total=False):
     manufacturer: str
 
 @typing.type_check_only
-class Privilege(dict[str, typing.Any]): ...
+class Privilege(typing_extensions.TypedDict, total=False):
+    childPrivileges: _list[Privilege]
+    etag: str
+    isOuScopable: bool
+    kind: str
+    privilegeName: str
+    serviceId: str
+    serviceName: str
 
 @typing.type_check_only
 class Privileges(typing_extensions.TypedDict, total=False):

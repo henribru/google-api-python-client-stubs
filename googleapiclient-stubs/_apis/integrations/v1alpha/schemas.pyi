@@ -493,7 +493,9 @@ class EnterpriseCrmEventbusProtoFieldMappingConfig(
     mappedFields: _list[EnterpriseCrmEventbusProtoMappedField]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoFunction(dict[str, typing.Any]): ...
+class EnterpriseCrmEventbusProtoFunction(typing_extensions.TypedDict, total=False):
+    functionType: EnterpriseCrmEventbusProtoFunctionType
+    parameters: _list[EnterpriseCrmEventbusProtoTransformExpression]
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoFunctionType(typing_extensions.TypedDict, total=False):
@@ -623,7 +625,9 @@ class EnterpriseCrmEventbusProtoLoopMetadata(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoMappedField(dict[str, typing.Any]): ...
+class EnterpriseCrmEventbusProtoMappedField(typing_extensions.TypedDict, total=False):
+    inputField: EnterpriseCrmEventbusProtoField
+    outputField: EnterpriseCrmEventbusProtoField
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoNextTask(typing_extensions.TypedDict, total=False):
@@ -1152,7 +1156,11 @@ class EnterpriseCrmEventbusProtoToken(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class EnterpriseCrmEventbusProtoTransformExpression(dict[str, typing.Any]): ...
+class EnterpriseCrmEventbusProtoTransformExpression(
+    typing_extensions.TypedDict, total=False
+):
+    initialValue: EnterpriseCrmEventbusProtoBaseValue
+    transformationFunctions: _list[EnterpriseCrmEventbusProtoFunction]
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoTriggerCriteria(
@@ -1585,8 +1593,42 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    attributes: EnterpriseCrmEventbusProtoAttributes
+    children: _list[EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry]
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED",
+        "STRING_VALUE",
+        "INT_VALUE",
+        "DOUBLE_VALUE",
+        "BOOLEAN_VALUE",
+        "PROTO_VALUE",
+        "SERIALIZED_OBJECT_VALUE",
+        "STRING_ARRAY",
+        "INT_ARRAY",
+        "DOUBLE_ARRAY",
+        "PROTO_ARRAY",
+        "PROTO_ENUM",
+        "BOOLEAN_ARRAY",
+        "PROTO_ENUM_ARRAY",
+        "BYTES",
+        "BYTES_ARRAY",
+        "NON_SERIALIZABLE_OBJECT",
+        "JSON_VALUE",
+    ]
+    defaultValue: EnterpriseCrmFrontendsEventbusProtoParameterValueType
+    inOutType: typing_extensions.Literal[
+        "IN_OUT_TYPE_UNSPECIFIED", "IN", "OUT", "IN_OUT"
+    ]
+    isTransient: bool
+    jsonSchema: str
+    key: str
+    name: str
+    producedBy: EnterpriseCrmEventbusProtoNodeIdentifier
+    producer: str
+    protoDefName: str
+    protoDefPath: str
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoWorkflowParameters(
@@ -1999,7 +2041,21 @@ class GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse(
     parameterEntries: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaExecution(dict[str, typing.Any]): ...
+class GoogleCloudIntegrationsV1alphaExecution(typing_extensions.TypedDict, total=False):
+    createTime: str
+    directSubExecutions: _list[GoogleCloudIntegrationsV1alphaExecution]
+    eventExecutionDetails: EnterpriseCrmEventbusProtoEventExecutionDetails
+    executionDetails: GoogleCloudIntegrationsV1alphaExecutionDetails
+    executionMethod: typing_extensions.Literal[
+        "EXECUTION_METHOD_UNSPECIFIED", "POST", "POST_TO_QUEUE", "SCHEDULE"
+    ]
+    name: str
+    requestParameters: dict[str, typing.Any]
+    requestParams: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
+    responseParameters: dict[str, typing.Any]
+    responseParams: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
+    triggerId: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecutionDetails(

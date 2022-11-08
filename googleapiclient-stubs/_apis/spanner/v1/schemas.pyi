@@ -612,10 +612,16 @@ class RestoreInfo(typing_extensions.TypedDict, total=False):
     sourceType: typing_extensions.Literal["TYPE_UNSPECIFIED", "BACKUP"]
 
 @typing.type_check_only
-class ResultSet(dict[str, typing.Any]): ...
+class ResultSet(typing_extensions.TypedDict, total=False):
+    metadata: ResultSetMetadata
+    rows: _list[list]
+    stats: ResultSetStats
 
 @typing.type_check_only
-class ResultSetMetadata(dict[str, typing.Any]): ...
+class ResultSetMetadata(typing_extensions.TypedDict, total=False):
+    rowType: StructType
+    transaction: Transaction
+    undeclaredParameters: StructType
 
 @typing.type_check_only
 class ResultSetStats(typing_extensions.TypedDict, total=False):
@@ -672,7 +678,8 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class StructType(dict[str, typing.Any]): ...
+class StructType(typing_extensions.TypedDict, total=False):
+    fields: _list[Field]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -700,7 +707,26 @@ class TransactionSelector(typing_extensions.TypedDict, total=False):
     singleUse: TransactionOptions
 
 @typing.type_check_only
-class Type(dict[str, typing.Any]): ...
+class Type(typing_extensions.TypedDict, total=False):
+    arrayElementType: Type
+    code: typing_extensions.Literal[
+        "TYPE_CODE_UNSPECIFIED",
+        "BOOL",
+        "INT64",
+        "FLOAT64",
+        "TIMESTAMP",
+        "DATE",
+        "STRING",
+        "BYTES",
+        "ARRAY",
+        "STRUCT",
+        "NUMERIC",
+        "JSON",
+    ]
+    structType: StructType
+    typeAnnotation: typing_extensions.Literal[
+        "TYPE_ANNOTATION_CODE_UNSPECIFIED", "PG_NUMERIC", "PG_JSONB"
+    ]
 
 @typing.type_check_only
 class UpdateDatabaseDdlMetadata(typing_extensions.TypedDict, total=False):

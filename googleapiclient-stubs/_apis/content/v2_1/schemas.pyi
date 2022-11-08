@@ -465,7 +465,10 @@ class Css(typing_extensions.TypedDict, total=False):
     labelIds: _list[str]
 
 @typing.type_check_only
-class CustomAttribute(dict[str, typing.Any]): ...
+class CustomAttribute(typing_extensions.TypedDict, total=False):
+    groupValues: _list[CustomAttribute]
+    name: str
+    value: str
 
 @typing.type_check_only
 class CustomerReturnReason(typing_extensions.TypedDict, total=False):
@@ -966,7 +969,12 @@ class LocalinventoryCustomBatchRequest(typing_extensions.TypedDict, total=False)
     entries: _list[LocalinventoryCustomBatchRequestEntry]
 
 @typing.type_check_only
-class LocalinventoryCustomBatchRequestEntry(dict[str, typing.Any]): ...
+class LocalinventoryCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
+    batchId: int
+    localInventory: LocalInventory
+    merchantId: str
+    method: str
+    productId: str
 
 @typing.type_check_only
 class LocalinventoryCustomBatchResponse(typing_extensions.TypedDict, total=False):
@@ -2196,7 +2204,14 @@ class ProductsCustomBatchRequest(typing_extensions.TypedDict, total=False):
     entries: _list[ProductsCustomBatchRequestEntry]
 
 @typing.type_check_only
-class ProductsCustomBatchRequestEntry(dict[str, typing.Any]): ...
+class ProductsCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
+    batchId: int
+    feedId: str
+    merchantId: str
+    method: str
+    product: Product
+    productId: str
+    updateMask: str
 
 @typing.type_check_only
 class ProductsCustomBatchResponse(typing_extensions.TypedDict, total=False):
@@ -2204,7 +2219,11 @@ class ProductsCustomBatchResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class ProductsCustomBatchResponseEntry(dict[str, typing.Any]): ...
+class ProductsCustomBatchResponseEntry(typing_extensions.TypedDict, total=False):
+    batchId: int
+    errors: Errors
+    kind: str
+    product: Product
 
 @typing.type_check_only
 class ProductsListResponse(typing_extensions.TypedDict, total=False):
@@ -2359,7 +2378,14 @@ class RegionalinventoryCustomBatchRequest(typing_extensions.TypedDict, total=Fal
     entries: _list[RegionalinventoryCustomBatchRequestEntry]
 
 @typing.type_check_only
-class RegionalinventoryCustomBatchRequestEntry(dict[str, typing.Any]): ...
+class RegionalinventoryCustomBatchRequestEntry(
+    typing_extensions.TypedDict, total=False
+):
+    batchId: int
+    merchantId: str
+    method: str
+    productId: str
+    regionalInventory: RegionalInventory
 
 @typing.type_check_only
 class RegionalinventoryCustomBatchResponse(typing_extensions.TypedDict, total=False):
@@ -2367,7 +2393,13 @@ class RegionalinventoryCustomBatchResponse(typing_extensions.TypedDict, total=Fa
     kind: str
 
 @typing.type_check_only
-class RegionalinventoryCustomBatchResponseEntry(dict[str, typing.Any]): ...
+class RegionalinventoryCustomBatchResponseEntry(
+    typing_extensions.TypedDict, total=False
+):
+    batchId: int
+    errors: Errors
+    kind: str
+    regionalInventory: RegionalInventory
 
 @typing.type_check_only
 class ReportRow(typing_extensions.TypedDict, total=False):

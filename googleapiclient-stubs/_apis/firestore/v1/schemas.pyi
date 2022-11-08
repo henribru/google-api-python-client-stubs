@@ -148,10 +148,22 @@ class FieldReference(typing_extensions.TypedDict, total=False):
     fieldPath: str
 
 @typing.type_check_only
-class FieldTransform(dict[str, typing.Any]): ...
+class FieldTransform(typing_extensions.TypedDict, total=False):
+    appendMissingElements: ArrayValue
+    fieldPath: str
+    increment: Value
+    maximum: Value
+    minimum: Value
+    removeAllFromArray: ArrayValue
+    setToServerValue: typing_extensions.Literal[
+        "SERVER_VALUE_UNSPECIFIED", "REQUEST_TIME"
+    ]
 
 @typing.type_check_only
-class Filter(dict[str, typing.Any]): ...
+class Filter(typing_extensions.TypedDict, total=False):
+    compositeFilter: CompositeFilter
+    fieldFilter: FieldFilter
+    unaryFilter: UnaryFilter
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
@@ -507,13 +519,36 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class StructuredAggregationQuery(dict[str, typing.Any]): ...
+class StructuredAggregationQuery(typing_extensions.TypedDict, total=False):
+    aggregations: _list[Aggregation]
+    structuredQuery: StructuredQuery
+
+AlternativeStructuredQuery = typing_extensions.TypedDict(
+    "AlternativeStructuredQuery",
+    {
+        "endAt": Cursor,
+        "from": _list[CollectionSelector],
+        "limit": int,
+        "offset": int,
+        "orderBy": _list[Order],
+        "select": Projection,
+        "startAt": Cursor,
+        "where": Filter,
+    },
+    total=False,
+)
 
 @typing.type_check_only
-class StructuredQuery(dict[str, typing.Any]): ...
+class StructuredQuery(AlternativeStructuredQuery): ...
 
 @typing.type_check_only
-class Target(dict[str, typing.Any]): ...
+class Target(typing_extensions.TypedDict, total=False):
+    documents: DocumentsTarget
+    once: bool
+    query: QueryTarget
+    readTime: str
+    resumeToken: str
+    targetId: int
 
 @typing.type_check_only
 class TargetChange(typing_extensions.TypedDict, total=False):
@@ -538,10 +573,27 @@ class UnaryFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Value(dict[str, typing.Any]): ...
+class Value(typing_extensions.TypedDict, total=False):
+    arrayValue: ArrayValue
+    booleanValue: bool
+    bytesValue: str
+    doubleValue: float
+    geoPointValue: LatLng
+    integerValue: str
+    mapValue: MapValue
+    nullValue: typing_extensions.Literal["NULL_VALUE"]
+    referenceValue: str
+    stringValue: str
+    timestampValue: str
 
 @typing.type_check_only
-class Write(dict[str, typing.Any]): ...
+class Write(typing_extensions.TypedDict, total=False):
+    currentDocument: Precondition
+    delete: str
+    transform: DocumentTransform
+    update: Document
+    updateMask: DocumentMask
+    updateTransforms: _list[FieldTransform]
 
 @typing.type_check_only
 class WriteRequest(typing_extensions.TypedDict, total=False):
@@ -558,4 +610,6 @@ class WriteResponse(typing_extensions.TypedDict, total=False):
     writeResults: _list[WriteResult]
 
 @typing.type_check_only
-class WriteResult(dict[str, typing.Any]): ...
+class WriteResult(typing_extensions.TypedDict, total=False):
+    transformResults: _list[Value]
+    updateTime: str

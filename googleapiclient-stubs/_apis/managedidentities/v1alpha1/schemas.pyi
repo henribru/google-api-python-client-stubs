@@ -33,7 +33,12 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Certificate(dict[str, typing.Any]): ...
+class Certificate(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    issuingCertificate: Certificate
+    subject: str
+    subjectAlternativeName: _list[str]
+    thumbprint: str
 
 @typing.type_check_only
 class DailyCycle(typing_extensions.TypedDict, total=False):

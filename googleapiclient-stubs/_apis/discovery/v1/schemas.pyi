@@ -10,8 +10,35 @@ class DirectoryList(typing_extensions.TypedDict, total=False):
     items: _list[dict[str, typing.Any]]
     kind: str
 
+AlternativeJsonSchema = typing_extensions.TypedDict(
+    "AlternativeJsonSchema",
+    {
+        "$ref": str,
+        "additionalProperties": JsonSchema,
+        "annotations": dict[str, typing.Any],
+        "default": str,
+        "description": str,
+        "enum": _list[str],
+        "enumDescriptions": _list[str],
+        "format": str,
+        "id": str,
+        "items": JsonSchema,
+        "location": str,
+        "maximum": str,
+        "minimum": str,
+        "pattern": str,
+        "properties": dict[str, typing.Any],
+        "readOnly": bool,
+        "repeated": bool,
+        "required": bool,
+        "type": str,
+        "variant": dict[str, typing.Any],
+    },
+    total=False,
+)
+
 @typing.type_check_only
-class JsonSchema(dict[str, typing.Any]): ...
+class JsonSchema(AlternativeJsonSchema): ...
 
 @typing.type_check_only
 class RestDescription(typing_extensions.TypedDict, total=False):

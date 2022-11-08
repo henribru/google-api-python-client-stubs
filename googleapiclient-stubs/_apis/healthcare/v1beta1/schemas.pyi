@@ -857,7 +857,12 @@ class SchemaConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SchemaGroup(dict[str, typing.Any]): ...
+class SchemaGroup(typing_extensions.TypedDict, total=False):
+    choice: bool
+    maxOccurs: int
+    members: _list[GroupOrSegment]
+    minOccurs: int
+    name: str
 
 @typing.type_check_only
 class SchemaPackage(typing_extensions.TypedDict, total=False):

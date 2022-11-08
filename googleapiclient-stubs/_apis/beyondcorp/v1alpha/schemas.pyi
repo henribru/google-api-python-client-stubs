@@ -441,7 +441,16 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaResolveInstanceConfigResponse(
     instanceConfig: GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorInstanceConfig
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo(dict[str, typing.Any]): ...
+class GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    resource: dict[str, typing.Any]
+    status: typing_extensions.Literal[
+        "HEALTH_STATUS_UNSPECIFIED", "HEALTHY", "UNHEALTHY", "UNRESPONSIVE", "DEGRADED"
+    ]
+    sub: _list[GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo]
+    time: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppgatewaysV1AppGatewayOperationMetadata(
@@ -769,7 +778,14 @@ class ResolveInstanceConfigResponse(typing_extensions.TypedDict, total=False):
     instanceConfig: ConnectorInstanceConfig
 
 @typing.type_check_only
-class ResourceInfo(dict[str, typing.Any]): ...
+class ResourceInfo(typing_extensions.TypedDict, total=False):
+    id: str
+    resource: dict[str, typing.Any]
+    status: typing_extensions.Literal[
+        "HEALTH_STATUS_UNSPECIFIED", "HEALTHY", "UNHEALTHY", "UNRESPONSIVE", "DEGRADED"
+    ]
+    sub: _list[ResourceInfo]
+    time: str
 
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):

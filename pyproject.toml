@@ -19,13 +19,8 @@ python = "^3.7"
 google-api-python-client = "^2.64.0"
 typing-extensions = ">=3.10.0, <5.0.0"
 
-[tool.poetry.dev-dependencies]
-mypy = "^0.950"
-black = "^22.3.0"
-isort = "^5.10.1"
-
 [tool.poetry.group.dev.dependencies]
-mypy = "^0.982"
+mypy = "^0.990"
 black = "^22.10.0"
 isort = "^5.10.1"
 

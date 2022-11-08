@@ -156,7 +156,11 @@ class SourceLocation(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class StackFrame(dict[str, typing.Any]): ...
+class StackFrame(typing_extensions.TypedDict, total=False):
+    arguments: _list[Variable]
+    function: str
+    locals: _list[Variable]
+    location: SourceLocation
 
 @typing.type_check_only
 class StatusMessage(typing_extensions.TypedDict, total=False):
@@ -181,4 +185,10 @@ class UpdateActiveBreakpointRequest(typing_extensions.TypedDict, total=False):
 class UpdateActiveBreakpointResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Variable(dict[str, typing.Any]): ...
+class Variable(typing_extensions.TypedDict, total=False):
+    members: _list[Variable]
+    name: str
+    status: StatusMessage
+    type: str
+    value: str
+    varTableIndex: int

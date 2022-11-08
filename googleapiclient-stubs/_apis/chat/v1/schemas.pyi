@@ -170,7 +170,9 @@ class Dialog(typing_extensions.TypedDict, total=False):
     body: GoogleAppsCardV1Card
 
 @typing.type_check_only
-class DialogAction(dict[str, typing.Any]): ...
+class DialogAction(typing_extensions.TypedDict, total=False):
+    actionStatus: ActionStatus
+    dialog: Dialog
 
 @typing.type_check_only
 class DriveDataRef(typing_extensions.TypedDict, total=False):
@@ -216,13 +218,26 @@ class GoogleAppsCardV1ButtonList(typing_extensions.TypedDict, total=False):
     buttons: _list[GoogleAppsCardV1Button]
 
 @typing.type_check_only
-class GoogleAppsCardV1Card(dict[str, typing.Any]): ...
+class GoogleAppsCardV1Card(typing_extensions.TypedDict, total=False):
+    cardActions: _list[GoogleAppsCardV1CardAction]
+    displayStyle: typing_extensions.Literal[
+        "DISPLAY_STYLE_UNSPECIFIED", "PEEK", "REPLACE"
+    ]
+    fixedFooter: GoogleAppsCardV1CardFixedFooter
+    header: GoogleAppsCardV1CardHeader
+    name: str
+    peekCardHeader: GoogleAppsCardV1CardHeader
+    sections: _list[GoogleAppsCardV1Section]
 
 @typing.type_check_only
-class GoogleAppsCardV1CardAction(dict[str, typing.Any]): ...
+class GoogleAppsCardV1CardAction(typing_extensions.TypedDict, total=False):
+    actionLabel: str
+    onClick: GoogleAppsCardV1OnClick
 
 @typing.type_check_only
-class GoogleAppsCardV1CardFixedFooter(dict[str, typing.Any]): ...
+class GoogleAppsCardV1CardFixedFooter(typing_extensions.TypedDict, total=False):
+    primaryButton: GoogleAppsCardV1Button
+    secondaryButton: GoogleAppsCardV1Button
 
 @typing.type_check_only
 class GoogleAppsCardV1CardHeader(typing_extensions.TypedDict, total=False):
@@ -310,7 +325,11 @@ class GoogleAppsCardV1ImageCropStyle(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GoogleAppsCardV1OnClick(dict[str, typing.Any]): ...
+class GoogleAppsCardV1OnClick(typing_extensions.TypedDict, total=False):
+    action: GoogleAppsCardV1Action
+    card: GoogleAppsCardV1Card
+    openDynamicLinkAction: GoogleAppsCardV1Action
+    openLink: GoogleAppsCardV1OpenLink
 
 @typing.type_check_only
 class GoogleAppsCardV1OpenLink(typing_extensions.TypedDict, total=False):
@@ -319,7 +338,11 @@ class GoogleAppsCardV1OpenLink(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class GoogleAppsCardV1Section(dict[str, typing.Any]): ...
+class GoogleAppsCardV1Section(typing_extensions.TypedDict, total=False):
+    collapsible: bool
+    header: str
+    uncollapsibleWidgetsCount: int
+    widgets: _list[GoogleAppsCardV1Widget]
 
 @typing.type_check_only
 class GoogleAppsCardV1SelectionInput(typing_extensions.TypedDict, total=False):
@@ -367,7 +390,19 @@ class GoogleAppsCardV1TextParagraph(typing_extensions.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
-class GoogleAppsCardV1Widget(dict[str, typing.Any]): ...
+class GoogleAppsCardV1Widget(typing_extensions.TypedDict, total=False):
+    buttonList: GoogleAppsCardV1ButtonList
+    dateTimePicker: GoogleAppsCardV1DateTimePicker
+    decoratedText: GoogleAppsCardV1DecoratedText
+    divider: GoogleAppsCardV1Divider
+    grid: GoogleAppsCardV1Grid
+    horizontalAlignment: typing_extensions.Literal[
+        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
+    ]
+    image: GoogleAppsCardV1Image
+    selectionInput: GoogleAppsCardV1SelectionInput
+    textInput: GoogleAppsCardV1TextInput
+    textParagraph: GoogleAppsCardV1TextParagraph
 
 @typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
@@ -495,7 +530,23 @@ class Membership(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Message(dict[str, typing.Any]): ...
+class Message(typing_extensions.TypedDict, total=False):
+    actionResponse: ActionResponse
+    annotations: _list[Annotation]
+    argumentText: str
+    attachment: _list[Attachment]
+    cards: _list[Card]
+    cardsV2: _list[CardWithId]
+    createTime: str
+    fallbackText: str
+    lastUpdateTime: str
+    matchedUrl: MatchedUrl
+    name: str
+    sender: User
+    slashCommand: SlashCommand
+    space: Space
+    text: str
+    thread: Thread
 
 @typing.type_check_only
 class OnClick(typing_extensions.TypedDict, total=False):

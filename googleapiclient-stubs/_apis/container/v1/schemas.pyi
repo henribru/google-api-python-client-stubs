@@ -667,10 +667,51 @@ class NotificationConfig(typing_extensions.TypedDict, total=False):
     pubsub: PubSub
 
 @typing.type_check_only
-class Operation(dict[str, typing.Any]): ...
+class Operation(typing_extensions.TypedDict, total=False):
+    clusterConditions: _list[StatusCondition]
+    detail: str
+    endTime: str
+    error: Status
+    location: str
+    name: str
+    nodepoolConditions: _list[StatusCondition]
+    operationType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "CREATE_CLUSTER",
+        "DELETE_CLUSTER",
+        "UPGRADE_MASTER",
+        "UPGRADE_NODES",
+        "REPAIR_CLUSTER",
+        "UPDATE_CLUSTER",
+        "CREATE_NODE_POOL",
+        "DELETE_NODE_POOL",
+        "SET_NODE_POOL_MANAGEMENT",
+        "AUTO_REPAIR_NODES",
+        "AUTO_UPGRADE_NODES",
+        "SET_LABELS",
+        "SET_MASTER_AUTH",
+        "SET_NODE_POOL_SIZE",
+        "SET_NETWORK_POLICY",
+        "SET_MAINTENANCE_POLICY",
+    ]
+    progress: OperationProgress
+    selfLink: str
+    startTime: str
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
+    ]
+    statusMessage: str
+    targetLink: str
+    zone: str
 
 @typing.type_check_only
-class OperationProgress(dict[str, typing.Any]): ...
+class OperationProgress(typing_extensions.TypedDict, total=False):
+    metrics: _list[Metric]
+    name: str
+    stages: _list[OperationProgress]
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
+    ]
 
 @typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):

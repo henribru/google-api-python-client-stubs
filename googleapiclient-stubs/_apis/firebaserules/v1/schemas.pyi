@@ -13,7 +13,10 @@ class Arg(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExpressionReport(dict[str, typing.Any]): ...
+class ExpressionReport(typing_extensions.TypedDict, total=False):
+    children: _list[ExpressionReport]
+    sourcePosition: SourcePosition
+    values: _list[ValueCount]
 
 @typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):

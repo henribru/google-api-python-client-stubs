@@ -280,10 +280,24 @@ class GoogleApiServiceusageV1OperationMetadata(
     resourceNames: _list[str]
 
 @typing.type_check_only
-class GoogleApiServiceusageV1Service(dict[str, typing.Any]): ...
+class GoogleApiServiceusageV1Service(typing_extensions.TypedDict, total=False):
+    config: GoogleApiServiceusageV1ServiceConfig
+    name: str
+    parent: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DISABLED", "ENABLED"]
 
 @typing.type_check_only
-class GoogleApiServiceusageV1ServiceConfig(dict[str, typing.Any]): ...
+class GoogleApiServiceusageV1ServiceConfig(typing_extensions.TypedDict, total=False):
+    apis: _list[Api]
+    authentication: Authentication
+    documentation: Documentation
+    endpoints: _list[Endpoint]
+    monitoredResources: _list[MonitoredResourceDescriptor]
+    monitoring: Monitoring
+    name: str
+    quota: Quota
+    title: str
+    usage: Usage
 
 @typing.type_check_only
 class GoogleApiServiceusageV1beta1GetServiceIdentityResponse(
@@ -300,10 +314,22 @@ class GoogleApiServiceusageV1beta1ServiceIdentity(
     uniqueId: str
 
 @typing.type_check_only
-class Http(dict[str, typing.Any]): ...
+class Http(typing_extensions.TypedDict, total=False):
+    fullyDecodeReservedExpansion: bool
+    rules: _list[HttpRule]
 
 @typing.type_check_only
-class HttpRule(dict[str, typing.Any]): ...
+class HttpRule(typing_extensions.TypedDict, total=False):
+    additionalBindings: _list[HttpRule]
+    body: str
+    custom: CustomHttpPattern
+    delete: str
+    get: str
+    patch: str
+    post: str
+    put: str
+    responseBody: str
+    selector: str
 
 @typing.type_check_only
 class ImportAdminOverridesMetadata(typing_extensions.TypedDict, total=False): ...
@@ -484,7 +510,10 @@ class Option(typing_extensions.TypedDict, total=False):
     value: dict[str, typing.Any]
 
 @typing.type_check_only
-class Page(dict[str, typing.Any]): ...
+class Page(typing_extensions.TypedDict, total=False):
+    content: str
+    name: str
+    subpages: _list[Page]
 
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):

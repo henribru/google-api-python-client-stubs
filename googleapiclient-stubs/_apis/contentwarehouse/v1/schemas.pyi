@@ -362,7 +362,9 @@ class AbuseiamGeoRestriction(typing_extensions.TypedDict, total=False):
     locale: _list[AbuseiamGeoRestrictionLocale]
 
 @typing.type_check_only
-class AbuseiamGeoRestrictionLocale(dict[str, typing.Any]): ...
+class AbuseiamGeoRestrictionLocale(typing_extensions.TypedDict, total=False):
+    location: str
+    restriction: AbuseiamUserRestriction
 
 @typing.type_check_only
 class AbuseiamHash(typing_extensions.TypedDict, total=False):
@@ -435,13 +437,56 @@ class AbuseiamUserNotification(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal["UNKNOWN", "BUILT_IN", "EMAIL", "GAIA"]
 
 @typing.type_check_only
-class AbuseiamUserRestriction(dict[str, typing.Any]): ...
+class AbuseiamUserRestriction(typing_extensions.TypedDict, total=False):
+    ageRestriction: AbuseiamAgeRestriction
+    andRestriction: AbuseiamAndRestriction
+    constantRestriction: AbuseiamConstantRestriction
+    geoRestriction: AbuseiamGeoRestriction
+    notRestriction: AbuseiamNotRestriction
+    orRestriction: AbuseiamOrRestriction
+    specialRestriction: AbuseiamSpecialRestriction
 
 @typing.type_check_only
-class AbuseiamVerdict(dict[str, typing.Any]): ...
+class AbuseiamVerdict(typing_extensions.TypedDict, total=False):
+    client: AbuseiamClient
+    comment: str
+    decision: typing_extensions.Literal[
+        "ERROR",
+        "NO_ACTION",
+        "GOOD",
+        "DELETE",
+        "INTERSTITIAL",
+        "HIDE",
+        "BLACK_LIST",
+        "MARK_AS_SPAM",
+        "REWRITE_LINKS",
+        "HIDE_AND_NOTIFY",
+        "FREEZE_SERVICE",
+        "SUSPEND_SERVICE",
+        "SMS_DISABLE",
+        "NOTIFY",
+    ]
+    durationMins: int
+    evaluation: _list[AbuseiamEvaluation]
+    hashes: _list[AbuseiamHash]
+    isLegalIssued: bool
+    miscScores: _list[AbuseiamNameValuePair]
+    reasonCode: str
+    region: _list[AbuseiamRegion]
+    restriction: _list[AbuseiamVerdictRestriction]
+    strikeCategory: typing_extensions.Literal[
+        "ES", "CP", "COPYRIGHT", "BLOGGER", "GRANDCENTRAL", "DRIVE", "CLOUD", "SITES"
+    ]
+    target: AbuseiamTarget
+    targetTimestampMicros: str
+    timestampMicros: str
+    userNotification: _list[AbuseiamUserNotification]
+    version: str
 
 @typing.type_check_only
-class AbuseiamVerdictRestriction(dict[str, typing.Any]): ...
+class AbuseiamVerdictRestriction(typing_extensions.TypedDict, total=False):
+    context: _list[AbuseiamVerdictRestrictionContext]
+    userRestriction: AbuseiamUserRestriction
 
 @typing.type_check_only
 class AbuseiamVerdictRestrictionContext(typing_extensions.TypedDict, total=False):
@@ -1902,7 +1947,90 @@ class AppsPeopleOzExternalMergedpeopleapiOtherKeyword(
     value: str
 
 @typing.type_check_only
-class AppsPeopleOzExternalMergedpeopleapiPerson(dict[str, typing.Any]): ...
+class AppsPeopleOzExternalMergedpeopleapiPerson(
+    typing_extensions.TypedDict, total=False
+):
+    about: _list[AppsPeopleOzExternalMergedpeopleapiAbout]
+    address: _list[AppsPeopleOzExternalMergedpeopleapiAddress]
+    ageRange: typing_extensions.Literal[
+        "UNKNOWN", "LESS_THAN_EIGHTEEN", "TWENTY_ONE_OR_OLDER", "EIGHTEEN_TO_TWENTY"
+    ]
+    ageRangeRepeated: _list[AppsPeopleOzExternalMergedpeopleapiAgeRangeType]
+    birthday: _list[AppsPeopleOzExternalMergedpeopleapiBirthday]
+    braggingRights: _list[AppsPeopleOzExternalMergedpeopleapiBraggingRights]
+    calendar: _list[AppsPeopleOzExternalMergedpeopleapiCalendar]
+    certifiedBornBefore: _list[AppsPeopleOzExternalMergedpeopleapiCertifiedBornBefore]
+    circleMembership: _list[AppsPeopleOzExternalMergedpeopleapiCircleMembership]
+    clientData: _list[AppsPeopleOzExternalMergedpeopleapiClientData]
+    communicationEmail: _list[AppsPeopleOzExternalMergedpeopleapiCommunicationEmail]
+    contactGroupMembership: _list[
+        AppsPeopleOzExternalMergedpeopleapiContactGroupMembership
+    ]
+    contactStateInfo: _list[AppsPeopleOzExternalMergedpeopleapiContactStateInfo]
+    coverPhoto: _list[AppsPeopleOzExternalMergedpeopleapiCoverPhoto]
+    customSchemaField: _list[AppsPeopleOzExternalMergedpeopleapiCustomSchemaField]
+    email: _list[AppsPeopleOzExternalMergedpeopleapiEmail]
+    emergencyInfo: _list[AppsPeopleOzExternalMergedpeopleapiEmergencyInfo]
+    event: _list[AppsPeopleOzExternalMergedpeopleapiEvent]
+    extendedData: AppsPeopleOzExternalMergedpeopleapiPersonExtendedData
+    externalId: _list[AppsPeopleOzExternalMergedpeopleapiExternalId]
+    fileAs: _list[AppsPeopleOzExternalMergedpeopleapiFileAs]
+    fingerprint: str
+    gender: _list[AppsPeopleOzExternalMergedpeopleapiGender]
+    im: _list[AppsPeopleOzExternalMergedpeopleapiIm]
+    inAppNotificationTarget: _list[
+        AppsPeopleOzExternalMergedpeopleapiInAppNotificationTarget
+    ]
+    inAppReachability: _list[AppsPeopleOzExternalMergedpeopleapiInAppReachability]
+    interactionSettings: _list[AppsPeopleOzExternalMergedpeopleapiInteractionSettings]
+    interest: _list[AppsPeopleOzExternalMergedpeopleapiInterest]
+    language: _list[AppsPeopleOzExternalMergedpeopleapiLanguage]
+    legacyFields: AppsPeopleOzExternalMergedpeopleapiLegacyFields
+    limitedProfileSettings: _list[
+        AppsPeopleOzExternalMergedpeopleapiLimitedProfileSettingsField
+    ]
+    linkedPerson: _list[AppsPeopleOzExternalMergedpeopleapiPerson]
+    location: _list[AppsPeopleOzExternalMergedpeopleapiLocation]
+    managementUpchain: _list[AppsPeopleOzExternalMergedpeopleapiManagementUpchain]
+    mapsProfile: _list[AppsPeopleOzExternalMergedpeopleapiMapsProfile]
+    membership: _list[AppsPeopleOzExternalMergedpeopleapiMembership]
+    metadata: AppsPeopleOzExternalMergedpeopleapiPersonMetadata
+    mission: _list[AppsPeopleOzExternalMergedpeopleapiMission]
+    name: _list[AppsPeopleOzExternalMergedpeopleapiName]
+    nickname: _list[AppsPeopleOzExternalMergedpeopleapiNickname]
+    occupation: _list[AppsPeopleOzExternalMergedpeopleapiOccupation]
+    organization: _list[AppsPeopleOzExternalMergedpeopleapiOrganization]
+    otherKeyword: _list[AppsPeopleOzExternalMergedpeopleapiOtherKeyword]
+    peopleInCommon: _list[AppsPeopleOzExternalMergedpeopleapiPerson]
+    personAttribute: _list[AppsPeopleOzExternalMergedpeopleapiPersonAttribute]
+    personId: str
+    phone: _list[AppsPeopleOzExternalMergedpeopleapiPhone]
+    photo: _list[AppsPeopleOzExternalMergedpeopleapiPhoto]
+    placeDetails: _list[AppsPeopleOzExternalMergedpeopleapiPlaceDetails]
+    plusPageInfo: _list[AppsPeopleOzExternalMergedpeopleapiPlusPageInfo]
+    posixAccount: _list[AppsPeopleOzExternalMergedpeopleapiPosixAccount]
+    profileUrl: str
+    profileUrlRepeated: _list[AppsPeopleOzExternalMergedpeopleapiProfileUrl]
+    pronoun: _list[AppsPeopleOzExternalMergedpeopleapiPronoun]
+    readOnlyProfileInfo: _list[AppsPeopleOzExternalMergedpeopleapiReadOnlyProfileInfo]
+    relation: _list[AppsPeopleOzExternalMergedpeopleapiRelation]
+    relationshipInterest: _list[AppsPeopleOzExternalMergedpeopleapiRelationshipInterest]
+    relationshipStatus: _list[AppsPeopleOzExternalMergedpeopleapiRelationshipStatus]
+    rightOfPublicityState: _list[
+        AppsPeopleOzExternalMergedpeopleapiRightOfPublicityState
+    ]
+    rosterDetails: _list[AppsPeopleOzExternalMergedpeopleapiRosterDetails]
+    searchProfile: _list[AppsPeopleOzExternalMergedpeopleapiSearchProfile]
+    sipAddress: _list[AppsPeopleOzExternalMergedpeopleapiSipAddress]
+    skills: _list[AppsPeopleOzExternalMergedpeopleapiSkills]
+    socialConnection: _list[AppsPeopleOzExternalMergedpeopleapiSocialConnection]
+    sortKeys: AppsPeopleOzExternalMergedpeopleapiSortKeys
+    sshPublicKey: _list[AppsPeopleOzExternalMergedpeopleapiSshPublicKey]
+    tagline: _list[AppsPeopleOzExternalMergedpeopleapiTagline]
+    teamsExtendedData: AppsPeopleOzExternalMergedpeopleapiTeamsExtendedData
+    userDefined: _list[AppsPeopleOzExternalMergedpeopleapiUserDefined]
+    visibleToGuests: _list[AppsPeopleOzExternalMergedpeopleapiVisibleToGuests]
+    website: _list[AppsPeopleOzExternalMergedpeopleapiWebsite]
 
 @typing.type_check_only
 class AppsPeopleOzExternalMergedpeopleapiPersonAttribute(
@@ -2527,7 +2655,16 @@ class AppsPeopleOzExternalMergedpeopleapiTagline(
     value: str
 
 @typing.type_check_only
-class AppsPeopleOzExternalMergedpeopleapiTeamsExtendedData(dict[str, typing.Any]): ...
+class AppsPeopleOzExternalMergedpeopleapiTeamsExtendedData(
+    typing_extensions.TypedDict, total=False
+):
+    adminTo: _list[AppsPeopleOzExternalMergedpeopleapiPerson]
+    admins: _list[AppsPeopleOzExternalMergedpeopleapiPerson]
+    dottedLineManagers: _list[AppsPeopleOzExternalMergedpeopleapiPerson]
+    dottedLineReports: AppsPeopleOzExternalMergedpeopleapiPersonListWithTotalNumber
+    failures: _list[str]
+    managementChain: _list[AppsPeopleOzExternalMergedpeopleapiPerson]
+    reports: AppsPeopleOzExternalMergedpeopleapiPersonListWithTotalNumber
 
 @typing.type_check_only
 class AppsPeopleOzExternalMergedpeopleapiUserDefined(
@@ -3074,7 +3211,23 @@ class AssistantApiCoreTypesHomeAppInfo(typing_extensions.TypedDict, total=False)
     packageName: str
 
 @typing.type_check_only
-class AssistantApiCoreTypesImage(dict[str, typing.Any]): ...
+class AssistantApiCoreTypesImage(typing_extensions.TypedDict, total=False):
+    accessibilityText: str
+    appIconIdentifier: str
+    badgeImage: AssistantApiCoreTypesImage
+    content: str
+    height: int
+    imageSource: typing_extensions.Literal[
+        "UNKNOWN", "PLACEHOLDER", "VISUAL_DICT", "LAVD", "VISUAL_DICT_DEFAULT_LOCALE"
+    ]
+    jsonContent: str
+    letterDrawableText: str
+    providerUrl: str
+    sourceUrl: str
+    sourceUrlType: typing_extensions.Literal[
+        "DEFAULT_URL_TYPE", "LOTTIE", "DUO_CLIENT", "CONTACT_ID"
+    ]
+    width: int
 
 @typing.type_check_only
 class AssistantApiCoreTypesInternalProviderInfo(
@@ -5274,7 +5427,24 @@ class AssistantLogsDeviceMediaSessionLog(typing_extensions.TypedDict, total=Fals
     supportedTransportControl: _list[str]
 
 @typing.type_check_only
-class AssistantLogsDeviceSelectionLog(dict[str, typing.Any]): ...
+class AssistantLogsDeviceSelectionLog(typing_extensions.TypedDict, total=False):
+    allDefaultDevices: _list[AssistantLogsDefaultDeviceLog]
+    allMediaStreamLog: AssistantLogsAllMediaStreamLog
+    counterfactualDeviceSelectionLog: AssistantLogsDeviceSelectionLog
+    defaultDevices: AssistantLogsDefaultDeviceLog
+    defaultDevicesLog: AssistantLogsDefaultDevicesLog
+    devicesStr: _list[str]
+    inputErrorLog: _list[AssistantLogsInputErrorLog]
+    localDevice: AssistantLogsDeviceInfoLog
+    logDataSource: typing_extensions.Literal[
+        "UNKNOWN", "MEDIA_FOCUS_SELECTOR", "LUMOS_DEVICE_TARGETING_LIBRARY"
+    ]
+    mediaFocus: AssistantLogsMediaFocusInfoLog
+    mediaFocusesLog: AssistantLogsMediaFocusesLog
+    nearbyDevicesLog: AssistantLogsNearbyDevicesLog
+    queryAnnotation: AssistantLogsQueryAnnotationLog
+    selectionResult: AssistantLogsDeviceSelectionResultLog
+    testCodes: _list[AssistantLogsDeviceTargetingTestCode]
 
 @typing.type_check_only
 class AssistantLogsDeviceSelectionResultLog(typing_extensions.TypedDict, total=False):
@@ -5704,13 +5874,58 @@ class AssistantVerticalsHomeautomationProtoHomeAutomationDevice(
 
 @typing.type_check_only
 class AssistantVerticalsHomeautomationProtoHomeAutomationDeviceItem(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    homeautomationMetadata: AssistantVerticalsHomeautomationProtoHomeAutomation_MetaData
+    matchedItemKey: str
+    matchedItemRawvalue: str
+    matchedItemValue: _list[str]
 
 @typing.type_check_only
 class AssistantVerticalsHomeautomationProtoHomeAutomation_MetaData(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    actionProjectConfigs: _list[
+        AssistantVerticalsHomeautomationProtoActionProjectConfig
+    ]
+    agentInformation: AssistantVerticalsHomeautomationProtoAgentInformation
+    assistantDeviceId: str
+    attributes: dict[str, typing.Any]
+    creatorGaiaId: str
+    derivedType: _list[str]
+    deviceModelId: str
+    gcmExecutionAddress: str
+    hashValue: str
+    lanscanOptedIn: bool
+    modelName: str
+    notificationEnabledByUser: bool
+    notificationSupportedByAgent: bool
+    opaqueCustomData: str
+    operationalNodeId: str
+    otherDeviceIds: _list[AssistantVerticalsHomeautomationProtoAgentDeviceId]
+    parentNode: _list[str]
+    parentType: _list[str]
+    personalizedNicknames: _list[str]
+    physicalLocation: AssistantVerticalsHomeautomationProtoPhysicalLocation
+    plural: _list[str]
+    primaryName: str
+    roleInformation: AssistantVerticalsHomeautomationProtoRoleInformation
+    routableViaGcm: bool
+    saftDocument: NlpSaftDocument
+    smartDeviceManagementData: AssistantVerticalsHomeautomationProtoSmartDeviceManagementData
+    smartHomeFeatures: AssistantVerticalsHomeautomationProtoSmartHomeFeatures
+    supportedStructureFeatures: AssistantVerticalsHomeautomationProtoSupportedStructureFeatures
+    supportedTraitsByAgent: dict[str, typing.Any]
+    supportsDirectResponse: bool
+    targetDeviceSignalStrengths: dict[str, typing.Any]
+    traitRoutingHints: _list[HomeGraphCommonTraitRoutingHints]
+    traitRoutingTable: dict[str, typing.Any]
+    traitToAttributeProtos: dict[str, typing.Any]
+    type: str
+    userDefinedDeviceType: str
+    voiceMatchRequired: typing_extensions.Literal["ANY", "OWNER", "MEMBER"]
+    willReportState: bool
+    zoneNameSaftDocument: NlpSaftDocument
 
 @typing.type_check_only
 class AssistantVerticalsHomeautomationProtoHomeAutomation_MetaDataSupportedTraits(
@@ -6138,10 +6353,15 @@ class CompositeDocIndexingInfo(typing_extensions.TypedDict, total=False):
     videoIndexingInfo: ImageRepositoryVideoIndexingInfo
 
 @typing.type_check_only
-class CompositeDocLiveExperimentInfo(dict[str, typing.Any]): ...
+class CompositeDocLiveExperimentInfo(typing_extensions.TypedDict, total=False):
+    perLiveExperimentInfo: _list[CompositeDocLiveExperimentInfoPerLiveExperimentInfo]
 
 @typing.type_check_only
-class CompositeDocLiveExperimentInfoPerLiveExperimentInfo(dict[str, typing.Any]): ...
+class CompositeDocLiveExperimentInfoPerLiveExperimentInfo(
+    typing_extensions.TypedDict, total=False
+):
+    experimentId: str
+    partialCdoc: CompositeDoc
 
 @typing.type_check_only
 class CompositeDocLocalizedVariations(typing_extensions.TypedDict, total=False):
@@ -7541,7 +7761,11 @@ class FreebaseNestedStruct(typing_extensions.TypedDict, total=False):
     propertyValue: _list[FreebasePropertyValue]
 
 @typing.type_check_only
-class FreebasePropertyValue(dict[str, typing.Any]): ...
+class FreebasePropertyValue(typing_extensions.TypedDict, total=False):
+    property: FreebaseId
+    totalValueCount: str
+    value: _list[FreebaseValue]
+    valueStatus: typing_extensions.Literal["HAS_UNKNOWN_VALUE", "HAS_NO_VALUE"]
 
 @typing.type_check_only
 class FreebaseTopic(typing_extensions.TypedDict, total=False):
@@ -7549,7 +7773,48 @@ class FreebaseTopic(typing_extensions.TypedDict, total=False):
     propertyValue: _list[FreebasePropertyValue]
 
 @typing.type_check_only
-class FreebaseValue(dict[str, typing.Any]): ...
+class FreebaseValue(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    citation: FreebaseCitation
+    compoundValue: FreebaseTopic
+    deletionProvenance: _list[StorageGraphBfgTripleProvenance]
+    displayLang: str
+    displayValue: str
+    expectedProto: str
+    floatValue: float
+    idValue: FreebaseId
+    index: str
+    intValue: str
+    lang: str
+    latLongValue: FreebaseLatLong
+    measurementValue: FreebaseMeasurement
+    nestedStruct: FreebaseNestedStruct
+    provenance: _list[StorageGraphBfgTripleProvenance]
+    rawValue: str
+    stringValue: str
+    subgraphId: _list[str]
+    timestamp: str
+    timestampUsec: str
+    type: typing_extensions.Literal[
+        "TYPE_NULL",
+        "TYPE_ID",
+        "TYPE_TEXT",
+        "TYPE_ENUM",
+        "TYPE_KEY",
+        "TYPE_URI",
+        "TYPE_DATETIME",
+        "TYPE_BOOL",
+        "TYPE_INT",
+        "TYPE_FLOAT",
+        "TYPE_COMPOUND",
+        "TYPE_PROTO",
+        "TYPE_EXTENSION",
+        "TYPE_NESTED_STRUCT",
+        "TYPE_LAT_LONG",
+        "TYPE_MEASUREMENT",
+        "TYPE_HAS_VALUE",
+        "TYPE_HAS_NO_VALUE",
+    ]
 
 @typing.type_check_only
 class GDocumentBase(typing_extensions.TypedDict, total=False):
@@ -7673,7 +7938,14 @@ class GeostoreAddressLinesProto(typing_extensions.TypedDict, total=False):
     line: _list[str]
 
 @typing.type_check_only
-class GeostoreAddressProto(dict[str, typing.Any]): ...
+class GeostoreAddressProto(typing_extensions.TypedDict, total=False):
+    addressLines: _list[GeostoreAddressLinesProto]
+    component: _list[GeostoreAddressComponentProto]
+    crossStreet: _list[GeostoreAddressComponentProto]
+    metadata: GeostoreFieldMetadataProto
+    partialDenormalization: GeostoreAddressProto
+    templateId: str
+    temporaryData: Proto2BridgeMessageSet
 
 @typing.type_check_only
 class GeostoreAddressRangeProto(typing_extensions.TypedDict, total=False):
@@ -9364,7 +9636,465 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
     kgPropertyId: str
 
 @typing.type_check_only
-class GeostoreFeatureProto(dict[str, typing.Any]): ...
+class GeostoreFeatureProto(typing_extensions.TypedDict, total=False):
+    accessPoint: _list[GeostoreAccessPointProto]
+    address: _list[GeostoreAddressProto]
+    anchoredGeometry: GeostoreAnchoredGeometryProto
+    attachment: _list[GeostoreAttachmentsAttachmentProto]
+    attribute: _list[GeostoreAttributeProto]
+    bestLocale: GeostoreBestLocaleProto
+    border: GeostoreBorderProto
+    bound: GeostoreRectProto
+    building: GeostoreBuildingProto
+    businessChain: GeostoreBusinessChainProto
+    center: GeostorePointProto
+    child: _list[GeostoreFeatureIdProto]
+    covering: GeostoreCellCoveringProto
+    dataSource: GeostoreDataSourceProto
+    displayData: GeostoreDisplayDataProto
+    doodle: GeostoreDoodleProto
+    elevation: GeostoreElevationProto
+    elevationModel: GeostoreElevationModelProto
+    entrance: GeostoreEntranceProto
+    establishment: GeostoreEstablishmentProto
+    exemptRegulatedArea: _list[GeostoreFeatureIdProto]
+    futureGeometry: GeostoreFeatureIdProto
+    futureGeometryFor: GeostoreFeatureIdProto
+    geometryPrecisionMeters: float
+    geopoliticalGeometry: GeostoreGeopoliticalGeometryProto
+    htmlText: _list[GeostoreHtmlTextProto]
+    id: GeostoreFeatureIdProto
+    inferredGeometry: GeostoreInferredGeometryProto
+    interiorCovering: GeostoreCellCoveringProto
+    internal: GeostoreInternalFeatureProto
+    intersection: GeostoreIntersectionProto
+    intersectionGroup: GeostoreIntersectionGroupProto
+    kgProperty: _list[FreebasePropertyValue]
+    knowledgeGraphReference: GeostoreKnowledgeGraphReferenceProto
+    laneMarker: GeostoreLaneMarkerProto
+    level: GeostoreLevelProto
+    locale: GeostoreLocaleProto
+    logicalBorder: GeostoreLogicalBorderProto
+    metadata: GeostoreFeatureMetadataProto
+    name: _list[GeostoreNameProto]
+    operations: GeostoreOperationsProto
+    originalId: GeostoreFeatureIdProto
+    parent: _list[GeostoreFeatureIdProto]
+    parking: GeostoreParkingProto
+    point: _list[GeostorePointProto]
+    political: GeostorePoliticalProto
+    polygon: _list[GeostorePolygonProto]
+    polygonForDisplay: GeostorePolygonProto
+    polyline: _list[GeostorePolyLineProto]
+    pose: GeostorePoseProto
+    preferredViewport: GeostoreRectProto
+    propertyValueStatus: _list[GeostorePropertyValueStatusProto]
+    rank: float
+    rankDetails: GeostoreRankDetailsProto
+    rawGconceptInstanceContainer: GeostoreOntologyRawGConceptInstanceContainerProto
+    regulatedArea: GeostoreRegulatedAreaProto
+    relatedBorder: _list[GeostoreFeatureIdProto]
+    relatedEntrance: _list[GeostoreEntranceReferenceProto]
+    relatedFeature: _list[GeostoreRelationProto]
+    relatedTerminalPoint: _list[GeostoreFeatureIdProto]
+    relatedTimezone: _list[GeostoreTimezoneProto]
+    restrictionGroup: GeostoreRestrictionGroupProto
+    roadMonitor: GeostoreRoadMonitorProto
+    route: GeostoreRouteProto
+    schoolDistrict: GeostoreSchoolDistrictProto
+    segment: GeostoreSegmentProto
+    segmentPath: GeostoreSegmentPathProto
+    sign: GeostoreRoadSignProto
+    skiBoundary: GeostoreSkiBoundaryProto
+    skiLift: GeostoreSkiLiftProto
+    skiTrail: GeostoreSkiTrailProto
+    socialReference: GeostoreSocialReferenceProto
+    sourceInfo: _list[GeostoreSourceInfoProto]
+    status: GeostoreExistenceProto
+    storefrontGeometry: _list[GeostoreAnchoredGeometryProto]
+    syntheticGeometry: bool
+    temporaryData: Proto2BridgeMessageSet
+    threeDimModel: GeostoreThreeDimensionalModelProto
+    tollCluster: GeostoreTollClusterProto
+    track: _list[GeostoreTrackProto]
+    transitLine: GeostoreTransitLineProto
+    transitLineVariant: GeostoreTransitLineVariantProto
+    transitStation: GeostoreTransitStationProto
+    type: typing_extensions.Literal[
+        "TYPE_ANY",
+        "TYPE_TRANSPORTATION",
+        "TYPE_ROUTE",
+        "TYPE_DEPRECATED_HIGHWAY_DO_NOT_USE",
+        "TYPE_HIGHWAY",
+        "TYPE_HIGHWAY_1",
+        "TYPE_HIGHWAY_2",
+        "TYPE_HIGHWAY_3",
+        "TYPE_HIGHWAY_4",
+        "TYPE_HIGHWAY_5",
+        "TYPE_HIGHWAY_6",
+        "TYPE_HIGHWAY_7",
+        "TYPE_HIGHWAY_8",
+        "TYPE_HIGHWAY_9",
+        "TYPE_BICYCLE_ROUTE",
+        "TYPE_TRAIL",
+        "TYPE_SEGMENT",
+        "TYPE_ROAD",
+        "TYPE_RAILWAY",
+        "TYPE_STANDARD_TRACK",
+        "TYPE_JR_TRACK",
+        "TYPE_NARROW_TRACK",
+        "TYPE_MONORAIL_TRACK",
+        "TYPE_SUBWAY_TRACK",
+        "TYPE_LIGHT_RAIL_TRACK",
+        "TYPE_BROAD_TRACK",
+        "TYPE_HIGH_SPEED_RAIL",
+        "TYPE_TROLLEY_TRACK",
+        "TYPE_FERRY",
+        "TYPE_FERRY_BOAT",
+        "TYPE_FERRY_TRAIN",
+        "TYPE_VIRTUAL_SEGMENT",
+        "TYPE_INTERSECTION",
+        "TYPE_TRANSIT",
+        "TYPE_TRANSIT_STATION",
+        "TYPE_BUS_STATION",
+        "TYPE_TRAMWAY_STATION",
+        "TYPE_TRAIN_STATION",
+        "TYPE_SUBWAY_STATION",
+        "TYPE_FERRY_TERMINAL",
+        "TYPE_AIRPORT",
+        "TYPE_AIRPORT_CIVIL",
+        "TYPE_AIRPORT_MILITARY",
+        "TYPE_AIRPORT_MIXED",
+        "TYPE_HELIPORT",
+        "TYPE_SEAPLANE_BASE",
+        "TYPE_AIRSTRIP",
+        "TYPE_CABLE_CAR_STATION",
+        "TYPE_GONDOLA_LIFT_STATION",
+        "TYPE_FUNICULAR_STATION",
+        "TYPE_SPECIAL_STATION",
+        "TYPE_HORSE_CARRIAGE_STATION",
+        "TYPE_MONORAIL_STATION",
+        "TYPE_SEAPORT",
+        "TYPE_TRANSIT_STOP",
+        "TYPE_TRANSIT_TRIP",
+        "TYPE_TRANSIT_DEPARTURE",
+        "TYPE_TRANSIT_LEG",
+        "TYPE_TRANSIT_LINE",
+        "TYPE_TRANSIT_AGENCY_DEPRECATED_VALUE",
+        "TYPE_TRANSIT_TRANSFER",
+        "TYPE_SEGMENT_PATH",
+        "TYPE_ROAD_SIGN",
+        "TYPE_INTERSECTION_GROUP",
+        "TYPE_PATHWAY",
+        "TYPE_RESTRICTION_GROUP",
+        "TYPE_TOLL_CLUSTER",
+        "TYPE_POLITICAL",
+        "TYPE_COUNTRY",
+        "TYPE_ADMINISTRATIVE_AREA",
+        "TYPE_ADMINISTRATIVE_AREA1",
+        "TYPE_US_STATE",
+        "TYPE_GB_COUNTRY",
+        "TYPE_JP_TODOUFUKEN",
+        "TYPE_ADMINISTRATIVE_AREA2",
+        "TYPE_GB_FORMER_POSTAL_COUNTY",
+        "TYPE_GB_TRADITIONAL_COUNTY",
+        "TYPE_ADMINISTRATIVE_AREA3",
+        "TYPE_ADMINISTRATIVE_AREA4",
+        "TYPE_ADMINISTRATIVE_AREA5",
+        "TYPE_ADMINISTRATIVE_AREA6",
+        "TYPE_ADMINISTRATIVE_AREA7",
+        "TYPE_ADMINISTRATIVE_AREA8",
+        "TYPE_ADMINISTRATIVE_AREA9",
+        "TYPE_COLLOQUIAL_AREA",
+        "TYPE_RESERVATION",
+        "TYPE_LOCALITY",
+        "TYPE_GB_POST_TOWN",
+        "TYPE_JP_GUN",
+        "TYPE_JP_SHIKUCHOUSON",
+        "TYPE_JP_SUB_SHIKUCHOUSON",
+        "TYPE_COLLOQUIAL_CITY",
+        "TYPE_SUBLOCALITY",
+        "TYPE_US_BOROUGH",
+        "TYPE_GB_DEPENDENT_LOCALITY",
+        "TYPE_JP_OOAZA",
+        "TYPE_JP_KOAZA",
+        "TYPE_JP_GAIKU",
+        "TYPE_GB_DOUBLE_DEPENDENT_LOCALITY",
+        "TYPE_JP_CHIBAN",
+        "TYPE_JP_EDABAN",
+        "TYPE_SUBLOCALITY1",
+        "TYPE_SUBLOCALITY2",
+        "TYPE_SUBLOCALITY3",
+        "TYPE_SUBLOCALITY4",
+        "TYPE_SUBLOCALITY5",
+        "TYPE_NEIGHBORHOOD",
+        "TYPE_CONSTITUENCY",
+        "TYPE_DESIGNATED_MARKET_AREA",
+        "TYPE_SCHOOL_DISTRICT",
+        "TYPE_LAND_PARCEL",
+        "TYPE_DISPUTED_AREA",
+        "TYPE_POLICE_JURISDICTION",
+        "TYPE_STATISTICAL_AREA",
+        "TYPE_CONSTITUENCY_FUTURE",
+        "TYPE_PARK",
+        "TYPE_GOLF_COURSE",
+        "TYPE_LOCAL_PARK",
+        "TYPE_NATIONAL_PARK",
+        "TYPE_US_NATIONAL_PARK",
+        "TYPE_US_NATIONAL_MONUMENT",
+        "TYPE_NATIONAL_FOREST",
+        "TYPE_PROVINCIAL_PARK",
+        "TYPE_PROVINCIAL_FOREST",
+        "TYPE_CAMPGROUNDS",
+        "TYPE_HIKING_AREA",
+        "TYPE_BUSINESS",
+        "TYPE_GOVERNMENT",
+        "TYPE_BORDER_CROSSING",
+        "TYPE_CITY_HALL",
+        "TYPE_COURTHOUSE",
+        "TYPE_EMBASSY",
+        "TYPE_LIBRARY",
+        "TYPE_SCHOOL",
+        "TYPE_UNIVERSITY",
+        "TYPE_EMERGENCY",
+        "TYPE_HOSPITAL",
+        "TYPE_PHARMACY",
+        "TYPE_POLICE",
+        "TYPE_FIRE",
+        "TYPE_DOCTOR",
+        "TYPE_DENTIST",
+        "TYPE_VETERINARIAN",
+        "TYPE_TRAVEL_SERVICE",
+        "TYPE_LODGING",
+        "TYPE_RESTAURANT",
+        "TYPE_GAS_STATION",
+        "TYPE_PARKING",
+        "TYPE_POST_OFFICE",
+        "TYPE_REST_AREA",
+        "TYPE_CASH_MACHINE",
+        "TYPE_CAR_RENTAL",
+        "TYPE_CAR_REPAIR",
+        "TYPE_SHOPPING",
+        "TYPE_GROCERY",
+        "TYPE_TOURIST_DESTINATION",
+        "TYPE_ECO_TOURIST_DESTINATION",
+        "TYPE_BIRD_WATCHING",
+        "TYPE_FISHING",
+        "TYPE_HUNTING",
+        "TYPE_NATURE_RESERVE",
+        "TYPE_TEMPLE",
+        "TYPE_CHURCH",
+        "TYPE_GURUDWARA",
+        "TYPE_HINDU_TEMPLE",
+        "TYPE_MOSQUE",
+        "TYPE_SYNAGOGUE",
+        "TYPE_STADIUM",
+        "TYPE_BAR",
+        "TYPE_MOVIE_RENTAL",
+        "TYPE_COFFEE",
+        "TYPE_GOLF",
+        "TYPE_BANK",
+        "TYPE_DOODLE",
+        "TYPE_GROUNDS",
+        "TYPE_AIRPORT_GROUNDS",
+        "TYPE_BUILDING_GROUNDS",
+        "TYPE_CEMETERY",
+        "TYPE_HOSPITAL_GROUNDS",
+        "TYPE_INDUSTRIAL",
+        "TYPE_MILITARY",
+        "TYPE_SHOPPING_CENTER",
+        "TYPE_SPORTS_COMPLEX",
+        "TYPE_UNIVERSITY_GROUNDS",
+        "TYPE_DEPRECATED_TARMAC",
+        "TYPE_ENCLOSED_TRAFFIC_AREA",
+        "TYPE_PARKING_LOT",
+        "TYPE_PARKING_GARAGE",
+        "TYPE_OFF_ROAD_AREA",
+        "TYPE_BORDER",
+        "TYPE_BUILDING",
+        "TYPE_GEOCODED_ADDRESS",
+        "TYPE_NATURAL_FEATURE",
+        "TYPE_TERRAIN",
+        "TYPE_SAND",
+        "TYPE_BEACH",
+        "TYPE_DUNE",
+        "TYPE_ROCKY",
+        "TYPE_ICE",
+        "TYPE_GLACIER",
+        "TYPE_BUILT_UP_AREA",
+        "TYPE_VEGETATION",
+        "TYPE_SHRUBBERY",
+        "TYPE_WOODS",
+        "TYPE_AGRICULTURAL",
+        "TYPE_GRASSLAND",
+        "TYPE_TUNDRA",
+        "TYPE_DESERT",
+        "TYPE_SALT_FLAT",
+        "TYPE_WATER",
+        "TYPE_OCEAN",
+        "TYPE_BAY",
+        "TYPE_BIGHT",
+        "TYPE_LAGOON",
+        "TYPE_SEA",
+        "TYPE_STRAIT",
+        "TYPE_INLET",
+        "TYPE_FJORD",
+        "TYPE_LAKE",
+        "TYPE_SEASONAL_LAKE",
+        "TYPE_RESERVOIR",
+        "TYPE_POND",
+        "TYPE_RIVER",
+        "TYPE_RAPIDS",
+        "TYPE_DISTRIBUTARY",
+        "TYPE_CONFLUENCE",
+        "TYPE_WATERFALL",
+        "TYPE_SPRING",
+        "TYPE_GEYSER",
+        "TYPE_HOT_SPRING",
+        "TYPE_SEASONAL_RIVER",
+        "TYPE_WADI",
+        "TYPE_ESTUARY",
+        "TYPE_WETLAND",
+        "TYPE_WATER_NAVIGATION",
+        "TYPE_FORD",
+        "TYPE_CANAL",
+        "TYPE_HARBOR",
+        "TYPE_CHANNEL",
+        "TYPE_REEF",
+        "TYPE_REEF_FLAT",
+        "TYPE_REEF_GROWTH",
+        "TYPE_REEF_EXTENT",
+        "TYPE_REEF_ROCK_SUBMERGED",
+        "TYPE_IRRIGATION",
+        "TYPE_DAM",
+        "TYPE_DRINKING_WATER",
+        "TYPE_CURRENT",
+        "TYPE_WATERING_HOLE",
+        "TYPE_TECTONIC",
+        "TYPE_WATERING_HOLE_DEPRECATED",
+        "TYPE_VOLCANO",
+        "TYPE_LAVA_FIELD",
+        "TYPE_FISSURE",
+        "TYPE_FAULT",
+        "TYPE_LAND_MASS",
+        "TYPE_CONTINENT",
+        "TYPE_ISLAND",
+        "TYPE_ATOLL",
+        "TYPE_OCEAN_ROCK_EXPOSED",
+        "TYPE_CAY",
+        "TYPE_PENINSULA",
+        "TYPE_ISTHMUS",
+        "TYPE_ELEVATED",
+        "TYPE_PEAK",
+        "TYPE_NUNATAK",
+        "TYPE_SPUR",
+        "TYPE_PASS",
+        "TYPE_PLATEAU",
+        "TYPE_RIDGE",
+        "TYPE_RAVINE",
+        "TYPE_CRATER",
+        "TYPE_KARST",
+        "TYPE_CLIFF",
+        "TYPE_VISTA",
+        "TYPE_DIGITAL_ELEVATION_MODEL",
+        "TYPE_UPLAND",
+        "TYPE_TERRACE",
+        "TYPE_SLOPE",
+        "TYPE_CONTOUR_LINE",
+        "TYPE_PAN",
+        "TYPE_UNSTABLE_HILLSIDE",
+        "TYPE_MOUNTAIN_RANGE",
+        "TYPE_UNDERSEA",
+        "TYPE_SUBMARINE_SEAMOUNT",
+        "TYPE_SUBMARINE_RIDGE",
+        "TYPE_SUBMARINE_GAP",
+        "TYPE_SUBMARINE_PLATEAU",
+        "TYPE_SUBMARINE_DEEP",
+        "TYPE_SUBMARINE_VALLEY",
+        "TYPE_SUBMARINE_BASIN",
+        "TYPE_SUBMARINE_SLOPE",
+        "TYPE_SUBMARINE_CLIFF",
+        "TYPE_SUBMARINE_PLAIN",
+        "TYPE_SUBMARINE_FRACTURE_ZONE",
+        "TYPE_CAVE",
+        "TYPE_ROCK",
+        "TYPE_ARCHIPELAGO",
+        "TYPE_POSTAL",
+        "TYPE_POSTAL_CODE",
+        "TYPE_POSTAL_CODE_PREFIX",
+        "TYPE_PREMISE",
+        "TYPE_SUB_PREMISE",
+        "TYPE_SUITE",
+        "TYPE_POST_TOWN",
+        "TYPE_POSTAL_ROUND",
+        "TYPE_META_FEATURE",
+        "TYPE_DATA_SOURCE",
+        "TYPE_LOCALE",
+        "TYPE_TIMEZONE",
+        "TYPE_BUSINESS_CHAIN",
+        "TYPE_PHONE_NUMBER_PREFIX",
+        "TYPE_PHONE_NUMBER_AREA_CODE",
+        "TYPE_BUSINESS_CORRIDOR",
+        "TYPE_ADDRESS_TEMPLATE",
+        "TYPE_TRANSIT_AGENCY",
+        "TYPE_FUTURE_GEOMETRY",
+        "TYPE_EVENT",
+        "TYPE_EARTHQUAKE",
+        "TYPE_HURRICANE",
+        "TYPE_WEATHER_CONDITION",
+        "TYPE_TRANSIENT",
+        "TYPE_ENTRANCE",
+        "TYPE_CARTOGRAPHIC",
+        "TYPE_HIGH_TENSION",
+        "TYPE_SKI_TRAIL",
+        "TYPE_SKI_LIFT",
+        "TYPE_SKI_BOUNDARY",
+        "TYPE_WATERSHED_BOUNDARY",
+        "TYPE_TARMAC",
+        "TYPE_WALL",
+        "TYPE_PICNIC_AREA",
+        "TYPE_PLAY_GROUND",
+        "TYPE_TRAIL_HEAD",
+        "TYPE_GOLF_TEEING_GROUND",
+        "TYPE_GOLF_PUTTING_GREEN",
+        "TYPE_GOLF_ROUGH",
+        "TYPE_GOLF_SAND_BUNKER",
+        "TYPE_GOLF_FAIRWAY",
+        "TYPE_GOLF_HOLE",
+        "TYPE_DEPRECATED_GOLF_SHOP",
+        "TYPE_CAMPING_SITE",
+        "TYPE_DESIGNATED_BARBECUE_PIT",
+        "TYPE_DESIGNATED_COOKING_AREA",
+        "TYPE_CAMPFIRE_PIT",
+        "TYPE_WATER_FOUNTAIN",
+        "TYPE_LITTER_RECEPTACLE",
+        "TYPE_LOCKER_AREA",
+        "TYPE_ANIMAL_ENCLOSURE",
+        "TYPE_CARTOGRAPHIC_LINE",
+        "TYPE_ESTABLISHMENT",
+        "TYPE_ESTABLISHMENT_GROUNDS",
+        "TYPE_ESTABLISHMENT_BUILDING",
+        "TYPE_ESTABLISHMENT_POI",
+        "TYPE_ESTABLISHMENT_SERVICE",
+        "TYPE_CELESTIAL",
+        "TYPE_ROAD_MONITOR",
+        "TYPE_PUBLIC_SPACES_AND_MONUMENTS",
+        "TYPE_STATUE",
+        "TYPE_TOWN_SQUARE",
+        "TYPE_LEVEL",
+        "TYPE_COMPOUND",
+        "TYPE_COMPOUND_GROUNDS",
+        "TYPE_COMPOUND_BUILDING",
+        "TYPE_COMPOUND_SECTION",
+        "TYPE_TERMINAL_POINT",
+        "TYPE_REGULATED_AREA",
+        "TYPE_LOGICAL_BORDER",
+        "TYPE_DO_NOT_USE_RESERVED_TO_CATCH_GENERATED_FILES",
+        "TYPE_UNKNOWN",
+    ]
+    verticalOrdering: GeostoreVerticalOrderingProto
+    waterRemovedPolygon: GeostorePolygonProto
+    website: _list[GeostoreUrlProto]
 
 @typing.type_check_only
 class GeostoreFieldMetadataProto(typing_extensions.TypedDict, total=False):
@@ -11107,7 +11837,12 @@ class GeostoreParkingAllowanceProto(typing_extensions.TypedDict, total=False):
     vehicleType: typing_extensions.Literal["ANY", "CAR", "MOTORCYCLE", "TRUCK"]
 
 @typing.type_check_only
-class GeostoreParkingProto(dict[str, typing.Any]): ...
+class GeostoreParkingProto(typing_extensions.TypedDict, total=False):
+    allowance: _list[GeostoreParkingAllowanceProto]
+    openingHours: GeostoreOpeningHoursProto
+    parkingAvailable: bool
+    parkingProviderFeature: _list[GeostoreFeatureIdProto]
+    restriction: _list[GeostoreParkingRestrictionProto]
 
 @typing.type_check_only
 class GeostoreParkingRestrictionProto(typing_extensions.TypedDict, total=False):
@@ -12621,7 +13356,11 @@ class GeostoreThreeDimensionalModelProto(typing_extensions.TypedDict, total=Fals
     points: _list[GeostorePointWithHeightProto]
 
 @typing.type_check_only
-class GeostoreTimeBasedRateProto(dict[str, typing.Any]): ...
+class GeostoreTimeBasedRateProto(typing_extensions.TypedDict, total=False):
+    durationBasedRate: _list[GeostoreDurationBasedRateProto]
+    taxIncluded: bool
+    validEndWithin: GeostoreTimeScheduleProto
+    validStartWithin: GeostoreTimeScheduleProto
 
 @typing.type_check_only
 class GeostoreTimeComponentProto(typing_extensions.TypedDict, total=False):
@@ -12866,7 +13605,13 @@ class GoodocCharLabel(typing_extensions.TypedDict, total=False):
     SerifProbability: int
 
 @typing.type_check_only
-class GoodocDocument(dict[str, typing.Any]): ...
+class GoodocDocument(typing_extensions.TypedDict, total=False):
+    EditingHistory: _list[str]
+    LogicalEntity: _list[str]
+    LogicalEntityMessageName: _list[str]
+    SubDocuments: _list[GoodocDocument]
+    header: GoodocDocumentHeader
+    page: _list[GoodocDocumentPage]
 
 @typing.type_check_only
 class GoodocDocumentHeader(typing_extensions.TypedDict, total=False):
@@ -12880,10 +13625,30 @@ class GoodocDocumentHeaderFont(typing_extensions.TypedDict, total=False):
     FontName: str
 
 @typing.type_check_only
-class GoodocDocumentPage(dict[str, typing.Any]): ...
+class GoodocDocumentPage(typing_extensions.TypedDict, total=False):
+    GarbageDetectorChangeList: int
+    GarbageDetectorWasProduction: bool
+    Height: int
+    HorizontalDpi: int
+    Label: GoodocLabel
+    PornScore: float
+    TextConfidence: int
+    VerticalDpi: int
+    Width: int
+    block: _list[GoodocDocumentPageBlock]
+    mergedpageinfo: _list[GoodocDocumentPageMergedPageInfo]
+    postOcrConfidence: bool
+    stats: GoodocSummaryStats
 
 @typing.type_check_only
-class GoodocDocumentPageBlock(dict[str, typing.Any]): ...
+class GoodocDocumentPageBlock(typing_extensions.TypedDict, total=False):
+    BlockType: int
+    Box: GoodocBoundingBox
+    Label: GoodocLabel
+    OrientationLabel: GoodocOrientationLabel
+    Paragraph: _list[GoodocParagraph]
+    RotatedBox: GoodocRotatedBoundingBox
+    TextConfidence: int
 
 @typing.type_check_only
 class GoodocDocumentPageMergedPageInfo(typing_extensions.TypedDict, total=False):
@@ -13023,7 +13788,23 @@ class GoodocOverridesStyle(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class GoodocParagraph(dict[str, typing.Any]): ...
+class GoodocParagraph(typing_extensions.TypedDict, total=False):
+    Box: GoodocBoundingBox
+    FirstLineIndent: int
+    Label: GoodocLabel
+    LeftIndent: int
+    LineSpacing: int
+    OrientationLabel: GoodocOrientationLabel
+    RightIndent: int
+    RotatedBox: GoodocRotatedBoundingBox
+    SpaceAfter: int
+    SpaceBefore: int
+    SubsumedParagraphProperties: _list[GoodocParagraph]
+    TextConfidence: int
+    Width: int
+    alignment: int
+    droppedcap: GoodocParagraphDroppedCap
+    route: _list[GoodocParagraphRoute]
 
 @typing.type_check_only
 class GoodocParagraphDroppedCap(typing_extensions.TypedDict, total=False):
@@ -13031,7 +13812,11 @@ class GoodocParagraphDroppedCap(typing_extensions.TypedDict, total=False):
     LettersCount: int
 
 @typing.type_check_only
-class GoodocParagraphRoute(dict[str, typing.Any]): ...
+class GoodocParagraphRoute(typing_extensions.TypedDict, total=False):
+    EndPoint: GoodocRoutePoint
+    StartPoint: GoodocRoutePoint
+    Weight: int
+    Word: _list[GoodocWord]
 
 @typing.type_check_only
 class GoodocRotatedBoundingBox(typing_extensions.TypedDict, total=False):
@@ -13180,13 +13965,38 @@ class GoodocSymbolSymbolVariant(typing_extensions.TypedDict, total=False):
     Confidence: int
 
 @typing.type_check_only
-class GoodocWord(dict[str, typing.Any]): ...
+class GoodocWord(typing_extensions.TypedDict, total=False):
+    Baseline: int
+    Box: GoodocBoundingBox
+    Capline: int
+    CompactSymbolBoxes: GoodocBoxPartitions
+    Confidence: int
+    IsFromDictionary: bool
+    IsIdentifier: bool
+    IsLastInSentence: bool
+    IsNumeric: bool
+    Label: GoodocLabel
+    Penalty: int
+    RotatedBox: GoodocRotatedBoundingBox
+    Symbol: _list[GoodocSymbol]
+    alternates: GoodocWordAlternates
+    text: str
+    writingDirection: typing_extensions.Literal[
+        "WRITING_DIRECTION_LEFT_TO_RIGHT",
+        "WRITING_DIRECTION_RIGHT_TO_LEFT",
+        "WRITING_DIRECTION_TOP_TO_BOTTOM",
+    ]
 
 @typing.type_check_only
-class GoodocWordAlternates(dict[str, typing.Any]): ...
+class GoodocWordAlternates(typing_extensions.TypedDict, total=False):
+    ErrorProbability: int
+    alternate: _list[GoodocWordAlternatesAlternate]
 
 @typing.type_check_only
-class GoodocWordAlternatesAlternate(dict[str, typing.Any]): ...
+class GoodocWordAlternatesAlternate(typing_extensions.TypedDict, total=False):
+    OcrEngineId: str
+    OcrEngineVersion: str
+    Word: GoodocWord
 
 @typing.type_check_only
 class GoogleAssistantAccessoryV1AudioOutConfig(
@@ -13488,7 +14298,33 @@ class GoogleCloudContentwarehouseV1DeleteDocumentRequest(
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1Document(dict[str, typing.Any]): ...
+class GoogleCloudContentwarehouseV1Document(typing_extensions.TypedDict, total=False):
+    asyncEnabled: bool
+    cloudAiDocument: GoogleCloudDocumentaiV1Document
+    createTime: str
+    creator: str
+    displayName: str
+    displayUri: str
+    documentSchemaName: str
+    inlineRawDocument: str
+    name: str
+    plainText: str
+    properties: _list[GoogleCloudContentwarehouseV1Property]
+    rawDocumentFileType: typing_extensions.Literal[
+        "RAW_DOCUMENT_FILE_TYPE_UNSPECIFIED",
+        "RAW_DOCUMENT_FILE_TYPE_PDF",
+        "RAW_DOCUMENT_FILE_TYPE_DOCX",
+        "RAW_DOCUMENT_FILE_TYPE_XLSX",
+        "RAW_DOCUMENT_FILE_TYPE_PPTX",
+        "RAW_DOCUMENT_FILE_TYPE_TEXT",
+    ]
+    rawDocumentPath: str
+    referenceId: str
+    structuredContentUri: str
+    textExtractionDisabled: bool
+    title: str
+    updateTime: str
+    updater: str
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1DocumentLink(
@@ -13728,13 +14564,42 @@ class GoogleCloudContentwarehouseV1MergeFieldsOptions(
     replaceRepeatedFields: bool
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1Property(dict[str, typing.Any]): ...
+class GoogleCloudContentwarehouseV1Property(typing_extensions.TypedDict, total=False):
+    dateTimeValues: GoogleCloudContentwarehouseV1DateTimeArray
+    enumValues: GoogleCloudContentwarehouseV1EnumArray
+    floatValues: GoogleCloudContentwarehouseV1FloatArray
+    integerValues: GoogleCloudContentwarehouseV1IntegerArray
+    mapProperty: GoogleCloudContentwarehouseV1MapProperty
+    name: str
+    propertyValues: GoogleCloudContentwarehouseV1PropertyArray
+    textValues: GoogleCloudContentwarehouseV1TextArray
+    timestampValues: GoogleCloudContentwarehouseV1TimestampArray
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1PropertyArray(dict[str, typing.Any]): ...
+class GoogleCloudContentwarehouseV1PropertyArray(
+    typing_extensions.TypedDict, total=False
+):
+    properties: _list[GoogleCloudContentwarehouseV1Property]
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1PropertyDefinition(dict[str, typing.Any]): ...
+class GoogleCloudContentwarehouseV1PropertyDefinition(
+    typing_extensions.TypedDict, total=False
+):
+    dateTimeTypeOptions: GoogleCloudContentwarehouseV1DateTimeTypeOptions
+    displayName: str
+    enumTypeOptions: GoogleCloudContentwarehouseV1EnumTypeOptions
+    floatTypeOptions: GoogleCloudContentwarehouseV1FloatTypeOptions
+    integerTypeOptions: GoogleCloudContentwarehouseV1IntegerTypeOptions
+    isFilterable: bool
+    isMetadata: bool
+    isRepeatable: bool
+    isRequired: bool
+    isSearchable: bool
+    mapTypeOptions: GoogleCloudContentwarehouseV1MapTypeOptions
+    name: str
+    propertyTypeOptions: GoogleCloudContentwarehouseV1PropertyTypeOptions
+    textTypeOptions: GoogleCloudContentwarehouseV1TextTypeOptions
+    timestampTypeOptions: GoogleCloudContentwarehouseV1TimestampTypeOptions
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1PropertyFilter(
@@ -13744,7 +14609,10 @@ class GoogleCloudContentwarehouseV1PropertyFilter(
     documentSchemaName: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1PropertyTypeOptions(dict[str, typing.Any]): ...
+class GoogleCloudContentwarehouseV1PropertyTypeOptions(
+    typing_extensions.TypedDict, total=False
+):
+    propertyDefinitions: _list[GoogleCloudContentwarehouseV1PropertyDefinition]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1PublishAction(
@@ -13850,8 +14718,11 @@ class GoogleCloudContentwarehouseV1SearchDocumentsResponse(
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1SearchDocumentsResponseMatchingDocument(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    document: GoogleCloudContentwarehouseV1Document
+    qaResult: GoogleCloudContentwarehouseV1QAResult
+    searchTextSnippet: str
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1SetAclRequest(
@@ -14009,10 +14880,33 @@ class GoogleCloudDocumentaiV1BoundingPoly(typing_extensions.TypedDict, total=Fal
     vertices: _list[GoogleCloudDocumentaiV1Vertex]
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1Document(dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1Document(typing_extensions.TypedDict, total=False):
+    content: str
+    entities: _list[GoogleCloudDocumentaiV1DocumentEntity]
+    entityRelations: _list[GoogleCloudDocumentaiV1DocumentEntityRelation]
+    error: GoogleRpcStatus
+    mimeType: str
+    pages: _list[GoogleCloudDocumentaiV1DocumentPage]
+    revisions: _list[GoogleCloudDocumentaiV1DocumentRevision]
+    shardInfo: GoogleCloudDocumentaiV1DocumentShardInfo
+    text: str
+    textChanges: _list[GoogleCloudDocumentaiV1DocumentTextChange]
+    textStyles: _list[GoogleCloudDocumentaiV1DocumentStyle]
+    uri: str
 
 @typing.type_check_only
-class GoogleCloudDocumentaiV1DocumentEntity(dict[str, typing.Any]): ...
+class GoogleCloudDocumentaiV1DocumentEntity(typing_extensions.TypedDict, total=False):
+    confidence: float
+    id: str
+    mentionId: str
+    mentionText: str
+    normalizedValue: GoogleCloudDocumentaiV1DocumentEntityNormalizedValue
+    pageAnchor: GoogleCloudDocumentaiV1DocumentPageAnchor
+    properties: _list[GoogleCloudDocumentaiV1DocumentEntity]
+    provenance: GoogleCloudDocumentaiV1DocumentProvenance
+    redacted: bool
+    textAnchor: GoogleCloudDocumentaiV1DocumentTextAnchor
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentEntityNormalizedValue(
@@ -14758,7 +15652,29 @@ class HtmlrenderWebkitHeadlessProtoDOMTreeNodeAttribute(
     value: str
 
 @typing.type_check_only
-class HtmlrenderWebkitHeadlessProtoDocument(dict[str, typing.Any]): ...
+class HtmlrenderWebkitHeadlessProtoDocument(typing_extensions.TypedDict, total=False):
+    baseUri: str
+    charset: str
+    contentHeight: int
+    contentLanguage: str
+    contentWidth: int
+    domTreeNode: _list[HtmlrenderWebkitHeadlessProtoDOMTreeNode]
+    frameId: str
+    frameName: str
+    javascriptTimeOfDay: float
+    redirectHop: _list[HtmlrenderWebkitHeadlessProtoRedirectHop]
+    referencedResource: _list[HtmlrenderWebkitHeadlessProtoReferencedResource]
+    renderEvent: _list[HtmlrenderWebkitHeadlessProtoRenderEvent]
+    renderStyle: _list[HtmlrenderWebkitHeadlessProtoStyle]
+    renderTreeNode: _list[HtmlrenderWebkitHeadlessProtoRenderTreeNode]
+    renderTreeQualityScore: float
+    renderedContentArea: HtmlrenderWebkitHeadlessProtoBox
+    scrollX: int
+    scrollY: int
+    snapshotQualityScore: float
+    title: str
+    uri: str
+    viewport: HtmlrenderWebkitHeadlessProtoBox
 
 @typing.type_check_only
 class HtmlrenderWebkitHeadlessProtoFrameResizeEvent(
@@ -15421,7 +16337,117 @@ class ImageContentStarburstVersionGroup(typing_extensions.TypedDict, total=False
     version: int
 
 @typing.type_check_only
-class ImageData(dict[str, typing.Any]): ...
+class ImageData(typing_extensions.TypedDict, total=False):
+    adaboostImageFeaturePorn: float
+    adaboostImageFeaturePornMinorVersion: int
+    adaboostImageFeaturePornVersion: int
+    animatedImageData: ImageRepositoryAnimatedImagePerdocData
+    brainPornScores: ImageSafesearchContentBrainPornAnnotation
+    brainPornScoresVersion: str
+    canonicalDocid: str
+    clickMagnetScore: float
+    clipartDetectorScore: float
+    clipartDetectorVersion: int
+    codomainStrength: int
+    colorScore: _list[float]
+    colorScoreVersion: int
+    coloredPixelsFrac: float
+    contentFirstCrawlTime: int
+    corpusSelectionInfo: _list[CorpusSelectionInfo]
+    crops: ContentAwareCropsIndexing
+    deepCrop: DeepCropIndexing
+    deepTags: CommerceDatastoreImageDeepTags
+    docid: str
+    embeddedMetadata: ImageExifImageEmbeddedMetadata
+    expirationTimestamp: str
+    extendedExif: PhotosImageMetadata
+    featuredImageProp: ImageMonetizationFeaturedImageProperties
+    fileFormat: typing_extensions.Literal[
+        "FF_INVALID",
+        "FF_JPG",
+        "FF_GIF",
+        "FF_PNG",
+        "FF_BMP",
+        "FF_SVG",
+        "FF_WEBP",
+        "FF_ICO",
+        "FF_CRAW",
+        "FF_HEIF",
+    ]
+    finalPornScore: float
+    finalPornScoreVersion: str
+    firstCrawlTime: int
+    firstTimeSeenOnDocSec: int
+    flags: int
+    flowOutput: ImageContentFlowProtoProd
+    h2c: float
+    h2i: float
+    hateLogoDetection: ImageUnderstandingIndexingAnnotationGroup
+    height: int
+    imageContentQueryBoost: ImageContentQueryBoost
+    imageExactBoost: ImageExactBoost
+    imageLicenseInfo: ImageSearchImageLicenseInfo
+    imageRegions: ImageRegionsImageRegions
+    imagerank: int
+    isIipInScope: bool
+    isIndexedByImagesearch: bool
+    isMultiframe: bool
+    isUnwantedContent: bool
+    isVisible: bool
+    largestFaceFrac: float
+    largestFaceFraction: int
+    lastCrawlTime: int
+    licensedWebImagesOptInState: typing_extensions.Literal[
+        "IMAGES_OPTIN_NONE",
+        "IMAGES_OPTIN_FULL",
+        "PAGE_SNIPPET_CONTROL_SIZE_NONE",
+        "PAGE_SNIPPET_CONTROL_SIZE_STANDARD",
+        "PAGE_SNIPPET_CONTROL_SIZE_LARGE",
+        "IMAGE_TAG_SNIPPET_CONTROL_SIZE_NONE",
+        "IMAGE_TAG_SNIPPET_CONTROL_SIZE_STANDARD",
+        "IMAGE_TAG_SNIPPET_CONTROL_SIZE_LARGE",
+    ]
+    lineartDetectorScore: float
+    lineartDetectorVersion: int
+    multibangKgEntities: ImageDataMultibangEntities
+    nearDupFeatures: str
+    nearDupFeaturesSmall: _list[str]
+    nearDupFeaturesSmallVersion: int
+    nearDupFeaturesVersion: int
+    nimaAva: ImageRepositoryNimaOutput
+    nimaVq: ImageRepositoryNimaOutput
+    noIndexReason: _list[str]
+    numberFaces: int
+    ocrGoodoc: GoodocDocument
+    ocrTaser: GoodocDocument
+    ocrTextboxes: _list[OcrPhotoTextBox]
+    onPageAlternateUrl: str
+    packedFullFaceInfo: FaceIndexing
+    personAttributes: LensDiscoveryStylePersonAttributes
+    personDetectionSignals: LensDiscoveryStylePersonDetectionSignals
+    photoDetectorScore: float
+    photoDetectorVersion: int
+    pornFlagData: PornFlagData
+    precomputedRestricts: PrecomputedRestricts
+    rankInNeardupCluster: int
+    restrictStrings: _list[str]
+    robotedAgents: str
+    shoppingProductInformation: ImageRepositoryShoppingProductInformation
+    size: int
+    smearedTopWebLandingPageDocids: _list[str]
+    smearedTopWebLandingPages: _list[SmearedWebLandingPageEntry]
+    styleAestheticsScore: LensDiscoveryStyleAestheticsScoreSignals
+    styleImageType: LensDiscoveryStyleStyleImageTypeSignals
+    testingScore: int
+    thumbHeight: int
+    thumbSize: int
+    thumbWidth: int
+    thumbnail: _list[ImageDataThumbnail]
+    unavailableAfterSecs: str
+    url: str
+    whiteBackgroundScore: float
+    whiteBackgroundScoreVersion: int
+    width: int
 
 @typing.type_check_only
 class ImageDataMultibangEntities(typing_extensions.TypedDict, total=False):
@@ -15970,7 +16996,8 @@ class ImageRepositoryFramePerdoc(typing_extensions.TypedDict, total=False):
     timestampMsec: int
 
 @typing.type_check_only
-class ImageRepositoryFramePerdocs(dict[str, typing.Any]): ...
+class ImageRepositoryFramePerdocs(typing_extensions.TypedDict, total=False):
+    framePerdoc: _list[ImageRepositoryFramePerdoc]
 
 @typing.type_check_only
 class ImageRepositoryNimaOutput(typing_extensions.TypedDict, total=False):
@@ -16172,7 +17199,16 @@ class ImageRepositoryVideoPreviewsVideoPreview(
     previewFrameZero: DrishtiVesperVideoThumbnail
 
 @typing.type_check_only
-class ImageRepositoryVideoProperties(dict[str, typing.Any]): ...
+class ImageRepositoryVideoProperties(typing_extensions.TypedDict, total=False):
+    audioOnly: bool
+    contentBasedMetadata: ImageRepositoryContentBasedVideoMetadata
+    crawlState: ImageMoosedogCrawlState
+    firstCrawlTimestampSec: str
+    firstProcessingTimestampSec: str
+    inlinePlayback: VideoCrawlVideoInlinePlaybackMetadata
+    lastCrawlRequestTimestampSec: str
+    lastProcessingTimestampSec: str
+    url: str
 
 @typing.type_check_only
 class ImageRepositoryWordInfo(typing_extensions.TypedDict, total=False):
@@ -17503,7 +18539,23 @@ class IndexingDupsLocalizedLocalizedClusterTargetLinkTargetDocData(
     outgoingLinkData: _list[IndexingDupsLocalizedLocalizedClusterTargetLinkLink]
 
 @typing.type_check_only
-class IndexingEmbeddedContentEmbeddedContentInfo(dict[str, typing.Any]): ...
+class IndexingEmbeddedContentEmbeddedContentInfo(
+    typing_extensions.TypedDict, total=False
+):
+    compressedDocumentTrees: str
+    convertedContents: str
+    embeddedLinksInfo: IndexingEmbeddedContentEmbeddedLinksInfo
+    headlessResponse: HtmlrenderWebkitHeadlessProtoRenderResponse
+    isAlternateSnapshot: bool
+    originalEncoding: int
+    rawRedirectInfo: IndexingConverterRawRedirectInfo
+    referencedResource: _list[HtmlrenderWebkitHeadlessProtoReferencedResource]
+    renderedSnapshot: HtmlrenderWebkitHeadlessProtoImage
+    renderedSnapshotImage: str
+    renderedSnapshotMetadata: SnapshotSnapshotMetadata
+    renderedSnapshotQualityScore: float
+    renderingOutputMetadata: IndexingEmbeddedContentRenderingOutputMetadata
+    richcontentData: IndexingConverterRichContentData
 
 @typing.type_check_only
 class IndexingEmbeddedContentEmbeddedLinksInfo(
@@ -18157,8 +19209,9 @@ class KnowledgeAnswersIntentQueryArgumentProvenanceAttentionalEntity(
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgumentProvenanceCurrentQuery(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    evalData: _list[NlpSemanticParsingAnnotationEvalData]
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgumentProvenanceInjectedContextualSchema(
@@ -18167,8 +19220,15 @@ class KnowledgeAnswersIntentQueryArgumentProvenanceInjectedContextualSchema(
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgumentProvenancePreviousQuery(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    currentQueryEvalData: _list[NlpSemanticParsingAnnotationEvalData]
+    evalData: _list[NlpSemanticParsingAnnotationEvalData]
+    eventId: EventIdMessage
+    role: KnowledgeAnswersIntentQueryArgumentProvenancePreviousQueryRole
+    source: typing_extensions.Literal[
+        "UNKNOWN", "QUERY_STRING", "INTERPRETATION", "QUERY_JOIN", "PROMPT"
+    ]
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgumentProvenancePreviousQueryRole(
@@ -18184,8 +19244,14 @@ class KnowledgeAnswersIntentQueryArgumentProvenancePreviousResponseMeaning(
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskState(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    argumentName: _list[str]
+    currentQueryEvalData: _list[NlpSemanticParsingAnnotationEvalData]
+    dialogIntentStateId: str
+    intentName: str
+    listCandidate: KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskStateListCandidate
+    previousFunctionCall: KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskStatePreviousFunctionCall
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskStateListCandidate(
@@ -18200,8 +19266,9 @@ class KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskStatePreviousFunc
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgumentProvenanceQueryAnaphor(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    evalData: _list[NlpSemanticParsingAnnotationEvalData]
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgumentProvenanceSearchAnswerValue(
@@ -18213,10 +19280,115 @@ class KnowledgeAnswersIntentQueryArgumentProvenanceSearchAnswerValue(
     valueIndex: int
 
 @typing.type_check_only
-class KnowledgeAnswersIntentQueryArgumentSignals(dict[str, typing.Any]): ...
+class KnowledgeAnswersIntentQueryArgumentSignals(
+    typing_extensions.TypedDict, total=False
+):
+    addedByCloseAnswers: bool
+    allowedFuzzyMatch: bool
+    annotatedRelationship: _list[
+        LogsSemanticInterpretationIntentQueryWebrefEntityRelationship
+    ]
+    annotationLayerSignals: KnowledgeAnswersIntentQueryAnnotationLayerSignals
+    chainId: _list[LocalsearchChainId]
+    clusterInfo: QualityViewsExtractionClusterInfo
+    collectionMembership: _list[KnowledgeAnswersIntentQueryCollectionMembership]
+    contextResolution: typing_extensions.Literal[
+        "NONE",
+        "SAFT_PRONOUN",
+        "NOUN_PHRASE",
+        "LOCAL_SEMANTIC_FUNCTION_MERGE",
+        "CONTEXTUAL_SUBGRAMMAR_ANNOTATION",
+    ]
+    deprecatedFreebaseType: _list[str]
+    deprecatedSupportingMid: _list[str]
+    entityNumber: int
+    entityRelationship: _list[NlpSemanticParsingQRefAnnotationEntityRelationship]
+    expressionStatus: NlpSemanticParsingExpressionStatus
+    fromManualSymbolAnnotation: bool
+    fromSymbolAnnotation: bool
+    gaiaId: str
+    groundingSignals: KnowledgeAnswersIntentQueryGroundingSignals
+    isAUngroundedTypeOf: str
+    isDefaultValue: bool
+    isEnum: bool
+    isEvalDataHeuristic: bool
+    isGenieAnnotation: bool
+    isIntentgenAnnotation: bool
+    isNimbleAnnotation: bool
+    location: GeostorePointProto
+    locationMarkersSignals: KnowledgeAnswersIntentQueryLocationMarkersSignals
+    mediaEntitySignals: KnowledgeAnswersIntentQueryMediaEntitySignals
+    mergedImpliedEntity: _list[KnowledgeAnswersIntentQueryImpliedEntity]
+    midEquivalentToCollection: str
+    multipleHorizontalListSelectionMatches: bool
+    muninSignals: KnowledgeAnswersIntentQueryMuninSignals
+    onDeviceAnnotationSignals: KnowledgeAnswersIntentQueryOnDeviceAnnotationSignals
+    oysterId: GeostoreFeatureIdProto
+    parsedDueToExperiment: _list[str]
+    personalEntity: _list[KnowledgeAnswersIntentQueryPersonalEntity]
+    provenance: _list[KnowledgeAnswersIntentQueryArgumentProvenance]
+    qrefConfidenceScore: float
+    qrefInterpretationIndex: int
+    rawQueryText: str
+    relatedEntity: _list[NlpSemanticParsingRelatedEntity]
+    relatednessSignals: KnowledgeAnswersIntentQueryRelatednessSignals
+    resolvedFromContext: bool
+    resolvedFromPronoun: bool
+    resultSupport: _list[UniversalsearchNewPackerKnowledgeResultSupport]
+    saftSignals: KnowledgeAnswersIntentQuerySaftSignals
+    shoppingIds: KnowledgeAnswersIntentQueryShoppingIds
+    supportTransferRules: _list[
+        LogsSemanticInterpretationIntentQuerySupportTransferRule
+    ]
+    supportTransferSignals: KnowledgeAnswersIntentQuerySupportTransferSignals
+    ungroundedValueType: KnowledgeAnswersValueType
+    webrefEntitiesIndex: int
+    webrefListSource: typing_extensions.Literal[
+        "UNSET", "INTERPRETATION_LIST", "ANNOTATION_LIST", "CANDIDATE_LIST"
+    ]
 
 @typing.type_check_only
-class KnowledgeAnswersIntentQueryArgumentValue(dict[str, typing.Any]): ...
+class KnowledgeAnswersIntentQueryArgumentValue(
+    typing_extensions.TypedDict, total=False
+):
+    aogSlot: NlpSemanticParsingProtoActionsOnGoogleAogSlot
+    appAnnotation: NlpSemanticParsingAppAnnotation
+    audio: NlpSemanticParsingModelsMediaAudio
+    calendarEvent: AssistantApiCoreTypesCalendarEvent
+    calendarEventWrapper: AssistantApiCoreTypesCalendarEventWrapper
+    calendarReference: QualityQrewriteCalendarReference
+    complexQueriesRewrite: QualityGenieComplexQueriesComplexQueriesOutputRewrite
+    componentReference: RepositoryWebrefComponentReference
+    coreference: KnowledgeAnswersIntentQueryCoreference
+    dateTime: NlpSemanticParsingDatetimeDateTime
+    device: NlpSemanticParsingModelsMediaCastDeviceAnnotation
+    deviceId: AssistantApiCoreTypesDeviceId
+    deviceUserIdentity: AssistantApiCoreTypesDeviceUserIdentity
+    duration: NlpSemanticParsingDatetimeDuration
+    funcall: KnowledgeAnswersIntentQueryFunctionCall
+    homeAutomationDevice: AssistantVerticalsHomeautomationProtoHomeAutomationDevice
+    location: NlpSemanticParsingLocalLocation
+    media: NlpSemanticParsingModelsMediaMediaAnnotation
+    messageNotification: AssistantApiCoreTypesMessageNotification
+    money: NlpSemanticParsingModelsMoneyMoney
+    narrativeNewsProvider: NlpSemanticParsingModelsNarrativeNewsNewsProvider
+    number: NlpSemanticParsingNumberNumber
+    onDevice: NlpSemanticParsingModelsOnDevice
+    person: NlpSemanticParsingModelsPersonPerson
+    personalIntelligenceEntity: NlpSemanticParsingPersonalIntelligenceEntity
+    productivityListItem: AssistantProductivityListItem
+    recurrence: NlpSemanticParsingModelsRecurrence
+    reminder: QualityActionsReminder
+    sensitiveValue: KnowledgeAnswersIntentQuerySensitiveArgumentValueGuard
+    sensitivity: _list[KnowledgeAnswersSensitivitySensitivity]
+    shoppingMerchant: NlpSemanticParsingModelsShoppingAssistantMerchant
+    shoppingOffer: NlpSemanticParsingModelsShoppingAssistantOffer
+    shoppingProduct: NlpSemanticParsingModelsShoppingAssistantProduct
+    shoppingProductExpression: NlpSemanticParsingModelsShoppingAssistantProductExpression
+    shoppingStore: NlpSemanticParsingModelsShoppingAssistantStore
+    simpleValue: KnowledgeAnswersIntentQuerySimpleValue
+    timer: QualityActionsTimer
+    timezone: NlpSemanticParsingDatetimeTimeZone
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryAttributeSignal(
@@ -18257,10 +19429,64 @@ class KnowledgeAnswersIntentQueryFreetextAnnotationSignals(
 ): ...
 
 @typing.type_check_only
-class KnowledgeAnswersIntentQueryFunctionCall(dict[str, typing.Any]): ...
+class KnowledgeAnswersIntentQueryFunctionCall(typing_extensions.TypedDict, total=False):
+    argument: _list[KnowledgeAnswersIntentQueryArgument]
+    catalogVersion: str
+    contextualSensitivity: _list[KnowledgeAnswersSensitivitySensitivity]
+    enabledRemodelings: NlpMeaningMeaningRemodelingControl
+    ignoredTokens: _list[KnowledgeAnswersIntentQueryTokens]
+    key: KnowledgeAnswersMeaningSchemaKey
+    marker: KnowledgeAnswersMarker
+    modifiers: KnowledgeAnswersIntentModifiers
+    name: str
+    sensitivity: KnowledgeAnswersSensitivitySensitivity
+    signals: KnowledgeAnswersIntentQueryFunctionCallSignals
+    unexplainedTokens: _list[KnowledgeAnswersIntentQueryTokens]
 
 @typing.type_check_only
-class KnowledgeAnswersIntentQueryFunctionCallSignals(dict[str, typing.Any]): ...
+class KnowledgeAnswersIntentQueryFunctionCallSignals(
+    typing_extensions.TypedDict, total=False
+):
+    argumentComposingMid: str
+    attributeSignals: _list[KnowledgeAnswersIntentQueryAttributeSignal]
+    conceptEntityMid: str
+    confidenceLevel: typing_extensions.Literal[
+        "UNKNOWN", "LOW", "MEDIUM", "HIGH", "ALWAYS_TRIGGER"
+    ]
+    dedupedFuncalls: _list[KnowledgeAnswersIntentQueryFunctionCall]
+    expressionStatus: NlpSemanticParsingExpressionStatus
+    freefolksTrigger: typing_extensions.Literal[
+        "NONE_FREEFOLKS_TRIGGER",
+        "LOW_CONF_FREEFOLKS_TRIGGER",
+        "HIGH_CONF_FREEFOLKS_TRIGGER",
+    ]
+    groundingSignals: KnowledgeAnswersIntentQueryGroundingSignals
+    highConfidence: bool
+    intentAnnotationSources: _list[str]
+    intentComposingMid: str
+    intentProvenance: _list[KnowledgeAnswersIntentQueryArgumentProvenance]
+    intentRelevantMid: _list[str]
+    isCloseInterpretation: bool
+    isDisambiguationCardIntent: bool
+    isDisambiguationIntent: bool
+    isUiCompositionIntent: bool
+    localSignals: KnowledgeAnswersIntentQueryLocalSignals
+    osrpJourneyTag: str
+    parsedDueToExperiment: _list[str]
+    parsingSignals: KnowledgeAnswersIntentQueryParsingSignals
+    prefulfillmentRankingScore: float
+    prefulfillmentSignals: AssistantPrefulfillmentRankerPrefulfillmentSignals
+    referentialResolution: KnowledgeAnswersDialogReferentialResolution
+    refxSummaryNodeId: str
+    resultSupport: _list[UniversalsearchNewPackerKnowledgeResultSupport]
+    role: typing_extensions.Literal[
+        "UNKNOWN_ROLE", "QUERY_INTERPRETATION", "DERIVED_INTENT"
+    ]
+    selectedByPrefulfillmentRanking: bool
+    shoppingIds: KnowledgeAnswersIntentQueryShoppingIds
+    signalsFallbackIntents: _list[
+        KnowledgeAnswersIntentQuerySignalComputationFallbackIntent
+    ]
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryGroundingSignals(
@@ -18304,7 +19530,15 @@ class KnowledgeAnswersIntentQueryIdentifier(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
-class KnowledgeAnswersIntentQueryImpliedEntity(dict[str, typing.Any]): ...
+class KnowledgeAnswersIntentQueryImpliedEntity(
+    typing_extensions.TypedDict, total=False
+):
+    annotatedSpan: str
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isUngroundedValue: bool
+    mid: str
+    qrefConfidenceScore: float
+    shoppingIds: KnowledgeAnswersIntentQueryShoppingIds
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryIndexingIQLAttachment(
@@ -18323,7 +19557,9 @@ class KnowledgeAnswersIntentQueryLocalResultSignals(
     salientTermSet: QualitySalientTermsSalientTermSet
 
 @typing.type_check_only
-class KnowledgeAnswersIntentQueryLocalSignals(dict[str, typing.Any]): ...
+class KnowledgeAnswersIntentQueryLocalSignals(typing_extensions.TypedDict, total=False):
+    localResultSignals: _list[KnowledgeAnswersIntentQueryLocalResultSignals]
+    minSalientTermSimilarity: float
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryLocationMarkersSignals(
@@ -18376,7 +19612,15 @@ class KnowledgeAnswersIntentQueryParsingSignals(
     ]
 
 @typing.type_check_only
-class KnowledgeAnswersIntentQueryPersonalEntity(dict[str, typing.Any]): ...
+class KnowledgeAnswersIntentQueryPersonalEntity(
+    typing_extensions.TypedDict, total=False
+):
+    attributeId: str
+    entityRelationship: _list[
+        KnowledgeAnswersIntentQueryPersonalEntityEntityRelationship
+    ]
+    freebaseMid: str
+    personalEntityChild: _list[KnowledgeAnswersIntentQueryPersonalEntity]
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryPersonalEntityEntityRelationship(
@@ -18425,7 +19669,11 @@ class KnowledgeAnswersIntentQuerySemanticAnnotationSignalsFeature(
     value: float
 
 @typing.type_check_only
-class KnowledgeAnswersIntentQuerySensitiveArgumentValueGuard(dict[str, typing.Any]): ...
+class KnowledgeAnswersIntentQuerySensitiveArgumentValueGuard(
+    typing_extensions.TypedDict, total=False
+):
+    doNotUseDebugOnlyDecryptedValue: KnowledgeAnswersIntentQueryArgumentValue
+    encryptedValue: str
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryShoppingIds(typing_extensions.TypedDict, total=False):
@@ -18499,7 +19747,9 @@ class KnowledgeAnswersIntentQueryTokenSynonym(typing_extensions.TypedDict, total
     synonymNgram: str
 
 @typing.type_check_only
-class KnowledgeAnswersIntentQueryTokens(dict[str, typing.Any]): ...
+class KnowledgeAnswersIntentQueryTokens(typing_extensions.TypedDict, total=False):
+    score: float
+    token: _list[KnowledgeAnswersIntentQueryToken]
 
 @typing.type_check_only
 class KnowledgeAnswersIntersectType(typing_extensions.TypedDict, total=False):
@@ -18948,7 +20198,9 @@ class KnowledgeGraphNestedStruct(typing_extensions.TypedDict, total=False):
     predicateObjs: _list[KnowledgeGraphNestedStructPredicateObjs]
 
 @typing.type_check_only
-class KnowledgeGraphNestedStructPredicateObjs(dict[str, typing.Any]): ...
+class KnowledgeGraphNestedStructPredicateObjs(typing_extensions.TypedDict, total=False):
+    objs: _list[KnowledgeGraphTripleObj]
+    pred: str
 
 @typing.type_check_only
 class KnowledgeGraphQualifier(typing_extensions.TypedDict, total=False):
@@ -18969,7 +20221,20 @@ class KnowledgeGraphTriple(typing_extensions.TypedDict, total=False):
     sub: str
 
 @typing.type_check_only
-class KnowledgeGraphTripleObj(dict[str, typing.Any]): ...
+class KnowledgeGraphTripleObj(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    datetimeValue: KnowledgeGraphDateTimeProto
+    doubleValue: float
+    durationValue: str
+    idValue: str
+    int64Value: str
+    locale: str
+    nestedStructValue: KnowledgeGraphNestedStruct
+    protoValue: KnowledgeGraphTripleObjProto
+    s2cellId: str
+    stringValue: str
+    uint64Value: str
+    uriValue: str
 
 @typing.type_check_only
 class KnowledgeGraphTripleObjProto(typing_extensions.TypedDict, total=False):
@@ -19209,10 +20474,26 @@ class ListSnippetResponseRow(typing_extensions.TypedDict, total=False):
     column: _list[str]
 
 @typing.type_check_only
-class LocalWWWInfo(dict[str, typing.Any]): ...
+class LocalWWWInfo(typing_extensions.TypedDict, total=False):
+    address: _list[LocalWWWInfoAddress]
+    brickAndMortarStrength: float
+    cluster: _list[LocalWWWInfoCluster]
+    docid: str
+    geotopicality: RepositoryAnnotationsGeoTopicality
+    hours: _list[LocalWWWInfoOpeningHours]
+    isLargeChain: bool
+    isLargeLocalwwwinfo: bool
+    phone: _list[LocalWWWInfoPhone]
+    siteSiblings: int
+    url: str
+    wrapptorItem: _list[LocalWWWInfoWrapptorItem]
 
 @typing.type_check_only
-class LocalWWWInfoAddress(dict[str, typing.Any]): ...
+class LocalWWWInfoAddress(typing_extensions.TypedDict, total=False):
+    addrFprint: str
+    address: GeostoreAddressProto
+    latE7: int
+    lngE7: int
 
 @typing.type_check_only
 class LocalWWWInfoCluster(typing_extensions.TypedDict, total=False):
@@ -19988,7 +21269,40 @@ class NlpSaftConstituencyNode(typing_extensions.TypedDict, total=False):
     phrase: NlpSaftPhrase
 
 @typing.type_check_only
-class NlpSaftDocument(dict[str, typing.Any]): ...
+class NlpSaftDocument(typing_extensions.TypedDict, total=False):
+    annotatedPhrase: _list[NlpSaftAnnotatedPhrase]
+    annotations: Proto2BridgeMessageSet
+    author: _list[str]
+    bylineDate: str
+    constituencyNode: _list[NlpSaftConstituencyNode]
+    constituencyRoot: _list[int]
+    contentFirstseen: str
+    contentType: int
+    contentage: str
+    date: str
+    docid: str
+    entity: _list[NlpSaftEntity]
+    entityLabel: _list[str]
+    focusEntity: int
+    golden: bool
+    httpHeaders: str
+    hyperlink: _list[NlpSaftHyperlink]
+    labeledSpans: dict[str, typing.Any]
+    language: int
+    lastSignificantUpdate: str
+    measure: _list[NlpSaftMeasure]
+    privacySensitive: bool
+    relation: _list[NlpSaftRelation]
+    rpcError: bool
+    semanticNode: _list[NlpSaftSemanticNode]
+    subsection: _list[NlpSaftDocument]
+    syntacticDate: str
+    text: str
+    title: str
+    token: _list[NlpSaftToken]
+    topic: _list[NlpSaftDocumentTopic]
+    trace: bool
+    url: str
 
 @typing.type_check_only
 class NlpSaftDocumentTopic(typing_extensions.TypedDict, total=False):
@@ -20364,7 +21678,26 @@ class NlpSciencelitArticleId(typing_extensions.TypedDict, total=False):
     idType: str
 
 @typing.type_check_only
-class NlpSciencelitArticleMetadata(dict[str, typing.Any]): ...
+class NlpSciencelitArticleMetadata(typing_extensions.TypedDict, total=False):
+    abstract: NlpSciencelitTokenizedText
+    articleId: _list[NlpSciencelitArticleId]
+    author: _list[NlpSciencelitAuthor]
+    dataset: _list[NlpSciencelitDataset]
+    dateStr: str
+    deleted: bool
+    heading: _list[NlpSciencelitMeshHeading]
+    issue: str
+    journal: str
+    language: str
+    lastRevisedDateStr: str
+    metadataSource: _list[str]
+    parsedFrom: str
+    pmid: str
+    publicationType: _list[NlpSciencelitPublicationType]
+    scamRestrictTokens: ResearchScamV3Restrict
+    title: str
+    url: _list[str]
+    volume: str
 
 @typing.type_check_only
 class NlpSciencelitAuthor(typing_extensions.TypedDict, total=False):
@@ -20382,7 +21715,9 @@ class NlpSciencelitCitationData(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class NlpSciencelitDataset(dict[str, typing.Any]): ...
+class NlpSciencelitDataset(typing_extensions.TypedDict, total=False):
+    association: typing_extensions.Literal["UNKNOWN", "DATABANK", "CITATION", "MATCH"]
+    datasetMetadata: ResearchScienceSearchReconciledMetadata
 
 @typing.type_check_only
 class NlpSciencelitMeshHeading(typing_extensions.TypedDict, total=False):
@@ -20454,7 +21789,12 @@ class NlpSciencelitTokenizedText(typing_extensions.TypedDict, total=False):
     token: _list[str]
 
 @typing.type_check_only
-class NlpSemanticParsingAnnotationEvalData(dict[str, typing.Any]): ...
+class NlpSemanticParsingAnnotationEvalData(typing_extensions.TypedDict, total=False):
+    additionalSpans: _list[NlpSemanticParsingAnnotationEvalData]
+    numBytes: int
+    numTokens: int
+    startByte: int
+    startToken: int
 
 @typing.type_check_only
 class NlpSemanticParsingAppAnnotation(typing_extensions.TypedDict, total=False):
@@ -20589,13 +21929,107 @@ class NlpSemanticParsingDatetimeAbsoluteDateTime(
     year: int
 
 @typing.type_check_only
-class NlpSemanticParsingDatetimeDateTime(dict[str, typing.Any]): ...
+class NlpSemanticParsingDatetimeDateTime(typing_extensions.TypedDict, total=False):
+    compositionElement: NlpSemanticParsingDatetimeDateTime
+    deleted7: bool
+    deleted8: bool
+    evalData: NlpSemanticParsingAnnotationEvalData
+    groundingStage: typing_extensions.Literal[
+        "UNKNOWN_GROUNDING_STAGE",
+        "UNGROUNDED",
+        "UNGROUNDED_COMPOSITION",
+        "RESOLVED",
+        "PARTIALLY_GROUNDED",
+        "FULLY_GROUNDED",
+    ]
+    point: _list[NlpSemanticParsingDatetimeAbsoluteDateTime]
+    properties: NlpSemanticParsingDatetimeResolutionProperties
+    range: _list[NlpSemanticParsingDatetimeRange]
+    recurrent: NlpSemanticParsingDatetimeRecurrent
+    relative: NlpSemanticParsingDatetimeRelativeDateTime
+    span: NlpSemanticParsingDatetimeSpan
 
 @typing.type_check_only
-class NlpSemanticParsingDatetimeDateTimeProperty(dict[str, typing.Any]): ...
+class NlpSemanticParsingDatetimeDateTimeProperty(
+    typing_extensions.TypedDict, total=False
+):
+    dateFormat: typing_extensions.Literal[
+        "DEFAULT_DATE_FORMAT", "NUM_MONTH_DAY", "NUM_DAY_MONTH"
+    ]
+    expandYearToCurrent: bool
+    hourStatus: typing_extensions.Literal[
+        "HOUR_NONE",
+        "HOUR_UNAMBIGUOUS",
+        "HOUR_AMBIGUOUS_ORIGINAL",
+        "HOUR_AMBIGUOUS_INFERRED",
+    ]
+    inferredDateValue: typing_extensions.Literal[
+        "NONE", "YEAR", "YEAR_MONTH", "YEAR_MONTH_DAY"
+    ]
+    metadata: typing_extensions.Literal[
+        "NO_METADATA",
+        "HOLIDAY",
+        "ORDINAL",
+        "WEEKEND",
+        "DECADE",
+        "MONTH",
+        "DAY_OF_WEEK",
+        "YEAR_NUMBER",
+        "MONTH_YEAR",
+        "PERSONAL",
+        "SEASON",
+        "WEE_HOURS_INFERRED",
+        "PROACTIVE_DEFAULT_TIME",
+        "PROACTIVE_DEFAULT_DATE",
+        "PROACTIVE_DEFAULT_DATETIME",
+        "HOUR_NUMBER",
+        "ASTRONOMICAL_EVENT",
+        "RECURRENT_UNKNOWN_FREQUENCY",
+    ]
+    personalReferenceMetadata: CopleyPersonalReferenceMetadata
+    relationToReference: typing_extensions.Literal[
+        "UNDEFINED", "CLOSEST_FUTURE", "CLOSEST_PAST", "OTHER_FUTURE", "OTHER_PAST"
+    ]
+    relative: NlpSemanticParsingDatetimeRelativeDateTime
+    sourceCalendar: typing_extensions.Literal[
+        "GREGORIAN",
+        "BUDDHIST",
+        "CHINESE",
+        "COPTIC",
+        "ETHIOPIC",
+        "HEBREW",
+        "INDIAN_NATIONAL",
+        "ISLAMIC",
+        "JAPANESE",
+        "PERSIAN",
+        "ISLAMIC_UMALQURA",
+    ]
+    sourceTypeList: CopleySourceTypeList
+    timeFormat: _list[str]
+    timezoneIsExplicit: bool
 
 @typing.type_check_only
-class NlpSemanticParsingDatetimeDuration(dict[str, typing.Any]): ...
+class NlpSemanticParsingDatetimeDuration(typing_extensions.TypedDict, total=False):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    modifier: typing_extensions.Literal[
+        "NO_MOD",
+        "BEFORE",
+        "AFTER",
+        "ON_OR_BEFORE",
+        "ON_OR_AFTER",
+        "LESS_THAN",
+        "MORE_THAN",
+        "EQUAL_OR_LESS",
+        "EQUAL_OR_MORE",
+        "START",
+        "MID",
+        "END",
+        "APPROX",
+        "ADD",
+        "SUBTRACT",
+    ]
+    quantity: NlpSemanticParsingDatetimeQuantity
+    span: NlpSemanticParsingDatetimeSpan
 
 @typing.type_check_only
 class NlpSemanticParsingDatetimeEvent(typing_extensions.TypedDict, total=False):
@@ -20736,22 +22170,277 @@ class NlpSemanticParsingDatetimeNonGregorianDate(
     year: int
 
 @typing.type_check_only
-class NlpSemanticParsingDatetimeQuantity(dict[str, typing.Any]): ...
+class NlpSemanticParsingDatetimeQuantity(typing_extensions.TypedDict, total=False):
+    modifier: typing_extensions.Literal[
+        "NO_MOD",
+        "BEFORE",
+        "AFTER",
+        "ON_OR_BEFORE",
+        "ON_OR_AFTER",
+        "LESS_THAN",
+        "MORE_THAN",
+        "EQUAL_OR_LESS",
+        "EQUAL_OR_MORE",
+        "START",
+        "MID",
+        "END",
+        "APPROX",
+        "ADD",
+        "SUBTRACT",
+    ]
+    number: float
+    numberSpan: NlpSemanticParsingAnnotationEvalData
+    symbolicQuantity: _list[NlpSemanticParsingDatetimeQuantity]
+    unit: typing_extensions.Literal[
+        "NO_UNIT",
+        "NANOSECOND",
+        "MICROSECOND",
+        "MILLISECOND",
+        "SECOND",
+        "MINUTE",
+        "HOUR",
+        "DAY",
+        "WEEK",
+        "TEN_DAY",
+        "HALF_MONTH",
+        "MONTH",
+        "QUARTER",
+        "HALF_YEAR",
+        "YEAR",
+        "DECADE",
+        "CENTURY",
+        "MILLENNIUM",
+        "NIGHT",
+    ]
 
 @typing.type_check_only
-class NlpSemanticParsingDatetimeRange(dict[str, typing.Any]): ...
+class NlpSemanticParsingDatetimeRange(typing_extensions.TypedDict, total=False):
+    begin: NlpSemanticParsingDatetimeAbsoluteDateTime
+    beginRelative: NlpSemanticParsingDatetimeRelativeDateTime
+    duration: NlpSemanticParsingDatetimeQuantity
+    end: NlpSemanticParsingDatetimeAbsoluteDateTime
+    endRelative: NlpSemanticParsingDatetimeRelativeDateTime
+    exclusive: bool
+    finish: NlpSemanticParsingDatetimeDateTime
+    fuzzyRange: typing_extensions.Literal[
+        "NO_FUZZY_RANGE",
+        "FUZZY_RANGE_MORNING",
+        "FUZZY_RANGE_AFTERNOON",
+        "FUZZY_RANGE_EVENING",
+        "FUZZY_RANGE_NIGHT",
+        "FUZZY_RANGE_EVE",
+        "FUZZY_RANGE_DAYTIME",
+        "FUZZY_RANGE_DAWN",
+        "FUZZY_RANGE_DUSK",
+        "FUZZY_RANGE_NIGHTTIME",
+        "FUZZY_RANGE_EARLY_MORNING",
+        "FUZZY_RANGE_MID_MORNING",
+        "FUZZY_RANGE_LATE_MORNING",
+        "FUZZY_RANGE_EARLY_AFTERNOON",
+        "FUZZY_RANGE_MID_AFTERNOON",
+        "FUZZY_RANGE_LATE_AFTERNOON",
+        "FUZZY_RANGE_EARLY_EVENING",
+        "FUZZY_RANGE_MID_EVENING",
+        "FUZZY_RANGE_LATE_EVENING",
+        "FUZZY_RANGE_LATE_NIGHT",
+        "DELETED_11",
+    ]
+    metadata: typing_extensions.Literal[
+        "NO_METADATA",
+        "HOLIDAY",
+        "ORDINAL",
+        "WEEKEND",
+        "DECADE",
+        "MONTH",
+        "DAY_OF_WEEK",
+        "YEAR_NUMBER",
+        "MONTH_YEAR",
+        "PERSONAL",
+        "SEASON",
+        "WEE_HOURS_INFERRED",
+        "PROACTIVE_DEFAULT_TIME",
+        "PROACTIVE_DEFAULT_DATE",
+        "PROACTIVE_DEFAULT_DATETIME",
+        "HOUR_NUMBER",
+        "ASTRONOMICAL_EVENT",
+        "RECURRENT_UNKNOWN_FREQUENCY",
+    ]
+    properties: NlpSemanticParsingDatetimeResolutionProperties
+    rangeModifier: typing_extensions.Literal[
+        "RANGE_MODIFIER_NONE",
+        "RANGE_MODIFIER_EARLY",
+        "RANGE_MODIFIER_MIDDLE",
+        "RANGE_MODIFIER_LATE",
+    ]
+    start: NlpSemanticParsingDatetimeDateTime
+    symbolicValue: typing_extensions.Literal[
+        "NO_SYMBOLIC_DATETIME",
+        "SYMBOLIC_MORNING",
+        "SYMBOLIC_AFTERNOON",
+        "SYMBOLIC_EVENING",
+        "SYMBOLIC_NIGHT",
+        "DELETED_5",
+    ]
 
 @typing.type_check_only
-class NlpSemanticParsingDatetimeRecurrent(dict[str, typing.Any]): ...
+class NlpSemanticParsingDatetimeRecurrent(typing_extensions.TypedDict, total=False):
+    countRestriction: int
+    exception: _list[NlpSemanticParsingDatetimeDateTime]
+    frequency: int
+    metadata: typing_extensions.Literal[
+        "NO_METADATA",
+        "HOLIDAY",
+        "ORDINAL",
+        "WEEKEND",
+        "DECADE",
+        "MONTH",
+        "DAY_OF_WEEK",
+        "YEAR_NUMBER",
+        "MONTH_YEAR",
+        "PERSONAL",
+        "SEASON",
+        "WEE_HOURS_INFERRED",
+        "PROACTIVE_DEFAULT_TIME",
+        "PROACTIVE_DEFAULT_DATE",
+        "PROACTIVE_DEFAULT_DATETIME",
+        "HOUR_NUMBER",
+        "ASTRONOMICAL_EVENT",
+        "RECURRENT_UNKNOWN_FREQUENCY",
+    ]
+    period: int
+    rangeRestriction: NlpSemanticParsingDatetimeRange
+    relativeRangeRestriction: NlpSemanticParsingDatetimeRelativeDateTime
+    restriction: NlpSemanticParsingDatetimeDateTime
+    start: _list[NlpSemanticParsingDatetimeDateTime]
+    startPoint: _list[NlpSemanticParsingDatetimeAbsoluteDateTime]
+    startRange: _list[NlpSemanticParsingDatetimeRange]
+    startRelative: _list[NlpSemanticParsingDatetimeRelativeDateTime]
+    target: NlpSemanticParsingDatetimeTargetToFetch
+    timeInterval: NlpSemanticParsingDatetimeQuantity
+    unit: typing_extensions.Literal[
+        "NO_UNIT",
+        "NANOSECOND",
+        "MICROSECOND",
+        "MILLISECOND",
+        "SECOND",
+        "MINUTE",
+        "HOUR",
+        "DAY",
+        "WEEK",
+        "TEN_DAY",
+        "HALF_MONTH",
+        "MONTH",
+        "QUARTER",
+        "HALF_YEAR",
+        "YEAR",
+        "DECADE",
+        "CENTURY",
+        "MILLENNIUM",
+        "NIGHT",
+    ]
 
 @typing.type_check_only
-class NlpSemanticParsingDatetimeRelativeDateTime(dict[str, typing.Any]): ...
+class NlpSemanticParsingDatetimeRelativeDateTime(
+    typing_extensions.TypedDict, total=False
+):
+    fetched: NlpSemanticParsingDatetimeFetchedRelativeDateTime
+    metadata: typing_extensions.Literal[
+        "NO_METADATA",
+        "HOLIDAY",
+        "ORDINAL",
+        "WEEKEND",
+        "DECADE",
+        "MONTH",
+        "DAY_OF_WEEK",
+        "YEAR_NUMBER",
+        "MONTH_YEAR",
+        "PERSONAL",
+        "SEASON",
+        "WEE_HOURS_INFERRED",
+        "PROACTIVE_DEFAULT_TIME",
+        "PROACTIVE_DEFAULT_DATE",
+        "PROACTIVE_DEFAULT_DATETIME",
+        "HOUR_NUMBER",
+        "ASTRONOMICAL_EVENT",
+        "RECURRENT_UNKNOWN_FREQUENCY",
+    ]
+    modifier: typing_extensions.Literal[
+        "NO_MOD",
+        "BEFORE",
+        "AFTER",
+        "ON_OR_BEFORE",
+        "ON_OR_AFTER",
+        "LESS_THAN",
+        "MORE_THAN",
+        "EQUAL_OR_LESS",
+        "EQUAL_OR_MORE",
+        "START",
+        "MID",
+        "END",
+        "APPROX",
+        "ADD",
+        "SUBTRACT",
+    ]
+    shifted: NlpSemanticParsingDatetimeShiftedRelativeDateTime
 
 @typing.type_check_only
-class NlpSemanticParsingDatetimeResolutionProperties(dict[str, typing.Any]): ...
+class NlpSemanticParsingDatetimeResolutionProperties(
+    typing_extensions.TypedDict, total=False
+):
+    meridiem: typing_extensions.Literal["INVALID_MERIDIEM", "AM", "PM"]
+    metadata: typing_extensions.Literal[
+        "NO_METADATA",
+        "HOLIDAY",
+        "ORDINAL",
+        "WEEKEND",
+        "DECADE",
+        "MONTH",
+        "DAY_OF_WEEK",
+        "YEAR_NUMBER",
+        "MONTH_YEAR",
+        "PERSONAL",
+        "SEASON",
+        "WEE_HOURS_INFERRED",
+        "PROACTIVE_DEFAULT_TIME",
+        "PROACTIVE_DEFAULT_DATE",
+        "PROACTIVE_DEFAULT_DATETIME",
+        "HOUR_NUMBER",
+        "ASTRONOMICAL_EVENT",
+        "RECURRENT_UNKNOWN_FREQUENCY",
+    ]
+    relative: NlpSemanticParsingDatetimeRelativeDateTime
 
 @typing.type_check_only
-class NlpSemanticParsingDatetimeShiftedRelativeDateTime(dict[str, typing.Any]): ...
+class NlpSemanticParsingDatetimeShiftedRelativeDateTime(
+    typing_extensions.TypedDict, total=False
+):
+    base: NlpSemanticParsingDatetimeAbsoluteDateTime
+    baseType: typing_extensions.Literal[
+        "UNKNOWN", "CURRENT_DATETIME", "EXPLICIT_PRONOUN"
+    ]
+    metadata: typing_extensions.Literal[
+        "NO_METADATA",
+        "HOLIDAY",
+        "ORDINAL",
+        "WEEKEND",
+        "DECADE",
+        "MONTH",
+        "DAY_OF_WEEK",
+        "YEAR_NUMBER",
+        "MONTH_YEAR",
+        "PERSONAL",
+        "SEASON",
+        "WEE_HOURS_INFERRED",
+        "PROACTIVE_DEFAULT_TIME",
+        "PROACTIVE_DEFAULT_DATE",
+        "PROACTIVE_DEFAULT_DATETIME",
+        "HOUR_NUMBER",
+        "ASTRONOMICAL_EVENT",
+        "RECURRENT_UNKNOWN_FREQUENCY",
+    ]
+    relativeBase: NlpSemanticParsingDatetimeResolutionProperties
+    shiftAmount: NlpSemanticParsingDatetimeQuantity
+    shiftPast: bool
 
 @typing.type_check_only
 class NlpSemanticParsingDatetimeSpan(typing_extensions.TypedDict, total=False):
@@ -21088,7 +22777,18 @@ class NlpSemanticParsingLocalLocalResultId(typing_extensions.TypedDict, total=Fa
     rect: GeostoreRectProto
 
 @typing.type_check_only
-class NlpSemanticParsingLocalLocation(dict[str, typing.Any]): ...
+class NlpSemanticParsingLocalLocation(typing_extensions.TypedDict, total=False):
+    basicLocation: NlpSemanticParsingLocalBasicLocation
+    compoundLocation: NlpSemanticParsingLocalCompoundLocation
+    contactLocation: NlpSemanticParsingLocalContactLocation
+    isMerged: bool
+    locationConstraint: _list[NlpSemanticParsingLocalLocationConstraint]
+    numBytes: int
+    resolvedLocalResult: QualityDialogManagerLocalResult
+    startByte: int
+    text: str
+    userSpecifiedLocation: KnowledgeVerticalsWeatherProtoUserSpecifiedLocation
+    vicinityLocation: NlpSemanticParsingLocalVicinityLocation
 
 @typing.type_check_only
 class NlpSemanticParsingLocalLocationConstraint(
@@ -21130,7 +22830,79 @@ class NlpSemanticParsingLocalLocationConstraint(
     visitHistory: NlpSemanticParsingLocalVisitHistoryConstraint
 
 @typing.type_check_only
-class NlpSemanticParsingLocalLocationElement(dict[str, typing.Any]): ...
+class NlpSemanticParsingLocalLocationElement(typing_extensions.TypedDict, total=False):
+    aliasIcon: _list[PersonalizationMapsAliasIcon]
+    aliasLocation: typing_extensions.Literal[
+        "UNDEFINED", "HERE", "HOME", "WORK", "NICKNAME", "NEXT_DESTINATION"
+    ]
+    businessType: NlpSemanticParsingLocalBusinessType
+    contactLocation: NlpSemanticParsingLocalContactLocation
+    dialogReferents: _list[NlpSemanticParsingModelsDialogReferentsDialogReferents]
+    directionalModifier: typing_extensions.Literal[
+        "NORTH",
+        "SOUTH",
+        "EAST",
+        "WEST",
+        "NORTHEAST",
+        "SOUTHEAST",
+        "NORTHWEST",
+        "SOUTHWEST",
+        "DOWNTOWN",
+        "INBOUND",
+        "UPTOWN",
+        "OUTBOUND",
+        "CLOCKWISE",
+        "COUNTERCLOCKWISE",
+    ]
+    genericLocation: bool
+    hotelType: NlpSemanticParsingLocalHotelType
+    hyperReliableData: NlpSemanticParsingLocalHyperReliableData
+    implicitLocalCategory: NlpSemanticParsingLocalImplicitLocalCategory
+    localResultId: NlpSemanticParsingLocalLocalResultId
+    numBytes: int
+    number: int
+    personalReferenceLocation: NlpSemanticParsingPersonalReferenceAnnotation
+    qrefLocation: NlpSemanticParsingQRefAnnotation
+    saftLocation: NlpSemanticParsingSaftMentionAnnotation
+    source: typing_extensions.Literal[
+        "GRAMMAR",
+        "QREF",
+        "SAFT",
+        "GENIE",
+        "DIALOG",
+        "NIMBLE",
+        "ATTENTIONAL_ENTITY",
+        "LES",
+        "UNGROUNDED",
+    ]
+    startByte: int
+    text: str
+    transitLineNumber: str
+    type: typing_extensions.Literal[
+        "PLACE_NAME",
+        "BUSINESS_NAME",
+        "BUSINESS_CATEGORY",
+        "ALIAS",
+        "GEO_MODIFIER",
+        "DIRECTIONAL_MODIFIER",
+        "NUMBER_MODIFIER",
+        "DETERMINER",
+        "ZIP_CODE",
+        "PERSONAL_MODIFIER",
+        "TEXT",
+        "PUNCTUATION",
+        "STREET_NAME",
+        "HIGHWAY_NAME",
+        "OLC",
+        "CONTACT",
+        "CONTACT_AND_ALIAS",
+        "PERSONAL_PLACE_NAME",
+        "PERSONAL_REFERENCE",
+        "UNGROUNDED_LOCATION",
+        "LATITUDE_LONGITUDE",
+        "DIALOG_REFERENT",
+        "LOCATION_REFERENT",
+    ]
 
 @typing.type_check_only
 class NlpSemanticParsingLocalMenuItem(typing_extensions.TypedDict, total=False):
@@ -21200,7 +22972,10 @@ class NlpSemanticParsingLocalStarRatings(typing_extensions.TypedDict, total=Fals
     unspecified: bool
 
 @typing.type_check_only
-class NlpSemanticParsingLocalVicinityLocation(dict[str, typing.Any]): ...
+class NlpSemanticParsingLocalVicinityLocation(typing_extensions.TypedDict, total=False):
+    base: NlpSemanticParsingLocalLocation
+    connector: str
+    extent: NlpSemanticParsingLocalExtent
 
 @typing.type_check_only
 class NlpSemanticParsingLocalVisitHistoryConstraint(
@@ -21211,10 +22986,54 @@ class NlpSemanticParsingLocalVisitHistoryConstraint(
     ]
 
 @typing.type_check_only
-class NlpSemanticParsingModelsCommunicationPhoneType(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsCommunicationPhoneType(
+    typing_extensions.TypedDict, total=False
+):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isAnnotatedFromText: bool
+    normalizedText: str
+    originalText: str
+    rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsCommunicationRecipient(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsCommunicationRecipient(
+    typing_extensions.TypedDict, total=False
+):
+    calendarEvent: AssistantApiCoreTypesCalendarEvent
+    calendarEventWrapper: AssistantApiCoreTypesCalendarEventWrapper
+    contact: NlpSemanticParsingModelsPersonPerson
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isAnnotatedFromText: bool
+    nameAnnotationSource: typing_extensions.Literal[
+        "UNKNOWN_NAME_ANNOTATOR",
+        "FOCUS_NAME",
+        "DEVICE_CONTACT",
+        "SAFT_PERSON",
+        "NAME_DETECTION_PERSON",
+        "NAME_PERSON",
+        "MANUAL_RULES",
+        "SAFT_POS",
+        "TEXT",
+    ]
+    numberAnnotationSource: typing_extensions.Literal[
+        "UNKNOWN_NUMBER_ANNOTATOR",
+        "PHONE_NUMBER_ANNOTATOR",
+        "NUMBER_ANNOTATOR",
+        "MANUAL",
+    ]
+    rawText: str
+    recipientType: typing_extensions.Literal[
+        "CONTACT",
+        "BUSINESS",
+        "EMAIL_ADDRESS",
+        "PHONE_NUMBER",
+        "AMBIGUOUS",
+        "CALENDAR_EVENT",
+        "CALENDAR_EVENT_WRAPPER",
+    ]
+    relationship: NlpSemanticParsingModelsCommunicationRelationshipArgument
+    sensitiveNumBytes: int
+    sensitiveStartByte: int
 
 @typing.type_check_only
 class NlpSemanticParsingModelsCommunicationRelationshipArgument(
@@ -21230,13 +23049,30 @@ class NlpSemanticParsingModelsDevice(typing_extensions.TypedDict, total=False):
     deviceType: typing_extensions.Literal["UNKNOWN", "PHONE", "TABLET", "WATCH"]
 
 @typing.type_check_only
-class NlpSemanticParsingModelsDeviceName(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsDeviceName(typing_extensions.TypedDict, total=False):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsDialogReferentsDialogReferents(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsDialogReferentsDialogReferents(
+    typing_extensions.TypedDict, total=False
+):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    field: NlpSemanticParsingModelsDialogReferentsListSelection
+    index: int
+    next: NlpSemanticParsingModelsDialogReferentsDialogReferents
+    selection: _list[NlpSemanticParsingModelsDialogReferentsListSelection]
+    taskMention: _list[NlpSemanticParsingModelsDialogReferentsListSelection]
 
 @typing.type_check_only
-class NlpSemanticParsingModelsDialogReferentsListSelection(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsDialogReferentsListSelection(
+    typing_extensions.TypedDict, total=False
+):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    id: str
+    looseOffsetRestriction: bool
+    offset: int
+    rawText: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaAlbumTitle(typing_extensions.TypedDict, total=False):
@@ -21251,7 +23087,28 @@ class NlpSemanticParsingModelsMediaAlbumTitle(typing_extensions.TypedDict, total
     rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaAudio(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaAudio(typing_extensions.TypedDict, total=False):
+    album: NlpSemanticParsingModelsMediaAlbumTitle
+    artist: NlpSemanticParsingModelsMediaMusicArtist
+    book: NlpSemanticParsingModelsMediaBook
+    dateTime: NlpSemanticParsingDatetimeDateTime
+    episodeConstraint: _list[NlpSemanticParsingModelsMediaEpisodeConstraint]
+    game: NlpSemanticParsingModelsMediaGame
+    genericMusic: NlpSemanticParsingModelsMediaGenericMusic
+    genre: NlpSemanticParsingModelsMediaMusicGenre
+    movie: NlpSemanticParsingModelsMediaMovie
+    newsTopic: NlpSemanticParsingModelsMediaNewsTopic
+    noExplicitAudio: bool
+    playlist: NlpSemanticParsingModelsMediaMusicPlaylist
+    podcast: NlpSemanticParsingModelsMediaPodcast
+    radio: NlpSemanticParsingModelsMediaRadio
+    radioNetwork: NlpSemanticParsingModelsMediaRadioNetwork
+    rawText: str
+    scoreType: typing_extensions.Literal["UNKNOWN", "SOUNDTRACK", "THEME_SONG"]
+    seasonConstraint: NlpSemanticParsingModelsMediaSeasonConstraint
+    song: NlpSemanticParsingModelsMediaSong
+    tag: _list[str]
+    tvShow: NlpSemanticParsingModelsMediaTVShow
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaAudiobookInfo(
@@ -21263,7 +23120,13 @@ class NlpSemanticParsingModelsMediaAudiobookInfo(
     narrators: _list[str]
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaBook(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaBook(typing_extensions.TypedDict, total=False):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isAnnotatedFromText: bool
+    latest: bool
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaCastDeviceAnnotation(
@@ -21331,7 +23194,15 @@ class NlpSemanticParsingModelsMediaDescription(
     rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaEpisodeConstraint(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaEpisodeConstraint(
+    typing_extensions.TypedDict, total=False
+):
+    absoluteIndex: int
+    dateTime: NlpSemanticParsingDatetimeDateTime
+    description: NlpSemanticParsingModelsMediaDescription
+    evalData: NlpSemanticParsingAnnotationEvalData
+    rawText: str
+    relativeIndex: int
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaFrequency(typing_extensions.TypedDict, total=False):
@@ -21339,10 +23210,42 @@ class NlpSemanticParsingModelsMediaFrequency(typing_extensions.TypedDict, total=
     value: float
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaGame(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaGame(typing_extensions.TypedDict, total=False):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isAnnotatedFromText: bool
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaGenericMusic(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaGenericMusic(
+    typing_extensions.TypedDict, total=False
+):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    newMusic: bool
+    rawText: str
+    type: typing_extensions.Literal[
+        "UNKNOWN",
+        "MUSIC",
+        "LIBRARY",
+        "PROVIDER_SPECIFIC",
+        "PLAY_PROVIDER",
+        "RESUME_PROVIDER",
+        "NEW_MUSIC",
+        "STREAM",
+        "HISTORY",
+        "POSTS",
+        "LIKES",
+        "TRACKS",
+        "ALBUMS",
+        "ARTISTS",
+        "THUMBPRINT_RADIO",
+        "SOMETHING_ELSE",
+        "FLOW",
+        "SHUFFLE_RADIO",
+        "PLAYLISTS",
+        "RECENTLY_PLAYED",
+    ]
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaLatLng(typing_extensions.TypedDict, total=False):
@@ -21350,10 +23253,83 @@ class NlpSemanticParsingModelsMediaLatLng(typing_extensions.TypedDict, total=Fal
     longitude: float
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaMediaAnnotation(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaMediaAnnotation(
+    typing_extensions.TypedDict, total=False
+):
+    artistName: str
+    audiobookInfo: NlpSemanticParsingModelsMediaAudiobookInfo
+    contentType: typing_extensions.Literal[
+        "MEDIA_CONTENT_TYPE_UNSPECIFIED",
+        "MUSIC_TRACK",
+        "MUSIC_ARTIST",
+        "MUSIC_ALBUM",
+        "PUBLIC_PLAYLIST",
+        "PERSONAL_PLAYLIST",
+        "MUSIC_PERSONALIZED_MIX",
+        "MUSIC_GENRE_MIX",
+        "MUSIC_SEED_RADIO",
+        "MUSIC_STATION",
+        "RADIO_STATION",
+        "RADIO_NETWORK",
+        "PODCAST_SERIES",
+        "PODCAST_GENERIC",
+        "PODCAST_GENRE",
+        "PODCAST_TOPIC",
+        "PODCAST_RESUME",
+        "PODCAST_EPISODE",
+        "VIDEO",
+        "MUSIC_VIDEO",
+        "VIDEO_RECOMMENDED_PLAYLIST",
+        "MUSIC_VIDEO_PERSONALIZED_PLAYLIST",
+        "TV_SHOW",
+        "TV_SHOW_SEASON",
+        "TV_SHOW_EPISODE",
+        "MOVIE",
+        "YOUTUBE_CHANNEL",
+        "TV_CHANNEL",
+        "SPORTS_TEAM_GAME",
+        "AUDIO_BOOK",
+        "AUDIO_STORY",
+        "YOUTUBE_VIDEO_PLAYLIST",
+        "TV_ARTIST",
+        "NEWS",
+        "VIDEO_GAME",
+        "DIRECTOR",
+        "ACTOR",
+        "MOVIE_SERIES",
+    ]
+    image: _list[AssistantApiCoreTypesImage]
+    name: str
+    newsInfo: NlpSemanticParsingModelsMediaNewsInfo
+    personalDataIngestionEngine: typing_extensions.Literal[
+        "UNKNOWN_INGESTION_ENGINE", "PINTS", "PACIFIC"
+    ]
+    playlistVisibility: typing_extensions.Literal[
+        "UNSPECIFIED", "VISIBILITY_PUBLIC", "VISIBILITY_PRIVATE", "VISIBILITY_UNLISTED"
+    ]
+    podcastInfo: NlpSemanticParsingModelsMediaPodcastInfo
+    primaryEntityMid: str
+    providerInfo: _list[NlpSemanticParsingModelsMediaMediaProviderInfo]
+    purchaseInfo: NlpSemanticParsingModelsMediaPurchaseInfo
+    radioInfo: NlpSemanticParsingModelsMediaRadioInfo
+    rentalInfo: NlpSemanticParsingModelsMediaRentalInfo
+    source: typing_extensions.Literal[
+        "UNKNOWN_SOURCE",
+        "USER_CREATED",
+        "FAVORITES",
+        "RECENT",
+        "PUBLIC",
+        "USER_OWNED",
+        "PROVIDER_CURATED",
+        "CLIENT_REPORTED",
+    ]
+    youtubePlaylistInfo: NlpSemanticParsingModelsMediaYouTubePlaylistInfo
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaMediaAnnotationList(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaMediaAnnotationList(
+    typing_extensions.TypedDict, total=False
+):
+    annotation: _list[NlpSemanticParsingModelsMediaMediaAnnotation]
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaMediaProviderInfo(
@@ -21366,16 +23342,49 @@ class NlpSemanticParsingModelsMediaMediaProviderInfo(
     providerName: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaMovie(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaMovie(typing_extensions.TypedDict, total=False):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isAnnotatedFromText: bool
+    isFromFastPath: bool
+    providerMetadata: _list[NlpSemanticParsingModelsMediaProviderMetadata]
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaMusicArtist(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaMusicArtist(
+    typing_extensions.TypedDict, total=False
+):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    favorite: bool
+    isFromFastPath: bool
+    playMore: bool
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaMusicGenre(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaMusicGenre(typing_extensions.TypedDict, total=False):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    playMore: bool
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaMusicPlaylist(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaMusicPlaylist(
+    typing_extensions.TypedDict, total=False
+):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isAnnotatedFromText: bool
+    longtailMood: bool
+    normalizedText: str
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
+    special: typing_extensions.Literal[
+        "NONE", "THUMBS_UP", "LAST_ADDED", "FREE_AND_PURCHASED"
+    ]
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaNewsInfo(typing_extensions.TypedDict, total=False):
@@ -21387,7 +23396,9 @@ class NlpSemanticParsingModelsMediaNewsInfo(typing_extensions.TypedDict, total=F
     publisher: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaNewsTopic(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaNewsTopic(typing_extensions.TypedDict, total=False):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    rawText: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaPaidOfferDetail(
@@ -21397,7 +23408,12 @@ class NlpSemanticParsingModelsMediaPaidOfferDetail(
     paidOfferType: typing_extensions.Literal["UNKNOWN_PAID_OFFER_TYPE", "RENT", "BUY"]
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaPodcast(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaPodcast(typing_extensions.TypedDict, total=False):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isAnnotatedFromText: bool
+    normalizedText: str
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaPodcastInfo(
@@ -21433,7 +23449,15 @@ class NlpSemanticParsingModelsMediaQuantification(
     number: int
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaRadio(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaRadio(typing_extensions.TypedDict, total=False):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    favorite: bool
+    frequency: NlpSemanticParsingModelsMediaFrequency
+    isAnnotatedFromText: bool
+    isFromFastPath: bool
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaRadioInfo(typing_extensions.TypedDict, total=False):
@@ -21442,7 +23466,13 @@ class NlpSemanticParsingModelsMediaRadioInfo(typing_extensions.TypedDict, total=
     popularity: float
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaRadioNetwork(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaRadioNetwork(
+    typing_extensions.TypedDict, total=False
+):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaRentalInfo(typing_extensions.TypedDict, total=False):
@@ -21452,13 +23482,34 @@ class NlpSemanticParsingModelsMediaRentalInfo(typing_extensions.TypedDict, total
     validUntilTimestampSec: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaSeasonConstraint(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaSeasonConstraint(
+    typing_extensions.TypedDict, total=False
+):
+    absoluteIndex: int
+    evalData: NlpSemanticParsingAnnotationEvalData
+    rawText: str
+    relativeIndex: int
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaSong(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaSong(typing_extensions.TypedDict, total=False):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    favorite: bool
+    first: bool
+    isAnnotatedFromText: bool
+    isFromFastPath: bool
+    latest: bool
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMediaTVShow(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMediaTVShow(typing_extensions.TypedDict, total=False):
+    annotationList: NlpSemanticParsingModelsMediaMediaAnnotationList
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isFromFastPath: bool
+    providerMetadata: _list[NlpSemanticParsingModelsMediaProviderMetadata]
+    qref: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsMediaYouTubeDeeplinkInfo(
@@ -21479,19 +23530,51 @@ class NlpSemanticParsingModelsMoneyCurrency(typing_extensions.TypedDict, total=F
     freebaseMid: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsMoneyMoney(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsMoneyMoney(typing_extensions.TypedDict, total=False):
+    amount: NlpSemanticParsingNumberNumber
+    currency: NlpSemanticParsingModelsMoneyCurrency
 
 @typing.type_check_only
-class NlpSemanticParsingModelsNarrativeNewsNewsProvider(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsNarrativeNewsNewsProvider(
+    typing_extensions.TypedDict, total=False
+):
+    data: QualityActionsNewsProviderAnnotationData
+    evalData: NlpSemanticParsingAnnotationEvalData
+    rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsOnDevice(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsOnDevice(typing_extensions.TypedDict, total=False):
+    device: _list[NlpSemanticParsingModelsDevice]
 
 @typing.type_check_only
-class NlpSemanticParsingModelsPersonPerson(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsPersonPerson(typing_extensions.TypedDict, total=False):
+    alternativeNameInfo: _list[QualityQrewriteAlternativeNameInfo]
+    alternativeNames: _list[str]
+    annotationSource: _list[str]
+    contactData: _list[QualityQrewritePersonalContactData]
+    evalData: NlpSemanticParsingAnnotationEvalData
+    isPersonGroupReference: bool
+    isPersonalContact: bool
+    name: str
+    normalizedText: str
+    pkgSemantics: NlpSemanticParsingQRefAnnotation
+    rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsRecurrence(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsRecurrence(typing_extensions.TypedDict, total=False):
+    dailyPattern: NlpSemanticParsingModelsRecurrenceDailyPattern
+    evalData: NlpSemanticParsingAnnotationEvalData
+    every: int
+    frequency: typing_extensions.Literal[
+        "DAILY", "WEEKLY", "MONTHLY", "YEARLY", "UNKNOWN"
+    ]
+    monthlyPattern: NlpSemanticParsingModelsRecurrenceMonthlyPattern
+    numInstancesInFrequency: int
+    recurrenceEnd: NlpSemanticParsingModelsRecurrenceRecurrenceEnd
+    recurrenceStart: NlpSemanticParsingModelsRecurrenceRecurrenceStart
+    time: NlpSemanticParsingDatetimeDateTime
+    weeklyPattern: NlpSemanticParsingModelsRecurrenceWeeklyPattern
+    yearlyPattern: NlpSemanticParsingModelsRecurrenceYearlyPattern
 
 @typing.type_check_only
 class NlpSemanticParsingModelsRecurrenceDailyPattern(
@@ -21556,7 +23639,15 @@ class NlpSemanticParsingModelsShoppingAssistantBrandPhrase(
     rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsShoppingAssistantMerchant(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsShoppingAssistantMerchant(
+    typing_extensions.TypedDict, total=False
+):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    localMerchantId: str
+    mcid: _list[NlpSemanticParsingModelsShoppingAssistantMerchantMerchantCenterId]
+    merchantId: _list[str]
+    mid: str
+    name: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantMerchantMerchantCenterId(
@@ -21568,7 +23659,14 @@ class NlpSemanticParsingModelsShoppingAssistantMerchantMerchantCenterId(
     isPla: bool
 
 @typing.type_check_only
-class NlpSemanticParsingModelsShoppingAssistantOffer(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsShoppingAssistantOffer(
+    typing_extensions.TypedDict, total=False
+):
+    docid: str
+    merchant: NlpSemanticParsingModelsShoppingAssistantMerchant
+    price: NlpSemanticParsingModelsMoneyMoney
+    product: NlpSemanticParsingModelsShoppingAssistantProduct
+    store: NlpSemanticParsingModelsShoppingAssistantStore
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantPhrase(
@@ -21580,7 +23678,15 @@ class NlpSemanticParsingModelsShoppingAssistantPhrase(
     unrecognized: NlpSemanticParsingModelsShoppingAssistantUnrecognizedPhrase
 
 @typing.type_check_only
-class NlpSemanticParsingModelsShoppingAssistantProduct(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsShoppingAssistantProduct(
+    typing_extensions.TypedDict, total=False
+):
+    catalogId: str
+    maxPrice: NlpSemanticParsingModelsMoneyMoney
+    mediaProduct: NlpSemanticParsingModelsShoppingAssistantProductMediaProduct
+    mid: str
+    minPrice: NlpSemanticParsingModelsMoneyMoney
+    title: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantProductClassification(
@@ -21593,8 +23699,18 @@ class NlpSemanticParsingModelsShoppingAssistantProductClassification(
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantProductExpression(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    grammaticalGender: typing_extensions.Literal[
+        "UNKNOWN_GENDER", "FEMININE", "MASCULINE"
+    ]
+    grammaticalNumber: typing_extensions.Literal[
+        "UNKNOWN_NUMBER", "PLURAL", "SINGULAR", "DUAL"
+    ]
+    phrases: _list[NlpSemanticParsingModelsShoppingAssistantPhrase]
+    productClassification: NlpSemanticParsingModelsShoppingAssistantProductClassification
+    shoppingListItemInfo: NlpSemanticParsingModelsShoppingAssistantShoppingListItemInfo
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantProductMediaProduct(
@@ -21614,7 +23730,11 @@ class NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttribute
     rawText: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsShoppingAssistantProductPhrase(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsShoppingAssistantProductPhrase(
+    typing_extensions.TypedDict, total=False
+):
+    metadata: NlpSemanticParsingModelsShoppingAssistantProduct
+    rawText: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantShoppingListItemInfo(
@@ -21624,7 +23744,12 @@ class NlpSemanticParsingModelsShoppingAssistantShoppingListItemInfo(
     listId: str
 
 @typing.type_check_only
-class NlpSemanticParsingModelsShoppingAssistantStore(dict[str, typing.Any]): ...
+class NlpSemanticParsingModelsShoppingAssistantStore(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    location: NlpSemanticParsingLocalLocation
+    name: str
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantUnrecognizedPhrase(
@@ -21640,7 +23765,21 @@ class NlpSemanticParsingNumberFractionNumber(typing_extensions.TypedDict, total=
     wholeNumber: NlpSemanticParsingNumberSimpleNumber
 
 @typing.type_check_only
-class NlpSemanticParsingNumberNumber(dict[str, typing.Any]): ...
+class NlpSemanticParsingNumberNumber(typing_extensions.TypedDict, total=False):
+    evalData: NlpSemanticParsingAnnotationEvalData
+    fractionNumber: NlpSemanticParsingNumberFractionNumber
+    isSpelledOut: bool
+    modifier: typing_extensions.Literal["UNKNOWN", "ADD", "SUBTRACT"]
+    normalizedValue: str
+    rawText: str
+    simpleNumber: NlpSemanticParsingNumberSimpleNumber
+    spelledOutType: typing_extensions.Literal[
+        "UNKNOWN_SPELLED_OUT_TYPE",
+        "FULL_NUMBER",
+        "LIST_OF_SINGLE_DIGITS",
+        "SHORTHAND",
+        "COMBINED",
+    ]
 
 @typing.type_check_only
 class NlpSemanticParsingNumberSimpleNumber(typing_extensions.TypedDict, total=False):
@@ -21662,13 +23801,33 @@ class NlpSemanticParsingNumberSimpleNumber(typing_extensions.TypedDict, total=Fa
     ]
 
 @typing.type_check_only
-class NlpSemanticParsingPersonalIntelligenceEntity(dict[str, typing.Any]): ...
+class NlpSemanticParsingPersonalIntelligenceEntity(
+    typing_extensions.TypedDict, total=False
+):
+    airlineConfig: TravelFlightsAirlineConfig
+    evalData: NlpSemanticParsingAnnotationEvalData
+    name: str
+    qrefAnnotation: NlpSemanticParsingQRefAnnotation
 
 @typing.type_check_only
-class NlpSemanticParsingPersonalReferenceAnnotation(dict[str, typing.Any]): ...
+class NlpSemanticParsingPersonalReferenceAnnotation(
+    typing_extensions.TypedDict, total=False
+):
+    reference: NlpSemanticParsingQRefAnnotation
+    resolutions: _list[NlpSemanticParsingQRefAnnotation]
 
 @typing.type_check_only
-class NlpSemanticParsingProtoActionsOnGoogleAogSlot(dict[str, typing.Any]): ...
+class NlpSemanticParsingProtoActionsOnGoogleAogSlot(
+    typing_extensions.TypedDict, total=False
+):
+    entityId: str
+    numBytes: int
+    original: str
+    parameterName: str
+    slotList: NlpSemanticParsingProtoActionsOnGoogleSlotList
+    slotMap: NlpSemanticParsingProtoActionsOnGoogleSlotMap
+    startByte: int
+    value: NlpSemanticParsingProtoActionsOnGoogleSlotValue
 
 @typing.type_check_only
 class NlpSemanticParsingProtoActionsOnGoogleDateTime(
@@ -21691,7 +23850,10 @@ class NlpSemanticParsingProtoActionsOnGoogleDateTimeProperty(
     ]
 
 @typing.type_check_only
-class NlpSemanticParsingProtoActionsOnGoogleSlotList(dict[str, typing.Any]): ...
+class NlpSemanticParsingProtoActionsOnGoogleSlotList(
+    typing_extensions.TypedDict, total=False
+):
+    slots: _list[NlpSemanticParsingProtoActionsOnGoogleAogSlot]
 
 @typing.type_check_only
 class NlpSemanticParsingProtoActionsOnGoogleSlotMap(
@@ -21723,7 +23885,46 @@ class NlpSemanticParsingProtoActionsOnGoogleTypedValue(
     stringValue: str
 
 @typing.type_check_only
-class NlpSemanticParsingQRefAnnotation(dict[str, typing.Any]): ...
+class NlpSemanticParsingQRefAnnotation(typing_extensions.TypedDict, total=False):
+    addedByCloseAnswers: bool
+    annotatedSpan: str
+    attributeId: str
+    clusterId: str
+    clusterSetScore: float
+    clusterSiblingMid: _list[str]
+    collectionMembership: _list[NlpSemanticParsingQRefAnnotationCollectionMembership]
+    confidenceScore: float
+    deprecatedEquivalentMids: _list[str]
+    deprecatedMdvcSupportingMid: _list[str]
+    displayName: str
+    entityNumber: int
+    entityRelationship: _list[NlpSemanticParsingQRefAnnotationEntityRelationship]
+    entitySourceData: NlpSemanticParsingEntitySourceData
+    freebaseMid: str
+    gaiaId: str
+    globalProductClusterId: _list[str]
+    interpretationNumber: int
+    isMdvcDimension: bool
+    isNimbleAnnotation: bool
+    location: GeostorePointProto
+    locationType: int
+    lowConfidence: bool
+    matchedLightweightToken: _list[
+        RepositoryWebrefLightweightTokensMatchedLightweightToken
+    ]
+    mdvcChild: _list[NlpSemanticParsingQRefAnnotation]
+    mdvcVerticals: _list[str]
+    mergedImpliedEntity: _list[NlpSemanticParsingQRefAnnotation]
+    merlotCategory: _list[NlpSemanticParsingQRefAnnotationMerlotCategoryData]
+    otherMetadata: Proto2BridgeMessageSet
+    oysterId: GeostoreFeatureIdProto
+    personalSummaryNodeChild: _list[NlpSemanticParsingQRefAnnotation]
+    productLineId: _list[str]
+    referenceScore: float
+    relatedEntity: _list[NlpSemanticParsingRelatedEntity]
+    resolutionScore: float
+    sourceTypeList: CopleySourceTypeList
+    subCluster: _list[NlpSemanticParsingQRefAnnotationSubCluster]
 
 @typing.type_check_only
 class NlpSemanticParsingQRefAnnotationCollectionMembership(
@@ -24716,7 +26917,26 @@ class QualityActionsRoom(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class QualityActionsTimer(dict[str, typing.Any]): ...
+class QualityActionsTimer(typing_extensions.TypedDict, total=False):
+    creationTime: AssistantApiTimestamp
+    device: AssistantApiSettingsDeviceSettings
+    expireTime: str
+    expireTimerTime: NlpSemanticParsingDatetimeDateTime
+    id: str
+    label: str
+    lastUpdated: AssistantApiTimestamp
+    originalDuration: str
+    originalTimerDuration: NlpSemanticParsingDatetimeDuration
+    provider: AssistantApiCoreTypesProvider
+    remainingDuration: str
+    remainingTimerDuration: NlpSemanticParsingDatetimeDuration
+    ringtone: QualityActionsRingtone
+    ringtoneTaskMetadata: AssistantApiCoreTypesGovernedRingtoneTaskMetadata
+    room: QualityActionsRoom
+    status: typing_extensions.Literal[
+        "UNKNOWN_TIMER_STATUS", "RUNNING", "PAUSED", "EXPIRED", "RESET"
+    ]
+    vibrate: bool
 
 @typing.type_check_only
 class QualityAuthorityTopicEmbeddingsVersionedItem(
@@ -25258,7 +27478,29 @@ class QualityNavboostCrapsCrapsClickSignals(typing_extensions.TypedDict, total=F
     unsquashedLastLongestClicks: float
 
 @typing.type_check_only
-class QualityNavboostCrapsCrapsData(dict[str, typing.Any]): ...
+class QualityNavboostCrapsCrapsData(typing_extensions.TypedDict, total=False):
+    agingCounts: QualityNavboostCrapsAgingData
+    badClicks: float
+    clicks: float
+    country: str
+    device: QualityNavboostCrapsCrapsDevice
+    features: _list[QualityNavboostCrapsFeatureCrapsData]
+    goodClicks: float
+    impressions: float
+    language: str
+    lastLongestClicks: float
+    mobileData: QualityNavboostCrapsCrapsData
+    mobileSignals: QualityNavboostCrapsCrapsClickSignals
+    packedIpAddress: str
+    patternLevel: int
+    patternSccStats: QualityNavboostCrapsStatsWithWeightsProto
+    query: str
+    sliceTag: str
+    squashed: QualityNavboostCrapsCrapsClickSignals
+    unscaledIpPriorBadFraction: float
+    unsquashed: QualityNavboostCrapsCrapsClickSignals
+    unsquashedMobileSignals: QualityNavboostCrapsCrapsClickSignals
+    url: str
 
 @typing.type_check_only
 class QualityNavboostCrapsCrapsDevice(typing_extensions.TypedDict, total=False):
@@ -25828,7 +28070,11 @@ class QualityQrewriteAlternativeNameInfo(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class QualityQrewriteCalendarReference(dict[str, typing.Any]): ...
+class QualityQrewriteCalendarReference(typing_extensions.TypedDict, total=False):
+    calendarAlias: QualityQrewriteQRewriteAccountAwareCalendarAliasWrapper
+    contactCalendarName: QualityQrewriteContactCalendarName
+    familyCalendarAlias: QualityQrewriteFamilyCalendarAlias
+    primaryCalendarAlias: QualityQrewritePrimaryCalendarAlias
 
 @typing.type_check_only
 class QualityQrewriteCandidateId(typing_extensions.TypedDict, total=False):
@@ -25857,14 +28103,84 @@ class QualityQrewriteCandidateIdField(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class QualityQrewriteContactCalendarName(dict[str, typing.Any]): ...
+class QualityQrewriteContactCalendarName(typing_extensions.TypedDict, total=False):
+    contact: NlpSemanticParsingModelsPersonPerson
 
 @typing.type_check_only
 class QualityQrewriteFamilyCalendarAlias(typing_extensions.TypedDict, total=False):
     familyCalendarId: str
 
 @typing.type_check_only
-class QualityQrewritePersonalContactData(dict[str, typing.Any]): ...
+class QualityQrewritePersonalContactData(typing_extensions.TypedDict, total=False):
+    accountProvenance: QualityQrewriteAccountProvenance
+    additionalContactMetadata: _list[dict[str, typing.Any]]
+    commonNameAliasConfidence: float
+    conceptId: str
+    conceptIdEn: str
+    displayName: str
+    familyName: str
+    ffracScore: float
+    gaiaId: str
+    givenName: str
+    hasAddressForDeviceContacts: bool
+    hasGplusProfile: bool
+    isFromOnDeviceLookup: bool
+    isTransliteratedMatch: bool
+    isVisibleToGuestsRelationship: bool
+    matchSignal: AssistantVerticalsCommonContactMatchSignal
+    matchedNameType: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "GIVEN_NAME",
+        "FAMILY_NAME",
+        "FULL_NAME",
+        "NICKNAME",
+        "OTHER",
+        "INITIAL_WITH_FAMILY_NAME",
+        "EMAIL_USERNAME",
+        "VANITY_NICKNAME",
+        "GIVEN_NAME_ALIAS",
+        "FULL_NAME_ALIAS",
+        "HOMOPHONE_GIVEN_NAME",
+        "HOMOPHONE_FAMILY_NAME",
+        "HOMOPHONE_FULL_NAME",
+        "HOMOPHONE_NICKNAME",
+        "GIVEN_MIDDLE_NAME",
+        "GIVEN_NAME_WITH_FAMILY_NAME_INITIAL",
+        "EMAIL_OF_FAMILY_MEMBER",
+    ]
+    matchedRecognitionAlternateName: str
+    personData: AppsPeopleOzExternalMergedpeopleapiPerson
+    personalContactDataLog: AssistantLogsCommunicationPersonalContactDataLog
+    pkgPerson: NlpSemanticParsingQRefAnnotation
+    pkgReferenceType: typing_extensions.Literal[
+        "UNKNOWN_PKG_REFERENCE_TYPE", "PKG_NAME_REFERENCE", "PKG_RELATIONSHIP_REFERENCE"
+    ]
+    recognitionAlternateScore: float
+    recognitionAlternateSource: typing_extensions.Literal[
+        "NONE",
+        "S3_HYPOTHESES",
+        "GENIE_QUERY_ALTERNATIVES",
+        "NAME_CORRECTION_LOG",
+        "FUZZY_CONTACT_MATCH",
+        "NEURAL_CONTACT_MATCH",
+        "NEURAL_CONTACT_MATCH_DARK_LAUNCH",
+    ]
+    relationshipLexicalInfo: CopleyLexicalMetadata
+    relationshipMemory: _list[QualityQrewriteRelationshipMemoryData]
+    sharedContactOwnerGaiaId: str
+    source: typing_extensions.Literal[
+        "FOCUS_CONTACT",
+        "DEVICE_CONTACT",
+        "GMAIL_INFERENCE",
+        "S3_DECORATOR",
+        "RELATIONSHIP",
+        "VANITY",
+        "SIGNED_OUT_DEVICE",
+        "SHARED_CONTACT",
+        "FAMILY_MEMBER",
+        "SHARED_DEVICE_USER",
+        "ON_DEVICE_CONTACT_LOOKUP",
+    ]
 
 @typing.type_check_only
 class QualityQrewritePrimaryCalendarAlias(typing_extensions.TypedDict, total=False): ...
@@ -26118,10 +28434,46 @@ class QualitySalientTermsDocData(typing_extensions.TypedDict, total=False):
     virtualVolume: float
 
 @typing.type_check_only
-class QualitySalientTermsSalientTerm(dict[str, typing.Any]): ...
+class QualitySalientTermsSalientTerm(typing_extensions.TypedDict, total=False):
+    idf: float
+    label: str
+    originalTerm: _list[QualitySalientTermsSalientTerm]
+    salience: float
+    signalTerm: _list[QualitySalientTermsSignalTermData]
+    virtualTf: float
+    weight: int
 
 @typing.type_check_only
-class QualitySalientTermsSalientTermSet(dict[str, typing.Any]): ...
+class QualitySalientTermsSalientTermSet(typing_extensions.TypedDict, total=False):
+    docData: QualitySalientTermsDocData
+    salientTerm: _list[QualitySalientTermsSalientTerm]
+    version: typing_extensions.Literal[
+        "UNKNOWN",
+        "V1",
+        "V2",
+        "V2_1",
+        "V2_2",
+        "V3",
+        "V3_1",
+        "V3_2",
+        "V4",
+        "V4_1",
+        "V4_2",
+        "V5",
+        "V5_1",
+        "V1_BODYONLY",
+        "V2_BODYONLY",
+        "RENAME_ME_TO_ADD_NEW_ENUM_15",
+        "RENAME_ME_TO_ADD_NEW_ENUM_16",
+        "RENAME_ME_TO_ADD_NEW_ENUM_17",
+        "RENAME_ME_TO_ADD_NEW_ENUM_18",
+        "RENAME_ME_TO_ADD_NEW_ENUM_19",
+        "RENAME_ME_TO_ADD_NEW_ENUM_20",
+        "RENAME_ME_TO_ADD_NEW_ENUM_21",
+        "RENAME_ME_TO_ADD_NEW_ENUM_22",
+        "RENAME_ME_TO_ADD_NEW_ENUM_23",
+        "RENAME_ME_TO_ADD_NEW_ENUM_24",
+    ]
 
 @typing.type_check_only
 class QualitySalientTermsSignalData(typing_extensions.TypedDict, total=False):
@@ -26146,7 +28498,32 @@ class QualitySalientTermsSignalData(typing_extensions.TypedDict, total=False):
     volume: float
 
 @typing.type_check_only
-class QualitySalientTermsSignalTermData(dict[str, typing.Any]): ...
+class QualitySalientTermsSignalTermData(typing_extensions.TypedDict, total=False):
+    bigramDiscountTf: float
+    bigramness: float
+    centrality: float
+    correctedTf: float
+    expectedTf: float
+    globalNpmi: float
+    idf: float
+    isBigram: bool
+    label: str
+    localNpmi: float
+    observedTf: float
+    originalTerm: _list[QualitySalientTermsSignalTermData]
+    rawTf: float
+    salience: float
+    source: typing_extensions.Literal[
+        "BODY",
+        "ANCHORS",
+        "CLICKS",
+        "TITLE",
+        "NAME",
+        "DATE",
+        "URL",
+        "ENTITY_NAVBOOST",
+        "SYNTHETIC_BODY",
+    ]
 
 @typing.type_check_only
 class QualitySherlockKnexAnnotation(typing_extensions.TypedDict, total=False):
@@ -26653,14 +29030,28 @@ class QualityVidyaVideoLanguageVideoLanguage(typing_extensions.TypedDict, total=
     speechClass: typing_extensions.Literal["UNKNOWN", "NO_SPEECH", "HAS_SPEECH_FOR_ASR"]
 
 @typing.type_check_only
-class QualityViewsExtractionClusterInfo(dict[str, typing.Any]): ...
+class QualityViewsExtractionClusterInfo(typing_extensions.TypedDict, total=False):
+    clusterId: str
+    clusterSetScore: float
+    clusterSiblingMid: _list[str]
+    score: float
+    subCluster: _list[QualityViewsExtractionClusterInfo]
 
 @typing.type_check_only
 class QualityWebanswersTranscriptAnnotations(typing_extensions.TypedDict, total=False):
     videoTranscriptAnnotations: _list[QualityWebanswersVideoTranscriptAnnotations]
 
 @typing.type_check_only
-class QualityWebanswersVideoTranscriptAnnotations(dict[str, typing.Any]): ...
+class QualityWebanswersVideoTranscriptAnnotations(
+    typing_extensions.TypedDict, total=False
+):
+    amarnaDocid: str
+    lang: str
+    punctuatedTranscript: str
+    saftDocument: NlpSaftDocument
+    saftSentenceBoundary: SentenceBoundaryAnnotations
+    timingInfo: QualityWebanswersVideoYouTubeCaptionTimingInfoAnnotations
+    webrefEntities: RepositoryWebrefWebrefEntities
 
 @typing.type_check_only
 class QualityWebanswersVideoYouTubeCaptionTimingInfoAnnotations(
@@ -26700,7 +29091,8 @@ class RepositoryAnnotationsGeoTopic(typing_extensions.TypedDict, total=False):
     sumContainedPoiNormalizedScores: float
 
 @typing.type_check_only
-class RepositoryAnnotationsGeoTopicality(dict[str, typing.Any]): ...
+class RepositoryAnnotationsGeoTopicality(typing_extensions.TypedDict, total=False):
+    geotopics: _list[RepositoryAnnotationsGeoTopic]
 
 @typing.type_check_only
 class RepositoryAnnotationsGeoTopicalityScore(typing_extensions.TypedDict, total=False):
@@ -27017,7 +29409,18 @@ class RepositoryWebrefCompactKgTopic(typing_extensions.TypedDict, total=False):
     propertyValue: _list[RepositoryWebrefCompactKgPropertyValue]
 
 @typing.type_check_only
-class RepositoryWebrefCompactKgValue(dict[str, typing.Any]): ...
+class RepositoryWebrefCompactKgValue(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    compoundValue: RepositoryWebrefCompactKgTopic
+    datetimeValue: str
+    enumValue: str
+    floatValue: float
+    idValue: str
+    intValue: str
+    serializedProtoValue: str
+    textValue: str
+    uriValue: str
+    uriValueFprint32: int
 
 @typing.type_check_only
 class RepositoryWebrefComponentReference(typing_extensions.TypedDict, total=False):
@@ -27362,7 +29765,27 @@ class RepositoryWebrefEntityNameRatingsEntityNameRating(
     ]
 
 @typing.type_check_only
-class RepositoryWebrefEntityNameScore(dict[str, typing.Any]): ...
+class RepositoryWebrefEntityNameScore(typing_extensions.TypedDict, total=False):
+    bootstrappingPreviousIteration: RepositoryWebrefBootstrappingScore
+    confidence: float
+    debugInfo: _list[RepositoryWebrefEntityDebugInfo]
+    debugVariantSignals: _list[RepositoryWebrefPreprocessingNameVariantSignals]
+    entity: RepositoryWebrefEntityJoin
+    extendedScoreRatio: _list[RepositoryWebrefExtendedEntityNameScore]
+    includeInModel: bool
+    internalBootstrapIsOpenWorld: bool
+    internalIsClusterParent: bool
+    isClusterGlobal: bool
+    isDropped: bool
+    isMatchlessResultContext: bool
+    isPruned: bool
+    mid: str
+    nameMetadata: RepositoryWebrefPreprocessingNameEntityMetadata
+    rangeMetadata: _list[RepositoryWebrefRangeMetadata]
+    score: float
+    scoreRatio: float
+    useAsNameCandidate: bool
+    volumeBasedScore: float
 
 @typing.type_check_only
 class RepositoryWebrefEntityNameSource(typing_extensions.TypedDict, total=False):
@@ -27435,7 +29858,30 @@ class RepositoryWebrefExtendedEntityNameScore(typing_extensions.TypedDict, total
     scoreRatio: float
 
 @typing.type_check_only
-class RepositoryWebrefExtraMetadata(dict[str, typing.Any]): ...
+class RepositoryWebrefExtraMetadata(typing_extensions.TypedDict, total=False):
+    bookEditionMetadata: _list[RepositoryWebrefBookEditionMetadata]
+    categoryInfo: RepositoryWebrefCategoryInfo
+    clusterMetadata: RepositoryWebrefClusterMetadata
+    displayInfo: RepositoryWebrefDisplayInfo
+    entityScores: RepositoryWebrefEntityScores
+    equivalentEntityId: _list[RepositoryWebrefWebrefEntityId]
+    geoMetadata: RepositoryWebrefGeoMetadataProto
+    kcAttributeMetadata: RepositoryWebrefKCAttributeMetadata
+    latentEntities: RepositoryWebrefLatentEntities
+    mdvcMetadata: RepositoryWebrefMdvcMetadata
+    otherMetadata: Proto2BridgeMessageSet
+    primaryRecording: str
+    productMetadata: RepositoryWebrefProductMetadata
+    specialEntityType: typing_extensions.Literal[
+        "UNDEFINED",
+        "COLLECTION",
+        "DATETIME",
+        "MRF",
+        "SHOPPING_CATALOG_TOKEN",
+        "LIGHTWEIGHT_TOKEN",
+    ]
+    specialWord: _list[MapsQualitySpecialWordsProto]
+    supportTransferRules: _list[RepositoryWebrefSupportTransferRule]
 
 @typing.type_check_only
 class RepositoryWebrefFatcatCategory(typing_extensions.TypedDict, total=False):
@@ -27521,7 +29967,18 @@ class RepositoryWebrefGenericIndices(typing_extensions.TypedDict, total=False):
     index: int
 
 @typing.type_check_only
-class RepositoryWebrefGeoMetadataProto(dict[str, typing.Any]): ...
+class RepositoryWebrefGeoMetadataProto(typing_extensions.TypedDict, total=False):
+    address: GeostoreAddressProto
+    addressSynonyms: _list[RepositoryWebrefGeoMetadataProtoAddressSynonym]
+    areaKm2: float
+    bound: GeostoreRectProto
+    countryCode: str
+    location: GeostorePointProto
+    name: GeostoreNameProto
+    oysterId: GeostoreFeatureIdProto
+    stableIntegerCountryCode: int
+    timezone: str
+    wpLocation: _list[RepositoryWebrefWikipediaGeocode]
 
 @typing.type_check_only
 class RepositoryWebrefGeoMetadataProtoAddressSynonym(
@@ -27539,7 +29996,9 @@ class RepositoryWebrefGlobalLinkInfo(typing_extensions.TypedDict, total=False):
     variantInfo: _list[RepositoryWebrefLinkInfo]
 
 @typing.type_check_only
-class RepositoryWebrefGlobalNameInfo(dict[str, typing.Any]): ...
+class RepositoryWebrefGlobalNameInfo(typing_extensions.TypedDict, total=False):
+    normalizedName: str
+    variantInfo: _list[RepositoryWebrefNameInfo]
 
 @typing.type_check_only
 class RepositoryWebrefHumanRatings(typing_extensions.TypedDict, total=False):
@@ -27900,7 +30359,16 @@ class RepositoryWebrefNameDebugInfoCandidateInfo(
     resultEntityScore: float
 
 @typing.type_check_only
-class RepositoryWebrefNameInfo(dict[str, typing.Any]): ...
+class RepositoryWebrefNameInfo(typing_extensions.TypedDict, total=False):
+    aggregatedScores: RepositoryWebrefAggregatedEntityNameScores
+    annotatedCategory: _list[RepositoryWebrefAnnotatedCategoryInfo]
+    debugDetails: _list[RepositoryWebrefNameDebugInfo]
+    includeInModel: bool
+    name: RepositoryWebrefLocalizedString
+    ngramData: RepositoryWebrefUniversalNgramData
+    perNameLightweightToken: RepositoryWebrefLightweightTokensPerNameLightweightToken
+    scores: RepositoryWebrefNameScores
+    source: _list[RepositoryWebrefEntityNameSource]
 
 @typing.type_check_only
 class RepositoryWebrefNameScores(typing_extensions.TypedDict, total=False):
@@ -28274,7 +30742,12 @@ class RepositoryWebrefProcessorCounter(typing_extensions.TypedDict, total=False)
     value: int
 
 @typing.type_check_only
-class RepositoryWebrefProcessorTiming(dict[str, typing.Any]): ...
+class RepositoryWebrefProcessorTiming(typing_extensions.TypedDict, total=False):
+    cpuInstructions: str
+    name: str
+    processorCounters: _list[RepositoryWebrefProcessorCounter]
+    processorTimings: _list[RepositoryWebrefProcessorTiming]
+    wallTimeNs: str
 
 @typing.type_check_only
 class RepositoryWebrefProductMetadata(typing_extensions.TypedDict, total=False):
@@ -28960,10 +31433,26 @@ class RepositoryWebrefWebrefDocumentInfo(typing_extensions.TypedDict, total=Fals
     webrefParsedContentSentence: _list[str]
 
 @typing.type_check_only
-class RepositoryWebrefWebrefEntities(dict[str, typing.Any]): ...
+class RepositoryWebrefWebrefEntities(typing_extensions.TypedDict, total=False):
+    annotationStats: RepositoryWebrefWebrefAnnotationStats
+    annotatorCheckpointFingerprints: _list[RepositoryWebrefAnnotatorCheckpointFprint]
+    category: _list[RepositoryWebrefCategoryAnnotation]
+    dateRange: _list[RepositoryWebrefSemanticDateRange]
+    documentInfo: RepositoryWebrefWebrefDocumentInfo
+    entity: _list[RepositoryWebrefWebrefEntity]
+    rangeAnnotations: _list[RepositoryWebrefRangeAnnotations]
+    status: RepositoryWebrefWebrefStatus
+    stuff: Proto2BridgeMessageSet
+    tripleAnnotations: RepositoryWebrefTripleAnnotations
 
 @typing.type_check_only
-class RepositoryWebrefWebrefEntity(dict[str, typing.Any]): ...
+class RepositoryWebrefWebrefEntity(typing_extensions.TypedDict, total=False):
+    annotatedRelationship: _list[RepositoryWebrefWebrefEntityRelationship]
+    annotations: RepositoryWebrefEntityAnnotations
+    collections: RepositoryWebrefWebrefEntityCollections
+    entityJoin: RepositoryWebrefEntityJoin
+    id: RepositoryWebrefWebrefEntityId
+    mrf: _list[KnowledgeAnswersIntentQueryArgument]
 
 @typing.type_check_only
 class RepositoryWebrefWebrefEntityCollections(typing_extensions.TypedDict, total=False):
@@ -29364,7 +31853,68 @@ class ResearchScienceSearchOrganization(typing_extensions.TypedDict, total=False
     originalOrganizationName: str
 
 @typing.type_check_only
-class ResearchScienceSearchReconciledMetadata(dict[str, typing.Any]): ...
+class ResearchScienceSearchReconciledMetadata(typing_extensions.TypedDict, total=False):
+    alternateName: _list[str]
+    authorList: str
+    catalog: ResearchScienceSearchCatalog
+    compactIdentifier: _list[str]
+    compactIdentifierFromCitation: _list[str]
+    coverageEndDate: ResearchScienceSearchDate
+    coverageStartDate: ResearchScienceSearchDate
+    dataDownload: _list[ResearchScienceSearchDataDownload]
+    datasetClassificationFieldsHash: str
+    datasetClassificationScore: float
+    dateCreated: ResearchScienceSearchDate
+    dateModified: ResearchScienceSearchDate
+    datePublished: ResearchScienceSearchDate
+    dateUpdated: ResearchScienceSearchDate
+    denylistStatus: _list[str]
+    description: _list[str]
+    descriptionInHtml: _list[str]
+    doi: str
+    doiFromCitation: _list[str]
+    fieldOfStudy: _list[ResearchScienceSearchFieldOfStudyInfo]
+    fingerprint: str
+    funder: _list[ResearchScienceSearchOrganization]
+    hasTableSummaries: bool
+    id: str
+    identifierFromSource: _list[str]
+    imageUrl: _list[str]
+    indexInCluster: int
+    isAccessibleForFree: typing_extensions.Literal[
+        "BOOLEAN_WITH_UNDEFINED_UNDEFINED",
+        "BOOLEAN_WITH_UNDEFINED_TRUE",
+        "BOOLEAN_WITH_UNDEFINED_FALSE",
+    ]
+    isBasedOn: _list[str]
+    keyword: _list[str]
+    languageCode: str
+    license: _list[ResearchScienceSearchLicense]
+    licenseDeprecated: _list[str]
+    measurementTechnique: _list[str]
+    mentionedUrls: _list[str]
+    metadataType: typing_extensions.Literal[
+        "UNKNOWN_DATASET_TYPE", "DATASET_TYPE", "TABLE_TYPE", "FIGURE_TYPE"
+    ]
+    name: _list[str]
+    numberOfDatasetsAtSourceUrl: int
+    numberOfScholarCitations: int
+    publication: _list[ResearchScienceSearchCitation]
+    relatedArticleUrl: str
+    replica: _list[ResearchScienceSearchReplica]
+    sameAs: _list[str]
+    scholarQuery: str
+    scholarlyArticle: ResearchScienceSearchScholarlyArticle
+    sourceOrganization: _list[ResearchScienceSearchOrganization]
+    sourceUrl: str
+    sourceUrlDocjoinInfo: ResearchScienceSearchSourceUrlDocjoinInfo
+    spatialCoverage: _list[ResearchScienceSearchLocation]
+    topSalientTermLabel: _list[str]
+    url: _list[str]
+    variable: _list[str]
+    versionClusterInfo: ResearchScienceSearchVersionClusterInfo
+    versionEmbeddingFieldsHash: str
+    versionEmbeddingVector: _list[float]
 
 @typing.type_check_only
 class ResearchScienceSearchReplica(typing_extensions.TypedDict, total=False):
@@ -29383,7 +31933,27 @@ class ResearchScienceSearchScholarlyArticle(typing_extensions.TypedDict, total=F
     pdfDownloadUrl: str
 
 @typing.type_check_only
-class ResearchScienceSearchSourceUrlDocjoinInfo(dict[str, typing.Any]): ...
+class ResearchScienceSearchSourceUrlDocjoinInfo(
+    typing_extensions.TypedDict, total=False
+):
+    dataSource: typing_extensions.Literal[
+        "UNKNOWN", "RAFFIA_PROXY_SERVICE", "SPORE_DUMP"
+    ]
+    displayUrl: str
+    docid: str
+    fieldOfStudyEntity: _list[ResearchScienceSearchSourceUrlDocjoinInfoWebrefEntityInfo]
+    indexTier: _list[str]
+    languageCode: str
+    latestPageUpdateDate: str
+    navboostQuery: _list[ResearchScienceSearchNavboostQueryInfo]
+    pagerank: int
+    petacatInfo: FatcatCompactDocClassification
+    salientTerms: QualitySalientTermsSalientTermSet
+    scholarInfo: ScienceIndexSignal
+    sporeGraphMid: _list[str]
+    title: str
+    topEntity: _list[RepositoryWebrefWebrefEntity]
+    url: str
 
 @typing.type_check_only
 class ResearchScienceSearchSourceUrlDocjoinInfoWebrefEntityInfo(
@@ -32307,7 +34877,12 @@ class VideoContentSearchAnchorThumbnail(typing_extensions.TypedDict, total=False
     timestampMs: int
 
 @typing.type_check_only
-class VideoContentSearchAnchorThumbnailInfo(dict[str, typing.Any]): ...
+class VideoContentSearchAnchorThumbnailInfo(typing_extensions.TypedDict, total=False):
+    colorEntropy: float
+    imageData: ImageData
+    isUnsafe: bool
+    starburstV4Embedding: DrishtiDenseFeatureData
+    thumbnailBytes: str
 
 @typing.type_check_only
 class VideoContentSearchAnchorsCommonFeatureSet(
@@ -32445,7 +35020,16 @@ class VideoContentSearchCommentAnchorSetFeatures(
     rootComment: VideoContentSearchCommentAnchorSetFeaturesComment
 
 @typing.type_check_only
-class VideoContentSearchCommentAnchorSetFeaturesComment(dict[str, typing.Any]): ...
+class VideoContentSearchCommentAnchorSetFeaturesComment(
+    typing_extensions.TypedDict, total=False
+):
+    commentId: str
+    likeCount: int
+    miniStanza: YoutubeCommentsClusteringMiniStanza
+    publishedAt: str
+    textDisplay: str
+    textOriginal: str
+    updatedAt: str
 
 @typing.type_check_only
 class VideoContentSearchDescriptionAnchorFeatures(
@@ -33160,7 +35744,33 @@ class VideoContentSearchVideoAnchorRatingScore(
     averageDescriptionQuality: float
 
 @typing.type_check_only
-class VideoContentSearchVideoAnchorScoreInfo(dict[str, typing.Any]): ...
+class VideoContentSearchVideoAnchorScoreInfo(typing_extensions.TypedDict, total=False):
+    anchorCommonFeatureSet: VideoContentSearchAnchorCommonFeatureSet
+    attachments: Proto2BridgeMessageSet
+    captionEntityAnchorFeatures: VideoContentSearchCaptionEntityAnchorFeatures
+    captionSpanAnchorFeatures: VideoContentSearchCaptionSpanAnchorFeatures
+    descriptionAnchorFeatures: VideoContentSearchDescriptionAnchorFeatures
+    filterReason: _list[str]
+    filtered: bool
+    generativeFeatures: _list[VideoContentSearchGenerativePredictionFeatures]
+    instructionAnchorFeatures: VideoContentSearchInstructionAnchorFeatures
+    instructionTrainingDataAnchorFeatures: VideoContentSearchInstructionTrainingDataAnchorFeatures
+    labelLanguage: str
+    labelTransformation: _list[
+        VideoContentSearchVideoAnchorScoreInfoLabelTransformation
+    ]
+    listAnchorFeatures: VideoContentSearchListAnchorFeatures
+    listTrainingDataAnchorFeatures: VideoContentSearchListTrainingDataAnchorFeatures
+    multimodalTopicFeatures: VideoContentSearchMultimodalTopicFeatures
+    multimodalTopicTrainingFeatures: VideoContentSearchMultimodalTopicTrainingFeatures
+    ocrAnchorFeature: VideoContentSearchOnScreenTextFeature
+    ocrDescriptionTrainingDataAnchorFeatures: VideoContentSearchOcrDescriptionTrainingDataAnchorFeatures
+    opinionsAnchorFeatures: VideoContentSearchShoppingOpinionsAnchorFeatures
+    qnaAnchorFeatures: VideoContentSearchQnaAnchorFeatures
+    ratingScore: VideoContentSearchVideoAnchorRatingScore
+    safeSearchClassifierOutput: ClassifierPornQueryMultiLabelClassifierOutput
+    textSimilarityFeatures: _list[VideoContentSearchTextSimilarityFeatures]
+    thumbnailInfo: VideoContentSearchAnchorThumbnailInfo
 
 @typing.type_check_only
 class VideoContentSearchVideoAnchorScoreInfoLabelTransformation(
@@ -33177,13 +35787,68 @@ class VideoContentSearchVideoAnchorSetRatingScore(
     averageSetNavigationUsefulness: float
 
 @typing.type_check_only
-class VideoContentSearchVideoAnchorSets(dict[str, typing.Any]): ...
+class VideoContentSearchVideoAnchorSets(typing_extensions.TypedDict, total=False):
+    videoActions: VideoContentSearchVideoActions
+    videoAnchors: _list[VideoContentSearchVideoAnchors]
+    videoInfo: VideoContentSearchVideoInfo
+    videoScoreInfo: VideoContentSearchVideoScoreInfo
 
 @typing.type_check_only
-class VideoContentSearchVideoAnchors(dict[str, typing.Any]): ...
+class VideoContentSearchVideoAnchors(typing_extensions.TypedDict, total=False):
+    anchorType: typing_extensions.Literal[
+        "UNKNOWN",
+        "DESCRIPTION_ANCHOR",
+        "LIST",
+        "OCR",
+        "LIST_ENTITY",
+        "CAPTION_ENTITY",
+        "KEY_MOMENT",
+        "QUESTION_AND_ANSWER",
+        "MARKUP",
+        "OCR_ASR",
+        "ASR_SPAN",
+        "INSTRUCTION",
+        "DESCRIPTION_SPAN",
+        "EXPERIMENTAL_MORE_VIDEO_ANSWERS",
+        "SHOPPING_OPINIONS",
+        "GENERATED_QUERY",
+        "HIGHLIGHTED_SNIPPET",
+        "SHORT_TOPIC_HEADING_GROUP",
+        "SHOPPING_ASR_SPAN",
+        "RADISH_QA",
+        "GENERATIVE_ASR",
+        "ASR_TRANSCRIPT",
+        "COMMENT",
+    ]
+    entityGroupInfo: VideoContentSearchEntityGroupInfo
+    experimentalPredictedQuerylessTocUsefulness: float
+    filterReason: _list[str]
+    isFiltered: bool
+    mergedAnchorsSources: _list[str]
+    predictedQuerylessTocUsefulness: float
+    score: float
+    scoreInfo: VideoContentSearchVideoAnchorsScoreInfo
+    shouldServeThumbnails: bool
+    thumbnailForced: bool
+    thumbnailSetInfo: VideoContentSearchAnchorsThumbnailInfo
+    videoAnchor: _list[VideoContentSearchVideoAnchor]
+    videoIntroduction: VideoContentSearchVideoIntroduction
 
 @typing.type_check_only
-class VideoContentSearchVideoAnchorsScoreInfo(dict[str, typing.Any]): ...
+class VideoContentSearchVideoAnchorsScoreInfo(typing_extensions.TypedDict, total=False):
+    anchorsCommonFeatureSet: VideoContentSearchAnchorsCommonFeatureSet
+    captionEntityAnchorSetFeatures: VideoContentSearchCaptionEntityAnchorSetFeatures
+    captionSpanAnchorSetFeatures: VideoContentSearchCaptionSpanAnchorSetFeatures
+    commentAnchorSetFeatures: VideoContentSearchCommentAnchorSetFeatures
+    descriptionAnchorSetFeatures: VideoContentSearchDescriptionAnchorSetFeatures
+    filtered: bool
+    listAnchorSetFeatures: VideoContentSearchListAnchorSetFeatures
+    listTrainingDataSetFeatures: VideoContentSearchListTrainingDataSetFeatures
+    ocrAnchorClusterFeature: VideoContentSearchOnScreenTextClusterFeature
+    ocrDescriptionTrainingDataSetFeatures: VideoContentSearchOcrDescriptionTrainingDataSetFeatures
+    qnaAnchorSetFeatures: VideoContentSearchQnaAnchorSetFeatures
+    ratingScore: VideoContentSearchVideoAnchorSetRatingScore
+    sportsKeyMomentsAnchorSetFeatures: VideoContentSearchSportsKeyMomentsAnchorSetFeatures
 
 @typing.type_check_only
 class VideoContentSearchVideoCommonFeatures(typing_extensions.TypedDict, total=False):
@@ -33202,7 +35867,37 @@ class VideoContentSearchVideoGeneratedQueryFeatures(
     totalRestrictedQueries: int
 
 @typing.type_check_only
-class VideoContentSearchVideoInfo(dict[str, typing.Any]): ...
+class VideoContentSearchVideoInfo(typing_extensions.TypedDict, total=False):
+    amarnaDocid: str
+    asrLanguage: str
+    crapsData: QualityNavboostCrapsCrapsData
+    description: str
+    docLanguage: str
+    durationMs: float
+    hasAsr: bool
+    hasDescriptionAnchors: bool
+    isSafe: bool
+    isWatchpage: bool
+    navqueries: _list[str]
+    nsr: float
+    numViews: str
+    pseudoVideoData: PseudoVideoData
+    saftDoc: NlpSaftDocument
+    saftTranscript: str
+    salientTermSet: QualitySalientTermsSalientTermSet
+    subindexid: _list[int]
+    title: str
+    titleLanguage: str
+    transcriptAnnotations: QualityWebanswersTranscriptAnnotations
+    uniqueChromeViews: int
+    url: str
+    verticalItem: _list[IndexingMlVerticalVerticalItem]
+    videoGenre: str
+    videoType: typing_extensions.Literal[
+        "UNKNOWN", "LISTICLE", "INSTRUCTION", "SPORTS", "SINGLE_PRODUCT_RESEARCH", "EDU"
+    ]
+    videoUrl: str
+    webrefEntities: RepositoryWebrefWebrefEntities
 
 @typing.type_check_only
 class VideoContentSearchVideoIntroduction(typing_extensions.TypedDict, total=False):
@@ -33217,7 +35912,13 @@ class VideoContentSearchVideoMultimodalTopicFeatures(
     frameStarburstData: _list[VideoContentSearchFrameStarburstData]
 
 @typing.type_check_only
-class VideoContentSearchVideoScoreInfo(dict[str, typing.Any]): ...
+class VideoContentSearchVideoScoreInfo(typing_extensions.TypedDict, total=False):
+    commonFeatures: VideoContentSearchVideoCommonFeatures
+    ocrVideoFeature: VideoContentSearchOcrVideoFeature
+    safeSearchClassifierOutput: ClassifierPornQueryMultiLabelClassifierOutput
+    version: str
+    videoGeneratedQueryFeatures: VideoContentSearchVideoGeneratedQueryFeatures
+    videoMultimodalTopicFeatures: VideoContentSearchVideoMultimodalTopicFeatures
 
 @typing.type_check_only
 class VideoContentSearchVisualFeatures(typing_extensions.TypedDict, total=False):
@@ -38174,7 +40875,177 @@ class YoutubeBackstageSuperVodCommentInfo(typing_extensions.TypedDict, total=Fal
     ]
 
 @typing.type_check_only
-class YoutubeCommentsClusteringMiniStanza(dict[str, typing.Any]): ...
+class YoutubeCommentsClusteringMiniStanza(typing_extensions.TypedDict, total=False):
+    ansibleScores: dict[str, typing.Any]
+    automodScores: dict[str, typing.Any]
+    blarneyStoneScore: YoutubeDistillerBlarneyStoneScores
+    channelDiscussionId: str
+    channelId: str
+    channelProfileQualityScores: dict[str, typing.Any]
+    charEntropy: float
+    commentClassification: dict[str, typing.Any]
+    commentClassificationBuckets: _list[str]
+    commentClassificationRanking: dict[str, typing.Any]
+    commentType: typing_extensions.Literal[
+        "UNKNOWN_PRODUCT_TYPE",
+        "UNSUPPORTED_PRODUCT_TYPE",
+        "YT_VIDEO_COMMENT",
+        "YT_CHANNEL_DISCUSSION",
+        "YT_BACKSTAGE_COMMENT",
+        "YT_LIVE_CHAT",
+        "YT_LIVE_CHAT_CONFIG",
+        "YT_CHANNEL_CONFIG",
+        "YT_POST_COMMENT",
+    ]
+    content: str
+    contentUpdateTimestamp: str
+    coverageSamplingEligible: bool
+    creationDevice: typing_extensions.Literal[
+        "UNKNOWN_INTERFACE",
+        "WEB",
+        "WEB_GAMING",
+        "WEB_MUSIC",
+        "WEB_MUSIC_EMBEDDED_PLAYER",
+        "WEB_REMIX",
+        "WEB_EXPERIMENTS",
+        "WEB_MOVIES",
+        "WEB_HEROES",
+        "WEB_CREATOR",
+        "WEB_LIVE_STREAMING",
+        "WEB_KIDS",
+        "WEB_INTERNAL_ANALYTICS",
+        "WEB_PARENT_TOOLS",
+        "WEB_PHONE_VERIFICATION",
+        "WEB_EMBEDDED_PLAYER",
+        "WEB_UNPLUGGED",
+        "WEB_UNPLUGGED_ONBOARDING",
+        "WEB_UNPLUGGED_OPS",
+        "WEB_UNPLUGGED_PUBLIC",
+        "MWEB",
+        "MWEB_TIER_2",
+        "ANDROID",
+        "ANDROID_CASUAL",
+        "ANDROID_CREATOR",
+        "ANDROID_GAMING",
+        "ANDROID_KIDS",
+        "ANDROID_INSTANT",
+        "ANDROID_MUSIC",
+        "ANDROID_TESTSUITE",
+        "ANDROID_UNPLUGGED",
+        "ANDROID_VR",
+        "ANDROID_WITNESS",
+        "ANDROID_SPORTS",
+        "ANDROID_LITE",
+        "ANDROID_MOVIES",
+        "ANDROID_EMBEDDED_PLAYER",
+        "ANDROID_PRODUCER",
+        "IOSAPPLE",
+        "IOS",
+        "IOS_CREATOR",
+        "IOS_DIRECTOR",
+        "IOS_GAMING",
+        "IOS_INSTANT",
+        "IOS_KIDS",
+        "IOS_LIVE_CREATION_EXTENSION",
+        "IOS_MESSAGES_EXTENSION",
+        "IOS_MUSIC",
+        "IOS_TABLOID",
+        "IOS_UNPLUGGED",
+        "IOS_WITNESS",
+        "IOS_SPORTS",
+        "IOS_EMBEDDED_PLAYER",
+        "IOS_MOVIES",
+        "IOS_PILOT_STUDIO",
+        "IOS_UPTIME",
+        "IOS_PRODUCER",
+        "OTHERAPP",
+        "TVHTML5",
+        "TVHTML5_AUDIO",
+        "TVHTML5_CAST",
+        "TVHTML5_KIDS",
+        "TVHTML5_FOR_KIDS",
+        "TVHTML5_MOVIES",
+        "TVHTML5_SIMPLY",
+        "TVHTML5_SIMPLY_EMBEDDED_PLAYER",
+        "TVHTML5_UNPLUGGED",
+        "TVHTML5_VR",
+        "TVHTML5_YONGLE",
+        "TVLITE",
+        "TV_UNPLUGGED_CAST",
+        "TV_UNPLUGGED_ANDROID",
+        "XL",
+        "ROKU_MOVIES",
+        "CC_MOVIES",
+        "TVANDROID",
+        "ANDROID_TV",
+        "ANDROID_TV_KIDS",
+        "ANDROID_TV_MOVIES",
+        "XBOX",
+        "XBOXONEGUIDE",
+        "CLIENTX",
+        "TVAPPLE",
+        "TVAPPLE_MOVIES",
+        "AIRPLAY_MOVIES",
+        "WEB_MUSIC_ANALYTICS",
+        "MUSIC_INTEGRATIONS",
+        "WEB_HANGOUTS_MEET",
+        "KAIOS_LAUNCHER",
+        "WEB_GVP_ADS",
+        "ANDROID_GVP_ADS",
+        "IOS_GVP_ADS",
+        "GOOGLE_ASSISTANT",
+        "GOOGLE_LIST_RECS",
+        "GOOGLE_MEDIA_ACTIONS",
+        "MEDIA_CONNECT_FRONTEND",
+    ]
+    creationTimeInSeconds: str
+    detailedLanguageCode: str
+    distillerEngagements: AppsPeopleActivityStreamqualityDistillerEngagements
+    eligibleQualifiedTeaserFilters: _list[str]
+    empiricalCtrs: VideoYoutubeCommentsRankingCTRMetrics
+    fds: float
+    hasCreatorHeart: bool
+    hasCreatorReply: bool
+    isAuthorSponsor: bool
+    isDeleted: bool
+    isPinned: bool
+    isPubliclyVisible: bool
+    isReply: bool
+    isSubscriber: bool
+    languageCode: str
+    lastReplyTimestampUsec: str
+    lowQualityDecisions: dict[str, typing.Any]
+    mentionedTimestampCommentSecond: int
+    misinfoScores: dict[str, typing.Any]
+    numDislikes: int
+    numLikes: int
+    numRepliers: int
+    numReplies: int
+    numSubscribersBucket: int
+    offlineEngagementScores: dict[str, typing.Any]
+    parentId: str
+    postId: str
+    rankingPostLanguage: str
+    segments: SocialCommonSegments
+    sensitivityScores: dict[str, typing.Any]
+    sentiment: YoutubeCommentsSentimentSentiment
+    smartReplies: dict[str, typing.Any]
+    stanzaId: str
+    stanzaRestrictions: _list[SocialStanzaStanzaRestriction]
+    subject: SecurityCredentialsPrincipalProto
+    subjectIsVideoOwner: bool
+    subscriptionTimestamp: str
+    superThanksInfo: YoutubeBackstageSuperVodCommentInfo
+    textEmbedding: dict[str, typing.Any]
+    textLength: int
+    textQualityScores: YoutubeCommentsRankingYouTubeCommentTextQualityAnnotation
+    videoId: str
+    videoTimestamps: _list[int]
+    wordEntropy: float
+    ytCommentQualityScore: float
+    ytCommentQualityScore2: float
+    ytCommentQualityScore3: float
+    ytReplyToItemId: str
 
 @typing.type_check_only
 class YoutubeCommentsRankingYouTubeCommentTextEmbedding(
