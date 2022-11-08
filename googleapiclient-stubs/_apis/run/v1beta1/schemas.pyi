@@ -30,7 +30,15 @@ class CustomResourceDefinitionNames(typing_extensions.TypedDict, total=False):
     singular: str
 
 @typing.type_check_only
-class CustomResourceDefinitionSpec(dict[str, typing.Any]): ...
+class CustomResourceDefinitionSpec(typing_extensions.TypedDict, total=False):
+    additionalPrinterColumns: _list[CustomResourceColumnDefinition]
+    group: str
+    names: CustomResourceDefinitionNames
+    scope: str
+    subresources: CustomResourceSubresources
+    validation: CustomResourceValidation
+    version: str
+    versions: _list[CustomResourceDefinitionVersion]
 
 @typing.type_check_only
 class CustomResourceDefinitionVersion(typing_extensions.TypedDict, total=False):
@@ -53,7 +61,8 @@ class CustomResourceSubresources(typing_extensions.TypedDict, total=False):
     status: CustomResourceSubresourceStatus
 
 @typing.type_check_only
-class CustomResourceValidation(dict[str, typing.Any]): ...
+class CustomResourceValidation(typing_extensions.TypedDict, total=False):
+    openAPIV3Schema: JSONSchemaProps
 
 @typing.type_check_only
 class ExternalDocumentation(typing_extensions.TypedDict, total=False):
@@ -64,14 +73,61 @@ class ExternalDocumentation(typing_extensions.TypedDict, total=False):
 class JSON(typing_extensions.TypedDict, total=False):
     raw: str
 
-@typing.type_check_only
-class JSONSchemaProps(dict[str, typing.Any]): ...
+AlternativeJSONSchemaProps = typing_extensions.TypedDict(
+    "AlternativeJSONSchemaProps",
+    {
+        "additionalItems": JSONSchemaPropsOrBool,
+        "additionalProperties": JSONSchemaPropsOrBool,
+        "allOf": _list[JSONSchemaProps],
+        "anyOf": _list[JSONSchemaProps],
+        "default": JSON,
+        "definitions": dict[str, typing.Any],
+        "dependencies": dict[str, typing.Any],
+        "description": str,
+        "enum": _list[str],
+        "example": JSON,
+        "exclusiveMaximum": bool,
+        "exclusiveMinimum": bool,
+        "externalDocs": ExternalDocumentation,
+        "format": str,
+        "id": str,
+        "items": JSONSchemaPropsOrArray,
+        "maxItems": str,
+        "maxLength": str,
+        "maxProperties": str,
+        "maximum": float,
+        "minItems": str,
+        "minLength": str,
+        "minProperties": str,
+        "minimum": float,
+        "multipleOf": float,
+        "not": JSONSchemaProps,
+        "oneOf": _list[JSONSchemaProps],
+        "pattern": str,
+        "patternProperties": dict[str, typing.Any],
+        "properties": dict[str, typing.Any],
+        "ref": str,
+        "required": _list[str],
+        "schema": str,
+        "title": str,
+        "type": str,
+        "uniqueItems": bool,
+    },
+    total=False,
+)
 
 @typing.type_check_only
-class JSONSchemaPropsOrArray(dict[str, typing.Any]): ...
+class JSONSchemaProps(AlternativeJSONSchemaProps): ...
 
 @typing.type_check_only
-class JSONSchemaPropsOrBool(dict[str, typing.Any]): ...
+class JSONSchemaPropsOrArray(typing_extensions.TypedDict, total=False):
+    jsonSchemas: _list[JSONSchemaProps]
+    schema: JSONSchemaProps
+
+@typing.type_check_only
+class JSONSchemaPropsOrBool(typing_extensions.TypedDict, total=False):
+    allows: bool
+    schema: JSONSchemaProps
 
 @typing.type_check_only
 class JSONSchemaPropsOrStringArray(typing_extensions.TypedDict, total=False):

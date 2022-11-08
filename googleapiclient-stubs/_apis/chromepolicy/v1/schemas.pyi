@@ -208,7 +208,22 @@ class GoogleChromePolicyVersionsV1ListPolicySchemasResponse(
     policySchemas: _list[GoogleChromePolicyVersionsV1PolicySchema]
 
 @typing.type_check_only
-class GoogleChromePolicyVersionsV1PolicySchema(dict[str, typing.Any]): ...
+class GoogleChromePolicyVersionsV1PolicySchema(
+    typing_extensions.TypedDict, total=False
+):
+    accessRestrictions: _list[str]
+    additionalTargetKeyNames: _list[GoogleChromePolicyVersionsV1AdditionalTargetKeyName]
+    categoryTitle: str
+    definition: Proto2FileDescriptorProto
+    fieldDescriptions: _list[GoogleChromePolicyVersionsV1PolicySchemaFieldDescription]
+    name: str
+    notices: _list[GoogleChromePolicyVersionsV1PolicySchemaNoticeDescription]
+    policyApiLifecycle: ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle
+    policyApiLifeycle: ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle
+    policyDescription: str
+    schemaName: str
+    supportUri: str
+    validTargetResources: _list[str]
 
 @typing.type_check_only
 class GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies(
@@ -219,8 +234,22 @@ class GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies(
 
 @typing.type_check_only
 class GoogleChromePolicyVersionsV1PolicySchemaFieldDescription(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    defaultValue: typing.Any
+    description: str
+    field: str
+    fieldDependencies: _list[GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies]
+    fieldDescription: str
+    inputConstraint: str
+    knownValueDescriptions: _list[
+        GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescription
+    ]
+    name: str
+    nestedFieldDescriptions: _list[
+        GoogleChromePolicyVersionsV1PolicySchemaFieldDescription
+    ]
+    requiredItems: _list[GoogleChromePolicyVersionsV1PolicySchemaRequiredItems]
 
 @typing.type_check_only
 class GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescription(
@@ -267,7 +296,12 @@ class GoogleTypeDate(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
-class Proto2DescriptorProto(dict[str, typing.Any]): ...
+class Proto2DescriptorProto(typing_extensions.TypedDict, total=False):
+    enumType: _list[Proto2EnumDescriptorProto]
+    field: _list[Proto2FieldDescriptorProto]
+    name: str
+    nestedType: _list[Proto2DescriptorProto]
+    oneofDecl: _list[Proto2OneofDescriptorProto]
 
 @typing.type_check_only
 class Proto2EnumDescriptorProto(typing_extensions.TypedDict, total=False):
@@ -313,7 +347,12 @@ class Proto2FieldDescriptorProto(typing_extensions.TypedDict, total=False):
     typeName: str
 
 @typing.type_check_only
-class Proto2FileDescriptorProto(dict[str, typing.Any]): ...
+class Proto2FileDescriptorProto(typing_extensions.TypedDict, total=False):
+    enumType: _list[Proto2EnumDescriptorProto]
+    messageType: _list[Proto2DescriptorProto]
+    name: str
+    package: str
+    syntax: str
 
 @typing.type_check_only
 class Proto2OneofDescriptorProto(typing_extensions.TypedDict, total=False):

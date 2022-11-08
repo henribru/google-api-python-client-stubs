@@ -140,10 +140,15 @@ class Filter(typing_extensions.TypedDict, total=False):
     stringFilter: StringFilter
 
 @typing.type_check_only
-class FilterExpression(dict[str, typing.Any]): ...
+class FilterExpression(typing_extensions.TypedDict, total=False):
+    andGroup: FilterExpressionList
+    filter: Filter
+    notExpression: FilterExpression
+    orGroup: FilterExpressionList
 
 @typing.type_check_only
-class FilterExpressionList(dict[str, typing.Any]): ...
+class FilterExpressionList(typing_extensions.TypedDict, total=False):
+    expressions: _list[FilterExpression]
 
 @typing.type_check_only
 class InListFilter(typing_extensions.TypedDict, total=False):
@@ -308,7 +313,18 @@ class Row(typing_extensions.TypedDict, total=False):
     metricValues: _list[MetricValue]
 
 @typing.type_check_only
-class RunPivotReportRequest(dict[str, typing.Any]): ...
+class RunPivotReportRequest(typing_extensions.TypedDict, total=False):
+    cohortSpec: CohortSpec
+    currencyCode: str
+    dateRanges: _list[DateRange]
+    dimensionFilter: FilterExpression
+    dimensions: _list[Dimension]
+    keepEmptyRows: bool
+    metricFilter: FilterExpression
+    metrics: _list[Metric]
+    pivots: _list[Pivot]
+    property: str
+    returnPropertyQuota: bool
 
 @typing.type_check_only
 class RunPivotReportResponse(typing_extensions.TypedDict, total=False):
@@ -346,7 +362,21 @@ class RunRealtimeReportResponse(typing_extensions.TypedDict, total=False):
     totals: _list[Row]
 
 @typing.type_check_only
-class RunReportRequest(dict[str, typing.Any]): ...
+class RunReportRequest(typing_extensions.TypedDict, total=False):
+    cohortSpec: CohortSpec
+    currencyCode: str
+    dateRanges: _list[DateRange]
+    dimensionFilter: FilterExpression
+    dimensions: _list[Dimension]
+    keepEmptyRows: bool
+    limit: str
+    metricAggregations: _list[str]
+    metricFilter: FilterExpression
+    metrics: _list[Metric]
+    offset: str
+    orderBys: _list[OrderBy]
+    property: str
+    returnPropertyQuota: bool
 
 @typing.type_check_only
 class RunReportResponse(typing_extensions.TypedDict, total=False):

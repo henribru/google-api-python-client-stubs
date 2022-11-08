@@ -504,7 +504,13 @@ class GoogleCloudDataplexV1Partition(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class GoogleCloudDataplexV1Schema(dict[str, typing.Any]): ...
+class GoogleCloudDataplexV1Schema(typing_extensions.TypedDict, total=False):
+    fields: _list[GoogleCloudDataplexV1SchemaSchemaField]
+    partitionFields: _list[GoogleCloudDataplexV1SchemaPartitionField]
+    partitionStyle: typing_extensions.Literal[
+        "PARTITION_STYLE_UNSPECIFIED", "HIVE_COMPATIBLE"
+    ]
+    userManaged: bool
 
 @typing.type_check_only
 class GoogleCloudDataplexV1SchemaPartitionField(
@@ -531,7 +537,31 @@ class GoogleCloudDataplexV1SchemaPartitionField(
     ]
 
 @typing.type_check_only
-class GoogleCloudDataplexV1SchemaSchemaField(dict[str, typing.Any]): ...
+class GoogleCloudDataplexV1SchemaSchemaField(typing_extensions.TypedDict, total=False):
+    description: str
+    fields: _list[GoogleCloudDataplexV1SchemaSchemaField]
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "REQUIRED", "NULLABLE", "REPEATED"
+    ]
+    name: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "BOOLEAN",
+        "BYTE",
+        "INT16",
+        "INT32",
+        "INT64",
+        "FLOAT",
+        "DOUBLE",
+        "DECIMAL",
+        "STRING",
+        "BINARY",
+        "TIMESTAMP",
+        "DATE",
+        "TIME",
+        "RECORD",
+        "NULL",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1Session(typing_extensions.TypedDict, total=False):

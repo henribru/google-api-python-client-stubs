@@ -605,7 +605,20 @@ class PageBackgroundFill(typing_extensions.TypedDict, total=False):
     stretchedPictureFill: StretchedPictureFill
 
 @typing.type_check_only
-class PageElement(dict[str, typing.Any]): ...
+class PageElement(typing_extensions.TypedDict, total=False):
+    description: str
+    elementGroup: Group
+    image: Image
+    line: Line
+    objectId: str
+    shape: Shape
+    sheetsChart: SheetsChart
+    size: Size
+    table: Table
+    title: str
+    transform: AffineTransform
+    video: Video
+    wordArt: WordArt
 
 @typing.type_check_only
 class PageElementProperties(typing_extensions.TypedDict, total=False):
@@ -765,7 +778,51 @@ class ReplaceImageRequest(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class Request(dict[str, typing.Any]): ...
+class Request(typing_extensions.TypedDict, total=False):
+    createImage: CreateImageRequest
+    createLine: CreateLineRequest
+    createParagraphBullets: CreateParagraphBulletsRequest
+    createShape: CreateShapeRequest
+    createSheetsChart: CreateSheetsChartRequest
+    createSlide: CreateSlideRequest
+    createTable: CreateTableRequest
+    createVideo: CreateVideoRequest
+    deleteObject: DeleteObjectRequest
+    deleteParagraphBullets: DeleteParagraphBulletsRequest
+    deleteTableColumn: DeleteTableColumnRequest
+    deleteTableRow: DeleteTableRowRequest
+    deleteText: DeleteTextRequest
+    duplicateObject: DuplicateObjectRequest
+    groupObjects: GroupObjectsRequest
+    insertTableColumns: InsertTableColumnsRequest
+    insertTableRows: InsertTableRowsRequest
+    insertText: InsertTextRequest
+    mergeTableCells: MergeTableCellsRequest
+    refreshSheetsChart: RefreshSheetsChartRequest
+    replaceAllShapesWithImage: ReplaceAllShapesWithImageRequest
+    replaceAllShapesWithSheetsChart: ReplaceAllShapesWithSheetsChartRequest
+    replaceAllText: ReplaceAllTextRequest
+    replaceImage: ReplaceImageRequest
+    rerouteLine: RerouteLineRequest
+    ungroupObjects: UngroupObjectsRequest
+    unmergeTableCells: UnmergeTableCellsRequest
+    updateImageProperties: UpdateImagePropertiesRequest
+    updateLineCategory: UpdateLineCategoryRequest
+    updateLineProperties: UpdateLinePropertiesRequest
+    updatePageElementAltText: UpdatePageElementAltTextRequest
+    updatePageElementTransform: UpdatePageElementTransformRequest
+    updatePageElementsZOrder: UpdatePageElementsZOrderRequest
+    updatePageProperties: UpdatePagePropertiesRequest
+    updateParagraphStyle: UpdateParagraphStyleRequest
+    updateShapeProperties: UpdateShapePropertiesRequest
+    updateSlideProperties: UpdateSlidePropertiesRequest
+    updateSlidesPosition: UpdateSlidesPositionRequest
+    updateTableBorderProperties: UpdateTableBorderPropertiesRequest
+    updateTableCellProperties: UpdateTableCellPropertiesRequest
+    updateTableColumnProperties: UpdateTableColumnPropertiesRequest
+    updateTableRowProperties: UpdateTableRowPropertiesRequest
+    updateTextStyle: UpdateTextStyleRequest
+    updateVideoProperties: UpdateVideoPropertiesRequest
 
 @typing.type_check_only
 class RerouteLineRequest(typing_extensions.TypedDict, total=False):
@@ -1002,7 +1059,11 @@ class Size(typing_extensions.TypedDict, total=False):
     width: Dimension
 
 @typing.type_check_only
-class SlideProperties(dict[str, typing.Any]): ...
+class SlideProperties(typing_extensions.TypedDict, total=False):
+    isSkipped: bool
+    layoutObjectId: str
+    masterObjectId: str
+    notesPage: Page
 
 @typing.type_check_only
 class SolidFill(typing_extensions.TypedDict, total=False):
@@ -1242,7 +1303,10 @@ class UpdateShapePropertiesRequest(typing_extensions.TypedDict, total=False):
     shapeProperties: ShapeProperties
 
 @typing.type_check_only
-class UpdateSlidePropertiesRequest(dict[str, typing.Any]): ...
+class UpdateSlidePropertiesRequest(typing_extensions.TypedDict, total=False):
+    fields: str
+    objectId: str
+    slideProperties: SlideProperties
 
 @typing.type_check_only
 class UpdateSlidesPositionRequest(typing_extensions.TypedDict, total=False):

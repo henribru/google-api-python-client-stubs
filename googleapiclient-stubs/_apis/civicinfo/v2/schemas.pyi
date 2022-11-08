@@ -5,7 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AdministrationRegion(dict[str, typing.Any]): ...
+class AdministrationRegion(typing_extensions.TypedDict, total=False):
+    electionAdministrationBody: AdministrativeBody
+    local_jurisdiction: AdministrationRegion
+    name: str
+    sources: _list[Source]
 
 @typing.type_check_only
 class AdministrativeBody(typing_extensions.TypedDict, total=False):

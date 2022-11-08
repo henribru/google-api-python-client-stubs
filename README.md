@@ -44,9 +44,7 @@ If autocompleting import paths doesn't work you can find the correct path by usi
 on the thing you want to explicitly annotate. For `TypedDict`s this will also give you useful info about the structure of the dictionary.
 
 ### Recursive types
-Mypy unfortunately doesn't support [recursive types](https://github.com/python/mypy/issues/731).
-Some of Google's APIs have recursive type definitions in their schemas. Due to the lack of support these
-are only annotated as regular dictionaries, so the validity of the keys and values won't be checked.
+The stubs previously didn't include recursive type definitions due to a lack of type checker support, but this is now included. Note that if you're using Mypy, v0.990 or higher is required for this to work.
 
 ### Stubs for non-API-specific parts
 There are detailed stubs for the API services, but other parts of the library have only been annotated with [stubgen](https://mypy.readthedocs.io/en/stable/stubgen.html),

@@ -80,7 +80,13 @@ class GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec(
     type: typing_extensions.Literal["DATABASE_TYPE_UNSPECIFIED", "POSTGRES", "MYSQL"]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1ColumnSchema(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1ColumnSchema(typing_extensions.TypedDict, total=False):
+    column: str
+    description: str
+    lookerColumnSpec: GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec
+    mode: str
+    subcolumns: _list[GoogleCloudDatacatalogV1ColumnSchema]
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec(
@@ -283,7 +289,8 @@ class GoogleCloudDatacatalogV1ImportTaxonomiesResponse(
     taxonomies: _list[GoogleCloudDatacatalogV1Taxonomy]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1InlineSource(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1InlineSource(typing_extensions.TypedDict, total=False):
+    taxonomies: _list[GoogleCloudDatacatalogV1SerializedTaxonomy]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ListEntriesResponse(
@@ -425,7 +432,8 @@ class GoogleCloudDatacatalogV1RoutineSpecArgument(
     type: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1Schema(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1Schema(typing_extensions.TypedDict, total=False):
+    columns: _list[GoogleCloudDatacatalogV1ColumnSchema]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1SearchCatalogRequest(
@@ -480,10 +488,22 @@ class GoogleCloudDatacatalogV1SearchCatalogResult(
     userSpecifiedSystem: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1SerializedPolicyTag(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1SerializedPolicyTag(
+    typing_extensions.TypedDict, total=False
+):
+    childPolicyTags: _list[GoogleCloudDatacatalogV1SerializedPolicyTag]
+    description: str
+    displayName: str
+    policyTag: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1SerializedTaxonomy(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1SerializedTaxonomy(
+    typing_extensions.TypedDict, total=False
+):
+    activatedPolicyTypes: _list[str]
+    description: str
+    displayName: str
+    policyTags: _list[GoogleCloudDatacatalogV1SerializedPolicyTag]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1StarEntryRequest(

@@ -740,7 +740,13 @@ class Point(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
-class Position(dict[str, typing.Any]): ...
+class Position(typing_extensions.TypedDict, total=False):
+    byteOffset: str
+    concatPosition: ConcatPosition
+    end: bool
+    key: str
+    recordIndex: str
+    shufflePosition: str
 
 @typing.type_check_only
 class ProgressTimeseries(typing_extensions.TypedDict, total=False):
@@ -1236,10 +1242,34 @@ class WorkItemDetails(typing_extensions.TypedDict, total=False):
     taskId: str
 
 @typing.type_check_only
-class WorkItemServiceState(dict[str, typing.Any]): ...
+class WorkItemServiceState(typing_extensions.TypedDict, total=False):
+    completeWorkStatus: Status
+    harnessData: dict[str, typing.Any]
+    hotKeyDetection: HotKeyDetection
+    leaseExpireTime: str
+    metricShortId: _list[MetricShortId]
+    nextReportIndex: str
+    reportStatusInterval: str
+    splitRequest: ApproximateSplitRequest
+    suggestedStopPoint: ApproximateProgress
+    suggestedStopPosition: Position
 
 @typing.type_check_only
-class WorkItemStatus(dict[str, typing.Any]): ...
+class WorkItemStatus(typing_extensions.TypedDict, total=False):
+    completed: bool
+    counterUpdates: _list[CounterUpdate]
+    dynamicSourceSplit: DynamicSourceSplit
+    errors: _list[Status]
+    metricUpdates: _list[MetricUpdate]
+    progress: ApproximateProgress
+    reportIndex: str
+    reportedProgress: ApproximateReportedProgress
+    requestedLeaseDuration: str
+    sourceFork: SourceFork
+    sourceOperationResponse: SourceOperationResponse
+    stopPosition: Position
+    totalThrottlerWaitTimeSeconds: float
+    workItemId: str
 
 @typing.type_check_only
 class WorkerDetails(typing_extensions.TypedDict, total=False):

@@ -281,7 +281,17 @@ class Http(typing_extensions.TypedDict, total=False):
     rules: _list[HttpRule]
 
 @typing.type_check_only
-class HttpRule(dict[str, typing.Any]): ...
+class HttpRule(typing_extensions.TypedDict, total=False):
+    additionalBindings: _list[HttpRule]
+    body: str
+    custom: CustomHttpPattern
+    delete: str
+    get: str
+    patch: str
+    post: str
+    put: str
+    responseBody: str
+    selector: str
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
@@ -431,7 +441,10 @@ class Option(typing_extensions.TypedDict, total=False):
     value: dict[str, typing.Any]
 
 @typing.type_check_only
-class Page(dict[str, typing.Any]): ...
+class Page(typing_extensions.TypedDict, total=False):
+    content: str
+    name: str
+    subpages: _list[Page]
 
 @typing.type_check_only
 class PartialDeleteConnectionMetadata(typing_extensions.TypedDict, total=False): ...

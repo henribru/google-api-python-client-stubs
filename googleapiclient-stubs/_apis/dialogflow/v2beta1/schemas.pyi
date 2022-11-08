@@ -50,8 +50,15 @@ class GoogleCloudDialogflowCxV3ConversationTurnUserInput(
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    currentPage: GoogleCloudDialogflowCxV3Page
+    diagnosticInfo: dict[str, typing.Any]
+    differences: _list[GoogleCloudDialogflowCxV3TestRunDifference]
+    sessionParameters: dict[str, typing.Any]
+    status: GoogleRpcStatus
+    textResponses: _list[GoogleCloudDialogflowCxV3ResponseMessageText]
+    triggeredIntent: GoogleCloudDialogflowCxV3Intent
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3CreateDocumentOperationMetadata(
@@ -162,26 +169,52 @@ class GoogleCloudDialogflowCxV3Form(typing_extensions.TypedDict, total=False):
     parameters: _list[GoogleCloudDialogflowCxV3FormParameter]
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3FormParameter(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3FormParameter(typing_extensions.TypedDict, total=False):
+    defaultValue: typing.Any
+    displayName: str
+    entityType: str
+    fillBehavior: GoogleCloudDialogflowCxV3FormParameterFillBehavior
+    isList: bool
+    redact: bool
+    required: bool
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3FormParameterFillBehavior(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3FormParameterFillBehavior(
+    typing_extensions.TypedDict, total=False
+):
+    initialPromptFulfillment: GoogleCloudDialogflowCxV3Fulfillment
+    repromptEventHandlers: _list[GoogleCloudDialogflowCxV3EventHandler]
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3Fulfillment(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3Fulfillment(typing_extensions.TypedDict, total=False):
+    conditionalCases: _list[GoogleCloudDialogflowCxV3FulfillmentConditionalCases]
+    messages: _list[GoogleCloudDialogflowCxV3ResponseMessage]
+    returnPartialResponses: bool
+    setParameterActions: _list[GoogleCloudDialogflowCxV3FulfillmentSetParameterAction]
+    tag: str
+    webhook: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3FulfillmentConditionalCases(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3FulfillmentConditionalCases(
+    typing_extensions.TypedDict, total=False
+):
+    cases: _list[GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCase]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCase(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    caseContent: _list[
+        GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCaseCaseContent
+    ]
+    condition: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCaseCaseContent(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    additionalCases: GoogleCloudDialogflowCxV3FulfillmentConditionalCases
+    message: GoogleCloudDialogflowCxV3ResponseMessage
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3FulfillmentSetParameterAction(
@@ -292,7 +325,14 @@ class GoogleCloudDialogflowCxV3IntentTrainingPhrasePart(
     text: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3Page(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3Page(typing_extensions.TypedDict, total=False):
+    displayName: str
+    entryFulfillment: GoogleCloudDialogflowCxV3Fulfillment
+    eventHandlers: _list[GoogleCloudDialogflowCxV3EventHandler]
+    form: GoogleCloudDialogflowCxV3Form
+    name: str
+    transitionRouteGroups: _list[str]
+    transitionRoutes: _list[GoogleCloudDialogflowCxV3TransitionRoute]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3PageInfo(typing_extensions.TypedDict, total=False):
@@ -446,10 +486,17 @@ class GoogleCloudDialogflowCxV3TestCase(typing_extensions.TypedDict, total=False
     testConfig: GoogleCloudDialogflowCxV3TestConfig
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TestCaseError(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3TestCaseError(typing_extensions.TypedDict, total=False):
+    status: GoogleRpcStatus
+    testCase: GoogleCloudDialogflowCxV3TestCase
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TestCaseResult(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3TestCaseResult(typing_extensions.TypedDict, total=False):
+    conversationTurns: _list[GoogleCloudDialogflowCxV3ConversationTurn]
+    environment: str
+    name: str
+    testResult: typing_extensions.Literal["TEST_RESULT_UNSPECIFIED", "PASSED", "FAILED"]
+    testTime: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TestConfig(typing_extensions.TypedDict, total=False):
@@ -477,7 +524,15 @@ class GoogleCloudDialogflowCxV3TextInput(typing_extensions.TypedDict, total=Fals
     text: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3TransitionRoute(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3TransitionRoute(
+    typing_extensions.TypedDict, total=False
+):
+    condition: str
+    intent: str
+    name: str
+    targetFlow: str
+    targetPage: str
+    triggerFulfillment: GoogleCloudDialogflowCxV3Fulfillment
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3UpdateDocumentOperationMetadata(
@@ -624,8 +679,15 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnUserInput(
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    currentPage: GoogleCloudDialogflowCxV3beta1Page
+    diagnosticInfo: dict[str, typing.Any]
+    differences: _list[GoogleCloudDialogflowCxV3beta1TestRunDifference]
+    sessionParameters: dict[str, typing.Any]
+    status: GoogleRpcStatus
+    textResponses: _list[GoogleCloudDialogflowCxV3beta1ResponseMessageText]
+    triggeredIntent: GoogleCloudDialogflowCxV3beta1Intent
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1CreateDocumentOperationMetadata(
@@ -742,30 +804,58 @@ class GoogleCloudDialogflowCxV3beta1Form(typing_extensions.TypedDict, total=Fals
     parameters: _list[GoogleCloudDialogflowCxV3beta1FormParameter]
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1FormParameter(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1FormParameter(
+    typing_extensions.TypedDict, total=False
+):
+    defaultValue: typing.Any
+    displayName: str
+    entityType: str
+    fillBehavior: GoogleCloudDialogflowCxV3beta1FormParameterFillBehavior
+    isList: bool
+    redact: bool
+    required: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1FormParameterFillBehavior(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    initialPromptFulfillment: GoogleCloudDialogflowCxV3beta1Fulfillment
+    repromptEventHandlers: _list[GoogleCloudDialogflowCxV3beta1EventHandler]
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1Fulfillment(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1Fulfillment(
+    typing_extensions.TypedDict, total=False
+):
+    conditionalCases: _list[GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases]
+    messages: _list[GoogleCloudDialogflowCxV3beta1ResponseMessage]
+    returnPartialResponses: bool
+    setParameterActions: _list[
+        GoogleCloudDialogflowCxV3beta1FulfillmentSetParameterAction
+    ]
+    tag: str
+    webhook: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    cases: _list[GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCase]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCase(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    caseContent: _list[
+        GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCaseCaseContent
+    ]
+    condition: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCasesCaseCaseContent(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    additionalCases: GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases
+    message: GoogleCloudDialogflowCxV3beta1ResponseMessage
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1FulfillmentSetParameterAction(
@@ -878,7 +968,14 @@ class GoogleCloudDialogflowCxV3beta1IntentTrainingPhrasePart(
     text: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1Page(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1Page(typing_extensions.TypedDict, total=False):
+    displayName: str
+    entryFulfillment: GoogleCloudDialogflowCxV3beta1Fulfillment
+    eventHandlers: _list[GoogleCloudDialogflowCxV3beta1EventHandler]
+    form: GoogleCloudDialogflowCxV3beta1Form
+    name: str
+    transitionRouteGroups: _list[str]
+    transitionRoutes: _list[GoogleCloudDialogflowCxV3beta1TransitionRoute]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1PageInfo(typing_extensions.TypedDict, total=False):
@@ -1036,10 +1133,21 @@ class GoogleCloudDialogflowCxV3beta1TestCase(typing_extensions.TypedDict, total=
     testConfig: GoogleCloudDialogflowCxV3beta1TestConfig
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1TestCaseError(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1TestCaseError(
+    typing_extensions.TypedDict, total=False
+):
+    status: GoogleRpcStatus
+    testCase: GoogleCloudDialogflowCxV3beta1TestCase
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1TestCaseResult(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1TestCaseResult(
+    typing_extensions.TypedDict, total=False
+):
+    conversationTurns: _list[GoogleCloudDialogflowCxV3beta1ConversationTurn]
+    environment: str
+    name: str
+    testResult: typing_extensions.Literal["TEST_RESULT_UNSPECIFIED", "PASSED", "FAILED"]
+    testTime: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1TestConfig(
@@ -1069,7 +1177,15 @@ class GoogleCloudDialogflowCxV3beta1TextInput(typing_extensions.TypedDict, total
     text: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1TransitionRoute(dict[str, typing.Any]): ...
+class GoogleCloudDialogflowCxV3beta1TransitionRoute(
+    typing_extensions.TypedDict, total=False
+):
+    condition: str
+    intent: str
+    name: str
+    targetFlow: str
+    targetPage: str
+    triggerFulfillment: GoogleCloudDialogflowCxV3beta1Fulfillment
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1UpdateDocumentOperationMetadata(

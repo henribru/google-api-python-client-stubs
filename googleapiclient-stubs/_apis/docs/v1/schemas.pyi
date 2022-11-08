@@ -886,7 +886,13 @@ class SizeSuggestionState(typing_extensions.TypedDict, total=False):
     widthSuggested: bool
 
 @typing.type_check_only
-class StructuralElement(dict[str, typing.Any]): ...
+class StructuralElement(typing_extensions.TypedDict, total=False):
+    endIndex: int
+    paragraph: Paragraph
+    sectionBreak: SectionBreak
+    startIndex: int
+    table: Table
+    tableOfContents: TableOfContents
 
 @typing.type_check_only
 class SubstringMatchCriteria(typing_extensions.TypedDict, total=False):
@@ -951,7 +957,13 @@ class TabStop(typing_extensions.TypedDict, total=False):
     offset: Dimension
 
 @typing.type_check_only
-class Table(dict[str, typing.Any]): ...
+class Table(typing_extensions.TypedDict, total=False):
+    columns: int
+    rows: int
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    tableRows: _list[TableRow]
+    tableStyle: TableStyle
 
 @typing.type_check_only
 class TableCell(typing_extensions.TypedDict, total=False):
@@ -1021,7 +1033,10 @@ class TableColumnProperties(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TableOfContents(dict[str, typing.Any]): ...
+class TableOfContents(typing_extensions.TypedDict, total=False):
+    content: _list[StructuralElement]
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
 
 @typing.type_check_only
 class TableRange(typing_extensions.TypedDict, total=False):
@@ -1030,7 +1045,14 @@ class TableRange(typing_extensions.TypedDict, total=False):
     tableCellLocation: TableCellLocation
 
 @typing.type_check_only
-class TableRow(dict[str, typing.Any]): ...
+class TableRow(typing_extensions.TypedDict, total=False):
+    endIndex: int
+    startIndex: int
+    suggestedDeletionIds: _list[str]
+    suggestedInsertionIds: _list[str]
+    suggestedTableRowStyleChanges: dict[str, typing.Any]
+    tableCells: _list[TableCell]
+    tableRowStyle: TableRowStyle
 
 @typing.type_check_only
 class TableRowStyle(typing_extensions.TypedDict, total=False):

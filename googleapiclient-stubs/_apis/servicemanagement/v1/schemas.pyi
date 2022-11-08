@@ -278,7 +278,17 @@ class Http(typing_extensions.TypedDict, total=False):
     rules: _list[HttpRule]
 
 @typing.type_check_only
-class HttpRule(dict[str, typing.Any]): ...
+class HttpRule(typing_extensions.TypedDict, total=False):
+    additionalBindings: _list[HttpRule]
+    body: str
+    custom: CustomHttpPattern
+    delete: str
+    get: str
+    patch: str
+    post: str
+    put: str
+    responseBody: str
+    selector: str
 
 @typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
@@ -461,7 +471,10 @@ class Option(typing_extensions.TypedDict, total=False):
     value: dict[str, typing.Any]
 
 @typing.type_check_only
-class Page(dict[str, typing.Any]): ...
+class Page(typing_extensions.TypedDict, total=False):
+    content: str
+    name: str
+    subpages: _list[Page]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -512,7 +525,34 @@ class Rollout(typing_extensions.TypedDict, total=False):
     trafficPercentStrategy: TrafficPercentStrategy
 
 @typing.type_check_only
-class Service(dict[str, typing.Any]): ...
+class Service(typing_extensions.TypedDict, total=False):
+    apis: _list[Api]
+    authentication: Authentication
+    backend: Backend
+    billing: Billing
+    configVersion: int
+    context: Context
+    control: Control
+    customError: CustomError
+    documentation: Documentation
+    endpoints: _list[Endpoint]
+    enums: _list[Enum]
+    http: Http
+    id: str
+    logging: Logging
+    logs: _list[LogDescriptor]
+    metrics: _list[MetricDescriptor]
+    monitoredResources: _list[MonitoredResourceDescriptor]
+    monitoring: Monitoring
+    name: str
+    producerProjectId: str
+    quota: Quota
+    sourceInfo: SourceInfo
+    systemParameters: SystemParameters
+    systemTypes: _list[Type]
+    title: str
+    types: _list[Type]
+    usage: Usage
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

@@ -41,7 +41,10 @@ class ListContent(typing_extensions.TypedDict, total=False):
     listItems: _list[ListItem]
 
 @typing.type_check_only
-class ListItem(dict[str, typing.Any]): ...
+class ListItem(typing_extensions.TypedDict, total=False):
+    checked: bool
+    childListItems: _list[ListItem]
+    text: TextContent
 
 @typing.type_check_only
 class ListNotesResponse(typing_extensions.TypedDict, total=False):
@@ -49,7 +52,16 @@ class ListNotesResponse(typing_extensions.TypedDict, total=False):
     notes: _list[Note]
 
 @typing.type_check_only
-class Note(dict[str, typing.Any]): ...
+class Note(typing_extensions.TypedDict, total=False):
+    attachments: _list[Attachment]
+    body: Section
+    createTime: str
+    name: str
+    permissions: _list[Permission]
+    title: str
+    trashTime: str
+    trashed: bool
+    updateTime: str
 
 @typing.type_check_only
 class Permission(typing_extensions.TypedDict, total=False):
@@ -62,7 +74,9 @@ class Permission(typing_extensions.TypedDict, total=False):
     user: User
 
 @typing.type_check_only
-class Section(dict[str, typing.Any]): ...
+class Section(typing_extensions.TypedDict, total=False):
+    list: ListContent
+    text: TextContent
 
 @typing.type_check_only
 class TextContent(typing_extensions.TypedDict, total=False):

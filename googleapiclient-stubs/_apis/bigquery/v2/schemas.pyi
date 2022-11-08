@@ -558,7 +558,15 @@ class JobCancelResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
-class JobConfiguration(dict[str, typing.Any]): ...
+class JobConfiguration(typing_extensions.TypedDict, total=False):
+    copy: JobConfigurationTableCopy
+    dryRun: bool
+    extract: JobConfigurationExtract
+    jobTimeoutMs: str
+    jobType: str
+    labels: dict[str, typing.Any]
+    load: JobConfigurationLoad
+    query: JobConfigurationQuery
 
 @typing.type_check_only
 class JobConfigurationExtract(typing_extensions.TypedDict, total=False):
@@ -573,10 +581,68 @@ class JobConfigurationExtract(typing_extensions.TypedDict, total=False):
     useAvroLogicalTypes: bool
 
 @typing.type_check_only
-class JobConfigurationLoad(dict[str, typing.Any]): ...
+class JobConfigurationLoad(typing_extensions.TypedDict, total=False):
+    allowJaggedRows: bool
+    allowQuotedNewlines: bool
+    autodetect: bool
+    clustering: Clustering
+    connectionProperties: _list[ConnectionProperty]
+    createDisposition: str
+    createSession: bool
+    decimalTargetTypes: _list[str]
+    destinationEncryptionConfiguration: EncryptionConfiguration
+    destinationTable: TableReference
+    destinationTableProperties: DestinationTableProperties
+    encoding: str
+    fieldDelimiter: str
+    hivePartitioningOptions: HivePartitioningOptions
+    ignoreUnknownValues: bool
+    jsonExtension: str
+    maxBadRecords: int
+    nullMarker: str
+    parquetOptions: ParquetOptions
+    preserveAsciiControlCharacters: bool
+    projectionFields: _list[str]
+    quote: str
+    rangePartitioning: RangePartitioning
+    referenceFileSchemaUri: str
+    schema: TableSchema
+    schemaInline: str
+    schemaInlineFormat: str
+    schemaUpdateOptions: _list[str]
+    skipLeadingRows: int
+    sourceFormat: str
+    sourceUris: _list[str]
+    timePartitioning: TimePartitioning
+    useAvroLogicalTypes: bool
+    writeDisposition: str
 
 @typing.type_check_only
-class JobConfigurationQuery(dict[str, typing.Any]): ...
+class JobConfigurationQuery(typing_extensions.TypedDict, total=False):
+    allowLargeResults: bool
+    clustering: Clustering
+    connectionProperties: _list[ConnectionProperty]
+    createDisposition: str
+    createSession: bool
+    defaultDataset: DatasetReference
+    destinationEncryptionConfiguration: EncryptionConfiguration
+    destinationTable: TableReference
+    flattenResults: bool
+    maximumBillingTier: int
+    maximumBytesBilled: str
+    parameterMode: str
+    preserveNulls: bool
+    priority: str
+    query: str
+    queryParameters: _list[QueryParameter]
+    rangePartitioning: RangePartitioning
+    schemaUpdateOptions: _list[str]
+    tableDefinitions: dict[str, typing.Any]
+    timePartitioning: TimePartitioning
+    useLegacySql: bool
+    useQueryCache: bool
+    userDefinedFunctionResources: _list[UserDefinedFunctionResource]
+    writeDisposition: str
 
 @typing.type_check_only
 class JobConfigurationTableCopy(typing_extensions.TypedDict, total=False):
@@ -603,10 +669,63 @@ class JobReference(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
-class JobStatistics(dict[str, typing.Any]): ...
+class JobStatistics(typing_extensions.TypedDict, total=False):
+    completionRatio: float
+    copy: JobStatistics5
+    creationTime: str
+    dataMaskingStatistics: DataMaskingStatistics
+    endTime: str
+    extract: JobStatistics4
+    load: JobStatistics3
+    numChildJobs: str
+    parentJobId: str
+    query: JobStatistics2
+    quotaDeferments: _list[str]
+    reservationUsage: _list[dict[str, typing.Any]]
+    reservation_id: str
+    rowLevelSecurityStatistics: RowLevelSecurityStatistics
+    scriptStatistics: ScriptStatistics
+    sessionInfo: SessionInfo
+    startTime: str
+    totalBytesProcessed: str
+    totalSlotMs: str
+    transactionInfo: TransactionInfo
 
 @typing.type_check_only
-class JobStatistics2(dict[str, typing.Any]): ...
+class JobStatistics2(typing_extensions.TypedDict, total=False):
+    biEngineStatistics: BiEngineStatistics
+    billingTier: int
+    cacheHit: bool
+    ddlAffectedRowAccessPolicyCount: str
+    ddlDestinationTable: TableReference
+    ddlOperationPerformed: str
+    ddlTargetDataset: DatasetReference
+    ddlTargetRoutine: RoutineReference
+    ddlTargetRowAccessPolicy: RowAccessPolicyReference
+    ddlTargetTable: TableReference
+    dmlStats: DmlStatistics
+    estimatedBytesProcessed: str
+    mlStatistics: MlStatistics
+    modelTraining: BigQueryModelTraining
+    modelTrainingCurrentIteration: int
+    modelTrainingExpectedTotalIteration: str
+    numDmlAffectedRows: str
+    queryPlan: _list[ExplainQueryStage]
+    referencedRoutines: _list[RoutineReference]
+    referencedTables: _list[TableReference]
+    reservationUsage: _list[dict[str, typing.Any]]
+    schema: TableSchema
+    searchStatistics: SearchStatistics
+    sparkStatistics: SparkStatistics
+    statementType: str
+    timeline: _list[QueryTimelineSample]
+    totalBytesBilled: str
+    totalBytesProcessed: str
+    totalBytesProcessedAccuracy: str
+    totalPartitionsProcessed: str
+    totalSlotMs: str
+    transferredBytes: str
+    undeclaredQueryParameters: _list[QueryParameter]
 
 @typing.type_check_only
 class JobStatistics3(typing_extensions.TypedDict, total=False):
@@ -671,7 +790,45 @@ class MlStatistics(typing_extensions.TypedDict, total=False):
     maxIterations: str
 
 @typing.type_check_only
-class Model(dict[str, typing.Any]): ...
+class Model(typing_extensions.TypedDict, total=False):
+    bestTrialId: str
+    creationTime: str
+    defaultTrialId: str
+    description: str
+    encryptionConfiguration: EncryptionConfiguration
+    etag: str
+    expirationTime: str
+    featureColumns: _list[StandardSqlField]
+    friendlyName: str
+    hparamSearchSpaces: HparamSearchSpaces
+    hparamTrials: _list[HparamTuningTrial]
+    labelColumns: _list[StandardSqlField]
+    labels: dict[str, typing.Any]
+    lastModifiedTime: str
+    location: str
+    modelReference: ModelReference
+    modelType: typing_extensions.Literal[
+        "MODEL_TYPE_UNSPECIFIED",
+        "LINEAR_REGRESSION",
+        "LOGISTIC_REGRESSION",
+        "KMEANS",
+        "MATRIX_FACTORIZATION",
+        "DNN_CLASSIFIER",
+        "TENSORFLOW",
+        "DNN_REGRESSOR",
+        "BOOSTED_TREE_REGRESSOR",
+        "BOOSTED_TREE_CLASSIFIER",
+        "ARIMA",
+        "AUTOML_REGRESSOR",
+        "AUTOML_CLASSIFIER",
+        "PCA",
+        "DNN_LINEAR_COMBINED_CLASSIFIER",
+        "DNN_LINEAR_COMBINED_REGRESSOR",
+        "AUTOENCODER",
+        "ARIMA_PLUS",
+    ]
+    optimalTrialIds: _list[str]
+    trainingRuns: _list[TrainingRun]
 
 @typing.type_check_only
 class ModelDefinition(typing_extensions.TypedDict, total=False):
@@ -721,13 +878,22 @@ class ProjectReference(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
-class QueryParameter(dict[str, typing.Any]): ...
+class QueryParameter(typing_extensions.TypedDict, total=False):
+    name: str
+    parameterType: QueryParameterType
+    parameterValue: QueryParameterValue
 
 @typing.type_check_only
-class QueryParameterType(dict[str, typing.Any]): ...
+class QueryParameterType(typing_extensions.TypedDict, total=False):
+    arrayType: QueryParameterType
+    structTypes: _list[dict[str, typing.Any]]
+    type: str
 
 @typing.type_check_only
-class QueryParameterValue(dict[str, typing.Any]): ...
+class QueryParameterValue(typing_extensions.TypedDict, total=False):
+    arrayValues: _list[QueryParameterValue]
+    structValues: dict[str, typing.Any]
+    value: str
 
 @typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):
@@ -802,7 +968,32 @@ class RemoteFunctionOptions(typing_extensions.TypedDict, total=False):
     userDefinedContext: dict[str, typing.Any]
 
 @typing.type_check_only
-class Routine(dict[str, typing.Any]): ...
+class Routine(typing_extensions.TypedDict, total=False):
+    arguments: _list[Argument]
+    creationTime: str
+    definitionBody: str
+    description: str
+    determinismLevel: typing_extensions.Literal[
+        "DETERMINISM_LEVEL_UNSPECIFIED", "DETERMINISTIC", "NOT_DETERMINISTIC"
+    ]
+    etag: str
+    importedLibraries: _list[str]
+    language: typing_extensions.Literal[
+        "LANGUAGE_UNSPECIFIED", "SQL", "JAVASCRIPT", "PYTHON"
+    ]
+    lastModifiedTime: str
+    remoteFunctionOptions: RemoteFunctionOptions
+    returnTableType: StandardSqlTableType
+    returnType: StandardSqlDataType
+    routineReference: RoutineReference
+    routineType: typing_extensions.Literal[
+        "ROUTINE_TYPE_UNSPECIFIED",
+        "SCALAR_FUNCTION",
+        "PROCEDURE",
+        "TABLE_VALUED_FUNCTION",
+    ]
+    sparkOptions: SparkOptions
+    strictMode: bool
 
 @typing.type_check_only
 class RoutineReference(typing_extensions.TypedDict, total=False):
@@ -892,16 +1083,41 @@ class SparkStatistics(typing_extensions.TypedDict, total=False):
     spark_job_location: str
 
 @typing.type_check_only
-class StandardSqlDataType(dict[str, typing.Any]): ...
+class StandardSqlDataType(typing_extensions.TypedDict, total=False):
+    arrayElementType: StandardSqlDataType
+    structType: StandardSqlStructType
+    typeKind: typing_extensions.Literal[
+        "TYPE_KIND_UNSPECIFIED",
+        "INT64",
+        "BOOL",
+        "FLOAT64",
+        "STRING",
+        "BYTES",
+        "TIMESTAMP",
+        "DATE",
+        "TIME",
+        "DATETIME",
+        "INTERVAL",
+        "GEOGRAPHY",
+        "NUMERIC",
+        "BIGNUMERIC",
+        "JSON",
+        "ARRAY",
+        "STRUCT",
+    ]
 
 @typing.type_check_only
-class StandardSqlField(dict[str, typing.Any]): ...
+class StandardSqlField(typing_extensions.TypedDict, total=False):
+    name: str
+    type: StandardSqlDataType
 
 @typing.type_check_only
-class StandardSqlStructType(dict[str, typing.Any]): ...
+class StandardSqlStructType(typing_extensions.TypedDict, total=False):
+    fields: _list[StandardSqlField]
 
 @typing.type_check_only
-class StandardSqlTableType(dict[str, typing.Any]): ...
+class StandardSqlTableType(typing_extensions.TypedDict, total=False):
+    columns: _list[StandardSqlField]
 
 @typing.type_check_only
 class Streamingbuffer(typing_extensions.TypedDict, total=False):
@@ -982,7 +1198,19 @@ class TableDataList(typing_extensions.TypedDict, total=False):
     totalRows: str
 
 @typing.type_check_only
-class TableFieldSchema(dict[str, typing.Any]): ...
+class TableFieldSchema(typing_extensions.TypedDict, total=False):
+    categories: dict[str, typing.Any]
+    collation: str
+    defaultValueExpression: str
+    description: str
+    fields: _list[TableFieldSchema]
+    maxLength: str
+    mode: str
+    name: str
+    policyTags: dict[str, typing.Any]
+    precision: str
+    scale: str
+    type: str
 
 @typing.type_check_only
 class TableList(typing_extensions.TypedDict, total=False):
@@ -1003,7 +1231,8 @@ class TableRow(typing_extensions.TypedDict, total=False):
     f: _list[TableCell]
 
 @typing.type_check_only
-class TableSchema(dict[str, typing.Any]): ...
+class TableSchema(typing_extensions.TypedDict, total=False):
+    fields: _list[TableFieldSchema]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

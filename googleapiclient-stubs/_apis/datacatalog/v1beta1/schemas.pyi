@@ -50,7 +50,14 @@ class GoogleCloudDatacatalogV1beta1BigQueryTableSpec(
     viewSpec: GoogleCloudDatacatalogV1beta1ViewSpec
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ColumnSchema(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1beta1ColumnSchema(
+    typing_extensions.TypedDict, total=False
+):
+    column: str
+    description: str
+    mode: str
+    subcolumns: _list[GoogleCloudDatacatalogV1beta1ColumnSchema]
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1Entry(typing_extensions.TypedDict, total=False):
@@ -133,7 +140,10 @@ class GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse(
     taxonomies: _list[GoogleCloudDatacatalogV1beta1Taxonomy]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1InlineSource(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1beta1InlineSource(
+    typing_extensions.TypedDict, total=False
+):
+    taxonomies: _list[GoogleCloudDatacatalogV1beta1SerializedTaxonomy]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ListEntriesResponse(
@@ -191,7 +201,8 @@ class GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldRequest(
     newTagTemplateFieldId: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1Schema(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1beta1Schema(typing_extensions.TypedDict, total=False):
+    columns: _list[GoogleCloudDatacatalogV1beta1ColumnSchema]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1SearchCatalogRequest(
@@ -233,10 +244,22 @@ class GoogleCloudDatacatalogV1beta1SearchCatalogResult(
     ]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1SerializedPolicyTag(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1beta1SerializedPolicyTag(
+    typing_extensions.TypedDict, total=False
+):
+    childPolicyTags: _list[GoogleCloudDatacatalogV1beta1SerializedPolicyTag]
+    description: str
+    displayName: str
+    policyTag: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1SerializedTaxonomy(dict[str, typing.Any]): ...
+class GoogleCloudDatacatalogV1beta1SerializedTaxonomy(
+    typing_extensions.TypedDict, total=False
+):
+    activatedPolicyTypes: _list[str]
+    description: str
+    displayName: str
+    policyTags: _list[GoogleCloudDatacatalogV1beta1SerializedPolicyTag]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1SystemTimestamps(

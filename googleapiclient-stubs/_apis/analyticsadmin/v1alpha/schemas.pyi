@@ -45,10 +45,19 @@ class GoogleAnalyticsAdminV1alphaAccessFilter(typing_extensions.TypedDict, total
     stringFilter: GoogleAnalyticsAdminV1alphaAccessStringFilter
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAccessFilterExpression(dict[str, typing.Any]): ...
+class GoogleAnalyticsAdminV1alphaAccessFilterExpression(
+    typing_extensions.TypedDict, total=False
+):
+    accessFilter: GoogleAnalyticsAdminV1alphaAccessFilter
+    andGroup: GoogleAnalyticsAdminV1alphaAccessFilterExpressionList
+    notExpression: GoogleAnalyticsAdminV1alphaAccessFilterExpression
+    orGroup: GoogleAnalyticsAdminV1alphaAccessFilterExpressionList
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAccessFilterExpressionList(dict[str, typing.Any]): ...
+class GoogleAnalyticsAdminV1alphaAccessFilterExpressionList(
+    typing_extensions.TypedDict, total=False
+):
+    expressions: _list[GoogleAnalyticsAdminV1alphaAccessFilterExpression]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAccessInListFilter(
@@ -320,26 +329,71 @@ class GoogleAnalyticsAdminV1alphaAudienceEventTrigger(
     ]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAudienceFilterClause(dict[str, typing.Any]): ...
+class GoogleAnalyticsAdminV1alphaAudienceFilterClause(
+    typing_extensions.TypedDict, total=False
+):
+    clauseType: typing_extensions.Literal[
+        "AUDIENCE_CLAUSE_TYPE_UNSPECIFIED", "INCLUDE", "EXCLUDE"
+    ]
+    sequenceFilter: GoogleAnalyticsAdminV1alphaAudienceSequenceFilter
+    simpleFilter: GoogleAnalyticsAdminV1alphaAudienceSimpleFilter
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAudienceFilterExpression(dict[str, typing.Any]): ...
+class GoogleAnalyticsAdminV1alphaAudienceFilterExpression(
+    typing_extensions.TypedDict, total=False
+):
+    andGroup: GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList
+    dimensionOrMetricFilter: GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilter
+    eventFilter: GoogleAnalyticsAdminV1alphaAudienceEventFilter
+    notExpression: GoogleAnalyticsAdminV1alphaAudienceFilterExpression
+    orGroup: GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    filterExpressions: _list[GoogleAnalyticsAdminV1alphaAudienceFilterExpression]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAudienceSequenceFilter(dict[str, typing.Any]): ...
+class GoogleAnalyticsAdminV1alphaAudienceSequenceFilter(
+    typing_extensions.TypedDict, total=False
+):
+    scope: typing_extensions.Literal[
+        "AUDIENCE_FILTER_SCOPE_UNSPECIFIED",
+        "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_EVENT",
+        "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_SESSION",
+        "AUDIENCE_FILTER_SCOPE_ACROSS_ALL_SESSIONS",
+    ]
+    sequenceMaximumDuration: str
+    sequenceSteps: _list[
+        GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep(
-    dict[str, typing.Any]
-): ...
+    typing_extensions.TypedDict, total=False
+):
+    constraintDuration: str
+    filterExpression: GoogleAnalyticsAdminV1alphaAudienceFilterExpression
+    immediatelyFollows: bool
+    scope: typing_extensions.Literal[
+        "AUDIENCE_FILTER_SCOPE_UNSPECIFIED",
+        "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_EVENT",
+        "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_SESSION",
+        "AUDIENCE_FILTER_SCOPE_ACROSS_ALL_SESSIONS",
+    ]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAudienceSimpleFilter(dict[str, typing.Any]): ...
+class GoogleAnalyticsAdminV1alphaAudienceSimpleFilter(
+    typing_extensions.TypedDict, total=False
+):
+    filterExpression: GoogleAnalyticsAdminV1alphaAudienceFilterExpression
+    scope: typing_extensions.Literal[
+        "AUDIENCE_FILTER_SCOPE_UNSPECIFIED",
+        "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_EVENT",
+        "AUDIENCE_FILTER_SCOPE_WITHIN_SAME_SESSION",
+        "AUDIENCE_FILTER_SCOPE_ACROSS_ALL_SESSIONS",
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAuditUserLink(

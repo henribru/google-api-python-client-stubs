@@ -397,7 +397,45 @@ class GoogleCloudRetailV2PriceInfoPriceRange(typing_extensions.TypedDict, total=
     price: GoogleCloudRetailV2Interval
 
 @typing.type_check_only
-class GoogleCloudRetailV2Product(dict[str, typing.Any]): ...
+class GoogleCloudRetailV2Product(typing_extensions.TypedDict, total=False):
+    attributes: dict[str, typing.Any]
+    audience: GoogleCloudRetailV2Audience
+    availability: typing_extensions.Literal[
+        "AVAILABILITY_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "PREORDER", "BACKORDER"
+    ]
+    availableQuantity: int
+    availableTime: str
+    brands: _list[str]
+    categories: _list[str]
+    collectionMemberIds: _list[str]
+    colorInfo: GoogleCloudRetailV2ColorInfo
+    conditions: _list[str]
+    description: str
+    expireTime: str
+    fulfillmentInfo: _list[GoogleCloudRetailV2FulfillmentInfo]
+    gtin: str
+    id: str
+    images: _list[GoogleCloudRetailV2Image]
+    languageCode: str
+    localInventories: _list[GoogleCloudRetailV2LocalInventory]
+    materials: _list[str]
+    name: str
+    patterns: _list[str]
+    priceInfo: GoogleCloudRetailV2PriceInfo
+    primaryProductId: str
+    promotions: _list[GoogleCloudRetailV2Promotion]
+    publishTime: str
+    rating: GoogleCloudRetailV2Rating
+    retrievableFields: str
+    sizes: _list[str]
+    tags: _list[str]
+    title: str
+    ttl: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "PRIMARY", "VARIANT", "COLLECTION"
+    ]
+    uri: str
+    variants: _list[GoogleCloudRetailV2Product]
 
 @typing.type_check_only
 class GoogleCloudRetailV2ProductDetail(typing_extensions.TypedDict, total=False):
@@ -409,7 +447,10 @@ class GoogleCloudRetailV2ProductInlineSource(typing_extensions.TypedDict, total=
     products: _list[GoogleCloudRetailV2Product]
 
 @typing.type_check_only
-class GoogleCloudRetailV2ProductInputConfig(dict[str, typing.Any]): ...
+class GoogleCloudRetailV2ProductInputConfig(typing_extensions.TypedDict, total=False):
+    bigQuerySource: GoogleCloudRetailV2BigQuerySource
+    gcsSource: GoogleCloudRetailV2GcsSource
+    productInlineSource: GoogleCloudRetailV2ProductInlineSource
 
 @typing.type_check_only
 class GoogleCloudRetailV2ProductLevelConfig(typing_extensions.TypedDict, total=False):
@@ -710,7 +751,15 @@ class GoogleCloudRetailV2SearchResponseQueryExpansionInfo(
     pinnedResultCount: str
 
 @typing.type_check_only
-class GoogleCloudRetailV2SearchResponseSearchResult(dict[str, typing.Any]): ...
+class GoogleCloudRetailV2SearchResponseSearchResult(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    matchingVariantCount: int
+    matchingVariantFields: dict[str, typing.Any]
+    personalLabels: _list[str]
+    product: GoogleCloudRetailV2Product
+    variantRollupValues: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRetailV2ServingConfig(typing_extensions.TypedDict, total=False):
@@ -762,7 +811,27 @@ class GoogleCloudRetailV2SetInventoryResponse(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudRetailV2UserEvent(dict[str, typing.Any]): ...
+class GoogleCloudRetailV2UserEvent(typing_extensions.TypedDict, total=False):
+    attributes: dict[str, typing.Any]
+    attributionToken: str
+    cartId: str
+    completionDetail: GoogleCloudRetailV2CompletionDetail
+    eventTime: str
+    eventType: str
+    experimentIds: _list[str]
+    filter: str
+    offset: int
+    orderBy: str
+    pageCategories: _list[str]
+    pageViewId: str
+    productDetails: _list[GoogleCloudRetailV2ProductDetail]
+    purchaseTransaction: GoogleCloudRetailV2PurchaseTransaction
+    referrerUri: str
+    searchQuery: str
+    sessionId: str
+    uri: str
+    userInfo: GoogleCloudRetailV2UserInfo
+    visitorId: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2UserEventImportSummary(
@@ -778,7 +847,10 @@ class GoogleCloudRetailV2UserEventInlineSource(
     userEvents: _list[GoogleCloudRetailV2UserEvent]
 
 @typing.type_check_only
-class GoogleCloudRetailV2UserEventInputConfig(dict[str, typing.Any]): ...
+class GoogleCloudRetailV2UserEventInputConfig(typing_extensions.TypedDict, total=False):
+    bigQuerySource: GoogleCloudRetailV2BigQuerySource
+    gcsSource: GoogleCloudRetailV2GcsSource
+    userEventInlineSource: GoogleCloudRetailV2UserEventInlineSource
 
 @typing.type_check_only
 class GoogleCloudRetailV2UserInfo(typing_extensions.TypedDict, total=False):

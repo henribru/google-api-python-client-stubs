@@ -210,7 +210,8 @@ class Project(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ScriptExecutionResult(dict[str, typing.Any]): ...
+class ScriptExecutionResult(typing_extensions.TypedDict, total=False):
+    returnValue: Value
 
 @typing.type_check_only
 class ScriptStackTraceElement(typing_extensions.TypedDict, total=False):
@@ -232,7 +233,16 @@ class UpdateDeploymentRequest(typing_extensions.TypedDict, total=False):
     deploymentConfig: DeploymentConfig
 
 @typing.type_check_only
-class Value(dict[str, typing.Any]): ...
+class Value(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    bytesValue: str
+    dateValue: str
+    listValue: ListValue
+    nullValue: typing_extensions.Literal["NULL_VALUE"]
+    numberValue: float
+    protoValue: dict[str, typing.Any]
+    stringValue: str
+    structValue: Struct
 
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):

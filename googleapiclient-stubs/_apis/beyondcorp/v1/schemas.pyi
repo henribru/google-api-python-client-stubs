@@ -331,7 +331,16 @@ class GoogleCloudBeyondcorpAppconnectorsV1ResolveInstanceConfigResponse(
     instanceConfig: GoogleCloudBeyondcorpAppconnectorsV1AppConnectorInstanceConfig
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpAppconnectorsV1ResourceInfo(dict[str, typing.Any]): ...
+class GoogleCloudBeyondcorpAppconnectorsV1ResourceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    resource: dict[str, typing.Any]
+    status: typing_extensions.Literal[
+        "HEALTH_STATUS_UNSPECIFIED", "HEALTHY", "UNHEALTHY", "UNRESPONSIVE", "DEGRADED"
+    ]
+    sub: _list[GoogleCloudBeyondcorpAppconnectorsV1ResourceInfo]
+    time: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorOperationMetadata(
