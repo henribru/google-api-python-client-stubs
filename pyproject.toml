@@ -11,7 +11,7 @@ packages = [
     { include = "apiclient-stubs" },
 ]
 classifiers = [
-    "Typing :: Typed",
+   "Typing :: Stubs Only",
 ]
 
 [tool.poetry.dependencies]
