@@ -77,6 +77,9 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
         ) -> GdataMediaHttpRequest: ...
+        def download_media(
+            self, *, resourceName: str, **kwargs: typing.Any
+        ) -> StrHttpRequest: ...
 
     @typing.type_check_only
     class ReportTypesResource(googleapiclient.discovery.Resource):
@@ -166,3 +169,11 @@ class ReportHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Report: ...
+
+@typing.type_check_only
+class StrHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> str: ...
