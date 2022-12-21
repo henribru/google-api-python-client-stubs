@@ -451,7 +451,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
             userProject: str = ...,
             **kwargs: typing.Any
-        ) -> StrHttpRequest: ...
+        ) -> BytesHttpRequest: ...
         def getIamPolicy(
             self,
             *,
@@ -849,9 +849,9 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> TestIamPermissionsResponse: ...
 
 @typing.type_check_only
-class StrHttpRequest(googleapiclient.http.HttpRequest):
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> str: ...
+    ) -> bytes: ...

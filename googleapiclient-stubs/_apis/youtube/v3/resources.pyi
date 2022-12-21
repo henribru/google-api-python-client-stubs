@@ -74,7 +74,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             tfmt: str = ...,
             tlang: str = ...,
             **kwargs: typing.Any
-        ) -> StrHttpRequest: ...
+        ) -> BytesHttpRequest: ...
         def insert(
             self,
             *,
@@ -1287,9 +1287,9 @@ class VideoListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> VideoListResponse: ...
 
 @typing.type_check_only
-class StrHttpRequest(googleapiclient.http.HttpRequest):
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> str: ...
+    ) -> bytes: ...
