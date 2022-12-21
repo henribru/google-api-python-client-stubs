@@ -272,6 +272,9 @@ class DriveResource(googleapiclient.discovery.Resource):
         def export(
             self, *, fileId: str, mimeType: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def export_media(
+            self, *, fileId: str, mimeType: str, **kwargs: typing.Any
+        ) -> StrHttpRequest: ...
         def generateIds(
             self,
             *,
@@ -294,6 +297,20 @@ class DriveResource(googleapiclient.discovery.Resource):
             updateViewedDate: bool = ...,
             **kwargs: typing.Any
         ) -> FileHttpRequest: ...
+        def get_media(
+            self,
+            *,
+            fileId: str,
+            acknowledgeAbuse: bool = ...,
+            includeLabels: str = ...,
+            includePermissionsForView: str = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
+            revisionId: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            updateViewedDate: bool = ...,
+            **kwargs: typing.Any
+        ) -> StrHttpRequest: ...
         def insert(
             self,
             *,
@@ -460,6 +477,21 @@ class DriveResource(googleapiclient.discovery.Resource):
             updateViewedDate: bool = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+        def watch_media(
+            self,
+            *,
+            fileId: str,
+            body: Channel = ...,
+            acknowledgeAbuse: bool = ...,
+            includeLabels: str = ...,
+            includePermissionsForView: str = ...,
+            projection: typing_extensions.Literal["BASIC", "FULL"] = ...,
+            revisionId: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            updateViewedDate: bool = ...,
+            **kwargs: typing.Any
+        ) -> StrHttpRequest: ...
 
     @typing.type_check_only
     class ParentsResource(googleapiclient.discovery.Resource):
@@ -1020,3 +1052,11 @@ class TeamDriveListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TeamDriveList: ...
+
+@typing.type_check_only
+class StrHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> str: ...

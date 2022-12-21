@@ -1836,6 +1836,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
         ) -> GoogleBytestreamMediaHttpRequest: ...
+        def download_media(
+            self, *, resourceName: str, **kwargs: typing.Any
+        ) -> StrHttpRequest: ...
         def upload(
             self,
             *,
@@ -3163,3 +3166,11 @@ class UserHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> User: ...
+
+@typing.type_check_only
+class StrHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> str: ...

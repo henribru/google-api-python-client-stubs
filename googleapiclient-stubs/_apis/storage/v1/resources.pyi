@@ -438,6 +438,20 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectHttpRequest: ...
+        def get_media(
+            self,
+            *,
+            bucket: str,
+            object: str,
+            generation: str = ...,
+            ifGenerationMatch: str = ...,
+            ifGenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str = ...,
+            ifMetagenerationNotMatch: str = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            userProject: str = ...,
+            **kwargs: typing.Any
+        ) -> StrHttpRequest: ...
         def getIamPolicy(
             self,
             *,
@@ -833,3 +847,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class StrHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> str: ...
