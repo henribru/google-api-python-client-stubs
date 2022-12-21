@@ -274,7 +274,7 @@ class DriveResource(googleapiclient.discovery.Resource):
         ) -> googleapiclient.http.HttpRequest: ...
         def export_media(
             self, *, fileId: str, mimeType: str, **kwargs: typing.Any
-        ) -> StrHttpRequest: ...
+        ) -> BytesHttpRequest: ...
         def generateIds(
             self,
             *,
@@ -310,7 +310,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             supportsTeamDrives: bool = ...,
             updateViewedDate: bool = ...,
             **kwargs: typing.Any
-        ) -> StrHttpRequest: ...
+        ) -> BytesHttpRequest: ...
         def insert(
             self,
             *,
@@ -491,7 +491,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             supportsTeamDrives: bool = ...,
             updateViewedDate: bool = ...,
             **kwargs: typing.Any
-        ) -> StrHttpRequest: ...
+        ) -> BytesHttpRequest: ...
 
     @typing.type_check_only
     class ParentsResource(googleapiclient.discovery.Resource):
@@ -1054,9 +1054,9 @@ class TeamDriveListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> TeamDriveList: ...
 
 @typing.type_check_only
-class StrHttpRequest(googleapiclient.http.HttpRequest):
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> str: ...
+    ) -> bytes: ...

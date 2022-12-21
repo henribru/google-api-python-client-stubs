@@ -54,7 +54,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         ) -> MediaHttpRequest: ...
         def download_media(
             self, *, resourceName: str, **kwargs: typing.Any
-        ) -> StrHttpRequest: ...
+        ) -> BytesHttpRequest: ...
 
     @typing.type_check_only
     class RoomsResource(googleapiclient.discovery.Resource):
@@ -245,9 +245,9 @@ class SpaceHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Space: ...
 
 @typing.type_check_only
-class StrHttpRequest(googleapiclient.http.HttpRequest):
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> str: ...
+    ) -> bytes: ...

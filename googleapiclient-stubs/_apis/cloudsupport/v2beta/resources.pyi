@@ -127,7 +127,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
         def download(self, *, name: str, **kwargs: typing.Any) -> MediaHttpRequest: ...
         def download_media(
             self, *, name: str, **kwargs: typing.Any
-        ) -> StrHttpRequest: ...
+        ) -> BytesHttpRequest: ...
         def upload(
             self,
             *,
@@ -226,9 +226,9 @@ class SearchCasesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> SearchCasesResponse: ...
 
 @typing.type_check_only
-class StrHttpRequest(googleapiclient.http.HttpRequest):
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> str: ...
+    ) -> bytes: ...

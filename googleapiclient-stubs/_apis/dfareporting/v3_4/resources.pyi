@@ -938,7 +938,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         ) -> FileHttpRequest: ...
         def get_media(
             self, *, reportId: str, fileId: str, **kwargs: typing.Any
-        ) -> StrHttpRequest: ...
+        ) -> BytesHttpRequest: ...
         def list(
             self,
             *,
@@ -1624,7 +1624,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 reportId: str,
                 fileId: str,
                 **kwargs: typing.Any
-            ) -> StrHttpRequest: ...
+            ) -> BytesHttpRequest: ...
             def list(
                 self,
                 *,
@@ -2923,9 +2923,9 @@ class VideoFormatsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> VideoFormatsListResponse: ...
 
 @typing.type_check_only
-class StrHttpRequest(googleapiclient.http.HttpRequest):
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> str: ...
+    ) -> bytes: ...
