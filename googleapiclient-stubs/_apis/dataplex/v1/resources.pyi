@@ -18,6 +18,179 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class DataAttributeBindingsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class DataScansResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class JobsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "DATA_SCAN_JOB_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDataplexV1DataScanJobHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDataplexV1ListDataScanJobsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDataplexV1ListDataScanJobsResponseHttpRequest,
+                        previous_response: GoogleCloudDataplexV1ListDataScanJobsResponse,
+                    ) -> GoogleCloudDataplexV1ListDataScanJobsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDataplexV1DataScan = ...,
+                    dataScanId: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    name: str,
+                    view: typing_extensions.Literal[
+                        "DATA_SCAN_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                    ] = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDataplexV1DataScanHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDataplexV1ListDataScansResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDataplexV1ListDataScansResponseHttpRequest,
+                    previous_response: GoogleCloudDataplexV1ListDataScansResponse,
+                ) -> GoogleCloudDataplexV1ListDataScansResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDataplexV1DataScan = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def run(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDataplexV1RunDataScanRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDataplexV1RunDataScanResponseHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+                def jobs(self) -> JobsResource: ...
+
+            @typing.type_check_only
+            class DataTaxonomiesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AttributesResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+                def attributes(self) -> AttributesResource: ...
+
+            @typing.type_check_only
             class LakesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ActionsResource(googleapiclient.discovery.Resource):
@@ -700,6 +873,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
                 previous_response: GoogleCloudLocationListLocationsResponse,
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
+            def dataAttributeBindings(self) -> DataAttributeBindingsResource: ...
+            def dataScans(self) -> DataScansResource: ...
+            def dataTaxonomies(self) -> DataTaxonomiesResource: ...
             def lakes(self) -> LakesResource: ...
             def operations(self) -> OperationsResource: ...
 
@@ -742,6 +918,22 @@ class GoogleCloudDataplexV1ContentHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDataplexV1Content: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1DataScan: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanJobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1DataScanJob: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1EntityHttpRequest(googleapiclient.http.HttpRequest):
@@ -804,6 +996,26 @@ class GoogleCloudDataplexV1ListContentResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDataplexV1ListContentResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataScanJobsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1ListDataScanJobsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataScansResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1ListDataScansResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ListEntitiesResponseHttpRequest(
@@ -892,6 +1104,16 @@ class GoogleCloudDataplexV1PartitionHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDataplexV1Partition: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RunDataScanResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1RunDataScanResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1TaskHttpRequest(googleapiclient.http.HttpRequest):

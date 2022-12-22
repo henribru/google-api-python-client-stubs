@@ -90,6 +90,12 @@ class ErrorSummary(typing_extensions.TypedDict, total=False):
     errorLogEntries: _list[ErrorLogEntry]
 
 @typing.type_check_only
+class EventStream(typing_extensions.TypedDict, total=False):
+    eventStreamExpirationTime: str
+    eventStreamStartTime: str
+    name: str
+
+@typing.type_check_only
 class GcsData(typing_extensions.TypedDict, total=False):
     bucketName: str
     path: str
@@ -266,6 +272,7 @@ class TransferJob(typing_extensions.TypedDict, total=False):
     creationTime: str
     deletionTime: str
     description: str
+    eventStream: EventStream
     lastModificationTime: str
     latestOperationName: str
     loggingConfig: LoggingConfig
@@ -299,6 +306,7 @@ class TransferOperation(typing_extensions.TypedDict, total=False):
         "FAILED",
         "ABORTED",
         "QUEUED",
+        "SUSPENDING",
     ]
     transferJobName: str
     transferSpec: TransferSpec

@@ -5,6 +5,18 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Action(typing_extensions.TypedDict, total=False):
+    cleanImageTag: ImageConfig
+    cleanTextTag: CleanTextTag
+    deleteTag: DeleteTag
+    keepTag: KeepTag
+    queries: _list[str]
+    recurseTag: RecurseTag
+    regenUidTag: RegenUidTag
+    removeTag: RemoveTag
+    resetTag: ResetTag
+
+@typing.type_check_only
 class ActivateConsentRequest(typing_extensions.TypedDict, total=False):
     consentArtifact: str
     expireTime: str
@@ -99,6 +111,9 @@ class CharacterMaskConfig(typing_extensions.TypedDict, total=False):
     maskingCharacter: str
 
 @typing.type_check_only
+class CharacterMaskField(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CheckDataAccessRequest(typing_extensions.TypedDict, total=False):
     consentList: ConsentList
     dataId: str
@@ -111,6 +126,15 @@ class CheckDataAccessRequest(typing_extensions.TypedDict, total=False):
 class CheckDataAccessResponse(typing_extensions.TypedDict, total=False):
     consentDetails: dict[str, typing.Any]
     consented: bool
+
+@typing.type_check_only
+class CleanDescriptorsOption(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CleanTextField(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CleanTextTag(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CloudHealthcareSource(typing_extensions.TypedDict, total=False):
@@ -169,6 +193,9 @@ class ConsentStore(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class ContextualDeidConfig(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CreateMessageRequest(typing_extensions.TypedDict, total=False):
     message: Message
 
@@ -176,6 +203,9 @@ class CreateMessageRequest(typing_extensions.TypedDict, total=False):
 class CryptoHashConfig(typing_extensions.TypedDict, total=False):
     cryptoKey: str
     kmsWrapped: KmsWrappedCryptoKey
+
+@typing.type_check_only
+class CryptoHashField(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Dataset(typing_extensions.TypedDict, total=False):
@@ -188,6 +218,9 @@ class DateShiftConfig(typing_extensions.TypedDict, total=False):
     kmsWrapped: KmsWrappedCryptoKey
 
 @typing.type_check_only
+class DateShiftField(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class DeidentifiedStoreDestination(typing_extensions.TypedDict, total=False):
     config: DeidentifyConfig
     store: str
@@ -196,7 +229,9 @@ class DeidentifiedStoreDestination(typing_extensions.TypedDict, total=False):
 class DeidentifyConfig(typing_extensions.TypedDict, total=False):
     annotation: AnnotationConfig
     dicom: DicomConfig
+    dicomTagConfig: DicomTagConfig
     fhir: FhirConfig
+    fhirFieldConfig: FhirFieldConfig
     image: ImageConfig
     operationMetadata: DeidentifyOperationMetadata
     text: TextConfig
@@ -230,6 +265,9 @@ class DeidentifyOperationMetadata(typing_extensions.TypedDict, total=False):
 class DeidentifySummary(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DeleteTag(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Detail(typing_extensions.TypedDict, total=False):
     findings: _list[Finding]
 
@@ -256,6 +294,18 @@ class DicomStore(typing_extensions.TypedDict, total=False):
     name: str
     notificationConfig: NotificationConfig
     streamConfigs: _list[GoogleCloudHealthcareV1beta1DicomStreamConfig]
+
+@typing.type_check_only
+class DicomTagConfig(typing_extensions.TypedDict, total=False):
+    actions: _list[Action]
+    options: Options
+    profileType: typing_extensions.Literal[
+        "PROFILE_TYPE_UNSPECIFIED",
+        "MINIMAL_KEEP_LIST_PROFILE",
+        "ATTRIBUTE_CONFIDENTIALITY_BASIC_PROFILE",
+        "KEEP_ALL_PROFILE",
+        "DEIDENTIFY_TAG_CONTENTS",
+    ]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -360,6 +410,14 @@ class Feature(typing_extensions.TypedDict, total=False):
 class FhirConfig(typing_extensions.TypedDict, total=False):
     defaultKeepExtensions: bool
     fieldMetadataList: _list[FieldMetadata]
+
+@typing.type_check_only
+class FhirFieldConfig(typing_extensions.TypedDict, total=False):
+    fieldMetadataList: _list[GoogleCloudHealthcareV1beta1DeidentifyFieldMetadata]
+    options: GoogleCloudHealthcareV1beta1DeidentifyOptions
+    profileType: typing_extensions.Literal[
+        "PROFILE_TYPE_UNSPECIFIED", "KEEP_ALL", "BASIC", "CLEAN_ALL"
+    ]
 
 @typing.type_check_only
 class FhirFilter(typing_extensions.TypedDict, total=False):
@@ -484,6 +542,28 @@ class GoogleCloudHealthcareV1beta1DeidentifyDeidentifyFhirStoreSummary(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudHealthcareV1beta1DeidentifyFieldMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    characterMaskField: CharacterMaskField
+    cleanTextField: CleanTextField
+    cryptoHashField: CryptoHashField
+    dateShiftField: DateShiftField
+    keepField: KeepField
+    paths: _list[str]
+    removeField: RemoveField
+
+@typing.type_check_only
+class GoogleCloudHealthcareV1beta1DeidentifyOptions(
+    typing_extensions.TypedDict, total=False
+):
+    characterMaskConfig: CharacterMaskConfig
+    contextualDeid: ContextualDeidConfig
+    cryptoHashConfig: CryptoHashConfig
+    dateShiftConfig: DateShiftConfig
+    keepExtensions: KeepExtensionsConfig
+
+@typing.type_check_only
 class GoogleCloudHealthcareV1beta1DicomBigQueryDestination(
     typing_extensions.TypedDict, total=False
 ):
@@ -592,11 +672,14 @@ class ImageAnnotation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageConfig(typing_extensions.TypedDict, total=False):
+    additionalInfoTypes: _list[str]
+    excludeInfoTypes: _list[str]
     textRedactionMode: typing_extensions.Literal[
         "TEXT_REDACTION_MODE_UNSPECIFIED",
         "REDACT_ALL_TEXT",
         "REDACT_SENSITIVE_TEXT",
         "REDACT_NO_TEXT",
+        "REDACT_SENSITIVE_TEXT_CLEAN_DESCRIPTORS",
     ]
 
 @typing.type_check_only
@@ -654,6 +737,15 @@ class IngestMessageRequest(typing_extensions.TypedDict, total=False):
 class IngestMessageResponse(typing_extensions.TypedDict, total=False):
     hl7Ack: str
     message: Message
+
+@typing.type_check_only
+class KeepExtensionsConfig(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class KeepField(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class KeepTag(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class KmsWrappedCryptoKey(typing_extensions.TypedDict, total=False):
@@ -783,6 +875,14 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     logsUrl: str
 
 @typing.type_check_only
+class Options(typing_extensions.TypedDict, total=False):
+    cleanDescriptors: CleanDescriptorsOption
+    cleanImage: ImageConfig
+    primaryIds: typing_extensions.Literal[
+        "PRIMARY_IDS_OPTION_UNSPECIFIED", "KEEP", "REGEN"
+    ]
+
+@typing.type_check_only
 class ParsedData(typing_extensions.TypedDict, total=False):
     segments: _list[Segment]
 
@@ -822,14 +922,29 @@ class QueryAccessibleDataResponse(typing_extensions.TypedDict, total=False):
     gcsUris: _list[str]
 
 @typing.type_check_only
+class RecurseTag(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class RedactConfig(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RegenUidTag(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RejectConsentRequest(typing_extensions.TypedDict, total=False):
     consentArtifact: str
 
 @typing.type_check_only
+class RemoveField(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RemoveTag(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ReplaceWithInfoTypeConfig(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ResetTag(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ResourceAnnotation(typing_extensions.TypedDict, total=False):
@@ -851,6 +966,7 @@ class RevokeConsentRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SchemaConfig(typing_extensions.TypedDict, total=False):
+    lastUpdatedPartitionConfig: TimePartitioning
     recursiveStructureDepth: str
     schemaType: typing_extensions.Literal[
         "SCHEMA_TYPE_UNSPECIFIED", "LOSSLESS", "ANALYTICS", "ANALYTICS_V2"
@@ -948,12 +1064,22 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TextConfig(typing_extensions.TypedDict, total=False):
+    additionalTransformations: _list[InfoTypeTransformation]
+    excludeInfoTypes: _list[str]
+    profileType: typing_extensions.Literal["PROFILE_TYPE_UNSPECIFIED", "EMPTY", "BASIC"]
     transformations: _list[InfoTypeTransformation]
 
 @typing.type_check_only
 class TextSpan(typing_extensions.TypedDict, total=False):
     beginOffset: int
     content: str
+
+@typing.type_check_only
+class TimePartitioning(typing_extensions.TypedDict, total=False):
+    expirationMs: str
+    type: typing_extensions.Literal[
+        "PARTITION_TYPE_UNSPECIFIED", "HOUR", "DAY", "MONTH", "YEAR"
+    ]
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):

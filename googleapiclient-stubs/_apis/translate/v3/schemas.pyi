@@ -192,6 +192,7 @@ class TranslateDocumentRequest(typing_extensions.TypedDict, total=False):
     documentInputConfig: DocumentInputConfig
     documentOutputConfig: DocumentOutputConfig
     glossaryConfig: TranslateTextGlossaryConfig
+    isTranslateNativePdfOnly: bool
     labels: dict[str, typing.Any]
     model: str
     sourceLanguageCode: str

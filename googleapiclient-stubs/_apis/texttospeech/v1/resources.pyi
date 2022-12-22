@@ -14,6 +14,46 @@ _list = list
 @typing.type_check_only
 class TexttospeechResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            name: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
+
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class VoicesResource(googleapiclient.discovery.Resource):
+                def synthesizeLongAudio(
+                    self,
+                    *,
+                    parent: str,
+                    body: SynthesizeLongAudioRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
+            def voices(self) -> VoicesResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class TextResource(googleapiclient.discovery.Resource):
         def synthesize(
             self, *, body: SynthesizeSpeechRequest = ..., **kwargs: typing.Any
@@ -37,8 +77,26 @@ class TexttospeechResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def operations(self) -> OperationsResource: ...
+    def projects(self) -> ProjectsResource: ...
     def text(self) -> TextResource: ...
     def voices(self) -> VoicesResource: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Empty: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
 class ListVoicesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -47,6 +105,14 @@ class ListVoicesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListVoicesResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Operation: ...
 
 @typing.type_check_only
 class SynthesizeSpeechResponseHttpRequest(googleapiclient.http.HttpRequest):

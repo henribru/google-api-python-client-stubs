@@ -103,6 +103,7 @@ class Repository(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzs: bool
     sizeBytes: str
     updateTime: str
 

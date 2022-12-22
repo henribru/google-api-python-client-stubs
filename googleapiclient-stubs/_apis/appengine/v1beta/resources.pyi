@@ -344,7 +344,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
             def versions(self) -> VersionsResource: ...
 
         def create(
-            self, *, body: Application = ..., **kwargs: typing.Any
+            self, *, body: Application = ..., parent: str = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
             self, *, appsId: str, **kwargs: typing.Any
@@ -372,6 +372,86 @@ class AppengineResource(googleapiclient.discovery.Resource):
         def operations(self) -> OperationsResource: ...
         def services(self) -> ServicesResource: ...
 
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ApplicationsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    projectsId: str,
+                    locationsId: str,
+                    body: Application = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    projectsId: str,
+                    locationsId: str,
+                    applicationsId: str,
+                    **kwargs: typing.Any
+                ) -> ApplicationHttpRequest: ...
+                def repair(
+                    self,
+                    *,
+                    projectsId: str,
+                    locationsId: str,
+                    applicationsId: str,
+                    body: RepairApplicationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self,
+                    *,
+                    projectsId: str,
+                    locationsId: str,
+                    operationsId: str,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    projectsId: str,
+                    locationsId: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
+
+            def get(
+                self, *, projectsId: str, locationsId: str, **kwargs: typing.Any
+            ) -> LocationHttpRequest: ...
+            def list(
+                self,
+                *,
+                projectsId: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
+            def applications(self) -> ApplicationsResource: ...
+            def operations(self) -> OperationsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -385,6 +465,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def apps(self) -> AppsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class ApplicationHttpRequest(googleapiclient.http.HttpRequest):

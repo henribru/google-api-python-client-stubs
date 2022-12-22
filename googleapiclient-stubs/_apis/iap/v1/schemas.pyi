@@ -133,7 +133,9 @@ class PolicyName(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReauthSettings(typing_extensions.TypedDict, total=False):
     maxAge: str
-    method: typing_extensions.Literal["METHOD_UNSPECIFIED", "LOGIN", "SECURE_KEY"]
+    method: typing_extensions.Literal[
+        "METHOD_UNSPECIFIED", "LOGIN", "SECURE_KEY", "ENROLLED_SECOND_FACTORS"
+    ]
     policyType: typing_extensions.Literal[
         "POLICY_TYPE_UNSPECIFIED", "MINIMUM", "DEFAULT"
     ]

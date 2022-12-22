@@ -41,6 +41,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     expireTime: str
     name: str
     sizeBytes: str
+    sourceBackup: str
     sourceTable: str
     startTime: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
@@ -49,6 +50,7 @@ class Backup(typing_extensions.TypedDict, total=False):
 class BackupInfo(typing_extensions.TypedDict, total=False):
     backup: str
     endTime: str
+    sourceBackup: str
     sourceTable: str
     startTime: str
 
@@ -104,6 +106,25 @@ class ClusterState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ColumnFamily(typing_extensions.TypedDict, total=False):
     gcRule: GcRule
+    stats: ColumnFamilyStats
+
+@typing.type_check_only
+class ColumnFamilyStats(typing_extensions.TypedDict, total=False):
+    averageCellsPerColumn: float
+    averageColumnsPerRow: float
+    logicalDataBytes: str
+
+@typing.type_check_only
+class CopyBackupMetadata(typing_extensions.TypedDict, total=False):
+    name: str
+    progress: OperationProgress
+    sourceBackupInfo: BackupInfo
+
+@typing.type_check_only
+class CopyBackupRequest(typing_extensions.TypedDict, total=False):
+    backupId: str
+    expireTime: str
+    sourceBackup: str
 
 @typing.type_check_only
 class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
@@ -369,11 +390,13 @@ class Status(typing_extensions.TypedDict, total=False):
 class Table(typing_extensions.TypedDict, total=False):
     clusterStates: dict[str, typing.Any]
     columnFamilies: dict[str, typing.Any]
+    deletionProtection: bool
     granularity: typing_extensions.Literal[
         "TIMESTAMP_GRANULARITY_UNSPECIFIED", "MILLIS"
     ]
     name: str
     restoreInfo: RestoreInfo
+    stats: TableStats
 
 @typing.type_check_only
 class TableProgress(typing_extensions.TypedDict, total=False):
@@ -382,6 +405,13 @@ class TableProgress(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "PENDING", "COPYING", "COMPLETED", "CANCELLED"
     ]
+
+@typing.type_check_only
+class TableStats(typing_extensions.TypedDict, total=False):
+    averageCellsPerColumn: float
+    averageColumnsPerRow: float
+    logicalDataBytes: str
+    rowCount: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -418,3 +448,9 @@ class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):
     finishTime: str
     originalRequest: PartialUpdateInstanceRequest
     requestTime: str
+
+@typing.type_check_only
+class UpdateTableMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    name: str
+    startTime: str

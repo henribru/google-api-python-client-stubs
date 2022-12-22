@@ -18,23 +18,8 @@ class AccountActivity(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AccountDetails(typing_extensions.TypedDict, total=False):
     accountActivity: AccountActivity
-    accountRiskVerdict: AccountRiskVerdict
     appLicensingVerdict: typing_extensions.Literal[
         "UNKNOWN", "LICENSED", "UNLICENSED", "UNEVALUATED"
-    ]
-
-@typing.type_check_only
-class AccountRiskVerdict(typing_extensions.TypedDict, total=False):
-    risk: typing_extensions.Literal[
-        "RISK_UNSPECIFIED", "UNEVALUATED", "HIGHER", "UNKNOWN", "LOWER", "LOWEST"
-    ]
-    riskLevel: typing_extensions.Literal[
-        "RISK_LEVEL_UNSPECIFIED",
-        "RISK_LEVEL_UNEVALUATED",
-        "RISK_LEVEL_RISK",
-        "RISK_LEVEL_UNKNOWN",
-        "RISK_LEVEL_LOW_RISK",
-        "RISK_LEVEL_LOWEST_RISK",
     ]
 
 @typing.type_check_only

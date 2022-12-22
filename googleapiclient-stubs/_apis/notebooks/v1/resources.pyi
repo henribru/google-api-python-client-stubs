@@ -92,6 +92,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def diagnose(
+                    self,
+                    *,
+                    name: str,
+                    body: DiagnoseInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> InstanceHttpRequest: ...
@@ -288,6 +295,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def diagnose(
+                    self,
+                    *,
+                    name: str,
+                    body: DiagnoseRuntimeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> RuntimeHttpRequest: ...
@@ -376,6 +390,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def upgrade(
+                    self,
+                    *,
+                    name: str,
+                    body: UpgradeRuntimeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class SchedulesResource(googleapiclient.discovery.Resource):

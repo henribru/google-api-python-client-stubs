@@ -63,6 +63,7 @@ class Adloox(typing_extensions.TypedDict, total=False):
 class Advertiser(typing_extensions.TypedDict, total=False):
     adServerConfig: AdvertiserAdServerConfig
     advertiserId: str
+    billingConfig: AdvertiserBillingConfig
     creativeConfig: AdvertiserCreativeConfig
     dataAccessConfig: AdvertiserDataAccessConfig
     displayName: str
@@ -86,6 +87,10 @@ class Advertiser(typing_extensions.TypedDict, total=False):
 class AdvertiserAdServerConfig(typing_extensions.TypedDict, total=False):
     cmHybridConfig: CmHybridConfig
     thirdPartyOnlyConfig: ThirdPartyOnlyConfig
+
+@typing.type_check_only
+class AdvertiserBillingConfig(typing_extensions.TypedDict, total=False):
+    billingProfileId: str
 
 @typing.type_check_only
 class AdvertiserCreativeConfig(typing_extensions.TypedDict, total=False):
@@ -236,6 +241,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     appCategoryDetails: AppCategoryAssignedTargetingOptionDetails
     appDetails: AppAssignedTargetingOptionDetails
     assignedTargetingOptionId: str
+    assignedTargetingOptionIdAlias: str
     audienceGroupDetails: AudienceGroupAssignedTargetingOptionDetails
     audioContentTypeDetails: AudioContentTypeAssignedTargetingOptionDetails
     authorizedSellerStatusDetails: AuthorizedSellerStatusAssignedTargetingOptionDetails
@@ -1414,6 +1420,14 @@ class DoubleVerifyVideoViewability(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DuplicateLineItemRequest(typing_extensions.TypedDict, total=False):
+    targetDisplayName: str
+
+@typing.type_check_only
+class DuplicateLineItemResponse(typing_extensions.TypedDict, total=False):
+    duplicateLineItemId: str
+
+@typing.type_check_only
 class EditCustomerMatchMembersRequest(typing_extensions.TypedDict, total=False):
     addedContactInfoList: ContactInfoList
     addedMobileDeviceIdList: MobileDeviceIdList
@@ -1947,6 +1961,9 @@ class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_AUDIO",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
     ]
     mobileApp: MobileApp
 
@@ -2584,6 +2601,9 @@ class LineItem(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_AUDIO",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
     ]
     mobileApp: MobileApp
     name: str

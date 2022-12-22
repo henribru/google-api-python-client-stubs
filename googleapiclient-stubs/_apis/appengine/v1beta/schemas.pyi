@@ -425,6 +425,34 @@ class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
     warning: _list[str]
 
 @typing.type_check_only
+class ProjectEvent(typing_extensions.TypedDict, total=False):
+    eventId: str
+    phase: typing_extensions.Literal[
+        "UNKNOWN", "BEFORE_RESOURCE_HANDLING", "AFTER_RESOURCE_HANDLING"
+    ]
+    projectMetadata: ProjectsMetadata
+    state: ProjectState
+
+@typing.type_check_only
+class ProjectState(typing_extensions.TypedDict, total=False):
+    currentReasons: Reasons
+    previousReasons: Reasons
+    state: typing_extensions.Literal["UNKNOWN_STATE", "ON", "OFF", "DELETED"]
+
+@typing.type_check_only
+class ProjectsMetadata(typing_extensions.TypedDict, total=False):
+    consumerProjectId: str
+    consumerProjectNumber: str
+    consumerProjectState: typing_extensions.Literal[
+        "UNKNOWN_STATE", "ON", "OFF", "DELETED"
+    ]
+    p4ServiceAccount: str
+    producerProjectId: str
+    producerProjectNumber: str
+    tenantProjectId: str
+    tenantProjectNumber: str
+
+@typing.type_check_only
 class ReadinessCheck(typing_extensions.TypedDict, total=False):
     appStartTimeout: str
     checkInterval: str
@@ -433,6 +461,34 @@ class ReadinessCheck(typing_extensions.TypedDict, total=False):
     path: str
     successThreshold: int
     timeout: str
+
+@typing.type_check_only
+class Reasons(typing_extensions.TypedDict, total=False):
+    abuse: typing_extensions.Literal[
+        "ABUSE_UNKNOWN_REASON", "ABUSE_CONTROL_PLANE_SYNC", "SUSPEND", "REINSTATE"
+    ]
+    billing: typing_extensions.Literal[
+        "BILLING_UNKNOWN_REASON",
+        "BILLING_CONTROL_PLANE_SYNC",
+        "PROBATION",
+        "CLOSE",
+        "OPEN",
+    ]
+    dataGovernance: typing_extensions.Literal[
+        "DATA_GOVERNANCE_UNKNOWN_REASON",
+        "DATA_GOVERNANCE_CONTROL_PLANE_SYNC",
+        "HIDE",
+        "UNHIDE",
+        "PURGE",
+    ]
+    serviceManagement: typing_extensions.Literal[
+        "SERVICE_MANAGEMENT_UNKNOWN_REASON",
+        "SERVICE_MANAGEMENT_CONTROL_PLANE_SYNC",
+        "ACTIVATION",
+        "PREPARE_DEACTIVATION",
+        "ABORT_DEACTIVATION",
+        "COMMIT_DEACTIVATION",
+    ]
 
 @typing.type_check_only
 class RepairApplicationRequest(typing_extensions.TypedDict, total=False): ...

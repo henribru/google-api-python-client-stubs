@@ -2143,6 +2143,7 @@ class GoogleCloudDialogflowV2beta1AutomatedAgentReply(
     automatedAgentReplyType: typing_extensions.Literal[
         "AUTOMATED_AGENT_REPLY_TYPE_UNSPECIFIED", "PARTIAL", "FINAL"
     ]
+    cxCurrentPage: str
     cxSessionParameters: dict[str, typing.Any]
     detectIntentResponse: GoogleCloudDialogflowV2beta1DetectIntentResponse
     event: str
@@ -3525,6 +3526,7 @@ class GoogleCloudDialogflowV2beta1SpeechContext(
 class GoogleCloudDialogflowV2beta1SpeechToTextConfig(
     typing_extensions.TypedDict, total=False
 ):
+    model: str
     speechModelVariant: typing_extensions.Literal[
         "SPEECH_MODEL_VARIANT_UNSPECIFIED",
         "USE_BEST_AVAILABLE",

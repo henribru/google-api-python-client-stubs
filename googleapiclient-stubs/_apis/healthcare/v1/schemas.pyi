@@ -628,7 +628,7 @@ class ParserConfig(typing_extensions.TypedDict, total=False):
     allowNullHeader: bool
     schema: SchemaPackage
     segmentTerminator: str
-    version: typing_extensions.Literal["PARSER_VERSION_UNSPECIFIED", "V1", "V2"]
+    version: typing_extensions.Literal["PARSER_VERSION_UNSPECIFIED", "V1", "V2", "V3"]
 
 @typing.type_check_only
 class PatientId(typing_extensions.TypedDict, total=False):

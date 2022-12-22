@@ -111,6 +111,13 @@ class DatastoreResource(googleapiclient.discovery.Resource):
         def rollback(
             self, *, projectId: str, body: RollbackRequest = ..., **kwargs: typing.Any
         ) -> RollbackResponseHttpRequest: ...
+        def runAggregationQuery(
+            self,
+            *,
+            projectId: str,
+            body: RunAggregationQueryRequest = ...,
+            **kwargs: typing.Any
+        ) -> RunAggregationQueryResponseHttpRequest: ...
         def runQuery(
             self, *, projectId: str, body: RunQueryRequest = ..., **kwargs: typing.Any
         ) -> RunQueryResponseHttpRequest: ...
@@ -222,6 +229,14 @@ class RollbackResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RollbackResponse: ...
+
+@typing.type_check_only
+class RunAggregationQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RunAggregationQueryResponse: ...
 
 @typing.type_check_only
 class RunQueryResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -465,17 +465,6 @@ class GoogleCloudBeyondcorpAppgatewaysV1AppGatewayOperationMetadata(
     verb: str
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpApplicationsV1alphaApplicationOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
 class GoogleCloudBeyondcorpClientconnectorservicesV1ClientConnectorServiceOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -489,43 +478,6 @@ class GoogleCloudBeyondcorpClientconnectorservicesV1ClientConnectorServiceOperat
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpClientgatewaysV1ClientGatewayOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpNetconnectionsV1alphaListNetConnectionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    netConnections: _list[GoogleCloudBeyondcorpNetconnectionsV1alphaNetConnection]
-    nextPageToken: str
-    unreachable: _list[str]
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpNetconnectionsV1alphaNetConnection(
-    typing_extensions.TypedDict, total=False
-):
-    connectors: _list[str]
-    createTime: str
-    destinationCidrs: _list[str]
-    displayName: str
-    labels: dict[str, typing.Any]
-    name: str
-    networkVpc: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
-    ]
-    uid: str
-    updateTime: str
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpNetconnectionsV1alphaNetConnectionOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     apiVersion: str
@@ -622,6 +574,29 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRowFieldVal(
     filterAlias: str
     id: str
     value: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    subscriptions: _list[
+        GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription
+    ]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
+    typing_extensions.TypedDict, total=False
+):
+    autoRenewEnabled: bool
+    createTime: str
+    endTime: str
+    name: str
+    seatCount: str
+    sku: typing_extensions.Literal["SKU_UNSPECIFIED", "BCE_STANDARD_SKU"]
+    startTime: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIAL", "PAID", "ALLOWLIST"]
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(

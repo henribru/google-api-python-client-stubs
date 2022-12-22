@@ -35,6 +35,7 @@ class Case(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     escalated: bool
+    languageCode: str
     name: str
     priority: typing_extensions.Literal[
         "PRIORITY_UNSPECIFIED", "P0", "P1", "P2", "P3", "P4"

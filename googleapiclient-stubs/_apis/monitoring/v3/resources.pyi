@@ -453,6 +453,35 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             ) -> NotificationChannelHttpRequest: ...
 
         @typing.type_check_only
+        class SnoozesResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: Snooze = ..., **kwargs: typing.Any
+            ) -> SnoozeHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> SnoozeHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListSnoozesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSnoozesResponseHttpRequest,
+                previous_response: ListSnoozesResponse,
+            ) -> ListSnoozesResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Snooze = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> SnoozeHttpRequest: ...
+
+        @typing.type_check_only
         class TimeSeriesResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -626,6 +655,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             self,
         ) -> NotificationChannelDescriptorsResource: ...
         def notificationChannels(self) -> NotificationChannelsResource: ...
+        def snoozes(self) -> SnoozesResource: ...
         def timeSeries(self) -> TimeSeriesResource: ...
         def uptimeCheckConfigs(self) -> UptimeCheckConfigsResource: ...
 
@@ -861,6 +891,14 @@ class ListServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListServicesResponse: ...
 
 @typing.type_check_only
+class ListSnoozesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSnoozesResponse: ...
+
+@typing.type_check_only
 class ListTimeSeriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -939,6 +977,14 @@ class ServiceLevelObjectiveHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ServiceLevelObjective: ...
+
+@typing.type_check_only
+class SnoozeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Snooze: ...
 
 @typing.type_check_only
 class UptimeCheckConfigHttpRequest(googleapiclient.http.HttpRequest):

@@ -146,6 +146,7 @@ class Device(typing_extensions.TypedDict, total=False):
     bootloaderVersion: str
     brand: str
     buildNumber: str
+    clientTypes: _list[str]
     compromisedState: typing_extensions.Literal[
         "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "UNCOMPROMISED"
     ]
@@ -170,6 +171,7 @@ class Device(typing_extensions.TypedDict, total=False):
         "NOT_ENCRYPTED",
     ]
     endpointVerificationSpecificAttributes: EndpointVerificationSpecificAttributes
+    hostname: str
     imei: str
     kernelVersion: str
     lastSyncTime: str

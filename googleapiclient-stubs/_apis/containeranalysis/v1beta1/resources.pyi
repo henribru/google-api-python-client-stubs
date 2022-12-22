@@ -166,32 +166,8 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
-        @typing.type_check_only
-        class ScanConfigsResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> ScanConfigHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> ListScanConfigsResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: ListScanConfigsResponseHttpRequest,
-                previous_response: ListScanConfigsResponse,
-            ) -> ListScanConfigsResponseHttpRequest | None: ...
-            def update(
-                self, *, name: str, body: ScanConfig = ..., **kwargs: typing.Any
-            ) -> ScanConfigHttpRequest: ...
-
         def notes(self) -> NotesResource: ...
         def occurrences(self) -> OccurrencesResource: ...
-        def scanConfigs(self) -> ScanConfigsResource: ...
 
     def new_batch_http_request(
         self,
@@ -256,14 +232,6 @@ class ListOccurrencesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOccurrencesResponse: ...
 
 @typing.type_check_only
-class ListScanConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ListScanConfigsResponse: ...
-
-@typing.type_check_only
 class NoteHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -286,14 +254,6 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
-
-@typing.type_check_only
-class ScanConfigHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ScanConfig: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

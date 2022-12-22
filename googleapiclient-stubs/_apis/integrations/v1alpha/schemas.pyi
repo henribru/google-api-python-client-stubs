@@ -230,6 +230,15 @@ class EnterpriseCrmEventbusProtoBuganizerNotification(
     title: str
 
 @typing.type_check_only
+class EnterpriseCrmEventbusProtoCloudSchedulerConfig(
+    typing_extensions.TypedDict, total=False
+):
+    cronTab: str
+    errorMessage: str
+    location: str
+    serviceAccountEmail: str
+
+@typing.type_check_only
 class EnterpriseCrmEventbusProtoCombinedCondition(
     typing_extensions.TypedDict, total=False
 ):
@@ -1563,6 +1572,7 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
     typing_extensions.TypedDict, total=False
 ):
     alertConfig: _list[EnterpriseCrmEventbusProtoWorkflowAlertConfig]
+    cloudSchedulerConfig: EnterpriseCrmEventbusProtoCloudSchedulerConfig
     description: str
     enabledClients: _list[str]
     label: str
@@ -1589,6 +1599,7 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
         "CLOUD_PUBSUB_EXTERNAL",
         "SFDC_CDC_CHANNEL",
         "SFDC_PLATFORM_EVENTS_CHANNEL",
+        "CLOUD_SCHEDULER",
     ]
 
 @typing.type_check_only
@@ -1712,7 +1723,6 @@ class GoogleCloudConnectorsV1AuthConfigSshPublicKey(
     typing_extensions.TypedDict, total=False
 ):
     certType: str
-    password: GoogleCloudConnectorsV1Secret
     sshClientCert: GoogleCloudConnectorsV1Secret
     sshClientCertPass: GoogleCloudConnectorsV1Secret
     username: str
@@ -1920,6 +1930,15 @@ class GoogleCloudIntegrationsV1alphaClientCertificate(
     encryptedPrivateKey: str
     passphrase: str
     sslCertificate: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaCloudSchedulerConfig(
+    typing_extensions.TypedDict, total=False
+):
+    cronTab: str
+    errorMessage: str
+    location: str
+    serviceAccountEmail: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata(
@@ -2791,6 +2810,7 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
     typing_extensions.TypedDict, total=False
 ):
     alertConfig: _list[GoogleCloudIntegrationsV1alphaIntegrationAlertConfig]
+    cloudSchedulerConfig: GoogleCloudIntegrationsV1alphaCloudSchedulerConfig
     description: str
     label: str
     nextTasksExecutionPolicy: typing_extensions.Literal[
@@ -2807,6 +2827,7 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
         "SFDC_CHANNEL",
         "CLOUD_PUBSUB_EXTERNAL",
         "SFDC_CDC_CHANNEL",
+        "CLOUD_SCHEDULER",
     ]
 
 @typing.type_check_only

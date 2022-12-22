@@ -59,6 +59,7 @@ class BackendRule(typing_extensions.TypedDict, total=False):
     deadline: float
     disableAuth: bool
     jwtAudience: str
+    minDeadline: float
     operationDeadline: float
     pathTranslation: typing_extensions.Literal[
         "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
@@ -91,6 +92,34 @@ class Billing(typing_extensions.TypedDict, total=False):
 class BillingDestination(typing_extensions.TypedDict, total=False):
     metrics: _list[str]
     monitoredResource: str
+
+@typing.type_check_only
+class ClientLibrarySettings(typing_extensions.TypedDict, total=False):
+    cppSettings: CppSettings
+    dotnetSettings: DotnetSettings
+    goSettings: GoSettings
+    javaSettings: JavaSettings
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+    ]
+    nodeSettings: NodeSettings
+    phpSettings: PhpSettings
+    pythonSettings: PythonSettings
+    restNumericEnums: bool
+    rubySettings: RubySettings
+    version: str
+
+@typing.type_check_only
+class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
+    destinations: _list[str]
+    referenceDocsUri: str
 
 @typing.type_check_only
 class ConsumerQuotaLimit(typing_extensions.TypedDict, total=False):
@@ -126,6 +155,10 @@ class ContextRule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Control(typing_extensions.TypedDict, total=False):
     environment: str
+
+@typing.type_check_only
+class CppSettings(typing_extensions.TypedDict, total=False):
+    common: CommonLanguageSettings
 
 @typing.type_check_only
 class CreateAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): ...
@@ -171,6 +204,10 @@ class DocumentationRule(typing_extensions.TypedDict, total=False):
     selector: str
 
 @typing.type_check_only
+class DotnetSettings(typing_extensions.TypedDict, total=False):
+    common: CommonLanguageSettings
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -187,6 +224,7 @@ class EnableServiceResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
+    aliases: _list[str]
     allowCors: bool
     name: str
     target: str
@@ -252,6 +290,10 @@ class GetServiceIdentityResponse(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["IDENTITY_STATE_UNSPECIFIED", "ACTIVE"]
 
 @typing.type_check_only
+class GoSettings(typing_extensions.TypedDict, total=False):
+    common: CommonLanguageSettings
+
+@typing.type_check_only
 class GoogleApiService(typing_extensions.TypedDict, total=False):
     apis: _list[Api]
     authentication: Authentication
@@ -273,6 +315,7 @@ class GoogleApiService(typing_extensions.TypedDict, total=False):
     monitoring: Monitoring
     name: str
     producerProjectId: str
+    publishing: Publishing
     quota: Quota
     sourceInfo: SourceInfo
     systemParameters: SystemParameters
@@ -373,6 +416,12 @@ class ImportConsumerOverridesResponse(typing_extensions.TypedDict, total=False):
     overrides: _list[QuotaOverride]
 
 @typing.type_check_only
+class JavaSettings(typing_extensions.TypedDict, total=False):
+    common: CommonLanguageSettings
+    libraryPackage: str
+    serviceClassNames: dict[str, typing.Any]
+
+@typing.type_check_only
 class JwtLocation(typing_extensions.TypedDict, total=False):
     cookie: str
     header: str
@@ -428,6 +477,13 @@ class LoggingDestination(typing_extensions.TypedDict, total=False):
     monitoredResource: str
 
 @typing.type_check_only
+class LongRunning(typing_extensions.TypedDict, total=False):
+    initialPollDelay: str
+    maxPollDelay: str
+    pollDelayMultiplier: float
+    totalPollTimeout: str
+
+@typing.type_check_only
 class Method(typing_extensions.TypedDict, total=False):
     name: str
     options: _list[Option]
@@ -436,6 +492,11 @@ class Method(typing_extensions.TypedDict, total=False):
     responseStreaming: bool
     responseTypeUrl: str
     syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+
+@typing.type_check_only
+class MethodSettings(typing_extensions.TypedDict, total=False):
+    longRunning: LongRunning
+    selector: str
 
 @typing.type_check_only
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
@@ -524,6 +585,10 @@ class MonitoringDestination(typing_extensions.TypedDict, total=False):
     monitoredResource: str
 
 @typing.type_check_only
+class NodeSettings(typing_extensions.TypedDict, total=False):
+    common: CommonLanguageSettings
+
+@typing.type_check_only
 class OAuthRequirements(typing_extensions.TypedDict, total=False):
     canonicalScopes: str
 
@@ -553,6 +618,32 @@ class Page(typing_extensions.TypedDict, total=False):
     content: str
     name: str
     subpages: _list[Page]
+
+@typing.type_check_only
+class PhpSettings(typing_extensions.TypedDict, total=False):
+    common: CommonLanguageSettings
+
+@typing.type_check_only
+class Publishing(typing_extensions.TypedDict, total=False):
+    apiShortName: str
+    codeownerGithubTeams: _list[str]
+    docTagPrefix: str
+    documentationUri: str
+    githubLabel: str
+    librarySettings: _list[ClientLibrarySettings]
+    methodSettings: _list[MethodSettings]
+    newIssueUri: str
+    organization: typing_extensions.Literal[
+        "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED",
+        "CLOUD",
+        "ADS",
+        "PHOTOS",
+        "STREET_VIEW",
+    ]
+
+@typing.type_check_only
+class PythonSettings(typing_extensions.TypedDict, total=False):
+    common: CommonLanguageSettings
 
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
@@ -589,6 +680,10 @@ class QuotaOverride(typing_extensions.TypedDict, total=False):
     name: str
     overrideValue: str
     unit: str
+
+@typing.type_check_only
+class RubySettings(typing_extensions.TypedDict, total=False):
+    common: CommonLanguageSettings
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):

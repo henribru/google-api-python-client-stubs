@@ -33,6 +33,41 @@ class AnalyzeMoveResponse(typing_extensions.TypedDict, total=False):
     moveAnalysis: _list[MoveAnalysis]
 
 @typing.type_check_only
+class AnalyzeOrgPoliciesResponse(typing_extensions.TypedDict, total=False):
+    constraint: AnalyzerOrgPolicyConstraint
+    nextPageToken: str
+    orgPolicyResults: _list[OrgPolicyResult]
+
+@typing.type_check_only
+class AnalyzeOrgPolicyGovernedAssetsResponse(typing_extensions.TypedDict, total=False):
+    constraint: AnalyzerOrgPolicyConstraint
+    governedAssets: _list[
+        GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedAsset
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
+class AnalyzeOrgPolicyGovernedContainersResponse(
+    typing_extensions.TypedDict, total=False
+):
+    constraint: AnalyzerOrgPolicyConstraint
+    governedContainers: _list[GoogleCloudAssetV1GovernedContainer]
+    nextPageToken: str
+
+@typing.type_check_only
+class AnalyzerOrgPolicy(typing_extensions.TypedDict, total=False):
+    appliedResource: str
+    attachedResource: str
+    inheritFromParent: bool
+    reset: bool
+    rules: _list[GoogleCloudAssetV1Rule]
+
+@typing.type_check_only
+class AnalyzerOrgPolicyConstraint(typing_extensions.TypedDict, total=False):
+    customConstraint: GoogleCloudAssetV1CustomConstraint
+    googleDefinedConstraint: GoogleCloudAssetV1Constraint
+
+@typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     accessLevel: GoogleIdentityAccesscontextmanagerV1AccessLevel
     accessPolicy: GoogleIdentityAccesscontextmanagerV1AccessPolicy
@@ -184,11 +219,64 @@ class GoogleCloudAssetV1AccessControlList(typing_extensions.TypedDict, total=Fal
     resources: _list[GoogleCloudAssetV1Resource]
 
 @typing.type_check_only
+class GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedAsset(
+    typing_extensions.TypedDict, total=False
+):
+    consolidatedPolicy: AnalyzerOrgPolicy
+    governedIamPolicy: GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy
+    governedResource: GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource
+    policyBundle: _list[AnalyzerOrgPolicy]
+
+@typing.type_check_only
+class GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    attachedResource: str
+    folders: _list[str]
+    organization: str
+    policy: Policy
+    project: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource(
+    typing_extensions.TypedDict, total=False
+):
+    folders: _list[str]
+    fullResourceName: str
+    organization: str
+    parent: str
+    project: str
+
+@typing.type_check_only
 class GoogleCloudAssetV1BigQueryDestination(typing_extensions.TypedDict, total=False):
     dataset: str
     partitionKey: typing_extensions.Literal["PARTITION_KEY_UNSPECIFIED", "REQUEST_TIME"]
     tablePrefix: str
     writeDisposition: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1BooleanConstraint(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleCloudAssetV1Constraint(typing_extensions.TypedDict, total=False):
+    booleanConstraint: GoogleCloudAssetV1BooleanConstraint
+    constraintDefault: typing_extensions.Literal[
+        "CONSTRAINT_DEFAULT_UNSPECIFIED", "ALLOW", "DENY"
+    ]
+    description: str
+    displayName: str
+    listConstraint: GoogleCloudAssetV1ListConstraint
+    name: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1CustomConstraint(typing_extensions.TypedDict, total=False):
+    actionType: typing_extensions.Literal["ACTION_TYPE_UNSPECIFIED", "ALLOW", "DENY"]
+    condition: str
+    description: str
+    displayName: str
+    methodTypes: _list[str]
+    name: str
+    resourceTypes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAssetV1Edge(typing_extensions.TypedDict, total=False):
@@ -198,6 +286,13 @@ class GoogleCloudAssetV1Edge(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudAssetV1GcsDestination(typing_extensions.TypedDict, total=False):
     uri: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1GovernedContainer(typing_extensions.TypedDict, total=False):
+    consolidatedPolicy: AnalyzerOrgPolicy
+    fullResourceName: str
+    parent: str
+    policyBundle: _list[AnalyzerOrgPolicy]
 
 @typing.type_check_only
 class GoogleCloudAssetV1Identity(typing_extensions.TypedDict, total=False):
@@ -210,9 +305,35 @@ class GoogleCloudAssetV1IdentityList(typing_extensions.TypedDict, total=False):
     identities: _list[GoogleCloudAssetV1Identity]
 
 @typing.type_check_only
+class GoogleCloudAssetV1ListConstraint(typing_extensions.TypedDict, total=False):
+    supportsIn: bool
+    supportsUnder: bool
+
+@typing.type_check_only
+class GoogleCloudAssetV1QueryAssetsOutputConfigBigQueryDestination(
+    typing_extensions.TypedDict, total=False
+):
+    dataset: str
+    table: str
+    writeDisposition: str
+
+@typing.type_check_only
 class GoogleCloudAssetV1Resource(typing_extensions.TypedDict, total=False):
     analysisState: IamPolicyAnalysisState
     fullResourceName: str
+
+@typing.type_check_only
+class GoogleCloudAssetV1Rule(typing_extensions.TypedDict, total=False):
+    allowAll: bool
+    condition: Expr
+    denyAll: bool
+    enforce: bool
+    values: GoogleCloudAssetV1StringValues
+
+@typing.type_check_only
+class GoogleCloudAssetV1StringValues(typing_extensions.TypedDict, total=False):
+    allowedValues: _list[str]
+    deniedValues: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAssetV1p7beta1Asset(typing_extensions.TypedDict, total=False):
@@ -596,6 +717,11 @@ class Options(typing_extensions.TypedDict, total=False):
     outputResourceEdges: bool
 
 @typing.type_check_only
+class OrgPolicyResult(typing_extensions.TypedDict, total=False):
+    consolidatedPolicy: AnalyzerOrgPolicy
+    policyBundle: _list[AnalyzerOrgPolicy]
+
+@typing.type_check_only
 class OsInfo(typing_extensions.TypedDict, total=False):
     architecture: str
     hostname: str
@@ -638,8 +764,38 @@ class PubsubDestination(typing_extensions.TypedDict, total=False):
     topic: str
 
 @typing.type_check_only
+class QueryAssetsOutputConfig(typing_extensions.TypedDict, total=False):
+    bigqueryDestination: GoogleCloudAssetV1QueryAssetsOutputConfigBigQueryDestination
+
+@typing.type_check_only
+class QueryAssetsRequest(typing_extensions.TypedDict, total=False):
+    jobReference: str
+    outputConfig: QueryAssetsOutputConfig
+    pageSize: int
+    pageToken: str
+    readTime: str
+    readTimeWindow: TimeWindow
+    statement: str
+    timeout: str
+
+@typing.type_check_only
+class QueryAssetsResponse(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    jobReference: str
+    outputConfig: QueryAssetsOutputConfig
+    queryResult: QueryResult
+
+@typing.type_check_only
 class QueryContent(typing_extensions.TypedDict, total=False):
     iamPolicyAnalysisQuery: IamPolicyAnalysisQuery
+
+@typing.type_check_only
+class QueryResult(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rows: _list[dict[str, typing.Any]]
+    schema: TableSchema
+    totalRows: str
 
 @typing.type_check_only
 class RelatedAsset(typing_extensions.TypedDict, total=False):
@@ -748,6 +904,17 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TableFieldSchema(typing_extensions.TypedDict, total=False):
+    field: str
+    fields: _list[TableFieldSchema]
+    mode: str
+    type: str
+
+@typing.type_check_only
+class TableSchema(typing_extensions.TypedDict, total=False):
+    fields: _list[TableFieldSchema]
 
 @typing.type_check_only
 class TemporalAsset(typing_extensions.TypedDict, total=False):

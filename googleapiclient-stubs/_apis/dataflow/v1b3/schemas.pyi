@@ -715,6 +715,8 @@ class ParameterMetadata(typing_extensions.TypedDict, total=False):
         "GCS_WRITE_FOLDER",
         "PUBSUB_TOPIC",
         "PUBSUB_SUBSCRIPTION",
+        "BIGQUERY_TABLE",
+        "JAVASCRIPT_UDF_FILE",
     ]
     regexes: _list[str]
 
@@ -1314,6 +1316,7 @@ class WorkerMessage(typing_extensions.TypedDict, total=False):
     workerMessageCode: WorkerMessageCode
     workerMetrics: ResourceUtilizationReport
     workerShutdownNotice: WorkerShutdownNotice
+    workerThreadScalingReport: WorkerThreadScalingReport
 
 @typing.type_check_only
 class WorkerMessageCode(typing_extensions.TypedDict, total=False):
@@ -1325,6 +1328,7 @@ class WorkerMessageResponse(typing_extensions.TypedDict, total=False):
     workerHealthReportResponse: WorkerHealthReportResponse
     workerMetricsResponse: ResourceUtilizationReportResponse
     workerShutdownNoticeResponse: WorkerShutdownNoticeResponse
+    workerThreadScalingReportResponse: WorkerThreadScalingReportResponse
 
 @typing.type_check_only
 class WorkerPool(typing_extensions.TypedDict, total=False):
@@ -1378,6 +1382,14 @@ class WorkerShutdownNotice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkerShutdownNoticeResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class WorkerThreadScalingReport(typing_extensions.TypedDict, total=False):
+    currentThreadCount: int
+
+@typing.type_check_only
+class WorkerThreadScalingReportResponse(typing_extensions.TypedDict, total=False):
+    recommendedThreadCount: int
 
 @typing.type_check_only
 class WriteInstruction(typing_extensions.TypedDict, total=False):

@@ -456,6 +456,17 @@ class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse(
     userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaBigQueryLink(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dailyExportEnabled: bool
+    excludedEvents: _list[str]
+    exportStreams: _list[str]
+    includeAdvertisingId: bool
+    name: str
+    project: str
+    streamingExportEnabled: bool
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -477,6 +488,7 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
 ):
     account: GoogleAnalyticsAdminV1alphaAccount
     attributionSettings: GoogleAnalyticsAdminV1alphaAttributionSettings
+    bigqueryLink: GoogleAnalyticsAdminV1alphaBigQueryLink
     conversionEvent: GoogleAnalyticsAdminV1alphaConversionEvent
     customDimension: GoogleAnalyticsAdminV1alphaCustomDimension
     customMetric: GoogleAnalyticsAdminV1alphaCustomMetric
@@ -484,6 +496,7 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     dataStream: GoogleAnalyticsAdminV1alphaDataStream
     displayVideo360AdvertiserLink: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
     displayVideo360AdvertiserLinkProposal: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal
+    expandedDataSet: GoogleAnalyticsAdminV1alphaExpandedDataSet
     firebaseLink: GoogleAnalyticsAdminV1alphaFirebaseLink
     googleAdsLink: GoogleAnalyticsAdminV1alphaGoogleAdsLink
     googleSignalsSettings: GoogleAnalyticsAdminV1alphaGoogleSignalsSettings
@@ -650,6 +663,55 @@ class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal(
     validationEmail: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaExpandedDataSet(
+    typing_extensions.TypedDict, total=False
+):
+    dataCollectionStartTime: str
+    description: str
+    dimensionFilterExpression: GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression
+    dimensionNames: _list[str]
+    displayName: str
+    metricNames: _list[str]
+    name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaExpandedDataSetFilter(
+    typing_extensions.TypedDict, total=False
+):
+    fieldName: str
+    inListFilter: GoogleAnalyticsAdminV1alphaExpandedDataSetFilterInListFilter
+    stringFilter: GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression(
+    typing_extensions.TypedDict, total=False
+):
+    andGroup: GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpressionList
+    filter: GoogleAnalyticsAdminV1alphaExpandedDataSetFilter
+    notExpression: GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpressionList(
+    typing_extensions.TypedDict, total=False
+):
+    filterExpressions: _list[GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaExpandedDataSetFilterInListFilter(
+    typing_extensions.TypedDict, total=False
+):
+    caseSensitive: bool
+    values: _list[str]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter(
+    typing_extensions.TypedDict, total=False
+):
+    caseSensitive: bool
+    matchType: typing_extensions.Literal["MATCH_TYPE_UNSPECIFIED", "EXACT", "CONTAINS"]
+    value: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaFirebaseLink(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
@@ -729,6 +791,13 @@ class GoogleAnalyticsAdminV1alphaListAudiencesResponse(
     typing_extensions.TypedDict, total=False
 ):
     audiences: _list[GoogleAnalyticsAdminV1alphaAudience]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse(
+    typing_extensions.TypedDict, total=False
+):
+    bigqueryLinks: _list[GoogleAnalyticsAdminV1alphaBigQueryLink]
     nextPageToken: str
 
 @typing.type_check_only

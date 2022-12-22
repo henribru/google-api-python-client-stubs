@@ -21,6 +21,12 @@ class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
             body: GoogleIdentityStsV1IntrospectTokenRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleIdentityStsV1IntrospectTokenResponseHttpRequest: ...
+        def oauthtoken(
+            self,
+            *,
+            body: GoogleIdentityStsV1ExchangeOauthTokenRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleIdentityStsV1ExchangeOauthTokenResponseHttpRequest: ...
         def token(
             self,
             *,
@@ -41,6 +47,16 @@ class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def v1(self) -> V1Resource: ...
+
+@typing.type_check_only
+class GoogleIdentityStsV1ExchangeOauthTokenResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleIdentityStsV1ExchangeOauthTokenResponse: ...
 
 @typing.type_check_only
 class GoogleIdentityStsV1ExchangeTokenResponseHttpRequest(

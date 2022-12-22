@@ -96,6 +96,13 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest,
                     previous_response: GoogleCloudAssuredworkloadsV1ListWorkloadsResponse,
                 ) -> GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest | None: ...
+                def mutatePartnerPermissions(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudAssuredworkloadsV1WorkloadHttpRequest: ...
                 def patch(
                     self,
                     *,

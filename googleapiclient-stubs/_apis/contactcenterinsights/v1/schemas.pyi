@@ -9,6 +9,7 @@ class GoogleCloudContactcenterinsightsV1Analysis(
     typing_extensions.TypedDict, total=False
 ):
     analysisResult: GoogleCloudContactcenterinsightsV1AnalysisResult
+    annotatorSelector: GoogleCloudContactcenterinsightsV1AnnotatorSelector
     createTime: str
     name: str
     requestTime: str
@@ -39,6 +40,20 @@ class GoogleCloudContactcenterinsightsV1AnnotationBoundary(
     wordIndex: int
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AnnotatorSelector(
+    typing_extensions.TypedDict, total=False
+):
+    issueModels: _list[str]
+    phraseMatchers: _list[str]
+    runEntityAnnotator: bool
+    runIntentAnnotator: bool
+    runInterruptionAnnotator: bool
+    runIssueModelAnnotator: bool
+    runPhraseMatcherAnnotator: bool
+    runSentimentAnnotator: bool
+    runSilenceAnnotator: bool
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1AnswerFeedback(
     typing_extensions.TypedDict, total=False
 ):
@@ -61,6 +76,33 @@ class GoogleCloudContactcenterinsightsV1ArticleSuggestionData(
     source: str
     title: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completedAnalysesCount: int
+    createTime: str
+    endTime: str
+    failedAnalysesCount: int
+    request: GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest
+    totalRequestedAnalysesCount: int
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    analysisPercentage: float
+    annotatorSelector: GoogleCloudContactcenterinsightsV1AnnotatorSelector
+    filter: str
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    failedAnalysisCount: int
+    successfulAnalysisCount: int
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponse(
@@ -108,6 +150,7 @@ class GoogleCloudContactcenterinsightsV1CallAnnotation(
     holdData: GoogleCloudContactcenterinsightsV1HoldData
     intentMatchData: GoogleCloudContactcenterinsightsV1IntentMatchData
     interruptionData: GoogleCloudContactcenterinsightsV1InterruptionData
+    issueMatchData: GoogleCloudContactcenterinsightsV1IssueMatchData
     phraseMatchData: GoogleCloudContactcenterinsightsV1PhraseMatchData
     sentimentData: GoogleCloudContactcenterinsightsV1SentimentData
     silenceData: GoogleCloudContactcenterinsightsV1SilenceData
@@ -212,6 +255,7 @@ class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentW
 class GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    annotatorSelector: GoogleCloudContactcenterinsightsV1AnnotatorSelector
     conversation: str
     createTime: str
     endTime: str
@@ -380,6 +424,47 @@ class GoogleCloudContactcenterinsightsV1HoldData(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1IngestConversationsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1IngestConversationsRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1IngestConversationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    conversationConfig: GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig
+    gcsSource: GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource
+    parent: str
+    transcriptObjectConfig: GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfig
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    agentId: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource(
+    typing_extensions.TypedDict, total=False
+):
+    bucketUri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfig(
+    typing_extensions.TypedDict, total=False
+):
+    medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1IngestConversationsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1Intent(
     typing_extensions.TypedDict, total=False
 ):
@@ -402,6 +487,7 @@ class GoogleCloudContactcenterinsightsV1Issue(typing_extensions.TypedDict, total
     createTime: str
     displayName: str
     name: str
+    sampleUtterances: _list[str]
     updateTime: str
 
 @typing.type_check_only
@@ -413,12 +499,19 @@ class GoogleCloudContactcenterinsightsV1IssueAssignment(
     score: float
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1IssueMatchData(
+    typing_extensions.TypedDict, total=False
+):
+    issueAssignment: GoogleCloudContactcenterinsightsV1IssueAssignment
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1IssueModel(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
     displayName: str
     inputDataConfig: GoogleCloudContactcenterinsightsV1IssueModelInputDataConfig
+    issueCount: str
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -590,6 +683,7 @@ class GoogleCloudContactcenterinsightsV1Settings(
 class GoogleCloudContactcenterinsightsV1SettingsAnalysisConfig(
     typing_extensions.TypedDict, total=False
 ):
+    annotatorSelector: GoogleCloudContactcenterinsightsV1AnnotatorSelector
     runtimeIntegrationAnalysisPercentage: float
 
 @typing.type_check_only
@@ -643,9 +737,51 @@ class GoogleCloudContactcenterinsightsV1View(typing_extensions.TypedDict, total=
     value: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector(
+    typing_extensions.TypedDict, total=False
+):
+    issueModels: _list[str]
+    phraseMatchers: _list[str]
+    runEntityAnnotator: bool
+    runIntentAnnotator: bool
+    runInterruptionAnnotator: bool
+    runIssueModelAnnotator: bool
+    runPhraseMatcherAnnotator: bool
+    runSentimentAnnotator: bool
+    runSilenceAnnotator: bool
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    completedAnalysesCount: int
+    createTime: str
+    endTime: str
+    failedAnalysesCount: int
+    request: GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest
+    totalRequestedAnalysesCount: int
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    analysisPercentage: float
+    annotatorSelector: GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector
+    filter: str
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    failedAnalysisCount: int
+    successfulAnalysisCount: int
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    annotatorSelector: GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector
     conversation: str
     createTime: str
     endTime: str
@@ -733,12 +869,54 @@ class GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    conversationConfig: GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig
+    gcsSource: GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource
+    parent: str
+    transcriptObjectConfig: GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfig
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    agentId: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource(
+    typing_extensions.TypedDict, total=False
+):
+    bucketUri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfig(
+    typing_extensions.TypedDict, total=False
+):
+    medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1IssueModel(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
     displayName: str
     inputDataConfig: GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfig
+    issueCount: str
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

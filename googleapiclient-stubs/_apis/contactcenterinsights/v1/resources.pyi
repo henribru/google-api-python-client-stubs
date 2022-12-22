@@ -49,6 +49,13 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         previous_response: GoogleCloudContactcenterinsightsV1ListAnalysesResponse,
                     ) -> GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest | None: ...
 
+                def bulkAnalyze(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def calculateStats(
                     self, *, location: str, filter: str = ..., **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1CalculateStatsResponseHttpRequest: ...
@@ -72,6 +79,13 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1ConversationHttpRequest: ...
+                def ingest(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1IngestConversationsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -113,6 +127,9 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
             class IssueModelsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class IssuesResource(googleapiclient.discovery.Resource):
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudContactcenterinsightsV1IssueHttpRequest: ...

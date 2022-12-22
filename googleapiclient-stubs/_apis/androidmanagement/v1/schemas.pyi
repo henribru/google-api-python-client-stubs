@@ -171,6 +171,11 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     minimumVersionCode: int
     packageName: str
     permissionGrants: _list[PermissionGrant]
+    workProfileWidgets: typing_extensions.Literal[
+        "WORK_PROFILE_WIDGETS_UNSPECIFIED",
+        "WORK_PROFILE_WIDGETS_ALLOWED",
+        "WORK_PROFILE_WIDGETS_DISALLOWED",
+    ]
 
 @typing.type_check_only
 class ApplicationReport(typing_extensions.TypedDict, total=False):
@@ -321,6 +326,11 @@ class CrossProfilePolicies(typing_extensions.TypedDict, total=False):
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_UNSPECIFIED",
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED",
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED",
+    ]
+    workProfileWidgetsDefault: typing_extensions.Literal[
+        "WORK_PROFILE_WIDGETS_DEFAULT_UNSPECIFIED",
+        "WORK_PROFILE_WIDGETS_DEFAULT_ALLOWED",
+        "WORK_PROFILE_WIDGETS_DEFAULT_DISALLOWED",
     ]
 
 @typing.type_check_only

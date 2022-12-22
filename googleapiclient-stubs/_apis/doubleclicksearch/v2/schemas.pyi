@@ -9,6 +9,7 @@ class Availability(typing_extensions.TypedDict, total=False):
     advertiserId: str
     agencyId: str
     availabilityTimestamp: str
+    customerId: str
     segmentationId: str
     segmentationName: str
     segmentationType: str
@@ -31,6 +32,7 @@ class Conversion(typing_extensions.TypedDict, total=False):
     currencyCode: str
     customDimension: _list[CustomDimension]
     customMetric: _list[CustomMetric]
+    customerId: str
     deviceType: str
     dsConversionId: str
     engineAccountId: str

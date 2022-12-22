@@ -1258,6 +1258,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1EnvironmentHttpRequest: ...
+            def getApiSecurityRuntimeConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1ApiSecurityRuntimeConfigHttpRequest: ...
             def getDebugmask(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1DebugMaskHttpRequest: ...
@@ -2000,6 +2003,16 @@ class GoogleCloudApigeeV1ApiResponseWrapperHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1ApiResponseWrapper: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiSecurityRuntimeConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1ApiSecurityRuntimeConfig: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1AppHttpRequest(googleapiclient.http.HttpRequest):

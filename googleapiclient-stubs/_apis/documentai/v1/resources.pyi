@@ -221,58 +221,6 @@ class DocumentResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
 
-    @typing.type_check_only
-    class Uiv1beta3Resource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class ProjectsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class LocationsResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class OperationsResource(googleapiclient.discovery.Resource):
-                    def cancel(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleProtobufEmptyHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
-                        previous_response: GoogleLongrunningListOperationsResponse,
-                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudLocationLocationHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    name: str,
-                    filter: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
-                    previous_response: GoogleCloudLocationListLocationsResponse,
-                ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
-                def operations(self) -> OperationsResource: ...
-
-            def locations(self) -> LocationsResource: ...
-
-        def projects(self) -> ProjectsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -287,7 +235,6 @@ class DocumentResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
-    def uiv1beta3(self) -> Uiv1beta3Resource: ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1FetchProcessorTypesResponseHttpRequest(

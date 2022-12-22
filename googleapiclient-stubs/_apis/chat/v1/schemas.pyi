@@ -189,6 +189,7 @@ class FormAction(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleAppsCardV1Action(typing_extensions.TypedDict, total=False):
     function: str
+    interaction: typing_extensions.Literal["INTERACTION_UNSPECIFIED", "OPEN_DIALOG"]
     loadIndicator: typing_extensions.Literal["SPINNER", "NONE"]
     parameters: _list[GoogleAppsCardV1ActionParameter]
     persistValues: bool
@@ -288,9 +289,6 @@ class GoogleAppsCardV1GridItem(typing_extensions.TypedDict, total=False):
         "GRID_ITEM_LAYOUT_UNSPECIFIED", "TEXT_BELOW", "TEXT_ABOVE"
     ]
     subtitle: str
-    textAlignment: typing_extensions.Literal[
-        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
-    ]
     title: str
 
 @typing.type_check_only
@@ -396,9 +394,6 @@ class GoogleAppsCardV1Widget(typing_extensions.TypedDict, total=False):
     decoratedText: GoogleAppsCardV1DecoratedText
     divider: GoogleAppsCardV1Divider
     grid: GoogleAppsCardV1Grid
-    horizontalAlignment: typing_extensions.Literal[
-        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
-    ]
     image: GoogleAppsCardV1Image
     selectionInput: GoogleAppsCardV1SelectionInput
     textInput: GoogleAppsCardV1TextInput
@@ -537,6 +532,7 @@ class Message(typing_extensions.TypedDict, total=False):
     attachment: _list[Attachment]
     cards: _list[Card]
     cardsV2: _list[CardWithId]
+    clientAssignedMessageId: str
     createTime: str
     fallbackText: str
     lastUpdateTime: str
@@ -547,6 +543,7 @@ class Message(typing_extensions.TypedDict, total=False):
     space: Space
     text: str
     thread: Thread
+    threadReply: bool
 
 @typing.type_check_only
 class OnClick(typing_extensions.TypedDict, total=False):
@@ -580,6 +577,12 @@ class Space(typing_extensions.TypedDict, total=False):
     name: str
     singleUserBotDm: bool
     spaceDetails: SpaceDetails
+    spaceThreadingState: typing_extensions.Literal[
+        "SPACE_THREADING_STATE_UNSPECIFIED",
+        "THREADED_MESSAGES",
+        "GROUPED_MESSAGES",
+        "UNTHREADED_MESSAGES",
+    ]
     threaded: bool
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ROOM", "DM"]
 
@@ -610,6 +613,7 @@ class TextParagraph(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Thread(typing_extensions.TypedDict, total=False):
     name: str
+    threadKey: str
 
 @typing.type_check_only
 class TimeInput(typing_extensions.TypedDict, total=False):

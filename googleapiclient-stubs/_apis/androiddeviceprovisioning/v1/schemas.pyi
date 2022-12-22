@@ -9,9 +9,12 @@ class ClaimDeviceRequest(typing_extensions.TypedDict, total=False):
     customerId: str
     deviceIdentifier: DeviceIdentifier
     deviceMetadata: DeviceMetadata
+    googleWorkspaceCustomerId: str
+    preProvisioningToken: str
     sectionType: typing_extensions.Literal[
         "SECTION_TYPE_UNSPECIFIED", "SECTION_TYPE_SIM_LOCK", "SECTION_TYPE_ZERO_TOUCH"
     ]
+    simlockProfileId: str
 
 @typing.type_check_only
 class ClaimDeviceResponse(typing_extensions.TypedDict, total=False):
@@ -27,6 +30,7 @@ class Company(typing_extensions.TypedDict, total=False):
     adminEmails: _list[str]
     companyId: str
     companyName: str
+    googleWorkspaceAccount: GoogleWorkspaceAccount
     languageCode: str
     name: str
     ownerEmails: _list[str]
@@ -100,6 +104,7 @@ class DeviceClaim(typing_extensions.TypedDict, total=False):
     additionalService: typing_extensions.Literal[
         "ADDITIONAL_SERVICE_UNSPECIFIED", "DEVICE_PROTECTION"
     ]
+    googleWorkspaceCustomerId: str
     ownerCompanyId: str
     resellerId: str
     sectionType: typing_extensions.Literal[
@@ -110,6 +115,10 @@ class DeviceClaim(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceIdentifier(typing_extensions.TypedDict, total=False):
+    chromeOsAttestedDeviceId: str
+    deviceType: typing_extensions.Literal[
+        "DEVICE_TYPE_UNSPECIFIED", "DEVICE_TYPE_ANDROID", "DEVICE_TYPE_CHROME_OS"
+    ]
     imei: str
     manufacturer: str
     meid: str
@@ -165,6 +174,7 @@ class FindDevicesByDeviceIdentifierResponse(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class FindDevicesByOwnerRequest(typing_extensions.TypedDict, total=False):
     customerId: _list[str]
+    googleWorkspaceCustomerId: _list[str]
     limit: str
     pageToken: str
     sectionType: typing_extensions.Literal[
@@ -176,6 +186,11 @@ class FindDevicesByOwnerResponse(typing_extensions.TypedDict, total=False):
     devices: _list[Device]
     nextPageToken: str
     totalSize: int
+
+@typing.type_check_only
+class GoogleWorkspaceAccount(typing_extensions.TypedDict, total=False):
+    customerId: str
+    preProvisioningTokens: _list[str]
 
 @typing.type_check_only
 class ListCustomersResponse(typing_extensions.TypedDict, total=False):
@@ -215,6 +230,8 @@ class PartnerClaim(typing_extensions.TypedDict, total=False):
     customerId: str
     deviceIdentifier: DeviceIdentifier
     deviceMetadata: DeviceMetadata
+    googleWorkspaceCustomerId: str
+    preProvisioningToken: str
     sectionType: typing_extensions.Literal[
         "SECTION_TYPE_UNSPECIFIED", "SECTION_TYPE_SIM_LOCK", "SECTION_TYPE_ZERO_TOUCH"
     ]
@@ -243,6 +260,8 @@ class PerDeviceStatusInBatch(typing_extensions.TypedDict, total=False):
         "SINGLE_DEVICE_STATUS_INVALID_DEVICE_IDENTIFIER",
         "SINGLE_DEVICE_STATUS_INVALID_SECTION_TYPE",
         "SINGLE_DEVICE_STATUS_SECTION_NOT_YOURS",
+        "SINGLE_DEVICE_STATUS_INVALID_TOKEN",
+        "SINGLE_DEVICE_STATUS_REVOKED_TOKEN",
     ]
 
 @typing.type_check_only

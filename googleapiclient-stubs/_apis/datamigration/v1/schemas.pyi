@@ -39,6 +39,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CloudSqlConnectionProfile(typing_extensions.TypedDict, total=False):
+    additionalPublicIp: str
     cloudSqlId: str
     privateIp: str
     publicIp: str
@@ -50,6 +51,9 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "SQL_ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER"
     ]
     autoStorageIncrease: bool
+    availabilityType: typing_extensions.Literal[
+        "SQL_AVAILABILITY_TYPE_UNSPECIFIED", "ZONAL", "REGIONAL"
+    ]
     cmekKeyName: str
     collation: str
     dataDiskSizeGb: str
@@ -72,6 +76,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
     ipConfig: SqlIpConfig
     rootPassword: str
     rootPasswordSet: bool
+    secondaryZone: str
     sourceId: str
     storageAutoResizeLimit: str
     tier: str

@@ -167,18 +167,21 @@ class RemoveAnalyticsRequest(typing_extensions.TypedDict, total=False):
 class RemoveAndroidAppRequest(typing_extensions.TypedDict, total=False):
     allowMissing: bool
     etag: str
+    immediate: bool
     validateOnly: bool
 
 @typing.type_check_only
 class RemoveIosAppRequest(typing_extensions.TypedDict, total=False):
     allowMissing: bool
     etag: str
+    immediate: bool
     validateOnly: bool
 
 @typing.type_check_only
 class RemoveWebAppRequest(typing_extensions.TypedDict, total=False):
     allowMissing: bool
     etag: str
+    immediate: bool
     validateOnly: bool
 
 @typing.type_check_only

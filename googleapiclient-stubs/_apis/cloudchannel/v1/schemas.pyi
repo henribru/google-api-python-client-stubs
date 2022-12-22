@@ -108,10 +108,32 @@ class GoogleCloudChannelV1CloudIdentityInfo(typing_extensions.TypedDict, total=F
     primaryDomain: str
 
 @typing.type_check_only
+class GoogleCloudChannelV1Column(typing_extensions.TypedDict, total=False):
+    columnId: str
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED",
+        "STRING",
+        "INT",
+        "DECIMAL",
+        "MONEY",
+        "DATE",
+        "DATE_TIME",
+    ]
+    displayName: str
+
+@typing.type_check_only
 class GoogleCloudChannelV1CommitmentSettings(typing_extensions.TypedDict, total=False):
     endTime: str
     renewalSettings: GoogleCloudChannelV1RenewalSettings
     startTime: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1ConditionalOverride(typing_extensions.TypedDict, total=False):
+    adjustment: GoogleCloudChannelV1RepricingAdjustment
+    rebillingBasis: typing_extensions.Literal[
+        "REBILLING_BASIS_UNSPECIFIED", "COST_AT_LIST", "DIRECT_CUSTOMER_COST"
+    ]
+    repricingCondition: GoogleCloudChannelV1RepricingCondition
 
 @typing.type_check_only
 class GoogleCloudChannelV1Constraints(typing_extensions.TypedDict, total=False):
@@ -170,6 +192,13 @@ class GoogleCloudChannelV1CustomerRepricingConfig(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudChannelV1DateRange(typing_extensions.TypedDict, total=False):
+    invoiceEndDate: GoogleTypeDate
+    invoiceStartDate: GoogleTypeDate
+    usageEndDateTime: GoogleTypeDateTime
+    usageStartDateTime: GoogleTypeDateTime
+
+@typing.type_check_only
 class GoogleCloudChannelV1EduData(typing_extensions.TypedDict, total=False):
     instituteSize: typing_extensions.Literal[
         "INSTITUTE_SIZE_UNSPECIFIED",
@@ -221,6 +250,21 @@ class GoogleCloudChannelV1EntitlementEvent(typing_extensions.TypedDict, total=Fa
         "LICENSE_ASSIGNMENT_CHANGED",
         "LICENSE_CAP_CHANGED",
     ]
+
+@typing.type_check_only
+class GoogleCloudChannelV1FetchReportResultsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    pageSize: int
+    pageToken: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1FetchReportResultsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    reportMetadata: GoogleCloudChannelV1ReportResultsMetadata
+    rows: _list[GoogleCloudChannelV1Row]
 
 @typing.type_check_only
 class GoogleCloudChannelV1ImportCustomerRequest(
@@ -297,6 +341,11 @@ class GoogleCloudChannelV1ListPurchasableSkusResponse(
     purchasableSkus: _list[GoogleCloudChannelV1PurchasableSku]
 
 @typing.type_check_only
+class GoogleCloudChannelV1ListReportsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    reports: _list[GoogleCloudChannelV1Report]
+
+@typing.type_check_only
 class GoogleCloudChannelV1ListSkusResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     skus: _list[GoogleCloudChannelV1Sku]
@@ -360,6 +409,7 @@ class GoogleCloudChannelV1Media(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudChannelV1Offer(typing_extensions.TypedDict, total=False):
     constraints: GoogleCloudChannelV1Constraints
+    dealCode: str
     endTime: str
     marketingInfo: GoogleCloudChannelV1MarketingInfo
     name: str
@@ -515,13 +565,56 @@ class GoogleCloudChannelV1RenewalSettings(typing_extensions.TypedDict, total=Fal
     resizeUnitCount: bool
 
 @typing.type_check_only
+class GoogleCloudChannelV1Report(typing_extensions.TypedDict, total=False):
+    columns: _list[GoogleCloudChannelV1Column]
+    description: str
+    displayName: str
+    name: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1ReportJob(typing_extensions.TypedDict, total=False):
+    name: str
+    reportStatus: GoogleCloudChannelV1ReportStatus
+
+@typing.type_check_only
+class GoogleCloudChannelV1ReportResultsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    dateRange: GoogleCloudChannelV1DateRange
+    precedingDateRange: GoogleCloudChannelV1DateRange
+    report: GoogleCloudChannelV1Report
+    rowCount: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1ReportStatus(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "STARTED", "WRITING", "AVAILABLE", "FAILED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudChannelV1ReportValue(typing_extensions.TypedDict, total=False):
+    dateTimeValue: GoogleTypeDateTime
+    dateValue: GoogleTypeDate
+    decimalValue: GoogleTypeDecimal
+    intValue: str
+    moneyValue: GoogleTypeMoney
+    stringValue: str
+
+@typing.type_check_only
 class GoogleCloudChannelV1RepricingAdjustment(typing_extensions.TypedDict, total=False):
     percentageAdjustment: GoogleCloudChannelV1PercentageAdjustment
+
+@typing.type_check_only
+class GoogleCloudChannelV1RepricingCondition(typing_extensions.TypedDict, total=False):
+    skuGroupCondition: GoogleCloudChannelV1SkuGroupCondition
 
 @typing.type_check_only
 class GoogleCloudChannelV1RepricingConfig(typing_extensions.TypedDict, total=False):
     adjustment: GoogleCloudChannelV1RepricingAdjustment
     channelPartnerGranularity: GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity
+    conditionalOverrides: _list[GoogleCloudChannelV1ConditionalOverride]
     effectiveInvoiceMonth: GoogleTypeDate
     entitlementGranularity: GoogleCloudChannelV1RepricingConfigEntitlementGranularity
     rebillingBasis: typing_extensions.Literal[
@@ -540,10 +633,31 @@ class GoogleCloudChannelV1RepricingConfigEntitlementGranularity(
     entitlement: str
 
 @typing.type_check_only
+class GoogleCloudChannelV1Row(typing_extensions.TypedDict, total=False):
+    values: _list[GoogleCloudChannelV1ReportValue]
+
+@typing.type_check_only
+class GoogleCloudChannelV1RunReportJobRequest(typing_extensions.TypedDict, total=False):
+    dateRange: GoogleCloudChannelV1DateRange
+    filter: str
+    languageCode: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1RunReportJobResponse(
+    typing_extensions.TypedDict, total=False
+):
+    reportJob: GoogleCloudChannelV1ReportJob
+    reportMetadata: GoogleCloudChannelV1ReportResultsMetadata
+
+@typing.type_check_only
 class GoogleCloudChannelV1Sku(typing_extensions.TypedDict, total=False):
     marketingInfo: GoogleCloudChannelV1MarketingInfo
     name: str
     product: GoogleCloudChannelV1Product
+
+@typing.type_check_only
+class GoogleCloudChannelV1SkuGroupCondition(typing_extensions.TypedDict, total=False):
+    skuGroup: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1StartPaidServiceRequest(
@@ -652,6 +766,20 @@ class GoogleCloudChannelV1alpha1ChannelPartnerEvent(
     ]
 
 @typing.type_check_only
+class GoogleCloudChannelV1alpha1Column(typing_extensions.TypedDict, total=False):
+    columnId: str
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED",
+        "STRING",
+        "INT",
+        "DECIMAL",
+        "MONEY",
+        "DATE",
+        "DATE_TIME",
+    ]
+    displayName: str
+
+@typing.type_check_only
 class GoogleCloudChannelV1alpha1CommitmentSettings(
     typing_extensions.TypedDict, total=False
 ):
@@ -665,6 +793,13 @@ class GoogleCloudChannelV1alpha1CustomerEvent(typing_extensions.TypedDict, total
     eventType: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "PRIMARY_DOMAIN_CHANGED", "PRIMARY_DOMAIN_VERIFIED"
     ]
+
+@typing.type_check_only
+class GoogleCloudChannelV1alpha1DateRange(typing_extensions.TypedDict, total=False):
+    invoiceEndDate: GoogleTypeDate
+    invoiceStartDate: GoogleTypeDate
+    usageEndDateTime: GoogleTypeDateTime
+    usageStartDateTime: GoogleTypeDateTime
 
 @typing.type_check_only
 class GoogleCloudChannelV1alpha1Entitlement(typing_extensions.TypedDict, total=False):
@@ -772,6 +907,42 @@ class GoogleCloudChannelV1alpha1RenewalSettings(
     resizeUnitCount: bool
 
 @typing.type_check_only
+class GoogleCloudChannelV1alpha1Report(typing_extensions.TypedDict, total=False):
+    columns: _list[GoogleCloudChannelV1alpha1Column]
+    description: str
+    displayName: str
+    name: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1alpha1ReportJob(typing_extensions.TypedDict, total=False):
+    name: str
+    reportStatus: GoogleCloudChannelV1alpha1ReportStatus
+
+@typing.type_check_only
+class GoogleCloudChannelV1alpha1ReportResultsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    dateRange: GoogleCloudChannelV1alpha1DateRange
+    precedingDateRange: GoogleCloudChannelV1alpha1DateRange
+    report: GoogleCloudChannelV1alpha1Report
+    rowCount: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1alpha1ReportStatus(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "STARTED", "WRITING", "AVAILABLE", "FAILED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudChannelV1alpha1RunReportJobResponse(
+    typing_extensions.TypedDict, total=False
+):
+    reportJob: GoogleCloudChannelV1alpha1ReportJob
+    reportMetadata: GoogleCloudChannelV1alpha1ReportResultsMetadata
+
+@typing.type_check_only
 class GoogleCloudChannelV1alpha1SubscriberEvent(
     typing_extensions.TypedDict, total=False
 ):
@@ -832,6 +1003,18 @@ class GoogleTypeDate(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
+class GoogleTypeDateTime(typing_extensions.TypedDict, total=False):
+    day: int
+    hours: int
+    minutes: int
+    month: int
+    nanos: int
+    seconds: int
+    timeZone: GoogleTypeTimeZone
+    utcOffset: str
+    year: int
+
+@typing.type_check_only
 class GoogleTypeDecimal(typing_extensions.TypedDict, total=False):
     value: str
 
@@ -854,3 +1037,8 @@ class GoogleTypePostalAddress(typing_extensions.TypedDict, total=False):
     revision: int
     sortingCode: str
     sublocality: str
+
+@typing.type_check_only
+class GoogleTypeTimeZone(typing_extensions.TypedDict, total=False):
+    id: str
+    version: str

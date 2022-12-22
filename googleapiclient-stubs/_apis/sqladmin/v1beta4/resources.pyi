@@ -341,7 +341,13 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, project: str, instance: str, name: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            name: str,
+            host: str = ...,
+            **kwargs: typing.Any
         ) -> UserHttpRequest: ...
         def insert(
             self, *, project: str, instance: str, body: User = ..., **kwargs: typing.Any

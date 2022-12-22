@@ -20,6 +20,18 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ConnectionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class ConnectionSchemaMetadataResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def refresh(
+                        self,
+                        *,
+                        name: str,
+                        body: RefreshConnectionSchemaMetadataRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
                 class RuntimeActionSchemasResource(googleapiclient.discovery.Resource):
                     def list(
                         self,
@@ -123,6 +135,9 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def connectionSchemaMetadata(
+                    self,
+                ) -> ConnectionSchemaMetadataResource: ...
                 def runtimeActionSchemas(self) -> RuntimeActionSchemasResource: ...
                 def runtimeEntitySchemas(self) -> RuntimeEntitySchemasResource: ...
 

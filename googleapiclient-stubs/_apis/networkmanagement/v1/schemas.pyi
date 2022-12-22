@@ -23,9 +23,22 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "DESTINATION_ENDPOINT_NOT_FOUND",
         "MISMATCHED_DESTINATION_NETWORK",
         "UNSUPPORTED",
+        "MISMATCHED_IP_VERSION",
+        "GKE_KONNECTIVITY_PROXY_UNSUPPORTED",
     ]
     projectsMissingPermission: _list[str]
     resourceUri: str
+
+@typing.type_check_only
+class AppEngineVersionEndpoint(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
+class AppEngineVersionInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    environment: str
+    runtime: str
+    uri: str
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -58,6 +71,17 @@ class CloudFunctionInfo(typing_extensions.TypedDict, total=False):
     location: str
     uri: str
     versionId: str
+
+@typing.type_check_only
+class CloudRunRevisionEndpoint(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
+class CloudRunRevisionInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    location: str
+    serviceUri: str
+    uri: str
 
 @typing.type_check_only
 class CloudSQLInstanceInfo(typing_extensions.TypedDict, total=False):
@@ -112,9 +136,12 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "NO_EXTERNAL_ADDRESS",
         "UNKNOWN_INTERNAL_ADDRESS",
         "FORWARDING_RULE_MISMATCH",
+        "FORWARDING_RULE_REGION_MISMATCH",
         "FORWARDING_RULE_NO_INSTANCES",
         "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
         "INSTANCE_NOT_RUNNING",
+        "GKE_CLUSTER_NOT_RUNNING",
+        "CLOUD_SQL_INSTANCE_NOT_RUNNING",
         "TRAFFIC_TYPE_BLOCKED",
         "GKE_MASTER_UNAUTHORIZED_ACCESS",
         "CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS",
@@ -122,10 +149,17 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
         "GOOGLE_MANAGED_SERVICE_NO_PEERING",
         "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
+        "GKE_CONTROL_PLANE_REGION_MISMATCH",
+        "PUBLIC_GKE_CONTROL_PLANE_TO_PRIVATE_DESTINATION",
+        "GKE_CONTROL_PLANE_NO_ROUTE",
+        "CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC",
+        "PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION",
+        "CLOUD_SQL_INSTANCE_NO_ROUTE",
         "CLOUD_FUNCTION_NOT_ACTIVE",
         "VPC_CONNECTOR_NOT_SET",
         "VPC_CONNECTOR_NOT_RUNNING",
         "PSC_CONNECTION_NOT_ACCEPTED",
+        "CLOUD_RUN_REVISION_NOT_READY",
     ]
     resourceUri: str
 
@@ -134,7 +168,9 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
+    appEngineVersion: AppEngineVersionEndpoint
     cloudFunction: CloudFunctionEndpoint
+    cloudRunRevision: CloudRunRevisionEndpoint
     cloudSqlInstance: str
     gkeMasterCluster: str
     instance: str
@@ -194,6 +230,7 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
         "GKE_MASTER",
         "IMPORTED_CUSTOM_ROUTE_NEXT_HOP",
         "CLOUD_SQL_INSTANCE",
+        "ANOTHER_PROJECT",
     ]
 
 @typing.type_check_only
@@ -370,8 +407,10 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Step(typing_extensions.TypedDict, total=False):
     abort: AbortInfo
+    appEngineVersion: AppEngineVersionInfo
     causesDrop: bool
     cloudFunction: CloudFunctionInfo
+    cloudRunRevision: CloudRunRevisionInfo
     cloudSqlInstance: CloudSQLInstanceInfo
     deliver: DeliverInfo
     description: str
@@ -394,6 +433,8 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_GKE_MASTER",
         "START_FROM_CLOUD_SQL_INSTANCE",
         "START_FROM_CLOUD_FUNCTION",
+        "START_FROM_APP_ENGINE_VERSION",
+        "START_FROM_CLOUD_RUN_REVISION",
         "APPLY_INGRESS_FIREWALL_RULE",
         "APPLY_EGRESS_FIREWALL_RULE",
         "APPLY_ROUTE",

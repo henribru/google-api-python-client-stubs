@@ -181,6 +181,7 @@ class Repository(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     mavenConfig: MavenRepositoryConfig
     name: str
+    satisfiesPzs: bool
     sizeBytes: str
     updateTime: str
 

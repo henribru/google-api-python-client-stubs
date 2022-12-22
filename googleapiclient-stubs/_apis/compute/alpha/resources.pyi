@@ -544,6 +544,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: DiskAggregatedListHttpRequest,
             previous_response: DiskAggregatedList,
         ) -> DiskAggregatedListHttpRequest | None: ...
+        def bulkInsert(
+            self,
+            *,
+            project: str,
+            zone: str,
+            body: BulkInsertDiskResource = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def createSnapshot(
             self,
             *,
@@ -2676,6 +2685,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instance: str,
             requestId: str = ...,
+            withExtendedNotifications: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def start(
@@ -4940,6 +4950,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def bulkInsert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: BulkInsertDiskResource = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def createSnapshot(
             self,
             *,
@@ -6148,6 +6167,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             securityPolicy: str,
             body: SecurityPolicyRule = ...,
             priority: int = ...,
+            updateMask: str = ...,
             validateOnly: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -6778,6 +6798,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: ResourcePolicyListHttpRequest,
             previous_response: ResourcePolicyList,
         ) -> ResourcePolicyListHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            resourcePolicy: str,
+            body: ResourcePolicy = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setIamPolicy(
             self,
             *,
@@ -8520,6 +8551,23 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class ZoneQueuedResourcesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> QueuedResourcesAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: QueuedResourcesAggregatedListHttpRequest,
+            previous_response: QueuedResourcesAggregatedList,
+        ) -> QueuedResourcesAggregatedListHttpRequest | None: ...
         def cancel(
             self,
             *,
@@ -9846,6 +9894,14 @@ class QueuedResourceListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> QueuedResourceList: ...
+
+@typing.type_check_only
+class QueuedResourcesAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> QueuedResourcesAggregatedList: ...
 
 @typing.type_check_only
 class RegionHttpRequest(googleapiclient.http.HttpRequest):

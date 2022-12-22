@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AbuseDetected(typing_extensions.TypedDict, total=False):
+    additionalDetails: EntityList
+    alertDescriptor: str
+    nextSteps: str
+    product: str
+    subAlertId: str
+    summary: str
+
+@typing.type_check_only
 class AccountSuspensionDetails(typing_extensions.TypedDict, total=False):
     abuseReason: typing_extensions.Literal[
         "ACCOUNT_SUSPENSION_ABUSE_REASON_UNSPECIFIED",
@@ -203,6 +212,18 @@ class DomainWideTakeoutInitiated(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Entity(typing_extensions.TypedDict, total=False):
+    link: str
+    name: str
+    values: _list[str]
+
+@typing.type_check_only
+class EntityList(typing_extensions.TypedDict, total=False):
+    entities: _list[Entity]
+    headers: _list[str]
+    name: str
 
 @typing.type_check_only
 class GmailMessageInfo(typing_extensions.TypedDict, total=False):

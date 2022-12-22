@@ -381,17 +381,6 @@ class GoogleCloudBeyondcorpAppgatewaysV1alphaAppGatewayOperationMetadata(
     verb: str
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpApplicationsV1alphaApplicationOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
 class GoogleCloudBeyondcorpClientconnectorservicesV1alphaClientConnectorServiceOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -452,18 +441,6 @@ class GoogleCloudBeyondcorpConnectorsV1alphaContainerHealthDetails(
 class GoogleCloudBeyondcorpConnectorsV1alphaRemoteAgentDetails(
     typing_extensions.TypedDict, total=False
 ): ...
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpNetconnectionsV1alphaNetConnectionOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(

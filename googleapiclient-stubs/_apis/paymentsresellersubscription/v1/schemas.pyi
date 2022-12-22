@@ -90,6 +90,27 @@ class GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse(
     promotions: _list[GoogleCloudPaymentsResellerSubscriptionV1Promotion]
 
 @typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload(
+    typing_extensions.TypedDict, total=False
+):
+    campaigns: _list[str]
+    offering: typing_extensions.Literal[
+        "OFFERING_UNSPECIFIED",
+        "OFFERING_VAS_BUNDLE",
+        "OFFERING_VAS_STANDALONE",
+        "OFFERING_HARD_BUNDLE",
+        "OFFERING_SOFT_BUNDLE",
+    ]
+    salesChannel: typing_extensions.Literal[
+        "CHANNEL_UNSPECIFIED",
+        "CHANNEL_RETAIL",
+        "CHANNEL_ONLINE_WEB",
+        "CHANNEL_ONLINE_ANDROID_APP",
+        "CHANNEL_ONLINE_IOS_APP",
+    ]
+    storeId: str
+
+@typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -119,6 +140,13 @@ class GoogleCloudPaymentsResellerSubscriptionV1Product(
     regionCodes: _list[str]
     subscriptionBillingCycleDuration: GoogleCloudPaymentsResellerSubscriptionV1Duration
     titles: _list[GoogleTypeLocalizedText]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1ProductPayload(
+    typing_extensions.TypedDict, total=False
+):
+    googleOnePayload: GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload
+    youtubePayload: GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig(
@@ -201,6 +229,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
         "STATE_CANCELLED",
         "STATE_IN_GRACE_PERIOD",
         "STATE_CANCEL_AT_END_OF_CYCLE",
+        "STATE_SUSPENDED",
     ]
     updateTime: str
     upgradeDowngradeDetails: GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails
@@ -232,6 +261,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem(
     ]
     oneTimeRecurrenceDetails: GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails
     product: str
+    productPayload: GoogleCloudPaymentsResellerSubscriptionV1ProductPayload
     recurrenceType: typing_extensions.Literal[
         "LINE_ITEM_RECURRENCE_TYPE_UNSPECIFIED",
         "LINE_ITEM_RECURRENCE_TYPE_PERIODIC",
@@ -244,6 +274,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem(
         "LINE_ITEM_STATE_NEW",
         "LINE_ITEM_STATE_ACTIVATING",
         "LINE_ITEM_STATE_DEACTIVATING",
+        "LINE_ITEM_STATE_WAITING_TO_DEACTIVATE",
     ]
 
 @typing.type_check_only
@@ -286,6 +317,12 @@ class GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse(
     typing_extensions.TypedDict, total=False
 ):
     subscription: GoogleCloudPaymentsResellerSubscriptionV1Subscription
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload(
+    typing_extensions.TypedDict, total=False
+):
+    partnerEligibilityIds: _list[str]
 
 @typing.type_check_only
 class GoogleTypeLocalizedText(typing_extensions.TypedDict, total=False):

@@ -53,15 +53,6 @@ class GamesNumberFormatConfiguration(typing_extensions.TypedDict, total=False):
     suffix: GamesNumberAffixConfiguration
 
 @typing.type_check_only
-class ImageConfiguration(typing_extensions.TypedDict, total=False):
-    imageType: typing_extensions.Literal[
-        "IMAGE_TYPE_UNSPECIFIED", "ACHIEVEMENT_ICON", "LEADERBOARD_ICON"
-    ]
-    kind: str
-    resourceId: str
-    url: str
-
-@typing.type_check_only
 class LeaderboardConfiguration(typing_extensions.TypedDict, total=False):
     draft: LeaderboardConfigurationDetail
     id: str

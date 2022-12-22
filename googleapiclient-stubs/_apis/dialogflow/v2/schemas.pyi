@@ -1422,6 +1422,7 @@ class GoogleCloudDialogflowV2AutomatedAgentReply(
     automatedAgentReplyType: typing_extensions.Literal[
         "AUTOMATED_AGENT_REPLY_TYPE_UNSPECIFIED", "PARTIAL", "FINAL"
     ]
+    cxCurrentPage: str
     detectIntentResponse: GoogleCloudDialogflowV2DetectIntentResponse
 
 @typing.type_check_only
@@ -1601,6 +1602,7 @@ class GoogleCloudDialogflowV2ConversationModelEvaluation(
     displayName: str
     evaluationConfig: GoogleCloudDialogflowV2EvaluationConfig
     name: str
+    rawHumanEvalTemplateCsv: str
     smartReplyMetrics: GoogleCloudDialogflowV2SmartReplyMetrics
 
 @typing.type_check_only
@@ -2600,6 +2602,7 @@ class GoogleCloudDialogflowV2OutputAudioConfig(
 class GoogleCloudDialogflowV2Participant(typing_extensions.TypedDict, total=False):
     documentsMetadataFilters: dict[str, typing.Any]
     name: str
+    obfuscatedExternalUserId: str
     role: typing_extensions.Literal[
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
     ]
@@ -2754,6 +2757,7 @@ class GoogleCloudDialogflowV2SpeechContext(typing_extensions.TypedDict, total=Fa
 class GoogleCloudDialogflowV2SpeechToTextConfig(
     typing_extensions.TypedDict, total=False
 ):
+    model: str
     speechModelVariant: typing_extensions.Literal[
         "SPEECH_MODEL_VARIANT_UNSPECIFIED",
         "USE_BEST_AVAILABLE",

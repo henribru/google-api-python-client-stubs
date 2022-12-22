@@ -119,6 +119,10 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
         "HMAC_SHA256",
+        "HMAC_SHA1",
+        "HMAC_SHA384",
+        "HMAC_SHA512",
+        "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
     ]
     attestation: KeyOperationAttestation
@@ -173,6 +177,10 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
         "HMAC_SHA256",
+        "HMAC_SHA1",
+        "HMAC_SHA384",
+        "HMAC_SHA512",
+        "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
     ]
     protectionLevel: typing_extensions.Literal[
@@ -280,6 +288,10 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
         "HMAC_SHA256",
+        "HMAC_SHA1",
+        "HMAC_SHA384",
+        "HMAC_SHA512",
+        "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
     ]
     cryptoKeyVersion: str
@@ -440,6 +452,10 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
         "HMAC_SHA256",
+        "HMAC_SHA1",
+        "HMAC_SHA384",
+        "HMAC_SHA512",
+        "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
     ]
     name: str

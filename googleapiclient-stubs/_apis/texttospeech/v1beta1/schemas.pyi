@@ -33,9 +33,30 @@ class ListVoicesResponse(typing_extensions.TypedDict, total=False):
     voices: _list[Voice]
 
 @typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class SynthesisInput(typing_extensions.TypedDict, total=False):
     ssml: str
     text: str
+
+@typing.type_check_only
+class SynthesizeLongAudioRequest(typing_extensions.TypedDict, total=False):
+    audioConfig: AudioConfig
+    input: SynthesisInput
+    outputGcsUri: str
+    voice: VoiceSelectionParams
 
 @typing.type_check_only
 class SynthesizeSpeechRequest(typing_extensions.TypedDict, total=False):

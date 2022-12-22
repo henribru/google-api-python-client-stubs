@@ -86,6 +86,21 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class InternalRangesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: InternalRange = ...,
+                    internalRangeId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InternalRangeHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -93,6 +108,30 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListInternalRangesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInternalRangesResponseHttpRequest,
+                    previous_response: ListInternalRangesResponse,
+                ) -> ListInternalRangesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: InternalRange = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -137,78 +176,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
-            @typing.type_check_only
-            class ServiceClassesResource(googleapiclient.discovery.Resource):
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-
-            @typing.type_check_only
-            class ServiceConnectionMapsResource(googleapiclient.discovery.Resource):
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-
-            @typing.type_check_only
-            class ServiceConnectionPoliciesResource(googleapiclient.discovery.Resource):
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class SpokesResource(googleapiclient.discovery.Resource):
@@ -293,11 +260,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
             def global_(self) -> GlobalResource: ...
             def internalRanges(self) -> InternalRangesResource: ...
             def operations(self) -> OperationsResource: ...
-            def serviceClasses(self) -> ServiceClassesResource: ...
-            def serviceConnectionMaps(self) -> ServiceConnectionMapsResource: ...
-            def serviceConnectionPolicies(
-                self,
-            ) -> ServiceConnectionPoliciesResource: ...
             def spokes(self) -> SpokesResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -351,12 +313,28 @@ class HubHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Hub: ...
 
 @typing.type_check_only
+class InternalRangeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> InternalRange: ...
+
+@typing.type_check_only
 class ListHubsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListHubsResponse: ...
+
+@typing.type_check_only
+class ListInternalRangesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListInternalRangesResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):

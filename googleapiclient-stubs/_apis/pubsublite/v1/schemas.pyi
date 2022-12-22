@@ -66,6 +66,17 @@ class DeliveryConfig(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExportConfig(typing_extensions.TypedDict, total=False):
+    currentState: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "PAUSED", "PERMISSION_DENIED", "NOT_FOUND"
+    ]
+    deadLetterTopic: str
+    desiredState: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "PAUSED", "PERMISSION_DENIED", "NOT_FOUND"
+    ]
+    pubsubConfig: PubSubConfig
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -127,6 +138,10 @@ class PartitionCursor(typing_extensions.TypedDict, total=False):
     partition: str
 
 @typing.type_check_only
+class PubSubConfig(typing_extensions.TypedDict, total=False):
+    topic: str
+
+@typing.type_check_only
 class Reservation(typing_extensions.TypedDict, total=False):
     name: str
     throughputCapacity: str
@@ -157,6 +172,7 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Subscription(typing_extensions.TypedDict, total=False):
     deliveryConfig: DeliveryConfig
+    exportConfig: ExportConfig
     name: str
     topic: str
 

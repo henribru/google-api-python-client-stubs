@@ -372,6 +372,13 @@ class Families(typing_extensions.TypedDict, total=False):
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
+    kidsFriendly: bool
+    kidsFriendlyException: typing_extensions.Literal[
+        "EXCEPTION_UNSPECIFIED",
+        "UNDER_CONSTRUCTION",
+        "DEPENDENT_ON_SEASON",
+        "DEPENDENT_ON_DAY_OF_WEEK",
+    ]
 
 @typing.type_check_only
 class FoodAndDrink(typing_extensions.TypedDict, total=False):

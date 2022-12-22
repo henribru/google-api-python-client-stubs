@@ -44,6 +44,7 @@ class GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest(
         "RESTRICTION_TYPE_UNSPECIFIED",
         "ALLOW_ALL_GCP_RESOURCES",
         "ALLOW_COMPLIANT_RESOURCES",
+        "APPEND_COMPLIANT_RESOURCES",
     ]
 
 @typing.type_check_only
@@ -61,6 +62,7 @@ class GoogleCloudAssuredworkloadsV1beta1Violation(
     beginTime: str
     category: str
     description: str
+    exceptionAuditLogLink: str
     name: str
     nonCompliantOrgPolicy: str
     orgPolicyConstraint: str
@@ -126,7 +128,9 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "EU_REGIONS_AND_SUPPORT",
         "CA_REGIONS_AND_SUPPORT",
         "ITAR",
+        "AU_REGIONS_AND_US_SUPPORT",
         "ASSURED_WORKLOADS_FOR_PARTNERS",
+        "ISR_REGIONS",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus
     compliantButDisallowedServices: _list[str]
@@ -145,7 +149,11 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
     kmsSettings: GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings
     labels: dict[str, typing.Any]
     name: str
-    partner: typing_extensions.Literal["PARTNER_UNSPECIFIED", "LOCAL_CONTROLS_BY_S3NS"]
+    partner: typing_extensions.Literal[
+        "PARTNER_UNSPECIFIED",
+        "LOCAL_CONTROLS_BY_S3NS",
+        "SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
+    ]
     provisionedResourcesParent: str
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]
     resources: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo]

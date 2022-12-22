@@ -72,6 +72,7 @@ class AutoRenewingBasePlanType(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AutoRenewingPlan(typing_extensions.TypedDict, total=False):
     autoRenewEnabled: bool
+    priceChangeDetails: SubscriptionItemPriceChangeDetails
 
 @typing.type_check_only
 class BasePlan(typing_extensions.TypedDict, total=False):
@@ -424,6 +425,12 @@ class Money(typing_extensions.TypedDict, total=False):
     units: str
 
 @typing.type_check_only
+class OfferDetails(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    offerId: str
+    offerTags: _list[str]
+
+@typing.type_check_only
 class OfferTag(typing_extensions.TypedDict, total=False):
     tag: str
 
@@ -525,6 +532,15 @@ class RegionalSubscriptionOfferPhaseConfig(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
     eligibleForStreamingServiceTaxRate: bool
+    streamingTaxType: typing_extensions.Literal[
+        "STREAMING_TAX_TYPE_UNSPECIFIED",
+        "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL",
+        "STREAMING_TAX_TYPE_TELCO_VIDEO_SALES",
+        "STREAMING_TAX_TYPE_TELCO_VIDEO_MULTI_CHANNEL",
+        "STREAMING_TAX_TYPE_TELCO_AUDIO_RENTAL",
+        "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES",
+        "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL",
+    ]
     taxTier: typing_extensions.Literal[
         "TAX_TIER_UNSPECIFIED",
         "TAX_TIER_BOOKS_1",
@@ -592,6 +608,17 @@ class SubscriptionCancelSurveyResult(typing_extensions.TypedDict, total=False):
 class SubscriptionDeferralInfo(typing_extensions.TypedDict, total=False):
     desiredExpiryTimeMillis: str
     expectedExpiryTimeMillis: str
+
+@typing.type_check_only
+class SubscriptionItemPriceChangeDetails(typing_extensions.TypedDict, total=False):
+    expectedNewPriceChargeTime: str
+    newPrice: Money
+    priceChangeMode: typing_extensions.Literal[
+        "PRICE_CHANGE_MODE_UNSPECIFIED", "PRICE_DECREASE", "PRICE_INCREASE"
+    ]
+    priceChangeState: typing_extensions.Literal[
+        "PRICE_CHANGE_STATE_UNSPECIFIED", "OUTSTANDING", "CONFIRMED", "APPLIED"
+    ]
 
 @typing.type_check_only
 class SubscriptionListing(typing_extensions.TypedDict, total=False):
@@ -666,6 +693,7 @@ class SubscriptionPurchase(typing_extensions.TypedDict, total=False):
 class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
     autoRenewingPlan: AutoRenewingPlan
     expiryTime: str
+    offerDetails: OfferDetails
     prepaidPlan: PrepaidPlan
     productId: str
 

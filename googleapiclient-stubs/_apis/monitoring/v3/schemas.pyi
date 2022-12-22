@@ -190,6 +190,10 @@ class CreateTimeSeriesSummary(typing_extensions.TypedDict, total=False):
     totalPointCount: int
 
 @typing.type_check_only
+class Criteria(typing_extensions.TypedDict, total=False):
+    policies: _list[str]
+
+@typing.type_check_only
 class Custom(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -277,6 +281,10 @@ class Field(typing_extensions.TypedDict, total=False):
     options: _list[Option]
     packed: bool
     typeUrl: str
+
+@typing.type_check_only
+class ForecastOptions(typing_extensions.TypedDict, total=False):
+    forecastHorizon: str
 
 @typing.type_check_only
 class GetNotificationChannelVerificationCodeRequest(
@@ -440,6 +448,11 @@ class ListServicesResponse(typing_extensions.TypedDict, total=False):
     services: _list[Service]
 
 @typing.type_check_only
+class ListSnoozesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    snoozes: _list[Snooze]
+
+@typing.type_check_only
 class ListTimeSeriesResponse(typing_extensions.TypedDict, total=False):
     executionErrors: _list[Status]
     nextPageToken: str
@@ -555,6 +568,7 @@ class MetricThreshold(typing_extensions.TypedDict, total=False):
         "EVALUATION_MISSING_DATA_NO_OP",
     ]
     filter: str
+    forecastOptions: ForecastOptions
     thresholdValue: float
     trigger: Trigger
 
@@ -764,6 +778,13 @@ class ServiceLevelObjective(typing_extensions.TypedDict, total=False):
     rollingPeriod: str
     serviceLevelIndicator: ServiceLevelIndicator
     userLabels: dict[str, typing.Any]
+
+@typing.type_check_only
+class Snooze(typing_extensions.TypedDict, total=False):
+    criteria: Criteria
+    displayName: str
+    interval: TimeInterval
+    name: str
 
 @typing.type_check_only
 class SourceContext(typing_extensions.TypedDict, total=False):

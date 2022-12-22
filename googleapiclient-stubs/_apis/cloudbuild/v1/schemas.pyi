@@ -34,7 +34,9 @@ class ArtifactResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Artifacts(typing_extensions.TypedDict, total=False):
     images: _list[str]
+    mavenArtifacts: _list[MavenArtifact]
     objects: ArtifactObjects
+    pythonPackages: _list[PythonPackage]
 
 @typing.type_check_only
 class BatchCreateBitbucketServerConnectedRepositoriesRequest(
@@ -262,6 +264,7 @@ class BuildTrigger(typing_extensions.TypedDict, total=False):
     includedFiles: _list[str]
     name: str
     pubsubConfig: PubsubConfig
+    repositoryEventConfig: RepositoryEventConfig
     resourceName: str
     serviceAccount: str
     sourceToBuild: GitRepoSource
@@ -477,18 +480,6 @@ class GitRepoSource(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV2OperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
 class HTTPDelivery(typing_extensions.TypedDict, total=False):
     uri: str
 
@@ -548,11 +539,20 @@ class ListWorkerPoolsResponse(typing_extensions.TypedDict, total=False):
     workerPools: _list[WorkerPool]
 
 @typing.type_check_only
+class MavenArtifact(typing_extensions.TypedDict, total=False):
+    artifactId: str
+    groupId: str
+    path: str
+    repository: str
+    version: str
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     egressOption: typing_extensions.Literal[
         "EGRESS_OPTION_UNSPECIFIED", "NO_PUBLIC_EGRESS", "PUBLIC_EGRESS"
     ]
     peeredNetwork: str
+    peeredNetworkIpRange: str
 
 @typing.type_check_only
 class Notification(typing_extensions.TypedDict, total=False):
@@ -653,6 +653,11 @@ class PushFilter(typing_extensions.TypedDict, total=False):
     tag: str
 
 @typing.type_check_only
+class PythonPackage(typing_extensions.TypedDict, total=False):
+    paths: _list[str]
+    repository: str
+
+@typing.type_check_only
 class ReceiveTriggerWebhookResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -677,13 +682,27 @@ class RepoSource(typing_extensions.TypedDict, total=False):
     tagName: str
 
 @typing.type_check_only
+class RepositoryEventConfig(typing_extensions.TypedDict, total=False):
+    pullRequest: PullRequestFilter
+    push: PushFilter
+    repository: str
+    repositoryType: typing_extensions.Literal[
+        "REPOSITORY_TYPE_UNSPECIFIED",
+        "GITHUB",
+        "GITHUB_ENTERPRISE",
+        "GITLAB_ENTERPRISE",
+    ]
+
+@typing.type_check_only
 class Results(typing_extensions.TypedDict, total=False):
     artifactManifest: str
     artifactTiming: TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
     images: _list[BuiltImage]
+    mavenArtifacts: _list[UploadedMavenArtifact]
     numArtifacts: str
+    pythonPackages: _list[UploadedPythonPackage]
 
 @typing.type_check_only
 class RetryBuildRequest(typing_extensions.TypedDict, total=False):
@@ -696,16 +715,6 @@ class RunBuildTriggerRequest(typing_extensions.TypedDict, total=False):
     projectId: str
     source: RepoSource
     triggerId: str
-
-@typing.type_check_only
-class RunWorkflowCustomOperationMetadata(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    createTime: str
-    endTime: str
-    pipelineRunId: str
-    requestedCancellation: bool
-    target: str
-    verb: str
 
 @typing.type_check_only
 class SMTPDelivery(typing_extensions.TypedDict, total=False):
@@ -802,6 +811,18 @@ class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
     completeTime: str
     createTime: str
     workerPool: str
+
+@typing.type_check_only
+class UploadedMavenArtifact(typing_extensions.TypedDict, total=False):
+    fileHashes: FileHashes
+    pushTiming: TimeSpan
+    uri: str
+
+@typing.type_check_only
+class UploadedPythonPackage(typing_extensions.TypedDict, total=False):
+    fileHashes: FileHashes
+    pushTiming: TimeSpan
+    uri: str
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):

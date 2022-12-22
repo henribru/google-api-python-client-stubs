@@ -206,6 +206,276 @@ class GoogleCloudDataplexV1ContentSqlScript(typing_extensions.TypedDict, total=F
     engine: typing_extensions.Literal["QUERY_ENGINE_UNSPECIFIED", "SPARK"]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResult(typing_extensions.TypedDict, total=False):
+    profile: GoogleCloudDataplexV1DataProfileResultProfile
+    rowCount: str
+    scannedData: GoogleCloudDataplexV1ScannedData
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResultProfile(
+    typing_extensions.TypedDict, total=False
+):
+    fields: _list[GoogleCloudDataplexV1DataProfileResultProfileField]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResultProfileField(
+    typing_extensions.TypedDict, total=False
+):
+    mode: str
+    name: str
+    profile: GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo(
+    typing_extensions.TypedDict, total=False
+):
+    distinctRatio: float
+    doubleProfile: GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo
+    integerProfile: GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo
+    nullRatio: float
+    stringProfile: GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo
+    topNValues: _list[
+        GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue
+    ]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo(
+    typing_extensions.TypedDict, total=False
+):
+    average: float
+    max: float
+    min: float
+    quartiles: _list[float]
+    standardDeviation: float
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo(
+    typing_extensions.TypedDict, total=False
+):
+    average: float
+    max: str
+    min: str
+    quartiles: _list[str]
+    standardDeviation: float
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo(
+    typing_extensions.TypedDict, total=False
+):
+    averageLength: float
+    maxLength: str
+    minLength: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue(
+    typing_extensions.TypedDict, total=False
+):
+    count: str
+    value: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileSpec(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityDimensionResult(
+    typing_extensions.TypedDict, total=False
+):
+    passed: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityResult(typing_extensions.TypedDict, total=False):
+    dimensions: _list[GoogleCloudDataplexV1DataQualityDimensionResult]
+    passed: bool
+    rowCount: str
+    rules: _list[GoogleCloudDataplexV1DataQualityRuleResult]
+    scannedData: GoogleCloudDataplexV1ScannedData
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=False):
+    column: str
+    dimension: str
+    ignoreNull: bool
+    nonNullExpectation: GoogleCloudDataplexV1DataQualityRuleNonNullExpectation
+    rangeExpectation: GoogleCloudDataplexV1DataQualityRuleRangeExpectation
+    regexExpectation: GoogleCloudDataplexV1DataQualityRuleRegexExpectation
+    rowConditionExpectation: GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation
+    setExpectation: GoogleCloudDataplexV1DataQualityRuleSetExpectation
+    statisticRangeExpectation: GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation
+    tableConditionExpectation: GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation
+    threshold: float
+    uniquenessExpectation: GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleNonNullExpectation(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleRangeExpectation(
+    typing_extensions.TypedDict, total=False
+):
+    maxValue: str
+    minValue: str
+    strictMaxEnabled: bool
+    strictMinEnabled: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleRegexExpectation(
+    typing_extensions.TypedDict, total=False
+):
+    regex: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleResult(
+    typing_extensions.TypedDict, total=False
+):
+    evaluatedCount: str
+    failingRowsQuery: str
+    nullCount: str
+    passRatio: float
+    passed: bool
+    passedCount: str
+    rule: GoogleCloudDataplexV1DataQualityRule
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation(
+    typing_extensions.TypedDict, total=False
+):
+    sqlExpression: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleSetExpectation(
+    typing_extensions.TypedDict, total=False
+):
+    values: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation(
+    typing_extensions.TypedDict, total=False
+):
+    maxValue: str
+    minValue: str
+    statistic: typing_extensions.Literal["STATISTIC_UNDEFINED", "MEAN", "MIN", "MAX"]
+    strictMaxEnabled: bool
+    strictMinEnabled: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation(
+    typing_extensions.TypedDict, total=False
+):
+    sqlExpression: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualitySpec(typing_extensions.TypedDict, total=False):
+    rules: _list[GoogleCloudDataplexV1DataQualityRule]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
+    createTime: str
+    data: GoogleCloudDataplexV1DataSource
+    dataProfileResult: GoogleCloudDataplexV1DataProfileResult
+    dataProfileSpec: GoogleCloudDataplexV1DataProfileSpec
+    dataQualityResult: GoogleCloudDataplexV1DataQualityResult
+    dataQualitySpec: GoogleCloudDataplexV1DataQualitySpec
+    description: str
+    displayName: str
+    executionSpec: GoogleCloudDataplexV1DataScanExecutionSpec
+    executionStatus: GoogleCloudDataplexV1DataScanExecutionStatus
+    labels: dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING", "ACTION_REQUIRED"
+    ]
+    type: typing_extensions.Literal[
+        "DATA_SCAN_TYPE_UNSPECIFIED", "DATA_QUALITY", "DATA_PROFILE"
+    ]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanEvent(typing_extensions.TypedDict, total=False):
+    dataProfile: GoogleCloudDataplexV1DataScanEventDataProfileResult
+    dataQuality: GoogleCloudDataplexV1DataScanEventDataQualityResult
+    dataSource: str
+    endTime: str
+    jobId: str
+    message: str
+    scope: typing_extensions.Literal["SCOPE_UNSPECIFIED", "FULL", "INCREMENTAL"]
+    specVersion: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "STARTED", "SUCCEEDED", "FAILED", "CANCELLED"
+    ]
+    trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "ON_DEMAND", "SCHEDULE"]
+    type: typing_extensions.Literal[
+        "SCAN_TYPE_UNSPECIFIED", "DATA_PROFILE", "DATA_QUALITY"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanEventDataProfileResult(
+    typing_extensions.TypedDict, total=False
+):
+    rowCount: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanEventDataQualityResult(
+    typing_extensions.TypedDict, total=False
+):
+    dimensionPassed: dict[str, typing.Any]
+    passed: bool
+    rowCount: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanExecutionSpec(
+    typing_extensions.TypedDict, total=False
+):
+    field: str
+    trigger: GoogleCloudDataplexV1Trigger
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanExecutionStatus(
+    typing_extensions.TypedDict, total=False
+):
+    latestJobEndTime: str
+    latestJobStartTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanJob(typing_extensions.TypedDict, total=False):
+    dataProfileResult: GoogleCloudDataplexV1DataProfileResult
+    dataProfileSpec: GoogleCloudDataplexV1DataProfileSpec
+    dataQualityResult: GoogleCloudDataplexV1DataQualityResult
+    dataQualitySpec: GoogleCloudDataplexV1DataQualitySpec
+    endTime: str
+    message: str
+    name: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "RUNNING",
+        "CANCELING",
+        "CANCELLED",
+        "SUCCEEDED",
+        "FAILED",
+        "PENDING",
+    ]
+    type: typing_extensions.Literal[
+        "DATA_SCAN_TYPE_UNSPECIFIED", "DATA_QUALITY", "DATA_PROFILE"
+    ]
+    uid: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataSource(typing_extensions.TypedDict, total=False):
+    entity: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DiscoveryEvent(typing_extensions.TypedDict, total=False):
     action: GoogleCloudDataplexV1DiscoveryEventActionDetails
     assetId: str
@@ -437,6 +707,21 @@ class GoogleCloudDataplexV1ListContentResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListDataScanJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataScanJobs: _list[GoogleCloudDataplexV1DataScanJob]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataScansResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataScans: _list[GoogleCloudDataplexV1DataScan]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListEntitiesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -502,6 +787,29 @@ class GoogleCloudDataplexV1Partition(typing_extensions.TypedDict, total=False):
     location: str
     name: str
     values: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RunDataScanRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RunDataScanResponse(
+    typing_extensions.TypedDict, total=False
+):
+    job: GoogleCloudDataplexV1DataScanJob
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ScannedData(typing_extensions.TypedDict, total=False):
+    incrementalField: GoogleCloudDataplexV1ScannedDataIncrementalField
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ScannedDataIncrementalField(
+    typing_extensions.TypedDict, total=False
+):
+    end: str
+    field: str
+    start: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1Schema(typing_extensions.TypedDict, total=False):
@@ -575,6 +883,7 @@ class GoogleCloudDataplexV1Session(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDataplexV1SessionEvent(typing_extensions.TypedDict, total=False):
     eventSucceeded: bool
+    fastStartupEnabled: bool
     message: str
     query: GoogleCloudDataplexV1SessionEventQueryDetail
     sessionId: str
@@ -583,7 +892,6 @@ class GoogleCloudDataplexV1SessionEvent(typing_extensions.TypedDict, total=False
     ]
     unassignedDuration: str
     userId: str
-    warmPoolEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDataplexV1SessionEventQueryDetail(
@@ -617,6 +925,7 @@ class GoogleCloudDataplexV1StorageFormat(typing_extensions.TypedDict, total=Fals
         "OTHER",
         "UNKNOWN",
     ]
+    iceberg: GoogleCloudDataplexV1StorageFormatIcebergOptions
     json: GoogleCloudDataplexV1StorageFormatJsonOptions
     mimeType: str
 
@@ -628,6 +937,12 @@ class GoogleCloudDataplexV1StorageFormatCsvOptions(
     encoding: str
     headerRows: int
     quote: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1StorageFormatIcebergOptions(
+    typing_extensions.TypedDict, total=False
+):
+    metadataLocation: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1StorageFormatJsonOptions(
@@ -729,6 +1044,20 @@ class GoogleCloudDataplexV1TaskTriggerSpec(typing_extensions.TypedDict, total=Fa
     schedule: str
     startTime: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ON_DEMAND", "RECURRING"]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1Trigger(typing_extensions.TypedDict, total=False):
+    onDemand: GoogleCloudDataplexV1TriggerOnDemand
+    schedule: GoogleCloudDataplexV1TriggerSchedule
+
+@typing.type_check_only
+class GoogleCloudDataplexV1TriggerOnDemand(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1TriggerSchedule(typing_extensions.TypedDict, total=False):
+    cron: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1Zone(typing_extensions.TypedDict, total=False):

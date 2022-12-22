@@ -19,6 +19,7 @@ class Execution(typing_extensions.TypedDict, total=False):
     callLogLevel: typing_extensions.Literal[
         "CALL_LOG_LEVEL_UNSPECIFIED", "LOG_ALL_CALLS", "LOG_ERRORS_ONLY"
     ]
+    duration: str
     endTime: str
     error: Error
     name: str

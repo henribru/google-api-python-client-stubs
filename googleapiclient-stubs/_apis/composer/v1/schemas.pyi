@@ -71,6 +71,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     nodeConfig: NodeConfig
     nodeCount: int
     privateEnvironmentConfig: PrivateEnvironmentConfig
+    recoveryConfig: RecoveryConfig
     softwareConfig: SoftwareConfig
     webServerConfig: WebServerConfig
     webServerNetworkAccessControl: WebServerNetworkAccessControl
@@ -109,6 +110,14 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class LoadSnapshotRequest(typing_extensions.TypedDict, total=False):
+    skipAirflowOverridesSetting: bool
+    skipEnvironmentVariablesSetting: bool
+    skipGcsDataCopying: bool
+    skipPypiPackagesInstallation: bool
+    snapshotPath: str
+
+@typing.type_check_only
 class LoadSnapshotResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -121,6 +130,12 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
 class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
     cidrBlocks: _list[CidrBlock]
     enabled: bool
+
+@typing.type_check_only
+class NetworkingConfig(typing_extensions.TypedDict, total=False):
+    connectionType: typing_extensions.Literal[
+        "CONNECTION_TYPE_UNSPECIFIED", "VPC_PEERING", "PRIVATE_SERVICE_CONNECT"
+    ]
 
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
@@ -176,13 +191,29 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
     cloudSqlIpv4CidrBlock: str
     enablePrivateEnvironment: bool
     enablePrivatelyUsedPublicIps: bool
+    networkingConfig: NetworkingConfig
     privateClusterConfig: PrivateClusterConfig
     webServerIpv4CidrBlock: str
     webServerIpv4ReservedRange: str
 
 @typing.type_check_only
+class RecoveryConfig(typing_extensions.TypedDict, total=False):
+    scheduledSnapshotsConfig: ScheduledSnapshotsConfig
+
+@typing.type_check_only
+class SaveSnapshotRequest(typing_extensions.TypedDict, total=False):
+    snapshotLocation: str
+
+@typing.type_check_only
 class SaveSnapshotResponse(typing_extensions.TypedDict, total=False):
     snapshotPath: str
+
+@typing.type_check_only
+class ScheduledSnapshotsConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    snapshotCreationSchedule: str
+    snapshotLocation: str
+    timeZone: str
 
 @typing.type_check_only
 class SchedulerResource(typing_extensions.TypedDict, total=False):

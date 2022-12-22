@@ -11,6 +11,26 @@ class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment(
     labels: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo(
+    typing_extensions.TypedDict, total=False
+):
+    endpoints: _list[GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo]
+    languageCode: str
+    latestVerificationResult: typing_extensions.Literal[
+        "RESULT_UNSPECIFIED",
+        "SUCCESS_USER_VERIFIED",
+        "ERROR_USER_NOT_VERIFIED",
+        "ERROR_SITE_ONBOARDING_INCOMPLETE",
+        "ERROR_RECIPIENT_NOT_ALLOWED",
+        "ERROR_RECIPIENT_ABUSE_LIMIT_EXHAUSTED",
+        "ERROR_CRITICAL_INTERNAL",
+        "ERROR_CUSTOMER_QUOTA_EXHAUSTED",
+        "ERROR_VERIFICATION_BYPASSED",
+        "ERROR_VERDICT_MISMATCH",
+    ]
+    username: str
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AndroidKeySettings(
     typing_extensions.TypedDict, total=False
 ):
@@ -41,6 +61,7 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
     typing_extensions.TypedDict, total=False
 ):
     accountDefenderAssessment: GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment
+    accountVerification: GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo
     event: GoogleCloudRecaptchaenterpriseV1Event
     name: str
     privatePasswordLeakVerification: GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
@@ -55,6 +76,15 @@ class GoogleCloudRecaptchaenterpriseV1ChallengeMetrics(
     nocaptchaCount: str
     pageloadCount: str
     passedCount: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo(
+    typing_extensions.TypedDict, total=False
+):
+    emailAddress: str
+    lastVerificationTime: str
+    phoneNumber: str
+    requestToken: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=False):
@@ -117,7 +147,8 @@ class GoogleCloudRecaptchaenterpriseV1Metrics(typing_extensions.TypedDict, total
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    skipBillingCheck: bool
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification(
@@ -198,6 +229,7 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties(
     typing_extensions.TypedDict, total=False
 ):
     action: str
+    androidPackageName: str
     createTime: str
     hostname: str
     invalidReason: typing_extensions.Literal[
@@ -209,6 +241,7 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties(
         "MISSING",
         "BROWSER_ERROR",
     ]
+    iosBundleId: str
     valid: bool
 
 @typing.type_check_only

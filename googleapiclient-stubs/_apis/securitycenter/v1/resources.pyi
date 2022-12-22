@@ -144,6 +144,44 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
 
         @typing.type_check_only
+        class NotificationConfigsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: NotificationConfig = ...,
+                configId: str = ...,
+                **kwargs: typing.Any
+            ) -> NotificationConfigHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> NotificationConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListNotificationConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListNotificationConfigsResponseHttpRequest,
+                previous_response: ListNotificationConfigsResponse,
+            ) -> ListNotificationConfigsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: NotificationConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> NotificationConfigHttpRequest: ...
+
+        @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FindingsResource(googleapiclient.discovery.Resource):
@@ -236,6 +274,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def bigQueryExports(self) -> BigQueryExportsResource: ...
         def findings(self) -> FindingsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
+        def notificationConfigs(self) -> NotificationConfigsResource: ...
         def sources(self) -> SourcesResource: ...
 
     @typing.type_check_only
@@ -719,6 +758,44 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
 
         @typing.type_check_only
+        class NotificationConfigsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: NotificationConfig = ...,
+                configId: str = ...,
+                **kwargs: typing.Any
+            ) -> NotificationConfigHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> NotificationConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListNotificationConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListNotificationConfigsResponseHttpRequest,
+                previous_response: ListNotificationConfigsResponse,
+            ) -> ListNotificationConfigsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: NotificationConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> NotificationConfigHttpRequest: ...
+
+        @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FindingsResource(googleapiclient.discovery.Resource):
@@ -811,6 +888,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def bigQueryExports(self) -> BigQueryExportsResource: ...
         def findings(self) -> FindingsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
+        def notificationConfigs(self) -> NotificationConfigsResource: ...
         def sources(self) -> SourcesResource: ...
 
     def new_batch_http_request(

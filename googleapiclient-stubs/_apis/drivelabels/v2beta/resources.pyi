@@ -36,7 +36,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             def batchDelete(
                 self,
                 *,
-                labelsId: str,
+                parent: str,
                 body: GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -72,14 +72,6 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest,
                 previous_response: GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse,
             ) -> GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest | None: ...
-            def patch(
-                self,
-                *,
-                parent: str,
-                body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
-                useAdminAccess: bool = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
 
         @typing.type_check_only
         class RevisionsResource(googleapiclient.discovery.Resource):
@@ -104,8 +96,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                 def batchDelete(
                     self,
                     *,
-                    labelsId: str,
-                    revisionsId: str,
+                    parent: str,
                     body: GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -141,15 +132,15 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest,
                     previous_response: GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse,
                 ) -> GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
-                    useAdminAccess: bool = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
 
+            def updatePermissions(
+                self,
+                *,
+                parent: str,
+                body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
+                useAdminAccess: bool = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
             def locks(self) -> LocksResource: ...
             def permissions(self) -> PermissionsResource: ...
 
@@ -236,6 +227,14 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             body: GoogleAppsDriveLabelsV2betaUpdateLabelCopyModeRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
+        def updatePermissions(
+            self,
+            *,
+            parent: str,
+            body: GoogleAppsDriveLabelsV2betaLabelPermission = ...,
+            useAdminAccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest: ...
         def locks(self) -> LocksResource: ...
         def permissions(self) -> PermissionsResource: ...
         def revisions(self) -> RevisionsResource: ...

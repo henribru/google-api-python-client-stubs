@@ -161,7 +161,26 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     previous_response: GoogleChromeManagementV1ListTelemetryDevicesResponse,
                 ) -> GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class EventsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    readMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest,
+                    previous_response: GoogleChromeManagementV1ListTelemetryEventsResponse,
+                ) -> GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest | None: ...
+
             def devices(self) -> DevicesResource: ...
+            def events(self) -> EventsResource: ...
 
         def apps(self) -> AppsResource: ...
         def reports(self) -> ReportsResource: ...
@@ -268,6 +287,16 @@ class GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleChromeManagementV1ListTelemetryDevicesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromeManagementV1ListTelemetryEventsResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryDeviceHttpRequest(

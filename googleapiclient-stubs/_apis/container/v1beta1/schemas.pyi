@@ -231,6 +231,8 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     ]
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredDnsConfig: DNSConfig
+    desiredEnablePrivateEndpoint: bool
+    desiredGatewayApiConfig: GatewayAPIConfig
     desiredGcfsConfig: GcfsConfig
     desiredIdentityServiceConfig: IdentityServiceConfig
     desiredImageType: str
@@ -353,6 +355,10 @@ class EphemeralStorageConfig(typing_extensions.TypedDict, total=False):
     localSsdCount: int
 
 @typing.type_check_only
+class FastSocket(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class Filter(typing_extensions.TypedDict, total=False):
     eventType: _list[str]
 
@@ -362,6 +368,15 @@ class GPUSharingConfig(typing_extensions.TypedDict, total=False):
         "GPU_SHARING_STRATEGY_UNSPECIFIED", "TIME_SHARING"
     ]
     maxSharedClientsPerGpu: str
+
+@typing.type_check_only
+class GatewayAPIConfig(typing_extensions.TypedDict, total=False):
+    channel: typing_extensions.Literal[
+        "CHANNEL_UNSPECIFIED",
+        "CHANNEL_DISABLED",
+        "CHANNEL_EXPERIMENTAL",
+        "CHANNEL_STANDARD",
+    ]
 
 @typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
@@ -561,6 +576,7 @@ class MasterAuth(typing_extensions.TypedDict, total=False):
 class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
     cidrBlocks: _list[CidrBlock]
     enabled: bool
+    gcpPublicCidrsAccessEnabled: bool
 
 @typing.type_check_only
 class MaxPodsConstraint(typing_extensions.TypedDict, total=False):
@@ -595,6 +611,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     dnsConfig: DNSConfig
     enableIntraNodeVisibility: bool
     enableL4ilbSubsetting: bool
+    gatewayApiConfig: GatewayAPIConfig
     network: str
     privateIpv6GoogleAccess: typing_extensions.Literal[
         "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
@@ -634,6 +651,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
     diskType: str
     ephemeralStorageConfig: EphemeralStorageConfig
+    fastSocket: FastSocket
     gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
@@ -649,6 +667,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     oauthScopes: _list[str]
     preemptible: bool
     reservationAffinity: ReservationAffinity
+    resourceLabels: dict[str, typing.Any]
     sandboxConfig: SandboxConfig
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
@@ -682,6 +701,7 @@ class NodeManagement(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
     createPodRange: bool
+    enablePrivateNodes: bool
     networkPerformanceConfig: NetworkPerformanceConfig
     podIpv4CidrBlock: str
     podRange: str
@@ -818,6 +838,7 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     masterIpv4CidrBlock: str
     peeringName: str
     privateEndpoint: str
+    privateEndpointSubnetwork: str
     publicEndpoint: str
 
 @typing.type_check_only
@@ -827,6 +848,9 @@ class PrivateClusterMasterGlobalAccessConfig(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class ProtectConfig(typing_extensions.TypedDict, total=False):
     workloadConfig: WorkloadConfig
+    workloadVulnerabilityMode: typing_extensions.Literal[
+        "WORKLOAD_VULNERABILITY_MODE_UNSPECIFIED", "DISABLED", "BASIC"
+    ]
 
 @typing.type_check_only
 class PubSub(typing_extensions.TypedDict, total=False):
@@ -857,6 +881,10 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
     ]
     key: str
     values: _list[str]
+
+@typing.type_check_only
+class ResourceLabels(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class ResourceLimit(typing_extensions.TypedDict, total=False):
@@ -1111,6 +1139,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
     confidentialNodes: ConfidentialNodes
+    fastSocket: FastSocket
     gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
@@ -1124,6 +1153,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     nodePoolId: str
     nodeVersion: str
     projectId: str
+    resourceLabels: ResourceLabels
     tags: NetworkTags
     taints: NodeTaints
     upgradeSettings: UpgradeSettings

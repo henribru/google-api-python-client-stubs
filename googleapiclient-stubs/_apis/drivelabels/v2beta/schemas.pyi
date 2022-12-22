@@ -527,7 +527,6 @@ class GoogleAppsDriveLabelsV2betaLabelLock(typing_extensions.TypedDict, total=Fa
     deleteTime: str
     fieldId: str
     name: str
-    policyUri: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETING"]
 
 @typing.type_check_only

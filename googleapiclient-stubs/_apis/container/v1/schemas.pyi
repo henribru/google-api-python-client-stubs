@@ -18,6 +18,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     dnsCacheConfig: DnsCacheConfig
     gcePersistentDiskCsiDriverConfig: GcePersistentDiskCsiDriverConfig
     gcpFilestoreCsiDriverConfig: GcpFilestoreCsiDriverConfig
+    gkeBackupAgentConfig: GkeBackupAgentConfig
     horizontalPodAutoscaling: HorizontalPodAutoscaling
     httpLoadBalancing: HttpLoadBalancing
     kubernetesDashboard: KubernetesDashboard
@@ -122,6 +123,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     clusterIpv4Cidr: str
     conditions: _list[StatusCondition]
     confidentialNodes: ConfidentialNodes
+    costManagementConfig: CostManagementConfig
     createTime: str
     currentMasterVersion: str
     currentNodeCount: int
@@ -200,12 +202,15 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredAuthenticatorGroupsConfig: AuthenticatorGroupsConfig
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
+    desiredCostManagementConfig: CostManagementConfig
     desiredDatabaseEncryption: DatabaseEncryption
     desiredDatapathProvider: typing_extensions.Literal[
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredDnsConfig: DNSConfig
+    desiredEnablePrivateEndpoint: bool
+    desiredGatewayApiConfig: GatewayAPIConfig
     desiredGcfsConfig: GcfsConfig
     desiredIdentityServiceConfig: IdentityServiceConfig
     desiredImageType: str
@@ -236,6 +241,9 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
     desiredServiceExternalIpsConfig: ServiceExternalIPsConfig
     desiredShieldedNodes: ShieldedNodes
+    desiredStackType: typing_extensions.Literal[
+        "STACK_TYPE_UNSPECIFIED", "IPV4", "IPV4_IPV6"
+    ]
     desiredVerticalPodAutoscaling: VerticalPodAutoscaling
     desiredWorkloadIdentityConfig: WorkloadIdentityConfig
 
@@ -259,6 +267,10 @@ class ConfigConnectorConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConsumptionMeteringConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class CostManagementConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
@@ -306,6 +318,10 @@ class DnsCacheConfig(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class FastSocket(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class Filter(typing_extensions.TypedDict, total=False):
     eventType: _list[str]
 
@@ -315,6 +331,15 @@ class GPUSharingConfig(typing_extensions.TypedDict, total=False):
         "GPU_SHARING_STRATEGY_UNSPECIFIED", "TIME_SHARING"
     ]
     maxSharedClientsPerGpu: str
+
+@typing.type_check_only
+class GatewayAPIConfig(typing_extensions.TypedDict, total=False):
+    channel: typing_extensions.Literal[
+        "CHANNEL_UNSPECIFIED",
+        "CHANNEL_DISABLED",
+        "CHANNEL_EXPERIMENTAL",
+        "CHANNEL_STANDARD",
+    ]
 
 @typing.type_check_only
 class GcePersistentDiskCsiDriverConfig(typing_extensions.TypedDict, total=False):
@@ -345,6 +370,10 @@ class GetOpenIDConfigResponse(typing_extensions.TypedDict, total=False):
     subject_types_supported: _list[str]
 
 @typing.type_check_only
+class GkeBackupAgentConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class HorizontalPodAutoscaling(typing_extensions.TypedDict, total=False):
     disabled: bool
 
@@ -368,11 +397,15 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     clusterIpv4CidrBlock: str
     clusterSecondaryRangeName: str
     createSubnetwork: bool
+    ipv6AccessType: typing_extensions.Literal[
+        "IPV6_ACCESS_TYPE_UNSPECIFIED", "INTERNAL", "EXTERNAL"
+    ]
     nodeIpv4Cidr: str
     nodeIpv4CidrBlock: str
     servicesIpv4Cidr: str
     servicesIpv4CidrBlock: str
     servicesSecondaryRangeName: str
+    stackType: typing_extensions.Literal["STACK_TYPE_UNSPECIFIED", "IPV4", "IPV4_IPV6"]
     subnetworkName: str
     tpuIpv4CidrBlock: str
     useIpAliases: bool
@@ -408,6 +441,9 @@ class LegacyAbac(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
+    cgroupMode: typing_extensions.Literal[
+        "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
+    ]
     sysctls: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -477,6 +513,7 @@ class MasterAuth(typing_extensions.TypedDict, total=False):
 class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
     cidrBlocks: _list[CidrBlock]
     enabled: bool
+    gcpPublicCidrsAccessEnabled: bool
 
 @typing.type_check_only
 class MaxPodsConstraint(typing_extensions.TypedDict, total=False):
@@ -511,6 +548,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     dnsConfig: DNSConfig
     enableIntraNodeVisibility: bool
     enableL4ilbSubsetting: bool
+    gatewayApiConfig: GatewayAPIConfig
     network: str
     privateIpv6GoogleAccess: typing_extensions.Literal[
         "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
@@ -546,6 +584,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     confidentialNodes: ConfidentialNodes
     diskSizeGb: int
     diskType: str
+    fastSocket: FastSocket
     gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
@@ -561,6 +600,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     oauthScopes: _list[str]
     preemptible: bool
     reservationAffinity: ReservationAffinity
+    resourceLabels: dict[str, typing.Any]
     sandboxConfig: SandboxConfig
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
@@ -594,6 +634,7 @@ class NodeManagement(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
     createPodRange: bool
+    enablePrivateNodes: bool
     networkPerformanceConfig: NetworkPerformanceConfig
     podIpv4CidrBlock: str
     podRange: str
@@ -610,6 +651,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     maxPodsConstraint: MaxPodsConstraint
     name: str
     networkConfig: NodeNetworkConfig
+    placementPolicy: PlacementPolicy
     podIpv4CidrSize: int
     selfLink: str
     status: typing_extensions.Literal[
@@ -714,6 +756,10 @@ class OperationProgress(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PlacementPolicy(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "COMPACT"]
+
+@typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     enablePrivateEndpoint: bool
     enablePrivateNodes: bool
@@ -721,6 +767,7 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     masterIpv4CidrBlock: str
     peeringName: str
     privateEndpoint: str
+    privateEndpointSubnetwork: str
     publicEndpoint: str
 
 @typing.type_check_only
@@ -755,6 +802,10 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
     ]
     key: str
     values: _list[str]
+
+@typing.type_check_only
+class ResourceLabels(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class ResourceLimit(typing_extensions.TypedDict, total=False):
@@ -1001,6 +1052,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
     confidentialNodes: ConfidentialNodes
+    fastSocket: FastSocket
     gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
     imageType: str
@@ -1014,6 +1066,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     nodePoolId: str
     nodeVersion: str
     projectId: str
+    resourceLabels: ResourceLabels
     tags: NetworkTags
     taints: NodeTaints
     upgradeSettings: UpgradeSettings

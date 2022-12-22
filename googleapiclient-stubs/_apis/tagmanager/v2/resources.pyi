@@ -18,6 +18,23 @@ class TagManagerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ContainersResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class DestinationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, path: str, **kwargs: typing.Any
+                ) -> DestinationHttpRequest: ...
+                def link(
+                    self,
+                    *,
+                    parent: str,
+                    allowUserPermissionFeatureUpdate: bool = ...,
+                    destinationId: str = ...,
+                    **kwargs: typing.Any
+                ) -> DestinationHttpRequest: ...
+                def list(
+                    self, *, parent: str, **kwargs: typing.Any
+                ) -> ListDestinationsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class EnvironmentsResource(googleapiclient.discovery.Resource):
                 def create(
                     self, *, parent: str, body: Environment = ..., **kwargs: typing.Any
@@ -791,6 +808,38 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     ) -> FolderHttpRequest: ...
 
                 @typing.type_check_only
+                class Gtag_configResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GtagConfig = ...,
+                        **kwargs: typing.Any
+                    ) -> GtagConfigHttpRequest: ...
+                    def delete(
+                        self, *, path: str, **kwargs: typing.Any
+                    ) -> googleapiclient.http.HttpRequest: ...
+                    def get(
+                        self, *, path: str, **kwargs: typing.Any
+                    ) -> GtagConfigHttpRequest: ...
+                    def list(
+                        self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
+                    ) -> ListGtagConfigResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListGtagConfigResponseHttpRequest,
+                        previous_response: ListGtagConfigResponse,
+                    ) -> ListGtagConfigResponseHttpRequest | None: ...
+                    def update(
+                        self,
+                        *,
+                        path: str,
+                        body: GtagConfig = ...,
+                        fingerprint: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GtagConfigHttpRequest: ...
+
+                @typing.type_check_only
                 class TagsResource(googleapiclient.discovery.Resource):
                     def create(
                         self, *, parent: str, body: Tag = ..., **kwargs: typing.Any
@@ -1001,12 +1050,24 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 def built_in_variables(self) -> Built_in_variablesResource: ...
                 def clients(self) -> ClientsResource: ...
                 def folders(self) -> FoldersResource: ...
+                def gtag_config(self) -> Gtag_configResource: ...
                 def tags(self) -> TagsResource: ...
                 def templates(self) -> TemplatesResource: ...
                 def triggers(self) -> TriggersResource: ...
                 def variables(self) -> VariablesResource: ...
                 def zones(self) -> ZonesResource: ...
 
+            def combine(
+                self,
+                *,
+                path: str,
+                allowUserPermissionFeatureUpdate: bool = ...,
+                containerId: str = ...,
+                settingSource: typing_extensions.Literal[
+                    "settingSourceUnspecified", "current", "other"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> ContainerHttpRequest: ...
             def create(
                 self, *, parent: str, body: Container = ..., **kwargs: typing.Any
             ) -> ContainerHttpRequest: ...
@@ -1024,6 +1085,24 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 previous_request: ListContainersResponseHttpRequest,
                 previous_response: ListContainersResponse,
             ) -> ListContainersResponseHttpRequest | None: ...
+            def lookup(
+                self, *, destinationId: str = ..., **kwargs: typing.Any
+            ) -> ContainerHttpRequest: ...
+            def move_tag_id(
+                self,
+                *,
+                path: str,
+                allowUserPermissionFeatureUpdate: bool = ...,
+                copySettings: bool = ...,
+                copyTermsOfService: bool = ...,
+                copyUsers: bool = ...,
+                tagId: str = ...,
+                tagName: str = ...,
+                **kwargs: typing.Any
+            ) -> ContainerHttpRequest: ...
+            def snippet(
+                self, *, path: str, **kwargs: typing.Any
+            ) -> GetContainerSnippetResponseHttpRequest: ...
             def update(
                 self,
                 *,
@@ -1032,6 +1111,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 fingerprint: str = ...,
                 **kwargs: typing.Any
             ) -> ContainerHttpRequest: ...
+            def destinations(self) -> DestinationsResource: ...
             def environments(self) -> EnvironmentsResource: ...
             def version_headers(self) -> Version_headersResource: ...
             def versions(self) -> VersionsResource: ...
@@ -1062,7 +1142,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
 
         def get(self, *, path: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
         def list(
-            self, *, pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            includeGoogleTags: bool = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
         ) -> ListAccountsResponseHttpRequest: ...
         def list_next(
             self,
@@ -1159,6 +1243,14 @@ class CustomTemplateHttpRequest(googleapiclient.http.HttpRequest):
     ) -> CustomTemplate: ...
 
 @typing.type_check_only
+class DestinationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Destination: ...
+
+@typing.type_check_only
 class EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1183,12 +1275,28 @@ class FolderEntitiesHttpRequest(googleapiclient.http.HttpRequest):
     ) -> FolderEntities: ...
 
 @typing.type_check_only
+class GetContainerSnippetResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GetContainerSnippetResponse: ...
+
+@typing.type_check_only
 class GetWorkspaceStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetWorkspaceStatusResponse: ...
+
+@typing.type_check_only
+class GtagConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GtagConfig: ...
 
 @typing.type_check_only
 class ListAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1223,6 +1331,14 @@ class ListContainersResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListContainersResponse: ...
 
 @typing.type_check_only
+class ListDestinationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListDestinationsResponse: ...
+
+@typing.type_check_only
 class ListEnabledBuiltInVariablesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1245,6 +1361,14 @@ class ListFoldersResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListFoldersResponse: ...
+
+@typing.type_check_only
+class ListGtagConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListGtagConfigResponse: ...
 
 @typing.type_check_only
 class ListTagsResponseHttpRequest(googleapiclient.http.HttpRequest):

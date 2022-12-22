@@ -19,13 +19,15 @@ class VerifyChallengeResponseRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VerifyChallengeResponseResult(typing_extensions.TypedDict, total=False):
+    customerId: str
     devicePermanentId: str
     deviceSignal: str
     keyTrustLevel: typing_extensions.Literal[
         "KEY_TRUST_LEVEL_UNSPECIFIED",
         "CHROME_OS_VERIFIED_MODE",
         "CHROME_OS_DEVELOPER_MODE",
-        "CHROME_BROWSER_TPM_KEY",
+        "CHROME_BROWSER_HW_KEY",
         "CHROME_BROWSER_OS_KEY",
     ]
     signedPublicKeyAndChallenge: str
+    virtualDeviceId: str

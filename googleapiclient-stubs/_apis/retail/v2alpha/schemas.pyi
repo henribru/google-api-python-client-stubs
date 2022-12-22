@@ -37,14 +37,8 @@ class GoogleCloudRetailLoggingImportErrorContext(
 ):
     catalogItem: str
     gcsPath: str
-    inventoryActivity: str
     lineNumber: str
     operationName: str
-    order: str
-    place: str
-    placeAsset: str
-    placeProductPrice: str
-    placeProductSettings: str
     product: str
     userEvent: str
 
@@ -294,6 +288,9 @@ class GoogleCloudRetailV2alphaCatalogAttribute(
         "RECOMMENDATIONS_FILTERING_DISABLED",
         "RECOMMENDATIONS_FILTERING_ENABLED",
     ]
+    retrievableOption: typing_extensions.Literal[
+        "RETRIEVABLE_OPTION_UNSPECIFIED", "RETRIEVABLE_ENABLED", "RETRIEVABLE_DISABLED"
+    ]
     searchableOption: typing_extensions.Literal[
         "SEARCHABLE_OPTION_UNSPECIFIED", "SEARCHABLE_ENABLED", "SEARCHABLE_DISABLED"
     ]
@@ -308,6 +305,7 @@ class GoogleCloudRetailV2alphaColorInfo(typing_extensions.TypedDict, total=False
 class GoogleCloudRetailV2alphaCompleteQueryResponse(
     typing_extensions.TypedDict, total=False
 ):
+    attributeResults: dict[str, typing.Any]
     attributionToken: str
     completionResults: _list[
         GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult
@@ -315,6 +313,12 @@ class GoogleCloudRetailV2alphaCompleteQueryResponse(
     recentSearchResults: _list[
         GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult
     ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult(
+    typing_extensions.TypedDict, total=False
+):
+    suggestions: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult(
@@ -432,6 +436,10 @@ class GoogleCloudRetailV2alphaExportUserEventsResponse(
 class GoogleCloudRetailV2alphaFulfillmentInfo(typing_extensions.TypedDict, total=False):
     placeIds: _list[str]
     type: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaGcsOutputResult(typing_extensions.TypedDict, total=False):
+    outputUri: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaGcsSource(typing_extensions.TypedDict, total=False):
@@ -661,6 +669,7 @@ class GoogleCloudRetailV2alphaModelServingConfigList(
 @typing.type_check_only
 class GoogleCloudRetailV2alphaOutputResult(typing_extensions.TypedDict, total=False):
     bigqueryResult: _list[GoogleCloudRetailV2alphaBigQueryOutputResult]
+    gcsResult: _list[GoogleCloudRetailV2alphaGcsOutputResult]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaPauseModelRequest(
@@ -1310,6 +1319,10 @@ class GoogleCloudRetailV2betaExportUserEventsResponse(
     outputResult: GoogleCloudRetailV2betaOutputResult
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaGcsOutputResult(typing_extensions.TypedDict, total=False):
+    outputUri: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaImportCompletionDataResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1386,6 +1399,7 @@ class GoogleCloudRetailV2betaModelServingConfigList(
 @typing.type_check_only
 class GoogleCloudRetailV2betaOutputResult(typing_extensions.TypedDict, total=False):
     bigqueryResult: _list[GoogleCloudRetailV2betaBigQueryOutputResult]
+    gcsResult: _list[GoogleCloudRetailV2betaGcsOutputResult]
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaPurgeMetadata(
