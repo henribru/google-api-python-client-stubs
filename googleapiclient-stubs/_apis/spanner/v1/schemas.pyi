@@ -123,6 +123,7 @@ class CreateDatabaseRequest(typing_extensions.TypedDict, total=False):
     ]
     encryptionConfig: EncryptionConfig
     extraStatements: _list[str]
+    protoDescriptors: str
 
 @typing.type_check_only
 class CreateInstanceConfigMetadata(typing_extensions.TypedDict, total=False):
@@ -257,6 +258,7 @@ class FreeInstanceMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetDatabaseDdlResponse(typing_extensions.TypedDict, total=False):
+    protoDescriptors: str
     statements: _list[str]
 
 @typing.type_check_only
@@ -722,7 +724,10 @@ class Type(typing_extensions.TypedDict, total=False):
         "STRUCT",
         "NUMERIC",
         "JSON",
+        "PROTO",
+        "ENUM",
     ]
+    protoTypeFqn: str
     structType: StructType
     typeAnnotation: typing_extensions.Literal[
         "TYPE_ANNOTATION_CODE_UNSPECIFIED", "PG_NUMERIC", "PG_JSONB"
@@ -739,6 +744,7 @@ class UpdateDatabaseDdlMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateDatabaseDdlRequest(typing_extensions.TypedDict, total=False):
     operationId: str
+    protoDescriptors: str
     statements: _list[str]
 
 @typing.type_check_only

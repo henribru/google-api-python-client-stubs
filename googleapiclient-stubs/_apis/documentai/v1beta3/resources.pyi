@@ -70,6 +70,25 @@ class DocumentResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class ProcessorVersionsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class EvaluationsResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDocumentaiV1beta3EvaluationHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDocumentaiV1beta3ListEvaluationsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDocumentaiV1beta3ListEvaluationsResponseHttpRequest,
+                            previous_response: GoogleCloudDocumentaiV1beta3ListEvaluationsResponse,
+                        ) -> GoogleCloudDocumentaiV1beta3ListEvaluationsResponseHttpRequest | None: ...
+
                     def batchProcess(
                         self,
                         *,
@@ -85,6 +104,13 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDocumentaiV1beta3DeployProcessorVersionRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def evaluateProcessorVersion(
+                        self,
+                        *,
+                        processorVersion: str,
+                        body: GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
@@ -110,6 +136,13 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDocumentaiV1beta3ProcessRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDocumentaiV1beta3ProcessResponseHttpRequest: ...
+                    def train(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def undeploy(
                         self,
                         *,
@@ -117,6 +150,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDocumentaiV1beta3UndeployProcessorVersionRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def evaluations(self) -> EvaluationsResource: ...
 
                 def batchProcess(
                     self,
@@ -223,6 +257,16 @@ class DocumentResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3EvaluationHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDocumentaiV1beta3Evaluation: ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -231,6 +275,16 @@ class GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ListEvaluationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDocumentaiV1beta3ListEvaluationsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3ListProcessorTypesResponseHttpRequest(

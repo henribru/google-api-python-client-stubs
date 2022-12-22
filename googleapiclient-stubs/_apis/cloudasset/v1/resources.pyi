@@ -138,6 +138,51 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> AnalyzeMoveResponseHttpRequest: ...
+        def analyzeOrgPolicies(
+            self,
+            *,
+            scope: str,
+            constraint: str = ...,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> AnalyzeOrgPoliciesResponseHttpRequest: ...
+        def analyzeOrgPolicies_next(
+            self,
+            previous_request: AnalyzeOrgPoliciesResponseHttpRequest,
+            previous_response: AnalyzeOrgPoliciesResponse,
+        ) -> AnalyzeOrgPoliciesResponseHttpRequest | None: ...
+        def analyzeOrgPolicyGovernedAssets(
+            self,
+            *,
+            scope: str,
+            constraint: str = ...,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> AnalyzeOrgPolicyGovernedAssetsResponseHttpRequest: ...
+        def analyzeOrgPolicyGovernedAssets_next(
+            self,
+            previous_request: AnalyzeOrgPolicyGovernedAssetsResponseHttpRequest,
+            previous_response: AnalyzeOrgPolicyGovernedAssetsResponse,
+        ) -> AnalyzeOrgPolicyGovernedAssetsResponseHttpRequest | None: ...
+        def analyzeOrgPolicyGovernedContainers(
+            self,
+            *,
+            scope: str,
+            constraint: str = ...,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> AnalyzeOrgPolicyGovernedContainersResponseHttpRequest: ...
+        def analyzeOrgPolicyGovernedContainers_next(
+            self,
+            previous_request: AnalyzeOrgPolicyGovernedContainersResponseHttpRequest,
+            previous_response: AnalyzeOrgPolicyGovernedContainersResponse,
+        ) -> AnalyzeOrgPolicyGovernedContainersResponseHttpRequest | None: ...
         def batchGetAssetsHistory(
             self,
             *,
@@ -160,6 +205,9 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
         def exportAssets(
             self, *, parent: str, body: ExportAssetsRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def queryAssets(
+            self, *, parent: str, body: QueryAssetsRequest = ..., **kwargs: typing.Any
+        ) -> QueryAssetsResponseHttpRequest: ...
         def searchAllIamPolicies(
             self,
             *,
@@ -230,6 +278,34 @@ class AnalyzeMoveResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AnalyzeMoveResponse: ...
 
 @typing.type_check_only
+class AnalyzeOrgPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AnalyzeOrgPoliciesResponse: ...
+
+@typing.type_check_only
+class AnalyzeOrgPolicyGovernedAssetsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AnalyzeOrgPolicyGovernedAssetsResponse: ...
+
+@typing.type_check_only
+class AnalyzeOrgPolicyGovernedContainersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AnalyzeOrgPolicyGovernedContainersResponse: ...
+
+@typing.type_check_only
 class BatchGetAssetsHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -292,6 +368,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class QueryAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> QueryAssetsResponse: ...
 
 @typing.type_check_only
 class SavedQueryHttpRequest(googleapiclient.http.HttpRequest):

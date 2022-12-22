@@ -20,6 +20,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     port: int
+    uid: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -68,6 +69,7 @@ class Location(typing_extensions.TypedDict, total=False):
 class Namespace(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
+    uid: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -89,6 +91,7 @@ class Service(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     endpoints: _list[Endpoint]
     name: str
+    uid: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

@@ -73,6 +73,11 @@ class ColumnLayout(typing_extensions.TypedDict, total=False):
     columns: _list[Column]
 
 @typing.type_check_only
+class ColumnSettings(typing_extensions.TypedDict, total=False):
+    column: str
+    visible: bool
+
+@typing.type_check_only
 class Dashboard(typing_extensions.TypedDict, total=False):
     columnLayout: ColumnLayout
     dashboardFilters: _list[DashboardFilter]
@@ -318,7 +323,8 @@ class TableDataSet(typing_extensions.TypedDict, total=False):
     timeSeriesQuery: TimeSeriesQuery
 
 @typing.type_check_only
-class TableDisplayOptions(typing_extensions.TypedDict, total=False): ...
+class TableDisplayOptions(typing_extensions.TypedDict, total=False):
+    shownColumns: _list[str]
 
 @typing.type_check_only
 class Text(typing_extensions.TypedDict, total=False):
@@ -367,6 +373,7 @@ class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TimeSeriesTable(typing_extensions.TypedDict, total=False):
+    columnSettings: _list[ColumnSettings]
     dataSets: _list[TableDataSet]
     metricVisualization: typing_extensions.Literal[
         "METRIC_VISUALIZATION_UNSPECIFIED", "NUMBER", "BAR"

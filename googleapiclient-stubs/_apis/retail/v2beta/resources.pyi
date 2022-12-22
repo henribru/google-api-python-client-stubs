@@ -369,6 +369,8 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         ets: str = ...,
+                        prebuiltRule: str = ...,
+                        rawJson: str = ...,
                         uri: str = ...,
                         userEvent: str = ...,
                         **kwargs: typing.Any

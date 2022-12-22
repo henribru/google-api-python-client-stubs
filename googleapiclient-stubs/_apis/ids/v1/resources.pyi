@@ -56,6 +56,15 @@ class IDSResource(googleapiclient.discovery.Resource):
                     previous_request: ListEndpointsResponseHttpRequest,
                     previous_response: ListEndpointsResponse,
                 ) -> ListEndpointsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Endpoint = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,

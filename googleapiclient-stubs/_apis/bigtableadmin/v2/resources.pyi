@@ -89,6 +89,13 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
             class ClustersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class BackupsResource(googleapiclient.discovery.Resource):
+                    def copy(
+                        self,
+                        *,
+                        parent: str,
+                        body: CopyBackupRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -245,6 +252,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         "SCHEMA_VIEW",
                         "REPLICATION_VIEW",
                         "ENCRYPTION_VIEW",
+                        "STATS_VIEW",
                         "FULL",
                     ] = ...,
                     **kwargs: typing.Any
@@ -268,6 +276,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         "SCHEMA_VIEW",
                         "REPLICATION_VIEW",
                         "ENCRYPTION_VIEW",
+                        "STATS_VIEW",
                         "FULL",
                     ] = ...,
                     **kwargs: typing.Any
@@ -284,6 +293,14 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     body: ModifyColumnFamiliesRequest = ...,
                     **kwargs: typing.Any
                 ) -> TableHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Table = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,

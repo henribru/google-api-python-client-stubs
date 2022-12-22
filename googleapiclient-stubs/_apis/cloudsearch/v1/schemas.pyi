@@ -47,6 +47,10 @@ class ActionParameter(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class AddonComposeUiActionMarkup(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal["UNSPECIFIED", "DISMISS"]
+
+@typing.type_check_only
 class AffectedMembership(typing_extensions.TypedDict, total=False):
     affectedMember: MemberId
     priorMembershipRole: typing_extensions.Literal[
@@ -261,6 +265,7 @@ class AppsDynamiteSharedBackendUploadMetadata(typing_extensions.TypedDict, total
         "SCAN_SUCCEEDED_WARN",
         "SCAN_SUCCEEDED_AUDIT_ONLY",
         "SCAN_FAILURE_EXCEPTION",
+        "SCAN_FAILURE_RULE_FETCH_FAILED",
         "SCAN_FAILURE_TIMEOUT",
         "SCAN_FAILURE_ALL_RULES_FAILED",
         "SCAN_FAILURE_ILLEGAL_STATE_FOR_ATTACHMENTS",
@@ -275,6 +280,7 @@ class AppsDynamiteSharedBackendUploadMetadata(typing_extensions.TypedDict, total
         "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
         "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_PERMANENT_ERROR",
         "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_EMPTY_RESPONSE",
+        "SCAN_RULE_EVALUATION_SKIPPED_UNSUPPORTED_FILE_TYPE",
         "SCAN_SUCCEEDED_WITH_FAILURES_NO_VIOLATION",
         "SCAN_SUCCEEDED_WITH_FAILURES_BLOCK",
         "SCAN_SUCCEEDED_WITH_FAILURES_WARN",
@@ -683,6 +689,7 @@ class AppsDynamiteSharedMessageIntegrationPayload(
 @typing.type_check_only
 class AppsDynamiteSharedOnClick(typing_extensions.TypedDict, total=False):
     action: AppsDynamiteSharedAction
+    hostAppAction: HostAppActionMarkup
     openDynamicLinkAction: AppsDynamiteSharedAction
     openLink: AppsDynamiteSharedOpenLink
 
@@ -963,6 +970,86 @@ class AppsDynamiteV1ApiCompatV1Field(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup(
+    typing_extensions.TypedDict, total=False
+):
+    addonAttachments: _list[
+        AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment
+    ]
+
+@typing.type_check_only
+class AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkupAddonAttachment(
+    typing_extensions.TypedDict, total=False
+):
+    iconUrl: str
+    mimeType: str
+    resourceUrl: str
+    title: str
+
+@typing.type_check_only
+class AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup(
+    typing_extensions.TypedDict, total=False
+):
+    conferenceId: str
+    conferenceSolutionId: str
+    entryPoints: _list[
+        AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup
+    ]
+    error: AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError
+    note: str
+    parameters: _list[
+        AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter
+    ]
+
+@typing.type_check_only
+class AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupEntryPointMarkup(
+    typing_extensions.TypedDict, total=False
+):
+    accessCode: str
+    features: _list[str]
+    label: str
+    meetingCode: str
+    passcode: str
+    password: str
+    pin: str
+    regionCode: str
+    type: typing_extensions.Literal["UNKNOWN", "VIDEO", "PHONE", "MORE", "SIP"]
+    uri: str
+
+@typing.type_check_only
+class AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupError(
+    typing_extensions.TypedDict, total=False
+):
+    authenticationUrl: str
+    type: typing_extensions.Literal[
+        "UNKNOWN",
+        "AUTHENTICATION",
+        "TEMPORARY",
+        "PERMANENT",
+        "PERMISSION_DENIED",
+        "CONFERENCE_SOLUTION_FORBIDDEN",
+    ]
+
+@typing.type_check_only
+class AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkupParameter(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    value: str
+
+@typing.type_check_only
+class AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup(
+    typing_extensions.TypedDict, total=False
+):
+    addAttendeeEmails: _list[str]
+
+@typing.type_check_only
+class AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup(
+    typing_extensions.TypedDict, total=False
+):
+    conferenceData: AppsExtensionsMarkupCalendarClientActionMarkupConferenceDataMarkup
+
+@typing.type_check_only
 class Attachment(typing_extensions.TypedDict, total=False):
     addOnData: GoogleChatV1ContextualAddOnMarkup
     appId: UserId
@@ -971,6 +1058,26 @@ class Attachment(typing_extensions.TypedDict, total=False):
     deprecatedAddOnData: ContextualAddOnMarkup
     slackData: AppsDynamiteV1ApiCompatV1Attachment
     slackDataImageUrlHeight: int
+
+@typing.type_check_only
+class Attribute(typing_extensions.TypedDict, total=False):
+    name: str
+    value: CaribouAttributeValue
+
+@typing.type_check_only
+class AttributeRemoved(typing_extensions.TypedDict, total=False):
+    attributeId: str
+    messageKeys: _list[MultiKey]
+
+@typing.type_check_only
+class AttributeSet(typing_extensions.TypedDict, total=False):
+    attributeId: str
+    attributeValue: str
+    messageKeys: _list[MultiKey]
+
+@typing.type_check_only
+class Attributes(typing_extensions.TypedDict, total=False):
+    attribute: _list[Attribute]
 
 @typing.type_check_only
 class AuditLoggingSettings(typing_extensions.TypedDict, total=False):
@@ -1055,6 +1162,7 @@ class BotResponse(typing_extensions.TypedDict, total=False):
         "DISABLED_BY_ADMIN",
         "DISABLED_BY_DEVELOPER",
         "PRIVATE",
+        "APP_SUGGESTION",
     ]
     setupUrl: str
 
@@ -1082,6 +1190,12 @@ class Button(typing_extensions.TypedDict, total=False):
     textButton: TextButton
 
 @typing.type_check_only
+class CalendarClientActionMarkup(typing_extensions.TypedDict, total=False):
+    addAttachmentsActionMarkup: AppsExtensionsMarkupCalendarClientActionMarkupAddAttachmentsActionMarkup
+    editAttendeesActionMarkup: AppsExtensionsMarkupCalendarClientActionMarkupEditAttendeesActionMarkup
+    editConferenceDataActionMarkup: AppsExtensionsMarkupCalendarClientActionMarkupEditConferenceDataActionMarkup
+
+@typing.type_check_only
 class CallInfo(typing_extensions.TypedDict, total=False):
     abuseReportingConfig: AbuseReportingConfig
     artifactOwner: UserDisplayInfo
@@ -1089,12 +1203,10 @@ class CallInfo(typing_extensions.TypedDict, total=False):
     availableReactions: _list[ReactionInfo]
     broadcastSessionInfo: BroadcastSessionInfo
     calendarEventId: str
-    chatConfig: ChatConfig
     coActivity: CoActivity
     collaboration: Collaboration
     cseInfo: CseInfo
     maxJoinedDevices: int
-    mediaBackendInfo: str
     organizationName: str
     paygateInfo: PaygateInfo
     presenter: Presenter
@@ -1109,13 +1221,19 @@ class CallInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CallSettings(typing_extensions.TypedDict, total=False):
     accessLock: bool
+    accessType: typing_extensions.Literal[
+        "ACCESS_TYPE_UNSPECIFIED",
+        "ACCESS_TYPE_OPEN",
+        "ACCESS_TYPE_TRUSTED",
+        "ACCESS_TYPE_RESTRICTED",
+    ]
+    allowJoiningBeforeHost: bool
     attendanceReportEnabled: bool
     audioLock: bool
     chatLock: bool
     cseEnabled: bool
     moderationEnabled: bool
     presentLock: bool
-    projectDinoEnabled: bool
     reactionsLock: bool
     videoLock: bool
 
@@ -1155,11 +1273,15 @@ class CardHeader(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class ChatConfig(typing_extensions.TypedDict, total=False):
-    chatType: typing_extensions.Literal[
-        "CHAT_TYPE_UNSPECIFIED", "MEET_CHAT", "GOOGLE_CHAT"
-    ]
-    googleChatConfig: GoogleChatConfig
+class CaribouAttributeValue(typing_extensions.TypedDict, total=False):
+    booleanValue: bool
+    intValue: int
+    longValue: str
+    rawByteValue: str
+    stringValue: str
+
+@typing.type_check_only
+class ChatClientActionMarkup(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ChatConserverDynamitePlaceholderMetadata(
@@ -1245,8 +1367,20 @@ class CircleProto(typing_extensions.TypedDict, total=False):
     requiredConsistencyTimestampUsec: str
 
 @typing.type_check_only
+class ClientContext(typing_extensions.TypedDict, total=False):
+    clientOperationId: str
+    clientType: str
+    sessionContext: SessionContext
+    userIp: str
+
+@typing.type_check_only
 class CloudPrincipalProto(typing_extensions.TypedDict, total=False):
     id: str
+
+@typing.type_check_only
+class ClusterInfo(typing_extensions.TypedDict, total=False):
+    clusterId: _list[str]
+    throttled: bool
 
 @typing.type_check_only
 class CoActivity(typing_extensions.TypedDict, total=False):
@@ -1259,6 +1393,8 @@ class CoActivity(typing_extensions.TypedDict, total=False):
         "CO_ACTIVITY_APP_HEADSUP",
         "CO_ACTIVITY_APP_KAHOOT",
         "CO_ACTIVITY_APP_GQUEUES",
+        "CO_ACTIVITY_APP_YOU_TUBE_MUSIC",
+        "CO_ACTIVITY_APP_SAMSUNG_NOTES",
     ]
 
 @typing.type_check_only
@@ -1329,6 +1465,11 @@ class CseInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CustomEmojiMetadata(typing_extensions.TypedDict, total=False):
     customEmoji: AppsDynamiteSharedCustomEmoji
+
+@typing.type_check_only
+class CustomFunctionReturnValueMarkup(typing_extensions.TypedDict, total=False):
+    errorMessage: str
+    value: typing.Any
 
 @typing.type_check_only
 class CustomerId(typing_extensions.TypedDict, total=False):
@@ -1469,6 +1610,7 @@ class DlpScanSummary(typing_extensions.TypedDict, total=False):
         "SCAN_SUCCEEDED_WARN",
         "SCAN_SUCCEEDED_AUDIT_ONLY",
         "SCAN_FAILURE_EXCEPTION",
+        "SCAN_FAILURE_RULE_FETCH_FAILED",
         "SCAN_FAILURE_TIMEOUT",
         "SCAN_FAILURE_ALL_RULES_FAILED",
         "SCAN_FAILURE_ILLEGAL_STATE_FOR_ATTACHMENTS",
@@ -1483,6 +1625,7 @@ class DlpScanSummary(typing_extensions.TypedDict, total=False):
         "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
         "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_PERMANENT_ERROR",
         "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_EMPTY_RESPONSE",
+        "SCAN_RULE_EVALUATION_SKIPPED_UNSUPPORTED_FILE_TYPE",
         "SCAN_SUCCEEDED_WITH_FAILURES_NO_VIOLATION",
         "SCAN_SUCCEEDED_WITH_FAILURES_BLOCK",
         "SCAN_SUCCEEDED_WITH_FAILURES_WARN",
@@ -1508,6 +1651,10 @@ class DoublePropertyOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DoubleValues(typing_extensions.TypedDict, total=False):
     values: _list[float]
+
+@typing.type_check_only
+class DriveClientActionMarkup(typing_extensions.TypedDict, total=False):
+    requestFileScope: RequestFileScope
 
 @typing.type_check_only
 class DriveFollowUpRestrict(typing_extensions.TypedDict, total=False):
@@ -1591,6 +1738,14 @@ class DriveTimeSpanRestrict(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DynamiteMessagesScoringInfo(typing_extensions.TypedDict, total=False):
+    finalScore: float
+    freshnessScore: float
+    joinedSpaceAffinityScore: float
+    messageAgeInDays: float
+    topicalityScore: float
+
+@typing.type_check_only
 class DynamiteSpacesScoringInfo(typing_extensions.TypedDict, total=False):
     affinityScore: float
     commonContactCountAffinityScore: float
@@ -1611,6 +1766,10 @@ class DynamiteSpacesScoringInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EditMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EditorClientActionMarkup(typing_extensions.TypedDict, total=False):
+    requestFileScopeForActiveDocument: RequestFileScopeForActiveDocument
 
 @typing.type_check_only
 class EmailAddress(typing_extensions.TypedDict, total=False):
@@ -1676,11 +1835,13 @@ class EventProto(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FacetBucket(typing_extensions.TypedDict, total=False):
     count: int
+    filter: Filter
     percentage: int
     value: Value
 
 @typing.type_check_only
 class FacetOptions(typing_extensions.TypedDict, total=False):
+    integerFacetingOptions: IntegerFacetingOptions
     numFacetBuckets: int
     objectType: str
     operatorName: str
@@ -1704,15 +1865,36 @@ class Filter(typing_extensions.TypedDict, total=False):
     valueFilter: ValueFilter
 
 @typing.type_check_only
+class FilterCreated(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FilterDeleted(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class FilterOptions(typing_extensions.TypedDict, total=False):
     filter: Filter
     objectType: str
+
+@typing.type_check_only
+class FilterUpdate(typing_extensions.TypedDict, total=False):
+    filterCreated: FilterCreated
+    filterDeleted: FilterDeleted
+    filterId: str
 
 @typing.type_check_only
 class FixedFooter(typing_extensions.TypedDict, total=False):
     buttons: _list[Button]
     primaryButton: TextButton
     secondaryButton: TextButton
+
+@typing.type_check_only
+class Folder(typing_extensions.TypedDict, total=False):
+    id: str
+    message: _list[ImapsyncFolderAttributeFolderMessage]
+
+@typing.type_check_only
+class FolderAttribute(typing_extensions.TypedDict, total=False):
+    folder: _list[Folder]
 
 @typing.type_check_only
 class FormAction(typing_extensions.TypedDict, total=False):
@@ -1755,6 +1937,37 @@ class Formatting(typing_extensions.TypedDict, total=False):
 class FreshnessOptions(typing_extensions.TypedDict, total=False):
     freshnessDuration: str
     freshnessProperty: str
+
+@typing.type_check_only
+class FuseboxItem(typing_extensions.TypedDict, total=False):
+    attributes: Attributes
+    creationTimeMicroseconds: str
+    history: History
+    itemKey: MultiKey
+    labels: Labels
+    lastModificationTimeUs: str
+    lockerReferences: References
+    matchInfo: MatchInfo
+    parts: ItemParts
+    readTs: str
+    references: References
+    snippet: str
+    threadKey: MultiKey
+    threadLocator: str
+    triggers: Triggers
+    version: str
+
+@typing.type_check_only
+class FuseboxItemThreadMatchInfo(typing_extensions.TypedDict, total=False):
+    clusterId: str
+    lastMatchingItemId: str
+    lastMatchingItemKey: MultiKey
+    matchingItemKey: _list[MultiKey]
+    rank: Rank
+
+@typing.type_check_only
+class FuseboxPrefUpdatePreState(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class GSuitePrincipal(typing_extensions.TypedDict, total=False):
@@ -1825,8 +2038,11 @@ class GetSearchApplicationUserStatsResponse(typing_extensions.TypedDict, total=F
     stats: _list[SearchApplicationUserStats]
 
 @typing.type_check_only
-class GoogleChatConfig(typing_extensions.TypedDict, total=False):
-    chatGroupId: str
+class GmailClientActionMarkup(typing_extensions.TypedDict, total=False):
+    addonComposeUiActionMarkup: AddonComposeUiActionMarkup
+    openCreatedDraftActionMarkup: OpenCreatedDraftActionMarkup
+    taskAction: TaskActionMarkup
+    updateDraftActionMarkup: UpdateDraftActionMarkup
 
 @typing.type_check_only
 class GoogleChatV1ContextualAddOnMarkup(typing_extensions.TypedDict, total=False):
@@ -2115,6 +2331,53 @@ class HashtagData(typing_extensions.TypedDict, total=False):
     searchText: str
 
 @typing.type_check_only
+class History(typing_extensions.TypedDict, total=False):
+    record: _list[HistoryRecord]
+
+@typing.type_check_only
+class HistoryRecord(typing_extensions.TypedDict, total=False):
+    clientContext: ClientContext
+    filterUpdate: FilterUpdate
+    imapUpdate: ImapUpdate
+    labelUpdate: LabelUpdate
+    prefUpdate: PrefUpdate
+    recordId: str
+    threadUpdate: ThreadUpdate
+    transactionContext: TransactionContext
+    txnDebugInfo: TransactionDebugInfo
+    type: typing_extensions.Literal[
+        "UNKNOWN",
+        "INTERNAL",
+        "MESSAGE_ADDED",
+        "MESSAGE_DELETED",
+        "LABEL_ADDED",
+        "LABEL_REMOVED",
+        "ATTRIBUTE_SET",
+        "ATTRIBUTE_REMOVED",
+        "THREAD_KEY_SET",
+        "LABEL_CREATED",
+        "LABEL_DELETED",
+        "LABEL_RENAMED",
+        "LABEL_UPDATED",
+        "PREF_WRITTEN",
+        "PREF_DELETED",
+        "FILTER_CREATED",
+        "FILTER_DELETED",
+        "IMAP_UIDS_REASSIGN",
+        "TOPIC_STATE_UPDATED",
+        "TXN_DEBUG_INFO",
+    ]
+
+@typing.type_check_only
+class HostAppActionMarkup(typing_extensions.TypedDict, total=False):
+    calendarAction: CalendarClientActionMarkup
+    chatAction: ChatClientActionMarkup
+    driveAction: DriveClientActionMarkup
+    editorAction: EditorClientActionMarkup
+    gmailAction: GmailClientActionMarkup
+    sheetsAction: SheetsClientActionMarkup
+
+@typing.type_check_only
 class HostProto(typing_extensions.TypedDict, total=False):
     hostName: str
     hostOwner: str
@@ -2288,6 +2551,174 @@ class ImageKeyValue(typing_extensions.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
+class ImapSessionContext(typing_extensions.TypedDict, total=False):
+    app: typing_extensions.Literal[
+        "OTHER_APP",
+        "CHROME",
+        "FIREFOX",
+        "MSIE",
+        "SAFARI",
+        "OPERA",
+        "EDGE",
+        "MSIE_COMPATIBILITY",
+        "OTHER_BROWSER",
+        "SAMSUNG_BROWSER",
+        "UC_BROWSER",
+        "ANDROID_BROWSER",
+        "YANDEX_BROWSER",
+        "SILK_BROWSER",
+        "COC_COC_BROWSER",
+        "MAX_BROWSER_APP_VALUE",
+        "GMAIL_APP",
+        "GMAIL_INBOX_APP",
+        "ANDROID_EMAIL_APP",
+        "SAMSUNG_MAIL_APP",
+        "MOTO_EMAIL_APP",
+        "BOXER_APP",
+        "LIMILABS_MAIL_DLL",
+        "BIS_APP",
+        "OUTLOOK_MAIL_APP",
+        "APPLE_NATIVE_APP",
+        "CHROME_WEBVIEW_APP",
+        "SAFARI_WEBVIEW_APP",
+        "CHROME_SYNC_APP",
+        "GSA_APP",
+        "GMM_APP",
+        "CALENDAR_APP",
+        "PLUS_APP",
+        "HANGOUTS_APP",
+        "HANGOUTS_MEET_APP",
+        "JAMBOARD_APP",
+        "VOICE_APP",
+        "PHOTOS_APP",
+        "DRIVE_SYNC_APP",
+        "DRIVE_APP",
+        "DOCS_APP",
+        "SHEETS_APP",
+        "SLIDES_APP",
+        "KEEP_APP",
+        "WHATS_APP_IN_DRIVE_APP",
+        "TRANSLATE_APP",
+        "YOUTUBE_APP",
+        "YOUTUBE_MUSIC_APP",
+        "YOUTUBE_GAMING_APP",
+        "YOUTUBE_KIDS_APP",
+        "YOUTUBE_CAPTURE_APP",
+        "YOUTUBE_CREATOR_APP",
+        "YOUTUBE_GO_APP",
+        "YOUTUBE_TV_APP",
+        "YOUTUBE_VR_APP",
+        "PLAY_APP",
+        "PLAY_MUSIC_APP",
+        "PLAY_BOOKS_APP",
+        "PLAY_MOVIES_APP",
+        "PLAY_NEWSSTAND_APP",
+        "PLAY_GAMES_APP",
+        "POKEMON_GO_APP",
+        "ALLO_APP",
+        "DUO_APP",
+        "CLASSROOM_APP",
+        "TRIPS_APP",
+        "GOOGLE_PAY_APP",
+        "WAZE_APP",
+        "ASSISTANT_APP",
+        "GBOARD_APP",
+        "NEWS_APP",
+        "HOME_APP",
+        "EARTH_APP",
+        "STREET_VIEW_APP",
+        "TEZ_APP",
+        "GOOGLE_ANALYTICS_APP",
+        "ADSENSE_APP",
+        "ADWORDS_APP",
+        "EXPRESS_APP",
+        "WEAR_APP",
+        "GOOGLE_MY_BUSINESS_APP",
+        "FAMILY_LINK_APP",
+        "OPINION_REWARDS_APP",
+        "WALLET_APP",
+        "ARTS_AND_CULTURE_APP",
+        "ANDROID_DEVICE_MANAGER_APP",
+        "GOOGLE_GO_APP",
+        "FILES_GO_APP",
+        "DATALLY_APP",
+        "WIFI_APP",
+        "STADIA_APP",
+        "BATTLESTAR_APP",
+        "SMART_LOCK_APP",
+        "LOGDOG_APP",
+        "DEPRECATED_MAC_OSX_MAIL_APP",
+        "DEPRECATED_IOS_MAIL_APP",
+    ]
+    deviceType: typing_extensions.Literal[
+        "UNKNOWN",
+        "PC",
+        "MOBILE",
+        "TABLET",
+        "PORTABLE_MEDIA_PLAYER",
+        "TV",
+        "GAME_CONSOLE",
+        "MEDIA_PLAYER",
+        "SMART_SPEAKER",
+        "SMART_DISPLAY",
+        "CONNECTED_HOME_OTHER",
+        "WEARABLE",
+        "GLASS",
+        "CAR",
+        "VR_HEADSET",
+    ]
+    guidFingerprint: str
+    os: typing_extensions.Literal[
+        "UNKNOWN_OS",
+        "ANDROID_OS",
+        "IOS_OS",
+        "BLACKBERRY_OS",
+        "WIN_PHONE_OS",
+        "FIRE_OS",
+        "MAX_MOBILE_OS_VALUE",
+        "WINDOWS_OS",
+        "LINUX_OS",
+        "MAC_OS",
+        "CHROME_OS",
+        "PLAYSTATION_OS",
+        "XBOX_OS",
+        "TIZEN_OS",
+        "APPLE_TV_OS",
+        "KAI_OS",
+        "ANDROID_THINGS_OS",
+        "CAST_OS",
+        "STADIA_OS",
+    ]
+    osVersion: OsVersion
+    possiblyTrimmedModel: PossiblyTrimmedModel
+
+@typing.type_check_only
+class ImapSyncDelete(typing_extensions.TypedDict, total=False):
+    mappings: FolderAttribute
+    msgId: str
+
+@typing.type_check_only
+class ImapUidsReassign(typing_extensions.TypedDict, total=False):
+    labelId: str
+    messageId: _list[str]
+
+@typing.type_check_only
+class ImapUpdate(typing_extensions.TypedDict, total=False):
+    imapUidsReassign: ImapUidsReassign
+
+@typing.type_check_only
+class ImapsyncFolderAttributeFolderMessage(typing_extensions.TypedDict, total=False):
+    flags: ImapsyncFolderAttributeFolderMessageFlags
+    uid: str
+
+@typing.type_check_only
+class ImapsyncFolderAttributeFolderMessageFlags(
+    typing_extensions.TypedDict, total=False
+):
+    flagged: bool
+    seen: bool
+
+@typing.type_check_only
 class IncomingWebhookChangedMetadata(typing_extensions.TypedDict, total=False):
     incomingWebhookName: str
     initiatorId: UserId
@@ -2320,6 +2751,20 @@ class IndexItemRequest(typing_extensions.TypedDict, total=False):
 class InitializeCustomerRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class InsertContent(typing_extensions.TypedDict, total=False):
+    content: str
+    contentType: typing_extensions.Literal[
+        "UNSPECIFIED_CONTENT_TYPE", "TEXT", "MUTABLE_HTML", "IMMUTABLE_HTML"
+    ]
+    mimeType: typing_extensions.Literal[
+        "UNSPECIFIED_EMAIL_MIME_TYPE", "PLAIN_TEXT", "HTML"
+    ]
+
+@typing.type_check_only
+class IntegerFacetingOptions(typing_extensions.TypedDict, total=False):
+    integerBuckets: _list[str]
+
+@typing.type_check_only
 class IntegerOperatorOptions(typing_extensions.TypedDict, total=False):
     greaterThanOperatorName: str
     lessThanOperatorName: str
@@ -2327,6 +2772,7 @@ class IntegerOperatorOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IntegerPropertyOptions(typing_extensions.TypedDict, total=False):
+    integerFacetingOptions: IntegerFacetingOptions
     maximumValue: str
     minimumValue: str
     operatorOptions: IntegerOperatorOptions
@@ -2420,6 +2866,9 @@ class ItemMetadata(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ItemParts(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ItemStatus(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED", "ERROR", "MODIFIED", "NEW_ITEM", "ACCEPTED"
@@ -2431,6 +2880,23 @@ class ItemStatus(typing_extensions.TypedDict, total=False):
 class ItemStructuredData(typing_extensions.TypedDict, total=False):
     hash: str
     object: StructuredDataObject
+
+@typing.type_check_only
+class ItemThread(typing_extensions.TypedDict, total=False):
+    clusterInfo: ClusterInfo
+    item: _list[FuseboxItem]
+    lastItemId: str
+    matchInfo: FuseboxItemThreadMatchInfo
+    snippet: str
+    threadKey: MultiKey
+    threadLocator: str
+    topicState: TopicState
+    version: str
+
+@typing.type_check_only
+class JobsettedServerSpec(typing_extensions.TypedDict, total=False):
+    portName: str
+    serverName: str
 
 @typing.type_check_only
 class KeyValue(typing_extensions.TypedDict, total=False):
@@ -2484,6 +2950,48 @@ class KeyValue(typing_extensions.TypedDict, total=False):
     startIcon: IconImage
     switchWidget: SwitchWidget
     topLabel: str
+
+@typing.type_check_only
+class LabelAdded(typing_extensions.TypedDict, total=False):
+    labelId: str
+    labelName: str
+    messageKeys: _list[MultiKey]
+    syncId: int
+
+@typing.type_check_only
+class LabelCreated(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class LabelDeleted(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class LabelRemoved(typing_extensions.TypedDict, total=False):
+    labelId: str
+    labelName: str
+    messageKeys: _list[MultiKey]
+    syncId: int
+
+@typing.type_check_only
+class LabelRenamed(typing_extensions.TypedDict, total=False):
+    oldCanonicalName: str
+
+@typing.type_check_only
+class LabelUpdate(typing_extensions.TypedDict, total=False):
+    canonicalName: str
+    labelCreated: LabelCreated
+    labelDeleted: LabelDeleted
+    labelId: str
+    labelRenamed: LabelRenamed
+    labelUpdated: LabelUpdated
+    syncId: int
+
+@typing.type_check_only
+class LabelUpdated(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Labels(typing_extensions.TypedDict, total=False):
+    displayName: _list[str]
+    id: _list[str]
 
 @typing.type_check_only
 class LanguageConfig(typing_extensions.TypedDict, total=False):
@@ -2553,6 +3061,10 @@ class ListUnmappedIdentitiesResponse(typing_extensions.TypedDict, total=False):
     unmappedIdentities: _list[UnmappedIdentity]
 
 @typing.type_check_only
+class MatchInfo(typing_extensions.TypedDict, total=False):
+    matchingImageReferenceKey: _list[str]
+
+@typing.type_check_only
 class MatchRange(typing_extensions.TypedDict, total=False):
     end: int
     start: int
@@ -2611,6 +3123,9 @@ class MembershipChangedMetadata(typing_extensions.TypedDict, total=False):
     affectedMemberships: _list[AffectedMembership]
     initiator: UserId
     initiatorProfile: User
+    initiatorType: typing_extensions.Literal[
+        "INITIATOR_TYPE_UNSPECIFIED", "INITIATOR_TYPE_END_USER", "INITIATOR_TYPE_ADMIN"
+    ]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
         "INVITED",
@@ -2665,6 +3180,7 @@ class Message(typing_extensions.TypedDict, total=False):
         "SCAN_SUCCEEDED_WARN",
         "SCAN_SUCCEEDED_AUDIT_ONLY",
         "SCAN_FAILURE_EXCEPTION",
+        "SCAN_FAILURE_RULE_FETCH_FAILED",
         "SCAN_FAILURE_TIMEOUT",
         "SCAN_FAILURE_ALL_RULES_FAILED",
         "SCAN_FAILURE_ILLEGAL_STATE_FOR_ATTACHMENTS",
@@ -2679,6 +3195,7 @@ class Message(typing_extensions.TypedDict, total=False):
         "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
         "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_PERMANENT_ERROR",
         "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_EMPTY_RESPONSE",
+        "SCAN_RULE_EVALUATION_SKIPPED_UNSUPPORTED_FILE_TYPE",
         "SCAN_SUCCEEDED_WITH_FAILURES_NO_VIOLATION",
         "SCAN_SUCCEEDED_WITH_FAILURES_BLOCK",
         "SCAN_SUCCEEDED_WITH_FAILURES_WARN",
@@ -2725,6 +3242,13 @@ class Message(typing_extensions.TypedDict, total=False):
     reactions: _list[AppsDynamiteSharedReaction]
     reports: _list[ContentReport]
     retentionSettings: AppsDynamiteSharedRetentionSettings
+    richTextFormattingType: typing_extensions.Literal[
+        "NONE",
+        "MARKDOWN",
+        "FORMAT_ANNOTATIONS",
+        "FORMAT_ANNOTATIONS_IGNORED",
+        "FORMAT_ANNOTATIONS_IGNORED_WITH_MARKDOWN",
+    ]
     secondaryMessageKey: str
     textBody: str
     tombstoneMetadata: TombstoneMetadata
@@ -2732,8 +3256,20 @@ class Message(typing_extensions.TypedDict, total=False):
     uploadMetadata: _list[UploadMetadata]
 
 @typing.type_check_only
+class MessageAdded(typing_extensions.TypedDict, total=False):
+    attributeIds: _list[str]
+    labelIds: _list[str]
+    messageKey: MultiKey
+    syncIds: _list[int]
+
+@typing.type_check_only
 class MessageAttributes(typing_extensions.TypedDict, total=False):
     isTombstone: bool
+
+@typing.type_check_only
+class MessageDeleted(typing_extensions.TypedDict, total=False):
+    imapSyncMappings: _list[ImapSyncDelete]
+    messageKeys: _list[MultiKey]
 
 @typing.type_check_only
 class MessageId(typing_extensions.TypedDict, total=False):
@@ -2760,6 +3296,9 @@ class MessageProps(typing_extensions.TypedDict, total=False):
     babelProps: BabelMessageProps
 
 @typing.type_check_only
+class MessageSet(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
     createTime: str
     displayOptions: ResultDisplayMetadata
@@ -2774,6 +3313,11 @@ class Metadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Metaline(typing_extensions.TypedDict, total=False):
     properties: _list[DisplayedProperty]
+
+@typing.type_check_only
+class MultiKey(typing_extensions.TypedDict, total=False):
+    clientAssignedPermId: str
+    serverId: str
 
 @typing.type_check_only
 class Name(typing_extensions.TypedDict, total=False):
@@ -2829,6 +3373,13 @@ class OnClick(typing_extensions.TypedDict, total=False):
     openLinkAction: FormAction
 
 @typing.type_check_only
+class OpenCreatedDraftActionMarkup(typing_extensions.TypedDict, total=False):
+    draftId: str
+    draftStorageId: str
+    draftThreadId: str
+    draftThreadServerPermId: str
+
+@typing.type_check_only
 class OpenLink(typing_extensions.TypedDict, total=False):
     loadIndicator: typing_extensions.Literal["NONE", "SPINNER"]
     onClose: typing_extensions.Literal["NOTHING", "RELOAD_ADD_ON"]
@@ -2842,6 +3393,12 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class OsVersion(typing_extensions.TypedDict, total=False):
+    majorVersion: int
+    minorVersion: int
+    tertiaryVersion: int
 
 @typing.type_check_only
 class OtrChatMessageEvent(typing_extensions.TypedDict, total=False):
@@ -2921,8 +3478,34 @@ class PollItemsResponse(typing_extensions.TypedDict, total=False):
     items: _list[Item]
 
 @typing.type_check_only
+class PossiblyTrimmedModel(typing_extensions.TypedDict, total=False):
+    isTrimmed: bool
+    model: str
+
+@typing.type_check_only
 class PostiniUserProto(typing_extensions.TypedDict, total=False):
     postiniUserId: str
+
+@typing.type_check_only
+class PreState(typing_extensions.TypedDict, total=False):
+    labelIds: _list[str]
+    messageKey: MultiKey
+    syncIds: _list[int]
+    threadKey: MultiKey
+
+@typing.type_check_only
+class PrefDeleted(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PrefUpdate(typing_extensions.TypedDict, total=False):
+    name: str
+    preState: FuseboxPrefUpdatePreState
+    prefDeleted: PrefDeleted
+    prefWritten: PrefWritten
+
+@typing.type_check_only
+class PrefWritten(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class Presenter(typing_extensions.TypedDict, total=False):
@@ -3141,7 +3724,9 @@ class QuotedMessageMetadata(typing_extensions.TypedDict, total=False):
         "BOT_ATTACHMENT_STATE_HAS_BOT_ATTACHMENT",
         "BOT_ATTACHMENT_STATE_NO_BOT_ATTACHMENT",
     ]
+    createTimeMicros: str
     creatorId: UserId
+    lastEditTimeMicros: str
     lastUpdateTimeWhenQuotedMicros: str
     messageId: MessageId
     messageState: typing_extensions.Literal[
@@ -3152,7 +3737,13 @@ class QuotedMessageMetadata(typing_extensions.TypedDict, total=False):
     ]
     retentionSettings: AppsDynamiteSharedRetentionSettings
     textBody: str
+    updaterId: UserId
     uploadMetadata: _list[UploadMetadata]
+
+@typing.type_check_only
+class Rank(typing_extensions.TypedDict, total=False):
+    primary: str
+    secondary: str
 
 @typing.type_check_only
 class RbacRoleProto(typing_extensions.TypedDict, total=False):
@@ -3172,6 +3763,10 @@ class ReactionInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReadReceiptsSettingsUpdatedMetadata(typing_extensions.TypedDict, total=False):
     readReceiptsEnabled: bool
+
+@typing.type_check_only
+class Recipient(typing_extensions.TypedDict, total=False):
+    email: str
 
 @typing.type_check_only
 class RecordingEvent(typing_extensions.TypedDict, total=False):
@@ -3216,6 +3811,19 @@ class RecordingSessionInfo(typing_extensions.TypedDict, total=False):
     sessionStateInfo: SessionStateInfo
 
 @typing.type_check_only
+class Reference(typing_extensions.TypedDict, total=False):
+    blobId: str
+    contentType: str
+    hash: str
+    key: str
+    name: str
+    size: str
+
+@typing.type_check_only
+class References(typing_extensions.TypedDict, total=False):
+    references: _list[Reference]
+
+@typing.type_check_only
 class RenameEvent(typing_extensions.TypedDict, total=False):
     newName: str
     originalName: str
@@ -3236,6 +3844,13 @@ class RepositoryError(typing_extensions.TypedDict, total=False):
         "SERVICE_UNAVAILABLE",
         "CLIENT_ERROR",
     ]
+
+@typing.type_check_only
+class RequestFileScope(typing_extensions.TypedDict, total=False):
+    itemId: str
+
+@typing.type_check_only
+class RequestFileScopeForActiveDocument(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RequestOptions(typing_extensions.TypedDict, total=False):
@@ -3261,7 +3876,6 @@ class ResourceRoleProto(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResponseDebugInfo(typing_extensions.TypedDict, total=False):
-    enabledExperiments: _list[int]
     formattedDebugInfo: str
 
 @typing.type_check_only
@@ -3320,6 +3934,7 @@ class RoomUpdatedMetadata(typing_extensions.TypedDict, total=False):
 class Roster(typing_extensions.TypedDict, total=False):
     avatarUrl: str
     id: RosterId
+    isMembershipVisibleToCaller: bool
     membershipCount: int
     name: str
     rosterGaiaKey: str
@@ -3331,6 +3946,10 @@ class Roster(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RosterId(typing_extensions.TypedDict, total=False):
     id: str
+
+@typing.type_check_only
+class RpcOptions(typing_extensions.TypedDict, total=False):
+    requestExtensions: MessageSet
 
 @typing.type_check_only
 class SafeUrlProto(typing_extensions.TypedDict, total=False):
@@ -3460,6 +4079,15 @@ class SelectionItem(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class SessionContext(typing_extensions.TypedDict, total=False):
+    authTime: str
+    delegateUserId: str
+    dusi: str
+    imapSessionContext: ImapSessionContext
+    oauthLoginId: int
+    oauthProjectId: str
+
+@typing.type_check_only
 class SessionEvent(typing_extensions.TypedDict, total=False):
     deviceId: str
     type: typing_extensions.Literal[
@@ -3497,6 +4125,13 @@ class SessionStateInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
     accessLock: bool
+    accessType: typing_extensions.Literal[
+        "ACCESS_TYPE_UNSPECIFIED",
+        "ACCESS_TYPE_OPEN",
+        "ACCESS_TYPE_TRUSTED",
+        "ACCESS_TYPE_RESTRICTED",
+    ]
+    allowJoiningBeforeHost: bool
     attendanceReportEnabled: bool
     chatLock: bool
     cohostArtifactSharingEnabled: bool
@@ -3512,6 +4147,10 @@ class ShareScope(typing_extensions.TypedDict, total=False):
     scope: typing_extensions.Literal[
         "UNKNOWN", "PRIVATE", "LIMITED", "EXTENDED", "DASHER_DOMAIN", "PUBLIC"
     ]
+
+@typing.type_check_only
+class SheetsClientActionMarkup(typing_extensions.TypedDict, total=False):
+    customFunctionReturnValueMarkup: CustomFunctionReturnValueMarkup
 
 @typing.type_check_only
 class SigningKeyPossessorProto(typing_extensions.TypedDict, total=False):
@@ -3681,6 +4320,7 @@ class SuggestResult(typing_extensions.TypedDict, total=False):
 class SupportUrls(typing_extensions.TypedDict, total=False):
     adminConfigUrl: str
     deletionPolicyUrl: str
+    gwmUrl: str
     privacyPolicyUrl: str
     setupUrl: str
     supportUrl: str
@@ -3693,6 +4333,10 @@ class SwitchWidget(typing_extensions.TypedDict, total=False):
     onChange: FormAction
     selected: bool
     value: str
+
+@typing.type_check_only
+class TaskActionMarkup(typing_extensions.TypedDict, total=False):
+    reloadTasks: bool
 
 @typing.type_check_only
 class TextButton(typing_extensions.TypedDict, total=False):
@@ -3741,6 +4385,27 @@ class TextValues(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class ThreadKeySet(typing_extensions.TypedDict, total=False):
+    messageKeys: _list[MultiKey]
+    newThreadKey: MultiKey
+
+@typing.type_check_only
+class ThreadUpdate(typing_extensions.TypedDict, total=False):
+    attributeRemoved: AttributeRemoved
+    attributeSet: AttributeSet
+    labelAdded: LabelAdded
+    labelRemoved: LabelRemoved
+    lastHistoryRecordId: str
+    messageAdded: MessageAdded
+    messageDeleted: MessageDeleted
+    originalThreadKey: MultiKey
+    preState: _list[PreState]
+    threadKey: MultiKey
+    threadKeySet: ThreadKeySet
+    threadLocator: str
+    topicStateUpdate: TopicStateUpdate
+
+@typing.type_check_only
 class TimestampOperatorOptions(typing_extensions.TypedDict, total=False):
     greaterThanOperatorName: str
     lessThanOperatorName: str
@@ -3778,12 +4443,104 @@ class TopicId(typing_extensions.TypedDict, total=False):
     topicId: str
 
 @typing.type_check_only
+class TopicState(typing_extensions.TypedDict, total=False):
+    labelIdMessageCount: dict[str, typing.Any]
+    numConstituents: int
+
+@typing.type_check_only
+class TopicStateUpdate(typing_extensions.TypedDict, total=False):
+    topicState: TopicState
+
+@typing.type_check_only
+class TransactionContext(typing_extensions.TypedDict, total=False):
+    endingRecordId: str
+    startingRecordId: str
+    writeTimestampUs: str
+
+@typing.type_check_only
+class TransactionDebugInfo(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class TranscriptionSessionInfo(typing_extensions.TypedDict, total=False):
     sessionStateInfo: SessionStateInfo
     transcriptionSessionId: str
 
 @typing.type_check_only
 class TransientData(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Trigger(typing_extensions.TypedDict, total=False):
+    actionType: int
+    batchTimeUs: str
+    dispatchId: int
+    dispatcher: typing_extensions.Literal[
+        "DISPATCHER_COPROC",
+        "DISPATCHER_JOBSETTED_PRIMARY",
+        "DISPATCHER_STRATUS",
+        "DISPATCHER_TASKS_SERVER",
+        "DISPATCHER_STUBBY_DISPATCHER",
+        "DISPATCHER_CS",
+    ]
+    fireTimeUs: str
+    jobsettedServerSpec: JobsettedServerSpec
+    key: str
+    rpcOptions: RpcOptions
+    sliceFireTimeUs: str
+    triggerAction: TriggerAction
+    triggerKey: TriggerKey
+
+@typing.type_check_only
+class TriggerAction(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "ACTION_NONE",
+        "ACTION_DELETE",
+        "ACTION_CREATE_NEW_TRIGGER",
+        "ACTION_MESSAGE_EXPUNGE",
+        "ACTION_RETENTION_POLICY_UPDATE",
+        "ACTION_UPDATE_ICEBOX_MODEL",
+        "ACTION_INVOKE_CS",
+        "ACTION_INVOKE_STRATUS",
+        "ACTION_PDH_EXPUNGE",
+        "ACTION_QUERY_RETENTION",
+        "ACTION_INVOKE_JOBSETTED_PRIMARY",
+        "ACTION_INVOKE_TASKS_SERVER",
+        "ACTION_INVOKE_PUBLISHER",
+        "ACTION_INVOKE_OBSERVER",
+        "ACTION_PUSH_HISTORY_TO_PDH",
+        "ACTION_INVOKE_STUBBY_DISPATCHER",
+        "ACTION_PDH_BACKFILL",
+        "ACTION_MESSAGE_UNDELETE",
+        "ACTION_VAULT_END_USER_ACCESS",
+        "ACTION_INVOKE_GROUPS",
+        "ACTION_ACCOUNT_INITIALIZATION",
+        "ACTION_INVOKE_OBSERVER_WIPEOUT",
+        "ACTION_SERVICE_REMOVED_MESSAGE_EXPUNGE",
+        "ACTION_EVERCLEAR_EXPUNGE",
+        "ACTION_INVOKE_SMIME_CERTIFICATE_ISSUER",
+        "ACTION_GROUPS_QUERY_RETENTION",
+        "ACTION_INVOKE_SATELLITE_BACKUP",
+        "ACTION_INVOKE_DEBUG_LOG",
+        "ACTION_PREFERENCE_CLEANUP",
+        "ACTION_CARIBOU_DATA_RETENTION",
+        "ACTION_HISTORY_CLEANUP",
+        "ACTION_ITEM_BULK_RELABEL",
+        "ACTION_INVOKE_SATELLITE_IMAGE_PROCESSING",
+        "ACTION_CARIBOU_DATA_RETENTION_DIFF",
+        "ACTION_RELEVANCY_SCORE_BACKFILL",
+        "ACTION_PDH_PUSH_NOTIFICATION_BACKFILL",
+        "ACTION_AUTO_SAVE_DRAFT_EXPUNGE",
+    ]
+    data: str
+    dataInt: str
+
+@typing.type_check_only
+class TriggerKey(typing_extensions.TypedDict, total=False):
+    instanceId: str
+    type: str
+
+@typing.type_check_only
+class Triggers(typing_extensions.TypedDict, total=False):
+    triggers: _list[Trigger]
 
 @typing.type_check_only
 class TrustedResourceUrlProto(typing_extensions.TypedDict, total=False):
@@ -3817,15 +4574,51 @@ class UnreserveItemsRequest(typing_extensions.TypedDict, total=False):
     queue: str
 
 @typing.type_check_only
+class UpdateBccRecipients(typing_extensions.TypedDict, total=False):
+    bccRecipients: _list[Recipient]
+
+@typing.type_check_only
+class UpdateBody(typing_extensions.TypedDict, total=False):
+    insertContents: _list[InsertContent]
+    type: typing_extensions.Literal[
+        "UNSPECIFIED_ACTION_TYPE",
+        "IN_PLACE_INSERT",
+        "INSERT_AT_START",
+        "INSERT_AT_END",
+        "REPLACE",
+    ]
+
+@typing.type_check_only
+class UpdateCcRecipients(typing_extensions.TypedDict, total=False):
+    ccRecipients: _list[Recipient]
+
+@typing.type_check_only
 class UpdateDataSourceRequest(typing_extensions.TypedDict, total=False):
     debugOptions: DebugOptions
     source: DataSource
+    updateMask: str
+
+@typing.type_check_only
+class UpdateDraftActionMarkup(typing_extensions.TypedDict, total=False):
+    updateBccRecipients: UpdateBccRecipients
+    updateBody: UpdateBody
+    updateCcRecipients: UpdateCcRecipients
+    updateSubject: UpdateSubject
+    updateToRecipients: UpdateToRecipients
 
 @typing.type_check_only
 class UpdateSchemaRequest(typing_extensions.TypedDict, total=False):
     debugOptions: DebugOptions
     schema: Schema
     validateOnly: bool
+
+@typing.type_check_only
+class UpdateSubject(typing_extensions.TypedDict, total=False):
+    subject: str
+
+@typing.type_check_only
+class UpdateToRecipients(typing_extensions.TypedDict, total=False):
+    toRecipients: _list[Recipient]
 
 @typing.type_check_only
 class UploadItemRef(typing_extensions.TypedDict, total=False):
@@ -3847,6 +4640,7 @@ class UploadMetadata(typing_extensions.TypedDict, total=False):
     contentName: str
     contentType: str
     dlpMetricsMetadata: AppsDynamiteSharedDlpMetricsMetadata
+    latestVirusScanTimestamp: str
     localId: str
     originalDimension: AppsDynamiteSharedDimension
     videoReference: AppsDynamiteSharedVideoReference
@@ -3871,7 +4665,10 @@ class UrlMetadata(typing_extensions.TypedDict, total=False):
     title: str
     url: SafeUrlProto
     urlSource: typing_extensions.Literal[
-        "URL_SOURCE_UNKNOWN", "USER_SUPPLIED_URL", "SERVER_SUPPLIED_POLICY_VIOLATION"
+        "URL_SOURCE_UNKNOWN",
+        "SERVER_SUPPLIED_POLICY_VIOLATION",
+        "AUTO_DETECTED_PLAIN_TEXT",
+        "RICH_TEXT",
     ]
 
 @typing.type_check_only

@@ -32,7 +32,9 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
         "EU_REGIONS_AND_SUPPORT",
         "CA_REGIONS_AND_SUPPORT",
         "ITAR",
+        "AU_REGIONS_AND_US_SUPPORT",
         "ASSURED_WORKLOADS_FOR_PARTNERS",
+        "ISR_REGIONS",
     ]
     createTime: str
     displayName: str
@@ -53,6 +55,14 @@ class GoogleCloudAssuredworkloadsV1ListWorkloadsResponse(
     workloads: _list[GoogleCloudAssuredworkloadsV1Workload]
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    etag: str
+    partnerPermissions: GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions
+    updateMask: str
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -60,6 +70,7 @@ class GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest(
         "RESTRICTION_TYPE_UNSPECIFIED",
         "ALLOW_ALL_GCP_RESOURCES",
         "ALLOW_COMPLIANT_RESOURCES",
+        "APPEND_COMPLIANT_RESOURCES",
     ]
 
 @typing.type_check_only
@@ -75,6 +86,7 @@ class GoogleCloudAssuredworkloadsV1Violation(typing_extensions.TypedDict, total=
     beginTime: str
     category: str
     description: str
+    exceptionAuditLogLink: str
     name: str
     nonCompliantOrgPolicy: str
     orgPolicyConstraint: str
@@ -137,8 +149,11 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "EU_REGIONS_AND_SUPPORT",
         "CA_REGIONS_AND_SUPPORT",
         "ITAR",
+        "AU_REGIONS_AND_US_SUPPORT",
         "ASSURED_WORKLOADS_FOR_PARTNERS",
+        "ISR_REGIONS",
     ]
+    complianceStatus: GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus
     compliantButDisallowedServices: _list[str]
     createTime: str
     displayName: str
@@ -152,11 +167,22 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
     kmsSettings: GoogleCloudAssuredworkloadsV1WorkloadKMSSettings
     labels: dict[str, typing.Any]
     name: str
-    partner: typing_extensions.Literal["PARTNER_UNSPECIFIED", "LOCAL_CONTROLS_BY_S3NS"]
+    partner: typing_extensions.Literal[
+        "PARTNER_UNSPECIFIED",
+        "LOCAL_CONTROLS_BY_S3NS",
+        "SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
+    ]
     provisionedResourcesParent: str
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceSettings]
     resources: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceInfo]
     saaEnrollmentResponse: GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus(
+    typing_extensions.TypedDict, total=False
+):
+    acknowledgedViolationCount: int
+    activeViolationCount: int
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1WorkloadKMSSettings(
@@ -164,6 +190,14 @@ class GoogleCloudAssuredworkloadsV1WorkloadKMSSettings(
 ):
     nextRotationTime: str
     rotationPeriod: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions(
+    typing_extensions.TypedDict, total=False
+):
+    dataLogsViewer: bool
+    remediateFolderViolations: bool
+    serviceAccessApprover: bool
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1WorkloadResourceInfo(

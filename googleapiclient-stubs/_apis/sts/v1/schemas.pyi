@@ -21,6 +21,28 @@ class GoogleIdentityStsV1AccessBoundaryRule(typing_extensions.TypedDict, total=F
     availableResource: str
 
 @typing.type_check_only
+class GoogleIdentityStsV1ExchangeOauthTokenRequest(
+    typing_extensions.TypedDict, total=False
+):
+    clientId: str
+    code: str
+    codeVerifier: str
+    grantType: str
+    redirectUri: str
+    refreshToken: str
+    scope: str
+
+@typing.type_check_only
+class GoogleIdentityStsV1ExchangeOauthTokenResponse(
+    typing_extensions.TypedDict, total=False
+):
+    access_token: str
+    expires_in: int
+    refresh_token: str
+    scope: str
+    token_type: str
+
+@typing.type_check_only
 class GoogleIdentityStsV1ExchangeTokenRequest(typing_extensions.TypedDict, total=False):
     audience: str
     grantType: str

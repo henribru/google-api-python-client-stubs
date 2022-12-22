@@ -25,6 +25,10 @@ class Binding(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BuildConfig(typing_extensions.TypedDict, total=False):
     build: str
+    buildpackStack: str
+    dockerRegistry: typing_extensions.Literal[
+        "DOCKER_REGISTRY_UNSPECIFIED", "CONTAINER_REGISTRY", "ARTIFACT_REGISTRY"
+    ]
     dockerRepository: str
     entryPoint: str
     environmentVariables: dict[str, typing.Any]
@@ -314,6 +318,7 @@ class SecretVolume(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceConfig(typing_extensions.TypedDict, total=False):
     allTrafficOnLatestRevision: bool
+    availableCpu: str
     availableMemory: str
     environmentVariables: dict[str, typing.Any]
     ingressSettings: typing_extensions.Literal[
@@ -323,10 +328,14 @@ class ServiceConfig(typing_extensions.TypedDict, total=False):
         "ALLOW_INTERNAL_AND_GCLB",
     ]
     maxInstanceCount: int
+    maxInstanceRequestConcurrency: int
     minInstanceCount: int
     revision: str
     secretEnvironmentVariables: _list[SecretEnvVar]
     secretVolumes: _list[SecretVolume]
+    securityLevel: typing_extensions.Literal[
+        "SECURITY_LEVEL_UNSPECIFIED", "SECURE_ALWAYS", "SECURE_OPTIONAL"
+    ]
     service: str
     serviceAccountEmail: str
     timeoutSeconds: int

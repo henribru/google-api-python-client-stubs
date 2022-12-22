@@ -37,14 +37,8 @@ class GoogleCloudRetailLoggingImportErrorContext(
 ):
     catalogItem: str
     gcsPath: str
-    inventoryActivity: str
     lineNumber: str
     operationName: str
-    order: str
-    place: str
-    placeAsset: str
-    placeProductPrice: str
-    placeProductSettings: str
     product: str
     userEvent: str
 
@@ -141,11 +135,19 @@ class GoogleCloudRetailV2CatalogAttribute(typing_extensions.TypedDict, total=Fal
         "DYNAMIC_FACETABLE_ENABLED",
         "DYNAMIC_FACETABLE_DISABLED",
     ]
+    exactSearchableOption: typing_extensions.Literal[
+        "EXACT_SEARCHABLE_OPTION_UNSPECIFIED",
+        "EXACT_SEARCHABLE_ENABLED",
+        "EXACT_SEARCHABLE_DISABLED",
+    ]
     inUse: bool
     indexableOption: typing_extensions.Literal[
         "INDEXABLE_OPTION_UNSPECIFIED", "INDEXABLE_ENABLED", "INDEXABLE_DISABLED"
     ]
     key: str
+    retrievableOption: typing_extensions.Literal[
+        "RETRIEVABLE_OPTION_UNSPECIFIED", "RETRIEVABLE_ENABLED", "RETRIEVABLE_DISABLED"
+    ]
     searchableOption: typing_extensions.Literal[
         "SEARCHABLE_OPTION_UNSPECIFIED", "SEARCHABLE_ENABLED", "SEARCHABLE_DISABLED"
     ]
@@ -920,6 +922,10 @@ class GoogleCloudRetailV2alphaExportUserEventsResponse(
     outputResult: GoogleCloudRetailV2alphaOutputResult
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaGcsOutputResult(typing_extensions.TypedDict, total=False):
+    outputUri: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaImportCompletionDataResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1026,6 +1032,7 @@ class GoogleCloudRetailV2alphaModelServingConfigList(
 @typing.type_check_only
 class GoogleCloudRetailV2alphaOutputResult(typing_extensions.TypedDict, total=False):
     bigqueryResult: _list[GoogleCloudRetailV2alphaBigQueryOutputResult]
+    gcsResult: _list[GoogleCloudRetailV2alphaGcsOutputResult]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaPurgeMetadata(
@@ -1181,6 +1188,10 @@ class GoogleCloudRetailV2betaExportUserEventsResponse(
     outputResult: GoogleCloudRetailV2betaOutputResult
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaGcsOutputResult(typing_extensions.TypedDict, total=False):
+    outputUri: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaImportCompletionDataResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1257,6 +1268,7 @@ class GoogleCloudRetailV2betaModelServingConfigList(
 @typing.type_check_only
 class GoogleCloudRetailV2betaOutputResult(typing_extensions.TypedDict, total=False):
     bigqueryResult: _list[GoogleCloudRetailV2betaBigQueryOutputResult]
+    gcsResult: _list[GoogleCloudRetailV2betaGcsOutputResult]
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaPurgeMetadata(

@@ -29,6 +29,24 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
             adId: str = ...,
             campaignId: str = ...,
             criterionId: str = ...,
+            customerId: str = ...,
+            **kwargs: typing.Any
+        ) -> ConversionListHttpRequest: ...
+        def getByCustomerId(
+            self,
+            *,
+            customerId: str,
+            endDate: int,
+            rowCount: int,
+            startDate: int,
+            startRow: int,
+            adGroupId: str = ...,
+            adId: str = ...,
+            advertiserId: str = ...,
+            agencyId: str = ...,
+            campaignId: str = ...,
+            criterionId: str = ...,
+            engineAccountId: str = ...,
             **kwargs: typing.Any
         ) -> ConversionListHttpRequest: ...
         def insert(

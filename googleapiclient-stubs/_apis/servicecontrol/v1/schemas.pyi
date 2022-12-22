@@ -407,6 +407,7 @@ class Resource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceInfo(typing_extensions.TypedDict, total=False):
+    permission: str
     resourceContainer: str
     resourceLocation: str
     resourceName: str

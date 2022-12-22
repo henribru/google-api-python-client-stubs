@@ -79,6 +79,38 @@ class BuildProvenance(typing_extensions.TypedDict, total=False):
     triggerId: str
 
 @typing.type_check_only
+class BuildStep(typing_extensions.TypedDict, total=False):
+    allowExitCodes: _list[int]
+    allowFailure: bool
+    args: _list[str]
+    dir: str
+    entrypoint: str
+    env: _list[str]
+    exitCode: int
+    id: str
+    name: str
+    pullTiming: TimeSpan
+    script: str
+    secretEnv: _list[str]
+    status: typing_extensions.Literal[
+        "STATUS_UNKNOWN",
+        "PENDING",
+        "QUEUING",
+        "QUEUED",
+        "WORKING",
+        "SUCCESS",
+        "FAILURE",
+        "INTERNAL_ERROR",
+        "TIMEOUT",
+        "CANCELLED",
+        "EXPIRED",
+    ]
+    timeout: str
+    timing: TimeSpan
+    volumes: _list[Volume]
+    waitFor: _list[str]
+
+@typing.type_check_only
 class BuilderConfig(typing_extensions.TypedDict, total=False):
     id: str
 
@@ -245,7 +277,13 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
     typing_extensions.TypedDict, total=False
 ):
     images: _list[str]
+    mavenArtifacts: _list[
+        ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact
+    ]
     objects: ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects
+    pythonPackages: _list[
+        ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage
+    ]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects(
@@ -254,6 +292,23 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects(
     location: str
     paths: _list[str]
     timing: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    artifactId: str
+    groupId: str
+    path: str
+    repository: str
+    version: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage(
+    typing_extensions.TypedDict, total=False
+):
+    paths: _list[str]
+    repository: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Build(
@@ -452,7 +507,13 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
     images: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage]
+    mavenArtifacts: _list[
+        ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact
+    ]
     numArtifacts: str
+    pythonPackages: _list[
+        ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage
+    ]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Secret(
@@ -514,6 +575,22 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan(
 ):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
+    pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    uri: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage(
+    typing_extensions.TypedDict, total=False
+):
+    fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
+    pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    uri: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Volume(
@@ -1056,6 +1133,11 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
+class TimeSpan(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
 class UpgradeDistribution(typing_extensions.TypedDict, total=False):
     classification: str
     cpeUri: str
@@ -1086,6 +1168,11 @@ class Version(typing_extensions.TypedDict, total=False):
     ]
     name: str
     revision: str
+
+@typing.type_check_only
+class Volume(typing_extensions.TypedDict, total=False):
+    name: str
+    path: str
 
 @typing.type_check_only
 class VulnerabilityNote(typing_extensions.TypedDict, total=False):

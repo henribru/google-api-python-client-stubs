@@ -154,6 +154,7 @@ class ManagedZoneForwardingConfigNameServerTarget(
 ):
     forwardingPath: typing_extensions.Literal["default", "private"]
     ipv4Address: str
+    ipv6Address: str
     kind: str
 
 @typing.type_check_only
@@ -278,6 +279,7 @@ class PolicyAlternativeNameServerConfigTargetNameServer(
 ):
     forwardingPath: typing_extensions.Literal["default", "private"]
     ipv4Address: str
+    ipv6Address: str
     kind: str
 
 @typing.type_check_only

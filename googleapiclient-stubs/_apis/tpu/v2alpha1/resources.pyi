@@ -132,6 +132,37 @@ class TPUResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class QueuedResourcesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: QueuedResource = ...,
+                    queuedResourceId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> QueuedResourceHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListQueuedResourcesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListQueuedResourcesResponseHttpRequest,
+                    previous_response: ListQueuedResourcesResponse,
+                ) -> ListQueuedResourcesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class RuntimeVersionsResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -179,6 +210,7 @@ class TPUResource(googleapiclient.discovery.Resource):
             def acceleratorTypes(self) -> AcceleratorTypesResource: ...
             def nodes(self) -> NodesResource: ...
             def operations(self) -> OperationsResource: ...
+            def queuedResources(self) -> QueuedResourcesResource: ...
             def runtimeVersions(self) -> RuntimeVersionsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -262,6 +294,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListQueuedResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListQueuedResourcesResponse: ...
+
+@typing.type_check_only
 class ListRuntimeVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -292,6 +332,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class QueuedResourceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> QueuedResource: ...
 
 @typing.type_check_only
 class RuntimeVersionHttpRequest(googleapiclient.http.HttpRequest):

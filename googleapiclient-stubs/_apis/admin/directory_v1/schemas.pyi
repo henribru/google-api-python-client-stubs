@@ -814,6 +814,7 @@ class UserMakeAdmin(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UserName(typing_extensions.TypedDict, total=False):
+    displayName: str
     familyName: str
     fullName: str
     givenName: str

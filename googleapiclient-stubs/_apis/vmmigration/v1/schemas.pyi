@@ -5,6 +5,9 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AdaptingOSStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AddGroupMigrationRequest(typing_extensions.TypedDict, total=False):
     migratingVm: str
 
@@ -52,6 +55,15 @@ class CloneJob(typing_extensions.TypedDict, total=False):
         "ADAPTING_OS",
     ]
     stateTime: str
+    steps: _list[CloneStep]
+
+@typing.type_check_only
+class CloneStep(typing_extensions.TypedDict, total=False):
+    adaptingOs: AdaptingOSStep
+    endTime: str
+    instantiatingMigratedVm: InstantiatingMigratedVMStep
+    preparingVmDisks: PreparingVMDisksStep
+    startTime: str
 
 @typing.type_check_only
 class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
@@ -152,6 +164,25 @@ class CutoverJob(typing_extensions.TypedDict, total=False):
     ]
     stateMessage: str
     stateTime: str
+    steps: _list[CutoverStep]
+
+@typing.type_check_only
+class CutoverStep(typing_extensions.TypedDict, total=False):
+    endTime: str
+    finalSync: ReplicationCycle
+    instantiatingMigratedVm: InstantiatingMigratedVMStep
+    preparingVmDisks: PreparingVMDisksStep
+    previousReplicationCycle: ReplicationCycle
+    shuttingDownSourceVm: ShuttingDownSourceVMStep
+    startTime: str
+
+@typing.type_check_only
+class CycleStep(typing_extensions.TypedDict, total=False):
+    endTime: str
+    initializingReplication: InitializingReplicationStep
+    postProcessing: PostProcessingStep
+    replicating: ReplicatingStep
+    startTime: str
 
 @typing.type_check_only
 class DatacenterConnector(typing_extensions.TypedDict, total=False):
@@ -191,6 +222,12 @@ class Group(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     updateTime: str
+
+@typing.type_check_only
+class InitializingReplicationStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class InstantiatingMigratedVMStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Link(typing_extensions.TypedDict, total=False):
@@ -355,13 +392,35 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 class PauseMigrationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class PostProcessingStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PreparingVMDisksStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class RemoveGroupMigrationRequest(typing_extensions.TypedDict, total=False):
     migratingVm: str
 
 @typing.type_check_only
+class ReplicatingStep(typing_extensions.TypedDict, total=False):
+    lastThirtyMinutesAverageBytesPerSecond: str
+    lastTwoMinutesAverageBytesPerSecond: str
+    replicatedBytes: str
+    totalBytes: str
+
+@typing.type_check_only
 class ReplicationCycle(typing_extensions.TypedDict, total=False):
+    cycleNumber: int
+    endTime: str
+    error: Status
+    name: str
     progressPercent: int
     startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "FAILED", "SUCCEEDED"
+    ]
+    steps: _list[CycleStep]
+    totalPauseDuration: str
 
 @typing.type_check_only
 class ReplicationSync(typing_extensions.TypedDict, total=False):
@@ -380,6 +439,9 @@ class SchedulingNodeAffinity(typing_extensions.TypedDict, total=False):
     key: str
     operator: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "IN", "NOT_IN"]
     values: _list[str]
+
+@typing.type_check_only
+class ShuttingDownSourceVMStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):

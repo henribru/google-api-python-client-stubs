@@ -50,18 +50,6 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
         ) -> AchievementConfigurationHttpRequest: ...
 
     @typing.type_check_only
-    class ImageConfigurationsResource(googleapiclient.discovery.Resource):
-        def upload(
-            self,
-            *,
-            resourceId: str,
-            imageType: typing_extensions.Literal[
-                "IMAGE_TYPE_UNSPECIFIED", "ACHIEVEMENT_ICON", "LEADERBOARD_ICON"
-            ],
-            **kwargs: typing.Any
-        ) -> ImageConfigurationHttpRequest: ...
-
-    @typing.type_check_only
     class LeaderboardConfigurationsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, leaderboardId: str, **kwargs: typing.Any
@@ -110,7 +98,6 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def achievementConfigurations(self) -> AchievementConfigurationsResource: ...
-    def imageConfigurations(self) -> ImageConfigurationsResource: ...
     def leaderboardConfigurations(self) -> LeaderboardConfigurationsResource: ...
 
 @typing.type_check_only
@@ -128,14 +115,6 @@ class AchievementConfigurationListResponseHttpRequest(googleapiclient.http.HttpR
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AchievementConfigurationListResponse: ...
-
-@typing.type_check_only
-class ImageConfigurationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ImageConfiguration: ...
 
 @typing.type_check_only
 class LeaderboardConfigurationHttpRequest(googleapiclient.http.HttpRequest):

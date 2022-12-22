@@ -23,28 +23,28 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1BatchDeleteGroupPoliciesRequest = ...,
+                    body: GoogleChromePolicyVersionsV1BatchDeleteGroupPoliciesRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def batchModify(
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1BatchModifyGroupPoliciesRequest = ...,
+                    body: GoogleChromePolicyVersionsV1BatchModifyGroupPoliciesRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def listGroupPriorityOrdering(
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1ListGroupPriorityOrderingRequest = ...,
+                    body: GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleChromePolicyV1ListGroupPriorityOrderingResponseHttpRequest: ...
+                ) -> GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponseHttpRequest: ...
                 def updateGroupPriorityOrdering(
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1UpdateGroupPriorityOrderingRequest = ...,
+                    body: GoogleChromePolicyVersionsV1UpdateGroupPriorityOrderingRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
 
@@ -54,30 +54,30 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1DefineCertificateRequest = ...,
+                    body: GoogleChromePolicyVersionsV1DefineCertificateRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleChromePolicyV1DefineCertificateResponseHttpRequest: ...
+                ) -> GoogleChromePolicyVersionsV1DefineCertificateResponseHttpRequest: ...
                 def defineNetwork(
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1DefineNetworkRequest = ...,
+                    body: GoogleChromePolicyVersionsV1DefineNetworkRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleChromePolicyV1DefineNetworkResponseHttpRequest: ...
+                ) -> GoogleChromePolicyVersionsV1DefineNetworkResponseHttpRequest: ...
                 def removeCertificate(
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1RemoveCertificateRequest = ...,
+                    body: GoogleChromePolicyVersionsV1RemoveCertificateRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleChromePolicyV1RemoveCertificateResponseHttpRequest: ...
+                ) -> GoogleChromePolicyVersionsV1RemoveCertificateResponseHttpRequest: ...
                 def removeNetwork(
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1RemoveNetworkRequest = ...,
+                    body: GoogleChromePolicyVersionsV1RemoveNetworkRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleChromePolicyV1RemoveNetworkResponseHttpRequest: ...
+                ) -> GoogleChromePolicyVersionsV1RemoveNetworkResponseHttpRequest: ...
 
             @typing.type_check_only
             class OrgunitsResource(googleapiclient.discovery.Resource):
@@ -85,14 +85,14 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1BatchInheritOrgUnitPoliciesRequest = ...,
+                    body: GoogleChromePolicyVersionsV1BatchInheritOrgUnitPoliciesRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def batchModify(
                     self,
                     *,
                     customer: str,
-                    body: GoogleChromePolicyV1BatchModifyOrgUnitPoliciesRequest = ...,
+                    body: GoogleChromePolicyVersionsV1BatchModifyOrgUnitPoliciesRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
 
@@ -100,14 +100,14 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customer: str,
-                body: GoogleChromePolicyV1ResolveRequest = ...,
+                body: GoogleChromePolicyVersionsV1ResolveRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleChromePolicyV1ResolveResponseHttpRequest: ...
+            ) -> GoogleChromePolicyVersionsV1ResolveResponseHttpRequest: ...
             def resolve_next(
                 self,
-                previous_request: GoogleChromePolicyV1ResolveResponseHttpRequest,
-                previous_response: GoogleChromePolicyV1ResolveResponse,
-            ) -> GoogleChromePolicyV1ResolveResponseHttpRequest | None: ...
+                previous_request: GoogleChromePolicyVersionsV1ResolveResponseHttpRequest,
+                previous_response: GoogleChromePolicyVersionsV1ResolveResponse,
+            ) -> GoogleChromePolicyVersionsV1ResolveResponseHttpRequest | None: ...
             def groups(self) -> GroupsResource: ...
             def networks(self) -> NetworksResource: ...
             def orgunits(self) -> OrgunitsResource: ...
@@ -161,62 +161,34 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
     def media(self) -> MediaResource: ...
 
 @typing.type_check_only
-class GoogleChromePolicyV1DefineCertificateResponseHttpRequest(
+class GoogleChromePolicyVersionsV1DefineCertificateResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GoogleChromePolicyV1DefineCertificateResponse: ...
+    ) -> GoogleChromePolicyVersionsV1DefineCertificateResponse: ...
 
 @typing.type_check_only
-class GoogleChromePolicyV1DefineNetworkResponseHttpRequest(
+class GoogleChromePolicyVersionsV1DefineNetworkResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GoogleChromePolicyV1DefineNetworkResponse: ...
+    ) -> GoogleChromePolicyVersionsV1DefineNetworkResponse: ...
 
 @typing.type_check_only
-class GoogleChromePolicyV1ListGroupPriorityOrderingResponseHttpRequest(
+class GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GoogleChromePolicyV1ListGroupPriorityOrderingResponse: ...
-
-@typing.type_check_only
-class GoogleChromePolicyV1RemoveCertificateResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleChromePolicyV1RemoveCertificateResponse: ...
-
-@typing.type_check_only
-class GoogleChromePolicyV1RemoveNetworkResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleChromePolicyV1RemoveNetworkResponse: ...
-
-@typing.type_check_only
-class GoogleChromePolicyV1ResolveResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleChromePolicyV1ResolveResponse: ...
+    ) -> GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse: ...
 
 @typing.type_check_only
 class GoogleChromePolicyVersionsV1ListPolicySchemasResponseHttpRequest(
@@ -237,6 +209,36 @@ class GoogleChromePolicyVersionsV1PolicySchemaHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleChromePolicyVersionsV1PolicySchema: ...
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1RemoveCertificateResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromePolicyVersionsV1RemoveCertificateResponse: ...
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1RemoveNetworkResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromePolicyVersionsV1RemoveNetworkResponse: ...
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1ResolveResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleChromePolicyVersionsV1ResolveResponse: ...
 
 @typing.type_check_only
 class GoogleChromePolicyVersionsV1UploadPolicyFileResponseHttpRequest(

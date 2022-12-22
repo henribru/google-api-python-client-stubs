@@ -113,6 +113,10 @@ class Connection(typing_extensions.TypedDict, total=False):
 class ConnectionSchemaMetadata(typing_extensions.TypedDict, total=False):
     actions: _list[str]
     entities: _list[str]
+    name: str
+    refreshTime: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "REFRESHING", "UPDATED"]
+    updateTime: str
 
 @typing.type_check_only
 class ConnectionStatus(typing_extensions.TypedDict, total=False):
@@ -137,7 +141,7 @@ class Connector(typing_extensions.TypedDict, total=False):
     externalUri: str
     labels: dict[str, typing.Any]
     launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED"
+        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
     ]
     name: str
     updateTime: str
@@ -152,7 +156,7 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     egressControlConfig: EgressControlConfig
     labels: dict[str, typing.Any]
     launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED"
+        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
     ]
     name: str
     releaseVersion: str
@@ -424,11 +428,16 @@ class Provider(typing_extensions.TypedDict, total=False):
     externalUri: str
     labels: dict[str, typing.Any]
     launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED"
+        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
     ]
     name: str
     updateTime: str
     webAssetsLocation: str
+
+@typing.type_check_only
+class RefreshConnectionSchemaMetadataRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
@@ -549,7 +558,6 @@ class Source(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SshPublicKey(typing_extensions.TypedDict, total=False):
     certType: str
-    password: Secret
     sshClientCert: Secret
     sshClientCertPass: Secret
     username: str

@@ -531,12 +531,18 @@ class GooglePrivacyDlpV2Error(typing_extensions.TypedDict, total=False):
     timestamps: _list[str]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ExcludeByHotword(typing_extensions.TypedDict, total=False):
+    hotwordRegex: GooglePrivacyDlpV2Regex
+    proximity: GooglePrivacyDlpV2Proximity
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ExcludeInfoTypes(typing_extensions.TypedDict, total=False):
     infoTypes: _list[GooglePrivacyDlpV2InfoType]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ExclusionRule(typing_extensions.TypedDict, total=False):
     dictionary: GooglePrivacyDlpV2Dictionary
+    excludeByHotword: GooglePrivacyDlpV2ExcludeByHotword
     excludeInfoTypes: GooglePrivacyDlpV2ExcludeInfoTypes
     matchingType: typing_extensions.Literal[
         "MATCHING_TYPE_UNSPECIFIED",
@@ -737,6 +743,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "URUGUAY",
         "VENEZUELA",
         "INTERNAL",
+        "NEW_ZEALAND",
     ]
     typeCategory: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
@@ -755,6 +762,7 @@ class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=F
     description: str
     displayName: str
     name: str
+    sensitivityScore: GooglePrivacyDlpV2SensitivityScore
     supportedBy: _list[str]
     versions: _list[GooglePrivacyDlpV2VersionDescription]
 
@@ -770,6 +778,7 @@ class GooglePrivacyDlpV2InfoTypeStats(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InfoTypeSummary(typing_extensions.TypedDict, total=False):
+    estimatedPrevalence: int
     infoType: GooglePrivacyDlpV2InfoType
 
 @typing.type_check_only

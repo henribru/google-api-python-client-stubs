@@ -197,6 +197,25 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> GoogleAnalyticsAdminV1alphaAudienceHttpRequest: ...
 
         @typing.type_check_only
+        class BigQueryLinksResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaBigQueryLinkHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse,
+            ) -> GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class ConversionEventsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -729,6 +748,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsHttpRequest: ...
         def audiences(self) -> AudiencesResource: ...
+        def bigQueryLinks(self) -> BigQueryLinksResource: ...
         def conversionEvents(self) -> ConversionEventsResource: ...
         def customDimensions(self) -> CustomDimensionsResource: ...
         def customMetrics(self) -> CustomMetricsResource: ...
@@ -845,6 +865,16 @@ class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaBigQueryLinkHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaBigQueryLink: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaConversionEventHttpRequest(
@@ -995,6 +1025,16 @@ class GoogleAnalyticsAdminV1alphaListAudiencesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListAudiencesResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest(

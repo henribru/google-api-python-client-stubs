@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AlterMetadataResourceLocationRequest(typing_extensions.TypedDict, total=False):
+    locationUri: str
+    resourceName: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -220,6 +225,12 @@ class MetadataManagementActivity(typing_extensions.TypedDict, total=False):
     restores: _list[Restore]
 
 @typing.type_check_only
+class MoveTableToDatabaseRequest(typing_extensions.TypedDict, total=False):
+    dbName: str
+    destinationDbName: str
+    tableName: str
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     consumers: _list[Consumer]
 
@@ -249,7 +260,16 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
-class RemoveIamPolicyRequest(typing_extensions.TypedDict, total=False): ...
+class QueryMetadataRequest(typing_extensions.TypedDict, total=False):
+    query: str
+
+@typing.type_check_only
+class QueryMetadataResponse(typing_extensions.TypedDict, total=False):
+    resultManifestUri: str
+
+@typing.type_check_only
+class RemoveIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    asynchronous: bool
 
 @typing.type_check_only
 class RemoveIamPolicyResponse(typing_extensions.TypedDict, total=False):
@@ -310,6 +330,7 @@ class Service(typing_extensions.TypedDict, total=False):
         "ERROR",
     ]
     stateMessage: str
+    telemetryConfig: TelemetryConfig
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "DEVELOPER", "ENTERPRISE"]
     uid: str
     updateTime: str
@@ -324,6 +345,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TelemetryConfig(typing_extensions.TypedDict, total=False):
+    logFormat: typing_extensions.Literal["LOG_FORMAT_UNSPECIFIED", "LEGACY", "JSON"]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

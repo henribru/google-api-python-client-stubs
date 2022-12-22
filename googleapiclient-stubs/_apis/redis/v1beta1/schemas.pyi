@@ -181,6 +181,13 @@ class PersistenceConfig(typing_extensions.TypedDict, total=False):
     rdbSnapshotStartTime: str
 
 @typing.type_check_only
+class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
+    deleteResource: bool
+    exclusiveAction: typing_extensions.Literal[
+        "UNKNOWN_REPAIR_ACTION", "DELETE", "RETRY"
+    ]
+
+@typing.type_check_only
 class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
     rescheduleType: typing_extensions.Literal[
         "RESCHEDULE_TYPE_UNSPECIFIED",

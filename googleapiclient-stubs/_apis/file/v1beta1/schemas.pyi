@@ -178,6 +178,8 @@ class Instance(typing_extensions.TypedDict, total=False):
         "RESTORING",
         "SUSPENDED",
         "REVERTING",
+        "SUSPENDING",
+        "RESUMING",
     ]
     statusMessage: str
     suspensionReasons: _list[str]

@@ -128,6 +128,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_28",
         "MYSQL_8_0_29",
         "MYSQL_8_0_30",
+        "MYSQL_8_0_31",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -188,6 +189,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_28",
         "MYSQL_8_0_29",
         "MYSQL_8_0_30",
+        "MYSQL_8_0_31",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -282,6 +284,7 @@ class DiskEncryptionStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExportContext(typing_extensions.TypedDict, total=False):
+    bakExportOptions: dict[str, typing.Any]
     csvExportOptions: dict[str, typing.Any]
     databases: _list[str]
     fileType: typing_extensions.Literal[
@@ -410,6 +413,7 @@ class InstancesTruncateLogRequest(typing_extensions.TypedDict, total=False):
 class IpConfiguration(typing_extensions.TypedDict, total=False):
     allocatedIpRange: str
     authorizedNetworks: _list[AclEntry]
+    enablePrivatePathForGoogleCloudServices: bool
     ipv4Enabled: bool
     privateNetwork: str
     requireSsl: bool

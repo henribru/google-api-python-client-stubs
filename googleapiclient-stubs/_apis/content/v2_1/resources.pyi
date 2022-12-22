@@ -416,6 +416,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             merchantId: str,
             datafeedId: str,
             country: str = ...,
+            feedLabel: str = ...,
             language: str = ...,
             **kwargs: typing.Any
         ) -> DatafeedStatusHttpRequest: ...
@@ -1062,6 +1063,22 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         ) -> PubsubNotificationSettingsHttpRequest: ...
 
     @typing.type_check_only
+    class QuotasResource(googleapiclient.discovery.Resource):
+        def list(
+            self,
+            *,
+            merchantId: str,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListMethodQuotasResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListMethodQuotasResponseHttpRequest,
+            previous_response: ListMethodQuotasResponse,
+        ) -> ListMethodQuotasResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class RegionalinventoryResource(googleapiclient.discovery.Resource):
         def custombatch(
             self,
@@ -1391,6 +1408,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def productstatuses(self) -> ProductstatusesResource: ...
     def promotions(self) -> PromotionsResource: ...
     def pubsubnotificationsettings(self) -> PubsubnotificationsettingsResource: ...
+    def quotas(self) -> QuotasResource: ...
     def regionalinventory(self) -> RegionalinventoryResource: ...
     def regions(self) -> RegionsResource: ...
     def reports(self) -> ReportsResource: ...
@@ -1764,6 +1782,14 @@ class ListCssesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCssesResponse: ...
+
+@typing.type_check_only
+class ListMethodQuotasResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListMethodQuotasResponse: ...
 
 @typing.type_check_only
 class ListRegionsResponseHttpRequest(googleapiclient.http.HttpRequest):

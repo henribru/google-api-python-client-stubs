@@ -388,6 +388,8 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         ets: str = ...,
+                        prebuiltRule: str = ...,
+                        rawJson: str = ...,
                         uri: str = ...,
                         userEvent: str = ...,
                         **kwargs: typing.Any
@@ -427,6 +429,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     catalog: str,
                     dataset: str = ...,
                     deviceType: str = ...,
+                    enableAttributeSuggestions: bool = ...,
                     languageCodes: str | _list[str] = ...,
                     maxSuggestions: int = ...,
                     query: str = ...,

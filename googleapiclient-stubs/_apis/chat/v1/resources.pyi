@@ -22,6 +22,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Message = ...,
+                messageId: str = ...,
+                messageReplyOption: typing_extensions.Literal[
+                    "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                    "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                    "REPLY_MESSAGE_OR_FAIL",
+                ] = ...,
                 requestId: str = ...,
                 threadKey: str = ...,
                 **kwargs: typing.Any
@@ -32,6 +38,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            messageId: str = ...,
+            messageReplyOption: typing_extensions.Literal[
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL",
+            ] = ...,
             requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any
@@ -41,6 +53,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            messageId: str = ...,
+            messageReplyOption: typing_extensions.Literal[
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL",
+            ] = ...,
             requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any
@@ -65,6 +83,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Message = ...,
+                messageId: str = ...,
+                messageReplyOption: typing_extensions.Literal[
+                    "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                    "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                    "REPLY_MESSAGE_OR_FAIL",
+                ] = ...,
                 requestId: str = ...,
                 threadKey: str = ...,
                 **kwargs: typing.Any
@@ -75,6 +99,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            messageId: str = ...,
+            messageReplyOption: typing_extensions.Literal[
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL",
+            ] = ...,
             requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any
@@ -84,6 +114,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            messageId: str = ...,
+            messageReplyOption: typing_extensions.Literal[
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL",
+            ] = ...,
             requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any
@@ -124,6 +160,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Message = ...,
+                messageId: str = ...,
+                messageReplyOption: typing_extensions.Literal[
+                    "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                    "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                    "REPLY_MESSAGE_OR_FAIL",
+                ] = ...,
                 requestId: str = ...,
                 threadKey: str = ...,
                 **kwargs: typing.Any
@@ -132,11 +174,21 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> MessageHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Message = ...,
+                allowMissing: bool = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> MessageHttpRequest: ...
             def update(
                 self,
                 *,
                 name: str,
                 body: Message = ...,
+                allowMissing: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
@@ -156,6 +208,12 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: Message = ...,
+            messageId: str = ...,
+            messageReplyOption: typing_extensions.Literal[
+                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
+                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
+                "REPLY_MESSAGE_OR_FAIL",
+            ] = ...,
             requestId: str = ...,
             threadKey: str = ...,
             **kwargs: typing.Any

@@ -30,7 +30,9 @@ class ArtifactResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Artifacts(typing_extensions.TypedDict, total=False):
     images: _list[str]
+    mavenArtifacts: _list[MavenArtifact]
     objects: ArtifactObjects
+    pythonPackages: _list[PythonPackage]
 
 @typing.type_check_only
 class BatchCreateBitbucketServerConnectedRepositoriesResponse(
@@ -59,6 +61,10 @@ class BatchCreateGitLabConnectedRepositoriesResponseMetadata(
     completeTime: str
     config: str
     createTime: str
+
+@typing.type_check_only
+class BatchCreateRepositoriesResponse(typing_extensions.TypedDict, total=False):
+    repositories: _list[Repository]
 
 @typing.type_check_only
 class BitbucketServerConnectedRepository(typing_extensions.TypedDict, total=False):
@@ -312,6 +318,14 @@ class ListWorkerPoolsResponse(typing_extensions.TypedDict, total=False):
     workerPools: _list[WorkerPool]
 
 @typing.type_check_only
+class MavenArtifact(typing_extensions.TypedDict, total=False):
+    artifactId: str
+    groupId: str
+    path: str
+    repository: str
+    version: str
+
+@typing.type_check_only
 class Network(typing_extensions.TypedDict, total=False):
     network: str
     projectId: str
@@ -382,6 +396,11 @@ class ProcessAppManifestCallbackOperationMetadata(
     githubEnterpriseConfig: str
 
 @typing.type_check_only
+class PythonPackage(typing_extensions.TypedDict, total=False):
+    paths: _list[str]
+    repository: str
+
+@typing.type_check_only
 class RepoSource(typing_extensions.TypedDict, total=False):
     branchName: str
     commitSha: str
@@ -393,13 +412,24 @@ class RepoSource(typing_extensions.TypedDict, total=False):
     tagName: str
 
 @typing.type_check_only
+class Repository(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    etag: str
+    name: str
+    remoteUri: str
+    updateTime: str
+
+@typing.type_check_only
 class Results(typing_extensions.TypedDict, total=False):
     artifactManifest: str
     artifactTiming: TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
     images: _list[BuiltImage]
+    mavenArtifacts: _list[UploadedMavenArtifact]
     numArtifacts: str
+    pythonPackages: _list[UploadedPythonPackage]
 
 @typing.type_check_only
 class RunWorkflowCustomOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -502,6 +532,18 @@ class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
     completeTime: str
     createTime: str
     workerPool: str
+
+@typing.type_check_only
+class UploadedMavenArtifact(typing_extensions.TypedDict, total=False):
+    fileHashes: FileHashes
+    pushTiming: TimeSpan
+    uri: str
+
+@typing.type_check_only
+class UploadedPythonPackage(typing_extensions.TypedDict, total=False):
+    fileHashes: FileHashes
+    pushTiming: TimeSpan
+    uri: str
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):

@@ -29,6 +29,10 @@ class CidrBlock(typing_extensions.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
+class CloudDataLineageIntegration(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):
     machineType: str
 
@@ -75,10 +79,23 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     nodeConfig: NodeConfig
     nodeCount: int
     privateEnvironmentConfig: PrivateEnvironmentConfig
+    recoveryConfig: RecoveryConfig
     softwareConfig: SoftwareConfig
     webServerConfig: WebServerConfig
     webServerNetworkAccessControl: WebServerNetworkAccessControl
     workloadsConfig: WorkloadsConfig
+
+@typing.type_check_only
+class ExecuteAirflowCommandResponse(typing_extensions.TypedDict, total=False):
+    error: str
+    executionId: str
+    pod: str
+    podNamespace: str
+
+@typing.type_check_only
+class ExitInfo(typing_extensions.TypedDict, total=False):
+    error: str
+    exitCode: int
 
 @typing.type_check_only
 class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
@@ -98,6 +115,11 @@ class ImageVersion(typing_extensions.TypedDict, total=False):
     upgradeDisabled: bool
 
 @typing.type_check_only
+class Line(typing_extensions.TypedDict, total=False):
+    content: str
+    lineNumber: int
+
+@typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
     environments: _list[Environment]
     nextPageToken: str
@@ -114,6 +136,9 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LoadSnapshotRequest(typing_extensions.TypedDict, total=False):
+    skipAirflowOverridesSetting: bool
+    skipEnvironmentVariablesSetting: bool
+    skipGcsDataCopying: bool
     skipPypiPackagesInstallation: bool
     snapshotPath: str
 
@@ -179,6 +204,12 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PollAirflowCommandResponse(typing_extensions.TypedDict, total=False):
+    exitInfo: ExitInfo
+    output: _list[Line]
+    outputEnd: bool
+
+@typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     enablePrivateEndpoint: bool
     masterIpv4CidrBlock: str
@@ -198,6 +229,10 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
     webServerIpv4ReservedRange: str
 
 @typing.type_check_only
+class RecoveryConfig(typing_extensions.TypedDict, total=False):
+    scheduledSnapshotsConfig: ScheduledSnapshotsConfig
+
+@typing.type_check_only
 class RestartWebServerRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -209,6 +244,13 @@ class SaveSnapshotResponse(typing_extensions.TypedDict, total=False):
     snapshotPath: str
 
 @typing.type_check_only
+class ScheduledSnapshotsConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    snapshotCreationSchedule: str
+    snapshotLocation: str
+    timeZone: str
+
+@typing.type_check_only
 class SchedulerResource(typing_extensions.TypedDict, total=False):
     count: int
     cpu: float
@@ -218,6 +260,7 @@ class SchedulerResource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
     airflowConfigOverrides: dict[str, typing.Any]
+    cloudDataLineageIntegration: CloudDataLineageIntegration
     envVariables: dict[str, typing.Any]
     imageVersion: str
     pypiPackages: dict[str, typing.Any]
@@ -229,6 +272,12 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TriggererResource(typing_extensions.TypedDict, total=False):
+    count: int
+    cpu: float
+    memoryGb: float
 
 @typing.type_check_only
 class WebServerConfig(typing_extensions.TypedDict, total=False):
@@ -255,5 +304,6 @@ class WorkerResource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkloadsConfig(typing_extensions.TypedDict, total=False):
     scheduler: SchedulerResource
+    triggerer: TriggererResource
     webServer: WebServerResource
     worker: WorkerResource

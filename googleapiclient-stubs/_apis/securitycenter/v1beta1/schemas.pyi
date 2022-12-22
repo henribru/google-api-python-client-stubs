@@ -15,7 +15,7 @@ class Access(typing_extensions.TypedDict, total=False):
     serviceAccountKeyName: str
     serviceName: str
     userAgentFamily: str
-    username: str
+    userName: str
 
 @typing.type_check_only
 class AccessReview(typing_extensions.TypedDict, total=False):
@@ -42,6 +42,12 @@ class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
         "INCLUSION_MODE_UNSPECIFIED", "INCLUDE_ONLY", "EXCLUDE"
     ]
     projectIds: _list[str]
+
+@typing.type_check_only
+class AssociatedFinding(typing_extensions.TypedDict, total=False):
+    canonicalFindingName: str
+    findingCategory: str
+    name: str
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -155,6 +161,11 @@ class Detection(typing_extensions.TypedDict, total=False):
     percentPagesMatched: float
 
 @typing.type_check_only
+class Edge(typing_extensions.TypedDict, total=False):
+    destination: str
+    source: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -204,6 +215,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     exfiltration: Exfiltration
     externalSystems: dict[str, typing.Any]
     externalUri: str
+    files: _list[File]
     findingClass: typing_extensions.Literal[
         "FINDING_CLASS_UNSPECIFIED",
         "THREAT",
@@ -214,6 +226,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     ]
     iamBindings: _list[IamBinding]
     indicator: Indicator
+    kernelRootkit: KernelRootkit
     kubernetes: Kubernetes
     mitreAttack: MitreAttack
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
@@ -278,12 +291,25 @@ class GoogleCloudSecuritycenterV1BulkMuteFindingsResponse(
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1ExposedResource(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    displayName: str
+    methods: _list[str]
+    name: str
+    resource: str
+    resourceType: str
+    resourceValue: typing_extensions.Literal[
+        "RESOURCE_VALUE_UNSPECIFIED",
+        "RESOURCE_VALUE_LOW",
+        "RESOURCE_VALUE_MEDIUM",
+        "RESOURCE_VALUE_HIGH",
+    ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1ExposurePath(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleCloudSecuritycenterV1ExposurePath(typing_extensions.TypedDict, total=False):
+    edges: _list[Edge]
+    exposedResource: GoogleCloudSecuritycenterV1ExposedResource
+    name: str
+    pathNodes: _list[PathNode]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1ExternalSystem(
@@ -329,9 +355,11 @@ class GoogleCloudSecuritycenterV1ResourceValueConfig(
     typing_extensions.TypedDict, total=False
 ):
     name: str
+    resourceType: str
     resourceValue: typing_extensions.Literal[
         "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
     ]
+    scope: str
     tagValues: _list[str]
 
 @typing.type_check_only
@@ -482,6 +510,18 @@ class Indicator(typing_extensions.TypedDict, total=False):
     uris: _list[str]
 
 @typing.type_check_only
+class KernelRootkit(typing_extensions.TypedDict, total=False):
+    name: str
+    unexpectedCodeModification: bool
+    unexpectedFtraceHandler: bool
+    unexpectedInterruptHandler: bool
+    unexpectedKernelCodePages: bool
+    unexpectedKprobeHandler: bool
+    unexpectedProcessesInRunqueue: bool
+    unexpectedReadOnlyDataModification: bool
+    unexpectedSystemCallHandler: bool
+
+@typing.type_check_only
 class Kubernetes(typing_extensions.TypedDict, total=False):
     accessReviews: _list[AccessReview]
     bindings: _list[GoogleCloudSecuritycenterV1Binding]
@@ -577,6 +617,13 @@ class OrganizationSettings(typing_extensions.TypedDict, total=False):
     assetDiscoveryConfig: AssetDiscoveryConfig
     enableAssetDiscovery: bool
     name: str
+
+@typing.type_check_only
+class PathNode(typing_extensions.TypedDict, total=False):
+    associatedFindings: _list[AssociatedFinding]
+    displayName: str
+    resource: str
+    resourceType: str
 
 @typing.type_check_only
 class Pod(typing_extensions.TypedDict, total=False):

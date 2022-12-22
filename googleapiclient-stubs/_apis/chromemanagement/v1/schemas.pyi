@@ -368,6 +368,13 @@ class GoogleChromeManagementV1ListTelemetryDevicesResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1ListTelemetryEventsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    telemetryEvents: _list[GoogleChromeManagementV1TelemetryEvent]
+
+@typing.type_check_only
 class GoogleChromeManagementV1MemoryInfo(typing_extensions.TypedDict, total=False):
     availableRamBytes: str
     totalMemoryEncryption: GoogleChromeManagementV1TotalMemoryEncryptionInfo
@@ -471,6 +478,11 @@ class GoogleChromeManagementV1StorageStatusReport(
     reportTime: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total=False):
     audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
     batteryInfo: _list[GoogleChromeManagementV1BatteryInfo]
@@ -494,6 +506,61 @@ class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total
     storageInfo: GoogleChromeManagementV1StorageInfo
     storageStatusReport: _list[GoogleChromeManagementV1StorageStatusReport]
     thunderboltInfo: _list[GoogleChromeManagementV1ThunderboltInfo]
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryDeviceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    deviceId: str
+    orgUnitId: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=False):
+    audioSevereUnderrunEvent: GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent
+    device: GoogleChromeManagementV1TelemetryDeviceInfo
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED",
+        "AUDIO_SEVERE_UNDERRUN",
+        "NETWORK_CONNECTION_STATE_CHANGE",
+        "USB_ADDED",
+        "USB_REMOVED",
+        "NETWORK_HTTPS_LATENCY_CHANGE",
+    ]
+    httpsLatencyChangeEvent: GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent
+    name: str
+    networkConnectionStateChangeEvent: GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent
+    reportTime: str
+    user: GoogleChromeManagementV1TelemetryUserInfo
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent(
+    typing_extensions.TypedDict, total=False
+):
+    httpsLatencyRoutineData: GoogleChromeManagementV1HttpsLatencyRoutineData
+    httpsLatencyState: typing_extensions.Literal[
+        "HTTPS_LATENCY_STATE_UNSPECIFIED", "RECOVERY", "PROBLEM"
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent(
+    typing_extensions.TypedDict, total=False
+):
+    connectionState: typing_extensions.Literal[
+        "NETWORK_CONNECTION_STATE_UNSPECIFIED",
+        "ONLINE",
+        "CONNECTED",
+        "PORTAL",
+        "CONNECTING",
+        "NOT_CONNECTED",
+    ]
+    guid: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryUserInfo(
+    typing_extensions.TypedDict, total=False
+):
+    email: str
+    orgUnitId: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1ThunderboltInfo(typing_extensions.TypedDict, total=False):

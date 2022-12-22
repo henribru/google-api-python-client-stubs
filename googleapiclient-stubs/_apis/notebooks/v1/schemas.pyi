@@ -44,6 +44,22 @@ class DataprocParameters(typing_extensions.TypedDict, total=False):
     cluster: str
 
 @typing.type_check_only
+class DiagnoseInstanceRequest(typing_extensions.TypedDict, total=False):
+    diagnosticConfig: DiagnosticConfig
+
+@typing.type_check_only
+class DiagnoseRuntimeRequest(typing_extensions.TypedDict, total=False):
+    diagnosticConfig: DiagnosticConfig
+
+@typing.type_check_only
+class DiagnosticConfig(typing_extensions.TypedDict, total=False):
+    copyHomeFilesFlagEnabled: bool
+    gcsBucket: str
+    packetCaptureFlagEnabled: bool
+    relativePath: str
+    repairFlagEnabled: bool
+
+@typing.type_check_only
 class Disk(typing_extensions.TypedDict, total=False):
     autoDelete: bool
     boot: bool
@@ -610,6 +626,10 @@ class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False):
         "UPGRADE_CUDA",
         "UPGRADE_ALL",
     ]
+
+@typing.type_check_only
+class UpgradeRuntimeRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
 
 @typing.type_check_only
 class VertexAIParameters(typing_extensions.TypedDict, total=False):

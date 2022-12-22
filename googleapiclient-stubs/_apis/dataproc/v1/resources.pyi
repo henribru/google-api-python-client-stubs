@@ -106,6 +106,32 @@ class DataprocResource(googleapiclient.discovery.Resource):
                 ) -> ListBatchesResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class WorkflowTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -179,6 +205,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
 
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...
             def batches(self) -> BatchesResource: ...
+            def operations(self) -> OperationsResource: ...
             def workflowTemplates(self) -> WorkflowTemplatesResource: ...
 
         @typing.type_check_only
@@ -242,6 +269,19 @@ class DataprocResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class ClustersResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class NodeGroupsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> NodeGroupHttpRequest: ...
+                    def resize(
+                        self,
+                        *,
+                        name: str,
+                        body: ResizeNodeGroupRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -365,6 +405,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def nodeGroups(self) -> NodeGroupsResource: ...
 
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
@@ -689,6 +730,14 @@ class ListWorkflowTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListWorkflowTemplatesResponse: ...
+
+@typing.type_check_only
+class NodeGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> NodeGroup: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

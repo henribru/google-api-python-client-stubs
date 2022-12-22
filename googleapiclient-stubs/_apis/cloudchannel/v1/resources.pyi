@@ -378,6 +378,45 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 previous_response: GoogleCloudChannelV1ListOffersResponse,
             ) -> GoogleCloudChannelV1ListOffersResponseHttpRequest | None: ...
 
+        @typing.type_check_only
+        class ReportJobsResource(googleapiclient.discovery.Resource):
+            def fetchReportResults(
+                self,
+                *,
+                reportJob: str,
+                body: GoogleCloudChannelV1FetchReportResultsRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudChannelV1FetchReportResultsResponseHttpRequest: ...
+            def fetchReportResults_next(
+                self,
+                previous_request: GoogleCloudChannelV1FetchReportResultsResponseHttpRequest,
+                previous_response: GoogleCloudChannelV1FetchReportResultsResponse,
+            ) -> GoogleCloudChannelV1FetchReportResultsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
+        class ReportsResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                parent: str,
+                languageCode: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudChannelV1ListReportsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudChannelV1ListReportsResponseHttpRequest,
+                previous_response: GoogleCloudChannelV1ListReportsResponse,
+            ) -> GoogleCloudChannelV1ListReportsResponseHttpRequest | None: ...
+            def run(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudChannelV1RunReportJobRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+
         def checkCloudIdentityAccountsExist(
             self,
             *,
@@ -439,6 +478,8 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
         def channelPartnerLinks(self) -> ChannelPartnerLinksResource: ...
         def customers(self) -> CustomersResource: ...
         def offers(self) -> OffersResource: ...
+        def reportJobs(self) -> ReportJobsResource: ...
+        def reports(self) -> ReportsResource: ...
 
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
@@ -579,6 +620,16 @@ class GoogleCloudChannelV1EntitlementHttpRequest(googleapiclient.http.HttpReques
     ) -> GoogleCloudChannelV1Entitlement: ...
 
 @typing.type_check_only
+class GoogleCloudChannelV1FetchReportResultsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1FetchReportResultsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -667,6 +718,16 @@ class GoogleCloudChannelV1ListPurchasableSkusResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudChannelV1ListPurchasableSkusResponse: ...
+
+@typing.type_check_only
+class GoogleCloudChannelV1ListReportsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1ListReportsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListSkusResponseHttpRequest(googleapiclient.http.HttpRequest):

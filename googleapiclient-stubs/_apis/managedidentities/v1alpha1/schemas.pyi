@@ -41,6 +41,16 @@ class Certificate(typing_extensions.TypedDict, total=False):
     thumbprint: str
 
 @typing.type_check_only
+class CheckMigrationPermissionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CheckMigrationPermissionResponse(typing_extensions.TypedDict, total=False):
+    onpremDomains: _list[OnPremDomainSIDDetails]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "DISABLED", "ENABLED", "NEEDS_MAINTENANCE"
+    ]
+
+@typing.type_check_only
 class DailyCycle(typing_extensions.TypedDict, total=False):
     duration: str
     startTime: TimeOfDay
@@ -60,6 +70,9 @@ class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DetachTrustRequest(typing_extensions.TypedDict, total=False):
     trust: Trust
+
+@typing.type_check_only
+class DisableMigrationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Domain(typing_extensions.TypedDict, total=False):
@@ -88,6 +101,10 @@ class Domain(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableMigrationRequest(typing_extensions.TypedDict, total=False):
+    migratingDomains: _list[OnPremDomainDetails]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -294,6 +311,18 @@ class MaintenancePolicy(typing_extensions.TypedDict, total=False):
 class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     dailyCycle: DailyCycle
     weeklyCycle: WeeklyCycle
+
+@typing.type_check_only
+class OnPremDomainDetails(typing_extensions.TypedDict, total=False):
+    disableSidFiltering: bool
+    domainName: str
+
+@typing.type_check_only
+class OnPremDomainSIDDetails(typing_extensions.TypedDict, total=False):
+    name: str
+    sidFilteringState: typing_extensions.Literal[
+        "SID_FILTERING_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

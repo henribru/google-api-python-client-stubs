@@ -210,6 +210,7 @@ class GoogleFirestoreAdminV1ExportDocumentsRequest(
     typing_extensions.TypedDict, total=False
 ):
     collectionIds: _list[str]
+    namespaceIds: _list[str]
     outputUriPrefix: str
 
 @typing.type_check_only
@@ -273,13 +274,18 @@ class GoogleFirestoreAdminV1ImportDocumentsRequest(
 ):
     collectionIds: _list[str]
     inputUriPrefix: str
+    namespaceIds: _list[str]
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Index(typing_extensions.TypedDict, total=False):
+    apiScope: typing_extensions.Literal["ANY_API", "DATASTORE_MODE_API"]
     fields: _list[GoogleFirestoreAdminV1IndexField]
     name: str
     queryScope: typing_extensions.Literal[
-        "QUERY_SCOPE_UNSPECIFIED", "COLLECTION", "COLLECTION_GROUP"
+        "QUERY_SCOPE_UNSPECIFIED",
+        "COLLECTION",
+        "COLLECTION_GROUP",
+        "COLLECTION_RECURSIVE",
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "NEEDS_REPAIR"

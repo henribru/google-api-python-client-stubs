@@ -83,23 +83,10 @@ class GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec(
 class GoogleCloudDatacatalogV1ColumnSchema(typing_extensions.TypedDict, total=False):
     column: str
     description: str
-    lookerColumnSpec: GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec
+    gcRule: str
     mode: str
     subcolumns: _list[GoogleCloudDatacatalogV1ColumnSchema]
     type: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec(
-    typing_extensions.TypedDict, total=False
-):
-    type: typing_extensions.Literal[
-        "LOOKER_COLUMN_TYPE_UNSPECIFIED",
-        "DIMENSION",
-        "DIMENSION_GROUP",
-        "FILTER",
-        "MEASURE",
-        "PAREMETER",
-    ]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1Contacts(typing_extensions.TypedDict, total=False):
@@ -598,7 +585,6 @@ class GoogleCloudDatacatalogV1UnstarEntryResponse(
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1UsageSignal(typing_extensions.TypedDict, total=False):
-    favoriteCount: str
     updateTime: str
     usageWithinTimeRange: dict[str, typing.Any]
 

@@ -23,6 +23,11 @@ class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
     workerConfig: InstanceGroupAutoscalingPolicyConfig
 
 @typing.type_check_only
+class AuxiliaryNodeGroup(typing_extensions.TypedDict, total=False):
+    nodeGroup: NodeGroup
+    nodeGroupId: str
+
+@typing.type_check_only
 class AuxiliaryServicesConfig(typing_extensions.TypedDict, total=False):
     metastoreConfig: MetastoreConfig
     sparkHistoryServerConfig: SparkHistoryServerConfig
@@ -106,6 +111,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ClusterConfig(typing_extensions.TypedDict, total=False):
     autoscalingConfig: AutoscalingConfig
+    auxiliaryNodeGroups: _list[AuxiliaryNodeGroup]
     configBucket: str
     dataprocMetricConfig: DataprocMetricConfig
     encryptionConfig: EncryptionConfig
@@ -199,6 +205,11 @@ class DiskConfig(typing_extensions.TypedDict, total=False):
     numLocalSsds: int
 
 @typing.type_check_only
+class DriverSchedulingConfig(typing_extensions.TypedDict, total=False):
+    memoryMb: int
+    vcores: int
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -251,23 +262,6 @@ class GceClusterConfig(typing_extensions.TypedDict, total=False):
     subnetworkUri: str
     tags: _list[str]
     zoneUri: str
-
-@typing.type_check_only
-class GceNodePoolOperationMetadata(typing_extensions.TypedDict, total=False):
-    clusterUuid: str
-    description: str
-    gceNodePoolId: str
-    labels: dict[str, typing.Any]
-    operationType: typing_extensions.Literal[
-        "GCE_NODE_POOL_OPERATION_TYPE_UNSPECIFIED",
-        "CREATE",
-        "UPDATE",
-        "DELETE",
-        "RESIZE",
-    ]
-    status: ClusterOperationStatus
-    statusHistory: _list[ClusterOperationStatus]
-    warnings: _list[str]
 
 @typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -385,6 +379,7 @@ class Job(typing_extensions.TypedDict, total=False):
     done: bool
     driverControlFilesUri: str
     driverOutputResourceUri: str
+    driverSchedulingConfig: DriverSchedulingConfig
     hadoopJob: HadoopJob
     hiveJob: HiveJob
     jobUuid: str
@@ -550,8 +545,28 @@ class NamespacedGkeDeploymentTarget(typing_extensions.TypedDict, total=False):
     targetGkeCluster: str
 
 @typing.type_check_only
+class NodeGroup(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
+    name: str
+    nodeGroupConfig: InstanceGroupConfig
+    roles: _list[str]
+
+@typing.type_check_only
 class NodeGroupAffinity(typing_extensions.TypedDict, total=False):
     nodeGroupUri: str
+
+@typing.type_check_only
+class NodeGroupOperationMetadata(typing_extensions.TypedDict, total=False):
+    clusterUuid: str
+    description: str
+    labels: dict[str, typing.Any]
+    nodeGroupId: str
+    operationType: typing_extensions.Literal[
+        "NODE_GROUP_OPERATION_TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE", "RESIZE"
+    ]
+    status: ClusterOperationStatus
+    statusHistory: _list[ClusterOperationStatus]
+    warnings: _list[str]
 
 @typing.type_check_only
 class NodeInitializationAction(typing_extensions.TypedDict, total=False):
@@ -669,6 +684,12 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class ResizeNodeGroupRequest(typing_extensions.TypedDict, total=False):
+    gracefulDecommissionTimeout: str
+    requestId: str
+    size: int
+
+@typing.type_check_only
 class RuntimeConfig(typing_extensions.TypedDict, total=False):
     containerImage: str
     properties: dict[str, typing.Any]
@@ -676,6 +697,8 @@ class RuntimeConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuntimeInfo(typing_extensions.TypedDict, total=False):
+    approximateUsage: UsageMetrics
+    currentUsage: UsageSnapshot
     diagnosticOutputUri: str
     endpoints: dict[str, typing.Any]
     outputUri: str
@@ -836,6 +859,17 @@ class TrinoJob(typing_extensions.TypedDict, total=False):
     properties: dict[str, typing.Any]
     queryFileUri: str
     queryList: QueryList
+
+@typing.type_check_only
+class UsageMetrics(typing_extensions.TypedDict, total=False):
+    milliDcuSeconds: str
+    shuffleStorageGbSeconds: str
+
+@typing.type_check_only
+class UsageSnapshot(typing_extensions.TypedDict, total=False):
+    milliDcu: str
+    shuffleStorageGb: str
+    snapshotTime: str
 
 @typing.type_check_only
 class ValueValidation(typing_extensions.TypedDict, total=False):

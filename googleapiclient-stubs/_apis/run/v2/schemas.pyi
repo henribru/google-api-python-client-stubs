@@ -53,6 +53,7 @@ class GoogleCloudRunV2Condition(typing_extensions.TypedDict, total=False):
         "ACTIVE_REVISION_LIMIT_REACHED",
         "NO_DEPLOYMENT",
         "HEALTH_CHECK_SKIPPED",
+        "MIN_INSTANCES_WARMING",
     ]
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
@@ -151,10 +152,8 @@ class GoogleCloudRunV2GRPCAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudRunV2HTTPGetAction(typing_extensions.TypedDict, total=False):
-    host: str
     httpHeaders: _list[GoogleCloudRunV2HTTPHeader]
     path: str
-    scheme: str
 
 @typing.type_check_only
 class GoogleCloudRunV2HTTPHeader(typing_extensions.TypedDict, total=False):
@@ -364,7 +363,6 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudRunV2TCPSocketAction(typing_extensions.TypedDict, total=False):
-    host: str
     port: int
 
 @typing.type_check_only
@@ -389,16 +387,6 @@ class GoogleCloudRunV2Task(typing_extensions.TypedDict, total=False):
     job: str
     labels: dict[str, typing.Any]
     lastAttemptResult: GoogleCloudRunV2TaskAttemptResult
-    launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED",
-        "UNIMPLEMENTED",
-        "PRELAUNCH",
-        "EARLY_ACCESS",
-        "ALPHA",
-        "BETA",
-        "GA",
-        "DEPRECATED",
-    ]
     maxRetries: int
     name: str
     observedGeneration: str

@@ -7,6 +7,7 @@ _list = list
 @typing.type_check_only
 class Account(typing_extensions.TypedDict, total=False):
     accountId: str
+    features: AccountFeatures
     fingerprint: str
     name: str
     path: str
@@ -18,6 +19,11 @@ class AccountAccess(typing_extensions.TypedDict, total=False):
     permission: typing_extensions.Literal[
         "accountPermissionUnspecified", "noAccess", "user", "admin"
     ]
+
+@typing.type_check_only
+class AccountFeatures(typing_extensions.TypedDict, total=False):
+    supportMultipleContainers: bool
+    supportUserPermissions: bool
 
 @typing.type_check_only
 class BuiltInVariable(typing_extensions.TypedDict, total=False):
@@ -181,12 +187,15 @@ class Container(typing_extensions.TypedDict, total=False):
     accountId: str
     containerId: str
     domainName: _list[str]
+    features: ContainerFeatures
     fingerprint: str
     name: str
     notes: str
     path: str
     publicId: str
+    tagIds: _list[str]
     tagManagerUrl: str
+    taggingServerUrls: _list[str]
     usageContext: _list[str]
 
 @typing.type_check_only
@@ -202,6 +211,22 @@ class ContainerAccess(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ContainerFeatures(typing_extensions.TypedDict, total=False):
+    supportBuiltInVariables: bool
+    supportClients: bool
+    supportEnvironments: bool
+    supportFolders: bool
+    supportGtagConfigs: bool
+    supportTags: bool
+    supportTemplates: bool
+    supportTriggers: bool
+    supportUserPermissions: bool
+    supportVariables: bool
+    supportVersions: bool
+    supportWorkspaces: bool
+    supportZones: bool
+
+@typing.type_check_only
 class ContainerVersion(typing_extensions.TypedDict, total=False):
     accountId: str
     builtInVariable: _list[BuiltInVariable]
@@ -214,6 +239,7 @@ class ContainerVersion(typing_extensions.TypedDict, total=False):
     description: str
     fingerprint: str
     folder: _list[Folder]
+    gtagConfig: _list[GtagConfig]
     name: str
     path: str
     tag: _list[Tag]
@@ -231,6 +257,7 @@ class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
     name: str
     numClients: str
     numCustomTemplates: str
+    numGtagConfigs: str
     numMacros: str
     numRules: str
     numTags: str
@@ -269,6 +296,17 @@ class CustomTemplate(typing_extensions.TypedDict, total=False):
     templateData: str
     templateId: str
     workspaceId: str
+
+@typing.type_check_only
+class Destination(typing_extensions.TypedDict, total=False):
+    accountId: str
+    containerId: str
+    destinationId: str
+    destinationLinkId: str
+    fingerprint: str
+    name: str
+    path: str
+    tagManagerUrl: str
 
 @typing.type_check_only
 class Entity(typing_extensions.TypedDict, total=False):
@@ -328,9 +366,25 @@ class GalleryReference(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class GetContainerSnippetResponse(typing_extensions.TypedDict, total=False):
+    snippet: str
+
+@typing.type_check_only
 class GetWorkspaceStatusResponse(typing_extensions.TypedDict, total=False):
     mergeConflict: _list[MergeConflict]
     workspaceChange: _list[Entity]
+
+@typing.type_check_only
+class GtagConfig(typing_extensions.TypedDict, total=False):
+    accountId: str
+    containerId: str
+    fingerprint: str
+    gtagConfigId: str
+    parameter: _list[Parameter]
+    path: str
+    tagManagerUrl: str
+    type: str
+    workspaceId: str
 
 @typing.type_check_only
 class ListAccountsResponse(typing_extensions.TypedDict, total=False):
@@ -353,6 +407,11 @@ class ListContainersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListDestinationsResponse(typing_extensions.TypedDict, total=False):
+    destination: _list[Destination]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListEnabledBuiltInVariablesResponse(typing_extensions.TypedDict, total=False):
     builtInVariable: _list[BuiltInVariable]
     nextPageToken: str
@@ -365,6 +424,11 @@ class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListFoldersResponse(typing_extensions.TypedDict, total=False):
     folder: _list[Folder]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListGtagConfigResponse(typing_extensions.TypedDict, total=False):
+    gtagConfig: _list[GtagConfig]
     nextPageToken: str
 
 @typing.type_check_only

@@ -70,8 +70,32 @@ class Hub(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class InternalRange(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    ipCidrRange: str
+    labels: dict[str, typing.Any]
+    name: str
+    network: str
+    overlaps: _list[str]
+    peering: typing_extensions.Literal[
+        "PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"
+    ]
+    prefixLength: int
+    targetCidrRange: _list[str]
+    updateTime: str
+    usage: typing_extensions.Literal["USAGE_UNSPECIFIED", "FOR_VPC", "EXTERNAL_TO_VPC"]
+    users: _list[str]
+
+@typing.type_check_only
 class ListHubsResponse(typing_extensions.TypedDict, total=False):
     hubs: _list[Hub]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListInternalRangesResponse(typing_extensions.TypedDict, total=False):
+    internalRanges: _list[InternalRange]
     nextPageToken: str
     unreachable: _list[str]
 

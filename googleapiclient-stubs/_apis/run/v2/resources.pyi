@@ -82,7 +82,6 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     etag: str = ...,
-                    force: bool = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...

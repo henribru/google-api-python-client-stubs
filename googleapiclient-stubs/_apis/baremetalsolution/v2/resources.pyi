@@ -263,6 +263,42 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                         previous_response: ListLunsResponse,
                     ) -> ListLunsResponseHttpRequest | None: ...
 
+                @typing.type_check_only
+                class SnapshotsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: VolumeSnapshot = ...,
+                        **kwargs: typing.Any
+                    ) -> VolumeSnapshotHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> VolumeSnapshotHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListVolumeSnapshotsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListVolumeSnapshotsResponseHttpRequest,
+                        previous_response: ListVolumeSnapshotsResponse,
+                    ) -> ListVolumeSnapshotsResponseHttpRequest | None: ...
+                    def restoreVolumeSnapshot(
+                        self,
+                        *,
+                        volumeSnapshot: str,
+                        body: RestoreVolumeSnapshotRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> VolumeHttpRequest: ...
@@ -296,6 +332,7 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def luns(self) -> LunsResource: ...
+                def snapshots(self) -> SnapshotsResource: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -433,6 +470,14 @@ class ListSSHKeysResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListSSHKeysResponse: ...
 
 @typing.type_check_only
+class ListVolumeSnapshotsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListVolumeSnapshotsResponse: ...
+
+@typing.type_check_only
 class ListVolumesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -511,3 +556,11 @@ class VolumeHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Volume: ...
+
+@typing.type_check_only
+class VolumeSnapshotHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> VolumeSnapshot: ...

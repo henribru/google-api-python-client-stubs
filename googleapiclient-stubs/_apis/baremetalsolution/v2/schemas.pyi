@@ -85,6 +85,11 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
     updateTime: str
     volumes: _list[Volume]
+    workloadProfile: typing_extensions.Literal[
+        "WORKLOAD_PROFILE_UNSPECIFIED",
+        "WORKLOAD_PROFILE_GENERIC",
+        "WORKLOAD_PROFILE_HANA",
+    ]
 
 @typing.type_check_only
 class InstanceConfig(typing_extensions.TypedDict, total=False):
@@ -158,6 +163,12 @@ class ListProvisioningQuotasResponse(typing_extensions.TypedDict, total=False):
 class ListSSHKeysResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     sshKeys: _list[SSHKey]
+
+@typing.type_check_only
+class ListVolumeSnapshotsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    volumeSnapshots: _list[VolumeSnapshot]
 
 @typing.type_check_only
 class ListVolumesResponse(typing_extensions.TypedDict, total=False):
@@ -373,6 +384,9 @@ class ResizeVolumeRequest(typing_extensions.TypedDict, total=False):
     sizeGib: str
 
 @typing.type_check_only
+class RestoreVolumeSnapshotRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SSHKey(typing_extensions.TypedDict, total=False):
     name: str
     publicKey: str
@@ -464,6 +478,9 @@ class Volume(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
     storageType: typing_extensions.Literal["STORAGE_TYPE_UNSPECIFIED", "SSD", "HDD"]
+    workloadProfile: typing_extensions.Literal[
+        "WORKLOAD_PROFILE_UNSPECIFIED", "GENERIC", "HANA"
+    ]
 
 @typing.type_check_only
 class VolumeConfig(typing_extensions.TypedDict, total=False):
@@ -486,3 +503,12 @@ class VolumeConfig(typing_extensions.TypedDict, total=False):
     snapshotsEnabled: bool
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "FLASH", "DISK"]
     userNote: str
+
+@typing.type_check_only
+class VolumeSnapshot(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    id: str
+    name: str
+    storageVolume: str
+    type: typing_extensions.Literal["SNAPSHOT_TYPE_UNSPECIFIED", "AD_HOC", "SCHEDULED"]

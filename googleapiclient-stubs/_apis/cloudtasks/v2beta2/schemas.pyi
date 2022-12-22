@@ -294,3 +294,6 @@ class UriOverride(typing_extensions.TypedDict, total=False):
     port: str
     query: str
     scheme: typing_extensions.Literal["SCHEME_UNSPECIFIED", "HTTP", "HTTPS"]
+    uriOverrideEnforceMode: typing_extensions.Literal[
+        "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED", "IF_NOT_EXISTS", "ALWAYS"
+    ]

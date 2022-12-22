@@ -71,6 +71,7 @@ class GoogleCloudIdentitytoolkitAdminV2Config(typing_extensions.TypedDict, total
     autodeleteAnonymousUsers: bool
     blockingFunctions: GoogleCloudIdentitytoolkitAdminV2BlockingFunctionsConfig
     client: GoogleCloudIdentitytoolkitAdminV2ClientConfig
+    emailPrivacyConfig: GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig
     mfa: GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig
     monitoring: GoogleCloudIdentitytoolkitAdminV2MonitoringConfig
     multiTenant: GoogleCloudIdentitytoolkitAdminV2MultiTenantConfig
@@ -120,6 +121,12 @@ class GoogleCloudIdentitytoolkitAdminV2DnsInfo(
 class GoogleCloudIdentitytoolkitAdminV2Email(typing_extensions.TypedDict, total=False):
     enabled: bool
     passwordRequired: bool
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enableImprovedEmailPrivacy: bool
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2EmailTemplate(
@@ -407,6 +414,7 @@ class GoogleCloudIdentitytoolkitAdminV2Tenant(typing_extensions.TypedDict, total
     client: GoogleCloudIdentitytoolkitAdminV2ClientPermissionConfig
     disableAuth: bool
     displayName: str
+    emailPrivacyConfig: GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig
     enableAnonymousUser: bool
     enableEmailLinkSignin: bool
     hashConfig: GoogleCloudIdentitytoolkitAdminV2HashConfig

@@ -262,6 +262,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     maxTimeTravelHours: str
     satisfiesPzs: bool
     selfLink: str
+    storageBillingModel: str
     tags: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
@@ -401,6 +402,8 @@ class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     hivePartitioningOptions: HivePartitioningOptions
     ignoreUnknownValues: bool
     maxBadRecords: int
+    metadataCacheMode: str
+    objectMetadata: str
     parquetOptions: ParquetOptions
     referenceFileSchemaUri: str
     schema: TableSchema
@@ -778,6 +781,7 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MaterializedViewDefinition(typing_extensions.TypedDict, total=False):
+    allow_non_incremental_definition: bool
     enableRefresh: bool
     lastRefreshTime: str
     maxStaleness: str
@@ -826,6 +830,8 @@ class Model(typing_extensions.TypedDict, total=False):
         "DNN_LINEAR_COMBINED_REGRESSOR",
         "AUTOENCODER",
         "ARIMA_PLUS",
+        "RANDOM_FOREST_REGRESSOR",
+        "RANDOM_FOREST_CLASSIFIER",
     ]
     optimalTrialIds: _list[str]
     trainingRuns: _list[TrainingRun]

@@ -43,6 +43,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
+    threatExceptions: _list[str]
     trafficLogs: bool
     updateTime: str
 

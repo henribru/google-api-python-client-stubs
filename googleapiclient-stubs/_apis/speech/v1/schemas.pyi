@@ -61,6 +61,7 @@ class LongRunningRecognizeResponse(typing_extensions.TypedDict, total=False):
     outputError: Status
     requestId: str
     results: _list[SpeechRecognitionResult]
+    speechAdaptationInfo: SpeechAdaptationInfo
     totalBilledTime: str
 
 @typing.type_check_only
@@ -161,6 +162,7 @@ class RecognizeRequest(typing_extensions.TypedDict, total=False):
 class RecognizeResponse(typing_extensions.TypedDict, total=False):
     requestId: str
     results: _list[SpeechRecognitionResult]
+    speechAdaptationInfo: SpeechAdaptationInfo
     totalBilledTime: str
 
 @typing.type_check_only
@@ -175,6 +177,11 @@ class SpeechAdaptation(typing_extensions.TypedDict, total=False):
     customClasses: _list[CustomClass]
     phraseSetReferences: _list[str]
     phraseSets: _list[PhraseSet]
+
+@typing.type_check_only
+class SpeechAdaptationInfo(typing_extensions.TypedDict, total=False):
+    adaptationTimeout: bool
+    timeoutMessage: str
 
 @typing.type_check_only
 class SpeechContext(typing_extensions.TypedDict, total=False):

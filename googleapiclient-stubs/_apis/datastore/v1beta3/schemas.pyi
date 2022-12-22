@@ -5,6 +5,32 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Aggregation(typing_extensions.TypedDict, total=False):
+    alias: str
+    count: Count
+
+@typing.type_check_only
+class AggregationQuery(typing_extensions.TypedDict, total=False):
+    aggregations: _list[Aggregation]
+    nestedQuery: Query
+
+@typing.type_check_only
+class AggregationResult(typing_extensions.TypedDict, total=False):
+    aggregateProperties: dict[str, typing.Any]
+
+@typing.type_check_only
+class AggregationResultBatch(typing_extensions.TypedDict, total=False):
+    aggregationResults: _list[AggregationResult]
+    moreResults: typing_extensions.Literal[
+        "MORE_RESULTS_TYPE_UNSPECIFIED",
+        "NOT_FINISHED",
+        "MORE_RESULTS_AFTER_LIMIT",
+        "MORE_RESULTS_AFTER_CURSOR",
+        "NO_MORE_RESULTS",
+    ]
+    readTime: str
+
+@typing.type_check_only
 class AllocateIdsRequest(typing_extensions.TypedDict, total=False):
     keys: _list[Key]
 
@@ -42,6 +68,10 @@ class CommitResponse(typing_extensions.TypedDict, total=False):
 class CompositeFilter(typing_extensions.TypedDict, total=False):
     filters: _list[Filter]
     op: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND"]
+
+@typing.type_check_only
+class Count(typing_extensions.TypedDict, total=False):
+    upTo: str
 
 @typing.type_check_only
 class Entity(typing_extensions.TypedDict, total=False):
@@ -407,6 +437,18 @@ class RollbackRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RollbackResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
+    aggregationQuery: AggregationQuery
+    gqlQuery: GqlQuery
+    partitionId: PartitionId
+    readOptions: ReadOptions
+
+@typing.type_check_only
+class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
+    batch: AggregationResultBatch
+    query: AggregationQuery
 
 @typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):

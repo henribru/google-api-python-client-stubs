@@ -120,9 +120,11 @@ class ApkManifest(typing_extensions.TypedDict, total=False):
     applicationLabel: str
     intentFilters: _list[IntentFilter]
     maxSdkVersion: int
+    metadata: _list[Metadata]
     minSdkVersion: int
     packageName: str
     targetSdkVersion: int
+    usesFeature: _list[UsesFeature]
     usesPermission: _list[str]
     versionCode: str
     versionName: str
@@ -309,6 +311,11 @@ class ManualSharding(typing_extensions.TypedDict, total=False):
     testTargetsForShard: _list[TestTargetsForShard]
 
 @typing.type_check_only
+class Metadata(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
+
+@typing.type_check_only
 class NetworkConfiguration(typing_extensions.TypedDict, total=False):
     downRule: TrafficRule
     id: str
@@ -461,6 +468,11 @@ class TestMatrix(typing_extensions.TypedDict, total=False):
         "NO_CODE_APK",
         "INVALID_INPUT_APK",
         "INVALID_APK_PREVIEW_SDK",
+        "MATRIX_TOO_LARGE",
+        "DEVICE_QUOTA_EXCEEDED",
+        "TEST_QUOTA_EXCEEDED",
+        "SERVICE_NOT_ACTIVATED",
+        "UNKNOWN_PERMISSION_ERROR",
     ]
     outcomeSummary: typing_extensions.Literal[
         "OUTCOME_SUMMARY_UNSPECIFIED", "SUCCESS", "FAILURE", "INCONCLUSIVE", "SKIPPED"
@@ -542,6 +554,11 @@ class TrafficRule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UniformSharding(typing_extensions.TypedDict, total=False):
     numShards: int
+
+@typing.type_check_only
+class UsesFeature(typing_extensions.TypedDict, total=False):
+    isRequired: bool
+    name: str
 
 @typing.type_check_only
 class XcodeVersion(typing_extensions.TypedDict, total=False):

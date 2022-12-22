@@ -170,6 +170,16 @@ class GoogleCloudApigeeV1ApiSecurityConfig(typing_extensions.TypedDict, total=Fa
     expiresAt: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ApiSecurityRuntimeConfig(
+    typing_extensions.TypedDict, total=False
+):
+    location: _list[str]
+    name: str
+    revisionId: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1App(typing_extensions.TypedDict, total=False):
     apiProducts: _list[GoogleCloudApigeeV1ApiProductRef]
     appId: str

@@ -753,6 +753,7 @@ class GoogleCloudDocumentaiV1beta1DocumentPageTable(
     detectedLanguages: _list[GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage]
     headerRows: _list[GoogleCloudDocumentaiV1beta1DocumentPageTableTableRow]
     layout: GoogleCloudDocumentaiV1beta1DocumentPageLayout
+    provenance: GoogleCloudDocumentaiV1beta1DocumentProvenance
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentPageTableTableCell(
@@ -1206,6 +1207,7 @@ class GoogleCloudDocumentaiV1beta2DocumentPageTable(
     detectedLanguages: _list[GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage]
     headerRows: _list[GoogleCloudDocumentaiV1beta2DocumentPageTableTableRow]
     layout: GoogleCloudDocumentaiV1beta2DocumentPageLayout
+    provenance: GoogleCloudDocumentaiV1beta2DocumentProvenance
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentPageTableTableCell(
@@ -1547,6 +1549,18 @@ class GoogleCloudDocumentaiV1beta3EnableProcessorResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    evaluation: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3HumanReviewStatus(
     typing_extensions.TypedDict, total=False
 ):
@@ -1587,6 +1601,29 @@ class GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata(
 class GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+    testDatasetValidation: GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation
+    trainingDatasetValidation: GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation(
+    typing_extensions.TypedDict, total=False
+):
+    datasetErrorCount: int
+    datasetErrors: _list[GoogleRpcStatus]
+    documentErrorCount: int
+    documentErrors: _list[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3TrainProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    processorVersion: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata(

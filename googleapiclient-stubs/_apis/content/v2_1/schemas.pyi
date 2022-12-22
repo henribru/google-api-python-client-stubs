@@ -351,6 +351,30 @@ class Amount(typing_extensions.TypedDict, total=False):
     taxAmount: Price
 
 @typing.type_check_only
+class BestSellers(typing_extensions.TypedDict, total=False):
+    categoryId: str
+    countryCode: str
+    previousRank: str
+    previousRelativeDemand: typing_extensions.Literal[
+        "RELATIVE_DEMAND_UNSPECIFIED", "VERY_LOW", "LOW", "MEDIUM", "HIGH", "VERY_HIGH"
+    ]
+    rank: str
+    relativeDemand: typing_extensions.Literal[
+        "RELATIVE_DEMAND_UNSPECIFIED", "VERY_LOW", "LOW", "MEDIUM", "HIGH", "VERY_HIGH"
+    ]
+    relativeDemandChange: typing_extensions.Literal[
+        "RELATIVE_DEMAND_CHANGE_TYPE_UNSPECIFIED", "SINKER", "FLAT", "RISER"
+    ]
+    reportDate: Date
+    reportGranularity: typing_extensions.Literal[
+        "REPORT_GRANULARITY_UNSPECIFIED", "WEEKLY", "MONTHLY"
+    ]
+
+@typing.type_check_only
+class Brand(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class BusinessDayConfig(typing_extensions.TypedDict, total=False):
     businessDays: _list[str]
 
@@ -516,6 +540,7 @@ class DatafeedStatus(typing_extensions.TypedDict, total=False):
     country: str
     datafeedId: str
     errors: _list[DatafeedStatusError]
+    feedLabel: str
     itemsTotal: str
     itemsValid: str
     kind: str
@@ -541,8 +566,10 @@ class DatafeedStatusExample(typing_extensions.TypedDict, total=False):
 class DatafeedTarget(typing_extensions.TypedDict, total=False):
     country: str
     excludedDestinations: _list[str]
+    feedLabel: str
     includedDestinations: _list[str]
     language: str
+    targetCountries: _list[str]
 
 @typing.type_check_only
 class DatafeedsCustomBatchRequest(typing_extensions.TypedDict, total=False):
@@ -586,6 +613,7 @@ class DatafeedstatusesCustomBatchRequestEntry(typing_extensions.TypedDict, total
     batchId: int
     country: str
     datafeedId: str
+    feedLabel: str
     language: str
     merchantId: str
     method: str
@@ -927,6 +955,11 @@ class ListCssesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMethodQuotasResponse(typing_extensions.TypedDict, total=False):
+    methodQuotas: _list[MethodQuota]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListRegionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     regions: _list[Region]
@@ -1025,6 +1058,12 @@ class MerchantOrderReturnItem(typing_extensions.TypedDict, total=False):
 class MerchantRejectionReason(typing_extensions.TypedDict, total=False):
     description: str
     reasonCode: str
+
+@typing.type_check_only
+class MethodQuota(typing_extensions.TypedDict, total=False):
+    method: str
+    quotaLimit: str
+    quotaUsage: str
 
 @typing.type_check_only
 class Metrics(typing_extensions.TypedDict, total=False):
@@ -1926,6 +1965,23 @@ class PriceAmount(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class PriceCompetitiveness(typing_extensions.TypedDict, total=False):
+    benchmarkPriceCurrencyCode: str
+    benchmarkPriceMicros: str
+    countryCode: str
+
+@typing.type_check_only
+class PriceInsights(typing_extensions.TypedDict, total=False):
+    predictedClicksChangeFraction: float
+    predictedConversionsChangeFraction: float
+    predictedGrossProfitChangeFraction: float
+    predictedImpressionsChangeFraction: float
+    predictedMonthlyGrossProfitChangeCurrencyCode: str
+    predictedMonthlyGrossProfitChangeMicros: str
+    suggestedPriceCurrencyCode: str
+    suggestedPriceMicros: str
+
+@typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
     additionalImageLinks: _list[str]
     additionalSizeType: str
@@ -2025,6 +2081,23 @@ class ProductAmount(typing_extensions.TypedDict, total=False):
     priceAmount: Price
     remittedTaxAmount: Price
     taxAmount: Price
+
+@typing.type_check_only
+class ProductCluster(typing_extensions.TypedDict, total=False):
+    brand: str
+    brandInventoryStatus: typing_extensions.Literal[
+        "INVENTORY_STATUS_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "NOT_IN_INVENTORY"
+    ]
+    categoryL1: str
+    categoryL2: str
+    categoryL3: str
+    categoryL4: str
+    categoryL5: str
+    inventoryStatus: typing_extensions.Literal[
+        "INVENTORY_STATUS_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "NOT_IN_INVENTORY"
+    ]
+    title: str
+    variantGtins: _list[str]
 
 @typing.type_check_only
 class ProductDeliveryTime(typing_extensions.TypedDict, total=False):
@@ -2152,6 +2225,11 @@ class ProductView(typing_extensions.TypedDict, total=False):
     ]
     availability: str
     brand: str
+    categoryL1: str
+    categoryL2: str
+    categoryL3: str
+    categoryL4: str
+    categoryL5: str
     channel: typing_extensions.Literal["CHANNEL_UNSPECIFIED", "LOCAL", "ONLINE"]
     condition: str
     creationTime: str
@@ -2164,6 +2242,11 @@ class ProductView(typing_extensions.TypedDict, total=False):
     languageCode: str
     offerId: str
     priceMicros: str
+    productTypeL1: str
+    productTypeL2: str
+    productTypeL3: str
+    productTypeL4: str
+    productTypeL5: str
     shippingLabel: str
     title: str
 
@@ -2315,8 +2398,14 @@ class Promotion(typing_extensions.TypedDict, total=False):
     promotionEffectiveDates: str
     promotionEffectiveTimePeriod: TimePeriod
     promotionId: str
+    promotionUrl: str
     redemptionChannel: _list[str]
     shippingServiceNames: _list[str]
+    storeApplicability: typing_extensions.Literal[
+        "STORE_APPLICABILITY_UNSPECIFIED", "ALL_STORES", "SPECIFIC_STORES"
+    ]
+    storeCode: _list[str]
+    storeCodeExclusion: _list[str]
     targetCountry: str
 
 @typing.type_check_only
@@ -2403,7 +2492,12 @@ class RegionalinventoryCustomBatchResponseEntry(
 
 @typing.type_check_only
 class ReportRow(typing_extensions.TypedDict, total=False):
+    bestSellers: BestSellers
+    brand: Brand
     metrics: Metrics
+    priceCompetitiveness: PriceCompetitiveness
+    priceInsights: PriceInsights
+    productCluster: ProductCluster
     productView: ProductView
     segments: Segments
 
