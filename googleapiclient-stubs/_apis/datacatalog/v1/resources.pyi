@@ -79,6 +79,13 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudDatacatalogV1TagHttpRequest: ...
+                        def reconcile(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDatacatalogV1ReconcileTagsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
 
                     def create(
                         self,
@@ -101,6 +108,13 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         body: GetIamPolicyRequest = ...,
                         **kwargs: typing.Any
                     ) -> PolicyHttpRequest: ...
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDatacatalogV1ImportEntriesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -252,6 +266,32 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def entries(self) -> EntriesResource: ...
                 def tags(self) -> TagsResource: ...
+
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
             class TagTemplatesResource(googleapiclient.discovery.Resource):
@@ -439,6 +479,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -480,6 +521,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                 def policyTags(self) -> PolicyTagsResource: ...
 
             def entryGroups(self) -> EntryGroupsResource: ...
+            def operations(self) -> OperationsResource: ...
             def tagTemplates(self) -> TagTemplatesResource: ...
             def taxonomies(self) -> TaxonomiesResource: ...
 
@@ -684,6 +726,22 @@ class GoogleCloudDatacatalogV1UnstarEntryResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDatacatalogV1UnstarEntryResponse: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Operation: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):

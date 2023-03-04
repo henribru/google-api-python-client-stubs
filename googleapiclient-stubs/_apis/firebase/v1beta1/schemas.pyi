@@ -36,6 +36,8 @@ class AndroidApp(typing_extensions.TypedDict, total=False):
     apiKeyId: str
     appId: str
     displayName: str
+    etag: str
+    expireTime: str
     name: str
     packageName: str
     projectId: str
@@ -67,6 +69,7 @@ class FirebaseAppInfo(typing_extensions.TypedDict, total=False):
     apiKeyId: str
     appId: str
     displayName: str
+    expireTime: str
     name: str
     namespace: str
     platform: typing_extensions.Literal["PLATFORM_UNSPECIFIED", "IOS", "ANDROID", "WEB"]
@@ -90,6 +93,8 @@ class IosApp(typing_extensions.TypedDict, total=False):
     appStoreId: str
     bundleId: str
     displayName: str
+    etag: str
+    expireTime: str
     name: str
     projectId: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
@@ -152,6 +157,10 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class ProductMetadata(typing_extensions.TypedDict, total=False):
+    warningMessages: _list[str]
 
 @typing.type_check_only
 class ProjectInfo(typing_extensions.TypedDict, total=False):
@@ -238,6 +247,8 @@ class WebApp(typing_extensions.TypedDict, total=False):
     appId: str
     appUrls: _list[str]
     displayName: str
+    etag: str
+    expireTime: str
     name: str
     projectId: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]

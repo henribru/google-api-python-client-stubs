@@ -573,6 +573,7 @@ class SlashCommandMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Space(typing_extensions.TypedDict, total=False):
+    adminInstalled: bool
     displayName: str
     name: str
     singleUserBotDm: bool

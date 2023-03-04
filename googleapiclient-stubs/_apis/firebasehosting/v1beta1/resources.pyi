@@ -35,6 +35,9 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         versionName: str = ...,
                         **kwargs: typing.Any
                     ) -> ReleaseHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ReleaseHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -124,6 +127,9 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     versionName: str = ...,
                     **kwargs: typing.Any
                 ) -> ReleaseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ReleaseHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -178,6 +184,9 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> VersionHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -275,6 +284,9 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                     versionName: str = ...,
                     **kwargs: typing.Any
                 ) -> ReleaseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ReleaseHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -360,6 +372,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 versionName: str = ...,
                 **kwargs: typing.Any
             ) -> ReleaseHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> ReleaseHttpRequest: ...
             def list(
                 self,
                 *,
@@ -414,6 +427,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> VersionHttpRequest: ...
             def list(
                 self,
                 *,

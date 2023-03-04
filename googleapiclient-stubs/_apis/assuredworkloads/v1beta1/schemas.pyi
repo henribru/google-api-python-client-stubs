@@ -131,6 +131,8 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "AU_REGIONS_AND_US_SUPPORT",
         "ASSURED_WORKLOADS_FOR_PARTNERS",
         "ISR_REGIONS",
+        "ISR_REGIONS_AND_SUPPORT",
+        "CA_PROTECTED_B",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus
     compliantButDisallowedServices: _list[str]

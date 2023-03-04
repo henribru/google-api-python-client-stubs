@@ -15,6 +15,9 @@ _list = list
 class ChromeUXReportResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class RecordsResource(googleapiclient.discovery.Resource):
+        def queryHistoryRecord(
+            self, *, body: QueryHistoryRequest = ..., **kwargs: typing.Any
+        ) -> QueryHistoryResponseHttpRequest: ...
         def queryRecord(
             self, *, body: QueryRequest = ..., **kwargs: typing.Any
         ) -> QueryResponseHttpRequest: ...
@@ -32,6 +35,14 @@ class ChromeUXReportResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def records(self) -> RecordsResource: ...
+
+@typing.type_check_only
+class QueryHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> QueryHistoryResponse: ...
 
 @typing.type_check_only
 class QueryResponseHttpRequest(googleapiclient.http.HttpRequest):

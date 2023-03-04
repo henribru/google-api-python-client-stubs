@@ -61,13 +61,6 @@ class BatchResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -82,20 +75,6 @@ class BatchResource(googleapiclient.discovery.Resource):
                     previous_request: ListJobsResponseHttpRequest,
                     previous_response: ListJobsResponse,
                 ) -> ListJobsResponseHttpRequest | None: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
-                ) -> TestIamPermissionsResponseHttpRequest: ...
                 def taskGroups(self) -> TaskGroupsResource: ...
 
             @typing.type_check_only
@@ -240,14 +219,6 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Operation: ...
 
 @typing.type_check_only
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> Policy: ...
-
-@typing.type_check_only
 class ReportAgentStateResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -262,11 +233,3 @@ class TaskHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Task: ...
-
-@typing.type_check_only
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> TestIamPermissionsResponse: ...

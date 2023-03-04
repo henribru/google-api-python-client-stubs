@@ -147,9 +147,11 @@ class SasPortalInstallationParams(typing_extensions.TypedDict, total=False):
     antennaBeamwidth: int
     antennaDowntilt: int
     antennaGain: int
+    antennaGainNewField: float
     antennaModel: str
     cpeCbsdIndication: bool
     eirpCapability: int
+    eirpCapabilityNewField: float
     height: float
     heightType: typing_extensions.Literal[
         "HEIGHT_TYPE_UNSPECIFIED", "HEIGHT_TYPE_AGL", "HEIGHT_TYPE_AMSL"
@@ -218,6 +220,13 @@ class SasPortalOperation(typing_extensions.TypedDict, total=False):
 class SasPortalPolicy(typing_extensions.TypedDict, total=False):
     assignments: _list[SasPortalAssignment]
     etag: str
+
+@typing.type_check_only
+class SasPortalProvisionDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SasPortalProvisionDeploymentResponse(typing_extensions.TypedDict, total=False):
+    errorMessage: str
 
 @typing.type_check_only
 class SasPortalSetPolicyRequest(typing_extensions.TypedDict, total=False):

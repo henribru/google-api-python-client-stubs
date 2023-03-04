@@ -19,37 +19,39 @@ class TexttospeechResource(googleapiclient.discovery.Resource):
             self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            name: str,
-            filter: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> ListOperationsResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: ListOperationsResponseHttpRequest,
-            previous_response: ListOperationsResponse,
-        ) -> ListOperationsResponseHttpRequest | None: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
-            class VoicesResource(googleapiclient.discovery.Resource):
-                def synthesizeLongAudio(
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
                     self,
                     *,
-                    parent: str,
-                    body: SynthesizeLongAudioRequest = ...,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
+                ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
 
-            def voices(self) -> VoicesResource: ...
+            def synthesizeLongAudio(
+                self,
+                *,
+                parent: str,
+                body: SynthesizeLongAudioRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...
 

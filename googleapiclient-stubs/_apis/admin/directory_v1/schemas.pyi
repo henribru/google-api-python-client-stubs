@@ -159,6 +159,19 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     bootMode: str
     cpuInfo: _list[dict[str, typing.Any]]
     cpuStatusReports: _list[dict[str, typing.Any]]
+    deprovisionReason: typing_extensions.Literal[
+        "deprovisionReasonUnspecified",
+        "deprovisionReasonSameModelReplacement",
+        "deprovisionReasonUpgrade",
+        "deprovisionReasonDomainMove",
+        "deprovisionReasonServiceExpiration",
+        "deprovisionReasonOther",
+        "deprovisionReasonDifferentModelReplacement",
+        "deprovisionReasonRetiringDevice",
+        "deprovisionReasonUpgradeTransfer",
+        "deprovisionReasonNotRequired",
+        "deprovisionReasonRepairCenter",
+    ]
     deviceFiles: _list[dict[str, typing.Any]]
     deviceId: str
     diskVolumeReports: _list[dict[str, typing.Any]]
@@ -169,6 +182,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     firmwareVersion: str
     firstEnrollmentTime: str
     kind: str
+    lastDeprovisionTimestamp: str
     lastEnrollmentTime: str
     lastKnownNetwork: _list[dict[str, typing.Any]]
     lastSync: str
@@ -266,10 +280,12 @@ class DirectoryChromeosdevicesCommand(typing_extensions.TypedDict, total=False):
         "SET_VOLUME",
         "WIPE_USERS",
         "REMOTE_POWERWASH",
+        "DEVICE_START_CRD_SESSION",
     ]
 
 @typing.type_check_only
 class DirectoryChromeosdevicesCommandResult(typing_extensions.TypedDict, total=False):
+    commandResultPayload: str
     errorMessage: str
     executeTime: str
     result: typing_extensions.Literal[
@@ -287,6 +303,7 @@ class DirectoryChromeosdevicesIssueCommandRequest(
         "SET_VOLUME",
         "WIPE_USERS",
         "REMOTE_POWERWASH",
+        "DEVICE_START_CRD_SESSION",
     ]
     payload: str
 

@@ -418,7 +418,7 @@ class PackageData(typing_extensions.TypedDict, total=False):
     osVersion: str
     package: str
     packageType: typing_extensions.Literal[
-        "PACKAGE_TYPE_UNSPECIFIED", "OS", "MAVEN", "GO", "GO_STDLIB"
+        "PACKAGE_TYPE_UNSPECIFIED", "OS", "MAVEN", "GO", "GO_STDLIB", "PYPI", "NPM"
     ]
     patchedCve: _list[str]
     unused: str
@@ -572,6 +572,7 @@ class Version(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssV2: CVSS
     cvssVersion: typing_extensions.Literal[
         "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
     ]

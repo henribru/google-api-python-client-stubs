@@ -52,6 +52,7 @@ class BackendRule(typing_extensions.TypedDict, total=False):
     jwtAudience: str
     minDeadline: float
     operationDeadline: float
+    overridesByRequestProtocol: dict[str, typing.Any]
     pathTranslation: typing_extensions.Literal[
         "PATH_TRANSLATION_UNSPECIFIED", "CONSTANT_ADDRESS", "APPEND_PATH_TO_ADDRESS"
     ]

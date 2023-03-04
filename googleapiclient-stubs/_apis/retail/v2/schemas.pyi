@@ -232,11 +232,27 @@ class GoogleCloudRetailV2Control(typing_extensions.TypedDict, total=False):
     solutionTypes: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2CreateModelMetadata(typing_extensions.TypedDict, total=False):
+    model: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2CustomAttribute(typing_extensions.TypedDict, total=False):
     indexable: bool
     numbers: _list[float]
     searchable: bool
     text: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2ExperimentInfo(typing_extensions.TypedDict, total=False):
+    experimentName: str
+    servingConfigExperiment: GoogleCloudRetailV2ExperimentInfoServingConfigExperiment
+
+@typing.type_check_only
+class GoogleCloudRetailV2ExperimentInfoServingConfigExperiment(
+    typing_extensions.TypedDict, total=False
+):
+    experimentServingConfig: str
+    originalServingConfig: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2FulfillmentInfo(typing_extensions.TypedDict, total=False):
@@ -341,6 +357,11 @@ class GoogleCloudRetailV2ListControlsResponse(typing_extensions.TypedDict, total
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2ListModelsResponse(typing_extensions.TypedDict, total=False):
+    models: _list[GoogleCloudRetailV2Model]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2ListProductsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     products: _list[GoogleCloudRetailV2Product]
@@ -358,6 +379,49 @@ class GoogleCloudRetailV2LocalInventory(typing_extensions.TypedDict, total=False
     fulfillmentTypes: _list[str]
     placeId: str
     priceInfo: GoogleCloudRetailV2PriceInfo
+
+@typing.type_check_only
+class GoogleCloudRetailV2Model(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dataState: typing_extensions.Literal[
+        "DATA_STATE_UNSPECIFIED", "DATA_OK", "DATA_ERROR"
+    ]
+    displayName: str
+    filteringOption: typing_extensions.Literal[
+        "RECOMMENDATIONS_FILTERING_OPTION_UNSPECIFIED",
+        "RECOMMENDATIONS_FILTERING_DISABLED",
+        "RECOMMENDATIONS_FILTERING_ENABLED",
+    ]
+    lastTuneTime: str
+    name: str
+    optimizationObjective: str
+    periodicTuningState: typing_extensions.Literal[
+        "PERIODIC_TUNING_STATE_UNSPECIFIED",
+        "PERIODIC_TUNING_DISABLED",
+        "ALL_TUNING_DISABLED",
+        "PERIODIC_TUNING_ENABLED",
+    ]
+    servingConfigLists: _list[GoogleCloudRetailV2ModelServingConfigList]
+    servingState: typing_extensions.Literal[
+        "SERVING_STATE_UNSPECIFIED", "INACTIVE", "ACTIVE", "TUNED"
+    ]
+    trainingState: typing_extensions.Literal[
+        "TRAINING_STATE_UNSPECIFIED", "PAUSED", "TRAINING"
+    ]
+    tuningOperation: str
+    type: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2ModelServingConfigList(
+    typing_extensions.TypedDict, total=False
+):
+    servingConfigIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2PauseModelRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2PredictRequest(typing_extensions.TypedDict, total=False):
@@ -567,6 +631,11 @@ class GoogleCloudRetailV2ReplaceCatalogAttributeRequest(
     updateMask: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2ResumeModelRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2Rule(typing_extensions.TypedDict, total=False):
     boostAction: GoogleCloudRetailV2RuleBoostAction
     condition: GoogleCloudRetailV2Condition
@@ -719,6 +788,7 @@ class GoogleCloudRetailV2SearchResponse(typing_extensions.TypedDict, total=False
     appliedControls: _list[str]
     attributionToken: str
     correctedQuery: str
+    experimentInfo: _list[GoogleCloudRetailV2ExperimentInfo]
     facets: _list[GoogleCloudRetailV2SearchResponseFacet]
     invalidConditionBoostSpecs: _list[
         GoogleCloudRetailV2SearchRequestBoostSpecConditionBoostSpec
@@ -809,6 +879,18 @@ class GoogleCloudRetailV2SetInventoryRequest(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudRetailV2SetInventoryResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2TuneModelMetadata(typing_extensions.TypedDict, total=False):
+    model: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2TuneModelRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2TuneModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 

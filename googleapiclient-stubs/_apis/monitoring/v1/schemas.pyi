@@ -175,6 +175,11 @@ class HttpBody(typing_extensions.TypedDict, total=False):
     extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
+class IncidentList(typing_extensions.TypedDict, total=False):
+    monitoredResources: _list[MonitoredResource]
+    policyNames: _list[str]
+
+@typing.type_check_only
 class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
     dashboards: _list[Dashboard]
     nextPageToken: str
@@ -207,6 +212,11 @@ class MetricsScope(typing_extensions.TypedDict, total=False):
 class MonitoredProject(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
+
+@typing.type_check_only
+class MonitoredResource(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
+    type: str
 
 @typing.type_check_only
 class MosaicLayout(typing_extensions.TypedDict, total=False):
@@ -246,6 +256,12 @@ class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
         "METHOD_SUM",
         "METHOD_LATEST",
     ]
+
+@typing.type_check_only
+class QueryExemplarsRequest(typing_extensions.TypedDict, total=False):
+    end: str
+    query: str
+    start: str
 
 @typing.type_check_only
 class QueryInstantRequest(typing_extensions.TypedDict, total=False):
@@ -393,6 +409,7 @@ class Widget(typing_extensions.TypedDict, total=False):
     alertChart: AlertChart
     blank: Empty
     collapsibleGroup: CollapsibleGroup
+    incidentList: IncidentList
     logsPanel: LogsPanel
     scorecard: Scorecard
     text: Text

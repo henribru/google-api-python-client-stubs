@@ -51,6 +51,8 @@ class AudioStream(typing_extensions.TypedDict, total=False):
     channelCount: int
     channelLayout: _list[str]
     codec: str
+    displayName: str
+    languageCode: str
     mapping: _list[AudioMapping]
     sampleRateHertz: int
 
@@ -293,6 +295,8 @@ class TextMapping(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TextStream(typing_extensions.TypedDict, total=False):
     codec: str
+    displayName: str
+    languageCode: str
     mapping: _list[TextMapping]
 
 @typing.type_check_only

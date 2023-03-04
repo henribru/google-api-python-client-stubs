@@ -85,6 +85,7 @@ class ServiceBusinessContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Verification(typing_extensions.TypedDict, total=False):
+    announcement: str
     createTime: str
     method: typing_extensions.Literal[
         "VERIFICATION_METHOD_UNSPECIFIED",
@@ -103,6 +104,7 @@ class Verification(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VerificationOption(typing_extensions.TypedDict, total=False):
     addressData: AddressVerificationData
+    announcement: str
     emailData: EmailVerificationData
     phoneNumber: str
     verificationMethod: typing_extensions.Literal[

@@ -72,49 +72,6 @@ class CrmlogErrorCode(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EnterpriseCrmCardsCellValue(typing_extensions.TypedDict, total=False):
-    booleanValue: bool
-    doubleValue: float
-    empty: GoogleProtobufEmpty
-    longValue: str
-    stringValue: str
-
-@typing.type_check_only
-class EnterpriseCrmCardsRow(typing_extensions.TypedDict, total=False):
-    cells: _list[EnterpriseCrmCardsCellValue]
-
-@typing.type_check_only
-class EnterpriseCrmCardsTabularData(typing_extensions.TypedDict, total=False):
-    headers: _list[str]
-    rows: _list[EnterpriseCrmCardsRow]
-
-@typing.type_check_only
-class EnterpriseCrmCardsTemplatesAplosSeriesData(
-    typing_extensions.TypedDict, total=False
-):
-    rows: _list[EnterpriseCrmCardsTemplatesAplosSeriesDataRow]
-
-@typing.type_check_only
-class EnterpriseCrmCardsTemplatesAplosSeriesDataRow(
-    typing_extensions.TypedDict, total=False
-):
-    x: EnterpriseCrmCardsCellValue
-    y: EnterpriseCrmCardsCellValue
-
-@typing.type_check_only
-class EnterpriseCrmCardsTemplatesAplosSeriesListData(
-    typing_extensions.TypedDict, total=False
-):
-    series: _list[EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries]
-
-@typing.type_check_only
-class EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries(
-    typing_extensions.TypedDict, total=False
-):
-    data: EnterpriseCrmCardsTemplatesAplosSeriesData
-    name: str
-
-@typing.type_check_only
 class EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam(
     typing_extensions.TypedDict, total=False
 ):
@@ -989,6 +946,7 @@ class EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit(
     typing_extensions.TypedDict, total=False
 ):
     resolvedBy: str
+    resolvedByCpi: str
     timestamp: str
 
 @typing.type_check_only
@@ -1814,26 +1772,6 @@ class GoogleCloudIntegrationsV1alphaAccessToken(
     tokenType: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaArchiveBundleRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaArchiveBundleResponse(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaAttemptStats(
     typing_extensions.TypedDict, total=False
 ):
@@ -1961,21 +1899,6 @@ class GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectResponse(
     projectId: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCreateBundleRequest(
-    typing_extensions.TypedDict, total=False
-):
-    bundleId: str
-    integrations: _list[str]
-    secondaryCustomerOrgId: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCreateBundleResponse(
-    typing_extensions.TypedDict, total=False
-):
-    config: GoogleCloudIntegrationsV1alphaIntegrationBundleConfig
-    triggerId: str
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCredential(
     typing_extensions.TypedDict, total=False
 ):
@@ -2001,16 +1924,6 @@ class GoogleCloudIntegrationsV1alphaCredential(
     oidcToken: GoogleCloudIntegrationsV1alphaOidcToken
     serviceAccountCredentials: GoogleCloudIntegrationsV1alphaServiceAccountCredentials
     usernameAndPassword: GoogleCloudIntegrationsV1alphaUsernameAndPassword
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse(
-    typing_extensions.TypedDict, total=False
-): ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaDoubleParameterArray(
@@ -2135,12 +2048,6 @@ class GoogleCloudIntegrationsV1alphaGenerateTokenResponse(
     message: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaGetBundleResponse(
-    typing_extensions.TypedDict, total=False
-):
-    config: GoogleCloudIntegrationsV1alphaIntegrationBundleConfig
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaIntParameterArray(
     typing_extensions.TypedDict, total=False
 ):
@@ -2189,13 +2096,6 @@ class GoogleCloudIntegrationsV1alphaIntegrationAlertConfigThresholdValue(
 ):
     absolute: str
     percentage: int
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaIntegrationBundleConfig(
-    typing_extensions.TypedDict, total=False
-):
-    integrations: _list[str]
-    serviceAccount: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaIntegrationParameter(
@@ -2335,13 +2235,6 @@ class GoogleCloudIntegrationsV1alphaListConnectionsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    executionSnapshots: _list[EnterpriseCrmEventbusProtoEventExecutionSnapshot]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListExecutionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -2407,85 +2300,6 @@ class GoogleCloudIntegrationsV1alphaListSuspensionsResponse(
 ):
     nextPageToken: str
     suspensions: _list[GoogleCloudIntegrationsV1alphaSuspension]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    taskEntities: _list[EnterpriseCrmFrontendsEventbusProtoTaskEntity]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    duration: str
-    endTime: str
-    mashQuery: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQuery
-    metricFieldTable: bool
-    outputPeriod: str
-    responseTemplate: typing_extensions.Literal[
-        "DATA_FORMAT_UNSPECIFIED", "TABLE_CONFIG", "APLOSE_SERIES_LIST_CONFIG"
-    ]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestGroupBy(
-    typing_extensions.TypedDict, total=False
-):
-    fields: _list[str]
-    reducer: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQuery(
-    typing_extensions.TypedDict, total=False
-):
-    firstQuery: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent
-    operationMode: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationMode
-    secondQuery: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent(
-    typing_extensions.TypedDict, total=False
-):
-    borgTaskMetric: typing_extensions.Literal[
-        "BORG_TASK_METRIC_UNSPECIFIED",
-        "TASK_INDIVIDUAL_COUNT",
-        "EVENT_COUNT",
-        "EVENT_DURATION",
-        "TASK_INDIVIDUAL_DURATION",
-    ]
-    dataFilters: _list[str]
-    fetchFilters: _list[str]
-    groupBy: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestGroupBy
-    pointOperation: str
-    timeDelta: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationMode(
-    typing_extensions.TypedDict, total=False
-):
-    joinConfig: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeJoinConfig
-    operationType: typing_extensions.Literal[
-        "OPERATION_TYPE_UNSPECIFIED", "UNION", "JOIN"
-    ]
-    unionConfig: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeUnionConfig
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeJoinConfig(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeUnionConfig(
-    typing_extensions.TypedDict, total=False
-):
-    reducer: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    aplosSeriesListData: EnterpriseCrmCardsTemplatesAplosSeriesListData
-    tableData: EnterpriseCrmCardsTabularData
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaNextTask(typing_extensions.TypedDict, total=False):
@@ -2831,16 +2645,9 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
     ]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaUpdateBundleRequest(
+class GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest(
     typing_extensions.TypedDict, total=False
-):
-    config: GoogleCloudIntegrationsV1alphaIntegrationBundleConfig
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaUpdateBundleResponse(
-    typing_extensions.TypedDict, total=False
-):
-    config: GoogleCloudIntegrationsV1alphaIntegrationBundleConfig
+): ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest(
@@ -2861,16 +2668,6 @@ class GoogleCloudIntegrationsV1alphaUsernameAndPassword(
 ):
     password: str
     username: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaValidateIntegrationVersionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse(
-    typing_extensions.TypedDict, total=False
-): ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaValueType(typing_extensions.TypedDict, total=False):

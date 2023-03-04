@@ -198,6 +198,16 @@ class GuestAccelerator(typing_extensions.TypedDict, total=False):
     acceleratorType: str
 
 @typing.type_check_only
+class InterRegionEgress(typing_extensions.TypedDict, total=False):
+    destinationRegion: str
+    egressRate: Usage
+    sourceRegion: str
+
+@typing.type_check_only
+class IntraRegionEgress(typing_extensions.TypedDict, total=False):
+    egressRate: Usage
+
+@typing.type_check_only
 class MachineType(typing_extensions.TypedDict, total=False):
     customMachineType: CustomMachineType
     predefinedMachineType: PredefinedMachineType
@@ -340,6 +350,11 @@ class VmResourceBasedCud(typing_extensions.TypedDict, total=False):
     virtualCpuCount: str
 
 @typing.type_check_only
+class VmToVmEgressWorkload(typing_extensions.TypedDict, total=False):
+    interRegionEgress: InterRegionEgress
+    intraRegionEgress: IntraRegionEgress
+
+@typing.type_check_only
 class Workload(typing_extensions.TypedDict, total=False):
     cloudCdnEgressWorkload: CloudCdnEgressWorkload
     cloudCdnWorkload: CloudCdnWorkload
@@ -351,6 +366,7 @@ class Workload(typing_extensions.TypedDict, total=False):
     name: str
     premiumTierEgressWorkload: PremiumTierEgressWorkload
     standardTierEgressWorkload: StandardTierEgressWorkload
+    vmToVmEgressWorkload: VmToVmEgressWorkload
 
 @typing.type_check_only
 class WorkloadCostEstimate(typing_extensions.TypedDict, total=False):

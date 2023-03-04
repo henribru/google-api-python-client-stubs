@@ -22,6 +22,7 @@ class Execution(typing_extensions.TypedDict, total=False):
     duration: str
     endTime: str
     error: Error
+    labels: dict[str, typing.Any]
     name: str
     result: str
     startTime: str

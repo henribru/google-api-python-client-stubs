@@ -80,6 +80,7 @@ class Entity(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EntityResult(typing_extensions.TypedDict, total=False):
+    createTime: str
     cursor: str
     entity: Entity
     updateTime: str
@@ -329,6 +330,7 @@ class Mutation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MutationResult(typing_extensions.TypedDict, total=False):
     conflictDetected: bool
+    createTime: str
     key: Key
     updateTime: str
     version: str

@@ -71,6 +71,10 @@ class GoogleCloudRetailV2AddLocalInventoriesResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2CreateModelMetadata(typing_extensions.TypedDict, total=False):
+    model: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2ImportCompletionDataResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -103,6 +107,44 @@ class GoogleCloudRetailV2ImportUserEventsResponse(
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2ImportErrorsConfig
     importSummary: GoogleCloudRetailV2UserEventImportSummary
+
+@typing.type_check_only
+class GoogleCloudRetailV2Model(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dataState: typing_extensions.Literal[
+        "DATA_STATE_UNSPECIFIED", "DATA_OK", "DATA_ERROR"
+    ]
+    displayName: str
+    filteringOption: typing_extensions.Literal[
+        "RECOMMENDATIONS_FILTERING_OPTION_UNSPECIFIED",
+        "RECOMMENDATIONS_FILTERING_DISABLED",
+        "RECOMMENDATIONS_FILTERING_ENABLED",
+    ]
+    lastTuneTime: str
+    name: str
+    optimizationObjective: str
+    periodicTuningState: typing_extensions.Literal[
+        "PERIODIC_TUNING_STATE_UNSPECIFIED",
+        "PERIODIC_TUNING_DISABLED",
+        "ALL_TUNING_DISABLED",
+        "PERIODIC_TUNING_ENABLED",
+    ]
+    servingConfigLists: _list[GoogleCloudRetailV2ModelServingConfigList]
+    servingState: typing_extensions.Literal[
+        "SERVING_STATE_UNSPECIFIED", "INACTIVE", "ACTIVE", "TUNED"
+    ]
+    trainingState: typing_extensions.Literal[
+        "TRAINING_STATE_UNSPECIFIED", "PAUSED", "TRAINING"
+    ]
+    tuningOperation: str
+    type: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2ModelServingConfigList(
+    typing_extensions.TypedDict, total=False
+):
+    servingConfigIds: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2PurgeMetadata(typing_extensions.TypedDict, total=False): ...
@@ -151,6 +193,15 @@ class GoogleCloudRetailV2SetInventoryMetadata(
 
 @typing.type_check_only
 class GoogleCloudRetailV2SetInventoryResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2TuneModelMetadata(typing_extensions.TypedDict, total=False):
+    model: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2TuneModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -404,6 +455,18 @@ class GoogleCloudRetailV2alphaCustomAttribute(typing_extensions.TypedDict, total
     numbers: _list[float]
     searchable: bool
     text: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaExperimentInfo(typing_extensions.TypedDict, total=False):
+    experimentName: str
+    servingConfigExperiment: GoogleCloudRetailV2alphaExperimentInfoServingConfigExperiment
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaExperimentInfoServingConfigExperiment(
+    typing_extensions.TypedDict, total=False
+):
+    experimentServingConfig: str
+    originalServingConfig: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaExportErrorsConfig(
@@ -1087,6 +1150,7 @@ class GoogleCloudRetailV2alphaSearchResponse(typing_extensions.TypedDict, total=
     appliedControls: _list[str]
     attributionToken: str
     correctedQuery: str
+    experimentInfo: _list[GoogleCloudRetailV2alphaExperimentInfo]
     facets: _list[GoogleCloudRetailV2alphaSearchResponseFacet]
     invalidConditionBoostSpecs: _list[
         GoogleCloudRetailV2alphaSearchRequestBoostSpecConditionBoostSpec

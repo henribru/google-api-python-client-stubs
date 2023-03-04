@@ -451,6 +451,17 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     version: typing_extensions.Literal["VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4"]
 
 @typing.type_check_only
+class FhirStoreMetric(typing_extensions.TypedDict, total=False):
+    count: str
+    resourceType: str
+    structuredStorageSizeBytes: str
+
+@typing.type_check_only
+class FhirStoreMetrics(typing_extensions.TypedDict, total=False):
+    metrics: _list[FhirStoreMetric]
+    name: str
+
+@typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
     maxOccurs: int
     minOccurs: int

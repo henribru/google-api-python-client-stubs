@@ -7,7 +7,10 @@ _list = list
 @typing.type_check_only
 class Accelerator(typing_extensions.TypedDict, total=False):
     acceleratorType: typing_extensions.Literal[
-        "ACCELERATOR_TYPE_UNSPECIFIED", "CDC", "HEALTHCARE"
+        "ACCELERATOR_TYPE_UNSPECIFIED", "CDC", "HEALTHCARE", "CCAI_INSIGHTS"
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ENABLED", "DISABLED", "UNKNOWN"
     ]
 
 @typing.type_check_only
@@ -77,6 +80,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     enableRbac: bool
     enableStackdriverLogging: bool
     enableStackdriverMonitoring: bool
+    enableZoneSeparation: bool
     eventPublishConfig: EventPublishConfig
     gcsBucket: str
     labels: dict[str, typing.Any]
@@ -168,6 +172,7 @@ class Operation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
+    additionalStatus: dict[str, typing.Any]
     apiVersion: str
     createTime: str
     endTime: str

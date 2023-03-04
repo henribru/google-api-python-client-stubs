@@ -48,6 +48,8 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         view: typing_extensions.Literal[

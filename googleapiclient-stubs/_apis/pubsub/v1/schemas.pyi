@@ -29,6 +29,10 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class CommitSchemaRequest(typing_extensions.TypedDict, total=False):
+    schema: Schema
+
+@typing.type_check_only
 class CreateSnapshotRequest(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     subscription: str
@@ -54,6 +58,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class ListSchemaRevisionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    schemas: _list[Schema]
 
 @typing.type_check_only
 class ListSchemasResponse(typing_extensions.TypedDict, total=False):
@@ -150,6 +159,10 @@ class ReceivedMessage(typing_extensions.TypedDict, total=False):
 class RetryPolicy(typing_extensions.TypedDict, total=False):
     maximumBackoff: str
     minimumBackoff: str
+
+@typing.type_check_only
+class RollbackSchemaRequest(typing_extensions.TypedDict, total=False):
+    revisionId: str
 
 @typing.type_check_only
 class Schema(typing_extensions.TypedDict, total=False):

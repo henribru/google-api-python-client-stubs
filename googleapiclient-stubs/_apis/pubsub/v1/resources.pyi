@@ -17,6 +17,13 @@ class PubsubResource(googleapiclient.discovery.Resource):
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class SchemasResource(googleapiclient.discovery.Resource):
+            def commit(
+                self,
+                *,
+                name: str,
+                body: CommitSchemaRequest = ...,
+                **kwargs: typing.Any
+            ) -> SchemaHttpRequest: ...
             def create(
                 self,
                 *,
@@ -28,6 +35,9 @@ class PubsubResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def deleteRevision(
+                self, *, name: str, revisionId: str = ..., **kwargs: typing.Any
+            ) -> SchemaHttpRequest: ...
             def get(
                 self,
                 *,
@@ -60,6 +70,29 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 previous_request: ListSchemasResponseHttpRequest,
                 previous_response: ListSchemasResponse,
             ) -> ListSchemasResponseHttpRequest | None: ...
+            def listRevisions(
+                self,
+                *,
+                name: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                view: typing_extensions.Literal[
+                    "SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> ListSchemaRevisionsResponseHttpRequest: ...
+            def listRevisions_next(
+                self,
+                previous_request: ListSchemaRevisionsResponseHttpRequest,
+                previous_response: ListSchemaRevisionsResponse,
+            ) -> ListSchemaRevisionsResponseHttpRequest | None: ...
+            def rollback(
+                self,
+                *,
+                name: str,
+                body: RollbackSchemaRequest = ...,
+                **kwargs: typing.Any
+            ) -> SchemaHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
@@ -355,6 +388,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
+
+@typing.type_check_only
+class ListSchemaRevisionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSchemaRevisionsResponse: ...
 
 @typing.type_check_only
 class ListSchemasResponseHttpRequest(googleapiclient.http.HttpRequest):

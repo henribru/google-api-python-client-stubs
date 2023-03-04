@@ -305,6 +305,18 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class NameConstraints(typing_extensions.TypedDict, total=False):
+    critical: bool
+    excludedDnsNames: _list[str]
+    excludedEmailAddresses: _list[str]
+    excludedIpRanges: _list[str]
+    excludedUris: _list[str]
+    permittedDnsNames: _list[str]
+    permittedEmailAddresses: _list[str]
+    permittedIpRanges: _list[str]
+    permittedUris: _list[str]
+
+@typing.type_check_only
 class ObjectId(typing_extensions.TypedDict, total=False):
     objectIdPath: _list[int]
 
@@ -478,4 +490,5 @@ class X509Parameters(typing_extensions.TypedDict, total=False):
     aiaOcspServers: _list[str]
     caOptions: CaOptions
     keyUsage: KeyUsage
+    nameConstraints: NameConstraints
     policyIds: _list[ObjectId]

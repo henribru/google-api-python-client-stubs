@@ -61,6 +61,7 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
                 "WEBSITE_CLICKS",
                 "BUSINESS_BOOKINGS",
                 "BUSINESS_FOOD_ORDERS",
+                "BUSINESS_FOOD_MENU_CLICKS",
             ] = ...,
             dailyRange_endDate_day: int = ...,
             dailyRange_endDate_month: int = ...,

@@ -777,10 +777,6 @@ class PubsubSnapshotMetadata(typing_extensions.TypedDict, total=False):
     topicName: str
 
 @typing.type_check_only
-class QueryInfo(typing_extensions.TypedDict, total=False):
-    queryProperty: _list[str]
-
-@typing.type_check_only
 class ReadInstruction(typing_extensions.TypedDict, total=False):
     source: Source
 
@@ -1062,6 +1058,11 @@ class Step(typing_extensions.TypedDict, total=False):
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
+class Straggler(typing_extensions.TypedDict, total=False):
+    batchStraggler: StragglerInfo
+    streamingStraggler: StreamingStragglerInfo
+
+@typing.type_check_only
 class StragglerDebuggingInfo(typing_extensions.TypedDict, total=False):
     hotKey: HotKeyDebuggingInfo
 
@@ -1072,6 +1073,7 @@ class StragglerInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StragglerSummary(typing_extensions.TypedDict, total=False):
+    recentStragglers: _list[Straggler]
     stragglerCauseCount: dict[str, typing.Any]
     totalStragglerCount: str
 
@@ -1138,6 +1140,14 @@ class StreamingStageLocation(typing_extensions.TypedDict, total=False):
     streamId: str
 
 @typing.type_check_only
+class StreamingStragglerInfo(typing_extensions.TypedDict, total=False):
+    dataWatermarkLag: str
+    endTime: str
+    startTime: str
+    systemWatermarkLag: str
+    workerName: str
+
+@typing.type_check_only
 class StringList(typing_extensions.TypedDict, total=False):
     elements: _list[str]
 
@@ -1201,11 +1211,6 @@ class TransformSummary(typing_extensions.TypedDict, total=False):
     ]
     name: str
     outputCollectionName: _list[str]
-
-@typing.type_check_only
-class ValidateResponse(typing_extensions.TypedDict, total=False):
-    errorMessage: str
-    queryInfo: QueryInfo
 
 @typing.type_check_only
 class WorkItem(typing_extensions.TypedDict, total=False):

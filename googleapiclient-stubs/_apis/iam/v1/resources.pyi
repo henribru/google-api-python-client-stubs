@@ -50,6 +50,49 @@ class IamResource(googleapiclient.discovery.Resource):
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
 
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: WorkforcePoolProvider = ...,
+                    workforcePoolProviderId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> WorkforcePoolProviderHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    showDeleted: bool = ...,
+                    **kwargs: typing.Any
+                ) -> ListWorkforcePoolProvidersResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWorkforcePoolProvidersResponseHttpRequest,
+                    previous_response: ListWorkforcePoolProvidersResponse,
+                ) -> ListWorkforcePoolProvidersResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: WorkforcePoolProvider = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def undelete(
+                    self,
+                    *,
+                    name: str,
+                    body: UndeleteWorkforcePoolProviderRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def keys(self) -> KeysResource: ...
                 def operations(self) -> OperationsResource: ...
 
@@ -61,8 +104,83 @@ class IamResource(googleapiclient.discovery.Resource):
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
 
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def undelete(
+                    self,
+                    *,
+                    name: str,
+                    body: UndeleteWorkforcePoolSubjectRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
 
+            def create(
+                self,
+                *,
+                location: str,
+                body: WorkforcePool = ...,
+                workforcePoolId: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> WorkforcePoolHttpRequest: ...
+            def getIamPolicy(
+                self,
+                *,
+                resource: str,
+                body: GetIamPolicyRequest = ...,
+                **kwargs: typing.Any
+            ) -> PolicyHttpRequest: ...
+            def list(
+                self,
+                *,
+                location: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                parent: str = ...,
+                showDeleted: bool = ...,
+                **kwargs: typing.Any
+            ) -> ListWorkforcePoolsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListWorkforcePoolsResponseHttpRequest,
+                previous_response: ListWorkforcePoolsResponse,
+            ) -> ListWorkforcePoolsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: WorkforcePool = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def setIamPolicy(
+                self,
+                *,
+                resource: str,
+                body: SetIamPolicyRequest = ...,
+                **kwargs: typing.Any
+            ) -> PolicyHttpRequest: ...
+            def testIamPermissions(
+                self,
+                *,
+                resource: str,
+                body: TestIamPermissionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> TestIamPermissionsResponseHttpRequest: ...
+            def undelete(
+                self,
+                *,
+                name: str,
+                body: UndeleteWorkforcePoolRequest = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
             def providers(self) -> ProvidersResource: ...
             def subjects(self) -> SubjectsResource: ...
@@ -532,6 +650,22 @@ class ListServiceAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListServiceAccountsResponse: ...
 
 @typing.type_check_only
+class ListWorkforcePoolProvidersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListWorkforcePoolProvidersResponse: ...
+
+@typing.type_check_only
+class ListWorkforcePoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListWorkforcePoolsResponse: ...
+
+@typing.type_check_only
 class ListWorkloadIdentityPoolProvidersResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -644,6 +778,22 @@ class UndeleteServiceAccountResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UndeleteServiceAccountResponse: ...
+
+@typing.type_check_only
+class WorkforcePoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> WorkforcePool: ...
+
+@typing.type_check_only
+class WorkforcePoolProviderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> WorkforcePoolProvider: ...
 
 @typing.type_check_only
 class WorkloadIdentityPoolHttpRequest(googleapiclient.http.HttpRequest):

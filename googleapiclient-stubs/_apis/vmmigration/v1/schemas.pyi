@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccessKeyCredentials(typing_extensions.TypedDict, total=False):
+    accessKeyId: str
+    secretAccessKey: str
+
+@typing.type_check_only
 class AdaptingOSStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -27,6 +32,58 @@ class AppliedLicense(typing_extensions.TypedDict, total=False):
 class AvailableUpdates(typing_extensions.TypedDict, total=False):
     inPlaceUpdate: ApplianceVersion
     newDeployableAppliance: ApplianceVersion
+
+@typing.type_check_only
+class AwsSecurityGroup(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+
+@typing.type_check_only
+class AwsSourceDetails(typing_extensions.TypedDict, total=False):
+    accessKeyCreds: AccessKeyCredentials
+    awsRegion: str
+    error: Status
+    inventorySecurityGroupNames: _list[str]
+    inventoryTagList: _list[Tag]
+    migrationResourcesUserTags: dict[str, typing.Any]
+    publicIp: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "FAILED", "ACTIVE"]
+
+@typing.type_check_only
+class AwsSourceVmDetails(typing_extensions.TypedDict, total=False):
+    committedStorageBytes: str
+    firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
+
+@typing.type_check_only
+class AwsVmDetails(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal[
+        "VM_ARCHITECTURE_UNSPECIFIED", "I386", "X86_64", "ARM64", "X86_64_MAC"
+    ]
+    bootOption: typing_extensions.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
+    committedStorageMb: str
+    cpuCount: int
+    diskCount: int
+    displayName: str
+    instanceType: str
+    memoryMb: int
+    osDescription: str
+    powerState: typing_extensions.Literal[
+        "POWER_STATE_UNSPECIFIED", "ON", "OFF", "SUSPENDED", "PENDING"
+    ]
+    securityGroups: _list[AwsSecurityGroup]
+    sourceDescription: str
+    sourceId: str
+    tags: dict[str, typing.Any]
+    virtualizationType: typing_extensions.Literal[
+        "VM_VIRTUALIZATION_TYPE_UNSPECIFIED", "HVM", "PARAVIRTUAL"
+    ]
+    vmId: str
+    vpcId: str
+    zone: str
+
+@typing.type_check_only
+class AwsVmsDetails(typing_extensions.TypedDict, total=False):
+    details: _list[AwsVmDetails]
 
 @typing.type_check_only
 class CancelCloneJobRequest(typing_extensions.TypedDict, total=False): ...
@@ -208,6 +265,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class FetchInventoryResponse(typing_extensions.TypedDict, total=False):
+    awsVms: AwsVmsDetails
     nextPageToken: str
     updateTime: str
     vmwareVms: VmwareVmsDetails
@@ -313,6 +371,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MigratingVm(typing_extensions.TypedDict, total=False):
+    awsSourceVmDetails: AwsSourceVmDetails
     computeEngineTargetDefaults: ComputeEngineTargetDefaults
     createTime: str
     currentSyncInfo: ReplicationCycle
@@ -321,6 +380,7 @@ class MigratingVm(typing_extensions.TypedDict, total=False):
     error: Status
     group: str
     labels: dict[str, typing.Any]
+    lastReplicationCycle: ReplicationCycle
     lastSync: ReplicationSync
     name: str
     policy: SchedulePolicy
@@ -362,6 +422,14 @@ class MigrationError(typing_extensions.TypedDict, total=False):
     errorMessage: LocalizedMessage
     errorTime: str
     helpLinks: _list[Link]
+
+@typing.type_check_only
+class MigrationWarning(typing_extensions.TypedDict, total=False):
+    actionItem: LocalizedMessage
+    code: typing_extensions.Literal["WARNING_CODE_UNSPECIFIED", "ADAPTATION_WARNING"]
+    helpLinks: _list[Link]
+    warningMessage: LocalizedMessage
+    warningTime: str
 
 @typing.type_check_only
 class NetworkInterface(typing_extensions.TypedDict, total=False):
@@ -421,6 +489,7 @@ class ReplicationCycle(typing_extensions.TypedDict, total=False):
     ]
     steps: _list[CycleStep]
     totalPauseDuration: str
+    warnings: _list[MigrationWarning]
 
 @typing.type_check_only
 class ReplicationSync(typing_extensions.TypedDict, total=False):
@@ -445,6 +514,7 @@ class ShuttingDownSourceVMStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
+    aws: AwsSourceDetails
     createTime: str
     description: str
     labels: dict[str, typing.Any]
@@ -460,6 +530,11 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class Tag(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
 
 @typing.type_check_only
 class TargetProject(typing_extensions.TypedDict, total=False):

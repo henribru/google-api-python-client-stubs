@@ -76,6 +76,13 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def rename(
+                    self,
+                    *,
+                    name: str,
+                    body: RenameInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> InstanceHttpRequest: ...
                 def reset(
                     self,
                     *,
@@ -246,6 +253,13 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
             class VolumesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class LunsResource(googleapiclient.discovery.Resource):
+                    def evict(
+                        self,
+                        *,
+                        name: str,
+                        body: EvictLunRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> LunHttpRequest: ...
@@ -299,6 +313,13 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
 
+                def evict(
+                    self,
+                    *,
+                    name: str,
+                    body: EvictVolumeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> VolumeHttpRequest: ...

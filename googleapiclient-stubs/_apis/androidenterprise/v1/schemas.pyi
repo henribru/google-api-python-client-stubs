@@ -157,13 +157,24 @@ class ConfigurationVariables(typing_extensions.TypedDict, total=False):
     variableSet: _list[VariableSet]
 
 @typing.type_check_only
+class CreateEnrollmentTokenResponse(typing_extensions.TypedDict, total=False):
+    enrollmentToken: str
+
+@typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
     androidId: str
+    device: str
+    latestBuildFingerprint: str
+    maker: str
     managementType: typing_extensions.Literal[
         "managedDevice", "managedProfile", "containerApp", "unmanagedProfile"
     ]
+    model: str
     policy: Policy
+    product: str
     report: DeviceReport
+    retailBrand: str
+    sdkVersion: int
 
 @typing.type_check_only
 class DeviceReport(typing_extensions.TypedDict, total=False):
@@ -187,6 +198,7 @@ class DevicesListResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Enterprise(typing_extensions.TypedDict, total=False):
     administrator: _list[Administrator]
+    googleAuthenticationSettings: GoogleAuthenticationSettings
     id: str
     name: str
     primaryDomain: str
@@ -218,6 +230,15 @@ class Entitlement(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EntitlementsListResponse(typing_extensions.TypedDict, total=False):
     entitlement: _list[Entitlement]
+
+@typing.type_check_only
+class GoogleAuthenticationSettings(typing_extensions.TypedDict, total=False):
+    dedicatedDevicesAllowed: typing_extensions.Literal[
+        "dedicatedDevicesAllowedUnspecified", "disallowed", "allowed"
+    ]
+    googleAuthenticationRequired: typing_extensions.Literal[
+        "googleAuthenticationRequiredUnspecified", "notRequired", "required"
+    ]
 
 @typing.type_check_only
 class GroupLicense(typing_extensions.TypedDict, total=False):

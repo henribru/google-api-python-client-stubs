@@ -436,17 +436,6 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 ) -> ListSnapshotsResponseHttpRequest: ...
 
             @typing.type_check_only
-            class SqlResource(googleapiclient.discovery.Resource):
-                def validate(
-                    self,
-                    *,
-                    projectId: str,
-                    location: str,
-                    query: str = ...,
-                    **kwargs: typing.Any
-                ) -> ValidateResponseHttpRequest: ...
-
-            @typing.type_check_only
             class TemplatesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -489,7 +478,6 @@ class DataflowResource(googleapiclient.discovery.Resource):
             def flexTemplates(self) -> FlexTemplatesResource: ...
             def jobs(self) -> JobsResource: ...
             def snapshots(self) -> SnapshotsResource: ...
-            def sql(self) -> SqlResource: ...
             def templates(self) -> TemplatesResource: ...
 
         @typing.type_check_only
@@ -711,11 +699,3 @@ class StageExecutionDetailsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> StageExecutionDetails: ...
-
-@typing.type_check_only
-class ValidateResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ValidateResponse: ...

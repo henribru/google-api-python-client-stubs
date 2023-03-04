@@ -152,6 +152,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: ReportInstanceInfoRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def reportEvent(
+                    self,
+                    *,
+                    name: str,
+                    body: ReportInstanceEventRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def reset(
                     self,
                     *,

@@ -16,6 +16,18 @@ class Artifact(typing_extensions.TypedDict, total=False):
     names: _list[str]
 
 @typing.type_check_only
+class Assessment(typing_extensions.TypedDict, total=False):
+    cve: str
+    longDescription: str
+    relatedUris: _list[URI]
+    remediations: _list[Remediation]
+    shortDescription: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
+    ]
+    threats: _list[Threat]
+
+@typing.type_check_only
 class Attestation(typing_extensions.TypedDict, total=False):
     pgpSignedAttestation: PgpSignedAttestation
 
@@ -658,6 +670,7 @@ class Discovery(typing_extensions.TypedDict, total=False):
         "SPDX_FILE",
         "SPDX_RELATIONSHIP",
         "DSSE_ATTESTATION",
+        "VULNERABILITY_ASSESSMENT",
     ]
 
 @typing.type_check_only
@@ -886,6 +899,13 @@ class Hash(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class IdentifierHelper(typing_extensions.TypedDict, total=False):
+    field: typing_extensions.Literal[
+        "IDENTIFIER_HELPER_FIELD_UNSPECIFIED", "GENERIC_URI"
+    ]
+    genericUri: str
+
+@typing.type_check_only
 class InTotoProvenance(typing_extensions.TypedDict, total=False):
     builderConfig: BuilderConfig
     materials: _list[str]
@@ -1012,6 +1032,7 @@ class Note(typing_extensions.TypedDict, total=False):
         "SPDX_FILE",
         "SPDX_RELATIONSHIP",
         "DSSE_ATTESTATION",
+        "VULNERABILITY_ASSESSMENT",
     ]
     longDescription: str
     name: str
@@ -1024,6 +1045,7 @@ class Note(typing_extensions.TypedDict, total=False):
     spdxRelationship: RelationshipNote
     updateTime: str
     upgrade: UpgradeNote
+    vulnerabilityAssessment: VulnerabilityAssessmentNote
     vulnerabilityType: VulnerabilityType
 
 @typing.type_check_only
@@ -1054,6 +1076,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "SPDX_FILE",
         "SPDX_RELATIONSHIP",
         "DSSE_ATTESTATION",
+        "VULNERABILITY_ASSESSMENT",
     ]
     name: str
     noteName: str
@@ -1146,6 +1169,18 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class Product(typing_extensions.TypedDict, total=False):
+    id: str
+    identifierHelper: IdentifierHelper
+    name: str
+
+@typing.type_check_only
+class Publisher(typing_extensions.TypedDict, total=False):
+    context: str
+    issuingAuthority: str
+    name: str
 
 @typing.type_check_only
 class Recipe(typing_extensions.TypedDict, total=False):
@@ -1262,6 +1297,20 @@ class RelationshipOccurrence(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Remediation(typing_extensions.TypedDict, total=False):
+    details: str
+    remediationTime: str
+    remediationType: typing_extensions.Literal[
+        "REMEDIATION_TYPE_UNSPECIFIED",
+        "MITIGATION",
+        "NO_FIX_PLANNED",
+        "NONE_AVAILABLE",
+        "VENDOR_FIX",
+        "WORKAROUND",
+    ]
+    remediationUri: URI
+
+@typing.type_check_only
 class RepoSource(typing_extensions.TypedDict, total=False):
     branchName: str
     commitSha: str
@@ -1373,9 +1422,21 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
+class Threat(typing_extensions.TypedDict, total=False):
+    details: str
+    threatType: typing_extensions.Literal[
+        "THREAT_TYPE_UNSPECIFIED", "IMPACT", "EXPLOIT_STATUS"
+    ]
+
+@typing.type_check_only
 class TimeSpan(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class URI(typing_extensions.TypedDict, total=False):
+    label: str
+    uri: str
 
 @typing.type_check_only
 class UpdateOperationRequest(typing_extensions.TypedDict, total=False):
@@ -1410,14 +1471,39 @@ class Version(typing_extensions.TypedDict, total=False):
     revision: str
 
 @typing.type_check_only
+class VexAssessment(typing_extensions.TypedDict, total=False):
+    cve: str
+    noteName: str
+    relatedUris: _list[URI]
+    remediations: _list[Remediation]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
+    ]
+    threats: _list[Threat]
+
+@typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
     name: str
     path: str
 
 @typing.type_check_only
+class VulnerabilityAssessmentNote(typing_extensions.TypedDict, total=False):
+    assessment: Assessment
+    languageCode: str
+    longDescription: str
+    product: Product
+    publisher: Publisher
+    shortDescription: str
+    title: str
+
+@typing.type_check_only
 class VulnerabilityDetails(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssV2: CVSS
     cvssV3: CVSS
+    cvssVersion: typing_extensions.Literal[
+        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
+    ]
     effectiveSeverity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
@@ -1426,6 +1512,7 @@ class VulnerabilityDetails(typing_extensions.TypedDict, total=False):
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
     type: str
+    vexAssessment: VexAssessment
 
 @typing.type_check_only
 class VulnerabilityLocation(typing_extensions.TypedDict, total=False):
@@ -1438,6 +1525,9 @@ class VulnerabilityLocation(typing_extensions.TypedDict, total=False):
 class VulnerabilityType(typing_extensions.TypedDict, total=False):
     cvssScore: float
     cvssV2: CVSS
+    cvssVersion: typing_extensions.Literal[
+        "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
+    ]
     cwe: _list[str]
     details: _list[Detail]
     severity: typing_extensions.Literal[

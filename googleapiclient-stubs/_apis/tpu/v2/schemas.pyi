@@ -5,7 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AcceleratorConfig(typing_extensions.TypedDict, total=False):
+    topology: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "V2", "V3", "V4"]
+
+@typing.type_check_only
 class AcceleratorType(typing_extensions.TypedDict, total=False):
+    acceleratorConfigs: _list[AcceleratorConfig]
     name: str
     type: str
 
@@ -103,6 +109,7 @@ class NetworkEndpoint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Node(typing_extensions.TypedDict, total=False):
+    acceleratorConfig: AcceleratorConfig
     acceleratorType: str
     apiVersion: typing_extensions.Literal[
         "API_VERSION_UNSPECIFIED", "V1_ALPHA1", "V1", "V2_ALPHA1", "V2"

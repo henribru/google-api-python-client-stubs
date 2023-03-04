@@ -10,6 +10,11 @@ class AlterMetadataResourceLocationRequest(typing_extensions.TypedDict, total=Fa
     resourceName: str
 
 @typing.type_check_only
+class AlterMetadataResourceLocationResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -51,6 +56,9 @@ class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
+
+@typing.type_check_only
+class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Consumer(typing_extensions.TypedDict, total=False):
@@ -229,6 +237,9 @@ class MoveTableToDatabaseRequest(typing_extensions.TypedDict, total=False):
     dbName: str
     destinationDbName: str
     tableName: str
+
+@typing.type_check_only
+class MoveTableToDatabaseResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):

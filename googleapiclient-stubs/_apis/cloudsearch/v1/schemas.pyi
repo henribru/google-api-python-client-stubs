@@ -85,7 +85,11 @@ class Annotation(typing_extensions.TypedDict, total=False):
     groupRetentionSettingsUpdated: GroupRetentionSettingsUpdatedMetaData
     gsuiteIntegrationMetadata: GsuiteIntegrationMetadata
     incomingWebhookChangedMetadata: IncomingWebhookChangedMetadata
+    inlineRenderFormat: typing_extensions.Literal[
+        "INLINE_RENDER_FORMAT_UNSPECIFIED", "SMART_CHIP"
+    ]
     integrationConfigUpdated: IntegrationConfigUpdatedMetadata
+    interactionData: InteractionData
     length: int
     localId: str
     membershipChanged: MembershipChangedMetadata
@@ -153,18 +157,6 @@ class AppId(typing_extensions.TypedDict, total=False):
         "CHAT_IN_MEET_APP",
     ]
     id: str
-
-@typing.type_check_only
-class AppsDynamiteSharedAction(typing_extensions.TypedDict, total=False):
-    function: str
-    interaction: typing_extensions.Literal["INTERACTION_UNSPECIFIED", "OPEN_DIALOG"]
-    loadIndicator: typing_extensions.Literal["SPINNER", "NONE"]
-    parameters: _list[AppsDynamiteSharedActionActionParameter]
-
-@typing.type_check_only
-class AppsDynamiteSharedActionActionParameter(typing_extensions.TypedDict, total=False):
-    key: str
-    value: str
 
 @typing.type_check_only
 class AppsDynamiteSharedActivityFeedAnnotationData(
@@ -275,6 +267,7 @@ class AppsDynamiteSharedBackendUploadMetadata(typing_extensions.TypedDict, total
         "SCAN_SKIPPED_NO_MESSAGE",
         "SCAN_SKIPPED_USER_ACKNOWLEDGED_WARNING",
         "SCAN_SKIPPED_MESSAGE_FROM_UNSUPPORTED_ORIGIN",
+        "SCAN_SKIPPED_MESSAGE_SENT_DURING_SPACE_MIGRATION",
         "SCAN_RULE_EVALUATION_SKIPPED_NO_RULES_FOUND",
         "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_ACTION_PARAMS",
         "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
@@ -288,6 +281,7 @@ class AppsDynamiteSharedBackendUploadMetadata(typing_extensions.TypedDict, total
     ]
     dlpScanSummary: DlpScanSummary
     groupId: GroupId
+    isClientSideTranscodedVideo: bool
     originalDimension: AppsDynamiteSharedDimension
     quoteReplyMessageId: MessageId
     sha256: str
@@ -298,25 +292,6 @@ class AppsDynamiteSharedBackendUploadMetadata(typing_extensions.TypedDict, total
     virusScanResult: typing_extensions.Literal[
         "UNKNOWN_VIRUS_SCAN_RESULT", "CLEAN", "INFECTED", "ERROR", "POLICY_VIOLATION"
     ]
-
-@typing.type_check_only
-class AppsDynamiteSharedBorderStyle(typing_extensions.TypedDict, total=False):
-    cornerRadius: int
-    strokeColor: Color
-    type: typing_extensions.Literal["BORDER_TYPE_UNSPECIFIED", "NO_BORDER", "STROKE"]
-
-@typing.type_check_only
-class AppsDynamiteSharedButton(typing_extensions.TypedDict, total=False):
-    altText: str
-    color: Color
-    disabled: bool
-    icon: AppsDynamiteSharedIcon
-    onClick: AppsDynamiteSharedOnClick
-    text: str
-
-@typing.type_check_only
-class AppsDynamiteSharedButtonList(typing_extensions.TypedDict, total=False):
-    buttons: _list[AppsDynamiteSharedButton]
 
 @typing.type_check_only
 class AppsDynamiteSharedCalendarEventAnnotationData(
@@ -359,36 +334,9 @@ class AppsDynamiteSharedCallMetadata(typing_extensions.TypedDict, total=False):
     meetMetadata: AppsDynamiteSharedMeetMetadata
 
 @typing.type_check_only
-class AppsDynamiteSharedCard(typing_extensions.TypedDict, total=False):
-    cardActions: _list[AppsDynamiteSharedCardCardAction]
-    header: AppsDynamiteSharedCardCardHeader
-    name: str
-    sections: _list[AppsDynamiteSharedCardSection]
-
-@typing.type_check_only
-class AppsDynamiteSharedCardCardAction(typing_extensions.TypedDict, total=False):
-    actionLabel: str
-    onClick: AppsDynamiteSharedOnClick
-
-@typing.type_check_only
-class AppsDynamiteSharedCardCardHeader(typing_extensions.TypedDict, total=False):
-    imageAltText: str
-    imageType: typing_extensions.Literal["SQUARE", "CIRCLE"]
-    imageUrl: str
-    subtitle: str
-    title: str
-
-@typing.type_check_only
 class AppsDynamiteSharedCardClickSuggestion(typing_extensions.TypedDict, total=False):
     actionId: str
     suggestionMessageId: MessageId
-
-@typing.type_check_only
-class AppsDynamiteSharedCardSection(typing_extensions.TypedDict, total=False):
-    collapsible: bool
-    header: str
-    uncollapsibleWidgetsCount: int
-    widgets: _list[AppsDynamiteSharedWidget]
 
 @typing.type_check_only
 class AppsDynamiteSharedChatItem(typing_extensions.TypedDict, total=False):
@@ -444,36 +392,6 @@ class AppsDynamiteSharedChatItemGroupInfo(typing_extensions.TypedDict, total=Fal
     inlineThreadingEnabled: bool
 
 @typing.type_check_only
-class AppsDynamiteSharedColumns(typing_extensions.TypedDict, total=False):
-    columnItems: _list[AppsDynamiteSharedColumnsColumn]
-    wrapStyle: typing_extensions.Literal["WRAP_STYLE_UNSPECIFIED", "NOWRAP", "WRAP"]
-
-@typing.type_check_only
-class AppsDynamiteSharedColumnsColumn(typing_extensions.TypedDict, total=False):
-    horizontalAlignment: typing_extensions.Literal[
-        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
-    ]
-    horizontalSizeStyle: typing_extensions.Literal[
-        "HORIZONTAL_SIZE_STYLE_UNSPECIFIED",
-        "FILL_AVAILABLE_SPACE",
-        "FILL_MINIMUM_SPACE",
-    ]
-    verticalAlignment: typing_extensions.Literal[
-        "VERTICAL_ALIGNMENT_UNSPECIFIED", "CENTER", "TOP", "BOTTOM"
-    ]
-    widgets: _list[AppsDynamiteSharedColumnsColumnWidgets]
-
-@typing.type_check_only
-class AppsDynamiteSharedColumnsColumnWidgets(typing_extensions.TypedDict, total=False):
-    buttonList: AppsDynamiteSharedButtonList
-    dateTimePicker: AppsDynamiteSharedDateTimePicker
-    decoratedText: AppsDynamiteSharedDecoratedText
-    image: AppsDynamiteSharedImage
-    selectionInput: AppsDynamiteSharedSelectionInput
-    textInput: AppsDynamiteSharedTextInput
-    textParagraph: AppsDynamiteSharedTextParagraph
-
-@typing.type_check_only
 class AppsDynamiteSharedContentReportType(typing_extensions.TypedDict, total=False):
     systemViolation: typing_extensions.Literal[
         "VIOLATION_UNSPECIFIED",
@@ -511,44 +429,9 @@ class AppsDynamiteSharedCustomEmoji(typing_extensions.TypedDict, total=False):
     uuid: str
 
 @typing.type_check_only
-class AppsDynamiteSharedDateTimePicker(typing_extensions.TypedDict, total=False):
-    label: str
-    name: str
-    onChangeAction: AppsDynamiteSharedAction
-    timezoneOffsetDate: int
-    type: typing_extensions.Literal["DATE_AND_TIME", "DATE_ONLY", "TIME_ONLY"]
-    valueMsEpoch: str
-
-@typing.type_check_only
-class AppsDynamiteSharedDecoratedText(typing_extensions.TypedDict, total=False):
-    bottomLabel: str
-    button: AppsDynamiteSharedButton
-    endIcon: AppsDynamiteSharedIcon
-    icon: AppsDynamiteSharedIcon
-    onClick: AppsDynamiteSharedOnClick
-    startIcon: AppsDynamiteSharedIcon
-    switchControl: AppsDynamiteSharedDecoratedTextSwitchControl
-    text: str
-    topLabel: str
-    wrapText: bool
-
-@typing.type_check_only
-class AppsDynamiteSharedDecoratedTextSwitchControl(
-    typing_extensions.TypedDict, total=False
-):
-    controlType: typing_extensions.Literal["SWITCH", "CHECKBOX", "CHECK_BOX"]
-    name: str
-    onChangeAction: AppsDynamiteSharedAction
-    selected: bool
-    value: str
-
-@typing.type_check_only
 class AppsDynamiteSharedDimension(typing_extensions.TypedDict, total=False):
     height: int
     width: int
-
-@typing.type_check_only
-class AppsDynamiteSharedDivider(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AppsDynamiteSharedDlpMetricsMetadata(typing_extensions.TypedDict, total=False):
@@ -585,27 +468,6 @@ class AppsDynamiteSharedFindDocumentSuggestion(
     showActionButtons: bool
 
 @typing.type_check_only
-class AppsDynamiteSharedGrid(typing_extensions.TypedDict, total=False):
-    borderStyle: AppsDynamiteSharedBorderStyle
-    columnCount: int
-    items: _list[AppsDynamiteSharedGridGridItem]
-    onClick: AppsDynamiteSharedOnClick
-    title: str
-
-@typing.type_check_only
-class AppsDynamiteSharedGridGridItem(typing_extensions.TypedDict, total=False):
-    id: str
-    image: AppsDynamiteSharedImageComponent
-    layout: typing_extensions.Literal[
-        "GRID_ITEM_LAYOUT_UNSPECIFIED", "TEXT_BELOW", "TEXT_ABOVE"
-    ]
-    subtitle: str
-    textAlignment: typing_extensions.Literal[
-        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
-    ]
-    title: str
-
-@typing.type_check_only
 class AppsDynamiteSharedGroupDetails(typing_extensions.TypedDict, total=False):
     description: str
     guidelines: str
@@ -613,37 +475,6 @@ class AppsDynamiteSharedGroupDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AppsDynamiteSharedGroupVisibility(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["UNKNOWN", "PRIVATE", "PUBLIC"]
-
-@typing.type_check_only
-class AppsDynamiteSharedIcon(typing_extensions.TypedDict, total=False):
-    altText: str
-    iconUrl: str
-    imageType: typing_extensions.Literal["SQUARE", "CIRCLE"]
-    knownIcon: str
-
-@typing.type_check_only
-class AppsDynamiteSharedImage(typing_extensions.TypedDict, total=False):
-    altText: str
-    imageUrl: str
-    onClick: AppsDynamiteSharedOnClick
-
-@typing.type_check_only
-class AppsDynamiteSharedImageComponent(typing_extensions.TypedDict, total=False):
-    altText: str
-    borderStyle: AppsDynamiteSharedBorderStyle
-    cropStyle: AppsDynamiteSharedImageCropStyle
-    imageUri: str
-
-@typing.type_check_only
-class AppsDynamiteSharedImageCropStyle(typing_extensions.TypedDict, total=False):
-    aspectRatio: float
-    type: typing_extensions.Literal[
-        "IMAGE_CROP_TYPE_UNSPECIFIED",
-        "SQUARE",
-        "CIRCLE",
-        "RECTANGLE_CUSTOM",
-        "RECTANGLE_4_3",
-    ]
 
 @typing.type_check_only
 class AppsDynamiteSharedJustification(typing_extensions.TypedDict, total=False):
@@ -685,38 +516,6 @@ class AppsDynamiteSharedMessageIntegrationPayload(
     projectNumber: str
     tasksMessageIntegrationPayload: AppsDynamiteSharedTasksMessageIntegrationPayload
     type: typing_extensions.Literal["PAYLOAD_TYPE_UNSPECIFIED", "TASKS"]
-
-@typing.type_check_only
-class AppsDynamiteSharedOnClick(typing_extensions.TypedDict, total=False):
-    action: AppsDynamiteSharedAction
-    hostAppAction: HostAppActionMarkup
-    openDynamicLinkAction: AppsDynamiteSharedAction
-    openLink: AppsDynamiteSharedOpenLink
-
-@typing.type_check_only
-class AppsDynamiteSharedOpenLink(typing_extensions.TypedDict, total=False):
-    appUri: AppsDynamiteSharedOpenLinkAppUri
-    onClose: typing_extensions.Literal["NOTHING", "RELOAD"]
-    openAs: typing_extensions.Literal["FULL_SIZE", "OVERLAY"]
-    url: str
-
-@typing.type_check_only
-class AppsDynamiteSharedOpenLinkAppUri(typing_extensions.TypedDict, total=False):
-    androidIntent: AppsDynamiteSharedOpenLinkAppUriIntent
-    companionUri: str
-    iosUri: str
-
-@typing.type_check_only
-class AppsDynamiteSharedOpenLinkAppUriIntent(typing_extensions.TypedDict, total=False):
-    extraData: _list[AppsDynamiteSharedOpenLinkAppUriIntentExtraData]
-    intentAction: str
-
-@typing.type_check_only
-class AppsDynamiteSharedOpenLinkAppUriIntentExtraData(
-    typing_extensions.TypedDict, total=False
-):
-    key: str
-    value: str
 
 @typing.type_check_only
 class AppsDynamiteSharedOrganizationInfo(typing_extensions.TypedDict, total=False):
@@ -781,22 +580,6 @@ class AppsDynamiteSharedSegmentedMembershipCounts(
     value: _list[AppsDynamiteSharedSegmentedMembershipCount]
 
 @typing.type_check_only
-class AppsDynamiteSharedSelectionInput(typing_extensions.TypedDict, total=False):
-    items: _list[AppsDynamiteSharedSelectionInputSelectionItem]
-    label: str
-    name: str
-    onChangeAction: AppsDynamiteSharedAction
-    type: typing_extensions.Literal["CHECK_BOX", "RADIO_BUTTON", "SWITCH", "DROPDOWN"]
-
-@typing.type_check_only
-class AppsDynamiteSharedSelectionInputSelectionItem(
-    typing_extensions.TypedDict, total=False
-):
-    selected: bool
-    text: str
-    value: str
-
-@typing.type_check_only
 class AppsDynamiteSharedSpaceInfo(typing_extensions.TypedDict, total=False):
     avatarInfo: AppsDynamiteSharedAvatarInfo
     avatarUrl: str
@@ -806,6 +589,7 @@ class AppsDynamiteSharedSpaceInfo(typing_extensions.TypedDict, total=False):
     isExternal: bool
     name: str
     numMembers: int
+    segmentedMembershipCounts: AppsDynamiteSharedSegmentedMembershipCounts
     userMembershipState: typing_extensions.Literal[
         "MEMBER_UNKNOWN",
         "MEMBER_INVITED",
@@ -813,16 +597,6 @@ class AppsDynamiteSharedSpaceInfo(typing_extensions.TypedDict, total=False):
         "MEMBER_NOT_A_MEMBER",
         "MEMBER_FAILED",
     ]
-
-@typing.type_check_only
-class AppsDynamiteSharedSuggestions(typing_extensions.TypedDict, total=False):
-    items: _list[AppsDynamiteSharedSuggestionsSuggestionItem]
-
-@typing.type_check_only
-class AppsDynamiteSharedSuggestionsSuggestionItem(
-    typing_extensions.TypedDict, total=False
-):
-    text: str
 
 @typing.type_check_only
 class AppsDynamiteSharedTasksAnnotationData(typing_extensions.TypedDict, total=False):
@@ -878,21 +652,6 @@ class AppsDynamiteSharedTasksMessageIntegrationPayload(
 ): ...
 
 @typing.type_check_only
-class AppsDynamiteSharedTextInput(typing_extensions.TypedDict, total=False):
-    autoCompleteAction: AppsDynamiteSharedAction
-    hintText: str
-    initialSuggestions: AppsDynamiteSharedSuggestions
-    label: str
-    name: str
-    onChangeAction: AppsDynamiteSharedAction
-    type: typing_extensions.Literal["SINGLE_LINE", "MULTIPLE_LINE"]
-    value: str
-
-@typing.type_check_only
-class AppsDynamiteSharedTextParagraph(typing_extensions.TypedDict, total=False):
-    text: str
-
-@typing.type_check_only
 class AppsDynamiteSharedUserBlockRelationship(typing_extensions.TypedDict, total=False):
     hasBlockedRequester: bool
     isBlockedByRequester: bool
@@ -910,20 +669,273 @@ class AppsDynamiteSharedVideoReference(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class AppsDynamiteSharedWidget(typing_extensions.TypedDict, total=False):
-    buttonList: AppsDynamiteSharedButtonList
-    columns: AppsDynamiteSharedColumns
-    dateTimePicker: AppsDynamiteSharedDateTimePicker
-    decoratedText: AppsDynamiteSharedDecoratedText
-    divider: AppsDynamiteSharedDivider
-    grid: AppsDynamiteSharedGrid
+class AppsDynamiteStorageAction(typing_extensions.TypedDict, total=False):
+    function: str
+    interaction: typing_extensions.Literal["INTERACTION_UNSPECIFIED", "OPEN_DIALOG"]
+    loadIndicator: typing_extensions.Literal["SPINNER", "NONE"]
+    parameters: _list[AppsDynamiteStorageActionActionParameter]
+    persistValues: bool
+
+@typing.type_check_only
+class AppsDynamiteStorageActionActionParameter(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    value: str
+
+@typing.type_check_only
+class AppsDynamiteStorageBorderStyle(typing_extensions.TypedDict, total=False):
+    cornerRadius: int
+    strokeColor: Color
+    type: typing_extensions.Literal["BORDER_TYPE_UNSPECIFIED", "NO_BORDER", "STROKE"]
+
+@typing.type_check_only
+class AppsDynamiteStorageButton(typing_extensions.TypedDict, total=False):
+    altText: str
+    color: Color
+    disabled: bool
+    icon: AppsDynamiteStorageIcon
+    onClick: AppsDynamiteStorageOnClick
+    text: str
+
+@typing.type_check_only
+class AppsDynamiteStorageButtonList(typing_extensions.TypedDict, total=False):
+    buttons: _list[AppsDynamiteStorageButton]
+
+@typing.type_check_only
+class AppsDynamiteStorageCard(typing_extensions.TypedDict, total=False):
+    cardActions: _list[AppsDynamiteStorageCardCardAction]
+    header: AppsDynamiteStorageCardCardHeader
+    name: str
+    sections: _list[AppsDynamiteStorageCardSection]
+
+@typing.type_check_only
+class AppsDynamiteStorageCardCardAction(typing_extensions.TypedDict, total=False):
+    actionLabel: str
+    onClick: AppsDynamiteStorageOnClick
+
+@typing.type_check_only
+class AppsDynamiteStorageCardCardHeader(typing_extensions.TypedDict, total=False):
+    imageAltText: str
+    imageType: typing_extensions.Literal["SQUARE", "CIRCLE"]
+    imageUrl: str
+    subtitle: str
+    title: str
+
+@typing.type_check_only
+class AppsDynamiteStorageCardSection(typing_extensions.TypedDict, total=False):
+    collapsible: bool
+    header: str
+    uncollapsibleWidgetsCount: int
+    widgets: _list[AppsDynamiteStorageWidget]
+
+@typing.type_check_only
+class AppsDynamiteStorageColumns(typing_extensions.TypedDict, total=False):
+    columnItems: _list[AppsDynamiteStorageColumnsColumn]
+    wrapStyle: typing_extensions.Literal["WRAP_STYLE_UNSPECIFIED", "NOWRAP", "WRAP"]
+
+@typing.type_check_only
+class AppsDynamiteStorageColumnsColumn(typing_extensions.TypedDict, total=False):
     horizontalAlignment: typing_extensions.Literal[
         "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
     ]
-    image: AppsDynamiteSharedImage
-    selectionInput: AppsDynamiteSharedSelectionInput
-    textInput: AppsDynamiteSharedTextInput
-    textParagraph: AppsDynamiteSharedTextParagraph
+    horizontalSizeStyle: typing_extensions.Literal[
+        "HORIZONTAL_SIZE_STYLE_UNSPECIFIED",
+        "FILL_AVAILABLE_SPACE",
+        "FILL_MINIMUM_SPACE",
+    ]
+    verticalAlignment: typing_extensions.Literal[
+        "VERTICAL_ALIGNMENT_UNSPECIFIED", "CENTER", "TOP", "BOTTOM"
+    ]
+    widgets: _list[AppsDynamiteStorageColumnsColumnWidgets]
+
+@typing.type_check_only
+class AppsDynamiteStorageColumnsColumnWidgets(typing_extensions.TypedDict, total=False):
+    buttonList: AppsDynamiteStorageButtonList
+    dateTimePicker: AppsDynamiteStorageDateTimePicker
+    decoratedText: AppsDynamiteStorageDecoratedText
+    image: AppsDynamiteStorageImage
+    selectionInput: AppsDynamiteStorageSelectionInput
+    textInput: AppsDynamiteStorageTextInput
+    textParagraph: AppsDynamiteStorageTextParagraph
+
+@typing.type_check_only
+class AppsDynamiteStorageDateTimePicker(typing_extensions.TypedDict, total=False):
+    label: str
+    name: str
+    onChangeAction: AppsDynamiteStorageAction
+    timezoneOffsetDate: int
+    type: typing_extensions.Literal["DATE_AND_TIME", "DATE_ONLY", "TIME_ONLY"]
+    valueMsEpoch: str
+
+@typing.type_check_only
+class AppsDynamiteStorageDecoratedText(typing_extensions.TypedDict, total=False):
+    bottomLabel: str
+    button: AppsDynamiteStorageButton
+    endIcon: AppsDynamiteStorageIcon
+    icon: AppsDynamiteStorageIcon
+    onClick: AppsDynamiteStorageOnClick
+    startIcon: AppsDynamiteStorageIcon
+    switchControl: AppsDynamiteStorageDecoratedTextSwitchControl
+    text: str
+    topLabel: str
+    wrapText: bool
+
+@typing.type_check_only
+class AppsDynamiteStorageDecoratedTextSwitchControl(
+    typing_extensions.TypedDict, total=False
+):
+    controlType: typing_extensions.Literal["SWITCH", "CHECKBOX", "CHECK_BOX"]
+    name: str
+    onChangeAction: AppsDynamiteStorageAction
+    selected: bool
+    value: str
+
+@typing.type_check_only
+class AppsDynamiteStorageDivider(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AppsDynamiteStorageGrid(typing_extensions.TypedDict, total=False):
+    borderStyle: AppsDynamiteStorageBorderStyle
+    columnCount: int
+    items: _list[AppsDynamiteStorageGridGridItem]
+    onClick: AppsDynamiteStorageOnClick
+    title: str
+
+@typing.type_check_only
+class AppsDynamiteStorageGridGridItem(typing_extensions.TypedDict, total=False):
+    id: str
+    image: AppsDynamiteStorageImageComponent
+    layout: typing_extensions.Literal[
+        "GRID_ITEM_LAYOUT_UNSPECIFIED", "TEXT_BELOW", "TEXT_ABOVE"
+    ]
+    subtitle: str
+    textAlignment: typing_extensions.Literal[
+        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
+    ]
+    title: str
+
+@typing.type_check_only
+class AppsDynamiteStorageIcon(typing_extensions.TypedDict, total=False):
+    altText: str
+    iconUrl: str
+    imageType: typing_extensions.Literal["SQUARE", "CIRCLE"]
+    knownIcon: str
+
+@typing.type_check_only
+class AppsDynamiteStorageImage(typing_extensions.TypedDict, total=False):
+    altText: str
+    imageUrl: str
+    onClick: AppsDynamiteStorageOnClick
+
+@typing.type_check_only
+class AppsDynamiteStorageImageComponent(typing_extensions.TypedDict, total=False):
+    altText: str
+    borderStyle: AppsDynamiteStorageBorderStyle
+    cropStyle: AppsDynamiteStorageImageCropStyle
+    imageUri: str
+
+@typing.type_check_only
+class AppsDynamiteStorageImageCropStyle(typing_extensions.TypedDict, total=False):
+    aspectRatio: float
+    type: typing_extensions.Literal[
+        "IMAGE_CROP_TYPE_UNSPECIFIED",
+        "SQUARE",
+        "CIRCLE",
+        "RECTANGLE_CUSTOM",
+        "RECTANGLE_4_3",
+    ]
+
+@typing.type_check_only
+class AppsDynamiteStorageOnClick(typing_extensions.TypedDict, total=False):
+    action: AppsDynamiteStorageAction
+    hostAppAction: HostAppActionMarkup
+    openDynamicLinkAction: AppsDynamiteStorageAction
+    openLink: AppsDynamiteStorageOpenLink
+
+@typing.type_check_only
+class AppsDynamiteStorageOpenLink(typing_extensions.TypedDict, total=False):
+    appUri: AppsDynamiteStorageOpenLinkAppUri
+    onClose: typing_extensions.Literal["NOTHING", "RELOAD"]
+    openAs: typing_extensions.Literal["FULL_SIZE", "OVERLAY"]
+    url: str
+
+@typing.type_check_only
+class AppsDynamiteStorageOpenLinkAppUri(typing_extensions.TypedDict, total=False):
+    androidIntent: AppsDynamiteStorageOpenLinkAppUriIntent
+    companionUri: str
+    iosUri: str
+
+@typing.type_check_only
+class AppsDynamiteStorageOpenLinkAppUriIntent(typing_extensions.TypedDict, total=False):
+    extraData: _list[AppsDynamiteStorageOpenLinkAppUriIntentExtraData]
+    intentAction: str
+
+@typing.type_check_only
+class AppsDynamiteStorageOpenLinkAppUriIntentExtraData(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    value: str
+
+@typing.type_check_only
+class AppsDynamiteStorageSelectionInput(typing_extensions.TypedDict, total=False):
+    items: _list[AppsDynamiteStorageSelectionInputSelectionItem]
+    label: str
+    name: str
+    onChangeAction: AppsDynamiteStorageAction
+    type: typing_extensions.Literal[
+        "CHECK_BOX", "RADIO_BUTTON", "SWITCH", "DROPDOWN", "MULTI_SELECT"
+    ]
+
+@typing.type_check_only
+class AppsDynamiteStorageSelectionInputSelectionItem(
+    typing_extensions.TypedDict, total=False
+):
+    selected: bool
+    text: str
+    value: str
+
+@typing.type_check_only
+class AppsDynamiteStorageSuggestions(typing_extensions.TypedDict, total=False):
+    items: _list[AppsDynamiteStorageSuggestionsSuggestionItem]
+
+@typing.type_check_only
+class AppsDynamiteStorageSuggestionsSuggestionItem(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
+class AppsDynamiteStorageTextInput(typing_extensions.TypedDict, total=False):
+    autoCompleteAction: AppsDynamiteStorageAction
+    hintText: str
+    initialSuggestions: AppsDynamiteStorageSuggestions
+    label: str
+    name: str
+    onChangeAction: AppsDynamiteStorageAction
+    type: typing_extensions.Literal["SINGLE_LINE", "MULTIPLE_LINE"]
+    value: str
+
+@typing.type_check_only
+class AppsDynamiteStorageTextParagraph(typing_extensions.TypedDict, total=False):
+    text: str
+
+@typing.type_check_only
+class AppsDynamiteStorageWidget(typing_extensions.TypedDict, total=False):
+    buttonList: AppsDynamiteStorageButtonList
+    columns: AppsDynamiteStorageColumns
+    dateTimePicker: AppsDynamiteStorageDateTimePicker
+    decoratedText: AppsDynamiteStorageDecoratedText
+    divider: AppsDynamiteStorageDivider
+    grid: AppsDynamiteStorageGrid
+    horizontalAlignment: typing_extensions.Literal[
+        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
+    ]
+    image: AppsDynamiteStorageImage
+    selectionInput: AppsDynamiteStorageSelectionInput
+    textInput: AppsDynamiteStorageTextInput
+    textParagraph: AppsDynamiteStorageTextParagraph
 
 @typing.type_check_only
 class AppsDynamiteV1ApiCompatV1Action(typing_extensions.TypedDict, total=False):
@@ -1054,7 +1066,7 @@ class Attachment(typing_extensions.TypedDict, total=False):
     addOnData: GoogleChatV1ContextualAddOnMarkup
     appId: UserId
     attachmentId: str
-    cardAddOnData: AppsDynamiteSharedCard
+    cardAddOnData: AppsDynamiteStorageCard
     deprecatedAddOnData: ContextualAddOnMarkup
     slackData: AppsDynamiteV1ApiCompatV1Attachment
     slackDataImageUrlHeight: int
@@ -1200,6 +1212,7 @@ class CallInfo(typing_extensions.TypedDict, total=False):
     abuseReportingConfig: AbuseReportingConfig
     artifactOwner: UserDisplayInfo
     attachedDocuments: _list[DocumentInfo]
+    availableAccessTypes: _list[str]
     availableReactions: _list[ReactionInfo]
     broadcastSessionInfo: BroadcastSessionInfo
     calendarEventId: str
@@ -1395,6 +1408,7 @@ class CoActivity(typing_extensions.TypedDict, total=False):
         "CO_ACTIVITY_APP_GQUEUES",
         "CO_ACTIVITY_APP_YOU_TUBE_MUSIC",
         "CO_ACTIVITY_APP_SAMSUNG_NOTES",
+        "CO_ACTIVITY_APP_HAPPY_AARDVARK",
     ]
 
 @typing.type_check_only
@@ -1620,6 +1634,7 @@ class DlpScanSummary(typing_extensions.TypedDict, total=False):
         "SCAN_SKIPPED_NO_MESSAGE",
         "SCAN_SKIPPED_USER_ACKNOWLEDGED_WARNING",
         "SCAN_SKIPPED_MESSAGE_FROM_UNSUPPORTED_ORIGIN",
+        "SCAN_SKIPPED_MESSAGE_SENT_DURING_SPACE_MIGRATION",
         "SCAN_RULE_EVALUATION_SKIPPED_NO_RULES_FOUND",
         "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_ACTION_PARAMS",
         "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
@@ -1739,11 +1754,22 @@ class DriveTimeSpanRestrict(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DynamiteMessagesScoringInfo(typing_extensions.TypedDict, total=False):
+    commonContactCount: str
+    commonCountToContactListCountRatio: float
+    commonCountToMembershipCountRatio: float
+    creatorGaiaId: str
+    creatorInSearcherContactList: bool
+    dasContactCount: str
     finalScore: float
     freshnessScore: float
     joinedSpaceAffinityScore: float
+    lastReadTimestampAgeInDays: float
     messageAgeInDays: float
+    messageSenderAffinityScore: float
+    spaceId: str
+    spaceMembershipCount: str
     topicalityScore: float
+    unjoinedSpaceAffinityScore: float
 
 @typing.type_check_only
 class DynamiteSpacesScoringInfo(typing_extensions.TypedDict, total=False):
@@ -2801,6 +2827,10 @@ class Interaction(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["UNSPECIFIED", "VIEW", "EDIT"]
 
 @typing.type_check_only
+class InteractionData(typing_extensions.TypedDict, total=False):
+    url: SafeUrlProto
+
+@typing.type_check_only
 class InviteAcceptedEvent(typing_extensions.TypedDict, total=False):
     participantId: _list[StoredParticipantId]
 
@@ -3190,6 +3220,7 @@ class Message(typing_extensions.TypedDict, total=False):
         "SCAN_SKIPPED_NO_MESSAGE",
         "SCAN_SKIPPED_USER_ACKNOWLEDGED_WARNING",
         "SCAN_SKIPPED_MESSAGE_FROM_UNSUPPORTED_ORIGIN",
+        "SCAN_SKIPPED_MESSAGE_SENT_DURING_SPACE_MIGRATION",
         "SCAN_RULE_EVALUATION_SKIPPED_NO_RULES_FOUND",
         "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_ACTION_PARAMS",
         "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
@@ -3270,6 +3301,7 @@ class MessageAttributes(typing_extensions.TypedDict, total=False):
 class MessageDeleted(typing_extensions.TypedDict, total=False):
     imapSyncMappings: _list[ImapSyncDelete]
     messageKeys: _list[MultiKey]
+    wonderCardMappings: _list[WonderCardDelete]
 
 @typing.type_check_only
 class MessageId(typing_extensions.TypedDict, total=False):
@@ -3278,6 +3310,7 @@ class MessageId(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MessageInfo(typing_extensions.TypedDict, total=False):
+    authorUserType: typing_extensions.Literal["HUMAN", "BOT"]
     message: Message
     searcherMembershipState: typing_extensions.Literal[
         "MEMBER_UNKNOWN",
@@ -4751,6 +4784,9 @@ class UserMentionMetadata(typing_extensions.TypedDict, total=False):
         "MENTION_ALL",
         "FAILED_TO_ADD",
     ]
+    userMentionError: typing_extensions.Literal[
+        "USER_MENTION_ERROR_UNSPECIFIED", "MEMBERSHIP_LIMIT_EXCEEDED"
+    ]
 
 @typing.type_check_only
 class VPCSettings(typing_extensions.TypedDict, total=False):
@@ -4827,6 +4863,15 @@ class WidgetMarkup(typing_extensions.TypedDict, total=False):
     textParagraph: TextParagraph
 
 @typing.type_check_only
+class WonderCardDelete(typing_extensions.TypedDict, total=False):
+    messageMappings: dict[str, typing.Any]
+    msgId: str
+
+@typing.type_check_only
+class WonderMessageMapping(typing_extensions.TypedDict, total=False):
+    wonderCardMessageId: _list[str]
+
+@typing.type_check_only
 class WrappedResourceKey(typing_extensions.TypedDict, total=False):
     resourceKey: str
 
@@ -4843,6 +4888,7 @@ class YouTubeBroadcastStats(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class YouTubeLiveBroadcastEvent(typing_extensions.TypedDict, total=False):
+    brandAccountGaiaId: str
     broadcastId: str
     channelId: str
     viewUrl: str

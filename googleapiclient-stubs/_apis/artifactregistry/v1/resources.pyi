@@ -331,6 +331,9 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getVpcscConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> VPCSCConfigHttpRequest: ...
             def list(
                 self,
                 *,
@@ -345,6 +348,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateVpcscConfig(
+                self,
+                *,
+                name: str,
+                body: VPCSCConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> VPCSCConfigHttpRequest: ...
             def operations(self) -> OperationsResource: ...
             def repositories(self) -> RepositoriesResource: ...
 
@@ -590,6 +601,14 @@ class UploadYumArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UploadYumArtifactMediaResponse: ...
+
+@typing.type_check_only
+class VPCSCConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> VPCSCConfig: ...
 
 @typing.type_check_only
 class VersionHttpRequest(googleapiclient.http.HttpRequest):

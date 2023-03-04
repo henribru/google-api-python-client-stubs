@@ -56,6 +56,17 @@ class ActiveViewVideoViewabilityMetricConfig(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
+class AdUrl(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "AD_URL_TYPE_UNSPECIFIED",
+        "AD_URL_TYPE_BEACON_IMPRESSION",
+        "AD_URL_TYPE_BEACON_EXPANDABLE_DCM_IMPRESSION",
+        "AD_URL_TYPE_BEACON_CLICK",
+        "AD_URL_TYPE_BEACON_SKIP",
+    ]
+    url: str
+
+@typing.type_check_only
 class Adloox(typing_extensions.TypedDict, total=False):
     excludedAdlooxCategories: _list[str]
 
@@ -285,6 +296,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     proximityLocationListDetails: ProximityLocationListAssignedTargetingOptionDetails
     regionalLocationListDetails: RegionalLocationListAssignedTargetingOptionDetails
     sensitiveCategoryExclusionDetails: SensitiveCategoryAssignedTargetingOptionDetails
+    sessionPositionDetails: SessionPositionAssignedTargetingOptionDetails
     subExchangeDetails: SubExchangeAssignedTargetingOptionDetails
     targetingType: typing_extensions.Literal[
         "TARGETING_TYPE_UNSPECIFIED",
@@ -333,12 +345,17 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_OMID",
         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
         "TARGETING_TYPE_CONTENT_GENRE",
+        "TARGETING_TYPE_YOUTUBE_VIDEO",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+        "TARGETING_TYPE_SESSION_POSITION",
     ]
     thirdPartyVerifierDetails: ThirdPartyVerifierAssignedTargetingOptionDetails
     urlDetails: UrlAssignedTargetingOptionDetails
     userRewardedContentDetails: UserRewardedContentAssignedTargetingOptionDetails
     videoPlayerSizeDetails: VideoPlayerSizeAssignedTargetingOptionDetails
     viewabilityDetails: ViewabilityAssignedTargetingOptionDetails
+    youtubeChannelDetails: YoutubeChannelAssignedTargetingOptionDetails
+    youtubeVideoDetails: YoutubeVideoAssignedTargetingOptionDetails
 
 @typing.type_check_only
 class AssignedUserRole(typing_extensions.TypedDict, total=False):
@@ -370,6 +387,13 @@ class AudienceGroupAssignedTargetingOptionDetails(
     includedCustomListGroup: CustomListGroup
     includedFirstAndThirdPartyAudienceGroups: _list[FirstAndThirdPartyAudienceGroup]
     includedGoogleAudienceGroup: GoogleAudienceGroup
+
+@typing.type_check_only
+class AudioAd(typing_extensions.TypedDict, total=False):
+    displayUrl: str
+    finalUrl: str
+    trackingUrl: str
+    video: YoutubeVideoDetails
 
 @typing.type_check_only
 class AudioContentTypeAssignedTargetingOptionDetails(
@@ -546,6 +570,13 @@ class BulkEditSitesResponse(typing_extensions.TypedDict, total=False):
     sites: _list[Site]
 
 @typing.type_check_only
+class BulkListAdGroupAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    youtubeAdGroupAssignedTargetingOptions: _list[YoutubeAdGroupAssignedTargetingOption]
+
+@typing.type_check_only
 class BulkListAdvertiserAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -585,6 +616,10 @@ class BulkUpdateLineItemsResponse(typing_extensions.TypedDict, total=False):
     failedLineItemIds: _list[str]
     skippedLineItemIds: _list[str]
     updatedLineItemIds: _list[str]
+
+@typing.type_check_only
+class BumperAd(typing_extensions.TypedDict, total=False):
+    commonInStreamAttribute: CommonInStreamAttribute
 
 @typing.type_check_only
 class BusinessChainAssignedTargetingOptionDetails(
@@ -762,6 +797,16 @@ class CombinedAudienceGroup(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CombinedAudienceTargetingSetting(typing_extensions.TypedDict, total=False):
     combinedAudienceId: str
+
+@typing.type_check_only
+class CommonInStreamAttribute(typing_extensions.TypedDict, total=False):
+    actionButtonLabel: str
+    actionHeadline: str
+    companionBanner: ImageAsset
+    displayUrl: str
+    finalUrl: str
+    trackingUrl: str
+    video: YoutubeVideoDetails
 
 @typing.type_check_only
 class ContactInfo(typing_extensions.TypedDict, total=False):
@@ -956,6 +1001,9 @@ class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_OMID",
         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
         "TARGETING_TYPE_CONTENT_GENRE",
+        "TARGETING_TYPE_YOUTUBE_VIDEO",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+        "TARGETING_TYPE_SESSION_POSITION",
     ]
 
 @typing.type_check_only
@@ -1153,6 +1201,18 @@ class CustomBiddingScriptRef(typing_extensions.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
+class CustomLabel(typing_extensions.TypedDict, total=False):
+    key: typing_extensions.Literal[
+        "CUSTOM_LABEL_KEY_UNSPECIFIED",
+        "CUSTOM_LABEL_KEY_0",
+        "CUSTOM_LABEL_KEY_1",
+        "CUSTOM_LABEL_KEY_2",
+        "CUSTOM_LABEL_KEY_3",
+        "CUSTOM_LABEL_KEY_4",
+    ]
+    value: str
+
+@typing.type_check_only
 class CustomList(typing_extensions.TypedDict, total=False):
     customListId: str
     displayName: str
@@ -1252,6 +1312,9 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_OMID",
         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
         "TARGETING_TYPE_CONTENT_GENRE",
+        "TARGETING_TYPE_YOUTUBE_VIDEO",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+        "TARGETING_TYPE_SESSION_POSITION",
     ]
 
 @typing.type_check_only
@@ -1321,6 +1384,10 @@ class DigitalContentLabelTargetingOptionDetails(
 class Dimensions(typing_extensions.TypedDict, total=False):
     heightPixels: int
     widthPixels: int
+
+@typing.type_check_only
+class DisplayVideoSourceAd(typing_extensions.TypedDict, total=False):
+    creativeId: str
 
 @typing.type_check_only
 class DoubleVerify(typing_extensions.TypedDict, total=False):
@@ -1561,6 +1628,10 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_TAPJOY",
         "EXCHANGE_VISTAR",
         "EXCHANGE_DAX",
+        "EXCHANGE_JCD",
+        "EXCHANGE_PLACE_EXCHANGE",
+        "EXCHANGE_APPLOVIN",
+        "EXCHANGE_CONNATIX",
     ]
 
 @typing.type_check_only
@@ -1639,6 +1710,10 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TAPJOY",
         "EXCHANGE_VISTAR",
         "EXCHANGE_DAX",
+        "EXCHANGE_JCD",
+        "EXCHANGE_PLACE_EXCHANGE",
+        "EXCHANGE_APPLOVIN",
+        "EXCHANGE_CONNATIX",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -1716,6 +1791,10 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TAPJOY",
         "EXCHANGE_VISTAR",
         "EXCHANGE_DAX",
+        "EXCHANGE_JCD",
+        "EXCHANGE_PLACE_EXCHANGE",
+        "EXCHANGE_APPLOVIN",
+        "EXCHANGE_CONNATIX",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -1796,6 +1875,10 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TAPJOY",
         "EXCHANGE_VISTAR",
         "EXCHANGE_DAX",
+        "EXCHANGE_JCD",
+        "EXCHANGE_PLACE_EXCHANGE",
+        "EXCHANGE_APPLOVIN",
+        "EXCHANGE_CONNATIX",
     ]
 
 @typing.type_check_only
@@ -1964,6 +2047,7 @@ class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_TARGET_FREQUENCY",
     ]
     mobileApp: MobileApp
 
@@ -2145,6 +2229,10 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TAPJOY",
         "EXCHANGE_VISTAR",
         "EXCHANGE_DAX",
+        "EXCHANGE_JCD",
+        "EXCHANGE_PLACE_EXCHANGE",
+        "EXCHANGE_APPLOVIN",
+        "EXCHANGE_CONNATIX",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -2208,6 +2296,17 @@ class IdFilter(typing_extensions.TypedDict, total=False):
     insertionOrderIds: _list[str]
     lineItemIds: _list[str]
     mediaProductIds: _list[str]
+
+@typing.type_check_only
+class ImageAsset(typing_extensions.TypedDict, total=False):
+    fileSize: str
+    fullSize: Dimensions
+    mimeType: str
+
+@typing.type_check_only
+class InStreamAd(typing_extensions.TypedDict, total=False):
+    commonInStreamAttribute: CommonInStreamAttribute
+    customParameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class InsertionOrder(typing_extensions.TypedDict, total=False):
@@ -2420,6 +2519,10 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TAPJOY",
         "EXCHANGE_VISTAR",
         "EXCHANGE_DAX",
+        "EXCHANGE_JCD",
+        "EXCHANGE_PLACE_EXCHANGE",
+        "EXCHANGE_APPLOVIN",
+        "EXCHANGE_CONNATIX",
     ]
     guaranteedOrderId: str
     inventorySourceId: str
@@ -2604,6 +2707,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_NON_SKIPPABLE_OVER_THE_TOP",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_TARGET_FREQUENCY",
     ]
     mobileApp: MobileApp
     name: str
@@ -2816,6 +2920,23 @@ class ListUsersResponse(typing_extensions.TypedDict, total=False):
     users: _list[User]
 
 @typing.type_check_only
+class ListYoutubeAdGroupAdsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    youtubeAdGroupAds: _list[YoutubeAdGroupAd]
+
+@typing.type_check_only
+class ListYoutubeAdGroupAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assignedTargetingOptions: _list[AssignedTargetingOption]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListYoutubeAdGroupsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    youtubeAdGroups: _list[YoutubeAdGroup]
+
+@typing.type_check_only
 class LocationList(typing_extensions.TypedDict, total=False):
     advertiserId: str
     displayName: str
@@ -2845,6 +2966,24 @@ class ManualTrigger(typing_extensions.TypedDict, total=False):
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "INACTIVE", "ACTIVE"]
     triggerId: str
+
+@typing.type_check_only
+class MastheadAd(typing_extensions.TypedDict, total=False):
+    autoplayVideoDuration: str
+    autoplayVideoStartMillisecond: str
+    callToActionButtonLabel: str
+    callToActionFinalUrl: str
+    callToActionTrackingUrl: str
+    companionYoutubeVideos: _list[YoutubeVideoDetails]
+    description: str
+    headline: str
+    showChannelArt: bool
+    video: YoutubeVideoDetails
+    videoAspectRatio: typing_extensions.Literal[
+        "VIDEO_ASPECT_RATIO_UNSPECIFIED",
+        "VIDEO_ASPECT_RATIO_WIDESCREEN",
+        "VIDEO_ASPECT_RATIO_FIXED_16_9",
+    ]
 
 @typing.type_check_only
 class MaximizeSpendBidStrategy(typing_extensions.TypedDict, total=False):
@@ -2928,6 +3067,11 @@ class NegativeKeywordListAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
     negativeKeywordListId: str
+
+@typing.type_check_only
+class NonSkippableAd(typing_extensions.TypedDict, total=False):
+    commonInStreamAttribute: CommonInStreamAttribute
+    customParameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class ObaIcon(typing_extensions.TypedDict, total=False):
@@ -3216,6 +3360,22 @@ class PrismaCpeCode(typing_extensions.TypedDict, total=False):
     prismaProductCode: str
 
 @typing.type_check_only
+class ProductFeedData(typing_extensions.TypedDict, total=False):
+    isFeedDisabled: bool
+    productMatchDimensions: _list[ProductMatchDimension]
+    productMatchType: typing_extensions.Literal[
+        "PRODUCT_MATCH_TYPE_UNSPECIFIED",
+        "PRODUCT_MATCH_TYPE_ALL_PRODUCTS",
+        "PRODUCT_MATCH_TYPE_SPECIFIC_PRODUCTS",
+        "PRODUCT_MATCH_TYPE_CUSTOM_LABEL",
+    ]
+
+@typing.type_check_only
+class ProductMatchDimension(typing_extensions.TypedDict, total=False):
+    customLabel: CustomLabel
+    productOfferId: str
+
+@typing.type_check_only
 class ProximityLocationListAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -3414,6 +3574,14 @@ class SensitiveCategoryTargetingOptionDetails(typing_extensions.TypedDict, total
     ]
 
 @typing.type_check_only
+class SessionPositionAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    sessionPosition: typing_extensions.Literal[
+        "SESSION_POSITION_UNSPECIFIED", "SESSION_POSITION_FIRST_IMPRESSION"
+    ]
+
+@typing.type_check_only
 class Site(typing_extensions.TypedDict, total=False):
     name: str
     urlOrAppId: str
@@ -3433,6 +3601,20 @@ class SubExchangeAssignedTargetingOptionDetails(
 @typing.type_check_only
 class SubExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     displayName: str
+
+@typing.type_check_only
+class TargetFrequency(typing_extensions.TypedDict, total=False):
+    targetCount: str
+    timeUnit: typing_extensions.Literal[
+        "TIME_UNIT_UNSPECIFIED",
+        "TIME_UNIT_LIFETIME",
+        "TIME_UNIT_MONTHS",
+        "TIME_UNIT_WEEKS",
+        "TIME_UNIT_DAYS",
+        "TIME_UNIT_HOURS",
+        "TIME_UNIT_MINUTES",
+    ]
+    timeUnitCount: int
 
 @typing.type_check_only
 class TargetingExpansionConfig(typing_extensions.TypedDict, total=False):
@@ -3528,6 +3710,9 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_OMID",
         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
         "TARGETING_TYPE_CONTENT_GENRE",
+        "TARGETING_TYPE_YOUTUBE_VIDEO",
+        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+        "TARGETING_TYPE_SESSION_POSITION",
     ]
     userRewardedContentDetails: UserRewardedContentTargetingOptionDetails
     videoPlayerSizeDetails: VideoPlayerSizeTargetingOptionDetails
@@ -3659,6 +3844,57 @@ class UserRewardedContentTargetingOptionDetails(
     ]
 
 @typing.type_check_only
+class VideoAdSequenceSettings(typing_extensions.TypedDict, total=False):
+    minimumDuration: typing_extensions.Literal[
+        "VIDEO_AD_SEQUENCE_MINIMUM_DURATION_UNSPECIFIED",
+        "VIDEO_AD_SEQUENCE_MINIMUM_DURATION_WEEK",
+        "VIDEO_AD_SEQUENCE_MINIMUM_DURATION_MONTH",
+    ]
+    steps: _list[VideoAdSequenceStep]
+
+@typing.type_check_only
+class VideoAdSequenceStep(typing_extensions.TypedDict, total=False):
+    adGroupId: str
+    interactionType: typing_extensions.Literal[
+        "INTERACTION_TYPE_UNSPECIFIED",
+        "INTERACTION_TYPE_PAID_VIEW",
+        "INTERACTION_TYPE_SKIP",
+        "INTERACTION_TYPE_IMPRESSION",
+        "INTERACTION_TYPE_ENGAGED_IMPRESSION",
+    ]
+    previousStepId: str
+    stepId: str
+
+@typing.type_check_only
+class VideoDiscoveryAd(typing_extensions.TypedDict, total=False):
+    description1: str
+    description2: str
+    headline: str
+    thumbnail: typing_extensions.Literal[
+        "THUMBNAIL_UNSPECIFIED",
+        "THUMBNAIL_DEFAULT",
+        "THUMBNAIL_1",
+        "THUMBNAIL_2",
+        "THUMBNAIL_3",
+    ]
+    video: YoutubeVideoDetails
+
+@typing.type_check_only
+class VideoPerformanceAd(typing_extensions.TypedDict, total=False):
+    actionButtonLabels: _list[str]
+    companionBanners: _list[ImageAsset]
+    customParameters: dict[str, typing.Any]
+    descriptions: _list[str]
+    displayUrlBreadcrumb1: str
+    displayUrlBreadcrumb2: str
+    domain: str
+    finalUrl: str
+    headlines: _list[str]
+    longHeadlines: _list[str]
+    trackingUrl: str
+    videos: _list[YoutubeVideoDetails]
+
+@typing.type_check_only
 class VideoPlayerSizeAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -3713,7 +3949,74 @@ class ViewabilityTargetingOptionDetails(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
+class YoutubeAdGroup(typing_extensions.TypedDict, total=False):
+    adGroupFormat: typing_extensions.Literal[
+        "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_UNSPECIFIED",
+        "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM",
+        "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_VIDEO_DISCOVERY",
+        "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_BUMPER",
+        "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_NON_SKIPPABLE_IN_STREAM",
+        "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_AUDIO",
+        "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_ACTION",
+        "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_REACH",
+        "YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_MASTHEAD",
+    ]
+    adGroupId: str
+    advertiserId: str
+    biddingStrategy: YoutubeAndPartnersBiddingStrategy
+    displayName: str
+    entityStatus: typing_extensions.Literal[
+        "ENTITY_STATUS_UNSPECIFIED",
+        "ENTITY_STATUS_ACTIVE",
+        "ENTITY_STATUS_ARCHIVED",
+        "ENTITY_STATUS_DRAFT",
+        "ENTITY_STATUS_PAUSED",
+        "ENTITY_STATUS_SCHEDULED_FOR_DELETION",
+    ]
+    lineItemId: str
+    name: str
+    productFeedData: ProductFeedData
+    targetingExpansion: TargetingExpansionConfig
+    youtubeAdIds: _list[str]
+
+@typing.type_check_only
+class YoutubeAdGroupAd(typing_extensions.TypedDict, total=False):
+    adGroupAdId: str
+    adGroupId: str
+    adUrls: _list[AdUrl]
+    advertiserId: str
+    audioAd: AudioAd
+    bumperAd: BumperAd
+    displayName: str
+    displayVideoSourceAd: DisplayVideoSourceAd
+    entityStatus: typing_extensions.Literal[
+        "ENTITY_STATUS_UNSPECIFIED",
+        "ENTITY_STATUS_ACTIVE",
+        "ENTITY_STATUS_ARCHIVED",
+        "ENTITY_STATUS_DRAFT",
+        "ENTITY_STATUS_PAUSED",
+        "ENTITY_STATUS_SCHEDULED_FOR_DELETION",
+    ]
+    inStreamAd: InStreamAd
+    mastheadAd: MastheadAd
+    name: str
+    nonSkippableAd: NonSkippableAd
+    videoDiscoverAd: VideoDiscoveryAd
+    videoPerformanceAd: VideoPerformanceAd
+
+@typing.type_check_only
+class YoutubeAdGroupAssignedTargetingOption(typing_extensions.TypedDict, total=False):
+    assignedTargetingOption: AssignedTargetingOption
+    youtubeAdGroupId: str
+
+@typing.type_check_only
 class YoutubeAndPartnersBiddingStrategy(typing_extensions.TypedDict, total=False):
+    adGroupEffectiveTargetCpaSource: typing_extensions.Literal[
+        "BIDDING_SOURCE_UNSPECIFIED",
+        "BIDDING_SOURCE_LINE_ITEM",
+        "BIDDING_SOURCE_AD_GROUP",
+    ]
+    adGroupEffectiveTargetCpaValue: str
     type: typing_extensions.Literal[
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_UNSPECIFIED",
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPV",
@@ -3741,7 +4044,12 @@ class YoutubeAndPartnersSettings(typing_extensions.TypedDict, total=False):
         "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_LIMITED",
     ]
     inventorySourceSettings: YoutubeAndPartnersInventorySourceConfig
+    leadFormId: str
+    linkedMerchantId: str
+    relatedVideoIds: _list[str]
+    targetFrequency: TargetFrequency
     thirdPartyMeasurementSettings: YoutubeAndPartnersThirdPartyMeasurementSettings
+    videoAdSequenceSettings: VideoAdSequenceSettings
     viewFrequencyCap: FrequencyCap
 
 @typing.type_check_only
@@ -3752,3 +4060,26 @@ class YoutubeAndPartnersThirdPartyMeasurementSettings(
     brandSafetyVendorConfigs: _list[ThirdPartyVendorConfig]
     reachVendorConfigs: _list[ThirdPartyVendorConfig]
     viewabilityVendorConfigs: _list[ThirdPartyVendorConfig]
+
+@typing.type_check_only
+class YoutubeChannelAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    channelId: str
+    negative: bool
+
+@typing.type_check_only
+class YoutubeVideoAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    negative: bool
+    videoId: str
+
+@typing.type_check_only
+class YoutubeVideoDetails(typing_extensions.TypedDict, total=False):
+    id: str
+    unavailableReason: typing_extensions.Literal[
+        "VIDEO_UNAVAILABLE_REASON_UNSPECIFIED",
+        "VIDEO_UNAVAILABLE_REASON_PRIVATE",
+        "VIDEO_UNAVAILABLE_REASON_DELETED",
+    ]

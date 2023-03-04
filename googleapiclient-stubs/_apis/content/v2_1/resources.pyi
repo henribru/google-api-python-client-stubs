@@ -337,6 +337,49 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         ) -> ListCollectionStatusesResponseHttpRequest | None: ...
 
     @typing.type_check_only
+    class ConversionsourcesResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, merchantId: str, body: ConversionSource = ..., **kwargs: typing.Any
+        ) -> ConversionSourceHttpRequest: ...
+        def delete(
+            self, *, merchantId: str, conversionSourceId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, merchantId: str, conversionSourceId: str, **kwargs: typing.Any
+        ) -> ConversionSourceHttpRequest: ...
+        def list(
+            self,
+            *,
+            merchantId: str,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            showDeleted: bool = ...,
+            **kwargs: typing.Any
+        ) -> ListConversionSourcesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListConversionSourcesResponseHttpRequest,
+            previous_response: ListConversionSourcesResponse,
+        ) -> ListConversionSourcesResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            merchantId: str,
+            conversionSourceId: str,
+            body: ConversionSource = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> ConversionSourceHttpRequest: ...
+        def undelete(
+            self,
+            *,
+            merchantId: str,
+            conversionSourceId: str,
+            body: UndeleteConversionSourceRequest = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+
+    @typing.type_check_only
     class CssesResource(googleapiclient.discovery.Resource):
         def get(
             self, *, cssGroupId: str, cssDomainId: str, **kwargs: typing.Any
@@ -1391,6 +1434,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def buyongoogleprograms(self) -> BuyongoogleprogramsResource: ...
     def collections(self) -> CollectionsResource: ...
     def collectionstatuses(self) -> CollectionstatusesResource: ...
+    def conversionsources(self) -> ConversionsourcesResource: ...
     def csses(self) -> CssesResource: ...
     def datafeeds(self) -> DatafeedsResource: ...
     def datafeedstatuses(self) -> DatafeedstatusesResource: ...
@@ -1590,6 +1634,14 @@ class CollectionStatusHttpRequest(googleapiclient.http.HttpRequest):
     ) -> CollectionStatus: ...
 
 @typing.type_check_only
+class ConversionSourceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ConversionSource: ...
+
+@typing.type_check_only
 class CssHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1774,6 +1826,14 @@ class ListCollectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListCollectionsResponse: ...
+
+@typing.type_check_only
+class ListConversionSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListConversionSourcesResponse: ...
 
 @typing.type_check_only
 class ListCssesResponseHttpRequest(googleapiclient.http.HttpRequest):

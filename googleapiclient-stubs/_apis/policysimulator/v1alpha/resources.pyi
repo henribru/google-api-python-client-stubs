@@ -18,6 +18,18 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class OrgPolicyViolationsPreviewsResource(
+                googleapiclient.discovery.Resource
+            ):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
             class ReplaysResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
@@ -41,6 +53,9 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
 
                 def operations(self) -> OperationsResource: ...
 
+            def orgPolicyViolationsPreviews(
+                self,
+            ) -> OrgPolicyViolationsPreviewsResource: ...
             def replays(self) -> ReplaysResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -70,37 +85,17 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
-            class ReplaysResource(googleapiclient.discovery.Resource):
+            class OrgPolicyViolationsPreviewsResource(
+                googleapiclient.discovery.Resource
+            ):
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        name: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
-                        previous_response: GoogleLongrunningListOperationsResponse,
-                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
                 def operations(self) -> OperationsResource: ...
 
-            def replays(self) -> ReplaysResource: ...
-
-        def locations(self) -> LocationsResource: ...
-
-    @typing.type_check_only
-    class ProjectsResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ReplaysResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -125,6 +120,56 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
 
                 def operations(self) -> OperationsResource: ...
 
+            def orgPolicyViolationsPreviews(
+                self,
+            ) -> OrgPolicyViolationsPreviewsResource: ...
+            def replays(self) -> ReplaysResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class OrgPolicyViolationsPreviewsResource(
+                googleapiclient.discovery.Resource
+            ):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
+            class ReplaysResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                        previous_response: GoogleLongrunningListOperationsResponse,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
+                def operations(self) -> OperationsResource: ...
+
+            def orgPolicyViolationsPreviews(
+                self,
+            ) -> OrgPolicyViolationsPreviewsResource: ...
             def replays(self) -> ReplaysResource: ...
 
         def locations(self) -> LocationsResource: ...

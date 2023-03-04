@@ -352,6 +352,11 @@ class RegisterInstanceRequest(typing_extensions.TypedDict, total=False):
     instanceId: str
 
 @typing.type_check_only
+class ReportInstanceEventRequest(typing_extensions.TypedDict, total=False):
+    event: Event
+    vmId: str
+
+@typing.type_check_only
 class ReportInstanceInfoRequest(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     vmId: str
@@ -391,6 +396,7 @@ class Runtime(typing_extensions.TypedDict, total=False):
         "AGENT_NOT_INSTALLED",
         "AGENT_NOT_RUNNING",
     ]
+    labels: dict[str, typing.Any]
     metrics: RuntimeMetrics
     name: str
     softwareConfig: RuntimeSoftwareConfig
@@ -465,6 +471,7 @@ class RuntimeSoftwareConfig(typing_extensions.TypedDict, total=False):
         "DOWNLOAD_AND_RUN_EVERY_START",
     ]
     upgradeable: bool
+    version: str
 
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):

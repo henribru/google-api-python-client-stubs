@@ -55,6 +55,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     alternativeLocationId: str
     authEnabled: bool
     authorizedNetwork: str
+    availableMaintenanceVersions: _list[str]
     connectMode: typing_extensions.Literal[
         "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
     ]
@@ -67,6 +68,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     locationId: str
     maintenancePolicy: MaintenancePolicy
     maintenanceSchedule: MaintenanceSchedule
+    maintenanceVersion: str
     memorySizeGb: int
     name: str
     nodes: _list[NodeInfo]

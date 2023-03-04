@@ -27,6 +27,12 @@ class GceInstanceFilter(typing_extensions.TypedDict, total=False):
     serviceAccounts: _list[str]
 
 @typing.type_check_only
+class Insight(typing_extensions.TypedDict, total=False):
+    sapDiscovery: SapDiscovery
+    sapValidation: SapValidation
+    sentTime: str
+
+@typing.type_check_only
 class ListEvaluationsResponse(typing_extensions.TypedDict, total=False):
     evaluations: _list[Evaluation]
     nextPageToken: str
@@ -83,7 +89,64 @@ class ResourceStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class SapDiscovery(typing_extensions.TypedDict, total=False):
+    applicationLayer: SapDiscoveryComponent
+    databaseLayer: SapDiscoveryComponent
+    metadata: SapDiscoveryMetadata
+    systemId: str
+    updateTime: str
+
+@typing.type_check_only
+class SapDiscoveryComponent(typing_extensions.TypedDict, total=False):
+    applicationType: str
+    databaseType: str
+    hostProject: str
+    resources: _list[SapDiscoveryResource]
+    sid: str
+
+@typing.type_check_only
+class SapDiscoveryMetadata(typing_extensions.TypedDict, total=False):
+    customerRegion: str
+    definedSystem: str
+    environmentType: str
+    sapProduct: str
+
+@typing.type_check_only
+class SapDiscoveryResource(typing_extensions.TypedDict, total=False):
+    relatedResources: _list[str]
+    resourceKind: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED", "COMPUTE", "STORAGE", "NETWORK"
+    ]
+    resourceUri: str
+    updateTime: str
+
+@typing.type_check_only
+class SapValidation(typing_extensions.TypedDict, total=False):
+    validationDetails: _list[SapValidationValidationDetail]
+
+@typing.type_check_only
+class SapValidationValidationDetail(typing_extensions.TypedDict, total=False):
+    details: dict[str, typing.Any]
+    sapValidationType: typing_extensions.Literal[
+        "SAP_VALIDATION_TYPE_UNSPECIFIED",
+        "SYSTEM",
+        "COROSYNC",
+        "PACEMAKER",
+        "HANA",
+        "NETWEAVER",
+    ]
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class WriteInsightRequest(typing_extensions.TypedDict, total=False):
+    insight: Insight
+    requestId: str
+
+@typing.type_check_only
+class WriteInsightResponse(typing_extensions.TypedDict, total=False): ...

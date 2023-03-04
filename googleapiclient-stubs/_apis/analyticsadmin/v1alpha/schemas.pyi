@@ -12,6 +12,14 @@ class GoogleAnalyticsAdminV1alphaAccessBetweenFilter(
     toValue: GoogleAnalyticsAdminV1alphaNumericValue
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaAccessBinding(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    roles: _list[str]
+    user: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAccessDateRange(
     typing_extensions.TypedDict, total=False
 ):
@@ -419,6 +427,18 @@ class GoogleAnalyticsAdminV1alphaAuditUserLinksResponse(
     userLinks: _list[GoogleAnalyticsAdminV1alphaAuditUserLink]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    accessBindings: _list[GoogleAnalyticsAdminV1alphaAccessBinding]
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -432,16 +452,40 @@ class GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse(
     userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest]
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest(
     typing_extensions.TypedDict, total=False
 ):
     requests: _list[GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    accessBindings: _list[GoogleAnalyticsAdminV1alphaAccessBinding]
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
     userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    accessBindings: _list[GoogleAnalyticsAdminV1alphaAccessBinding]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest(
@@ -518,6 +562,13 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
     userActorEmail: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaConnectedSiteTag(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    measurementId: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaConversionEvent(
     typing_extensions.TypedDict, total=False
 ):
@@ -526,6 +577,13 @@ class GoogleAnalyticsAdminV1alphaConversionEvent(
     deletable: bool
     eventName: str
     name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest(
+    typing_extensions.TypedDict, total=False
+):
+    accessBinding: GoogleAnalyticsAdminV1alphaAccessBinding
+    parent: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCreateUserLinkRequest(
@@ -633,6 +691,19 @@ class GoogleAnalyticsAdminV1alphaDataStreamWebStreamData(
     measurementId: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest(
+    typing_extensions.TypedDict, total=False
+):
+    measurementId: str
+    property: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -712,6 +783,18 @@ class GoogleAnalyticsAdminV1alphaExpandedDataSetFilterStringFilter(
     value: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest(
+    typing_extensions.TypedDict, total=False
+):
+    property: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse(
+    typing_extensions.TypedDict, total=False
+):
+    optOut: bool
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaFirebaseLink(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
@@ -773,6 +856,13 @@ class GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails(
     requestorEmail: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListAccessBindingsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    accessBindings: _list[GoogleAnalyticsAdminV1alphaAccessBinding]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListAccountSummariesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -798,6 +888,21 @@ class GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
     bigqueryLinks: _list[GoogleAnalyticsAdminV1alphaBigQueryLink]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    pageSize: int
+    pageToken: str
+    property: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    connectedSiteTags: _list[GoogleAnalyticsAdminV1alphaConnectedSiteTag]
     nextPageToken: str
 
 @typing.type_check_only
@@ -844,6 +949,13 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse(
     displayVideo360AdvertiserLinks: _list[
         GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
     ]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    expandedDataSets: _list[GoogleAnalyticsAdminV1alphaExpandedDataSet]
     nextPageToken: str
 
 @typing.type_check_only
@@ -1037,6 +1149,24 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse(
 ):
     changeHistoryEvents: _list[GoogleAnalyticsAdminV1alphaChangeHistoryEvent]
     nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest(
+    typing_extensions.TypedDict, total=False
+):
+    optOut: bool
+    property: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest(
+    typing_extensions.TypedDict, total=False
+):
+    accessBinding: GoogleAnalyticsAdminV1alphaAccessBinding
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest(

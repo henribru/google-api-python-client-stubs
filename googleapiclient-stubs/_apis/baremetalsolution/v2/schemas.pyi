@@ -36,6 +36,12 @@ class EnableInteractiveSerialConsoleRequest(
 ): ...
 
 @typing.type_check_only
+class EvictLunRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EvictVolumeRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class FetchInstanceProvisioningSettingsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -195,6 +201,7 @@ class LogicalNetworkInterface(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Lun(typing_extensions.TypedDict, total=False):
     bootLun: bool
+    expireTime: str
     id: str
     multiprotocolType: typing_extensions.Literal[
         "MULTIPROTOCOL_TYPE_UNSPECIFIED", "LINUX"
@@ -203,7 +210,7 @@ class Lun(typing_extensions.TypedDict, total=False):
     shareable: bool
     sizeGb: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "UPDATING", "READY", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "UPDATING", "READY", "DELETING", "COOL_OFF"
     ]
     storageType: typing_extensions.Literal["STORAGE_TYPE_UNSPECIFIED", "SSD", "HDD"]
     storageVolume: str
@@ -320,16 +327,6 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
 class ProvisioningConfig(typing_extensions.TypedDict, total=False):
     cloudConsoleUri: str
     customId: str
@@ -375,6 +372,10 @@ class ProvisioningQuota(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QosPolicy(typing_extensions.TypedDict, total=False):
     bandwidthGbps: float
+
+@typing.type_check_only
+class RenameInstanceRequest(typing_extensions.TypedDict, total=False):
+    newName: str
 
 @typing.type_check_only
 class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
@@ -449,6 +450,7 @@ class Volume(typing_extensions.TypedDict, total=False):
     bootVolume: bool
     currentSizeGib: str
     emergencySizeGib: str
+    expireTime: str
     id: str
     labels: dict[str, typing.Any]
     maxSizeGib: str
@@ -475,8 +477,9 @@ class Volume(typing_extensions.TypedDict, total=False):
     snapshotReservationDetail: SnapshotReservationDetail
     snapshotSchedulePolicy: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+        "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING", "COOL_OFF"
     ]
+    storageAggregatePool: str
     storageType: typing_extensions.Literal["STORAGE_TYPE_UNSPECIFIED", "SSD", "HDD"]
     workloadProfile: typing_extensions.Literal[
         "WORKLOAD_PROFILE_UNSPECIFIED", "GENERIC", "HANA"
@@ -501,6 +504,7 @@ class VolumeConfig(typing_extensions.TypedDict, total=False):
     ]
     sizeGb: int
     snapshotsEnabled: bool
+    storageAggregatePool: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "FLASH", "DISK"]
     userNote: str
 

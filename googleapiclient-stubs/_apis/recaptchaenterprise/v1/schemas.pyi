@@ -50,6 +50,7 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
     ]
     hashedAccountId: str
     reasons: _list[str]
+    transactionEvent: GoogleCloudRecaptchaenterpriseV1TransactionEvent
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse(
@@ -63,6 +64,7 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
     accountDefenderAssessment: GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment
     accountVerification: GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo
     event: GoogleCloudRecaptchaenterpriseV1Event
+    fraudPreventionAssessment: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment
     name: str
     privatePasswordLeakVerification: GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
     riskAnalysis: GoogleCloudRecaptchaenterpriseV1RiskAnalysis
@@ -92,8 +94,29 @@ class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=F
     hashedAccountId: str
     siteKey: str
     token: str
+    transactionData: GoogleCloudRecaptchaenterpriseV1TransactionData
     userAgent: str
     userIpAddress: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment(
+    typing_extensions.TypedDict, total=False
+):
+    cardTestingVerdict: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict
+    stolenInstrumentVerdict: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict
+    transactionRisk: float
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict(
+    typing_extensions.TypedDict, total=False
+):
+    risk: float
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict(
+    typing_extensions.TypedDict, total=False
+):
+    risk: float
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1IOSKeySettings(
@@ -245,13 +268,100 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties(
     valid: bool
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1TransactionData(
+    typing_extensions.TypedDict, total=False
+):
+    billingAddress: GoogleCloudRecaptchaenterpriseV1TransactionDataAddress
+    cardBin: str
+    cardLastFour: str
+    currencyCode: str
+    gatewayInfo: GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo
+    items: _list[GoogleCloudRecaptchaenterpriseV1TransactionDataItem]
+    merchants: _list[GoogleCloudRecaptchaenterpriseV1TransactionDataUser]
+    paymentMethod: str
+    shippingAddress: GoogleCloudRecaptchaenterpriseV1TransactionDataAddress
+    shippingValue: float
+    transactionId: str
+    user: GoogleCloudRecaptchaenterpriseV1TransactionDataUser
+    value: float
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1TransactionDataAddress(
+    typing_extensions.TypedDict, total=False
+):
+    address: _list[str]
+    administrativeArea: str
+    locality: str
+    postalCode: str
+    recipient: str
+    regionCode: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1TransactionDataGatewayInfo(
+    typing_extensions.TypedDict, total=False
+):
+    avsResponseCode: str
+    cvvResponseCode: str
+    gatewayResponseCode: str
+    name: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1TransactionDataItem(
+    typing_extensions.TypedDict, total=False
+):
+    merchantAccountId: str
+    name: str
+    quantity: str
+    value: float
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1TransactionDataUser(
+    typing_extensions.TypedDict, total=False
+):
+    accountId: str
+    creationMs: str
+    email: str
+    emailVerified: bool
+    phoneNumber: str
+    phoneVerified: bool
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1TransactionEvent(
+    typing_extensions.TypedDict, total=False
+):
+    eventTime: str
+    eventType: typing_extensions.Literal[
+        "TRANSACTION_EVENT_TYPE_UNSPECIFIED",
+        "MERCHANT_APPROVE",
+        "MERCHANT_DENY",
+        "MANUAL_REVIEW",
+        "AUTHORIZATION",
+        "AUTHORIZATION_DECLINE",
+        "PAYMENT_CAPTURE",
+        "PAYMENT_CAPTURE_DECLINE",
+        "CANCEL",
+        "CHARGEBACK_INQUIRY",
+        "CHARGEBACK_ALERT",
+        "FRAUD_NOTIFICATION",
+        "CHARGEBACK",
+        "CHARGEBACK_REPRESENTMENT",
+        "CHARGEBACK_REVERSE",
+        "REFUND_REQUEST",
+        "REFUND_DECLINE",
+        "REFUND",
+        "REFUND_REVERSE",
+    ]
+    reason: str
+    value: float
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1WafSettings(
     typing_extensions.TypedDict, total=False
 ):
     wafFeature: typing_extensions.Literal[
         "WAF_FEATURE_UNSPECIFIED", "CHALLENGE_PAGE", "SESSION_TOKEN", "ACTION_TOKEN"
     ]
-    wafService: typing_extensions.Literal["WAF_SERVICE_UNSPECIFIED", "CA"]
+    wafService: typing_extensions.Literal["WAF_SERVICE_UNSPECIFIED", "CA", "FASTLY"]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1WebKeySettings(

@@ -116,6 +116,12 @@ class GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest(
     stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudRecommenderV1beta1MarkRecommendationDismissedRequest(
+    typing_extensions.TypedDict, total=False
+):
+    etag: str
+
+@typing.type_check_only
 class GoogleCloudRecommenderV1beta1MarkRecommendationFailedRequest(
     typing_extensions.TypedDict, total=False
 ):

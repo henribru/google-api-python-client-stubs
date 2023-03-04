@@ -635,6 +635,15 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudApigeeV1EnvironmentGroupHttpRequest: ...
+            def getDeployedIngressConfig(
+                self,
+                *,
+                name: str,
+                view: typing_extensions.Literal[
+                    "INGRESS_CONFIG_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1EnvironmentGroupConfigHttpRequest: ...
             def list(
                 self,
                 *,
@@ -2255,6 +2264,16 @@ class GoogleCloudApigeeV1EnvironmentGroupAttachmentHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1EnvironmentGroupAttachment: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1EnvironmentGroupConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1EnvironmentGroupConfig: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ExportHttpRequest(googleapiclient.http.HttpRequest):

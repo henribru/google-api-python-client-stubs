@@ -100,6 +100,7 @@ class Listing(typing_extensions.TypedDict, total=False):
     primaryContact: str
     publisher: Publisher
     requestAccess: str
+    restrictedExportConfig: RestrictedExportConfig
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE"]
 
 @typing.type_check_only
@@ -123,6 +124,12 @@ class Policy(typing_extensions.TypedDict, total=False):
 class Publisher(typing_extensions.TypedDict, total=False):
     name: str
     primaryContact: str
+
+@typing.type_check_only
+class RestrictedExportConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    restrictDirectTableAccess: bool
+    restrictQueryResult: bool
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

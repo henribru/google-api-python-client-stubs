@@ -14,6 +14,7 @@ class BatchDocumentOutputConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchTranslateDocumentRequest(typing_extensions.TypedDict, total=False):
+    customizedAttribution: str
     formatConversions: dict[str, typing.Any]
     glossaries: dict[str, typing.Any]
     inputConfigs: _list[BatchDocumentInputConfig]
@@ -164,6 +165,7 @@ class TranslateDocumentRequest(typing_extensions.TypedDict, total=False):
     customizedAttribution: str
     documentInputConfig: DocumentInputConfig
     documentOutputConfig: DocumentOutputConfig
+    enableShadowRemovalNativePdf: bool
     glossaryConfig: TranslateTextGlossaryConfig
     isTranslateNativePdfOnly: bool
     labels: dict[str, typing.Any]

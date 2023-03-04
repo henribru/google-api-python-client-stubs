@@ -72,6 +72,43 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
         @typing.type_check_only
+        class AuthorizedOrgsDescsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: AuthorizedOrgsDesc = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AuthorizedOrgsDescHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListAuthorizedOrgsDescsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAuthorizedOrgsDescsResponseHttpRequest,
+                previous_response: ListAuthorizedOrgsDescsResponse,
+            ) -> ListAuthorizedOrgsDescsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: AuthorizedOrgsDesc = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+
+        @typing.type_check_only
         class ServicePerimetersResource(googleapiclient.discovery.Resource):
             def commit(
                 self,
@@ -177,6 +214,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def accessLevels(self) -> AccessLevelsResource: ...
+        def authorizedOrgsDescs(self) -> AuthorizedOrgsDescsResource: ...
         def servicePerimeters(self) -> ServicePerimetersResource: ...
 
     @typing.type_check_only
@@ -275,6 +313,14 @@ class AccessPolicyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AccessPolicy: ...
 
 @typing.type_check_only
+class AuthorizedOrgsDescHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AuthorizedOrgsDesc: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -305,6 +351,14 @@ class ListAccessPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAccessPoliciesResponse: ...
+
+@typing.type_check_only
+class ListAuthorizedOrgsDescsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListAuthorizedOrgsDescsResponse: ...
 
 @typing.type_check_only
 class ListGcpUserAccessBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):

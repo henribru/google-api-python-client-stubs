@@ -35,6 +35,8 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
         "AU_REGIONS_AND_US_SUPPORT",
         "ASSURED_WORKLOADS_FOR_PARTNERS",
         "ISR_REGIONS",
+        "ISR_REGIONS_AND_SUPPORT",
+        "CA_PROTECTED_B",
     ]
     createTime: str
     displayName: str
@@ -152,6 +154,8 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "AU_REGIONS_AND_US_SUPPORT",
         "ASSURED_WORKLOADS_FOR_PARTNERS",
         "ISR_REGIONS",
+        "ISR_REGIONS_AND_SUPPORT",
+        "CA_PROTECTED_B",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus
     compliantButDisallowedServices: _list[str]

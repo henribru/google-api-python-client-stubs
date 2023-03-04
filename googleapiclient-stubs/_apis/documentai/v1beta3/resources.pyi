@@ -42,6 +42,9 @@ class DocumentResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class ProcessorTypesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDocumentaiV1beta3ProcessorTypeHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -335,6 +338,16 @@ class GoogleCloudDocumentaiV1beta3ProcessorHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDocumentaiV1beta3Processor: ...
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ProcessorTypeHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDocumentaiV1beta3ProcessorType: ...
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3ProcessorVersionHttpRequest(

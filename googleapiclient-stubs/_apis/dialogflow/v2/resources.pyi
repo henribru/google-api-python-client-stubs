@@ -855,6 +855,16 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDialogflowV2ParticipantHttpRequest: ...
                 def suggestions(self) -> SuggestionsResource: ...
 
+            @typing.type_check_only
+            class SuggestionsResource(googleapiclient.discovery.Resource):
+                def suggestConversationSummary(
+                    self,
+                    *,
+                    conversation: str,
+                    body: GoogleCloudDialogflowV2SuggestConversationSummaryRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2SuggestConversationSummaryResponseHttpRequest: ...
+
             def complete(
                 self,
                 *,
@@ -889,6 +899,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudDialogflowV2ListConversationsResponseHttpRequest | None: ...
             def messages(self) -> MessagesResource: ...
             def participants(self) -> ParticipantsResource: ...
+            def suggestions(self) -> SuggestionsResource: ...
 
         @typing.type_check_only
         class KnowledgeBasesResource(googleapiclient.discovery.Resource):
@@ -1768,6 +1779,16 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     ) -> GoogleCloudDialogflowV2ParticipantHttpRequest: ...
                     def suggestions(self) -> SuggestionsResource: ...
 
+                @typing.type_check_only
+                class SuggestionsResource(googleapiclient.discovery.Resource):
+                    def suggestConversationSummary(
+                        self,
+                        *,
+                        conversation: str,
+                        body: GoogleCloudDialogflowV2SuggestConversationSummaryRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowV2SuggestConversationSummaryResponseHttpRequest: ...
+
                 def complete(
                     self,
                     *,
@@ -1802,6 +1823,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDialogflowV2ListConversationsResponseHttpRequest | None: ...
                 def messages(self) -> MessagesResource: ...
                 def participants(self) -> ParticipantsResource: ...
+                def suggestions(self) -> SuggestionsResource: ...
 
             @typing.type_check_only
             class KnowledgeBasesResource(googleapiclient.discovery.Resource):
@@ -2372,6 +2394,16 @@ class GoogleCloudDialogflowV2SuggestArticlesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDialogflowV2SuggestArticlesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SuggestConversationSummaryResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDialogflowV2SuggestConversationSummaryResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SuggestFaqAnswersResponseHttpRequest(

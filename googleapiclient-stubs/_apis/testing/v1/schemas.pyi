@@ -60,6 +60,7 @@ class AndroidModel(typing_extensions.TypedDict, total=False):
     lowFpsVideoRecording: bool
     manufacturer: str
     name: str
+    perVersionInfo: _list[PerAndroidVersionInfo]
     screenDensity: int
     screenX: int
     screenY: int
@@ -256,6 +257,7 @@ class IosModel(typing_extensions.TypedDict, total=False):
     ]
     id: str
     name: str
+    perVersionInfo: _list[PerIosVersionInfo]
     screenDensity: int
     screenX: int
     screenY: int
@@ -335,6 +337,28 @@ class Orientation(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     tags: _list[str]
+
+@typing.type_check_only
+class PerAndroidVersionInfo(typing_extensions.TypedDict, total=False):
+    deviceCapacity: typing_extensions.Literal[
+        "DEVICE_CAPACITY_UNSPECIFIED",
+        "DEVICE_CAPACITY_HIGH",
+        "DEVICE_CAPACITY_MEDIUM",
+        "DEVICE_CAPACITY_LOW",
+        "DEVICE_CAPACITY_NONE",
+    ]
+    versionId: str
+
+@typing.type_check_only
+class PerIosVersionInfo(typing_extensions.TypedDict, total=False):
+    deviceCapacity: typing_extensions.Literal[
+        "DEVICE_CAPACITY_UNSPECIFIED",
+        "DEVICE_CAPACITY_HIGH",
+        "DEVICE_CAPACITY_MEDIUM",
+        "DEVICE_CAPACITY_LOW",
+        "DEVICE_CAPACITY_NONE",
+    ]
+    versionId: str
 
 @typing.type_check_only
 class ProvidedSoftwareCatalog(typing_extensions.TypedDict, total=False):
@@ -469,7 +493,6 @@ class TestMatrix(typing_extensions.TypedDict, total=False):
         "INVALID_INPUT_APK",
         "INVALID_APK_PREVIEW_SDK",
         "MATRIX_TOO_LARGE",
-        "DEVICE_QUOTA_EXCEEDED",
         "TEST_QUOTA_EXCEEDED",
         "SERVICE_NOT_ACTIVATED",
         "UNKNOWN_PERMISSION_ERROR",

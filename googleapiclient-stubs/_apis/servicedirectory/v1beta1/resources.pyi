@@ -152,6 +152,30 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def endpoints(self) -> EndpointsResource: ...
 
+                @typing.type_check_only
+                class WorkloadsResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -212,6 +236,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def serviceWorkloads(self) -> ServiceWorkloadsResource: ...
                 def services(self) -> ServicesResource: ...
+                def workloads(self) -> WorkloadsResource: ...
 
             @typing.type_check_only
             class RegistrationPoliciesResource(googleapiclient.discovery.Resource):

@@ -161,6 +161,7 @@ class GoogleCloudChannelV1Customer(typing_extensions.TypedDict, total=False):
     channelPartnerId: str
     cloudIdentityId: str
     cloudIdentityInfo: GoogleCloudChannelV1CloudIdentityInfo
+    correlationId: str
     createTime: str
     domain: str
     languageCode: str

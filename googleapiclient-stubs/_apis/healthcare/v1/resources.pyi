@@ -653,6 +653,9 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> FhirStoreHttpRequest: ...
+                    def getFHIRStoreMetrics(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> FhirStoreMetricsHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -1086,6 +1089,14 @@ class FhirStoreHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FhirStore: ...
+
+@typing.type_check_only
+class FhirStoreMetricsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> FhirStoreMetrics: ...
 
 @typing.type_check_only
 class Hl7V2StoreHttpRequest(googleapiclient.http.HttpRequest):

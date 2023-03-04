@@ -241,6 +241,7 @@ class GoogleCloudIdentitytoolkitV1GetRecaptchaParamResponse(
     typing_extensions.TypedDict, total=False
 ):
     kind: str
+    producerProjectNumber: str
     recaptchaSiteKey: str
     recaptchaStoken: str
 
@@ -399,6 +400,7 @@ class GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest(
     iosReceipt: str
     iosSecret: str
     phoneNumber: str
+    playIntegrityToken: str
     recaptchaToken: str
     safetyNetToken: str
     tenantId: str
@@ -506,11 +508,13 @@ class GoogleCloudIdentitytoolkitV1SignInWithGameCenterRequest(
     typing_extensions.TypedDict, total=False
 ):
     displayName: str
+    gamePlayerId: str
     idToken: str
     playerId: str
     publicKeyUrl: str
     salt: str
     signature: str
+    teamPlayerId: str
     tenantId: str
     timestamp: str
 
@@ -520,11 +524,13 @@ class GoogleCloudIdentitytoolkitV1SignInWithGameCenterResponse(
 ):
     displayName: str
     expiresIn: str
+    gamePlayerId: str
     idToken: str
     isNewUser: bool
     localId: str
     playerId: str
     refreshToken: str
+    teamPlayerId: str
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithIdpRequest(

@@ -70,7 +70,6 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
         "ACCURACY_TIPS",
-        "SOCIAL_ENGINEERING_LOWER_PRECISION",
     ]
 
 @typing.type_check_only
@@ -143,7 +142,6 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateRespon
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
         "ACCURACY_TIPS",
-        "SOCIAL_ENGINEERING_LOWER_PRECISION",
     ]
 
 @typing.type_check_only
@@ -266,7 +264,6 @@ class GoogleSecuritySafebrowsingV4ThreatHit(typing_extensions.TypedDict, total=F
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
         "ACCURACY_TIPS",
-        "SOCIAL_ENGINEERING_LOWER_PRECISION",
     ]
     userInfo: GoogleSecuritySafebrowsingV4ThreatHitUserInfo
 
@@ -342,7 +339,6 @@ class GoogleSecuritySafebrowsingV4ThreatListDescriptor(
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
         "ACCURACY_TIPS",
-        "SOCIAL_ENGINEERING_LOWER_PRECISION",
     ]
 
 @typing.type_check_only
@@ -389,5 +385,4 @@ class GoogleSecuritySafebrowsingV4ThreatMatch(typing_extensions.TypedDict, total
         "TRICK_TO_BILL",
         "HIGH_CONFIDENCE_ALLOWLIST",
         "ACCURACY_TIPS",
-        "SOCIAL_ENGINEERING_LOWER_PRECISION",
     ]

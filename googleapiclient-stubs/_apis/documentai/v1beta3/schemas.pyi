@@ -79,12 +79,6 @@ class GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata(
     commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
 
 @typing.type_check_only
-class GoogleCloudDocumentaiUiv1beta3DeleteDataLabelingJobOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
-
-@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3DeleteLabelerPoolOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -129,7 +123,7 @@ class GoogleCloudDocumentaiUiv1beta3DocumentId(
     typing_extensions.TypedDict, total=False
 ):
     gcsManagedDocId: GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId
-    revisionReference: GoogleCloudDocumentaiUiv1beta3RevisionReference
+    revisionRef: GoogleCloudDocumentaiUiv1beta3RevisionRef
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId(
@@ -244,6 +238,18 @@ class GoogleCloudDocumentaiUiv1beta3ImportDocumentsResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ImportProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3ImportProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    processorVersion: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -284,12 +290,15 @@ class GoogleCloudDocumentaiUiv1beta3ResyncDatasetResponse(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudDocumentaiUiv1beta3RevisionReference(
+class GoogleCloudDocumentaiUiv1beta3RevisionRef(
     typing_extensions.TypedDict, total=False
 ):
     latestProcessorVersion: str
     revisionCase: typing_extensions.Literal[
-        "REVISION_CASE_UNSPECIFIED", "LATEST_HUMAN_REVIEW", "LATEST_TIMESTAMP"
+        "REVISION_CASE_UNSPECIFIED",
+        "LATEST_HUMAN_REVIEW",
+        "LATEST_TIMESTAMP",
+        "BASE_OCR_REVISION",
     ]
     revisionId: str
 
@@ -448,6 +457,18 @@ class GoogleCloudDocumentaiV1EnableProcessorResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1EvaluateProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1EvaluateProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    evaluation: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1HumanReviewStatus(
     typing_extensions.TypedDict, total=False
 ):
@@ -484,6 +505,29 @@ class GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1TrainProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
+    testDatasetValidation: GoogleCloudDocumentaiV1TrainProcessorVersionMetadataDatasetValidation
+    trainingDatasetValidation: GoogleCloudDocumentaiV1TrainProcessorVersionMetadataDatasetValidation
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1TrainProcessorVersionMetadataDatasetValidation(
+    typing_extensions.TypedDict, total=False
+):
+    datasetErrorCount: int
+    datasetErrors: _list[GoogleRpcStatus]
+    documentErrorCount: int
+    documentErrors: _list[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1TrainProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    processorVersion: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -493,24 +537,6 @@ class GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata(
 class GoogleCloudDocumentaiV1UndeployProcessorVersionResponse(
     typing_extensions.TypedDict, total=False
 ): ...
-
-@typing.type_check_only
-class GoogleCloudDocumentaiV1alpha1AnalyzeHitlDataMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    commonMetadata: GoogleCloudDocumentaiV1alpha1CommonOperationMetadata
-
-@typing.type_check_only
-class GoogleCloudDocumentaiV1alpha1CommonOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    resource: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "RUNNING", "CANCELLING", "SUCCEEDED", "FAILED", "CANCELLED"
-    ]
-    stateMessage: str
-    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1Barcode(typing_extensions.TypedDict, total=False):
@@ -804,6 +830,7 @@ class GoogleCloudDocumentaiV1beta1DocumentProvenance(
         "OPERATION_TYPE_UNSPECIFIED",
         "ADD",
         "REMOVE",
+        "UPDATE",
         "REPLACE",
         "EVAL_REQUESTED",
         "EVAL_APPROVED",
@@ -1246,6 +1273,7 @@ class GoogleCloudDocumentaiV1beta2DocumentProvenance(
         "OPERATION_TYPE_UNSPECIFIED",
         "ADD",
         "REMOVE",
+        "UPDATE",
         "REPLACE",
         "EVAL_REQUESTED",
         "EVAL_APPROVED",
@@ -1817,6 +1845,7 @@ class GoogleCloudDocumentaiV1beta3DocumentProvenance(
         "OPERATION_TYPE_UNSPECIFIED",
         "ADD",
         "REMOVE",
+        "UPDATE",
         "REPLACE",
         "EVAL_REQUESTED",
         "EVAL_APPROVED",
@@ -2041,6 +2070,15 @@ class GoogleCloudDocumentaiV1beta3EvaluationMultiConfidenceMetrics(
     metricsType: typing_extensions.Literal["METRICS_TYPE_UNSPECIFIED", "AGGREGATE"]
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3EvaluationReference(
+    typing_extensions.TypedDict, total=False
+):
+    aggregateMetrics: GoogleCloudDocumentaiV1beta3EvaluationMetrics
+    aggregateMetricsExact: GoogleCloudDocumentaiV1beta3EvaluationMetrics
+    evaluation: str
+    operation: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -2108,6 +2146,7 @@ class GoogleCloudDocumentaiV1beta3NormalizedVertex(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3OcrConfig(typing_extensions.TypedDict, total=False):
+    advancedOcrOptions: _list[str]
     enableNativePdfParsing: bool
 
 @typing.type_check_only
@@ -2193,6 +2232,7 @@ class GoogleCloudDocumentaiV1beta3ProcessorVersion(
     googleManaged: bool
     kmsKeyName: str
     kmsKeyVersionName: str
+    latestEvaluation: GoogleCloudDocumentaiV1beta3EvaluationReference
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

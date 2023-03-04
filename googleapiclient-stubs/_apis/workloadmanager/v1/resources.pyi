@@ -48,6 +48,16 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                 ) -> ListEvaluationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class InsightsResource(googleapiclient.discovery.Resource):
+                def writeInsight(
+                    self,
+                    *,
+                    location: str,
+                    body: WriteInsightRequest = ...,
+                    **kwargs: typing.Any
+                ) -> WriteInsightResponseHttpRequest: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -95,6 +105,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def evaluations(self) -> EvaluationsResource: ...
+            def insights(self) -> InsightsResource: ...
             def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -168,3 +179,11 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class WriteInsightResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> WriteInsightResponse: ...

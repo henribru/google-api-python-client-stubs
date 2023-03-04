@@ -140,6 +140,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: PrivateConnection = ...,
+                    force: bool = ...,
                     privateConnectionId: str = ...,
                     requestId: str = ...,
                     **kwargs: typing.Any

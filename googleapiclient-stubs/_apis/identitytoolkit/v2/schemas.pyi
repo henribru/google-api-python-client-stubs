@@ -510,6 +510,7 @@ class GoogleCloudIdentitytoolkitV2StartMfaPhoneRequestInfo(
     iosReceipt: str
     iosSecret: str
     phoneNumber: str
+    playIntegrityToken: str
     recaptchaToken: str
     safetyNetToken: str
 

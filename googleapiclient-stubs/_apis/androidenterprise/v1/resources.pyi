@@ -59,6 +59,15 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseToken: str = ...,
             **kwargs: typing.Any
         ) -> EnterpriseHttpRequest: ...
+        def createEnrollmentToken(
+            self,
+            *,
+            enterpriseId: str,
+            deviceType: typing_extensions.Literal[
+                "unknown", "dedicatedDevice", "knowledgeWorker"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> CreateEnrollmentTokenResponseHttpRequest: ...
         def createWebToken(
             self,
             *,
@@ -520,6 +529,14 @@ class AuthenticationTokenHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AuthenticationToken: ...
+
+@typing.type_check_only
+class CreateEnrollmentTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CreateEnrollmentTokenResponse: ...
 
 @typing.type_check_only
 class DeviceHttpRequest(googleapiclient.http.HttpRequest):

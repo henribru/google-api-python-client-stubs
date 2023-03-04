@@ -31,6 +31,7 @@ class AgentMetadata(typing_extensions.TypedDict, total=False):
     imageVersion: str
     instance: str
     instanceId: str
+    instancePreemptionNoticeReceived: bool
     osRelease: dict[str, typing.Any]
     version: str
     zone: str
@@ -72,26 +73,8 @@ class AttachedDisk(typing_extensions.TypedDict, total=False):
     newDisk: Disk
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: _list[AuditLogConfig]
-    service: str
-
-@typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
-        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
-    ]
-
-@typing.type_check_only
 class Barrier(typing_extensions.TypedDict, total=False):
     name: str
-
-@typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
-    condition: Expr
-    members: _list[str]
-    role: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -126,14 +109,9 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
+    encryptedVariables: KMSEnvMap
+    secretVariables: dict[str, typing.Any]
     variables: dict[str, typing.Any]
-
-@typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
-    description: str
-    expression: str
-    location: str
-    title: str
 
 @typing.type_check_only
 class GCS(typing_extensions.TypedDict, total=False):
@@ -142,6 +120,7 @@ class GCS(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstancePolicy(typing_extensions.TypedDict, total=False):
     accelerators: _list[Accelerator]
+    bootDisk: Disk
     disks: _list[AttachedDisk]
     machineType: str
     minCpuPlatform: str
@@ -157,6 +136,7 @@ class InstancePolicyOrTemplate(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstanceStatus(typing_extensions.TypedDict, total=False):
+    bootDisk: Disk
     machineType: str
     provisioningModel: typing_extensions.Literal[
         "PROVISIONING_MODEL_UNSPECIFIED", "STANDARD", "SPOT", "PREEMPTIBLE"
@@ -196,6 +176,11 @@ class JobStatus(typing_extensions.TypedDict, total=False):
     ]
     statusEvents: _list[StatusEvent]
     taskGroups: dict[str, typing.Any]
+
+@typing.type_check_only
+class KMSEnvMap(typing_extensions.TypedDict, total=False):
+    cipherText: str
+    keyName: str
 
 @typing.type_check_only
 class LifecyclePolicy(typing_extensions.TypedDict, total=False):
@@ -295,13 +280,6 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: _list[AuditConfig]
-    bindings: _list[Binding]
-    etag: str
-    version: int
-
-@typing.type_check_only
 class ReportAgentStateRequest(typing_extensions.TypedDict, total=False):
     agentInfo: AgentInfo
     agentTimingInfo: AgentTimingInfo
@@ -309,6 +287,7 @@ class ReportAgentStateRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReportAgentStateResponse(typing_extensions.TypedDict, total=False):
+    defaultReportInterval: str
     minReportInterval: str
     tasks: _list[AgentTask]
 
@@ -331,11 +310,7 @@ class Script(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     email: str
-
-@typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-    updateMask: str
+    scopes: _list[str]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -348,6 +323,9 @@ class StatusEvent(typing_extensions.TypedDict, total=False):
     description: str
     eventTime: str
     taskExecution: TaskExecution
+    taskState: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "ASSIGNED", "RUNNING", "FAILED", "SUCCEEDED"
+    ]
     type: str
 
 @typing.type_check_only
@@ -392,14 +370,6 @@ class TaskStatus(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "PENDING", "ASSIGNED", "RUNNING", "FAILED", "SUCCEEDED"
     ]
     statusEvents: _list[StatusEvent]
-
-@typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: _list[str]
-
-@typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: _list[str]
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):

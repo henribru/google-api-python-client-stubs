@@ -96,15 +96,16 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def delete(
-                self, *, name: str, **kwargs: typing.Any
+                self, *, name: str, customer: str = ..., **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(
-                self, *, name: str, **kwargs: typing.Any
+                self, *, name: str, customer: str = ..., **kwargs: typing.Any
             ) -> DeviceUserHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
+                customer: str = ...,
                 filter: str = ...,
                 orderBy: str = ...,
                 pageSize: int = ...,
@@ -152,12 +153,15 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
             self, *, body: CreateDeviceRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def delete(
-            self, *, name: str, **kwargs: typing.Any
+            self, *, name: str, customer: str = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
+        def get(
+            self, *, name: str, customer: str = ..., **kwargs: typing.Any
+        ) -> DeviceHttpRequest: ...
         def list(
             self,
             *,
+            customer: str = ...,
             filter: str = ...,
             orderBy: str = ...,
             pageSize: int = ...,
@@ -301,6 +305,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
+            orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,

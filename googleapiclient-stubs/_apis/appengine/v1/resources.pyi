@@ -372,6 +372,25 @@ class AppengineResource(googleapiclient.discovery.Resource):
         def operations(self) -> OperationsResource: ...
         def services(self) -> ServicesResource: ...
 
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ApplicationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self,
+                    *,
+                    projectsId: str,
+                    locationsId: str,
+                    applicationsId: str,
+                    **kwargs: typing.Any
+                ) -> ApplicationHttpRequest: ...
+
+            def applications(self) -> ApplicationsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -385,6 +404,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def apps(self) -> AppsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class ApplicationHttpRequest(googleapiclient.http.HttpRequest):

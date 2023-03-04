@@ -595,7 +595,9 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     seatCount: str
     sku: typing_extensions.Literal["SKU_UNSPECIFIED", "BCE_STANDARD_SKU"]
     startTime: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "COMPLETED"
+    ]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIAL", "PAID", "ALLOWLIST"]
 
 @typing.type_check_only

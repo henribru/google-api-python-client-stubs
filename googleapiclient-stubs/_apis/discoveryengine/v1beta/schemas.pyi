@@ -11,6 +11,53 @@ class GoogleApiHttpBody(typing_extensions.TypedDict, total=False):
     extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineLoggingErrorContext(
+    typing_extensions.TypedDict, total=False
+):
+    httpRequest: GoogleCloudDiscoveryengineLoggingHttpRequestContext
+    reportLocation: GoogleCloudDiscoveryengineLoggingSourceLocation
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineLoggingErrorLog(
+    typing_extensions.TypedDict, total=False
+):
+    context: GoogleCloudDiscoveryengineLoggingErrorContext
+    importPayload: GoogleCloudDiscoveryengineLoggingImportErrorContext
+    message: str
+    requestPayload: dict[str, typing.Any]
+    responsePayload: dict[str, typing.Any]
+    serviceContext: GoogleCloudDiscoveryengineLoggingServiceContext
+    status: GoogleRpcStatus
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineLoggingHttpRequestContext(
+    typing_extensions.TypedDict, total=False
+):
+    responseStatusCode: int
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineLoggingImportErrorContext(
+    typing_extensions.TypedDict, total=False
+):
+    document: str
+    gcsPath: str
+    lineNumber: str
+    operation: str
+    userEvent: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineLoggingServiceContext(
+    typing_extensions.TypedDict, total=False
+):
+    service: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineLoggingSourceLocation(
+    typing_extensions.TypedDict, total=False
+):
+    functionName: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):

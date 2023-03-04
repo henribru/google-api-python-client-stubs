@@ -10,6 +10,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     downloadBytes: str
+    kmsKey: str
     labels: dict[str, typing.Any]
     name: str
     satisfiesPzs: bool

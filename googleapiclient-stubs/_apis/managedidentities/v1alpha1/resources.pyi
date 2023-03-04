@@ -144,6 +144,13 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: DisableMigrationRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def domainJoinMachine(
+                        self,
+                        *,
+                        domain: str,
+                        body: DomainJoinMachineRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> DomainJoinMachineResponseHttpRequest: ...
                     def enableMigration(
                         self,
                         *,
@@ -400,6 +407,14 @@ class DomainHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Domain: ...
+
+@typing.type_check_only
+class DomainJoinMachineResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> DomainJoinMachineResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

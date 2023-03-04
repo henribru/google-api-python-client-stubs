@@ -19,6 +19,21 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DataAttributeBindingsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDataplexV1DataAttributeBinding = ...,
+                    dataAttributeBindingId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDataplexV1DataAttributeBindingHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -26,6 +41,30 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> GoogleIamV1PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDataplexV1ListDataAttributeBindingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDataplexV1ListDataAttributeBindingsResponseHttpRequest,
+                    previous_response: GoogleCloudDataplexV1ListDataAttributeBindingsResponse,
+                ) -> GoogleCloudDataplexV1ListDataAttributeBindingsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDataplexV1DataAttributeBinding = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -74,6 +113,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudDataplexV1DataScan = ...,
                     dataScanId: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
@@ -116,6 +156,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudDataplexV1DataScan = ...,
                     updateMask: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def run(
@@ -145,6 +186,21 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
             class DataTaxonomiesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class AttributesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDataplexV1DataAttribute = ...,
+                        dataAttributeId: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDataplexV1DataAttributeHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -152,6 +208,30 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any
                     ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDataplexV1ListDataAttributesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDataplexV1ListDataAttributesResponseHttpRequest,
+                        previous_response: GoogleCloudDataplexV1ListDataAttributesResponse,
+                    ) -> GoogleCloudDataplexV1ListDataAttributesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDataplexV1DataAttribute = ...,
+                        updateMask: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -167,6 +247,21 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDataplexV1DataTaxonomy = ...,
+                    dataTaxonomyId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDataplexV1DataTaxonomyHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -174,6 +269,30 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> GoogleIamV1PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDataplexV1ListDataTaxonomiesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDataplexV1ListDataTaxonomiesResponseHttpRequest,
+                    previous_response: GoogleCloudDataplexV1ListDataTaxonomiesResponse,
+                ) -> GoogleCloudDataplexV1ListDataTaxonomiesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDataplexV1DataTaxonomy = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -497,6 +616,13 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         validateOnly: bool = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def run(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDataplexV1RunTaskRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDataplexV1RunTaskResponseHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -920,6 +1046,24 @@ class GoogleCloudDataplexV1ContentHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleCloudDataplexV1Content: ...
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataAttributeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1DataAttribute: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataAttributeBindingHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1DataAttributeBinding: ...
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataScanHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -934,6 +1078,14 @@ class GoogleCloudDataplexV1DataScanJobHttpRequest(googleapiclient.http.HttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDataplexV1DataScanJob: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataTaxonomyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1DataTaxonomy: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1EntityHttpRequest(googleapiclient.http.HttpRequest):
@@ -998,6 +1150,26 @@ class GoogleCloudDataplexV1ListContentResponseHttpRequest(
     ) -> GoogleCloudDataplexV1ListContentResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListDataAttributeBindingsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1ListDataAttributeBindingsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataAttributesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1ListDataAttributesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListDataScanJobsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1016,6 +1188,16 @@ class GoogleCloudDataplexV1ListDataScansResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDataplexV1ListDataScansResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataTaxonomiesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1ListDataTaxonomiesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ListEntitiesResponseHttpRequest(
@@ -1114,6 +1296,14 @@ class GoogleCloudDataplexV1RunDataScanResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDataplexV1RunDataScanResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RunTaskResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDataplexV1RunTaskResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1TaskHttpRequest(googleapiclient.http.HttpRequest):

@@ -144,7 +144,12 @@ class BloggerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PagesResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, blogId: str, pageId: str, **kwargs: typing.Any
+            self,
+            *,
+            blogId: str,
+            pageId: str,
+            useTrash: bool = ...,
+            **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -253,7 +258,12 @@ class BloggerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PostsResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, blogId: str, postId: str, **kwargs: typing.Any
+            self,
+            *,
+            blogId: str,
+            postId: str,
+            useTrash: bool = ...,
+            **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -302,6 +312,9 @@ class BloggerResource(googleapiclient.discovery.Resource):
                 "ORDER_BY_UNSPECIFIED", "PUBLISHED", "UPDATED"
             ] = ...,
             pageToken: str = ...,
+            sortOption: typing_extensions.Literal[
+                "SORT_OPTION_UNSPECIFIED", "DESCENDING", "ASCENDING"
+            ] = ...,
             startDate: str = ...,
             status: typing_extensions.Literal[
                 "LIVE", "DRAFT", "SCHEDULED", "SOFT_TRASHED"

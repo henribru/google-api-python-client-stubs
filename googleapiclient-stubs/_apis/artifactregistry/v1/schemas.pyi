@@ -37,6 +37,12 @@ class DockerImage(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class DockerRepository(typing_extensions.TypedDict, total=False):
+    publicRepository: typing_extensions.Literal[
+        "PUBLIC_REPOSITORY_UNSPECIFIED", "DOCKER_HUB"
+    ]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -49,6 +55,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleDevtoolsArtifactregistryV1File(typing_extensions.TypedDict, total=False):
     createTime: str
+    fetchTime: str
     hashes: _list[Hash]
     name: str
     owner: str
@@ -178,6 +185,12 @@ class MavenArtifact(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class MavenRepository(typing_extensions.TypedDict, total=False):
+    publicRepository: typing_extensions.Literal[
+        "PUBLIC_REPOSITORY_UNSPECIFIED", "MAVEN_CENTRAL"
+    ]
+
+@typing.type_check_only
 class MavenRepositoryConfig(typing_extensions.TypedDict, total=False):
     allowSnapshotOverwrites: bool
     versionPolicy: typing_extensions.Literal[
@@ -192,6 +205,12 @@ class NpmPackage(typing_extensions.TypedDict, total=False):
     tags: _list[str]
     updateTime: str
     version: str
+
+@typing.type_check_only
+class NpmRepository(typing_extensions.TypedDict, total=False):
+    publicRepository: typing_extensions.Literal[
+        "PUBLIC_REPOSITORY_UNSPECIFIED", "NPMJS"
+    ]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -237,6 +256,18 @@ class PythonPackage(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class PythonRepository(typing_extensions.TypedDict, total=False):
+    publicRepository: typing_extensions.Literal["PUBLIC_REPOSITORY_UNSPECIFIED", "PYPI"]
+
+@typing.type_check_only
+class RemoteRepositoryConfig(typing_extensions.TypedDict, total=False):
+    description: str
+    dockerRepository: DockerRepository
+    mavenRepository: MavenRepository
+    npmRepository: NpmRepository
+    pythonRepository: PythonRepository
+
+@typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -246,10 +277,18 @@ class Repository(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     labels: dict[str, typing.Any]
     mavenConfig: MavenRepositoryConfig
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED",
+        "STANDARD_REPOSITORY",
+        "VIRTUAL_REPOSITORY",
+        "REMOTE_REPOSITORY",
+    ]
     name: str
+    remoteRepositoryConfig: RemoteRepositoryConfig
     satisfiesPzs: bool
     sizeBytes: str
     updateTime: str
+    virtualRepositoryConfig: VirtualRepositoryConfig
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -315,6 +354,17 @@ class UploadYumArtifactResponse(typing_extensions.TypedDict, total=False):
     yumArtifacts: _list[YumArtifact]
 
 @typing.type_check_only
+class UpstreamPolicy(typing_extensions.TypedDict, total=False):
+    id: str
+    priority: int
+    repository: str
+
+@typing.type_check_only
+class VPCSCConfig(typing_extensions.TypedDict, total=False):
+    name: str
+    vpcscPolicy: typing_extensions.Literal["VPCSC_POLICY_UNSPECIFIED", "DENY", "ALLOW"]
+
+@typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -322,6 +372,10 @@ class Version(typing_extensions.TypedDict, total=False):
     name: str
     relatedTags: _list[Tag]
     updateTime: str
+
+@typing.type_check_only
+class VirtualRepositoryConfig(typing_extensions.TypedDict, total=False):
+    upstreamPolicies: _list[UpstreamPolicy]
 
 @typing.type_check_only
 class YumArtifact(typing_extensions.TypedDict, total=False):

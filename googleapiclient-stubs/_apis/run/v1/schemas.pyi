@@ -214,6 +214,7 @@ class HTTPGetAction(typing_extensions.TypedDict, total=False):
     host: str
     httpHeaders: _list[HTTPHeader]
     path: str
+    port: int
     scheme: str
 
 @typing.type_check_only

@@ -225,6 +225,7 @@ class MysqlRdbms(typing_extensions.TypedDict, total=False):
 class MysqlSourceConfig(typing_extensions.TypedDict, total=False):
     excludeObjects: MysqlRdbms
     includeObjects: MysqlRdbms
+    maxConcurrentBackfillTasks: int
     maxConcurrentCdcTasks: int
 
 @typing.type_check_only
@@ -300,6 +301,7 @@ class OracleSourceConfig(typing_extensions.TypedDict, total=False):
     dropLargeObjects: DropLargeObjects
     excludeObjects: OracleRdbms
     includeObjects: OracleRdbms
+    maxConcurrentBackfillTasks: int
     maxConcurrentCdcTasks: int
     streamLargeObjects: StreamLargeObjects
 
@@ -345,6 +347,7 @@ class PostgresqlSchema(typing_extensions.TypedDict, total=False):
 class PostgresqlSourceConfig(typing_extensions.TypedDict, total=False):
     excludeObjects: PostgresqlRdbms
     includeObjects: PostgresqlRdbms
+    maxConcurrentBackfillTasks: int
     publication: str
     replicationSlot: str
 

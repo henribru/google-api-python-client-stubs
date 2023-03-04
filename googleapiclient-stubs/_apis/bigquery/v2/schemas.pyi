@@ -103,6 +103,7 @@ class BiEngineReason(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BiEngineStatistics(typing_extensions.TypedDict, total=False):
+    accelerationMode: str
     biEngineMode: str
     biEngineReasons: _list[BiEngineReason]
 
@@ -249,6 +250,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     defaultCollation: str
     defaultEncryptionConfiguration: EncryptionConfiguration
     defaultPartitionExpirationMs: str
+    defaultRoundingMode: str
     defaultTableExpirationMs: str
     description: str
     etag: str
@@ -1141,6 +1143,7 @@ class Table(typing_extensions.TypedDict, total=False):
     clustering: Clustering
     creationTime: str
     defaultCollation: str
+    defaultRoundingMode: str
     description: str
     encryptionConfiguration: EncryptionConfiguration
     etag: str
@@ -1215,6 +1218,7 @@ class TableFieldSchema(typing_extensions.TypedDict, total=False):
     name: str
     policyTags: dict[str, typing.Any]
     precision: str
+    roundingMode: str
     scale: str
     type: str
 

@@ -43,6 +43,22 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AuthorizedOrgsDesc(typing_extensions.TypedDict, total=False):
+    assetType: typing_extensions.Literal[
+        "ASSET_TYPE_UNSPECIFIED", "ASSET_TYPE_DEVICE", "ASSET_TYPE_CREDENTIAL_STRENGTH"
+    ]
+    authorizationDirection: typing_extensions.Literal[
+        "AUTHORIZATION_DIRECTION_UNSPECIFIED",
+        "AUTHORIZATION_DIRECTION_TO",
+        "AUTHORIZATION_DIRECTION_FROM",
+    ]
+    authorizationType: typing_extensions.Literal[
+        "AUTHORIZATION_TYPE_UNSPECIFIED", "AUTHORIZATION_TYPE_TRUST"
+    ]
+    name: str
+    orgs: _list[str]
+
+@typing.type_check_only
 class BasicLevel(typing_extensions.TypedDict, total=False):
     combiningFunction: typing_extensions.Literal["AND", "OR"]
     conditions: _list[Condition]
@@ -170,6 +186,11 @@ class ListAccessLevelsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListAccessPoliciesResponse(typing_extensions.TypedDict, total=False):
     accessPolicies: _list[AccessPolicy]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAuthorizedOrgsDescsResponse(typing_extensions.TypedDict, total=False):
+    authorizedOrgsDescs: _list[AuthorizedOrgsDesc]
     nextPageToken: str
 
 @typing.type_check_only

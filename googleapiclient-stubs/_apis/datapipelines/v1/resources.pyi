@@ -48,6 +48,20 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest,
+                    previous_response: GoogleCloudDatapipelinesV1ListPipelinesResponse,
+                ) -> GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -72,42 +86,7 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
                 def jobs(self) -> JobsResource: ...
 
-            @typing.type_check_only
-            class TransformDescriptionsResource(googleapiclient.discovery.Resource):
-                def batchGet(
-                    self,
-                    *,
-                    parent: str,
-                    names: str | _list[str] = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleCloudDatapipelinesV1BatchGetTransformDescriptionsResponseHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudDatapipelinesV1TransformDescriptionHttpRequest: ...
-
-            def computeSchema(
-                self,
-                *,
-                location: str,
-                body: GoogleCloudDatapipelinesV1ComputeSchemaRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleCloudDatapipelinesV1SchemaHttpRequest: ...
-            def listPipelines(
-                self,
-                *,
-                parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest: ...
-            def listPipelines_next(
-                self,
-                previous_request: GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest,
-                previous_response: GoogleCloudDatapipelinesV1ListPipelinesResponse,
-            ) -> GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest | None: ...
             def pipelines(self) -> PipelinesResource: ...
-            def transformDescriptions(self) -> TransformDescriptionsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -124,16 +103,6 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
-
-@typing.type_check_only
-class GoogleCloudDatapipelinesV1BatchGetTransformDescriptionsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleCloudDatapipelinesV1BatchGetTransformDescriptionsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest(
@@ -172,24 +141,6 @@ class GoogleCloudDatapipelinesV1RunPipelineResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDatapipelinesV1RunPipelineResponse: ...
-
-@typing.type_check_only
-class GoogleCloudDatapipelinesV1SchemaHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleCloudDatapipelinesV1Schema: ...
-
-@typing.type_check_only
-class GoogleCloudDatapipelinesV1TransformDescriptionHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleCloudDatapipelinesV1TransformDescription: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

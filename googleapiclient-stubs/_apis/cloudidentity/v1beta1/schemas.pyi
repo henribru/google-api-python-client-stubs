@@ -24,14 +24,16 @@ class AndroidAttributes(typing_extensions.TypedDict, total=False):
     supportsWorkProfile: bool
 
 @typing.type_check_only
-class ApproveDeviceUserRequest(typing_extensions.TypedDict, total=False): ...
+class ApproveDeviceUserRequest(typing_extensions.TypedDict, total=False):
+    customer: str
 
 @typing.type_check_only
 class ApproveDeviceUserResponse(typing_extensions.TypedDict, total=False):
     deviceUser: DeviceUser
 
 @typing.type_check_only
-class BlockDeviceUserRequest(typing_extensions.TypedDict, total=False): ...
+class BlockDeviceUserRequest(typing_extensions.TypedDict, total=False):
+    customer: str
 
 @typing.type_check_only
 class BlockDeviceUserResponse(typing_extensions.TypedDict, total=False):
@@ -41,14 +43,16 @@ class BlockDeviceUserResponse(typing_extensions.TypedDict, total=False):
 class CancelUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelWipeDeviceRequest(typing_extensions.TypedDict, total=False): ...
+class CancelWipeDeviceRequest(typing_extensions.TypedDict, total=False):
+    customer: str
 
 @typing.type_check_only
 class CancelWipeDeviceResponse(typing_extensions.TypedDict, total=False):
     device: Device
 
 @typing.type_check_only
-class CancelWipeDeviceUserRequest(typing_extensions.TypedDict, total=False): ...
+class CancelWipeDeviceUserRequest(typing_extensions.TypedDict, total=False):
+    customer: str
 
 @typing.type_check_only
 class CancelWipeDeviceUserResponse(typing_extensions.TypedDict, total=False):
@@ -105,6 +109,7 @@ class ClientState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateDeviceRequest(typing_extensions.TypedDict, total=False):
+    customer: str
     device: Device
 
 @typing.type_check_only
@@ -798,6 +803,7 @@ class UserInvitation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WipeDeviceRequest(typing_extensions.TypedDict, total=False):
+    customer: str
     removeResetLock: bool
 
 @typing.type_check_only
@@ -805,7 +811,8 @@ class WipeDeviceResponse(typing_extensions.TypedDict, total=False):
     device: Device
 
 @typing.type_check_only
-class WipeDeviceUserRequest(typing_extensions.TypedDict, total=False): ...
+class WipeDeviceUserRequest(typing_extensions.TypedDict, total=False):
+    customer: str
 
 @typing.type_check_only
 class WipeDeviceUserResponse(typing_extensions.TypedDict, total=False):

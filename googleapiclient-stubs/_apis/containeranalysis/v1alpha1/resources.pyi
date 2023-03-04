@@ -143,6 +143,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     "SPDX_FILE",
                     "SPDX_RELATIONSHIP",
                     "DSSE_ATTESTATION",
+                    "VULNERABILITY_ASSESSMENT",
                 ] = ...,
                 name: str = ...,
                 pageSize: int = ...,

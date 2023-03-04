@@ -341,7 +341,10 @@ class HttpCheck(typing_extensions.TypedDict, total=False):
     acceptedResponseStatusCodes: _list[ResponseStatusCode]
     authInfo: BasicAuthentication
     body: str
-    contentType: typing_extensions.Literal["TYPE_UNSPECIFIED", "URL_ENCODED"]
+    contentType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "URL_ENCODED", "USER_PROVIDED"
+    ]
+    customContentType: str
     headers: dict[str, typing.Any]
     maskHeaders: bool
     path: str
@@ -896,7 +899,14 @@ class UptimeCheckIp(typing_extensions.TypedDict, total=False):
     ipAddress: str
     location: str
     region: typing_extensions.Literal[
-        "REGION_UNSPECIFIED", "USA", "EUROPE", "SOUTH_AMERICA", "ASIA_PACIFIC"
+        "REGION_UNSPECIFIED",
+        "USA",
+        "EUROPE",
+        "SOUTH_AMERICA",
+        "ASIA_PACIFIC",
+        "USA_OREGON",
+        "USA_IOWA",
+        "USA_VIRGINIA",
     ]
 
 @typing.type_check_only

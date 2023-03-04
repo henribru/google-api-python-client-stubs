@@ -69,6 +69,7 @@ class GoogleCloudOrgpolicyV2ListPoliciesResponse(
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2Policy(typing_extensions.TypedDict, total=False):
     alternate: GoogleCloudOrgpolicyV2AlternatePolicySpec
+    dryRunSpec: GoogleCloudOrgpolicyV2PolicySpec
     name: str
     spec: GoogleCloudOrgpolicyV2PolicySpec
 

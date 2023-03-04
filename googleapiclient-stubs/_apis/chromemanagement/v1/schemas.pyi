@@ -136,6 +136,7 @@ class GoogleChromeManagementV1ChromeAppInfo(typing_extensions.TypedDict, total=F
     permissions: _list[GoogleChromeManagementV1ChromeAppPermission]
     siteAccess: _list[GoogleChromeManagementV1ChromeAppSiteAccess]
     supportEnabled: bool
+    type: typing_extensions.Literal["ITEM_TYPE_UNSPECIFIED", "EXTENSION", "OTHERS"]
 
 @typing.type_check_only
 class GoogleChromeManagementV1ChromeAppPermission(
@@ -170,6 +171,14 @@ class GoogleChromeManagementV1CountChromeAppRequestsResponse(
     nextPageToken: str
     requestedApps: _list[GoogleChromeManagementV1ChromeAppRequest]
     totalSize: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    noRecentActivityCount: str
+    pendingBrowserUpdateCount: str
+    recentlyEnrolledCount: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse(
@@ -211,6 +220,22 @@ class GoogleChromeManagementV1CountInstalledAppsResponse(
     installedApps: _list[GoogleChromeManagementV1InstalledApp]
     nextPageToken: str
     totalSize: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountPrintJobsByPrinterResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    printerReports: _list[GoogleChromeManagementV1PrinterReport]
+    totalSize: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountPrintJobsByUserResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    totalSize: str
+    userPrintReports: _list[GoogleChromeManagementV1UserPrintReport]
 
 @typing.type_check_only
 class GoogleChromeManagementV1CpuInfo(typing_extensions.TypedDict, total=False):
@@ -287,8 +312,19 @@ class GoogleChromeManagementV1DiskInfo(typing_extensions.TypedDict, total=False)
     writeTimeThisSession: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1DisplayDevice(typing_extensions.TypedDict, total=False):
+    displayHeightMm: int
+    displayName: str
+    displayWidthMm: int
+    internal: bool
+    manufactureYear: int
+    manufacturerId: str
+    modelId: int
+
+@typing.type_check_only
 class GoogleChromeManagementV1DisplayInfo(typing_extensions.TypedDict, total=False):
     deviceId: str
+    displayName: str
     isInternal: bool
     refreshRate: int
     resolutionHeight: int
@@ -313,6 +349,9 @@ class GoogleChromeManagementV1GraphicsAdapterInfo(
 @typing.type_check_only
 class GoogleChromeManagementV1GraphicsInfo(typing_extensions.TypedDict, total=False):
     adapterInfo: GoogleChromeManagementV1GraphicsAdapterInfo
+    displayDevices: _list[GoogleChromeManagementV1DisplayDevice]
+    eprivacySupported: bool
+    touchScreenInfo: GoogleChromeManagementV1TouchScreenInfo
 
 @typing.type_check_only
 class GoogleChromeManagementV1GraphicsStatusReport(
@@ -373,6 +412,13 @@ class GoogleChromeManagementV1ListTelemetryEventsResponse(
 ):
     nextPageToken: str
     telemetryEvents: _list[GoogleChromeManagementV1TelemetryEvent]
+
+@typing.type_check_only
+class GoogleChromeManagementV1ListTelemetryUsersResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    telemetryUsers: _list[GoogleChromeManagementV1TelemetryUser]
 
 @typing.type_check_only
 class GoogleChromeManagementV1MemoryInfo(typing_extensions.TypedDict, total=False):
@@ -457,6 +503,22 @@ class GoogleChromeManagementV1OsUpdateStatus(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
+class GoogleChromeManagementV1PeripheralsReport(
+    typing_extensions.TypedDict, total=False
+):
+    reportTime: str
+    usbPeripheralReport: _list[GoogleChromeManagementV1UsbPeripheralReport]
+
+@typing.type_check_only
+class GoogleChromeManagementV1PrinterReport(typing_extensions.TypedDict, total=False):
+    deviceCount: str
+    jobCount: str
+    printer: str
+    printerId: str
+    printerModel: str
+    userCount: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1StorageInfo(typing_extensions.TypedDict, total=False):
     availableDiskBytes: str
     totalDiskBytes: str
@@ -502,6 +564,7 @@ class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total
     networkStatusReport: _list[GoogleChromeManagementV1NetworkStatusReport]
     orgUnitId: str
     osUpdateStatus: _list[GoogleChromeManagementV1OsUpdateStatus]
+    peripheralsReport: _list[GoogleChromeManagementV1PeripheralsReport]
     serialNumber: str
     storageInfo: GoogleChromeManagementV1StorageInfo
     storageStatusReport: _list[GoogleChromeManagementV1StorageStatusReport]
@@ -521,15 +584,14 @@ class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=
     eventType: typing_extensions.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "AUDIO_SEVERE_UNDERRUN",
-        "NETWORK_CONNECTION_STATE_CHANGE",
         "USB_ADDED",
         "USB_REMOVED",
         "NETWORK_HTTPS_LATENCY_CHANGE",
     ]
     httpsLatencyChangeEvent: GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent
     name: str
-    networkConnectionStateChangeEvent: GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent
     reportTime: str
+    usbPeripheralsEvent: GoogleChromeManagementV1TelemetryUsbPeripheralsEvent
     user: GoogleChromeManagementV1TelemetryUserInfo
 
 @typing.type_check_only
@@ -542,18 +604,27 @@ class GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent(
+class GoogleChromeManagementV1TelemetryUsbPeripheralsEvent(
     typing_extensions.TypedDict, total=False
 ):
-    connectionState: typing_extensions.Literal[
-        "NETWORK_CONNECTION_STATE_UNSPECIFIED",
-        "ONLINE",
-        "CONNECTED",
-        "PORTAL",
-        "CONNECTING",
-        "NOT_CONNECTED",
-    ]
-    guid: str
+    usbPeripheralReport: _list[GoogleChromeManagementV1UsbPeripheralReport]
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryUser(typing_extensions.TypedDict, total=False):
+    customer: str
+    name: str
+    orgUnitId: str
+    userDevice: _list[GoogleChromeManagementV1TelemetryUserDevice]
+    userEmail: str
+    userId: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryUserDevice(
+    typing_extensions.TypedDict, total=False
+):
+    audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
+    deviceId: str
+    peripheralsReport: _list[GoogleChromeManagementV1PeripheralsReport]
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryUserInfo(
@@ -593,6 +664,40 @@ class GoogleChromeManagementV1TotalMemoryEncryptionInfo(
     ]
     keyLength: str
     maxKeys: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1TouchScreenDevice(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    stylusCapable: bool
+    touchPointCount: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1TouchScreenInfo(typing_extensions.TypedDict, total=False):
+    devices: _list[GoogleChromeManagementV1TouchScreenDevice]
+    touchpadLibrary: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1UsbPeripheralReport(
+    typing_extensions.TypedDict, total=False
+):
+    categories: _list[str]
+    classId: int
+    firmwareVersion: str
+    name: str
+    pid: int
+    subclassId: int
+    vendor: str
+    vid: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1UserPrintReport(typing_extensions.TypedDict, total=False):
+    deviceCount: str
+    jobCount: str
+    printerCount: str
+    userEmail: str
+    userId: str
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
